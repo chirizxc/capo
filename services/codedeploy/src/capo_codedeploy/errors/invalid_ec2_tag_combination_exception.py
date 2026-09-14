@@ -43,7 +43,7 @@ class InvalidEC2TagCombinationException(ServiceError):
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidEC2TagCombinationException",
-            message=message if message is not None else data.get("message"),
+            message=message,
         )
         self.data = data
 

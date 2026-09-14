@@ -35,7 +35,7 @@ class CreateGateway420Exception(ServiceError):
             is_throttling_error=False,
             is_retryable=False,
             code="CreateGateway420Exception",
-            message=message if message is not None else data.get("message"),
+            message=message,
         )
         self.data = data
 

@@ -38,7 +38,7 @@ class NotSupportedOperationException(ServiceError):
             is_throttling_error=False,
             is_retryable=False,
             code="NotSupportedOperationException",
-            message=message if message is not None else data.get("message"),
+            message=message,
         )
         self.data = data
 

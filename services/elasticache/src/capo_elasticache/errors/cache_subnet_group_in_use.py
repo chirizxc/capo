@@ -43,7 +43,7 @@ class CacheSubnetGroupInUse(ServiceError):
             is_throttling_error=False,
             is_retryable=False,
             code="CacheSubnetGroupInUse",
-            message=message if message is not None else data.get("message"),
+            message=message,
         )
         self.data = data
 

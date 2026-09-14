@@ -45,7 +45,7 @@ class InvalidDestinationCommitSpecifierException(ServiceError):
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidDestinationCommitSpecifierException",
-            message=message if message is not None else data.get("message"),
+            message=message,
         )
         self.data = data
 

@@ -47,7 +47,7 @@ class NoFreeAddressesInSubnet(ServiceError):
             is_throttling_error=False,
             is_retryable=False,
             code="NoFreeAddressesInSubnet",
-            message=message if message is not None else data.get("message"),
+            message=message,
         )
         self.data = data
 

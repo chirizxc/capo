@@ -40,7 +40,7 @@ class InvalidSampleRateException(ServiceError):
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidSampleRateException",
-            message=message if message is not None else data.get("message"),
+            message=message,
         )
         self.data = data
 

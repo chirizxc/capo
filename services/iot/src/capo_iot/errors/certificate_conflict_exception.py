@@ -41,7 +41,7 @@ class CertificateConflictException(ServiceError):
             is_throttling_error=False,
             is_retryable=False,
             code="CertificateConflictException",
-            message=message if message is not None else data.get("message"),
+            message=message,
         )
         self.data = data
 

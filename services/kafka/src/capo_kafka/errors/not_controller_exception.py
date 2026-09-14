@@ -47,7 +47,7 @@ class NotControllerException(ServiceError):
             is_throttling_error=False,
             is_retryable=False,
             code="NotControllerException",
-            message=message if message is not None else data.get("message"),
+            message=message,
         )
         self.data = data
 

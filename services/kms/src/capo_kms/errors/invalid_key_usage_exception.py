@@ -40,7 +40,7 @@ class InvalidKeyUsageException(ServiceError):
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidKeyUsageException",
-            message=message if message is not None else data.get("message"),
+            message=message,
         )
         self.data = data
 

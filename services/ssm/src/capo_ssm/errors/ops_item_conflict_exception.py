@@ -40,7 +40,7 @@ class OpsItemConflictException(ServiceError):
             is_throttling_error=False,
             is_retryable=False,
             code="OpsItemConflictException",
-            message=message if message is not None else data.get("message"),
+            message=message,
         )
         self.data = data
 

@@ -35,7 +35,7 @@ class CreateBridge420Exception(ServiceError):
             is_throttling_error=False,
             is_retryable=False,
             code="CreateBridge420Exception",
-            message=message if message is not None else data.get("message"),
+            message=message,
         )
         self.data = data
 

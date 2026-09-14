@@ -40,7 +40,7 @@ class IncompatibleSchemaException(ServiceError):
             is_throttling_error=False,
             is_retryable=False,
             code="IncompatibleSchemaException",
-            message=message if message is not None else data.get("message"),
+            message=message,
         )
         self.data = data
 

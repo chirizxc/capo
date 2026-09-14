@@ -51,7 +51,7 @@ class InvalidManifestException(ServiceError):
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidManifestException",
-            message=message if message is not None else data.get("message"),
+            message=message,
         )
         self.data = data
 

@@ -48,7 +48,7 @@ class ThrottlingException(ServiceError):
             is_throttling_error=True,
             is_retryable=True,
             code="ThrottlingException",
-            message=message if message is not None else data.get("message"),
+            message=message,
         )
         self.data = data
 

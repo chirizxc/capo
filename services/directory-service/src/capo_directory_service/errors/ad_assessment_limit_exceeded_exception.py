@@ -50,7 +50,7 @@ class ADAssessmentLimitExceededException(ServiceError):
             is_throttling_error=False,
             is_retryable=False,
             code="ADAssessmentLimitExceededException",
-            message=message if message is not None else data.get("message"),
+            message=message,
         )
         self.data = data
 

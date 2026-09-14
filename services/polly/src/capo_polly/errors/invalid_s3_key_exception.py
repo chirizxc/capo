@@ -40,7 +40,7 @@ class InvalidS3KeyException(ServiceError):
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidS3KeyException",
-            message=message if message is not None else data.get("message"),
+            message=message,
         )
         self.data = data
 

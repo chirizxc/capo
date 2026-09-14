@@ -44,7 +44,7 @@ class SerialConsoleSessionLimitExceededException(ServiceError):
             is_throttling_error=False,
             is_retryable=False,
             code="SerialConsoleSessionLimitExceededException",
-            message=message if message is not None else data.get("message"),
+            message=message,
         )
         self.data = data
 

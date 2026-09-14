@@ -53,7 +53,7 @@ class ConstraintViolationException(ServiceError):
             is_throttling_error=False,
             is_retryable=True,
             code="ConstraintViolationException",
-            message=message if message is not None else data.get("message"),
+            message=message,
         )
         self.data = data
 

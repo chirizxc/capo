@@ -44,7 +44,7 @@ class TypeNotFoundException(ServiceError):
             is_throttling_error=False,
             is_retryable=False,
             code="TypeNotFoundException",
-            message=message if message is not None else data.get("message"),
+            message=message,
         )
         self.data = data
 
