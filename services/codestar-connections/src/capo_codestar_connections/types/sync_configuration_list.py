@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> SyncConfigurationList:
 
     out: SyncConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codestar_connections.types.sync_configuration.deserialize_aws_json_1_0(
                 item

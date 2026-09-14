@@ -35,13 +35,13 @@ def serialize_json(value: UpdateIngestConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateIngestConfigurationRequest:
     out: UpdateIngestConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("UpdateIngestConfigurationRequest.arn required")
-    if "stageArn" in data:
+    if data.get("stageArn") is not None:
         out["stage_arn"] = data["stageArn"]
-    if "redundantIngest" in data:
+    if data.get("redundantIngest") is not None:
         out["redundant_ingest"] = data["redundantIngest"]
     else:
         out["redundant_ingest"] = False

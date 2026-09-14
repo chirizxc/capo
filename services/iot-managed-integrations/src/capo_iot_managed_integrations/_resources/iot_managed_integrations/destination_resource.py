@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_iot_managed_integrations._auth._signers
@@ -97,13 +98,15 @@ class DestinationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.create_destination_request.CreateDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["delivery_destination_arn"] = delivery_destination_arn
-        input_["delivery_destination_type"] = delivery_destination_type
-        input_["name"] = name
-        input_["role_arn"] = role_arn
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_iot_managed_integrations.types.create_destination_request.CreateDestinationRequest = {
+            "delivery_destination_arn": delivery_destination_arn,
+            "delivery_destination_type": delivery_destination_type,
+            "name": name,
+            "role_arn": role_arn,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if description is not None:
             input_["description"] = description
         if tags is not None:
@@ -114,6 +117,7 @@ class DestinationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_destination(
@@ -149,14 +153,16 @@ class DestinationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.delete_destination_request.DeleteDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iot_managed_integrations.types.delete_destination_request.DeleteDestinationRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_destination(
@@ -194,14 +200,16 @@ class DestinationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.get_destination_request.GetDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iot_managed_integrations.types.get_destination_request.GetDestinationRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_destinations(
@@ -244,7 +252,7 @@ class DestinationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.list_destinations_request.ListDestinationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_managed_integrations.types.list_destinations_request.ListDestinationsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -255,6 +263,7 @@ class DestinationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_destination(
@@ -306,8 +315,9 @@ class DestinationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.update_destination_request.UpdateDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iot_managed_integrations.types.update_destination_request.UpdateDestinationRequest = {
+            "name": name
+        }
         if delivery_destination_arn is not None:
             input_["delivery_destination_arn"] = delivery_destination_arn
         if delivery_destination_type is not None:
@@ -322,6 +332,7 @@ class DestinationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -381,13 +392,15 @@ class AsyncDestinationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.create_destination_request.CreateDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["delivery_destination_arn"] = delivery_destination_arn
-        input_["delivery_destination_type"] = delivery_destination_type
-        input_["name"] = name
-        input_["role_arn"] = role_arn
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_iot_managed_integrations.types.create_destination_request.CreateDestinationRequest = {
+            "delivery_destination_arn": delivery_destination_arn,
+            "delivery_destination_type": delivery_destination_type,
+            "name": name,
+            "role_arn": role_arn,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if description is not None:
             input_["description"] = description
         if tags is not None:
@@ -398,6 +411,7 @@ class AsyncDestinationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_destination(
@@ -434,14 +448,16 @@ class AsyncDestinationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.delete_destination_request.DeleteDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iot_managed_integrations.types.delete_destination_request.DeleteDestinationRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_destination(
@@ -480,14 +496,16 @@ class AsyncDestinationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.get_destination_request.GetDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iot_managed_integrations.types.get_destination_request.GetDestinationRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_destinations(
@@ -531,7 +549,7 @@ class AsyncDestinationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.list_destinations_request.ListDestinationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_managed_integrations.types.list_destinations_request.ListDestinationsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -542,6 +560,7 @@ class AsyncDestinationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_destination(
@@ -594,8 +613,9 @@ class AsyncDestinationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.update_destination_request.UpdateDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iot_managed_integrations.types.update_destination_request.UpdateDestinationRequest = {
+            "name": name
+        }
         if delivery_destination_arn is not None:
             input_["delivery_destination_arn"] = delivery_destination_arn
         if delivery_destination_type is not None:
@@ -610,4 +630,5 @@ class AsyncDestinationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

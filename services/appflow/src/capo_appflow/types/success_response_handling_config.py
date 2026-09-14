@@ -28,8 +28,8 @@ def serialize_json(value: SuccessResponseHandlingConfig) -> dict:
 
 def deserialize_json(data: dict) -> SuccessResponseHandlingConfig:
     out: SuccessResponseHandlingConfig = {}  # type: ignore[typeddict-item]
-    if "bucketPrefix" in data:
+    if data.get("bucketPrefix") is not None:
         out["bucket_prefix"] = data["bucketPrefix"]
-    if "bucketName" in data:
+    if data.get("bucketName") is not None:
         out["bucket_name"] = data["bucketName"]
     return out

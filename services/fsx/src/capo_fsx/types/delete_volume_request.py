@@ -55,11 +55,11 @@ def serialize_aws_json_1_1(value: DeleteVolumeRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteVolumeRequest:
     out: DeleteVolumeRequest = {}  # type: ignore[typeddict-item]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "VolumeId" in data:
+    if data.get("VolumeId") is not None:
         out["volume_id"] = data["VolumeId"]
-    if "OntapConfiguration" in data:
+    if data.get("OntapConfiguration") is not None:
         import capo_fsx.types.delete_volume_ontap_configuration
 
         out["ontap_configuration"] = (
@@ -67,7 +67,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeleteVolumeRequest:
                 data["OntapConfiguration"]
             )
         )
-    if "OpenZFSConfiguration" in data:
+    if data.get("OpenZFSConfiguration") is not None:
         import capo_fsx.types.delete_volume_open_zfs_configuration
 
         out["open_zfs_configuration"] = (

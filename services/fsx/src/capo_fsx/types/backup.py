@@ -136,15 +136,15 @@ def serialize_aws_json_1_1(value: Backup) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Backup:
     out: Backup = {}  # type: ignore[typeddict-item]
-    if "BackupId" in data:
+    if data.get("BackupId") is not None:
         out["backup_id"] = data["BackupId"]
-    if "Lifecycle" in data:
+    if data.get("Lifecycle") is not None:
         import capo_fsx.types.backup_lifecycle
 
         out["lifecycle"] = capo_fsx.types.backup_lifecycle.deserialize_aws_json_1_1(
             data["Lifecycle"]
         )
-    if "FailureDetails" in data:
+    if data.get("FailureDetails") is not None:
         import capo_fsx.types.backup_failure_details
 
         out["failure_details"] = (
@@ -152,33 +152,33 @@ def deserialize_aws_json_1_1(data: dict) -> Backup:
                 data["FailureDetails"]
             )
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_fsx.types.backup_type
 
         out["type"] = capo_fsx.types.backup_type.deserialize_aws_json_1_1(data["Type"])
-    if "ProgressPercent" in data:
+    if data.get("ProgressPercent") is not None:
         out["progress_percent"] = data["ProgressPercent"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_fsx.types.creation_time
 
         out["creation_time"] = capo_fsx.types.creation_time.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "ResourceARN" in data:
+    if data.get("ResourceARN") is not None:
         out["resource_arn"] = data["ResourceARN"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_fsx.types.tags
 
         out["tags"] = capo_fsx.types.tags.deserialize_aws_json_1_1(data["Tags"])
-    if "FileSystem" in data:
+    if data.get("FileSystem") is not None:
         import capo_fsx.types.file_system
 
         out["file_system"] = capo_fsx.types.file_system.deserialize_aws_json_1_1(
             data["FileSystem"]
         )
-    if "DirectoryInformation" in data:
+    if data.get("DirectoryInformation") is not None:
         import capo_fsx.types.active_directory_backup_attributes
 
         out["directory_information"] = (
@@ -186,22 +186,22 @@ def deserialize_aws_json_1_1(data: dict) -> Backup:
                 data["DirectoryInformation"]
             )
         )
-    if "OwnerId" in data:
+    if data.get("OwnerId") is not None:
         out["owner_id"] = data["OwnerId"]
-    if "SourceBackupId" in data:
+    if data.get("SourceBackupId") is not None:
         out["source_backup_id"] = data["SourceBackupId"]
-    if "SourceBackupRegion" in data:
+    if data.get("SourceBackupRegion") is not None:
         out["source_backup_region"] = data["SourceBackupRegion"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_fsx.types.resource_type
 
         out["resource_type"] = capo_fsx.types.resource_type.deserialize_aws_json_1_1(
             data["ResourceType"]
         )
-    if "Volume" in data:
+    if data.get("Volume") is not None:
         import capo_fsx.types.volume
 
         out["volume"] = capo_fsx.types.volume.deserialize_aws_json_1_1(data["Volume"])
-    if "SizeInBytes" in data:
+    if data.get("SizeInBytes") is not None:
         out["size_in_bytes"] = data["SizeInBytes"]
     return out

@@ -78,7 +78,7 @@ def serialize_aws_json_1_1(value: Grant) -> dict:
 
 
 def deserialize_aws_json_1_1(data: dict) -> Grant:
-    if "AuthorizationCode" in data:
+    if data.get("AuthorizationCode") is not None:
         import capo_sso_admin.types.authorization_code_grant
 
         return {
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_1(data: dict) -> Grant:
                 data["AuthorizationCode"]
             )
         }
-    elif "JwtBearer" in data:
+    elif data.get("JwtBearer") is not None:
         import capo_sso_admin.types.jwt_bearer_grant
 
         return {
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_1(data: dict) -> Grant:
                 data["JwtBearer"]
             )
         }
-    elif "RefreshToken" in data:
+    elif data.get("RefreshToken") is not None:
         import capo_sso_admin.types.refresh_token_grant
 
         return {
@@ -102,7 +102,7 @@ def deserialize_aws_json_1_1(data: dict) -> Grant:
                 data["RefreshToken"]
             )
         }
-    elif "TokenExchange" in data:
+    elif data.get("TokenExchange") is not None:
         import capo_sso_admin.types.token_exchange_grant
 
         return {

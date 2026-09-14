@@ -40,12 +40,12 @@ def serialize_aws_json_1_0(value: UpdateRelationshipDetail) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateRelationshipDetail:
     out: UpdateRelationshipDetail = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "revision" in data:
+    if data.get("revision") is not None:
         out["revision"] = data["revision"]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     return out

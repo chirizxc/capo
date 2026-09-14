@@ -21,6 +21,8 @@ def serialize_json(input_to_serialize: Filters) -> dict:
 def deserialize_json(data: dict) -> Filters:
     out: Filters = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_route53globalresolver.types.strings
 
         out[key] = capo_route53globalresolver.types.strings.deserialize_json(value)

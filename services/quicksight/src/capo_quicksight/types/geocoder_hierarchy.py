@@ -53,14 +53,14 @@ def serialize_json(value: GeocoderHierarchy) -> dict:
 
 def deserialize_json(data: dict) -> GeocoderHierarchy:
     out: GeocoderHierarchy = {}  # type: ignore[typeddict-item]
-    if "Country" in data:
+    if data.get("Country") is not None:
         out["country"] = data["Country"]
-    if "State" in data:
+    if data.get("State") is not None:
         out["state"] = data["State"]
-    if "County" in data:
+    if data.get("County") is not None:
         out["county"] = data["County"]
-    if "City" in data:
+    if data.get("City") is not None:
         out["city"] = data["City"]
-    if "PostCode" in data:
+    if data.get("PostCode") is not None:
         out["post_code"] = data["PostCode"]
     return out

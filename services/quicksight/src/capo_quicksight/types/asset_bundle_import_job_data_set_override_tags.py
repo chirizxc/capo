@@ -36,7 +36,7 @@ def serialize_json(value: AssetBundleImportJobDataSetOverrideTags) -> dict:
 
 def deserialize_json(data: dict) -> AssetBundleImportJobDataSetOverrideTags:
     out: AssetBundleImportJobDataSetOverrideTags = {}  # type: ignore[typeddict-item]
-    if "DataSetIds" in data:
+    if data.get("DataSetIds") is not None:
         import capo_quicksight.types.asset_bundle_restrictive_resource_id_list
 
         out["data_set_ids"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> AssetBundleImportJobDataSetOverrideTags:
         raise DeserializationError(
             "AssetBundleImportJobDataSetOverrideTags.data_set_ids required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_quicksight.types.tag_list
 
         out["tags"] = capo_quicksight.types.tag_list.deserialize_json(data["Tags"])

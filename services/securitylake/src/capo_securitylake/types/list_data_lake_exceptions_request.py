@@ -36,16 +36,16 @@ def serialize_json(value: ListDataLakeExceptionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListDataLakeExceptionsRequest:
     out: ListDataLakeExceptionsRequest = {}  # type: ignore[typeddict-item]
-    if "regions" in data:
+    if data.get("regions") is not None:
         import capo_securitylake.types.region_list
 
         out["regions"] = capo_securitylake.types.region_list.deserialize_json(
             data["regions"]
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     else:
         out["max_results"] = 50
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

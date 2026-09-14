@@ -23,6 +23,6 @@ def serialize_json(value: BedrockKnowledgeStoreExactResponseFields) -> dict:
 
 def deserialize_json(data: dict) -> BedrockKnowledgeStoreExactResponseFields:
     out: BedrockKnowledgeStoreExactResponseFields = {}  # type: ignore[typeddict-item]
-    if "answerField" in data:
+    if data.get("answerField") is not None:
         out["answer_field"] = data["answerField"]
     return out

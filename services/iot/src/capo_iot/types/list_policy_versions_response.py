@@ -27,7 +27,7 @@ def serialize_json(value: ListPolicyVersionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListPolicyVersionsResponse:
     out: ListPolicyVersionsResponse = {}  # type: ignore[typeddict-item]
-    if "policyVersions" in data:
+    if data.get("policyVersions") is not None:
         import capo_iot.types.policy_versions
 
         out["policy_versions"] = capo_iot.types.policy_versions.deserialize_json(

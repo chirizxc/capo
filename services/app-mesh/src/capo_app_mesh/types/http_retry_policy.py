@@ -58,7 +58,7 @@ def serialize_json(value: HttpRetryPolicy) -> dict:
 
 def deserialize_json(data: dict) -> HttpRetryPolicy:
     out: HttpRetryPolicy = {}  # type: ignore[typeddict-item]
-    if "perRetryTimeout" in data:
+    if data.get("perRetryTimeout") is not None:
         import capo_app_mesh.types.duration
 
         out["per_retry_timeout"] = capo_app_mesh.types.duration.deserialize_json(
@@ -66,11 +66,11 @@ def deserialize_json(data: dict) -> HttpRetryPolicy:
         )
     else:
         raise DeserializationError("HttpRetryPolicy.per_retry_timeout required")
-    if "maxRetries" in data:
+    if data.get("maxRetries") is not None:
         out["max_retries"] = data["maxRetries"]
     else:
         raise DeserializationError("HttpRetryPolicy.max_retries required")
-    if "httpRetryEvents" in data:
+    if data.get("httpRetryEvents") is not None:
         import capo_app_mesh.types.http_retry_policy_events
 
         out["http_retry_events"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> HttpRetryPolicy:
                 data["httpRetryEvents"]
             )
         )
-    if "tcpRetryEvents" in data:
+    if data.get("tcpRetryEvents") is not None:
         import capo_app_mesh.types.tcp_retry_policy_events
 
         out["tcp_retry_events"] = (

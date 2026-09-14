@@ -35,13 +35,13 @@ def serialize_json(value: WorkspaceTheme) -> dict:
 
 def deserialize_json(data: dict) -> WorkspaceTheme:
     out: WorkspaceTheme = {}  # type: ignore[typeddict-item]
-    if "Light" in data:
+    if data.get("Light") is not None:
         import capo_connect.types.workspace_theme_config
 
         out["light"] = capo_connect.types.workspace_theme_config.deserialize_json(
             data["Light"]
         )
-    if "Dark" in data:
+    if data.get("Dark") is not None:
         import capo_connect.types.workspace_theme_config
 
         out["dark"] = capo_connect.types.workspace_theme_config.deserialize_json(

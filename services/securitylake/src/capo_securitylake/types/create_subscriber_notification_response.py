@@ -23,6 +23,6 @@ def serialize_json(value: CreateSubscriberNotificationResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateSubscriberNotificationResponse:
     out: CreateSubscriberNotificationResponse = {}  # type: ignore[typeddict-item]
-    if "subscriberEndpoint" in data:
+    if data.get("subscriberEndpoint") is not None:
         out["subscriber_endpoint"] = data["subscriberEndpoint"]
     return out

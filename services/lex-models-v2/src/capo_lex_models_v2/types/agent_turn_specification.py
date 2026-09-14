@@ -24,7 +24,7 @@ def serialize_json(value: AgentTurnSpecification) -> dict:
 
 def deserialize_json(data: dict) -> AgentTurnSpecification:
     out: AgentTurnSpecification = {}  # type: ignore[typeddict-item]
-    if "agentPrompt" in data:
+    if data.get("agentPrompt") is not None:
         out["agent_prompt"] = data["agentPrompt"]
     else:
         raise DeserializationError("AgentTurnSpecification.agent_prompt required")

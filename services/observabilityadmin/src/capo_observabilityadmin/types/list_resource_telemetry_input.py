@@ -76,9 +76,9 @@ def serialize_json(value: ListResourceTelemetryInput) -> dict:
 
 def deserialize_json(data: dict) -> ListResourceTelemetryInput:
     out: ListResourceTelemetryInput = {}  # type: ignore[typeddict-item]
-    if "ResourceIdentifierPrefix" in data:
+    if data.get("ResourceIdentifierPrefix") is not None:
         out["resource_identifier_prefix"] = data["ResourceIdentifierPrefix"]
-    if "ResourceTypes" in data:
+    if data.get("ResourceTypes") is not None:
         import capo_observabilityadmin.types.resource_types
 
         out["resource_types"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> ListResourceTelemetryInput:
                 data["ResourceTypes"]
             )
         )
-    if "TelemetryConfigurationState" in data:
+    if data.get("TelemetryConfigurationState") is not None:
         import capo_observabilityadmin.types.telemetry_configuration_state
 
         out["telemetry_configuration_state"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> ListResourceTelemetryInput:
                 data["TelemetryConfigurationState"]
             )
         )
-    if "ResourceTags" in data:
+    if data.get("ResourceTags") is not None:
         import capo_observabilityadmin.types.tag_map_input
 
         out["resource_tags"] = (
@@ -102,8 +102,8 @@ def deserialize_json(data: dict) -> ListResourceTelemetryInput:
                 data["ResourceTags"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

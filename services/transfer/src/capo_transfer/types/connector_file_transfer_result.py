@@ -44,11 +44,11 @@ def serialize_aws_json_1_1(value: ConnectorFileTransferResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConnectorFileTransferResult:
     out: ConnectorFileTransferResult = {}  # type: ignore[typeddict-item]
-    if "FilePath" in data:
+    if data.get("FilePath") is not None:
         out["file_path"] = data["FilePath"]
     else:
         raise DeserializationError("ConnectorFileTransferResult.file_path required")
-    if "StatusCode" in data:
+    if data.get("StatusCode") is not None:
         import capo_transfer.types.transfer_table_status
 
         out["status_code"] = (
@@ -58,8 +58,8 @@ def deserialize_aws_json_1_1(data: dict) -> ConnectorFileTransferResult:
         )
     else:
         raise DeserializationError("ConnectorFileTransferResult.status_code required")
-    if "FailureCode" in data:
+    if data.get("FailureCode") is not None:
         out["failure_code"] = data["FailureCode"]
-    if "FailureMessage" in data:
+    if data.get("FailureMessage") is not None:
         out["failure_message"] = data["FailureMessage"]
     return out

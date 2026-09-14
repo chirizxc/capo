@@ -43,15 +43,15 @@ def serialize_json(value: VpcInfoPeeringOptionsDetails) -> dict:
 
 def deserialize_json(data: dict) -> VpcInfoPeeringOptionsDetails:
     out: VpcInfoPeeringOptionsDetails = {}  # type: ignore[typeddict-item]
-    if "AllowDnsResolutionFromRemoteVpc" in data:
+    if data.get("AllowDnsResolutionFromRemoteVpc") is not None:
         out["allow_dns_resolution_from_remote_vpc"] = data[
             "AllowDnsResolutionFromRemoteVpc"
         ]
-    if "AllowEgressFromLocalClassicLinkToRemoteVpc" in data:
+    if data.get("AllowEgressFromLocalClassicLinkToRemoteVpc") is not None:
         out["allow_egress_from_local_classic_link_to_remote_vpc"] = data[
             "AllowEgressFromLocalClassicLinkToRemoteVpc"
         ]
-    if "AllowEgressFromLocalVpcToRemoteClassicLink" in data:
+    if data.get("AllowEgressFromLocalVpcToRemoteClassicLink") is not None:
         out["allow_egress_from_local_vpc_to_remote_classic_link"] = data[
             "AllowEgressFromLocalVpcToRemoteClassicLink"
         ]

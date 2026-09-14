@@ -157,7 +157,7 @@ def serialize_aws_json_1_1(value: CreateClusterRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateClusterRequest:
     out: CreateClusterRequest = {}  # type: ignore[typeddict-item]
-    if "JobType" in data:
+    if data.get("JobType") is not None:
         import capo_snowball.types.job_type
 
         out["job_type"] = capo_snowball.types.job_type.deserialize_aws_json_1_1(
@@ -165,13 +165,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateClusterRequest:
         )
     else:
         raise DeserializationError("CreateClusterRequest.job_type required")
-    if "Resources" in data:
+    if data.get("Resources") is not None:
         import capo_snowball.types.job_resource
 
         out["resources"] = capo_snowball.types.job_resource.deserialize_aws_json_1_1(
             data["Resources"]
         )
-    if "OnDeviceServiceConfiguration" in data:
+    if data.get("OnDeviceServiceConfiguration") is not None:
         import capo_snowball.types.on_device_service_configuration
 
         out["on_device_service_configuration"] = (
@@ -179,17 +179,17 @@ def deserialize_aws_json_1_1(data: dict) -> CreateClusterRequest:
                 data["OnDeviceServiceConfiguration"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "AddressId" in data:
+    if data.get("AddressId") is not None:
         out["address_id"] = data["AddressId"]
     else:
         raise DeserializationError("CreateClusterRequest.address_id required")
-    if "KmsKeyARN" in data:
+    if data.get("KmsKeyARN") is not None:
         out["kms_key_arn"] = data["KmsKeyARN"]
-    if "RoleARN" in data:
+    if data.get("RoleARN") is not None:
         out["role_arn"] = data["RoleARN"]
-    if "SnowballType" in data:
+    if data.get("SnowballType") is not None:
         import capo_snowball.types.snowball_type
 
         out["snowball_type"] = (
@@ -199,7 +199,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateClusterRequest:
         )
     else:
         raise DeserializationError("CreateClusterRequest.snowball_type required")
-    if "ShippingOption" in data:
+    if data.get("ShippingOption") is not None:
         import capo_snowball.types.shipping_option
 
         out["shipping_option"] = (
@@ -209,15 +209,15 @@ def deserialize_aws_json_1_1(data: dict) -> CreateClusterRequest:
         )
     else:
         raise DeserializationError("CreateClusterRequest.shipping_option required")
-    if "Notification" in data:
+    if data.get("Notification") is not None:
         import capo_snowball.types.notification
 
         out["notification"] = capo_snowball.types.notification.deserialize_aws_json_1_1(
             data["Notification"]
         )
-    if "ForwardingAddressId" in data:
+    if data.get("ForwardingAddressId") is not None:
         out["forwarding_address_id"] = data["ForwardingAddressId"]
-    if "TaxDocuments" in data:
+    if data.get("TaxDocuments") is not None:
         import capo_snowball.types.tax_documents
 
         out["tax_documents"] = (
@@ -225,7 +225,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateClusterRequest:
                 data["TaxDocuments"]
             )
         )
-    if "RemoteManagement" in data:
+    if data.get("RemoteManagement") is not None:
         import capo_snowball.types.remote_management
 
         out["remote_management"] = (
@@ -233,13 +233,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateClusterRequest:
                 data["RemoteManagement"]
             )
         )
-    if "InitialClusterSize" in data:
+    if data.get("InitialClusterSize") is not None:
         out["initial_cluster_size"] = data["InitialClusterSize"]
-    if "ForceCreateJobs" in data:
+    if data.get("ForceCreateJobs") is not None:
         out["force_create_jobs"] = data["ForceCreateJobs"]
     else:
         out["force_create_jobs"] = False
-    if "LongTermPricingIds" in data:
+    if data.get("LongTermPricingIds") is not None:
         import capo_snowball.types.long_term_pricing_id_list
 
         out["long_term_pricing_ids"] = (
@@ -247,7 +247,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateClusterRequest:
                 data["LongTermPricingIds"]
             )
         )
-    if "SnowballCapacityPreference" in data:
+    if data.get("SnowballCapacityPreference") is not None:
         import capo_snowball.types.snowball_capacity
 
         out["snowball_capacity_preference"] = (

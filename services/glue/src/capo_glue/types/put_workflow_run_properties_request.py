@@ -38,15 +38,15 @@ def serialize_aws_json_1_1(value: PutWorkflowRunPropertiesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutWorkflowRunPropertiesRequest:
     out: PutWorkflowRunPropertiesRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("PutWorkflowRunPropertiesRequest.name required")
-    if "RunId" in data:
+    if data.get("RunId") is not None:
         out["run_id"] = data["RunId"]
     else:
         raise DeserializationError("PutWorkflowRunPropertiesRequest.run_id required")
-    if "RunProperties" in data:
+    if data.get("RunProperties") is not None:
         import capo_glue.types.workflow_run_properties
 
         out["run_properties"] = (

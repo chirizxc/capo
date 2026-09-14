@@ -19,7 +19,7 @@ def serialize_json(value: RelatedItemEventIncludedData) -> dict:
 
 def deserialize_json(data: dict) -> RelatedItemEventIncludedData:
     out: RelatedItemEventIncludedData = {}  # type: ignore[typeddict-item]
-    if "includeContent" in data:
+    if data.get("includeContent") is not None:
         out["include_content"] = data["includeContent"]
     else:
         raise DeserializationError(

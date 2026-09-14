@@ -96,7 +96,7 @@ def serialize_aws_json_1_1(value: InstanceDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InstanceDetails:
     out: InstanceDetails = {}  # type: ignore[typeddict-item]
-    if "EC2InstanceDetails" in data:
+    if data.get("EC2InstanceDetails") is not None:
         import capo_cost_explorer.types.ec2_instance_details
 
         out["ec2_instance_details"] = (
@@ -104,7 +104,7 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceDetails:
                 data["EC2InstanceDetails"]
             )
         )
-    if "RDSInstanceDetails" in data:
+    if data.get("RDSInstanceDetails") is not None:
         import capo_cost_explorer.types.rds_instance_details
 
         out["rds_instance_details"] = (
@@ -112,7 +112,7 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceDetails:
                 data["RDSInstanceDetails"]
             )
         )
-    if "RedshiftInstanceDetails" in data:
+    if data.get("RedshiftInstanceDetails") is not None:
         import capo_cost_explorer.types.redshift_instance_details
 
         out["redshift_instance_details"] = (
@@ -120,7 +120,7 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceDetails:
                 data["RedshiftInstanceDetails"]
             )
         )
-    if "ElastiCacheInstanceDetails" in data:
+    if data.get("ElastiCacheInstanceDetails") is not None:
         import capo_cost_explorer.types.elasti_cache_instance_details
 
         out["elasti_cache_instance_details"] = (
@@ -128,7 +128,7 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceDetails:
                 data["ElastiCacheInstanceDetails"]
             )
         )
-    if "ESInstanceDetails" in data:
+    if data.get("ESInstanceDetails") is not None:
         import capo_cost_explorer.types.es_instance_details
 
         out["es_instance_details"] = (
@@ -136,7 +136,7 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceDetails:
                 data["ESInstanceDetails"]
             )
         )
-    if "MemoryDBInstanceDetails" in data:
+    if data.get("MemoryDBInstanceDetails") is not None:
         import capo_cost_explorer.types.memory_db_instance_details
 
         out["memory_db_instance_details"] = (

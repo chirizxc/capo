@@ -46,9 +46,9 @@ def serialize_json(value: CrossRegionCopyAction) -> dict:
 
 def deserialize_json(data: dict) -> CrossRegionCopyAction:
     out: CrossRegionCopyAction = {}  # type: ignore[typeddict-item]
-    if "Target" in data:
+    if data.get("Target") is not None:
         out["target"] = data["Target"]
-    if "EncryptionConfiguration" in data:
+    if data.get("EncryptionConfiguration") is not None:
         import capo_dlm.types.encryption_configuration
 
         out["encryption_configuration"] = (
@@ -56,7 +56,7 @@ def deserialize_json(data: dict) -> CrossRegionCopyAction:
                 data["EncryptionConfiguration"]
             )
         )
-    if "RetainRule" in data:
+    if data.get("RetainRule") is not None:
         import capo_dlm.types.cross_region_copy_retain_rule
 
         out["retain_rule"] = (

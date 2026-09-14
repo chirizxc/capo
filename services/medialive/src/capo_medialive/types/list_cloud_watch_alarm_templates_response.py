@@ -37,7 +37,7 @@ def serialize_json(value: ListCloudWatchAlarmTemplatesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListCloudWatchAlarmTemplatesResponse:
     out: ListCloudWatchAlarmTemplatesResponse = {}  # type: ignore[typeddict-item]
-    if "cloudWatchAlarmTemplates" in data:
+    if data.get("cloudWatchAlarmTemplates") is not None:
         import capo_medialive.types.__list_of_cloud_watch_alarm_template_summary
 
         out["cloud_watch_alarm_templates"] = (
@@ -45,6 +45,6 @@ def deserialize_json(data: dict) -> ListCloudWatchAlarmTemplatesResponse:
                 data["cloudWatchAlarmTemplates"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

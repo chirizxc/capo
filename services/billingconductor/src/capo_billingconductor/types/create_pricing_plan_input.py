@@ -54,13 +54,13 @@ def serialize_json(value: CreatePricingPlanInput) -> dict:
 
 def deserialize_json(data: dict) -> CreatePricingPlanInput:
     out: CreatePricingPlanInput = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreatePricingPlanInput.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "PricingRuleArns" in data:
+    if data.get("PricingRuleArns") is not None:
         import capo_billingconductor.types.pricing_rule_arns_input
 
         out["pricing_rule_arns"] = (
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> CreatePricingPlanInput:
                 data["PricingRuleArns"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_billingconductor.types.tag_map
 
         out["tags"] = capo_billingconductor.types.tag_map.deserialize_json(data["Tags"])

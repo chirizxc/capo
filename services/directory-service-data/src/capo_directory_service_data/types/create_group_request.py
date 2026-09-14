@@ -67,11 +67,11 @@ def serialize_json(value: CreateGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateGroupRequest:
     out: CreateGroupRequest = {}  # type: ignore[typeddict-item]
-    if "SAMAccountName" in data:
+    if data.get("SAMAccountName") is not None:
         out["sam_account_name"] = data["SAMAccountName"]
     else:
         raise DeserializationError("CreateGroupRequest.sam_account_name required")
-    if "GroupType" in data:
+    if data.get("GroupType") is not None:
         import capo_directory_service_data.types.group_type
 
         out["group_type"] = (
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> CreateGroupRequest:
                 data["GroupType"]
             )
         )
-    if "GroupScope" in data:
+    if data.get("GroupScope") is not None:
         import capo_directory_service_data.types.group_scope
 
         out["group_scope"] = (
@@ -87,7 +87,7 @@ def deserialize_json(data: dict) -> CreateGroupRequest:
                 data["GroupScope"]
             )
         )
-    if "OtherAttributes" in data:
+    if data.get("OtherAttributes") is not None:
         import capo_directory_service_data.types.attributes
 
         out["other_attributes"] = (
@@ -95,6 +95,6 @@ def deserialize_json(data: dict) -> CreateGroupRequest:
                 data["OtherAttributes"]
             )
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

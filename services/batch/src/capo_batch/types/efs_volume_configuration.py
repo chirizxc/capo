@@ -58,11 +58,11 @@ def serialize_json(value: EFSVolumeConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> EFSVolumeConfiguration:
     out: EFSVolumeConfiguration = {}  # type: ignore[typeddict-item]
-    if "fileSystemId" in data:
+    if data.get("fileSystemId") is not None:
         out["file_system_id"] = data["fileSystemId"]
-    if "rootDirectory" in data:
+    if data.get("rootDirectory") is not None:
         out["root_directory"] = data["rootDirectory"]
-    if "transitEncryption" in data:
+    if data.get("transitEncryption") is not None:
         import capo_batch.types.efs_transit_encryption
 
         out["transit_encryption"] = (
@@ -70,9 +70,9 @@ def deserialize_json(data: dict) -> EFSVolumeConfiguration:
                 data["transitEncryption"]
             )
         )
-    if "transitEncryptionPort" in data:
+    if data.get("transitEncryptionPort") is not None:
         out["transit_encryption_port"] = data["transitEncryptionPort"]
-    if "authorizationConfig" in data:
+    if data.get("authorizationConfig") is not None:
         import capo_batch.types.efs_authorization_config
 
         out["authorization_config"] = (

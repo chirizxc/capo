@@ -38,9 +38,9 @@ def serialize_aws_json_1_0(value: StartVerificationRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StartVerificationRequest:
     out: StartVerificationRequest = {}  # type: ignore[typeddict-item]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "VerificationDetails" in data:
+    if data.get("VerificationDetails") is not None:
         import capo_partnercentral_account.types.verification_details
 
         out["verification_details"] = (

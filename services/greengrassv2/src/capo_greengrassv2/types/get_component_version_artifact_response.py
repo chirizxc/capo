@@ -24,7 +24,7 @@ def serialize_json(value: GetComponentVersionArtifactResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetComponentVersionArtifactResponse:
     out: GetComponentVersionArtifactResponse = {}  # type: ignore[typeddict-item]
-    if "preSignedUrl" in data:
+    if data.get("preSignedUrl") is not None:
         out["pre_signed_url"] = data["preSignedUrl"]
     else:
         raise DeserializationError(

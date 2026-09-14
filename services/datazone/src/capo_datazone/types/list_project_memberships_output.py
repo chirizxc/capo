@@ -33,7 +33,7 @@ def serialize_json(value: ListProjectMembershipsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListProjectMembershipsOutput:
     out: ListProjectMembershipsOutput = {}  # type: ignore[typeddict-item]
-    if "members" in data:
+    if data.get("members") is not None:
         import capo_datazone.types.project_members
 
         out["members"] = capo_datazone.types.project_members.deserialize_json(
@@ -41,6 +41,6 @@ def deserialize_json(data: dict) -> ListProjectMembershipsOutput:
         )
     else:
         raise DeserializationError("ListProjectMembershipsOutput.members required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

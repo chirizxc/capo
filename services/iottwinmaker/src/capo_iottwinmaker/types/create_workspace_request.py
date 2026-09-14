@@ -43,13 +43,13 @@ def serialize_json(value: CreateWorkspaceRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateWorkspaceRequest:
     out: CreateWorkspaceRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "s3Location" in data:
+    if data.get("s3Location") is not None:
         out["s3_location"] = data["s3Location"]
-    if "role" in data:
+    if data.get("role") is not None:
         out["role"] = data["role"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iottwinmaker.types.tag_map
 
         out["tags"] = capo_iottwinmaker.types.tag_map.deserialize_json(data["tags"])

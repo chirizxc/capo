@@ -59,23 +59,23 @@ def serialize_json(value: ViewFrame) -> dict:
 
 def deserialize_json(data: dict) -> ViewFrame:
     out: ViewFrame = {}  # type: ignore[typeddict-item]
-    if "StartColumnIndex" in data:
+    if data.get("StartColumnIndex") is not None:
         out["start_column_index"] = data["StartColumnIndex"]
     else:
         raise DeserializationError("ViewFrame.start_column_index required")
-    if "ColumnRange" in data:
+    if data.get("ColumnRange") is not None:
         out["column_range"] = data["ColumnRange"]
-    if "HiddenColumns" in data:
+    if data.get("HiddenColumns") is not None:
         import capo_databrew.types.hidden_column_list
 
         out["hidden_columns"] = capo_databrew.types.hidden_column_list.deserialize_json(
             data["HiddenColumns"]
         )
-    if "StartRowIndex" in data:
+    if data.get("StartRowIndex") is not None:
         out["start_row_index"] = data["StartRowIndex"]
-    if "RowRange" in data:
+    if data.get("RowRange") is not None:
         out["row_range"] = data["RowRange"]
-    if "Analytics" in data:
+    if data.get("Analytics") is not None:
         import capo_databrew.types.analytics_mode
 
         out["analytics"] = capo_databrew.types.analytics_mode.deserialize_json(

@@ -96,15 +96,15 @@ def serialize_aws_json_1_1(value: InstanceGroupConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InstanceGroupConfig:
     out: InstanceGroupConfig = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Market" in data:
+    if data.get("Market") is not None:
         import capo_emr.types.market_type
 
         out["market"] = capo_emr.types.market_type.deserialize_aws_json_1_1(
             data["Market"]
         )
-    if "InstanceRole" in data:
+    if data.get("InstanceRole") is not None:
         import capo_emr.types.instance_role_type
 
         out["instance_role"] = (
@@ -112,13 +112,13 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceGroupConfig:
                 data["InstanceRole"]
             )
         )
-    if "BidPrice" in data:
+    if data.get("BidPrice") is not None:
         out["bid_price"] = data["BidPrice"]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         out["instance_type"] = data["InstanceType"]
-    if "InstanceCount" in data:
+    if data.get("InstanceCount") is not None:
         out["instance_count"] = data["InstanceCount"]
-    if "Configurations" in data:
+    if data.get("Configurations") is not None:
         import capo_emr.types.configuration_list
 
         out["configurations"] = (
@@ -126,7 +126,7 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceGroupConfig:
                 data["Configurations"]
             )
         )
-    if "EbsConfiguration" in data:
+    if data.get("EbsConfiguration") is not None:
         import capo_emr.types.ebs_configuration
 
         out["ebs_configuration"] = (
@@ -134,7 +134,7 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceGroupConfig:
                 data["EbsConfiguration"]
             )
         )
-    if "AutoScalingPolicy" in data:
+    if data.get("AutoScalingPolicy") is not None:
         import capo_emr.types.auto_scaling_policy
 
         out["auto_scaling_policy"] = (
@@ -142,6 +142,6 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceGroupConfig:
                 data["AutoScalingPolicy"]
             )
         )
-    if "CustomAmiId" in data:
+    if data.get("CustomAmiId") is not None:
         out["custom_ami_id"] = data["CustomAmiId"]
     return out

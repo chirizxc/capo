@@ -36,11 +36,11 @@ def serialize_json(value: UpdateOperation) -> dict:
 
 def deserialize_json(data: dict) -> UpdateOperation:
     out: UpdateOperation = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "excluded" in data:
+    if data.get("excluded") is not None:
         out["excluded"] = data["excluded"]
-    if "properties" in data:
+    if data.get("properties") is not None:
         import capo_mgn.types.construct_properties
 
         out["properties"] = capo_mgn.types.construct_properties.deserialize_json(

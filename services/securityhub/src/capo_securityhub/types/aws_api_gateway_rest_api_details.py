@@ -76,17 +76,17 @@ def serialize_json(value: AwsApiGatewayRestApiDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsApiGatewayRestApiDetails:
     out: AwsApiGatewayRestApiDetails = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "CreatedDate" in data:
+    if data.get("CreatedDate") is not None:
         out["created_date"] = data["CreatedDate"]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
-    if "BinaryMediaTypes" in data:
+    if data.get("BinaryMediaTypes") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["binary_media_types"] = (
@@ -94,11 +94,11 @@ def deserialize_json(data: dict) -> AwsApiGatewayRestApiDetails:
                 data["BinaryMediaTypes"]
             )
         )
-    if "MinimumCompressionSize" in data:
+    if data.get("MinimumCompressionSize") is not None:
         out["minimum_compression_size"] = data["MinimumCompressionSize"]
-    if "ApiKeySource" in data:
+    if data.get("ApiKeySource") is not None:
         out["api_key_source"] = data["ApiKeySource"]
-    if "EndpointConfiguration" in data:
+    if data.get("EndpointConfiguration") is not None:
         import capo_securityhub.types.aws_api_gateway_endpoint_configuration
 
         out["endpoint_configuration"] = (

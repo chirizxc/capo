@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> OrganizationConfigRuleStatuses:
 
     out: OrganizationConfigRuleStatuses = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_config_service.types.organization_config_rule_status.deserialize_aws_json_1_1(
                 item

@@ -18,7 +18,15 @@ def serialize_aws_json_1_0(value: RecommendationSummary) -> dict:
     if "group" in value:
         out["group"] = value["group"]
     if "estimated_monthly_savings" in value:
-        out["estimatedMonthlySavings"] = value["estimated_monthly_savings"]
+        out["estimatedMonthlySavings"] = (
+            "NaN"
+            if value["estimated_monthly_savings"] != value["estimated_monthly_savings"]
+            else "Infinity"
+            if value["estimated_monthly_savings"] == float("inf")
+            else "-Infinity"
+            if value["estimated_monthly_savings"] == float("-inf")
+            else value["estimated_monthly_savings"]
+        )
     if "recommendation_count" in value:
         out["recommendationCount"] = value["recommendation_count"]
     return out
@@ -26,10 +34,10 @@ def serialize_aws_json_1_0(value: RecommendationSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RecommendationSummary:
     out: RecommendationSummary = {}  # type: ignore[typeddict-item]
-    if "group" in data:
+    if data.get("group") is not None:
         out["group"] = data["group"]
-    if "estimatedMonthlySavings" in data:
-        out["estimated_monthly_savings"] = data["estimatedMonthlySavings"]
-    if "recommendationCount" in data:
+    if data.get("estimatedMonthlySavings") is not None:
+        out["estimated_monthly_savings"] = float(data["estimatedMonthlySavings"])
+    if data.get("recommendationCount") is not None:
         out["recommendation_count"] = data["recommendationCount"]
     return out

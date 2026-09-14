@@ -29,12 +29,12 @@ def serialize_json(value: DeleteRecommendationTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteRecommendationTemplateRequest:
     out: DeleteRecommendationTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "recommendationTemplateArn" in data:
+    if data.get("recommendationTemplateArn") is not None:
         out["recommendation_template_arn"] = data["recommendationTemplateArn"]
     else:
         raise DeserializationError(
             "DeleteRecommendationTemplateRequest.recommendation_template_arn required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

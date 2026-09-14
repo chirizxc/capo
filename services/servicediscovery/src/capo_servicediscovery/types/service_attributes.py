@@ -43,11 +43,11 @@ def serialize_aws_json_1_1(value: ServiceAttributes) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ServiceAttributes:
     out: ServiceAttributes = {}  # type: ignore[typeddict-item]
-    if "ServiceArn" in data:
+    if data.get("ServiceArn") is not None:
         out["service_arn"] = data["ServiceArn"]
-    if "ResourceOwner" in data:
+    if data.get("ResourceOwner") is not None:
         out["resource_owner"] = data["ResourceOwner"]
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_servicediscovery.types.service_attributes_map
 
         out["attributes"] = (

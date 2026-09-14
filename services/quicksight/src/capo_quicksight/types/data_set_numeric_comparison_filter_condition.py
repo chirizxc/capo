@@ -43,7 +43,7 @@ def serialize_json(value: DataSetNumericComparisonFilterCondition) -> dict:
 
 def deserialize_json(data: dict) -> DataSetNumericComparisonFilterCondition:
     out: DataSetNumericComparisonFilterCondition = {}  # type: ignore[typeddict-item]
-    if "Operator" in data:
+    if data.get("Operator") is not None:
         import capo_quicksight.types.data_set_numeric_comparison_filter_operator
 
         out["operator"] = (
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> DataSetNumericComparisonFilterCondition:
         raise DeserializationError(
             "DataSetNumericComparisonFilterCondition.operator required"
         )
-    if "Value" in data:
+    if data.get("Value") is not None:
         import capo_quicksight.types.data_set_numeric_filter_value
 
         out["value"] = (

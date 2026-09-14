@@ -50,11 +50,11 @@ def serialize_aws_json_1_0(value: CreateConfigurationSetResult) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateConfigurationSetResult:
     out: CreateConfigurationSetResult = {}  # type: ignore[typeddict-item]
-    if "ConfigurationSetArn" in data:
+    if data.get("ConfigurationSetArn") is not None:
         out["configuration_set_arn"] = data["ConfigurationSetArn"]
-    if "ConfigurationSetName" in data:
+    if data.get("ConfigurationSetName") is not None:
         out["configuration_set_name"] = data["ConfigurationSetName"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_pinpoint_sms_voice_v2.types.tag_list
 
         out["tags"] = (
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateConfigurationSetResult:
                 data["Tags"]
             )
         )
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_pinpoint_sms_voice_v2.types._prelude.timestamp
 
         out["created_timestamp"] = (

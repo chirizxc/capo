@@ -27,7 +27,7 @@ def serialize_json(value: GetAppMonitorResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetAppMonitorResponse:
     out: GetAppMonitorResponse = {}  # type: ignore[typeddict-item]
-    if "AppMonitor" in data:
+    if data.get("AppMonitor") is not None:
         import capo_rum.types.app_monitor
 
         out["app_monitor"] = capo_rum.types.app_monitor.deserialize_json(

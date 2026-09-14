@@ -49,11 +49,11 @@ def serialize_json(value: ConfigurableUpfrontPricingTerm) -> dict:
 
 def deserialize_json(data: dict) -> ConfigurableUpfrontPricingTerm:
     out: ConfigurableUpfrontPricingTerm = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("ConfigurableUpfrontPricingTerm.id required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_marketplace_discovery.types.term_type
 
         out["type"] = capo_marketplace_discovery.types.term_type.deserialize_json(
@@ -61,13 +61,13 @@ def deserialize_json(data: dict) -> ConfigurableUpfrontPricingTerm:
         )
     else:
         raise DeserializationError("ConfigurableUpfrontPricingTerm.type required")
-    if "currencyCode" in data:
+    if data.get("currencyCode") is not None:
         out["currency_code"] = data["currencyCode"]
     else:
         raise DeserializationError(
             "ConfigurableUpfrontPricingTerm.currency_code required"
         )
-    if "rateCards" in data:
+    if data.get("rateCards") is not None:
         import capo_marketplace_discovery.types.configurable_upfront_rate_card_list
 
         out["rate_cards"] = (

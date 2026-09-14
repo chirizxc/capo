@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> IncidentRecordSummaryList:
 
     out: IncidentRecordSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_ssm_incidents.types.incident_record_summary.deserialize_json(item)
         )

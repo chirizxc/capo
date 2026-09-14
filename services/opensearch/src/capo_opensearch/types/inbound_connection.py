@@ -70,7 +70,7 @@ def serialize_json(value: InboundConnection) -> dict:
 
 def deserialize_json(data: dict) -> InboundConnection:
     out: InboundConnection = {}  # type: ignore[typeddict-item]
-    if "LocalDomainInfo" in data:
+    if data.get("LocalDomainInfo") is not None:
         import capo_opensearch.types.domain_information_container
 
         out["local_domain_info"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> InboundConnection:
                 data["LocalDomainInfo"]
             )
         )
-    if "RemoteDomainInfo" in data:
+    if data.get("RemoteDomainInfo") is not None:
         import capo_opensearch.types.domain_information_container
 
         out["remote_domain_info"] = (
@@ -86,9 +86,9 @@ def deserialize_json(data: dict) -> InboundConnection:
                 data["RemoteDomainInfo"]
             )
         )
-    if "ConnectionId" in data:
+    if data.get("ConnectionId") is not None:
         out["connection_id"] = data["ConnectionId"]
-    if "ConnectionStatus" in data:
+    if data.get("ConnectionStatus") is not None:
         import capo_opensearch.types.inbound_connection_status
 
         out["connection_status"] = (
@@ -96,7 +96,7 @@ def deserialize_json(data: dict) -> InboundConnection:
                 data["ConnectionStatus"]
             )
         )
-    if "ConnectionMode" in data:
+    if data.get("ConnectionMode") is not None:
         import capo_opensearch.types.connection_mode
 
         out["connection_mode"] = capo_opensearch.types.connection_mode.deserialize_json(

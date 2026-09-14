@@ -41,7 +41,7 @@ def serialize_aws_json_1_1(value: GetRateBasedStatementManagedKeysRequest) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> GetRateBasedStatementManagedKeysRequest:
     out: GetRateBasedStatementManagedKeysRequest = {}  # type: ignore[typeddict-item]
-    if "Scope" in data:
+    if data.get("Scope") is not None:
         import capo_wafv2.types.scope
 
         out["scope"] = capo_wafv2.types.scope.deserialize_aws_json_1_1(data["Scope"])
@@ -49,21 +49,21 @@ def deserialize_aws_json_1_1(data: dict) -> GetRateBasedStatementManagedKeysRequ
         raise DeserializationError(
             "GetRateBasedStatementManagedKeysRequest.scope required"
         )
-    if "WebACLName" in data:
+    if data.get("WebACLName") is not None:
         out["web_acl_name"] = data["WebACLName"]
     else:
         raise DeserializationError(
             "GetRateBasedStatementManagedKeysRequest.web_acl_name required"
         )
-    if "WebACLId" in data:
+    if data.get("WebACLId") is not None:
         out["web_acl_id"] = data["WebACLId"]
     else:
         raise DeserializationError(
             "GetRateBasedStatementManagedKeysRequest.web_acl_id required"
         )
-    if "RuleGroupRuleName" in data:
+    if data.get("RuleGroupRuleName") is not None:
         out["rule_group_rule_name"] = data["RuleGroupRuleName"]
-    if "RuleName" in data:
+    if data.get("RuleName") is not None:
         out["rule_name"] = data["RuleName"]
     else:
         raise DeserializationError(

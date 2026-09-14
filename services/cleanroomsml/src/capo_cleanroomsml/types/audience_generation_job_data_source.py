@@ -58,17 +58,17 @@ def serialize_json(value: AudienceGenerationJobDataSource) -> dict:
 
 def deserialize_json(data: dict) -> AudienceGenerationJobDataSource:
     out: AudienceGenerationJobDataSource = {}  # type: ignore[typeddict-item]
-    if "dataSource" in data:
+    if data.get("dataSource") is not None:
         import capo_cleanroomsml.types.s3_config_map
 
         out["data_source"] = capo_cleanroomsml.types.s3_config_map.deserialize_json(
             data["dataSource"]
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("AudienceGenerationJobDataSource.role_arn required")
-    if "sqlParameters" in data:
+    if data.get("sqlParameters") is not None:
         import capo_cleanroomsml.types.protected_query_sql_parameters
 
         out["sql_parameters"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> AudienceGenerationJobDataSource:
                 data["sqlParameters"]
             )
         )
-    if "sqlComputeConfiguration" in data:
+    if data.get("sqlComputeConfiguration") is not None:
         import capo_cleanroomsml.types.compute_configuration
 
         out["sql_compute_configuration"] = (

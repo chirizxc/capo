@@ -53,13 +53,13 @@ def serialize_json(value: ClinicalNoteGenerationResult) -> dict:
 
 def deserialize_json(data: dict) -> ClinicalNoteGenerationResult:
     out: ClinicalNoteGenerationResult = {}  # type: ignore[typeddict-item]
-    if "noteResult" in data:
+    if data.get("noteResult") is not None:
         import capo_connecthealth.types.artifact_details
 
         out["note_result"] = capo_connecthealth.types.artifact_details.deserialize_json(
             data["noteResult"]
         )
-    if "transcriptResult" in data:
+    if data.get("transcriptResult") is not None:
         import capo_connecthealth.types.artifact_details
 
         out["transcript_result"] = (
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> ClinicalNoteGenerationResult:
                 data["transcriptResult"]
             )
         )
-    if "afterVisitSummaryResult" in data:
+    if data.get("afterVisitSummaryResult") is not None:
         import capo_connecthealth.types.artifact_details
 
         out["after_visit_summary_result"] = (

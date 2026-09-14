@@ -48,11 +48,11 @@ def serialize_json(value: SchemaInputAttribute) -> dict:
 
 def deserialize_json(data: dict) -> SchemaInputAttribute:
     out: SchemaInputAttribute = {}  # type: ignore[typeddict-item]
-    if "fieldName" in data:
+    if data.get("fieldName") is not None:
         out["field_name"] = data["fieldName"]
     else:
         raise DeserializationError("SchemaInputAttribute.field_name required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_entityresolution.types.schema_attribute_type
 
         out["type"] = (
@@ -62,12 +62,12 @@ def deserialize_json(data: dict) -> SchemaInputAttribute:
         )
     else:
         raise DeserializationError("SchemaInputAttribute.type required")
-    if "groupName" in data:
+    if data.get("groupName") is not None:
         out["group_name"] = data["groupName"]
-    if "matchKey" in data:
+    if data.get("matchKey") is not None:
         out["match_key"] = data["matchKey"]
-    if "subType" in data:
+    if data.get("subType") is not None:
         out["sub_type"] = data["subType"]
-    if "hashed" in data:
+    if data.get("hashed") is not None:
         out["hashed"] = data["hashed"]
     return out

@@ -39,11 +39,11 @@ def serialize_aws_json_1_1(value: DescribeModelCardRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeModelCardRequest:
     out: DescribeModelCardRequest = {}  # type: ignore[typeddict-item]
-    if "ModelCardName" in data:
+    if data.get("ModelCardName") is not None:
         out["model_card_name"] = data["ModelCardName"]
-    if "ModelCardVersion" in data:
+    if data.get("ModelCardVersion") is not None:
         out["model_card_version"] = data["ModelCardVersion"]
-    if "IncludedData" in data:
+    if data.get("IncludedData") is not None:
         import capo_sagemaker.types.included_data
 
         out["included_data"] = (

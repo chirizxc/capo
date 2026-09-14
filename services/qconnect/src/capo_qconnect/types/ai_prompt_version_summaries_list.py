@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AIPromptVersionSummariesList:
 
     out: AIPromptVersionSummariesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_qconnect.types.ai_prompt_version_summary.deserialize_json(item))
     return out

@@ -70,11 +70,11 @@ def serialize_aws_json_1_1(value: PutJobSuccessResultInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutJobSuccessResultInput:
     out: PutJobSuccessResultInput = {}  # type: ignore[typeddict-item]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
     else:
         raise DeserializationError("PutJobSuccessResultInput.job_id required")
-    if "currentRevision" in data:
+    if data.get("currentRevision") is not None:
         import capo_codepipeline.types.current_revision
 
         out["current_revision"] = (
@@ -82,9 +82,9 @@ def deserialize_aws_json_1_1(data: dict) -> PutJobSuccessResultInput:
                 data["currentRevision"]
             )
         )
-    if "continuationToken" in data:
+    if data.get("continuationToken") is not None:
         out["continuation_token"] = data["continuationToken"]
-    if "executionDetails" in data:
+    if data.get("executionDetails") is not None:
         import capo_codepipeline.types.execution_details
 
         out["execution_details"] = (
@@ -92,7 +92,7 @@ def deserialize_aws_json_1_1(data: dict) -> PutJobSuccessResultInput:
                 data["executionDetails"]
             )
         )
-    if "outputVariables" in data:
+    if data.get("outputVariables") is not None:
         import capo_codepipeline.types.output_variables_map
 
         out["output_variables"] = (

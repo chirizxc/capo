@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: TerminateJobFlowsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TerminateJobFlowsInput:
     out: TerminateJobFlowsInput = {}  # type: ignore[typeddict-item]
-    if "JobFlowIds" in data:
+    if data.get("JobFlowIds") is not None:
         import capo_emr.types.xml_string_list
 
         out["job_flow_ids"] = capo_emr.types.xml_string_list.deserialize_aws_json_1_1(

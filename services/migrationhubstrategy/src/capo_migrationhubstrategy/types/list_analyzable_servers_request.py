@@ -33,10 +33,10 @@ def serialize_json(value: ListAnalyzableServersRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListAnalyzableServersRequest:
     out: ListAnalyzableServersRequest = {}  # type: ignore[typeddict-item]
-    if "sort" in data:
+    if data.get("sort") is not None:
         out["sort"] = data["sort"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

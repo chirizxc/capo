@@ -89,42 +89,42 @@ def serialize_json(value: Delegation) -> dict:
 
 def deserialize_json(data: dict) -> Delegation:
     out: Delegation = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "assessmentName" in data:
+    if data.get("assessmentName") is not None:
         out["assessment_name"] = data["assessmentName"]
-    if "assessmentId" in data:
+    if data.get("assessmentId") is not None:
         out["assessment_id"] = data["assessmentId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_auditmanager.types.delegation_status
 
         out["status"] = capo_auditmanager.types.delegation_status.deserialize_json(
             data["status"]
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "roleType" in data:
+    if data.get("roleType") is not None:
         import capo_auditmanager.types.role_type
 
         out["role_type"] = capo_auditmanager.types.role_type.deserialize_json(
             data["roleType"]
         )
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_auditmanager.types.timestamp
 
         out["creation_time"] = capo_auditmanager.types.timestamp.deserialize_json(
             data["creationTime"]
         )
-    if "lastUpdated" in data:
+    if data.get("lastUpdated") is not None:
         import capo_auditmanager.types.timestamp
 
         out["last_updated"] = capo_auditmanager.types.timestamp.deserialize_json(
             data["lastUpdated"]
         )
-    if "controlSetId" in data:
+    if data.get("controlSetId") is not None:
         out["control_set_id"] = data["controlSetId"]
-    if "comment" in data:
+    if data.get("comment") is not None:
         out["comment"] = data["comment"]
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
     return out

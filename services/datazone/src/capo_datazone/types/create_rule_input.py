@@ -61,36 +61,36 @@ def serialize_json(value: CreateRuleInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateRuleInput:
     out: CreateRuleInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateRuleInput.name required")
-    if "target" in data:
+    if data.get("target") is not None:
         import capo_datazone.types.rule_target
 
         out["target"] = capo_datazone.types.rule_target.deserialize_json(data["target"])
     else:
         raise DeserializationError("CreateRuleInput.target required")
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_datazone.types.rule_action
 
         out["action"] = capo_datazone.types.rule_action.deserialize_json(data["action"])
     else:
         raise DeserializationError("CreateRuleInput.action required")
-    if "scope" in data:
+    if data.get("scope") is not None:
         import capo_datazone.types.rule_scope
 
         out["scope"] = capo_datazone.types.rule_scope.deserialize_json(data["scope"])
     else:
         raise DeserializationError("CreateRuleInput.scope required")
-    if "detail" in data:
+    if data.get("detail") is not None:
         import capo_datazone.types.rule_detail
 
         out["detail"] = capo_datazone.types.rule_detail.deserialize_json(data["detail"])
     else:
         raise DeserializationError("CreateRuleInput.detail required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

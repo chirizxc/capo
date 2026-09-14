@@ -161,13 +161,13 @@ def serialize_aws_json_1_1(value: DescribeMlflowTrackingServerResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeMlflowTrackingServerResponse:
     out: DescribeMlflowTrackingServerResponse = {}  # type: ignore[typeddict-item]
-    if "TrackingServerArn" in data:
+    if data.get("TrackingServerArn") is not None:
         out["tracking_server_arn"] = data["TrackingServerArn"]
-    if "TrackingServerName" in data:
+    if data.get("TrackingServerName") is not None:
         out["tracking_server_name"] = data["TrackingServerName"]
-    if "ArtifactStoreUri" in data:
+    if data.get("ArtifactStoreUri") is not None:
         out["artifact_store_uri"] = data["ArtifactStoreUri"]
-    if "TrackingServerSize" in data:
+    if data.get("TrackingServerSize") is not None:
         import capo_sagemaker.types.tracking_server_size
 
         out["tracking_server_size"] = (
@@ -175,11 +175,11 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeMlflowTrackingServerResponse
                 data["TrackingServerSize"]
             )
         )
-    if "MlflowVersion" in data:
+    if data.get("MlflowVersion") is not None:
         out["mlflow_version"] = data["MlflowVersion"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "TrackingServerStatus" in data:
+    if data.get("TrackingServerStatus") is not None:
         import capo_sagemaker.types.tracking_server_status
 
         out["tracking_server_status"] = (
@@ -187,7 +187,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeMlflowTrackingServerResponse
                 data["TrackingServerStatus"]
             )
         )
-    if "TrackingServerMaintenanceStatus" in data:
+    if data.get("TrackingServerMaintenanceStatus") is not None:
         import capo_sagemaker.types.tracking_server_maintenance_status
 
         out["tracking_server_maintenance_status"] = (
@@ -195,7 +195,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeMlflowTrackingServerResponse
                 data["TrackingServerMaintenanceStatus"]
             )
         )
-    if "IsActive" in data:
+    if data.get("IsActive") is not None:
         import capo_sagemaker.types.is_tracking_server_active
 
         out["is_active"] = (
@@ -203,25 +203,25 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeMlflowTrackingServerResponse
                 data["IsActive"]
             )
         )
-    if "TrackingServerUrl" in data:
+    if data.get("TrackingServerUrl") is not None:
         out["tracking_server_url"] = data["TrackingServerUrl"]
-    if "WeeklyMaintenanceWindowStart" in data:
+    if data.get("WeeklyMaintenanceWindowStart") is not None:
         out["weekly_maintenance_window_start"] = data["WeeklyMaintenanceWindowStart"]
-    if "AutomaticModelRegistration" in data:
+    if data.get("AutomaticModelRegistration") is not None:
         out["automatic_model_registration"] = data["AutomaticModelRegistration"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         import capo_sagemaker.types.user_context
 
         out["created_by"] = capo_sagemaker.types.user_context.deserialize_aws_json_1_1(
             data["CreatedBy"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (
@@ -229,7 +229,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeMlflowTrackingServerResponse
                 data["LastModifiedTime"]
             )
         )
-    if "LastModifiedBy" in data:
+    if data.get("LastModifiedBy") is not None:
         import capo_sagemaker.types.user_context
 
         out["last_modified_by"] = (
@@ -237,8 +237,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeMlflowTrackingServerResponse
                 data["LastModifiedBy"]
             )
         )
-    if "S3BucketOwnerAccountId" in data:
+    if data.get("S3BucketOwnerAccountId") is not None:
         out["s3_bucket_owner_account_id"] = data["S3BucketOwnerAccountId"]
-    if "S3BucketOwnerVerification" in data:
+    if data.get("S3BucketOwnerVerification") is not None:
         out["s3_bucket_owner_verification"] = data["S3BucketOwnerVerification"]
     return out

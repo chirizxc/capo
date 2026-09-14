@@ -66,7 +66,7 @@ def serialize_json(value: CoverageResourceDetails) -> dict:
 
 def deserialize_json(data: dict) -> CoverageResourceDetails:
     out: CoverageResourceDetails = {}  # type: ignore[typeddict-item]
-    if "eksClusterDetails" in data:
+    if data.get("eksClusterDetails") is not None:
         import capo_guardduty.types.coverage_eks_cluster_details
 
         out["eks_cluster_details"] = (
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> CoverageResourceDetails:
                 data["eksClusterDetails"]
             )
         )
-    if "ecsClusterDetails" in data:
+    if data.get("ecsClusterDetails") is not None:
         import capo_guardduty.types.coverage_ecs_cluster_details
 
         out["ecs_cluster_details"] = (
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> CoverageResourceDetails:
                 data["ecsClusterDetails"]
             )
         )
-    if "ec2InstanceDetails" in data:
+    if data.get("ec2InstanceDetails") is not None:
         import capo_guardduty.types.coverage_ec2_instance_details
 
         out["ec2_instance_details"] = (
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> CoverageResourceDetails:
                 data["ec2InstanceDetails"]
             )
         )
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_guardduty.types.resource_type
 
         out["resource_type"] = capo_guardduty.types.resource_type.deserialize_json(

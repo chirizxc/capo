@@ -31,8 +31,8 @@ def serialize_aws_json_1_1(value: RemoteAccessEndpoints) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RemoteAccessEndpoints:
     out: RemoteAccessEndpoints = {}  # type: ignore[typeddict-item]
-    if "remoteDriverEndpoint" in data:
+    if data.get("remoteDriverEndpoint") is not None:
         out["remote_driver_endpoint"] = data["remoteDriverEndpoint"]
-    if "interactiveEndpoint" in data:
+    if data.get("interactiveEndpoint") is not None:
         out["interactive_endpoint"] = data["interactiveEndpoint"]
     return out

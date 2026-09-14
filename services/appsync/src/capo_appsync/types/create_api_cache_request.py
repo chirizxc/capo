@@ -61,19 +61,19 @@ def serialize_json(value: CreateApiCacheRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateApiCacheRequest:
     out: CreateApiCacheRequest = {}  # type: ignore[typeddict-item]
-    if "ttl" in data:
+    if data.get("ttl") is not None:
         out["ttl"] = data["ttl"]
     else:
         out["ttl"] = 0
-    if "transitEncryptionEnabled" in data:
+    if data.get("transitEncryptionEnabled") is not None:
         out["transit_encryption_enabled"] = data["transitEncryptionEnabled"]
     else:
         out["transit_encryption_enabled"] = False
-    if "atRestEncryptionEnabled" in data:
+    if data.get("atRestEncryptionEnabled") is not None:
         out["at_rest_encryption_enabled"] = data["atRestEncryptionEnabled"]
     else:
         out["at_rest_encryption_enabled"] = False
-    if "apiCachingBehavior" in data:
+    if data.get("apiCachingBehavior") is not None:
         import capo_appsync.types.api_caching_behavior
 
         out["api_caching_behavior"] = (
@@ -85,13 +85,13 @@ def deserialize_json(data: dict) -> CreateApiCacheRequest:
         raise DeserializationError(
             "CreateApiCacheRequest.api_caching_behavior required"
         )
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_appsync.types.api_cache_type
 
         out["type"] = capo_appsync.types.api_cache_type.deserialize_json(data["type"])
     else:
         raise DeserializationError("CreateApiCacheRequest.type required")
-    if "healthMetricsConfig" in data:
+    if data.get("healthMetricsConfig") is not None:
         import capo_appsync.types.cache_health_metrics_config
 
         out["health_metrics_config"] = (

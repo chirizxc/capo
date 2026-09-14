@@ -22,11 +22,11 @@ def serialize_json(value: BatchGetViewError) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetViewError:
     out: BatchGetViewError = {}  # type: ignore[typeddict-item]
-    if "ViewArn" in data:
+    if data.get("ViewArn") is not None:
         out["view_arn"] = data["ViewArn"]
     else:
         raise DeserializationError("BatchGetViewError.view_arn required")
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     else:
         raise DeserializationError("BatchGetViewError.error_message required")

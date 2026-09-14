@@ -77,17 +77,17 @@ def serialize_aws_json_1_1(value: ManagedRuleGroupStatement) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ManagedRuleGroupStatement:
     out: ManagedRuleGroupStatement = {}  # type: ignore[typeddict-item]
-    if "VendorName" in data:
+    if data.get("VendorName") is not None:
         out["vendor_name"] = data["VendorName"]
     else:
         raise DeserializationError("ManagedRuleGroupStatement.vendor_name required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("ManagedRuleGroupStatement.name required")
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
-    if "ExcludedRules" in data:
+    if data.get("ExcludedRules") is not None:
         import capo_wafv2.types.excluded_rules
 
         out["excluded_rules"] = (
@@ -95,7 +95,7 @@ def deserialize_aws_json_1_1(data: dict) -> ManagedRuleGroupStatement:
                 data["ExcludedRules"]
             )
         )
-    if "ScopeDownStatement" in data:
+    if data.get("ScopeDownStatement") is not None:
         import capo_wafv2.types.statement
 
         out["scope_down_statement"] = (
@@ -103,7 +103,7 @@ def deserialize_aws_json_1_1(data: dict) -> ManagedRuleGroupStatement:
                 data["ScopeDownStatement"]
             )
         )
-    if "ManagedRuleGroupConfigs" in data:
+    if data.get("ManagedRuleGroupConfigs") is not None:
         import capo_wafv2.types.managed_rule_group_configs
 
         out["managed_rule_group_configs"] = (
@@ -111,7 +111,7 @@ def deserialize_aws_json_1_1(data: dict) -> ManagedRuleGroupStatement:
                 data["ManagedRuleGroupConfigs"]
             )
         )
-    if "RuleActionOverrides" in data:
+    if data.get("RuleActionOverrides") is not None:
         import capo_wafv2.types.rule_action_overrides
 
         out["rule_action_overrides"] = (

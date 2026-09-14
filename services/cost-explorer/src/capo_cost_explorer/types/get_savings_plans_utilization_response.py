@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: GetSavingsPlansUtilizationResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetSavingsPlansUtilizationResponse:
     out: GetSavingsPlansUtilizationResponse = {}  # type: ignore[typeddict-item]
-    if "SavingsPlansUtilizationsByTime" in data:
+    if data.get("SavingsPlansUtilizationsByTime") is not None:
         import capo_cost_explorer.types.savings_plans_utilizations_by_time
 
         out["savings_plans_utilizations_by_time"] = (
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetSavingsPlansUtilizationResponse:
                 data["SavingsPlansUtilizationsByTime"]
             )
         )
-    if "Total" in data:
+    if data.get("Total") is not None:
         import capo_cost_explorer.types.savings_plans_utilization_aggregates
 
         out["total"] = (

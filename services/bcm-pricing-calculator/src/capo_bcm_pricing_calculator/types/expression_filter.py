@@ -45,9 +45,9 @@ def serialize_aws_json_1_0(value: ExpressionFilter) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ExpressionFilter:
     out: ExpressionFilter = {}  # type: ignore[typeddict-item]
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
-    if "matchOptions" in data:
+    if data.get("matchOptions") is not None:
         import capo_bcm_pricing_calculator.types.string_list
 
         out["match_options"] = (
@@ -55,7 +55,7 @@ def deserialize_aws_json_1_0(data: dict) -> ExpressionFilter:
                 data["matchOptions"]
             )
         )
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_bcm_pricing_calculator.types.string_list
 
         out["values"] = (

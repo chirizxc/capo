@@ -40,13 +40,13 @@ def serialize_json(value: SnapshotJobResultFileGroup) -> dict:
 
 def deserialize_json(data: dict) -> SnapshotJobResultFileGroup:
     out: SnapshotJobResultFileGroup = {}  # type: ignore[typeddict-item]
-    if "Files" in data:
+    if data.get("Files") is not None:
         import capo_quicksight.types.snapshot_file_list
 
         out["files"] = capo_quicksight.types.snapshot_file_list.deserialize_json(
             data["Files"]
         )
-    if "S3Results" in data:
+    if data.get("S3Results") is not None:
         import capo_quicksight.types.snapshot_job_s3_result_list
 
         out["s3_results"] = (

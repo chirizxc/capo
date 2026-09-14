@@ -93,25 +93,25 @@ def serialize_json(value: CreatePipelineRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreatePipelineRequest:
     out: CreatePipelineRequest = {}  # type: ignore[typeddict-item]
-    if "PipelineName" in data:
+    if data.get("PipelineName") is not None:
         out["pipeline_name"] = data["PipelineName"]
     else:
         raise DeserializationError("CreatePipelineRequest.pipeline_name required")
-    if "MinUnits" in data:
+    if data.get("MinUnits") is not None:
         out["min_units"] = data["MinUnits"]
     else:
         raise DeserializationError("CreatePipelineRequest.min_units required")
-    if "MaxUnits" in data:
+    if data.get("MaxUnits") is not None:
         out["max_units"] = data["MaxUnits"]
     else:
         raise DeserializationError("CreatePipelineRequest.max_units required")
-    if "PipelineConfigurationBody" in data:
+    if data.get("PipelineConfigurationBody") is not None:
         out["pipeline_configuration_body"] = data["PipelineConfigurationBody"]
     else:
         raise DeserializationError(
             "CreatePipelineRequest.pipeline_configuration_body required"
         )
-    if "LogPublishingOptions" in data:
+    if data.get("LogPublishingOptions") is not None:
         import capo_osis.types.log_publishing_options
 
         out["log_publishing_options"] = (
@@ -119,19 +119,19 @@ def deserialize_json(data: dict) -> CreatePipelineRequest:
                 data["LogPublishingOptions"]
             )
         )
-    if "VpcOptions" in data:
+    if data.get("VpcOptions") is not None:
         import capo_osis.types.vpc_options
 
         out["vpc_options"] = capo_osis.types.vpc_options.deserialize_json(
             data["VpcOptions"]
         )
-    if "BufferOptions" in data:
+    if data.get("BufferOptions") is not None:
         import capo_osis.types.buffer_options
 
         out["buffer_options"] = capo_osis.types.buffer_options.deserialize_json(
             data["BufferOptions"]
         )
-    if "EncryptionAtRestOptions" in data:
+    if data.get("EncryptionAtRestOptions") is not None:
         import capo_osis.types.encryption_at_rest_options
 
         out["encryption_at_rest_options"] = (
@@ -139,10 +139,10 @@ def deserialize_json(data: dict) -> CreatePipelineRequest:
                 data["EncryptionAtRestOptions"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_osis.types.tag_list
 
         out["tags"] = capo_osis.types.tag_list.deserialize_json(data["Tags"])
-    if "PipelineRoleArn" in data:
+    if data.get("PipelineRoleArn") is not None:
         out["pipeline_role_arn"] = data["PipelineRoleArn"]
     return out

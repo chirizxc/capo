@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> WorkloadDataSummaryList:
 
     out: WorkloadDataSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_launch_wizard.types.workload_data_summary.deserialize_json(item)
         )

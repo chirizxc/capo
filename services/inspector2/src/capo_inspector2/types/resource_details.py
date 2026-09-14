@@ -70,7 +70,7 @@ def serialize_json(value: ResourceDetails) -> dict:
 
 def deserialize_json(data: dict) -> ResourceDetails:
     out: ResourceDetails = {}  # type: ignore[typeddict-item]
-    if "awsEc2Instance" in data:
+    if data.get("awsEc2Instance") is not None:
         import capo_inspector2.types.aws_ec2_instance_details
 
         out["aws_ec2_instance"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["awsEc2Instance"]
             )
         )
-    if "awsEcrContainerImage" in data:
+    if data.get("awsEcrContainerImage") is not None:
         import capo_inspector2.types.aws_ecr_container_image_details
 
         out["aws_ecr_container_image"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["awsEcrContainerImage"]
             )
         )
-    if "awsLambdaFunction" in data:
+    if data.get("awsLambdaFunction") is not None:
         import capo_inspector2.types.aws_lambda_function_details
 
         out["aws_lambda_function"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["awsLambdaFunction"]
             )
         )
-    if "codeRepository" in data:
+    if data.get("codeRepository") is not None:
         import capo_inspector2.types.code_repository_details
 
         out["code_repository"] = (

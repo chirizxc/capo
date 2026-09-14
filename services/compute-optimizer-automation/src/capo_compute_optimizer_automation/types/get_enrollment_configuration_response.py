@@ -59,7 +59,7 @@ def serialize_aws_json_1_0(value: GetEnrollmentConfigurationResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetEnrollmentConfigurationResponse:
     out: GetEnrollmentConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_compute_optimizer_automation.types.enrollment_status
 
         out["status"] = (
@@ -69,9 +69,9 @@ def deserialize_aws_json_1_0(data: dict) -> GetEnrollmentConfigurationResponse:
         )
     else:
         raise DeserializationError("GetEnrollmentConfigurationResponse.status required")
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "organizationRuleMode" in data:
+    if data.get("organizationRuleMode") is not None:
         import capo_compute_optimizer_automation.types.organization_rule_mode
 
         out["organization_rule_mode"] = (
@@ -79,7 +79,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetEnrollmentConfigurationResponse:
                 data["organizationRuleMode"]
             )
         )
-    if "lastUpdatedTimestamp" in data:
+    if data.get("lastUpdatedTimestamp") is not None:
         import capo_compute_optimizer_automation.types._prelude.timestamp
 
         out["last_updated_timestamp"] = (

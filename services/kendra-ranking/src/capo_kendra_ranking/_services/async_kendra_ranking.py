@@ -1,6 +1,8 @@
 """Generated from Smithy shape ``com.amazonaws.kendraranking#AWSKendraRerankingFrontendService``."""
 
+import uuid
 import warnings
+from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +18,7 @@ from capo_kendra_ranking._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_kendra_ranking._auth._zapros_handler import AuthMiddleware
+from capo_kendra_ranking._pagination import resolve_path as _resolve_path
 from capo_kendra_ranking._services._aws_config import aaws_config
 from capo_kendra_ranking._services._pipeline import (
     AsyncInterceptor,
@@ -194,22 +197,25 @@ class AsyncKendraRankingClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra_ranking.types.create_rescore_execution_plan_request.CreateRescoreExecutionPlanRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_kendra_ranking.types.create_rescore_execution_plan_request.CreateRescoreExecutionPlanRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if capacity_units is not None:
             input_["capacity_units"] = capacity_units
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_rescore_execution_plan(
@@ -247,14 +253,16 @@ class AsyncKendraRankingClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra_ranking.types.delete_rescore_execution_plan_request.DeleteRescoreExecutionPlanRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_kendra_ranking.types.delete_rescore_execution_plan_request.DeleteRescoreExecutionPlanRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_rescore_execution_plan(
@@ -293,14 +301,16 @@ class AsyncKendraRankingClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra_ranking.types.describe_rescore_execution_plan_request.DescribeRescoreExecutionPlanRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_kendra_ranking.types.describe_rescore_execution_plan_request.DescribeRescoreExecutionPlanRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_rescore_execution_plans(
@@ -342,7 +352,7 @@ class AsyncKendraRankingClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra_ranking.types.list_rescore_execution_plans_request.ListRescoreExecutionPlansRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_kendra_ranking.types.list_rescore_execution_plans_request.ListRescoreExecutionPlansRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -353,7 +363,29 @@ class AsyncKendraRankingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_rescore_execution_plans(
+        self,
+        *,
+        config_overrides: Optional[AsyncKendraRankingClientConfig] = None,
+        next_token: Optional["capo_kendra_ranking.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_kendra_ranking.types.max_results_integer_for_list_rescore_execution_plans_request.MaxResultsIntegerForListRescoreExecutionPlansRequest"
+        ] = None,
+    ) -> "AsyncIterator[capo_kendra_ranking.types.list_rescore_execution_plans_response.ListRescoreExecutionPlansResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_rescore_execution_plans(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_tags_for_resource(
         self,
@@ -391,14 +423,16 @@ class AsyncKendraRankingClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra_ranking.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_kendra_ranking.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def rescore(
@@ -442,16 +476,18 @@ class AsyncKendraRankingClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra_ranking.types.rescore_request.RescoreRequest = {}  # type: ignore[typeddict-item]
-        input_["rescore_execution_plan_id"] = rescore_execution_plan_id
-        input_["search_query"] = search_query
-        input_["documents"] = documents
+        input_: capo_kendra_ranking.types.rescore_request.RescoreRequest = {
+            "rescore_execution_plan_id": rescore_execution_plan_id,
+            "search_query": search_query,
+            "documents": documents,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -492,15 +528,17 @@ class AsyncKendraRankingClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra_ranking.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_kendra_ranking.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -541,15 +579,17 @@ class AsyncKendraRankingClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra_ranking.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_kendra_ranking.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_rescore_execution_plan(
@@ -600,8 +640,9 @@ class AsyncKendraRankingClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra_ranking.types.update_rescore_execution_plan_request.UpdateRescoreExecutionPlanRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_kendra_ranking.types.update_rescore_execution_plan_request.UpdateRescoreExecutionPlanRequest = {
+            "id": id
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -614,6 +655,7 @@ class AsyncKendraRankingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

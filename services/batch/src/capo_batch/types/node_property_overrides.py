@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> NodePropertyOverrides:
 
     out: NodePropertyOverrides = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_batch.types.node_property_override.deserialize_json(item))
     return out

@@ -46,15 +46,15 @@ def serialize_json(value: UpdateConnectorRegistrationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateConnectorRegistrationRequest:
     out: UpdateConnectorRegistrationRequest = {}  # type: ignore[typeddict-item]
-    if "connectorLabel" in data:
+    if data.get("connectorLabel") is not None:
         out["connector_label"] = data["connectorLabel"]
     else:
         raise DeserializationError(
             "UpdateConnectorRegistrationRequest.connector_label required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "connectorProvisioningConfig" in data:
+    if data.get("connectorProvisioningConfig") is not None:
         import capo_appflow.types.connector_provisioning_config
 
         out["connector_provisioning_config"] = (
@@ -62,6 +62,6 @@ def deserialize_json(data: dict) -> UpdateConnectorRegistrationRequest:
                 data["connectorProvisioningConfig"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

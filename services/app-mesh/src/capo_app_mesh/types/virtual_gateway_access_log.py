@@ -32,7 +32,7 @@ def serialize_json(value: VirtualGatewayAccessLog) -> dict:
 
 
 def deserialize_json(data: dict) -> VirtualGatewayAccessLog:
-    if "file" in data:
+    if data.get("file") is not None:
         import capo_app_mesh.types.virtual_gateway_file_access_log
 
         return {

@@ -101,7 +101,7 @@ def serialize_json(value: Mp4Settings) -> dict:
 
 def deserialize_json(data: dict) -> Mp4Settings:
     out: Mp4Settings = {}  # type: ignore[typeddict-item]
-    if "audioDuration" in data:
+    if data.get("audioDuration") is not None:
         import capo_mediaconvert.types.cmfc_audio_duration
 
         out["audio_duration"] = (
@@ -109,7 +109,7 @@ def deserialize_json(data: dict) -> Mp4Settings:
                 data["audioDuration"]
             )
         )
-    if "c2paManifest" in data:
+    if data.get("c2paManifest") is not None:
         import capo_mediaconvert.types.mp4_c2pa_manifest
 
         out["c2pa_manifest"] = (
@@ -117,17 +117,17 @@ def deserialize_json(data: dict) -> Mp4Settings:
                 data["c2paManifest"]
             )
         )
-    if "certificateSecret" in data:
+    if data.get("certificateSecret") is not None:
         out["certificate_secret"] = data["certificateSecret"]
-    if "cslgAtom" in data:
+    if data.get("cslgAtom") is not None:
         import capo_mediaconvert.types.mp4_cslg_atom
 
         out["cslg_atom"] = capo_mediaconvert.types.mp4_cslg_atom.deserialize_json(
             data["cslgAtom"]
         )
-    if "cttsVersion" in data:
+    if data.get("cttsVersion") is not None:
         out["ctts_version"] = data["cttsVersion"]
-    if "freeSpaceBox" in data:
+    if data.get("freeSpaceBox") is not None:
         import capo_mediaconvert.types.mp4_free_space_box
 
         out["free_space_box"] = (
@@ -135,7 +135,7 @@ def deserialize_json(data: dict) -> Mp4Settings:
                 data["freeSpaceBox"]
             )
         )
-    if "moovPlacement" in data:
+    if data.get("moovPlacement") is not None:
         import capo_mediaconvert.types.mp4_moov_placement
 
         out["moov_placement"] = (
@@ -143,8 +143,8 @@ def deserialize_json(data: dict) -> Mp4Settings:
                 data["moovPlacement"]
             )
         )
-    if "mp4MajorBrand" in data:
+    if data.get("mp4MajorBrand") is not None:
         out["mp4_major_brand"] = data["mp4MajorBrand"]
-    if "signingKmsKey" in data:
+    if data.get("signingKmsKey") is not None:
         out["signing_kms_key"] = data["signingKmsKey"]
     return out

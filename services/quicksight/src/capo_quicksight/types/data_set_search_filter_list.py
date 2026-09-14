@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DataSetSearchFilterList:
 
     out: DataSetSearchFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.data_set_search_filter.deserialize_json(item))
     return out

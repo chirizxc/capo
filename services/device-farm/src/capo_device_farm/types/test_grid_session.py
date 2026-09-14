@@ -55,7 +55,15 @@ def serialize_aws_json_1_1(value: TestGridSession) -> dict:
             value["ended"]
         )
     if "billing_minutes" in value:
-        out["billingMinutes"] = value["billing_minutes"]
+        out["billingMinutes"] = (
+            "NaN"
+            if value["billing_minutes"] != value["billing_minutes"]
+            else "Infinity"
+            if value["billing_minutes"] == float("inf")
+            else "-Infinity"
+            if value["billing_minutes"] == float("-inf")
+            else value["billing_minutes"]
+        )
     if "selenium_properties" in value:
         out["seleniumProperties"] = value["selenium_properties"]
     return out
@@ -63,9 +71,9 @@ def serialize_aws_json_1_1(value: TestGridSession) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TestGridSession:
     out: TestGridSession = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_device_farm.types.test_grid_session_status
 
         out["status"] = (
@@ -73,20 +81,20 @@ def deserialize_aws_json_1_1(data: dict) -> TestGridSession:
                 data["status"]
             )
         )
-    if "created" in data:
+    if data.get("created") is not None:
         import capo_device_farm.types.date_time
 
         out["created"] = capo_device_farm.types.date_time.deserialize_aws_json_1_1(
             data["created"]
         )
-    if "ended" in data:
+    if data.get("ended") is not None:
         import capo_device_farm.types.date_time
 
         out["ended"] = capo_device_farm.types.date_time.deserialize_aws_json_1_1(
             data["ended"]
         )
-    if "billingMinutes" in data:
-        out["billing_minutes"] = data["billingMinutes"]
-    if "seleniumProperties" in data:
+    if data.get("billingMinutes") is not None:
+        out["billing_minutes"] = float(data["billingMinutes"])
+    if data.get("seleniumProperties") is not None:
         out["selenium_properties"] = data["seleniumProperties"]
     return out

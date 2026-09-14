@@ -27,7 +27,7 @@ def serialize_json(value: UpdateCampaignSourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateCampaignSourceRequest:
     out: UpdateCampaignSourceRequest = {}  # type: ignore[typeddict-item]
-    if "source" in data:
+    if data.get("source") is not None:
         import capo_connectcampaignsv2.types.source
 
         out["source"] = capo_connectcampaignsv2.types.source.deserialize_json(

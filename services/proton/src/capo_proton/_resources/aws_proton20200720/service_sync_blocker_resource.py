@@ -67,8 +67,9 @@ class ServiceSyncBlockerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.get_service_sync_blocker_summary_input.GetServiceSyncBlockerSummaryInput = {}  # type: ignore[typeddict-item]
-        input_["service_name"] = service_name
+        input_: capo_proton.types.get_service_sync_blocker_summary_input.GetServiceSyncBlockerSummaryInput = {
+            "service_name": service_name
+        }
         if service_instance_name is not None:
             input_["service_instance_name"] = service_instance_name
 
@@ -77,6 +78,7 @@ class ServiceSyncBlockerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -117,15 +119,17 @@ class ServiceSyncBlockerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.update_service_sync_blocker_input.UpdateServiceSyncBlockerInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["resolved_reason"] = resolved_reason
+        input_: capo_proton.types.update_service_sync_blocker_input.UpdateServiceSyncBlockerInput = {
+            "id": id,
+            "resolved_reason": resolved_reason,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -173,8 +177,9 @@ class AsyncServiceSyncBlockerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.get_service_sync_blocker_summary_input.GetServiceSyncBlockerSummaryInput = {}  # type: ignore[typeddict-item]
-        input_["service_name"] = service_name
+        input_: capo_proton.types.get_service_sync_blocker_summary_input.GetServiceSyncBlockerSummaryInput = {
+            "service_name": service_name
+        }
         if service_instance_name is not None:
             input_["service_instance_name"] = service_instance_name
 
@@ -183,6 +188,7 @@ class AsyncServiceSyncBlockerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -224,13 +230,15 @@ class AsyncServiceSyncBlockerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.update_service_sync_blocker_input.UpdateServiceSyncBlockerInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["resolved_reason"] = resolved_reason
+        input_: capo_proton.types.update_service_sync_blocker_input.UpdateServiceSyncBlockerInput = {
+            "id": id,
+            "resolved_reason": resolved_reason,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

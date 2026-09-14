@@ -36,12 +36,12 @@ def serialize_aws_json_1_1(value: AutoRetryConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AutoRetryConfig:
     out: AutoRetryConfig = {}  # type: ignore[typeddict-item]
-    if "autoRetryLimit" in data:
+    if data.get("autoRetryLimit") is not None:
         out["auto_retry_limit"] = data["autoRetryLimit"]
-    if "autoRetryNumber" in data:
+    if data.get("autoRetryNumber") is not None:
         out["auto_retry_number"] = data["autoRetryNumber"]
-    if "nextAutoRetry" in data:
+    if data.get("nextAutoRetry") is not None:
         out["next_auto_retry"] = data["nextAutoRetry"]
-    if "previousAutoRetry" in data:
+    if data.get("previousAutoRetry") is not None:
         out["previous_auto_retry"] = data["previousAutoRetry"]
     return out

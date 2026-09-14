@@ -38,14 +38,14 @@ def serialize_json(value: SidewalkSendDataToDevice) -> dict:
 
 def deserialize_json(data: dict) -> SidewalkSendDataToDevice:
     out: SidewalkSendDataToDevice = {}  # type: ignore[typeddict-item]
-    if "Seq" in data:
+    if data.get("Seq") is not None:
         out["seq"] = data["Seq"]
-    if "MessageType" in data:
+    if data.get("MessageType") is not None:
         import capo_iot_wireless.types.message_type
 
         out["message_type"] = capo_iot_wireless.types.message_type.deserialize_json(
             data["MessageType"]
         )
-    if "AckModeRetryDurationSecs" in data:
+    if data.get("AckModeRetryDurationSecs") is not None:
         out["ack_mode_retry_duration_secs"] = data["AckModeRetryDurationSecs"]
     return out

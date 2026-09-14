@@ -28,8 +28,8 @@ def serialize_json(value: FirewallPolicyStatelessRuleGroupReferencesDetails) -> 
 
 def deserialize_json(data: dict) -> FirewallPolicyStatelessRuleGroupReferencesDetails:
     out: FirewallPolicyStatelessRuleGroupReferencesDetails = {}  # type: ignore[typeddict-item]
-    if "Priority" in data:
+    if data.get("Priority") is not None:
         out["priority"] = data["Priority"]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     return out

@@ -36,7 +36,7 @@ def serialize_json(value: CreateWhatsAppMessageTemplateInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateWhatsAppMessageTemplateInput:
     out: CreateWhatsAppMessageTemplateInput = {}  # type: ignore[typeddict-item]
-    if "templateDefinition" in data:
+    if data.get("templateDefinition") is not None:
         import capo_socialmessaging.types.meta_template_definition
 
         out["template_definition"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> CreateWhatsAppMessageTemplateInput:
         raise DeserializationError(
             "CreateWhatsAppMessageTemplateInput.template_definition required"
         )
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("CreateWhatsAppMessageTemplateInput.id required")

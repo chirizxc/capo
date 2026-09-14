@@ -35,7 +35,7 @@ def serialize_json(value: ListRuleGroupsNamespacesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListRuleGroupsNamespacesResponse:
     out: ListRuleGroupsNamespacesResponse = {}  # type: ignore[typeddict-item]
-    if "ruleGroupsNamespaces" in data:
+    if data.get("ruleGroupsNamespaces") is not None:
         import capo_amp.types.rule_groups_namespace_summary_list
 
         out["rule_groups_namespaces"] = (
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> ListRuleGroupsNamespacesResponse:
         raise DeserializationError(
             "ListRuleGroupsNamespacesResponse.rule_groups_namespaces required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

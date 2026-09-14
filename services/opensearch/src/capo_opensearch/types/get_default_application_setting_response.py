@@ -22,6 +22,6 @@ def serialize_json(value: GetDefaultApplicationSettingResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetDefaultApplicationSettingResponse:
     out: GetDefaultApplicationSettingResponse = {}  # type: ignore[typeddict-item]
-    if "applicationArn" in data:
+    if data.get("applicationArn") is not None:
         out["application_arn"] = data["applicationArn"]
     return out

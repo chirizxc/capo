@@ -39,15 +39,15 @@ def serialize_aws_json_1_1(value: PutRecordOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutRecordOutput:
     out: PutRecordOutput = {}  # type: ignore[typeddict-item]
-    if "ShardId" in data:
+    if data.get("ShardId") is not None:
         out["shard_id"] = data["ShardId"]
     else:
         raise DeserializationError("PutRecordOutput.shard_id required")
-    if "SequenceNumber" in data:
+    if data.get("SequenceNumber") is not None:
         out["sequence_number"] = data["SequenceNumber"]
     else:
         raise DeserializationError("PutRecordOutput.sequence_number required")
-    if "EncryptionType" in data:
+    if data.get("EncryptionType") is not None:
         import capo_kinesis.types.encryption_type
 
         out["encryption_type"] = (

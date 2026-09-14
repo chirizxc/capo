@@ -38,9 +38,9 @@ def serialize_aws_json_1_1(value: GetRepositoryTriggersOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetRepositoryTriggersOutput:
     out: GetRepositoryTriggersOutput = {}  # type: ignore[typeddict-item]
-    if "configurationId" in data:
+    if data.get("configurationId") is not None:
         out["configuration_id"] = data["configurationId"]
-    if "triggers" in data:
+    if data.get("triggers") is not None:
         import capo_codecommit.types.repository_triggers_list
 
         out["triggers"] = (

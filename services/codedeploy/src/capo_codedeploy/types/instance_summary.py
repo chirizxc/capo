@@ -70,17 +70,17 @@ def serialize_aws_json_1_1(value: InstanceSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InstanceSummary:
     out: InstanceSummary = {}  # type: ignore[typeddict-item]
-    if "deploymentId" in data:
+    if data.get("deploymentId") is not None:
         out["deployment_id"] = data["deploymentId"]
-    if "instanceId" in data:
+    if data.get("instanceId") is not None:
         out["instance_id"] = data["instanceId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_codedeploy.types.instance_status
 
         out["status"] = capo_codedeploy.types.instance_status.deserialize_aws_json_1_1(
             data["status"]
         )
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_codedeploy.types.timestamp
 
         out["last_updated_at"] = (
@@ -88,7 +88,7 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceSummary:
                 data["lastUpdatedAt"]
             )
         )
-    if "lifecycleEvents" in data:
+    if data.get("lifecycleEvents") is not None:
         import capo_codedeploy.types.lifecycle_event_list
 
         out["lifecycle_events"] = (
@@ -96,7 +96,7 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceSummary:
                 data["lifecycleEvents"]
             )
         )
-    if "instanceType" in data:
+    if data.get("instanceType") is not None:
         import capo_codedeploy.types.instance_type
 
         out["instance_type"] = (

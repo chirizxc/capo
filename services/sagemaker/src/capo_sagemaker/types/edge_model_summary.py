@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: EdgeModelSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EdgeModelSummary:
     out: EdgeModelSummary = {}  # type: ignore[typeddict-item]
-    if "ModelName" in data:
+    if data.get("ModelName") is not None:
         out["model_name"] = data["ModelName"]
-    if "ModelVersion" in data:
+    if data.get("ModelVersion") is not None:
         out["model_version"] = data["ModelVersion"]
     return out

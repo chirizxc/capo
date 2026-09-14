@@ -94,39 +94,39 @@ def serialize_aws_json_1_1(value: UpdateTaskRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateTaskRequest:
     out: UpdateTaskRequest = {}  # type: ignore[typeddict-item]
-    if "TaskArn" in data:
+    if data.get("TaskArn") is not None:
         out["task_arn"] = data["TaskArn"]
     else:
         raise DeserializationError("UpdateTaskRequest.task_arn required")
-    if "Options" in data:
+    if data.get("Options") is not None:
         import capo_datasync.types.options
 
         out["options"] = capo_datasync.types.options.deserialize_aws_json_1_1(
             data["Options"]
         )
-    if "Excludes" in data:
+    if data.get("Excludes") is not None:
         import capo_datasync.types.filter_list
 
         out["excludes"] = capo_datasync.types.filter_list.deserialize_aws_json_1_1(
             data["Excludes"]
         )
-    if "Schedule" in data:
+    if data.get("Schedule") is not None:
         import capo_datasync.types.task_schedule
 
         out["schedule"] = capo_datasync.types.task_schedule.deserialize_aws_json_1_1(
             data["Schedule"]
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "CloudWatchLogGroupArn" in data:
+    if data.get("CloudWatchLogGroupArn") is not None:
         out["cloud_watch_log_group_arn"] = data["CloudWatchLogGroupArn"]
-    if "Includes" in data:
+    if data.get("Includes") is not None:
         import capo_datasync.types.filter_list
 
         out["includes"] = capo_datasync.types.filter_list.deserialize_aws_json_1_1(
             data["Includes"]
         )
-    if "ManifestConfig" in data:
+    if data.get("ManifestConfig") is not None:
         import capo_datasync.types.manifest_config
 
         out["manifest_config"] = (
@@ -134,7 +134,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateTaskRequest:
                 data["ManifestConfig"]
             )
         )
-    if "TaskReportConfig" in data:
+    if data.get("TaskReportConfig") is not None:
         import capo_datasync.types.task_report_config
 
         out["task_report_config"] = (

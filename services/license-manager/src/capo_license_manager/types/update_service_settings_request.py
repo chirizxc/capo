@@ -60,11 +60,11 @@ def serialize_aws_json_1_1(value: UpdateServiceSettingsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateServiceSettingsRequest:
     out: UpdateServiceSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "S3BucketArn" in data:
+    if data.get("S3BucketArn") is not None:
         out["s3_bucket_arn"] = data["S3BucketArn"]
-    if "SnsTopicArn" in data:
+    if data.get("SnsTopicArn") is not None:
         out["sns_topic_arn"] = data["SnsTopicArn"]
-    if "OrganizationConfiguration" in data:
+    if data.get("OrganizationConfiguration") is not None:
         import capo_license_manager.types.organization_configuration
 
         out["organization_configuration"] = (
@@ -72,9 +72,9 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateServiceSettingsRequest:
                 data["OrganizationConfiguration"]
             )
         )
-    if "EnableCrossAccountsDiscovery" in data:
+    if data.get("EnableCrossAccountsDiscovery") is not None:
         out["enable_cross_accounts_discovery"] = data["EnableCrossAccountsDiscovery"]
-    if "EnabledDiscoverySourceRegions" in data:
+    if data.get("EnabledDiscoverySourceRegions") is not None:
         import capo_license_manager.types.string_list
 
         out["enabled_discovery_source_regions"] = (

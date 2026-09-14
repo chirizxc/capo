@@ -35,17 +35,17 @@ def serialize_json(value: Webhook) -> dict:
 
 def deserialize_json(data: dict) -> Webhook:
     out: Webhook = {}  # type: ignore[typeddict-item]
-    if "webhookUrl" in data:
+    if data.get("webhookUrl") is not None:
         out["webhook_url"] = data["webhookUrl"]
     else:
         raise DeserializationError("Webhook.webhook_url required")
-    if "webhookType" in data:
+    if data.get("webhookType") is not None:
         import capo_devops_agent.types.webhook_type
 
         out["webhook_type"] = capo_devops_agent.types.webhook_type.deserialize_json(
             data["webhookType"]
         )
-    if "webhookId" in data:
+    if data.get("webhookId") is not None:
         out["webhook_id"] = data["webhookId"]
     else:
         raise DeserializationError("Webhook.webhook_id required")

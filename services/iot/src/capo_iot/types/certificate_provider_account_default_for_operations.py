@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> CertificateProviderAccountDefaultForOperatio
 
     out: CertificateProviderAccountDefaultForOperations = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot.types.certificate_provider_operation.deserialize_json(item))
     return out

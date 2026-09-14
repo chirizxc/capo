@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ResolvedTargetList:
 
     out: ResolvedTargetList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_fis.types.resolved_target.deserialize_json(item))
     return out

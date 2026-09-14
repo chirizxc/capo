@@ -47,16 +47,16 @@ def serialize_json(value: AwsEc2SecurityGroupUserIdGroupPair) -> dict:
 
 def deserialize_json(data: dict) -> AwsEc2SecurityGroupUserIdGroupPair:
     out: AwsEc2SecurityGroupUserIdGroupPair = {}  # type: ignore[typeddict-item]
-    if "GroupId" in data:
+    if data.get("GroupId") is not None:
         out["group_id"] = data["GroupId"]
-    if "GroupName" in data:
+    if data.get("GroupName") is not None:
         out["group_name"] = data["GroupName"]
-    if "PeeringStatus" in data:
+    if data.get("PeeringStatus") is not None:
         out["peering_status"] = data["PeeringStatus"]
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
-    if "VpcPeeringConnectionId" in data:
+    if data.get("VpcPeeringConnectionId") is not None:
         out["vpc_peering_connection_id"] = data["VpcPeeringConnectionId"]
     return out

@@ -55,7 +55,7 @@ def serialize_json(value: AIMLOptionsOutput) -> dict:
 
 def deserialize_json(data: dict) -> AIMLOptionsOutput:
     out: AIMLOptionsOutput = {}  # type: ignore[typeddict-item]
-    if "NaturalLanguageQueryGenerationOptions" in data:
+    if data.get("NaturalLanguageQueryGenerationOptions") is not None:
         import capo_opensearch.types.natural_language_query_generation_options_output
 
         out["natural_language_query_generation_options"] = (
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> AIMLOptionsOutput:
                 data["NaturalLanguageQueryGenerationOptions"]
             )
         )
-    if "S3VectorsEngine" in data:
+    if data.get("S3VectorsEngine") is not None:
         import capo_opensearch.types.s3_vectors_engine
 
         out["s3_vectors_engine"] = (
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> AIMLOptionsOutput:
                 data["S3VectorsEngine"]
             )
         )
-    if "ServerlessVectorAcceleration" in data:
+    if data.get("ServerlessVectorAcceleration") is not None:
         import capo_opensearch.types.serverless_vector_acceleration
 
         out["serverless_vector_acceleration"] = (

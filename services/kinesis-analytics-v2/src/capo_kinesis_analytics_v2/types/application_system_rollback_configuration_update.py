@@ -28,7 +28,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> ApplicationSystemRollbackConfigurationUpdate:
     out: ApplicationSystemRollbackConfigurationUpdate = {}  # type: ignore[typeddict-item]
-    if "RollbackEnabledUpdate" in data:
+    if data.get("RollbackEnabledUpdate") is not None:
         out["rollback_enabled_update"] = data["RollbackEnabledUpdate"]
     else:
         raise DeserializationError(

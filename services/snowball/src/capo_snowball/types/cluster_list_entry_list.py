@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> ClusterListEntryList:
 
     out: ClusterListEntryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_snowball.types.cluster_list_entry.deserialize_aws_json_1_1(item)
         )

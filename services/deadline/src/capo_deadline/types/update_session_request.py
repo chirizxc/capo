@@ -45,7 +45,7 @@ def serialize_json(value: UpdateSessionRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSessionRequest:
     out: UpdateSessionRequest = {}  # type: ignore[typeddict-item]
-    if "targetLifecycleStatus" in data:
+    if data.get("targetLifecycleStatus") is not None:
         import capo_deadline.types.session_lifecycle_target_status
 
         out["target_lifecycle_status"] = (

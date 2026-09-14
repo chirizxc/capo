@@ -46,18 +46,18 @@ def serialize_aws_json_1_1(value: LookupDeveloperIdentityInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LookupDeveloperIdentityInput:
     out: LookupDeveloperIdentityInput = {}  # type: ignore[typeddict-item]
-    if "IdentityPoolId" in data:
+    if data.get("IdentityPoolId") is not None:
         out["identity_pool_id"] = data["IdentityPoolId"]
     else:
         raise DeserializationError(
             "LookupDeveloperIdentityInput.identity_pool_id required"
         )
-    if "IdentityId" in data:
+    if data.get("IdentityId") is not None:
         out["identity_id"] = data["IdentityId"]
-    if "DeveloperUserIdentifier" in data:
+    if data.get("DeveloperUserIdentifier") is not None:
         out["developer_user_identifier"] = data["DeveloperUserIdentifier"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

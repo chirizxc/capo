@@ -30,8 +30,8 @@ def serialize_json(value: RegisterOrganizationAdminAccountResponse) -> dict:
 
 def deserialize_json(data: dict) -> RegisterOrganizationAdminAccountResponse:
     out: RegisterOrganizationAdminAccountResponse = {}  # type: ignore[typeddict-item]
-    if "adminAccountId" in data:
+    if data.get("adminAccountId") is not None:
         out["admin_account_id"] = data["adminAccountId"]
-    if "organizationId" in data:
+    if data.get("organizationId") is not None:
         out["organization_id"] = data["organizationId"]
     return out

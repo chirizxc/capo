@@ -1,6 +1,8 @@
 """Generated from Smithy shape ``com.amazonaws.iotwireless#iotwireless``."""
 
+import uuid
 import warnings
+from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +18,7 @@ from capo_iot_wireless._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_iot_wireless._auth._zapros_handler import AuthMiddleware
+from capo_iot_wireless._pagination import resolve_path as _resolve_path
 from capo_iot_wireless._services._aws_config import aaws_config
 from capo_iot_wireless._services._pipeline import (
     AsyncInterceptor,
@@ -500,10 +503,12 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.associate_aws_account_with_partner_account_request.AssociateAwsAccountWithPartnerAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["sidewalk"] = sidewalk
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        input_: capo_iot_wireless.types.associate_aws_account_with_partner_account_request.AssociateAwsAccountWithPartnerAccountRequest = {
+            "sidewalk": sidewalk
+        }
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -512,6 +517,7 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_multicast_group_with_fuota_task(
@@ -549,15 +555,17 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.associate_multicast_group_with_fuota_task_request.AssociateMulticastGroupWithFuotaTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["multicast_group_id"] = multicast_group_id
+        input_: capo_iot_wireless.types.associate_multicast_group_with_fuota_task_request.AssociateMulticastGroupWithFuotaTaskRequest = {
+            "id": id,
+            "multicast_group_id": multicast_group_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_wireless_device_with_fuota_task(
@@ -595,15 +603,17 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.associate_wireless_device_with_fuota_task_request.AssociateWirelessDeviceWithFuotaTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["wireless_device_id"] = wireless_device_id
+        input_: capo_iot_wireless.types.associate_wireless_device_with_fuota_task_request.AssociateWirelessDeviceWithFuotaTaskRequest = {
+            "id": id,
+            "wireless_device_id": wireless_device_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_wireless_device_with_multicast_group(
@@ -641,15 +651,17 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.associate_wireless_device_with_multicast_group_request.AssociateWirelessDeviceWithMulticastGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["wireless_device_id"] = wireless_device_id
+        input_: capo_iot_wireless.types.associate_wireless_device_with_multicast_group_request.AssociateWirelessDeviceWithMulticastGroupRequest = {
+            "id": id,
+            "wireless_device_id": wireless_device_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_wireless_device_with_thing(
@@ -691,15 +703,17 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.associate_wireless_device_with_thing_request.AssociateWirelessDeviceWithThingRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["thing_arn"] = thing_arn
+        input_: capo_iot_wireless.types.associate_wireless_device_with_thing_request.AssociateWirelessDeviceWithThingRequest = {
+            "id": id,
+            "thing_arn": thing_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_wireless_gateway_with_certificate(
@@ -741,15 +755,17 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.associate_wireless_gateway_with_certificate_request.AssociateWirelessGatewayWithCertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["iot_certificate_id"] = iot_certificate_id
+        input_: capo_iot_wireless.types.associate_wireless_gateway_with_certificate_request.AssociateWirelessGatewayWithCertificateRequest = {
+            "id": id,
+            "iot_certificate_id": iot_certificate_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_wireless_gateway_with_thing(
@@ -791,15 +807,17 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.associate_wireless_gateway_with_thing_request.AssociateWirelessGatewayWithThingRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["thing_arn"] = thing_arn
+        input_: capo_iot_wireless.types.associate_wireless_gateway_with_thing_request.AssociateWirelessGatewayWithThingRequest = {
+            "id": id,
+            "thing_arn": thing_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def cancel_multicast_group_session(
@@ -836,14 +854,16 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.cancel_multicast_group_session_request.CancelMulticastGroupSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iot_wireless.types.cancel_multicast_group_session_request.CancelMulticastGroupSessionRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_destination(
@@ -899,23 +919,26 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.create_destination_request.CreateDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["expression_type"] = expression_type
-        input_["expression"] = expression
+        input_: capo_iot_wireless.types.create_destination_request.CreateDestinationRequest = {
+            "name": name,
+            "expression_type": expression_type,
+            "expression": expression,
+            "role_arn": role_arn,
+        }
         if description is not None:
             input_["description"] = description
-        input_["role_arn"] = role_arn
         if tags is not None:
             input_["tags"] = tags
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_device_profile(
@@ -970,15 +993,16 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.create_device_profile_request.CreateDeviceProfileRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_wireless.types.create_device_profile_request.CreateDeviceProfileRequest = {}
         if name is not None:
             input_["name"] = name
         if lo_ra_wan is not None:
             input_["lo_ra_wan"] = lo_ra_wan
         if tags is not None:
             input_["tags"] = tags
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if sidewalk is not None:
             input_["sidewalk"] = sidewalk
 
@@ -987,6 +1011,7 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_fuota_task(
@@ -1045,17 +1070,19 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.create_fuota_task_request.CreateFuotaTaskRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_wireless.types.create_fuota_task_request.CreateFuotaTaskRequest = {
+            "firmware_update_image": firmware_update_image,
+            "firmware_update_role": firmware_update_role,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
             input_["description"] = description
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if lo_ra_wan is not None:
             input_["lo_ra_wan"] = lo_ra_wan
-        input_["firmware_update_image"] = firmware_update_image
-        input_["firmware_update_role"] = firmware_update_role
         if tags is not None:
             input_["tags"] = tags
         if redundancy_percent is not None:
@@ -1072,6 +1099,7 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_multicast_group(
@@ -1120,14 +1148,16 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.create_multicast_group_request.CreateMulticastGroupRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_wireless.types.create_multicast_group_request.CreateMulticastGroupRequest = {
+            "lo_ra_wan": lo_ra_wan
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
             input_["description"] = description
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
-        input_["lo_ra_wan"] = lo_ra_wan
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -1136,6 +1166,7 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_network_analyzer_configuration(
@@ -1194,8 +1225,9 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.create_network_analyzer_configuration_request.CreateNetworkAnalyzerConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iot_wireless.types.create_network_analyzer_configuration_request.CreateNetworkAnalyzerConfigurationRequest = {
+            "name": name
+        }
         if trace_content is not None:
             input_["trace_content"] = trace_content
         if wireless_devices is not None:
@@ -1206,8 +1238,9 @@ class AsyncIoTWirelessClient:
             input_["description"] = description
         if tags is not None:
             input_["tags"] = tags
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if multicast_groups is not None:
             input_["multicast_groups"] = multicast_groups
 
@@ -1216,6 +1249,7 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_service_profile(
@@ -1266,21 +1300,23 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.create_service_profile_request.CreateServiceProfileRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_wireless.types.create_service_profile_request.CreateServiceProfileRequest = {}
         if name is not None:
             input_["name"] = name
         if lo_ra_wan is not None:
             input_["lo_ra_wan"] = lo_ra_wan
         if tags is not None:
             input_["tags"] = tags
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_wireless_device(
@@ -1346,15 +1382,17 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.create_wireless_device_request.CreateWirelessDeviceRequest = {}  # type: ignore[typeddict-item]
-        input_["type"] = type
+        input_: capo_iot_wireless.types.create_wireless_device_request.CreateWirelessDeviceRequest = {
+            "type": type,
+            "destination_name": destination_name,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
             input_["description"] = description
-        input_["destination_name"] = destination_name
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if lo_ra_wan is not None:
             input_["lo_ra_wan"] = lo_ra_wan
         if tags is not None:
@@ -1369,6 +1407,7 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_wireless_gateway(
@@ -1419,22 +1458,25 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.create_wireless_gateway_request.CreateWirelessGatewayRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_wireless.types.create_wireless_gateway_request.CreateWirelessGatewayRequest = {
+            "lo_ra_wan": lo_ra_wan
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
             input_["description"] = description
-        input_["lo_ra_wan"] = lo_ra_wan
         if tags is not None:
             input_["tags"] = tags
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_wireless_gateway_task(
@@ -1476,17 +1518,17 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.create_wireless_gateway_task_request.CreateWirelessGatewayTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["wireless_gateway_task_definition_id"] = (
-            wireless_gateway_task_definition_id
-        )
+        input_: capo_iot_wireless.types.create_wireless_gateway_task_request.CreateWirelessGatewayTaskRequest = {
+            "id": id,
+            "wireless_gateway_task_definition_id": wireless_gateway_task_definition_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_wireless_gateway_task_definition(
@@ -1540,14 +1582,16 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.create_wireless_gateway_task_definition_request.CreateWirelessGatewayTaskDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["auto_create_tasks"] = auto_create_tasks
+        input_: capo_iot_wireless.types.create_wireless_gateway_task_definition_request.CreateWirelessGatewayTaskDefinitionRequest = {
+            "auto_create_tasks": auto_create_tasks
+        }
         if name is not None:
             input_["name"] = name
         if update is not None:
             input_["update"] = update
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -1556,6 +1600,7 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_destination(
@@ -1597,14 +1642,16 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.delete_destination_request.DeleteDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iot_wireless.types.delete_destination_request.DeleteDestinationRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_device_profile(
@@ -1644,14 +1691,16 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.delete_device_profile_request.DeleteDeviceProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iot_wireless.types.delete_device_profile_request.DeleteDeviceProfileRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_fuota_task(
@@ -1687,14 +1736,16 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.delete_fuota_task_request.DeleteFuotaTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iot_wireless.types.delete_fuota_task_request.DeleteFuotaTaskRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_multicast_group(
@@ -1731,14 +1782,16 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.delete_multicast_group_request.DeleteMulticastGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iot_wireless.types.delete_multicast_group_request.DeleteMulticastGroupRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_network_analyzer_configuration(
@@ -1775,14 +1828,16 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.delete_network_analyzer_configuration_request.DeleteNetworkAnalyzerConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_name"] = configuration_name
+        input_: capo_iot_wireless.types.delete_network_analyzer_configuration_request.DeleteNetworkAnalyzerConfigurationRequest = {
+            "configuration_name": configuration_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_queued_messages(
@@ -1827,9 +1882,10 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.delete_queued_messages_request.DeleteQueuedMessagesRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["message_id"] = message_id
+        input_: capo_iot_wireless.types.delete_queued_messages_request.DeleteQueuedMessagesRequest = {
+            "id": id,
+            "message_id": message_id,
+        }
         if wireless_device_type is not None:
             input_["wireless_device_type"] = wireless_device_type
 
@@ -1838,6 +1894,7 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_service_profile(
@@ -1877,14 +1934,16 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.delete_service_profile_request.DeleteServiceProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iot_wireless.types.delete_service_profile_request.DeleteServiceProfileRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_wireless_device(
@@ -1923,14 +1982,16 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.delete_wireless_device_request.DeleteWirelessDeviceRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iot_wireless.types.delete_wireless_device_request.DeleteWirelessDeviceRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_wireless_device_import_task(
@@ -1970,14 +2031,16 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.delete_wireless_device_import_task_request.DeleteWirelessDeviceImportTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iot_wireless.types.delete_wireless_device_import_task_request.DeleteWirelessDeviceImportTaskRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_wireless_gateway(
@@ -2016,14 +2079,16 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.delete_wireless_gateway_request.DeleteWirelessGatewayRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iot_wireless.types.delete_wireless_gateway_request.DeleteWirelessGatewayRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_wireless_gateway_task(
@@ -2062,14 +2127,16 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.delete_wireless_gateway_task_request.DeleteWirelessGatewayTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iot_wireless.types.delete_wireless_gateway_task_request.DeleteWirelessGatewayTaskRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_wireless_gateway_task_definition(
@@ -2108,14 +2175,16 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.delete_wireless_gateway_task_definition_request.DeleteWirelessGatewayTaskDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iot_wireless.types.delete_wireless_gateway_task_definition_request.DeleteWirelessGatewayTaskDefinitionRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def deregister_wireless_device(
@@ -2157,8 +2226,9 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.deregister_wireless_device_request.DeregisterWirelessDeviceRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iot_wireless.types.deregister_wireless_device_request.DeregisterWirelessDeviceRequest = {
+            "identifier": identifier
+        }
         if wireless_device_type is not None:
             input_["wireless_device_type"] = wireless_device_type
 
@@ -2167,6 +2237,7 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_aws_account_from_partner_account(
@@ -2206,15 +2277,17 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.disassociate_aws_account_from_partner_account_request.DisassociateAwsAccountFromPartnerAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["partner_account_id"] = partner_account_id
-        input_["partner_type"] = partner_type
+        input_: capo_iot_wireless.types.disassociate_aws_account_from_partner_account_request.DisassociateAwsAccountFromPartnerAccountRequest = {
+            "partner_account_id": partner_account_id,
+            "partner_type": partner_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_multicast_group_from_fuota_task(
@@ -2251,15 +2324,17 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.disassociate_multicast_group_from_fuota_task_request.DisassociateMulticastGroupFromFuotaTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["multicast_group_id"] = multicast_group_id
+        input_: capo_iot_wireless.types.disassociate_multicast_group_from_fuota_task_request.DisassociateMulticastGroupFromFuotaTaskRequest = {
+            "id": id,
+            "multicast_group_id": multicast_group_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_wireless_device_from_fuota_task(
@@ -2297,15 +2372,17 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.disassociate_wireless_device_from_fuota_task_request.DisassociateWirelessDeviceFromFuotaTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["wireless_device_id"] = wireless_device_id
+        input_: capo_iot_wireless.types.disassociate_wireless_device_from_fuota_task_request.DisassociateWirelessDeviceFromFuotaTaskRequest = {
+            "id": id,
+            "wireless_device_id": wireless_device_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_wireless_device_from_multicast_group(
@@ -2342,15 +2419,17 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.disassociate_wireless_device_from_multicast_group_request.DisassociateWirelessDeviceFromMulticastGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["wireless_device_id"] = wireless_device_id
+        input_: capo_iot_wireless.types.disassociate_wireless_device_from_multicast_group_request.DisassociateWirelessDeviceFromMulticastGroupRequest = {
+            "id": id,
+            "wireless_device_id": wireless_device_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_wireless_device_from_thing(
@@ -2390,14 +2469,16 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.disassociate_wireless_device_from_thing_request.DisassociateWirelessDeviceFromThingRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iot_wireless.types.disassociate_wireless_device_from_thing_request.DisassociateWirelessDeviceFromThingRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_wireless_gateway_from_certificate(
@@ -2436,14 +2517,16 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.disassociate_wireless_gateway_from_certificate_request.DisassociateWirelessGatewayFromCertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iot_wireless.types.disassociate_wireless_gateway_from_certificate_request.DisassociateWirelessGatewayFromCertificateRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_wireless_gateway_from_thing(
@@ -2483,14 +2566,16 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.disassociate_wireless_gateway_from_thing_request.DisassociateWirelessGatewayFromThingRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iot_wireless.types.disassociate_wireless_gateway_from_thing_request.DisassociateWirelessGatewayFromThingRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_destination(
@@ -2529,14 +2614,16 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.get_destination_request.GetDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iot_wireless.types.get_destination_request.GetDestinationRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_device_profile(
@@ -2575,14 +2662,16 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.get_device_profile_request.GetDeviceProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iot_wireless.types.get_device_profile_request.GetDeviceProfileRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_event_configuration_by_resource_types(
@@ -2613,13 +2702,14 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.get_event_configuration_by_resource_types_request.GetEventConfigurationByResourceTypesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_wireless.types.get_event_configuration_by_resource_types_request.GetEventConfigurationByResourceTypesRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_fuota_task(
@@ -2655,14 +2745,16 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.get_fuota_task_request.GetFuotaTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iot_wireless.types.get_fuota_task_request.GetFuotaTaskRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_log_levels_by_resource_types(
@@ -2695,13 +2787,14 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.get_log_levels_by_resource_types_request.GetLogLevelsByResourceTypesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_wireless.types.get_log_levels_by_resource_types_request.GetLogLevelsByResourceTypesRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_metric_configuration(
@@ -2735,13 +2828,14 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.get_metric_configuration_request.GetMetricConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_wireless.types.get_metric_configuration_request.GetMetricConfigurationRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_metrics(
@@ -2783,7 +2877,7 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.get_metrics_request.GetMetricsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_wireless.types.get_metrics_request.GetMetricsRequest = {}
         if summary_metric_queries is not None:
             input_["summary_metric_queries"] = summary_metric_queries
 
@@ -2792,6 +2886,7 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_multicast_group(
@@ -2829,14 +2924,16 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.get_multicast_group_request.GetMulticastGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iot_wireless.types.get_multicast_group_request.GetMulticastGroupRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_multicast_group_session(
@@ -2872,14 +2969,16 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.get_multicast_group_session_request.GetMulticastGroupSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iot_wireless.types.get_multicast_group_session_request.GetMulticastGroupSessionRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_network_analyzer_configuration(
@@ -2915,14 +3014,16 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.get_network_analyzer_configuration_request.GetNetworkAnalyzerConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_name"] = configuration_name
+        input_: capo_iot_wireless.types.get_network_analyzer_configuration_request.GetNetworkAnalyzerConfigurationRequest = {
+            "configuration_name": configuration_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_partner_account(
@@ -2964,15 +3065,17 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.get_partner_account_request.GetPartnerAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["partner_account_id"] = partner_account_id
-        input_["partner_type"] = partner_type
+        input_: capo_iot_wireless.types.get_partner_account_request.GetPartnerAccountRequest = {
+            "partner_account_id": partner_account_id,
+            "partner_type": partner_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_position(
@@ -3013,15 +3116,17 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.get_position_request.GetPositionRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_identifier"] = resource_identifier
-        input_["resource_type"] = resource_type
+        input_: capo_iot_wireless.types.get_position_request.GetPositionRequest = {
+            "resource_identifier": resource_identifier,
+            "resource_type": resource_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_position_configuration(
@@ -3062,15 +3167,17 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.get_position_configuration_request.GetPositionConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_identifier"] = resource_identifier
-        input_["resource_type"] = resource_type
+        input_: capo_iot_wireless.types.get_position_configuration_request.GetPositionConfigurationRequest = {
+            "resource_identifier": resource_identifier,
+            "resource_type": resource_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_position_estimate(
@@ -3125,7 +3232,7 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.get_position_estimate_request.GetPositionEstimateRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_wireless.types.get_position_estimate_request.GetPositionEstimateRequest = {}
         if wi_fi_access_points is not None:
             input_["wi_fi_access_points"] = wi_fi_access_points
         if cell_towers is not None:
@@ -3144,6 +3251,7 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_resource_event_configuration(
@@ -3188,9 +3296,10 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.get_resource_event_configuration_request.GetResourceEventConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
-        input_["identifier_type"] = identifier_type
+        input_: capo_iot_wireless.types.get_resource_event_configuration_request.GetResourceEventConfigurationRequest = {
+            "identifier": identifier,
+            "identifier_type": identifier_type,
+        }
         if partner_type is not None:
             input_["partner_type"] = partner_type
 
@@ -3199,6 +3308,7 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_resource_log_level(
@@ -3238,15 +3348,17 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.get_resource_log_level_request.GetResourceLogLevelRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_identifier"] = resource_identifier
-        input_["resource_type"] = resource_type
+        input_: capo_iot_wireless.types.get_resource_log_level_request.GetResourceLogLevelRequest = {
+            "resource_identifier": resource_identifier,
+            "resource_type": resource_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_resource_position(
@@ -3287,15 +3399,17 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.get_resource_position_request.GetResourcePositionRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_identifier"] = resource_identifier
-        input_["resource_type"] = resource_type
+        input_: capo_iot_wireless.types.get_resource_position_request.GetResourcePositionRequest = {
+            "resource_identifier": resource_identifier,
+            "resource_type": resource_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_service_endpoint(
@@ -3335,7 +3449,7 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.get_service_endpoint_request.GetServiceEndpointRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_wireless.types.get_service_endpoint_request.GetServiceEndpointRequest = {}
         if service_type is not None:
             input_["service_type"] = service_type
 
@@ -3344,6 +3458,7 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_service_profile(
@@ -3384,14 +3499,16 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.get_service_profile_request.GetServiceProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iot_wireless.types.get_service_profile_request.GetServiceProfileRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_wireless_device(
@@ -3434,15 +3551,17 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.get_wireless_device_request.GetWirelessDeviceRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
-        input_["identifier_type"] = identifier_type
+        input_: capo_iot_wireless.types.get_wireless_device_request.GetWirelessDeviceRequest = {
+            "identifier": identifier,
+            "identifier_type": identifier_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_wireless_device_import_task(
@@ -3482,14 +3601,16 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.get_wireless_device_import_task_request.GetWirelessDeviceImportTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iot_wireless.types.get_wireless_device_import_task_request.GetWirelessDeviceImportTaskRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_wireless_device_statistics(
@@ -3528,14 +3649,16 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.get_wireless_device_statistics_request.GetWirelessDeviceStatisticsRequest = {}  # type: ignore[typeddict-item]
-        input_["wireless_device_id"] = wireless_device_id
+        input_: capo_iot_wireless.types.get_wireless_device_statistics_request.GetWirelessDeviceStatisticsRequest = {
+            "wireless_device_id": wireless_device_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_wireless_gateway(
@@ -3576,15 +3699,17 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.get_wireless_gateway_request.GetWirelessGatewayRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
-        input_["identifier_type"] = identifier_type
+        input_: capo_iot_wireless.types.get_wireless_gateway_request.GetWirelessGatewayRequest = {
+            "identifier": identifier,
+            "identifier_type": identifier_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_wireless_gateway_certificate(
@@ -3623,14 +3748,16 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.get_wireless_gateway_certificate_request.GetWirelessGatewayCertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iot_wireless.types.get_wireless_gateway_certificate_request.GetWirelessGatewayCertificateRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_wireless_gateway_firmware_information(
@@ -3669,14 +3796,16 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.get_wireless_gateway_firmware_information_request.GetWirelessGatewayFirmwareInformationRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iot_wireless.types.get_wireless_gateway_firmware_information_request.GetWirelessGatewayFirmwareInformationRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_wireless_gateway_statistics(
@@ -3715,14 +3844,16 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.get_wireless_gateway_statistics_request.GetWirelessGatewayStatisticsRequest = {}  # type: ignore[typeddict-item]
-        input_["wireless_gateway_id"] = wireless_gateway_id
+        input_: capo_iot_wireless.types.get_wireless_gateway_statistics_request.GetWirelessGatewayStatisticsRequest = {
+            "wireless_gateway_id": wireless_gateway_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_wireless_gateway_task(
@@ -3761,14 +3892,16 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.get_wireless_gateway_task_request.GetWirelessGatewayTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iot_wireless.types.get_wireless_gateway_task_request.GetWirelessGatewayTaskRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_wireless_gateway_task_definition(
@@ -3807,14 +3940,16 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.get_wireless_gateway_task_definition_request.GetWirelessGatewayTaskDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iot_wireless.types.get_wireless_gateway_task_definition_request.GetWirelessGatewayTaskDefinitionRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_destinations(
@@ -3854,7 +3989,7 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.list_destinations_request.ListDestinationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_wireless.types.list_destinations_request.ListDestinationsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3865,7 +4000,27 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_destinations(
+        self,
+        *,
+        config_overrides: Optional[AsyncIoTWirelessClientConfig] = None,
+        max_results: Optional["capo_iot_wireless.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_iot_wireless.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_iot_wireless.types.list_destinations_response.ListDestinationsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_destinations(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_device_profiles(
         self,
@@ -3908,7 +4063,7 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.list_device_profiles_request.ListDeviceProfilesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_wireless.types.list_device_profiles_request.ListDeviceProfilesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3921,7 +4076,31 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_device_profiles(
+        self,
+        *,
+        config_overrides: Optional[AsyncIoTWirelessClientConfig] = None,
+        next_token: Optional["capo_iot_wireless.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_iot_wireless.types.max_results.MaxResults"] = None,
+        device_profile_type: Optional[
+            "capo_iot_wireless.types.device_profile_type.DeviceProfileType"
+        ] = None,
+    ) -> "AsyncIterator[capo_iot_wireless.types.list_device_profiles_response.ListDeviceProfilesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_device_profiles(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                device_profile_type=device_profile_type,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_devices_for_wireless_device_import_task(
         self,
@@ -3965,8 +4144,9 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.list_devices_for_wireless_device_import_task_request.ListDevicesForWirelessDeviceImportTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iot_wireless.types.list_devices_for_wireless_device_import_task_request.ListDevicesForWirelessDeviceImportTaskRequest = {
+            "id": id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3979,6 +4159,7 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_event_configurations(
@@ -4019,8 +4200,9 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.list_event_configurations_request.ListEventConfigurationsRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_type"] = resource_type
+        input_: capo_iot_wireless.types.list_event_configurations_request.ListEventConfigurationsRequest = {
+            "resource_type": resource_type
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -4031,6 +4213,7 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_fuota_tasks(
@@ -4069,7 +4252,7 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.list_fuota_tasks_request.ListFuotaTasksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_wireless.types.list_fuota_tasks_request.ListFuotaTasksRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -4080,7 +4263,27 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_fuota_tasks(
+        self,
+        *,
+        config_overrides: Optional[AsyncIoTWirelessClientConfig] = None,
+        next_token: Optional["capo_iot_wireless.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_iot_wireless.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_iot_wireless.types.list_fuota_tasks_response.ListFuotaTasksResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_fuota_tasks(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_multicast_groups(
         self,
@@ -4118,7 +4321,7 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.list_multicast_groups_request.ListMulticastGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_wireless.types.list_multicast_groups_request.ListMulticastGroupsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -4129,7 +4332,27 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_multicast_groups(
+        self,
+        *,
+        config_overrides: Optional[AsyncIoTWirelessClientConfig] = None,
+        next_token: Optional["capo_iot_wireless.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_iot_wireless.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_iot_wireless.types.list_multicast_groups_response.ListMulticastGroupsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_multicast_groups(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_multicast_groups_by_fuota_task(
         self,
@@ -4169,8 +4392,9 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.list_multicast_groups_by_fuota_task_request.ListMulticastGroupsByFuotaTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iot_wireless.types.list_multicast_groups_by_fuota_task_request.ListMulticastGroupsByFuotaTaskRequest = {
+            "id": id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -4181,7 +4405,29 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_multicast_groups_by_fuota_task(
+        self,
+        id: "capo_iot_wireless.types.fuota_task_id.FuotaTaskId",
+        *,
+        config_overrides: Optional[AsyncIoTWirelessClientConfig] = None,
+        next_token: Optional["capo_iot_wireless.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_iot_wireless.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_iot_wireless.types.list_multicast_groups_by_fuota_task_response.ListMulticastGroupsByFuotaTaskResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_multicast_groups_by_fuota_task(
+                id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_network_analyzer_configurations(
         self,
@@ -4219,7 +4465,7 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.list_network_analyzer_configurations_request.ListNetworkAnalyzerConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_wireless.types.list_network_analyzer_configurations_request.ListNetworkAnalyzerConfigurationsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -4230,7 +4476,27 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_network_analyzer_configurations(
+        self,
+        *,
+        config_overrides: Optional[AsyncIoTWirelessClientConfig] = None,
+        max_results: Optional["capo_iot_wireless.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_iot_wireless.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_iot_wireless.types.list_network_analyzer_configurations_response.ListNetworkAnalyzerConfigurationsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_network_analyzer_configurations(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_partner_accounts(
         self,
@@ -4269,7 +4535,7 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.list_partner_accounts_request.ListPartnerAccountsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_wireless.types.list_partner_accounts_request.ListPartnerAccountsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -4280,6 +4546,7 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_position_configurations(
@@ -4322,7 +4589,7 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.list_position_configurations_request.ListPositionConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_wireless.types.list_position_configurations_request.ListPositionConfigurationsRequest = {}
         if resource_type is not None:
             input_["resource_type"] = resource_type
         if max_results is not None:
@@ -4335,7 +4602,31 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_position_configurations(
+        self,
+        *,
+        config_overrides: Optional[AsyncIoTWirelessClientConfig] = None,
+        resource_type: Optional[
+            "capo_iot_wireless.types.position_resource_type.PositionResourceType"
+        ] = None,
+        max_results: Optional["capo_iot_wireless.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_iot_wireless.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_iot_wireless.types.list_position_configurations_response.ListPositionConfigurationsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_position_configurations(
+                config_overrides=config_overrides,
+                resource_type=resource_type,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_queued_messages(
         self,
@@ -4381,8 +4672,9 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.list_queued_messages_request.ListQueuedMessagesRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iot_wireless.types.list_queued_messages_request.ListQueuedMessagesRequest = {
+            "id": id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -4395,7 +4687,33 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_queued_messages(
+        self,
+        id: "capo_iot_wireless.types.wireless_device_id.WirelessDeviceId",
+        *,
+        config_overrides: Optional[AsyncIoTWirelessClientConfig] = None,
+        next_token: Optional["capo_iot_wireless.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_iot_wireless.types.max_results.MaxResults"] = None,
+        wireless_device_type: Optional[
+            "capo_iot_wireless.types.wireless_device_type.WirelessDeviceType"
+        ] = None,
+    ) -> "AsyncIterator[capo_iot_wireless.types.list_queued_messages_response.ListQueuedMessagesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_queued_messages(
+                id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                wireless_device_type=wireless_device_type,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_service_profiles(
         self,
@@ -4434,7 +4752,7 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.list_service_profiles_request.ListServiceProfilesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_wireless.types.list_service_profiles_request.ListServiceProfilesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -4445,7 +4763,27 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_service_profiles(
+        self,
+        *,
+        config_overrides: Optional[AsyncIoTWirelessClientConfig] = None,
+        next_token: Optional["capo_iot_wireless.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_iot_wireless.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_iot_wireless.types.list_service_profiles_response.ListServiceProfilesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_service_profiles(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_tags_for_resource(
         self,
@@ -4483,14 +4821,16 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_iot_wireless.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_wireless_device_import_tasks(
@@ -4531,7 +4871,7 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.list_wireless_device_import_tasks_request.ListWirelessDeviceImportTasksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_wireless.types.list_wireless_device_import_tasks_request.ListWirelessDeviceImportTasksRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -4542,6 +4882,7 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_wireless_devices(
@@ -4603,7 +4944,7 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.list_wireless_devices_request.ListWirelessDevicesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_wireless.types.list_wireless_devices_request.ListWirelessDevicesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -4626,7 +4967,51 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_wireless_devices(
+        self,
+        *,
+        config_overrides: Optional[AsyncIoTWirelessClientConfig] = None,
+        max_results: Optional["capo_iot_wireless.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_iot_wireless.types.next_token.NextToken"] = None,
+        destination_name: Optional[
+            "capo_iot_wireless.types.destination_name.DestinationName"
+        ] = None,
+        device_profile_id: Optional[
+            "capo_iot_wireless.types.device_profile_id.DeviceProfileId"
+        ] = None,
+        service_profile_id: Optional[
+            "capo_iot_wireless.types.service_profile_id.ServiceProfileId"
+        ] = None,
+        wireless_device_type: Optional[
+            "capo_iot_wireless.types.wireless_device_type.WirelessDeviceType"
+        ] = None,
+        fuota_task_id: Optional[
+            "capo_iot_wireless.types.fuota_task_id.FuotaTaskId"
+        ] = None,
+        multicast_group_id: Optional[
+            "capo_iot_wireless.types.multicast_group_id.MulticastGroupId"
+        ] = None,
+    ) -> "AsyncIterator[capo_iot_wireless.types.list_wireless_devices_response.ListWirelessDevicesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_wireless_devices(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+                destination_name=destination_name,
+                device_profile_id=device_profile_id,
+                service_profile_id=service_profile_id,
+                wireless_device_type=wireless_device_type,
+                fuota_task_id=fuota_task_id,
+                multicast_group_id=multicast_group_id,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_wireless_gateways(
         self,
@@ -4665,7 +5050,7 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.list_wireless_gateways_request.ListWirelessGatewaysRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_wireless.types.list_wireless_gateways_request.ListWirelessGatewaysRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -4676,7 +5061,27 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_wireless_gateways(
+        self,
+        *,
+        config_overrides: Optional[AsyncIoTWirelessClientConfig] = None,
+        next_token: Optional["capo_iot_wireless.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_iot_wireless.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_iot_wireless.types.list_wireless_gateways_response.ListWirelessGatewaysResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_wireless_gateways(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_wireless_gateway_task_definitions(
         self,
@@ -4719,7 +5124,7 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.list_wireless_gateway_task_definitions_request.ListWirelessGatewayTaskDefinitionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_wireless.types.list_wireless_gateway_task_definitions_request.ListWirelessGatewayTaskDefinitionsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -4732,6 +5137,7 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_position_configuration(
@@ -4780,9 +5186,10 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.put_position_configuration_request.PutPositionConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_identifier"] = resource_identifier
-        input_["resource_type"] = resource_type
+        input_: capo_iot_wireless.types.put_position_configuration_request.PutPositionConfigurationRequest = {
+            "resource_identifier": resource_identifier,
+            "resource_type": resource_type,
+        }
         if solvers is not None:
             input_["solvers"] = solvers
         if destination is not None:
@@ -4793,6 +5200,7 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_resource_log_level(
@@ -4833,16 +5241,18 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.put_resource_log_level_request.PutResourceLogLevelRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_identifier"] = resource_identifier
-        input_["resource_type"] = resource_type
-        input_["log_level"] = log_level
+        input_: capo_iot_wireless.types.put_resource_log_level_request.PutResourceLogLevelRequest = {
+            "resource_identifier": resource_identifier,
+            "resource_type": resource_type,
+            "log_level": log_level,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reset_all_resource_log_levels(
@@ -4875,13 +5285,14 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.reset_all_resource_log_levels_request.ResetAllResourceLogLevelsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_wireless.types.reset_all_resource_log_levels_request.ResetAllResourceLogLevelsRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reset_resource_log_level(
@@ -4921,15 +5332,17 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.reset_resource_log_level_request.ResetResourceLogLevelRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_identifier"] = resource_identifier
-        input_["resource_type"] = resource_type
+        input_: capo_iot_wireless.types.reset_resource_log_level_request.ResetResourceLogLevelRequest = {
+            "resource_identifier": resource_identifier,
+            "resource_type": resource_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def send_data_to_multicast_group(
@@ -4968,16 +5381,18 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.send_data_to_multicast_group_request.SendDataToMulticastGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["payload_data"] = payload_data
-        input_["wireless_metadata"] = wireless_metadata
+        input_: capo_iot_wireless.types.send_data_to_multicast_group_request.SendDataToMulticastGroupRequest = {
+            "id": id,
+            "payload_data": payload_data,
+            "wireless_metadata": wireless_metadata,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def send_data_to_wireless_device(
@@ -5022,10 +5437,11 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.send_data_to_wireless_device_request.SendDataToWirelessDeviceRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["transmit_mode"] = transmit_mode
-        input_["payload_data"] = payload_data
+        input_: capo_iot_wireless.types.send_data_to_wireless_device_request.SendDataToWirelessDeviceRequest = {
+            "id": id,
+            "transmit_mode": transmit_mode,
+            "payload_data": payload_data,
+        }
         if wireless_metadata is not None:
             input_["wireless_metadata"] = wireless_metadata
 
@@ -5034,6 +5450,7 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_bulk_associate_wireless_device_with_multicast_group(
@@ -5073,8 +5490,9 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.start_bulk_associate_wireless_device_with_multicast_group_request.StartBulkAssociateWirelessDeviceWithMulticastGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iot_wireless.types.start_bulk_associate_wireless_device_with_multicast_group_request.StartBulkAssociateWirelessDeviceWithMulticastGroupRequest = {
+            "id": id
+        }
         if query_string is not None:
             input_["query_string"] = query_string
         if tags is not None:
@@ -5085,6 +5503,7 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_bulk_disassociate_wireless_device_from_multicast_group(
@@ -5124,8 +5543,9 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.start_bulk_disassociate_wireless_device_from_multicast_group_request.StartBulkDisassociateWirelessDeviceFromMulticastGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iot_wireless.types.start_bulk_disassociate_wireless_device_from_multicast_group_request.StartBulkDisassociateWirelessDeviceFromMulticastGroupRequest = {
+            "id": id
+        }
         if query_string is not None:
             input_["query_string"] = query_string
         if tags is not None:
@@ -5136,6 +5556,7 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_fuota_task(
@@ -5175,8 +5596,9 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.start_fuota_task_request.StartFuotaTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iot_wireless.types.start_fuota_task_request.StartFuotaTaskRequest = {
+            "id": id
+        }
         if lo_ra_wan is not None:
             input_["lo_ra_wan"] = lo_ra_wan
 
@@ -5185,6 +5607,7 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_multicast_group_session(
@@ -5222,15 +5645,17 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.start_multicast_group_session_request.StartMulticastGroupSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["lo_ra_wan"] = lo_ra_wan
+        input_: capo_iot_wireless.types.start_multicast_group_session_request.StartMulticastGroupSessionRequest = {
+            "id": id,
+            "lo_ra_wan": lo_ra_wan,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_single_wireless_device_import_task(
@@ -5282,23 +5707,26 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.start_single_wireless_device_import_task_request.StartSingleWirelessDeviceImportTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["destination_name"] = destination_name
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        input_: capo_iot_wireless.types.start_single_wireless_device_import_task_request.StartSingleWirelessDeviceImportTaskRequest = {
+            "destination_name": destination_name,
+            "sidewalk": sidewalk,
+        }
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if device_name is not None:
             input_["device_name"] = device_name
         if tags is not None:
             input_["tags"] = tags
         if positioning is not None:
             input_["positioning"] = positioning
-        input_["sidewalk"] = sidewalk
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_wireless_device_import_task(
@@ -5348,21 +5776,24 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.start_wireless_device_import_task_request.StartWirelessDeviceImportTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["destination_name"] = destination_name
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        input_: capo_iot_wireless.types.start_wireless_device_import_task_request.StartWirelessDeviceImportTaskRequest = {
+            "destination_name": destination_name,
+            "sidewalk": sidewalk,
+        }
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if tags is not None:
             input_["tags"] = tags
         if positioning is not None:
             input_["positioning"] = positioning
-        input_["sidewalk"] = sidewalk
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -5404,15 +5835,17 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_iot_wireless.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def test_wireless_device(
@@ -5450,14 +5883,16 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.test_wireless_device_request.TestWirelessDeviceRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iot_wireless.types.test_wireless_device_request.TestWirelessDeviceRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -5498,15 +5933,17 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_iot_wireless.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_destination(
@@ -5557,8 +5994,9 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.update_destination_request.UpdateDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iot_wireless.types.update_destination_request.UpdateDestinationRequest = {
+            "name": name
+        }
         if expression_type is not None:
             input_["expression_type"] = expression_type
         if expression is not None:
@@ -5573,6 +6011,7 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_event_configuration_by_resource_types(
@@ -5628,7 +6067,7 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.update_event_configuration_by_resource_types_request.UpdateEventConfigurationByResourceTypesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_wireless.types.update_event_configuration_by_resource_types_request.UpdateEventConfigurationByResourceTypesRequest = {}
         if device_registration_state is not None:
             input_["device_registration_state"] = device_registration_state
         if proximity is not None:
@@ -5645,6 +6084,7 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_fuota_task(
@@ -5704,8 +6144,9 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.update_fuota_task_request.UpdateFuotaTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iot_wireless.types.update_fuota_task_request.UpdateFuotaTaskRequest = {
+            "id": id
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -5730,6 +6171,7 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_log_levels_by_resource_types(
@@ -5777,7 +6219,7 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.update_log_levels_by_resource_types_request.UpdateLogLevelsByResourceTypesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_wireless.types.update_log_levels_by_resource_types_request.UpdateLogLevelsByResourceTypesRequest = {}
         if default_log_level is not None:
             input_["default_log_level"] = default_log_level
         if fuota_task_log_options is not None:
@@ -5792,6 +6234,7 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_metric_configuration(
@@ -5833,7 +6276,7 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.update_metric_configuration_request.UpdateMetricConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_wireless.types.update_metric_configuration_request.UpdateMetricConfigurationRequest = {}
         if summary_metric is not None:
             input_["summary_metric"] = summary_metric
 
@@ -5842,6 +6285,7 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_multicast_group(
@@ -5885,8 +6329,9 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.update_multicast_group_request.UpdateMulticastGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iot_wireless.types.update_multicast_group_request.UpdateMulticastGroupRequest = {
+            "id": id
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -5899,6 +6344,7 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_network_analyzer_configuration(
@@ -5964,8 +6410,9 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.update_network_analyzer_configuration_request.UpdateNetworkAnalyzerConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_name"] = configuration_name
+        input_: capo_iot_wireless.types.update_network_analyzer_configuration_request.UpdateNetworkAnalyzerConfigurationRequest = {
+            "configuration_name": configuration_name
+        }
         if trace_content is not None:
             input_["trace_content"] = trace_content
         if wireless_devices_to_add is not None:
@@ -5988,6 +6435,7 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_partner_account(
@@ -6029,16 +6477,18 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.update_partner_account_request.UpdatePartnerAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["sidewalk"] = sidewalk
-        input_["partner_account_id"] = partner_account_id
-        input_["partner_type"] = partner_type
+        input_: capo_iot_wireless.types.update_partner_account_request.UpdatePartnerAccountRequest = {
+            "sidewalk": sidewalk,
+            "partner_account_id": partner_account_id,
+            "partner_type": partner_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_position(
@@ -6081,16 +6531,18 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.update_position_request.UpdatePositionRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_identifier"] = resource_identifier
-        input_["resource_type"] = resource_type
-        input_["position"] = position
+        input_: capo_iot_wireless.types.update_position_request.UpdatePositionRequest = {
+            "resource_identifier": resource_identifier,
+            "resource_type": resource_type,
+            "position": position,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_resource_event_configuration(
@@ -6156,9 +6608,10 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.update_resource_event_configuration_request.UpdateResourceEventConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
-        input_["identifier_type"] = identifier_type
+        input_: capo_iot_wireless.types.update_resource_event_configuration_request.UpdateResourceEventConfigurationRequest = {
+            "identifier": identifier,
+            "identifier_type": identifier_type,
+        }
         if partner_type is not None:
             input_["partner_type"] = partner_type
         if device_registration_state is not None:
@@ -6177,6 +6630,7 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_resource_position(
@@ -6221,9 +6675,10 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.update_resource_position_request.UpdateResourcePositionRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_identifier"] = resource_identifier
-        input_["resource_type"] = resource_type
+        input_: capo_iot_wireless.types.update_resource_position_request.UpdateResourcePositionRequest = {
+            "resource_identifier": resource_identifier,
+            "resource_type": resource_type,
+        }
         if geo_json_payload is not None:
             input_["geo_json_payload"] = geo_json_payload
 
@@ -6232,6 +6687,7 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_wireless_device(
@@ -6292,8 +6748,9 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.update_wireless_device_request.UpdateWirelessDeviceRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iot_wireless.types.update_wireless_device_request.UpdateWirelessDeviceRequest = {
+            "id": id
+        }
         if destination_name is not None:
             input_["destination_name"] = destination_name
         if name is not None:
@@ -6312,6 +6769,7 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_wireless_device_import_task(
@@ -6353,15 +6811,17 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.update_wireless_device_import_task_request.UpdateWirelessDeviceImportTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["sidewalk"] = sidewalk
+        input_: capo_iot_wireless.types.update_wireless_device_import_task_request.UpdateWirelessDeviceImportTaskRequest = {
+            "id": id,
+            "sidewalk": sidewalk,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_wireless_gateway(
@@ -6416,8 +6876,9 @@ class AsyncIoTWirelessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_wireless.types.update_wireless_gateway_request.UpdateWirelessGatewayRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iot_wireless.types.update_wireless_gateway_request.UpdateWirelessGatewayRequest = {
+            "id": id
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -6434,6 +6895,7 @@ class AsyncIoTWirelessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

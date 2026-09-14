@@ -31,7 +31,7 @@ def serialize_json(value: AwsAthenaWorkGroupConfigurationDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsAthenaWorkGroupConfigurationDetails:
     out: AwsAthenaWorkGroupConfigurationDetails = {}  # type: ignore[typeddict-item]
-    if "ResultConfiguration" in data:
+    if data.get("ResultConfiguration") is not None:
         import capo_securityhub.types.aws_athena_work_group_configuration_result_configuration_details
 
         out["result_configuration"] = (

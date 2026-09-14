@@ -43,12 +43,12 @@ def serialize_aws_json_1_1(value: EBSResourceUtilization) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EBSResourceUtilization:
     out: EBSResourceUtilization = {}  # type: ignore[typeddict-item]
-    if "EbsReadOpsPerSecond" in data:
+    if data.get("EbsReadOpsPerSecond") is not None:
         out["ebs_read_ops_per_second"] = data["EbsReadOpsPerSecond"]
-    if "EbsWriteOpsPerSecond" in data:
+    if data.get("EbsWriteOpsPerSecond") is not None:
         out["ebs_write_ops_per_second"] = data["EbsWriteOpsPerSecond"]
-    if "EbsReadBytesPerSecond" in data:
+    if data.get("EbsReadBytesPerSecond") is not None:
         out["ebs_read_bytes_per_second"] = data["EbsReadBytesPerSecond"]
-    if "EbsWriteBytesPerSecond" in data:
+    if data.get("EbsWriteBytesPerSecond") is not None:
         out["ebs_write_bytes_per_second"] = data["EbsWriteBytesPerSecond"]
     return out

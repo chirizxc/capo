@@ -47,20 +47,20 @@ def serialize_json(value: UpdateEc2DeepInspectionConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateEc2DeepInspectionConfigurationResponse:
     out: UpdateEc2DeepInspectionConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "packagePaths" in data:
+    if data.get("packagePaths") is not None:
         import capo_inspector2.types.path_list
 
         out["package_paths"] = capo_inspector2.types.path_list.deserialize_json(
             data["packagePaths"]
         )
-    if "orgPackagePaths" in data:
+    if data.get("orgPackagePaths") is not None:
         import capo_inspector2.types.path_list
 
         out["org_package_paths"] = capo_inspector2.types.path_list.deserialize_json(
             data["orgPackagePaths"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     return out

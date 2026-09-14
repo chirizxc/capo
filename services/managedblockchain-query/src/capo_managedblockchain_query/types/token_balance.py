@@ -73,7 +73,7 @@ def serialize_json(value: TokenBalance) -> dict:
 
 def deserialize_json(data: dict) -> TokenBalance:
     out: TokenBalance = {}  # type: ignore[typeddict-item]
-    if "ownerIdentifier" in data:
+    if data.get("ownerIdentifier") is not None:
         import capo_managedblockchain_query.types.owner_identifier
 
         out["owner_identifier"] = (
@@ -81,7 +81,7 @@ def deserialize_json(data: dict) -> TokenBalance:
                 data["ownerIdentifier"]
             )
         )
-    if "tokenIdentifier" in data:
+    if data.get("tokenIdentifier") is not None:
         import capo_managedblockchain_query.types.token_identifier
 
         out["token_identifier"] = (
@@ -89,11 +89,11 @@ def deserialize_json(data: dict) -> TokenBalance:
                 data["tokenIdentifier"]
             )
         )
-    if "balance" in data:
+    if data.get("balance") is not None:
         out["balance"] = data["balance"]
     else:
         raise DeserializationError("TokenBalance.balance required")
-    if "atBlockchainInstant" in data:
+    if data.get("atBlockchainInstant") is not None:
         import capo_managedblockchain_query.types.blockchain_instant
 
         out["at_blockchain_instant"] = (
@@ -103,7 +103,7 @@ def deserialize_json(data: dict) -> TokenBalance:
         )
     else:
         raise DeserializationError("TokenBalance.at_blockchain_instant required")
-    if "lastUpdatedTime" in data:
+    if data.get("lastUpdatedTime") is not None:
         import capo_managedblockchain_query.types.blockchain_instant
 
         out["last_updated_time"] = (

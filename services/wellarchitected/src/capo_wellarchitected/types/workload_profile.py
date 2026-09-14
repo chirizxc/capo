@@ -30,8 +30,8 @@ def serialize_json(value: WorkloadProfile) -> dict:
 
 def deserialize_json(data: dict) -> WorkloadProfile:
     out: WorkloadProfile = {}  # type: ignore[typeddict-item]
-    if "ProfileArn" in data:
+    if data.get("ProfileArn") is not None:
         out["profile_arn"] = data["ProfileArn"]
-    if "ProfileVersion" in data:
+    if data.get("ProfileVersion") is not None:
         out["profile_version"] = data["ProfileVersion"]
     return out

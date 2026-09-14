@@ -43,11 +43,11 @@ def serialize_json(value: GroupingAttributeDefinition) -> dict:
 
 def deserialize_json(data: dict) -> GroupingAttributeDefinition:
     out: GroupingAttributeDefinition = {}  # type: ignore[typeddict-item]
-    if "GroupingName" in data:
+    if data.get("GroupingName") is not None:
         out["grouping_name"] = data["GroupingName"]
     else:
         raise DeserializationError("GroupingAttributeDefinition.grouping_name required")
-    if "GroupingSourceKeys" in data:
+    if data.get("GroupingSourceKeys") is not None:
         import capo_application_signals.types.grouping_source_key_string_list
 
         out["grouping_source_keys"] = (
@@ -55,6 +55,6 @@ def deserialize_json(data: dict) -> GroupingAttributeDefinition:
                 data["GroupingSourceKeys"]
             )
         )
-    if "DefaultGroupingValue" in data:
+    if data.get("DefaultGroupingValue") is not None:
         out["default_grouping_value"] = data["DefaultGroupingValue"]
     return out

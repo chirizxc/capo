@@ -76,9 +76,9 @@ def serialize_json(value: GetRecommendedPolicyV2Response) -> dict:
 
 def deserialize_json(data: dict) -> GetRecommendedPolicyV2Response:
     out: GetRecommendedPolicyV2Response = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "RecommendationType" in data:
+    if data.get("RecommendationType") is not None:
         import capo_securityhub.types.recommendation_type
 
         out["recommendation_type"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> GetRecommendedPolicyV2Response:
                 data["RecommendationType"]
             )
         )
-    if "RecommendationSteps" in data:
+    if data.get("RecommendationSteps") is not None:
         import capo_securityhub.types.recommendation_steps
 
         out["recommendation_steps"] = (
@@ -94,18 +94,18 @@ def deserialize_json(data: dict) -> GetRecommendedPolicyV2Response:
                 data["RecommendationSteps"]
             )
         )
-    if "Error" in data:
+    if data.get("Error") is not None:
         import capo_securityhub.types.recommendation_error
 
         out["error"] = capo_securityhub.types.recommendation_error.deserialize_json(
             data["Error"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_securityhub.types.recommendation_status
 
         out["status"] = capo_securityhub.types.recommendation_status.deserialize_json(
             data["Status"]
         )
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     return out

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> BillingGroupCostReportList:
 
     out: BillingGroupCostReportList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_billingconductor.types.billing_group_cost_report_element.deserialize_json(
                 item

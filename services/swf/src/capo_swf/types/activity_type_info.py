@@ -57,7 +57,7 @@ def serialize_aws_json_1_0(value: ActivityTypeInfo) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ActivityTypeInfo:
     out: ActivityTypeInfo = {}  # type: ignore[typeddict-item]
-    if "activityType" in data:
+    if data.get("activityType") is not None:
         import capo_swf.types.activity_type
 
         out["activity_type"] = capo_swf.types.activity_type.deserialize_aws_json_1_0(
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_0(data: dict) -> ActivityTypeInfo:
         )
     else:
         raise DeserializationError("ActivityTypeInfo.activity_type required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_swf.types.registration_status
 
         out["status"] = capo_swf.types.registration_status.deserialize_aws_json_1_0(
@@ -73,9 +73,9 @@ def deserialize_aws_json_1_0(data: dict) -> ActivityTypeInfo:
         )
     else:
         raise DeserializationError("ActivityTypeInfo.status required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_swf.types.timestamp
 
         out["creation_date"] = capo_swf.types.timestamp.deserialize_aws_json_1_0(
@@ -83,7 +83,7 @@ def deserialize_aws_json_1_0(data: dict) -> ActivityTypeInfo:
         )
     else:
         raise DeserializationError("ActivityTypeInfo.creation_date required")
-    if "deprecationDate" in data:
+    if data.get("deprecationDate") is not None:
         import capo_swf.types.timestamp
 
         out["deprecation_date"] = capo_swf.types.timestamp.deserialize_aws_json_1_0(

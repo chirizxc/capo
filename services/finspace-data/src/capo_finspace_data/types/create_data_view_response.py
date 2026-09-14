@@ -28,8 +28,8 @@ def serialize_json(value: CreateDataViewResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateDataViewResponse:
     out: CreateDataViewResponse = {}  # type: ignore[typeddict-item]
-    if "datasetId" in data:
+    if data.get("datasetId") is not None:
         out["dataset_id"] = data["datasetId"]
-    if "dataViewId" in data:
+    if data.get("dataViewId") is not None:
         out["data_view_id"] = data["dataViewId"]
     return out

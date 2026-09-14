@@ -41,7 +41,7 @@ def serialize_json(value: AssignSlaActionDefinition) -> dict:
 
 def deserialize_json(data: dict) -> AssignSlaActionDefinition:
     out: AssignSlaActionDefinition = {}  # type: ignore[typeddict-item]
-    if "SlaAssignmentType" in data:
+    if data.get("SlaAssignmentType") is not None:
         import capo_connect.types.sla_assignment_type
 
         out["sla_assignment_type"] = (
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> AssignSlaActionDefinition:
         raise DeserializationError(
             "AssignSlaActionDefinition.sla_assignment_type required"
         )
-    if "CaseSlaConfiguration" in data:
+    if data.get("CaseSlaConfiguration") is not None:
         import capo_connect.types.case_sla_configuration
 
         out["case_sla_configuration"] = (

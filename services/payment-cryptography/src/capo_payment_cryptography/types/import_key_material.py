@@ -124,7 +124,7 @@ def serialize_aws_json_1_0(value: ImportKeyMaterial) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> ImportKeyMaterial:
-    if "RootCertificatePublicKey" in data:
+    if data.get("RootCertificatePublicKey") is not None:
         import capo_payment_cryptography.types.root_certificate_public_key
 
         return {
@@ -132,7 +132,7 @@ def deserialize_aws_json_1_0(data: dict) -> ImportKeyMaterial:
                 data["RootCertificatePublicKey"]
             )
         }
-    elif "TrustedCertificatePublicKey" in data:
+    elif data.get("TrustedCertificatePublicKey") is not None:
         import capo_payment_cryptography.types.trusted_certificate_public_key
 
         return {
@@ -140,7 +140,7 @@ def deserialize_aws_json_1_0(data: dict) -> ImportKeyMaterial:
                 data["TrustedCertificatePublicKey"]
             )
         }
-    elif "Tr31KeyBlock" in data:
+    elif data.get("Tr31KeyBlock") is not None:
         import capo_payment_cryptography.types.import_tr31_key_block
 
         return {
@@ -148,7 +148,7 @@ def deserialize_aws_json_1_0(data: dict) -> ImportKeyMaterial:
                 data["Tr31KeyBlock"]
             )
         }
-    elif "Tr34KeyBlock" in data:
+    elif data.get("Tr34KeyBlock") is not None:
         import capo_payment_cryptography.types.import_tr34_key_block
 
         return {
@@ -156,7 +156,7 @@ def deserialize_aws_json_1_0(data: dict) -> ImportKeyMaterial:
                 data["Tr34KeyBlock"]
             )
         }
-    elif "KeyCryptogram" in data:
+    elif data.get("KeyCryptogram") is not None:
         import capo_payment_cryptography.types.import_key_cryptogram
 
         return {
@@ -164,7 +164,7 @@ def deserialize_aws_json_1_0(data: dict) -> ImportKeyMaterial:
                 data["KeyCryptogram"]
             )
         }
-    elif "DiffieHellmanTr31KeyBlock" in data:
+    elif data.get("DiffieHellmanTr31KeyBlock") is not None:
         import capo_payment_cryptography.types.import_diffie_hellman_tr31_key_block
 
         return {
@@ -172,7 +172,7 @@ def deserialize_aws_json_1_0(data: dict) -> ImportKeyMaterial:
                 data["DiffieHellmanTr31KeyBlock"]
             )
         }
-    elif "As2805KeyCryptogram" in data:
+    elif data.get("As2805KeyCryptogram") is not None:
         import capo_payment_cryptography.types.import_as2805_key_cryptogram
 
         return {

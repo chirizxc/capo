@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: PolicyQualifierInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PolicyQualifierInfo:
     out: PolicyQualifierInfo = {}  # type: ignore[typeddict-item]
-    if "PolicyQualifierId" in data:
+    if data.get("PolicyQualifierId") is not None:
         import capo_acm_pca.types.policy_qualifier_id
 
         out["policy_qualifier_id"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> PolicyQualifierInfo:
         )
     else:
         raise DeserializationError("PolicyQualifierInfo.policy_qualifier_id required")
-    if "Qualifier" in data:
+    if data.get("Qualifier") is not None:
         import capo_acm_pca.types.qualifier
 
         out["qualifier"] = capo_acm_pca.types.qualifier.deserialize_aws_json_1_1(

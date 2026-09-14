@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: UpdateSubnetGroupResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateSubnetGroupResponse:
     out: UpdateSubnetGroupResponse = {}  # type: ignore[typeddict-item]
-    if "SubnetGroup" in data:
+    if data.get("SubnetGroup") is not None:
         import capo_dax.types.subnet_group
 
         out["subnet_group"] = capo_dax.types.subnet_group.deserialize_aws_json_1_1(

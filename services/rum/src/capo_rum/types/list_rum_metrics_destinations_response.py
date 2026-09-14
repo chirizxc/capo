@@ -35,7 +35,7 @@ def serialize_json(value: ListRumMetricsDestinationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListRumMetricsDestinationsResponse:
     out: ListRumMetricsDestinationsResponse = {}  # type: ignore[typeddict-item]
-    if "Destinations" in data:
+    if data.get("Destinations") is not None:
         import capo_rum.types.metric_destination_summary_list
 
         out["destinations"] = (
@@ -43,6 +43,6 @@ def deserialize_json(data: dict) -> ListRumMetricsDestinationsResponse:
                 data["Destinations"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

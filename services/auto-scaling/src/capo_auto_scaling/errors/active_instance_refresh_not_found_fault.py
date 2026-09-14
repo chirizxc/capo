@@ -41,15 +41,20 @@ class ActiveInstanceRefreshNotFoundFault(ServiceError):
 
     code: str | None = "ActiveInstanceRefreshNotFoundFault"
 
-    def __init__(self, data: ActiveInstanceRefreshNotFoundFault_):
+    def __init__(
+        self, data: ActiveInstanceRefreshNotFoundFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ActiveInstanceRefreshNotFoundFault",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "ActiveInstanceRefreshNotFoundFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "ActiveInstanceRefreshNotFoundFault":
+        return cls(deserialize_query(el), message)

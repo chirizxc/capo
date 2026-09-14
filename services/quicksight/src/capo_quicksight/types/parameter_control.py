@@ -92,7 +92,7 @@ def serialize_json(value: ParameterControl) -> dict:
 
 def deserialize_json(data: dict) -> ParameterControl:
     out: ParameterControl = {}  # type: ignore[typeddict-item]
-    if "DateTimePicker" in data:
+    if data.get("DateTimePicker") is not None:
         import capo_quicksight.types.parameter_date_time_picker_control
 
         out["date_time_picker"] = (
@@ -100,13 +100,13 @@ def deserialize_json(data: dict) -> ParameterControl:
                 data["DateTimePicker"]
             )
         )
-    if "List" in data:
+    if data.get("List") is not None:
         import capo_quicksight.types.parameter_list_control
 
         out["list"] = capo_quicksight.types.parameter_list_control.deserialize_json(
             data["List"]
         )
-    if "Dropdown" in data:
+    if data.get("Dropdown") is not None:
         import capo_quicksight.types.parameter_drop_down_control
 
         out["dropdown"] = (
@@ -114,7 +114,7 @@ def deserialize_json(data: dict) -> ParameterControl:
                 data["Dropdown"]
             )
         )
-    if "TextField" in data:
+    if data.get("TextField") is not None:
         import capo_quicksight.types.parameter_text_field_control
 
         out["text_field"] = (
@@ -122,7 +122,7 @@ def deserialize_json(data: dict) -> ParameterControl:
                 data["TextField"]
             )
         )
-    if "TextArea" in data:
+    if data.get("TextArea") is not None:
         import capo_quicksight.types.parameter_text_area_control
 
         out["text_area"] = (
@@ -130,7 +130,7 @@ def deserialize_json(data: dict) -> ParameterControl:
                 data["TextArea"]
             )
         )
-    if "Slider" in data:
+    if data.get("Slider") is not None:
         import capo_quicksight.types.parameter_slider_control
 
         out["slider"] = capo_quicksight.types.parameter_slider_control.deserialize_json(

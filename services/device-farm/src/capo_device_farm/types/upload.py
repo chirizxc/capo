@@ -84,37 +84,37 @@ def serialize_aws_json_1_1(value: Upload) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Upload:
     out: Upload = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "created" in data:
+    if data.get("created") is not None:
         import capo_device_farm.types.date_time
 
         out["created"] = capo_device_farm.types.date_time.deserialize_aws_json_1_1(
             data["created"]
         )
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_device_farm.types.upload_type
 
         out["type"] = capo_device_farm.types.upload_type.deserialize_aws_json_1_1(
             data["type"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_device_farm.types.upload_status
 
         out["status"] = capo_device_farm.types.upload_status.deserialize_aws_json_1_1(
             data["status"]
         )
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         out["metadata"] = data["metadata"]
-    if "contentType" in data:
+    if data.get("contentType") is not None:
         out["content_type"] = data["contentType"]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "category" in data:
+    if data.get("category") is not None:
         import capo_device_farm.types.upload_category
 
         out["category"] = (

@@ -389,7 +389,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.add_tags_to_resource_message.AddTagsToResourceMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.add_tags_to_resource_message.AddTagsToResourceMessage = {}
         if resource_name is not None:
             input_["resource_name"] = resource_name
         if tags is not None:
@@ -400,6 +400,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def authorize_cache_security_group_ingress(
@@ -454,7 +455,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.authorize_cache_security_group_ingress_message.AuthorizeCacheSecurityGroupIngressMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.authorize_cache_security_group_ingress_message.AuthorizeCacheSecurityGroupIngressMessage = {}
         if cache_security_group_name is not None:
             input_["cache_security_group_name"] = cache_security_group_name
         if ec2_security_group_name is not None:
@@ -467,6 +468,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_apply_update_action(
@@ -510,7 +512,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.batch_apply_update_action_message.BatchApplyUpdateActionMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.batch_apply_update_action_message.BatchApplyUpdateActionMessage = {}
         if replication_group_ids is not None:
             input_["replication_group_ids"] = replication_group_ids
         if cache_cluster_ids is not None:
@@ -523,6 +525,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_stop_update_action(
@@ -566,7 +569,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.batch_stop_update_action_message.BatchStopUpdateActionMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.batch_stop_update_action_message.BatchStopUpdateActionMessage = {}
         if replication_group_ids is not None:
             input_["replication_group_ids"] = replication_group_ids
         if cache_cluster_ids is not None:
@@ -579,6 +582,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def complete_migration(
@@ -617,7 +621,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.complete_migration_message.CompleteMigrationMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.complete_migration_message.CompleteMigrationMessage = {}
         if replication_group_id is not None:
             input_["replication_group_id"] = replication_group_id
         if force is not None:
@@ -628,6 +632,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def copy_serverless_cache_snapshot(
@@ -679,7 +684,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.copy_serverless_cache_snapshot_request.CopyServerlessCacheSnapshotRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.copy_serverless_cache_snapshot_request.CopyServerlessCacheSnapshotRequest = {}
         if source_serverless_cache_snapshot_name is not None:
             input_["source_serverless_cache_snapshot_name"] = (
                 source_serverless_cache_snapshot_name
@@ -698,6 +703,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def copy_snapshot(
@@ -752,7 +758,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.copy_snapshot_message.CopySnapshotMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.copy_snapshot_message.CopySnapshotMessage = {}
         if source_snapshot_name is not None:
             input_["source_snapshot_name"] = source_snapshot_name
         if target_snapshot_name is not None:
@@ -769,6 +775,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_cache_cluster(
@@ -920,7 +927,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.create_cache_cluster_message.CreateCacheClusterMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.create_cache_cluster_message.CreateCacheClusterMessage = {}
         if cache_cluster_id is not None:
             input_["cache_cluster_id"] = cache_cluster_id
         if replication_group_id is not None:
@@ -987,6 +994,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_cache_parameter_group(
@@ -1042,7 +1050,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.create_cache_parameter_group_message.CreateCacheParameterGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.create_cache_parameter_group_message.CreateCacheParameterGroupMessage = {}
         if cache_parameter_group_name is not None:
             input_["cache_parameter_group_name"] = cache_parameter_group_name
         if cache_parameter_group_family is not None:
@@ -1057,6 +1065,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_cache_security_group(
@@ -1107,7 +1116,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.create_cache_security_group_message.CreateCacheSecurityGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.create_cache_security_group_message.CreateCacheSecurityGroupMessage = {}
         if cache_security_group_name is not None:
             input_["cache_security_group_name"] = cache_security_group_name
         if description is not None:
@@ -1120,6 +1129,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_cache_subnet_group(
@@ -1177,7 +1187,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.create_cache_subnet_group_message.CreateCacheSubnetGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.create_cache_subnet_group_message.CreateCacheSubnetGroupMessage = {}
         if cache_subnet_group_name is not None:
             input_["cache_subnet_group_name"] = cache_subnet_group_name
         if cache_subnet_group_description is not None:
@@ -1192,6 +1202,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_global_replication_group(
@@ -1240,7 +1251,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.create_global_replication_group_message.CreateGlobalReplicationGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.create_global_replication_group_message.CreateGlobalReplicationGroupMessage = {}
         if global_replication_group_id_suffix is not None:
             input_["global_replication_group_id_suffix"] = (
                 global_replication_group_id_suffix
@@ -1257,6 +1268,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_replication_group(
@@ -1453,7 +1465,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.create_replication_group_message.CreateReplicationGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.create_replication_group_message.CreateReplicationGroupMessage = {}
         if replication_group_id is not None:
             input_["replication_group_id"] = replication_group_id
         if replication_group_description is not None:
@@ -1540,6 +1552,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_serverless_cache(
@@ -1622,7 +1635,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.create_serverless_cache_request.CreateServerlessCacheRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.create_serverless_cache_request.CreateServerlessCacheRequest = {}
         if serverless_cache_name is not None:
             input_["serverless_cache_name"] = serverless_cache_name
         if description is not None:
@@ -1657,6 +1670,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_serverless_cache_snapshot(
@@ -1706,7 +1720,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.create_serverless_cache_snapshot_request.CreateServerlessCacheSnapshotRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.create_serverless_cache_snapshot_request.CreateServerlessCacheSnapshotRequest = {}
         if serverless_cache_snapshot_name is not None:
             input_["serverless_cache_snapshot_name"] = serverless_cache_snapshot_name
         if serverless_cache_name is not None:
@@ -1721,6 +1735,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_snapshot(
@@ -1786,7 +1801,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.create_snapshot_message.CreateSnapshotMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.create_snapshot_message.CreateSnapshotMessage = {}
         if replication_group_id is not None:
             input_["replication_group_id"] = replication_group_id
         if cache_cluster_id is not None:
@@ -1803,6 +1818,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_user(
@@ -1863,7 +1879,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.create_user_message.CreateUserMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.create_user_message.CreateUserMessage = {}
         if user_id is not None:
             input_["user_id"] = user_id
         if user_name is not None:
@@ -1886,6 +1902,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_user_group(
@@ -1933,7 +1950,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.create_user_group_message.CreateUserGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.create_user_group_message.CreateUserGroupMessage = {}
         if user_group_id is not None:
             input_["user_group_id"] = user_group_id
         if engine is not None:
@@ -1948,6 +1965,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def decrease_node_groups_in_global_replication_group(
@@ -1999,7 +2017,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.decrease_node_groups_in_global_replication_group_message.DecreaseNodeGroupsInGlobalReplicationGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.decrease_node_groups_in_global_replication_group_message.DecreaseNodeGroupsInGlobalReplicationGroupMessage = {}
         if global_replication_group_id is not None:
             input_["global_replication_group_id"] = global_replication_group_id
         if node_group_count is not None:
@@ -2016,6 +2034,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def decrease_replica_count(
@@ -2075,7 +2094,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.decrease_replica_count_message.DecreaseReplicaCountMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.decrease_replica_count_message.DecreaseReplicaCountMessage = {}
         if replication_group_id is not None:
             input_["replication_group_id"] = replication_group_id
         if new_replica_count is not None:
@@ -2092,6 +2111,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_cache_cluster(
@@ -2142,7 +2162,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.delete_cache_cluster_message.DeleteCacheClusterMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.delete_cache_cluster_message.DeleteCacheClusterMessage = {}
         if cache_cluster_id is not None:
             input_["cache_cluster_id"] = cache_cluster_id
         if final_snapshot_identifier is not None:
@@ -2153,6 +2173,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_cache_parameter_group(
@@ -2196,7 +2217,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.delete_cache_parameter_group_message.DeleteCacheParameterGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.delete_cache_parameter_group_message.DeleteCacheParameterGroupMessage = {}
         if cache_parameter_group_name is not None:
             input_["cache_parameter_group_name"] = cache_parameter_group_name
 
@@ -2205,6 +2226,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_cache_security_group(
@@ -2248,7 +2270,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.delete_cache_security_group_message.DeleteCacheSecurityGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.delete_cache_security_group_message.DeleteCacheSecurityGroupMessage = {}
         if cache_security_group_name is not None:
             input_["cache_security_group_name"] = cache_security_group_name
 
@@ -2257,6 +2279,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_cache_subnet_group(
@@ -2298,7 +2321,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.delete_cache_subnet_group_message.DeleteCacheSubnetGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.delete_cache_subnet_group_message.DeleteCacheSubnetGroupMessage = {}
         if cache_subnet_group_name is not None:
             input_["cache_subnet_group_name"] = cache_subnet_group_name
 
@@ -2307,6 +2330,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_global_replication_group(
@@ -2349,7 +2373,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.delete_global_replication_group_message.DeleteGlobalReplicationGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.delete_global_replication_group_message.DeleteGlobalReplicationGroupMessage = {}
         if global_replication_group_id is not None:
             input_["global_replication_group_id"] = global_replication_group_id
         if retain_primary_replication_group is not None:
@@ -2362,6 +2386,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_replication_group(
@@ -2416,7 +2441,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.delete_replication_group_message.DeleteReplicationGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.delete_replication_group_message.DeleteReplicationGroupMessage = {}
         if replication_group_id is not None:
             input_["replication_group_id"] = replication_group_id
         if retain_primary_cluster is not None:
@@ -2429,6 +2454,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_serverless_cache(
@@ -2471,7 +2497,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.delete_serverless_cache_request.DeleteServerlessCacheRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.delete_serverless_cache_request.DeleteServerlessCacheRequest = {}
         if serverless_cache_name is not None:
             input_["serverless_cache_name"] = serverless_cache_name
         if final_snapshot_name is not None:
@@ -2482,6 +2508,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_serverless_cache_snapshot(
@@ -2521,7 +2548,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.delete_serverless_cache_snapshot_request.DeleteServerlessCacheSnapshotRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.delete_serverless_cache_snapshot_request.DeleteServerlessCacheSnapshotRequest = {}
         if serverless_cache_snapshot_name is not None:
             input_["serverless_cache_snapshot_name"] = serverless_cache_snapshot_name
 
@@ -2530,6 +2557,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_snapshot(
@@ -2573,7 +2601,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.delete_snapshot_message.DeleteSnapshotMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.delete_snapshot_message.DeleteSnapshotMessage = {}
         if snapshot_name is not None:
             input_["snapshot_name"] = snapshot_name
 
@@ -2582,6 +2610,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_user(
@@ -2618,7 +2647,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.delete_user_message.DeleteUserMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.delete_user_message.DeleteUserMessage = {}
         if user_id is not None:
             input_["user_id"] = user_id
 
@@ -2627,6 +2656,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_user_group(
@@ -2662,7 +2692,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.delete_user_group_message.DeleteUserGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.delete_user_group_message.DeleteUserGroupMessage = {}
         if user_group_id is not None:
             input_["user_group_id"] = user_group_id
 
@@ -2671,6 +2701,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_cache_clusters(
@@ -2731,7 +2762,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.describe_cache_clusters_message.DescribeCacheClustersMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.describe_cache_clusters_message.DescribeCacheClustersMessage = {}
         if cache_cluster_id is not None:
             input_["cache_cluster_id"] = cache_cluster_id
         if max_records is not None:
@@ -2750,6 +2781,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_cache_clusters(
@@ -2842,7 +2874,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.describe_cache_engine_versions_message.DescribeCacheEngineVersionsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.describe_cache_engine_versions_message.DescribeCacheEngineVersionsMessage = {}
         if engine is not None:
             input_["engine"] = engine
         if engine_version is not None:
@@ -2861,6 +2893,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_cache_engine_versions(
@@ -2946,7 +2979,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.describe_cache_parameter_groups_message.DescribeCacheParameterGroupsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.describe_cache_parameter_groups_message.DescribeCacheParameterGroupsMessage = {}
         if cache_parameter_group_name is not None:
             input_["cache_parameter_group_name"] = cache_parameter_group_name
         if max_records is not None:
@@ -2959,6 +2992,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_cache_parameter_groups(
@@ -3038,7 +3072,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.describe_cache_parameters_message.DescribeCacheParametersMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.describe_cache_parameters_message.DescribeCacheParametersMessage = {}
         if cache_parameter_group_name is not None:
             input_["cache_parameter_group_name"] = cache_parameter_group_name
         if source is not None:
@@ -3053,6 +3087,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_cache_parameters(
@@ -3134,7 +3169,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.describe_cache_security_groups_message.DescribeCacheSecurityGroupsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.describe_cache_security_groups_message.DescribeCacheSecurityGroupsMessage = {}
         if cache_security_group_name is not None:
             input_["cache_security_group_name"] = cache_security_group_name
         if max_records is not None:
@@ -3147,6 +3182,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_cache_security_groups(
@@ -3224,7 +3260,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.describe_cache_subnet_groups_message.DescribeCacheSubnetGroupsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.describe_cache_subnet_groups_message.DescribeCacheSubnetGroupsMessage = {}
         if cache_subnet_group_name is not None:
             input_["cache_subnet_group_name"] = cache_subnet_group_name
         if max_records is not None:
@@ -3237,6 +3273,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_cache_subnet_groups(
@@ -3313,7 +3350,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.describe_engine_default_parameters_message.DescribeEngineDefaultParametersMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.describe_engine_default_parameters_message.DescribeEngineDefaultParametersMessage = {}
         if cache_parameter_group_family is not None:
             input_["cache_parameter_group_family"] = cache_parameter_group_family
         if max_records is not None:
@@ -3326,6 +3363,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_engine_default_parameters(
@@ -3414,7 +3452,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.describe_events_message.DescribeEventsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.describe_events_message.DescribeEventsMessage = {}
         if source_identifier is not None:
             input_["source_identifier"] = source_identifier
         if source_type is not None:
@@ -3435,6 +3473,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_events(
@@ -3518,7 +3557,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.describe_global_replication_groups_message.DescribeGlobalReplicationGroupsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.describe_global_replication_groups_message.DescribeGlobalReplicationGroupsMessage = {}
         if global_replication_group_id is not None:
             input_["global_replication_group_id"] = global_replication_group_id
         if max_records is not None:
@@ -3533,6 +3572,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_global_replication_groups(
@@ -3612,7 +3652,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.describe_replication_groups_message.DescribeReplicationGroupsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.describe_replication_groups_message.DescribeReplicationGroupsMessage = {}
         if replication_group_id is not None:
             input_["replication_group_id"] = replication_group_id
         if max_records is not None:
@@ -3625,6 +3665,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_replication_groups(
@@ -3710,7 +3751,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.describe_reserved_cache_nodes_message.DescribeReservedCacheNodesMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.describe_reserved_cache_nodes_message.DescribeReservedCacheNodesMessage = {}
         if reserved_cache_node_id is not None:
             input_["reserved_cache_node_id"] = reserved_cache_node_id
         if reserved_cache_nodes_offering_id is not None:
@@ -3735,6 +3776,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_reserved_cache_nodes(
@@ -3838,7 +3880,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.describe_reserved_cache_nodes_offerings_message.DescribeReservedCacheNodesOfferingsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.describe_reserved_cache_nodes_offerings_message.DescribeReservedCacheNodesOfferingsMessage = {}
         if reserved_cache_nodes_offering_id is not None:
             input_["reserved_cache_nodes_offering_id"] = (
                 reserved_cache_nodes_offering_id
@@ -3861,6 +3903,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_reserved_cache_nodes_offerings(
@@ -3938,7 +3981,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.describe_serverless_caches_request.DescribeServerlessCachesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.describe_serverless_caches_request.DescribeServerlessCachesRequest = {}
         if serverless_cache_name is not None:
             input_["serverless_cache_name"] = serverless_cache_name
         if max_results is not None:
@@ -3951,6 +3994,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_serverless_caches(
@@ -4025,7 +4069,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.describe_serverless_cache_snapshots_request.DescribeServerlessCacheSnapshotsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.describe_serverless_cache_snapshots_request.DescribeServerlessCacheSnapshotsRequest = {}
         if serverless_cache_name is not None:
             input_["serverless_cache_name"] = serverless_cache_name
         if serverless_cache_snapshot_name is not None:
@@ -4042,6 +4086,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_serverless_cache_snapshots(
@@ -4119,7 +4164,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.describe_service_updates_message.DescribeServiceUpdatesMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.describe_service_updates_message.DescribeServiceUpdatesMessage = {}
         if service_update_name is not None:
             input_["service_update_name"] = service_update_name
         if service_update_status is not None:
@@ -4134,6 +4179,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_service_updates(
@@ -4222,7 +4268,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.describe_snapshots_message.DescribeSnapshotsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.describe_snapshots_message.DescribeSnapshotsMessage = {}
         if replication_group_id is not None:
             input_["replication_group_id"] = replication_group_id
         if cache_cluster_id is not None:
@@ -4243,6 +4289,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_snapshots(
@@ -4345,7 +4392,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.describe_update_actions_message.DescribeUpdateActionsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.describe_update_actions_message.DescribeUpdateActionsMessage = {}
         if service_update_name is not None:
             input_["service_update_name"] = service_update_name
         if replication_group_ids is not None:
@@ -4372,6 +4419,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_update_actions(
@@ -4465,7 +4513,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.describe_user_groups_message.DescribeUserGroupsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.describe_user_groups_message.DescribeUserGroupsMessage = {}
         if user_group_id is not None:
             input_["user_group_id"] = user_group_id
         if max_records is not None:
@@ -4478,6 +4526,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_user_groups(
@@ -4549,7 +4598,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.describe_users_message.DescribeUsersMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.describe_users_message.DescribeUsersMessage = {}
         if engine is not None:
             input_["engine"] = engine
         if user_id is not None:
@@ -4566,6 +4615,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_users(
@@ -4640,7 +4690,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.disassociate_global_replication_group_message.DisassociateGlobalReplicationGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.disassociate_global_replication_group_message.DisassociateGlobalReplicationGroupMessage = {}
         if global_replication_group_id is not None:
             input_["global_replication_group_id"] = global_replication_group_id
         if replication_group_id is not None:
@@ -4653,6 +4703,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def export_serverless_cache_snapshot(
@@ -4694,7 +4745,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.export_serverless_cache_snapshot_request.ExportServerlessCacheSnapshotRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.export_serverless_cache_snapshot_request.ExportServerlessCacheSnapshotRequest = {}
         if serverless_cache_snapshot_name is not None:
             input_["serverless_cache_snapshot_name"] = serverless_cache_snapshot_name
         if s3_bucket_name is not None:
@@ -4705,6 +4756,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def failover_global_replication_group(
@@ -4750,7 +4802,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.failover_global_replication_group_message.FailoverGlobalReplicationGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.failover_global_replication_group_message.FailoverGlobalReplicationGroupMessage = {}
         if global_replication_group_id is not None:
             input_["global_replication_group_id"] = global_replication_group_id
         if primary_region is not None:
@@ -4763,6 +4815,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def increase_node_groups_in_global_replication_group(
@@ -4809,7 +4862,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.increase_node_groups_in_global_replication_group_message.IncreaseNodeGroupsInGlobalReplicationGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.increase_node_groups_in_global_replication_group_message.IncreaseNodeGroupsInGlobalReplicationGroupMessage = {}
         if global_replication_group_id is not None:
             input_["global_replication_group_id"] = global_replication_group_id
         if node_group_count is not None:
@@ -4824,6 +4877,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def increase_replica_count(
@@ -4879,7 +4933,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.increase_replica_count_message.IncreaseReplicaCountMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.increase_replica_count_message.IncreaseReplicaCountMessage = {}
         if replication_group_id is not None:
             input_["replication_group_id"] = replication_group_id
         if new_replica_count is not None:
@@ -4894,6 +4948,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_allowed_node_type_modifications(
@@ -4943,7 +4998,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.list_allowed_node_type_modifications_message.ListAllowedNodeTypeModificationsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.list_allowed_node_type_modifications_message.ListAllowedNodeTypeModificationsMessage = {}
         if cache_cluster_id is not None:
             input_["cache_cluster_id"] = cache_cluster_id
         if replication_group_id is not None:
@@ -4954,6 +5009,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_tags_for_resource(
@@ -5008,7 +5064,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.list_tags_for_resource_message.ListTagsForResourceMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.list_tags_for_resource_message.ListTagsForResourceMessage = {}
         if resource_name is not None:
             input_["resource_name"] = resource_name
 
@@ -5017,6 +5073,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_cache_cluster(
@@ -5139,7 +5196,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.modify_cache_cluster_message.ModifyCacheClusterMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.modify_cache_cluster_message.ModifyCacheClusterMessage = {}
         if cache_cluster_id is not None:
             input_["cache_cluster_id"] = cache_cluster_id
         if num_cache_nodes is not None:
@@ -5192,6 +5249,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_cache_parameter_group(
@@ -5242,7 +5300,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.modify_cache_parameter_group_message.ModifyCacheParameterGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.modify_cache_parameter_group_message.ModifyCacheParameterGroupMessage = {}
         if cache_parameter_group_name is not None:
             input_["cache_parameter_group_name"] = cache_parameter_group_name
         if parameter_name_values is not None:
@@ -5253,6 +5311,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_cache_subnet_group(
@@ -5307,7 +5366,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.modify_cache_subnet_group_message.ModifyCacheSubnetGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.modify_cache_subnet_group_message.ModifyCacheSubnetGroupMessage = {}
         if cache_subnet_group_name is not None:
             input_["cache_subnet_group_name"] = cache_subnet_group_name
         if cache_subnet_group_description is not None:
@@ -5320,6 +5379,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_global_replication_group(
@@ -5378,7 +5438,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.modify_global_replication_group_message.ModifyGlobalReplicationGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.modify_global_replication_group_message.ModifyGlobalReplicationGroupMessage = {}
         if global_replication_group_id is not None:
             input_["global_replication_group_id"] = global_replication_group_id
         if apply_immediately is not None:
@@ -5403,6 +5463,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_replication_group(
@@ -5557,7 +5618,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.modify_replication_group_message.ModifyReplicationGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.modify_replication_group_message.ModifyReplicationGroupMessage = {}
         if replication_group_id is not None:
             input_["replication_group_id"] = replication_group_id
         if replication_group_description is not None:
@@ -5626,6 +5687,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_replication_group_shard_configuration(
@@ -5685,7 +5747,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.modify_replication_group_shard_configuration_message.ModifyReplicationGroupShardConfigurationMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.modify_replication_group_shard_configuration_message.ModifyReplicationGroupShardConfigurationMessage = {}
         if replication_group_id is not None:
             input_["replication_group_id"] = replication_group_id
         if node_group_count is not None:
@@ -5704,6 +5766,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_serverless_cache(
@@ -5771,7 +5834,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.modify_serverless_cache_request.ModifyServerlessCacheRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.modify_serverless_cache_request.ModifyServerlessCacheRequest = {}
         if serverless_cache_name is not None:
             input_["serverless_cache_name"] = serverless_cache_name
         if description is not None:
@@ -5798,6 +5861,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_user(
@@ -5856,7 +5920,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.modify_user_message.ModifyUserMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.modify_user_message.ModifyUserMessage = {}
         if user_id is not None:
             input_["user_id"] = user_id
         if access_string is not None:
@@ -5877,6 +5941,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_user_group(
@@ -5926,7 +5991,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.modify_user_group_message.ModifyUserGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.modify_user_group_message.ModifyUserGroupMessage = {}
         if user_group_id is not None:
             input_["user_group_id"] = user_group_id
         if user_ids_to_add is not None:
@@ -5941,6 +6006,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def purchase_reserved_cache_nodes_offering(
@@ -5996,7 +6062,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.purchase_reserved_cache_nodes_offering_message.PurchaseReservedCacheNodesOfferingMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.purchase_reserved_cache_nodes_offering_message.PurchaseReservedCacheNodesOfferingMessage = {}
         if reserved_cache_nodes_offering_id is not None:
             input_["reserved_cache_nodes_offering_id"] = (
                 reserved_cache_nodes_offering_id
@@ -6013,6 +6079,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def rebalance_slots_in_global_replication_group(
@@ -6053,7 +6120,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.rebalance_slots_in_global_replication_group_message.RebalanceSlotsInGlobalReplicationGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.rebalance_slots_in_global_replication_group_message.RebalanceSlotsInGlobalReplicationGroupMessage = {}
         if global_replication_group_id is not None:
             input_["global_replication_group_id"] = global_replication_group_id
         if apply_immediately is not None:
@@ -6064,6 +6131,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reboot_cache_cluster(
@@ -6109,7 +6177,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.reboot_cache_cluster_message.RebootCacheClusterMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.reboot_cache_cluster_message.RebootCacheClusterMessage = {}
         if cache_cluster_id is not None:
             input_["cache_cluster_id"] = cache_cluster_id
         if cache_node_ids_to_reboot is not None:
@@ -6120,6 +6188,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def remove_tags_from_resource(
@@ -6177,7 +6246,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.remove_tags_from_resource_message.RemoveTagsFromResourceMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.remove_tags_from_resource_message.RemoveTagsFromResourceMessage = {}
         if resource_name is not None:
             input_["resource_name"] = resource_name
         if tag_keys is not None:
@@ -6188,6 +6257,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reset_cache_parameter_group(
@@ -6240,7 +6310,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.reset_cache_parameter_group_message.ResetCacheParameterGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.reset_cache_parameter_group_message.ResetCacheParameterGroupMessage = {}
         if cache_parameter_group_name is not None:
             input_["cache_parameter_group_name"] = cache_parameter_group_name
         if reset_all_parameters is not None:
@@ -6253,6 +6323,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def revoke_cache_security_group_ingress(
@@ -6307,7 +6378,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.revoke_cache_security_group_ingress_message.RevokeCacheSecurityGroupIngressMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.revoke_cache_security_group_ingress_message.RevokeCacheSecurityGroupIngressMessage = {}
         if cache_security_group_name is not None:
             input_["cache_security_group_name"] = cache_security_group_name
         if ec2_security_group_name is not None:
@@ -6320,6 +6391,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_migration(
@@ -6361,7 +6433,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.start_migration_message.StartMigrationMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.start_migration_message.StartMigrationMessage = {}
         if replication_group_id is not None:
             input_["replication_group_id"] = replication_group_id
         if customer_node_endpoint_list is not None:
@@ -6372,6 +6444,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def test_failover(
@@ -6418,7 +6491,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.test_failover_message.TestFailoverMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.test_failover_message.TestFailoverMessage = {}
         if replication_group_id is not None:
             input_["replication_group_id"] = replication_group_id
         if node_group_id is not None:
@@ -6429,6 +6502,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def test_migration(
@@ -6470,7 +6544,7 @@ class AsyncElastiCacheClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticache.types.test_migration_message.TestMigrationMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticache.types.test_migration_message.TestMigrationMessage = {}
         if replication_group_id is not None:
             input_["replication_group_id"] = replication_group_id
         if customer_node_endpoint_list is not None:
@@ -6481,6 +6555,7 @@ class AsyncElastiCacheClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

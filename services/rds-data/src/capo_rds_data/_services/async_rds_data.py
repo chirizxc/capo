@@ -203,10 +203,11 @@ class AsyncRDSDataClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rds_data.types.batch_execute_statement_request.BatchExecuteStatementRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["secret_arn"] = secret_arn
-        input_["sql"] = sql
+        input_: capo_rds_data.types.batch_execute_statement_request.BatchExecuteStatementRequest = {
+            "resource_arn": resource_arn,
+            "secret_arn": secret_arn,
+            "sql": sql,
+        }
         if database is not None:
             input_["database"] = database
         if schema is not None:
@@ -221,6 +222,7 @@ class AsyncRDSDataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def begin_transaction(
@@ -275,9 +277,10 @@ class AsyncRDSDataClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rds_data.types.begin_transaction_request.BeginTransactionRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["secret_arn"] = secret_arn
+        input_: capo_rds_data.types.begin_transaction_request.BeginTransactionRequest = {
+            "resource_arn": resource_arn,
+            "secret_arn": secret_arn,
+        }
         if database is not None:
             input_["database"] = database
         if schema is not None:
@@ -288,6 +291,7 @@ class AsyncRDSDataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def commit_transaction(
@@ -340,16 +344,18 @@ class AsyncRDSDataClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rds_data.types.commit_transaction_request.CommitTransactionRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["secret_arn"] = secret_arn
-        input_["transaction_id"] = transaction_id
+        input_: capo_rds_data.types.commit_transaction_request.CommitTransactionRequest = {
+            "resource_arn": resource_arn,
+            "secret_arn": secret_arn,
+            "transaction_id": transaction_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def execute_sql(
@@ -396,10 +402,11 @@ class AsyncRDSDataClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rds_data.types.execute_sql_request.ExecuteSqlRequest = {}  # type: ignore[typeddict-item]
-        input_["db_cluster_or_instance_arn"] = db_cluster_or_instance_arn
-        input_["aws_secret_store_arn"] = aws_secret_store_arn
-        input_["sql_statements"] = sql_statements
+        input_: capo_rds_data.types.execute_sql_request.ExecuteSqlRequest = {
+            "db_cluster_or_instance_arn": db_cluster_or_instance_arn,
+            "aws_secret_store_arn": aws_secret_store_arn,
+            "sql_statements": sql_statements,
+        }
         if database is not None:
             input_["database"] = database
         if schema is not None:
@@ -410,6 +417,7 @@ class AsyncRDSDataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def execute_statement(
@@ -485,10 +493,11 @@ class AsyncRDSDataClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rds_data.types.execute_statement_request.ExecuteStatementRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["secret_arn"] = secret_arn
-        input_["sql"] = sql
+        input_: capo_rds_data.types.execute_statement_request.ExecuteStatementRequest = {
+            "resource_arn": resource_arn,
+            "secret_arn": secret_arn,
+            "sql": sql,
+        }
         if database is not None:
             input_["database"] = database
         if schema is not None:
@@ -511,6 +520,7 @@ class AsyncRDSDataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def rollback_transaction(
@@ -565,16 +575,18 @@ class AsyncRDSDataClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rds_data.types.rollback_transaction_request.RollbackTransactionRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["secret_arn"] = secret_arn
-        input_["transaction_id"] = transaction_id
+        input_: capo_rds_data.types.rollback_transaction_request.RollbackTransactionRequest = {
+            "resource_arn": resource_arn,
+            "secret_arn": secret_arn,
+            "transaction_id": transaction_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

@@ -22,5 +22,7 @@ def serialize_json(input_to_serialize: SessionMetadata) -> dict:
 def deserialize_json(data: dict) -> SessionMetadata:
     out: SessionMetadata = {}
     for key, value in data.items():
+        if value is None:
+            continue
         out[key] = value
     return out

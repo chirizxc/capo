@@ -50,7 +50,7 @@ def serialize_json(value: ResamplingConfigInput) -> dict:
 
 def deserialize_json(data: dict) -> ResamplingConfigInput:
     out: ResamplingConfigInput = {}  # type: ignore[typeddict-item]
-    if "OutputResolution" in data:
+    if data.get("OutputResolution") is not None:
         import capo_sagemaker_geospatial.types.output_resolution_resampling_input
 
         out["output_resolution"] = (
@@ -60,9 +60,9 @@ def deserialize_json(data: dict) -> ResamplingConfigInput:
         )
     else:
         raise DeserializationError("ResamplingConfigInput.output_resolution required")
-    if "AlgorithmName" in data:
+    if data.get("AlgorithmName") is not None:
         out["algorithm_name"] = data["AlgorithmName"]
-    if "TargetBands" in data:
+    if data.get("TargetBands") is not None:
         import capo_sagemaker_geospatial.types.string_list_input
 
         out["target_bands"] = (

@@ -29,7 +29,7 @@ def serialize_json(value: GetResourcePositionResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetResourcePositionResponse:
     out: GetResourcePositionResponse = {}  # type: ignore[typeddict-item]
-    if "GeoJsonPayload" in data:
+    if data.get("GeoJsonPayload") is not None:
         import capo_iot_wireless.types.geo_json_payload
 
         out["geo_json_payload"] = (

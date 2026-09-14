@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> StackErrors:
 
     out: StackErrors = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_appstream.types.stack_error.deserialize_aws_json_1_1(item))
     return out

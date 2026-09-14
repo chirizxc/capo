@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: DescribeTransformJobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeTransformJobRequest:
     out: DescribeTransformJobRequest = {}  # type: ignore[typeddict-item]
-    if "TransformJobName" in data:
+    if data.get("TransformJobName") is not None:
         out["transform_job_name"] = data["TransformJobName"]
     return out

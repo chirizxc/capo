@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> QueryConstraintList:
 
     out: QueryConstraintList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_cleanrooms.types.query_constraint.deserialize_json(item))
     return out

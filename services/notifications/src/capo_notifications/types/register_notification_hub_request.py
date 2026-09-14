@@ -24,7 +24,7 @@ def serialize_json(value: RegisterNotificationHubRequest) -> dict:
 
 def deserialize_json(data: dict) -> RegisterNotificationHubRequest:
     out: RegisterNotificationHubRequest = {}  # type: ignore[typeddict-item]
-    if "notificationHubRegion" in data:
+    if data.get("notificationHubRegion") is not None:
         out["notification_hub_region"] = data["notificationHubRegion"]
     else:
         raise DeserializationError(

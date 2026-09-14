@@ -30,7 +30,7 @@ def serialize_json(value: CreateRecordingConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateRecordingConfigurationResponse:
     out: CreateRecordingConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "recordingConfiguration" in data:
+    if data.get("recordingConfiguration") is not None:
         import capo_ivs.types.recording_configuration
 
         out["recording_configuration"] = (

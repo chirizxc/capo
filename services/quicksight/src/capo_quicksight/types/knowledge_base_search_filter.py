@@ -43,7 +43,7 @@ def serialize_json(value: KnowledgeBaseSearchFilter) -> dict:
 
 def deserialize_json(data: dict) -> KnowledgeBaseSearchFilter:
     out: KnowledgeBaseSearchFilter = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         import capo_quicksight.types.knowledge_base_search_filter_name
 
         out["name"] = (
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> KnowledgeBaseSearchFilter:
         )
     else:
         raise DeserializationError("KnowledgeBaseSearchFilter.name required")
-    if "operator" in data:
+    if data.get("operator") is not None:
         import capo_quicksight.types.knowledge_base_search_operator
 
         out["operator"] = (
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> KnowledgeBaseSearchFilter:
         )
     else:
         raise DeserializationError("KnowledgeBaseSearchFilter.operator required")
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("KnowledgeBaseSearchFilter.value required")

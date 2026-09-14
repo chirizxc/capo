@@ -33,10 +33,10 @@ def serialize_aws_json_1_1(value: ListFirewallRuleTypesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListFirewallRuleTypesRequest:
     out: ListFirewallRuleTypesRequest = {}  # type: ignore[typeddict-item]
-    if "RuleType" in data:
+    if data.get("RuleType") is not None:
         out["rule_type"] = data["RuleType"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

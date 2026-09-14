@@ -31,7 +31,7 @@ def serialize_json(value: AwsCloudFrontDistributionCacheBehaviors) -> dict:
 
 def deserialize_json(data: dict) -> AwsCloudFrontDistributionCacheBehaviors:
     out: AwsCloudFrontDistributionCacheBehaviors = {}  # type: ignore[typeddict-item]
-    if "Items" in data:
+    if data.get("Items") is not None:
         import capo_securityhub.types.aws_cloud_front_distribution_cache_behaviors_item_list
 
         out["items"] = (

@@ -13,9 +13,9 @@ from capo_supplychain import AsyncSupplyChainClient
 
 
 async def main():
-    async with AsyncSupplyChainClient() as s3:
+    async with AsyncSupplyChainClient() as supply_chain:
         # Example: call the get_data_integration_event operation
-        response = await s3.get_data_integration_event()
+        response = await supply_chain.get_data_integration_event()
         print(response["event"])
 ```
 
@@ -28,9 +28,9 @@ from capo_supplychain import AsyncSupplyChainClient
 
 
 async def main():
-    async with AsyncSupplyChainClient() as s3:
+    async with AsyncSupplyChainClient() as supply_chain:
         # Example: paginate over list_data_integration_events
-        async for item in s3.iter_list_data_integration_events():
+        async for item in supply_chain.iter_list_data_integration_events():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_supplychain.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncSupplyChainClient() as s3:
+    async with AsyncSupplyChainClient() as supply_chain:
         try:
-            await s3.get_data_integration_event()
+            await supply_chain.get_data_integration_event()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_supplychain import AsyncSupplyChainClient
 
 
 async def main():
-    async with AsyncSupplyChainClient() as s3:
+    async with AsyncSupplyChainClient() as supply_chain:
         # Default: 3 attempts for every operation
-        response = await s3.get_data_integration_event()
+        response = await supply_chain.get_data_integration_event()
 
         # Override per operation
-        response = await s3.get_data_integration_event(config_overrides={"retry_max_attempts": 5})
+        response = await supply_chain.get_data_integration_event(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.get_data_integration_event(config_overrides={"retry_max_attempts": 1})
+        response = await supply_chain.get_data_integration_event(config_overrides={"retry_max_attempts": 1})
 ```

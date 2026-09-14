@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_datazone._auth._signers
@@ -105,8 +106,9 @@ class Domain:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.create_domain_input.CreateDomainInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_datazone.types.create_domain_input.CreateDomainInput = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if single_sign_on is not None:
@@ -121,14 +123,16 @@ class Domain:
             input_["domain_version"] = domain_version
         if service_role is not None:
             input_["service_role"] = service_role
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -166,14 +170,16 @@ class Domain:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.get_domain_input.GetDomainInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.get_domain_input.GetDomainInput = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -228,8 +234,9 @@ class Domain:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.update_domain_input.UpdateDomainInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.update_domain_input.UpdateDomainInput = {
+            "identifier": identifier
+        }
         if description is not None:
             input_["description"] = description
         if single_sign_on is not None:
@@ -240,14 +247,16 @@ class Domain:
             input_["service_role"] = service_role
         if name is not None:
             input_["name"] = name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -291,10 +300,12 @@ class Domain:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.delete_domain_input.DeleteDomainInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_datazone.types.delete_domain_input.DeleteDomainInput = {
+            "identifier": identifier
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if skip_deletion_check is not None:
             input_["skip_deletion_check"] = skip_deletion_check
 
@@ -303,6 +314,7 @@ class Domain:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -351,7 +363,7 @@ class Domain:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.list_domains_input.ListDomainsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_datazone.types.list_domains_input.ListDomainsInput = {}
         if status is not None:
             input_["status"] = status
         if max_results is not None:
@@ -364,6 +376,7 @@ class Domain:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -432,8 +445,9 @@ class AsyncDomain:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.create_domain_input.CreateDomainInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_datazone.types.create_domain_input.CreateDomainInput = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if single_sign_on is not None:
@@ -448,14 +462,16 @@ class AsyncDomain:
             input_["domain_version"] = domain_version
         if service_role is not None:
             input_["service_role"] = service_role
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -496,14 +512,16 @@ class AsyncDomain:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.get_domain_input.GetDomainInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.get_domain_input.GetDomainInput = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -559,8 +577,9 @@ class AsyncDomain:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.update_domain_input.UpdateDomainInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.update_domain_input.UpdateDomainInput = {
+            "identifier": identifier
+        }
         if description is not None:
             input_["description"] = description
         if single_sign_on is not None:
@@ -571,14 +590,16 @@ class AsyncDomain:
             input_["service_role"] = service_role
         if name is not None:
             input_["name"] = name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -623,10 +644,12 @@ class AsyncDomain:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.delete_domain_input.DeleteDomainInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_datazone.types.delete_domain_input.DeleteDomainInput = {
+            "identifier": identifier
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if skip_deletion_check is not None:
             input_["skip_deletion_check"] = skip_deletion_check
 
@@ -635,6 +658,7 @@ class AsyncDomain:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -684,7 +708,7 @@ class AsyncDomain:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.list_domains_input.ListDomainsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_datazone.types.list_domains_input.ListDomainsInput = {}
         if status is not None:
             input_["status"] = status
         if max_results is not None:
@@ -697,4 +721,5 @@ class AsyncDomain:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

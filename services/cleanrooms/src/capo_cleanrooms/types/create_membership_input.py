@@ -101,13 +101,13 @@ def serialize_json(value: CreateMembershipInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateMembershipInput:
     out: CreateMembershipInput = {}  # type: ignore[typeddict-item]
-    if "collaborationIdentifier" in data:
+    if data.get("collaborationIdentifier") is not None:
         out["collaboration_identifier"] = data["collaborationIdentifier"]
     else:
         raise DeserializationError(
             "CreateMembershipInput.collaboration_identifier required"
         )
-    if "queryLogStatus" in data:
+    if data.get("queryLogStatus") is not None:
         import capo_cleanrooms.types.membership_query_log_status
 
         out["query_log_status"] = (
@@ -117,7 +117,7 @@ def deserialize_json(data: dict) -> CreateMembershipInput:
         )
     else:
         raise DeserializationError("CreateMembershipInput.query_log_status required")
-    if "jobLogStatus" in data:
+    if data.get("jobLogStatus") is not None:
         import capo_cleanrooms.types.membership_job_log_status
 
         out["job_log_status"] = (
@@ -125,11 +125,11 @@ def deserialize_json(data: dict) -> CreateMembershipInput:
                 data["jobLogStatus"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_cleanrooms.types.tag_map
 
         out["tags"] = capo_cleanrooms.types.tag_map.deserialize_json(data["tags"])
-    if "defaultResultConfiguration" in data:
+    if data.get("defaultResultConfiguration") is not None:
         import capo_cleanrooms.types.membership_protected_query_result_configuration
 
         out["default_result_configuration"] = (
@@ -137,7 +137,7 @@ def deserialize_json(data: dict) -> CreateMembershipInput:
                 data["defaultResultConfiguration"]
             )
         )
-    if "defaultJobResultConfiguration" in data:
+    if data.get("defaultJobResultConfiguration") is not None:
         import capo_cleanrooms.types.membership_protected_job_result_configuration
 
         out["default_job_result_configuration"] = (
@@ -145,7 +145,7 @@ def deserialize_json(data: dict) -> CreateMembershipInput:
                 data["defaultJobResultConfiguration"]
             )
         )
-    if "paymentConfiguration" in data:
+    if data.get("paymentConfiguration") is not None:
         import capo_cleanrooms.types.membership_payment_configuration
 
         out["payment_configuration"] = (
@@ -153,6 +153,6 @@ def deserialize_json(data: dict) -> CreateMembershipInput:
                 data["paymentConfiguration"]
             )
         )
-    if "isMetricsEnabled" in data:
+    if data.get("isMetricsEnabled") is not None:
         out["is_metrics_enabled"] = data["isMetricsEnabled"]
     return out

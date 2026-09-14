@@ -13,10 +13,25 @@ from capo_iot_wireless import AsyncIoTWirelessClient
 
 
 async def main():
-    async with AsyncIoTWirelessClient() as s3:
+    async with AsyncIoTWirelessClient() as io_t_wireless:
         # Example: call the associate_aws_account_with_partner_account operation
-        response = await s3.associate_aws_account_with_partner_account()
+        response = await io_t_wireless.associate_aws_account_with_partner_account()
         print(response["sidewalk"])
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_iot_wireless import AsyncIoTWirelessClient
+
+
+async def main():
+    async with AsyncIoTWirelessClient() as io_t_wireless:
+        # Example: paginate over list_destinations
+        async for item in io_t_wireless.iter_list_destinations():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_iot_wireless.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncIoTWirelessClient() as s3:
+    async with AsyncIoTWirelessClient() as io_t_wireless:
         try:
-            await s3.associate_aws_account_with_partner_account()
+            await io_t_wireless.associate_aws_account_with_partner_account()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_iot_wireless import AsyncIoTWirelessClient
 
 
 async def main():
-    async with AsyncIoTWirelessClient() as s3:
+    async with AsyncIoTWirelessClient() as io_t_wireless:
         # Default: 3 attempts for every operation
-        response = await s3.associate_aws_account_with_partner_account()
+        response = await io_t_wireless.associate_aws_account_with_partner_account()
 
         # Override per operation
-        response = await s3.associate_aws_account_with_partner_account(config_overrides={"retry_max_attempts": 5})
+        response = await io_t_wireless.associate_aws_account_with_partner_account(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.associate_aws_account_with_partner_account(config_overrides={"retry_max_attempts": 1})
+        response = await io_t_wireless.associate_aws_account_with_partner_account(config_overrides={"retry_max_attempts": 1})
 ```

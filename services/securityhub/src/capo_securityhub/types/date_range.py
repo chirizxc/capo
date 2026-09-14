@@ -43,15 +43,15 @@ def serialize_json(value: DateRange) -> dict:
 
 def deserialize_json(data: dict) -> DateRange:
     out: DateRange = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
-    if "Unit" in data:
+    if data.get("Unit") is not None:
         import capo_securityhub.types.date_range_unit
 
         out["unit"] = capo_securityhub.types.date_range_unit.deserialize_json(
             data["Unit"]
         )
-    if "Comparison" in data:
+    if data.get("Comparison") is not None:
         import capo_securityhub.types.date_range_comparison
 
         out["comparison"] = (

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ColumnToUnpivotList:
 
     out: ColumnToUnpivotList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.column_to_unpivot.deserialize_json(item))
     return out

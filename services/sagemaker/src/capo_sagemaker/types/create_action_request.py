@@ -89,25 +89,25 @@ def serialize_aws_json_1_1(value: CreateActionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateActionRequest:
     out: CreateActionRequest = {}  # type: ignore[typeddict-item]
-    if "ActionName" in data:
+    if data.get("ActionName") is not None:
         out["action_name"] = data["ActionName"]
-    if "Source" in data:
+    if data.get("Source") is not None:
         import capo_sagemaker.types.action_source
 
         out["source"] = capo_sagemaker.types.action_source.deserialize_aws_json_1_1(
             data["Source"]
         )
-    if "ActionType" in data:
+    if data.get("ActionType") is not None:
         out["action_type"] = data["ActionType"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.action_status
 
         out["status"] = capo_sagemaker.types.action_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "Properties" in data:
+    if data.get("Properties") is not None:
         import capo_sagemaker.types.lineage_entity_parameters
 
         out["properties"] = (
@@ -115,7 +115,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateActionRequest:
                 data["Properties"]
             )
         )
-    if "MetadataProperties" in data:
+    if data.get("MetadataProperties") is not None:
         import capo_sagemaker.types.metadata_properties
 
         out["metadata_properties"] = (
@@ -123,7 +123,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateActionRequest:
                 data["MetadataProperties"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(

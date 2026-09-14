@@ -45,12 +45,12 @@ def serialize_json(value: EndpointConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> EndpointConfigurationResponse:
     out: EndpointConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "certificateArn" in data:
+    if data.get("certificateArn") is not None:
         out["certificate_arn"] = data["certificateArn"]
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
-    if "portalDefaultDomainName" in data:
+    if data.get("portalDefaultDomainName") is not None:
         out["portal_default_domain_name"] = data["portalDefaultDomainName"]
-    if "portalDomainHostedZoneId" in data:
+    if data.get("portalDomainHostedZoneId") is not None:
         out["portal_domain_hosted_zone_id"] = data["portalDomainHostedZoneId"]
     return out

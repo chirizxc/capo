@@ -41,15 +41,15 @@ def serialize_aws_json_1_1(value: AdminCreateUserConfigType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AdminCreateUserConfigType:
     out: AdminCreateUserConfigType = {}  # type: ignore[typeddict-item]
-    if "AllowAdminCreateUserOnly" in data:
+    if data.get("AllowAdminCreateUserOnly") is not None:
         out["allow_admin_create_user_only"] = data["AllowAdminCreateUserOnly"]
     else:
         out["allow_admin_create_user_only"] = False
-    if "UnusedAccountValidityDays" in data:
+    if data.get("UnusedAccountValidityDays") is not None:
         out["unused_account_validity_days"] = data["UnusedAccountValidityDays"]
     else:
         out["unused_account_validity_days"] = 0
-    if "InviteMessageTemplate" in data:
+    if data.get("InviteMessageTemplate") is not None:
         import capo_cognito_identity_provider.types.message_template_type
 
         out["invite_message_template"] = (

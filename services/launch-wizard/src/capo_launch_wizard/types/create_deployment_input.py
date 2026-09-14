@@ -56,21 +56,21 @@ def serialize_json(value: CreateDeploymentInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateDeploymentInput:
     out: CreateDeploymentInput = {}  # type: ignore[typeddict-item]
-    if "workloadName" in data:
+    if data.get("workloadName") is not None:
         out["workload_name"] = data["workloadName"]
     else:
         raise DeserializationError("CreateDeploymentInput.workload_name required")
-    if "deploymentPatternName" in data:
+    if data.get("deploymentPatternName") is not None:
         out["deployment_pattern_name"] = data["deploymentPatternName"]
     else:
         raise DeserializationError(
             "CreateDeploymentInput.deployment_pattern_name required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateDeploymentInput.name required")
-    if "specifications" in data:
+    if data.get("specifications") is not None:
         import capo_launch_wizard.types.deployment_specifications
 
         out["specifications"] = (
@@ -80,11 +80,11 @@ def deserialize_json(data: dict) -> CreateDeploymentInput:
         )
     else:
         raise DeserializationError("CreateDeploymentInput.specifications required")
-    if "dryRun" in data:
+    if data.get("dryRun") is not None:
         out["dry_run"] = data["dryRun"]
     else:
         out["dry_run"] = False
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_launch_wizard.types.tags
 
         out["tags"] = capo_launch_wizard.types.tags.deserialize_json(data["tags"])

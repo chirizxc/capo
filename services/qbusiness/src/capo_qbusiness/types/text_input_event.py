@@ -25,7 +25,7 @@ def serialize_json(value: TextInputEvent) -> dict:
 
 def deserialize_json(data: dict) -> TextInputEvent:
     out: TextInputEvent = {}  # type: ignore[typeddict-item]
-    if "userMessage" in data:
+    if data.get("userMessage") is not None:
         out["user_message"] = data["userMessage"]
     else:
         raise DeserializationError("TextInputEvent.user_message required")

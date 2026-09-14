@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: DataRepositoryTaskFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataRepositoryTaskFilter:
     out: DataRepositoryTaskFilter = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         import capo_fsx.types.data_repository_task_filter_name
 
         out["name"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataRepositoryTaskFilter:
                 data["Name"]
             )
         )
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_fsx.types.data_repository_task_filter_values
 
         out["values"] = (

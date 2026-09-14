@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: DisassociateEipFromVlanResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DisassociateEipFromVlanResponse:
     out: DisassociateEipFromVlanResponse = {}  # type: ignore[typeddict-item]
-    if "vlan" in data:
+    if data.get("vlan") is not None:
         import capo_evs.types.vlan
 
         out["vlan"] = capo_evs.types.vlan.deserialize_aws_json_1_0(data["vlan"])

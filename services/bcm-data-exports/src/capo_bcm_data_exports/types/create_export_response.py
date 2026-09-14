@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: CreateExportResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateExportResponse:
     out: CreateExportResponse = {}  # type: ignore[typeddict-item]
-    if "ExportArn" in data:
+    if data.get("ExportArn") is not None:
         out["export_arn"] = data["ExportArn"]
     return out

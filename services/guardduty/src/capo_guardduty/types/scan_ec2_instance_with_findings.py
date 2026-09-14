@@ -23,6 +23,6 @@ def serialize_json(value: ScanEc2InstanceWithFindings) -> dict:
 
 def deserialize_json(data: dict) -> ScanEc2InstanceWithFindings:
     out: ScanEc2InstanceWithFindings = {}  # type: ignore[typeddict-item]
-    if "ebsVolumes" in data:
+    if data.get("ebsVolumes") is not None:
         out["ebs_volumes"] = data["ebsVolumes"]
     return out

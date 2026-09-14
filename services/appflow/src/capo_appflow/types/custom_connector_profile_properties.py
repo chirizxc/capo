@@ -41,7 +41,7 @@ def serialize_json(value: CustomConnectorProfileProperties) -> dict:
 
 def deserialize_json(data: dict) -> CustomConnectorProfileProperties:
     out: CustomConnectorProfileProperties = {}  # type: ignore[typeddict-item]
-    if "profileProperties" in data:
+    if data.get("profileProperties") is not None:
         import capo_appflow.types.profile_properties_map
 
         out["profile_properties"] = (
@@ -49,7 +49,7 @@ def deserialize_json(data: dict) -> CustomConnectorProfileProperties:
                 data["profileProperties"]
             )
         )
-    if "oAuth2Properties" in data:
+    if data.get("oAuth2Properties") is not None:
         import capo_appflow.types.o_auth2_properties
 
         out["o_auth2_properties"] = (

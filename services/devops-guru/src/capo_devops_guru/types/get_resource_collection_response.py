@@ -36,7 +36,7 @@ def serialize_json(value: GetResourceCollectionResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetResourceCollectionResponse:
     out: GetResourceCollectionResponse = {}  # type: ignore[typeddict-item]
-    if "ResourceCollection" in data:
+    if data.get("ResourceCollection") is not None:
         import capo_devops_guru.types.resource_collection_filter
 
         out["resource_collection"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> GetResourceCollectionResponse:
                 data["ResourceCollection"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

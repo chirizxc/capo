@@ -25,7 +25,7 @@ def serialize_json(value: DeleteSiteResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteSiteResponse:
     out: DeleteSiteResponse = {}  # type: ignore[typeddict-item]
-    if "Site" in data:
+    if data.get("Site") is not None:
         import capo_networkmanager.types.site
 
         out["site"] = capo_networkmanager.types.site.deserialize_json(data["Site"])

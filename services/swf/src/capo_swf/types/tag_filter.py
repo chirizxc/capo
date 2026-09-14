@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: TagFilter) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TagFilter:
     out: TagFilter = {}  # type: ignore[typeddict-item]
-    if "tag" in data:
+    if data.get("tag") is not None:
         out["tag"] = data["tag"]
     else:
         raise DeserializationError("TagFilter.tag required")

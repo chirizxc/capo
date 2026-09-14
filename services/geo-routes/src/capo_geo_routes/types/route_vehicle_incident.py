@@ -60,11 +60,11 @@ def serialize_json(value: RouteVehicleIncident) -> dict:
 
 def deserialize_json(data: dict) -> RouteVehicleIncident:
     out: RouteVehicleIncident = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         out["end_time"] = data["EndTime"]
-    if "Severity" in data:
+    if data.get("Severity") is not None:
         import capo_geo_routes.types.route_vehicle_incident_severity
 
         out["severity"] = (
@@ -72,9 +72,9 @@ def deserialize_json(data: dict) -> RouteVehicleIncident:
                 data["Severity"]
             )
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         out["start_time"] = data["StartTime"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_geo_routes.types.route_vehicle_incident_type
 
         out["type"] = (

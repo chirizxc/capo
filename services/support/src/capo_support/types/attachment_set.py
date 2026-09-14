@@ -25,5 +25,7 @@ def deserialize_aws_json_1_1(data: list) -> AttachmentSet:
 
     out: AttachmentSet = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_support.types.attachment_details.deserialize_aws_json_1_1(item))
     return out

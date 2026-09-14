@@ -76,17 +76,17 @@ def serialize_json(value: DataSourceCredentials) -> dict:
 
 def deserialize_json(data: dict) -> DataSourceCredentials:
     out: DataSourceCredentials = {}  # type: ignore[typeddict-item]
-    if "CredentialPair" in data:
+    if data.get("CredentialPair") is not None:
         import capo_quicksight.types.credential_pair
 
         out["credential_pair"] = capo_quicksight.types.credential_pair.deserialize_json(
             data["CredentialPair"]
         )
-    if "CopySourceArn" in data:
+    if data.get("CopySourceArn") is not None:
         out["copy_source_arn"] = data["CopySourceArn"]
-    if "SecretArn" in data:
+    if data.get("SecretArn") is not None:
         out["secret_arn"] = data["SecretArn"]
-    if "KeyPairCredentials" in data:
+    if data.get("KeyPairCredentials") is not None:
         import capo_quicksight.types.key_pair_credentials
 
         out["key_pair_credentials"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> DataSourceCredentials:
                 data["KeyPairCredentials"]
             )
         )
-    if "WebProxyCredentials" in data:
+    if data.get("WebProxyCredentials") is not None:
         import capo_quicksight.types.web_proxy_credentials
 
         out["web_proxy_credentials"] = (
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> DataSourceCredentials:
                 data["WebProxyCredentials"]
             )
         )
-    if "OAuthClientCredentials" in data:
+    if data.get("OAuthClientCredentials") is not None:
         import capo_quicksight.types.o_auth_client_credentials
 
         out["o_auth_client_credentials"] = (

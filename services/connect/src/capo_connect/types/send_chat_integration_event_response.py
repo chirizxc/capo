@@ -28,8 +28,8 @@ def serialize_json(value: SendChatIntegrationEventResponse) -> dict:
 
 def deserialize_json(data: dict) -> SendChatIntegrationEventResponse:
     out: SendChatIntegrationEventResponse = {}  # type: ignore[typeddict-item]
-    if "InitialContactId" in data:
+    if data.get("InitialContactId") is not None:
         out["initial_contact_id"] = data["InitialContactId"]
-    if "NewChatCreated" in data:
+    if data.get("NewChatCreated") is not None:
         out["new_chat_created"] = data["NewChatCreated"]
     return out

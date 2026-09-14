@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: ClusterInstanceRequirementDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClusterInstanceRequirementDetails:
     out: ClusterInstanceRequirementDetails = {}  # type: ignore[typeddict-item]
-    if "CurrentInstanceTypes" in data:
+    if data.get("CurrentInstanceTypes") is not None:
         import capo_sagemaker.types.cluster_instance_types
 
         out["current_instance_types"] = (
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterInstanceRequirementDetails:
                 data["CurrentInstanceTypes"]
             )
         )
-    if "DesiredInstanceTypes" in data:
+    if data.get("DesiredInstanceTypes") is not None:
         import capo_sagemaker.types.cluster_instance_types
 
         out["desired_instance_types"] = (

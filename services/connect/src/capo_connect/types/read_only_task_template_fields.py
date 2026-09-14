@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ReadOnlyTaskTemplateFields:
 
     out: ReadOnlyTaskTemplateFields = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.read_only_field_info.deserialize_json(item))
     return out

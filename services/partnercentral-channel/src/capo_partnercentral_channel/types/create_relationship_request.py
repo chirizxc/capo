@@ -100,11 +100,11 @@ def serialize_aws_json_1_0(value: CreateRelationshipRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateRelationshipRequest:
     out: CreateRelationshipRequest = {}  # type: ignore[typeddict-item]
-    if "catalog" in data:
+    if data.get("catalog") is not None:
         out["catalog"] = data["catalog"]
     else:
         raise DeserializationError("CreateRelationshipRequest.catalog required")
-    if "associationType" in data:
+    if data.get("associationType") is not None:
         import capo_partnercentral_channel.types.association_type
 
         out["association_type"] = (
@@ -116,7 +116,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateRelationshipRequest:
         raise DeserializationError(
             "CreateRelationshipRequest.association_type required"
         )
-    if "programManagementAccountIdentifier" in data:
+    if data.get("programManagementAccountIdentifier") is not None:
         out["program_management_account_identifier"] = data[
             "programManagementAccountIdentifier"
         ]
@@ -124,17 +124,17 @@ def deserialize_aws_json_1_0(data: dict) -> CreateRelationshipRequest:
         raise DeserializationError(
             "CreateRelationshipRequest.program_management_account_identifier required"
         )
-    if "associatedAccountId" in data:
+    if data.get("associatedAccountId") is not None:
         out["associated_account_id"] = data["associatedAccountId"]
     else:
         raise DeserializationError(
             "CreateRelationshipRequest.associated_account_id required"
         )
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError("CreateRelationshipRequest.display_name required")
-    if "resaleAccountModel" in data:
+    if data.get("resaleAccountModel") is not None:
         import capo_partnercentral_channel.types.resale_account_model
 
         out["resale_account_model"] = (
@@ -142,7 +142,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateRelationshipRequest:
                 data["resaleAccountModel"]
             )
         )
-    if "sector" in data:
+    if data.get("sector") is not None:
         import capo_partnercentral_channel.types.sector
 
         out["sector"] = (
@@ -152,9 +152,9 @@ def deserialize_aws_json_1_0(data: dict) -> CreateRelationshipRequest:
         )
     else:
         raise DeserializationError("CreateRelationshipRequest.sector required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_partnercentral_channel.types.tag_list
 
         out["tags"] = (
@@ -162,7 +162,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateRelationshipRequest:
                 data["tags"]
             )
         )
-    if "requestedSupportPlan" in data:
+    if data.get("requestedSupportPlan") is not None:
         import capo_partnercentral_channel.types.support_plan
 
         out["requested_support_plan"] = (

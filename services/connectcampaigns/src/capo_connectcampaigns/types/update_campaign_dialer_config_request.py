@@ -29,7 +29,7 @@ def serialize_json(value: UpdateCampaignDialerConfigRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateCampaignDialerConfigRequest:
     out: UpdateCampaignDialerConfigRequest = {}  # type: ignore[typeddict-item]
-    if "dialerConfig" in data:
+    if data.get("dialerConfig") is not None:
         import capo_connectcampaigns.types.dialer_config
 
         out["dialer_config"] = (

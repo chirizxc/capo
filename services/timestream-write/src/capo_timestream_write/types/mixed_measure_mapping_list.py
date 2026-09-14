@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> MixedMeasureMappingList:
 
     out: MixedMeasureMappingList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_timestream_write.types.mixed_measure_mapping.deserialize_aws_json_1_0(
                 item

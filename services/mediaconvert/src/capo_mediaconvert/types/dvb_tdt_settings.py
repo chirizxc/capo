@@ -25,6 +25,6 @@ def serialize_json(value: DvbTdtSettings) -> dict:
 
 def deserialize_json(data: dict) -> DvbTdtSettings:
     out: DvbTdtSettings = {}  # type: ignore[typeddict-item]
-    if "tdtInterval" in data:
+    if data.get("tdtInterval") is not None:
         out["tdt_interval"] = data["tdtInterval"]
     return out

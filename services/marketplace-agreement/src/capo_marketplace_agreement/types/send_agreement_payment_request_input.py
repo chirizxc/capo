@@ -50,28 +50,28 @@ def serialize_aws_json_1_0(value: SendAgreementPaymentRequestInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SendAgreementPaymentRequestInput:
     out: SendAgreementPaymentRequestInput = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "agreementId" in data:
+    if data.get("agreementId") is not None:
         out["agreement_id"] = data["agreementId"]
     else:
         raise DeserializationError(
             "SendAgreementPaymentRequestInput.agreement_id required"
         )
-    if "termId" in data:
+    if data.get("termId") is not None:
         out["term_id"] = data["termId"]
     else:
         raise DeserializationError("SendAgreementPaymentRequestInput.term_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("SendAgreementPaymentRequestInput.name required")
-    if "chargeAmount" in data:
+    if data.get("chargeAmount") is not None:
         out["charge_amount"] = data["chargeAmount"]
     else:
         raise DeserializationError(
             "SendAgreementPaymentRequestInput.charge_amount required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

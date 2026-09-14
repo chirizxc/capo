@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: RepositoryTriggersListRequiredException_) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> RepositoryTriggersListRequiredException_:
     out: RepositoryTriggersListRequiredException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,20 @@ class RepositoryTriggersListRequiredException(ServiceError):
 
     code: str | None = "RepositoryTriggersListRequiredException"
 
-    def __init__(self, data: RepositoryTriggersListRequiredException_):
+    def __init__(
+        self, data: RepositoryTriggersListRequiredException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="RepositoryTriggersListRequiredException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "RepositoryTriggersListRequiredException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "RepositoryTriggersListRequiredException":
+        return cls(deserialize_aws_json_1_1(data), message)

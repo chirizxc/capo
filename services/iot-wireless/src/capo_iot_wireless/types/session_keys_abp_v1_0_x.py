@@ -28,8 +28,8 @@ def serialize_json(value: SessionKeysAbpV1_0_x) -> dict:
 
 def deserialize_json(data: dict) -> SessionKeysAbpV1_0_x:
     out: SessionKeysAbpV1_0_x = {}  # type: ignore[typeddict-item]
-    if "NwkSKey" in data:
+    if data.get("NwkSKey") is not None:
         out["nwk_s_key"] = data["NwkSKey"]
-    if "AppSKey" in data:
+    if data.get("AppSKey") is not None:
         out["app_s_key"] = data["AppSKey"]
     return out

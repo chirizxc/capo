@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: UsernameConfigurationType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UsernameConfigurationType:
     out: UsernameConfigurationType = {}  # type: ignore[typeddict-item]
-    if "CaseSensitive" in data:
+    if data.get("CaseSensitive") is not None:
         out["case_sensitive"] = data["CaseSensitive"]
     else:
         raise DeserializationError("UsernameConfigurationType.case_sensitive required")

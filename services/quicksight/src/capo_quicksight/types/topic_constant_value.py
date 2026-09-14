@@ -59,19 +59,19 @@ def serialize_json(value: TopicConstantValue) -> dict:
 
 def deserialize_json(data: dict) -> TopicConstantValue:
     out: TopicConstantValue = {}  # type: ignore[typeddict-item]
-    if "ConstantType" in data:
+    if data.get("ConstantType") is not None:
         import capo_quicksight.types.constant_type
 
         out["constant_type"] = capo_quicksight.types.constant_type.deserialize_json(
             data["ConstantType"]
         )
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
-    if "Minimum" in data:
+    if data.get("Minimum") is not None:
         out["minimum"] = data["Minimum"]
-    if "Maximum" in data:
+    if data.get("Maximum") is not None:
         out["maximum"] = data["Maximum"]
-    if "ValueList" in data:
+    if data.get("ValueList") is not None:
         import capo_quicksight.types.collective_constant_entry_list
 
         out["value_list"] = (

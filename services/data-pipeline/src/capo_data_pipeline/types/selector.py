@@ -31,9 +31,9 @@ def serialize_aws_json_1_1(value: Selector) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Selector:
     out: Selector = {}  # type: ignore[typeddict-item]
-    if "fieldName" in data:
+    if data.get("fieldName") is not None:
         out["field_name"] = data["fieldName"]
-    if "operator" in data:
+    if data.get("operator") is not None:
         import capo_data_pipeline.types.operator
 
         out["operator"] = capo_data_pipeline.types.operator.deserialize_aws_json_1_1(

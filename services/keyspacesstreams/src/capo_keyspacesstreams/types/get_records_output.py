@@ -49,7 +49,7 @@ def serialize_aws_json_1_0(value: GetRecordsOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetRecordsOutput:
     out: GetRecordsOutput = {}  # type: ignore[typeddict-item]
-    if "changeRecords" in data:
+    if data.get("changeRecords") is not None:
         import capo_keyspacesstreams.types.record_list
 
         out["change_records"] = (
@@ -57,9 +57,9 @@ def deserialize_aws_json_1_0(data: dict) -> GetRecordsOutput:
                 data["changeRecords"]
             )
         )
-    if "nextShardIterator" in data:
+    if data.get("nextShardIterator") is not None:
         out["next_shard_iterator"] = data["nextShardIterator"]
-    if "iteratorDescription" in data:
+    if data.get("iteratorDescription") is not None:
         import capo_keyspacesstreams.types.iterator_description
 
         out["iterator_description"] = (

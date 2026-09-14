@@ -14,4 +14,4 @@ def serialize_json(value: VpcConnectionSubnetIdList) -> list:
 
 
 def deserialize_json(data: list) -> VpcConnectionSubnetIdList:
-    return list(data)
+    return [item for item in data if item is not None]

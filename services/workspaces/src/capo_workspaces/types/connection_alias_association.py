@@ -48,7 +48,7 @@ def serialize_aws_json_1_1(value: ConnectionAliasAssociation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConnectionAliasAssociation:
     out: ConnectionAliasAssociation = {}  # type: ignore[typeddict-item]
-    if "AssociationStatus" in data:
+    if data.get("AssociationStatus") is not None:
         import capo_workspaces.types.association_status
 
         out["association_status"] = (
@@ -56,10 +56,10 @@ def deserialize_aws_json_1_1(data: dict) -> ConnectionAliasAssociation:
                 data["AssociationStatus"]
             )
         )
-    if "AssociatedAccountId" in data:
+    if data.get("AssociatedAccountId") is not None:
         out["associated_account_id"] = data["AssociatedAccountId"]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
-    if "ConnectionIdentifier" in data:
+    if data.get("ConnectionIdentifier") is not None:
         out["connection_identifier"] = data["ConnectionIdentifier"]
     return out

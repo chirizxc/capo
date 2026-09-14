@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AudioConfigurationList:
 
     out: AudioConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_ivs.types.audio_configuration.deserialize_json(item))
     return out

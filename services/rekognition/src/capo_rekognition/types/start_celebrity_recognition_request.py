@@ -51,7 +51,7 @@ def serialize_aws_json_1_1(value: StartCelebrityRecognitionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartCelebrityRecognitionRequest:
     out: StartCelebrityRecognitionRequest = {}  # type: ignore[typeddict-item]
-    if "Video" in data:
+    if data.get("Video") is not None:
         import capo_rekognition.types.video
 
         out["video"] = capo_rekognition.types.video.deserialize_aws_json_1_1(
@@ -59,9 +59,9 @@ def deserialize_aws_json_1_1(data: dict) -> StartCelebrityRecognitionRequest:
         )
     else:
         raise DeserializationError("StartCelebrityRecognitionRequest.video required")
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "NotificationChannel" in data:
+    if data.get("NotificationChannel") is not None:
         import capo_rekognition.types.notification_channel
 
         out["notification_channel"] = (
@@ -69,6 +69,6 @@ def deserialize_aws_json_1_1(data: dict) -> StartCelebrityRecognitionRequest:
                 data["NotificationChannel"]
             )
         )
-    if "JobTag" in data:
+    if data.get("JobTag") is not None:
         out["job_tag"] = data["JobTag"]
     return out

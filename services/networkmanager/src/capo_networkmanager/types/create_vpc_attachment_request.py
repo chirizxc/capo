@@ -64,17 +64,17 @@ def serialize_json(value: CreateVpcAttachmentRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateVpcAttachmentRequest:
     out: CreateVpcAttachmentRequest = {}  # type: ignore[typeddict-item]
-    if "CoreNetworkId" in data:
+    if data.get("CoreNetworkId") is not None:
         out["core_network_id"] = data["CoreNetworkId"]
     else:
         raise DeserializationError(
             "CreateVpcAttachmentRequest.core_network_id required"
         )
-    if "VpcArn" in data:
+    if data.get("VpcArn") is not None:
         out["vpc_arn"] = data["VpcArn"]
     else:
         raise DeserializationError("CreateVpcAttachmentRequest.vpc_arn required")
-    if "SubnetArns" in data:
+    if data.get("SubnetArns") is not None:
         import capo_networkmanager.types.subnet_arn_list
 
         out["subnet_arns"] = capo_networkmanager.types.subnet_arn_list.deserialize_json(
@@ -82,18 +82,18 @@ def deserialize_json(data: dict) -> CreateVpcAttachmentRequest:
         )
     else:
         raise DeserializationError("CreateVpcAttachmentRequest.subnet_arns required")
-    if "Options" in data:
+    if data.get("Options") is not None:
         import capo_networkmanager.types.vpc_options
 
         out["options"] = capo_networkmanager.types.vpc_options.deserialize_json(
             data["Options"]
         )
-    if "RoutingPolicyLabel" in data:
+    if data.get("RoutingPolicyLabel") is not None:
         out["routing_policy_label"] = data["RoutingPolicyLabel"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_networkmanager.types.tag_list
 
         out["tags"] = capo_networkmanager.types.tag_list.deserialize_json(data["Tags"])
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

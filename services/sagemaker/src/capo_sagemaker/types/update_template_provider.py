@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: UpdateTemplateProvider) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateTemplateProvider:
     out: UpdateTemplateProvider = {}  # type: ignore[typeddict-item]
-    if "CfnTemplateProvider" in data:
+    if data.get("CfnTemplateProvider") is not None:
         import capo_sagemaker.types.cfn_update_template_provider
 
         out["cfn_template_provider"] = (

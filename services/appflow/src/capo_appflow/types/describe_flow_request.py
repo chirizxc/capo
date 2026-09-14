@@ -24,7 +24,7 @@ def serialize_json(value: DescribeFlowRequest) -> dict:
 
 def deserialize_json(data: dict) -> DescribeFlowRequest:
     out: DescribeFlowRequest = {}  # type: ignore[typeddict-item]
-    if "flowName" in data:
+    if data.get("flowName") is not None:
         out["flow_name"] = data["flowName"]
     else:
         raise DeserializationError("DescribeFlowRequest.flow_name required")

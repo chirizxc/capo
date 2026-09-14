@@ -104,19 +104,19 @@ def serialize_aws_json_1_1(value: DomainDescriptionType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DomainDescriptionType:
     out: DomainDescriptionType = {}  # type: ignore[typeddict-item]
-    if "UserPoolId" in data:
+    if data.get("UserPoolId") is not None:
         out["user_pool_id"] = data["UserPoolId"]
-    if "AWSAccountId" in data:
+    if data.get("AWSAccountId") is not None:
         out["aws_account_id"] = data["AWSAccountId"]
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         out["domain"] = data["Domain"]
-    if "S3Bucket" in data:
+    if data.get("S3Bucket") is not None:
         out["s3_bucket"] = data["S3Bucket"]
-    if "CloudFrontDistribution" in data:
+    if data.get("CloudFrontDistribution") is not None:
         out["cloud_front_distribution"] = data["CloudFrontDistribution"]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_cognito_identity_provider.types.domain_status_type
 
         out["status"] = (
@@ -124,7 +124,7 @@ def deserialize_aws_json_1_1(data: dict) -> DomainDescriptionType:
                 data["Status"]
             )
         )
-    if "CustomDomainConfig" in data:
+    if data.get("CustomDomainConfig") is not None:
         import capo_cognito_identity_provider.types.custom_domain_config_type
 
         out["custom_domain_config"] = (
@@ -132,9 +132,9 @@ def deserialize_aws_json_1_1(data: dict) -> DomainDescriptionType:
                 data["CustomDomainConfig"]
             )
         )
-    if "ManagedLoginVersion" in data:
+    if data.get("ManagedLoginVersion") is not None:
         out["managed_login_version"] = data["ManagedLoginVersion"]
-    if "Routing" in data:
+    if data.get("Routing") is not None:
         import capo_cognito_identity_provider.types.routing_type
 
         out["routing"] = (

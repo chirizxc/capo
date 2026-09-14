@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> TimestampMetricValuePairList:
 
     out: TimestampMetricValuePairList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_devops_guru.types.timestamp_metric_value_pair.deserialize_json(item)
         )

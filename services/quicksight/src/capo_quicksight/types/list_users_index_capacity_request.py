@@ -76,9 +76,9 @@ def serialize_json(value: ListUsersIndexCapacityRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListUsersIndexCapacityRequest:
     out: ListUsersIndexCapacityRequest = {}  # type: ignore[typeddict-item]
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         out["namespace"] = data["namespace"]
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_quicksight.types.user_index_capacity_filters
 
         out["filters"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> ListUsersIndexCapacityRequest:
                 data["filters"]
             )
         )
-    if "sortBy" in data:
+    if data.get("sortBy") is not None:
         import capo_quicksight.types.user_index_capacity_sort_by
 
         out["sort_by"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> ListUsersIndexCapacityRequest:
                 data["sortBy"]
             )
         )
-    if "sortOrder" in data:
+    if data.get("sortOrder") is not None:
         import capo_quicksight.types.user_index_capacity_sort_order
 
         out["sort_order"] = (
@@ -102,8 +102,8 @@ def deserialize_json(data: dict) -> ListUsersIndexCapacityRequest:
                 data["sortOrder"]
             )
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -61,25 +61,25 @@ def serialize_json(value: DescribeCustomMetricResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeCustomMetricResponse:
     out: DescribeCustomMetricResponse = {}  # type: ignore[typeddict-item]
-    if "metricName" in data:
+    if data.get("metricName") is not None:
         out["metric_name"] = data["metricName"]
-    if "metricArn" in data:
+    if data.get("metricArn") is not None:
         out["metric_arn"] = data["metricArn"]
-    if "metricType" in data:
+    if data.get("metricType") is not None:
         import capo_iot.types.custom_metric_type
 
         out["metric_type"] = capo_iot.types.custom_metric_type.deserialize_json(
             data["metricType"]
         )
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_iot.types.timestamp
 
         out["creation_date"] = capo_iot.types.timestamp.deserialize_json(
             data["creationDate"]
         )
-    if "lastModifiedDate" in data:
+    if data.get("lastModifiedDate") is not None:
         import capo_iot.types.timestamp
 
         out["last_modified_date"] = capo_iot.types.timestamp.deserialize_json(

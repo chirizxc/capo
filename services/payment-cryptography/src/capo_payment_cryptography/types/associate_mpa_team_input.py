@@ -35,14 +35,14 @@ def serialize_aws_json_1_0(value: AssociateMpaTeamInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AssociateMpaTeamInput:
     out: AssociateMpaTeamInput = {}  # type: ignore[typeddict-item]
-    if "Action" in data:
+    if data.get("Action") is not None:
         out["action"] = data["Action"]
     else:
         raise DeserializationError("AssociateMpaTeamInput.action required")
-    if "MpaTeamArn" in data:
+    if data.get("MpaTeamArn") is not None:
         out["mpa_team_arn"] = data["MpaTeamArn"]
     else:
         raise DeserializationError("AssociateMpaTeamInput.mpa_team_arn required")
-    if "RequesterComment" in data:
+    if data.get("RequesterComment") is not None:
         out["requester_comment"] = data["RequesterComment"]
     return out

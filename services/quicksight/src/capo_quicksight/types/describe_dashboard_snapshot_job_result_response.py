@@ -79,33 +79,33 @@ def serialize_json(value: DescribeDashboardSnapshotJobResultResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeDashboardSnapshotJobResultResponse:
     out: DescribeDashboardSnapshotJobResultResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "JobStatus" in data:
+    if data.get("JobStatus") is not None:
         import capo_quicksight.types.snapshot_job_status
 
         out["job_status"] = capo_quicksight.types.snapshot_job_status.deserialize_json(
             data["JobStatus"]
         )
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_quicksight.types.timestamp
 
         out["created_time"] = capo_quicksight.types.timestamp.deserialize_json(
             data["CreatedTime"]
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_quicksight.types.timestamp
 
         out["last_updated_time"] = capo_quicksight.types.timestamp.deserialize_json(
             data["LastUpdatedTime"]
         )
-    if "Result" in data:
+    if data.get("Result") is not None:
         import capo_quicksight.types.snapshot_job_result
 
         out["result"] = capo_quicksight.types.snapshot_job_result.deserialize_json(
             data["Result"]
         )
-    if "ErrorInfo" in data:
+    if data.get("ErrorInfo") is not None:
         import capo_quicksight.types.snapshot_job_error_info
 
         out["error_info"] = (
@@ -113,6 +113,6 @@ def deserialize_json(data: dict) -> DescribeDashboardSnapshotJobResultResponse:
                 data["ErrorInfo"]
             )
         )
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

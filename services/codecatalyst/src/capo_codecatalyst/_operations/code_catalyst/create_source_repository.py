@@ -11,6 +11,7 @@ from typing_extensions import Never
 
 import capo_codecatalyst._auth._signers
 import capo_codecatalyst._auth._sigv4
+import capo_codecatalyst._protocol.eventstream
 import capo_codecatalyst.errors.access_denied_exception
 import capo_codecatalyst.errors.conflict_exception
 import capo_codecatalyst.errors.resource_not_found_exception
@@ -34,27 +35,27 @@ def handle_error(response: zapros.Response) -> Never:
     match code:
         case "AccessDeniedException":
             raise capo_codecatalyst.errors.access_denied_exception.AccessDeniedException.from_json(
-                data
+                data, message
             )
         case "ConflictException":
             raise capo_codecatalyst.errors.conflict_exception.ConflictException.from_json(
-                data
+                data, message
             )
         case "ResourceNotFoundException":
             raise capo_codecatalyst.errors.resource_not_found_exception.ResourceNotFoundException.from_json(
-                data
+                data, message
             )
         case "ServiceQuotaExceededException":
             raise capo_codecatalyst.errors.service_quota_exceeded_exception.ServiceQuotaExceededException.from_json(
-                data
+                data, message
             )
         case "ThrottlingException":
             raise capo_codecatalyst.errors.throttling_exception.ThrottlingException.from_json(
-                data
+                data, message
             )
         case "ValidationException":
             raise capo_codecatalyst.errors.validation_exception.ValidationException.from_json(
-                data
+                data, message
             )
         case _:
             raise UnknownServiceError(code=code, message=message, response=response)
@@ -103,18 +104,20 @@ def build_request(
         endpoint.url.rstrip("/")
         + "/v1/spaces/{spaceName}/projects/{projectName}/sourceRepositories/{name}"
     )
-    url = url.replace("{spaceName}", quote(str(input_["space_name"]), safe=""))
-    url = url.replace("{projectName}", quote(str(input_["project_name"]), safe=""))
-    url = url.replace("{name}", quote(str(input_["name"]), safe=""))
-    params: dict[str, str] = {}
+    url = url.replace("{spaceName}", quote(input_["space_name"], safe=""))
+    url = url.replace("{projectName}", quote(input_["project_name"], safe=""))
+    url = url.replace("{name}", quote(input_["name"], safe=""))
+    params: list[tuple[str, str]] = []
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     body: bytes | None = json.dumps(
-        capo_codecatalyst.types.create_source_repository_request.serialize_json(input_)
+        capo_codecatalyst.types.create_source_repository_request.serialize_json(input_),
+        allow_nan=False,
     ).encode()
     headers["content-type"] = "application/json"
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))
     normalized_url = zapros.URL(url)
-    normalized_url.search_params.update(params)
+    for k, v in params:
+        normalized_url.search_params.append(k, v)
     return zapros.Request(
         normalized_url, "PUT", headers=headers, body=body, context={"signer": signer}
     )
@@ -129,7 +132,7 @@ def create_source_repository(
 ]:
     response = options.client.handler.handle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             response.read()
             handle_error(response)
         return handle_response(response), response
@@ -147,7 +150,7 @@ async def async_create_source_repository(
 ]:
     response = await options.client.handler.ahandle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             await response.aread()
             handle_error(response)
         return await async_handle_response(response), response

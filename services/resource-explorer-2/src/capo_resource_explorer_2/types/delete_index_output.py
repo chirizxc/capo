@@ -27,10 +27,10 @@ def serialize_json(value: DeleteIndexOutput) -> dict:
     if "state" in value:
         out["State"] = value["state"]
     if "last_updated_at" in value:
-        import capo_resource_explorer_2.types._prelude.timestamp
+        import capo_resource_explorer_2._protocol.serialize
 
         out["LastUpdatedAt"] = (
-            capo_resource_explorer_2.types._prelude.timestamp.serialize_json(
+            capo_resource_explorer_2._protocol.serialize.fmt_date_time(
                 value["last_updated_at"]
             )
         )
@@ -39,16 +39,14 @@ def serialize_json(value: DeleteIndexOutput) -> dict:
 
 def deserialize_json(data: dict) -> DeleteIndexOutput:
     out: DeleteIndexOutput = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "State" in data:
+    if data.get("State") is not None:
         out["state"] = data["State"]
-    if "LastUpdatedAt" in data:
-        import capo_resource_explorer_2.types._prelude.timestamp
+    if data.get("LastUpdatedAt") is not None:
+        import datetime
 
-        out["last_updated_at"] = (
-            capo_resource_explorer_2.types._prelude.timestamp.deserialize_json(
-                data["LastUpdatedAt"]
-            )
+        out["last_updated_at"] = datetime.datetime.fromisoformat(
+            data["LastUpdatedAt"].replace("Z", "+00:00")
         )
     return out

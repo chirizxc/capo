@@ -161,7 +161,7 @@ class SageMakerMetricsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sagemaker_metrics.types.batch_get_metrics_request.BatchGetMetricsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_sagemaker_metrics.types.batch_get_metrics_request.BatchGetMetricsRequest = {}
         if metric_queries is not None:
             input_["metric_queries"] = metric_queries
 
@@ -170,6 +170,7 @@ class SageMakerMetricsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_put_metrics(
@@ -208,7 +209,7 @@ class SageMakerMetricsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sagemaker_metrics.types.batch_put_metrics_request.BatchPutMetricsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_sagemaker_metrics.types.batch_put_metrics_request.BatchPutMetricsRequest = {}
         if trial_component_name is not None:
             input_["trial_component_name"] = trial_component_name
         if metric_data is not None:
@@ -219,6 +220,7 @@ class SageMakerMetricsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

@@ -71,7 +71,7 @@ def serialize_json(value: GrpcRetryPolicy) -> dict:
 
 def deserialize_json(data: dict) -> GrpcRetryPolicy:
     out: GrpcRetryPolicy = {}  # type: ignore[typeddict-item]
-    if "perRetryTimeout" in data:
+    if data.get("perRetryTimeout") is not None:
         import capo_app_mesh.types.duration
 
         out["per_retry_timeout"] = capo_app_mesh.types.duration.deserialize_json(
@@ -79,11 +79,11 @@ def deserialize_json(data: dict) -> GrpcRetryPolicy:
         )
     else:
         raise DeserializationError("GrpcRetryPolicy.per_retry_timeout required")
-    if "maxRetries" in data:
+    if data.get("maxRetries") is not None:
         out["max_retries"] = data["maxRetries"]
     else:
         raise DeserializationError("GrpcRetryPolicy.max_retries required")
-    if "httpRetryEvents" in data:
+    if data.get("httpRetryEvents") is not None:
         import capo_app_mesh.types.http_retry_policy_events
 
         out["http_retry_events"] = (
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> GrpcRetryPolicy:
                 data["httpRetryEvents"]
             )
         )
-    if "tcpRetryEvents" in data:
+    if data.get("tcpRetryEvents") is not None:
         import capo_app_mesh.types.tcp_retry_policy_events
 
         out["tcp_retry_events"] = (
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> GrpcRetryPolicy:
                 data["tcpRetryEvents"]
             )
         )
-    if "grpcRetryEvents" in data:
+    if data.get("grpcRetryEvents") is not None:
         import capo_app_mesh.types.grpc_retry_policy_events
 
         out["grpc_retry_events"] = (

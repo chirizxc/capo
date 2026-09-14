@@ -33,7 +33,7 @@ def serialize_aws_json_1_0(value: ListCapabilitiesResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListCapabilitiesResponse:
     out: ListCapabilitiesResponse = {}  # type: ignore[typeddict-item]
-    if "capabilities" in data:
+    if data.get("capabilities") is not None:
         import capo_b2bi.types.capability_list
 
         out["capabilities"] = capo_b2bi.types.capability_list.deserialize_aws_json_1_0(
@@ -41,6 +41,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListCapabilitiesResponse:
         )
     else:
         raise DeserializationError("ListCapabilitiesResponse.capabilities required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

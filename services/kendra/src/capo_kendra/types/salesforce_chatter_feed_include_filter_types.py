@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> SalesforceChatterFeedIncludeFilterTy
 
     out: SalesforceChatterFeedIncludeFilterTypes = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_kendra.types.salesforce_chatter_feed_include_filter_type.deserialize_aws_json_1_1(
                 item

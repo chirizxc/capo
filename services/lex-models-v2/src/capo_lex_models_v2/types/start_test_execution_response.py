@@ -73,23 +73,23 @@ def serialize_json(value: StartTestExecutionResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartTestExecutionResponse:
     out: StartTestExecutionResponse = {}  # type: ignore[typeddict-item]
-    if "testExecutionId" in data:
+    if data.get("testExecutionId") is not None:
         out["test_execution_id"] = data["testExecutionId"]
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["creation_date_time"] = capo_lex_models_v2.types.timestamp.deserialize_json(
             data["creationDateTime"]
         )
-    if "testSetId" in data:
+    if data.get("testSetId") is not None:
         out["test_set_id"] = data["testSetId"]
-    if "target" in data:
+    if data.get("target") is not None:
         import capo_lex_models_v2.types.test_execution_target
 
         out["target"] = capo_lex_models_v2.types.test_execution_target.deserialize_json(
             data["target"]
         )
-    if "apiMode" in data:
+    if data.get("apiMode") is not None:
         import capo_lex_models_v2.types.test_execution_api_mode
 
         out["api_mode"] = (
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> StartTestExecutionResponse:
                 data["apiMode"]
             )
         )
-    if "testExecutionModality" in data:
+    if data.get("testExecutionModality") is not None:
         import capo_lex_models_v2.types.test_execution_modality
 
         out["test_execution_modality"] = (

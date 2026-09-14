@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: ConstraintViolationException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConstraintViolationException_:
     out: ConstraintViolationException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "Reason" in data:
+    if data.get("Reason") is not None:
         import capo_organizations.types.constraint_violation_exception_reason
 
         out["reason"] = (
@@ -54,15 +54,18 @@ class ConstraintViolationException(ServiceError):
 
     code: str | None = "ConstraintViolationException"
 
-    def __init__(self, data: ConstraintViolationException_):
+    def __init__(self, data: ConstraintViolationException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ConstraintViolationException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "ConstraintViolationException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "ConstraintViolationException":
+        return cls(deserialize_aws_json_1_1(data), message)

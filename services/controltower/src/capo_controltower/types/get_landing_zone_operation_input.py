@@ -26,7 +26,7 @@ def serialize_json(value: GetLandingZoneOperationInput) -> dict:
 
 def deserialize_json(data: dict) -> GetLandingZoneOperationInput:
     out: GetLandingZoneOperationInput = {}  # type: ignore[typeddict-item]
-    if "operationIdentifier" in data:
+    if data.get("operationIdentifier") is not None:
         out["operation_identifier"] = data["operationIdentifier"]
     else:
         raise DeserializationError(

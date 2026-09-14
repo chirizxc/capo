@@ -69,17 +69,17 @@ def serialize_aws_json_1_1(value: CreateDataRepositoryAssociationRequest) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDataRepositoryAssociationRequest:
     out: CreateDataRepositoryAssociationRequest = {}  # type: ignore[typeddict-item]
-    if "FileSystemId" in data:
+    if data.get("FileSystemId") is not None:
         out["file_system_id"] = data["FileSystemId"]
-    if "FileSystemPath" in data:
+    if data.get("FileSystemPath") is not None:
         out["file_system_path"] = data["FileSystemPath"]
-    if "DataRepositoryPath" in data:
+    if data.get("DataRepositoryPath") is not None:
         out["data_repository_path"] = data["DataRepositoryPath"]
-    if "BatchImportMetaDataOnCreate" in data:
+    if data.get("BatchImportMetaDataOnCreate") is not None:
         out["batch_import_meta_data_on_create"] = data["BatchImportMetaDataOnCreate"]
-    if "ImportedFileChunkSize" in data:
+    if data.get("ImportedFileChunkSize") is not None:
         out["imported_file_chunk_size"] = data["ImportedFileChunkSize"]
-    if "S3" in data:
+    if data.get("S3") is not None:
         import capo_fsx.types.s3_data_repository_configuration
 
         out["s3"] = (
@@ -87,9 +87,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDataRepositoryAssociationReque
                 data["S3"]
             )
         )
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_fsx.types.tags
 
         out["tags"] = capo_fsx.types.tags.deserialize_aws_json_1_1(data["Tags"])

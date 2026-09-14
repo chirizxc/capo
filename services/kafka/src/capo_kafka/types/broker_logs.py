@@ -38,17 +38,17 @@ def serialize_json(value: BrokerLogs) -> dict:
 
 def deserialize_json(data: dict) -> BrokerLogs:
     out: BrokerLogs = {}  # type: ignore[typeddict-item]
-    if "cloudWatchLogs" in data:
+    if data.get("cloudWatchLogs") is not None:
         import capo_kafka.types.cloud_watch_logs
 
         out["cloud_watch_logs"] = capo_kafka.types.cloud_watch_logs.deserialize_json(
             data["cloudWatchLogs"]
         )
-    if "firehose" in data:
+    if data.get("firehose") is not None:
         import capo_kafka.types.firehose
 
         out["firehose"] = capo_kafka.types.firehose.deserialize_json(data["firehose"])
-    if "s3" in data:
+    if data.get("s3") is not None:
         import capo_kafka.types.s3
 
         out["s3"] = capo_kafka.types.s3.deserialize_json(data["s3"])

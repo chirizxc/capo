@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> PolicyToPathList:
 
     out: PolicyToPathList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_clouddirectory.types.policy_to_path.deserialize_json(item))
     return out

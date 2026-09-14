@@ -28,8 +28,8 @@ def serialize_json(value: CreateQueueResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateQueueResponse:
     out: CreateQueueResponse = {}  # type: ignore[typeddict-item]
-    if "QueueArn" in data:
+    if data.get("QueueArn") is not None:
         out["queue_arn"] = data["QueueArn"]
-    if "QueueId" in data:
+    if data.get("QueueId") is not None:
         out["queue_id"] = data["QueueId"]
     return out

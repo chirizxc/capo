@@ -35,12 +35,12 @@ def serialize_aws_json_1_1(value: GetMergeCommitOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetMergeCommitOutput:
     out: GetMergeCommitOutput = {}  # type: ignore[typeddict-item]
-    if "sourceCommitId" in data:
+    if data.get("sourceCommitId") is not None:
         out["source_commit_id"] = data["sourceCommitId"]
-    if "destinationCommitId" in data:
+    if data.get("destinationCommitId") is not None:
         out["destination_commit_id"] = data["destinationCommitId"]
-    if "baseCommitId" in data:
+    if data.get("baseCommitId") is not None:
         out["base_commit_id"] = data["baseCommitId"]
-    if "mergedCommitId" in data:
+    if data.get("mergedCommitId") is not None:
         out["merged_commit_id"] = data["mergedCommitId"]
     return out

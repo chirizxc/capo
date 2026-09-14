@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.finspace#AWSHabaneroManagementService``."""
 
+import uuid
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -342,8 +343,9 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.create_environment_request.CreateEnvironmentRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_finspace.types.create_environment_request.CreateEnvironmentRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if kms_key_id is not None:
@@ -364,6 +366,7 @@ class finspaceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_kx_changeset(
@@ -409,17 +412,19 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.create_kx_changeset_request.CreateKxChangesetRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
-        input_["database_name"] = database_name
-        input_["change_requests"] = change_requests
-        input_["client_token"] = client_token
+        input_: capo_finspace.types.create_kx_changeset_request.CreateKxChangesetRequest = {
+            "environment_id": environment_id,
+            "database_name": database_name,
+            "change_requests": change_requests,
+            "client_token": client_token,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_kx_cluster(
@@ -525,12 +530,17 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.create_kx_cluster_request.CreateKxClusterRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["environment_id"] = environment_id
-        input_["cluster_name"] = cluster_name
-        input_["cluster_type"] = cluster_type
+        input_: capo_finspace.types.create_kx_cluster_request.CreateKxClusterRequest = {
+            "environment_id": environment_id,
+            "cluster_name": cluster_name,
+            "cluster_type": cluster_type,
+            "release_label": release_label,
+            "vpc_configuration": vpc_configuration,
+            "az_mode": az_mode,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tickerplant_log_configuration is not None:
             input_["tickerplant_log_configuration"] = tickerplant_log_configuration
         if databases is not None:
@@ -543,8 +553,6 @@ class finspaceClient:
             input_["cluster_description"] = cluster_description
         if capacity_configuration is not None:
             input_["capacity_configuration"] = capacity_configuration
-        input_["release_label"] = release_label
-        input_["vpc_configuration"] = vpc_configuration
         if initialization_script is not None:
             input_["initialization_script"] = initialization_script
         if command_line_arguments is not None:
@@ -555,7 +563,6 @@ class finspaceClient:
             input_["execution_role"] = execution_role
         if savedown_storage_configuration is not None:
             input_["savedown_storage_configuration"] = savedown_storage_configuration
-        input_["az_mode"] = az_mode
         if availability_zone_id is not None:
             input_["availability_zone_id"] = availability_zone_id
         if tags is not None:
@@ -568,6 +575,7 @@ class finspaceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_kx_database(
@@ -616,20 +624,22 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.create_kx_database_request.CreateKxDatabaseRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
-        input_["database_name"] = database_name
+        input_: capo_finspace.types.create_kx_database_request.CreateKxDatabaseRequest = {
+            "environment_id": environment_id,
+            "database_name": database_name,
+            "client_token": client_token,
+        }
         if description is not None:
             input_["description"] = description
         if tags is not None:
             input_["tags"] = tags
-        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_kx_dataview(
@@ -696,11 +706,13 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.create_kx_dataview_request.CreateKxDataviewRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
-        input_["database_name"] = database_name
-        input_["dataview_name"] = dataview_name
-        input_["az_mode"] = az_mode
+        input_: capo_finspace.types.create_kx_dataview_request.CreateKxDataviewRequest = {
+            "environment_id": environment_id,
+            "database_name": database_name,
+            "dataview_name": dataview_name,
+            "az_mode": az_mode,
+            "client_token": client_token,
+        }
         if availability_zone_id is not None:
             input_["availability_zone_id"] = availability_zone_id
         if changeset_id is not None:
@@ -715,13 +727,13 @@ class finspaceClient:
             input_["description"] = description
         if tags is not None:
             input_["tags"] = tags
-        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_kx_environment(
@@ -771,21 +783,24 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.create_kx_environment_request.CreateKxEnvironmentRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_finspace.types.create_kx_environment_request.CreateKxEnvironmentRequest = {
+            "name": name,
+            "kms_key_id": kms_key_id,
+        }
         if description is not None:
             input_["description"] = description
-        input_["kms_key_id"] = kms_key_id
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_kx_scaling_group(
@@ -835,12 +850,13 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.create_kx_scaling_group_request.CreateKxScalingGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["client_token"] = client_token
-        input_["environment_id"] = environment_id
-        input_["scaling_group_name"] = scaling_group_name
-        input_["host_type"] = host_type
-        input_["availability_zone_id"] = availability_zone_id
+        input_: capo_finspace.types.create_kx_scaling_group_request.CreateKxScalingGroupRequest = {
+            "client_token": client_token,
+            "environment_id": environment_id,
+            "scaling_group_name": scaling_group_name,
+            "host_type": host_type,
+            "availability_zone_id": availability_zone_id,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -849,6 +865,7 @@ class finspaceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_kx_user(
@@ -897,20 +914,23 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.create_kx_user_request.CreateKxUserRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
-        input_["user_name"] = user_name
-        input_["iam_role"] = iam_role
+        input_: capo_finspace.types.create_kx_user_request.CreateKxUserRequest = {
+            "environment_id": environment_id,
+            "user_name": user_name,
+            "iam_role": iam_role,
+        }
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_kx_volume(
@@ -969,18 +989,20 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.create_kx_volume_request.CreateKxVolumeRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["environment_id"] = environment_id
-        input_["volume_type"] = volume_type
-        input_["volume_name"] = volume_name
+        input_: capo_finspace.types.create_kx_volume_request.CreateKxVolumeRequest = {
+            "environment_id": environment_id,
+            "volume_type": volume_type,
+            "volume_name": volume_name,
+            "az_mode": az_mode,
+            "availability_zone_ids": availability_zone_ids,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if description is not None:
             input_["description"] = description
         if nas1_configuration is not None:
             input_["nas1_configuration"] = nas1_configuration
-        input_["az_mode"] = az_mode
-        input_["availability_zone_ids"] = availability_zone_ids
         if tags is not None:
             input_["tags"] = tags
 
@@ -989,6 +1011,7 @@ class finspaceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_environment(
@@ -1026,14 +1049,16 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.delete_environment_request.DeleteEnvironmentRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
+        input_: capo_finspace.types.delete_environment_request.DeleteEnvironmentRequest = {
+            "environment_id": environment_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_kx_cluster(
@@ -1079,17 +1104,20 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.delete_kx_cluster_request.DeleteKxClusterRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
-        input_["cluster_name"] = cluster_name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_finspace.types.delete_kx_cluster_request.DeleteKxClusterRequest = {
+            "environment_id": environment_id,
+            "cluster_name": cluster_name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_kx_cluster_node(
@@ -1131,16 +1159,18 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.delete_kx_cluster_node_request.DeleteKxClusterNodeRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
-        input_["cluster_name"] = cluster_name
-        input_["node_id"] = node_id
+        input_: capo_finspace.types.delete_kx_cluster_node_request.DeleteKxClusterNodeRequest = {
+            "environment_id": environment_id,
+            "cluster_name": cluster_name,
+            "node_id": node_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_kx_database(
@@ -1183,16 +1213,18 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.delete_kx_database_request.DeleteKxDatabaseRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
-        input_["database_name"] = database_name
-        input_["client_token"] = client_token
+        input_: capo_finspace.types.delete_kx_database_request.DeleteKxDatabaseRequest = {
+            "environment_id": environment_id,
+            "database_name": database_name,
+            "client_token": client_token,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_kx_dataview(
@@ -1237,17 +1269,19 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.delete_kx_dataview_request.DeleteKxDataviewRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
-        input_["database_name"] = database_name
-        input_["dataview_name"] = dataview_name
-        input_["client_token"] = client_token
+        input_: capo_finspace.types.delete_kx_dataview_request.DeleteKxDataviewRequest = {
+            "environment_id": environment_id,
+            "database_name": database_name,
+            "dataview_name": dataview_name,
+            "client_token": client_token,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_kx_environment(
@@ -1290,16 +1324,19 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.delete_kx_environment_request.DeleteKxEnvironmentRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_finspace.types.delete_kx_environment_request.DeleteKxEnvironmentRequest = {
+            "environment_id": environment_id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_kx_scaling_group(
@@ -1345,17 +1382,20 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.delete_kx_scaling_group_request.DeleteKxScalingGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
-        input_["scaling_group_name"] = scaling_group_name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_finspace.types.delete_kx_scaling_group_request.DeleteKxScalingGroupRequest = {
+            "environment_id": environment_id,
+            "scaling_group_name": scaling_group_name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_kx_user(
@@ -1398,17 +1438,20 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.delete_kx_user_request.DeleteKxUserRequest = {}  # type: ignore[typeddict-item]
-        input_["user_name"] = user_name
-        input_["environment_id"] = environment_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_finspace.types.delete_kx_user_request.DeleteKxUserRequest = {
+            "user_name": user_name,
+            "environment_id": environment_id,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_kx_volume(
@@ -1454,17 +1497,20 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.delete_kx_volume_request.DeleteKxVolumeRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
-        input_["volume_name"] = volume_name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_finspace.types.delete_kx_volume_request.DeleteKxVolumeRequest = {
+            "environment_id": environment_id,
+            "volume_name": volume_name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_environment(
@@ -1501,14 +1547,16 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.get_environment_request.GetEnvironmentRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
+        input_: capo_finspace.types.get_environment_request.GetEnvironmentRequest = {
+            "environment_id": environment_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_kx_changeset(
@@ -1550,16 +1598,18 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.get_kx_changeset_request.GetKxChangesetRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
-        input_["database_name"] = database_name
-        input_["changeset_id"] = changeset_id
+        input_: capo_finspace.types.get_kx_changeset_request.GetKxChangesetRequest = {
+            "environment_id": environment_id,
+            "database_name": database_name,
+            "changeset_id": changeset_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_kx_cluster(
@@ -1601,15 +1651,17 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.get_kx_cluster_request.GetKxClusterRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
-        input_["cluster_name"] = cluster_name
+        input_: capo_finspace.types.get_kx_cluster_request.GetKxClusterRequest = {
+            "environment_id": environment_id,
+            "cluster_name": cluster_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_kx_connection_string(
@@ -1651,16 +1703,18 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.get_kx_connection_string_request.GetKxConnectionStringRequest = {}  # type: ignore[typeddict-item]
-        input_["user_arn"] = user_arn
-        input_["environment_id"] = environment_id
-        input_["cluster_name"] = cluster_name
+        input_: capo_finspace.types.get_kx_connection_string_request.GetKxConnectionStringRequest = {
+            "user_arn": user_arn,
+            "environment_id": environment_id,
+            "cluster_name": cluster_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_kx_database(
@@ -1700,15 +1754,17 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.get_kx_database_request.GetKxDatabaseRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
-        input_["database_name"] = database_name
+        input_: capo_finspace.types.get_kx_database_request.GetKxDatabaseRequest = {
+            "environment_id": environment_id,
+            "database_name": database_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_kx_dataview(
@@ -1750,16 +1806,18 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.get_kx_dataview_request.GetKxDataviewRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
-        input_["database_name"] = database_name
-        input_["dataview_name"] = dataview_name
+        input_: capo_finspace.types.get_kx_dataview_request.GetKxDataviewRequest = {
+            "environment_id": environment_id,
+            "database_name": database_name,
+            "dataview_name": dataview_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_kx_environment(
@@ -1797,14 +1855,16 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.get_kx_environment_request.GetKxEnvironmentRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
+        input_: capo_finspace.types.get_kx_environment_request.GetKxEnvironmentRequest = {
+            "environment_id": environment_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_kx_scaling_group(
@@ -1846,15 +1906,17 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.get_kx_scaling_group_request.GetKxScalingGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
-        input_["scaling_group_name"] = scaling_group_name
+        input_: capo_finspace.types.get_kx_scaling_group_request.GetKxScalingGroupRequest = {
+            "environment_id": environment_id,
+            "scaling_group_name": scaling_group_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_kx_user(
@@ -1894,15 +1956,17 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.get_kx_user_request.GetKxUserRequest = {}  # type: ignore[typeddict-item]
-        input_["user_name"] = user_name
-        input_["environment_id"] = environment_id
+        input_: capo_finspace.types.get_kx_user_request.GetKxUserRequest = {
+            "user_name": user_name,
+            "environment_id": environment_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_kx_volume(
@@ -1944,15 +2008,17 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.get_kx_volume_request.GetKxVolumeRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
-        input_["volume_name"] = volume_name
+        input_: capo_finspace.types.get_kx_volume_request.GetKxVolumeRequest = {
+            "environment_id": environment_id,
+            "volume_name": volume_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_environments(
@@ -1992,7 +2058,7 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.list_environments_request.ListEnvironmentsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_finspace.types.list_environments_request.ListEnvironmentsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2003,6 +2069,7 @@ class finspaceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_kx_changesets(
@@ -2048,9 +2115,10 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.list_kx_changesets_request.ListKxChangesetsRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
-        input_["database_name"] = database_name
+        input_: capo_finspace.types.list_kx_changesets_request.ListKxChangesetsRequest = {
+            "environment_id": environment_id,
+            "database_name": database_name,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2061,7 +2129,33 @@ class finspaceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_kx_changesets(
+        self,
+        environment_id: "capo_finspace.types.environment_id.EnvironmentId",
+        database_name: "capo_finspace.types.database_name.DatabaseName",
+        *,
+        config_overrides: Optional[finspaceClientConfig] = None,
+        next_token: Optional[
+            "capo_finspace.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional["capo_finspace.types.max_results.MaxResults"] = None,
+    ) -> "Iterator[capo_finspace.types.list_kx_changesets_response.ListKxChangesetsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_kx_changesets(
+                environment_id,
+                database_name,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_kx_cluster_nodes(
         self,
@@ -2109,9 +2203,10 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.list_kx_cluster_nodes_request.ListKxClusterNodesRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
-        input_["cluster_name"] = cluster_name
+        input_: capo_finspace.types.list_kx_cluster_nodes_request.ListKxClusterNodesRequest = {
+            "environment_id": environment_id,
+            "cluster_name": cluster_name,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2122,7 +2217,33 @@ class finspaceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_kx_cluster_nodes(
+        self,
+        environment_id: "capo_finspace.types.kx_environment_id.KxEnvironmentId",
+        cluster_name: "capo_finspace.types.kx_cluster_name.KxClusterName",
+        *,
+        config_overrides: Optional[finspaceClientConfig] = None,
+        next_token: Optional[
+            "capo_finspace.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional["capo_finspace.types.result_limit.ResultLimit"] = None,
+    ) -> "Iterator[capo_finspace.types.list_kx_cluster_nodes_response.ListKxClusterNodesResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_kx_cluster_nodes(
+                environment_id,
+                cluster_name,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_kx_clusters(
         self,
@@ -2171,8 +2292,9 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.list_kx_clusters_request.ListKxClustersRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
+        input_: capo_finspace.types.list_kx_clusters_request.ListKxClustersRequest = {
+            "environment_id": environment_id
+        }
         if cluster_type is not None:
             input_["cluster_type"] = cluster_type
         if max_results is not None:
@@ -2185,6 +2307,7 @@ class finspaceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_kx_databases(
@@ -2228,8 +2351,9 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.list_kx_databases_request.ListKxDatabasesRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
+        input_: capo_finspace.types.list_kx_databases_request.ListKxDatabasesRequest = {
+            "environment_id": environment_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2240,7 +2364,31 @@ class finspaceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_kx_databases(
+        self,
+        environment_id: "capo_finspace.types.environment_id.EnvironmentId",
+        *,
+        config_overrides: Optional[finspaceClientConfig] = None,
+        next_token: Optional[
+            "capo_finspace.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional["capo_finspace.types.max_results.MaxResults"] = None,
+    ) -> "Iterator[capo_finspace.types.list_kx_databases_response.ListKxDatabasesResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_kx_databases(
+                environment_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_kx_dataviews(
         self,
@@ -2285,9 +2433,10 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.list_kx_dataviews_request.ListKxDataviewsRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
-        input_["database_name"] = database_name
+        input_: capo_finspace.types.list_kx_dataviews_request.ListKxDataviewsRequest = {
+            "environment_id": environment_id,
+            "database_name": database_name,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2298,7 +2447,33 @@ class finspaceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_kx_dataviews(
+        self,
+        environment_id: "capo_finspace.types.environment_id.EnvironmentId",
+        database_name: "capo_finspace.types.database_name.DatabaseName",
+        *,
+        config_overrides: Optional[finspaceClientConfig] = None,
+        next_token: Optional[
+            "capo_finspace.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional["capo_finspace.types.max_results.MaxResults"] = None,
+    ) -> "Iterator[capo_finspace.types.list_kx_dataviews_response.ListKxDataviewsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_kx_dataviews(
+                environment_id,
+                database_name,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_kx_environments(
         self,
@@ -2337,7 +2512,7 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.list_kx_environments_request.ListKxEnvironmentsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_finspace.types.list_kx_environments_request.ListKxEnvironmentsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2348,6 +2523,7 @@ class finspaceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_kx_environments(
@@ -2416,8 +2592,9 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.list_kx_scaling_groups_request.ListKxScalingGroupsRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
+        input_: capo_finspace.types.list_kx_scaling_groups_request.ListKxScalingGroupsRequest = {
+            "environment_id": environment_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2428,7 +2605,31 @@ class finspaceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_kx_scaling_groups(
+        self,
+        environment_id: "capo_finspace.types.kx_environment_id.KxEnvironmentId",
+        *,
+        config_overrides: Optional[finspaceClientConfig] = None,
+        max_results: Optional["capo_finspace.types.max_results.MaxResults"] = None,
+        next_token: Optional[
+            "capo_finspace.types.pagination_token.PaginationToken"
+        ] = None,
+    ) -> "Iterator[capo_finspace.types.list_kx_scaling_groups_response.ListKxScalingGroupsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_kx_scaling_groups(
+                environment_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_kx_users(
         self,
@@ -2471,8 +2672,9 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.list_kx_users_request.ListKxUsersRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
+        input_: capo_finspace.types.list_kx_users_request.ListKxUsersRequest = {
+            "environment_id": environment_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2483,6 +2685,7 @@ class finspaceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_kx_volumes(
@@ -2530,8 +2733,9 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.list_kx_volumes_request.ListKxVolumesRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
+        input_: capo_finspace.types.list_kx_volumes_request.ListKxVolumesRequest = {
+            "environment_id": environment_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2544,6 +2748,7 @@ class finspaceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_tags_for_resource(
@@ -2579,14 +2784,16 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_finspace.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -2624,15 +2831,17 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_finspace.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -2670,15 +2879,17 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_finspace.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_environment(
@@ -2727,8 +2938,9 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.update_environment_request.UpdateEnvironmentRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
+        input_: capo_finspace.types.update_environment_request.UpdateEnvironmentRequest = {
+            "environment_id": environment_id
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -2743,6 +2955,7 @@ class finspaceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_kx_cluster_code_configuration(
@@ -2801,12 +3014,14 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.update_kx_cluster_code_configuration_request.UpdateKxClusterCodeConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
-        input_["cluster_name"] = cluster_name
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["code"] = code
+        input_: capo_finspace.types.update_kx_cluster_code_configuration_request.UpdateKxClusterCodeConfigurationRequest = {
+            "environment_id": environment_id,
+            "cluster_name": cluster_name,
+            "code": code,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if initialization_script is not None:
             input_["initialization_script"] = initialization_script
         if command_line_arguments is not None:
@@ -2819,6 +3034,7 @@ class finspaceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_kx_cluster_databases(
@@ -2870,12 +3086,14 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.update_kx_cluster_databases_request.UpdateKxClusterDatabasesRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
-        input_["cluster_name"] = cluster_name
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["databases"] = databases
+        input_: capo_finspace.types.update_kx_cluster_databases_request.UpdateKxClusterDatabasesRequest = {
+            "environment_id": environment_id,
+            "cluster_name": cluster_name,
+            "databases": databases,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if deployment_configuration is not None:
             input_["deployment_configuration"] = deployment_configuration
 
@@ -2884,6 +3102,7 @@ class finspaceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_kx_database(
@@ -2928,18 +3147,20 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.update_kx_database_request.UpdateKxDatabaseRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
-        input_["database_name"] = database_name
+        input_: capo_finspace.types.update_kx_database_request.UpdateKxDatabaseRequest = {
+            "environment_id": environment_id,
+            "database_name": database_name,
+            "client_token": client_token,
+        }
         if description is not None:
             input_["description"] = description
-        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_kx_dataview(
@@ -2993,23 +3214,25 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.update_kx_dataview_request.UpdateKxDataviewRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
-        input_["database_name"] = database_name
-        input_["dataview_name"] = dataview_name
+        input_: capo_finspace.types.update_kx_dataview_request.UpdateKxDataviewRequest = {
+            "environment_id": environment_id,
+            "database_name": database_name,
+            "dataview_name": dataview_name,
+            "client_token": client_token,
+        }
         if description is not None:
             input_["description"] = description
         if changeset_id is not None:
             input_["changeset_id"] = changeset_id
         if segment_configurations is not None:
             input_["segment_configurations"] = segment_configurations
-        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_kx_environment(
@@ -3058,20 +3281,23 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.update_kx_environment_request.UpdateKxEnvironmentRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
+        input_: capo_finspace.types.update_kx_environment_request.UpdateKxEnvironmentRequest = {
+            "environment_id": environment_id
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
             input_["description"] = description
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_kx_environment_network(
@@ -3120,20 +3346,23 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.update_kx_environment_network_request.UpdateKxEnvironmentNetworkRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
+        input_: capo_finspace.types.update_kx_environment_network_request.UpdateKxEnvironmentNetworkRequest = {
+            "environment_id": environment_id
+        }
         if transit_gateway_configuration is not None:
             input_["transit_gateway_configuration"] = transit_gateway_configuration
         if custom_dns_configuration is not None:
             input_["custom_dns_configuration"] = custom_dns_configuration
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_kx_user(
@@ -3179,18 +3408,21 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.update_kx_user_request.UpdateKxUserRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
-        input_["user_name"] = user_name
-        input_["iam_role"] = iam_role
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_finspace.types.update_kx_user_request.UpdateKxUserRequest = {
+            "environment_id": environment_id,
+            "user_name": user_name,
+            "iam_role": iam_role,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_kx_volume(
@@ -3242,13 +3474,15 @@ class finspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace.types.update_kx_volume_request.UpdateKxVolumeRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
-        input_["volume_name"] = volume_name
+        input_: capo_finspace.types.update_kx_volume_request.UpdateKxVolumeRequest = {
+            "environment_id": environment_id,
+            "volume_name": volume_name,
+        }
         if description is not None:
             input_["description"] = description
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if nas1_configuration is not None:
             input_["nas1_configuration"] = nas1_configuration
 
@@ -3257,6 +3491,7 @@ class finspaceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

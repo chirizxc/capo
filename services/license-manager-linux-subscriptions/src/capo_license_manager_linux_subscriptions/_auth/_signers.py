@@ -54,6 +54,12 @@ class SigV4Signer(Signer[Credentials]):
             "session_token": creds.get("session_token"),
             "signing_region": self._auth_scheme["signingRegion"],
             "signing_name": self._auth_scheme["signingName"],
+            "disable_double_encoding": self._auth_scheme.get(
+                "disableDoubleEncoding", False
+            ),
+            "disable_normalize_path": self._auth_scheme.get(
+                "disableNormalizePath", False
+            ),
         }
         if req.body is None:
             body: bytes | None = b""
@@ -61,10 +67,6 @@ class SigV4Signer(Signer[Credentials]):
             body = req.body
         else:
             body = None
-        # Strip Accept-Encoding so transports/intermediaries can't transcode
-        # the response and so the value never enters the canonical request.
-        if "accept-encoding" in req.headers:
-            del req.headers["Accept-Encoding"]
         return sign_sigv4(req, ctx, body)
 
     def sign(self, req: Request) -> Request:
@@ -76,6 +78,12 @@ class SigV4Signer(Signer[Credentials]):
             "session_token": creds.get("session_token"),
             "signing_region": self._auth_scheme["signingRegion"],
             "signing_name": self._auth_scheme["signingName"],
+            "disable_double_encoding": self._auth_scheme.get(
+                "disableDoubleEncoding", False
+            ),
+            "disable_normalize_path": self._auth_scheme.get(
+                "disableNormalizePath", False
+            ),
         }
         if req.body is None:
             body: bytes | None = b""
@@ -83,8 +91,4 @@ class SigV4Signer(Signer[Credentials]):
             body = req.body
         else:
             body = None
-        # Strip Accept-Encoding so transports/intermediaries can't transcode
-        # the response and so the value never enters the canonical request.
-        if "accept-encoding" in req.headers:
-            del req.headers["Accept-Encoding"]
         return sign_sigv4(req, ctx, body)

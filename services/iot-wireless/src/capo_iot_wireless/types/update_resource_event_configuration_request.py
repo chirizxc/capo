@@ -92,7 +92,7 @@ def serialize_json(value: UpdateResourceEventConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateResourceEventConfigurationRequest:
     out: UpdateResourceEventConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "DeviceRegistrationState" in data:
+    if data.get("DeviceRegistrationState") is not None:
         import capo_iot_wireless.types.device_registration_state_event_configuration
 
         out["device_registration_state"] = (
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> UpdateResourceEventConfigurationRequest:
                 data["DeviceRegistrationState"]
             )
         )
-    if "Proximity" in data:
+    if data.get("Proximity") is not None:
         import capo_iot_wireless.types.proximity_event_configuration
 
         out["proximity"] = (
@@ -108,13 +108,13 @@ def deserialize_json(data: dict) -> UpdateResourceEventConfigurationRequest:
                 data["Proximity"]
             )
         )
-    if "Join" in data:
+    if data.get("Join") is not None:
         import capo_iot_wireless.types.join_event_configuration
 
         out["join"] = capo_iot_wireless.types.join_event_configuration.deserialize_json(
             data["Join"]
         )
-    if "ConnectionStatus" in data:
+    if data.get("ConnectionStatus") is not None:
         import capo_iot_wireless.types.connection_status_event_configuration
 
         out["connection_status"] = (
@@ -122,7 +122,7 @@ def deserialize_json(data: dict) -> UpdateResourceEventConfigurationRequest:
                 data["ConnectionStatus"]
             )
         )
-    if "MessageDeliveryStatus" in data:
+    if data.get("MessageDeliveryStatus") is not None:
         import capo_iot_wireless.types.message_delivery_status_event_configuration
 
         out["message_delivery_status"] = (

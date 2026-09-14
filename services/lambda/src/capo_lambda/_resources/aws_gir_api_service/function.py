@@ -6,7 +6,6 @@ from typing import TYPE_CHECKING, Optional
 
 import capo_lambda._auth._signers
 import capo_lambda._auth._sigv4
-from capo_lambda._body import Body, aclosing_bodies, closing_bodies
 from capo_lambda._iter import ensure_async_iterator, ensure_sync_iterator
 from capo_lambda._services._pipeline import (
     AsyncOperationRequest,
@@ -1593,7 +1592,7 @@ class Function:
     def invoke_async(
         self,
         function_name: "capo_lambda.types.namespaced_function_name.NamespacedFunctionName",
-        invoke_args: Body[Iterator[bytes]] | Iterator[bytes] | bytes,
+        invoke_args: Iterator[bytes] | bytes,
         *,
         config_overrides: Optional[LambdaClientConfig] = None,
     ) -> "capo_lambda.types.invoke_async_response.InvokeAsyncResponse":
@@ -1662,14 +1661,13 @@ class Function:
             "invoke_args": ensure_sync_iterator(invoke_args),
         }
 
-        with closing_bodies(input_):
-            response = execute_pipeline(
-                OperationRequest(input=input_, options=options_),
-                handler=_handler,
-                interceptors=list(interceptors_),
-            )
-            response.response.close()
-            return response.output
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
 
     @contextmanager
     def invoke_with_response_stream(
@@ -3682,7 +3680,7 @@ class AsyncFunction:
     async def invoke_async(
         self,
         function_name: "capo_lambda.types.namespaced_function_name.NamespacedFunctionName",
-        invoke_args: Body[AsyncIterator[bytes]] | AsyncIterator[bytes] | bytes,
+        invoke_args: AsyncIterator[bytes] | bytes,
         *,
         config_overrides: Optional[AsyncLambdaClientConfig] = None,
     ) -> "capo_lambda.types.invoke_async_response.InvokeAsyncResponse":
@@ -3752,14 +3750,13 @@ class AsyncFunction:
             "invoke_args": ensure_async_iterator(invoke_args),
         }
 
-        async with aclosing_bodies(input_):
-            response = await aexecute_pipeline(
-                AsyncOperationRequest(input=input_, options=options_),
-                handler=_handler,
-                interceptors=list(interceptors_),
-            )
-            await response.response.aclose()
-            return response.output
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
 
     @asynccontextmanager
     async def invoke_with_response_stream(

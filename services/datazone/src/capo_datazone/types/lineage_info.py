@@ -42,9 +42,9 @@ def serialize_json(value: LineageInfo) -> dict:
 
 def deserialize_json(data: dict) -> LineageInfo:
     out: LineageInfo = {}  # type: ignore[typeddict-item]
-    if "eventId" in data:
+    if data.get("eventId") is not None:
         out["event_id"] = data["eventId"]
-    if "eventStatus" in data:
+    if data.get("eventStatus") is not None:
         import capo_datazone.types.lineage_event_processing_status
 
         out["event_status"] = (
@@ -52,6 +52,6 @@ def deserialize_json(data: dict) -> LineageInfo:
                 data["eventStatus"]
             )
         )
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     return out

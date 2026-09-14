@@ -28,8 +28,8 @@ def serialize_json(value: ActionRemotePortDetails) -> dict:
 
 def deserialize_json(data: dict) -> ActionRemotePortDetails:
     out: ActionRemotePortDetails = {}  # type: ignore[typeddict-item]
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
-    if "PortName" in data:
+    if data.get("PortName") is not None:
         out["port_name"] = data["PortName"]
     return out

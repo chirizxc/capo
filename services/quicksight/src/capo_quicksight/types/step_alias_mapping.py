@@ -27,11 +27,11 @@ def serialize_json(value: StepAliasMapping) -> dict:
 
 def deserialize_json(data: dict) -> StepAliasMapping:
     out: StepAliasMapping = {}  # type: ignore[typeddict-item]
-    if "StepId" in data:
+    if data.get("StepId") is not None:
         out["step_id"] = data["StepId"]
     else:
         raise DeserializationError("StepAliasMapping.step_id required")
-    if "StepAlias" in data:
+    if data.get("StepAlias") is not None:
         out["step_alias"] = data["StepAlias"]
     else:
         raise DeserializationError("StepAliasMapping.step_alias required")

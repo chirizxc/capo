@@ -79,11 +79,11 @@ def serialize_json(value: SoftwareSet) -> dict:
 
 def deserialize_json(data: dict) -> SoftwareSet:
     out: SoftwareSet = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
-    if "releasedAt" in data:
+    if data.get("releasedAt") is not None:
         import capo_workspaces_thin_client.types.timestamp
 
         out["released_at"] = (
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> SoftwareSet:
                 data["releasedAt"]
             )
         )
-    if "supportedUntil" in data:
+    if data.get("supportedUntil") is not None:
         import capo_workspaces_thin_client.types.timestamp
 
         out["supported_until"] = (
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> SoftwareSet:
                 data["supportedUntil"]
             )
         )
-    if "validationStatus" in data:
+    if data.get("validationStatus") is not None:
         import capo_workspaces_thin_client.types.software_set_validation_status
 
         out["validation_status"] = (
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> SoftwareSet:
                 data["validationStatus"]
             )
         )
-    if "software" in data:
+    if data.get("software") is not None:
         import capo_workspaces_thin_client.types.software_list
 
         out["software"] = (
@@ -115,6 +115,6 @@ def deserialize_json(data: dict) -> SoftwareSet:
                 data["software"]
             )
         )
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     return out

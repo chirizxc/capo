@@ -48,15 +48,15 @@ def serialize_json(value: CreateTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateTemplateRequest:
     out: CreateTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "ConnectorArn" in data:
+    if data.get("ConnectorArn") is not None:
         out["connector_arn"] = data["ConnectorArn"]
     else:
         raise DeserializationError("CreateTemplateRequest.connector_arn required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateTemplateRequest.name required")
-    if "Definition" in data:
+    if data.get("Definition") is not None:
         import capo_pca_connector_ad.types.template_definition
 
         out["definition"] = (
@@ -66,9 +66,9 @@ def deserialize_json(data: dict) -> CreateTemplateRequest:
         )
     else:
         raise DeserializationError("CreateTemplateRequest.definition required")
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_pca_connector_ad.types.tags
 
         out["tags"] = capo_pca_connector_ad.types.tags.deserialize_json(data["Tags"])

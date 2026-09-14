@@ -34,10 +34,10 @@ def serialize_json(value: UpdateSiteInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSiteInput:
     out: UpdateSiteInput = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Notes" in data:
+    if data.get("Notes") is not None:
         out["notes"] = data["Notes"]
     return out

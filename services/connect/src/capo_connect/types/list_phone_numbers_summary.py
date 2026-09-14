@@ -77,13 +77,13 @@ def serialize_json(value: ListPhoneNumbersSummary) -> dict:
 
 def deserialize_json(data: dict) -> ListPhoneNumbersSummary:
     out: ListPhoneNumbersSummary = {}  # type: ignore[typeddict-item]
-    if "PhoneNumberId" in data:
+    if data.get("PhoneNumberId") is not None:
         out["phone_number_id"] = data["PhoneNumberId"]
-    if "PhoneNumberArn" in data:
+    if data.get("PhoneNumberArn") is not None:
         out["phone_number_arn"] = data["PhoneNumberArn"]
-    if "PhoneNumber" in data:
+    if data.get("PhoneNumber") is not None:
         out["phone_number"] = data["PhoneNumber"]
-    if "PhoneNumberCountryCode" in data:
+    if data.get("PhoneNumberCountryCode") is not None:
         import capo_connect.types.phone_number_country_code
 
         out["phone_number_country_code"] = (
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> ListPhoneNumbersSummary:
                 data["PhoneNumberCountryCode"]
             )
         )
-    if "PhoneNumberType" in data:
+    if data.get("PhoneNumberType") is not None:
         import capo_connect.types.phone_number_type
 
         out["phone_number_type"] = (
@@ -99,12 +99,12 @@ def deserialize_json(data: dict) -> ListPhoneNumbersSummary:
                 data["PhoneNumberType"]
             )
         )
-    if "TargetArn" in data:
+    if data.get("TargetArn") is not None:
         out["target_arn"] = data["TargetArn"]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
-    if "PhoneNumberDescription" in data:
+    if data.get("PhoneNumberDescription") is not None:
         out["phone_number_description"] = data["PhoneNumberDescription"]
-    if "SourcePhoneNumberArn" in data:
+    if data.get("SourcePhoneNumberArn") is not None:
         out["source_phone_number_arn"] = data["SourcePhoneNumberArn"]
     return out

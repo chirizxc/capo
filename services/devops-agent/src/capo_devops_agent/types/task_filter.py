@@ -73,7 +73,7 @@ def serialize_json(value: TaskFilter) -> dict:
 
 def deserialize_json(data: dict) -> TaskFilter:
     out: TaskFilter = {}  # type: ignore[typeddict-item]
-    if "createdAfter" in data:
+    if data.get("createdAfter") is not None:
         import capo_devops_agent.types.back_log_timestamp
 
         out["created_after"] = (
@@ -81,7 +81,7 @@ def deserialize_json(data: dict) -> TaskFilter:
                 data["createdAfter"]
             )
         )
-    if "createdBefore" in data:
+    if data.get("createdBefore") is not None:
         import capo_devops_agent.types.back_log_timestamp
 
         out["created_before"] = (
@@ -89,24 +89,24 @@ def deserialize_json(data: dict) -> TaskFilter:
                 data["createdBefore"]
             )
         )
-    if "priority" in data:
+    if data.get("priority") is not None:
         import capo_devops_agent.types.priority_list
 
         out["priority"] = capo_devops_agent.types.priority_list.deserialize_json(
             data["priority"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_devops_agent.types.task_status_list
 
         out["status"] = capo_devops_agent.types.task_status_list.deserialize_json(
             data["status"]
         )
-    if "taskType" in data:
+    if data.get("taskType") is not None:
         import capo_devops_agent.types.task_type_list
 
         out["task_type"] = capo_devops_agent.types.task_type_list.deserialize_json(
             data["taskType"]
         )
-    if "primaryTaskId" in data:
+    if data.get("primaryTaskId") is not None:
         out["primary_task_id"] = data["primaryTaskId"]
     return out

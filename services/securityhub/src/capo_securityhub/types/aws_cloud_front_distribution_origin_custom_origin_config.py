@@ -55,17 +55,17 @@ def serialize_json(value: AwsCloudFrontDistributionOriginCustomOriginConfig) -> 
 
 def deserialize_json(data: dict) -> AwsCloudFrontDistributionOriginCustomOriginConfig:
     out: AwsCloudFrontDistributionOriginCustomOriginConfig = {}  # type: ignore[typeddict-item]
-    if "HttpPort" in data:
+    if data.get("HttpPort") is not None:
         out["http_port"] = data["HttpPort"]
-    if "HttpsPort" in data:
+    if data.get("HttpsPort") is not None:
         out["https_port"] = data["HttpsPort"]
-    if "OriginKeepaliveTimeout" in data:
+    if data.get("OriginKeepaliveTimeout") is not None:
         out["origin_keepalive_timeout"] = data["OriginKeepaliveTimeout"]
-    if "OriginProtocolPolicy" in data:
+    if data.get("OriginProtocolPolicy") is not None:
         out["origin_protocol_policy"] = data["OriginProtocolPolicy"]
-    if "OriginReadTimeout" in data:
+    if data.get("OriginReadTimeout") is not None:
         out["origin_read_timeout"] = data["OriginReadTimeout"]
-    if "OriginSslProtocols" in data:
+    if data.get("OriginSslProtocols") is not None:
         import capo_securityhub.types.aws_cloud_front_distribution_origin_ssl_protocols
 
         out["origin_ssl_protocols"] = (

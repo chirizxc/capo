@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: NotifyWhenUploadedOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NotifyWhenUploadedOutput:
     out: NotifyWhenUploadedOutput = {}  # type: ignore[typeddict-item]
-    if "FileShareARN" in data:
+    if data.get("FileShareARN") is not None:
         out["file_share_arn"] = data["FileShareARN"]
-    if "NotificationId" in data:
+    if data.get("NotificationId") is not None:
         out["notification_id"] = data["NotificationId"]
     return out

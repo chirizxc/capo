@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> QueryDataPointList:
 
     out: QueryDataPointList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_resiliencehubv2.types.query_data_point.deserialize_json(item))
     return out

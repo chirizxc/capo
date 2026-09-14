@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AggregateColumnList:
 
     out: AggregateColumnList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_cleanrooms.types.aggregate_column.deserialize_json(item))
     return out

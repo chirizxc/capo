@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: AssociationConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssociationConfig:
     out: AssociationConfig = {}  # type: ignore[typeddict-item]
-    if "RequestBody" in data:
+    if data.get("RequestBody") is not None:
         import capo_wafv2.types.request_body
 
         out["request_body"] = capo_wafv2.types.request_body.deserialize_aws_json_1_1(

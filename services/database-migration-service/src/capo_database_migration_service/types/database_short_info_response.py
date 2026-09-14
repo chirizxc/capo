@@ -37,12 +37,12 @@ def serialize_aws_json_1_1(value: DatabaseShortInfoResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DatabaseShortInfoResponse:
     out: DatabaseShortInfoResponse = {}  # type: ignore[typeddict-item]
-    if "DatabaseId" in data:
+    if data.get("DatabaseId") is not None:
         out["database_id"] = data["DatabaseId"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
-    if "DatabaseIpAddress" in data:
+    if data.get("DatabaseIpAddress") is not None:
         out["database_ip_address"] = data["DatabaseIpAddress"]
-    if "DatabaseEngine" in data:
+    if data.get("DatabaseEngine") is not None:
         out["database_engine"] = data["DatabaseEngine"]
     return out

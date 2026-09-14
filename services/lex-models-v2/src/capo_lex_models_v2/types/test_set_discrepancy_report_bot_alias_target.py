@@ -32,19 +32,19 @@ def serialize_json(value: TestSetDiscrepancyReportBotAliasTarget) -> dict:
 
 def deserialize_json(data: dict) -> TestSetDiscrepancyReportBotAliasTarget:
     out: TestSetDiscrepancyReportBotAliasTarget = {}  # type: ignore[typeddict-item]
-    if "botId" in data:
+    if data.get("botId") is not None:
         out["bot_id"] = data["botId"]
     else:
         raise DeserializationError(
             "TestSetDiscrepancyReportBotAliasTarget.bot_id required"
         )
-    if "botAliasId" in data:
+    if data.get("botAliasId") is not None:
         out["bot_alias_id"] = data["botAliasId"]
     else:
         raise DeserializationError(
             "TestSetDiscrepancyReportBotAliasTarget.bot_alias_id required"
         )
-    if "localeId" in data:
+    if data.get("localeId") is not None:
         out["locale_id"] = data["localeId"]
     else:
         raise DeserializationError(

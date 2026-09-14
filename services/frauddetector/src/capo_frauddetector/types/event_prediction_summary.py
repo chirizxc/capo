@@ -47,16 +47,16 @@ def serialize_aws_json_1_1(value: EventPredictionSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EventPredictionSummary:
     out: EventPredictionSummary = {}  # type: ignore[typeddict-item]
-    if "eventId" in data:
+    if data.get("eventId") is not None:
         out["event_id"] = data["eventId"]
-    if "eventTypeName" in data:
+    if data.get("eventTypeName") is not None:
         out["event_type_name"] = data["eventTypeName"]
-    if "eventTimestamp" in data:
+    if data.get("eventTimestamp") is not None:
         out["event_timestamp"] = data["eventTimestamp"]
-    if "predictionTimestamp" in data:
+    if data.get("predictionTimestamp") is not None:
         out["prediction_timestamp"] = data["predictionTimestamp"]
-    if "detectorId" in data:
+    if data.get("detectorId") is not None:
         out["detector_id"] = data["detectorId"]
-    if "detectorVersionId" in data:
+    if data.get("detectorVersionId") is not None:
         out["detector_version_id"] = data["detectorVersionId"]
     return out

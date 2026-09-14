@@ -44,7 +44,7 @@ def serialize_json(value: ConfiguredTableAssociationAnalysisRuleList) -> dict:
 
 def deserialize_json(data: dict) -> ConfiguredTableAssociationAnalysisRuleList:
     out: ConfiguredTableAssociationAnalysisRuleList = {}  # type: ignore[typeddict-item]
-    if "allowedResultReceivers" in data:
+    if data.get("allowedResultReceivers") is not None:
         import capo_cleanrooms.types.allowed_result_receivers
 
         out["allowed_result_receivers"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> ConfiguredTableAssociationAnalysisRuleList:
                 data["allowedResultReceivers"]
             )
         )
-    if "allowedAdditionalAnalyses" in data:
+    if data.get("allowedAdditionalAnalyses") is not None:
         import capo_cleanrooms.types.allowed_additional_analyses
 
         out["allowed_additional_analyses"] = (

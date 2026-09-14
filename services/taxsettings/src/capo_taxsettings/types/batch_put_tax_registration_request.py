@@ -40,7 +40,7 @@ def serialize_json(value: BatchPutTaxRegistrationRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchPutTaxRegistrationRequest:
     out: BatchPutTaxRegistrationRequest = {}  # type: ignore[typeddict-item]
-    if "accountIds" in data:
+    if data.get("accountIds") is not None:
         import capo_taxsettings.types.account_ids
 
         out["account_ids"] = capo_taxsettings.types.account_ids.deserialize_json(
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> BatchPutTaxRegistrationRequest:
         raise DeserializationError(
             "BatchPutTaxRegistrationRequest.account_ids required"
         )
-    if "taxRegistrationEntry" in data:
+    if data.get("taxRegistrationEntry") is not None:
         import capo_taxsettings.types.tax_registration_entry
 
         out["tax_registration_entry"] = (

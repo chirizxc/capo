@@ -40,11 +40,11 @@ def serialize_json(value: DashConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DashConfiguration:
     out: DashConfiguration = {}  # type: ignore[typeddict-item]
-    if "ManifestEndpointPrefix" in data:
+    if data.get("ManifestEndpointPrefix") is not None:
         out["manifest_endpoint_prefix"] = data["ManifestEndpointPrefix"]
-    if "MpdLocation" in data:
+    if data.get("MpdLocation") is not None:
         out["mpd_location"] = data["MpdLocation"]
-    if "OriginManifestType" in data:
+    if data.get("OriginManifestType") is not None:
         import capo_mediatailor.types.origin_manifest_type
 
         out["origin_manifest_type"] = (

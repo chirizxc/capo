@@ -31,7 +31,7 @@ def serialize_json(value: DeregisterTargetsRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeregisterTargetsRequest:
     out: DeregisterTargetsRequest = {}  # type: ignore[typeddict-item]
-    if "targets" in data:
+    if data.get("targets") is not None:
         import capo_vpc_lattice.types.target_list
 
         out["targets"] = capo_vpc_lattice.types.target_list.deserialize_json(

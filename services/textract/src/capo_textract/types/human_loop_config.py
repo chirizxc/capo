@@ -41,15 +41,15 @@ def serialize_aws_json_1_1(value: HumanLoopConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HumanLoopConfig:
     out: HumanLoopConfig = {}  # type: ignore[typeddict-item]
-    if "HumanLoopName" in data:
+    if data.get("HumanLoopName") is not None:
         out["human_loop_name"] = data["HumanLoopName"]
     else:
         raise DeserializationError("HumanLoopConfig.human_loop_name required")
-    if "FlowDefinitionArn" in data:
+    if data.get("FlowDefinitionArn") is not None:
         out["flow_definition_arn"] = data["FlowDefinitionArn"]
     else:
         raise DeserializationError("HumanLoopConfig.flow_definition_arn required")
-    if "DataAttributes" in data:
+    if data.get("DataAttributes") is not None:
         import capo_textract.types.human_loop_data_attributes
 
         out["data_attributes"] = (

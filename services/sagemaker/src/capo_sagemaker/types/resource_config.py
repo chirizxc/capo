@@ -88,7 +88,7 @@ def serialize_aws_json_1_1(value: ResourceConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourceConfig:
     out: ResourceConfig = {}  # type: ignore[typeddict-item]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         import capo_sagemaker.types.training_instance_type
 
         out["instance_type"] = (
@@ -96,15 +96,15 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceConfig:
                 data["InstanceType"]
             )
         )
-    if "InstanceCount" in data:
+    if data.get("InstanceCount") is not None:
         out["instance_count"] = data["InstanceCount"]
-    if "VolumeSizeInGB" in data:
+    if data.get("VolumeSizeInGB") is not None:
         out["volume_size_in_gb"] = data["VolumeSizeInGB"]
-    if "VolumeKmsKeyId" in data:
+    if data.get("VolumeKmsKeyId") is not None:
         out["volume_kms_key_id"] = data["VolumeKmsKeyId"]
-    if "KeepAlivePeriodInSeconds" in data:
+    if data.get("KeepAlivePeriodInSeconds") is not None:
         out["keep_alive_period_in_seconds"] = data["KeepAlivePeriodInSeconds"]
-    if "InstanceGroups" in data:
+    if data.get("InstanceGroups") is not None:
         import capo_sagemaker.types.instance_groups
 
         out["instance_groups"] = (
@@ -112,9 +112,9 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceConfig:
                 data["InstanceGroups"]
             )
         )
-    if "TrainingPlanArn" in data:
+    if data.get("TrainingPlanArn") is not None:
         out["training_plan_arn"] = data["TrainingPlanArn"]
-    if "InstancePlacementConfig" in data:
+    if data.get("InstancePlacementConfig") is not None:
         import capo_sagemaker.types.instance_placement_config
 
         out["instance_placement_config"] = (

@@ -28,11 +28,11 @@ def serialize_json(value: Import) -> dict:
 
 def deserialize_json(data: dict) -> Import:
     out: Import = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("Import.name required")
-    if "revision" in data:
+    if data.get("revision") is not None:
         out["revision"] = data["revision"]
     else:
         raise DeserializationError("Import.revision required")

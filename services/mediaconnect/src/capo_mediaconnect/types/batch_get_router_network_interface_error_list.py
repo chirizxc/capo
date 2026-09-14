@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> BatchGetRouterNetworkInterfaceErrorList:
 
     out: BatchGetRouterNetworkInterfaceErrorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediaconnect.types.batch_get_router_network_interface_error.deserialize_json(
                 item

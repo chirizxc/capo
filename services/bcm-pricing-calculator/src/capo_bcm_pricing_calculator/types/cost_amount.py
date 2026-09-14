@@ -21,7 +21,15 @@ class CostAmount(TypedDict, closed=True):
 def serialize_aws_json_1_0(value: CostAmount) -> dict:
     out: dict = {}
     if "amount" in value:
-        out["amount"] = value["amount"]
+        out["amount"] = (
+            "NaN"
+            if value["amount"] != value["amount"]
+            else "Infinity"
+            if value["amount"] == float("inf")
+            else "-Infinity"
+            if value["amount"] == float("-inf")
+            else value["amount"]
+        )
     if "currency" in value:
         import capo_bcm_pricing_calculator.types.currency_code
 
@@ -35,9 +43,9 @@ def serialize_aws_json_1_0(value: CostAmount) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CostAmount:
     out: CostAmount = {}  # type: ignore[typeddict-item]
-    if "amount" in data:
-        out["amount"] = data["amount"]
-    if "currency" in data:
+    if data.get("amount") is not None:
+        out["amount"] = float(data["amount"])
+    if data.get("currency") is not None:
         import capo_bcm_pricing_calculator.types.currency_code
 
         out["currency"] = (

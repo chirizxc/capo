@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: UpdateDatabaseRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateDatabaseRequest:
     out: UpdateDatabaseRequest = {}  # type: ignore[typeddict-item]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError("UpdateDatabaseRequest.database_name required")
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
     else:
         raise DeserializationError("UpdateDatabaseRequest.kms_key_id required")

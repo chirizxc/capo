@@ -88,45 +88,45 @@ def serialize_json(value: GetEntityResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetEntityResponse:
     out: GetEntityResponse = {}  # type: ignore[typeddict-item]
-    if "entityId" in data:
+    if data.get("entityId") is not None:
         out["entity_id"] = data["entityId"]
     else:
         raise DeserializationError("GetEntityResponse.entity_id required")
-    if "entityName" in data:
+    if data.get("entityName") is not None:
         out["entity_name"] = data["entityName"]
     else:
         raise DeserializationError("GetEntityResponse.entity_name required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("GetEntityResponse.arn required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iottwinmaker.types.status
 
         out["status"] = capo_iottwinmaker.types.status.deserialize_json(data["status"])
     else:
         raise DeserializationError("GetEntityResponse.status required")
-    if "workspaceId" in data:
+    if data.get("workspaceId") is not None:
         out["workspace_id"] = data["workspaceId"]
     else:
         raise DeserializationError("GetEntityResponse.workspace_id required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "components" in data:
+    if data.get("components") is not None:
         import capo_iottwinmaker.types.components_map
 
         out["components"] = capo_iottwinmaker.types.components_map.deserialize_json(
             data["components"]
         )
-    if "parentEntityId" in data:
+    if data.get("parentEntityId") is not None:
         out["parent_entity_id"] = data["parentEntityId"]
     else:
         raise DeserializationError("GetEntityResponse.parent_entity_id required")
-    if "hasChildEntities" in data:
+    if data.get("hasChildEntities") is not None:
         out["has_child_entities"] = data["hasChildEntities"]
     else:
         raise DeserializationError("GetEntityResponse.has_child_entities required")
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_iottwinmaker.types.timestamp
 
         out["creation_date_time"] = capo_iottwinmaker.types.timestamp.deserialize_json(
@@ -134,7 +134,7 @@ def deserialize_json(data: dict) -> GetEntityResponse:
         )
     else:
         raise DeserializationError("GetEntityResponse.creation_date_time required")
-    if "updateDateTime" in data:
+    if data.get("updateDateTime") is not None:
         import capo_iottwinmaker.types.timestamp
 
         out["update_date_time"] = capo_iottwinmaker.types.timestamp.deserialize_json(
@@ -142,8 +142,8 @@ def deserialize_json(data: dict) -> GetEntityResponse:
         )
     else:
         raise DeserializationError("GetEntityResponse.update_date_time required")
-    if "syncSource" in data:
+    if data.get("syncSource") is not None:
         out["sync_source"] = data["syncSource"]
-    if "areAllComponentsReturned" in data:
+    if data.get("areAllComponentsReturned") is not None:
         out["are_all_components_returned"] = data["areAllComponentsReturned"]
     return out

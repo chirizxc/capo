@@ -70,19 +70,19 @@ def serialize_json(value: Composition) -> dict:
 
 def deserialize_json(data: dict) -> Composition:
     out: Composition = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("Composition.arn required")
-    if "stageArn" in data:
+    if data.get("stageArn") is not None:
         out["stage_arn"] = data["stageArn"]
     else:
         raise DeserializationError("Composition.stage_arn required")
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
     else:
         raise DeserializationError("Composition.state required")
-    if "layout" in data:
+    if data.get("layout") is not None:
         import capo_ivs_realtime.types.layout_configuration
 
         out["layout"] = capo_ivs_realtime.types.layout_configuration.deserialize_json(
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> Composition:
         )
     else:
         raise DeserializationError("Composition.layout required")
-    if "destinations" in data:
+    if data.get("destinations") is not None:
         import capo_ivs_realtime.types.destination_list
 
         out["destinations"] = capo_ivs_realtime.types.destination_list.deserialize_json(
@@ -98,17 +98,17 @@ def deserialize_json(data: dict) -> Composition:
         )
     else:
         raise DeserializationError("Composition.destinations required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_ivs_realtime.types.tags
 
         out["tags"] = capo_ivs_realtime.types.tags.deserialize_json(data["tags"])
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_ivs_realtime.types.time
 
         out["start_time"] = capo_ivs_realtime.types.time.deserialize_json(
             data["startTime"]
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_ivs_realtime.types.time
 
         out["end_time"] = capo_ivs_realtime.types.time.deserialize_json(data["endTime"])

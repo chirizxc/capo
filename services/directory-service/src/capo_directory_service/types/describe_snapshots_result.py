@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: DescribeSnapshotsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeSnapshotsResult:
     out: DescribeSnapshotsResult = {}  # type: ignore[typeddict-item]
-    if "Snapshots" in data:
+    if data.get("Snapshots") is not None:
         import capo_directory_service.types.snapshots
 
         out["snapshots"] = (
@@ -42,6 +42,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeSnapshotsResult:
                 data["Snapshots"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

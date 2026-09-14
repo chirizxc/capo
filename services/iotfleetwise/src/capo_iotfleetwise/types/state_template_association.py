@@ -33,11 +33,11 @@ def serialize_aws_json_1_0(value: StateTemplateAssociation) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StateTemplateAssociation:
     out: StateTemplateAssociation = {}  # type: ignore[typeddict-item]
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
     else:
         raise DeserializationError("StateTemplateAssociation.identifier required")
-    if "stateTemplateUpdateStrategy" in data:
+    if data.get("stateTemplateUpdateStrategy") is not None:
         import capo_iotfleetwise.types.state_template_update_strategy
 
         out["state_template_update_strategy"] = (

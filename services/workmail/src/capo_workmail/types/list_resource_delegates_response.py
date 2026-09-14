@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: ListResourceDelegatesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListResourceDelegatesResponse:
     out: ListResourceDelegatesResponse = {}  # type: ignore[typeddict-item]
-    if "Delegates" in data:
+    if data.get("Delegates") is not None:
         import capo_workmail.types.resource_delegates
 
         out["delegates"] = (
@@ -42,6 +42,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListResourceDelegatesResponse:
                 data["Delegates"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

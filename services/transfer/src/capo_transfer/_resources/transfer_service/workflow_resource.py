@@ -83,10 +83,11 @@ class WorkflowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.create_workflow_request.CreateWorkflowRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transfer.types.create_workflow_request.CreateWorkflowRequest = {
+            "steps": steps
+        }
         if description is not None:
             input_["description"] = description
-        input_["steps"] = steps
         if on_exception_steps is not None:
             input_["on_exception_steps"] = on_exception_steps
         if tags is not None:
@@ -97,6 +98,7 @@ class WorkflowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -133,14 +135,16 @@ class WorkflowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.describe_workflow_request.DescribeWorkflowRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_id"] = workflow_id
+        input_: capo_transfer.types.describe_workflow_request.DescribeWorkflowRequest = {
+            "workflow_id": workflow_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -176,14 +180,16 @@ class WorkflowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.delete_workflow_request.DeleteWorkflowRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_id"] = workflow_id
+        input_: capo_transfer.types.delete_workflow_request.DeleteWorkflowRequest = {
+            "workflow_id": workflow_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -222,7 +228,7 @@ class WorkflowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.list_workflows_request.ListWorkflowsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transfer.types.list_workflows_request.ListWorkflowsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -233,6 +239,7 @@ class WorkflowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -287,10 +294,11 @@ class AsyncWorkflowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.create_workflow_request.CreateWorkflowRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transfer.types.create_workflow_request.CreateWorkflowRequest = {
+            "steps": steps
+        }
         if description is not None:
             input_["description"] = description
-        input_["steps"] = steps
         if on_exception_steps is not None:
             input_["on_exception_steps"] = on_exception_steps
         if tags is not None:
@@ -301,6 +309,7 @@ class AsyncWorkflowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -338,14 +347,16 @@ class AsyncWorkflowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.describe_workflow_request.DescribeWorkflowRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_id"] = workflow_id
+        input_: capo_transfer.types.describe_workflow_request.DescribeWorkflowRequest = {
+            "workflow_id": workflow_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -382,14 +393,16 @@ class AsyncWorkflowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.delete_workflow_request.DeleteWorkflowRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_id"] = workflow_id
+        input_: capo_transfer.types.delete_workflow_request.DeleteWorkflowRequest = {
+            "workflow_id": workflow_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -429,7 +442,7 @@ class AsyncWorkflowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.list_workflows_request.ListWorkflowsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transfer.types.list_workflows_request.ListWorkflowsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -440,4 +453,5 @@ class AsyncWorkflowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

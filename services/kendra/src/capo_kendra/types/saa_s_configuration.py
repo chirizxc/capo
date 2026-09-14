@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: SaaSConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SaaSConfiguration:
     out: SaaSConfiguration = {}  # type: ignore[typeddict-item]
-    if "OrganizationName" in data:
+    if data.get("OrganizationName") is not None:
         out["organization_name"] = data["OrganizationName"]
     else:
         raise DeserializationError("SaaSConfiguration.organization_name required")
-    if "HostUrl" in data:
+    if data.get("HostUrl") is not None:
         out["host_url"] = data["HostUrl"]
     else:
         raise DeserializationError("SaaSConfiguration.host_url required")

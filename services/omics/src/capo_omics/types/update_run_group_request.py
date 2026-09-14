@@ -42,14 +42,14 @@ def serialize_json(value: UpdateRunGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRunGroupRequest:
     out: UpdateRunGroupRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "maxCpus" in data:
+    if data.get("maxCpus") is not None:
         out["max_cpus"] = data["maxCpus"]
-    if "maxRuns" in data:
+    if data.get("maxRuns") is not None:
         out["max_runs"] = data["maxRuns"]
-    if "maxDuration" in data:
+    if data.get("maxDuration") is not None:
         out["max_duration"] = data["maxDuration"]
-    if "maxGpus" in data:
+    if data.get("maxGpus") is not None:
         out["max_gpus"] = data["maxGpus"]
     return out

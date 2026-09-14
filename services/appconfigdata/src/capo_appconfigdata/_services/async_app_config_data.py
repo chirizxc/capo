@@ -166,14 +166,16 @@ class AsyncAppConfigDataClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfigdata.types.get_latest_configuration_request.GetLatestConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_token"] = configuration_token
+        input_: capo_appconfigdata.types.get_latest_configuration_request.GetLatestConfigurationRequest = {
+            "configuration_token": configuration_token
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

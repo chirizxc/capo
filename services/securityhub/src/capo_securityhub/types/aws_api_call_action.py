@@ -74,13 +74,13 @@ def serialize_json(value: AwsApiCallAction) -> dict:
 
 def deserialize_json(data: dict) -> AwsApiCallAction:
     out: AwsApiCallAction = {}  # type: ignore[typeddict-item]
-    if "Api" in data:
+    if data.get("Api") is not None:
         out["api"] = data["Api"]
-    if "ServiceName" in data:
+    if data.get("ServiceName") is not None:
         out["service_name"] = data["ServiceName"]
-    if "CallerType" in data:
+    if data.get("CallerType") is not None:
         out["caller_type"] = data["CallerType"]
-    if "RemoteIpDetails" in data:
+    if data.get("RemoteIpDetails") is not None:
         import capo_securityhub.types.action_remote_ip_details
 
         out["remote_ip_details"] = (
@@ -88,7 +88,7 @@ def deserialize_json(data: dict) -> AwsApiCallAction:
                 data["RemoteIpDetails"]
             )
         )
-    if "DomainDetails" in data:
+    if data.get("DomainDetails") is not None:
         import capo_securityhub.types.aws_api_call_action_domain_details
 
         out["domain_details"] = (
@@ -96,14 +96,14 @@ def deserialize_json(data: dict) -> AwsApiCallAction:
                 data["DomainDetails"]
             )
         )
-    if "AffectedResources" in data:
+    if data.get("AffectedResources") is not None:
         import capo_securityhub.types.field_map
 
         out["affected_resources"] = capo_securityhub.types.field_map.deserialize_json(
             data["AffectedResources"]
         )
-    if "FirstSeen" in data:
+    if data.get("FirstSeen") is not None:
         out["first_seen"] = data["FirstSeen"]
-    if "LastSeen" in data:
+    if data.get("LastSeen") is not None:
         out["last_seen"] = data["LastSeen"]
     return out

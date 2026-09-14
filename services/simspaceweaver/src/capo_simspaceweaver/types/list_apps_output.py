@@ -32,12 +32,12 @@ def serialize_json(value: ListAppsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListAppsOutput:
     out: ListAppsOutput = {}  # type: ignore[typeddict-item]
-    if "Apps" in data:
+    if data.get("Apps") is not None:
         import capo_simspaceweaver.types.simulation_app_list
 
         out["apps"] = capo_simspaceweaver.types.simulation_app_list.deserialize_json(
             data["Apps"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

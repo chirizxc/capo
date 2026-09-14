@@ -33,11 +33,11 @@ def serialize_json(value: ApiKeyIds) -> dict:
 
 def deserialize_json(data: dict) -> ApiKeyIds:
     out: ApiKeyIds = {}  # type: ignore[typeddict-item]
-    if "ids" in data:
+    if data.get("ids") is not None:
         import capo_api_gateway.types.list_of_string
 
         out["ids"] = capo_api_gateway.types.list_of_string.deserialize_json(data["ids"])
-    if "warnings" in data:
+    if data.get("warnings") is not None:
         import capo_api_gateway.types.list_of_string
 
         out["warnings"] = capo_api_gateway.types.list_of_string.deserialize_json(

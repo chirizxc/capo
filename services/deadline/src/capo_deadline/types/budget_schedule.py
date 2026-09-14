@@ -32,7 +32,7 @@ def serialize_json(value: BudgetSchedule) -> dict:
 
 
 def deserialize_json(data: dict) -> BudgetSchedule:
-    if "fixed" in data:
+    if data.get("fixed") is not None:
         import capo_deadline.types.fixed_budget_schedule
 
         return {

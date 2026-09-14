@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: CostCategoryInheritedValueDimension) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CostCategoryInheritedValueDimension:
     out: CostCategoryInheritedValueDimension = {}  # type: ignore[typeddict-item]
-    if "DimensionName" in data:
+    if data.get("DimensionName") is not None:
         import capo_cost_explorer.types.cost_category_inherited_value_dimension_name
 
         out["dimension_name"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> CostCategoryInheritedValueDimension:
                 data["DimensionName"]
             )
         )
-    if "DimensionKey" in data:
+    if data.get("DimensionKey") is not None:
         out["dimension_key"] = data["DimensionKey"]
     return out

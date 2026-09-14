@@ -82,7 +82,7 @@ def serialize_aws_json_1_1(value: OptimizationConfig) -> dict:
 
 
 def deserialize_aws_json_1_1(data: dict) -> OptimizationConfig:
-    if "ModelQuantizationConfig" in data:
+    if data.get("ModelQuantizationConfig") is not None:
         import capo_sagemaker.types.model_quantization_config
 
         return {
@@ -90,7 +90,7 @@ def deserialize_aws_json_1_1(data: dict) -> OptimizationConfig:
                 data["ModelQuantizationConfig"]
             )
         }
-    elif "ModelCompilationConfig" in data:
+    elif data.get("ModelCompilationConfig") is not None:
         import capo_sagemaker.types.model_compilation_config
 
         return {
@@ -98,7 +98,7 @@ def deserialize_aws_json_1_1(data: dict) -> OptimizationConfig:
                 data["ModelCompilationConfig"]
             )
         }
-    elif "ModelShardingConfig" in data:
+    elif data.get("ModelShardingConfig") is not None:
         import capo_sagemaker.types.model_sharding_config
 
         return {
@@ -106,7 +106,7 @@ def deserialize_aws_json_1_1(data: dict) -> OptimizationConfig:
                 data["ModelShardingConfig"]
             )
         }
-    elif "ModelSpeculativeDecodingConfig" in data:
+    elif data.get("ModelSpeculativeDecodingConfig") is not None:
         import capo_sagemaker.types.model_speculative_decoding_config
 
         return {

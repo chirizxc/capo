@@ -41,7 +41,7 @@ def serialize_aws_json_1_1(value: SharingSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SharingSettings:
     out: SharingSettings = {}  # type: ignore[typeddict-item]
-    if "NotebookOutputOption" in data:
+    if data.get("NotebookOutputOption") is not None:
         import capo_sagemaker.types.notebook_output_option
 
         out["notebook_output_option"] = (
@@ -49,8 +49,8 @@ def deserialize_aws_json_1_1(data: dict) -> SharingSettings:
                 data["NotebookOutputOption"]
             )
         )
-    if "S3OutputPath" in data:
+    if data.get("S3OutputPath") is not None:
         out["s3_output_path"] = data["S3OutputPath"]
-    if "S3KmsKeyId" in data:
+    if data.get("S3KmsKeyId") is not None:
         out["s3_kms_key_id"] = data["S3KmsKeyId"]
     return out

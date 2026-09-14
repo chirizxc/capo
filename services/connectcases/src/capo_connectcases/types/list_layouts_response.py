@@ -33,7 +33,7 @@ def serialize_json(value: ListLayoutsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListLayoutsResponse:
     out: ListLayoutsResponse = {}  # type: ignore[typeddict-item]
-    if "layouts" in data:
+    if data.get("layouts") is not None:
         import capo_connectcases.types.layout_summary_list
 
         out["layouts"] = capo_connectcases.types.layout_summary_list.deserialize_json(
@@ -41,6 +41,6 @@ def deserialize_json(data: dict) -> ListLayoutsResponse:
         )
     else:
         raise DeserializationError("ListLayoutsResponse.layouts required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

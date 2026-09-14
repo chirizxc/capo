@@ -34,9 +34,9 @@ def serialize_aws_json_1_0(value: CapacityReservationTarget) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CapacityReservationTarget:
     out: CapacityReservationTarget = {}  # type: ignore[typeddict-item]
-    if "CapacityReservationId" in data:
+    if data.get("CapacityReservationId") is not None:
         out["capacity_reservation_id"] = data["CapacityReservationId"]
-    if "CapacityReservationResourceGroupArn" in data:
+    if data.get("CapacityReservationResourceGroupArn") is not None:
         out["capacity_reservation_resource_group_arn"] = data[
             "CapacityReservationResourceGroupArn"
         ]

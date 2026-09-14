@@ -30,10 +30,10 @@ def serialize_json(value: VCpuCountRange) -> dict:
 
 def deserialize_json(data: dict) -> VCpuCountRange:
     out: VCpuCountRange = {}  # type: ignore[typeddict-item]
-    if "min" in data:
+    if data.get("min") is not None:
         out["min"] = data["min"]
     else:
         raise DeserializationError("VCpuCountRange.min required")
-    if "max" in data:
+    if data.get("max") is not None:
         out["max"] = data["max"]
     return out

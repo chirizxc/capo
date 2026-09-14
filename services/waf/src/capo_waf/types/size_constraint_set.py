@@ -37,13 +37,13 @@ def serialize_aws_json_1_1(value: SizeConstraintSet) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SizeConstraintSet:
     out: SizeConstraintSet = {}  # type: ignore[typeddict-item]
-    if "SizeConstraintSetId" in data:
+    if data.get("SizeConstraintSetId") is not None:
         out["size_constraint_set_id"] = data["SizeConstraintSetId"]
     else:
         raise DeserializationError("SizeConstraintSet.size_constraint_set_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "SizeConstraints" in data:
+    if data.get("SizeConstraints") is not None:
         import capo_waf.types.size_constraints
 
         out["size_constraints"] = (

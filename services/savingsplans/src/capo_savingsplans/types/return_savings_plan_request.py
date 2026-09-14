@@ -29,10 +29,10 @@ def serialize_json(value: ReturnSavingsPlanRequest) -> dict:
 
 def deserialize_json(data: dict) -> ReturnSavingsPlanRequest:
     out: ReturnSavingsPlanRequest = {}  # type: ignore[typeddict-item]
-    if "savingsPlanId" in data:
+    if data.get("savingsPlanId") is not None:
         out["savings_plan_id"] = data["savingsPlanId"]
     else:
         raise DeserializationError("ReturnSavingsPlanRequest.savings_plan_id required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

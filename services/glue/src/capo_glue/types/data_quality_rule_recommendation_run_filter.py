@@ -45,7 +45,7 @@ def serialize_aws_json_1_1(value: DataQualityRuleRecommendationRunFilter) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> DataQualityRuleRecommendationRunFilter:
     out: DataQualityRuleRecommendationRunFilter = {}  # type: ignore[typeddict-item]
-    if "DataSource" in data:
+    if data.get("DataSource") is not None:
         import capo_glue.types.data_source
 
         out["data_source"] = capo_glue.types.data_source.deserialize_aws_json_1_1(
@@ -55,13 +55,13 @@ def deserialize_aws_json_1_1(data: dict) -> DataQualityRuleRecommendationRunFilt
         raise DeserializationError(
             "DataQualityRuleRecommendationRunFilter.data_source required"
         )
-    if "StartedBefore" in data:
+    if data.get("StartedBefore") is not None:
         import capo_glue.types.timestamp
 
         out["started_before"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["StartedBefore"]
         )
-    if "StartedAfter" in data:
+    if data.get("StartedAfter") is not None:
         import capo_glue.types.timestamp
 
         out["started_after"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(

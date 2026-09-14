@@ -32,10 +32,10 @@ def serialize_json(value: ADMChannelRequest) -> dict:
 
 def deserialize_json(data: dict) -> ADMChannelRequest:
     out: ADMChannelRequest = {}  # type: ignore[typeddict-item]
-    if "ClientId" in data:
+    if data.get("ClientId") is not None:
         out["client_id"] = data["ClientId"]
-    if "ClientSecret" in data:
+    if data.get("ClientSecret") is not None:
         out["client_secret"] = data["ClientSecret"]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
     return out

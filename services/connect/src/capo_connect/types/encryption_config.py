@@ -32,7 +32,7 @@ def serialize_json(value: EncryptionConfig) -> dict:
 
 def deserialize_json(data: dict) -> EncryptionConfig:
     out: EncryptionConfig = {}  # type: ignore[typeddict-item]
-    if "EncryptionType" in data:
+    if data.get("EncryptionType") is not None:
         import capo_connect.types.encryption_type
 
         out["encryption_type"] = capo_connect.types.encryption_type.deserialize_json(
@@ -40,7 +40,7 @@ def deserialize_json(data: dict) -> EncryptionConfig:
         )
     else:
         raise DeserializationError("EncryptionConfig.encryption_type required")
-    if "KeyId" in data:
+    if data.get("KeyId") is not None:
         out["key_id"] = data["KeyId"]
     else:
         raise DeserializationError("EncryptionConfig.key_id required")

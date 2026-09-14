@@ -34,7 +34,7 @@ def serialize_json(value: NetworkAccessConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> NetworkAccessConfiguration:
     out: NetworkAccessConfiguration = {}  # type: ignore[typeddict-item]
-    if "prefixListIds" in data:
+    if data.get("prefixListIds") is not None:
         import capo_grafana.types.prefix_list_ids
 
         out["prefix_list_ids"] = capo_grafana.types.prefix_list_ids.deserialize_json(
@@ -44,7 +44,7 @@ def deserialize_json(data: dict) -> NetworkAccessConfiguration:
         raise DeserializationError(
             "NetworkAccessConfiguration.prefix_list_ids required"
         )
-    if "vpceIds" in data:
+    if data.get("vpceIds") is not None:
         import capo_grafana.types.vpce_ids
 
         out["vpce_ids"] = capo_grafana.types.vpce_ids.deserialize_json(data["vpceIds"])

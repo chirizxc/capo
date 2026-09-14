@@ -37,15 +37,15 @@ def serialize_json(value: AssignedTaskRunSessionActionDefinition) -> dict:
 
 def deserialize_json(data: dict) -> AssignedTaskRunSessionActionDefinition:
     out: AssignedTaskRunSessionActionDefinition = {}  # type: ignore[typeddict-item]
-    if "taskId" in data:
+    if data.get("taskId") is not None:
         out["task_id"] = data["taskId"]
-    if "stepId" in data:
+    if data.get("stepId") is not None:
         out["step_id"] = data["stepId"]
     else:
         raise DeserializationError(
             "AssignedTaskRunSessionActionDefinition.step_id required"
         )
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_deadline.types.task_parameters
 
         out["parameters"] = capo_deadline.types.task_parameters.deserialize_json(

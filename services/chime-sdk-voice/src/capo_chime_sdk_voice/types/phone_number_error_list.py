@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> PhoneNumberErrorList:
 
     out: PhoneNumberErrorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_chime_sdk_voice.types.phone_number_error.deserialize_json(item))
     return out

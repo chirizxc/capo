@@ -46,15 +46,15 @@ def serialize_aws_json_1_1(value: Consumer) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Consumer:
     out: Consumer = {}  # type: ignore[typeddict-item]
-    if "ConsumerName" in data:
+    if data.get("ConsumerName") is not None:
         out["consumer_name"] = data["ConsumerName"]
     else:
         raise DeserializationError("Consumer.consumer_name required")
-    if "ConsumerARN" in data:
+    if data.get("ConsumerARN") is not None:
         out["consumer_arn"] = data["ConsumerARN"]
     else:
         raise DeserializationError("Consumer.consumer_arn required")
-    if "ConsumerStatus" in data:
+    if data.get("ConsumerStatus") is not None:
         import capo_kinesis.types.consumer_status
 
         out["consumer_status"] = (
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_1(data: dict) -> Consumer:
         )
     else:
         raise DeserializationError("Consumer.consumer_status required")
-    if "ConsumerCreationTimestamp" in data:
+    if data.get("ConsumerCreationTimestamp") is not None:
         import capo_kinesis.types.timestamp
 
         out["consumer_creation_timestamp"] = (

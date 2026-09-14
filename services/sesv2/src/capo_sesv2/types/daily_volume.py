@@ -51,19 +51,19 @@ def serialize_json(value: DailyVolume) -> dict:
 
 def deserialize_json(data: dict) -> DailyVolume:
     out: DailyVolume = {}  # type: ignore[typeddict-item]
-    if "StartDate" in data:
+    if data.get("StartDate") is not None:
         import capo_sesv2.types.timestamp
 
         out["start_date"] = capo_sesv2.types.timestamp.deserialize_json(
             data["StartDate"]
         )
-    if "VolumeStatistics" in data:
+    if data.get("VolumeStatistics") is not None:
         import capo_sesv2.types.volume_statistics
 
         out["volume_statistics"] = capo_sesv2.types.volume_statistics.deserialize_json(
             data["VolumeStatistics"]
         )
-    if "DomainIspPlacements" in data:
+    if data.get("DomainIspPlacements") is not None:
         import capo_sesv2.types.domain_isp_placements
 
         out["domain_isp_placements"] = (

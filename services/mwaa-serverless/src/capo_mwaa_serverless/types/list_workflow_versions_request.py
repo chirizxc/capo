@@ -4,6 +4,8 @@ from typing import TYPE_CHECKING
 
 from typing_extensions import NotRequired, TypedDict
 
+from capo_mwaa_serverless.errors import DeserializationError
+
 if TYPE_CHECKING:
     import capo_mwaa_serverless.types.workflow_arn
 
@@ -20,9 +22,23 @@ class ListWorkflowVersionsRequest(TypedDict, closed=True):
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: ListWorkflowVersionsRequest) -> dict:
     out: dict = {}
+    out["MaxResults"] = value.get("max_results", 20)
+    if "next_token" in value:
+        out["NextToken"] = value["next_token"]
+    out["WorkflowArn"] = value["workflow_arn"]
     return out
 
 
 def deserialize_aws_json_1_0(data: dict) -> ListWorkflowVersionsRequest:
     out: ListWorkflowVersionsRequest = {}  # type: ignore[typeddict-item]
+    if data.get("MaxResults") is not None:
+        out["max_results"] = data["MaxResults"]
+    else:
+        out["max_results"] = 20
+    if data.get("NextToken") is not None:
+        out["next_token"] = data["NextToken"]
+    if data.get("WorkflowArn") is not None:
+        out["workflow_arn"] = data["WorkflowArn"]
+    else:
+        raise DeserializationError("ListWorkflowVersionsRequest.workflow_arn required")
     return out

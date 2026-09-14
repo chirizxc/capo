@@ -59,11 +59,11 @@ def serialize_json(value: AppflowIntegrationWorkflowStep) -> dict:
 
 def deserialize_json(data: dict) -> AppflowIntegrationWorkflowStep:
     out: AppflowIntegrationWorkflowStep = {}  # type: ignore[typeddict-item]
-    if "FlowName" in data:
+    if data.get("FlowName") is not None:
         out["flow_name"] = data["FlowName"]
     else:
         raise DeserializationError("AppflowIntegrationWorkflowStep.flow_name required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_customer_profiles.types.status
 
         out["status"] = capo_customer_profiles.types.status.deserialize_json(
@@ -71,29 +71,29 @@ def deserialize_json(data: dict) -> AppflowIntegrationWorkflowStep:
         )
     else:
         raise DeserializationError("AppflowIntegrationWorkflowStep.status required")
-    if "ExecutionMessage" in data:
+    if data.get("ExecutionMessage") is not None:
         out["execution_message"] = data["ExecutionMessage"]
     else:
         raise DeserializationError(
             "AppflowIntegrationWorkflowStep.execution_message required"
         )
-    if "RecordsProcessed" in data:
+    if data.get("RecordsProcessed") is not None:
         out["records_processed"] = data["RecordsProcessed"]
     else:
         out["records_processed"] = 0
-    if "BatchRecordsStartTime" in data:
+    if data.get("BatchRecordsStartTime") is not None:
         out["batch_records_start_time"] = data["BatchRecordsStartTime"]
     else:
         raise DeserializationError(
             "AppflowIntegrationWorkflowStep.batch_records_start_time required"
         )
-    if "BatchRecordsEndTime" in data:
+    if data.get("BatchRecordsEndTime") is not None:
         out["batch_records_end_time"] = data["BatchRecordsEndTime"]
     else:
         raise DeserializationError(
             "AppflowIntegrationWorkflowStep.batch_records_end_time required"
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["created_at"] = capo_customer_profiles.types.timestamp.deserialize_json(
@@ -101,7 +101,7 @@ def deserialize_json(data: dict) -> AppflowIntegrationWorkflowStep:
         )
     else:
         raise DeserializationError("AppflowIntegrationWorkflowStep.created_at required")
-    if "LastUpdatedAt" in data:
+    if data.get("LastUpdatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["last_updated_at"] = (

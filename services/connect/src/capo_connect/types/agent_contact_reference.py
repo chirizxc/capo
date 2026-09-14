@@ -75,13 +75,13 @@ def serialize_json(value: AgentContactReference) -> dict:
 
 def deserialize_json(data: dict) -> AgentContactReference:
     out: AgentContactReference = {}  # type: ignore[typeddict-item]
-    if "ContactId" in data:
+    if data.get("ContactId") is not None:
         out["contact_id"] = data["ContactId"]
-    if "Channel" in data:
+    if data.get("Channel") is not None:
         import capo_connect.types.channel
 
         out["channel"] = capo_connect.types.channel.deserialize_json(data["Channel"])
-    if "InitiationMethod" in data:
+    if data.get("InitiationMethod") is not None:
         import capo_connect.types.contact_initiation_method
 
         out["initiation_method"] = (
@@ -89,19 +89,19 @@ def deserialize_json(data: dict) -> AgentContactReference:
                 data["InitiationMethod"]
             )
         )
-    if "AgentContactState" in data:
+    if data.get("AgentContactState") is not None:
         import capo_connect.types.contact_state
 
         out["agent_contact_state"] = capo_connect.types.contact_state.deserialize_json(
             data["AgentContactState"]
         )
-    if "StateStartTimestamp" in data:
+    if data.get("StateStartTimestamp") is not None:
         import capo_connect.types.timestamp
 
         out["state_start_timestamp"] = capo_connect.types.timestamp.deserialize_json(
             data["StateStartTimestamp"]
         )
-    if "ConnectedToAgentTimestamp" in data:
+    if data.get("ConnectedToAgentTimestamp") is not None:
         import capo_connect.types.timestamp
 
         out["connected_to_agent_timestamp"] = (
@@ -109,7 +109,7 @@ def deserialize_json(data: dict) -> AgentContactReference:
                 data["ConnectedToAgentTimestamp"]
             )
         )
-    if "Queue" in data:
+    if data.get("Queue") is not None:
         import capo_connect.types.queue_reference
 
         out["queue"] = capo_connect.types.queue_reference.deserialize_json(

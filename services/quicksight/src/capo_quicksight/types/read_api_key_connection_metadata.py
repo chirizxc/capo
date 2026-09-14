@@ -29,12 +29,12 @@ def serialize_json(value: ReadAPIKeyConnectionMetadata) -> dict:
 
 def deserialize_json(data: dict) -> ReadAPIKeyConnectionMetadata:
     out: ReadAPIKeyConnectionMetadata = {}  # type: ignore[typeddict-item]
-    if "BaseEndpoint" in data:
+    if data.get("BaseEndpoint") is not None:
         out["base_endpoint"] = data["BaseEndpoint"]
     else:
         raise DeserializationError(
             "ReadAPIKeyConnectionMetadata.base_endpoint required"
         )
-    if "Email" in data:
+    if data.get("Email") is not None:
         out["email"] = data["Email"]
     return out

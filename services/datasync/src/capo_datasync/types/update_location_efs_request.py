@@ -56,17 +56,17 @@ def serialize_aws_json_1_1(value: UpdateLocationEfsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateLocationEfsRequest:
     out: UpdateLocationEfsRequest = {}  # type: ignore[typeddict-item]
-    if "LocationArn" in data:
+    if data.get("LocationArn") is not None:
         out["location_arn"] = data["LocationArn"]
     else:
         raise DeserializationError("UpdateLocationEfsRequest.location_arn required")
-    if "Subdirectory" in data:
+    if data.get("Subdirectory") is not None:
         out["subdirectory"] = data["Subdirectory"]
-    if "AccessPointArn" in data:
+    if data.get("AccessPointArn") is not None:
         out["access_point_arn"] = data["AccessPointArn"]
-    if "FileSystemAccessRoleArn" in data:
+    if data.get("FileSystemAccessRoleArn") is not None:
         out["file_system_access_role_arn"] = data["FileSystemAccessRoleArn"]
-    if "InTransitEncryption" in data:
+    if data.get("InTransitEncryption") is not None:
         import capo_datasync.types.efs_in_transit_encryption
 
         out["in_transit_encryption"] = (

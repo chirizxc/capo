@@ -24,7 +24,7 @@ def serialize_json(value: OutputTypeNotFoundException_) -> dict:
 
 def deserialize_json(data: dict) -> OutputTypeNotFoundException_:
     out: OutputTypeNotFoundException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class OutputTypeNotFoundException(ServiceError):
 
     code: str | None = "OutputTypeNotFoundException"
 
-    def __init__(self, data: OutputTypeNotFoundException_):
+    def __init__(self, data: OutputTypeNotFoundException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="OutputTypeNotFoundException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "OutputTypeNotFoundException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "OutputTypeNotFoundException":
+        return cls(deserialize_json(data), message)

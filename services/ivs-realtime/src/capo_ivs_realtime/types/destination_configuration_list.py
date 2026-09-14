@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> DestinationConfigurationList:
 
     out: DestinationConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_ivs_realtime.types.destination_configuration.deserialize_json(item)
         )

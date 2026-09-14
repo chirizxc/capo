@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> KinesisVideoStreamPoolSummaryList:
 
     out: KinesisVideoStreamPoolSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_chime_sdk_media_pipelines.types.kinesis_video_stream_pool_summary.deserialize_json(
                 item

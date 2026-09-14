@@ -86,9 +86,9 @@ def serialize_json(value: PipeSourceKinesisStreamParameters) -> dict:
 
 def deserialize_json(data: dict) -> PipeSourceKinesisStreamParameters:
     out: PipeSourceKinesisStreamParameters = {}  # type: ignore[typeddict-item]
-    if "BatchSize" in data:
+    if data.get("BatchSize") is not None:
         out["batch_size"] = data["BatchSize"]
-    if "DeadLetterConfig" in data:
+    if data.get("DeadLetterConfig") is not None:
         import capo_pipes.types.dead_letter_config
 
         out["dead_letter_config"] = (
@@ -96,25 +96,25 @@ def deserialize_json(data: dict) -> PipeSourceKinesisStreamParameters:
                 data["DeadLetterConfig"]
             )
         )
-    if "OnPartialBatchItemFailure" in data:
+    if data.get("OnPartialBatchItemFailure") is not None:
         out["on_partial_batch_item_failure"] = data["OnPartialBatchItemFailure"]
-    if "MaximumBatchingWindowInSeconds" in data:
+    if data.get("MaximumBatchingWindowInSeconds") is not None:
         out["maximum_batching_window_in_seconds"] = data[
             "MaximumBatchingWindowInSeconds"
         ]
-    if "MaximumRecordAgeInSeconds" in data:
+    if data.get("MaximumRecordAgeInSeconds") is not None:
         out["maximum_record_age_in_seconds"] = data["MaximumRecordAgeInSeconds"]
-    if "MaximumRetryAttempts" in data:
+    if data.get("MaximumRetryAttempts") is not None:
         out["maximum_retry_attempts"] = data["MaximumRetryAttempts"]
-    if "ParallelizationFactor" in data:
+    if data.get("ParallelizationFactor") is not None:
         out["parallelization_factor"] = data["ParallelizationFactor"]
-    if "StartingPosition" in data:
+    if data.get("StartingPosition") is not None:
         out["starting_position"] = data["StartingPosition"]
     else:
         raise DeserializationError(
             "PipeSourceKinesisStreamParameters.starting_position required"
         )
-    if "StartingPositionTimestamp" in data:
+    if data.get("StartingPositionTimestamp") is not None:
         import capo_pipes.types.timestamp
 
         out["starting_position_timestamp"] = (

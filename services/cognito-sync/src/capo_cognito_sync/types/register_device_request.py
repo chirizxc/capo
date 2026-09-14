@@ -36,7 +36,7 @@ def serialize_json(value: RegisterDeviceRequest) -> dict:
 
 def deserialize_json(data: dict) -> RegisterDeviceRequest:
     out: RegisterDeviceRequest = {}  # type: ignore[typeddict-item]
-    if "Platform" in data:
+    if data.get("Platform") is not None:
         import capo_cognito_sync.types.platform
 
         out["platform"] = capo_cognito_sync.types.platform.deserialize_json(
@@ -44,7 +44,7 @@ def deserialize_json(data: dict) -> RegisterDeviceRequest:
         )
     else:
         raise DeserializationError("RegisterDeviceRequest.platform required")
-    if "Token" in data:
+    if data.get("Token") is not None:
         out["token"] = data["Token"]
     else:
         raise DeserializationError("RegisterDeviceRequest.token required")

@@ -25,7 +25,7 @@ def serialize_json(value: DescribeViewResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeViewResponse:
     out: DescribeViewResponse = {}  # type: ignore[typeddict-item]
-    if "View" in data:
+    if data.get("View") is not None:
         import capo_connect.types.view
 
         out["view"] = capo_connect.types.view.deserialize_json(data["View"])

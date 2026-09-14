@@ -43,18 +43,18 @@ def serialize_aws_json_1_1(value: DescribeEntityRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeEntityRequest:
     out: DescribeEntityRequest = {}  # type: ignore[typeddict-item]
-    if "ConnectionName" in data:
+    if data.get("ConnectionName") is not None:
         out["connection_name"] = data["ConnectionName"]
     else:
         raise DeserializationError("DescribeEntityRequest.connection_name required")
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "EntityName" in data:
+    if data.get("EntityName") is not None:
         out["entity_name"] = data["EntityName"]
     else:
         raise DeserializationError("DescribeEntityRequest.entity_name required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "DataStoreApiVersion" in data:
+    if data.get("DataStoreApiVersion") is not None:
         out["data_store_api_version"] = data["DataStoreApiVersion"]
     return out

@@ -70,11 +70,11 @@ def serialize_json(value: MetricQuery) -> dict:
 
 def deserialize_json(data: dict) -> MetricQuery:
     out: MetricQuery = {}  # type: ignore[typeddict-item]
-    if "MetricName" in data:
+    if data.get("MetricName") is not None:
         out["metric_name"] = data["MetricName"]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "MetricStat" in data:
+    if data.get("MetricStat") is not None:
         import capo_sagemaker_metrics.types.metric_statistic
 
         out["metric_stat"] = (
@@ -82,20 +82,20 @@ def deserialize_json(data: dict) -> MetricQuery:
                 data["MetricStat"]
             )
         )
-    if "Period" in data:
+    if data.get("Period") is not None:
         import capo_sagemaker_metrics.types.period
 
         out["period"] = capo_sagemaker_metrics.types.period.deserialize_json(
             data["Period"]
         )
-    if "XAxisType" in data:
+    if data.get("XAxisType") is not None:
         import capo_sagemaker_metrics.types.x_axis_type
 
         out["x_axis_type"] = capo_sagemaker_metrics.types.x_axis_type.deserialize_json(
             data["XAxisType"]
         )
-    if "Start" in data:
+    if data.get("Start") is not None:
         out["start"] = data["Start"]
-    if "End" in data:
+    if data.get("End") is not None:
         out["end"] = data["End"]
     return out

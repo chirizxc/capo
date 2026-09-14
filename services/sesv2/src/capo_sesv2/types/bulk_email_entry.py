@@ -61,7 +61,7 @@ def serialize_json(value: BulkEmailEntry) -> dict:
 
 def deserialize_json(data: dict) -> BulkEmailEntry:
     out: BulkEmailEntry = {}  # type: ignore[typeddict-item]
-    if "Destination" in data:
+    if data.get("Destination") is not None:
         import capo_sesv2.types.destination
 
         out["destination"] = capo_sesv2.types.destination.deserialize_json(
@@ -69,13 +69,13 @@ def deserialize_json(data: dict) -> BulkEmailEntry:
         )
     else:
         raise DeserializationError("BulkEmailEntry.destination required")
-    if "ReplacementTags" in data:
+    if data.get("ReplacementTags") is not None:
         import capo_sesv2.types.message_tag_list
 
         out["replacement_tags"] = capo_sesv2.types.message_tag_list.deserialize_json(
             data["ReplacementTags"]
         )
-    if "ReplacementEmailContent" in data:
+    if data.get("ReplacementEmailContent") is not None:
         import capo_sesv2.types.replacement_email_content
 
         out["replacement_email_content"] = (
@@ -83,7 +83,7 @@ def deserialize_json(data: dict) -> BulkEmailEntry:
                 data["ReplacementEmailContent"]
             )
         )
-    if "ReplacementHeaders" in data:
+    if data.get("ReplacementHeaders") is not None:
         import capo_sesv2.types.message_header_list
 
         out["replacement_headers"] = (

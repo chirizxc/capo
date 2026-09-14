@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> MetaFlowCategoryList:
 
     out: MetaFlowCategoryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_socialmessaging.types.meta_flow_category.deserialize_json(item))
     return out

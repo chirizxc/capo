@@ -84,11 +84,11 @@ def serialize_json(value: ListContactsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListContactsRequest:
     out: ListContactsRequest = {}  # type: ignore[typeddict-item]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "statusList" in data:
+    if data.get("statusList") is not None:
         import capo_groundstation.types.status_list
 
         out["status_list"] = capo_groundstation.types.status_list.deserialize_json(
@@ -96,7 +96,7 @@ def deserialize_json(data: dict) -> ListContactsRequest:
         )
     else:
         raise DeserializationError("ListContactsRequest.status_list required")
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_groundstation.types._prelude.timestamp
 
         out["start_time"] = (
@@ -106,7 +106,7 @@ def deserialize_json(data: dict) -> ListContactsRequest:
         )
     else:
         raise DeserializationError("ListContactsRequest.start_time required")
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_groundstation.types._prelude.timestamp
 
         out["end_time"] = capo_groundstation.types._prelude.timestamp.deserialize_json(
@@ -114,13 +114,13 @@ def deserialize_json(data: dict) -> ListContactsRequest:
         )
     else:
         raise DeserializationError("ListContactsRequest.end_time required")
-    if "groundStation" in data:
+    if data.get("groundStation") is not None:
         out["ground_station"] = data["groundStation"]
-    if "satelliteArn" in data:
+    if data.get("satelliteArn") is not None:
         out["satellite_arn"] = data["satelliteArn"]
-    if "missionProfileArn" in data:
+    if data.get("missionProfileArn") is not None:
         out["mission_profile_arn"] = data["missionProfileArn"]
-    if "ephemeris" in data:
+    if data.get("ephemeris") is not None:
         import capo_groundstation.types.ephemeris_filter
 
         out["ephemeris"] = capo_groundstation.types.ephemeris_filter.deserialize_json(

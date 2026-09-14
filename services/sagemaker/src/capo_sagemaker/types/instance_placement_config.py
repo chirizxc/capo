@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: InstancePlacementConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InstancePlacementConfig:
     out: InstancePlacementConfig = {}  # type: ignore[typeddict-item]
-    if "EnableMultipleJobs" in data:
+    if data.get("EnableMultipleJobs") is not None:
         out["enable_multiple_jobs"] = data["EnableMultipleJobs"]
-    if "PlacementSpecifications" in data:
+    if data.get("PlacementSpecifications") is not None:
         import capo_sagemaker.types.placement_specifications
 
         out["placement_specifications"] = (

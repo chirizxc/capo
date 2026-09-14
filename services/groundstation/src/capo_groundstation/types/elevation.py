@@ -20,7 +20,15 @@ class Elevation(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: Elevation) -> dict:
     out: dict = {}
-    out["value"] = value["value"]
+    out["value"] = (
+        "NaN"
+        if value["value"] != value["value"]
+        else "Infinity"
+        if value["value"] == float("inf")
+        else "-Infinity"
+        if value["value"] == float("-inf")
+        else value["value"]
+    )
     import capo_groundstation.types.angle_units
 
     out["unit"] = capo_groundstation.types.angle_units.serialize_json(value["unit"])
@@ -29,11 +37,11 @@ def serialize_json(value: Elevation) -> dict:
 
 def deserialize_json(data: dict) -> Elevation:
     out: Elevation = {}  # type: ignore[typeddict-item]
-    if "value" in data:
-        out["value"] = data["value"]
+    if data.get("value") is not None:
+        out["value"] = float(data["value"])
     else:
         raise DeserializationError("Elevation.value required")
-    if "unit" in data:
+    if data.get("unit") is not None:
         import capo_groundstation.types.angle_units
 
         out["unit"] = capo_groundstation.types.angle_units.deserialize_json(

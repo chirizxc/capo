@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> ConsumedLicenseSummaryList:
 
     out: ConsumedLicenseSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_license_manager.types.consumed_license_summary.deserialize_aws_json_1_1(
                 item

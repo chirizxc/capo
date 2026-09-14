@@ -22,7 +22,15 @@ class Threshold(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: Threshold) -> dict:
     out: dict = {}
-    out["Value"] = value.get("value", 0)
+    out["Value"] = (
+        "NaN"
+        if value.get("value", 0) != value.get("value", 0)
+        else "Infinity"
+        if value.get("value", 0) == float("inf")
+        else "-Infinity"
+        if value.get("value", 0) == float("-inf")
+        else value.get("value", 0)
+    )
     if "type" in value:
         import capo_databrew.types.threshold_type
 
@@ -36,15 +44,15 @@ def serialize_json(value: Threshold) -> dict:
 
 def deserialize_json(data: dict) -> Threshold:
     out: Threshold = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
-        out["value"] = data["Value"]
+    if data.get("Value") is not None:
+        out["value"] = float(data["Value"])
     else:
         out["value"] = 0
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_databrew.types.threshold_type
 
         out["type"] = capo_databrew.types.threshold_type.deserialize_json(data["Type"])
-    if "Unit" in data:
+    if data.get("Unit") is not None:
         import capo_databrew.types.threshold_unit
 
         out["unit"] = capo_databrew.types.threshold_unit.deserialize_json(data["Unit"])

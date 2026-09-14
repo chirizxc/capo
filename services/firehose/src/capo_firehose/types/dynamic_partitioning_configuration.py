@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: DynamicPartitioningConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DynamicPartitioningConfiguration:
     out: DynamicPartitioningConfiguration = {}  # type: ignore[typeddict-item]
-    if "RetryOptions" in data:
+    if data.get("RetryOptions") is not None:
         import capo_firehose.types.retry_options
 
         out["retry_options"] = (
@@ -40,6 +40,6 @@ def deserialize_aws_json_1_1(data: dict) -> DynamicPartitioningConfiguration:
                 data["RetryOptions"]
             )
         )
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
     return out

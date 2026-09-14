@@ -125,19 +125,19 @@ def serialize_aws_json_1_1(value: InstanceSnapshot) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InstanceSnapshot:
     out: InstanceSnapshot = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "supportCode" in data:
+    if data.get("supportCode") is not None:
         out["support_code"] = data["supportCode"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_lightsail.types.iso_date
 
         out["created_at"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
             data["createdAt"]
         )
-    if "location" in data:
+    if data.get("location") is not None:
         import capo_lightsail.types.resource_location
 
         out["location"] = (
@@ -145,7 +145,7 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceSnapshot:
                 data["location"]
             )
         )
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_lightsail.types.resource_type
 
         out["resource_type"] = (
@@ -153,13 +153,13 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceSnapshot:
                 data["resourceType"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_lightsail.types.tag_list
 
         out["tags"] = capo_lightsail.types.tag_list.deserialize_aws_json_1_1(
             data["tags"]
         )
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_lightsail.types.instance_snapshot_state
 
         out["state"] = (
@@ -167,9 +167,9 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceSnapshot:
                 data["state"]
             )
         )
-    if "progress" in data:
+    if data.get("progress") is not None:
         out["progress"] = data["progress"]
-    if "fromAttachedDisks" in data:
+    if data.get("fromAttachedDisks") is not None:
         import capo_lightsail.types.disk_list
 
         out["from_attached_disks"] = (
@@ -177,16 +177,16 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceSnapshot:
                 data["fromAttachedDisks"]
             )
         )
-    if "fromInstanceName" in data:
+    if data.get("fromInstanceName") is not None:
         out["from_instance_name"] = data["fromInstanceName"]
-    if "fromInstanceArn" in data:
+    if data.get("fromInstanceArn") is not None:
         out["from_instance_arn"] = data["fromInstanceArn"]
-    if "fromBlueprintId" in data:
+    if data.get("fromBlueprintId") is not None:
         out["from_blueprint_id"] = data["fromBlueprintId"]
-    if "fromBundleId" in data:
+    if data.get("fromBundleId") is not None:
         out["from_bundle_id"] = data["fromBundleId"]
-    if "isFromAutoSnapshot" in data:
+    if data.get("isFromAutoSnapshot") is not None:
         out["is_from_auto_snapshot"] = data["isFromAutoSnapshot"]
-    if "sizeInGb" in data:
+    if data.get("sizeInGb") is not None:
         out["size_in_gb"] = data["sizeInGb"]
     return out

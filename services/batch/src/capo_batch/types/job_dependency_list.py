@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> JobDependencyList:
 
     out: JobDependencyList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_batch.types.job_dependency.deserialize_json(item))
     return out

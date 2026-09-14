@@ -62,9 +62,9 @@ def serialize_aws_json_1_1(value: CreateDirectoryConfigRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDirectoryConfigRequest:
     out: CreateDirectoryConfigRequest = {}  # type: ignore[typeddict-item]
-    if "DirectoryName" in data:
+    if data.get("DirectoryName") is not None:
         out["directory_name"] = data["DirectoryName"]
-    if "OrganizationalUnitDistinguishedNames" in data:
+    if data.get("OrganizationalUnitDistinguishedNames") is not None:
         import capo_appstream.types.organizational_unit_distinguished_names_list
 
         out["organizational_unit_distinguished_names"] = (
@@ -72,7 +72,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDirectoryConfigRequest:
                 data["OrganizationalUnitDistinguishedNames"]
             )
         )
-    if "ServiceAccountCredentials" in data:
+    if data.get("ServiceAccountCredentials") is not None:
         import capo_appstream.types.service_account_credentials
 
         out["service_account_credentials"] = (
@@ -80,7 +80,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDirectoryConfigRequest:
                 data["ServiceAccountCredentials"]
             )
         )
-    if "CertificateBasedAuthProperties" in data:
+    if data.get("CertificateBasedAuthProperties") is not None:
         import capo_appstream.types.certificate_based_auth_properties
 
         out["certificate_based_auth_properties"] = (

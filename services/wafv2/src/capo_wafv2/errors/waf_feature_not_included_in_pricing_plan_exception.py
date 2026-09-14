@@ -39,9 +39,9 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> WAFFeatureNotIncludedInPricingPlanException_:
     out: WAFFeatureNotIncludedInPricingPlanException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "DisallowedFeatures" in data:
+    if data.get("DisallowedFeatures") is not None:
         import capo_wafv2.types.disallowed_features
 
         out["disallowed_features"] = (
@@ -57,17 +57,22 @@ class WAFFeatureNotIncludedInPricingPlanException(ServiceError):
 
     code: str | None = "WAFFeatureNotIncludedInPricingPlanException"
 
-    def __init__(self, data: WAFFeatureNotIncludedInPricingPlanException_):
+    def __init__(
+        self,
+        data: WAFFeatureNotIncludedInPricingPlanException_,
+        message: str | None = None,
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="WAFFeatureNotIncludedInPricingPlanException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
     def from_aws_json_1_1(
-        cls, data: dict
+        cls, data: dict, message: str | None = None
     ) -> "WAFFeatureNotIncludedInPricingPlanException":
-        return cls(deserialize_aws_json_1_1(data))
+        return cls(deserialize_aws_json_1_1(data), message)

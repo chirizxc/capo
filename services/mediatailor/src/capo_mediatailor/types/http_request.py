@@ -52,19 +52,19 @@ def serialize_json(value: HttpRequest) -> dict:
 
 def deserialize_json(data: dict) -> HttpRequest:
     out: HttpRequest = {}  # type: ignore[typeddict-item]
-    if "Method" in data:
+    if data.get("Method") is not None:
         import capo_mediatailor.types.method
 
         out["method"] = capo_mediatailor.types.method.deserialize_json(data["Method"])
-    if "Body" in data:
+    if data.get("Body") is not None:
         out["body"] = data["Body"]
-    if "Headers" in data:
+    if data.get("Headers") is not None:
         import capo_mediatailor.types.string_map
 
         out["headers"] = capo_mediatailor.types.string_map.deserialize_json(
             data["Headers"]
         )
-    if "CompressRequest" in data:
+    if data.get("CompressRequest") is not None:
         import capo_mediatailor.types.compression_method
 
         out["compress_request"] = (

@@ -22,7 +22,7 @@ def serialize_aws_json_1_1(value: ShardConfigurationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ShardConfigurationRequest:
     out: ShardConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "ShardCount" in data:
+    if data.get("ShardCount") is not None:
         out["shard_count"] = data["ShardCount"]
     else:
         out["shard_count"] = 0

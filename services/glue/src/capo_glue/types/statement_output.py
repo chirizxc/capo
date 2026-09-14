@@ -62,27 +62,27 @@ def serialize_aws_json_1_1(value: StatementOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StatementOutput:
     out: StatementOutput = {}  # type: ignore[typeddict-item]
-    if "Data" in data:
+    if data.get("Data") is not None:
         import capo_glue.types.statement_output_data
 
         out["data"] = capo_glue.types.statement_output_data.deserialize_aws_json_1_1(
             data["Data"]
         )
-    if "ExecutionCount" in data:
+    if data.get("ExecutionCount") is not None:
         out["execution_count"] = data["ExecutionCount"]
     else:
         out["execution_count"] = 0
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_glue.types.statement_state
 
         out["status"] = capo_glue.types.statement_state.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "ErrorName" in data:
+    if data.get("ErrorName") is not None:
         out["error_name"] = data["ErrorName"]
-    if "ErrorValue" in data:
+    if data.get("ErrorValue") is not None:
         out["error_value"] = data["ErrorValue"]
-    if "Traceback" in data:
+    if data.get("Traceback") is not None:
         import capo_glue.types.orchestration_string_list
 
         out["traceback"] = (

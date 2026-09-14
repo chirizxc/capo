@@ -97,25 +97,25 @@ def serialize_aws_json_1_0(value: CollectionGroupDetail) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CollectionGroupDetail:
     out: CollectionGroupDetail = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "standbyReplicas" in data:
+    if data.get("standbyReplicas") is not None:
         out["standby_replicas"] = data["standbyReplicas"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_opensearchserverless.types.tags
 
         out["tags"] = capo_opensearchserverless.types.tags.deserialize_aws_json_1_0(
             data["tags"]
         )
-    if "createdDate" in data:
+    if data.get("createdDate") is not None:
         out["created_date"] = data["createdDate"]
-    if "capacityLimits" in data:
+    if data.get("capacityLimits") is not None:
         import capo_opensearchserverless.types.collection_group_capacity_limits
 
         out["capacity_limits"] = (
@@ -123,7 +123,7 @@ def deserialize_aws_json_1_0(data: dict) -> CollectionGroupDetail:
                 data["capacityLimits"]
             )
         )
-    if "currentCapacity" in data:
+    if data.get("currentCapacity") is not None:
         import capo_opensearchserverless.types.current_capacity
 
         out["current_capacity"] = (
@@ -131,8 +131,8 @@ def deserialize_aws_json_1_0(data: dict) -> CollectionGroupDetail:
                 data["currentCapacity"]
             )
         )
-    if "numberOfCollections" in data:
+    if data.get("numberOfCollections") is not None:
         out["number_of_collections"] = data["numberOfCollections"]
-    if "generation" in data:
+    if data.get("generation") is not None:
         out["generation"] = data["generation"]
     return out

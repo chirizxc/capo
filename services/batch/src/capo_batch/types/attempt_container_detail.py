@@ -53,17 +53,17 @@ def serialize_json(value: AttemptContainerDetail) -> dict:
 
 def deserialize_json(data: dict) -> AttemptContainerDetail:
     out: AttemptContainerDetail = {}  # type: ignore[typeddict-item]
-    if "containerInstanceArn" in data:
+    if data.get("containerInstanceArn") is not None:
         out["container_instance_arn"] = data["containerInstanceArn"]
-    if "taskArn" in data:
+    if data.get("taskArn") is not None:
         out["task_arn"] = data["taskArn"]
-    if "exitCode" in data:
+    if data.get("exitCode") is not None:
         out["exit_code"] = data["exitCode"]
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
-    if "logStreamName" in data:
+    if data.get("logStreamName") is not None:
         out["log_stream_name"] = data["logStreamName"]
-    if "networkInterfaces" in data:
+    if data.get("networkInterfaces") is not None:
         import capo_batch.types.network_interface_list
 
         out["network_interfaces"] = (

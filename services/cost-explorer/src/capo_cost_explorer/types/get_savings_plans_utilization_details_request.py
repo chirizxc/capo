@@ -69,7 +69,7 @@ def serialize_aws_json_1_1(value: GetSavingsPlansUtilizationDetailsRequest) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> GetSavingsPlansUtilizationDetailsRequest:
     out: GetSavingsPlansUtilizationDetailsRequest = {}  # type: ignore[typeddict-item]
-    if "TimePeriod" in data:
+    if data.get("TimePeriod") is not None:
         import capo_cost_explorer.types.date_interval
 
         out["time_period"] = (
@@ -81,13 +81,13 @@ def deserialize_aws_json_1_1(data: dict) -> GetSavingsPlansUtilizationDetailsReq
         raise DeserializationError(
             "GetSavingsPlansUtilizationDetailsRequest.time_period required"
         )
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_cost_explorer.types.expression
 
         out["filter"] = capo_cost_explorer.types.expression.deserialize_aws_json_1_1(
             data["Filter"]
         )
-    if "DataType" in data:
+    if data.get("DataType") is not None:
         import capo_cost_explorer.types.savings_plans_data_types
 
         out["data_type"] = (
@@ -95,11 +95,11 @@ def deserialize_aws_json_1_1(data: dict) -> GetSavingsPlansUtilizationDetailsReq
                 data["DataType"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "SortBy" in data:
+    if data.get("SortBy") is not None:
         import capo_cost_explorer.types.sort_definition
 
         out["sort_by"] = (

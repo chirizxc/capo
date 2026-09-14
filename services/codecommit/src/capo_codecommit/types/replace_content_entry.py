@@ -54,11 +54,11 @@ def serialize_aws_json_1_1(value: ReplaceContentEntry) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReplaceContentEntry:
     out: ReplaceContentEntry = {}  # type: ignore[typeddict-item]
-    if "filePath" in data:
+    if data.get("filePath") is not None:
         out["file_path"] = data["filePath"]
     else:
         raise DeserializationError("ReplaceContentEntry.file_path required")
-    if "replacementType" in data:
+    if data.get("replacementType") is not None:
         import capo_codecommit.types.replacement_type_enum
 
         out["replacement_type"] = (
@@ -68,13 +68,13 @@ def deserialize_aws_json_1_1(data: dict) -> ReplaceContentEntry:
         )
     else:
         raise DeserializationError("ReplaceContentEntry.replacement_type required")
-    if "content" in data:
+    if data.get("content") is not None:
         import capo_codecommit.types.file_content
 
         out["content"] = capo_codecommit.types.file_content.deserialize_aws_json_1_1(
             data["content"]
         )
-    if "fileMode" in data:
+    if data.get("fileMode") is not None:
         import capo_codecommit.types.file_mode_type_enum
 
         out["file_mode"] = (

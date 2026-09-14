@@ -32,7 +32,7 @@ def serialize_json(value: PutVoiceConnectorTerminationCredentialsRequest) -> dic
 
 def deserialize_json(data: dict) -> PutVoiceConnectorTerminationCredentialsRequest:
     out: PutVoiceConnectorTerminationCredentialsRequest = {}  # type: ignore[typeddict-item]
-    if "Credentials" in data:
+    if data.get("Credentials") is not None:
         import capo_chime_sdk_voice.types.credential_list
 
         out["credentials"] = (

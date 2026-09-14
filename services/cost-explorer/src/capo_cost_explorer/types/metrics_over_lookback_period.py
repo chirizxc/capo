@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> MetricsOverLookbackPeriod:
 
     out: MetricsOverLookbackPeriod = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cost_explorer.types.recommendation_detail_hourly_metrics.deserialize_aws_json_1_1(
                 item

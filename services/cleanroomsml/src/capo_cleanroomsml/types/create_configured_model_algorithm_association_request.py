@@ -58,21 +58,21 @@ def serialize_json(value: CreateConfiguredModelAlgorithmAssociationRequest) -> d
 
 def deserialize_json(data: dict) -> CreateConfiguredModelAlgorithmAssociationRequest:
     out: CreateConfiguredModelAlgorithmAssociationRequest = {}  # type: ignore[typeddict-item]
-    if "configuredModelAlgorithmArn" in data:
+    if data.get("configuredModelAlgorithmArn") is not None:
         out["configured_model_algorithm_arn"] = data["configuredModelAlgorithmArn"]
     else:
         raise DeserializationError(
             "CreateConfiguredModelAlgorithmAssociationRequest.configured_model_algorithm_arn required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError(
             "CreateConfiguredModelAlgorithmAssociationRequest.name required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "privacyConfiguration" in data:
+    if data.get("privacyConfiguration") is not None:
         import capo_cleanroomsml.types.privacy_configuration
 
         out["privacy_configuration"] = (
@@ -80,7 +80,7 @@ def deserialize_json(data: dict) -> CreateConfiguredModelAlgorithmAssociationReq
                 data["privacyConfiguration"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_cleanroomsml.types.tag_map
 
         out["tags"] = capo_cleanroomsml.types.tag_map.deserialize_json(data["tags"])

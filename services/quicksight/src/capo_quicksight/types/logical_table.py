@@ -45,11 +45,11 @@ def serialize_json(value: LogicalTable) -> dict:
 
 def deserialize_json(data: dict) -> LogicalTable:
     out: LogicalTable = {}  # type: ignore[typeddict-item]
-    if "Alias" in data:
+    if data.get("Alias") is not None:
         out["alias"] = data["Alias"]
     else:
         raise DeserializationError("LogicalTable.alias required")
-    if "DataTransforms" in data:
+    if data.get("DataTransforms") is not None:
         import capo_quicksight.types.transform_operation_list
 
         out["data_transforms"] = (
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> LogicalTable:
                 data["DataTransforms"]
             )
         )
-    if "Source" in data:
+    if data.get("Source") is not None:
         import capo_quicksight.types.logical_table_source
 
         out["source"] = capo_quicksight.types.logical_table_source.deserialize_json(

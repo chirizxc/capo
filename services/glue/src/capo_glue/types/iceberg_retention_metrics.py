@@ -36,36 +36,52 @@ def serialize_aws_json_1_1(value: IcebergRetentionMetrics) -> dict:
     out["NumberOfManifestListsDeleted"] = value.get(
         "number_of_manifest_lists_deleted", 0
     )
-    out["DpuHours"] = value.get("dpu_hours", 0)
+    out["DpuHours"] = (
+        "NaN"
+        if value.get("dpu_hours", 0) != value.get("dpu_hours", 0)
+        else "Infinity"
+        if value.get("dpu_hours", 0) == float("inf")
+        else "-Infinity"
+        if value.get("dpu_hours", 0) == float("-inf")
+        else value.get("dpu_hours", 0)
+    )
     out["NumberOfDpus"] = value.get("number_of_dpus", 0)
-    out["JobDurationInHour"] = value.get("job_duration_in_hour", 0)
+    out["JobDurationInHour"] = (
+        "NaN"
+        if value.get("job_duration_in_hour", 0) != value.get("job_duration_in_hour", 0)
+        else "Infinity"
+        if value.get("job_duration_in_hour", 0) == float("inf")
+        else "-Infinity"
+        if value.get("job_duration_in_hour", 0) == float("-inf")
+        else value.get("job_duration_in_hour", 0)
+    )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> IcebergRetentionMetrics:
     out: IcebergRetentionMetrics = {}  # type: ignore[typeddict-item]
-    if "NumberOfDataFilesDeleted" in data:
+    if data.get("NumberOfDataFilesDeleted") is not None:
         out["number_of_data_files_deleted"] = data["NumberOfDataFilesDeleted"]
     else:
         out["number_of_data_files_deleted"] = 0
-    if "NumberOfManifestFilesDeleted" in data:
+    if data.get("NumberOfManifestFilesDeleted") is not None:
         out["number_of_manifest_files_deleted"] = data["NumberOfManifestFilesDeleted"]
     else:
         out["number_of_manifest_files_deleted"] = 0
-    if "NumberOfManifestListsDeleted" in data:
+    if data.get("NumberOfManifestListsDeleted") is not None:
         out["number_of_manifest_lists_deleted"] = data["NumberOfManifestListsDeleted"]
     else:
         out["number_of_manifest_lists_deleted"] = 0
-    if "DpuHours" in data:
-        out["dpu_hours"] = data["DpuHours"]
+    if data.get("DpuHours") is not None:
+        out["dpu_hours"] = float(data["DpuHours"])
     else:
         out["dpu_hours"] = 0
-    if "NumberOfDpus" in data:
+    if data.get("NumberOfDpus") is not None:
         out["number_of_dpus"] = data["NumberOfDpus"]
     else:
         out["number_of_dpus"] = 0
-    if "JobDurationInHour" in data:
-        out["job_duration_in_hour"] = data["JobDurationInHour"]
+    if data.get("JobDurationInHour") is not None:
+        out["job_duration_in_hour"] = float(data["JobDurationInHour"])
     else:
         out["job_duration_in_hour"] = 0
     return out

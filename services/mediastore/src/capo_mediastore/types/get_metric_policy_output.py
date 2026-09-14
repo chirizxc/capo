@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: GetMetricPolicyOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetMetricPolicyOutput:
     out: GetMetricPolicyOutput = {}  # type: ignore[typeddict-item]
-    if "MetricPolicy" in data:
+    if data.get("MetricPolicy") is not None:
         import capo_mediastore.types.metric_policy
 
         out["metric_policy"] = (

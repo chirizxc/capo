@@ -65,36 +65,36 @@ def serialize_aws_json_1_1(value: JobFlowExecutionStatusDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> JobFlowExecutionStatusDetail:
     out: JobFlowExecutionStatusDetail = {}  # type: ignore[typeddict-item]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_emr.types.job_flow_execution_state
 
         out["state"] = capo_emr.types.job_flow_execution_state.deserialize_aws_json_1_1(
             data["State"]
         )
-    if "CreationDateTime" in data:
+    if data.get("CreationDateTime") is not None:
         import capo_emr.types.date
 
         out["creation_date_time"] = capo_emr.types.date.deserialize_aws_json_1_1(
             data["CreationDateTime"]
         )
-    if "StartDateTime" in data:
+    if data.get("StartDateTime") is not None:
         import capo_emr.types.date
 
         out["start_date_time"] = capo_emr.types.date.deserialize_aws_json_1_1(
             data["StartDateTime"]
         )
-    if "ReadyDateTime" in data:
+    if data.get("ReadyDateTime") is not None:
         import capo_emr.types.date
 
         out["ready_date_time"] = capo_emr.types.date.deserialize_aws_json_1_1(
             data["ReadyDateTime"]
         )
-    if "EndDateTime" in data:
+    if data.get("EndDateTime") is not None:
         import capo_emr.types.date
 
         out["end_date_time"] = capo_emr.types.date.deserialize_aws_json_1_1(
             data["EndDateTime"]
         )
-    if "LastStateChangeReason" in data:
+    if data.get("LastStateChangeReason") is not None:
         out["last_state_change_reason"] = data["LastStateChangeReason"]
     return out

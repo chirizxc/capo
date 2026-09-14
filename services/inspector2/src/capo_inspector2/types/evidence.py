@@ -33,10 +33,10 @@ def serialize_json(value: Evidence) -> dict:
 
 def deserialize_json(data: dict) -> Evidence:
     out: Evidence = {}  # type: ignore[typeddict-item]
-    if "evidenceRule" in data:
+    if data.get("evidenceRule") is not None:
         out["evidence_rule"] = data["evidenceRule"]
-    if "evidenceDetail" in data:
+    if data.get("evidenceDetail") is not None:
         out["evidence_detail"] = data["evidenceDetail"]
-    if "severity" in data:
+    if data.get("severity") is not None:
         out["severity"] = data["severity"]
     return out

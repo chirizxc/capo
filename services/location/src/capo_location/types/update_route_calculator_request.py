@@ -33,8 +33,8 @@ def serialize_json(value: UpdateRouteCalculatorRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRouteCalculatorRequest:
     out: UpdateRouteCalculatorRequest = {}  # type: ignore[typeddict-item]
-    if "PricingPlan" in data:
+    if data.get("PricingPlan") is not None:
         out["pricing_plan"] = data["PricingPlan"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

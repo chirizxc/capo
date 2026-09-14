@@ -25,5 +25,7 @@ def deserialize_aws_json_1_1(data: list) -> ListedExecutions:
 
     out: ListedExecutions = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_transfer.types.listed_execution.deserialize_aws_json_1_1(item))
     return out

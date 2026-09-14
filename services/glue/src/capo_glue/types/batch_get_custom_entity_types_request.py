@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: BatchGetCustomEntityTypesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetCustomEntityTypesRequest:
     out: BatchGetCustomEntityTypesRequest = {}  # type: ignore[typeddict-item]
-    if "Names" in data:
+    if data.get("Names") is not None:
         import capo_glue.types.custom_entity_type_names
 
         out["names"] = (

@@ -19,7 +19,7 @@ def serialize_json(value: CloudFormationProperties) -> dict:
 
 def deserialize_json(data: dict) -> CloudFormationProperties:
     out: CloudFormationProperties = {}  # type: ignore[typeddict-item]
-    if "templateUrl" in data:
+    if data.get("templateUrl") is not None:
         out["template_url"] = data["templateUrl"]
     else:
         raise DeserializationError("CloudFormationProperties.template_url required")

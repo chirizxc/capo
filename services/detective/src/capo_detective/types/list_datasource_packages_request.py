@@ -36,12 +36,12 @@ def serialize_json(value: ListDatasourcePackagesRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListDatasourcePackagesRequest:
     out: ListDatasourcePackagesRequest = {}  # type: ignore[typeddict-item]
-    if "GraphArn" in data:
+    if data.get("GraphArn") is not None:
         out["graph_arn"] = data["GraphArn"]
     else:
         raise DeserializationError("ListDatasourcePackagesRequest.graph_arn required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

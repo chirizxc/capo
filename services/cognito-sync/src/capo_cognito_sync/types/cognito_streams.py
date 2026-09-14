@@ -41,11 +41,11 @@ def serialize_json(value: CognitoStreams) -> dict:
 
 def deserialize_json(data: dict) -> CognitoStreams:
     out: CognitoStreams = {}  # type: ignore[typeddict-item]
-    if "StreamName" in data:
+    if data.get("StreamName") is not None:
         out["stream_name"] = data["StreamName"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "StreamingStatus" in data:
+    if data.get("StreamingStatus") is not None:
         import capo_cognito_sync.types.streaming_status
 
         out["streaming_status"] = (

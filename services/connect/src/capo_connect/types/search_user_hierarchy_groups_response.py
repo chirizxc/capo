@@ -43,7 +43,7 @@ def serialize_json(value: SearchUserHierarchyGroupsResponse) -> dict:
 
 def deserialize_json(data: dict) -> SearchUserHierarchyGroupsResponse:
     out: SearchUserHierarchyGroupsResponse = {}  # type: ignore[typeddict-item]
-    if "UserHierarchyGroups" in data:
+    if data.get("UserHierarchyGroups") is not None:
         import capo_connect.types.user_hierarchy_group_list
 
         out["user_hierarchy_groups"] = (
@@ -51,8 +51,8 @@ def deserialize_json(data: dict) -> SearchUserHierarchyGroupsResponse:
                 data["UserHierarchyGroups"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "ApproximateTotalCount" in data:
+    if data.get("ApproximateTotalCount") is not None:
         out["approximate_total_count"] = data["ApproximateTotalCount"]
     return out

@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: GetDiskSnapshotResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDiskSnapshotResult:
     out: GetDiskSnapshotResult = {}  # type: ignore[typeddict-item]
-    if "diskSnapshot" in data:
+    if data.get("diskSnapshot") is not None:
         import capo_lightsail.types.disk_snapshot
 
         out["disk_snapshot"] = (

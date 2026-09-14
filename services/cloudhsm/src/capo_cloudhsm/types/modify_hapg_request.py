@@ -42,13 +42,13 @@ def serialize_aws_json_1_1(value: ModifyHapgRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModifyHapgRequest:
     out: ModifyHapgRequest = {}  # type: ignore[typeddict-item]
-    if "HapgArn" in data:
+    if data.get("HapgArn") is not None:
         out["hapg_arn"] = data["HapgArn"]
     else:
         raise DeserializationError("ModifyHapgRequest.hapg_arn required")
-    if "Label" in data:
+    if data.get("Label") is not None:
         out["label"] = data["Label"]
-    if "PartitionSerialList" in data:
+    if data.get("PartitionSerialList") is not None:
         import capo_cloudhsm.types.partition_serial_list
 
         out["partition_serial_list"] = (

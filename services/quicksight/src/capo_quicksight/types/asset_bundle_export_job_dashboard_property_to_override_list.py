@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AssetBundleExportJobDashboardPropertyToOverr
 
     out: AssetBundleExportJobDashboardPropertyToOverrideList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.asset_bundle_export_job_dashboard_property_to_override.deserialize_json(
                 item

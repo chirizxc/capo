@@ -27,6 +27,8 @@ def serialize_json(input_to_serialize: AdditionalInfoMap) -> dict:
 def deserialize_json(data: dict) -> AdditionalInfoMap:
     out: AdditionalInfoMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_resiliencehub.types.additional_info_value_list
 
         out[key] = capo_resiliencehub.types.additional_info_value_list.deserialize_json(

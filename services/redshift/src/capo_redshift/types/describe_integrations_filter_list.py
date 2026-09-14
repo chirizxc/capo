@@ -18,6 +18,9 @@ def serialize_query(
 ) -> None:
     import capo_redshift.types.describe_integrations_filter
 
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         capo_redshift.types.describe_integrations_filter.serialize_query(
             item, pairs, f"{prefix}.DescribeIntegrationsFilter.{n}"
@@ -40,6 +43,9 @@ def serialize_query_flat(
 ) -> None:
     import capo_redshift.types.describe_integrations_filter
 
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         capo_redshift.types.describe_integrations_filter.serialize_query(
             item, pairs, f"{prefix}.{n}"

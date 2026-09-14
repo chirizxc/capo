@@ -41,9 +41,9 @@ def serialize_json(value: AbpV1_1) -> dict:
 
 def deserialize_json(data: dict) -> AbpV1_1:
     out: AbpV1_1 = {}  # type: ignore[typeddict-item]
-    if "DevAddr" in data:
+    if data.get("DevAddr") is not None:
         out["dev_addr"] = data["DevAddr"]
-    if "SessionKeys" in data:
+    if data.get("SessionKeys") is not None:
         import capo_iot_wireless.types.session_keys_abp_v1_1
 
         out["session_keys"] = (
@@ -51,6 +51,6 @@ def deserialize_json(data: dict) -> AbpV1_1:
                 data["SessionKeys"]
             )
         )
-    if "FCntStart" in data:
+    if data.get("FCntStart") is not None:
         out["f_cnt_start"] = data["FCntStart"]
     return out

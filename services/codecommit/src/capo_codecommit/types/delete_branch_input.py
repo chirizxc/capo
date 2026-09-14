@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: DeleteBranchInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteBranchInput:
     out: DeleteBranchInput = {}  # type: ignore[typeddict-item]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
     else:
         raise DeserializationError("DeleteBranchInput.repository_name required")
-    if "branchName" in data:
+    if data.get("branchName") is not None:
         out["branch_name"] = data["branchName"]
     else:
         raise DeserializationError("DeleteBranchInput.branch_name required")

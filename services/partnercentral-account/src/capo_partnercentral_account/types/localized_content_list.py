@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> LocalizedContentList:
 
     out: LocalizedContentList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_partnercentral_account.types.localized_content.deserialize_aws_json_1_0(
                 item

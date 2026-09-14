@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> NamespaceSummaryList:
 
     out: NamespaceSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_s3tables.types.namespace_summary.deserialize_json(item))
     return out

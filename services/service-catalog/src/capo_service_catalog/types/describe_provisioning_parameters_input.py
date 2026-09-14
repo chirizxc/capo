@@ -59,18 +59,18 @@ def serialize_aws_json_1_1(value: DescribeProvisioningParametersInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeProvisioningParametersInput:
     out: DescribeProvisioningParametersInput = {}  # type: ignore[typeddict-item]
-    if "AcceptLanguage" in data:
+    if data.get("AcceptLanguage") is not None:
         out["accept_language"] = data["AcceptLanguage"]
-    if "ProductId" in data:
+    if data.get("ProductId") is not None:
         out["product_id"] = data["ProductId"]
-    if "ProductName" in data:
+    if data.get("ProductName") is not None:
         out["product_name"] = data["ProductName"]
-    if "ProvisioningArtifactId" in data:
+    if data.get("ProvisioningArtifactId") is not None:
         out["provisioning_artifact_id"] = data["ProvisioningArtifactId"]
-    if "ProvisioningArtifactName" in data:
+    if data.get("ProvisioningArtifactName") is not None:
         out["provisioning_artifact_name"] = data["ProvisioningArtifactName"]
-    if "PathId" in data:
+    if data.get("PathId") is not None:
         out["path_id"] = data["PathId"]
-    if "PathName" in data:
+    if data.get("PathName") is not None:
         out["path_name"] = data["PathName"]
     return out

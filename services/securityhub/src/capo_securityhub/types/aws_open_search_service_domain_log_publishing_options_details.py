@@ -59,7 +59,7 @@ def deserialize_json(
     data: dict,
 ) -> AwsOpenSearchServiceDomainLogPublishingOptionsDetails:
     out: AwsOpenSearchServiceDomainLogPublishingOptionsDetails = {}  # type: ignore[typeddict-item]
-    if "IndexSlowLogs" in data:
+    if data.get("IndexSlowLogs") is not None:
         import capo_securityhub.types.aws_open_search_service_domain_log_publishing_option
 
         out["index_slow_logs"] = (
@@ -67,7 +67,7 @@ def deserialize_json(
                 data["IndexSlowLogs"]
             )
         )
-    if "SearchSlowLogs" in data:
+    if data.get("SearchSlowLogs") is not None:
         import capo_securityhub.types.aws_open_search_service_domain_log_publishing_option
 
         out["search_slow_logs"] = (
@@ -75,7 +75,7 @@ def deserialize_json(
                 data["SearchSlowLogs"]
             )
         )
-    if "AuditLogs" in data:
+    if data.get("AuditLogs") is not None:
         import capo_securityhub.types.aws_open_search_service_domain_log_publishing_option
 
         out["audit_logs"] = (

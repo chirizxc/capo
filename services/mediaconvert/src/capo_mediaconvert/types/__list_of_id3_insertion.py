@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfId3Insertion:
 
     out: __listOfId3Insertion = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediaconvert.types.id3_insertion.deserialize_json(item))
     return out

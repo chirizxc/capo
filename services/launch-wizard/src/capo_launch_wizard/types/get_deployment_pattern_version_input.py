@@ -34,19 +34,19 @@ def serialize_json(value: GetDeploymentPatternVersionInput) -> dict:
 
 def deserialize_json(data: dict) -> GetDeploymentPatternVersionInput:
     out: GetDeploymentPatternVersionInput = {}  # type: ignore[typeddict-item]
-    if "workloadName" in data:
+    if data.get("workloadName") is not None:
         out["workload_name"] = data["workloadName"]
     else:
         raise DeserializationError(
             "GetDeploymentPatternVersionInput.workload_name required"
         )
-    if "deploymentPatternName" in data:
+    if data.get("deploymentPatternName") is not None:
         out["deployment_pattern_name"] = data["deploymentPatternName"]
     else:
         raise DeserializationError(
             "GetDeploymentPatternVersionInput.deployment_pattern_name required"
         )
-    if "deploymentPatternVersionName" in data:
+    if data.get("deploymentPatternVersionName") is not None:
         out["deployment_pattern_version_name"] = data["deploymentPatternVersionName"]
     else:
         raise DeserializationError(

@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: UpdateRegistryInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateRegistryInput:
     out: UpdateRegistryInput = {}  # type: ignore[typeddict-item]
-    if "RegistryId" in data:
+    if data.get("RegistryId") is not None:
         import capo_glue.types.registry_id
 
         out["registry_id"] = capo_glue.types.registry_id.deserialize_aws_json_1_1(
@@ -40,7 +40,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateRegistryInput:
         )
     else:
         raise DeserializationError("UpdateRegistryInput.registry_id required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     else:
         raise DeserializationError("UpdateRegistryInput.description required")

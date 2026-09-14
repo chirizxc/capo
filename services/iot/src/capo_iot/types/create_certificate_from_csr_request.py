@@ -29,7 +29,7 @@ def serialize_json(value: CreateCertificateFromCsrRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateCertificateFromCsrRequest:
     out: CreateCertificateFromCsrRequest = {}  # type: ignore[typeddict-item]
-    if "certificateSigningRequest" in data:
+    if data.get("certificateSigningRequest") is not None:
         out["certificate_signing_request"] = data["certificateSigningRequest"]
     else:
         raise DeserializationError(

@@ -45,7 +45,7 @@ def serialize_aws_json_1_0(value: CodeConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CodeConfiguration:
     out: CodeConfiguration = {}  # type: ignore[typeddict-item]
-    if "ConfigurationSource" in data:
+    if data.get("ConfigurationSource") is not None:
         import capo_apprunner.types.configuration_source
 
         out["configuration_source"] = (
@@ -55,7 +55,7 @@ def deserialize_aws_json_1_0(data: dict) -> CodeConfiguration:
         )
     else:
         raise DeserializationError("CodeConfiguration.configuration_source required")
-    if "CodeConfigurationValues" in data:
+    if data.get("CodeConfigurationValues") is not None:
         import capo_apprunner.types.code_configuration_values
 
         out["code_configuration_values"] = (

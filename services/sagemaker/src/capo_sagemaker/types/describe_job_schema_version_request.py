@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: DescribeJobSchemaVersionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeJobSchemaVersionRequest:
     out: DescribeJobSchemaVersionRequest = {}  # type: ignore[typeddict-item]
-    if "JobCategory" in data:
+    if data.get("JobCategory") is not None:
         import capo_sagemaker.types.job_category
 
         out["job_category"] = (
@@ -42,6 +42,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeJobSchemaVersionRequest:
                 data["JobCategory"]
             )
         )
-    if "JobConfigSchemaVersion" in data:
+    if data.get("JobConfigSchemaVersion") is not None:
         out["job_config_schema_version"] = data["JobConfigSchemaVersion"]
     return out

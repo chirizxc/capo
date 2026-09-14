@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ExcludeTagsList:
 
     out: ExcludeTagsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_dlm.types.tag.deserialize_json(item))
     return out

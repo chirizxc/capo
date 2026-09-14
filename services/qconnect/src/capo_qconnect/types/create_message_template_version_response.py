@@ -31,7 +31,7 @@ def serialize_json(value: CreateMessageTemplateVersionResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateMessageTemplateVersionResponse:
     out: CreateMessageTemplateVersionResponse = {}  # type: ignore[typeddict-item]
-    if "messageTemplate" in data:
+    if data.get("messageTemplate") is not None:
         import capo_qconnect.types.extended_message_template_data
 
         out["message_template"] = (

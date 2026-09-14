@@ -39,15 +39,20 @@ class InstanceRefreshInProgressFault(ServiceError):
 
     code: str | None = "InstanceRefreshInProgressFault"
 
-    def __init__(self, data: InstanceRefreshInProgressFault_):
+    def __init__(
+        self, data: InstanceRefreshInProgressFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InstanceRefreshInProgressFault",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "InstanceRefreshInProgressFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "InstanceRefreshInProgressFault":
+        return cls(deserialize_query(el), message)

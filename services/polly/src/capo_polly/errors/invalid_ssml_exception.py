@@ -24,7 +24,7 @@ def serialize_json(value: InvalidSsmlException_) -> dict:
 
 def deserialize_json(data: dict) -> InvalidSsmlException_:
     out: InvalidSsmlException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,18 @@ class InvalidSsmlException(ServiceError):
 
     code: str | None = "InvalidSsmlException"
 
-    def __init__(self, data: InvalidSsmlException_):
+    def __init__(self, data: InvalidSsmlException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidSsmlException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "InvalidSsmlException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidSsmlException":
+        return cls(deserialize_json(data), message)

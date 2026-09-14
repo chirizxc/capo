@@ -71,25 +71,25 @@ def serialize_json(value: Assets) -> dict:
 
 def deserialize_json(data: dict) -> Assets:
     out: Assets = {}  # type: ignore[typeddict-item]
-    if "endpoints" in data:
+    if data.get("endpoints") is not None:
         import capo_securityagent.types.endpoint_list
 
         out["endpoints"] = capo_securityagent.types.endpoint_list.deserialize_json(
             data["endpoints"]
         )
-    if "actors" in data:
+    if data.get("actors") is not None:
         import capo_securityagent.types.actor_list
 
         out["actors"] = capo_securityagent.types.actor_list.deserialize_json(
             data["actors"]
         )
-    if "documents" in data:
+    if data.get("documents") is not None:
         import capo_securityagent.types.document_list
 
         out["documents"] = capo_securityagent.types.document_list.deserialize_json(
             data["documents"]
         )
-    if "sourceCode" in data:
+    if data.get("sourceCode") is not None:
         import capo_securityagent.types.source_code_repository_list
 
         out["source_code"] = (
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> Assets:
                 data["sourceCode"]
             )
         )
-    if "integratedRepositories" in data:
+    if data.get("integratedRepositories") is not None:
         import capo_securityagent.types.integrated_repository_list
 
         out["integrated_repositories"] = (

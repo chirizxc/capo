@@ -32,10 +32,10 @@ def serialize_json(value: CreateWebhookRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateWebhookRequest:
     out: CreateWebhookRequest = {}  # type: ignore[typeddict-item]
-    if "branchName" in data:
+    if data.get("branchName") is not None:
         out["branch_name"] = data["branchName"]
     else:
         raise DeserializationError("CreateWebhookRequest.branch_name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

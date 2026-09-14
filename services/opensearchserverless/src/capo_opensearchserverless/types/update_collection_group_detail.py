@@ -68,15 +68,15 @@ def serialize_aws_json_1_0(value: UpdateCollectionGroupDetail) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateCollectionGroupDetail:
     out: UpdateCollectionGroupDetail = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "capacityLimits" in data:
+    if data.get("capacityLimits") is not None:
         import capo_opensearchserverless.types.collection_group_capacity_limits
 
         out["capacity_limits"] = (
@@ -84,10 +84,10 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateCollectionGroupDetail:
                 data["capacityLimits"]
             )
         )
-    if "createdDate" in data:
+    if data.get("createdDate") is not None:
         out["created_date"] = data["createdDate"]
-    if "lastModifiedDate" in data:
+    if data.get("lastModifiedDate") is not None:
         out["last_modified_date"] = data["lastModifiedDate"]
-    if "generation" in data:
+    if data.get("generation") is not None:
         out["generation"] = data["generation"]
     return out

@@ -38,7 +38,7 @@ def serialize_json(value: GetDiscoveredSchemaRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetDiscoveredSchemaRequest:
     out: GetDiscoveredSchemaRequest = {}  # type: ignore[typeddict-item]
-    if "Events" in data:
+    if data.get("Events") is not None:
         import capo_schemas.types.__list_of_get_discovered_schema_version_item_input
 
         out["events"] = (
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> GetDiscoveredSchemaRequest:
                 data["Events"]
             )
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_schemas.types.type
 
         out["type"] = capo_schemas.types.type.deserialize_json(data["Type"])

@@ -30,7 +30,7 @@ def serialize_json(value: MembershipConfig) -> dict:
 
 
 def deserialize_json(data: dict) -> MembershipConfig:
-    if "user" in data:
+    if data.get("user") is not None:
         import capo_securityagent.types.user_config
 
         return {

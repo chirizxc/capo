@@ -50,13 +50,13 @@ def serialize_json(value: UpdateSessionLoggerRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSessionLoggerRequest:
     out: UpdateSessionLoggerRequest = {}  # type: ignore[typeddict-item]
-    if "eventFilter" in data:
+    if data.get("eventFilter") is not None:
         import capo_workspaces_web.types.event_filter
 
         out["event_filter"] = capo_workspaces_web.types.event_filter.deserialize_json(
             data["eventFilter"]
         )
-    if "logConfiguration" in data:
+    if data.get("logConfiguration") is not None:
         import capo_workspaces_web.types.log_configuration
 
         out["log_configuration"] = (
@@ -64,6 +64,6 @@ def deserialize_json(data: dict) -> UpdateSessionLoggerRequest:
                 data["logConfiguration"]
             )
         )
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     return out

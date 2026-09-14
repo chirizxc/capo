@@ -48,19 +48,19 @@ def serialize_json(value: DictionarySummary) -> dict:
 
 def deserialize_json(data: dict) -> DictionarySummary:
     out: DictionarySummary = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("DictionarySummary.arn required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("DictionarySummary.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("DictionarySummary.name required")
-    if "language" in data:
+    if data.get("language") is not None:
         import capo_elementalinference.types.dictionary_language
 
         out["language"] = (
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> DictionarySummary:
         )
     else:
         raise DeserializationError("DictionarySummary.language required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_elementalinference.types.dictionary_status
 
         out["status"] = (

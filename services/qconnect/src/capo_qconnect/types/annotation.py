@@ -22,8 +22,8 @@ def serialize_json(value: Annotation) -> dict:
 
 def deserialize_json(data: dict) -> Annotation:
     out: Annotation = {}  # type: ignore[typeddict-item]
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
-    if "destructiveHint" in data:
+    if data.get("destructiveHint") is not None:
         out["destructive_hint"] = data["destructiveHint"]
     return out

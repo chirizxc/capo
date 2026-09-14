@@ -43,19 +43,19 @@ def serialize_json(value: DescribeAssetModelInterfaceRelationshipResponse) -> di
 
 def deserialize_json(data: dict) -> DescribeAssetModelInterfaceRelationshipResponse:
     out: DescribeAssetModelInterfaceRelationshipResponse = {}  # type: ignore[typeddict-item]
-    if "assetModelId" in data:
+    if data.get("assetModelId") is not None:
         out["asset_model_id"] = data["assetModelId"]
     else:
         raise DeserializationError(
             "DescribeAssetModelInterfaceRelationshipResponse.asset_model_id required"
         )
-    if "interfaceAssetModelId" in data:
+    if data.get("interfaceAssetModelId") is not None:
         out["interface_asset_model_id"] = data["interfaceAssetModelId"]
     else:
         raise DeserializationError(
             "DescribeAssetModelInterfaceRelationshipResponse.interface_asset_model_id required"
         )
-    if "propertyMappings" in data:
+    if data.get("propertyMappings") is not None:
         import capo_iotsitewise.types.property_mappings
 
         out["property_mappings"] = (
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> DescribeAssetModelInterfaceRelationshipRespo
         raise DeserializationError(
             "DescribeAssetModelInterfaceRelationshipResponse.property_mappings required"
         )
-    if "hierarchyMappings" in data:
+    if data.get("hierarchyMappings") is not None:
         import capo_iotsitewise.types.hierarchy_mappings
 
         out["hierarchy_mappings"] = (

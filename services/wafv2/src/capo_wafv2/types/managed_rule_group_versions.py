@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ManagedRuleGroupVersions:
 
     out: ManagedRuleGroupVersions = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_wafv2.types.managed_rule_group_version.deserialize_aws_json_1_1(item)
         )

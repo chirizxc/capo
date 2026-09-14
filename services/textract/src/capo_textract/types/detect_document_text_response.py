@@ -47,7 +47,7 @@ def serialize_aws_json_1_1(value: DetectDocumentTextResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DetectDocumentTextResponse:
     out: DetectDocumentTextResponse = {}  # type: ignore[typeddict-item]
-    if "DocumentMetadata" in data:
+    if data.get("DocumentMetadata") is not None:
         import capo_textract.types.document_metadata
 
         out["document_metadata"] = (
@@ -55,13 +55,13 @@ def deserialize_aws_json_1_1(data: dict) -> DetectDocumentTextResponse:
                 data["DocumentMetadata"]
             )
         )
-    if "Blocks" in data:
+    if data.get("Blocks") is not None:
         import capo_textract.types.block_list
 
         out["blocks"] = capo_textract.types.block_list.deserialize_aws_json_1_1(
             data["Blocks"]
         )
-    if "DetectDocumentTextModelVersion" in data:
+    if data.get("DetectDocumentTextModelVersion") is not None:
         out["detect_document_text_model_version"] = data[
             "DetectDocumentTextModelVersion"
         ]

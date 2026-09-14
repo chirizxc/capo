@@ -34,9 +34,9 @@ def serialize_json(value: ListSourceRepositoryBranchesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListSourceRepositoryBranchesResponse:
     out: ListSourceRepositoryBranchesResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_codecatalyst.types.list_source_repository_branches_items
 
         out["items"] = (

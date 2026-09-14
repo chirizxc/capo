@@ -157,19 +157,19 @@ def serialize_json(value: EntitySummary) -> dict:
 
 def deserialize_json(data: dict) -> EntitySummary:
     out: EntitySummary = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "EntityType" in data:
+    if data.get("EntityType") is not None:
         out["entity_type"] = data["EntityType"]
-    if "EntityId" in data:
+    if data.get("EntityId") is not None:
         out["entity_id"] = data["EntityId"]
-    if "EntityArn" in data:
+    if data.get("EntityArn") is not None:
         out["entity_arn"] = data["EntityArn"]
-    if "LastModifiedDate" in data:
+    if data.get("LastModifiedDate") is not None:
         out["last_modified_date"] = data["LastModifiedDate"]
-    if "Visibility" in data:
+    if data.get("Visibility") is not None:
         out["visibility"] = data["Visibility"]
-    if "AmiProductSummary" in data:
+    if data.get("AmiProductSummary") is not None:
         import capo_marketplace_catalog.types.ami_product_summary
 
         out["ami_product_summary"] = (
@@ -177,7 +177,7 @@ def deserialize_json(data: dict) -> EntitySummary:
                 data["AmiProductSummary"]
             )
         )
-    if "ContainerProductSummary" in data:
+    if data.get("ContainerProductSummary") is not None:
         import capo_marketplace_catalog.types.container_product_summary
 
         out["container_product_summary"] = (
@@ -185,7 +185,7 @@ def deserialize_json(data: dict) -> EntitySummary:
                 data["ContainerProductSummary"]
             )
         )
-    if "DataProductSummary" in data:
+    if data.get("DataProductSummary") is not None:
         import capo_marketplace_catalog.types.data_product_summary
 
         out["data_product_summary"] = (
@@ -193,7 +193,7 @@ def deserialize_json(data: dict) -> EntitySummary:
                 data["DataProductSummary"]
             )
         )
-    if "SaaSProductSummary" in data:
+    if data.get("SaaSProductSummary") is not None:
         import capo_marketplace_catalog.types.saa_s_product_summary
 
         out["saa_s_product_summary"] = (
@@ -201,7 +201,7 @@ def deserialize_json(data: dict) -> EntitySummary:
                 data["SaaSProductSummary"]
             )
         )
-    if "OfferSummary" in data:
+    if data.get("OfferSummary") is not None:
         import capo_marketplace_catalog.types.offer_summary
 
         out["offer_summary"] = (
@@ -209,7 +209,7 @@ def deserialize_json(data: dict) -> EntitySummary:
                 data["OfferSummary"]
             )
         )
-    if "ResaleAuthorizationSummary" in data:
+    if data.get("ResaleAuthorizationSummary") is not None:
         import capo_marketplace_catalog.types.resale_authorization_summary
 
         out["resale_authorization_summary"] = (
@@ -217,7 +217,7 @@ def deserialize_json(data: dict) -> EntitySummary:
                 data["ResaleAuthorizationSummary"]
             )
         )
-    if "MachineLearningProductSummary" in data:
+    if data.get("MachineLearningProductSummary") is not None:
         import capo_marketplace_catalog.types.machine_learning_product_summary
 
         out["machine_learning_product_summary"] = (
@@ -225,7 +225,7 @@ def deserialize_json(data: dict) -> EntitySummary:
                 data["MachineLearningProductSummary"]
             )
         )
-    if "OfferSetSummary" in data:
+    if data.get("OfferSetSummary") is not None:
         import capo_marketplace_catalog.types.offer_set_summary
 
         out["offer_set_summary"] = (

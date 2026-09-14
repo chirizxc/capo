@@ -50,20 +50,20 @@ def serialize_json(value: LinuxParameters) -> dict:
 
 def deserialize_json(data: dict) -> LinuxParameters:
     out: LinuxParameters = {}  # type: ignore[typeddict-item]
-    if "devices" in data:
+    if data.get("devices") is not None:
         import capo_batch.types.devices_list
 
         out["devices"] = capo_batch.types.devices_list.deserialize_json(data["devices"])
-    if "initProcessEnabled" in data:
+    if data.get("initProcessEnabled") is not None:
         out["init_process_enabled"] = data["initProcessEnabled"]
-    if "sharedMemorySize" in data:
+    if data.get("sharedMemorySize") is not None:
         out["shared_memory_size"] = data["sharedMemorySize"]
-    if "tmpfs" in data:
+    if data.get("tmpfs") is not None:
         import capo_batch.types.tmpfs_list
 
         out["tmpfs"] = capo_batch.types.tmpfs_list.deserialize_json(data["tmpfs"])
-    if "maxSwap" in data:
+    if data.get("maxSwap") is not None:
         out["max_swap"] = data["maxSwap"]
-    if "swappiness" in data:
+    if data.get("swappiness") is not None:
         out["swappiness"] = data["swappiness"]
     return out

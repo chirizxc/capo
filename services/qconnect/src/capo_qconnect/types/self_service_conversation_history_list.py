@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> SelfServiceConversationHistoryList:
 
     out: SelfServiceConversationHistoryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_qconnect.types.self_service_conversation_history.deserialize_json(item)
         )

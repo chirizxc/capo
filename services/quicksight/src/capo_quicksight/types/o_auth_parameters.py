@@ -57,13 +57,13 @@ def serialize_json(value: OAuthParameters) -> dict:
 
 def deserialize_json(data: dict) -> OAuthParameters:
     out: OAuthParameters = {}  # type: ignore[typeddict-item]
-    if "TokenProviderUrl" in data:
+    if data.get("TokenProviderUrl") is not None:
         out["token_provider_url"] = data["TokenProviderUrl"]
     else:
         raise DeserializationError("OAuthParameters.token_provider_url required")
-    if "OAuthScope" in data:
+    if data.get("OAuthScope") is not None:
         out["o_auth_scope"] = data["OAuthScope"]
-    if "IdentityProviderVpcConnectionProperties" in data:
+    if data.get("IdentityProviderVpcConnectionProperties") is not None:
         import capo_quicksight.types.vpc_connection_properties
 
         out["identity_provider_vpc_connection_properties"] = (
@@ -71,9 +71,9 @@ def deserialize_json(data: dict) -> OAuthParameters:
                 data["IdentityProviderVpcConnectionProperties"]
             )
         )
-    if "IdentityProviderResourceUri" in data:
+    if data.get("IdentityProviderResourceUri") is not None:
         out["identity_provider_resource_uri"] = data["IdentityProviderResourceUri"]
-    if "IdentityProviderCACertificatesBundleS3Uri" in data:
+    if data.get("IdentityProviderCACertificatesBundleS3Uri") is not None:
         out["identity_provider_ca_certificates_bundle_s3_uri"] = data[
             "IdentityProviderCACertificatesBundleS3Uri"
         ]

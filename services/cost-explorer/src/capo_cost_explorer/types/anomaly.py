@@ -84,17 +84,17 @@ def serialize_aws_json_1_1(value: Anomaly) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Anomaly:
     out: Anomaly = {}  # type: ignore[typeddict-item]
-    if "AnomalyId" in data:
+    if data.get("AnomalyId") is not None:
         out["anomaly_id"] = data["AnomalyId"]
     else:
         raise DeserializationError("Anomaly.anomaly_id required")
-    if "AnomalyStartDate" in data:
+    if data.get("AnomalyStartDate") is not None:
         out["anomaly_start_date"] = data["AnomalyStartDate"]
-    if "AnomalyEndDate" in data:
+    if data.get("AnomalyEndDate") is not None:
         out["anomaly_end_date"] = data["AnomalyEndDate"]
-    if "DimensionValue" in data:
+    if data.get("DimensionValue") is not None:
         out["dimension_value"] = data["DimensionValue"]
-    if "RootCauses" in data:
+    if data.get("RootCauses") is not None:
         import capo_cost_explorer.types.root_causes
 
         out["root_causes"] = (
@@ -102,7 +102,7 @@ def deserialize_aws_json_1_1(data: dict) -> Anomaly:
                 data["RootCauses"]
             )
         )
-    if "AnomalyScore" in data:
+    if data.get("AnomalyScore") is not None:
         import capo_cost_explorer.types.anomaly_score
 
         out["anomaly_score"] = (
@@ -112,7 +112,7 @@ def deserialize_aws_json_1_1(data: dict) -> Anomaly:
         )
     else:
         raise DeserializationError("Anomaly.anomaly_score required")
-    if "Impact" in data:
+    if data.get("Impact") is not None:
         import capo_cost_explorer.types.impact
 
         out["impact"] = capo_cost_explorer.types.impact.deserialize_aws_json_1_1(
@@ -120,11 +120,11 @@ def deserialize_aws_json_1_1(data: dict) -> Anomaly:
         )
     else:
         raise DeserializationError("Anomaly.impact required")
-    if "MonitorArn" in data:
+    if data.get("MonitorArn") is not None:
         out["monitor_arn"] = data["MonitorArn"]
     else:
         raise DeserializationError("Anomaly.monitor_arn required")
-    if "Feedback" in data:
+    if data.get("Feedback") is not None:
         import capo_cost_explorer.types.anomaly_feedback_type
 
         out["feedback"] = (

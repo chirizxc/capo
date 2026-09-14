@@ -30,13 +30,21 @@ def serialize_json(value: CreateBackendAuthPasswordPolicyConfig) -> dict:
             )
         )
     if "minimum_length" in value:
-        out["minimumLength"] = value["minimum_length"]
+        out["minimumLength"] = (
+            "NaN"
+            if value["minimum_length"] != value["minimum_length"]
+            else "Infinity"
+            if value["minimum_length"] == float("inf")
+            else "-Infinity"
+            if value["minimum_length"] == float("-inf")
+            else value["minimum_length"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> CreateBackendAuthPasswordPolicyConfig:
     out: CreateBackendAuthPasswordPolicyConfig = {}  # type: ignore[typeddict-item]
-    if "additionalConstraints" in data:
+    if data.get("additionalConstraints") is not None:
         import capo_amplifybackend.types.list_of_additional_constraints_element
 
         out["additional_constraints"] = (
@@ -44,6 +52,6 @@ def deserialize_json(data: dict) -> CreateBackendAuthPasswordPolicyConfig:
                 data["additionalConstraints"]
             )
         )
-    if "minimumLength" in data:
-        out["minimum_length"] = data["minimumLength"]
+    if data.get("minimumLength") is not None:
+        out["minimum_length"] = float(data["minimumLength"])
     return out

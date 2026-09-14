@@ -36,7 +36,7 @@ def serialize_json(value: StartQueryPlanningRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartQueryPlanningRequest:
     out: StartQueryPlanningRequest = {}  # type: ignore[typeddict-item]
-    if "QueryPlanningContext" in data:
+    if data.get("QueryPlanningContext") is not None:
         import capo_lakeformation.types.query_planning_context
 
         out["query_planning_context"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> StartQueryPlanningRequest:
         raise DeserializationError(
             "StartQueryPlanningRequest.query_planning_context required"
         )
-    if "QueryString" in data:
+    if data.get("QueryString") is not None:
         out["query_string"] = data["QueryString"]
     else:
         raise DeserializationError("StartQueryPlanningRequest.query_string required")

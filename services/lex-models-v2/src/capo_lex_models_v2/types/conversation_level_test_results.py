@@ -30,7 +30,7 @@ def serialize_json(value: ConversationLevelTestResults) -> dict:
 
 def deserialize_json(data: dict) -> ConversationLevelTestResults:
     out: ConversationLevelTestResults = {}  # type: ignore[typeddict-item]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_lex_models_v2.types.conversation_level_test_result_item_list
 
         out["items"] = (

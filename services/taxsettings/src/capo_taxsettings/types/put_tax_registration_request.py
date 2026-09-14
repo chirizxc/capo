@@ -37,9 +37,9 @@ def serialize_json(value: PutTaxRegistrationRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutTaxRegistrationRequest:
     out: PutTaxRegistrationRequest = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "taxRegistrationEntry" in data:
+    if data.get("taxRegistrationEntry") is not None:
         import capo_taxsettings.types.tax_registration_entry
 
         out["tax_registration_entry"] = (

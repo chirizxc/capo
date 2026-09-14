@@ -28,7 +28,7 @@ def serialize_aws_json_1_0(value: DomainConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DomainConfiguration:
     out: DomainConfiguration = {}  # type: ignore[typeddict-item]
-    if "workflowExecutionRetentionPeriodInDays" in data:
+    if data.get("workflowExecutionRetentionPeriodInDays") is not None:
         out["workflow_execution_retention_period_in_days"] = data[
             "workflowExecutionRetentionPeriodInDays"
         ]

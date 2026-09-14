@@ -64,11 +64,11 @@ def serialize_aws_json_1_1(value: ImportWorkspaceImageRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ImportWorkspaceImageRequest:
     out: ImportWorkspaceImageRequest = {}  # type: ignore[typeddict-item]
-    if "Ec2ImageId" in data:
+    if data.get("Ec2ImageId") is not None:
         out["ec2_image_id"] = data["Ec2ImageId"]
     else:
         raise DeserializationError("ImportWorkspaceImageRequest.ec2_image_id required")
-    if "IngestionProcess" in data:
+    if data.get("IngestionProcess") is not None:
         import capo_workspaces.types.workspace_image_ingestion_process
 
         out["ingestion_process"] = (
@@ -80,23 +80,23 @@ def deserialize_aws_json_1_1(data: dict) -> ImportWorkspaceImageRequest:
         raise DeserializationError(
             "ImportWorkspaceImageRequest.ingestion_process required"
         )
-    if "ImageName" in data:
+    if data.get("ImageName") is not None:
         out["image_name"] = data["ImageName"]
     else:
         raise DeserializationError("ImportWorkspaceImageRequest.image_name required")
-    if "ImageDescription" in data:
+    if data.get("ImageDescription") is not None:
         out["image_description"] = data["ImageDescription"]
     else:
         raise DeserializationError(
             "ImportWorkspaceImageRequest.image_description required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_workspaces.types.tag_list
 
         out["tags"] = capo_workspaces.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "Applications" in data:
+    if data.get("Applications") is not None:
         import capo_workspaces.types.application_list
 
         out["applications"] = (

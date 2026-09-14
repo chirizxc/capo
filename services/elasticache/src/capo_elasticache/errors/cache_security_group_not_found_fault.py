@@ -37,15 +37,20 @@ class CacheSecurityGroupNotFoundFault(ServiceError):
 
     code: str | None = "CacheSecurityGroupNotFoundFault"
 
-    def __init__(self, data: CacheSecurityGroupNotFoundFault_):
+    def __init__(
+        self, data: CacheSecurityGroupNotFoundFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="CacheSecurityGroupNotFoundFault",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "CacheSecurityGroupNotFoundFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "CacheSecurityGroupNotFoundFault":
+        return cls(deserialize_query(el), message)

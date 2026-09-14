@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: EKSOnDeviceServiceConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EKSOnDeviceServiceConfiguration:
     out: EKSOnDeviceServiceConfiguration = {}  # type: ignore[typeddict-item]
-    if "KubernetesVersion" in data:
+    if data.get("KubernetesVersion") is not None:
         out["kubernetes_version"] = data["KubernetesVersion"]
-    if "EKSAnywhereVersion" in data:
+    if data.get("EKSAnywhereVersion") is not None:
         out["eks_anywhere_version"] = data["EKSAnywhereVersion"]
     return out

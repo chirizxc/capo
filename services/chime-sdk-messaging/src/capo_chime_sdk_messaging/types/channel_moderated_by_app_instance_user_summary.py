@@ -31,7 +31,7 @@ def serialize_json(value: ChannelModeratedByAppInstanceUserSummary) -> dict:
 
 def deserialize_json(data: dict) -> ChannelModeratedByAppInstanceUserSummary:
     out: ChannelModeratedByAppInstanceUserSummary = {}  # type: ignore[typeddict-item]
-    if "ChannelSummary" in data:
+    if data.get("ChannelSummary") is not None:
         import capo_chime_sdk_messaging.types.channel_summary
 
         out["channel_summary"] = (

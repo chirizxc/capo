@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> __listOfInterfaceMappingUpdateRequest:
 
     out: __listOfInterfaceMappingUpdateRequest = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_medialive.types.interface_mapping_update_request.deserialize_json(item)
         )

@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.timestreamquery#Timestream_20181101``."""
 
+import uuid
 import warnings
 from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -217,14 +218,16 @@ class AsyncTimestreamQueryClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_timestream_query.types.cancel_query_request.CancelQueryRequest = {}  # type: ignore[typeddict-item]
-        input_["query_id"] = query_id
+        input_: capo_timestream_query.types.cancel_query_request.CancelQueryRequest = {
+            "query_id": query_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_scheduled_query(
@@ -289,29 +292,30 @@ class AsyncTimestreamQueryClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_timestream_query.types.create_scheduled_query_request.CreateScheduledQueryRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["query_string"] = query_string
-        input_["schedule_configuration"] = schedule_configuration
-        input_["notification_configuration"] = notification_configuration
+        input_: capo_timestream_query.types.create_scheduled_query_request.CreateScheduledQueryRequest = {
+            "name": name,
+            "query_string": query_string,
+            "schedule_configuration": schedule_configuration,
+            "notification_configuration": notification_configuration,
+            "scheduled_query_execution_role_arn": scheduled_query_execution_role_arn,
+            "error_report_configuration": error_report_configuration,
+        }
         if target_configuration is not None:
             input_["target_configuration"] = target_configuration
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["scheduled_query_execution_role_arn"] = (
-            scheduled_query_execution_role_arn
-        )
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
         if kms_key_id is not None:
             input_["kms_key_id"] = kms_key_id
-        input_["error_report_configuration"] = error_report_configuration
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_scheduled_query(
@@ -349,14 +353,16 @@ class AsyncTimestreamQueryClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_timestream_query.types.delete_scheduled_query_request.DeleteScheduledQueryRequest = {}  # type: ignore[typeddict-item]
-        input_["scheduled_query_arn"] = scheduled_query_arn
+        input_: capo_timestream_query.types.delete_scheduled_query_request.DeleteScheduledQueryRequest = {
+            "scheduled_query_arn": scheduled_query_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_account_settings(
@@ -388,13 +394,14 @@ class AsyncTimestreamQueryClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_timestream_query.types.describe_account_settings_request.DescribeAccountSettingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_timestream_query.types.describe_account_settings_request.DescribeAccountSettingsRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_endpoints(
@@ -425,13 +432,14 @@ class AsyncTimestreamQueryClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_timestream_query.types.describe_endpoints_request.DescribeEndpointsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_timestream_query.types.describe_endpoints_request.DescribeEndpointsRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_scheduled_query(
@@ -471,14 +479,16 @@ class AsyncTimestreamQueryClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_timestream_query.types.describe_scheduled_query_request.DescribeScheduledQueryRequest = {}  # type: ignore[typeddict-item]
-        input_["scheduled_query_arn"] = scheduled_query_arn
+        input_: capo_timestream_query.types.describe_scheduled_query_request.DescribeScheduledQueryRequest = {
+            "scheduled_query_arn": scheduled_query_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def execute_scheduled_query(
@@ -526,11 +536,13 @@ class AsyncTimestreamQueryClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_timestream_query.types.execute_scheduled_query_request.ExecuteScheduledQueryRequest = {}  # type: ignore[typeddict-item]
-        input_["scheduled_query_arn"] = scheduled_query_arn
-        input_["invocation_time"] = invocation_time
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_timestream_query.types.execute_scheduled_query_request.ExecuteScheduledQueryRequest = {
+            "scheduled_query_arn": scheduled_query_arn,
+            "invocation_time": invocation_time,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if query_insights is not None:
             input_["query_insights"] = query_insights
 
@@ -539,6 +551,7 @@ class AsyncTimestreamQueryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_scheduled_queries(
@@ -583,7 +596,7 @@ class AsyncTimestreamQueryClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_timestream_query.types.list_scheduled_queries_request.ListScheduledQueriesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_timestream_query.types.list_scheduled_queries_request.ListScheduledQueriesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -594,6 +607,7 @@ class AsyncTimestreamQueryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_scheduled_queries(
@@ -664,8 +678,9 @@ class AsyncTimestreamQueryClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_timestream_query.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_timestream_query.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -676,6 +691,7 @@ class AsyncTimestreamQueryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_tags_for_resource(
@@ -745,8 +761,9 @@ class AsyncTimestreamQueryClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_timestream_query.types.prepare_query_request.PrepareQueryRequest = {}  # type: ignore[typeddict-item]
-        input_["query_string"] = query_string
+        input_: capo_timestream_query.types.prepare_query_request.PrepareQueryRequest = {
+            "query_string": query_string
+        }
         if validate_only is not None:
             input_["validate_only"] = validate_only
 
@@ -755,6 +772,7 @@ class AsyncTimestreamQueryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def query(
@@ -811,10 +829,12 @@ class AsyncTimestreamQueryClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_timestream_query.types.query_request.QueryRequest = {}  # type: ignore[typeddict-item]
-        input_["query_string"] = query_string
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_timestream_query.types.query_request.QueryRequest = {
+            "query_string": query_string
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if next_token is not None:
             input_["next_token"] = next_token
         if max_rows is not None:
@@ -827,6 +847,7 @@ class AsyncTimestreamQueryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_query(
@@ -902,15 +923,17 @@ class AsyncTimestreamQueryClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_timestream_query.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_timestream_query.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -950,15 +973,17 @@ class AsyncTimestreamQueryClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_timestream_query.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_timestream_query.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_account_settings(
@@ -1007,7 +1032,7 @@ class AsyncTimestreamQueryClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_timestream_query.types.update_account_settings_request.UpdateAccountSettingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_timestream_query.types.update_account_settings_request.UpdateAccountSettingsRequest = {}
         if max_query_tcu is not None:
             input_["max_query_tcu"] = max_query_tcu
         if query_pricing_model is not None:
@@ -1020,6 +1045,7 @@ class AsyncTimestreamQueryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_scheduled_query(
@@ -1059,15 +1085,17 @@ class AsyncTimestreamQueryClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_timestream_query.types.update_scheduled_query_request.UpdateScheduledQueryRequest = {}  # type: ignore[typeddict-item]
-        input_["scheduled_query_arn"] = scheduled_query_arn
-        input_["state"] = state
+        input_: capo_timestream_query.types.update_scheduled_query_request.UpdateScheduledQueryRequest = {
+            "scheduled_query_arn": scheduled_query_arn,
+            "state": state,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

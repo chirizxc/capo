@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ConnectorRuntimeSettingList:
 
     out: ConnectorRuntimeSettingList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_appflow.types.connector_runtime_setting.deserialize_json(item))
     return out

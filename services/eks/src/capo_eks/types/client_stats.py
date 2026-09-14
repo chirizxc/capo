@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ClientStats:
 
     out: ClientStats = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_eks.types.client_stat.deserialize_json(item))
     return out

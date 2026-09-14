@@ -37,16 +37,16 @@ def serialize_json(value: TrailProperties) -> dict:
 
 def deserialize_json(data: dict) -> TrailProperties:
     out: TrailProperties = {}  # type: ignore[typeddict-item]
-    if "cloudTrailArn" in data:
+    if data.get("cloudTrailArn") is not None:
         out["cloud_trail_arn"] = data["cloudTrailArn"]
     else:
         raise DeserializationError("TrailProperties.cloud_trail_arn required")
-    if "regions" in data:
+    if data.get("regions") is not None:
         import capo_accessanalyzer.types.region_list
 
         out["regions"] = capo_accessanalyzer.types.region_list.deserialize_json(
             data["regions"]
         )
-    if "allRegions" in data:
+    if data.get("allRegions") is not None:
         out["all_regions"] = data["allRegions"]
     return out

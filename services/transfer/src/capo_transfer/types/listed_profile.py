@@ -42,13 +42,13 @@ def serialize_aws_json_1_1(value: ListedProfile) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListedProfile:
     out: ListedProfile = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "ProfileId" in data:
+    if data.get("ProfileId") is not None:
         out["profile_id"] = data["ProfileId"]
-    if "As2Id" in data:
+    if data.get("As2Id") is not None:
         out["as2_id"] = data["As2Id"]
-    if "ProfileType" in data:
+    if data.get("ProfileType") is not None:
         import capo_transfer.types.profile_type
 
         out["profile_type"] = capo_transfer.types.profile_type.deserialize_aws_json_1_1(

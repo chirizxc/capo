@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> AggregateTypes:
 
     out: AggregateTypes = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iotsitewise.types.aggregate_type.deserialize_json(item))
     return out

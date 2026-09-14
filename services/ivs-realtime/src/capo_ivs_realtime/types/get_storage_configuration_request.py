@@ -24,7 +24,7 @@ def serialize_json(value: GetStorageConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetStorageConfigurationRequest:
     out: GetStorageConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("GetStorageConfigurationRequest.arn required")

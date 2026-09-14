@@ -13,9 +13,9 @@ from capo_codecommit import AsyncCodeCommitClient
 
 
 async def main():
-    async with AsyncCodeCommitClient() as s3:
+    async with AsyncCodeCommitClient() as code_commit:
         # Example: call the associate_approval_rule_template_with_repository operation
-        response = await s3.associate_approval_rule_template_with_repository()
+        response = await code_commit.associate_approval_rule_template_with_repository()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_codecommit import AsyncCodeCommitClient
 
 
 async def main():
-    async with AsyncCodeCommitClient() as s3:
-        # Example: paginate over list_branches
-        async for item in s3.iter_list_branches():
+    async with AsyncCodeCommitClient() as code_commit:
+        # Example: paginate over describe_merge_conflicts
+        async for item in code_commit.iter_describe_merge_conflicts():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_codecommit.error import ApprovalRuleTemplateDoesNotExistException
 
 
 async def main():
-    async with AsyncCodeCommitClient() as s3:
+    async with AsyncCodeCommitClient() as code_commit:
         try:
-            await s3.associate_approval_rule_template_with_repository()
+            await code_commit.associate_approval_rule_template_with_repository()
         except ApprovalRuleTemplateDoesNotExistException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_codecommit import AsyncCodeCommitClient
 
 
 async def main():
-    async with AsyncCodeCommitClient() as s3:
+    async with AsyncCodeCommitClient() as code_commit:
         # Default: 3 attempts for every operation
-        response = await s3.associate_approval_rule_template_with_repository()
+        response = await code_commit.associate_approval_rule_template_with_repository()
 
         # Override per operation
-        response = await s3.associate_approval_rule_template_with_repository(config_overrides={"retry_max_attempts": 5})
+        response = await code_commit.associate_approval_rule_template_with_repository(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.associate_approval_rule_template_with_repository(config_overrides={"retry_max_attempts": 1})
+        response = await code_commit.associate_approval_rule_template_with_repository(config_overrides={"retry_max_attempts": 1})
 ```

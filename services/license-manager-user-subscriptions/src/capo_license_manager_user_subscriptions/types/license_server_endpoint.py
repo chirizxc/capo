@@ -94,11 +94,11 @@ def serialize_json(value: LicenseServerEndpoint) -> dict:
 
 def deserialize_json(data: dict) -> LicenseServerEndpoint:
     out: LicenseServerEndpoint = {}  # type: ignore[typeddict-item]
-    if "IdentityProviderArn" in data:
+    if data.get("IdentityProviderArn") is not None:
         out["identity_provider_arn"] = data["IdentityProviderArn"]
-    if "ServerType" in data:
+    if data.get("ServerType") is not None:
         out["server_type"] = data["ServerType"]
-    if "ServerEndpoint" in data:
+    if data.get("ServerEndpoint") is not None:
         import capo_license_manager_user_subscriptions.types.server_endpoint
 
         out["server_endpoint"] = (
@@ -106,17 +106,17 @@ def deserialize_json(data: dict) -> LicenseServerEndpoint:
                 data["ServerEndpoint"]
             )
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "LicenseServerEndpointId" in data:
+    if data.get("LicenseServerEndpointId") is not None:
         out["license_server_endpoint_id"] = data["LicenseServerEndpointId"]
-    if "LicenseServerEndpointArn" in data:
+    if data.get("LicenseServerEndpointArn") is not None:
         out["license_server_endpoint_arn"] = data["LicenseServerEndpointArn"]
-    if "LicenseServerEndpointProvisioningStatus" in data:
+    if data.get("LicenseServerEndpointProvisioningStatus") is not None:
         out["license_server_endpoint_provisioning_status"] = data[
             "LicenseServerEndpointProvisioningStatus"
         ]
-    if "LicenseServers" in data:
+    if data.get("LicenseServers") is not None:
         import capo_license_manager_user_subscriptions.types.license_server_list
 
         out["license_servers"] = (
@@ -124,7 +124,7 @@ def deserialize_json(data: dict) -> LicenseServerEndpoint:
                 data["LicenseServers"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_license_manager_user_subscriptions.types._prelude.timestamp
 
         out["creation_time"] = (

@@ -52,7 +52,7 @@ def serialize_json(value: EvaluationFormItemEnablementConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> EvaluationFormItemEnablementConfiguration:
     out: EvaluationFormItemEnablementConfiguration = {}  # type: ignore[typeddict-item]
-    if "Condition" in data:
+    if data.get("Condition") is not None:
         import capo_connect.types.evaluation_form_item_enablement_condition
 
         out["condition"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> EvaluationFormItemEnablementConfiguration:
         raise DeserializationError(
             "EvaluationFormItemEnablementConfiguration.condition required"
         )
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_connect.types.evaluation_form_item_enablement_action
 
         out["action"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> EvaluationFormItemEnablementConfiguration:
         raise DeserializationError(
             "EvaluationFormItemEnablementConfiguration.action required"
         )
-    if "DefaultAction" in data:
+    if data.get("DefaultAction") is not None:
         import capo_connect.types.evaluation_form_item_enablement_action
 
         out["default_action"] = (

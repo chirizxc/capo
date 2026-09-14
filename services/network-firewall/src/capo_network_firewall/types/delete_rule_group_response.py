@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: DeleteRuleGroupResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteRuleGroupResponse:
     out: DeleteRuleGroupResponse = {}  # type: ignore[typeddict-item]
-    if "RuleGroupResponse" in data:
+    if data.get("RuleGroupResponse") is not None:
         import capo_network_firewall.types.rule_group_response
 
         out["rule_group_response"] = (

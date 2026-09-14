@@ -42,7 +42,7 @@ def serialize_json(value: BatchPutDocumentRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchPutDocumentRequest:
     out: BatchPutDocumentRequest = {}  # type: ignore[typeddict-item]
-    if "documents" in data:
+    if data.get("documents") is not None:
         import capo_qbusiness.types.documents
 
         out["documents"] = capo_qbusiness.types.documents.deserialize_json(
@@ -50,8 +50,8 @@ def deserialize_json(data: dict) -> BatchPutDocumentRequest:
         )
     else:
         raise DeserializationError("BatchPutDocumentRequest.documents required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "dataSourceSyncId" in data:
+    if data.get("dataSourceSyncId") is not None:
         out["data_source_sync_id"] = data["dataSourceSyncId"]
     return out

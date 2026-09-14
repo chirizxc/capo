@@ -26,10 +26,10 @@ def serialize_aws_json_1_0(value: Schedule) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Schedule:
     out: Schedule = {}  # type: ignore[typeddict-item]
-    if "scheduleExpression" in data:
+    if data.get("scheduleExpression") is not None:
         out["schedule_expression"] = data["scheduleExpression"]
-    if "scheduleExpressionTimezone" in data:
+    if data.get("scheduleExpressionTimezone") is not None:
         out["schedule_expression_timezone"] = data["scheduleExpressionTimezone"]
-    if "executionWindowInMinutes" in data:
+    if data.get("executionWindowInMinutes") is not None:
         out["execution_window_in_minutes"] = data["executionWindowInMinutes"]
     return out

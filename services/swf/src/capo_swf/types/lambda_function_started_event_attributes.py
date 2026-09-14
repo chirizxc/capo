@@ -22,7 +22,7 @@ def serialize_aws_json_1_0(value: LambdaFunctionStartedEventAttributes) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> LambdaFunctionStartedEventAttributes:
     out: LambdaFunctionStartedEventAttributes = {}  # type: ignore[typeddict-item]
-    if "scheduledEventId" in data:
+    if data.get("scheduledEventId") is not None:
         out["scheduled_event_id"] = data["scheduledEventId"]
     else:
         out["scheduled_event_id"] = 0

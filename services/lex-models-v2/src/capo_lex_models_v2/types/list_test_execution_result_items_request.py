@@ -43,7 +43,7 @@ def serialize_json(value: ListTestExecutionResultItemsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListTestExecutionResultItemsRequest:
     out: ListTestExecutionResultItemsRequest = {}  # type: ignore[typeddict-item]
-    if "resultFilterBy" in data:
+    if data.get("resultFilterBy") is not None:
         import capo_lex_models_v2.types.test_execution_result_filter_by
 
         out["result_filter_by"] = (
@@ -55,8 +55,8 @@ def deserialize_json(data: dict) -> ListTestExecutionResultItemsRequest:
         raise DeserializationError(
             "ListTestExecutionResultItemsRequest.result_filter_by required"
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

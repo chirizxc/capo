@@ -43,7 +43,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> ListAllowedMultiRegionClusterUpdatesResponse:
     out: ListAllowedMultiRegionClusterUpdatesResponse = {}  # type: ignore[typeddict-item]
-    if "ScaleUpNodeTypes" in data:
+    if data.get("ScaleUpNodeTypes") is not None:
         import capo_memorydb.types.node_type_list
 
         out["scale_up_node_types"] = (
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_1(
                 data["ScaleUpNodeTypes"]
             )
         )
-    if "ScaleDownNodeTypes" in data:
+    if data.get("ScaleDownNodeTypes") is not None:
         import capo_memorydb.types.node_type_list
 
         out["scale_down_node_types"] = (

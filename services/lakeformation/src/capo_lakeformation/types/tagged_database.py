@@ -36,13 +36,13 @@ def serialize_json(value: TaggedDatabase) -> dict:
 
 def deserialize_json(data: dict) -> TaggedDatabase:
     out: TaggedDatabase = {}  # type: ignore[typeddict-item]
-    if "Database" in data:
+    if data.get("Database") is not None:
         import capo_lakeformation.types.database_resource
 
         out["database"] = capo_lakeformation.types.database_resource.deserialize_json(
             data["Database"]
         )
-    if "LFTags" in data:
+    if data.get("LFTags") is not None:
         import capo_lakeformation.types.lf_tags_list
 
         out["lf_tags"] = capo_lakeformation.types.lf_tags_list.deserialize_json(

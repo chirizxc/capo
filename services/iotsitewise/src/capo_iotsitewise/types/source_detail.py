@@ -29,7 +29,7 @@ def serialize_json(value: SourceDetail) -> dict:
 
 def deserialize_json(data: dict) -> SourceDetail:
     out: SourceDetail = {}  # type: ignore[typeddict-item]
-    if "kendra" in data:
+    if data.get("kendra") is not None:
         import capo_iotsitewise.types.kendra_source_detail
 
         out["kendra"] = capo_iotsitewise.types.kendra_source_detail.deserialize_json(

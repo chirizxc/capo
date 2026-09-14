@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: StopSandboxOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StopSandboxOutput:
     out: StopSandboxOutput = {}  # type: ignore[typeddict-item]
-    if "sandbox" in data:
+    if data.get("sandbox") is not None:
         import capo_codebuild.types.sandbox
 
         out["sandbox"] = capo_codebuild.types.sandbox.deserialize_aws_json_1_1(

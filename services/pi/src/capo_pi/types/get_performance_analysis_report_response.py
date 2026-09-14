@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: GetPerformanceAnalysisReportResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetPerformanceAnalysisReportResponse:
     out: GetPerformanceAnalysisReportResponse = {}  # type: ignore[typeddict-item]
-    if "AnalysisReport" in data:
+    if data.get("AnalysisReport") is not None:
         import capo_pi.types.analysis_report
 
         out["analysis_report"] = capo_pi.types.analysis_report.deserialize_aws_json_1_1(

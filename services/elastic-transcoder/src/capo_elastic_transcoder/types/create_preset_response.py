@@ -32,12 +32,12 @@ def serialize_json(value: CreatePresetResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreatePresetResponse:
     out: CreatePresetResponse = {}  # type: ignore[typeddict-item]
-    if "Preset" in data:
+    if data.get("Preset") is not None:
         import capo_elastic_transcoder.types.preset
 
         out["preset"] = capo_elastic_transcoder.types.preset.deserialize_json(
             data["Preset"]
         )
-    if "Warning" in data:
+    if data.get("Warning") is not None:
         out["warning"] = data["Warning"]
     return out

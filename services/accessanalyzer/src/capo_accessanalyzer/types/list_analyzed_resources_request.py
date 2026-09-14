@@ -38,14 +38,14 @@ def serialize_json(value: ListAnalyzedResourcesRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListAnalyzedResourcesRequest:
     out: ListAnalyzedResourcesRequest = {}  # type: ignore[typeddict-item]
-    if "analyzerArn" in data:
+    if data.get("analyzerArn") is not None:
         out["analyzer_arn"] = data["analyzerArn"]
     else:
         raise DeserializationError("ListAnalyzedResourcesRequest.analyzer_arn required")
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

@@ -28,7 +28,7 @@ def serialize_json(value: UpdateVoiceProfileRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateVoiceProfileRequest:
     out: UpdateVoiceProfileRequest = {}  # type: ignore[typeddict-item]
-    if "SpeakerSearchTaskId" in data:
+    if data.get("SpeakerSearchTaskId") is not None:
         out["speaker_search_task_id"] = data["SpeakerSearchTaskId"]
     else:
         raise DeserializationError(

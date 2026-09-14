@@ -74,15 +74,15 @@ def serialize_json(value: QQueryCard) -> dict:
 
 def deserialize_json(data: dict) -> QQueryCard:
     out: QQueryCard = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("QQueryCard.id required")
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
     else:
         raise DeserializationError("QQueryCard.title required")
-    if "dependencies" in data:
+    if data.get("dependencies") is not None:
         import capo_qapps.types.dependency_list
 
         out["dependencies"] = capo_qapps.types.dependency_list.deserialize_json(
@@ -90,17 +90,17 @@ def deserialize_json(data: dict) -> QQueryCard:
         )
     else:
         raise DeserializationError("QQueryCard.dependencies required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_qapps.types.card_type
 
         out["type"] = capo_qapps.types.card_type.deserialize_json(data["type"])
     else:
         raise DeserializationError("QQueryCard.type required")
-    if "prompt" in data:
+    if data.get("prompt") is not None:
         out["prompt"] = data["prompt"]
     else:
         raise DeserializationError("QQueryCard.prompt required")
-    if "outputSource" in data:
+    if data.get("outputSource") is not None:
         import capo_qapps.types.card_output_source
 
         out["output_source"] = capo_qapps.types.card_output_source.deserialize_json(
@@ -108,13 +108,13 @@ def deserialize_json(data: dict) -> QQueryCard:
         )
     else:
         raise DeserializationError("QQueryCard.output_source required")
-    if "attributeFilter" in data:
+    if data.get("attributeFilter") is not None:
         import capo_qapps.types.attribute_filter
 
         out["attribute_filter"] = capo_qapps.types.attribute_filter.deserialize_json(
             data["attributeFilter"]
         )
-    if "memoryReferences" in data:
+    if data.get("memoryReferences") is not None:
         import capo_qapps.types.memory_reference_list
 
         out["memory_references"] = (

@@ -31,7 +31,7 @@ def serialize_json(value: UpdateDataRetentionRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDataRetentionRequest:
     out: UpdateDataRetentionRequest = {}  # type: ignore[typeddict-item]
-    if "actionType" in data:
+    if data.get("actionType") is not None:
         import capo_wickr.types.data_retention_action_type
 
         out["action_type"] = (

@@ -12,12 +12,20 @@ class AvailabilitySlo(TypedDict, closed=True):
 def serialize_json(value: AvailabilitySlo) -> dict:
     out: dict = {}
     if "target" in value:
-        out["target"] = value["target"]
+        out["target"] = (
+            "NaN"
+            if value["target"] != value["target"]
+            else "Infinity"
+            if value["target"] == float("inf")
+            else "-Infinity"
+            if value["target"] == float("-inf")
+            else value["target"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> AvailabilitySlo:
     out: AvailabilitySlo = {}  # type: ignore[typeddict-item]
-    if "target" in data:
-        out["target"] = data["target"]
+    if data.get("target") is not None:
+        out["target"] = float(data["target"])
     return out

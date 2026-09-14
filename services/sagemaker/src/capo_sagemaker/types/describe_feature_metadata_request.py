@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: DescribeFeatureMetadataRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeFeatureMetadataRequest:
     out: DescribeFeatureMetadataRequest = {}  # type: ignore[typeddict-item]
-    if "FeatureGroupName" in data:
+    if data.get("FeatureGroupName") is not None:
         out["feature_group_name"] = data["FeatureGroupName"]
-    if "FeatureName" in data:
+    if data.get("FeatureName") is not None:
         out["feature_name"] = data["FeatureName"]
     return out

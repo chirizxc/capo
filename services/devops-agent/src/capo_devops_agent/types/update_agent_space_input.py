@@ -36,10 +36,10 @@ def serialize_json(value: UpdateAgentSpaceInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAgentSpaceInput:
     out: UpdateAgentSpaceInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "locale" in data:
+    if data.get("locale") is not None:
         out["locale"] = data["locale"]
     return out

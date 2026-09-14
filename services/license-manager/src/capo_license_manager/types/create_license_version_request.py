@@ -101,19 +101,19 @@ def serialize_aws_json_1_1(value: CreateLicenseVersionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateLicenseVersionRequest:
     out: CreateLicenseVersionRequest = {}  # type: ignore[typeddict-item]
-    if "LicenseArn" in data:
+    if data.get("LicenseArn") is not None:
         out["license_arn"] = data["LicenseArn"]
     else:
         raise DeserializationError("CreateLicenseVersionRequest.license_arn required")
-    if "LicenseName" in data:
+    if data.get("LicenseName") is not None:
         out["license_name"] = data["LicenseName"]
     else:
         raise DeserializationError("CreateLicenseVersionRequest.license_name required")
-    if "ProductName" in data:
+    if data.get("ProductName") is not None:
         out["product_name"] = data["ProductName"]
     else:
         raise DeserializationError("CreateLicenseVersionRequest.product_name required")
-    if "Issuer" in data:
+    if data.get("Issuer") is not None:
         import capo_license_manager.types.issuer
 
         out["issuer"] = capo_license_manager.types.issuer.deserialize_aws_json_1_1(
@@ -121,11 +121,11 @@ def deserialize_aws_json_1_1(data: dict) -> CreateLicenseVersionRequest:
         )
     else:
         raise DeserializationError("CreateLicenseVersionRequest.issuer required")
-    if "HomeRegion" in data:
+    if data.get("HomeRegion") is not None:
         out["home_region"] = data["HomeRegion"]
     else:
         raise DeserializationError("CreateLicenseVersionRequest.home_region required")
-    if "Validity" in data:
+    if data.get("Validity") is not None:
         import capo_license_manager.types.datetime_range
 
         out["validity"] = (
@@ -135,7 +135,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateLicenseVersionRequest:
         )
     else:
         raise DeserializationError("CreateLicenseVersionRequest.validity required")
-    if "LicenseMetadata" in data:
+    if data.get("LicenseMetadata") is not None:
         import capo_license_manager.types.metadata_list
 
         out["license_metadata"] = (
@@ -143,7 +143,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateLicenseVersionRequest:
                 data["LicenseMetadata"]
             )
         )
-    if "Entitlements" in data:
+    if data.get("Entitlements") is not None:
         import capo_license_manager.types.entitlement_list
 
         out["entitlements"] = (
@@ -153,7 +153,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateLicenseVersionRequest:
         )
     else:
         raise DeserializationError("CreateLicenseVersionRequest.entitlements required")
-    if "ConsumptionConfiguration" in data:
+    if data.get("ConsumptionConfiguration") is not None:
         import capo_license_manager.types.consumption_configuration
 
         out["consumption_configuration"] = (
@@ -165,7 +165,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateLicenseVersionRequest:
         raise DeserializationError(
             "CreateLicenseVersionRequest.consumption_configuration required"
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_license_manager.types.license_status
 
         out["status"] = (
@@ -175,10 +175,10 @@ def deserialize_aws_json_1_1(data: dict) -> CreateLicenseVersionRequest:
         )
     else:
         raise DeserializationError("CreateLicenseVersionRequest.status required")
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     else:
         raise DeserializationError("CreateLicenseVersionRequest.client_token required")
-    if "SourceVersion" in data:
+    if data.get("SourceVersion") is not None:
         out["source_version"] = data["SourceVersion"]
     return out

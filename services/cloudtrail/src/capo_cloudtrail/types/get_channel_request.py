@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetChannelRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetChannelRequest:
     out: GetChannelRequest = {}  # type: ignore[typeddict-item]
-    if "Channel" in data:
+    if data.get("Channel") is not None:
         out["channel"] = data["Channel"]
     else:
         raise DeserializationError("GetChannelRequest.channel required")

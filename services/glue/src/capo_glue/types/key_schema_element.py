@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: KeySchemaElement) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> KeySchemaElement:
     out: KeySchemaElement = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("KeySchemaElement.name required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     else:
         raise DeserializationError("KeySchemaElement.type required")

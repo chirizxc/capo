@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> HostKeysList:
 
     out: HostKeysList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lightsail.types.host_key_attributes.deserialize_aws_json_1_1(item)
         )

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> FacetAttributeUpdateList:
 
     out: FacetAttributeUpdateList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_clouddirectory.types.facet_attribute_update.deserialize_json(item)
         )

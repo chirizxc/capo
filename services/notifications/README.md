@@ -13,9 +13,9 @@ from capo_notifications import AsyncNotificationsClient
 
 
 async def main():
-    async with AsyncNotificationsClient() as s3:
+    async with AsyncNotificationsClient() as notifications:
         # Example: call the list_managed_notification_channel_associations operation
-        response = await s3.list_managed_notification_channel_associations()
+        response = await notifications.list_managed_notification_channel_associations()
         print(response["next_token"])
 ```
 
@@ -28,9 +28,9 @@ from capo_notifications import AsyncNotificationsClient
 
 
 async def main():
-    async with AsyncNotificationsClient() as s3:
+    async with AsyncNotificationsClient() as notifications:
         # Example: paginate over list_managed_notification_channel_associations
-        async for item in s3.iter_list_managed_notification_channel_associations():
+        async for item in notifications.iter_list_managed_notification_channel_associations():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_notifications.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncNotificationsClient() as s3:
+    async with AsyncNotificationsClient() as notifications:
         try:
-            await s3.list_managed_notification_channel_associations()
+            await notifications.list_managed_notification_channel_associations()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_notifications import AsyncNotificationsClient
 
 
 async def main():
-    async with AsyncNotificationsClient() as s3:
+    async with AsyncNotificationsClient() as notifications:
         # Default: 3 attempts for every operation
-        response = await s3.list_managed_notification_channel_associations()
+        response = await notifications.list_managed_notification_channel_associations()
 
         # Override per operation
-        response = await s3.list_managed_notification_channel_associations(config_overrides={"retry_max_attempts": 5})
+        response = await notifications.list_managed_notification_channel_associations(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.list_managed_notification_channel_associations(config_overrides={"retry_max_attempts": 1})
+        response = await notifications.list_managed_notification_channel_associations(config_overrides={"retry_max_attempts": 1})
 ```

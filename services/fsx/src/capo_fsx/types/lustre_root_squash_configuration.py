@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: LustreRootSquashConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LustreRootSquashConfiguration:
     out: LustreRootSquashConfiguration = {}  # type: ignore[typeddict-item]
-    if "RootSquash" in data:
+    if data.get("RootSquash") is not None:
         out["root_squash"] = data["RootSquash"]
-    if "NoSquashNids" in data:
+    if data.get("NoSquashNids") is not None:
         import capo_fsx.types.lustre_no_squash_nids
 
         out["no_squash_nids"] = (

@@ -49,17 +49,17 @@ def serialize_json(value: Deployment) -> dict:
 
 def deserialize_json(data: dict) -> Deployment:
     out: Deployment = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "createdDate" in data:
+    if data.get("createdDate") is not None:
         import capo_api_gateway.types.timestamp
 
         out["created_date"] = capo_api_gateway.types.timestamp.deserialize_json(
             data["createdDate"]
         )
-    if "apiSummary" in data:
+    if data.get("apiSummary") is not None:
         import capo_api_gateway.types.path_to_map_of_method_snapshot
 
         out["api_summary"] = (

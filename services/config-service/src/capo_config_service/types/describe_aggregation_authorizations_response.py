@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: DescribeAggregationAuthorizationsResponse) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeAggregationAuthorizationsResponse:
     out: DescribeAggregationAuthorizationsResponse = {}  # type: ignore[typeddict-item]
-    if "AggregationAuthorizations" in data:
+    if data.get("AggregationAuthorizations") is not None:
         import capo_config_service.types.aggregation_authorization_list
 
         out["aggregation_authorizations"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAggregationAuthorizationsRes
                 data["AggregationAuthorizations"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

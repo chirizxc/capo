@@ -24,7 +24,7 @@ def serialize_json(value: DataIntegrationFlowSQLTransformationConfiguration) -> 
 
 def deserialize_json(data: dict) -> DataIntegrationFlowSQLTransformationConfiguration:
     out: DataIntegrationFlowSQLTransformationConfiguration = {}  # type: ignore[typeddict-item]
-    if "query" in data:
+    if data.get("query") is not None:
         out["query"] = data["query"]
     else:
         raise DeserializationError(

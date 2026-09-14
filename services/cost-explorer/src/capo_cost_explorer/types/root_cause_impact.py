@@ -16,14 +16,22 @@ class RootCauseImpact(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: RootCauseImpact) -> dict:
     out: dict = {}
-    out["Contribution"] = value.get("contribution", 0)
+    out["Contribution"] = (
+        "NaN"
+        if value.get("contribution", 0) != value.get("contribution", 0)
+        else "Infinity"
+        if value.get("contribution", 0) == float("inf")
+        else "-Infinity"
+        if value.get("contribution", 0) == float("-inf")
+        else value.get("contribution", 0)
+    )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> RootCauseImpact:
     out: RootCauseImpact = {}  # type: ignore[typeddict-item]
-    if "Contribution" in data:
-        out["contribution"] = data["Contribution"]
+    if data.get("Contribution") is not None:
+        out["contribution"] = float(data["Contribution"])
     else:
         out["contribution"] = 0
     return out

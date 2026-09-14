@@ -107,17 +107,17 @@ def serialize_aws_json_1_0(value: AbbreviatedExecution) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AbbreviatedExecution:
     out: AbbreviatedExecution = {}  # type: ignore[typeddict-item]
-    if "planArn" in data:
+    if data.get("planArn") is not None:
         out["plan_arn"] = data["planArn"]
     else:
         raise DeserializationError("AbbreviatedExecution.plan_arn required")
-    if "executionId" in data:
+    if data.get("executionId") is not None:
         out["execution_id"] = data["executionId"]
     else:
         raise DeserializationError("AbbreviatedExecution.execution_id required")
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_arc_region_switch.types._prelude.timestamp
 
         out["updated_at"] = (
@@ -125,9 +125,9 @@ def deserialize_aws_json_1_0(data: dict) -> AbbreviatedExecution:
                 data["updatedAt"]
             )
         )
-    if "comment" in data:
+    if data.get("comment") is not None:
         out["comment"] = data["comment"]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_arc_region_switch.types._prelude.timestamp
 
         out["start_time"] = (
@@ -137,7 +137,7 @@ def deserialize_aws_json_1_0(data: dict) -> AbbreviatedExecution:
         )
     else:
         raise DeserializationError("AbbreviatedExecution.start_time required")
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_arc_region_switch.types._prelude.timestamp
 
         out["end_time"] = (
@@ -145,7 +145,7 @@ def deserialize_aws_json_1_0(data: dict) -> AbbreviatedExecution:
                 data["endTime"]
             )
         )
-    if "mode" in data:
+    if data.get("mode") is not None:
         import capo_arc_region_switch.types.execution_mode
 
         out["mode"] = (
@@ -155,7 +155,7 @@ def deserialize_aws_json_1_0(data: dict) -> AbbreviatedExecution:
         )
     else:
         raise DeserializationError("AbbreviatedExecution.mode required")
-    if "executionState" in data:
+    if data.get("executionState") is not None:
         import capo_arc_region_switch.types.execution_state
 
         out["execution_state"] = (
@@ -165,7 +165,7 @@ def deserialize_aws_json_1_0(data: dict) -> AbbreviatedExecution:
         )
     else:
         raise DeserializationError("AbbreviatedExecution.execution_state required")
-    if "executionAction" in data:
+    if data.get("executionAction") is not None:
         import capo_arc_region_switch.types.execution_action
 
         out["execution_action"] = (
@@ -175,12 +175,12 @@ def deserialize_aws_json_1_0(data: dict) -> AbbreviatedExecution:
         )
     else:
         raise DeserializationError("AbbreviatedExecution.execution_action required")
-    if "executionRegion" in data:
+    if data.get("executionRegion") is not None:
         out["execution_region"] = data["executionRegion"]
     else:
         raise DeserializationError("AbbreviatedExecution.execution_region required")
-    if "recoveryExecutionId" in data:
+    if data.get("recoveryExecutionId") is not None:
         out["recovery_execution_id"] = data["recoveryExecutionId"]
-    if "actualRecoveryTime" in data:
+    if data.get("actualRecoveryTime") is not None:
         out["actual_recovery_time"] = data["actualRecoveryTime"]
     return out

@@ -24,7 +24,7 @@ def serialize_json(value: SingularConnectorProfileCredentials) -> dict:
 
 def deserialize_json(data: dict) -> SingularConnectorProfileCredentials:
     out: SingularConnectorProfileCredentials = {}  # type: ignore[typeddict-item]
-    if "apiKey" in data:
+    if data.get("apiKey") is not None:
         out["api_key"] = data["apiKey"]
     else:
         raise DeserializationError(

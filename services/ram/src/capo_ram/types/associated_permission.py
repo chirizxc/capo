@@ -64,28 +64,28 @@ def serialize_json(value: AssociatedPermission) -> dict:
 
 def deserialize_json(data: dict) -> AssociatedPermission:
     out: AssociatedPermission = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "permissionVersion" in data:
+    if data.get("permissionVersion") is not None:
         out["permission_version"] = data["permissionVersion"]
-    if "defaultVersion" in data:
+    if data.get("defaultVersion") is not None:
         out["default_version"] = data["defaultVersion"]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "featureSet" in data:
+    if data.get("featureSet") is not None:
         import capo_ram.types.permission_feature_set
 
         out["feature_set"] = capo_ram.types.permission_feature_set.deserialize_json(
             data["featureSet"]
         )
-    if "lastUpdatedTime" in data:
+    if data.get("lastUpdatedTime") is not None:
         import capo_ram.types.date_time
 
         out["last_updated_time"] = capo_ram.types.date_time.deserialize_json(
             data["lastUpdatedTime"]
         )
-    if "resourceShareArn" in data:
+    if data.get("resourceShareArn") is not None:
         out["resource_share_arn"] = data["resourceShareArn"]
     return out

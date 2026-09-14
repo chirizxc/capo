@@ -74,15 +74,15 @@ def serialize_json(value: QuickConnect) -> dict:
 
 def deserialize_json(data: dict) -> QuickConnect:
     out: QuickConnect = {}  # type: ignore[typeddict-item]
-    if "QuickConnectARN" in data:
+    if data.get("QuickConnectARN") is not None:
         out["quick_connect_arn"] = data["QuickConnectARN"]
-    if "QuickConnectId" in data:
+    if data.get("QuickConnectId") is not None:
         out["quick_connect_id"] = data["QuickConnectId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "QuickConnectConfig" in data:
+    if data.get("QuickConnectConfig") is not None:
         import capo_connect.types.quick_connect_config
 
         out["quick_connect_config"] = (
@@ -90,16 +90,16 @@ def deserialize_json(data: dict) -> QuickConnect:
                 data["QuickConnectConfig"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_connect.types.timestamp
 
         out["last_modified_time"] = capo_connect.types.timestamp.deserialize_json(
             data["LastModifiedTime"]
         )
-    if "LastModifiedRegion" in data:
+    if data.get("LastModifiedRegion") is not None:
         out["last_modified_region"] = data["LastModifiedRegion"]
     return out

@@ -104,17 +104,17 @@ def serialize_json(value: ListIntegrationItem) -> dict:
 
 def deserialize_json(data: dict) -> ListIntegrationItem:
     out: ListIntegrationItem = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError("ListIntegrationItem.domain_name required")
-    if "Uri" in data:
+    if data.get("Uri") is not None:
         out["uri"] = data["Uri"]
     else:
         raise DeserializationError("ListIntegrationItem.uri required")
-    if "ObjectTypeName" in data:
+    if data.get("ObjectTypeName") is not None:
         out["object_type_name"] = data["ObjectTypeName"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["created_at"] = capo_customer_profiles.types.timestamp.deserialize_json(
@@ -122,7 +122,7 @@ def deserialize_json(data: dict) -> ListIntegrationItem:
         )
     else:
         raise DeserializationError("ListIntegrationItem.created_at required")
-    if "LastUpdatedAt" in data:
+    if data.get("LastUpdatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["last_updated_at"] = (
@@ -132,13 +132,13 @@ def deserialize_json(data: dict) -> ListIntegrationItem:
         )
     else:
         raise DeserializationError("ListIntegrationItem.last_updated_at required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_customer_profiles.types.tag_map
 
         out["tags"] = capo_customer_profiles.types.tag_map.deserialize_json(
             data["Tags"]
         )
-    if "ObjectTypeNames" in data:
+    if data.get("ObjectTypeNames") is not None:
         import capo_customer_profiles.types.object_type_names
 
         out["object_type_names"] = (
@@ -146,13 +146,13 @@ def deserialize_json(data: dict) -> ListIntegrationItem:
                 data["ObjectTypeNames"]
             )
         )
-    if "WorkflowId" in data:
+    if data.get("WorkflowId") is not None:
         out["workflow_id"] = data["WorkflowId"]
-    if "IsUnstructured" in data:
+    if data.get("IsUnstructured") is not None:
         out["is_unstructured"] = data["IsUnstructured"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "EventTriggerNames" in data:
+    if data.get("EventTriggerNames") is not None:
         import capo_customer_profiles.types.event_trigger_names
 
         out["event_trigger_names"] = (
@@ -160,7 +160,7 @@ def deserialize_json(data: dict) -> ListIntegrationItem:
                 data["EventTriggerNames"]
             )
         )
-    if "Scope" in data:
+    if data.get("Scope") is not None:
         import capo_customer_profiles.types.scope
 
         out["scope"] = capo_customer_profiles.types.scope.deserialize_json(

@@ -13,10 +13,25 @@ from capo_transcribe import AsyncTranscribeClient
 
 
 async def main():
-    async with AsyncTranscribeClient() as s3:
+    async with AsyncTranscribeClient() as transcribe:
         # Example: call the create_call_analytics_category operation
-        response = await s3.create_call_analytics_category()
+        response = await transcribe.create_call_analytics_category()
         print(response["category_properties"])
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_transcribe import AsyncTranscribeClient
+
+
+async def main():
+    async with AsyncTranscribeClient() as transcribe:
+        # Example: paginate over list_call_analytics_categories
+        async for item in transcribe.iter_list_call_analytics_categories():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_transcribe.error import BadRequestException
 
 
 async def main():
-    async with AsyncTranscribeClient() as s3:
+    async with AsyncTranscribeClient() as transcribe:
         try:
-            await s3.create_call_analytics_category()
+            await transcribe.create_call_analytics_category()
         except BadRequestException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_transcribe import AsyncTranscribeClient
 
 
 async def main():
-    async with AsyncTranscribeClient() as s3:
+    async with AsyncTranscribeClient() as transcribe:
         # Default: 3 attempts for every operation
-        response = await s3.create_call_analytics_category()
+        response = await transcribe.create_call_analytics_category()
 
         # Override per operation
-        response = await s3.create_call_analytics_category(config_overrides={"retry_max_attempts": 5})
+        response = await transcribe.create_call_analytics_category(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_call_analytics_category(config_overrides={"retry_max_attempts": 1})
+        response = await transcribe.create_call_analytics_category(config_overrides={"retry_max_attempts": 1})
 ```

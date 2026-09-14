@@ -31,13 +31,13 @@ def serialize_aws_json_1_1(value: AttackStatisticsDataItem) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AttackStatisticsDataItem:
     out: AttackStatisticsDataItem = {}  # type: ignore[typeddict-item]
-    if "AttackVolume" in data:
+    if data.get("AttackVolume") is not None:
         import capo_shield.types.attack_volume
 
         out["attack_volume"] = capo_shield.types.attack_volume.deserialize_aws_json_1_1(
             data["AttackVolume"]
         )
-    if "AttackCount" in data:
+    if data.get("AttackCount") is not None:
         out["attack_count"] = data["AttackCount"]
     else:
         out["attack_count"] = 0

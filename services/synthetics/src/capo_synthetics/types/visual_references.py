@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> VisualReferences:
 
     out: VisualReferences = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_synthetics.types.visual_reference_input.deserialize_json(item))
     return out

@@ -23,6 +23,6 @@ def serialize_json(value: GetGroupConfigurationInput) -> dict:
 
 def deserialize_json(data: dict) -> GetGroupConfigurationInput:
     out: GetGroupConfigurationInput = {}  # type: ignore[typeddict-item]
-    if "Group" in data:
+    if data.get("Group") is not None:
         out["group"] = data["Group"]
     return out

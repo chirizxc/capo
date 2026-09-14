@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> RouteIntermodalEnabledLegsList:
 
     out: RouteIntermodalEnabledLegsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_geo_routes.types.route_intermodal_enabled_legs.deserialize_json(item)
         )

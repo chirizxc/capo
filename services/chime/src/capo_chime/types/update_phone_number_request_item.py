@@ -40,13 +40,13 @@ def serialize_json(value: UpdatePhoneNumberRequestItem) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePhoneNumberRequestItem:
     out: UpdatePhoneNumberRequestItem = {}  # type: ignore[typeddict-item]
-    if "PhoneNumberId" in data:
+    if data.get("PhoneNumberId") is not None:
         out["phone_number_id"] = data["PhoneNumberId"]
     else:
         raise DeserializationError(
             "UpdatePhoneNumberRequestItem.phone_number_id required"
         )
-    if "ProductType" in data:
+    if data.get("ProductType") is not None:
         import capo_chime.types.phone_number_product_type
 
         out["product_type"] = (
@@ -54,6 +54,6 @@ def deserialize_json(data: dict) -> UpdatePhoneNumberRequestItem:
                 data["ProductType"]
             )
         )
-    if "CallingName" in data:
+    if data.get("CallingName") is not None:
         out["calling_name"] = data["CallingName"]
     return out

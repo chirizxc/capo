@@ -27,13 +27,13 @@ def serialize_json(value: IdNamespaceAssociationInputReferenceConfig) -> dict:
 
 def deserialize_json(data: dict) -> IdNamespaceAssociationInputReferenceConfig:
     out: IdNamespaceAssociationInputReferenceConfig = {}  # type: ignore[typeddict-item]
-    if "inputReferenceArn" in data:
+    if data.get("inputReferenceArn") is not None:
         out["input_reference_arn"] = data["inputReferenceArn"]
     else:
         raise DeserializationError(
             "IdNamespaceAssociationInputReferenceConfig.input_reference_arn required"
         )
-    if "manageResourcePolicies" in data:
+    if data.get("manageResourcePolicies") is not None:
         out["manage_resource_policies"] = data["manageResourcePolicies"]
     else:
         raise DeserializationError(

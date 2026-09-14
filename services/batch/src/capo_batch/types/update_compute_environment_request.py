@@ -65,15 +65,15 @@ def serialize_json(value: UpdateComputeEnvironmentRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateComputeEnvironmentRequest:
     out: UpdateComputeEnvironmentRequest = {}  # type: ignore[typeddict-item]
-    if "computeEnvironment" in data:
+    if data.get("computeEnvironment") is not None:
         out["compute_environment"] = data["computeEnvironment"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_batch.types.ce_state
 
         out["state"] = capo_batch.types.ce_state.deserialize_json(data["state"])
-    if "unmanagedvCpus" in data:
+    if data.get("unmanagedvCpus") is not None:
         out["unmanagedv_cpus"] = data["unmanagedvCpus"]
-    if "computeResources" in data:
+    if data.get("computeResources") is not None:
         import capo_batch.types.compute_resource_update
 
         out["compute_resources"] = (
@@ -81,14 +81,14 @@ def deserialize_json(data: dict) -> UpdateComputeEnvironmentRequest:
                 data["computeResources"]
             )
         )
-    if "serviceRole" in data:
+    if data.get("serviceRole") is not None:
         out["service_role"] = data["serviceRole"]
-    if "updatePolicy" in data:
+    if data.get("updatePolicy") is not None:
         import capo_batch.types.update_policy
 
         out["update_policy"] = capo_batch.types.update_policy.deserialize_json(
             data["updatePolicy"]
         )
-    if "context" in data:
+    if data.get("context") is not None:
         out["context"] = data["context"]
     return out

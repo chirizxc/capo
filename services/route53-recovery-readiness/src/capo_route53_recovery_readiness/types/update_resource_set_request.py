@@ -41,9 +41,9 @@ def serialize_json(value: UpdateResourceSetRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateResourceSetRequest:
     out: UpdateResourceSetRequest = {}  # type: ignore[typeddict-item]
-    if "resourceSetType" in data:
+    if data.get("resourceSetType") is not None:
         out["resource_set_type"] = data["resourceSetType"]
-    if "resources" in data:
+    if data.get("resources") is not None:
         import capo_route53_recovery_readiness.types.__list_of_resource
 
         out["resources"] = (

@@ -44,16 +44,16 @@ def serialize_aws_json_1_1(value: AddOn) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AddOn:
     out: AddOn = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "snapshotTimeOfDay" in data:
+    if data.get("snapshotTimeOfDay") is not None:
         out["snapshot_time_of_day"] = data["snapshotTimeOfDay"]
-    if "nextSnapshotTimeOfDay" in data:
+    if data.get("nextSnapshotTimeOfDay") is not None:
         out["next_snapshot_time_of_day"] = data["nextSnapshotTimeOfDay"]
-    if "threshold" in data:
+    if data.get("threshold") is not None:
         out["threshold"] = data["threshold"]
-    if "duration" in data:
+    if data.get("duration") is not None:
         out["duration"] = data["duration"]
     return out

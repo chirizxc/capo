@@ -39,10 +39,10 @@ def serialize_json(value: EndpointDisplayContentResponse) -> dict:
 
 def deserialize_json(data: dict) -> EndpointDisplayContentResponse:
     out: EndpointDisplayContentResponse = {}  # type: ignore[typeddict-item]
-    if "body" in data:
+    if data.get("body") is not None:
         out["body"] = data["body"]
-    if "endpoint" in data:
+    if data.get("endpoint") is not None:
         out["endpoint"] = data["endpoint"]
-    if "operationName" in data:
+    if data.get("operationName") is not None:
         out["operation_name"] = data["operationName"]
     return out

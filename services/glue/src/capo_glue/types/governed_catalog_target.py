@@ -63,11 +63,11 @@ def serialize_aws_json_1_1(value: GovernedCatalogTarget) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GovernedCatalogTarget:
     out: GovernedCatalogTarget = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("GovernedCatalogTarget.name required")
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_glue.types.one_input
 
         out["inputs"] = capo_glue.types.one_input.deserialize_aws_json_1_1(
@@ -75,7 +75,7 @@ def deserialize_aws_json_1_1(data: dict) -> GovernedCatalogTarget:
         )
     else:
         raise DeserializationError("GovernedCatalogTarget.inputs required")
-    if "PartitionKeys" in data:
+    if data.get("PartitionKeys") is not None:
         import capo_glue.types.glue_studio_path_list
 
         out["partition_keys"] = (
@@ -83,15 +83,15 @@ def deserialize_aws_json_1_1(data: dict) -> GovernedCatalogTarget:
                 data["PartitionKeys"]
             )
         )
-    if "Table" in data:
+    if data.get("Table") is not None:
         out["table"] = data["Table"]
     else:
         raise DeserializationError("GovernedCatalogTarget.table required")
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
     else:
         raise DeserializationError("GovernedCatalogTarget.database required")
-    if "SchemaChangePolicy" in data:
+    if data.get("SchemaChangePolicy") is not None:
         import capo_glue.types.catalog_schema_change_policy
 
         out["schema_change_policy"] = (

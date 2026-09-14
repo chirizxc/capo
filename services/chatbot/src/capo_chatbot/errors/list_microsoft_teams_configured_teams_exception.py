@@ -24,7 +24,7 @@ def serialize_json(value: ListMicrosoftTeamsConfiguredTeamsException_) -> dict:
 
 def deserialize_json(data: dict) -> ListMicrosoftTeamsConfiguredTeamsException_:
     out: ListMicrosoftTeamsConfiguredTeamsException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,22 @@ class ListMicrosoftTeamsConfiguredTeamsException(ServiceError):
 
     code: str | None = "ListMicrosoftTeamsConfiguredTeamsException"
 
-    def __init__(self, data: ListMicrosoftTeamsConfiguredTeamsException_):
+    def __init__(
+        self,
+        data: ListMicrosoftTeamsConfiguredTeamsException_,
+        message: str | None = None,
+    ):
         super().__init__(
             "server",
             is_throttling_error=False,
             is_retryable=False,
             code="ListMicrosoftTeamsConfiguredTeamsException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ListMicrosoftTeamsConfiguredTeamsException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "ListMicrosoftTeamsConfiguredTeamsException":
+        return cls(deserialize_json(data), message)

@@ -29,12 +29,12 @@ def serialize_json(value: ConditionalFormattingSolidColor) -> dict:
 
 def deserialize_json(data: dict) -> ConditionalFormattingSolidColor:
     out: ConditionalFormattingSolidColor = {}  # type: ignore[typeddict-item]
-    if "Expression" in data:
+    if data.get("Expression") is not None:
         out["expression"] = data["Expression"]
     else:
         raise DeserializationError(
             "ConditionalFormattingSolidColor.expression required"
         )
-    if "Color" in data:
+    if data.get("Color") is not None:
         out["color"] = data["Color"]
     return out

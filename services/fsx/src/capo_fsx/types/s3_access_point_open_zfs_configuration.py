@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: S3AccessPointOpenZFSConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3AccessPointOpenZFSConfiguration:
     out: S3AccessPointOpenZFSConfiguration = {}  # type: ignore[typeddict-item]
-    if "VolumeId" in data:
+    if data.get("VolumeId") is not None:
         out["volume_id"] = data["VolumeId"]
-    if "FileSystemIdentity" in data:
+    if data.get("FileSystemIdentity") is not None:
         import capo_fsx.types.open_zfs_file_system_identity
 
         out["file_system_identity"] = (

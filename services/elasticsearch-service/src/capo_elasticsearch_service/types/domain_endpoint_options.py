@@ -56,9 +56,9 @@ def serialize_json(value: DomainEndpointOptions) -> dict:
 
 def deserialize_json(data: dict) -> DomainEndpointOptions:
     out: DomainEndpointOptions = {}  # type: ignore[typeddict-item]
-    if "EnforceHTTPS" in data:
+    if data.get("EnforceHTTPS") is not None:
         out["enforce_https"] = data["EnforceHTTPS"]
-    if "TLSSecurityPolicy" in data:
+    if data.get("TLSSecurityPolicy") is not None:
         import capo_elasticsearch_service.types.tls_security_policy
 
         out["tls_security_policy"] = (
@@ -66,10 +66,10 @@ def deserialize_json(data: dict) -> DomainEndpointOptions:
                 data["TLSSecurityPolicy"]
             )
         )
-    if "CustomEndpointEnabled" in data:
+    if data.get("CustomEndpointEnabled") is not None:
         out["custom_endpoint_enabled"] = data["CustomEndpointEnabled"]
-    if "CustomEndpoint" in data:
+    if data.get("CustomEndpoint") is not None:
         out["custom_endpoint"] = data["CustomEndpoint"]
-    if "CustomEndpointCertificateArn" in data:
+    if data.get("CustomEndpointCertificateArn") is not None:
         out["custom_endpoint_certificate_arn"] = data["CustomEndpointCertificateArn"]
     return out

@@ -40,19 +40,19 @@ def serialize_json(value: DeleteFirewallDomainListOutput) -> dict:
 
 def deserialize_json(data: dict) -> DeleteFirewallDomainListOutput:
     out: DeleteFirewallDomainListOutput = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("DeleteFirewallDomainListOutput.arn required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("DeleteFirewallDomainListOutput.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("DeleteFirewallDomainListOutput.name required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_route53globalresolver.types.cr_resource_status
 
         out["status"] = (

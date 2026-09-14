@@ -65,21 +65,21 @@ def serialize_aws_json_1_1(value: CreateWorkspaceBundleRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateWorkspaceBundleRequest:
     out: CreateWorkspaceBundleRequest = {}  # type: ignore[typeddict-item]
-    if "BundleName" in data:
+    if data.get("BundleName") is not None:
         out["bundle_name"] = data["BundleName"]
     else:
         raise DeserializationError("CreateWorkspaceBundleRequest.bundle_name required")
-    if "BundleDescription" in data:
+    if data.get("BundleDescription") is not None:
         out["bundle_description"] = data["BundleDescription"]
     else:
         raise DeserializationError(
             "CreateWorkspaceBundleRequest.bundle_description required"
         )
-    if "ImageId" in data:
+    if data.get("ImageId") is not None:
         out["image_id"] = data["ImageId"]
     else:
         raise DeserializationError("CreateWorkspaceBundleRequest.image_id required")
-    if "ComputeType" in data:
+    if data.get("ComputeType") is not None:
         import capo_workspaces.types.compute_type
 
         out["compute_type"] = (
@@ -89,7 +89,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateWorkspaceBundleRequest:
         )
     else:
         raise DeserializationError("CreateWorkspaceBundleRequest.compute_type required")
-    if "UserStorage" in data:
+    if data.get("UserStorage") is not None:
         import capo_workspaces.types.user_storage
 
         out["user_storage"] = (
@@ -99,7 +99,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateWorkspaceBundleRequest:
         )
     else:
         raise DeserializationError("CreateWorkspaceBundleRequest.user_storage required")
-    if "RootStorage" in data:
+    if data.get("RootStorage") is not None:
         import capo_workspaces.types.root_storage
 
         out["root_storage"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateWorkspaceBundleRequest:
                 data["RootStorage"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_workspaces.types.tag_list
 
         out["tags"] = capo_workspaces.types.tag_list.deserialize_aws_json_1_1(

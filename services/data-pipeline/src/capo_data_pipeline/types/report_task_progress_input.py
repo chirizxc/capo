@@ -33,11 +33,11 @@ def serialize_aws_json_1_1(value: ReportTaskProgressInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReportTaskProgressInput:
     out: ReportTaskProgressInput = {}  # type: ignore[typeddict-item]
-    if "taskId" in data:
+    if data.get("taskId") is not None:
         out["task_id"] = data["taskId"]
     else:
         raise DeserializationError("ReportTaskProgressInput.task_id required")
-    if "fields" in data:
+    if data.get("fields") is not None:
         import capo_data_pipeline.types.field_list
 
         out["fields"] = capo_data_pipeline.types.field_list.deserialize_aws_json_1_1(

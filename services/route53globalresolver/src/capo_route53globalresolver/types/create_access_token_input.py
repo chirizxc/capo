@@ -57,9 +57,9 @@ def serialize_json(value: CreateAccessTokenInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateAccessTokenInput:
     out: CreateAccessTokenInput = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "expiresAt" in data:
+    if data.get("expiresAt") is not None:
         import capo_route53globalresolver.types.iso8601_time_string
 
         out["expires_at"] = (
@@ -67,9 +67,9 @@ def deserialize_json(data: dict) -> CreateAccessTokenInput:
                 data["expiresAt"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_route53globalresolver.types.tags
 
         out["tags"] = capo_route53globalresolver.types.tags.deserialize_json(

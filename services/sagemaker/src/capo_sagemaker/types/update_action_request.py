@@ -67,17 +67,17 @@ def serialize_aws_json_1_1(value: UpdateActionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateActionRequest:
     out: UpdateActionRequest = {}  # type: ignore[typeddict-item]
-    if "ActionName" in data:
+    if data.get("ActionName") is not None:
         out["action_name"] = data["ActionName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.action_status
 
         out["status"] = capo_sagemaker.types.action_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "Properties" in data:
+    if data.get("Properties") is not None:
         import capo_sagemaker.types.lineage_entity_parameters
 
         out["properties"] = (
@@ -85,7 +85,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateActionRequest:
                 data["Properties"]
             )
         )
-    if "PropertiesToRemove" in data:
+    if data.get("PropertiesToRemove") is not None:
         import capo_sagemaker.types.list_lineage_entity_parameter_key
 
         out["properties_to_remove"] = (

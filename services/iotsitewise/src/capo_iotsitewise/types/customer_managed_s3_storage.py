@@ -27,11 +27,11 @@ def serialize_json(value: CustomerManagedS3Storage) -> dict:
 
 def deserialize_json(data: dict) -> CustomerManagedS3Storage:
     out: CustomerManagedS3Storage = {}  # type: ignore[typeddict-item]
-    if "s3ResourceArn" in data:
+    if data.get("s3ResourceArn") is not None:
         out["s3_resource_arn"] = data["s3ResourceArn"]
     else:
         raise DeserializationError("CustomerManagedS3Storage.s3_resource_arn required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("CustomerManagedS3Storage.role_arn required")

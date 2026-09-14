@@ -187,7 +187,7 @@ class AsyncSageMakerFeatureStoreRuntimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sagemaker_featurestore_runtime.types.batch_get_record_request.BatchGetRecordRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_sagemaker_featurestore_runtime.types.batch_get_record_request.BatchGetRecordRequest = {}
         if identifiers is not None:
             input_["identifiers"] = identifiers
         if expiration_time_response is not None:
@@ -198,6 +198,7 @@ class AsyncSageMakerFeatureStoreRuntimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_record(
@@ -251,8 +252,9 @@ class AsyncSageMakerFeatureStoreRuntimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sagemaker_featurestore_runtime.types.delete_record_request.DeleteRecordRequest = {}  # type: ignore[typeddict-item]
-        input_["feature_group_name"] = feature_group_name
+        input_: capo_sagemaker_featurestore_runtime.types.delete_record_request.DeleteRecordRequest = {
+            "feature_group_name": feature_group_name
+        }
         if record_identifier_value_as_string is not None:
             input_["record_identifier_value_as_string"] = (
                 record_identifier_value_as_string
@@ -269,6 +271,7 @@ class AsyncSageMakerFeatureStoreRuntimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_record(
@@ -321,8 +324,9 @@ class AsyncSageMakerFeatureStoreRuntimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sagemaker_featurestore_runtime.types.get_record_request.GetRecordRequest = {}  # type: ignore[typeddict-item]
-        input_["feature_group_name"] = feature_group_name
+        input_: capo_sagemaker_featurestore_runtime.types.get_record_request.GetRecordRequest = {
+            "feature_group_name": feature_group_name
+        }
         if record_identifier_value_as_string is not None:
             input_["record_identifier_value_as_string"] = (
                 record_identifier_value_as_string
@@ -337,6 +341,7 @@ class AsyncSageMakerFeatureStoreRuntimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_record(
@@ -386,8 +391,9 @@ class AsyncSageMakerFeatureStoreRuntimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sagemaker_featurestore_runtime.types.put_record_request.PutRecordRequest = {}  # type: ignore[typeddict-item]
-        input_["feature_group_name"] = feature_group_name
+        input_: capo_sagemaker_featurestore_runtime.types.put_record_request.PutRecordRequest = {
+            "feature_group_name": feature_group_name
+        }
         if record is not None:
             input_["record"] = record
         if target_stores is not None:
@@ -400,6 +406,7 @@ class AsyncSageMakerFeatureStoreRuntimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

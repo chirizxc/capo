@@ -68,13 +68,13 @@ def serialize_json(value: Ec2InstanceAggregation) -> dict:
 
 def deserialize_json(data: dict) -> Ec2InstanceAggregation:
     out: Ec2InstanceAggregation = {}  # type: ignore[typeddict-item]
-    if "amis" in data:
+    if data.get("amis") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["amis"] = capo_inspector2.types.string_filter_list.deserialize_json(
             data["amis"]
         )
-    if "operatingSystems" in data:
+    if data.get("operatingSystems") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["operating_systems"] = (
@@ -82,20 +82,20 @@ def deserialize_json(data: dict) -> Ec2InstanceAggregation:
                 data["operatingSystems"]
             )
         )
-    if "instanceIds" in data:
+    if data.get("instanceIds") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["instance_ids"] = capo_inspector2.types.string_filter_list.deserialize_json(
             data["instanceIds"]
         )
-    if "instanceTags" in data:
+    if data.get("instanceTags") is not None:
         import capo_inspector2.types.map_filter_list
 
         out["instance_tags"] = capo_inspector2.types.map_filter_list.deserialize_json(
             data["instanceTags"]
         )
-    if "sortOrder" in data:
+    if data.get("sortOrder") is not None:
         out["sort_order"] = data["sortOrder"]
-    if "sortBy" in data:
+    if data.get("sortBy") is not None:
         out["sort_by"] = data["sortBy"]
     return out

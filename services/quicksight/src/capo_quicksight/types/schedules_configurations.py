@@ -22,7 +22,7 @@ def serialize_json(value: SchedulesConfigurations) -> dict:
 
 def deserialize_json(data: dict) -> SchedulesConfigurations:
     out: SchedulesConfigurations = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
     else:
         out["enabled"] = False

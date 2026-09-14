@@ -31,6 +31,6 @@ def deserialize_json(
     data: dict,
 ) -> AwsMskClusterClusterInfoEncryptionInfoEncryptionAtRestDetails:
     out: AwsMskClusterClusterInfoEncryptionInfoEncryptionAtRestDetails = {}  # type: ignore[typeddict-item]
-    if "DataVolumeKMSKeyId" in data:
+    if data.get("DataVolumeKMSKeyId") is not None:
         out["data_volume_kms_key_id"] = data["DataVolumeKMSKeyId"]
     return out

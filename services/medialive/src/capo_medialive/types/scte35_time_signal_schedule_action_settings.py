@@ -31,7 +31,7 @@ def serialize_json(value: Scte35TimeSignalScheduleActionSettings) -> dict:
 
 def deserialize_json(data: dict) -> Scte35TimeSignalScheduleActionSettings:
     out: Scte35TimeSignalScheduleActionSettings = {}  # type: ignore[typeddict-item]
-    if "scte35Descriptors" in data:
+    if data.get("scte35Descriptors") is not None:
         import capo_medialive.types.__list_of_scte35_descriptor
 
         out["scte35_descriptors"] = (

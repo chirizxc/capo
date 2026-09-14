@@ -41,17 +41,17 @@ def serialize_json(value: GetBuyerDashboardOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetBuyerDashboardOutput:
     out: GetBuyerDashboardOutput = {}  # type: ignore[typeddict-item]
-    if "embedUrl" in data:
+    if data.get("embedUrl") is not None:
         out["embed_url"] = data["embedUrl"]
     else:
         raise DeserializationError("GetBuyerDashboardOutput.embed_url required")
-    if "dashboardIdentifier" in data:
+    if data.get("dashboardIdentifier") is not None:
         out["dashboard_identifier"] = data["dashboardIdentifier"]
     else:
         raise DeserializationError(
             "GetBuyerDashboardOutput.dashboard_identifier required"
         )
-    if "embeddingDomains" in data:
+    if data.get("embeddingDomains") is not None:
         import capo_marketplace_reporting.types.embedding_domains
 
         out["embedding_domains"] = (

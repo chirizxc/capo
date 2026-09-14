@@ -84,21 +84,21 @@ def serialize_json(value: CreateResourceGatewayRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateResourceGatewayRequest:
     out: CreateResourceGatewayRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateResourceGatewayRequest.name required")
-    if "vpcIdentifier" in data:
+    if data.get("vpcIdentifier") is not None:
         out["vpc_identifier"] = data["vpcIdentifier"]
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_vpc_lattice.types.subnet_list
 
         out["subnet_ids"] = capo_vpc_lattice.types.subnet_list.deserialize_json(
             data["subnetIds"]
         )
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_vpc_lattice.types.security_group_list
 
         out["security_group_ids"] = (
@@ -106,13 +106,13 @@ def deserialize_json(data: dict) -> CreateResourceGatewayRequest:
                 data["securityGroupIds"]
             )
         )
-    if "ipAddressType" in data:
+    if data.get("ipAddressType") is not None:
         out["ip_address_type"] = data["ipAddressType"]
-    if "ipv4AddressesPerEni" in data:
+    if data.get("ipv4AddressesPerEni") is not None:
         out["ipv4_addresses_per_eni"] = data["ipv4AddressesPerEni"]
-    if "resourceConfigDnsResolution" in data:
+    if data.get("resourceConfigDnsResolution") is not None:
         out["resource_config_dns_resolution"] = data["resourceConfigDnsResolution"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_vpc_lattice.types.tag_map
 
         out["tags"] = capo_vpc_lattice.types.tag_map.deserialize_json(data["tags"])

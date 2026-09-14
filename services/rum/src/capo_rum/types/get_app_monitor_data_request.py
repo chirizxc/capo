@@ -45,7 +45,7 @@ def serialize_json(value: GetAppMonitorDataRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetAppMonitorDataRequest:
     out: GetAppMonitorDataRequest = {}  # type: ignore[typeddict-item]
-    if "TimeRange" in data:
+    if data.get("TimeRange") is not None:
         import capo_rum.types.time_range
 
         out["time_range"] = capo_rum.types.time_range.deserialize_json(
@@ -53,14 +53,14 @@ def deserialize_json(data: dict) -> GetAppMonitorDataRequest:
         )
     else:
         raise DeserializationError("GetAppMonitorDataRequest.time_range required")
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_rum.types.query_filters
 
         out["filters"] = capo_rum.types.query_filters.deserialize_json(data["Filters"])
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     else:
         out["max_results"] = 0
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

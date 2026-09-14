@@ -69,11 +69,11 @@ def serialize_json(value: SAPODataDestinationProperties) -> dict:
 
 def deserialize_json(data: dict) -> SAPODataDestinationProperties:
     out: SAPODataDestinationProperties = {}  # type: ignore[typeddict-item]
-    if "objectPath" in data:
+    if data.get("objectPath") is not None:
         out["object_path"] = data["objectPath"]
     else:
         raise DeserializationError("SAPODataDestinationProperties.object_path required")
-    if "successResponseHandlingConfig" in data:
+    if data.get("successResponseHandlingConfig") is not None:
         import capo_appflow.types.success_response_handling_config
 
         out["success_response_handling_config"] = (
@@ -81,13 +81,13 @@ def deserialize_json(data: dict) -> SAPODataDestinationProperties:
                 data["successResponseHandlingConfig"]
             )
         )
-    if "idFieldNames" in data:
+    if data.get("idFieldNames") is not None:
         import capo_appflow.types.id_field_name_list
 
         out["id_field_names"] = capo_appflow.types.id_field_name_list.deserialize_json(
             data["idFieldNames"]
         )
-    if "errorHandlingConfig" in data:
+    if data.get("errorHandlingConfig") is not None:
         import capo_appflow.types.error_handling_config
 
         out["error_handling_config"] = (
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> SAPODataDestinationProperties:
                 data["errorHandlingConfig"]
             )
         )
-    if "writeOperationType" in data:
+    if data.get("writeOperationType") is not None:
         import capo_appflow.types.write_operation_type
 
         out["write_operation_type"] = (

@@ -33,11 +33,11 @@ def serialize_json(value: EksAnywhereSubscriptionTerm) -> dict:
 
 def deserialize_json(data: dict) -> EksAnywhereSubscriptionTerm:
     out: EksAnywhereSubscriptionTerm = {}  # type: ignore[typeddict-item]
-    if "duration" in data:
+    if data.get("duration") is not None:
         out["duration"] = data["duration"]
     else:
         out["duration"] = 0
-    if "unit" in data:
+    if data.get("unit") is not None:
         import capo_eks.types.eks_anywhere_subscription_term_unit
 
         out["unit"] = (

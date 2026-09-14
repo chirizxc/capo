@@ -43,9 +43,9 @@ def serialize_json(value: PathComponent) -> dict:
 
 def deserialize_json(data: dict) -> PathComponent:
     out: PathComponent = {}  # type: ignore[typeddict-item]
-    if "Sequence" in data:
+    if data.get("Sequence") is not None:
         out["sequence"] = data["Sequence"]
-    if "Resource" in data:
+    if data.get("Resource") is not None:
         import capo_networkmanager.types.network_resource_summary
 
         out["resource"] = (
@@ -53,6 +53,6 @@ def deserialize_json(data: dict) -> PathComponent:
                 data["Resource"]
             )
         )
-    if "DestinationCidrBlock" in data:
+    if data.get("DestinationCidrBlock") is not None:
         out["destination_cidr_block"] = data["DestinationCidrBlock"]
     return out

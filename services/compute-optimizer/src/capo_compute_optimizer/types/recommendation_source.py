@@ -38,9 +38,9 @@ def serialize_aws_json_1_0(value: RecommendationSource) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RecommendationSource:
     out: RecommendationSource = {}  # type: ignore[typeddict-item]
-    if "recommendationSourceArn" in data:
+    if data.get("recommendationSourceArn") is not None:
         out["recommendation_source_arn"] = data["recommendationSourceArn"]
-    if "recommendationSourceType" in data:
+    if data.get("recommendationSourceType") is not None:
         import capo_compute_optimizer.types.recommendation_source_type
 
         out["recommendation_source_type"] = (

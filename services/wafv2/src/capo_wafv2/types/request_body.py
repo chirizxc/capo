@@ -31,6 +31,9 @@ def deserialize_aws_json_1_1(data: dict) -> RequestBody:
     out: RequestBody = {}
     for key, value in data.items():
         import capo_wafv2.types.associated_resource_type
+
+        if value is None:
+            continue
         import capo_wafv2.types.request_body_associated_resource_type_config
 
         out[capo_wafv2.types.associated_resource_type.deserialize_aws_json_1_1(key)] = (

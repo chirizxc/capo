@@ -13,9 +13,9 @@ from capo_inspector_scan import AsyncInspectorScanClient
 
 
 async def main():
-    async with AsyncInspectorScanClient() as s3:
+    async with AsyncInspectorScanClient() as inspector_scan:
         # Example: call the scan_sbom operation
-        response = await s3.scan_sbom()
+        response = await inspector_scan.scan_sbom()
         print(response["sbom"])
 ```
 
@@ -29,9 +29,9 @@ from capo_inspector_scan.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncInspectorScanClient() as s3:
+    async with AsyncInspectorScanClient() as inspector_scan:
         try:
-            await s3.scan_sbom()
+            await inspector_scan.scan_sbom()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_inspector_scan import AsyncInspectorScanClient
 
 
 async def main():
-    async with AsyncInspectorScanClient() as s3:
+    async with AsyncInspectorScanClient() as inspector_scan:
         # Default: 3 attempts for every operation
-        response = await s3.scan_sbom()
+        response = await inspector_scan.scan_sbom()
 
         # Override per operation
-        response = await s3.scan_sbom(config_overrides={"retry_max_attempts": 5})
+        response = await inspector_scan.scan_sbom(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.scan_sbom(config_overrides={"retry_max_attempts": 1})
+        response = await inspector_scan.scan_sbom(config_overrides={"retry_max_attempts": 1})
 ```

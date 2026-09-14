@@ -36,10 +36,10 @@ def serialize_json(value: UpdateDataSourcePermissionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDataSourcePermissionsResponse:
     out: UpdateDataSourcePermissionsResponse = {}  # type: ignore[typeddict-item]
-    if "DataSourceArn" in data:
+    if data.get("DataSourceArn") is not None:
         out["data_source_arn"] = data["DataSourceArn"]
-    if "DataSourceId" in data:
+    if data.get("DataSourceId") is not None:
         out["data_source_id"] = data["DataSourceId"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

@@ -49,15 +49,15 @@ def serialize_json(value: FailoverConfig) -> dict:
 
 def deserialize_json(data: dict) -> FailoverConfig:
     out: FailoverConfig = {}  # type: ignore[typeddict-item]
-    if "failoverMode" in data:
+    if data.get("failoverMode") is not None:
         import capo_mediaconnect.types.failover_mode
 
         out["failover_mode"] = capo_mediaconnect.types.failover_mode.deserialize_json(
             data["failoverMode"]
         )
-    if "recoveryWindow" in data:
+    if data.get("recoveryWindow") is not None:
         out["recovery_window"] = data["recoveryWindow"]
-    if "sourcePriority" in data:
+    if data.get("sourcePriority") is not None:
         import capo_mediaconnect.types.source_priority
 
         out["source_priority"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> FailoverConfig:
                 data["sourcePriority"]
             )
         )
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_mediaconnect.types.state
 
         out["state"] = capo_mediaconnect.types.state.deserialize_json(data["state"])

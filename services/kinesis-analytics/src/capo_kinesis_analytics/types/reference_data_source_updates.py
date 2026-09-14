@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> ReferenceDataSourceUpdates:
 
     out: ReferenceDataSourceUpdates = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_kinesis_analytics.types.reference_data_source_update.deserialize_aws_json_1_1(
                 item

@@ -32,19 +32,19 @@ def serialize_json(value: DescribeAppVersionAppComponentRequest) -> dict:
 
 def deserialize_json(data: dict) -> DescribeAppVersionAppComponentRequest:
     out: DescribeAppVersionAppComponentRequest = {}  # type: ignore[typeddict-item]
-    if "appArn" in data:
+    if data.get("appArn") is not None:
         out["app_arn"] = data["appArn"]
     else:
         raise DeserializationError(
             "DescribeAppVersionAppComponentRequest.app_arn required"
         )
-    if "appVersion" in data:
+    if data.get("appVersion") is not None:
         out["app_version"] = data["appVersion"]
     else:
         raise DeserializationError(
             "DescribeAppVersionAppComponentRequest.app_version required"
         )
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("DescribeAppVersionAppComponentRequest.id required")

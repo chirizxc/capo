@@ -31,7 +31,7 @@ def serialize_json(value: FilterCriteria) -> dict:
 
 def deserialize_json(data: dict) -> FilterCriteria:
     out: FilterCriteria = {}  # type: ignore[typeddict-item]
-    if "filterCriterion" in data:
+    if data.get("filterCriterion") is not None:
         import capo_guardduty.types.filter_criterion_list
 
         out["filter_criterion"] = (

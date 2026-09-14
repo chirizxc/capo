@@ -51,11 +51,11 @@ def serialize_json(value: Finding) -> dict:
 
 def deserialize_json(data: dict) -> Finding:
     out: Finding = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("Finding.id required")
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_ssm_incidents.types._prelude.timestamp
 
         out["creation_time"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> Finding:
         )
     else:
         raise DeserializationError("Finding.creation_time required")
-    if "lastModifiedTime" in data:
+    if data.get("lastModifiedTime") is not None:
         import capo_ssm_incidents.types._prelude.timestamp
 
         out["last_modified_time"] = (
@@ -75,7 +75,7 @@ def deserialize_json(data: dict) -> Finding:
         )
     else:
         raise DeserializationError("Finding.last_modified_time required")
-    if "details" in data:
+    if data.get("details") is not None:
         import capo_ssm_incidents.types.finding_details
 
         out["details"] = capo_ssm_incidents.types.finding_details.deserialize_json(

@@ -32,9 +32,9 @@ def serialize_aws_json_1_0(value: ListTablesResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListTablesResponse:
     out: ListTablesResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "tables" in data:
+    if data.get("tables") is not None:
         import capo_keyspaces.types.table_summary_list
 
         out["tables"] = (

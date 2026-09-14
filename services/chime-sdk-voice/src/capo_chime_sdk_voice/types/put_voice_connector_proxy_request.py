@@ -51,13 +51,13 @@ def serialize_json(value: PutVoiceConnectorProxyRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutVoiceConnectorProxyRequest:
     out: PutVoiceConnectorProxyRequest = {}  # type: ignore[typeddict-item]
-    if "DefaultSessionExpiryMinutes" in data:
+    if data.get("DefaultSessionExpiryMinutes") is not None:
         out["default_session_expiry_minutes"] = data["DefaultSessionExpiryMinutes"]
     else:
         raise DeserializationError(
             "PutVoiceConnectorProxyRequest.default_session_expiry_minutes required"
         )
-    if "PhoneNumberPoolCountries" in data:
+    if data.get("PhoneNumberPoolCountries") is not None:
         import capo_chime_sdk_voice.types.country_list
 
         out["phone_number_pool_countries"] = (
@@ -69,8 +69,8 @@ def deserialize_json(data: dict) -> PutVoiceConnectorProxyRequest:
         raise DeserializationError(
             "PutVoiceConnectorProxyRequest.phone_number_pool_countries required"
         )
-    if "FallBackPhoneNumber" in data:
+    if data.get("FallBackPhoneNumber") is not None:
         out["fall_back_phone_number"] = data["FallBackPhoneNumber"]
-    if "Disabled" in data:
+    if data.get("Disabled") is not None:
         out["disabled"] = data["Disabled"]
     return out

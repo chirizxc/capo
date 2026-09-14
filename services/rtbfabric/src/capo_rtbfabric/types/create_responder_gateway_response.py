@@ -48,11 +48,11 @@ def serialize_json(value: CreateResponderGatewayResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateResponderGatewayResponse:
     out: CreateResponderGatewayResponse = {}  # type: ignore[typeddict-item]
-    if "gatewayId" in data:
+    if data.get("gatewayId") is not None:
         out["gateway_id"] = data["gatewayId"]
     else:
         raise DeserializationError("CreateResponderGatewayResponse.gateway_id required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_rtbfabric.types.responder_gateway_status
 
         out["status"] = capo_rtbfabric.types.responder_gateway_status.deserialize_json(
@@ -60,12 +60,12 @@ def deserialize_json(data: dict) -> CreateResponderGatewayResponse:
         )
     else:
         raise DeserializationError("CreateResponderGatewayResponse.status required")
-    if "listenerConfig" in data:
+    if data.get("listenerConfig") is not None:
         import capo_rtbfabric.types.listener_config
 
         out["listener_config"] = capo_rtbfabric.types.listener_config.deserialize_json(
             data["listenerConfig"]
         )
-    if "externalInboundEndpoint" in data:
+    if data.get("externalInboundEndpoint") is not None:
         out["external_inbound_endpoint"] = data["externalInboundEndpoint"]
     return out

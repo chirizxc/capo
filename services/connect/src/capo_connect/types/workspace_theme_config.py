@@ -53,19 +53,19 @@ def serialize_json(value: WorkspaceThemeConfig) -> dict:
 
 def deserialize_json(data: dict) -> WorkspaceThemeConfig:
     out: WorkspaceThemeConfig = {}  # type: ignore[typeddict-item]
-    if "Palette" in data:
+    if data.get("Palette") is not None:
         import capo_connect.types.workspace_theme_palette
 
         out["palette"] = capo_connect.types.workspace_theme_palette.deserialize_json(
             data["Palette"]
         )
-    if "Images" in data:
+    if data.get("Images") is not None:
         import capo_connect.types.workspace_theme_images
 
         out["images"] = capo_connect.types.workspace_theme_images.deserialize_json(
             data["Images"]
         )
-    if "Typography" in data:
+    if data.get("Typography") is not None:
         import capo_connect.types.workspace_theme_typography
 
         out["typography"] = (

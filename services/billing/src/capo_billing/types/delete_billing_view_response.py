@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: DeleteBillingViewResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteBillingViewResponse:
     out: DeleteBillingViewResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("DeleteBillingViewResponse.arn required")

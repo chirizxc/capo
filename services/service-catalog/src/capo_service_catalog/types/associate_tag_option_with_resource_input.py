@@ -28,13 +28,13 @@ def serialize_aws_json_1_1(value: AssociateTagOptionWithResourceInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssociateTagOptionWithResourceInput:
     out: AssociateTagOptionWithResourceInput = {}  # type: ignore[typeddict-item]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     else:
         raise DeserializationError(
             "AssociateTagOptionWithResourceInput.resource_id required"
         )
-    if "TagOptionId" in data:
+    if data.get("TagOptionId") is not None:
         out["tag_option_id"] = data["TagOptionId"]
     else:
         raise DeserializationError(

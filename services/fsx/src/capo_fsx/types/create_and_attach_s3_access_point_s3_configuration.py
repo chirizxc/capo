@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: CreateAndAttachS3AccessPointS3Configuration) -
 
 def deserialize_aws_json_1_1(data: dict) -> CreateAndAttachS3AccessPointS3Configuration:
     out: CreateAndAttachS3AccessPointS3Configuration = {}  # type: ignore[typeddict-item]
-    if "VpcConfiguration" in data:
+    if data.get("VpcConfiguration") is not None:
         import capo_fsx.types.s3_access_point_vpc_configuration
 
         out["vpc_configuration"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAndAttachS3AccessPointS3Config
                 data["VpcConfiguration"]
             )
         )
-    if "Policy" in data:
+    if data.get("Policy") is not None:
         out["policy"] = data["Policy"]
     return out

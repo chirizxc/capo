@@ -28,8 +28,8 @@ def serialize_json(value: LineItemRequest) -> dict:
 
 def deserialize_json(data: dict) -> LineItemRequest:
     out: LineItemRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogItemId" in data:
+    if data.get("CatalogItemId") is not None:
         out["catalog_item_id"] = data["CatalogItemId"]
-    if "Quantity" in data:
+    if data.get("Quantity") is not None:
         out["quantity"] = data["Quantity"]
     return out

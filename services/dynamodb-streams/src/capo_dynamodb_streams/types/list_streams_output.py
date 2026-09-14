@@ -34,7 +34,7 @@ def serialize_aws_json_1_0(value: ListStreamsOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListStreamsOutput:
     out: ListStreamsOutput = {}  # type: ignore[typeddict-item]
-    if "Streams" in data:
+    if data.get("Streams") is not None:
         import capo_dynamodb_streams.types.stream_list
 
         out["streams"] = (
@@ -42,6 +42,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListStreamsOutput:
                 data["Streams"]
             )
         )
-    if "LastEvaluatedStreamArn" in data:
+    if data.get("LastEvaluatedStreamArn") is not None:
         out["last_evaluated_stream_arn"] = data["LastEvaluatedStreamArn"]
     return out

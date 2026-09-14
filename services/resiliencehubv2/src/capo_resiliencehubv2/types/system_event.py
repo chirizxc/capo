@@ -60,11 +60,11 @@ def serialize_json(value: SystemEvent) -> dict:
 
 def deserialize_json(data: dict) -> SystemEvent:
     out: SystemEvent = {}  # type: ignore[typeddict-item]
-    if "eventId" in data:
+    if data.get("eventId") is not None:
         out["event_id"] = data["eventId"]
     else:
         raise DeserializationError("SystemEvent.event_id required")
-    if "timestamp" in data:
+    if data.get("timestamp") is not None:
         import capo_resiliencehubv2.types._prelude.timestamp
 
         out["timestamp"] = (
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> SystemEvent:
         )
     else:
         raise DeserializationError("SystemEvent.timestamp required")
-    if "eventType" in data:
+    if data.get("eventType") is not None:
         import capo_resiliencehubv2.types.system_event_type
 
         out["event_type"] = (
@@ -84,11 +84,11 @@ def deserialize_json(data: dict) -> SystemEvent:
         )
     else:
         raise DeserializationError("SystemEvent.event_type required")
-    if "systemArn" in data:
+    if data.get("systemArn") is not None:
         out["system_arn"] = data["systemArn"]
     else:
         raise DeserializationError("SystemEvent.system_arn required")
-    if "actor" in data:
+    if data.get("actor") is not None:
         import capo_resiliencehubv2.types.event_actor
 
         out["actor"] = capo_resiliencehubv2.types.event_actor.deserialize_json(
@@ -96,7 +96,7 @@ def deserialize_json(data: dict) -> SystemEvent:
         )
     else:
         raise DeserializationError("SystemEvent.actor required")
-    if "eventDetails" in data:
+    if data.get("eventDetails") is not None:
         import capo_resiliencehubv2.types.system_event_details
 
         out["event_details"] = (

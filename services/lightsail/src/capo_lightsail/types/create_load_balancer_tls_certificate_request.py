@@ -53,25 +53,25 @@ def serialize_aws_json_1_1(value: CreateLoadBalancerTlsCertificateRequest) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> CreateLoadBalancerTlsCertificateRequest:
     out: CreateLoadBalancerTlsCertificateRequest = {}  # type: ignore[typeddict-item]
-    if "loadBalancerName" in data:
+    if data.get("loadBalancerName") is not None:
         out["load_balancer_name"] = data["loadBalancerName"]
     else:
         raise DeserializationError(
             "CreateLoadBalancerTlsCertificateRequest.load_balancer_name required"
         )
-    if "certificateName" in data:
+    if data.get("certificateName") is not None:
         out["certificate_name"] = data["certificateName"]
     else:
         raise DeserializationError(
             "CreateLoadBalancerTlsCertificateRequest.certificate_name required"
         )
-    if "certificateDomainName" in data:
+    if data.get("certificateDomainName") is not None:
         out["certificate_domain_name"] = data["certificateDomainName"]
     else:
         raise DeserializationError(
             "CreateLoadBalancerTlsCertificateRequest.certificate_domain_name required"
         )
-    if "certificateAlternativeNames" in data:
+    if data.get("certificateAlternativeNames") is not None:
         import capo_lightsail.types.domain_name_list
 
         out["certificate_alternative_names"] = (
@@ -79,7 +79,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateLoadBalancerTlsCertificateRequ
                 data["certificateAlternativeNames"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_lightsail.types.tag_list
 
         out["tags"] = capo_lightsail.types.tag_list.deserialize_aws_json_1_1(

@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: BasicAuthenticationCredentials) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BasicAuthenticationCredentials:
     out: BasicAuthenticationCredentials = {}  # type: ignore[typeddict-item]
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
-    if "Password" in data:
+    if data.get("Password") is not None:
         out["password"] = data["Password"]
     return out

@@ -64,7 +64,7 @@ def serialize_aws_json_1_0(value: ConversionTarget) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ConversionTarget:
     out: ConversionTarget = {}  # type: ignore[typeddict-item]
-    if "fileFormat" in data:
+    if data.get("fileFormat") is not None:
         import capo_b2bi.types.conversion_target_format
 
         out["file_format"] = (
@@ -74,7 +74,7 @@ def deserialize_aws_json_1_0(data: dict) -> ConversionTarget:
         )
     else:
         raise DeserializationError("ConversionTarget.file_format required")
-    if "formatDetails" in data:
+    if data.get("formatDetails") is not None:
         import capo_b2bi.types.conversion_target_format_details
 
         out["format_details"] = (
@@ -82,7 +82,7 @@ def deserialize_aws_json_1_0(data: dict) -> ConversionTarget:
                 data["formatDetails"]
             )
         )
-    if "outputSampleFile" in data:
+    if data.get("outputSampleFile") is not None:
         import capo_b2bi.types.output_sample_file_source
 
         out["output_sample_file"] = (
@@ -90,7 +90,7 @@ def deserialize_aws_json_1_0(data: dict) -> ConversionTarget:
                 data["outputSampleFile"]
             )
         )
-    if "advancedOptions" in data:
+    if data.get("advancedOptions") is not None:
         import capo_b2bi.types.advanced_options
 
         out["advanced_options"] = (

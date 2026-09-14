@@ -27,5 +27,7 @@ def deserialize_json(data: dict) -> LineItemStatusCounts:
     for key, value in data.items():
         import capo_outposts.types.line_item_status
 
+        if value is None:
+            continue
         out[capo_outposts.types.line_item_status.deserialize_json(key)] = value
     return out

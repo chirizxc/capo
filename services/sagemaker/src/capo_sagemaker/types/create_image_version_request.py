@@ -97,13 +97,13 @@ def serialize_aws_json_1_1(value: CreateImageVersionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateImageVersionRequest:
     out: CreateImageVersionRequest = {}  # type: ignore[typeddict-item]
-    if "BaseImage" in data:
+    if data.get("BaseImage") is not None:
         out["base_image"] = data["BaseImage"]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "ImageName" in data:
+    if data.get("ImageName") is not None:
         out["image_name"] = data["ImageName"]
-    if "Aliases" in data:
+    if data.get("Aliases") is not None:
         import capo_sagemaker.types.sage_maker_image_version_aliases
 
         out["aliases"] = (
@@ -111,7 +111,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateImageVersionRequest:
                 data["Aliases"]
             )
         )
-    if "VendorGuidance" in data:
+    if data.get("VendorGuidance") is not None:
         import capo_sagemaker.types.vendor_guidance
 
         out["vendor_guidance"] = (
@@ -119,24 +119,24 @@ def deserialize_aws_json_1_1(data: dict) -> CreateImageVersionRequest:
                 data["VendorGuidance"]
             )
         )
-    if "JobType" in data:
+    if data.get("JobType") is not None:
         import capo_sagemaker.types.job_type
 
         out["job_type"] = capo_sagemaker.types.job_type.deserialize_aws_json_1_1(
             data["JobType"]
         )
-    if "MLFramework" in data:
+    if data.get("MLFramework") is not None:
         out["ml_framework"] = data["MLFramework"]
-    if "ProgrammingLang" in data:
+    if data.get("ProgrammingLang") is not None:
         out["programming_lang"] = data["ProgrammingLang"]
-    if "Processor" in data:
+    if data.get("Processor") is not None:
         import capo_sagemaker.types.processor
 
         out["processor"] = capo_sagemaker.types.processor.deserialize_aws_json_1_1(
             data["Processor"]
         )
-    if "Horovod" in data:
+    if data.get("Horovod") is not None:
         out["horovod"] = data["Horovod"]
-    if "ReleaseNotes" in data:
+    if data.get("ReleaseNotes") is not None:
         out["release_notes"] = data["ReleaseNotes"]
     return out

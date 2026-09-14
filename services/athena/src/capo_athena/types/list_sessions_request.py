@@ -45,18 +45,18 @@ def serialize_aws_json_1_1(value: ListSessionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListSessionsRequest:
     out: ListSessionsRequest = {}  # type: ignore[typeddict-item]
-    if "WorkGroup" in data:
+    if data.get("WorkGroup") is not None:
         out["work_group"] = data["WorkGroup"]
     else:
         raise DeserializationError("ListSessionsRequest.work_group required")
-    if "StateFilter" in data:
+    if data.get("StateFilter") is not None:
         import capo_athena.types.session_state
 
         out["state_filter"] = capo_athena.types.session_state.deserialize_aws_json_1_1(
             data["StateFilter"]
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

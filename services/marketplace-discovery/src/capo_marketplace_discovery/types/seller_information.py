@@ -30,11 +30,11 @@ def serialize_json(value: SellerInformation) -> dict:
 
 def deserialize_json(data: dict) -> SellerInformation:
     out: SellerInformation = {}  # type: ignore[typeddict-item]
-    if "sellerProfileId" in data:
+    if data.get("sellerProfileId") is not None:
         out["seller_profile_id"] = data["sellerProfileId"]
     else:
         raise DeserializationError("SellerInformation.seller_profile_id required")
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError("SellerInformation.display_name required")

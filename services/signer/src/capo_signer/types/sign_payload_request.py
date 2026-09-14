@@ -39,19 +39,19 @@ def serialize_json(value: SignPayloadRequest) -> dict:
 
 def deserialize_json(data: dict) -> SignPayloadRequest:
     out: SignPayloadRequest = {}  # type: ignore[typeddict-item]
-    if "profileName" in data:
+    if data.get("profileName") is not None:
         out["profile_name"] = data["profileName"]
     else:
         raise DeserializationError("SignPayloadRequest.profile_name required")
-    if "profileOwner" in data:
+    if data.get("profileOwner") is not None:
         out["profile_owner"] = data["profileOwner"]
-    if "payload" in data:
+    if data.get("payload") is not None:
         import capo_signer.types.payload
 
         out["payload"] = capo_signer.types.payload.deserialize_json(data["payload"])
     else:
         raise DeserializationError("SignPayloadRequest.payload required")
-    if "payloadFormat" in data:
+    if data.get("payloadFormat") is not None:
         out["payload_format"] = data["payloadFormat"]
     else:
         raise DeserializationError("SignPayloadRequest.payload_format required")

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfIntegrationResponse:
 
     out: __listOfIntegrationResponse = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_apigatewayv2.types.integration_response.deserialize_json(item))
     return out

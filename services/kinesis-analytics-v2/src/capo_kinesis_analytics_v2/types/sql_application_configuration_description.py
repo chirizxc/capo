@@ -57,7 +57,7 @@ def serialize_aws_json_1_1(value: SqlApplicationConfigurationDescription) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> SqlApplicationConfigurationDescription:
     out: SqlApplicationConfigurationDescription = {}  # type: ignore[typeddict-item]
-    if "InputDescriptions" in data:
+    if data.get("InputDescriptions") is not None:
         import capo_kinesis_analytics_v2.types.input_descriptions
 
         out["input_descriptions"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> SqlApplicationConfigurationDescripti
                 data["InputDescriptions"]
             )
         )
-    if "OutputDescriptions" in data:
+    if data.get("OutputDescriptions") is not None:
         import capo_kinesis_analytics_v2.types.output_descriptions
 
         out["output_descriptions"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> SqlApplicationConfigurationDescripti
                 data["OutputDescriptions"]
             )
         )
-    if "ReferenceDataSourceDescriptions" in data:
+    if data.get("ReferenceDataSourceDescriptions") is not None:
         import capo_kinesis_analytics_v2.types.reference_data_source_descriptions
 
         out["reference_data_source_descriptions"] = (

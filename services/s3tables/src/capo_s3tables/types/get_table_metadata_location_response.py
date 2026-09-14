@@ -35,15 +35,15 @@ def serialize_json(value: GetTableMetadataLocationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetTableMetadataLocationResponse:
     out: GetTableMetadataLocationResponse = {}  # type: ignore[typeddict-item]
-    if "versionToken" in data:
+    if data.get("versionToken") is not None:
         out["version_token"] = data["versionToken"]
     else:
         raise DeserializationError(
             "GetTableMetadataLocationResponse.version_token required"
         )
-    if "metadataLocation" in data:
+    if data.get("metadataLocation") is not None:
         out["metadata_location"] = data["metadataLocation"]
-    if "warehouseLocation" in data:
+    if data.get("warehouseLocation") is not None:
         out["warehouse_location"] = data["warehouseLocation"]
     else:
         raise DeserializationError(

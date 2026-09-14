@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: CreateMatchmakingRuleSetOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateMatchmakingRuleSetOutput:
     out: CreateMatchmakingRuleSetOutput = {}  # type: ignore[typeddict-item]
-    if "RuleSet" in data:
+    if data.get("RuleSet") is not None:
         import capo_gamelift.types.matchmaking_rule_set
 
         out["rule_set"] = (

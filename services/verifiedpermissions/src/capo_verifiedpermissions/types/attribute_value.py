@@ -120,9 +120,9 @@ def serialize_aws_json_1_0(value: AttributeValue) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> AttributeValue:
-    if "boolean" in data:
+    if data.get("boolean") is not None:
         return {"boolean": data["boolean"]}
-    elif "entityIdentifier" in data:
+    elif data.get("entityIdentifier") is not None:
         import capo_verifiedpermissions.types.entity_identifier
 
         return {
@@ -130,11 +130,11 @@ def deserialize_aws_json_1_0(data: dict) -> AttributeValue:
                 data["entityIdentifier"]
             )
         }
-    elif "long" in data:
+    elif data.get("long") is not None:
         return {"long": data["long"]}
-    elif "string" in data:
+    elif data.get("string") is not None:
         return {"string": data["string"]}
-    elif "set" in data:
+    elif data.get("set") is not None:
         import capo_verifiedpermissions.types.set_attribute
 
         return {
@@ -142,7 +142,7 @@ def deserialize_aws_json_1_0(data: dict) -> AttributeValue:
                 data["set"]
             )
         }
-    elif "record" in data:
+    elif data.get("record") is not None:
         import capo_verifiedpermissions.types.record_attribute
 
         return {
@@ -150,13 +150,13 @@ def deserialize_aws_json_1_0(data: dict) -> AttributeValue:
                 data["record"]
             )
         }
-    elif "ipaddr" in data:
+    elif data.get("ipaddr") is not None:
         return {"ipaddr": data["ipaddr"]}
-    elif "decimal" in data:
+    elif data.get("decimal") is not None:
         return {"decimal": data["decimal"]}
-    elif "datetime" in data:
+    elif data.get("datetime") is not None:
         return {"datetime": data["datetime"]}
-    elif "duration" in data:
+    elif data.get("duration") is not None:
         return {"duration": data["duration"]}
     else:
         raise DeserializationError("AttributeValue: no recognized variant key")

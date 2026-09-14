@@ -54,13 +54,13 @@ def serialize_json(value: UpdateAccountCustomizationResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAccountCustomizationResponse:
     out: UpdateAccountCustomizationResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "AwsAccountId" in data:
+    if data.get("AwsAccountId") is not None:
         out["aws_account_id"] = data["AwsAccountId"]
-    if "Namespace" in data:
+    if data.get("Namespace") is not None:
         out["namespace"] = data["Namespace"]
-    if "AccountCustomization" in data:
+    if data.get("AccountCustomization") is not None:
         import capo_quicksight.types.account_customization
 
         out["account_customization"] = (
@@ -68,6 +68,6 @@ def deserialize_json(data: dict) -> UpdateAccountCustomizationResponse:
                 data["AccountCustomization"]
             )
         )
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

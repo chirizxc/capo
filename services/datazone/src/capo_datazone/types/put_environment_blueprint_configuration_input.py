@@ -112,15 +112,15 @@ def serialize_json(value: PutEnvironmentBlueprintConfigurationInput) -> dict:
 
 def deserialize_json(data: dict) -> PutEnvironmentBlueprintConfigurationInput:
     out: PutEnvironmentBlueprintConfigurationInput = {}  # type: ignore[typeddict-item]
-    if "provisioningRoleArn" in data:
+    if data.get("provisioningRoleArn") is not None:
         out["provisioning_role_arn"] = data["provisioningRoleArn"]
-    if "manageAccessRoleArn" in data:
+    if data.get("manageAccessRoleArn") is not None:
         out["manage_access_role_arn"] = data["manageAccessRoleArn"]
-    if "environmentRolePermissionBoundary" in data:
+    if data.get("environmentRolePermissionBoundary") is not None:
         out["environment_role_permission_boundary"] = data[
             "environmentRolePermissionBoundary"
         ]
-    if "enabledRegions" in data:
+    if data.get("enabledRegions") is not None:
         import capo_datazone.types.enabled_region_list
 
         out["enabled_regions"] = (
@@ -132,7 +132,7 @@ def deserialize_json(data: dict) -> PutEnvironmentBlueprintConfigurationInput:
         raise DeserializationError(
             "PutEnvironmentBlueprintConfigurationInput.enabled_regions required"
         )
-    if "regionalParameters" in data:
+    if data.get("regionalParameters") is not None:
         import capo_datazone.types.regional_parameter_map
 
         out["regional_parameters"] = (
@@ -140,7 +140,7 @@ def deserialize_json(data: dict) -> PutEnvironmentBlueprintConfigurationInput:
                 data["regionalParameters"]
             )
         )
-    if "resourceConfigurations" in data:
+    if data.get("resourceConfigurations") is not None:
         import capo_datazone.types.put_resource_configurations
 
         out["resource_configurations"] = (
@@ -148,11 +148,11 @@ def deserialize_json(data: dict) -> PutEnvironmentBlueprintConfigurationInput:
                 data["resourceConfigurations"]
             )
         )
-    if "allowUserProvidedConfigurations" in data:
+    if data.get("allowUserProvidedConfigurations") is not None:
         out["allow_user_provided_configurations"] = data[
             "allowUserProvidedConfigurations"
         ]
-    if "globalParameters" in data:
+    if data.get("globalParameters") is not None:
         import capo_datazone.types.global_parameter_map
 
         out["global_parameters"] = (
@@ -160,7 +160,7 @@ def deserialize_json(data: dict) -> PutEnvironmentBlueprintConfigurationInput:
                 data["globalParameters"]
             )
         )
-    if "provisioningConfigurations" in data:
+    if data.get("provisioningConfigurations") is not None:
         import capo_datazone.types.provisioning_configuration_list
 
         out["provisioning_configurations"] = (

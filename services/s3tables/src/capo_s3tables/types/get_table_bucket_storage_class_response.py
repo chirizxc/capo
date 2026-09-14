@@ -32,7 +32,7 @@ def serialize_json(value: GetTableBucketStorageClassResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetTableBucketStorageClassResponse:
     out: GetTableBucketStorageClassResponse = {}  # type: ignore[typeddict-item]
-    if "storageClassConfiguration" in data:
+    if data.get("storageClassConfiguration") is not None:
         import capo_s3tables.types.storage_class_configuration
 
         out["storage_class_configuration"] = (

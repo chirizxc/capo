@@ -25,6 +25,6 @@ def serialize_json(value: IamRoleConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> IamRoleConfiguration:
     out: IamRoleConfiguration = {}  # type: ignore[typeddict-item]
-    if "trustPolicy" in data:
+    if data.get("trustPolicy") is not None:
         out["trust_policy"] = data["trustPolicy"]
     return out

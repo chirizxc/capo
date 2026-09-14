@@ -40,13 +40,13 @@ def serialize_json(value: TaxRegistrationDocument) -> dict:
 
 def deserialize_json(data: dict) -> TaxRegistrationDocument:
     out: TaxRegistrationDocument = {}  # type: ignore[typeddict-item]
-    if "s3Location" in data:
+    if data.get("s3Location") is not None:
         import capo_taxsettings.types.source_s3_location
 
         out["s3_location"] = capo_taxsettings.types.source_s3_location.deserialize_json(
             data["s3Location"]
         )
-    if "file" in data:
+    if data.get("file") is not None:
         import capo_taxsettings.types.tax_registration_doc_file
 
         out["file"] = capo_taxsettings.types.tax_registration_doc_file.deserialize_json(

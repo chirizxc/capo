@@ -28,8 +28,8 @@ def serialize_json(value: ProvisionedThroughput) -> dict:
 
 def deserialize_json(data: dict) -> ProvisionedThroughput:
     out: ProvisionedThroughput = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
-    if "volumeThroughput" in data:
+    if data.get("volumeThroughput") is not None:
         out["volume_throughput"] = data["volumeThroughput"]
     return out

@@ -33,7 +33,7 @@ def serialize_json(value: ListDomainAssociationsResult) -> dict:
 
 def deserialize_json(data: dict) -> ListDomainAssociationsResult:
     out: ListDomainAssociationsResult = {}  # type: ignore[typeddict-item]
-    if "domainAssociations" in data:
+    if data.get("domainAssociations") is not None:
         import capo_amplify.types.domain_associations
 
         out["domain_associations"] = (
@@ -45,6 +45,6 @@ def deserialize_json(data: dict) -> ListDomainAssociationsResult:
         raise DeserializationError(
             "ListDomainAssociationsResult.domain_associations required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -34,12 +34,12 @@ def serialize_aws_json_1_0(value: RejectedRecord) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RejectedRecord:
     out: RejectedRecord = {}  # type: ignore[typeddict-item]
-    if "RecordIndex" in data:
+    if data.get("RecordIndex") is not None:
         out["record_index"] = data["RecordIndex"]
     else:
         out["record_index"] = 0
-    if "Reason" in data:
+    if data.get("Reason") is not None:
         out["reason"] = data["Reason"]
-    if "ExistingVersion" in data:
+    if data.get("ExistingVersion") is not None:
         out["existing_version"] = data["ExistingVersion"]
     return out

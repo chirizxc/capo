@@ -27,7 +27,7 @@ def serialize_json(value: LaunchActionsRequestFilters) -> dict:
 
 def deserialize_json(data: dict) -> LaunchActionsRequestFilters:
     out: LaunchActionsRequestFilters = {}  # type: ignore[typeddict-item]
-    if "actionIds" in data:
+    if data.get("actionIds") is not None:
         import capo_drs.types.launch_action_ids
 
         out["action_ids"] = capo_drs.types.launch_action_ids.deserialize_json(

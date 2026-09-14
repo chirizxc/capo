@@ -38,15 +38,15 @@ def serialize_aws_json_1_1(value: TestIdentityProviderResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TestIdentityProviderResponse:
     out: TestIdentityProviderResponse = {}  # type: ignore[typeddict-item]
-    if "Response" in data:
+    if data.get("Response") is not None:
         out["response"] = data["Response"]
-    if "StatusCode" in data:
+    if data.get("StatusCode") is not None:
         out["status_code"] = data["StatusCode"]
     else:
         out["status_code"] = 0
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
     else:
         raise DeserializationError("TestIdentityProviderResponse.url required")

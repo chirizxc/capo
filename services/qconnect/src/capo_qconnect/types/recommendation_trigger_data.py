@@ -32,7 +32,7 @@ def serialize_json(value: RecommendationTriggerData) -> dict:
 
 
 def deserialize_json(data: dict) -> RecommendationTriggerData:
-    if "query" in data:
+    if data.get("query") is not None:
         import capo_qconnect.types.query_recommendation_trigger_data
 
         return {

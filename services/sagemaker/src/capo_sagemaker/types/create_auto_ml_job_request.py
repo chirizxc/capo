@@ -120,9 +120,9 @@ def serialize_aws_json_1_1(value: CreateAutoMLJobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateAutoMLJobRequest:
     out: CreateAutoMLJobRequest = {}  # type: ignore[typeddict-item]
-    if "AutoMLJobName" in data:
+    if data.get("AutoMLJobName") is not None:
         out["auto_ml_job_name"] = data["AutoMLJobName"]
-    if "InputDataConfig" in data:
+    if data.get("InputDataConfig") is not None:
         import capo_sagemaker.types.auto_ml_input_data_config
 
         out["input_data_config"] = (
@@ -130,7 +130,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAutoMLJobRequest:
                 data["InputDataConfig"]
             )
         )
-    if "OutputDataConfig" in data:
+    if data.get("OutputDataConfig") is not None:
         import capo_sagemaker.types.auto_ml_output_data_config
 
         out["output_data_config"] = (
@@ -138,7 +138,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAutoMLJobRequest:
                 data["OutputDataConfig"]
             )
         )
-    if "ProblemType" in data:
+    if data.get("ProblemType") is not None:
         import capo_sagemaker.types.problem_type
 
         out["problem_type"] = (
@@ -146,7 +146,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAutoMLJobRequest:
                 data["ProblemType"]
             )
         )
-    if "AutoMLJobObjective" in data:
+    if data.get("AutoMLJobObjective") is not None:
         import capo_sagemaker.types.auto_ml_job_objective
 
         out["auto_ml_job_objective"] = (
@@ -154,7 +154,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAutoMLJobRequest:
                 data["AutoMLJobObjective"]
             )
         )
-    if "AutoMLJobConfig" in data:
+    if data.get("AutoMLJobConfig") is not None:
         import capo_sagemaker.types.auto_ml_job_config
 
         out["auto_ml_job_config"] = (
@@ -162,19 +162,19 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAutoMLJobRequest:
                 data["AutoMLJobConfig"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "GenerateCandidateDefinitionsOnly" in data:
+    if data.get("GenerateCandidateDefinitionsOnly") is not None:
         out["generate_candidate_definitions_only"] = data[
             "GenerateCandidateDefinitionsOnly"
         ]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "ModelDeployConfig" in data:
+    if data.get("ModelDeployConfig") is not None:
         import capo_sagemaker.types.model_deploy_config
 
         out["model_deploy_config"] = (

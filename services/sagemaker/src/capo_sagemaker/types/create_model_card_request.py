@@ -63,9 +63,9 @@ def serialize_aws_json_1_1(value: CreateModelCardRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateModelCardRequest:
     out: CreateModelCardRequest = {}  # type: ignore[typeddict-item]
-    if "ModelCardName" in data:
+    if data.get("ModelCardName") is not None:
         out["model_card_name"] = data["ModelCardName"]
-    if "SecurityConfig" in data:
+    if data.get("SecurityConfig") is not None:
         import capo_sagemaker.types.model_card_security_config
 
         out["security_config"] = (
@@ -73,9 +73,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateModelCardRequest:
                 data["SecurityConfig"]
             )
         )
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
-    if "ModelCardStatus" in data:
+    if data.get("ModelCardStatus") is not None:
         import capo_sagemaker.types.model_card_status
 
         out["model_card_status"] = (
@@ -83,7 +83,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateModelCardRequest:
                 data["ModelCardStatus"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(

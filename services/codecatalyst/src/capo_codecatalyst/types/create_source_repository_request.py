@@ -33,6 +33,6 @@ def serialize_json(value: CreateSourceRepositoryRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateSourceRepositoryRequest:
     out: CreateSourceRepositoryRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

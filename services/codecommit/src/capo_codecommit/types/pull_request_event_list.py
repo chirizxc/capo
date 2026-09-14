@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> PullRequestEventList:
 
     out: PullRequestEventList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codecommit.types.pull_request_event.deserialize_aws_json_1_1(item)
         )

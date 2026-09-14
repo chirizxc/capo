@@ -50,7 +50,7 @@ def serialize_aws_json_1_0(value: ListRecommendationsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListRecommendationsRequest:
     out: ListRecommendationsRequest = {}  # type: ignore[typeddict-item]
-    if "filter" in data:
+    if data.get("filter") is not None:
         import capo_cost_optimization_hub.types.filter
 
         out["filter"] = (
@@ -58,7 +58,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListRecommendationsRequest:
                 data["filter"]
             )
         )
-    if "orderBy" in data:
+    if data.get("orderBy") is not None:
         import capo_cost_optimization_hub.types.order_by
 
         out["order_by"] = (
@@ -66,12 +66,12 @@ def deserialize_aws_json_1_0(data: dict) -> ListRecommendationsRequest:
                 data["orderBy"]
             )
         )
-    if "includeAllRecommendations" in data:
+    if data.get("includeAllRecommendations") is not None:
         out["include_all_recommendations"] = data["includeAllRecommendations"]
     else:
         out["include_all_recommendations"] = False
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

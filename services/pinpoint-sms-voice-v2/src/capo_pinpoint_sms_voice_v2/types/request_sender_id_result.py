@@ -59,19 +59,19 @@ def serialize_aws_json_1_0(value: RequestSenderIdResult) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RequestSenderIdResult:
     out: RequestSenderIdResult = {}  # type: ignore[typeddict-item]
-    if "SenderIdArn" in data:
+    if data.get("SenderIdArn") is not None:
         out["sender_id_arn"] = data["SenderIdArn"]
     else:
         raise DeserializationError("RequestSenderIdResult.sender_id_arn required")
-    if "SenderId" in data:
+    if data.get("SenderId") is not None:
         out["sender_id"] = data["SenderId"]
     else:
         raise DeserializationError("RequestSenderIdResult.sender_id required")
-    if "IsoCountryCode" in data:
+    if data.get("IsoCountryCode") is not None:
         out["iso_country_code"] = data["IsoCountryCode"]
     else:
         raise DeserializationError("RequestSenderIdResult.iso_country_code required")
-    if "MessageTypes" in data:
+    if data.get("MessageTypes") is not None:
         import capo_pinpoint_sms_voice_v2.types.message_type_list
 
         out["message_types"] = (
@@ -81,21 +81,21 @@ def deserialize_aws_json_1_0(data: dict) -> RequestSenderIdResult:
         )
     else:
         raise DeserializationError("RequestSenderIdResult.message_types required")
-    if "MonthlyLeasingPrice" in data:
+    if data.get("MonthlyLeasingPrice") is not None:
         out["monthly_leasing_price"] = data["MonthlyLeasingPrice"]
     else:
         raise DeserializationError(
             "RequestSenderIdResult.monthly_leasing_price required"
         )
-    if "DeletionProtectionEnabled" in data:
+    if data.get("DeletionProtectionEnabled") is not None:
         out["deletion_protection_enabled"] = data["DeletionProtectionEnabled"]
     else:
         out["deletion_protection_enabled"] = False
-    if "Registered" in data:
+    if data.get("Registered") is not None:
         out["registered"] = data["Registered"]
     else:
         out["registered"] = False
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_pinpoint_sms_voice_v2.types.tag_list
 
         out["tags"] = (

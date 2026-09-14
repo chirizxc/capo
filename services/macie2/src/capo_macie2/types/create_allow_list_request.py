@@ -53,19 +53,19 @@ def serialize_json(value: CreateAllowListRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateAllowListRequest:
     out: CreateAllowListRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "criteria" in data:
+    if data.get("criteria") is not None:
         import capo_macie2.types.allow_list_criteria
 
         out["criteria"] = capo_macie2.types.allow_list_criteria.deserialize_json(
             data["criteria"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_macie2.types.tag_map
 
         out["tags"] = capo_macie2.types.tag_map.deserialize_json(data["tags"])

@@ -78,7 +78,7 @@ def serialize_aws_json_1_1(value: EntryViolation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EntryViolation:
     out: EntryViolation = {}  # type: ignore[typeddict-item]
-    if "ExpectedEntry" in data:
+    if data.get("ExpectedEntry") is not None:
         import capo_fms.types.entry_description
 
         out["expected_entry"] = (
@@ -86,11 +86,11 @@ def deserialize_aws_json_1_1(data: dict) -> EntryViolation:
                 data["ExpectedEntry"]
             )
         )
-    if "ExpectedEvaluationOrder" in data:
+    if data.get("ExpectedEvaluationOrder") is not None:
         out["expected_evaluation_order"] = data["ExpectedEvaluationOrder"]
-    if "ActualEvaluationOrder" in data:
+    if data.get("ActualEvaluationOrder") is not None:
         out["actual_evaluation_order"] = data["ActualEvaluationOrder"]
-    if "EntryAtExpectedEvaluationOrder" in data:
+    if data.get("EntryAtExpectedEvaluationOrder") is not None:
         import capo_fms.types.entry_description
 
         out["entry_at_expected_evaluation_order"] = (
@@ -98,7 +98,7 @@ def deserialize_aws_json_1_1(data: dict) -> EntryViolation:
                 data["EntryAtExpectedEvaluationOrder"]
             )
         )
-    if "EntriesWithConflicts" in data:
+    if data.get("EntriesWithConflicts") is not None:
         import capo_fms.types.entries_with_conflicts
 
         out["entries_with_conflicts"] = (
@@ -106,7 +106,7 @@ def deserialize_aws_json_1_1(data: dict) -> EntryViolation:
                 data["EntriesWithConflicts"]
             )
         )
-    if "EntryViolationReasons" in data:
+    if data.get("EntryViolationReasons") is not None:
         import capo_fms.types.entry_violation_reasons
 
         out["entry_violation_reasons"] = (

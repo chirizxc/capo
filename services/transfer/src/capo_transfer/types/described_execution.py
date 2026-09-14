@@ -91,9 +91,9 @@ def serialize_aws_json_1_1(value: DescribedExecution) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribedExecution:
     out: DescribedExecution = {}  # type: ignore[typeddict-item]
-    if "ExecutionId" in data:
+    if data.get("ExecutionId") is not None:
         out["execution_id"] = data["ExecutionId"]
-    if "InitialFileLocation" in data:
+    if data.get("InitialFileLocation") is not None:
         import capo_transfer.types.file_location
 
         out["initial_file_location"] = (
@@ -101,7 +101,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribedExecution:
                 data["InitialFileLocation"]
             )
         )
-    if "ServiceMetadata" in data:
+    if data.get("ServiceMetadata") is not None:
         import capo_transfer.types.service_metadata
 
         out["service_metadata"] = (
@@ -109,9 +109,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribedExecution:
                 data["ServiceMetadata"]
             )
         )
-    if "ExecutionRole" in data:
+    if data.get("ExecutionRole") is not None:
         out["execution_role"] = data["ExecutionRole"]
-    if "LoggingConfiguration" in data:
+    if data.get("LoggingConfiguration") is not None:
         import capo_transfer.types.logging_configuration
 
         out["logging_configuration"] = (
@@ -119,7 +119,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribedExecution:
                 data["LoggingConfiguration"]
             )
         )
-    if "PosixProfile" in data:
+    if data.get("PosixProfile") is not None:
         import capo_transfer.types.posix_profile
 
         out["posix_profile"] = (
@@ -127,13 +127,13 @@ def deserialize_aws_json_1_1(data: dict) -> DescribedExecution:
                 data["PosixProfile"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_transfer.types.execution_status
 
         out["status"] = capo_transfer.types.execution_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "Results" in data:
+    if data.get("Results") is not None:
         import capo_transfer.types.execution_results
 
         out["results"] = capo_transfer.types.execution_results.deserialize_aws_json_1_1(

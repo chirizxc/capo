@@ -42,7 +42,7 @@ def serialize_json(value: H265FilterSettings) -> dict:
 
 def deserialize_json(data: dict) -> H265FilterSettings:
     out: H265FilterSettings = {}  # type: ignore[typeddict-item]
-    if "temporalFilterSettings" in data:
+    if data.get("temporalFilterSettings") is not None:
         import capo_medialive.types.temporal_filter_settings
 
         out["temporal_filter_settings"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> H265FilterSettings:
                 data["temporalFilterSettings"]
             )
         )
-    if "bandwidthReductionFilterSettings" in data:
+    if data.get("bandwidthReductionFilterSettings") is not None:
         import capo_medialive.types.bandwidth_reduction_filter_settings
 
         out["bandwidth_reduction_filter_settings"] = (

@@ -23,6 +23,6 @@ def serialize_json(value: CanaryDryRunConfigOutput) -> dict:
 
 def deserialize_json(data: dict) -> CanaryDryRunConfigOutput:
     out: CanaryDryRunConfigOutput = {}  # type: ignore[typeddict-item]
-    if "DryRunId" in data:
+    if data.get("DryRunId") is not None:
         out["dry_run_id"] = data["DryRunId"]
     return out

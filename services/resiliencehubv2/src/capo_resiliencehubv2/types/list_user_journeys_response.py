@@ -36,7 +36,7 @@ def serialize_json(value: ListUserJourneysResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListUserJourneysResponse:
     out: ListUserJourneysResponse = {}  # type: ignore[typeddict-item]
-    if "userJourneySummaries" in data:
+    if data.get("userJourneySummaries") is not None:
         import capo_resiliencehubv2.types.user_journey_summary_list
 
         out["user_journey_summaries"] = (
@@ -48,6 +48,6 @@ def deserialize_json(data: dict) -> ListUserJourneysResponse:
         raise DeserializationError(
             "ListUserJourneysResponse.user_journey_summaries required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

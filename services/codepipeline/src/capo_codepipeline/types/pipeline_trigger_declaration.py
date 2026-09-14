@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: PipelineTriggerDeclaration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PipelineTriggerDeclaration:
     out: PipelineTriggerDeclaration = {}  # type: ignore[typeddict-item]
-    if "providerType" in data:
+    if data.get("providerType") is not None:
         import capo_codepipeline.types.pipeline_trigger_provider_type
 
         out["provider_type"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> PipelineTriggerDeclaration:
         )
     else:
         raise DeserializationError("PipelineTriggerDeclaration.provider_type required")
-    if "gitConfiguration" in data:
+    if data.get("gitConfiguration") is not None:
         import capo_codepipeline.types.git_configuration
 
         out["git_configuration"] = (

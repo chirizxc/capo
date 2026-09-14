@@ -35,7 +35,7 @@ def serialize_aws_json_1_1(value: DescribeEventDetailsForOrganizationRequest) ->
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeEventDetailsForOrganizationRequest:
     out: DescribeEventDetailsForOrganizationRequest = {}  # type: ignore[typeddict-item]
-    if "organizationEventDetailFilters" in data:
+    if data.get("organizationEventDetailFilters") is not None:
         import capo_health.types.organization_event_detail_filters_list
 
         out["organization_event_detail_filters"] = (
@@ -47,6 +47,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeEventDetailsForOrganizationR
         raise DeserializationError(
             "DescribeEventDetailsForOrganizationRequest.organization_event_detail_filters required"
         )
-    if "locale" in data:
+    if data.get("locale") is not None:
         out["locale"] = data["locale"]
     return out

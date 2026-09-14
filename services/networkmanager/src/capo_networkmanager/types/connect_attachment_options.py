@@ -27,7 +27,7 @@ def serialize_json(value: ConnectAttachmentOptions) -> dict:
 
 def deserialize_json(data: dict) -> ConnectAttachmentOptions:
     out: ConnectAttachmentOptions = {}  # type: ignore[typeddict-item]
-    if "Protocol" in data:
+    if data.get("Protocol") is not None:
         import capo_networkmanager.types.tunnel_protocol
 
         out["protocol"] = capo_networkmanager.types.tunnel_protocol.deserialize_json(

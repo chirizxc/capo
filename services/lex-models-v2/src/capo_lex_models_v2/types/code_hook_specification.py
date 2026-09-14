@@ -27,7 +27,7 @@ def serialize_json(value: CodeHookSpecification) -> dict:
 
 def deserialize_json(data: dict) -> CodeHookSpecification:
     out: CodeHookSpecification = {}  # type: ignore[typeddict-item]
-    if "lambdaCodeHook" in data:
+    if data.get("lambdaCodeHook") is not None:
         import capo_lex_models_v2.types.lambda_code_hook
 
         out["lambda_code_hook"] = (

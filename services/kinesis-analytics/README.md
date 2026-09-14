@@ -13,9 +13,9 @@ from capo_kinesis_analytics import AsyncKinesisAnalyticsClient
 
 
 async def main():
-    async with AsyncKinesisAnalyticsClient() as s3:
+    async with AsyncKinesisAnalyticsClient() as kinesis_analytics:
         # Example: call the add_application_cloud_watch_logging_option operation
-        response = await s3.add_application_cloud_watch_logging_option()
+        response = await kinesis_analytics.add_application_cloud_watch_logging_option()
         print(response)
 ```
 
@@ -29,9 +29,9 @@ from capo_kinesis_analytics.error import ConcurrentModificationException
 
 
 async def main():
-    async with AsyncKinesisAnalyticsClient() as s3:
+    async with AsyncKinesisAnalyticsClient() as kinesis_analytics:
         try:
-            await s3.add_application_cloud_watch_logging_option()
+            await kinesis_analytics.add_application_cloud_watch_logging_option()
         except ConcurrentModificationException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_kinesis_analytics import AsyncKinesisAnalyticsClient
 
 
 async def main():
-    async with AsyncKinesisAnalyticsClient() as s3:
+    async with AsyncKinesisAnalyticsClient() as kinesis_analytics:
         # Default: 3 attempts for every operation
-        response = await s3.add_application_cloud_watch_logging_option()
+        response = await kinesis_analytics.add_application_cloud_watch_logging_option()
 
         # Override per operation
-        response = await s3.add_application_cloud_watch_logging_option(config_overrides={"retry_max_attempts": 5})
+        response = await kinesis_analytics.add_application_cloud_watch_logging_option(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.add_application_cloud_watch_logging_option(config_overrides={"retry_max_attempts": 1})
+        response = await kinesis_analytics.add_application_cloud_watch_logging_option(config_overrides={"retry_max_attempts": 1})
 ```

@@ -31,10 +31,10 @@ def serialize_aws_json_1_1(value: ReportGroupTrendStats) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReportGroupTrendStats:
     out: ReportGroupTrendStats = {}  # type: ignore[typeddict-item]
-    if "average" in data:
+    if data.get("average") is not None:
         out["average"] = data["average"]
-    if "max" in data:
+    if data.get("max") is not None:
         out["max"] = data["max"]
-    if "min" in data:
+    if data.get("min") is not None:
         out["min"] = data["min"]
     return out

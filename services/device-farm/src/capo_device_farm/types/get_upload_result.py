@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: GetUploadResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetUploadResult:
     out: GetUploadResult = {}  # type: ignore[typeddict-item]
-    if "upload" in data:
+    if data.get("upload") is not None:
         import capo_device_farm.types.upload
 
         out["upload"] = capo_device_farm.types.upload.deserialize_aws_json_1_1(

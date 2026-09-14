@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: DescribeModelPackageGroupInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeModelPackageGroupInput:
     out: DescribeModelPackageGroupInput = {}  # type: ignore[typeddict-item]
-    if "ModelPackageGroupName" in data:
+    if data.get("ModelPackageGroupName") is not None:
         out["model_package_group_name"] = data["ModelPackageGroupName"]
     return out

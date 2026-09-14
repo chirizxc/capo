@@ -52,9 +52,9 @@ def serialize_aws_json_1_0(value: Rule) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Rule:
     out: Rule = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Conditions" in data:
+    if data.get("Conditions") is not None:
         import capo_mailmanager.types.rule_conditions
 
         out["conditions"] = (
@@ -62,13 +62,13 @@ def deserialize_aws_json_1_0(data: dict) -> Rule:
                 data["Conditions"]
             )
         )
-    if "Unless" in data:
+    if data.get("Unless") is not None:
         import capo_mailmanager.types.rule_conditions
 
         out["unless"] = capo_mailmanager.types.rule_conditions.deserialize_aws_json_1_0(
             data["Unless"]
         )
-    if "Actions" in data:
+    if data.get("Actions") is not None:
         import capo_mailmanager.types.rule_actions
 
         out["actions"] = capo_mailmanager.types.rule_actions.deserialize_aws_json_1_0(

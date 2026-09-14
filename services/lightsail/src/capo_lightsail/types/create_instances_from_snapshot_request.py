@@ -110,7 +110,7 @@ def serialize_aws_json_1_1(value: CreateInstancesFromSnapshotRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateInstancesFromSnapshotRequest:
     out: CreateInstancesFromSnapshotRequest = {}  # type: ignore[typeddict-item]
-    if "instanceNames" in data:
+    if data.get("instanceNames") is not None:
         import capo_lightsail.types.string_list
 
         out["instance_names"] = (
@@ -122,7 +122,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateInstancesFromSnapshotRequest:
         raise DeserializationError(
             "CreateInstancesFromSnapshotRequest.instance_names required"
         )
-    if "attachedDiskMapping" in data:
+    if data.get("attachedDiskMapping") is not None:
         import capo_lightsail.types.attached_disk_map
 
         out["attached_disk_mapping"] = (
@@ -130,31 +130,31 @@ def deserialize_aws_json_1_1(data: dict) -> CreateInstancesFromSnapshotRequest:
                 data["attachedDiskMapping"]
             )
         )
-    if "availabilityZone" in data:
+    if data.get("availabilityZone") is not None:
         out["availability_zone"] = data["availabilityZone"]
     else:
         raise DeserializationError(
             "CreateInstancesFromSnapshotRequest.availability_zone required"
         )
-    if "instanceSnapshotName" in data:
+    if data.get("instanceSnapshotName") is not None:
         out["instance_snapshot_name"] = data["instanceSnapshotName"]
-    if "bundleId" in data:
+    if data.get("bundleId") is not None:
         out["bundle_id"] = data["bundleId"]
     else:
         raise DeserializationError(
             "CreateInstancesFromSnapshotRequest.bundle_id required"
         )
-    if "userData" in data:
+    if data.get("userData") is not None:
         out["user_data"] = data["userData"]
-    if "keyPairName" in data:
+    if data.get("keyPairName") is not None:
         out["key_pair_name"] = data["keyPairName"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_lightsail.types.tag_list
 
         out["tags"] = capo_lightsail.types.tag_list.deserialize_aws_json_1_1(
             data["tags"]
         )
-    if "addOns" in data:
+    if data.get("addOns") is not None:
         import capo_lightsail.types.add_on_request_list
 
         out["add_ons"] = (
@@ -162,7 +162,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateInstancesFromSnapshotRequest:
                 data["addOns"]
             )
         )
-    if "ipAddressType" in data:
+    if data.get("ipAddressType") is not None:
         import capo_lightsail.types.ip_address_type
 
         out["ip_address_type"] = (
@@ -170,11 +170,11 @@ def deserialize_aws_json_1_1(data: dict) -> CreateInstancesFromSnapshotRequest:
                 data["ipAddressType"]
             )
         )
-    if "sourceInstanceName" in data:
+    if data.get("sourceInstanceName") is not None:
         out["source_instance_name"] = data["sourceInstanceName"]
-    if "restoreDate" in data:
+    if data.get("restoreDate") is not None:
         out["restore_date"] = data["restoreDate"]
-    if "useLatestRestorableAutoSnapshot" in data:
+    if data.get("useLatestRestorableAutoSnapshot") is not None:
         out["use_latest_restorable_auto_snapshot"] = data[
             "useLatestRestorableAutoSnapshot"
         ]

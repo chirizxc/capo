@@ -33,14 +33,14 @@ def serialize_json(value: JobOutputSource) -> dict:
 
 def deserialize_json(data: dict) -> JobOutputSource:
     out: JobOutputSource = {}  # type: ignore[typeddict-item]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("JobOutputSource.role_arn required")
-    if "outputS3Path" in data:
+    if data.get("outputS3Path") is not None:
         out["output_s3_path"] = data["outputS3Path"]
     else:
         raise DeserializationError("JobOutputSource.output_s3_path required")
-    if "KMSArn" in data:
+    if data.get("KMSArn") is not None:
         out["kms_arn"] = data["KMSArn"]
     return out

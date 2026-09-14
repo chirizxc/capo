@@ -51,21 +51,21 @@ def serialize_json(value: PipeTargetRedshiftDataParameters) -> dict:
 
 def deserialize_json(data: dict) -> PipeTargetRedshiftDataParameters:
     out: PipeTargetRedshiftDataParameters = {}  # type: ignore[typeddict-item]
-    if "SecretManagerArn" in data:
+    if data.get("SecretManagerArn") is not None:
         out["secret_manager_arn"] = data["SecretManagerArn"]
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
     else:
         raise DeserializationError("PipeTargetRedshiftDataParameters.database required")
-    if "DbUser" in data:
+    if data.get("DbUser") is not None:
         out["db_user"] = data["DbUser"]
-    if "StatementName" in data:
+    if data.get("StatementName") is not None:
         out["statement_name"] = data["StatementName"]
-    if "WithEvent" in data:
+    if data.get("WithEvent") is not None:
         out["with_event"] = data["WithEvent"]
     else:
         out["with_event"] = False
-    if "Sqls" in data:
+    if data.get("Sqls") is not None:
         import capo_pipes.types.sqls
 
         out["sqls"] = capo_pipes.types.sqls.deserialize_json(data["Sqls"])

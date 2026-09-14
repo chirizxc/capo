@@ -36,7 +36,7 @@ def deserialize_json(
     data: dict,
 ) -> DataIntegrationFlowFieldPriorityDedupeStrategyConfiguration:
     out: DataIntegrationFlowFieldPriorityDedupeStrategyConfiguration = {}  # type: ignore[typeddict-item]
-    if "fields" in data:
+    if data.get("fields") is not None:
         import capo_supplychain.types.data_integration_flow_field_priority_dedupe_field_list
 
         out["fields"] = (

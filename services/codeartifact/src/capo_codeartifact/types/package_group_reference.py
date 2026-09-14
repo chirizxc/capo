@@ -30,8 +30,8 @@ def serialize_json(value: PackageGroupReference) -> dict:
 
 def deserialize_json(data: dict) -> PackageGroupReference:
     out: PackageGroupReference = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "pattern" in data:
+    if data.get("pattern") is not None:
         out["pattern"] = data["pattern"]
     return out

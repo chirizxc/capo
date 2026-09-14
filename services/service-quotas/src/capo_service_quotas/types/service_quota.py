@@ -75,7 +75,15 @@ def serialize_aws_json_1_1(value: ServiceQuota) -> dict:
     if "quota_name" in value:
         out["QuotaName"] = value["quota_name"]
     if "value" in value:
-        out["Value"] = value["value"]
+        out["Value"] = (
+            "NaN"
+            if value["value"] != value["value"]
+            else "Infinity"
+            if value["value"] == float("inf")
+            else "-Infinity"
+            if value["value"] == float("-inf")
+            else value["value"]
+        )
     if "unit" in value:
         out["Unit"] = value["unit"]
     out["Adjustable"] = value.get("adjustable", False)
@@ -125,29 +133,29 @@ def serialize_aws_json_1_1(value: ServiceQuota) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ServiceQuota:
     out: ServiceQuota = {}  # type: ignore[typeddict-item]
-    if "ServiceCode" in data:
+    if data.get("ServiceCode") is not None:
         out["service_code"] = data["ServiceCode"]
-    if "ServiceName" in data:
+    if data.get("ServiceName") is not None:
         out["service_name"] = data["ServiceName"]
-    if "QuotaArn" in data:
+    if data.get("QuotaArn") is not None:
         out["quota_arn"] = data["QuotaArn"]
-    if "QuotaCode" in data:
+    if data.get("QuotaCode") is not None:
         out["quota_code"] = data["QuotaCode"]
-    if "QuotaName" in data:
+    if data.get("QuotaName") is not None:
         out["quota_name"] = data["QuotaName"]
-    if "Value" in data:
-        out["value"] = data["Value"]
-    if "Unit" in data:
+    if data.get("Value") is not None:
+        out["value"] = float(data["Value"])
+    if data.get("Unit") is not None:
         out["unit"] = data["Unit"]
-    if "Adjustable" in data:
+    if data.get("Adjustable") is not None:
         out["adjustable"] = data["Adjustable"]
     else:
         out["adjustable"] = False
-    if "GlobalQuota" in data:
+    if data.get("GlobalQuota") is not None:
         out["global_quota"] = data["GlobalQuota"]
     else:
         out["global_quota"] = False
-    if "UsageMetric" in data:
+    if data.get("UsageMetric") is not None:
         import capo_service_quotas.types.metric_info
 
         out["usage_metric"] = (
@@ -155,13 +163,13 @@ def deserialize_aws_json_1_1(data: dict) -> ServiceQuota:
                 data["UsageMetric"]
             )
         )
-    if "Period" in data:
+    if data.get("Period") is not None:
         import capo_service_quotas.types.quota_period
 
         out["period"] = capo_service_quotas.types.quota_period.deserialize_aws_json_1_1(
             data["Period"]
         )
-    if "ErrorReason" in data:
+    if data.get("ErrorReason") is not None:
         import capo_service_quotas.types.error_reason
 
         out["error_reason"] = (
@@ -169,7 +177,7 @@ def deserialize_aws_json_1_1(data: dict) -> ServiceQuota:
                 data["ErrorReason"]
             )
         )
-    if "QuotaAppliedAtLevel" in data:
+    if data.get("QuotaAppliedAtLevel") is not None:
         import capo_service_quotas.types.applied_level_enum
 
         out["quota_applied_at_level"] = (
@@ -177,7 +185,7 @@ def deserialize_aws_json_1_1(data: dict) -> ServiceQuota:
                 data["QuotaAppliedAtLevel"]
             )
         )
-    if "QuotaContext" in data:
+    if data.get("QuotaContext") is not None:
         import capo_service_quotas.types.quota_context_info
 
         out["quota_context"] = (
@@ -185,6 +193,6 @@ def deserialize_aws_json_1_1(data: dict) -> ServiceQuota:
                 data["QuotaContext"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

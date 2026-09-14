@@ -28,11 +28,11 @@ def serialize_json(value: OutPutS3Location) -> dict:
 
 def deserialize_json(data: dict) -> OutPutS3Location:
     out: OutPutS3Location = {}  # type: ignore[typeddict-item]
-    if "BucketName" in data:
+    if data.get("BucketName") is not None:
         out["bucket_name"] = data["BucketName"]
     else:
         raise DeserializationError("OutPutS3Location.bucket_name required")
-    if "ObjectKey" in data:
+    if data.get("ObjectKey") is not None:
         out["object_key"] = data["ObjectKey"]
     else:
         raise DeserializationError("OutPutS3Location.object_key required")

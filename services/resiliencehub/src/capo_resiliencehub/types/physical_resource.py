@@ -101,9 +101,9 @@ def serialize_json(value: PhysicalResource) -> dict:
 
 def deserialize_json(data: dict) -> PhysicalResource:
     out: PhysicalResource = {}  # type: ignore[typeddict-item]
-    if "resourceName" in data:
+    if data.get("resourceName") is not None:
         out["resource_name"] = data["resourceName"]
-    if "logicalResourceId" in data:
+    if data.get("logicalResourceId") is not None:
         import capo_resiliencehub.types.logical_resource_id
 
         out["logical_resource_id"] = (
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> PhysicalResource:
         )
     else:
         raise DeserializationError("PhysicalResource.logical_resource_id required")
-    if "physicalResourceId" in data:
+    if data.get("physicalResourceId") is not None:
         import capo_resiliencehub.types.physical_resource_id
 
         out["physical_resource_id"] = (
@@ -123,11 +123,11 @@ def deserialize_json(data: dict) -> PhysicalResource:
         )
     else:
         raise DeserializationError("PhysicalResource.physical_resource_id required")
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
     else:
         raise DeserializationError("PhysicalResource.resource_type required")
-    if "appComponents" in data:
+    if data.get("appComponents") is not None:
         import capo_resiliencehub.types.app_component_list
 
         out["app_components"] = (
@@ -135,7 +135,7 @@ def deserialize_json(data: dict) -> PhysicalResource:
                 data["appComponents"]
             )
         )
-    if "additionalInfo" in data:
+    if data.get("additionalInfo") is not None:
         import capo_resiliencehub.types.additional_info_map
 
         out["additional_info"] = (
@@ -143,9 +143,9 @@ def deserialize_json(data: dict) -> PhysicalResource:
                 data["additionalInfo"]
             )
         )
-    if "excluded" in data:
+    if data.get("excluded") is not None:
         out["excluded"] = data["excluded"]
-    if "sourceType" in data:
+    if data.get("sourceType") is not None:
         import capo_resiliencehub.types.resource_source_type
 
         out["source_type"] = (
@@ -153,6 +153,6 @@ def deserialize_json(data: dict) -> PhysicalResource:
                 data["sourceType"]
             )
         )
-    if "parentResourceName" in data:
+    if data.get("parentResourceName") is not None:
         out["parent_resource_name"] = data["parentResourceName"]
     return out

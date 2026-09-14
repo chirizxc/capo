@@ -57,7 +57,7 @@ def serialize_aws_json_1_0(value: ScheduledQueryInsightsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ScheduledQueryInsightsResponse:
     out: ScheduledQueryInsightsResponse = {}  # type: ignore[typeddict-item]
-    if "QuerySpatialCoverage" in data:
+    if data.get("QuerySpatialCoverage") is not None:
         import capo_timestream_query.types.query_spatial_coverage
 
         out["query_spatial_coverage"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_0(data: dict) -> ScheduledQueryInsightsResponse:
                 data["QuerySpatialCoverage"]
             )
         )
-    if "QueryTemporalRange" in data:
+    if data.get("QueryTemporalRange") is not None:
         import capo_timestream_query.types.query_temporal_range
 
         out["query_temporal_range"] = (
@@ -73,10 +73,10 @@ def deserialize_aws_json_1_0(data: dict) -> ScheduledQueryInsightsResponse:
                 data["QueryTemporalRange"]
             )
         )
-    if "QueryTableCount" in data:
+    if data.get("QueryTableCount") is not None:
         out["query_table_count"] = data["QueryTableCount"]
-    if "OutputRows" in data:
+    if data.get("OutputRows") is not None:
         out["output_rows"] = data["OutputRows"]
-    if "OutputBytes" in data:
+    if data.get("OutputBytes") is not None:
         out["output_bytes"] = data["OutputBytes"]
     return out

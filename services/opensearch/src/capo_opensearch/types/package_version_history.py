@@ -63,17 +63,17 @@ def serialize_json(value: PackageVersionHistory) -> dict:
 
 def deserialize_json(data: dict) -> PackageVersionHistory:
     out: PackageVersionHistory = {}  # type: ignore[typeddict-item]
-    if "PackageVersion" in data:
+    if data.get("PackageVersion") is not None:
         out["package_version"] = data["PackageVersion"]
-    if "CommitMessage" in data:
+    if data.get("CommitMessage") is not None:
         out["commit_message"] = data["CommitMessage"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_opensearch.types.created_at
 
         out["created_at"] = capo_opensearch.types.created_at.deserialize_json(
             data["CreatedAt"]
         )
-    if "PluginProperties" in data:
+    if data.get("PluginProperties") is not None:
         import capo_opensearch.types.plugin_properties
 
         out["plugin_properties"] = (
@@ -81,7 +81,7 @@ def deserialize_json(data: dict) -> PackageVersionHistory:
                 data["PluginProperties"]
             )
         )
-    if "PackageConfiguration" in data:
+    if data.get("PackageConfiguration") is not None:
         import capo_opensearch.types.package_configuration
 
         out["package_configuration"] = (

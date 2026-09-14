@@ -37,11 +37,11 @@ def serialize_json(value: ControlSet) -> dict:
 
 def deserialize_json(data: dict) -> ControlSet:
     out: ControlSet = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "controls" in data:
+    if data.get("controls") is not None:
         import capo_auditmanager.types.controls
 
         out["controls"] = capo_auditmanager.types.controls.deserialize_json(

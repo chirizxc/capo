@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> PermissionGroupList:
 
     out: PermissionGroupList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_finspace_data.types.permission_group.deserialize_json(item))
     return out

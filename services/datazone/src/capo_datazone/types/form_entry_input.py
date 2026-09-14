@@ -32,14 +32,14 @@ def serialize_json(value: FormEntryInput) -> dict:
 
 def deserialize_json(data: dict) -> FormEntryInput:
     out: FormEntryInput = {}  # type: ignore[typeddict-item]
-    if "typeIdentifier" in data:
+    if data.get("typeIdentifier") is not None:
         out["type_identifier"] = data["typeIdentifier"]
     else:
         raise DeserializationError("FormEntryInput.type_identifier required")
-    if "typeRevision" in data:
+    if data.get("typeRevision") is not None:
         out["type_revision"] = data["typeRevision"]
     else:
         raise DeserializationError("FormEntryInput.type_revision required")
-    if "required" in data:
+    if data.get("required") is not None:
         out["required"] = data["required"]
     return out

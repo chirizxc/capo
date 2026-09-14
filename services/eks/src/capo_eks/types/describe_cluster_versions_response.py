@@ -34,9 +34,9 @@ def serialize_json(value: DescribeClusterVersionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeClusterVersionsResponse:
     out: DescribeClusterVersionsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "clusterVersions" in data:
+    if data.get("clusterVersions") is not None:
         import capo_eks.types.cluster_version_list
 
         out["cluster_versions"] = capo_eks.types.cluster_version_list.deserialize_json(

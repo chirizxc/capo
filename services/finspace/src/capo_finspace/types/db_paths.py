@@ -14,4 +14,4 @@ def serialize_json(value: DbPaths) -> list:
 
 
 def deserialize_json(data: list) -> DbPaths:
-    return list(data)
+    return [item for item in data if item is not None]

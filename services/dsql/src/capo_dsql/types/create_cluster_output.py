@@ -77,21 +77,21 @@ def serialize_json(value: CreateClusterOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateClusterOutput:
     out: CreateClusterOutput = {}  # type: ignore[typeddict-item]
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
     else:
         raise DeserializationError("CreateClusterOutput.identifier required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("CreateClusterOutput.arn required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_dsql.types.cluster_status
 
         out["status"] = capo_dsql.types.cluster_status.deserialize_json(data["status"])
     else:
         raise DeserializationError("CreateClusterOutput.status required")
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_dsql.types.cluster_creation_time
 
         out["creation_time"] = capo_dsql.types.cluster_creation_time.deserialize_json(
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> CreateClusterOutput:
         )
     else:
         raise DeserializationError("CreateClusterOutput.creation_time required")
-    if "multiRegionProperties" in data:
+    if data.get("multiRegionProperties") is not None:
         import capo_dsql.types.multi_region_properties
 
         out["multi_region_properties"] = (
@@ -107,18 +107,18 @@ def deserialize_json(data: dict) -> CreateClusterOutput:
                 data["multiRegionProperties"]
             )
         )
-    if "encryptionDetails" in data:
+    if data.get("encryptionDetails") is not None:
         import capo_dsql.types.encryption_details
 
         out["encryption_details"] = capo_dsql.types.encryption_details.deserialize_json(
             data["encryptionDetails"]
         )
-    if "deletionProtectionEnabled" in data:
+    if data.get("deletionProtectionEnabled") is not None:
         out["deletion_protection_enabled"] = data["deletionProtectionEnabled"]
     else:
         raise DeserializationError(
             "CreateClusterOutput.deletion_protection_enabled required"
         )
-    if "endpoint" in data:
+    if data.get("endpoint") is not None:
         out["endpoint"] = data["endpoint"]
     return out

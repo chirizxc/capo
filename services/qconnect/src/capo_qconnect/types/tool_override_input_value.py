@@ -34,11 +34,11 @@ def serialize_json(value: ToolOverrideInputValue) -> dict:
 
 def deserialize_json(data: dict) -> ToolOverrideInputValue:
     out: ToolOverrideInputValue = {}  # type: ignore[typeddict-item]
-    if "jsonPath" in data:
+    if data.get("jsonPath") is not None:
         out["json_path"] = data["jsonPath"]
     else:
         raise DeserializationError("ToolOverrideInputValue.json_path required")
-    if "value" in data:
+    if data.get("value") is not None:
         import capo_qconnect.types.tool_override_input_value_configuration
 
         out["value"] = (

@@ -45,15 +45,15 @@ def serialize_aws_json_1_0(value: X12ControlNumbers) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> X12ControlNumbers:
     out: X12ControlNumbers = {}  # type: ignore[typeddict-item]
-    if "startingInterchangeControlNumber" in data:
+    if data.get("startingInterchangeControlNumber") is not None:
         out["starting_interchange_control_number"] = data[
             "startingInterchangeControlNumber"
         ]
-    if "startingFunctionalGroupControlNumber" in data:
+    if data.get("startingFunctionalGroupControlNumber") is not None:
         out["starting_functional_group_control_number"] = data[
             "startingFunctionalGroupControlNumber"
         ]
-    if "startingTransactionSetControlNumber" in data:
+    if data.get("startingTransactionSetControlNumber") is not None:
         out["starting_transaction_set_control_number"] = data[
             "startingTransactionSetControlNumber"
         ]

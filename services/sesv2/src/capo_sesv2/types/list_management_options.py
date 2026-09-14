@@ -29,10 +29,10 @@ def serialize_json(value: ListManagementOptions) -> dict:
 
 def deserialize_json(data: dict) -> ListManagementOptions:
     out: ListManagementOptions = {}  # type: ignore[typeddict-item]
-    if "ContactListName" in data:
+    if data.get("ContactListName") is not None:
         out["contact_list_name"] = data["ContactListName"]
     else:
         raise DeserializationError("ListManagementOptions.contact_list_name required")
-    if "TopicName" in data:
+    if data.get("TopicName") is not None:
         out["topic_name"] = data["TopicName"]
     return out

@@ -33,10 +33,10 @@ def serialize_aws_json_1_1(value: ListBatchInferenceJobsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListBatchInferenceJobsRequest:
     out: ListBatchInferenceJobsRequest = {}  # type: ignore[typeddict-item]
-    if "solutionVersionArn" in data:
+    if data.get("solutionVersionArn") is not None:
         out["solution_version_arn"] = data["solutionVersionArn"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

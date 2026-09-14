@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> SessionSummaries:
 
     out: SessionSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_nova_act.types.session_summary.deserialize_json(item))
     return out

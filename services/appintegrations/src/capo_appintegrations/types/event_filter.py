@@ -24,7 +24,7 @@ def serialize_json(value: EventFilter) -> dict:
 
 def deserialize_json(data: dict) -> EventFilter:
     out: EventFilter = {}  # type: ignore[typeddict-item]
-    if "Source" in data:
+    if data.get("Source") is not None:
         out["source"] = data["Source"]
     else:
         raise DeserializationError("EventFilter.source required")

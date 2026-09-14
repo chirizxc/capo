@@ -31,15 +31,15 @@ def serialize_json(value: RollbackTransactionRequest) -> dict:
 
 def deserialize_json(data: dict) -> RollbackTransactionRequest:
     out: RollbackTransactionRequest = {}  # type: ignore[typeddict-item]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     else:
         raise DeserializationError("RollbackTransactionRequest.resource_arn required")
-    if "secretArn" in data:
+    if data.get("secretArn") is not None:
         out["secret_arn"] = data["secretArn"]
     else:
         raise DeserializationError("RollbackTransactionRequest.secret_arn required")
-    if "transactionId" in data:
+    if data.get("transactionId") is not None:
         out["transaction_id"] = data["transactionId"]
     else:
         raise DeserializationError("RollbackTransactionRequest.transaction_id required")

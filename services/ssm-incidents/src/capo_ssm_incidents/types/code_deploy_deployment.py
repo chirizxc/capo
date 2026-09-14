@@ -44,7 +44,7 @@ def serialize_json(value: CodeDeployDeployment) -> dict:
 
 def deserialize_json(data: dict) -> CodeDeployDeployment:
     out: CodeDeployDeployment = {}  # type: ignore[typeddict-item]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_ssm_incidents.types._prelude.timestamp
 
         out["start_time"] = (
@@ -54,17 +54,17 @@ def deserialize_json(data: dict) -> CodeDeployDeployment:
         )
     else:
         raise DeserializationError("CodeDeployDeployment.start_time required")
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_ssm_incidents.types._prelude.timestamp
 
         out["end_time"] = capo_ssm_incidents.types._prelude.timestamp.deserialize_json(
             data["endTime"]
         )
-    if "deploymentGroupArn" in data:
+    if data.get("deploymentGroupArn") is not None:
         out["deployment_group_arn"] = data["deploymentGroupArn"]
     else:
         raise DeserializationError("CodeDeployDeployment.deployment_group_arn required")
-    if "deploymentId" in data:
+    if data.get("deploymentId") is not None:
         out["deployment_id"] = data["deploymentId"]
     else:
         raise DeserializationError("CodeDeployDeployment.deployment_id required")

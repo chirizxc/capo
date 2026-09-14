@@ -44,11 +44,11 @@ def serialize_json(value: ActiveContext) -> dict:
 
 def deserialize_json(data: dict) -> ActiveContext:
     out: ActiveContext = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ActiveContext.name required")
-    if "timeToLive" in data:
+    if data.get("timeToLive") is not None:
         import capo_lex_runtime_service.types.active_context_time_to_live
 
         out["time_to_live"] = (
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> ActiveContext:
         )
     else:
         raise DeserializationError("ActiveContext.time_to_live required")
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_lex_runtime_service.types.active_context_parameters_map
 
         out["parameters"] = (

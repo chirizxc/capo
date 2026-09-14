@@ -43,9 +43,9 @@ def serialize_json(value: FailedRequest) -> dict:
 
 def deserialize_json(data: dict) -> FailedRequest:
     out: FailedRequest = {}  # type: ignore[typeddict-item]
-    if "RequestIdentifier" in data:
+    if data.get("RequestIdentifier") is not None:
         out["request_identifier"] = data["RequestIdentifier"]
-    if "FailureReasonCode" in data:
+    if data.get("FailureReasonCode") is not None:
         import capo_connect.types.failure_reason_code
 
         out["failure_reason_code"] = (
@@ -53,6 +53,6 @@ def deserialize_json(data: dict) -> FailedRequest:
                 data["FailureReasonCode"]
             )
         )
-    if "FailureReasonMessage" in data:
+    if data.get("FailureReasonMessage") is not None:
         out["failure_reason_message"] = data["FailureReasonMessage"]
     return out

@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: DeleteDistributionResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteDistributionResult:
     out: DeleteDistributionResult = {}  # type: ignore[typeddict-item]
-    if "operation" in data:
+    if data.get("operation") is not None:
         import capo_lightsail.types.operation
 
         out["operation"] = capo_lightsail.types.operation.deserialize_aws_json_1_1(

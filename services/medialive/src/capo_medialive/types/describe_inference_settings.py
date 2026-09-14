@@ -36,9 +36,9 @@ def serialize_json(value: DescribeInferenceSettings) -> dict:
 
 def deserialize_json(data: dict) -> DescribeInferenceSettings:
     out: DescribeInferenceSettings = {}  # type: ignore[typeddict-item]
-    if "feedArn" in data:
+    if data.get("feedArn") is not None:
         out["feed_arn"] = data["feedArn"]
-    if "audioFeedInputs" in data:
+    if data.get("audioFeedInputs") is not None:
         import capo_medialive.types.__list_of_audio_feed_input
 
         out["audio_feed_inputs"] = (

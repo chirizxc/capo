@@ -44,7 +44,7 @@ def serialize_json(value: DescribePackagesFilter) -> dict:
 
 def deserialize_json(data: dict) -> DescribePackagesFilter:
     out: DescribePackagesFilter = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         import capo_opensearch.types.describe_packages_filter_name
 
         out["name"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> DescribePackagesFilter:
                 data["Name"]
             )
         )
-    if "Value" in data:
+    if data.get("Value") is not None:
         import capo_opensearch.types.describe_packages_filter_values
 
         out["value"] = (

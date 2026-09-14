@@ -43,12 +43,10 @@ def serialize_json(value: SourceEventMetadata) -> dict:
         out["eventOriginRegion"] = value["event_origin_region"]
     out["relatedAccount"] = value["related_account"]
     out["source"] = value["source"]
-    import capo_notifications.types._prelude.timestamp
+    import capo_notifications._protocol.serialize
 
-    out["eventOccurrenceTime"] = (
-        capo_notifications.types._prelude.timestamp.serialize_json(
-            value["event_occurrence_time"]
-        )
+    out["eventOccurrenceTime"] = capo_notifications._protocol.serialize.fmt_date_time(
+        value["event_occurrence_time"]
     )
     out["eventType"] = value["event_type"]
     import capo_notifications.types.resources
@@ -61,39 +59,37 @@ def serialize_json(value: SourceEventMetadata) -> dict:
 
 def deserialize_json(data: dict) -> SourceEventMetadata:
     out: SourceEventMetadata = {}  # type: ignore[typeddict-item]
-    if "eventTypeVersion" in data:
+    if data.get("eventTypeVersion") is not None:
         out["event_type_version"] = data["eventTypeVersion"]
     else:
         raise DeserializationError("SourceEventMetadata.event_type_version required")
-    if "sourceEventId" in data:
+    if data.get("sourceEventId") is not None:
         out["source_event_id"] = data["sourceEventId"]
     else:
         raise DeserializationError("SourceEventMetadata.source_event_id required")
-    if "eventOriginRegion" in data:
+    if data.get("eventOriginRegion") is not None:
         out["event_origin_region"] = data["eventOriginRegion"]
-    if "relatedAccount" in data:
+    if data.get("relatedAccount") is not None:
         out["related_account"] = data["relatedAccount"]
     else:
         raise DeserializationError("SourceEventMetadata.related_account required")
-    if "source" in data:
+    if data.get("source") is not None:
         out["source"] = data["source"]
     else:
         raise DeserializationError("SourceEventMetadata.source required")
-    if "eventOccurrenceTime" in data:
-        import capo_notifications.types._prelude.timestamp
+    if data.get("eventOccurrenceTime") is not None:
+        import datetime
 
-        out["event_occurrence_time"] = (
-            capo_notifications.types._prelude.timestamp.deserialize_json(
-                data["eventOccurrenceTime"]
-            )
+        out["event_occurrence_time"] = datetime.datetime.fromisoformat(
+            data["eventOccurrenceTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("SourceEventMetadata.event_occurrence_time required")
-    if "eventType" in data:
+    if data.get("eventType") is not None:
         out["event_type"] = data["eventType"]
     else:
         raise DeserializationError("SourceEventMetadata.event_type required")
-    if "relatedResources" in data:
+    if data.get("relatedResources") is not None:
         import capo_notifications.types.resources
 
         out["related_resources"] = capo_notifications.types.resources.deserialize_json(

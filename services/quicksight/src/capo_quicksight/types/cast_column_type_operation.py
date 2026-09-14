@@ -48,11 +48,11 @@ def serialize_json(value: CastColumnTypeOperation) -> dict:
 
 def deserialize_json(data: dict) -> CastColumnTypeOperation:
     out: CastColumnTypeOperation = {}  # type: ignore[typeddict-item]
-    if "ColumnName" in data:
+    if data.get("ColumnName") is not None:
         out["column_name"] = data["ColumnName"]
     else:
         raise DeserializationError("CastColumnTypeOperation.column_name required")
-    if "NewColumnType" in data:
+    if data.get("NewColumnType") is not None:
         import capo_quicksight.types.column_data_type
 
         out["new_column_type"] = (
@@ -62,12 +62,12 @@ def deserialize_json(data: dict) -> CastColumnTypeOperation:
         )
     else:
         raise DeserializationError("CastColumnTypeOperation.new_column_type required")
-    if "SubType" in data:
+    if data.get("SubType") is not None:
         import capo_quicksight.types.column_data_sub_type
 
         out["sub_type"] = capo_quicksight.types.column_data_sub_type.deserialize_json(
             data["SubType"]
         )
-    if "Format" in data:
+    if data.get("Format") is not None:
         out["format"] = data["Format"]
     return out

@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> MobileDeviceAccessRulesList:
 
     out: MobileDeviceAccessRulesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_workmail.types.mobile_device_access_rule.deserialize_aws_json_1_1(item)
         )

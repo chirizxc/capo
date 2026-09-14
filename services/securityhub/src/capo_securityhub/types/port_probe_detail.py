@@ -57,7 +57,7 @@ def serialize_json(value: PortProbeDetail) -> dict:
 
 def deserialize_json(data: dict) -> PortProbeDetail:
     out: PortProbeDetail = {}  # type: ignore[typeddict-item]
-    if "LocalPortDetails" in data:
+    if data.get("LocalPortDetails") is not None:
         import capo_securityhub.types.action_local_port_details
 
         out["local_port_details"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> PortProbeDetail:
                 data["LocalPortDetails"]
             )
         )
-    if "LocalIpDetails" in data:
+    if data.get("LocalIpDetails") is not None:
         import capo_securityhub.types.action_local_ip_details
 
         out["local_ip_details"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> PortProbeDetail:
                 data["LocalIpDetails"]
             )
         )
-    if "RemoteIpDetails" in data:
+    if data.get("RemoteIpDetails") is not None:
         import capo_securityhub.types.action_remote_ip_details
 
         out["remote_ip_details"] = (

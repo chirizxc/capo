@@ -94,27 +94,27 @@ def serialize_aws_json_1_1(value: CreateApplicationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateApplicationRequest:
     out: CreateApplicationRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceGroupName" in data:
+    if data.get("ResourceGroupName") is not None:
         out["resource_group_name"] = data["ResourceGroupName"]
-    if "OpsCenterEnabled" in data:
+    if data.get("OpsCenterEnabled") is not None:
         out["ops_center_enabled"] = data["OpsCenterEnabled"]
-    if "CWEMonitorEnabled" in data:
+    if data.get("CWEMonitorEnabled") is not None:
         out["cwe_monitor_enabled"] = data["CWEMonitorEnabled"]
-    if "OpsItemSNSTopicArn" in data:
+    if data.get("OpsItemSNSTopicArn") is not None:
         out["ops_item_sns_topic_arn"] = data["OpsItemSNSTopicArn"]
-    if "SNSNotificationArn" in data:
+    if data.get("SNSNotificationArn") is not None:
         out["sns_notification_arn"] = data["SNSNotificationArn"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_application_insights.types.tag_list
 
         out["tags"] = capo_application_insights.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "AutoConfigEnabled" in data:
+    if data.get("AutoConfigEnabled") is not None:
         out["auto_config_enabled"] = data["AutoConfigEnabled"]
-    if "AutoCreate" in data:
+    if data.get("AutoCreate") is not None:
         out["auto_create"] = data["AutoCreate"]
-    if "GroupingType" in data:
+    if data.get("GroupingType") is not None:
         import capo_application_insights.types.grouping_type
 
         out["grouping_type"] = (
@@ -122,6 +122,6 @@ def deserialize_aws_json_1_1(data: dict) -> CreateApplicationRequest:
                 data["GroupingType"]
             )
         )
-    if "AttachMissingPermission" in data:
+    if data.get("AttachMissingPermission") is not None:
         out["attach_missing_permission"] = data["AttachMissingPermission"]
     return out

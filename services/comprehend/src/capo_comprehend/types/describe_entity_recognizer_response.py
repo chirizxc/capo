@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DescribeEntityRecognizerResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeEntityRecognizerResponse:
     out: DescribeEntityRecognizerResponse = {}  # type: ignore[typeddict-item]
-    if "EntityRecognizerProperties" in data:
+    if data.get("EntityRecognizerProperties") is not None:
         import capo_comprehend.types.entity_recognizer_properties
 
         out["entity_recognizer_properties"] = (

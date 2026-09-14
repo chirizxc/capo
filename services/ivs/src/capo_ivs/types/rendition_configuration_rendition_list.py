@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> RenditionConfigurationRenditionList:
 
     out: RenditionConfigurationRenditionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_ivs.types.rendition_configuration_rendition.deserialize_json(item)
         )

@@ -28,13 +28,13 @@ def serialize_aws_json_1_1(value: UpdateNumberOfDomainControllersRequest) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateNumberOfDomainControllersRequest:
     out: UpdateNumberOfDomainControllersRequest = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
     else:
         raise DeserializationError(
             "UpdateNumberOfDomainControllersRequest.directory_id required"
         )
-    if "DesiredNumber" in data:
+    if data.get("DesiredNumber") is not None:
         out["desired_number"] = data["DesiredNumber"]
     else:
         raise DeserializationError(

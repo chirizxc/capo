@@ -34,13 +34,13 @@ def serialize_json(value: GetTableReplicationStatusResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetTableReplicationStatusResponse:
     out: GetTableReplicationStatusResponse = {}  # type: ignore[typeddict-item]
-    if "sourceTableArn" in data:
+    if data.get("sourceTableArn") is not None:
         out["source_table_arn"] = data["sourceTableArn"]
     else:
         raise DeserializationError(
             "GetTableReplicationStatusResponse.source_table_arn required"
         )
-    if "destinations" in data:
+    if data.get("destinations") is not None:
         import capo_s3tables.types.replication_destination_statuses
 
         out["destinations"] = (

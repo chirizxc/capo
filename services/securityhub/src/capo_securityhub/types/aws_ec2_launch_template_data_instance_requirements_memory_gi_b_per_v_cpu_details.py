@@ -23,9 +23,25 @@ def serialize_json(
 ) -> dict:
     out: dict = {}
     if "max" in value:
-        out["Max"] = value["max"]
+        out["Max"] = (
+            "NaN"
+            if value["max"] != value["max"]
+            else "Infinity"
+            if value["max"] == float("inf")
+            else "-Infinity"
+            if value["max"] == float("-inf")
+            else value["max"]
+        )
     if "min" in value:
-        out["Min"] = value["min"]
+        out["Min"] = (
+            "NaN"
+            if value["min"] != value["min"]
+            else "Infinity"
+            if value["min"] == float("inf")
+            else "-Infinity"
+            if value["min"] == float("-inf")
+            else value["min"]
+        )
     return out
 
 
@@ -33,8 +49,8 @@ def deserialize_json(
     data: dict,
 ) -> AwsEc2LaunchTemplateDataInstanceRequirementsMemoryGiBPerVCpuDetails:
     out: AwsEc2LaunchTemplateDataInstanceRequirementsMemoryGiBPerVCpuDetails = {}  # type: ignore[typeddict-item]
-    if "Max" in data:
-        out["max"] = data["Max"]
-    if "Min" in data:
-        out["min"] = data["Min"]
+    if data.get("Max") is not None:
+        out["max"] = float(data["Max"])
+    if data.get("Min") is not None:
+        out["min"] = float(data["Min"])
     return out

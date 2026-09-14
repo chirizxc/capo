@@ -37,11 +37,11 @@ def serialize_json(value: DeletePermissionVersionResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeletePermissionVersionResponse:
     out: DeletePermissionVersionResponse = {}  # type: ignore[typeddict-item]
-    if "returnValue" in data:
+    if data.get("returnValue") is not None:
         out["return_value"] = data["returnValue"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "permissionStatus" in data:
+    if data.get("permissionStatus") is not None:
         import capo_ram.types.permission_status
 
         out["permission_status"] = capo_ram.types.permission_status.deserialize_json(

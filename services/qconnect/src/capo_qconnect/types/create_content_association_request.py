@@ -55,15 +55,15 @@ def serialize_json(value: CreateContentAssociationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateContentAssociationRequest:
     out: CreateContentAssociationRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "associationType" in data:
+    if data.get("associationType") is not None:
         out["association_type"] = data["associationType"]
     else:
         raise DeserializationError(
             "CreateContentAssociationRequest.association_type required"
         )
-    if "association" in data:
+    if data.get("association") is not None:
         import capo_qconnect.types.content_association_contents
 
         out["association"] = (
@@ -75,7 +75,7 @@ def deserialize_json(data: dict) -> CreateContentAssociationRequest:
         raise DeserializationError(
             "CreateContentAssociationRequest.association required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_qconnect.types.tags
 
         out["tags"] = capo_qconnect.types.tags.deserialize_json(data["tags"])

@@ -30,12 +30,12 @@ def serialize_json(value: GetSchemaCreationStatusResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetSchemaCreationStatusResponse:
     out: GetSchemaCreationStatusResponse = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_appsync.types.schema_status
 
         out["status"] = capo_appsync.types.schema_status.deserialize_json(
             data["status"]
         )
-    if "details" in data:
+    if data.get("details") is not None:
         out["details"] = data["details"]
     return out

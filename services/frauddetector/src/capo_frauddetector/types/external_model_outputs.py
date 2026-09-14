@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: ExternalModelOutputs) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExternalModelOutputs:
     out: ExternalModelOutputs = {}  # type: ignore[typeddict-item]
-    if "externalModel" in data:
+    if data.get("externalModel") is not None:
         import capo_frauddetector.types.external_model_summary
 
         out["external_model"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> ExternalModelOutputs:
                 data["externalModel"]
             )
         )
-    if "outputs" in data:
+    if data.get("outputs") is not None:
         import capo_frauddetector.types.external_model_prediction_map
 
         out["outputs"] = (

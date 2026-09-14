@@ -112,7 +112,7 @@ def serialize_json(value: ReadAuthenticationMetadata) -> dict:
 
 
 def deserialize_json(data: dict) -> ReadAuthenticationMetadata:
-    if "AuthorizationCodeGrantMetadata" in data:
+    if data.get("AuthorizationCodeGrantMetadata") is not None:
         import capo_quicksight.types.read_authorization_code_grant_metadata
 
         return {
@@ -120,7 +120,7 @@ def deserialize_json(data: dict) -> ReadAuthenticationMetadata:
                 data["AuthorizationCodeGrantMetadata"]
             )
         }
-    elif "ClientCredentialsGrantMetadata" in data:
+    elif data.get("ClientCredentialsGrantMetadata") is not None:
         import capo_quicksight.types.read_client_credentials_grant_metadata
 
         return {
@@ -128,7 +128,7 @@ def deserialize_json(data: dict) -> ReadAuthenticationMetadata:
                 data["ClientCredentialsGrantMetadata"]
             )
         }
-    elif "BasicAuthConnectionMetadata" in data:
+    elif data.get("BasicAuthConnectionMetadata") is not None:
         import capo_quicksight.types.read_basic_auth_connection_metadata
 
         return {
@@ -136,7 +136,7 @@ def deserialize_json(data: dict) -> ReadAuthenticationMetadata:
                 data["BasicAuthConnectionMetadata"]
             )
         }
-    elif "ApiKeyConnectionMetadata" in data:
+    elif data.get("ApiKeyConnectionMetadata") is not None:
         import capo_quicksight.types.read_api_key_connection_metadata
 
         return {
@@ -144,7 +144,7 @@ def deserialize_json(data: dict) -> ReadAuthenticationMetadata:
                 data["ApiKeyConnectionMetadata"]
             )
         }
-    elif "NoneConnectionMetadata" in data:
+    elif data.get("NoneConnectionMetadata") is not None:
         import capo_quicksight.types.read_none_connection_metadata
 
         return {
@@ -152,7 +152,7 @@ def deserialize_json(data: dict) -> ReadAuthenticationMetadata:
                 data["NoneConnectionMetadata"]
             )
         }
-    elif "IamConnectionMetadata" in data:
+    elif data.get("IamConnectionMetadata") is not None:
         import capo_quicksight.types.read_iam_connection_metadata
 
         return {

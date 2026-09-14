@@ -34,12 +34,12 @@ def serialize_json(value: ListDataSourceSyncJobsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListDataSourceSyncJobsResponse:
     out: ListDataSourceSyncJobsResponse = {}  # type: ignore[typeddict-item]
-    if "history" in data:
+    if data.get("history") is not None:
         import capo_qbusiness.types.data_source_sync_jobs
 
         out["history"] = capo_qbusiness.types.data_source_sync_jobs.deserialize_json(
             data["history"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

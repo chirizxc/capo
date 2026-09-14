@@ -40,7 +40,7 @@ def serialize_json(value: ImageMetadata) -> dict:
 
 def deserialize_json(data: dict) -> ImageMetadata:
     out: ImageMetadata = {}  # type: ignore[typeddict-item]
-    if "mimeType" in data:
+    if data.get("mimeType") is not None:
         import capo_workspaces_web.types.mime_type
 
         out["mime_type"] = capo_workspaces_web.types.mime_type.deserialize_json(
@@ -48,11 +48,11 @@ def deserialize_json(data: dict) -> ImageMetadata:
         )
     else:
         raise DeserializationError("ImageMetadata.mime_type required")
-    if "fileExtension" in data:
+    if data.get("fileExtension") is not None:
         out["file_extension"] = data["fileExtension"]
     else:
         raise DeserializationError("ImageMetadata.file_extension required")
-    if "lastUploadTimestamp" in data:
+    if data.get("lastUploadTimestamp") is not None:
         import capo_workspaces_web.types.timestamp
 
         out["last_upload_timestamp"] = (

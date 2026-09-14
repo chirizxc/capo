@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> EncryptionAlgorithms:
 
     out: EncryptionAlgorithms = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_signer.types.encryption_algorithm.deserialize_json(item))
     return out

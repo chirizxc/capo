@@ -32,9 +32,9 @@ def serialize_json(value: AudioPidSelection) -> dict:
 
 def deserialize_json(data: dict) -> AudioPidSelection:
     out: AudioPidSelection = {}  # type: ignore[typeddict-item]
-    if "pid" in data:
+    if data.get("pid") is not None:
         out["pid"] = data["pid"]
-    if "pids" in data:
+    if data.get("pids") is not None:
         import capo_medialive.types.__list_of_audio_pid
 
         out["pids"] = capo_medialive.types.__list_of_audio_pid.deserialize_json(

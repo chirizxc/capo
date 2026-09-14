@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfNodeInterfaceMapping:
 
     out: __listOfNodeInterfaceMapping = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_medialive.types.node_interface_mapping.deserialize_json(item))
     return out

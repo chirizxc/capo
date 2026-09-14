@@ -62,9 +62,9 @@ def serialize_json(value: HlsEncryption) -> dict:
 
 def deserialize_json(data: dict) -> HlsEncryption:
     out: HlsEncryption = {}  # type: ignore[typeddict-item]
-    if "constantInitializationVector" in data:
+    if data.get("constantInitializationVector") is not None:
         out["constant_initialization_vector"] = data["constantInitializationVector"]
-    if "encryptionMethod" in data:
+    if data.get("encryptionMethod") is not None:
         import capo_mediapackage.types.encryption_method
 
         out["encryption_method"] = (
@@ -72,11 +72,11 @@ def deserialize_json(data: dict) -> HlsEncryption:
                 data["encryptionMethod"]
             )
         )
-    if "keyRotationIntervalSeconds" in data:
+    if data.get("keyRotationIntervalSeconds") is not None:
         out["key_rotation_interval_seconds"] = data["keyRotationIntervalSeconds"]
-    if "repeatExtXKey" in data:
+    if data.get("repeatExtXKey") is not None:
         out["repeat_ext_x_key"] = data["repeatExtXKey"]
-    if "spekeKeyProvider" in data:
+    if data.get("spekeKeyProvider") is not None:
         import capo_mediapackage.types.speke_key_provider
 
         out["speke_key_provider"] = (

@@ -38,10 +38,10 @@ def serialize_json(value: StartAssetBundleImportJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartAssetBundleImportJobResponse:
     out: StartAssetBundleImportJobResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "AssetBundleImportJobId" in data:
+    if data.get("AssetBundleImportJobId") is not None:
         out["asset_bundle_import_job_id"] = data["AssetBundleImportJobId"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

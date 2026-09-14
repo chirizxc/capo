@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ProposalSummaryList:
 
     out: ProposalSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_managedblockchain.types.proposal_summary.deserialize_json(item))
     return out

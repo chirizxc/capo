@@ -104,15 +104,15 @@ def serialize_json(value: Queue) -> dict:
 
 def deserialize_json(data: dict) -> Queue:
     out: Queue = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "QueueArn" in data:
+    if data.get("QueueArn") is not None:
         out["queue_arn"] = data["QueueArn"]
-    if "QueueId" in data:
+    if data.get("QueueId") is not None:
         out["queue_id"] = data["QueueId"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "OutboundCallerConfig" in data:
+    if data.get("OutboundCallerConfig") is not None:
         import capo_connect.types.outbound_caller_config
 
         out["outbound_caller_config"] = (
@@ -120,7 +120,7 @@ def deserialize_json(data: dict) -> Queue:
                 data["OutboundCallerConfig"]
             )
         )
-    if "OutboundEmailConfig" in data:
+    if data.get("OutboundEmailConfig") is not None:
         import capo_connect.types.outbound_email_config
 
         out["outbound_email_config"] = (
@@ -128,24 +128,24 @@ def deserialize_json(data: dict) -> Queue:
                 data["OutboundEmailConfig"]
             )
         )
-    if "HoursOfOperationId" in data:
+    if data.get("HoursOfOperationId") is not None:
         out["hours_of_operation_id"] = data["HoursOfOperationId"]
-    if "MaxContacts" in data:
+    if data.get("MaxContacts") is not None:
         out["max_contacts"] = data["MaxContacts"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_connect.types.queue_status
 
         out["status"] = capo_connect.types.queue_status.deserialize_json(data["Status"])
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_connect.types.timestamp
 
         out["last_modified_time"] = capo_connect.types.timestamp.deserialize_json(
             data["LastModifiedTime"]
         )
-    if "LastModifiedRegion" in data:
+    if data.get("LastModifiedRegion") is not None:
         out["last_modified_region"] = data["LastModifiedRegion"]
     return out

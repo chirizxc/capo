@@ -34,9 +34,9 @@ def serialize_aws_json_1_1(value: SpellCorrectedQuery) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SpellCorrectedQuery:
     out: SpellCorrectedQuery = {}  # type: ignore[typeddict-item]
-    if "SuggestedQueryText" in data:
+    if data.get("SuggestedQueryText") is not None:
         out["suggested_query_text"] = data["SuggestedQueryText"]
-    if "Corrections" in data:
+    if data.get("Corrections") is not None:
         import capo_kendra.types.correction_list
 
         out["corrections"] = capo_kendra.types.correction_list.deserialize_aws_json_1_1(

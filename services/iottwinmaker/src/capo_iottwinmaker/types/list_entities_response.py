@@ -36,7 +36,7 @@ def serialize_json(value: ListEntitiesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListEntitiesResponse:
     out: ListEntitiesResponse = {}  # type: ignore[typeddict-item]
-    if "entitySummaries" in data:
+    if data.get("entitySummaries") is not None:
         import capo_iottwinmaker.types.entity_summaries
 
         out["entity_summaries"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListEntitiesResponse:
                 data["entitySummaries"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

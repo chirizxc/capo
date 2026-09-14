@@ -33,8 +33,8 @@ def serialize_json(value: UpdateUserAccessLoggingSettingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateUserAccessLoggingSettingsRequest:
     out: UpdateUserAccessLoggingSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "kinesisStreamArn" in data:
+    if data.get("kinesisStreamArn") is not None:
         out["kinesis_stream_arn"] = data["kinesisStreamArn"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

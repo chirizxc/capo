@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 from capo_mwaa_serverless._services._pipeline import (
@@ -90,10 +91,12 @@ class WorkflowRunResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mwaa_serverless.types.start_workflow_run_request.StartWorkflowRunRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_arn"] = workflow_arn
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_mwaa_serverless.types.start_workflow_run_request.StartWorkflowRunRequest = {
+            "workflow_arn": workflow_arn
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if override_parameters is not None:
             input_["override_parameters"] = override_parameters
         if workflow_version is not None:
@@ -104,6 +107,7 @@ class WorkflowRunResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -144,15 +148,17 @@ class WorkflowRunResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mwaa_serverless.types.get_workflow_run_request.GetWorkflowRunRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_arn"] = workflow_arn
-        input_["run_id"] = run_id
+        input_: capo_mwaa_serverless.types.get_workflow_run_request.GetWorkflowRunRequest = {
+            "workflow_arn": workflow_arn,
+            "run_id": run_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -195,15 +201,17 @@ class WorkflowRunResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mwaa_serverless.types.stop_workflow_run_request.StopWorkflowRunRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_arn"] = workflow_arn
-        input_["run_id"] = run_id
+        input_: capo_mwaa_serverless.types.stop_workflow_run_request.StopWorkflowRunRequest = {
+            "workflow_arn": workflow_arn,
+            "run_id": run_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -249,12 +257,13 @@ class WorkflowRunResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mwaa_serverless.types.list_workflow_runs_request.ListWorkflowRunsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mwaa_serverless.types.list_workflow_runs_request.ListWorkflowRunsRequest = {
+            "workflow_arn": workflow_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["workflow_arn"] = workflow_arn
         if workflow_version is not None:
             input_["workflow_version"] = workflow_version
 
@@ -263,6 +272,7 @@ class WorkflowRunResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -321,10 +331,12 @@ class AsyncWorkflowRunResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mwaa_serverless.types.start_workflow_run_request.StartWorkflowRunRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_arn"] = workflow_arn
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_mwaa_serverless.types.start_workflow_run_request.StartWorkflowRunRequest = {
+            "workflow_arn": workflow_arn
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if override_parameters is not None:
             input_["override_parameters"] = override_parameters
         if workflow_version is not None:
@@ -335,6 +347,7 @@ class AsyncWorkflowRunResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -376,15 +389,17 @@ class AsyncWorkflowRunResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mwaa_serverless.types.get_workflow_run_request.GetWorkflowRunRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_arn"] = workflow_arn
-        input_["run_id"] = run_id
+        input_: capo_mwaa_serverless.types.get_workflow_run_request.GetWorkflowRunRequest = {
+            "workflow_arn": workflow_arn,
+            "run_id": run_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -428,15 +443,17 @@ class AsyncWorkflowRunResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mwaa_serverless.types.stop_workflow_run_request.StopWorkflowRunRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_arn"] = workflow_arn
-        input_["run_id"] = run_id
+        input_: capo_mwaa_serverless.types.stop_workflow_run_request.StopWorkflowRunRequest = {
+            "workflow_arn": workflow_arn,
+            "run_id": run_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -483,12 +500,13 @@ class AsyncWorkflowRunResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mwaa_serverless.types.list_workflow_runs_request.ListWorkflowRunsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mwaa_serverless.types.list_workflow_runs_request.ListWorkflowRunsRequest = {
+            "workflow_arn": workflow_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["workflow_arn"] = workflow_arn
         if workflow_version is not None:
             input_["workflow_version"] = workflow_version
 
@@ -497,4 +515,5 @@ class AsyncWorkflowRunResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

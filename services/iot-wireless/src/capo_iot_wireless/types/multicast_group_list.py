@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> MulticastGroupList:
 
     out: MulticastGroupList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot_wireless.types.multicast_group.deserialize_json(item))
     return out

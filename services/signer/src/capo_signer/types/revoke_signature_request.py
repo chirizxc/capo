@@ -32,9 +32,9 @@ def serialize_json(value: RevokeSignatureRequest) -> dict:
 
 def deserialize_json(data: dict) -> RevokeSignatureRequest:
     out: RevokeSignatureRequest = {}  # type: ignore[typeddict-item]
-    if "jobOwner" in data:
+    if data.get("jobOwner") is not None:
         out["job_owner"] = data["jobOwner"]
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
     else:
         raise DeserializationError("RevokeSignatureRequest.reason required")

@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: ListBuildsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListBuildsInput:
     out: ListBuildsInput = {}  # type: ignore[typeddict-item]
-    if "sortOrder" in data:
+    if data.get("sortOrder") is not None:
         import capo_codebuild.types.sort_order_type
 
         out["sort_order"] = (
@@ -40,6 +40,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListBuildsInput:
                 data["sortOrder"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

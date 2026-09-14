@@ -64,33 +64,33 @@ def serialize_aws_json_1_1(value: AnalysisReportSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AnalysisReportSummary:
     out: AnalysisReportSummary = {}  # type: ignore[typeddict-item]
-    if "AnalysisReportId" in data:
+    if data.get("AnalysisReportId") is not None:
         out["analysis_report_id"] = data["AnalysisReportId"]
-    if "CreateTime" in data:
+    if data.get("CreateTime") is not None:
         import capo_pi.types.iso_timestamp
 
         out["create_time"] = capo_pi.types.iso_timestamp.deserialize_aws_json_1_1(
             data["CreateTime"]
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_pi.types.iso_timestamp
 
         out["start_time"] = capo_pi.types.iso_timestamp.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_pi.types.iso_timestamp
 
         out["end_time"] = capo_pi.types.iso_timestamp.deserialize_aws_json_1_1(
             data["EndTime"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_pi.types.analysis_status
 
         out["status"] = capo_pi.types.analysis_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_pi.types.tag_list
 
         out["tags"] = capo_pi.types.tag_list.deserialize_aws_json_1_1(data["Tags"])

@@ -75,27 +75,27 @@ def serialize_json(value: KubernetesApiCallAction) -> dict:
 
 def deserialize_json(data: dict) -> KubernetesApiCallAction:
     out: KubernetesApiCallAction = {}  # type: ignore[typeddict-item]
-    if "requestUri" in data:
+    if data.get("requestUri") is not None:
         out["request_uri"] = data["requestUri"]
-    if "verb" in data:
+    if data.get("verb") is not None:
         out["verb"] = data["verb"]
-    if "resource" in data:
+    if data.get("resource") is not None:
         out["resource"] = data["resource"]
-    if "subresource" in data:
+    if data.get("subresource") is not None:
         out["subresource"] = data["subresource"]
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         out["namespace"] = data["namespace"]
-    if "resourceName" in data:
+    if data.get("resourceName") is not None:
         out["resource_name"] = data["resourceName"]
-    if "sourceIPs" in data:
+    if data.get("sourceIPs") is not None:
         import capo_guardduty.types.source_ips
 
         out["source_ips"] = capo_guardduty.types.source_ips.deserialize_json(
             data["sourceIPs"]
         )
-    if "userAgent" in data:
+    if data.get("userAgent") is not None:
         out["user_agent"] = data["userAgent"]
-    if "remoteIpDetails" in data:
+    if data.get("remoteIpDetails") is not None:
         import capo_guardduty.types.remote_ip_details
 
         out["remote_ip_details"] = (
@@ -103,8 +103,8 @@ def deserialize_json(data: dict) -> KubernetesApiCallAction:
                 data["remoteIpDetails"]
             )
         )
-    if "statusCode" in data:
+    if data.get("statusCode") is not None:
         out["status_code"] = data["statusCode"]
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         out["parameters"] = data["parameters"]
     return out

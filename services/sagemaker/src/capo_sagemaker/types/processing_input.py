@@ -52,11 +52,11 @@ def serialize_aws_json_1_1(value: ProcessingInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProcessingInput:
     out: ProcessingInput = {}  # type: ignore[typeddict-item]
-    if "InputName" in data:
+    if data.get("InputName") is not None:
         out["input_name"] = data["InputName"]
-    if "AppManaged" in data:
+    if data.get("AppManaged") is not None:
         out["app_managed"] = data["AppManaged"]
-    if "S3Input" in data:
+    if data.get("S3Input") is not None:
         import capo_sagemaker.types.processing_s3_input
 
         out["s3_input"] = (
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProcessingInput:
                 data["S3Input"]
             )
         )
-    if "DatasetDefinition" in data:
+    if data.get("DatasetDefinition") is not None:
         import capo_sagemaker.types.dataset_definition
 
         out["dataset_definition"] = (

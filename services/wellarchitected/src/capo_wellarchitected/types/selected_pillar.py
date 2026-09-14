@@ -35,9 +35,9 @@ def serialize_json(value: SelectedPillar) -> dict:
 
 def deserialize_json(data: dict) -> SelectedPillar:
     out: SelectedPillar = {}  # type: ignore[typeddict-item]
-    if "PillarId" in data:
+    if data.get("PillarId") is not None:
         out["pillar_id"] = data["PillarId"]
-    if "SelectedQuestionIds" in data:
+    if data.get("SelectedQuestionIds") is not None:
         import capo_wellarchitected.types.selected_question_ids
 
         out["selected_question_ids"] = (

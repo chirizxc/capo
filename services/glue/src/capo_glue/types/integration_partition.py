@@ -31,10 +31,10 @@ def serialize_aws_json_1_1(value: IntegrationPartition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IntegrationPartition:
     out: IntegrationPartition = {}  # type: ignore[typeddict-item]
-    if "FieldName" in data:
+    if data.get("FieldName") is not None:
         out["field_name"] = data["FieldName"]
-    if "FunctionSpec" in data:
+    if data.get("FunctionSpec") is not None:
         out["function_spec"] = data["FunctionSpec"]
-    if "ConversionSpec" in data:
+    if data.get("ConversionSpec") is not None:
         out["conversion_spec"] = data["ConversionSpec"]
     return out

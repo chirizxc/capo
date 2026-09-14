@@ -46,11 +46,11 @@ def serialize_aws_json_1_1(value: DescribeImagePermissionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeImagePermissionsRequest:
     out: DescribeImagePermissionsRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "SharedAwsAccountIds" in data:
+    if data.get("SharedAwsAccountIds") is not None:
         import capo_appstream.types.aws_account_id_list
 
         out["shared_aws_account_ids"] = (
@@ -58,6 +58,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeImagePermissionsRequest:
                 data["SharedAwsAccountIds"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -46,15 +46,15 @@ def serialize_aws_json_1_1(value: UpdateTrustedTokenIssuerRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateTrustedTokenIssuerRequest:
     out: UpdateTrustedTokenIssuerRequest = {}  # type: ignore[typeddict-item]
-    if "TrustedTokenIssuerArn" in data:
+    if data.get("TrustedTokenIssuerArn") is not None:
         out["trusted_token_issuer_arn"] = data["TrustedTokenIssuerArn"]
     else:
         raise DeserializationError(
             "UpdateTrustedTokenIssuerRequest.trusted_token_issuer_arn required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "TrustedTokenIssuerConfiguration" in data:
+    if data.get("TrustedTokenIssuerConfiguration") is not None:
         import capo_sso_admin.types.trusted_token_issuer_update_configuration
 
         out["trusted_token_issuer_configuration"] = (

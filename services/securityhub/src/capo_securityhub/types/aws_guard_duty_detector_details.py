@@ -59,7 +59,7 @@ def serialize_json(value: AwsGuardDutyDetectorDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsGuardDutyDetectorDetails:
     out: AwsGuardDutyDetectorDetails = {}  # type: ignore[typeddict-item]
-    if "DataSources" in data:
+    if data.get("DataSources") is not None:
         import capo_securityhub.types.aws_guard_duty_detector_data_sources_details
 
         out["data_sources"] = (
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> AwsGuardDutyDetectorDetails:
                 data["DataSources"]
             )
         )
-    if "Features" in data:
+    if data.get("Features") is not None:
         import capo_securityhub.types.aws_guard_duty_detector_features_list
 
         out["features"] = (
@@ -75,10 +75,10 @@ def deserialize_json(data: dict) -> AwsGuardDutyDetectorDetails:
                 data["Features"]
             )
         )
-    if "FindingPublishingFrequency" in data:
+    if data.get("FindingPublishingFrequency") is not None:
         out["finding_publishing_frequency"] = data["FindingPublishingFrequency"]
-    if "ServiceRole" in data:
+    if data.get("ServiceRole") is not None:
         out["service_role"] = data["ServiceRole"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     return out

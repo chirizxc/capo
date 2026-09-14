@@ -26,7 +26,7 @@ def serialize_json(value: DestinationTableSource) -> dict:
 
 def deserialize_json(data: dict) -> DestinationTableSource:
     out: DestinationTableSource = {}  # type: ignore[typeddict-item]
-    if "TransformOperationId" in data:
+    if data.get("TransformOperationId") is not None:
         out["transform_operation_id"] = data["TransformOperationId"]
     else:
         raise DeserializationError(

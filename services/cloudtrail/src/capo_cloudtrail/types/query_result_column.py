@@ -23,5 +23,7 @@ def serialize_aws_json_1_1(input_to_serialize: QueryResultColumn) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> QueryResultColumn:
     out: QueryResultColumn = {}
     for key, value in data.items():
+        if value is None:
+            continue
         out[key] = value
     return out

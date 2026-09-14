@@ -40,12 +40,12 @@ def serialize_json(value: AccountAssociationsListElement) -> dict:
 
 def deserialize_json(data: dict) -> AccountAssociationsListElement:
     out: AccountAssociationsListElement = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "BillingGroupArn" in data:
+    if data.get("BillingGroupArn") is not None:
         out["billing_group_arn"] = data["BillingGroupArn"]
-    if "AccountName" in data:
+    if data.get("AccountName") is not None:
         out["account_name"] = data["AccountName"]
-    if "AccountEmail" in data:
+    if data.get("AccountEmail") is not None:
         out["account_email"] = data["AccountEmail"]
     return out

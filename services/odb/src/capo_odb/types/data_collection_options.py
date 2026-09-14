@@ -26,10 +26,10 @@ def serialize_aws_json_1_0(value: DataCollectionOptions) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DataCollectionOptions:
     out: DataCollectionOptions = {}  # type: ignore[typeddict-item]
-    if "isDiagnosticsEventsEnabled" in data:
+    if data.get("isDiagnosticsEventsEnabled") is not None:
         out["is_diagnostics_events_enabled"] = data["isDiagnosticsEventsEnabled"]
-    if "isHealthMonitoringEnabled" in data:
+    if data.get("isHealthMonitoringEnabled") is not None:
         out["is_health_monitoring_enabled"] = data["isHealthMonitoringEnabled"]
-    if "isIncidentLogsEnabled" in data:
+    if data.get("isIncidentLogsEnabled") is not None:
         out["is_incident_logs_enabled"] = data["isIncidentLogsEnabled"]
     return out

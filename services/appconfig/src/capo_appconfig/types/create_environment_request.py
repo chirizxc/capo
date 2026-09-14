@@ -48,19 +48,19 @@ def serialize_json(value: CreateEnvironmentRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateEnvironmentRequest:
     out: CreateEnvironmentRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateEnvironmentRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Monitors" in data:
+    if data.get("Monitors") is not None:
         import capo_appconfig.types.monitor_list
 
         out["monitors"] = capo_appconfig.types.monitor_list.deserialize_json(
             data["Monitors"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_appconfig.types.tag_map
 
         out["tags"] = capo_appconfig.types.tag_map.deserialize_json(data["Tags"])

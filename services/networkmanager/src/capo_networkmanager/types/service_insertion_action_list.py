@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ServiceInsertionActionList:
 
     out: ServiceInsertionActionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_networkmanager.types.service_insertion_action.deserialize_json(item)
         )

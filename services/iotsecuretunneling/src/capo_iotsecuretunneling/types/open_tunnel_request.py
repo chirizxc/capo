@@ -58,15 +58,15 @@ def serialize_aws_json_1_1(value: OpenTunnelRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OpenTunnelRequest:
     out: OpenTunnelRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iotsecuretunneling.types.tag_list
 
         out["tags"] = capo_iotsecuretunneling.types.tag_list.deserialize_aws_json_1_1(
             data["tags"]
         )
-    if "destinationConfig" in data:
+    if data.get("destinationConfig") is not None:
         import capo_iotsecuretunneling.types.destination_config
 
         out["destination_config"] = (
@@ -74,7 +74,7 @@ def deserialize_aws_json_1_1(data: dict) -> OpenTunnelRequest:
                 data["destinationConfig"]
             )
         )
-    if "timeoutConfig" in data:
+    if data.get("timeoutConfig") is not None:
         import capo_iotsecuretunneling.types.timeout_config
 
         out["timeout_config"] = (

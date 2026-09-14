@@ -35,12 +35,12 @@ def serialize_json(value: Ec2Metadata) -> dict:
 
 def deserialize_json(data: dict) -> Ec2Metadata:
     out: Ec2Metadata = {}  # type: ignore[typeddict-item]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_inspector2.types.tag_map
 
         out["tags"] = capo_inspector2.types.tag_map.deserialize_json(data["tags"])
-    if "amiId" in data:
+    if data.get("amiId") is not None:
         out["ami_id"] = data["amiId"]
-    if "platform" in data:
+    if data.get("platform") is not None:
         out["platform"] = data["platform"]
     return out

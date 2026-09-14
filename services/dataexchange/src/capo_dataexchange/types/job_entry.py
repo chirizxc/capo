@@ -81,11 +81,11 @@ def serialize_json(value: JobEntry) -> dict:
 
 def deserialize_json(data: dict) -> JobEntry:
     out: JobEntry = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("JobEntry.arn required")
-    if "AssetConfiguration" in data:
+    if data.get("AssetConfiguration") is not None:
         import capo_dataexchange.types.asset_configuration
 
         out["asset_configuration"] = (
@@ -93,7 +93,7 @@ def deserialize_json(data: dict) -> JobEntry:
                 data["AssetConfiguration"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_dataexchange.types.timestamp
 
         out["created_at"] = capo_dataexchange.types.timestamp.deserialize_json(
@@ -101,7 +101,7 @@ def deserialize_json(data: dict) -> JobEntry:
         )
     else:
         raise DeserializationError("JobEntry.created_at required")
-    if "Details" in data:
+    if data.get("Details") is not None:
         import capo_dataexchange.types.response_details
 
         out["details"] = capo_dataexchange.types.response_details.deserialize_json(
@@ -109,25 +109,25 @@ def deserialize_json(data: dict) -> JobEntry:
         )
     else:
         raise DeserializationError("JobEntry.details required")
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_dataexchange.types.list_of_job_error
 
         out["errors"] = capo_dataexchange.types.list_of_job_error.deserialize_json(
             data["Errors"]
         )
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("JobEntry.id required")
-    if "State" in data:
+    if data.get("State") is not None:
         out["state"] = data["State"]
     else:
         raise DeserializationError("JobEntry.state required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     else:
         raise DeserializationError("JobEntry.type required")
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_dataexchange.types.timestamp
 
         out["updated_at"] = capo_dataexchange.types.timestamp.deserialize_json(

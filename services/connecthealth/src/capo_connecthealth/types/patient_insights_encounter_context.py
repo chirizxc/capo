@@ -26,7 +26,7 @@ def serialize_json(value: PatientInsightsEncounterContext) -> dict:
 
 def deserialize_json(data: dict) -> PatientInsightsEncounterContext:
     out: PatientInsightsEncounterContext = {}  # type: ignore[typeddict-item]
-    if "encounterReason" in data:
+    if data.get("encounterReason") is not None:
         out["encounter_reason"] = data["encounterReason"]
     else:
         raise DeserializationError(

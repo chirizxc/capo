@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> RetrievalFilterList:
 
     out: RetrievalFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_qconnect.types.retrieval_filter_configuration.deserialize_json(item)
         )

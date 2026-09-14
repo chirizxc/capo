@@ -49,9 +49,9 @@ def serialize_aws_json_1_1(value: SetupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SetupRequest:
     out: SetupRequest = {}  # type: ignore[typeddict-item]
-    if "instanceName" in data:
+    if data.get("instanceName") is not None:
         out["instance_name"] = data["instanceName"]
-    if "domainNames" in data:
+    if data.get("domainNames") is not None:
         import capo_lightsail.types.setup_domain_name_list
 
         out["domain_names"] = (
@@ -59,7 +59,7 @@ def deserialize_aws_json_1_1(data: dict) -> SetupRequest:
                 data["domainNames"]
             )
         )
-    if "certificateProvider" in data:
+    if data.get("certificateProvider") is not None:
         import capo_lightsail.types.certificate_provider
 
         out["certificate_provider"] = (

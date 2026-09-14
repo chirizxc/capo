@@ -38,7 +38,7 @@ def serialize_json(value: ListInvitationsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListInvitationsOutput:
     out: ListInvitationsOutput = {}  # type: ignore[typeddict-item]
-    if "Invitations" in data:
+    if data.get("Invitations") is not None:
         import capo_managedblockchain.types.invitation_list
 
         out["invitations"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> ListInvitationsOutput:
                 data["Invitations"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

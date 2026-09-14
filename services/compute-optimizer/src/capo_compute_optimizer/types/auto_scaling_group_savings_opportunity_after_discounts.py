@@ -23,7 +23,16 @@ def serialize_aws_json_1_0(
     value: AutoScalingGroupSavingsOpportunityAfterDiscounts,
 ) -> dict:
     out: dict = {}
-    out["savingsOpportunityPercentage"] = value.get("savings_opportunity_percentage", 0)
+    out["savingsOpportunityPercentage"] = (
+        "NaN"
+        if value.get("savings_opportunity_percentage", 0)
+        != value.get("savings_opportunity_percentage", 0)
+        else "Infinity"
+        if value.get("savings_opportunity_percentage", 0) == float("inf")
+        else "-Infinity"
+        if value.get("savings_opportunity_percentage", 0) == float("-inf")
+        else value.get("savings_opportunity_percentage", 0)
+    )
     if "estimated_monthly_savings" in value:
         import capo_compute_optimizer.types.auto_scaling_group_estimated_monthly_savings
 
@@ -39,11 +48,13 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> AutoScalingGroupSavingsOpportunityAfterDiscounts:
     out: AutoScalingGroupSavingsOpportunityAfterDiscounts = {}  # type: ignore[typeddict-item]
-    if "savingsOpportunityPercentage" in data:
-        out["savings_opportunity_percentage"] = data["savingsOpportunityPercentage"]
+    if data.get("savingsOpportunityPercentage") is not None:
+        out["savings_opportunity_percentage"] = float(
+            data["savingsOpportunityPercentage"]
+        )
     else:
         out["savings_opportunity_percentage"] = 0
-    if "estimatedMonthlySavings" in data:
+    if data.get("estimatedMonthlySavings") is not None:
         import capo_compute_optimizer.types.auto_scaling_group_estimated_monthly_savings
 
         out["estimated_monthly_savings"] = (

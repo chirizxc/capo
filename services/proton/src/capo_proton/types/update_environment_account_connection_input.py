@@ -37,16 +37,16 @@ def serialize_aws_json_1_0(value: UpdateEnvironmentAccountConnectionInput) -> di
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateEnvironmentAccountConnectionInput:
     out: UpdateEnvironmentAccountConnectionInput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError(
             "UpdateEnvironmentAccountConnectionInput.id required"
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "componentRoleArn" in data:
+    if data.get("componentRoleArn") is not None:
         out["component_role_arn"] = data["componentRoleArn"]
-    if "codebuildRoleArn" in data:
+    if data.get("codebuildRoleArn") is not None:
         out["codebuild_role_arn"] = data["codebuildRoleArn"]
     return out

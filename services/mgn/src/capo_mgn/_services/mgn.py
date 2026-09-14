@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.mgn#ApplicationMigrationService``."""
 
+import uuid
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -230,13 +231,14 @@ class mgnClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mgn.types.initialize_service_request.InitializeServiceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mgn.types.initialize_service_request.InitializeServiceRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_import_file_enrichments(
@@ -281,7 +283,7 @@ class mgnClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mgn.types.list_import_file_enrichments_request.ListImportFileEnrichmentsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mgn.types.list_import_file_enrichments_request.ListImportFileEnrichmentsRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -294,6 +296,7 @@ class mgnClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_import_file_enrichments(
@@ -355,7 +358,7 @@ class mgnClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mgn.types.list_managed_accounts_request.ListManagedAccountsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mgn.types.list_managed_accounts_request.ListManagedAccountsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -366,6 +369,7 @@ class mgnClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_managed_accounts(
@@ -424,14 +428,16 @@ class mgnClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mgn.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_mgn.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_import_file_enrichment(
@@ -484,11 +490,13 @@ class mgnClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mgn.types.start_import_file_enrichment_request.StartImportFileEnrichmentRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["s3_bucket_source"] = s3_bucket_source
-        input_["s3_bucket_target"] = s3_bucket_target
+        input_: capo_mgn.types.start_import_file_enrichment_request.StartImportFileEnrichmentRequest = {
+            "s3_bucket_source": s3_bucket_source,
+            "s3_bucket_target": s3_bucket_target,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if ip_assignment_strategy is not None:
             input_["ip_assignment_strategy"] = ip_assignment_strategy
 
@@ -497,6 +505,7 @@ class mgnClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -534,15 +543,17 @@ class mgnClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mgn.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_mgn.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -580,15 +591,17 @@ class mgnClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mgn.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_mgn.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

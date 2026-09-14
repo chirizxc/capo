@@ -41,16 +41,16 @@ def serialize_json(value: GetEffectivePermissionsForPathRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetEffectivePermissionsForPathRequest:
     out: GetEffectivePermissionsForPathRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     else:
         raise DeserializationError(
             "GetEffectivePermissionsForPathRequest.resource_arn required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

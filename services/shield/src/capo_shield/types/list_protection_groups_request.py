@@ -41,11 +41,11 @@ def serialize_aws_json_1_1(value: ListProtectionGroupsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListProtectionGroupsRequest:
     out: ListProtectionGroupsRequest = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "InclusionFilters" in data:
+    if data.get("InclusionFilters") is not None:
         import capo_shield.types.inclusion_protection_group_filters
 
         out["inclusion_filters"] = (

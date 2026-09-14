@@ -27,8 +27,8 @@ def serialize_json(value: ActionRequired) -> dict:
 
 def deserialize_json(data: dict) -> ActionRequired:
     out: ActionRequired = {}  # type: ignore[typeddict-item]
-    if "actionRequiredCode" in data:
+    if data.get("actionRequiredCode") is not None:
         out["action_required_code"] = data["actionRequiredCode"]
-    if "actionRequiredInfo" in data:
+    if data.get("actionRequiredInfo") is not None:
         out["action_required_info"] = data["actionRequiredInfo"]
     return out

@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.ivschat#AmazonInteractiveVideoServiceChat``."""
 
 import warnings
+from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +17,7 @@ from capo_ivschat._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_ivschat._auth._zapros_handler import AuthMiddleware
+from capo_ivschat._pagination import resolve_path as _resolve_path
 from capo_ivschat._services._aws_config import aws_config
 from capo_ivschat._services._pipeline import (
     Interceptor,
@@ -226,9 +228,10 @@ class ivschatClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivschat.types.create_chat_token_request.CreateChatTokenRequest = {}  # type: ignore[typeddict-item]
-        input_["room_identifier"] = room_identifier
-        input_["user_id"] = user_id
+        input_: capo_ivschat.types.create_chat_token_request.CreateChatTokenRequest = {
+            "room_identifier": room_identifier,
+            "user_id": user_id,
+        }
         if capabilities is not None:
             input_["capabilities"] = capabilities
         if session_duration_in_minutes is not None:
@@ -241,6 +244,7 @@ class ivschatClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_logging_configuration(
@@ -285,10 +289,11 @@ class ivschatClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivschat.types.create_logging_configuration_request.CreateLoggingConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ivschat.types.create_logging_configuration_request.CreateLoggingConfigurationRequest = {
+            "destination_configuration": destination_configuration
+        }
         if name is not None:
             input_["name"] = name
-        input_["destination_configuration"] = destination_configuration
         if tags is not None:
             input_["tags"] = tags
 
@@ -297,6 +302,7 @@ class ivschatClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_room(
@@ -353,7 +359,7 @@ class ivschatClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivschat.types.create_room_request.CreateRoomRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ivschat.types.create_room_request.CreateRoomRequest = {}
         if name is not None:
             input_["name"] = name
         if maximum_message_rate_per_second is not None:
@@ -374,6 +380,7 @@ class ivschatClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_logging_configuration(
@@ -409,14 +416,16 @@ class ivschatClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivschat.types.delete_logging_configuration_request.DeleteLoggingConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_ivschat.types.delete_logging_configuration_request.DeleteLoggingConfigurationRequest = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_message(
@@ -458,9 +467,10 @@ class ivschatClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivschat.types.delete_message_request.DeleteMessageRequest = {}  # type: ignore[typeddict-item]
-        input_["room_identifier"] = room_identifier
-        input_["id"] = id
+        input_: capo_ivschat.types.delete_message_request.DeleteMessageRequest = {
+            "room_identifier": room_identifier,
+            "id": id,
+        }
         if reason is not None:
             input_["reason"] = reason
 
@@ -469,6 +479,7 @@ class ivschatClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_room(
@@ -503,14 +514,16 @@ class ivschatClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivschat.types.delete_room_request.DeleteRoomRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_ivschat.types.delete_room_request.DeleteRoomRequest = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disconnect_user(
@@ -552,9 +565,10 @@ class ivschatClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivschat.types.disconnect_user_request.DisconnectUserRequest = {}  # type: ignore[typeddict-item]
-        input_["room_identifier"] = room_identifier
-        input_["user_id"] = user_id
+        input_: capo_ivschat.types.disconnect_user_request.DisconnectUserRequest = {
+            "room_identifier": room_identifier,
+            "user_id": user_id,
+        }
         if reason is not None:
             input_["reason"] = reason
 
@@ -563,6 +577,7 @@ class ivschatClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_logging_configuration(
@@ -598,14 +613,16 @@ class ivschatClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivschat.types.get_logging_configuration_request.GetLoggingConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_ivschat.types.get_logging_configuration_request.GetLoggingConfigurationRequest = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_room(
@@ -639,14 +656,16 @@ class ivschatClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivschat.types.get_room_request.GetRoomRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_ivschat.types.get_room_request.GetRoomRequest = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_logging_configurations(
@@ -687,7 +706,7 @@ class ivschatClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivschat.types.list_logging_configurations_request.ListLoggingConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ivschat.types.list_logging_configurations_request.ListLoggingConfigurationsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -698,7 +717,31 @@ class ivschatClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_logging_configurations(
+        self,
+        *,
+        config_overrides: Optional[ivschatClientConfig] = None,
+        next_token: Optional[
+            "capo_ivschat.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional[
+            "capo_ivschat.types.max_logging_configuration_results.MaxLoggingConfigurationResults"
+        ] = None,
+    ) -> "Iterator[capo_ivschat.types.list_logging_configurations_response.ListLoggingConfigurationsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_logging_configurations(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_rooms(
         self,
@@ -749,7 +792,7 @@ class ivschatClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivschat.types.list_rooms_request.ListRoomsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ivschat.types.list_rooms_request.ListRoomsRequest = {}
         if name is not None:
             input_["name"] = name
         if next_token is not None:
@@ -768,7 +811,41 @@ class ivschatClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_rooms(
+        self,
+        *,
+        config_overrides: Optional[ivschatClientConfig] = None,
+        name: Optional["capo_ivschat.types.room_name.RoomName"] = None,
+        next_token: Optional[
+            "capo_ivschat.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional[
+            "capo_ivschat.types.max_room_results.MaxRoomResults"
+        ] = None,
+        message_review_handler_uri: Optional[
+            "capo_ivschat.types.lambda_arn.LambdaArn"
+        ] = None,
+        logging_configuration_identifier: Optional[
+            "capo_ivschat.types.logging_configuration_identifier.LoggingConfigurationIdentifier"
+        ] = None,
+    ) -> "Iterator[capo_ivschat.types.list_rooms_response.ListRoomsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_rooms(
+                config_overrides=config_overrides,
+                name=name,
+                next_token=_token,
+                max_results=max_results,
+                message_review_handler_uri=message_review_handler_uri,
+                logging_configuration_identifier=logging_configuration_identifier,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_tags_for_resource(
         self,
@@ -805,14 +882,16 @@ class ivschatClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivschat.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_ivschat.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def send_event(
@@ -856,9 +935,10 @@ class ivschatClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivschat.types.send_event_request.SendEventRequest = {}  # type: ignore[typeddict-item]
-        input_["room_identifier"] = room_identifier
-        input_["event_name"] = event_name
+        input_: capo_ivschat.types.send_event_request.SendEventRequest = {
+            "room_identifier": room_identifier,
+            "event_name": event_name,
+        }
         if attributes is not None:
             input_["attributes"] = attributes
 
@@ -867,6 +947,7 @@ class ivschatClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -904,15 +985,17 @@ class ivschatClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivschat.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_ivschat.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -950,15 +1033,17 @@ class ivschatClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivschat.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_ivschat.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_logging_configuration(
@@ -1004,8 +1089,9 @@ class ivschatClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivschat.types.update_logging_configuration_request.UpdateLoggingConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_ivschat.types.update_logging_configuration_request.UpdateLoggingConfigurationRequest = {
+            "identifier": identifier
+        }
         if name is not None:
             input_["name"] = name
         if destination_configuration is not None:
@@ -1016,6 +1102,7 @@ class ivschatClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_room(
@@ -1070,8 +1157,9 @@ class ivschatClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivschat.types.update_room_request.UpdateRoomRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_ivschat.types.update_room_request.UpdateRoomRequest = {
+            "identifier": identifier
+        }
         if name is not None:
             input_["name"] = name
         if maximum_message_rate_per_second is not None:
@@ -1090,6 +1178,7 @@ class ivschatClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

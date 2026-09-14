@@ -54,23 +54,23 @@ def serialize_aws_json_1_1(value: CreateComputerRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateComputerRequest:
     out: CreateComputerRequest = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
     else:
         raise DeserializationError("CreateComputerRequest.directory_id required")
-    if "ComputerName" in data:
+    if data.get("ComputerName") is not None:
         out["computer_name"] = data["ComputerName"]
     else:
         raise DeserializationError("CreateComputerRequest.computer_name required")
-    if "Password" in data:
+    if data.get("Password") is not None:
         out["password"] = data["Password"]
     else:
         raise DeserializationError("CreateComputerRequest.password required")
-    if "OrganizationalUnitDistinguishedName" in data:
+    if data.get("OrganizationalUnitDistinguishedName") is not None:
         out["organizational_unit_distinguished_name"] = data[
             "OrganizationalUnitDistinguishedName"
         ]
-    if "ComputerAttributes" in data:
+    if data.get("ComputerAttributes") is not None:
         import capo_directory_service.types.attributes
 
         out["computer_attributes"] = (

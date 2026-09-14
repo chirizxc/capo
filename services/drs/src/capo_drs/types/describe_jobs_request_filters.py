@@ -42,7 +42,7 @@ def serialize_json(value: DescribeJobsRequestFilters) -> dict:
 
 def deserialize_json(data: dict) -> DescribeJobsRequestFilters:
     out: DescribeJobsRequestFilters = {}  # type: ignore[typeddict-item]
-    if "jobIDs" in data:
+    if data.get("jobIDs") is not None:
         import capo_drs.types.describe_jobs_request_filters_job_i_ds
 
         out["job_i_ds"] = (
@@ -50,8 +50,8 @@ def deserialize_json(data: dict) -> DescribeJobsRequestFilters:
                 data["jobIDs"]
             )
         )
-    if "fromDate" in data:
+    if data.get("fromDate") is not None:
         out["from_date"] = data["fromDate"]
-    if "toDate" in data:
+    if data.get("toDate") is not None:
         out["to_date"] = data["toDate"]
     return out

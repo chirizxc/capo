@@ -45,19 +45,19 @@ def serialize_json(value: JobScheduleFrequency) -> dict:
 
 def deserialize_json(data: dict) -> JobScheduleFrequency:
     out: JobScheduleFrequency = {}  # type: ignore[typeddict-item]
-    if "dailySchedule" in data:
+    if data.get("dailySchedule") is not None:
         import capo_macie2.types.daily_schedule
 
         out["daily_schedule"] = capo_macie2.types.daily_schedule.deserialize_json(
             data["dailySchedule"]
         )
-    if "monthlySchedule" in data:
+    if data.get("monthlySchedule") is not None:
         import capo_macie2.types.monthly_schedule
 
         out["monthly_schedule"] = capo_macie2.types.monthly_schedule.deserialize_json(
             data["monthlySchedule"]
         )
-    if "weeklySchedule" in data:
+    if data.get("weeklySchedule") is not None:
         import capo_macie2.types.weekly_schedule
 
         out["weekly_schedule"] = capo_macie2.types.weekly_schedule.deserialize_json(

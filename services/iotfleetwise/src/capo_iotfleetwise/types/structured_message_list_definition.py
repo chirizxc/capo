@@ -50,11 +50,11 @@ def serialize_aws_json_1_0(value: StructuredMessageListDefinition) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StructuredMessageListDefinition:
     out: StructuredMessageListDefinition = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("StructuredMessageListDefinition.name required")
-    if "memberType" in data:
+    if data.get("memberType") is not None:
         import capo_iotfleetwise.types.structured_message
 
         out["member_type"] = (
@@ -66,7 +66,7 @@ def deserialize_aws_json_1_0(data: dict) -> StructuredMessageListDefinition:
         raise DeserializationError(
             "StructuredMessageListDefinition.member_type required"
         )
-    if "listType" in data:
+    if data.get("listType") is not None:
         import capo_iotfleetwise.types.structured_message_list_type
 
         out["list_type"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_0(data: dict) -> StructuredMessageListDefinition:
         )
     else:
         raise DeserializationError("StructuredMessageListDefinition.list_type required")
-    if "capacity" in data:
+    if data.get("capacity") is not None:
         out["capacity"] = data["capacity"]
     else:
         out["capacity"] = 0

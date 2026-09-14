@@ -32,13 +32,13 @@ def serialize_aws_json_1_1(value: UpdateDirectConnectGatewayRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateDirectConnectGatewayRequest:
     out: UpdateDirectConnectGatewayRequest = {}  # type: ignore[typeddict-item]
-    if "directConnectGatewayId" in data:
+    if data.get("directConnectGatewayId") is not None:
         out["direct_connect_gateway_id"] = data["directConnectGatewayId"]
     else:
         raise DeserializationError(
             "UpdateDirectConnectGatewayRequest.direct_connect_gateway_id required"
         )
-    if "newDirectConnectGatewayName" in data:
+    if data.get("newDirectConnectGatewayName") is not None:
         out["new_direct_connect_gateway_name"] = data["newDirectConnectGatewayName"]
     else:
         raise DeserializationError(

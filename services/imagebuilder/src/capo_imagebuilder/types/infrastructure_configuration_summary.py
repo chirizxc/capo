@@ -89,17 +89,17 @@ def serialize_json(value: InfrastructureConfigurationSummary) -> dict:
 
 def deserialize_json(data: dict) -> InfrastructureConfigurationSummary:
     out: InfrastructureConfigurationSummary = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "dateCreated" in data:
+    if data.get("dateCreated") is not None:
         out["date_created"] = data["dateCreated"]
-    if "dateUpdated" in data:
+    if data.get("dateUpdated") is not None:
         out["date_updated"] = data["dateUpdated"]
-    if "resourceTags" in data:
+    if data.get("resourceTags") is not None:
         import capo_imagebuilder.types.resource_tag_map
 
         out["resource_tags"] = (
@@ -107,11 +107,11 @@ def deserialize_json(data: dict) -> InfrastructureConfigurationSummary:
                 data["resourceTags"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_imagebuilder.types.tag_map
 
         out["tags"] = capo_imagebuilder.types.tag_map.deserialize_json(data["tags"])
-    if "instanceTypes" in data:
+    if data.get("instanceTypes") is not None:
         import capo_imagebuilder.types.instance_type_list
 
         out["instance_types"] = (
@@ -119,9 +119,9 @@ def deserialize_json(data: dict) -> InfrastructureConfigurationSummary:
                 data["instanceTypes"]
             )
         )
-    if "instanceProfileName" in data:
+    if data.get("instanceProfileName") is not None:
         out["instance_profile_name"] = data["instanceProfileName"]
-    if "placement" in data:
+    if data.get("placement") is not None:
         import capo_imagebuilder.types.placement
 
         out["placement"] = capo_imagebuilder.types.placement.deserialize_json(

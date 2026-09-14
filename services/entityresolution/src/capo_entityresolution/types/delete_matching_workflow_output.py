@@ -19,7 +19,7 @@ def serialize_json(value: DeleteMatchingWorkflowOutput) -> dict:
 
 def deserialize_json(data: dict) -> DeleteMatchingWorkflowOutput:
     out: DeleteMatchingWorkflowOutput = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("DeleteMatchingWorkflowOutput.message required")

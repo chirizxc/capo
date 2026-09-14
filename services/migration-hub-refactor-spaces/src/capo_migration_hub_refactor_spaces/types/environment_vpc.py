@@ -82,13 +82,13 @@ def serialize_json(value: EnvironmentVpc) -> dict:
 
 def deserialize_json(data: dict) -> EnvironmentVpc:
     out: EnvironmentVpc = {}  # type: ignore[typeddict-item]
-    if "EnvironmentId" in data:
+    if data.get("EnvironmentId") is not None:
         out["environment_id"] = data["EnvironmentId"]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "CidrBlocks" in data:
+    if data.get("CidrBlocks") is not None:
         import capo_migration_hub_refactor_spaces.types.cidr_blocks
 
         out["cidr_blocks"] = (
@@ -96,9 +96,9 @@ def deserialize_json(data: dict) -> EnvironmentVpc:
                 data["CidrBlocks"]
             )
         )
-    if "VpcName" in data:
+    if data.get("VpcName") is not None:
         out["vpc_name"] = data["VpcName"]
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_migration_hub_refactor_spaces.types.timestamp
 
         out["last_updated_time"] = (
@@ -106,7 +106,7 @@ def deserialize_json(data: dict) -> EnvironmentVpc:
                 data["LastUpdatedTime"]
             )
         )
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_migration_hub_refactor_spaces.types.timestamp
 
         out["created_time"] = (

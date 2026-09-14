@@ -31,7 +31,7 @@ def serialize_json(value: ObjectiveFilter) -> dict:
 
 def deserialize_json(data: dict) -> ObjectiveFilter:
     out: ObjectiveFilter = {}  # type: ignore[typeddict-item]
-    if "Domains" in data:
+    if data.get("Domains") is not None:
         import capo_controlcatalog.types.domain_resource_filter_list
 
         out["domains"] = (

@@ -82,17 +82,17 @@ def serialize_json(value: DescribeAppOutput) -> dict:
 
 def deserialize_json(data: dict) -> DescribeAppOutput:
     out: DescribeAppOutput = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Simulation" in data:
+    if data.get("Simulation") is not None:
         out["simulation"] = data["Simulation"]
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         out["domain"] = data["Domain"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "TargetStatus" in data:
+    if data.get("TargetStatus") is not None:
         out["target_status"] = data["TargetStatus"]
-    if "LaunchOverrides" in data:
+    if data.get("LaunchOverrides") is not None:
         import capo_simspaceweaver.types.launch_overrides
 
         out["launch_overrides"] = (
@@ -100,9 +100,9 @@ def deserialize_json(data: dict) -> DescribeAppOutput:
                 data["LaunchOverrides"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "EndpointInfo" in data:
+    if data.get("EndpointInfo") is not None:
         import capo_simspaceweaver.types.simulation_app_endpoint_info
 
         out["endpoint_info"] = (

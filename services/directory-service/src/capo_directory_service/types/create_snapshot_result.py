@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: CreateSnapshotResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateSnapshotResult:
     out: CreateSnapshotResult = {}  # type: ignore[typeddict-item]
-    if "SnapshotId" in data:
+    if data.get("SnapshotId") is not None:
         out["snapshot_id"] = data["SnapshotId"]
     return out

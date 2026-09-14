@@ -113,17 +113,17 @@ def serialize_json(value: SendEmailRequest) -> dict:
 
 def deserialize_json(data: dict) -> SendEmailRequest:
     out: SendEmailRequest = {}  # type: ignore[typeddict-item]
-    if "FromEmailAddress" in data:
+    if data.get("FromEmailAddress") is not None:
         out["from_email_address"] = data["FromEmailAddress"]
-    if "FromEmailAddressIdentityArn" in data:
+    if data.get("FromEmailAddressIdentityArn") is not None:
         out["from_email_address_identity_arn"] = data["FromEmailAddressIdentityArn"]
-    if "Destination" in data:
+    if data.get("Destination") is not None:
         import capo_sesv2.types.destination
 
         out["destination"] = capo_sesv2.types.destination.deserialize_json(
             data["Destination"]
         )
-    if "ReplyToAddresses" in data:
+    if data.get("ReplyToAddresses") is not None:
         import capo_sesv2.types.email_address_list
 
         out["reply_to_addresses"] = (
@@ -131,15 +131,15 @@ def deserialize_json(data: dict) -> SendEmailRequest:
                 data["ReplyToAddresses"]
             )
         )
-    if "FeedbackForwardingEmailAddress" in data:
+    if data.get("FeedbackForwardingEmailAddress") is not None:
         out["feedback_forwarding_email_address"] = data[
             "FeedbackForwardingEmailAddress"
         ]
-    if "FeedbackForwardingEmailAddressIdentityArn" in data:
+    if data.get("FeedbackForwardingEmailAddressIdentityArn") is not None:
         out["feedback_forwarding_email_address_identity_arn"] = data[
             "FeedbackForwardingEmailAddressIdentityArn"
         ]
-    if "Content" in data:
+    if data.get("Content") is not None:
         import capo_sesv2.types.email_content
 
         out["content"] = capo_sesv2.types.email_content.deserialize_json(
@@ -147,19 +147,19 @@ def deserialize_json(data: dict) -> SendEmailRequest:
         )
     else:
         raise DeserializationError("SendEmailRequest.content required")
-    if "EmailTags" in data:
+    if data.get("EmailTags") is not None:
         import capo_sesv2.types.message_tag_list
 
         out["email_tags"] = capo_sesv2.types.message_tag_list.deserialize_json(
             data["EmailTags"]
         )
-    if "ConfigurationSetName" in data:
+    if data.get("ConfigurationSetName") is not None:
         out["configuration_set_name"] = data["ConfigurationSetName"]
-    if "EndpointId" in data:
+    if data.get("EndpointId") is not None:
         out["endpoint_id"] = data["EndpointId"]
-    if "TenantName" in data:
+    if data.get("TenantName") is not None:
         out["tenant_name"] = data["TenantName"]
-    if "ListManagementOptions" in data:
+    if data.get("ListManagementOptions") is not None:
         import capo_sesv2.types.list_management_options
 
         out["list_management_options"] = (

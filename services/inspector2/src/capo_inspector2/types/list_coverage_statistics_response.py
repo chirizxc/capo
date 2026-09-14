@@ -37,18 +37,18 @@ def serialize_json(value: ListCoverageStatisticsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListCoverageStatisticsResponse:
     out: ListCoverageStatisticsResponse = {}  # type: ignore[typeddict-item]
-    if "countsByGroup" in data:
+    if data.get("countsByGroup") is not None:
         import capo_inspector2.types.counts_list
 
         out["counts_by_group"] = capo_inspector2.types.counts_list.deserialize_json(
             data["countsByGroup"]
         )
-    if "totalCounts" in data:
+    if data.get("totalCounts") is not None:
         out["total_counts"] = data["totalCounts"]
     else:
         raise DeserializationError(
             "ListCoverageStatisticsResponse.total_counts required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

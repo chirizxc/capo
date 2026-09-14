@@ -63,21 +63,21 @@ def serialize_json(value: AnomalyDetectorSummary) -> dict:
 
 def deserialize_json(data: dict) -> AnomalyDetectorSummary:
     out: AnomalyDetectorSummary = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("AnomalyDetectorSummary.arn required")
-    if "anomalyDetectorId" in data:
+    if data.get("anomalyDetectorId") is not None:
         out["anomaly_detector_id"] = data["anomalyDetectorId"]
     else:
         raise DeserializationError(
             "AnomalyDetectorSummary.anomaly_detector_id required"
         )
-    if "alias" in data:
+    if data.get("alias") is not None:
         out["alias"] = data["alias"]
     else:
         raise DeserializationError("AnomalyDetectorSummary.alias required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_amp.types.anomaly_detector_status
 
         out["status"] = capo_amp.types.anomaly_detector_status.deserialize_json(
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> AnomalyDetectorSummary:
         )
     else:
         raise DeserializationError("AnomalyDetectorSummary.status required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_amp.types._prelude.timestamp
 
         out["created_at"] = capo_amp.types._prelude.timestamp.deserialize_json(
@@ -93,7 +93,7 @@ def deserialize_json(data: dict) -> AnomalyDetectorSummary:
         )
     else:
         raise DeserializationError("AnomalyDetectorSummary.created_at required")
-    if "modifiedAt" in data:
+    if data.get("modifiedAt") is not None:
         import capo_amp.types._prelude.timestamp
 
         out["modified_at"] = capo_amp.types._prelude.timestamp.deserialize_json(
@@ -101,7 +101,7 @@ def deserialize_json(data: dict) -> AnomalyDetectorSummary:
         )
     else:
         raise DeserializationError("AnomalyDetectorSummary.modified_at required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_amp.types.tag_map
 
         out["tags"] = capo_amp.types.tag_map.deserialize_json(data["tags"])

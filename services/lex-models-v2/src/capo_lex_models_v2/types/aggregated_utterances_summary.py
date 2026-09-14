@@ -67,13 +67,13 @@ def serialize_json(value: AggregatedUtterancesSummary) -> dict:
 
 def deserialize_json(data: dict) -> AggregatedUtterancesSummary:
     out: AggregatedUtterancesSummary = {}  # type: ignore[typeddict-item]
-    if "utterance" in data:
+    if data.get("utterance") is not None:
         out["utterance"] = data["utterance"]
-    if "hitCount" in data:
+    if data.get("hitCount") is not None:
         out["hit_count"] = data["hitCount"]
-    if "missedCount" in data:
+    if data.get("missedCount") is not None:
         out["missed_count"] = data["missedCount"]
-    if "utteranceFirstRecordedInAggregationDuration" in data:
+    if data.get("utteranceFirstRecordedInAggregationDuration") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["utterance_first_recorded_in_aggregation_duration"] = (
@@ -81,7 +81,7 @@ def deserialize_json(data: dict) -> AggregatedUtterancesSummary:
                 data["utteranceFirstRecordedInAggregationDuration"]
             )
         )
-    if "utteranceLastRecordedInAggregationDuration" in data:
+    if data.get("utteranceLastRecordedInAggregationDuration") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["utterance_last_recorded_in_aggregation_duration"] = (
@@ -89,7 +89,7 @@ def deserialize_json(data: dict) -> AggregatedUtterancesSummary:
                 data["utteranceLastRecordedInAggregationDuration"]
             )
         )
-    if "containsDataFromDeletedResources" in data:
+    if data.get("containsDataFromDeletedResources") is not None:
         out["contains_data_from_deleted_resources"] = data[
             "containsDataFromDeletedResources"
         ]

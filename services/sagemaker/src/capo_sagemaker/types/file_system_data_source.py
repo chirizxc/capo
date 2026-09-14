@@ -54,9 +54,9 @@ def serialize_aws_json_1_1(value: FileSystemDataSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FileSystemDataSource:
     out: FileSystemDataSource = {}  # type: ignore[typeddict-item]
-    if "FileSystemId" in data:
+    if data.get("FileSystemId") is not None:
         out["file_system_id"] = data["FileSystemId"]
-    if "FileSystemAccessMode" in data:
+    if data.get("FileSystemAccessMode") is not None:
         import capo_sagemaker.types.file_system_access_mode
 
         out["file_system_access_mode"] = (
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_1(data: dict) -> FileSystemDataSource:
                 data["FileSystemAccessMode"]
             )
         )
-    if "FileSystemType" in data:
+    if data.get("FileSystemType") is not None:
         import capo_sagemaker.types.file_system_type
 
         out["file_system_type"] = (
@@ -72,6 +72,6 @@ def deserialize_aws_json_1_1(data: dict) -> FileSystemDataSource:
                 data["FileSystemType"]
             )
         )
-    if "DirectoryPath" in data:
+    if data.get("DirectoryPath") is not None:
         out["directory_path"] = data["DirectoryPath"]
     return out

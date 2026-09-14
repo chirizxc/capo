@@ -27,11 +27,11 @@ def serialize_aws_json_1_0(value: SummaryDimension) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SummaryDimension:
     out: SummaryDimension = {}  # type: ignore[typeddict-item]
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
     else:
         raise DeserializationError("SummaryDimension.key required")
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("SummaryDimension.value required")

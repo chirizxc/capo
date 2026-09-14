@@ -34,13 +34,13 @@ def serialize_aws_json_1_1(value: UpdateCustomRoutingListenerRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateCustomRoutingListenerRequest:
     out: UpdateCustomRoutingListenerRequest = {}  # type: ignore[typeddict-item]
-    if "ListenerArn" in data:
+    if data.get("ListenerArn") is not None:
         out["listener_arn"] = data["ListenerArn"]
     else:
         raise DeserializationError(
             "UpdateCustomRoutingListenerRequest.listener_arn required"
         )
-    if "PortRanges" in data:
+    if data.get("PortRanges") is not None:
         import capo_global_accelerator.types.port_ranges
 
         out["port_ranges"] = (

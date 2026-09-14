@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DetachCertificateFromDistributionRequest) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> DetachCertificateFromDistributionRequest:
     out: DetachCertificateFromDistributionRequest = {}  # type: ignore[typeddict-item]
-    if "distributionName" in data:
+    if data.get("distributionName") is not None:
         out["distribution_name"] = data["distributionName"]
     else:
         raise DeserializationError(

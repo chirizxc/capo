@@ -41,7 +41,7 @@ def serialize_json(value: DeregisterDeviceRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeregisterDeviceRequest:
     out: DeregisterDeviceRequest = {}  # type: ignore[typeddict-item]
-    if "targetDeviceStatus" in data:
+    if data.get("targetDeviceStatus") is not None:
         import capo_workspaces_thin_client.types.target_device_status
 
         out["target_device_status"] = (
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> DeregisterDeviceRequest:
                 data["targetDeviceStatus"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

@@ -34,10 +34,10 @@ def serialize_aws_json_1_1(value: ModelLifeCycle) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModelLifeCycle:
     out: ModelLifeCycle = {}  # type: ignore[typeddict-item]
-    if "Stage" in data:
+    if data.get("Stage") is not None:
         out["stage"] = data["Stage"]
-    if "StageStatus" in data:
+    if data.get("StageStatus") is not None:
         out["stage_status"] = data["StageStatus"]
-    if "StageDescription" in data:
+    if data.get("StageDescription") is not None:
         out["stage_description"] = data["StageDescription"]
     return out

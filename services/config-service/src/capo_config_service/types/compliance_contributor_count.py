@@ -26,11 +26,11 @@ def serialize_aws_json_1_1(value: ComplianceContributorCount) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ComplianceContributorCount:
     out: ComplianceContributorCount = {}  # type: ignore[typeddict-item]
-    if "CappedCount" in data:
+    if data.get("CappedCount") is not None:
         out["capped_count"] = data["CappedCount"]
     else:
         out["capped_count"] = 0
-    if "CapExceeded" in data:
+    if data.get("CapExceeded") is not None:
         out["cap_exceeded"] = data["CapExceeded"]
     else:
         out["cap_exceeded"] = False

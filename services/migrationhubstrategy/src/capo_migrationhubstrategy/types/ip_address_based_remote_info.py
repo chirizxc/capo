@@ -37,12 +37,12 @@ def serialize_json(value: IPAddressBasedRemoteInfo) -> dict:
 
 def deserialize_json(data: dict) -> IPAddressBasedRemoteInfo:
     out: IPAddressBasedRemoteInfo = {}  # type: ignore[typeddict-item]
-    if "ipAddressConfigurationTimeStamp" in data:
+    if data.get("ipAddressConfigurationTimeStamp") is not None:
         out["ip_address_configuration_time_stamp"] = data[
             "ipAddressConfigurationTimeStamp"
         ]
-    if "authType" in data:
+    if data.get("authType") is not None:
         out["auth_type"] = data["authType"]
-    if "osType" in data:
+    if data.get("osType") is not None:
         out["os_type"] = data["osType"]
     return out

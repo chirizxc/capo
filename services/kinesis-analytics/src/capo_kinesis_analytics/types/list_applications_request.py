@@ -32,8 +32,8 @@ def serialize_aws_json_1_1(value: ListApplicationsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListApplicationsRequest:
     out: ListApplicationsRequest = {}  # type: ignore[typeddict-item]
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
-    if "ExclusiveStartApplicationName" in data:
+    if data.get("ExclusiveStartApplicationName") is not None:
         out["exclusive_start_application_name"] = data["ExclusiveStartApplicationName"]
     return out

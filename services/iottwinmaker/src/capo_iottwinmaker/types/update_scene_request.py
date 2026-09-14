@@ -57,11 +57,11 @@ def serialize_json(value: UpdateSceneRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSceneRequest:
     out: UpdateSceneRequest = {}  # type: ignore[typeddict-item]
-    if "contentLocation" in data:
+    if data.get("contentLocation") is not None:
         out["content_location"] = data["contentLocation"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "capabilities" in data:
+    if data.get("capabilities") is not None:
         import capo_iottwinmaker.types.scene_capabilities
 
         out["capabilities"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> UpdateSceneRequest:
                 data["capabilities"]
             )
         )
-    if "sceneMetadata" in data:
+    if data.get("sceneMetadata") is not None:
         import capo_iottwinmaker.types.scene_metadata_map
 
         out["scene_metadata"] = (

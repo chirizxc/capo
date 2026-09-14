@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> RegisteredServicesList:
 
     out: RegisteredServicesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_devops_agent.types.registered_service.deserialize_json(item))
     return out

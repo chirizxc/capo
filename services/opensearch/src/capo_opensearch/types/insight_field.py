@@ -33,11 +33,11 @@ def serialize_json(value: InsightField) -> dict:
 
 def deserialize_json(data: dict) -> InsightField:
     out: InsightField = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("InsightField.name required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_opensearch.types.insight_field_type
 
         out["type"] = capo_opensearch.types.insight_field_type.deserialize_json(
@@ -45,7 +45,7 @@ def deserialize_json(data: dict) -> InsightField:
         )
     else:
         raise DeserializationError("InsightField.type required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("InsightField.value required")

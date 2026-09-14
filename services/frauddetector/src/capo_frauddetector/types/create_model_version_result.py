@@ -46,9 +46,9 @@ def serialize_aws_json_1_1(value: CreateModelVersionResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateModelVersionResult:
     out: CreateModelVersionResult = {}  # type: ignore[typeddict-item]
-    if "modelId" in data:
+    if data.get("modelId") is not None:
         out["model_id"] = data["modelId"]
-    if "modelType" in data:
+    if data.get("modelType") is not None:
         import capo_frauddetector.types.model_type_enum
 
         out["model_type"] = (
@@ -56,8 +56,8 @@ def deserialize_aws_json_1_1(data: dict) -> CreateModelVersionResult:
                 data["modelType"]
             )
         )
-    if "modelVersionNumber" in data:
+    if data.get("modelVersionNumber") is not None:
         out["model_version_number"] = data["modelVersionNumber"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     return out

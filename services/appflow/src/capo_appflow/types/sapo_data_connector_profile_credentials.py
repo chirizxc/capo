@@ -42,7 +42,7 @@ def serialize_json(value: SAPODataConnectorProfileCredentials) -> dict:
 
 def deserialize_json(data: dict) -> SAPODataConnectorProfileCredentials:
     out: SAPODataConnectorProfileCredentials = {}  # type: ignore[typeddict-item]
-    if "basicAuthCredentials" in data:
+    if data.get("basicAuthCredentials") is not None:
         import capo_appflow.types.basic_auth_credentials
 
         out["basic_auth_credentials"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> SAPODataConnectorProfileCredentials:
                 data["basicAuthCredentials"]
             )
         )
-    if "oAuthCredentials" in data:
+    if data.get("oAuthCredentials") is not None:
         import capo_appflow.types.o_auth_credentials
 
         out["o_auth_credentials"] = (

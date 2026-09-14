@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> MediaStreamSinkList:
 
     out: MediaStreamSinkList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_chime_sdk_media_pipelines.types.media_stream_sink.deserialize_json(
                 item

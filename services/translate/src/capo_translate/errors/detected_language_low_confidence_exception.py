@@ -31,9 +31,9 @@ def serialize_aws_json_1_1(value: DetectedLanguageLowConfidenceException_) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> DetectedLanguageLowConfidenceException_:
     out: DetectedLanguageLowConfidenceException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "DetectedLanguageCode" in data:
+    if data.get("DetectedLanguageCode") is not None:
         out["detected_language_code"] = data["DetectedLanguageCode"]
     return out
 
@@ -43,15 +43,20 @@ class DetectedLanguageLowConfidenceException(ServiceError):
 
     code: str | None = "DetectedLanguageLowConfidenceException"
 
-    def __init__(self, data: DetectedLanguageLowConfidenceException_):
+    def __init__(
+        self, data: DetectedLanguageLowConfidenceException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="DetectedLanguageLowConfidenceException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "DetectedLanguageLowConfidenceException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "DetectedLanguageLowConfidenceException":
+        return cls(deserialize_aws_json_1_1(data), message)

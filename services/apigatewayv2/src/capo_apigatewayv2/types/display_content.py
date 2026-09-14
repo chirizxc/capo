@@ -32,8 +32,8 @@ def serialize_json(value: DisplayContent) -> dict:
 
 def deserialize_json(data: dict) -> DisplayContent:
     out: DisplayContent = {}  # type: ignore[typeddict-item]
-    if "body" in data:
+    if data.get("body") is not None:
         out["body"] = data["body"]
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
     return out

@@ -66,11 +66,11 @@ def serialize_json(value: Script) -> dict:
 
 def deserialize_json(data: dict) -> Script:
     out: Script = {}  # type: ignore[typeddict-item]
-    if "Stages" in data:
+    if data.get("Stages") is not None:
         import capo_dlm.types.stages_list
 
         out["stages"] = capo_dlm.types.stages_list.deserialize_json(data["Stages"])
-    if "ExecutionHandlerService" in data:
+    if data.get("ExecutionHandlerService") is not None:
         import capo_dlm.types.execution_handler_service_values
 
         out["execution_handler_service"] = (
@@ -78,14 +78,14 @@ def deserialize_json(data: dict) -> Script:
                 data["ExecutionHandlerService"]
             )
         )
-    if "ExecutionHandler" in data:
+    if data.get("ExecutionHandler") is not None:
         out["execution_handler"] = data["ExecutionHandler"]
-    if "ExecuteOperationOnScriptFailure" in data:
+    if data.get("ExecuteOperationOnScriptFailure") is not None:
         out["execute_operation_on_script_failure"] = data[
             "ExecuteOperationOnScriptFailure"
         ]
-    if "ExecutionTimeout" in data:
+    if data.get("ExecutionTimeout") is not None:
         out["execution_timeout"] = data["ExecutionTimeout"]
-    if "MaximumRetryCount" in data:
+    if data.get("MaximumRetryCount") is not None:
         out["maximum_retry_count"] = data["MaximumRetryCount"]
     return out

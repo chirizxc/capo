@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: dict) -> DQAdditionalOptions:
     for key, value in data.items():
         import capo_glue.types.additional_option_keys
 
+        if value is None:
+            continue
         out[capo_glue.types.additional_option_keys.deserialize_aws_json_1_1(key)] = (
             value
         )

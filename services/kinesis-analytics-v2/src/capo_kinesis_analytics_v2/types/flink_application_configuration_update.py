@@ -57,7 +57,7 @@ def serialize_aws_json_1_1(value: FlinkApplicationConfigurationUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FlinkApplicationConfigurationUpdate:
     out: FlinkApplicationConfigurationUpdate = {}  # type: ignore[typeddict-item]
-    if "CheckpointConfigurationUpdate" in data:
+    if data.get("CheckpointConfigurationUpdate") is not None:
         import capo_kinesis_analytics_v2.types.checkpoint_configuration_update
 
         out["checkpoint_configuration_update"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> FlinkApplicationConfigurationUpdate:
                 data["CheckpointConfigurationUpdate"]
             )
         )
-    if "MonitoringConfigurationUpdate" in data:
+    if data.get("MonitoringConfigurationUpdate") is not None:
         import capo_kinesis_analytics_v2.types.monitoring_configuration_update
 
         out["monitoring_configuration_update"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> FlinkApplicationConfigurationUpdate:
                 data["MonitoringConfigurationUpdate"]
             )
         )
-    if "ParallelismConfigurationUpdate" in data:
+    if data.get("ParallelismConfigurationUpdate") is not None:
         import capo_kinesis_analytics_v2.types.parallelism_configuration_update
 
         out["parallelism_configuration_update"] = (

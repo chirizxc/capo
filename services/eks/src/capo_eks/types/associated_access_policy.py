@@ -49,21 +49,21 @@ def serialize_json(value: AssociatedAccessPolicy) -> dict:
 
 def deserialize_json(data: dict) -> AssociatedAccessPolicy:
     out: AssociatedAccessPolicy = {}  # type: ignore[typeddict-item]
-    if "policyArn" in data:
+    if data.get("policyArn") is not None:
         out["policy_arn"] = data["policyArn"]
-    if "accessScope" in data:
+    if data.get("accessScope") is not None:
         import capo_eks.types.access_scope
 
         out["access_scope"] = capo_eks.types.access_scope.deserialize_json(
             data["accessScope"]
         )
-    if "associatedAt" in data:
+    if data.get("associatedAt") is not None:
         import capo_eks.types.timestamp
 
         out["associated_at"] = capo_eks.types.timestamp.deserialize_json(
             data["associatedAt"]
         )
-    if "modifiedAt" in data:
+    if data.get("modifiedAt") is not None:
         import capo_eks.types.timestamp
 
         out["modified_at"] = capo_eks.types.timestamp.deserialize_json(

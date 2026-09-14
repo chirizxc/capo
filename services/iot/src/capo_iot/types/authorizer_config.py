@@ -32,8 +32,8 @@ def serialize_json(value: AuthorizerConfig) -> dict:
 
 def deserialize_json(data: dict) -> AuthorizerConfig:
     out: AuthorizerConfig = {}  # type: ignore[typeddict-item]
-    if "defaultAuthorizerName" in data:
+    if data.get("defaultAuthorizerName") is not None:
         out["default_authorizer_name"] = data["defaultAuthorizerName"]
-    if "allowAuthorizerOverride" in data:
+    if data.get("allowAuthorizerOverride") is not None:
         out["allow_authorizer_override"] = data["allowAuthorizerOverride"]
     return out

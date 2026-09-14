@@ -67,7 +67,7 @@ def serialize_json(value: ChangeEvent) -> dict:
 
 def deserialize_json(data: dict) -> ChangeEvent:
     out: ChangeEvent = {}  # type: ignore[typeddict-item]
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         import capo_application_signals.types._prelude.timestamp
 
         out["timestamp"] = (
@@ -77,15 +77,15 @@ def deserialize_json(data: dict) -> ChangeEvent:
         )
     else:
         raise DeserializationError("ChangeEvent.timestamp required")
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
     else:
         raise DeserializationError("ChangeEvent.account_id required")
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
     else:
         raise DeserializationError("ChangeEvent.region required")
-    if "Entity" in data:
+    if data.get("Entity") is not None:
         import capo_application_signals.types.attributes
 
         out["entity"] = capo_application_signals.types.attributes.deserialize_json(
@@ -93,7 +93,7 @@ def deserialize_json(data: dict) -> ChangeEvent:
         )
     else:
         raise DeserializationError("ChangeEvent.entity required")
-    if "ChangeEventType" in data:
+    if data.get("ChangeEventType") is not None:
         import capo_application_signals.types.change_event_type
 
         out["change_event_type"] = (
@@ -103,12 +103,12 @@ def deserialize_json(data: dict) -> ChangeEvent:
         )
     else:
         raise DeserializationError("ChangeEvent.change_event_type required")
-    if "EventId" in data:
+    if data.get("EventId") is not None:
         out["event_id"] = data["EventId"]
     else:
         raise DeserializationError("ChangeEvent.event_id required")
-    if "UserName" in data:
+    if data.get("UserName") is not None:
         out["user_name"] = data["UserName"]
-    if "EventName" in data:
+    if data.get("EventName") is not None:
         out["event_name"] = data["EventName"]
     return out

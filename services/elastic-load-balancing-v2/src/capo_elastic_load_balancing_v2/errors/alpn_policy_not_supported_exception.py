@@ -39,15 +39,20 @@ class ALPNPolicyNotSupportedException(ServiceError):
 
     code: str | None = "ALPNPolicyNotSupportedException"
 
-    def __init__(self, data: ALPNPolicyNotSupportedException_):
+    def __init__(
+        self, data: ALPNPolicyNotSupportedException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ALPNPolicyNotSupportedException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "ALPNPolicyNotSupportedException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "ALPNPolicyNotSupportedException":
+        return cls(deserialize_query(el), message)

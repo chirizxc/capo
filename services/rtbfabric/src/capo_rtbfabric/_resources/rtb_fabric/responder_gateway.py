@@ -128,21 +128,22 @@ class ResponderGateway:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rtbfabric.types.create_responder_gateway_request.CreateResponderGatewayRequest = {}  # type: ignore[typeddict-item]
-        input_["vpc_id"] = vpc_id
-        input_["subnet_ids"] = subnet_ids
-        input_["security_group_ids"] = security_group_ids
+        input_: capo_rtbfabric.types.create_responder_gateway_request.CreateResponderGatewayRequest = {
+            "vpc_id": vpc_id,
+            "subnet_ids": subnet_ids,
+            "security_group_ids": security_group_ids,
+            "port": port,
+            "protocol": protocol,
+            "client_token": client_token,
+        }
         if domain_name is not None:
             input_["domain_name"] = domain_name
-        input_["port"] = port
-        input_["protocol"] = protocol
         if listener_config is not None:
             input_["listener_config"] = listener_config
         if trust_store_configuration is not None:
             input_["trust_store_configuration"] = trust_store_configuration
         if managed_endpoint_configuration is not None:
             input_["managed_endpoint_configuration"] = managed_endpoint_configuration
-        input_["client_token"] = client_token
         if description is not None:
             input_["description"] = description
         if tags is not None:
@@ -155,6 +156,7 @@ class ResponderGateway:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -198,14 +200,16 @@ class ResponderGateway:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rtbfabric.types.get_responder_gateway_request.GetResponderGatewayRequest = {}  # type: ignore[typeddict-item]
-        input_["gateway_id"] = gateway_id
+        input_: capo_rtbfabric.types.get_responder_gateway_request.GetResponderGatewayRequest = {
+            "gateway_id": gateway_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -250,14 +254,16 @@ class ResponderGateway:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rtbfabric.types.delete_responder_gateway_request.DeleteResponderGatewayRequest = {}  # type: ignore[typeddict-item]
-        input_["gateway_id"] = gateway_id
+        input_: capo_rtbfabric.types.delete_responder_gateway_request.DeleteResponderGatewayRequest = {
+            "gateway_id": gateway_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_certificate(
@@ -307,16 +313,18 @@ class ResponderGateway:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rtbfabric.types.associate_certificate_request.AssociateCertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["gateway_id"] = gateway_id
-        input_["acm_certificate_arn"] = acm_certificate_arn
-        input_["client_token"] = client_token
+        input_: capo_rtbfabric.types.associate_certificate_request.AssociateCertificateRequest = {
+            "gateway_id": gateway_id,
+            "acm_certificate_arn": acm_certificate_arn,
+            "client_token": client_token,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_certificate(
@@ -364,15 +372,17 @@ class ResponderGateway:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rtbfabric.types.disassociate_certificate_request.DisassociateCertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["gateway_id"] = gateway_id
-        input_["acm_certificate_arn"] = acm_certificate_arn
+        input_: capo_rtbfabric.types.disassociate_certificate_request.DisassociateCertificateRequest = {
+            "gateway_id": gateway_id,
+            "acm_certificate_arn": acm_certificate_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_certificate_association(
@@ -418,15 +428,17 @@ class ResponderGateway:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rtbfabric.types.get_certificate_association_request.GetCertificateAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["gateway_id"] = gateway_id
-        input_["acm_certificate_arn"] = acm_certificate_arn
+        input_: capo_rtbfabric.types.get_certificate_association_request.GetCertificateAssociationRequest = {
+            "gateway_id": gateway_id,
+            "acm_certificate_arn": acm_certificate_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_certificate_associations(
@@ -474,8 +486,9 @@ class ResponderGateway:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rtbfabric.types.list_certificate_associations_request.ListCertificateAssociationsRequest = {}  # type: ignore[typeddict-item]
-        input_["gateway_id"] = gateway_id
+        input_: capo_rtbfabric.types.list_certificate_associations_request.ListCertificateAssociationsRequest = {
+            "gateway_id": gateway_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -486,6 +499,7 @@ class ResponderGateway:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_responder_gateway(
@@ -552,19 +566,20 @@ class ResponderGateway:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rtbfabric.types.update_responder_gateway_request.UpdateResponderGatewayRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_rtbfabric.types.update_responder_gateway_request.UpdateResponderGatewayRequest = {
+            "port": port,
+            "protocol": protocol,
+            "client_token": client_token,
+            "gateway_id": gateway_id,
+        }
         if domain_name is not None:
             input_["domain_name"] = domain_name
-        input_["port"] = port
-        input_["protocol"] = protocol
         if listener_config is not None:
             input_["listener_config"] = listener_config
         if trust_store_configuration is not None:
             input_["trust_store_configuration"] = trust_store_configuration
         if managed_endpoint_configuration is not None:
             input_["managed_endpoint_configuration"] = managed_endpoint_configuration
-        input_["client_token"] = client_token
-        input_["gateway_id"] = gateway_id
         if description is not None:
             input_["description"] = description
 
@@ -573,6 +588,7 @@ class ResponderGateway:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -652,21 +668,22 @@ class AsyncResponderGateway:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rtbfabric.types.create_responder_gateway_request.CreateResponderGatewayRequest = {}  # type: ignore[typeddict-item]
-        input_["vpc_id"] = vpc_id
-        input_["subnet_ids"] = subnet_ids
-        input_["security_group_ids"] = security_group_ids
+        input_: capo_rtbfabric.types.create_responder_gateway_request.CreateResponderGatewayRequest = {
+            "vpc_id": vpc_id,
+            "subnet_ids": subnet_ids,
+            "security_group_ids": security_group_ids,
+            "port": port,
+            "protocol": protocol,
+            "client_token": client_token,
+        }
         if domain_name is not None:
             input_["domain_name"] = domain_name
-        input_["port"] = port
-        input_["protocol"] = protocol
         if listener_config is not None:
             input_["listener_config"] = listener_config
         if trust_store_configuration is not None:
             input_["trust_store_configuration"] = trust_store_configuration
         if managed_endpoint_configuration is not None:
             input_["managed_endpoint_configuration"] = managed_endpoint_configuration
-        input_["client_token"] = client_token
         if description is not None:
             input_["description"] = description
         if tags is not None:
@@ -679,6 +696,7 @@ class AsyncResponderGateway:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -723,14 +741,16 @@ class AsyncResponderGateway:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rtbfabric.types.get_responder_gateway_request.GetResponderGatewayRequest = {}  # type: ignore[typeddict-item]
-        input_["gateway_id"] = gateway_id
+        input_: capo_rtbfabric.types.get_responder_gateway_request.GetResponderGatewayRequest = {
+            "gateway_id": gateway_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -776,14 +796,16 @@ class AsyncResponderGateway:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rtbfabric.types.delete_responder_gateway_request.DeleteResponderGatewayRequest = {}  # type: ignore[typeddict-item]
-        input_["gateway_id"] = gateway_id
+        input_: capo_rtbfabric.types.delete_responder_gateway_request.DeleteResponderGatewayRequest = {
+            "gateway_id": gateway_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_certificate(
@@ -834,16 +856,18 @@ class AsyncResponderGateway:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rtbfabric.types.associate_certificate_request.AssociateCertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["gateway_id"] = gateway_id
-        input_["acm_certificate_arn"] = acm_certificate_arn
-        input_["client_token"] = client_token
+        input_: capo_rtbfabric.types.associate_certificate_request.AssociateCertificateRequest = {
+            "gateway_id": gateway_id,
+            "acm_certificate_arn": acm_certificate_arn,
+            "client_token": client_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_certificate(
@@ -892,15 +916,17 @@ class AsyncResponderGateway:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rtbfabric.types.disassociate_certificate_request.DisassociateCertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["gateway_id"] = gateway_id
-        input_["acm_certificate_arn"] = acm_certificate_arn
+        input_: capo_rtbfabric.types.disassociate_certificate_request.DisassociateCertificateRequest = {
+            "gateway_id": gateway_id,
+            "acm_certificate_arn": acm_certificate_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_certificate_association(
@@ -947,15 +973,17 @@ class AsyncResponderGateway:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rtbfabric.types.get_certificate_association_request.GetCertificateAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["gateway_id"] = gateway_id
-        input_["acm_certificate_arn"] = acm_certificate_arn
+        input_: capo_rtbfabric.types.get_certificate_association_request.GetCertificateAssociationRequest = {
+            "gateway_id": gateway_id,
+            "acm_certificate_arn": acm_certificate_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_certificate_associations(
@@ -1004,8 +1032,9 @@ class AsyncResponderGateway:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rtbfabric.types.list_certificate_associations_request.ListCertificateAssociationsRequest = {}  # type: ignore[typeddict-item]
-        input_["gateway_id"] = gateway_id
+        input_: capo_rtbfabric.types.list_certificate_associations_request.ListCertificateAssociationsRequest = {
+            "gateway_id": gateway_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1016,6 +1045,7 @@ class AsyncResponderGateway:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_responder_gateway(
@@ -1083,19 +1113,20 @@ class AsyncResponderGateway:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rtbfabric.types.update_responder_gateway_request.UpdateResponderGatewayRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_rtbfabric.types.update_responder_gateway_request.UpdateResponderGatewayRequest = {
+            "port": port,
+            "protocol": protocol,
+            "client_token": client_token,
+            "gateway_id": gateway_id,
+        }
         if domain_name is not None:
             input_["domain_name"] = domain_name
-        input_["port"] = port
-        input_["protocol"] = protocol
         if listener_config is not None:
             input_["listener_config"] = listener_config
         if trust_store_configuration is not None:
             input_["trust_store_configuration"] = trust_store_configuration
         if managed_endpoint_configuration is not None:
             input_["managed_endpoint_configuration"] = managed_endpoint_configuration
-        input_["client_token"] = client_token
-        input_["gateway_id"] = gateway_id
         if description is not None:
             input_["description"] = description
 
@@ -1104,4 +1135,5 @@ class AsyncResponderGateway:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

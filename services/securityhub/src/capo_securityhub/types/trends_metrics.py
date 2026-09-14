@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> TrendsMetrics:
 
     out: TrendsMetrics = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityhub.types.trends_metrics_result.deserialize_json(item))
     return out

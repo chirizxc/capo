@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: EntitledApplication) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EntitledApplication:
     out: EntitledApplication = {}  # type: ignore[typeddict-item]
-    if "ApplicationIdentifier" in data:
+    if data.get("ApplicationIdentifier") is not None:
         out["application_identifier"] = data["ApplicationIdentifier"]
     return out

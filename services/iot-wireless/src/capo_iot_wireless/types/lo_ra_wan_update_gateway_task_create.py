@@ -55,11 +55,11 @@ def serialize_json(value: LoRaWANUpdateGatewayTaskCreate) -> dict:
 
 def deserialize_json(data: dict) -> LoRaWANUpdateGatewayTaskCreate:
     out: LoRaWANUpdateGatewayTaskCreate = {}  # type: ignore[typeddict-item]
-    if "UpdateSignature" in data:
+    if data.get("UpdateSignature") is not None:
         out["update_signature"] = data["UpdateSignature"]
-    if "SigKeyCrc" in data:
+    if data.get("SigKeyCrc") is not None:
         out["sig_key_crc"] = data["SigKeyCrc"]
-    if "CurrentVersion" in data:
+    if data.get("CurrentVersion") is not None:
         import capo_iot_wireless.types.lo_ra_wan_gateway_version
 
         out["current_version"] = (
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> LoRaWANUpdateGatewayTaskCreate:
                 data["CurrentVersion"]
             )
         )
-    if "UpdateVersion" in data:
+    if data.get("UpdateVersion") is not None:
         import capo_iot_wireless.types.lo_ra_wan_gateway_version
 
         out["update_version"] = (

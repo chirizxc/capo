@@ -55,26 +55,26 @@ def serialize_json(value: ChangeLog) -> dict:
 
 def deserialize_json(data: dict) -> ChangeLog:
     out: ChangeLog = {}  # type: ignore[typeddict-item]
-    if "objectType" in data:
+    if data.get("objectType") is not None:
         import capo_auditmanager.types.object_type_enum
 
         out["object_type"] = capo_auditmanager.types.object_type_enum.deserialize_json(
             data["objectType"]
         )
-    if "objectName" in data:
+    if data.get("objectName") is not None:
         out["object_name"] = data["objectName"]
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_auditmanager.types.action_enum
 
         out["action"] = capo_auditmanager.types.action_enum.deserialize_json(
             data["action"]
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_auditmanager.types.timestamp
 
         out["created_at"] = capo_auditmanager.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
     return out

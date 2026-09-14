@@ -32,9 +32,9 @@ def serialize_json(value: CompatibleKafkaVersion) -> dict:
 
 def deserialize_json(data: dict) -> CompatibleKafkaVersion:
     out: CompatibleKafkaVersion = {}  # type: ignore[typeddict-item]
-    if "sourceVersion" in data:
+    if data.get("sourceVersion") is not None:
         out["source_version"] = data["sourceVersion"]
-    if "targetVersions" in data:
+    if data.get("targetVersions") is not None:
         import capo_kafka.types.__list_of__string
 
         out["target_versions"] = capo_kafka.types.__list_of__string.deserialize_json(

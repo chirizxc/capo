@@ -55,7 +55,7 @@ def serialize_aws_json_1_1(value: SkewedInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SkewedInfo:
     out: SkewedInfo = {}  # type: ignore[typeddict-item]
-    if "SkewedColumnNames" in data:
+    if data.get("SkewedColumnNames") is not None:
         import capo_glue.types.name_string_list
 
         out["skewed_column_names"] = (
@@ -63,7 +63,7 @@ def deserialize_aws_json_1_1(data: dict) -> SkewedInfo:
                 data["SkewedColumnNames"]
             )
         )
-    if "SkewedColumnValues" in data:
+    if data.get("SkewedColumnValues") is not None:
         import capo_glue.types.column_value_string_list
 
         out["skewed_column_values"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_1(data: dict) -> SkewedInfo:
                 data["SkewedColumnValues"]
             )
         )
-    if "SkewedColumnValueLocationMaps" in data:
+    if data.get("SkewedColumnValueLocationMaps") is not None:
         import capo_glue.types.location_map
 
         out["skewed_column_value_location_maps"] = (

@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> UserSettingsList:
 
     out: UserSettingsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_workspaces_web.types.user_settings_summary.deserialize_json(item)
         )

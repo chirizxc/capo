@@ -34,13 +34,13 @@ def serialize_json(value: MfaMethod) -> dict:
 
 def deserialize_json(data: dict) -> MfaMethod:
     out: MfaMethod = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_mpa.types.mfa_type
 
         out["type"] = capo_mpa.types.mfa_type.deserialize_json(data["Type"])
     else:
         raise DeserializationError("MfaMethod.type required")
-    if "SyncStatus" in data:
+    if data.get("SyncStatus") is not None:
         import capo_mpa.types.mfa_sync_status
 
         out["sync_status"] = capo_mpa.types.mfa_sync_status.deserialize_json(

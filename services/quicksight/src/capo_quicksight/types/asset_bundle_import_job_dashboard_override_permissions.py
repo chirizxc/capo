@@ -56,7 +56,7 @@ def serialize_json(value: AssetBundleImportJobDashboardOverridePermissions) -> d
 
 def deserialize_json(data: dict) -> AssetBundleImportJobDashboardOverridePermissions:
     out: AssetBundleImportJobDashboardOverridePermissions = {}  # type: ignore[typeddict-item]
-    if "DashboardIds" in data:
+    if data.get("DashboardIds") is not None:
         import capo_quicksight.types.asset_bundle_restrictive_resource_id_list
 
         out["dashboard_ids"] = (
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> AssetBundleImportJobDashboardOverridePermiss
         raise DeserializationError(
             "AssetBundleImportJobDashboardOverridePermissions.dashboard_ids required"
         )
-    if "Permissions" in data:
+    if data.get("Permissions") is not None:
         import capo_quicksight.types.asset_bundle_resource_permissions
 
         out["permissions"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> AssetBundleImportJobDashboardOverridePermiss
                 data["Permissions"]
             )
         )
-    if "LinkSharingConfiguration" in data:
+    if data.get("LinkSharingConfiguration") is not None:
         import capo_quicksight.types.asset_bundle_resource_link_sharing_configuration
 
         out["link_sharing_configuration"] = (

@@ -30,13 +30,13 @@ def serialize_json(value: AppSyncRuntime) -> dict:
 
 def deserialize_json(data: dict) -> AppSyncRuntime:
     out: AppSyncRuntime = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         import capo_appsync.types.runtime_name
 
         out["name"] = capo_appsync.types.runtime_name.deserialize_json(data["name"])
     else:
         raise DeserializationError("AppSyncRuntime.name required")
-    if "runtimeVersion" in data:
+    if data.get("runtimeVersion") is not None:
         out["runtime_version"] = data["runtimeVersion"]
     else:
         raise DeserializationError("AppSyncRuntime.runtime_version required")

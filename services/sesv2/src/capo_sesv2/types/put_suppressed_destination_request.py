@@ -37,13 +37,13 @@ def serialize_json(value: PutSuppressedDestinationRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutSuppressedDestinationRequest:
     out: PutSuppressedDestinationRequest = {}  # type: ignore[typeddict-item]
-    if "EmailAddress" in data:
+    if data.get("EmailAddress") is not None:
         out["email_address"] = data["EmailAddress"]
     else:
         raise DeserializationError(
             "PutSuppressedDestinationRequest.email_address required"
         )
-    if "Reason" in data:
+    if data.get("Reason") is not None:
         import capo_sesv2.types.suppression_list_reason
 
         out["reason"] = capo_sesv2.types.suppression_list_reason.deserialize_json(
@@ -51,6 +51,6 @@ def deserialize_json(data: dict) -> PutSuppressedDestinationRequest:
         )
     else:
         raise DeserializationError("PutSuppressedDestinationRequest.reason required")
-    if "TenantName" in data:
+    if data.get("TenantName") is not None:
         out["tenant_name"] = data["TenantName"]
     return out

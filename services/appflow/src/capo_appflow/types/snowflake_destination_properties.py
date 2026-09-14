@@ -46,19 +46,19 @@ def serialize_json(value: SnowflakeDestinationProperties) -> dict:
 
 def deserialize_json(data: dict) -> SnowflakeDestinationProperties:
     out: SnowflakeDestinationProperties = {}  # type: ignore[typeddict-item]
-    if "object" in data:
+    if data.get("object") is not None:
         out["object"] = data["object"]
     else:
         raise DeserializationError("SnowflakeDestinationProperties.object required")
-    if "intermediateBucketName" in data:
+    if data.get("intermediateBucketName") is not None:
         out["intermediate_bucket_name"] = data["intermediateBucketName"]
     else:
         raise DeserializationError(
             "SnowflakeDestinationProperties.intermediate_bucket_name required"
         )
-    if "bucketPrefix" in data:
+    if data.get("bucketPrefix") is not None:
         out["bucket_prefix"] = data["bucketPrefix"]
-    if "errorHandlingConfig" in data:
+    if data.get("errorHandlingConfig") is not None:
         import capo_appflow.types.error_handling_config
 
         out["error_handling_config"] = (

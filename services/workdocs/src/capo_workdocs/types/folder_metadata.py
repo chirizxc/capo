@@ -88,27 +88,27 @@ def serialize_json(value: FolderMetadata) -> dict:
 
 def deserialize_json(data: dict) -> FolderMetadata:
     out: FolderMetadata = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "CreatorId" in data:
+    if data.get("CreatorId") is not None:
         out["creator_id"] = data["CreatorId"]
-    if "ParentFolderId" in data:
+    if data.get("ParentFolderId") is not None:
         out["parent_folder_id"] = data["ParentFolderId"]
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_workdocs.types.timestamp_type
 
         out["created_timestamp"] = capo_workdocs.types.timestamp_type.deserialize_json(
             data["CreatedTimestamp"]
         )
-    if "ModifiedTimestamp" in data:
+    if data.get("ModifiedTimestamp") is not None:
         import capo_workdocs.types.timestamp_type
 
         out["modified_timestamp"] = capo_workdocs.types.timestamp_type.deserialize_json(
             data["ModifiedTimestamp"]
         )
-    if "ResourceState" in data:
+    if data.get("ResourceState") is not None:
         import capo_workdocs.types.resource_state_type
 
         out["resource_state"] = (
@@ -116,16 +116,16 @@ def deserialize_json(data: dict) -> FolderMetadata:
                 data["ResourceState"]
             )
         )
-    if "Signature" in data:
+    if data.get("Signature") is not None:
         out["signature"] = data["Signature"]
-    if "Labels" in data:
+    if data.get("Labels") is not None:
         import capo_workdocs.types.shared_labels
 
         out["labels"] = capo_workdocs.types.shared_labels.deserialize_json(
             data["Labels"]
         )
-    if "Size" in data:
+    if data.get("Size") is not None:
         out["size"] = data["Size"]
-    if "LatestVersionSize" in data:
+    if data.get("LatestVersionSize") is not None:
         out["latest_version_size"] = data["LatestVersionSize"]
     return out

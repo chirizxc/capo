@@ -28,8 +28,8 @@ def serialize_json(value: GetGroupInput) -> dict:
 
 def deserialize_json(data: dict) -> GetGroupInput:
     out: GetGroupInput = {}  # type: ignore[typeddict-item]
-    if "GroupName" in data:
+    if data.get("GroupName") is not None:
         out["group_name"] = data["GroupName"]
-    if "Group" in data:
+    if data.get("Group") is not None:
         out["group"] = data["Group"]
     return out

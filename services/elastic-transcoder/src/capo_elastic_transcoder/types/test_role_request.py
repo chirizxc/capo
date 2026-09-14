@@ -39,19 +39,19 @@ def serialize_json(value: TestRoleRequest) -> dict:
 
 def deserialize_json(data: dict) -> TestRoleRequest:
     out: TestRoleRequest = {}  # type: ignore[typeddict-item]
-    if "Role" in data:
+    if data.get("Role") is not None:
         out["role"] = data["Role"]
     else:
         raise DeserializationError("TestRoleRequest.role required")
-    if "InputBucket" in data:
+    if data.get("InputBucket") is not None:
         out["input_bucket"] = data["InputBucket"]
     else:
         raise DeserializationError("TestRoleRequest.input_bucket required")
-    if "OutputBucket" in data:
+    if data.get("OutputBucket") is not None:
         out["output_bucket"] = data["OutputBucket"]
     else:
         raise DeserializationError("TestRoleRequest.output_bucket required")
-    if "Topics" in data:
+    if data.get("Topics") is not None:
         import capo_elastic_transcoder.types.sns_topics
 
         out["topics"] = capo_elastic_transcoder.types.sns_topics.deserialize_json(

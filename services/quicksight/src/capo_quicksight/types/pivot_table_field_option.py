@@ -38,13 +38,13 @@ def serialize_json(value: PivotTableFieldOption) -> dict:
 
 def deserialize_json(data: dict) -> PivotTableFieldOption:
     out: PivotTableFieldOption = {}  # type: ignore[typeddict-item]
-    if "FieldId" in data:
+    if data.get("FieldId") is not None:
         out["field_id"] = data["FieldId"]
     else:
         raise DeserializationError("PivotTableFieldOption.field_id required")
-    if "CustomLabel" in data:
+    if data.get("CustomLabel") is not None:
         out["custom_label"] = data["CustomLabel"]
-    if "Visibility" in data:
+    if data.get("Visibility") is not None:
         import capo_quicksight.types.visibility
 
         out["visibility"] = capo_quicksight.types.visibility.deserialize_json(

@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: GetSessionResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetSessionResponse:
     out: GetSessionResponse = {}  # type: ignore[typeddict-item]
-    if "Session" in data:
+    if data.get("Session") is not None:
         import capo_glue.types.session
 
         out["session"] = capo_glue.types.session.deserialize_aws_json_1_1(

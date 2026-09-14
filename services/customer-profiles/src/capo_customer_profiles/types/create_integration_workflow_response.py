@@ -28,13 +28,13 @@ def serialize_json(value: CreateIntegrationWorkflowResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateIntegrationWorkflowResponse:
     out: CreateIntegrationWorkflowResponse = {}  # type: ignore[typeddict-item]
-    if "WorkflowId" in data:
+    if data.get("WorkflowId") is not None:
         out["workflow_id"] = data["WorkflowId"]
     else:
         raise DeserializationError(
             "CreateIntegrationWorkflowResponse.workflow_id required"
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     else:
         raise DeserializationError("CreateIntegrationWorkflowResponse.message required")

@@ -197,17 +197,18 @@ class CollaborationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.create_collaboration_input.CreateCollaborationInput = {}  # type: ignore[typeddict-item]
-        input_["members"] = members
-        input_["name"] = name
-        input_["description"] = description
-        input_["creator_member_abilities"] = creator_member_abilities
+        input_: capo_cleanrooms.types.create_collaboration_input.CreateCollaborationInput = {
+            "members": members,
+            "name": name,
+            "description": description,
+            "creator_member_abilities": creator_member_abilities,
+            "creator_display_name": creator_display_name,
+            "query_log_status": query_log_status,
+        }
         if creator_ml_member_abilities is not None:
             input_["creator_ml_member_abilities"] = creator_ml_member_abilities
-        input_["creator_display_name"] = creator_display_name
         if data_encryption_metadata is not None:
             input_["data_encryption_metadata"] = data_encryption_metadata
-        input_["query_log_status"] = query_log_status
         if job_log_status is not None:
             input_["job_log_status"] = job_log_status
         if tags is not None:
@@ -230,6 +231,7 @@ class CollaborationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -266,14 +268,16 @@ class CollaborationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.get_collaboration_input.GetCollaborationInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
+        input_: capo_cleanrooms.types.get_collaboration_input.GetCollaborationInput = {
+            "collaboration_identifier": collaboration_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -322,8 +326,9 @@ class CollaborationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.update_collaboration_input.UpdateCollaborationInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
+        input_: capo_cleanrooms.types.update_collaboration_input.UpdateCollaborationInput = {
+            "collaboration_identifier": collaboration_identifier
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -336,6 +341,7 @@ class CollaborationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -372,14 +378,16 @@ class CollaborationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.delete_collaboration_input.DeleteCollaborationInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
+        input_: capo_cleanrooms.types.delete_collaboration_input.DeleteCollaborationInput = {
+            "collaboration_identifier": collaboration_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -424,7 +432,7 @@ class CollaborationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.list_collaborations_input.ListCollaborationsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cleanrooms.types.list_collaborations_input.ListCollaborationsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -437,6 +445,7 @@ class CollaborationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_get_collaboration_analysis_template(
@@ -476,15 +485,17 @@ class CollaborationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.batch_get_collaboration_analysis_template_input.BatchGetCollaborationAnalysisTemplateInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
-        input_["analysis_template_arns"] = analysis_template_arns
+        input_: capo_cleanrooms.types.batch_get_collaboration_analysis_template_input.BatchGetCollaborationAnalysisTemplateInput = {
+            "collaboration_identifier": collaboration_identifier,
+            "analysis_template_arns": analysis_template_arns,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_get_schema(
@@ -524,15 +535,17 @@ class CollaborationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.batch_get_schema_input.BatchGetSchemaInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
-        input_["names"] = names
+        input_: capo_cleanrooms.types.batch_get_schema_input.BatchGetSchemaInput = {
+            "collaboration_identifier": collaboration_identifier,
+            "names": names,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_get_schema_analysis_rule(
@@ -572,15 +585,17 @@ class CollaborationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.batch_get_schema_analysis_rule_input.BatchGetSchemaAnalysisRuleInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
-        input_["schema_analysis_rule_requests"] = schema_analysis_rule_requests
+        input_: capo_cleanrooms.types.batch_get_schema_analysis_rule_input.BatchGetSchemaAnalysisRuleInput = {
+            "collaboration_identifier": collaboration_identifier,
+            "schema_analysis_rule_requests": schema_analysis_rule_requests,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_collaboration_change_request(
@@ -622,15 +637,17 @@ class CollaborationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.create_collaboration_change_request_input.CreateCollaborationChangeRequestInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
-        input_["changes"] = changes
+        input_: capo_cleanrooms.types.create_collaboration_change_request_input.CreateCollaborationChangeRequestInput = {
+            "collaboration_identifier": collaboration_identifier,
+            "changes": changes,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_member(
@@ -671,15 +688,17 @@ class CollaborationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.delete_member_input.DeleteMemberInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
-        input_["account_id"] = account_id
+        input_: capo_cleanrooms.types.delete_member_input.DeleteMemberInput = {
+            "collaboration_identifier": collaboration_identifier,
+            "account_id": account_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_collaboration_analysis_template(
@@ -719,15 +738,17 @@ class CollaborationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.get_collaboration_analysis_template_input.GetCollaborationAnalysisTemplateInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
-        input_["analysis_template_arn"] = analysis_template_arn
+        input_: capo_cleanrooms.types.get_collaboration_analysis_template_input.GetCollaborationAnalysisTemplateInput = {
+            "collaboration_identifier": collaboration_identifier,
+            "analysis_template_arn": analysis_template_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_collaboration_change_request(
@@ -767,15 +788,17 @@ class CollaborationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.get_collaboration_change_request_input.GetCollaborationChangeRequestInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
-        input_["change_request_identifier"] = change_request_identifier
+        input_: capo_cleanrooms.types.get_collaboration_change_request_input.GetCollaborationChangeRequestInput = {
+            "collaboration_identifier": collaboration_identifier,
+            "change_request_identifier": change_request_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_collaboration_configured_audience_model_association(
@@ -815,17 +838,17 @@ class CollaborationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.get_collaboration_configured_audience_model_association_input.GetCollaborationConfiguredAudienceModelAssociationInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
-        input_["configured_audience_model_association_identifier"] = (
-            configured_audience_model_association_identifier
-        )
+        input_: capo_cleanrooms.types.get_collaboration_configured_audience_model_association_input.GetCollaborationConfiguredAudienceModelAssociationInput = {
+            "collaboration_identifier": collaboration_identifier,
+            "configured_audience_model_association_identifier": configured_audience_model_association_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_collaboration_id_namespace_association(
@@ -865,17 +888,17 @@ class CollaborationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.get_collaboration_id_namespace_association_input.GetCollaborationIdNamespaceAssociationInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
-        input_["id_namespace_association_identifier"] = (
-            id_namespace_association_identifier
-        )
+        input_: capo_cleanrooms.types.get_collaboration_id_namespace_association_input.GetCollaborationIdNamespaceAssociationInput = {
+            "collaboration_identifier": collaboration_identifier,
+            "id_namespace_association_identifier": id_namespace_association_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_collaboration_privacy_budget_template(
@@ -915,17 +938,17 @@ class CollaborationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.get_collaboration_privacy_budget_template_input.GetCollaborationPrivacyBudgetTemplateInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
-        input_["privacy_budget_template_identifier"] = (
-            privacy_budget_template_identifier
-        )
+        input_: capo_cleanrooms.types.get_collaboration_privacy_budget_template_input.GetCollaborationPrivacyBudgetTemplateInput = {
+            "collaboration_identifier": collaboration_identifier,
+            "privacy_budget_template_identifier": privacy_budget_template_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_schema(
@@ -965,15 +988,17 @@ class CollaborationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.get_schema_input.GetSchemaInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
-        input_["name"] = name
+        input_: capo_cleanrooms.types.get_schema_input.GetSchemaInput = {
+            "collaboration_identifier": collaboration_identifier,
+            "name": name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_schema_analysis_rule(
@@ -1015,16 +1040,18 @@ class CollaborationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.get_schema_analysis_rule_input.GetSchemaAnalysisRuleInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
-        input_["name"] = name
-        input_["type"] = type
+        input_: capo_cleanrooms.types.get_schema_analysis_rule_input.GetSchemaAnalysisRuleInput = {
+            "collaboration_identifier": collaboration_identifier,
+            "name": name,
+            "type": type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_collaboration_analysis_templates(
@@ -1068,8 +1095,9 @@ class CollaborationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.list_collaboration_analysis_templates_input.ListCollaborationAnalysisTemplatesInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
+        input_: capo_cleanrooms.types.list_collaboration_analysis_templates_input.ListCollaborationAnalysisTemplatesInput = {
+            "collaboration_identifier": collaboration_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1080,6 +1108,7 @@ class CollaborationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_collaboration_change_requests(
@@ -1127,8 +1156,9 @@ class CollaborationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.list_collaboration_change_requests_input.ListCollaborationChangeRequestsInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
+        input_: capo_cleanrooms.types.list_collaboration_change_requests_input.ListCollaborationChangeRequestsInput = {
+            "collaboration_identifier": collaboration_identifier
+        }
         if status is not None:
             input_["status"] = status
         if next_token is not None:
@@ -1141,6 +1171,7 @@ class CollaborationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_collaboration_configured_audience_model_associations(
@@ -1184,8 +1215,9 @@ class CollaborationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.list_collaboration_configured_audience_model_associations_input.ListCollaborationConfiguredAudienceModelAssociationsInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
+        input_: capo_cleanrooms.types.list_collaboration_configured_audience_model_associations_input.ListCollaborationConfiguredAudienceModelAssociationsInput = {
+            "collaboration_identifier": collaboration_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1196,6 +1228,7 @@ class CollaborationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_collaboration_id_namespace_associations(
@@ -1239,8 +1272,9 @@ class CollaborationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.list_collaboration_id_namespace_associations_input.ListCollaborationIdNamespaceAssociationsInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
+        input_: capo_cleanrooms.types.list_collaboration_id_namespace_associations_input.ListCollaborationIdNamespaceAssociationsInput = {
+            "collaboration_identifier": collaboration_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1251,6 +1285,7 @@ class CollaborationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_collaboration_privacy_budgets(
@@ -1300,9 +1335,10 @@ class CollaborationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.list_collaboration_privacy_budgets_input.ListCollaborationPrivacyBudgetsInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
-        input_["privacy_budget_type"] = privacy_budget_type
+        input_: capo_cleanrooms.types.list_collaboration_privacy_budgets_input.ListCollaborationPrivacyBudgetsInput = {
+            "collaboration_identifier": collaboration_identifier,
+            "privacy_budget_type": privacy_budget_type,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1315,6 +1351,7 @@ class CollaborationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_collaboration_privacy_budget_templates(
@@ -1358,8 +1395,9 @@ class CollaborationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.list_collaboration_privacy_budget_templates_input.ListCollaborationPrivacyBudgetTemplatesInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
+        input_: capo_cleanrooms.types.list_collaboration_privacy_budget_templates_input.ListCollaborationPrivacyBudgetTemplatesInput = {
+            "collaboration_identifier": collaboration_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1370,6 +1408,7 @@ class CollaborationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_members(
@@ -1413,8 +1452,9 @@ class CollaborationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.list_members_input.ListMembersInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
+        input_: capo_cleanrooms.types.list_members_input.ListMembersInput = {
+            "collaboration_identifier": collaboration_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1425,6 +1465,7 @@ class CollaborationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_schemas(
@@ -1470,8 +1511,9 @@ class CollaborationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.list_schemas_input.ListSchemasInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
+        input_: capo_cleanrooms.types.list_schemas_input.ListSchemasInput = {
+            "collaboration_identifier": collaboration_identifier
+        }
         if schema_type is not None:
             input_["schema_type"] = schema_type
         if next_token is not None:
@@ -1484,6 +1526,7 @@ class CollaborationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_collaboration_change_request(
@@ -1526,16 +1569,18 @@ class CollaborationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.update_collaboration_change_request_input.UpdateCollaborationChangeRequestInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
-        input_["change_request_identifier"] = change_request_identifier
-        input_["action"] = action
+        input_: capo_cleanrooms.types.update_collaboration_change_request_input.UpdateCollaborationChangeRequestInput = {
+            "collaboration_identifier": collaboration_identifier,
+            "change_request_identifier": change_request_identifier,
+            "action": action,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -1621,17 +1666,18 @@ class AsyncCollaborationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.create_collaboration_input.CreateCollaborationInput = {}  # type: ignore[typeddict-item]
-        input_["members"] = members
-        input_["name"] = name
-        input_["description"] = description
-        input_["creator_member_abilities"] = creator_member_abilities
+        input_: capo_cleanrooms.types.create_collaboration_input.CreateCollaborationInput = {
+            "members": members,
+            "name": name,
+            "description": description,
+            "creator_member_abilities": creator_member_abilities,
+            "creator_display_name": creator_display_name,
+            "query_log_status": query_log_status,
+        }
         if creator_ml_member_abilities is not None:
             input_["creator_ml_member_abilities"] = creator_ml_member_abilities
-        input_["creator_display_name"] = creator_display_name
         if data_encryption_metadata is not None:
             input_["data_encryption_metadata"] = data_encryption_metadata
-        input_["query_log_status"] = query_log_status
         if job_log_status is not None:
             input_["job_log_status"] = job_log_status
         if tags is not None:
@@ -1654,6 +1700,7 @@ class AsyncCollaborationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -1691,14 +1738,16 @@ class AsyncCollaborationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.get_collaboration_input.GetCollaborationInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
+        input_: capo_cleanrooms.types.get_collaboration_input.GetCollaborationInput = {
+            "collaboration_identifier": collaboration_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -1748,8 +1797,9 @@ class AsyncCollaborationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.update_collaboration_input.UpdateCollaborationInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
+        input_: capo_cleanrooms.types.update_collaboration_input.UpdateCollaborationInput = {
+            "collaboration_identifier": collaboration_identifier
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -1762,6 +1812,7 @@ class AsyncCollaborationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -1799,14 +1850,16 @@ class AsyncCollaborationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.delete_collaboration_input.DeleteCollaborationInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
+        input_: capo_cleanrooms.types.delete_collaboration_input.DeleteCollaborationInput = {
+            "collaboration_identifier": collaboration_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -1852,7 +1905,7 @@ class AsyncCollaborationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.list_collaborations_input.ListCollaborationsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cleanrooms.types.list_collaborations_input.ListCollaborationsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1865,6 +1918,7 @@ class AsyncCollaborationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_collaboration_analysis_template(
@@ -1905,15 +1959,17 @@ class AsyncCollaborationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.batch_get_collaboration_analysis_template_input.BatchGetCollaborationAnalysisTemplateInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
-        input_["analysis_template_arns"] = analysis_template_arns
+        input_: capo_cleanrooms.types.batch_get_collaboration_analysis_template_input.BatchGetCollaborationAnalysisTemplateInput = {
+            "collaboration_identifier": collaboration_identifier,
+            "analysis_template_arns": analysis_template_arns,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_schema(
@@ -1954,15 +2010,17 @@ class AsyncCollaborationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.batch_get_schema_input.BatchGetSchemaInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
-        input_["names"] = names
+        input_: capo_cleanrooms.types.batch_get_schema_input.BatchGetSchemaInput = {
+            "collaboration_identifier": collaboration_identifier,
+            "names": names,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_schema_analysis_rule(
@@ -2003,15 +2061,17 @@ class AsyncCollaborationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.batch_get_schema_analysis_rule_input.BatchGetSchemaAnalysisRuleInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
-        input_["schema_analysis_rule_requests"] = schema_analysis_rule_requests
+        input_: capo_cleanrooms.types.batch_get_schema_analysis_rule_input.BatchGetSchemaAnalysisRuleInput = {
+            "collaboration_identifier": collaboration_identifier,
+            "schema_analysis_rule_requests": schema_analysis_rule_requests,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_collaboration_change_request(
@@ -2054,15 +2114,17 @@ class AsyncCollaborationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.create_collaboration_change_request_input.CreateCollaborationChangeRequestInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
-        input_["changes"] = changes
+        input_: capo_cleanrooms.types.create_collaboration_change_request_input.CreateCollaborationChangeRequestInput = {
+            "collaboration_identifier": collaboration_identifier,
+            "changes": changes,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_member(
@@ -2104,15 +2166,17 @@ class AsyncCollaborationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.delete_member_input.DeleteMemberInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
-        input_["account_id"] = account_id
+        input_: capo_cleanrooms.types.delete_member_input.DeleteMemberInput = {
+            "collaboration_identifier": collaboration_identifier,
+            "account_id": account_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_collaboration_analysis_template(
@@ -2153,15 +2217,17 @@ class AsyncCollaborationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.get_collaboration_analysis_template_input.GetCollaborationAnalysisTemplateInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
-        input_["analysis_template_arn"] = analysis_template_arn
+        input_: capo_cleanrooms.types.get_collaboration_analysis_template_input.GetCollaborationAnalysisTemplateInput = {
+            "collaboration_identifier": collaboration_identifier,
+            "analysis_template_arn": analysis_template_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_collaboration_change_request(
@@ -2202,15 +2268,17 @@ class AsyncCollaborationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.get_collaboration_change_request_input.GetCollaborationChangeRequestInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
-        input_["change_request_identifier"] = change_request_identifier
+        input_: capo_cleanrooms.types.get_collaboration_change_request_input.GetCollaborationChangeRequestInput = {
+            "collaboration_identifier": collaboration_identifier,
+            "change_request_identifier": change_request_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_collaboration_configured_audience_model_association(
@@ -2251,17 +2319,17 @@ class AsyncCollaborationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.get_collaboration_configured_audience_model_association_input.GetCollaborationConfiguredAudienceModelAssociationInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
-        input_["configured_audience_model_association_identifier"] = (
-            configured_audience_model_association_identifier
-        )
+        input_: capo_cleanrooms.types.get_collaboration_configured_audience_model_association_input.GetCollaborationConfiguredAudienceModelAssociationInput = {
+            "collaboration_identifier": collaboration_identifier,
+            "configured_audience_model_association_identifier": configured_audience_model_association_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_collaboration_id_namespace_association(
@@ -2302,17 +2370,17 @@ class AsyncCollaborationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.get_collaboration_id_namespace_association_input.GetCollaborationIdNamespaceAssociationInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
-        input_["id_namespace_association_identifier"] = (
-            id_namespace_association_identifier
-        )
+        input_: capo_cleanrooms.types.get_collaboration_id_namespace_association_input.GetCollaborationIdNamespaceAssociationInput = {
+            "collaboration_identifier": collaboration_identifier,
+            "id_namespace_association_identifier": id_namespace_association_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_collaboration_privacy_budget_template(
@@ -2353,17 +2421,17 @@ class AsyncCollaborationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.get_collaboration_privacy_budget_template_input.GetCollaborationPrivacyBudgetTemplateInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
-        input_["privacy_budget_template_identifier"] = (
-            privacy_budget_template_identifier
-        )
+        input_: capo_cleanrooms.types.get_collaboration_privacy_budget_template_input.GetCollaborationPrivacyBudgetTemplateInput = {
+            "collaboration_identifier": collaboration_identifier,
+            "privacy_budget_template_identifier": privacy_budget_template_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_schema(
@@ -2404,15 +2472,17 @@ class AsyncCollaborationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.get_schema_input.GetSchemaInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
-        input_["name"] = name
+        input_: capo_cleanrooms.types.get_schema_input.GetSchemaInput = {
+            "collaboration_identifier": collaboration_identifier,
+            "name": name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_schema_analysis_rule(
@@ -2455,16 +2525,18 @@ class AsyncCollaborationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.get_schema_analysis_rule_input.GetSchemaAnalysisRuleInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
-        input_["name"] = name
-        input_["type"] = type
+        input_: capo_cleanrooms.types.get_schema_analysis_rule_input.GetSchemaAnalysisRuleInput = {
+            "collaboration_identifier": collaboration_identifier,
+            "name": name,
+            "type": type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_collaboration_analysis_templates(
@@ -2509,8 +2581,9 @@ class AsyncCollaborationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.list_collaboration_analysis_templates_input.ListCollaborationAnalysisTemplatesInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
+        input_: capo_cleanrooms.types.list_collaboration_analysis_templates_input.ListCollaborationAnalysisTemplatesInput = {
+            "collaboration_identifier": collaboration_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2521,6 +2594,7 @@ class AsyncCollaborationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_collaboration_change_requests(
@@ -2569,8 +2643,9 @@ class AsyncCollaborationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.list_collaboration_change_requests_input.ListCollaborationChangeRequestsInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
+        input_: capo_cleanrooms.types.list_collaboration_change_requests_input.ListCollaborationChangeRequestsInput = {
+            "collaboration_identifier": collaboration_identifier
+        }
         if status is not None:
             input_["status"] = status
         if next_token is not None:
@@ -2583,6 +2658,7 @@ class AsyncCollaborationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_collaboration_configured_audience_model_associations(
@@ -2627,8 +2703,9 @@ class AsyncCollaborationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.list_collaboration_configured_audience_model_associations_input.ListCollaborationConfiguredAudienceModelAssociationsInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
+        input_: capo_cleanrooms.types.list_collaboration_configured_audience_model_associations_input.ListCollaborationConfiguredAudienceModelAssociationsInput = {
+            "collaboration_identifier": collaboration_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2639,6 +2716,7 @@ class AsyncCollaborationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_collaboration_id_namespace_associations(
@@ -2683,8 +2761,9 @@ class AsyncCollaborationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.list_collaboration_id_namespace_associations_input.ListCollaborationIdNamespaceAssociationsInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
+        input_: capo_cleanrooms.types.list_collaboration_id_namespace_associations_input.ListCollaborationIdNamespaceAssociationsInput = {
+            "collaboration_identifier": collaboration_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2695,6 +2774,7 @@ class AsyncCollaborationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_collaboration_privacy_budgets(
@@ -2745,9 +2825,10 @@ class AsyncCollaborationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.list_collaboration_privacy_budgets_input.ListCollaborationPrivacyBudgetsInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
-        input_["privacy_budget_type"] = privacy_budget_type
+        input_: capo_cleanrooms.types.list_collaboration_privacy_budgets_input.ListCollaborationPrivacyBudgetsInput = {
+            "collaboration_identifier": collaboration_identifier,
+            "privacy_budget_type": privacy_budget_type,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2760,6 +2841,7 @@ class AsyncCollaborationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_collaboration_privacy_budget_templates(
@@ -2804,8 +2886,9 @@ class AsyncCollaborationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.list_collaboration_privacy_budget_templates_input.ListCollaborationPrivacyBudgetTemplatesInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
+        input_: capo_cleanrooms.types.list_collaboration_privacy_budget_templates_input.ListCollaborationPrivacyBudgetTemplatesInput = {
+            "collaboration_identifier": collaboration_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2816,6 +2899,7 @@ class AsyncCollaborationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_members(
@@ -2860,8 +2944,9 @@ class AsyncCollaborationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.list_members_input.ListMembersInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
+        input_: capo_cleanrooms.types.list_members_input.ListMembersInput = {
+            "collaboration_identifier": collaboration_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2872,6 +2957,7 @@ class AsyncCollaborationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_schemas(
@@ -2918,8 +3004,9 @@ class AsyncCollaborationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.list_schemas_input.ListSchemasInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
+        input_: capo_cleanrooms.types.list_schemas_input.ListSchemasInput = {
+            "collaboration_identifier": collaboration_identifier
+        }
         if schema_type is not None:
             input_["schema_type"] = schema_type
         if next_token is not None:
@@ -2932,6 +3019,7 @@ class AsyncCollaborationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_collaboration_change_request(
@@ -2975,14 +3063,16 @@ class AsyncCollaborationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.update_collaboration_change_request_input.UpdateCollaborationChangeRequestInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
-        input_["change_request_identifier"] = change_request_identifier
-        input_["action"] = action
+        input_: capo_cleanrooms.types.update_collaboration_change_request_input.UpdateCollaborationChangeRequestInput = {
+            "collaboration_identifier": collaboration_identifier,
+            "change_request_identifier": change_request_identifier,
+            "action": action,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

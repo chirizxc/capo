@@ -171,23 +171,23 @@ def serialize_aws_json_1_1(value: FirewallRule) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FirewallRule:
     out: FirewallRule = {}  # type: ignore[typeddict-item]
-    if "FirewallRuleGroupId" in data:
+    if data.get("FirewallRuleGroupId") is not None:
         out["firewall_rule_group_id"] = data["FirewallRuleGroupId"]
-    if "FirewallDomainListId" in data:
+    if data.get("FirewallDomainListId") is not None:
         out["firewall_domain_list_id"] = data["FirewallDomainListId"]
-    if "FirewallThreatProtectionId" in data:
+    if data.get("FirewallThreatProtectionId") is not None:
         out["firewall_threat_protection_id"] = data["FirewallThreatProtectionId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Priority" in data:
+    if data.get("Priority") is not None:
         out["priority"] = data["Priority"]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_route53resolver.types.action
 
         out["action"] = capo_route53resolver.types.action.deserialize_aws_json_1_1(
             data["Action"]
         )
-    if "BlockResponse" in data:
+    if data.get("BlockResponse") is not None:
         import capo_route53resolver.types.block_response
 
         out["block_response"] = (
@@ -195,9 +195,9 @@ def deserialize_aws_json_1_1(data: dict) -> FirewallRule:
                 data["BlockResponse"]
             )
         )
-    if "BlockOverrideDomain" in data:
+    if data.get("BlockOverrideDomain") is not None:
         out["block_override_domain"] = data["BlockOverrideDomain"]
-    if "BlockOverrideDnsType" in data:
+    if data.get("BlockOverrideDnsType") is not None:
         import capo_route53resolver.types.block_override_dns_type
 
         out["block_override_dns_type"] = (
@@ -205,15 +205,15 @@ def deserialize_aws_json_1_1(data: dict) -> FirewallRule:
                 data["BlockOverrideDnsType"]
             )
         )
-    if "BlockOverrideTtl" in data:
+    if data.get("BlockOverrideTtl") is not None:
         out["block_override_ttl"] = data["BlockOverrideTtl"]
-    if "CreatorRequestId" in data:
+    if data.get("CreatorRequestId") is not None:
         out["creator_request_id"] = data["CreatorRequestId"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         out["creation_time"] = data["CreationTime"]
-    if "ModificationTime" in data:
+    if data.get("ModificationTime") is not None:
         out["modification_time"] = data["ModificationTime"]
-    if "FirewallDomainRedirectionAction" in data:
+    if data.get("FirewallDomainRedirectionAction") is not None:
         import capo_route53resolver.types.firewall_domain_redirection_action
 
         out["firewall_domain_redirection_action"] = (
@@ -221,9 +221,9 @@ def deserialize_aws_json_1_1(data: dict) -> FirewallRule:
                 data["FirewallDomainRedirectionAction"]
             )
         )
-    if "Qtype" in data:
+    if data.get("Qtype") is not None:
         out["qtype"] = data["Qtype"]
-    if "DnsThreatProtection" in data:
+    if data.get("DnsThreatProtection") is not None:
         import capo_route53resolver.types.dns_threat_protection
 
         out["dns_threat_protection"] = (
@@ -231,7 +231,7 @@ def deserialize_aws_json_1_1(data: dict) -> FirewallRule:
                 data["DnsThreatProtection"]
             )
         )
-    if "ConfidenceThreshold" in data:
+    if data.get("ConfidenceThreshold") is not None:
         import capo_route53resolver.types.confidence_threshold
 
         out["confidence_threshold"] = (
@@ -239,7 +239,7 @@ def deserialize_aws_json_1_1(data: dict) -> FirewallRule:
                 data["ConfidenceThreshold"]
             )
         )
-    if "FirewallRuleType" in data:
+    if data.get("FirewallRuleType") is not None:
         import capo_route53resolver.types.firewall_rule_type
 
         out["firewall_rule_type"] = (

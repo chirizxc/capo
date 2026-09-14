@@ -37,13 +37,13 @@ def serialize_json(value: ListSessionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListSessionsRequest:
     out: ListSessionsRequest = {}  # type: ignore[typeddict-item]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     else:
         out["max_results"] = 20
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_mpa.types.filters
 
         out["filters"] = capo_mpa.types.filters.deserialize_json(data["Filters"])

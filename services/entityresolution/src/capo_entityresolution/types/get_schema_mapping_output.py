@@ -71,17 +71,17 @@ def serialize_json(value: GetSchemaMappingOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetSchemaMappingOutput:
     out: GetSchemaMappingOutput = {}  # type: ignore[typeddict-item]
-    if "schemaName" in data:
+    if data.get("schemaName") is not None:
         out["schema_name"] = data["schemaName"]
     else:
         raise DeserializationError("GetSchemaMappingOutput.schema_name required")
-    if "schemaArn" in data:
+    if data.get("schemaArn") is not None:
         out["schema_arn"] = data["schemaArn"]
     else:
         raise DeserializationError("GetSchemaMappingOutput.schema_arn required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "mappedInputFields" in data:
+    if data.get("mappedInputFields") is not None:
         import capo_entityresolution.types.schema_input_attributes
 
         out["mapped_input_fields"] = (
@@ -93,7 +93,7 @@ def deserialize_json(data: dict) -> GetSchemaMappingOutput:
         raise DeserializationError(
             "GetSchemaMappingOutput.mapped_input_fields required"
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_entityresolution.types._prelude.timestamp
 
         out["created_at"] = (
@@ -103,7 +103,7 @@ def deserialize_json(data: dict) -> GetSchemaMappingOutput:
         )
     else:
         raise DeserializationError("GetSchemaMappingOutput.created_at required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_entityresolution.types._prelude.timestamp
 
         out["updated_at"] = (
@@ -113,11 +113,11 @@ def deserialize_json(data: dict) -> GetSchemaMappingOutput:
         )
     else:
         raise DeserializationError("GetSchemaMappingOutput.updated_at required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_entityresolution.types.tag_map
 
         out["tags"] = capo_entityresolution.types.tag_map.deserialize_json(data["tags"])
-    if "hasWorkflows" in data:
+    if data.get("hasWorkflows") is not None:
         out["has_workflows"] = data["hasWorkflows"]
     else:
         raise DeserializationError("GetSchemaMappingOutput.has_workflows required")

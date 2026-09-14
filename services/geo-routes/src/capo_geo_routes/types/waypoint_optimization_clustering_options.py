@@ -43,7 +43,7 @@ def serialize_json(value: WaypointOptimizationClusteringOptions) -> dict:
 
 def deserialize_json(data: dict) -> WaypointOptimizationClusteringOptions:
     out: WaypointOptimizationClusteringOptions = {}  # type: ignore[typeddict-item]
-    if "Algorithm" in data:
+    if data.get("Algorithm") is not None:
         import capo_geo_routes.types.waypoint_optimization_clustering_algorithm
 
         out["algorithm"] = (
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> WaypointOptimizationClusteringOptions:
         raise DeserializationError(
             "WaypointOptimizationClusteringOptions.algorithm required"
         )
-    if "DrivingDistanceOptions" in data:
+    if data.get("DrivingDistanceOptions") is not None:
         import capo_geo_routes.types.waypoint_optimization_driving_distance_options
 
         out["driving_distance_options"] = (

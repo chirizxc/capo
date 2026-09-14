@@ -35,7 +35,7 @@ def serialize_json(value: ListConfiguredTableAssociationsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListConfiguredTableAssociationsOutput:
     out: ListConfiguredTableAssociationsOutput = {}  # type: ignore[typeddict-item]
-    if "configuredTableAssociationSummaries" in data:
+    if data.get("configuredTableAssociationSummaries") is not None:
         import capo_cleanrooms.types.configured_table_association_summary_list
 
         out["configured_table_association_summaries"] = (
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> ListConfiguredTableAssociationsOutput:
         raise DeserializationError(
             "ListConfiguredTableAssociationsOutput.configured_table_association_summaries required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: CreateAccountAssignmentResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateAccountAssignmentResponse:
     out: CreateAccountAssignmentResponse = {}  # type: ignore[typeddict-item]
-    if "AccountAssignmentCreationStatus" in data:
+    if data.get("AccountAssignmentCreationStatus") is not None:
         import capo_sso_admin.types.account_assignment_operation_status
 
         out["account_assignment_creation_status"] = (

@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> GetOutputList:
 
     out: GetOutputList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_elementalinference.types.get_output.deserialize_json(item))
     return out

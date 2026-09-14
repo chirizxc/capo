@@ -45,7 +45,7 @@ def serialize_json(value: CreateDeviceDefinitionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDeviceDefinitionRequest:
     out: CreateDeviceDefinitionRequest = {}  # type: ignore[typeddict-item]
-    if "InitialVersion" in data:
+    if data.get("InitialVersion") is not None:
         import capo_greengrass.types.device_definition_version
 
         out["initial_version"] = (
@@ -53,9 +53,9 @@ def deserialize_json(data: dict) -> CreateDeviceDefinitionRequest:
                 data["InitialVersion"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_greengrass.types.tags
 
         out["tags"] = capo_greengrass.types.tags.deserialize_json(data["tags"])

@@ -31,8 +31,8 @@ def serialize_aws_json_1_1(value: HttpHeader) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HttpHeader:
     out: HttpHeader = {}  # type: ignore[typeddict-item]
-    if "headerName" in data:
+    if data.get("headerName") is not None:
         out["header_name"] = data["headerName"]
-    if "headerValue" in data:
+    if data.get("headerValue") is not None:
         out["header_value"] = data["headerValue"]
     return out

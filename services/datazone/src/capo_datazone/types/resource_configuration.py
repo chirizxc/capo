@@ -44,21 +44,21 @@ def serialize_json(value: ResourceConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ResourceConfiguration:
     out: ResourceConfiguration = {}  # type: ignore[typeddict-item]
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
     else:
         raise DeserializationError("ResourceConfiguration.identifier required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ResourceConfiguration.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
     else:
         raise DeserializationError("ResourceConfiguration.region required")
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_datazone.types.resource_configuration_parameter_map
 
         out["parameters"] = (

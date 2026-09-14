@@ -96,7 +96,7 @@ def serialize_aws_json_1_0(value: PolicyCondition) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> PolicyCondition:
-    if "StringExpression" in data:
+    if data.get("StringExpression") is not None:
         import capo_mailmanager.types.ingress_string_expression
 
         return {
@@ -104,7 +104,7 @@ def deserialize_aws_json_1_0(data: dict) -> PolicyCondition:
                 data["StringExpression"]
             )
         }
-    elif "IpExpression" in data:
+    elif data.get("IpExpression") is not None:
         import capo_mailmanager.types.ingress_ipv4_expression
 
         return {
@@ -112,7 +112,7 @@ def deserialize_aws_json_1_0(data: dict) -> PolicyCondition:
                 data["IpExpression"]
             )
         }
-    elif "Ipv6Expression" in data:
+    elif data.get("Ipv6Expression") is not None:
         import capo_mailmanager.types.ingress_ipv6_expression
 
         return {
@@ -120,7 +120,7 @@ def deserialize_aws_json_1_0(data: dict) -> PolicyCondition:
                 data["Ipv6Expression"]
             )
         }
-    elif "TlsExpression" in data:
+    elif data.get("TlsExpression") is not None:
         import capo_mailmanager.types.ingress_tls_protocol_expression
 
         return {
@@ -128,7 +128,7 @@ def deserialize_aws_json_1_0(data: dict) -> PolicyCondition:
                 data["TlsExpression"]
             )
         }
-    elif "BooleanExpression" in data:
+    elif data.get("BooleanExpression") is not None:
         import capo_mailmanager.types.ingress_boolean_expression
 
         return {

@@ -99,12 +99,13 @@ class IdNamespaceAssociationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.create_id_namespace_association_input.CreateIdNamespaceAssociationInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["input_reference_config"] = input_reference_config
+        input_: capo_cleanrooms.types.create_id_namespace_association_input.CreateIdNamespaceAssociationInput = {
+            "membership_identifier": membership_identifier,
+            "input_reference_config": input_reference_config,
+            "name": name,
+        }
         if tags is not None:
             input_["tags"] = tags
-        input_["name"] = name
         if description is not None:
             input_["description"] = description
         if id_mapping_config is not None:
@@ -115,6 +116,7 @@ class IdNamespaceAssociationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -154,17 +156,17 @@ class IdNamespaceAssociationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.get_id_namespace_association_input.GetIdNamespaceAssociationInput = {}  # type: ignore[typeddict-item]
-        input_["id_namespace_association_identifier"] = (
-            id_namespace_association_identifier
-        )
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.get_id_namespace_association_input.GetIdNamespaceAssociationInput = {
+            "id_namespace_association_identifier": id_namespace_association_identifier,
+            "membership_identifier": membership_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -216,11 +218,10 @@ class IdNamespaceAssociationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.update_id_namespace_association_input.UpdateIdNamespaceAssociationInput = {}  # type: ignore[typeddict-item]
-        input_["id_namespace_association_identifier"] = (
-            id_namespace_association_identifier
-        )
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.update_id_namespace_association_input.UpdateIdNamespaceAssociationInput = {
+            "id_namespace_association_identifier": id_namespace_association_identifier,
+            "membership_identifier": membership_identifier,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -233,6 +234,7 @@ class IdNamespaceAssociationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -272,17 +274,17 @@ class IdNamespaceAssociationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.delete_id_namespace_association_input.DeleteIdNamespaceAssociationInput = {}  # type: ignore[typeddict-item]
-        input_["id_namespace_association_identifier"] = (
-            id_namespace_association_identifier
-        )
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.delete_id_namespace_association_input.DeleteIdNamespaceAssociationInput = {
+            "id_namespace_association_identifier": id_namespace_association_identifier,
+            "membership_identifier": membership_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -326,8 +328,9 @@ class IdNamespaceAssociationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.list_id_namespace_associations_input.ListIdNamespaceAssociationsInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.list_id_namespace_associations_input.ListIdNamespaceAssociationsInput = {
+            "membership_identifier": membership_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -338,6 +341,7 @@ class IdNamespaceAssociationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -397,12 +401,13 @@ class AsyncIdNamespaceAssociationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.create_id_namespace_association_input.CreateIdNamespaceAssociationInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["input_reference_config"] = input_reference_config
+        input_: capo_cleanrooms.types.create_id_namespace_association_input.CreateIdNamespaceAssociationInput = {
+            "membership_identifier": membership_identifier,
+            "input_reference_config": input_reference_config,
+            "name": name,
+        }
         if tags is not None:
             input_["tags"] = tags
-        input_["name"] = name
         if description is not None:
             input_["description"] = description
         if id_mapping_config is not None:
@@ -413,6 +418,7 @@ class AsyncIdNamespaceAssociationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -453,17 +459,17 @@ class AsyncIdNamespaceAssociationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.get_id_namespace_association_input.GetIdNamespaceAssociationInput = {}  # type: ignore[typeddict-item]
-        input_["id_namespace_association_identifier"] = (
-            id_namespace_association_identifier
-        )
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.get_id_namespace_association_input.GetIdNamespaceAssociationInput = {
+            "id_namespace_association_identifier": id_namespace_association_identifier,
+            "membership_identifier": membership_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -516,11 +522,10 @@ class AsyncIdNamespaceAssociationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.update_id_namespace_association_input.UpdateIdNamespaceAssociationInput = {}  # type: ignore[typeddict-item]
-        input_["id_namespace_association_identifier"] = (
-            id_namespace_association_identifier
-        )
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.update_id_namespace_association_input.UpdateIdNamespaceAssociationInput = {
+            "id_namespace_association_identifier": id_namespace_association_identifier,
+            "membership_identifier": membership_identifier,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -533,6 +538,7 @@ class AsyncIdNamespaceAssociationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -573,17 +579,17 @@ class AsyncIdNamespaceAssociationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.delete_id_namespace_association_input.DeleteIdNamespaceAssociationInput = {}  # type: ignore[typeddict-item]
-        input_["id_namespace_association_identifier"] = (
-            id_namespace_association_identifier
-        )
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.delete_id_namespace_association_input.DeleteIdNamespaceAssociationInput = {
+            "id_namespace_association_identifier": id_namespace_association_identifier,
+            "membership_identifier": membership_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -628,8 +634,9 @@ class AsyncIdNamespaceAssociationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.list_id_namespace_associations_input.ListIdNamespaceAssociationsInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.list_id_namespace_associations_input.ListIdNamespaceAssociationsInput = {
+            "membership_identifier": membership_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -640,4 +647,5 @@ class AsyncIdNamespaceAssociationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

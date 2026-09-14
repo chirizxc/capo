@@ -37,7 +37,7 @@ def serialize_json(value: ListQuickResponsesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListQuickResponsesResponse:
     out: ListQuickResponsesResponse = {}  # type: ignore[typeddict-item]
-    if "quickResponseSummaries" in data:
+    if data.get("quickResponseSummaries") is not None:
         import capo_wisdom.types.quick_response_summary_list
 
         out["quick_response_summaries"] = (
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> ListQuickResponsesResponse:
         raise DeserializationError(
             "ListQuickResponsesResponse.quick_response_summaries required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

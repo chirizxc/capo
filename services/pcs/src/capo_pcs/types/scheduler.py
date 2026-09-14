@@ -29,7 +29,7 @@ def serialize_aws_json_1_0(value: Scheduler) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Scheduler:
     out: Scheduler = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_pcs.types.scheduler_type
 
         out["type"] = capo_pcs.types.scheduler_type.deserialize_aws_json_1_0(
@@ -37,7 +37,7 @@ def deserialize_aws_json_1_0(data: dict) -> Scheduler:
         )
     else:
         raise DeserializationError("Scheduler.type required")
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     else:
         raise DeserializationError("Scheduler.version required")

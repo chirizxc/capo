@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: TableOptimizerVpcConfiguration) -> dict:
 
 
 def deserialize_aws_json_1_1(data: dict) -> TableOptimizerVpcConfiguration:
-    if "glueConnectionName" in data:
+    if data.get("glueConnectionName") is not None:
         return {"glueConnectionName": data["glueConnectionName"]}
     else:
         raise DeserializationError(

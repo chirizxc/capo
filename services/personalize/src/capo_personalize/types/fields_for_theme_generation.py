@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: FieldsForThemeGeneration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FieldsForThemeGeneration:
     out: FieldsForThemeGeneration = {}  # type: ignore[typeddict-item]
-    if "itemName" in data:
+    if data.get("itemName") is not None:
         out["item_name"] = data["itemName"]
     else:
         raise DeserializationError("FieldsForThemeGeneration.item_name required")

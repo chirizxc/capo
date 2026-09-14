@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> CoreNetworkNetworkFunctionGroupList:
 
     out: CoreNetworkNetworkFunctionGroupList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_networkmanager.types.core_network_network_function_group.deserialize_json(
                 item

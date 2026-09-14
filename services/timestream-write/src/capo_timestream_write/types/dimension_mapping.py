@@ -29,8 +29,8 @@ def serialize_aws_json_1_0(value: DimensionMapping) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DimensionMapping:
     out: DimensionMapping = {}  # type: ignore[typeddict-item]
-    if "SourceColumn" in data:
+    if data.get("SourceColumn") is not None:
         out["source_column"] = data["SourceColumn"]
-    if "DestinationColumn" in data:
+    if data.get("DestinationColumn") is not None:
         out["destination_column"] = data["DestinationColumn"]
     return out

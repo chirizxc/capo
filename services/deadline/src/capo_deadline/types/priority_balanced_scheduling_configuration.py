@@ -22,7 +22,7 @@ def serialize_json(value: PriorityBalancedSchedulingConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> PriorityBalancedSchedulingConfiguration:
     out: PriorityBalancedSchedulingConfiguration = {}  # type: ignore[typeddict-item]
-    if "renderingTaskBuffer" in data:
+    if data.get("renderingTaskBuffer") is not None:
         out["rendering_task_buffer"] = data["renderingTaskBuffer"]
     else:
         out["rendering_task_buffer"] = 1

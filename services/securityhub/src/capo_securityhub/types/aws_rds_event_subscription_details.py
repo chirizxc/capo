@@ -85,13 +85,13 @@ def serialize_json(value: AwsRdsEventSubscriptionDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsRdsEventSubscriptionDetails:
     out: AwsRdsEventSubscriptionDetails = {}  # type: ignore[typeddict-item]
-    if "CustSubscriptionId" in data:
+    if data.get("CustSubscriptionId") is not None:
         out["cust_subscription_id"] = data["CustSubscriptionId"]
-    if "CustomerAwsId" in data:
+    if data.get("CustomerAwsId") is not None:
         out["customer_aws_id"] = data["CustomerAwsId"]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "EventCategoriesList" in data:
+    if data.get("EventCategoriesList") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["event_categories_list"] = (
@@ -99,11 +99,11 @@ def deserialize_json(data: dict) -> AwsRdsEventSubscriptionDetails:
                 data["EventCategoriesList"]
             )
         )
-    if "EventSubscriptionArn" in data:
+    if data.get("EventSubscriptionArn") is not None:
         out["event_subscription_arn"] = data["EventSubscriptionArn"]
-    if "SnsTopicArn" in data:
+    if data.get("SnsTopicArn") is not None:
         out["sns_topic_arn"] = data["SnsTopicArn"]
-    if "SourceIdsList" in data:
+    if data.get("SourceIdsList") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["source_ids_list"] = (
@@ -111,10 +111,10 @@ def deserialize_json(data: dict) -> AwsRdsEventSubscriptionDetails:
                 data["SourceIdsList"]
             )
         )
-    if "SourceType" in data:
+    if data.get("SourceType") is not None:
         out["source_type"] = data["SourceType"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "SubscriptionCreationTime" in data:
+    if data.get("SubscriptionCreationTime") is not None:
         out["subscription_creation_time"] = data["SubscriptionCreationTime"]
     return out

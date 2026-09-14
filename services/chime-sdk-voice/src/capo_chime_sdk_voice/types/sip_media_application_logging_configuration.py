@@ -27,7 +27,7 @@ def serialize_json(value: SipMediaApplicationLoggingConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SipMediaApplicationLoggingConfiguration:
     out: SipMediaApplicationLoggingConfiguration = {}  # type: ignore[typeddict-item]
-    if "EnableSipMediaApplicationMessageLogs" in data:
+    if data.get("EnableSipMediaApplicationMessageLogs") is not None:
         out["enable_sip_media_application_message_logs"] = data[
             "EnableSipMediaApplicationMessageLogs"
         ]

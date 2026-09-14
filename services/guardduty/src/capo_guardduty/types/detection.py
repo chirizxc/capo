@@ -34,11 +34,11 @@ def serialize_json(value: Detection) -> dict:
 
 def deserialize_json(data: dict) -> Detection:
     out: Detection = {}  # type: ignore[typeddict-item]
-    if "anomaly" in data:
+    if data.get("anomaly") is not None:
         import capo_guardduty.types.anomaly
 
         out["anomaly"] = capo_guardduty.types.anomaly.deserialize_json(data["anomaly"])
-    if "sequence" in data:
+    if data.get("sequence") is not None:
         import capo_guardduty.types.sequence
 
         out["sequence"] = capo_guardduty.types.sequence.deserialize_json(

@@ -79,13 +79,13 @@ def serialize_aws_json_1_1(value: UpdateMlflowAppRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateMlflowAppRequest:
     out: UpdateMlflowAppRequest = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ArtifactStoreUri" in data:
+    if data.get("ArtifactStoreUri") is not None:
         out["artifact_store_uri"] = data["ArtifactStoreUri"]
-    if "ModelRegistrationMode" in data:
+    if data.get("ModelRegistrationMode") is not None:
         import capo_sagemaker.types.model_registration_mode
 
         out["model_registration_mode"] = (
@@ -93,9 +93,9 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateMlflowAppRequest:
                 data["ModelRegistrationMode"]
             )
         )
-    if "WeeklyMaintenanceWindowStart" in data:
+    if data.get("WeeklyMaintenanceWindowStart") is not None:
         out["weekly_maintenance_window_start"] = data["WeeklyMaintenanceWindowStart"]
-    if "DefaultDomainIdList" in data:
+    if data.get("DefaultDomainIdList") is not None:
         import capo_sagemaker.types.default_domain_id_list
 
         out["default_domain_id_list"] = (
@@ -103,7 +103,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateMlflowAppRequest:
                 data["DefaultDomainIdList"]
             )
         )
-    if "AccountDefaultStatus" in data:
+    if data.get("AccountDefaultStatus") is not None:
         import capo_sagemaker.types.account_default_status
 
         out["account_default_status"] = (

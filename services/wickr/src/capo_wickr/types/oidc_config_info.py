@@ -75,38 +75,38 @@ def serialize_json(value: OidcConfigInfo) -> dict:
 
 def deserialize_json(data: dict) -> OidcConfigInfo:
     out: OidcConfigInfo = {}  # type: ignore[typeddict-item]
-    if "applicationName" in data:
+    if data.get("applicationName") is not None:
         out["application_name"] = data["applicationName"]
-    if "clientId" in data:
+    if data.get("clientId") is not None:
         out["client_id"] = data["clientId"]
-    if "companyId" in data:
+    if data.get("companyId") is not None:
         out["company_id"] = data["companyId"]
     else:
         raise DeserializationError("OidcConfigInfo.company_id required")
-    if "scopes" in data:
+    if data.get("scopes") is not None:
         out["scopes"] = data["scopes"]
     else:
         raise DeserializationError("OidcConfigInfo.scopes required")
-    if "issuer" in data:
+    if data.get("issuer") is not None:
         out["issuer"] = data["issuer"]
     else:
         raise DeserializationError("OidcConfigInfo.issuer required")
-    if "clientSecret" in data:
+    if data.get("clientSecret") is not None:
         out["client_secret"] = data["clientSecret"]
-    if "secret" in data:
+    if data.get("secret") is not None:
         out["secret"] = data["secret"]
-    if "redirectUrl" in data:
+    if data.get("redirectUrl") is not None:
         out["redirect_url"] = data["redirectUrl"]
-    if "userId" in data:
+    if data.get("userId") is not None:
         out["user_id"] = data["userId"]
-    if "customUsername" in data:
+    if data.get("customUsername") is not None:
         out["custom_username"] = data["customUsername"]
-    if "caCertificate" in data:
+    if data.get("caCertificate") is not None:
         out["ca_certificate"] = data["caCertificate"]
-    if "applicationId" in data:
+    if data.get("applicationId") is not None:
         out["application_id"] = data["applicationId"]
-    if "ssoTokenBufferMinutes" in data:
+    if data.get("ssoTokenBufferMinutes") is not None:
         out["sso_token_buffer_minutes"] = data["ssoTokenBufferMinutes"]
-    if "extraAuthParams" in data:
+    if data.get("extraAuthParams") is not None:
         out["extra_auth_params"] = data["extraAuthParams"]
     return out

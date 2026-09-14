@@ -48,9 +48,9 @@ def serialize_json(value: StartSuiteRunRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartSuiteRunRequest:
     out: StartSuiteRunRequest = {}  # type: ignore[typeddict-item]
-    if "suiteDefinitionVersion" in data:
+    if data.get("suiteDefinitionVersion") is not None:
         out["suite_definition_version"] = data["suiteDefinitionVersion"]
-    if "suiteRunConfiguration" in data:
+    if data.get("suiteRunConfiguration") is not None:
         import capo_iotdeviceadvisor.types.suite_run_configuration
 
         out["suite_run_configuration"] = (
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> StartSuiteRunRequest:
                 data["suiteRunConfiguration"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iotdeviceadvisor.types.tag_map
 
         out["tags"] = capo_iotdeviceadvisor.types.tag_map.deserialize_json(data["tags"])

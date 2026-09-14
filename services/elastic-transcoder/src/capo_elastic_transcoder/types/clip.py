@@ -27,7 +27,7 @@ def serialize_json(value: Clip) -> dict:
 
 def deserialize_json(data: dict) -> Clip:
     out: Clip = {}  # type: ignore[typeddict-item]
-    if "TimeSpan" in data:
+    if data.get("TimeSpan") is not None:
         import capo_elastic_transcoder.types.time_span
 
         out["time_span"] = capo_elastic_transcoder.types.time_span.deserialize_json(

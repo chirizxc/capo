@@ -45,13 +45,13 @@ def serialize_json(value: DescribeHubResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeHubResponse:
     out: DescribeHubResponse = {}  # type: ignore[typeddict-item]
-    if "HubArn" in data:
+    if data.get("HubArn") is not None:
         out["hub_arn"] = data["HubArn"]
-    if "SubscribedAt" in data:
+    if data.get("SubscribedAt") is not None:
         out["subscribed_at"] = data["SubscribedAt"]
-    if "AutoEnableControls" in data:
+    if data.get("AutoEnableControls") is not None:
         out["auto_enable_controls"] = data["AutoEnableControls"]
-    if "ControlFindingGenerator" in data:
+    if data.get("ControlFindingGenerator") is not None:
         import capo_securityhub.types.control_finding_generator
 
         out["control_finding_generator"] = (

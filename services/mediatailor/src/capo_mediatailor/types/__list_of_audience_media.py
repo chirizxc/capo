@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfAudienceMedia:
 
     out: __listOfAudienceMedia = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediatailor.types.audience_media.deserialize_json(item))
     return out

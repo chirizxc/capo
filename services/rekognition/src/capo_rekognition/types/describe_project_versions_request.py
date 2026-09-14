@@ -49,13 +49,13 @@ def serialize_aws_json_1_1(value: DescribeProjectVersionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeProjectVersionsRequest:
     out: DescribeProjectVersionsRequest = {}  # type: ignore[typeddict-item]
-    if "ProjectArn" in data:
+    if data.get("ProjectArn") is not None:
         out["project_arn"] = data["ProjectArn"]
     else:
         raise DeserializationError(
             "DescribeProjectVersionsRequest.project_arn required"
         )
-    if "VersionNames" in data:
+    if data.get("VersionNames") is not None:
         import capo_rekognition.types.version_names
 
         out["version_names"] = (
@@ -63,8 +63,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeProjectVersionsRequest:
                 data["VersionNames"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

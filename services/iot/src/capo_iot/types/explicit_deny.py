@@ -25,7 +25,7 @@ def serialize_json(value: ExplicitDeny) -> dict:
 
 def deserialize_json(data: dict) -> ExplicitDeny:
     out: ExplicitDeny = {}  # type: ignore[typeddict-item]
-    if "policies" in data:
+    if data.get("policies") is not None:
         import capo_iot.types.policies
 
         out["policies"] = capo_iot.types.policies.deserialize_json(data["policies"])

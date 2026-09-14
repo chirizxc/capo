@@ -30,7 +30,7 @@ def serialize_json(value: ResourceStateUpdateExclusionRules) -> dict:
 
 def deserialize_json(data: dict) -> ResourceStateUpdateExclusionRules:
     out: ResourceStateUpdateExclusionRules = {}  # type: ignore[typeddict-item]
-    if "amis" in data:
+    if data.get("amis") is not None:
         import capo_imagebuilder.types.lifecycle_policy_detail_exclusion_rules_amis
 
         out["amis"] = (

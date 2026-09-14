@@ -142,9 +142,9 @@ def serialize_json(value: AgentInfo) -> dict:
 
 def deserialize_json(data: dict) -> AgentInfo:
     out: AgentInfo = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "AcceptedByAgentTimestamp" in data:
+    if data.get("AcceptedByAgentTimestamp") is not None:
         import capo_connect.types.timestamp
 
         out["accepted_by_agent_timestamp"] = (
@@ -152,13 +152,13 @@ def deserialize_json(data: dict) -> AgentInfo:
                 data["AcceptedByAgentTimestamp"]
             )
         )
-    if "PreviewEndTimestamp" in data:
+    if data.get("PreviewEndTimestamp") is not None:
         import capo_connect.types.timestamp
 
         out["preview_end_timestamp"] = capo_connect.types.timestamp.deserialize_json(
             data["PreviewEndTimestamp"]
         )
-    if "ConnectedToAgentTimestamp" in data:
+    if data.get("ConnectedToAgentTimestamp") is not None:
         import capo_connect.types.timestamp
 
         out["connected_to_agent_timestamp"] = (
@@ -166,21 +166,21 @@ def deserialize_json(data: dict) -> AgentInfo:
                 data["ConnectedToAgentTimestamp"]
             )
         )
-    if "AgentPauseDurationInSeconds" in data:
+    if data.get("AgentPauseDurationInSeconds") is not None:
         out["agent_pause_duration_in_seconds"] = data["AgentPauseDurationInSeconds"]
-    if "HierarchyGroups" in data:
+    if data.get("HierarchyGroups") is not None:
         import capo_connect.types.hierarchy_groups
 
         out["hierarchy_groups"] = capo_connect.types.hierarchy_groups.deserialize_json(
             data["HierarchyGroups"]
         )
-    if "DeviceInfo" in data:
+    if data.get("DeviceInfo") is not None:
         import capo_connect.types.device_info
 
         out["device_info"] = capo_connect.types.device_info.deserialize_json(
             data["DeviceInfo"]
         )
-    if "Capabilities" in data:
+    if data.get("Capabilities") is not None:
         import capo_connect.types.participant_capabilities
 
         out["capabilities"] = (
@@ -188,9 +188,9 @@ def deserialize_json(data: dict) -> AgentInfo:
                 data["Capabilities"]
             )
         )
-    if "AfterContactWorkDuration" in data:
+    if data.get("AfterContactWorkDuration") is not None:
         out["after_contact_work_duration"] = data["AfterContactWorkDuration"]
-    if "AfterContactWorkStartTimestamp" in data:
+    if data.get("AfterContactWorkStartTimestamp") is not None:
         import capo_connect.types.timestamp
 
         out["after_contact_work_start_timestamp"] = (
@@ -198,7 +198,7 @@ def deserialize_json(data: dict) -> AgentInfo:
                 data["AfterContactWorkStartTimestamp"]
             )
         )
-    if "AfterContactWorkEndTimestamp" in data:
+    if data.get("AfterContactWorkEndTimestamp") is not None:
         import capo_connect.types.timestamp
 
         out["after_contact_work_end_timestamp"] = (
@@ -206,9 +206,9 @@ def deserialize_json(data: dict) -> AgentInfo:
                 data["AfterContactWorkEndTimestamp"]
             )
         )
-    if "AgentInitiatedHoldDuration" in data:
+    if data.get("AgentInitiatedHoldDuration") is not None:
         out["agent_initiated_hold_duration"] = data["AgentInitiatedHoldDuration"]
-    if "StateTransitions" in data:
+    if data.get("StateTransitions") is not None:
         import capo_connect.types.state_transitions
 
         out["state_transitions"] = (
@@ -216,7 +216,7 @@ def deserialize_json(data: dict) -> AgentInfo:
                 data["StateTransitions"]
             )
         )
-    if "VoiceEnhancementMode" in data:
+    if data.get("VoiceEnhancementMode") is not None:
         import capo_connect.types.voice_enhancement_mode
 
         out["voice_enhancement_mode"] = (

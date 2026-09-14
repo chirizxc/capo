@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> PresetWatermarks:
 
     out: PresetWatermarks = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_elastic_transcoder.types.preset_watermark.deserialize_json(item)
         )

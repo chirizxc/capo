@@ -65,7 +65,7 @@ def serialize_aws_json_1_0(value: Flow) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Flow:
     out: Flow = {}  # type: ignore[typeddict-item]
-    if "SourceAddress" in data:
+    if data.get("SourceAddress") is not None:
         import capo_network_firewall.types.address
 
         out["source_address"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_0(data: dict) -> Flow:
                 data["SourceAddress"]
             )
         )
-    if "DestinationAddress" in data:
+    if data.get("DestinationAddress") is not None:
         import capo_network_firewall.types.address
 
         out["destination_address"] = (
@@ -81,17 +81,17 @@ def deserialize_aws_json_1_0(data: dict) -> Flow:
                 data["DestinationAddress"]
             )
         )
-    if "SourcePort" in data:
+    if data.get("SourcePort") is not None:
         out["source_port"] = data["SourcePort"]
-    if "DestinationPort" in data:
+    if data.get("DestinationPort") is not None:
         out["destination_port"] = data["DestinationPort"]
-    if "Protocol" in data:
+    if data.get("Protocol") is not None:
         out["protocol"] = data["Protocol"]
-    if "Age" in data:
+    if data.get("Age") is not None:
         out["age"] = data["Age"]
-    if "PacketCount" in data:
+    if data.get("PacketCount") is not None:
         out["packet_count"] = data["PacketCount"]
-    if "ByteCount" in data:
+    if data.get("ByteCount") is not None:
         out["byte_count"] = data["ByteCount"]
     else:
         out["byte_count"] = 0

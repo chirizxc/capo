@@ -39,21 +39,21 @@ def serialize_aws_json_1_1(value: ConvertRecoveryPointToSnapshotRequest) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> ConvertRecoveryPointToSnapshotRequest:
     out: ConvertRecoveryPointToSnapshotRequest = {}  # type: ignore[typeddict-item]
-    if "recoveryPointId" in data:
+    if data.get("recoveryPointId") is not None:
         out["recovery_point_id"] = data["recoveryPointId"]
     else:
         raise DeserializationError(
             "ConvertRecoveryPointToSnapshotRequest.recovery_point_id required"
         )
-    if "snapshotName" in data:
+    if data.get("snapshotName") is not None:
         out["snapshot_name"] = data["snapshotName"]
     else:
         raise DeserializationError(
             "ConvertRecoveryPointToSnapshotRequest.snapshot_name required"
         )
-    if "retentionPeriod" in data:
+    if data.get("retentionPeriod") is not None:
         out["retention_period"] = data["retentionPeriod"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_redshift_serverless.types.tag_list
 
         out["tags"] = capo_redshift_serverless.types.tag_list.deserialize_aws_json_1_1(

@@ -14,6 +14,9 @@ PreferredAvailabilityZoneList: TypeAlias = list["capo_elasticache.types.string.S
 def serialize_query(
     value: PreferredAvailabilityZoneList, pairs: list[tuple[str, str]], prefix: str
 ) -> None:
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         pairs.append((f"{prefix}.PreferredAvailabilityZone.{n}", str(item)))
 
@@ -28,6 +31,9 @@ def deserialize_query(el: Element) -> PreferredAvailabilityZoneList:
 def serialize_query_flat(
     value: PreferredAvailabilityZoneList, pairs: list[tuple[str, str]], prefix: str
 ) -> None:
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         pairs.append((f"{prefix}.{n}", str(item)))
 

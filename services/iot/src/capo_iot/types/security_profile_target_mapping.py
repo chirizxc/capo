@@ -40,7 +40,7 @@ def serialize_json(value: SecurityProfileTargetMapping) -> dict:
 
 def deserialize_json(data: dict) -> SecurityProfileTargetMapping:
     out: SecurityProfileTargetMapping = {}  # type: ignore[typeddict-item]
-    if "securityProfileIdentifier" in data:
+    if data.get("securityProfileIdentifier") is not None:
         import capo_iot.types.security_profile_identifier
 
         out["security_profile_identifier"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> SecurityProfileTargetMapping:
                 data["securityProfileIdentifier"]
             )
         )
-    if "target" in data:
+    if data.get("target") is not None:
         import capo_iot.types.security_profile_target
 
         out["target"] = capo_iot.types.security_profile_target.deserialize_json(

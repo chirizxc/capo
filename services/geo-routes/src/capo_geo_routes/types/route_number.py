@@ -38,15 +38,15 @@ def serialize_json(value: RouteNumber) -> dict:
 
 def deserialize_json(data: dict) -> RouteNumber:
     out: RouteNumber = {}  # type: ignore[typeddict-item]
-    if "Direction" in data:
+    if data.get("Direction") is not None:
         import capo_geo_routes.types.route_direction
 
         out["direction"] = capo_geo_routes.types.route_direction.deserialize_json(
             data["Direction"]
         )
-    if "Language" in data:
+    if data.get("Language") is not None:
         out["language"] = data["Language"]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("RouteNumber.value required")

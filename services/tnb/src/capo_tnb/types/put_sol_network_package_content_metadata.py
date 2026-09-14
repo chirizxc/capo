@@ -24,7 +24,7 @@ def serialize_json(value: PutSolNetworkPackageContentMetadata) -> dict:
 
 def deserialize_json(data: dict) -> PutSolNetworkPackageContentMetadata:
     out: PutSolNetworkPackageContentMetadata = {}  # type: ignore[typeddict-item]
-    if "nsd" in data:
+    if data.get("nsd") is not None:
         import capo_tnb.types.network_artifact_meta
 
         out["nsd"] = capo_tnb.types.network_artifact_meta.deserialize_json(data["nsd"])

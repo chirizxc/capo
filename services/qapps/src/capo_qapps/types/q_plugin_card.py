@@ -64,15 +64,15 @@ def serialize_json(value: QPluginCard) -> dict:
 
 def deserialize_json(data: dict) -> QPluginCard:
     out: QPluginCard = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("QPluginCard.id required")
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
     else:
         raise DeserializationError("QPluginCard.title required")
-    if "dependencies" in data:
+    if data.get("dependencies") is not None:
         import capo_qapps.types.dependency_list
 
         out["dependencies"] = capo_qapps.types.dependency_list.deserialize_json(
@@ -80,17 +80,17 @@ def deserialize_json(data: dict) -> QPluginCard:
         )
     else:
         raise DeserializationError("QPluginCard.dependencies required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_qapps.types.card_type
 
         out["type"] = capo_qapps.types.card_type.deserialize_json(data["type"])
     else:
         raise DeserializationError("QPluginCard.type required")
-    if "prompt" in data:
+    if data.get("prompt") is not None:
         out["prompt"] = data["prompt"]
     else:
         raise DeserializationError("QPluginCard.prompt required")
-    if "pluginType" in data:
+    if data.get("pluginType") is not None:
         import capo_qapps.types.plugin_type
 
         out["plugin_type"] = capo_qapps.types.plugin_type.deserialize_json(
@@ -98,10 +98,10 @@ def deserialize_json(data: dict) -> QPluginCard:
         )
     else:
         raise DeserializationError("QPluginCard.plugin_type required")
-    if "pluginId" in data:
+    if data.get("pluginId") is not None:
         out["plugin_id"] = data["pluginId"]
     else:
         raise DeserializationError("QPluginCard.plugin_id required")
-    if "actionIdentifier" in data:
+    if data.get("actionIdentifier") is not None:
         out["action_identifier"] = data["actionIdentifier"]
     return out

@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: ListSupportedInstanceTypesInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListSupportedInstanceTypesInput:
     out: ListSupportedInstanceTypesInput = {}  # type: ignore[typeddict-item]
-    if "ReleaseLabel" in data:
+    if data.get("ReleaseLabel") is not None:
         out["release_label"] = data["ReleaseLabel"]
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

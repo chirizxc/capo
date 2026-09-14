@@ -32,7 +32,7 @@ def serialize_json(value: GatewayResponses) -> dict:
 
 def deserialize_json(data: dict) -> GatewayResponses:
     out: GatewayResponses = {}  # type: ignore[typeddict-item]
-    if "item" in data:
+    if data.get("item") is not None:
         import capo_api_gateway.types.list_of_gateway_response
 
         out["items"] = capo_api_gateway.types.list_of_gateway_response.deserialize_json(

@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> SuggestionHighlightList:
 
     out: SuggestionHighlightList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_kendra.types.suggestion_highlight.deserialize_aws_json_1_1(item)
         )

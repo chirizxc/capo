@@ -38,9 +38,9 @@ def serialize_json(value: DeploymentComponentUpdatePolicy) -> dict:
 
 def deserialize_json(data: dict) -> DeploymentComponentUpdatePolicy:
     out: DeploymentComponentUpdatePolicy = {}  # type: ignore[typeddict-item]
-    if "timeoutInSeconds" in data:
+    if data.get("timeoutInSeconds") is not None:
         out["timeout_in_seconds"] = data["timeoutInSeconds"]
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_greengrassv2.types.deployment_component_update_policy_action
 
         out["action"] = (

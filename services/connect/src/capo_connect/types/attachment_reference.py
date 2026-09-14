@@ -42,16 +42,16 @@ def serialize_json(value: AttachmentReference) -> dict:
 
 def deserialize_json(data: dict) -> AttachmentReference:
     out: AttachmentReference = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_connect.types.reference_status
 
         out["status"] = capo_connect.types.reference_status.deserialize_json(
             data["Status"]
         )
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     return out

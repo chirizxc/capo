@@ -36,7 +36,7 @@ def serialize_json(value: Tls) -> dict:
 
 def deserialize_json(data: dict) -> Tls:
     out: Tls = {}  # type: ignore[typeddict-item]
-    if "certificateAuthorityArnList" in data:
+    if data.get("certificateAuthorityArnList") is not None:
         import capo_kafka.types.__list_of__string
 
         out["certificate_authority_arn_list"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> Tls:
                 data["certificateAuthorityArnList"]
             )
         )
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
     return out

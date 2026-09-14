@@ -70,16 +70,18 @@ class RegionOptResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_account.types.disable_region_request.DisableRegionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_account.types.disable_region_request.DisableRegionRequest = {
+            "region_name": region_name
+        }
         if account_id is not None:
             input_["account_id"] = account_id
-        input_["region_name"] = region_name
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def enable_region(
@@ -117,16 +119,18 @@ class RegionOptResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_account.types.enable_region_request.EnableRegionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_account.types.enable_region_request.EnableRegionRequest = {
+            "region_name": region_name
+        }
         if account_id is not None:
             input_["account_id"] = account_id
-        input_["region_name"] = region_name
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_region_opt_status(
@@ -165,16 +169,18 @@ class RegionOptResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_account.types.get_region_opt_status_request.GetRegionOptStatusRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_account.types.get_region_opt_status_request.GetRegionOptStatusRequest = {
+            "region_name": region_name
+        }
         if account_id is not None:
             input_["account_id"] = account_id
-        input_["region_name"] = region_name
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_regions(
@@ -219,7 +225,7 @@ class RegionOptResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_account.types.list_regions_request.ListRegionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_account.types.list_regions_request.ListRegionsRequest = {}
         if account_id is not None:
             input_["account_id"] = account_id
         if max_results is not None:
@@ -234,6 +240,7 @@ class RegionOptResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -277,16 +284,18 @@ class AsyncRegionOptResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_account.types.disable_region_request.DisableRegionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_account.types.disable_region_request.DisableRegionRequest = {
+            "region_name": region_name
+        }
         if account_id is not None:
             input_["account_id"] = account_id
-        input_["region_name"] = region_name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def enable_region(
@@ -325,16 +334,18 @@ class AsyncRegionOptResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_account.types.enable_region_request.EnableRegionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_account.types.enable_region_request.EnableRegionRequest = {
+            "region_name": region_name
+        }
         if account_id is not None:
             input_["account_id"] = account_id
-        input_["region_name"] = region_name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_region_opt_status(
@@ -374,16 +385,18 @@ class AsyncRegionOptResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_account.types.get_region_opt_status_request.GetRegionOptStatusRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_account.types.get_region_opt_status_request.GetRegionOptStatusRequest = {
+            "region_name": region_name
+        }
         if account_id is not None:
             input_["account_id"] = account_id
-        input_["region_name"] = region_name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_regions(
@@ -429,7 +442,7 @@ class AsyncRegionOptResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_account.types.list_regions_request.ListRegionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_account.types.list_regions_request.ListRegionsRequest = {}
         if account_id is not None:
             input_["account_id"] = account_id
         if max_results is not None:
@@ -444,4 +457,5 @@ class AsyncRegionOptResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -23,6 +23,6 @@ def serialize_json(value: Font) -> dict:
 
 def deserialize_json(data: dict) -> Font:
     out: Font = {}  # type: ignore[typeddict-item]
-    if "FontFamily" in data:
+    if data.get("FontFamily") is not None:
         out["font_family"] = data["FontFamily"]
     return out

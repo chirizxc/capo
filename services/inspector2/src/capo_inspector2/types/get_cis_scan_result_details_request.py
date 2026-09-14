@@ -73,21 +73,21 @@ def serialize_json(value: GetCisScanResultDetailsRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetCisScanResultDetailsRequest:
     out: GetCisScanResultDetailsRequest = {}  # type: ignore[typeddict-item]
-    if "scanArn" in data:
+    if data.get("scanArn") is not None:
         out["scan_arn"] = data["scanArn"]
     else:
         raise DeserializationError("GetCisScanResultDetailsRequest.scan_arn required")
-    if "targetResourceId" in data:
+    if data.get("targetResourceId") is not None:
         out["target_resource_id"] = data["targetResourceId"]
     else:
         raise DeserializationError(
             "GetCisScanResultDetailsRequest.target_resource_id required"
         )
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
     else:
         raise DeserializationError("GetCisScanResultDetailsRequest.account_id required")
-    if "filterCriteria" in data:
+    if data.get("filterCriteria") is not None:
         import capo_inspector2.types.cis_scan_result_details_filter_criteria
 
         out["filter_criteria"] = (
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> GetCisScanResultDetailsRequest:
                 data["filterCriteria"]
             )
         )
-    if "sortBy" in data:
+    if data.get("sortBy") is not None:
         import capo_inspector2.types.cis_scan_result_details_sort_by
 
         out["sort_by"] = (
@@ -105,15 +105,15 @@ def deserialize_json(data: dict) -> GetCisScanResultDetailsRequest:
         )
     else:
         out["sort_by"] = "CHECK_ID"
-    if "sortOrder" in data:
+    if data.get("sortOrder") is not None:
         import capo_inspector2.types.cis_sort_order
 
         out["sort_order"] = capo_inspector2.types.cis_sort_order.deserialize_json(
             data["sortOrder"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     else:
         out["max_results"] = 300

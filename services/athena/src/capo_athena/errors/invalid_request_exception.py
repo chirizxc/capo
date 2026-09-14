@@ -28,9 +28,9 @@ def serialize_aws_json_1_1(value: InvalidRequestException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidRequestException_:
     out: InvalidRequestException_ = {}  # type: ignore[typeddict-item]
-    if "AthenaErrorCode" in data:
+    if data.get("AthenaErrorCode") is not None:
         out["athena_error_code"] = data["AthenaErrorCode"]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -40,15 +40,18 @@ class InvalidRequestException(ServiceError):
 
     code: str | None = "InvalidRequestException"
 
-    def __init__(self, data: InvalidRequestException_):
+    def __init__(self, data: InvalidRequestException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidRequestException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidRequestException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidRequestException":
+        return cls(deserialize_aws_json_1_1(data), message)

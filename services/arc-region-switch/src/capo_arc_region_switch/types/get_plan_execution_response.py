@@ -144,17 +144,17 @@ def serialize_aws_json_1_0(value: GetPlanExecutionResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetPlanExecutionResponse:
     out: GetPlanExecutionResponse = {}  # type: ignore[typeddict-item]
-    if "planArn" in data:
+    if data.get("planArn") is not None:
         out["plan_arn"] = data["planArn"]
     else:
         raise DeserializationError("GetPlanExecutionResponse.plan_arn required")
-    if "executionId" in data:
+    if data.get("executionId") is not None:
         out["execution_id"] = data["executionId"]
     else:
         raise DeserializationError("GetPlanExecutionResponse.execution_id required")
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_arc_region_switch.types._prelude.timestamp
 
         out["updated_at"] = (
@@ -162,9 +162,9 @@ def deserialize_aws_json_1_0(data: dict) -> GetPlanExecutionResponse:
                 data["updatedAt"]
             )
         )
-    if "comment" in data:
+    if data.get("comment") is not None:
         out["comment"] = data["comment"]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_arc_region_switch.types._prelude.timestamp
 
         out["start_time"] = (
@@ -174,7 +174,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetPlanExecutionResponse:
         )
     else:
         raise DeserializationError("GetPlanExecutionResponse.start_time required")
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_arc_region_switch.types._prelude.timestamp
 
         out["end_time"] = (
@@ -182,7 +182,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetPlanExecutionResponse:
                 data["endTime"]
             )
         )
-    if "mode" in data:
+    if data.get("mode") is not None:
         import capo_arc_region_switch.types.execution_mode
 
         out["mode"] = (
@@ -192,7 +192,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetPlanExecutionResponse:
         )
     else:
         raise DeserializationError("GetPlanExecutionResponse.mode required")
-    if "executionState" in data:
+    if data.get("executionState") is not None:
         import capo_arc_region_switch.types.execution_state
 
         out["execution_state"] = (
@@ -202,7 +202,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetPlanExecutionResponse:
         )
     else:
         raise DeserializationError("GetPlanExecutionResponse.execution_state required")
-    if "executionAction" in data:
+    if data.get("executionAction") is not None:
         import capo_arc_region_switch.types.execution_action
 
         out["execution_action"] = (
@@ -212,13 +212,13 @@ def deserialize_aws_json_1_0(data: dict) -> GetPlanExecutionResponse:
         )
     else:
         raise DeserializationError("GetPlanExecutionResponse.execution_action required")
-    if "executionRegion" in data:
+    if data.get("executionRegion") is not None:
         out["execution_region"] = data["executionRegion"]
     else:
         raise DeserializationError("GetPlanExecutionResponse.execution_region required")
-    if "recoveryExecutionId" in data:
+    if data.get("recoveryExecutionId") is not None:
         out["recovery_execution_id"] = data["recoveryExecutionId"]
-    if "stepStates" in data:
+    if data.get("stepStates") is not None:
         import capo_arc_region_switch.types.step_states
 
         out["step_states"] = (
@@ -226,15 +226,15 @@ def deserialize_aws_json_1_0(data: dict) -> GetPlanExecutionResponse:
                 data["stepStates"]
             )
         )
-    if "plan" in data:
+    if data.get("plan") is not None:
         import capo_arc_region_switch.types.plan
 
         out["plan"] = capo_arc_region_switch.types.plan.deserialize_aws_json_1_0(
             data["plan"]
         )
-    if "actualRecoveryTime" in data:
+    if data.get("actualRecoveryTime") is not None:
         out["actual_recovery_time"] = data["actualRecoveryTime"]
-    if "generatedReportDetails" in data:
+    if data.get("generatedReportDetails") is not None:
         import capo_arc_region_switch.types.generated_report_details
 
         out["generated_report_details"] = (
@@ -242,6 +242,6 @@ def deserialize_aws_json_1_0(data: dict) -> GetPlanExecutionResponse:
                 data["generatedReportDetails"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

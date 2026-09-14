@@ -36,9 +36,9 @@ def serialize_json(value: CreateDetectorResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateDetectorResponse:
     out: CreateDetectorResponse = {}  # type: ignore[typeddict-item]
-    if "detectorId" in data:
+    if data.get("detectorId") is not None:
         out["detector_id"] = data["detectorId"]
-    if "unprocessedDataSources" in data:
+    if data.get("unprocessedDataSources") is not None:
         import capo_guardduty.types.unprocessed_data_sources_result
 
         out["unprocessed_data_sources"] = (

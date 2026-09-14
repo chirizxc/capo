@@ -27,7 +27,7 @@ def serialize_json(value: AssociateApiResponse) -> dict:
 
 def deserialize_json(data: dict) -> AssociateApiResponse:
     out: AssociateApiResponse = {}  # type: ignore[typeddict-item]
-    if "apiAssociation" in data:
+    if data.get("apiAssociation") is not None:
         import capo_appsync.types.api_association
 
         out["api_association"] = capo_appsync.types.api_association.deserialize_json(

@@ -34,12 +34,12 @@ def serialize_aws_json_1_0(value: ListArchiveExportsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListArchiveExportsRequest:
     out: ListArchiveExportsRequest = {}  # type: ignore[typeddict-item]
-    if "ArchiveId" in data:
+    if data.get("ArchiveId") is not None:
         out["archive_id"] = data["ArchiveId"]
     else:
         raise DeserializationError("ListArchiveExportsRequest.archive_id required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "PageSize" in data:
+    if data.get("PageSize") is not None:
         out["page_size"] = data["PageSize"]
     return out

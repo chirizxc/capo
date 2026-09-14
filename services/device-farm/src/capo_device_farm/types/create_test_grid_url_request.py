@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: CreateTestGridUrlRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateTestGridUrlRequest:
     out: CreateTestGridUrlRequest = {}  # type: ignore[typeddict-item]
-    if "projectArn" in data:
+    if data.get("projectArn") is not None:
         out["project_arn"] = data["projectArn"]
     else:
         raise DeserializationError("CreateTestGridUrlRequest.project_arn required")
-    if "expiresInSeconds" in data:
+    if data.get("expiresInSeconds") is not None:
         out["expires_in_seconds"] = data["expiresInSeconds"]
     else:
         raise DeserializationError(

@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: AclConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AclConfiguration:
     out: AclConfiguration = {}  # type: ignore[typeddict-item]
-    if "S3AclOption" in data:
+    if data.get("S3AclOption") is not None:
         import capo_athena.types.s3_acl_option
 
         out["s3_acl_option"] = capo_athena.types.s3_acl_option.deserialize_aws_json_1_1(

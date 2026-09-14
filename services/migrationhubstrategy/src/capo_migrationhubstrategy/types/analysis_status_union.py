@@ -38,9 +38,9 @@ def serialize_json(value: AnalysisStatusUnion) -> dict:
 
 
 def deserialize_json(data: dict) -> AnalysisStatusUnion:
-    if "runtimeAnalysisStatus" in data:
+    if data.get("runtimeAnalysisStatus") is not None:
         return {"runtimeAnalysisStatus": data["runtimeAnalysisStatus"]}
-    elif "srcCodeOrDbAnalysisStatus" in data:
+    elif data.get("srcCodeOrDbAnalysisStatus") is not None:
         return {"srcCodeOrDbAnalysisStatus": data["srcCodeOrDbAnalysisStatus"]}
     else:
         raise DeserializationError("AnalysisStatusUnion: no recognized variant key")

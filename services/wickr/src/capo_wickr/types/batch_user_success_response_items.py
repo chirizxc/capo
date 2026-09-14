@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> BatchUserSuccessResponseItems:
 
     out: BatchUserSuccessResponseItems = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_wickr.types.batch_user_success_response_item.deserialize_json(item)
         )

@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> pipelineList:
 
     out: pipelineList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_data_pipeline.types.pipeline_id_name.deserialize_aws_json_1_1(item)
         )

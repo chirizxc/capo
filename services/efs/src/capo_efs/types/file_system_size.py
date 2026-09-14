@@ -48,18 +48,18 @@ def serialize_json(value: FileSystemSize) -> dict:
 
 def deserialize_json(data: dict) -> FileSystemSize:
     out: FileSystemSize = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         out["value"] = 0
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         import capo_efs.types.timestamp
 
         out["timestamp"] = capo_efs.types.timestamp.deserialize_json(data["Timestamp"])
-    if "ValueInIA" in data:
+    if data.get("ValueInIA") is not None:
         out["value_in_ia"] = data["ValueInIA"]
-    if "ValueInStandard" in data:
+    if data.get("ValueInStandard") is not None:
         out["value_in_standard"] = data["ValueInStandard"]
-    if "ValueInArchive" in data:
+    if data.get("ValueInArchive") is not None:
         out["value_in_archive"] = data["ValueInArchive"]
     return out

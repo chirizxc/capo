@@ -28,6 +28,6 @@ def serialize_json(value: ImportApiRequest) -> dict:
 
 def deserialize_json(data: dict) -> ImportApiRequest:
     out: ImportApiRequest = {}  # type: ignore[typeddict-item]
-    if "body" in data:
+    if data.get("body") is not None:
         out["body"] = data["body"]
     return out

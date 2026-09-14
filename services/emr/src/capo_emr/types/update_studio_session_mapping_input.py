@@ -48,18 +48,18 @@ def serialize_aws_json_1_1(value: UpdateStudioSessionMappingInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateStudioSessionMappingInput:
     out: UpdateStudioSessionMappingInput = {}  # type: ignore[typeddict-item]
-    if "StudioId" in data:
+    if data.get("StudioId") is not None:
         out["studio_id"] = data["StudioId"]
-    if "IdentityId" in data:
+    if data.get("IdentityId") is not None:
         out["identity_id"] = data["IdentityId"]
-    if "IdentityName" in data:
+    if data.get("IdentityName") is not None:
         out["identity_name"] = data["IdentityName"]
-    if "IdentityType" in data:
+    if data.get("IdentityType") is not None:
         import capo_emr.types.identity_type
 
         out["identity_type"] = capo_emr.types.identity_type.deserialize_aws_json_1_1(
             data["IdentityType"]
         )
-    if "SessionPolicyArn" in data:
+    if data.get("SessionPolicyArn") is not None:
         out["session_policy_arn"] = data["SessionPolicyArn"]
     return out

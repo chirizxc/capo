@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: StopConfigurationRecorderRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StopConfigurationRecorderRequest:
     out: StopConfigurationRecorderRequest = {}  # type: ignore[typeddict-item]
-    if "ConfigurationRecorderName" in data:
+    if data.get("ConfigurationRecorderName") is not None:
         out["configuration_recorder_name"] = data["ConfigurationRecorderName"]
     else:
         raise DeserializationError(

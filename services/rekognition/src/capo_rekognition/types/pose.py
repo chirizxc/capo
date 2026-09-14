@@ -21,20 +21,44 @@ class Pose(TypedDict, closed=True):
 def serialize_aws_json_1_1(value: Pose) -> dict:
     out: dict = {}
     if "roll" in value:
-        out["Roll"] = value["roll"]
+        out["Roll"] = (
+            "NaN"
+            if value["roll"] != value["roll"]
+            else "Infinity"
+            if value["roll"] == float("inf")
+            else "-Infinity"
+            if value["roll"] == float("-inf")
+            else value["roll"]
+        )
     if "yaw" in value:
-        out["Yaw"] = value["yaw"]
+        out["Yaw"] = (
+            "NaN"
+            if value["yaw"] != value["yaw"]
+            else "Infinity"
+            if value["yaw"] == float("inf")
+            else "-Infinity"
+            if value["yaw"] == float("-inf")
+            else value["yaw"]
+        )
     if "pitch" in value:
-        out["Pitch"] = value["pitch"]
+        out["Pitch"] = (
+            "NaN"
+            if value["pitch"] != value["pitch"]
+            else "Infinity"
+            if value["pitch"] == float("inf")
+            else "-Infinity"
+            if value["pitch"] == float("-inf")
+            else value["pitch"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> Pose:
     out: Pose = {}  # type: ignore[typeddict-item]
-    if "Roll" in data:
-        out["roll"] = data["Roll"]
-    if "Yaw" in data:
-        out["yaw"] = data["Yaw"]
-    if "Pitch" in data:
-        out["pitch"] = data["Pitch"]
+    if data.get("Roll") is not None:
+        out["roll"] = float(data["Roll"])
+    if data.get("Yaw") is not None:
+        out["yaw"] = float(data["Yaw"])
+    if data.get("Pitch") is not None:
+        out["pitch"] = float(data["Pitch"])
     return out

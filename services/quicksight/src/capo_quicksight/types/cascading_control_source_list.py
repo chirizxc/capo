@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> CascadingControlSourceList:
 
     out: CascadingControlSourceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.cascading_control_source.deserialize_json(item)
         )

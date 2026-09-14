@@ -27,9 +27,9 @@ def serialize_aws_json_1_1(value: EventAggregate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EventAggregate:
     out: EventAggregate = {}  # type: ignore[typeddict-item]
-    if "aggregateValue" in data:
+    if data.get("aggregateValue") is not None:
         out["aggregate_value"] = data["aggregateValue"]
-    if "count" in data:
+    if data.get("count") is not None:
         out["count"] = data["count"]
     else:
         out["count"] = 0

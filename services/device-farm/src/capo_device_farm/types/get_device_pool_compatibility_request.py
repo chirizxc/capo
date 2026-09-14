@@ -67,27 +67,27 @@ def serialize_aws_json_1_1(value: GetDevicePoolCompatibilityRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDevicePoolCompatibilityRequest:
     out: GetDevicePoolCompatibilityRequest = {}  # type: ignore[typeddict-item]
-    if "devicePoolArn" in data:
+    if data.get("devicePoolArn") is not None:
         out["device_pool_arn"] = data["devicePoolArn"]
     else:
         raise DeserializationError(
             "GetDevicePoolCompatibilityRequest.device_pool_arn required"
         )
-    if "appArn" in data:
+    if data.get("appArn") is not None:
         out["app_arn"] = data["appArn"]
-    if "testType" in data:
+    if data.get("testType") is not None:
         import capo_device_farm.types.test_type
 
         out["test_type"] = capo_device_farm.types.test_type.deserialize_aws_json_1_1(
             data["testType"]
         )
-    if "test" in data:
+    if data.get("test") is not None:
         import capo_device_farm.types.schedule_run_test
 
         out["test"] = capo_device_farm.types.schedule_run_test.deserialize_aws_json_1_1(
             data["test"]
         )
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_device_farm.types.schedule_run_configuration
 
         out["configuration"] = (
@@ -95,6 +95,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetDevicePoolCompatibilityRequest:
                 data["configuration"]
             )
         )
-    if "projectArn" in data:
+    if data.get("projectArn") is not None:
         out["project_arn"] = data["projectArn"]
     return out

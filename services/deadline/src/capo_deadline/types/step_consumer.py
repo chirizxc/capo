@@ -34,11 +34,11 @@ def serialize_json(value: StepConsumer) -> dict:
 
 def deserialize_json(data: dict) -> StepConsumer:
     out: StepConsumer = {}  # type: ignore[typeddict-item]
-    if "stepId" in data:
+    if data.get("stepId") is not None:
         out["step_id"] = data["stepId"]
     else:
         raise DeserializationError("StepConsumer.step_id required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_deadline.types.dependency_consumer_resolution_status
 
         out["status"] = (

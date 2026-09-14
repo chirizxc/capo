@@ -36,11 +36,11 @@ def serialize_json(value: DynatraceServiceDetails) -> dict:
 
 def deserialize_json(data: dict) -> DynatraceServiceDetails:
     out: DynatraceServiceDetails = {}  # type: ignore[typeddict-item]
-    if "accountUrn" in data:
+    if data.get("accountUrn") is not None:
         out["account_urn"] = data["accountUrn"]
     else:
         raise DeserializationError("DynatraceServiceDetails.account_urn required")
-    if "authorizationConfig" in data:
+    if data.get("authorizationConfig") is not None:
         import capo_devops_agent.types.dynatrace_service_authorization_config
 
         out["authorization_config"] = (

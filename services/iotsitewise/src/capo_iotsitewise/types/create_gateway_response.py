@@ -28,11 +28,11 @@ def serialize_json(value: CreateGatewayResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateGatewayResponse:
     out: CreateGatewayResponse = {}  # type: ignore[typeddict-item]
-    if "gatewayId" in data:
+    if data.get("gatewayId") is not None:
         out["gateway_id"] = data["gatewayId"]
     else:
         raise DeserializationError("CreateGatewayResponse.gateway_id required")
-    if "gatewayArn" in data:
+    if data.get("gatewayArn") is not None:
         out["gateway_arn"] = data["gatewayArn"]
     else:
         raise DeserializationError("CreateGatewayResponse.gateway_arn required")

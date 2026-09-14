@@ -32,16 +32,16 @@ def serialize_json(value: DeployedVersionSummary) -> dict:
 
 def deserialize_json(data: dict) -> DeployedVersionSummary:
     out: DeployedVersionSummary = {}  # type: ignore[typeddict-item]
-    if "applicationVersion" in data:
+    if data.get("applicationVersion") is not None:
         out["application_version"] = data["applicationVersion"]
     else:
         raise DeserializationError(
             "DeployedVersionSummary.application_version required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("DeployedVersionSummary.status required")
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
     return out

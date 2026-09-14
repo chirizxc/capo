@@ -36,13 +36,13 @@ def serialize_aws_json_1_1(value: CreateRelationalDatabaseSnapshotRequest) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> CreateRelationalDatabaseSnapshotRequest:
     out: CreateRelationalDatabaseSnapshotRequest = {}  # type: ignore[typeddict-item]
-    if "relationalDatabaseName" in data:
+    if data.get("relationalDatabaseName") is not None:
         out["relational_database_name"] = data["relationalDatabaseName"]
     else:
         raise DeserializationError(
             "CreateRelationalDatabaseSnapshotRequest.relational_database_name required"
         )
-    if "relationalDatabaseSnapshotName" in data:
+    if data.get("relationalDatabaseSnapshotName") is not None:
         out["relational_database_snapshot_name"] = data[
             "relationalDatabaseSnapshotName"
         ]
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateRelationalDatabaseSnapshotRequ
         raise DeserializationError(
             "CreateRelationalDatabaseSnapshotRequest.relational_database_snapshot_name required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_lightsail.types.tag_list
 
         out["tags"] = capo_lightsail.types.tag_list.deserialize_aws_json_1_1(

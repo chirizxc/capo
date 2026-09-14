@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: DeleteFileShareInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteFileShareInput:
     out: DeleteFileShareInput = {}  # type: ignore[typeddict-item]
-    if "FileShareARN" in data:
+    if data.get("FileShareARN") is not None:
         out["file_share_arn"] = data["FileShareARN"]
     else:
         raise DeserializationError("DeleteFileShareInput.file_share_arn required")
-    if "ForceDelete" in data:
+    if data.get("ForceDelete") is not None:
         out["force_delete"] = data["ForceDelete"]
     else:
         out["force_delete"] = False

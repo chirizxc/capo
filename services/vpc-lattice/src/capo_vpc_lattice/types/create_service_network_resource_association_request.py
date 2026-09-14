@@ -45,9 +45,9 @@ def serialize_json(value: CreateServiceNetworkResourceAssociationRequest) -> dic
 
 def deserialize_json(data: dict) -> CreateServiceNetworkResourceAssociationRequest:
     out: CreateServiceNetworkResourceAssociationRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "resourceConfigurationIdentifier" in data:
+    if data.get("resourceConfigurationIdentifier") is not None:
         out["resource_configuration_identifier"] = data[
             "resourceConfigurationIdentifier"
         ]
@@ -55,15 +55,15 @@ def deserialize_json(data: dict) -> CreateServiceNetworkResourceAssociationReque
         raise DeserializationError(
             "CreateServiceNetworkResourceAssociationRequest.resource_configuration_identifier required"
         )
-    if "serviceNetworkIdentifier" in data:
+    if data.get("serviceNetworkIdentifier") is not None:
         out["service_network_identifier"] = data["serviceNetworkIdentifier"]
     else:
         raise DeserializationError(
             "CreateServiceNetworkResourceAssociationRequest.service_network_identifier required"
         )
-    if "privateDnsEnabled" in data:
+    if data.get("privateDnsEnabled") is not None:
         out["private_dns_enabled"] = data["privateDnsEnabled"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_vpc_lattice.types.tag_map
 
         out["tags"] = capo_vpc_lattice.types.tag_map.deserialize_json(data["tags"])

@@ -33,7 +33,7 @@ def serialize_aws_json_1_0(value: ListVpcConnectorsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListVpcConnectorsResponse:
     out: ListVpcConnectorsResponse = {}  # type: ignore[typeddict-item]
-    if "VpcConnectors" in data:
+    if data.get("VpcConnectors") is not None:
         import capo_apprunner.types.vpc_connectors
 
         out["vpc_connectors"] = (
@@ -43,6 +43,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListVpcConnectorsResponse:
         )
     else:
         raise DeserializationError("ListVpcConnectorsResponse.vpc_connectors required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

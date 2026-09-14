@@ -83,27 +83,27 @@ def serialize_aws_json_1_1(value: SavingsPlansPurchaseRecommendationSummary) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> SavingsPlansPurchaseRecommendationSummary:
     out: SavingsPlansPurchaseRecommendationSummary = {}  # type: ignore[typeddict-item]
-    if "EstimatedROI" in data:
+    if data.get("EstimatedROI") is not None:
         out["estimated_roi"] = data["EstimatedROI"]
-    if "CurrencyCode" in data:
+    if data.get("CurrencyCode") is not None:
         out["currency_code"] = data["CurrencyCode"]
-    if "EstimatedTotalCost" in data:
+    if data.get("EstimatedTotalCost") is not None:
         out["estimated_total_cost"] = data["EstimatedTotalCost"]
-    if "CurrentOnDemandSpend" in data:
+    if data.get("CurrentOnDemandSpend") is not None:
         out["current_on_demand_spend"] = data["CurrentOnDemandSpend"]
-    if "EstimatedSavingsAmount" in data:
+    if data.get("EstimatedSavingsAmount") is not None:
         out["estimated_savings_amount"] = data["EstimatedSavingsAmount"]
-    if "TotalRecommendationCount" in data:
+    if data.get("TotalRecommendationCount") is not None:
         out["total_recommendation_count"] = data["TotalRecommendationCount"]
-    if "DailyCommitmentToPurchase" in data:
+    if data.get("DailyCommitmentToPurchase") is not None:
         out["daily_commitment_to_purchase"] = data["DailyCommitmentToPurchase"]
-    if "HourlyCommitmentToPurchase" in data:
+    if data.get("HourlyCommitmentToPurchase") is not None:
         out["hourly_commitment_to_purchase"] = data["HourlyCommitmentToPurchase"]
-    if "EstimatedSavingsPercentage" in data:
+    if data.get("EstimatedSavingsPercentage") is not None:
         out["estimated_savings_percentage"] = data["EstimatedSavingsPercentage"]
-    if "EstimatedMonthlySavingsAmount" in data:
+    if data.get("EstimatedMonthlySavingsAmount") is not None:
         out["estimated_monthly_savings_amount"] = data["EstimatedMonthlySavingsAmount"]
-    if "EstimatedOnDemandCostWithCurrentCommitment" in data:
+    if data.get("EstimatedOnDemandCostWithCurrentCommitment") is not None:
         out["estimated_on_demand_cost_with_current_commitment"] = data[
             "EstimatedOnDemandCostWithCurrentCommitment"
         ]

@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.codegurureviewer#AWSGuruFrontendService``."""
 
+import uuid
 import warnings
 from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -224,10 +225,12 @@ class AsyncCodeGuruReviewerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeguru_reviewer.types.associate_repository_request.AssociateRepositoryRequest = {}  # type: ignore[typeddict-item]
-        input_["repository"] = repository
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        input_: capo_codeguru_reviewer.types.associate_repository_request.AssociateRepositoryRequest = {
+            "repository": repository
+        }
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if tags is not None:
             input_["tags"] = tags
         if kms_key_details is not None:
@@ -238,6 +241,7 @@ class AsyncCodeGuruReviewerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_code_review(
@@ -285,18 +289,21 @@ class AsyncCodeGuruReviewerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeguru_reviewer.types.create_code_review_request.CreateCodeReviewRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["repository_association_arn"] = repository_association_arn
-        input_["type"] = type
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        input_: capo_codeguru_reviewer.types.create_code_review_request.CreateCodeReviewRequest = {
+            "name": name,
+            "repository_association_arn": repository_association_arn,
+            "type": type,
+        }
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_code_review(
@@ -335,14 +342,16 @@ class AsyncCodeGuruReviewerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeguru_reviewer.types.describe_code_review_request.DescribeCodeReviewRequest = {}  # type: ignore[typeddict-item]
-        input_["code_review_arn"] = code_review_arn
+        input_: capo_codeguru_reviewer.types.describe_code_review_request.DescribeCodeReviewRequest = {
+            "code_review_arn": code_review_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_recommendation_feedback(
@@ -385,9 +394,10 @@ class AsyncCodeGuruReviewerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeguru_reviewer.types.describe_recommendation_feedback_request.DescribeRecommendationFeedbackRequest = {}  # type: ignore[typeddict-item]
-        input_["code_review_arn"] = code_review_arn
-        input_["recommendation_id"] = recommendation_id
+        input_: capo_codeguru_reviewer.types.describe_recommendation_feedback_request.DescribeRecommendationFeedbackRequest = {
+            "code_review_arn": code_review_arn,
+            "recommendation_id": recommendation_id,
+        }
         if user_id is not None:
             input_["user_id"] = user_id
 
@@ -396,6 +406,7 @@ class AsyncCodeGuruReviewerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_repository_association(
@@ -434,14 +445,16 @@ class AsyncCodeGuruReviewerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeguru_reviewer.types.describe_repository_association_request.DescribeRepositoryAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["association_arn"] = association_arn
+        input_: capo_codeguru_reviewer.types.describe_repository_association_request.DescribeRepositoryAssociationRequest = {
+            "association_arn": association_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_repository(
@@ -481,14 +494,16 @@ class AsyncCodeGuruReviewerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeguru_reviewer.types.disassociate_repository_request.DisassociateRepositoryRequest = {}  # type: ignore[typeddict-item]
-        input_["association_arn"] = association_arn
+        input_: capo_codeguru_reviewer.types.disassociate_repository_request.DisassociateRepositoryRequest = {
+            "association_arn": association_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_code_reviews(
@@ -544,14 +559,15 @@ class AsyncCodeGuruReviewerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeguru_reviewer.types.list_code_reviews_request.ListCodeReviewsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_codeguru_reviewer.types.list_code_reviews_request.ListCodeReviewsRequest = {
+            "type": type
+        }
         if provider_types is not None:
             input_["provider_types"] = provider_types
         if states is not None:
             input_["states"] = states
         if repository_names is not None:
             input_["repository_names"] = repository_names
-        input_["type"] = type
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -562,7 +578,43 @@ class AsyncCodeGuruReviewerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_code_reviews(
+        self,
+        type: "capo_codeguru_reviewer.types.type.Type",
+        *,
+        config_overrides: Optional[AsyncCodeGuruReviewerClientConfig] = None,
+        provider_types: Optional[
+            "capo_codeguru_reviewer.types.provider_types.ProviderTypes"
+        ] = None,
+        states: Optional["capo_codeguru_reviewer.types.job_states.JobStates"] = None,
+        repository_names: Optional[
+            "capo_codeguru_reviewer.types.repository_names.RepositoryNames"
+        ] = None,
+        max_results: Optional[
+            "capo_codeguru_reviewer.types.list_code_reviews_max_results.ListCodeReviewsMaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_codeguru_reviewer.types.next_token.NextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_codeguru_reviewer.types.list_code_reviews_response.ListCodeReviewsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_code_reviews(
+                type,
+                config_overrides=config_overrides,
+                provider_types=provider_types,
+                states=states,
+                repository_names=repository_names,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_recommendation_feedback(
         self,
@@ -614,12 +666,13 @@ class AsyncCodeGuruReviewerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeguru_reviewer.types.list_recommendation_feedback_request.ListRecommendationFeedbackRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_codeguru_reviewer.types.list_recommendation_feedback_request.ListRecommendationFeedbackRequest = {
+            "code_review_arn": code_review_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["code_review_arn"] = code_review_arn
         if user_ids is not None:
             input_["user_ids"] = user_ids
         if recommendation_ids is not None:
@@ -630,7 +683,39 @@ class AsyncCodeGuruReviewerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_recommendation_feedback(
+        self,
+        code_review_arn: "capo_codeguru_reviewer.types.arn.Arn",
+        *,
+        config_overrides: Optional[AsyncCodeGuruReviewerClientConfig] = None,
+        next_token: Optional[
+            "capo_codeguru_reviewer.types.next_token.NextToken"
+        ] = None,
+        max_results: Optional[
+            "capo_codeguru_reviewer.types.max_results.MaxResults"
+        ] = None,
+        user_ids: Optional["capo_codeguru_reviewer.types.user_ids.UserIds"] = None,
+        recommendation_ids: Optional[
+            "capo_codeguru_reviewer.types.recommendation_ids.RecommendationIds"
+        ] = None,
+    ) -> "AsyncIterator[capo_codeguru_reviewer.types.list_recommendation_feedback_response.ListRecommendationFeedbackResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_recommendation_feedback(
+                code_review_arn,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                user_ids=user_ids,
+                recommendation_ids=recommendation_ids,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_recommendations(
         self,
@@ -676,19 +761,46 @@ class AsyncCodeGuruReviewerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeguru_reviewer.types.list_recommendations_request.ListRecommendationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_codeguru_reviewer.types.list_recommendations_request.ListRecommendationsRequest = {
+            "code_review_arn": code_review_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["code_review_arn"] = code_review_arn
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_recommendations(
+        self,
+        code_review_arn: "capo_codeguru_reviewer.types.arn.Arn",
+        *,
+        config_overrides: Optional[AsyncCodeGuruReviewerClientConfig] = None,
+        next_token: Optional[
+            "capo_codeguru_reviewer.types.next_token.NextToken"
+        ] = None,
+        max_results: Optional[
+            "capo_codeguru_reviewer.types.list_recommendations_max_results.ListRecommendationsMaxResults"
+        ] = None,
+    ) -> "AsyncIterator[capo_codeguru_reviewer.types.list_recommendations_response.ListRecommendationsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_recommendations(
+                code_review_arn,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_repository_associations(
         self,
@@ -742,7 +854,7 @@ class AsyncCodeGuruReviewerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeguru_reviewer.types.list_repository_associations_request.ListRepositoryAssociationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_codeguru_reviewer.types.list_repository_associations_request.ListRepositoryAssociationsRequest = {}
         if provider_types is not None:
             input_["provider_types"] = provider_types
         if states is not None:
@@ -761,6 +873,7 @@ class AsyncCodeGuruReviewerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_repository_associations(
@@ -834,14 +947,16 @@ class AsyncCodeGuruReviewerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeguru_reviewer.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_codeguru_reviewer.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_recommendation_feedback(
@@ -884,16 +999,18 @@ class AsyncCodeGuruReviewerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeguru_reviewer.types.put_recommendation_feedback_request.PutRecommendationFeedbackRequest = {}  # type: ignore[typeddict-item]
-        input_["code_review_arn"] = code_review_arn
-        input_["recommendation_id"] = recommendation_id
-        input_["reactions"] = reactions
+        input_: capo_codeguru_reviewer.types.put_recommendation_feedback_request.PutRecommendationFeedbackRequest = {
+            "code_review_arn": code_review_arn,
+            "recommendation_id": recommendation_id,
+            "reactions": reactions,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -932,15 +1049,17 @@ class AsyncCodeGuruReviewerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeguru_reviewer.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_codeguru_reviewer.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -979,15 +1098,17 @@ class AsyncCodeGuruReviewerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeguru_reviewer.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_codeguru_reviewer.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

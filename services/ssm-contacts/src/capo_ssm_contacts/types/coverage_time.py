@@ -35,13 +35,13 @@ def serialize_aws_json_1_1(value: CoverageTime) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CoverageTime:
     out: CoverageTime = {}  # type: ignore[typeddict-item]
-    if "Start" in data:
+    if data.get("Start") is not None:
         import capo_ssm_contacts.types.hand_off_time
 
         out["start"] = capo_ssm_contacts.types.hand_off_time.deserialize_aws_json_1_1(
             data["Start"]
         )
-    if "End" in data:
+    if data.get("End") is not None:
         import capo_ssm_contacts.types.hand_off_time
 
         out["end"] = capo_ssm_contacts.types.hand_off_time.deserialize_aws_json_1_1(

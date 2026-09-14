@@ -55,18 +55,18 @@ def serialize_aws_json_1_1(value: UsageLimit) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UsageLimit:
     out: UsageLimit = {}  # type: ignore[typeddict-item]
-    if "usageLimitId" in data:
+    if data.get("usageLimitId") is not None:
         out["usage_limit_id"] = data["usageLimitId"]
-    if "usageLimitArn" in data:
+    if data.get("usageLimitArn") is not None:
         out["usage_limit_arn"] = data["usageLimitArn"]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
-    if "usageType" in data:
+    if data.get("usageType") is not None:
         out["usage_type"] = data["usageType"]
-    if "amount" in data:
+    if data.get("amount") is not None:
         out["amount"] = data["amount"]
-    if "period" in data:
+    if data.get("period") is not None:
         out["period"] = data["period"]
-    if "breachAction" in data:
+    if data.get("breachAction") is not None:
         out["breach_action"] = data["breachAction"]
     return out

@@ -75,7 +75,7 @@ def serialize_aws_json_1_0(value: ListAutomationRulePreviewRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListAutomationRulePreviewRequest:
     out: ListAutomationRulePreviewRequest = {}  # type: ignore[typeddict-item]
-    if "ruleType" in data:
+    if data.get("ruleType") is not None:
         import capo_compute_optimizer_automation.types.rule_type
 
         out["rule_type"] = (
@@ -87,7 +87,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListAutomationRulePreviewRequest:
         raise DeserializationError(
             "ListAutomationRulePreviewRequest.rule_type required"
         )
-    if "organizationScope" in data:
+    if data.get("organizationScope") is not None:
         import capo_compute_optimizer_automation.types.organization_scope
 
         out["organization_scope"] = (
@@ -95,7 +95,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListAutomationRulePreviewRequest:
                 data["organizationScope"]
             )
         )
-    if "recommendedActionTypes" in data:
+    if data.get("recommendedActionTypes") is not None:
         import capo_compute_optimizer_automation.types.recommended_action_type_list
 
         out["recommended_action_types"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListAutomationRulePreviewRequest:
         raise DeserializationError(
             "ListAutomationRulePreviewRequest.recommended_action_types required"
         )
-    if "criteria" in data:
+    if data.get("criteria") is not None:
         import capo_compute_optimizer_automation.types.criteria
 
         out["criteria"] = (
@@ -115,8 +115,8 @@ def deserialize_aws_json_1_0(data: dict) -> ListAutomationRulePreviewRequest:
                 data["criteria"]
             )
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

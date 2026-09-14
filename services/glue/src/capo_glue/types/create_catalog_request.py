@@ -39,11 +39,11 @@ def serialize_aws_json_1_1(value: CreateCatalogRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateCatalogRequest:
     out: CreateCatalogRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateCatalogRequest.name required")
-    if "CatalogInput" in data:
+    if data.get("CatalogInput") is not None:
         import capo_glue.types.catalog_input
 
         out["catalog_input"] = capo_glue.types.catalog_input.deserialize_aws_json_1_1(
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateCatalogRequest:
         )
     else:
         raise DeserializationError("CreateCatalogRequest.catalog_input required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_glue.types.tags_map
 
         out["tags"] = capo_glue.types.tags_map.deserialize_aws_json_1_1(data["Tags"])

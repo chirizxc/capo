@@ -27,7 +27,7 @@ def serialize_aws_json_1_0(value: GetArchiveSearchResultsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetArchiveSearchResultsResponse:
     out: GetArchiveSearchResultsResponse = {}  # type: ignore[typeddict-item]
-    if "Rows" in data:
+    if data.get("Rows") is not None:
         import capo_mailmanager.types.rows_list
 
         out["rows"] = capo_mailmanager.types.rows_list.deserialize_aws_json_1_0(

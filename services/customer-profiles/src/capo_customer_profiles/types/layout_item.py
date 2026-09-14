@@ -66,23 +66,23 @@ def serialize_json(value: LayoutItem) -> dict:
 
 def deserialize_json(data: dict) -> LayoutItem:
     out: LayoutItem = {}  # type: ignore[typeddict-item]
-    if "LayoutDefinitionName" in data:
+    if data.get("LayoutDefinitionName") is not None:
         out["layout_definition_name"] = data["LayoutDefinitionName"]
     else:
         raise DeserializationError("LayoutItem.layout_definition_name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     else:
         raise DeserializationError("LayoutItem.description required")
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
     else:
         raise DeserializationError("LayoutItem.display_name required")
-    if "IsDefault" in data:
+    if data.get("IsDefault") is not None:
         out["is_default"] = data["IsDefault"]
     else:
         out["is_default"] = False
-    if "LayoutType" in data:
+    if data.get("LayoutType") is not None:
         import capo_customer_profiles.types.layout_type
 
         out["layout_type"] = capo_customer_profiles.types.layout_type.deserialize_json(
@@ -90,13 +90,13 @@ def deserialize_json(data: dict) -> LayoutItem:
         )
     else:
         raise DeserializationError("LayoutItem.layout_type required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_customer_profiles.types.tag_map
 
         out["tags"] = capo_customer_profiles.types.tag_map.deserialize_json(
             data["Tags"]
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["created_at"] = capo_customer_profiles.types.timestamp.deserialize_json(
@@ -104,7 +104,7 @@ def deserialize_json(data: dict) -> LayoutItem:
         )
     else:
         raise DeserializationError("LayoutItem.created_at required")
-    if "LastUpdatedAt" in data:
+    if data.get("LastUpdatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["last_updated_at"] = (

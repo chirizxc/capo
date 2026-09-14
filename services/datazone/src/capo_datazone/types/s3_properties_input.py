@@ -37,12 +37,12 @@ def serialize_json(value: S3PropertiesInput) -> dict:
 
 def deserialize_json(data: dict) -> S3PropertiesInput:
     out: S3PropertiesInput = {}  # type: ignore[typeddict-item]
-    if "s3Uri" in data:
+    if data.get("s3Uri") is not None:
         out["s3_uri"] = data["s3Uri"]
     else:
         raise DeserializationError("S3PropertiesInput.s3_uri required")
-    if "s3AccessGrantLocationId" in data:
+    if data.get("s3AccessGrantLocationId") is not None:
         out["s3_access_grant_location_id"] = data["s3AccessGrantLocationId"]
-    if "registerS3AccessGrantLocation" in data:
+    if data.get("registerS3AccessGrantLocation") is not None:
         out["register_s3_access_grant_location"] = data["registerS3AccessGrantLocation"]
     return out

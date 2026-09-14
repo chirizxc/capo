@@ -51,9 +51,9 @@ def serialize_json(value: ResourceResult) -> dict:
 
 def deserialize_json(data: dict) -> ResourceResult:
     out: ResourceResult = {}  # type: ignore[typeddict-item]
-    if "componentId" in data:
+    if data.get("componentId") is not None:
         out["component_id"] = data["componentId"]
-    if "lastCheckedTimestamp" in data:
+    if data.get("lastCheckedTimestamp") is not None:
         import capo_route53_recovery_readiness.types.readiness_check_timestamp
 
         out["last_checked_timestamp"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> ResourceResult:
                 data["lastCheckedTimestamp"]
             )
         )
-    if "readiness" in data:
+    if data.get("readiness") is not None:
         import capo_route53_recovery_readiness.types.readiness
 
         out["readiness"] = (
@@ -69,6 +69,6 @@ def deserialize_json(data: dict) -> ResourceResult:
                 data["readiness"]
             )
         )
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     return out

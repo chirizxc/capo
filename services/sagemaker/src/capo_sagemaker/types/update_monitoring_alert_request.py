@@ -46,12 +46,12 @@ def serialize_aws_json_1_1(value: UpdateMonitoringAlertRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateMonitoringAlertRequest:
     out: UpdateMonitoringAlertRequest = {}  # type: ignore[typeddict-item]
-    if "MonitoringScheduleName" in data:
+    if data.get("MonitoringScheduleName") is not None:
         out["monitoring_schedule_name"] = data["MonitoringScheduleName"]
-    if "MonitoringAlertName" in data:
+    if data.get("MonitoringAlertName") is not None:
         out["monitoring_alert_name"] = data["MonitoringAlertName"]
-    if "DatapointsToAlert" in data:
+    if data.get("DatapointsToAlert") is not None:
         out["datapoints_to_alert"] = data["DatapointsToAlert"]
-    if "EvaluationPeriod" in data:
+    if data.get("EvaluationPeriod") is not None:
         out["evaluation_period"] = data["EvaluationPeriod"]
     return out

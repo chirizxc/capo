@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ProfileTimes:
 
     out: ProfileTimes = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_codeguruprofiler.types.profile_time.deserialize_json(item))
     return out

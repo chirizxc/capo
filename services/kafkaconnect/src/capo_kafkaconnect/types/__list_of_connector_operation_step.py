@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> __listOfConnectorOperationStep:
 
     out: __listOfConnectorOperationStep = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_kafkaconnect.types.connector_operation_step.deserialize_json(item)
         )

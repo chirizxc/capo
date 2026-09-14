@@ -42,13 +42,13 @@ def serialize_json(value: PlaybackKeyPair) -> dict:
 
 def deserialize_json(data: dict) -> PlaybackKeyPair:
     out: PlaybackKeyPair = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "fingerprint" in data:
+    if data.get("fingerprint") is not None:
         out["fingerprint"] = data["fingerprint"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_ivs.types.tags
 
         out["tags"] = capo_ivs.types.tags.deserialize_json(data["tags"])

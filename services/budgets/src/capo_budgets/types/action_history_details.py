@@ -29,11 +29,11 @@ def serialize_aws_json_1_1(value: ActionHistoryDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ActionHistoryDetails:
     out: ActionHistoryDetails = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     else:
         raise DeserializationError("ActionHistoryDetails.message required")
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_budgets.types.action
 
         out["action"] = capo_budgets.types.action.deserialize_aws_json_1_1(

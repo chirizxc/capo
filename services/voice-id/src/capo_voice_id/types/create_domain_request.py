@@ -53,13 +53,13 @@ def serialize_aws_json_1_0(value: CreateDomainRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateDomainRequest:
     out: CreateDomainRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateDomainRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ServerSideEncryptionConfiguration" in data:
+    if data.get("ServerSideEncryptionConfiguration") is not None:
         import capo_voice_id.types.server_side_encryption_configuration
 
         out["server_side_encryption_configuration"] = (
@@ -71,9 +71,9 @@ def deserialize_aws_json_1_0(data: dict) -> CreateDomainRequest:
         raise DeserializationError(
             "CreateDomainRequest.server_side_encryption_configuration required"
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_voice_id.types.tag_list
 
         out["tags"] = capo_voice_id.types.tag_list.deserialize_aws_json_1_0(

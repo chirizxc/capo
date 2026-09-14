@@ -46,7 +46,7 @@ def serialize_json(value: ProjectPolicyGrantPrincipal) -> dict:
 
 def deserialize_json(data: dict) -> ProjectPolicyGrantPrincipal:
     out: ProjectPolicyGrantPrincipal = {}  # type: ignore[typeddict-item]
-    if "projectDesignation" in data:
+    if data.get("projectDesignation") is not None:
         import capo_datazone.types.project_designation
 
         out["project_designation"] = (
@@ -58,9 +58,9 @@ def deserialize_json(data: dict) -> ProjectPolicyGrantPrincipal:
         raise DeserializationError(
             "ProjectPolicyGrantPrincipal.project_designation required"
         )
-    if "projectIdentifier" in data:
+    if data.get("projectIdentifier") is not None:
         out["project_identifier"] = data["projectIdentifier"]
-    if "projectGrantFilter" in data:
+    if data.get("projectGrantFilter") is not None:
         import capo_datazone.types.project_grant_filter
 
         out["project_grant_filter"] = (

@@ -81,9 +81,10 @@ class TargetDomainResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securityagent.types.create_target_domain_input.CreateTargetDomainInput = {}  # type: ignore[typeddict-item]
-        input_["target_domain_name"] = target_domain_name
-        input_["verification_method"] = verification_method
+        input_: capo_securityagent.types.create_target_domain_input.CreateTargetDomainInput = {
+            "target_domain_name": target_domain_name,
+            "verification_method": verification_method,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -92,6 +93,7 @@ class TargetDomainResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -128,15 +130,17 @@ class TargetDomainResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securityagent.types.update_target_domain_input.UpdateTargetDomainInput = {}  # type: ignore[typeddict-item]
-        input_["target_domain_id"] = target_domain_id
-        input_["verification_method"] = verification_method
+        input_: capo_securityagent.types.update_target_domain_input.UpdateTargetDomainInput = {
+            "target_domain_id": target_domain_id,
+            "verification_method": verification_method,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -171,14 +175,16 @@ class TargetDomainResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securityagent.types.delete_target_domain_input.DeleteTargetDomainInput = {}  # type: ignore[typeddict-item]
-        input_["target_domain_id"] = target_domain_id
+        input_: capo_securityagent.types.delete_target_domain_input.DeleteTargetDomainInput = {
+            "target_domain_id": target_domain_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -213,7 +219,7 @@ class TargetDomainResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securityagent.types.list_target_domains_input.ListTargetDomainsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_securityagent.types.list_target_domains_input.ListTargetDomainsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -224,6 +230,7 @@ class TargetDomainResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_get_target_domains(
@@ -256,14 +263,16 @@ class TargetDomainResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securityagent.types.batch_get_target_domains_input.BatchGetTargetDomainsInput = {}  # type: ignore[typeddict-item]
-        input_["target_domain_ids"] = target_domain_ids
+        input_: capo_securityagent.types.batch_get_target_domains_input.BatchGetTargetDomainsInput = {
+            "target_domain_ids": target_domain_ids
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -308,9 +317,10 @@ class AsyncTargetDomainResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securityagent.types.create_target_domain_input.CreateTargetDomainInput = {}  # type: ignore[typeddict-item]
-        input_["target_domain_name"] = target_domain_name
-        input_["verification_method"] = verification_method
+        input_: capo_securityagent.types.create_target_domain_input.CreateTargetDomainInput = {
+            "target_domain_name": target_domain_name,
+            "verification_method": verification_method,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -319,6 +329,7 @@ class AsyncTargetDomainResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -356,15 +367,17 @@ class AsyncTargetDomainResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securityagent.types.update_target_domain_input.UpdateTargetDomainInput = {}  # type: ignore[typeddict-item]
-        input_["target_domain_id"] = target_domain_id
-        input_["verification_method"] = verification_method
+        input_: capo_securityagent.types.update_target_domain_input.UpdateTargetDomainInput = {
+            "target_domain_id": target_domain_id,
+            "verification_method": verification_method,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -400,14 +413,16 @@ class AsyncTargetDomainResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securityagent.types.delete_target_domain_input.DeleteTargetDomainInput = {}  # type: ignore[typeddict-item]
-        input_["target_domain_id"] = target_domain_id
+        input_: capo_securityagent.types.delete_target_domain_input.DeleteTargetDomainInput = {
+            "target_domain_id": target_domain_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -443,7 +458,7 @@ class AsyncTargetDomainResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securityagent.types.list_target_domains_input.ListTargetDomainsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_securityagent.types.list_target_domains_input.ListTargetDomainsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -454,6 +469,7 @@ class AsyncTargetDomainResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_target_domains(
@@ -487,12 +503,14 @@ class AsyncTargetDomainResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securityagent.types.batch_get_target_domains_input.BatchGetTargetDomainsInput = {}  # type: ignore[typeddict-item]
-        input_["target_domain_ids"] = target_domain_ids
+        input_: capo_securityagent.types.batch_get_target_domains_input.BatchGetTargetDomainsInput = {
+            "target_domain_ids": target_domain_ids
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

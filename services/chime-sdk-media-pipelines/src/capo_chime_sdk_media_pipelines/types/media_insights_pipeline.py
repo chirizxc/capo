@@ -129,15 +129,15 @@ def serialize_json(value: MediaInsightsPipeline) -> dict:
 
 def deserialize_json(data: dict) -> MediaInsightsPipeline:
     out: MediaInsightsPipeline = {}  # type: ignore[typeddict-item]
-    if "MediaPipelineId" in data:
+    if data.get("MediaPipelineId") is not None:
         out["media_pipeline_id"] = data["MediaPipelineId"]
-    if "MediaPipelineArn" in data:
+    if data.get("MediaPipelineArn") is not None:
         out["media_pipeline_arn"] = data["MediaPipelineArn"]
-    if "MediaInsightsPipelineConfigurationArn" in data:
+    if data.get("MediaInsightsPipelineConfigurationArn") is not None:
         out["media_insights_pipeline_configuration_arn"] = data[
             "MediaInsightsPipelineConfigurationArn"
         ]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_chime_sdk_media_pipelines.types.media_pipeline_status
 
         out["status"] = (
@@ -145,7 +145,7 @@ def deserialize_json(data: dict) -> MediaInsightsPipeline:
                 data["Status"]
             )
         )
-    if "KinesisVideoStreamSourceRuntimeConfiguration" in data:
+    if data.get("KinesisVideoStreamSourceRuntimeConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.kinesis_video_stream_source_runtime_configuration
 
         out["kinesis_video_stream_source_runtime_configuration"] = (
@@ -153,7 +153,7 @@ def deserialize_json(data: dict) -> MediaInsightsPipeline:
                 data["KinesisVideoStreamSourceRuntimeConfiguration"]
             )
         )
-    if "MediaInsightsRuntimeMetadata" in data:
+    if data.get("MediaInsightsRuntimeMetadata") is not None:
         import capo_chime_sdk_media_pipelines.types.media_insights_runtime_metadata
 
         out["media_insights_runtime_metadata"] = (
@@ -161,7 +161,7 @@ def deserialize_json(data: dict) -> MediaInsightsPipeline:
                 data["MediaInsightsRuntimeMetadata"]
             )
         )
-    if "KinesisVideoStreamRecordingSourceRuntimeConfiguration" in data:
+    if data.get("KinesisVideoStreamRecordingSourceRuntimeConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.kinesis_video_stream_recording_source_runtime_configuration
 
         out["kinesis_video_stream_recording_source_runtime_configuration"] = (
@@ -169,7 +169,7 @@ def deserialize_json(data: dict) -> MediaInsightsPipeline:
                 data["KinesisVideoStreamRecordingSourceRuntimeConfiguration"]
             )
         )
-    if "S3RecordingSinkRuntimeConfiguration" in data:
+    if data.get("S3RecordingSinkRuntimeConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.s3_recording_sink_runtime_configuration
 
         out["s3_recording_sink_runtime_configuration"] = (
@@ -177,7 +177,7 @@ def deserialize_json(data: dict) -> MediaInsightsPipeline:
                 data["S3RecordingSinkRuntimeConfiguration"]
             )
         )
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_chime_sdk_media_pipelines.types.iso8601_timestamp
 
         out["created_timestamp"] = (
@@ -185,7 +185,7 @@ def deserialize_json(data: dict) -> MediaInsightsPipeline:
                 data["CreatedTimestamp"]
             )
         )
-    if "ElementStatuses" in data:
+    if data.get("ElementStatuses") is not None:
         import capo_chime_sdk_media_pipelines.types.media_insights_pipeline_element_statuses
 
         out["element_statuses"] = (

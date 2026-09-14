@@ -34,7 +34,7 @@ def serialize_json(value: AssociateSbomWithPackageVersionRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociateSbomWithPackageVersionRequest:
     out: AssociateSbomWithPackageVersionRequest = {}  # type: ignore[typeddict-item]
-    if "sbom" in data:
+    if data.get("sbom") is not None:
         import capo_iot.types.sbom
 
         out["sbom"] = capo_iot.types.sbom.deserialize_json(data["sbom"])

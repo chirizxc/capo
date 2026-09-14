@@ -34,7 +34,7 @@ def serialize_json(value: DescribeOutboundConnectionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeOutboundConnectionsResponse:
     out: DescribeOutboundConnectionsResponse = {}  # type: ignore[typeddict-item]
-    if "Connections" in data:
+    if data.get("Connections") is not None:
         import capo_opensearch.types.outbound_connections
 
         out["connections"] = (
@@ -42,6 +42,6 @@ def deserialize_json(data: dict) -> DescribeOutboundConnectionsResponse:
                 data["Connections"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

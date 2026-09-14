@@ -32,7 +32,15 @@ def serialize_json(value: SamplingTargetDocument) -> dict:
     out: dict = {}
     if "rule_name" in value:
         out["RuleName"] = value["rule_name"]
-    out["FixedRate"] = value.get("fixed_rate", 0)
+    out["FixedRate"] = (
+        "NaN"
+        if value.get("fixed_rate", 0) != value.get("fixed_rate", 0)
+        else "Infinity"
+        if value.get("fixed_rate", 0) == float("inf")
+        else "-Infinity"
+        if value.get("fixed_rate", 0) == float("-inf")
+        else value.get("fixed_rate", 0)
+    )
     if "reservoir_quota" in value:
         out["ReservoirQuota"] = value["reservoir_quota"]
     if "reservoir_quota_ttl" in value:
@@ -54,23 +62,23 @@ def serialize_json(value: SamplingTargetDocument) -> dict:
 
 def deserialize_json(data: dict) -> SamplingTargetDocument:
     out: SamplingTargetDocument = {}  # type: ignore[typeddict-item]
-    if "RuleName" in data:
+    if data.get("RuleName") is not None:
         out["rule_name"] = data["RuleName"]
-    if "FixedRate" in data:
-        out["fixed_rate"] = data["FixedRate"]
+    if data.get("FixedRate") is not None:
+        out["fixed_rate"] = float(data["FixedRate"])
     else:
         out["fixed_rate"] = 0
-    if "ReservoirQuota" in data:
+    if data.get("ReservoirQuota") is not None:
         out["reservoir_quota"] = data["ReservoirQuota"]
-    if "ReservoirQuotaTTL" in data:
+    if data.get("ReservoirQuotaTTL") is not None:
         import capo_xray.types.timestamp
 
         out["reservoir_quota_ttl"] = capo_xray.types.timestamp.deserialize_json(
             data["ReservoirQuotaTTL"]
         )
-    if "Interval" in data:
+    if data.get("Interval") is not None:
         out["interval"] = data["Interval"]
-    if "SamplingBoost" in data:
+    if data.get("SamplingBoost") is not None:
         import capo_xray.types.sampling_boost
 
         out["sampling_boost"] = capo_xray.types.sampling_boost.deserialize_json(

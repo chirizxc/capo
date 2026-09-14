@@ -39,7 +39,7 @@ def serialize_json(value: RouteMatrixOrigin) -> dict:
 
 def deserialize_json(data: dict) -> RouteMatrixOrigin:
     out: RouteMatrixOrigin = {}  # type: ignore[typeddict-item]
-    if "Options" in data:
+    if data.get("Options") is not None:
         import capo_geo_routes.types.route_matrix_origin_options
 
         out["options"] = (
@@ -47,7 +47,7 @@ def deserialize_json(data: dict) -> RouteMatrixOrigin:
                 data["Options"]
             )
         )
-    if "Position" in data:
+    if data.get("Position") is not None:
         import capo_geo_routes.types.position
 
         out["position"] = capo_geo_routes.types.position.deserialize_json(

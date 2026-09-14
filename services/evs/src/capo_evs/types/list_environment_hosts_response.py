@@ -32,9 +32,9 @@ def serialize_aws_json_1_0(value: ListEnvironmentHostsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListEnvironmentHostsResponse:
     out: ListEnvironmentHostsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "environmentHosts" in data:
+    if data.get("environmentHosts") is not None:
         import capo_evs.types.host_list
 
         out["environment_hosts"] = capo_evs.types.host_list.deserialize_aws_json_1_0(

@@ -31,12 +31,12 @@ def serialize_json(value: VirtualGatewayHttpConnectionPool) -> dict:
 
 def deserialize_json(data: dict) -> VirtualGatewayHttpConnectionPool:
     out: VirtualGatewayHttpConnectionPool = {}  # type: ignore[typeddict-item]
-    if "maxConnections" in data:
+    if data.get("maxConnections") is not None:
         out["max_connections"] = data["maxConnections"]
     else:
         raise DeserializationError(
             "VirtualGatewayHttpConnectionPool.max_connections required"
         )
-    if "maxPendingRequests" in data:
+    if data.get("maxPendingRequests") is not None:
         out["max_pending_requests"] = data["maxPendingRequests"]
     return out

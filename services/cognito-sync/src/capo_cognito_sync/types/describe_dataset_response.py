@@ -27,7 +27,7 @@ def serialize_json(value: DescribeDatasetResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeDatasetResponse:
     out: DescribeDatasetResponse = {}  # type: ignore[typeddict-item]
-    if "Dataset" in data:
+    if data.get("Dataset") is not None:
         import capo_cognito_sync.types.dataset
 
         out["dataset"] = capo_cognito_sync.types.dataset.deserialize_json(

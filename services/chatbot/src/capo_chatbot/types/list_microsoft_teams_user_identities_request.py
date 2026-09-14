@@ -35,10 +35,10 @@ def serialize_json(value: ListMicrosoftTeamsUserIdentitiesRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListMicrosoftTeamsUserIdentitiesRequest:
     out: ListMicrosoftTeamsUserIdentitiesRequest = {}  # type: ignore[typeddict-item]
-    if "ChatConfigurationArn" in data:
+    if data.get("ChatConfigurationArn") is not None:
         out["chat_configuration_arn"] = data["ChatConfigurationArn"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

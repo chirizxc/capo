@@ -30,13 +30,13 @@ def serialize_aws_json_1_1(value: CapacityUnitsConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CapacityUnitsConfiguration:
     out: CapacityUnitsConfiguration = {}  # type: ignore[typeddict-item]
-    if "StorageCapacityUnits" in data:
+    if data.get("StorageCapacityUnits") is not None:
         out["storage_capacity_units"] = data["StorageCapacityUnits"]
     else:
         raise DeserializationError(
             "CapacityUnitsConfiguration.storage_capacity_units required"
         )
-    if "QueryCapacityUnits" in data:
+    if data.get("QueryCapacityUnits") is not None:
         out["query_capacity_units"] = data["QueryCapacityUnits"]
     else:
         raise DeserializationError(

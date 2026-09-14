@@ -97,13 +97,14 @@ class Profile:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.create_profile_request.CreateProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_rolesanywhere.types.create_profile_request.CreateProfileRequest = {
+            "name": name,
+            "role_arns": role_arns,
+        }
         if require_instance_properties is not None:
             input_["require_instance_properties"] = require_instance_properties
         if session_policy is not None:
             input_["session_policy"] = session_policy
-        input_["role_arns"] = role_arns
         if managed_policy_arns is not None:
             input_["managed_policy_arns"] = managed_policy_arns
         if duration_seconds is not None:
@@ -120,6 +121,7 @@ class Profile:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -154,14 +156,16 @@ class Profile:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.scalar_profile_request.ScalarProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_id"] = profile_id
+        input_: capo_rolesanywhere.types.scalar_profile_request.ScalarProfileRequest = {
+            "profile_id": profile_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -213,8 +217,9 @@ class Profile:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.update_profile_request.UpdateProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_id"] = profile_id
+        input_: capo_rolesanywhere.types.update_profile_request.UpdateProfileRequest = {
+            "profile_id": profile_id
+        }
         if name is not None:
             input_["name"] = name
         if session_policy is not None:
@@ -233,6 +238,7 @@ class Profile:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -267,14 +273,16 @@ class Profile:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.scalar_profile_request.ScalarProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_id"] = profile_id
+        input_: capo_rolesanywhere.types.scalar_profile_request.ScalarProfileRequest = {
+            "profile_id": profile_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -311,7 +319,7 @@ class Profile:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.list_request.ListRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_rolesanywhere.types.list_request.ListRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if page_size is not None:
@@ -322,6 +330,7 @@ class Profile:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_attribute_mapping(
@@ -368,9 +377,10 @@ class Profile:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.delete_attribute_mapping_request.DeleteAttributeMappingRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_id"] = profile_id
-        input_["certificate_field"] = certificate_field
+        input_: capo_rolesanywhere.types.delete_attribute_mapping_request.DeleteAttributeMappingRequest = {
+            "profile_id": profile_id,
+            "certificate_field": certificate_field,
+        }
         if specifiers is not None:
             input_["specifiers"] = specifiers
 
@@ -379,6 +389,7 @@ class Profile:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disable_profile(
@@ -413,14 +424,16 @@ class Profile:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.scalar_profile_request.ScalarProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_id"] = profile_id
+        input_: capo_rolesanywhere.types.scalar_profile_request.ScalarProfileRequest = {
+            "profile_id": profile_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def enable_profile(
@@ -455,14 +468,16 @@ class Profile:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.scalar_profile_request.ScalarProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_id"] = profile_id
+        input_: capo_rolesanywhere.types.scalar_profile_request.ScalarProfileRequest = {
+            "profile_id": profile_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_attribute_mapping(
@@ -507,16 +522,18 @@ class Profile:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.put_attribute_mapping_request.PutAttributeMappingRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_id"] = profile_id
-        input_["certificate_field"] = certificate_field
-        input_["mapping_rules"] = mapping_rules
+        input_: capo_rolesanywhere.types.put_attribute_mapping_request.PutAttributeMappingRequest = {
+            "profile_id": profile_id,
+            "certificate_field": certificate_field,
+            "mapping_rules": mapping_rules,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -575,13 +592,14 @@ class AsyncProfile:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.create_profile_request.CreateProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_rolesanywhere.types.create_profile_request.CreateProfileRequest = {
+            "name": name,
+            "role_arns": role_arns,
+        }
         if require_instance_properties is not None:
             input_["require_instance_properties"] = require_instance_properties
         if session_policy is not None:
             input_["session_policy"] = session_policy
-        input_["role_arns"] = role_arns
         if managed_policy_arns is not None:
             input_["managed_policy_arns"] = managed_policy_arns
         if duration_seconds is not None:
@@ -598,6 +616,7 @@ class AsyncProfile:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -633,14 +652,16 @@ class AsyncProfile:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.scalar_profile_request.ScalarProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_id"] = profile_id
+        input_: capo_rolesanywhere.types.scalar_profile_request.ScalarProfileRequest = {
+            "profile_id": profile_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -693,8 +714,9 @@ class AsyncProfile:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.update_profile_request.UpdateProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_id"] = profile_id
+        input_: capo_rolesanywhere.types.update_profile_request.UpdateProfileRequest = {
+            "profile_id": profile_id
+        }
         if name is not None:
             input_["name"] = name
         if session_policy is not None:
@@ -713,6 +735,7 @@ class AsyncProfile:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -748,14 +771,16 @@ class AsyncProfile:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.scalar_profile_request.ScalarProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_id"] = profile_id
+        input_: capo_rolesanywhere.types.scalar_profile_request.ScalarProfileRequest = {
+            "profile_id": profile_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -793,7 +818,7 @@ class AsyncProfile:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.list_request.ListRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_rolesanywhere.types.list_request.ListRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if page_size is not None:
@@ -804,6 +829,7 @@ class AsyncProfile:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_attribute_mapping(
@@ -851,9 +877,10 @@ class AsyncProfile:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.delete_attribute_mapping_request.DeleteAttributeMappingRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_id"] = profile_id
-        input_["certificate_field"] = certificate_field
+        input_: capo_rolesanywhere.types.delete_attribute_mapping_request.DeleteAttributeMappingRequest = {
+            "profile_id": profile_id,
+            "certificate_field": certificate_field,
+        }
         if specifiers is not None:
             input_["specifiers"] = specifiers
 
@@ -862,6 +889,7 @@ class AsyncProfile:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disable_profile(
@@ -897,14 +925,16 @@ class AsyncProfile:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.scalar_profile_request.ScalarProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_id"] = profile_id
+        input_: capo_rolesanywhere.types.scalar_profile_request.ScalarProfileRequest = {
+            "profile_id": profile_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def enable_profile(
@@ -940,14 +970,16 @@ class AsyncProfile:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.scalar_profile_request.ScalarProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_id"] = profile_id
+        input_: capo_rolesanywhere.types.scalar_profile_request.ScalarProfileRequest = {
+            "profile_id": profile_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_attribute_mapping(
@@ -993,14 +1025,16 @@ class AsyncProfile:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.put_attribute_mapping_request.PutAttributeMappingRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_id"] = profile_id
-        input_["certificate_field"] = certificate_field
-        input_["mapping_rules"] = mapping_rules
+        input_: capo_rolesanywhere.types.put_attribute_mapping_request.PutAttributeMappingRequest = {
+            "profile_id": profile_id,
+            "certificate_field": certificate_field,
+            "mapping_rules": mapping_rules,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

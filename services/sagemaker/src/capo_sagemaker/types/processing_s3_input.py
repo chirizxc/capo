@@ -82,11 +82,11 @@ def serialize_aws_json_1_1(value: ProcessingS3Input) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProcessingS3Input:
     out: ProcessingS3Input = {}  # type: ignore[typeddict-item]
-    if "S3Uri" in data:
+    if data.get("S3Uri") is not None:
         out["s3_uri"] = data["S3Uri"]
-    if "LocalPath" in data:
+    if data.get("LocalPath") is not None:
         out["local_path"] = data["LocalPath"]
-    if "S3DataType" in data:
+    if data.get("S3DataType") is not None:
         import capo_sagemaker.types.processing_s3_data_type
 
         out["s3_data_type"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProcessingS3Input:
                 data["S3DataType"]
             )
         )
-    if "S3InputMode" in data:
+    if data.get("S3InputMode") is not None:
         import capo_sagemaker.types.processing_s3_input_mode
 
         out["s3_input_mode"] = (
@@ -102,7 +102,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProcessingS3Input:
                 data["S3InputMode"]
             )
         )
-    if "S3DataDistributionType" in data:
+    if data.get("S3DataDistributionType") is not None:
         import capo_sagemaker.types.processing_s3_data_distribution_type
 
         out["s3_data_distribution_type"] = (
@@ -110,7 +110,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProcessingS3Input:
                 data["S3DataDistributionType"]
             )
         )
-    if "S3CompressionType" in data:
+    if data.get("S3CompressionType") is not None:
         import capo_sagemaker.types.processing_s3_compression_type
 
         out["s3_compression_type"] = (

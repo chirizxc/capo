@@ -25,7 +25,7 @@ def serialize_json(value: DeleteConflictException_) -> dict:
 
 def deserialize_json(data: dict) -> DeleteConflictException_:
     out: DeleteConflictException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,18 @@ class DeleteConflictException(ServiceError):
 
     code: str | None = "DeleteConflictException"
 
-    def __init__(self, data: DeleteConflictException_):
+    def __init__(self, data: DeleteConflictException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="DeleteConflictException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "DeleteConflictException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "DeleteConflictException":
+        return cls(deserialize_json(data), message)

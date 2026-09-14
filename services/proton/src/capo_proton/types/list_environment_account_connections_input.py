@@ -52,15 +52,15 @@ def serialize_aws_json_1_0(value: ListEnvironmentAccountConnectionsInput) -> dic
 
 def deserialize_aws_json_1_0(data: dict) -> ListEnvironmentAccountConnectionsInput:
     out: ListEnvironmentAccountConnectionsInput = {}  # type: ignore[typeddict-item]
-    if "requestedBy" in data:
+    if data.get("requestedBy") is not None:
         out["requested_by"] = data["requestedBy"]
     else:
         raise DeserializationError(
             "ListEnvironmentAccountConnectionsInput.requested_by required"
         )
-    if "environmentName" in data:
+    if data.get("environmentName") is not None:
         out["environment_name"] = data["environmentName"]
-    if "statuses" in data:
+    if data.get("statuses") is not None:
         import capo_proton.types.environment_account_connection_status_list
 
         out["statuses"] = (
@@ -68,8 +68,8 @@ def deserialize_aws_json_1_0(data: dict) -> ListEnvironmentAccountConnectionsInp
                 data["statuses"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

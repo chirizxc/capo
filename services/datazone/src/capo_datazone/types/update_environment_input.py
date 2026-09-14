@@ -65,19 +65,19 @@ def serialize_json(value: UpdateEnvironmentInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateEnvironmentInput:
     out: UpdateEnvironmentInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "glossaryTerms" in data:
+    if data.get("glossaryTerms") is not None:
         import capo_datazone.types.glossary_terms
 
         out["glossary_terms"] = capo_datazone.types.glossary_terms.deserialize_json(
             data["glossaryTerms"]
         )
-    if "blueprintVersion" in data:
+    if data.get("blueprintVersion") is not None:
         out["blueprint_version"] = data["blueprintVersion"]
-    if "userParameters" in data:
+    if data.get("userParameters") is not None:
         import capo_datazone.types.environment_parameters_list
 
         out["user_parameters"] = (
@@ -85,6 +85,6 @@ def deserialize_json(data: dict) -> UpdateEnvironmentInput:
                 data["userParameters"]
             )
         )
-    if "environmentConfigurationName" in data:
+    if data.get("environmentConfigurationName") is not None:
         out["environment_configuration_name"] = data["environmentConfigurationName"]
     return out

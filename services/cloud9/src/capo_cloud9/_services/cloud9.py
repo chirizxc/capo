@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.cloud9#AWSCloud9WorkspaceManagementService``."""
 
 import warnings
+from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +17,7 @@ from capo_cloud9._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_cloud9._auth._zapros_handler import AuthMiddleware
+from capo_cloud9._pagination import resolve_path as _resolve_path
 from capo_cloud9._services._aws_config import aws_config
 from capo_cloud9._services._pipeline import (
     Interceptor,
@@ -238,16 +240,17 @@ class Cloud9Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloud9.types.create_environment_ec2_request.CreateEnvironmentEC2Request = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_cloud9.types.create_environment_ec2_request.CreateEnvironmentEC2Request = {
+            "name": name,
+            "instance_type": instance_type,
+            "image_id": image_id,
+        }
         if description is not None:
             input_["description"] = description
         if client_request_token is not None:
             input_["client_request_token"] = client_request_token
-        input_["instance_type"] = instance_type
         if subnet_id is not None:
             input_["subnet_id"] = subnet_id
-        input_["image_id"] = image_id
         if automatic_stop_time_minutes is not None:
             input_["automatic_stop_time_minutes"] = automatic_stop_time_minutes
         if owner_arn is not None:
@@ -264,6 +267,7 @@ class Cloud9Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_environment_membership(
@@ -312,16 +316,18 @@ class Cloud9Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloud9.types.create_environment_membership_request.CreateEnvironmentMembershipRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
-        input_["user_arn"] = user_arn
-        input_["permissions"] = permissions
+        input_: capo_cloud9.types.create_environment_membership_request.CreateEnvironmentMembershipRequest = {
+            "environment_id": environment_id,
+            "user_arn": user_arn,
+            "permissions": permissions,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_environment(
@@ -366,14 +372,16 @@ class Cloud9Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloud9.types.delete_environment_request.DeleteEnvironmentRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
+        input_: capo_cloud9.types.delete_environment_request.DeleteEnvironmentRequest = {
+            "environment_id": environment_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_environment_membership(
@@ -420,15 +428,17 @@ class Cloud9Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloud9.types.delete_environment_membership_request.DeleteEnvironmentMembershipRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
-        input_["user_arn"] = user_arn
+        input_: capo_cloud9.types.delete_environment_membership_request.DeleteEnvironmentMembershipRequest = {
+            "environment_id": environment_id,
+            "user_arn": user_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_environment_memberships(
@@ -494,7 +504,7 @@ class Cloud9Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloud9.types.describe_environment_memberships_request.DescribeEnvironmentMembershipsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloud9.types.describe_environment_memberships_request.DescribeEnvironmentMembershipsRequest = {}
         if user_arn is not None:
             input_["user_arn"] = user_arn
         if environment_id is not None:
@@ -511,7 +521,37 @@ class Cloud9Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_describe_environment_memberships(
+        self,
+        *,
+        config_overrides: Optional[Cloud9ClientConfig] = None,
+        user_arn: Optional["capo_cloud9.types.user_arn.UserArn"] = None,
+        environment_id: Optional[
+            "capo_cloud9.types.environment_id.EnvironmentId"
+        ] = None,
+        permissions: Optional[
+            "capo_cloud9.types.permissions_list.PermissionsList"
+        ] = None,
+        next_token: Optional["capo_cloud9.types.string.String"] = None,
+        max_results: Optional["capo_cloud9.types.max_results.MaxResults"] = None,
+    ) -> "Iterator[capo_cloud9.types.describe_environment_memberships_result.DescribeEnvironmentMembershipsResult]":
+        _token = next_token
+        while True:
+            _response = self.describe_environment_memberships(
+                config_overrides=config_overrides,
+                user_arn=user_arn,
+                environment_id=environment_id,
+                permissions=permissions,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def describe_environments(
         self,
@@ -555,14 +595,16 @@ class Cloud9Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloud9.types.describe_environments_request.DescribeEnvironmentsRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_ids"] = environment_ids
+        input_: capo_cloud9.types.describe_environments_request.DescribeEnvironmentsRequest = {
+            "environment_ids": environment_ids
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_environment_status(
@@ -607,14 +649,16 @@ class Cloud9Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloud9.types.describe_environment_status_request.DescribeEnvironmentStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
+        input_: capo_cloud9.types.describe_environment_status_request.DescribeEnvironmentStatusRequest = {
+            "environment_id": environment_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_environments(
@@ -661,7 +705,7 @@ class Cloud9Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloud9.types.list_environments_request.ListEnvironmentsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloud9.types.list_environments_request.ListEnvironmentsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -672,7 +716,27 @@ class Cloud9Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_environments(
+        self,
+        *,
+        config_overrides: Optional[Cloud9ClientConfig] = None,
+        next_token: Optional["capo_cloud9.types.string.String"] = None,
+        max_results: Optional["capo_cloud9.types.max_results.MaxResults"] = None,
+    ) -> "Iterator[capo_cloud9.types.list_environments_result.ListEnvironmentsResult]":
+        _token = next_token
+        while True:
+            _response = self.list_environments(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_tags_for_resource(
         self,
@@ -709,14 +773,16 @@ class Cloud9Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloud9.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_cloud9.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -755,15 +821,17 @@ class Cloud9Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloud9.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_cloud9.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -802,15 +870,17 @@ class Cloud9Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloud9.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_cloud9.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_environment(
@@ -865,8 +935,9 @@ class Cloud9Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloud9.types.update_environment_request.UpdateEnvironmentRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
+        input_: capo_cloud9.types.update_environment_request.UpdateEnvironmentRequest = {
+            "environment_id": environment_id
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -879,6 +950,7 @@ class Cloud9Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_environment_membership(
@@ -927,16 +999,18 @@ class Cloud9Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloud9.types.update_environment_membership_request.UpdateEnvironmentMembershipRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
-        input_["user_arn"] = user_arn
-        input_["permissions"] = permissions
+        input_: capo_cloud9.types.update_environment_membership_request.UpdateEnvironmentMembershipRequest = {
+            "environment_id": environment_id,
+            "user_arn": user_arn,
+            "permissions": permissions,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

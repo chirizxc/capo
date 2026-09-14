@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: TerminateGameSessionInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TerminateGameSessionInput:
     out: TerminateGameSessionInput = {}  # type: ignore[typeddict-item]
-    if "GameSessionId" in data:
+    if data.get("GameSessionId") is not None:
         out["game_session_id"] = data["GameSessionId"]
-    if "TerminationMode" in data:
+    if data.get("TerminationMode") is not None:
         import capo_gamelift.types.termination_mode
 
         out["termination_mode"] = (

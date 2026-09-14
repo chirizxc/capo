@@ -34,12 +34,12 @@ def serialize_json(value: SessionContextAttributes) -> dict:
 
 def deserialize_json(data: dict) -> SessionContextAttributes:
     out: SessionContextAttributes = {}  # type: ignore[typeddict-item]
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_macie2.types.__timestamp_iso8601
 
         out["creation_date"] = capo_macie2.types.__timestamp_iso8601.deserialize_json(
             data["creationDate"]
         )
-    if "mfaAuthenticated" in data:
+    if data.get("mfaAuthenticated") is not None:
         out["mfa_authenticated"] = data["mfaAuthenticated"]
     return out

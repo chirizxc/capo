@@ -28,11 +28,11 @@ def serialize_json(value: ResetEncryptionKeyRequest) -> dict:
 
 def deserialize_json(data: dict) -> ResetEncryptionKeyRequest:
     out: ResetEncryptionKeyRequest = {}  # type: ignore[typeddict-item]
-    if "scanType" in data:
+    if data.get("scanType") is not None:
         out["scan_type"] = data["scanType"]
     else:
         raise DeserializationError("ResetEncryptionKeyRequest.scan_type required")
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
     else:
         raise DeserializationError("ResetEncryptionKeyRequest.resource_type required")

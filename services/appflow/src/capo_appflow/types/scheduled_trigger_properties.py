@@ -77,41 +77,41 @@ def serialize_json(value: ScheduledTriggerProperties) -> dict:
 
 def deserialize_json(data: dict) -> ScheduledTriggerProperties:
     out: ScheduledTriggerProperties = {}  # type: ignore[typeddict-item]
-    if "scheduleExpression" in data:
+    if data.get("scheduleExpression") is not None:
         out["schedule_expression"] = data["scheduleExpression"]
     else:
         raise DeserializationError(
             "ScheduledTriggerProperties.schedule_expression required"
         )
-    if "dataPullMode" in data:
+    if data.get("dataPullMode") is not None:
         import capo_appflow.types.data_pull_mode
 
         out["data_pull_mode"] = capo_appflow.types.data_pull_mode.deserialize_json(
             data["dataPullMode"]
         )
-    if "scheduleStartTime" in data:
+    if data.get("scheduleStartTime") is not None:
         import capo_appflow.types.date
 
         out["schedule_start_time"] = capo_appflow.types.date.deserialize_json(
             data["scheduleStartTime"]
         )
-    if "scheduleEndTime" in data:
+    if data.get("scheduleEndTime") is not None:
         import capo_appflow.types.date
 
         out["schedule_end_time"] = capo_appflow.types.date.deserialize_json(
             data["scheduleEndTime"]
         )
-    if "timezone" in data:
+    if data.get("timezone") is not None:
         out["timezone"] = data["timezone"]
-    if "scheduleOffset" in data:
+    if data.get("scheduleOffset") is not None:
         out["schedule_offset"] = data["scheduleOffset"]
-    if "firstExecutionFrom" in data:
+    if data.get("firstExecutionFrom") is not None:
         import capo_appflow.types.date
 
         out["first_execution_from"] = capo_appflow.types.date.deserialize_json(
             data["firstExecutionFrom"]
         )
-    if "flowErrorDeactivationThreshold" in data:
+    if data.get("flowErrorDeactivationThreshold") is not None:
         out["flow_error_deactivation_threshold"] = data[
             "flowErrorDeactivationThreshold"
         ]

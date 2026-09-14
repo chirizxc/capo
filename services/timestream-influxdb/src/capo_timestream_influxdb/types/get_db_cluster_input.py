@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: GetDbClusterInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetDbClusterInput:
     out: GetDbClusterInput = {}  # type: ignore[typeddict-item]
-    if "dbClusterId" in data:
+    if data.get("dbClusterId") is not None:
         out["db_cluster_id"] = data["dbClusterId"]
     else:
         raise DeserializationError("GetDbClusterInput.db_cluster_id required")

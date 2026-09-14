@@ -34,9 +34,9 @@ def serialize_aws_json_1_1(value: DataResource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataResource:
     out: DataResource = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_cloudtrail.types.data_resource_values
 
         out["values"] = (

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ResourceFindingsSummaryList:
 
     out: ResourceFindingsSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.resource_findings_summary.deserialize_json(item)
         )

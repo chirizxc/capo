@@ -23,6 +23,6 @@ def serialize_aws_json_1_0(value: CreateLabelResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateLabelResponse:
     out: CreateLabelResponse = {}  # type: ignore[typeddict-item]
-    if "LabelId" in data:
+    if data.get("LabelId") is not None:
         out["label_id"] = data["LabelId"]
     return out

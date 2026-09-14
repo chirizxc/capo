@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: RouteFilterPrefix) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RouteFilterPrefix:
     out: RouteFilterPrefix = {}  # type: ignore[typeddict-item]
-    if "cidr" in data:
+    if data.get("cidr") is not None:
         out["cidr"] = data["cidr"]
     return out

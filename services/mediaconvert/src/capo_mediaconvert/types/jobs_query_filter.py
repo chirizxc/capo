@@ -38,13 +38,13 @@ def serialize_json(value: JobsQueryFilter) -> dict:
 
 def deserialize_json(data: dict) -> JobsQueryFilter:
     out: JobsQueryFilter = {}  # type: ignore[typeddict-item]
-    if "key" in data:
+    if data.get("key") is not None:
         import capo_mediaconvert.types.jobs_query_filter_key
 
         out["key"] = capo_mediaconvert.types.jobs_query_filter_key.deserialize_json(
             data["key"]
         )
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_mediaconvert.types.__list_of__string_max100
 
         out["values"] = (

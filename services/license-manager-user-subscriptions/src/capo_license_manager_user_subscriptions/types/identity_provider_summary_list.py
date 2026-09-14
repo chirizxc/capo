@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> IdentityProviderSummaryList:
 
     out: IdentityProviderSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_license_manager_user_subscriptions.types.identity_provider_summary.deserialize_json(
                 item

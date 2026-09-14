@@ -25,6 +25,6 @@ def serialize_json(value: DeleteWorkflowResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteWorkflowResponse:
     out: DeleteWorkflowResponse = {}  # type: ignore[typeddict-item]
-    if "workflowBuildVersionArn" in data:
+    if data.get("workflowBuildVersionArn") is not None:
         out["workflow_build_version_arn"] = data["workflowBuildVersionArn"]
     return out

@@ -36,9 +36,9 @@ def serialize_json(value: EventFilter) -> dict:
 
 
 def deserialize_json(data: dict) -> EventFilter:
-    if "all" in data:
+    if data.get("all") is not None:
         return {"all": None}
-    elif "include" in data:
+    elif data.get("include") is not None:
         import capo_workspaces_web.types.events
 
         return {

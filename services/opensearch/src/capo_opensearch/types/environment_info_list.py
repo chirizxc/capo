@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> EnvironmentInfoList:
 
     out: EnvironmentInfoList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_opensearch.types.environment_info.deserialize_json(item))
     return out

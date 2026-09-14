@@ -16,18 +16,26 @@ class UsageMetric(TypedDict, closed=True):
 def serialize_json(value: UsageMetric) -> dict:
     out: dict = {}
     out["limit"] = value["limit"]
-    out["usage"] = value["usage"]
+    out["usage"] = (
+        "NaN"
+        if value["usage"] != value["usage"]
+        else "Infinity"
+        if value["usage"] == float("inf")
+        else "-Infinity"
+        if value["usage"] == float("-inf")
+        else value["usage"]
+    )
     return out
 
 
 def deserialize_json(data: dict) -> UsageMetric:
     out: UsageMetric = {}  # type: ignore[typeddict-item]
-    if "limit" in data:
+    if data.get("limit") is not None:
         out["limit"] = data["limit"]
     else:
         raise DeserializationError("UsageMetric.limit required")
-    if "usage" in data:
-        out["usage"] = data["usage"]
+    if data.get("usage") is not None:
+        out["usage"] = float(data["usage"])
     else:
         raise DeserializationError("UsageMetric.usage required")
     return out

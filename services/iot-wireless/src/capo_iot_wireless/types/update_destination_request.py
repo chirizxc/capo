@@ -47,7 +47,7 @@ def serialize_json(value: UpdateDestinationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDestinationRequest:
     out: UpdateDestinationRequest = {}  # type: ignore[typeddict-item]
-    if "ExpressionType" in data:
+    if data.get("ExpressionType") is not None:
         import capo_iot_wireless.types.expression_type
 
         out["expression_type"] = (
@@ -55,10 +55,10 @@ def deserialize_json(data: dict) -> UpdateDestinationRequest:
                 data["ExpressionType"]
             )
         )
-    if "Expression" in data:
+    if data.get("Expression") is not None:
         out["expression"] = data["Expression"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     return out

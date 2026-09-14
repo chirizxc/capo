@@ -18,7 +18,15 @@ def serialize_json(input_to_serialize: DisruptionResiliencyScore) -> dict:
     for key, value in input_to_serialize.items():
         import capo_resiliencehub.types.disruption_type
 
-        out[capo_resiliencehub.types.disruption_type.serialize_json(key)] = value
+        out[capo_resiliencehub.types.disruption_type.serialize_json(key)] = (
+            "NaN"
+            if value != value
+            else "Infinity"
+            if value == float("inf")
+            else "-Infinity"
+            if value == float("-inf")
+            else value
+        )
     return out
 
 
@@ -27,5 +35,9 @@ def deserialize_json(data: dict) -> DisruptionResiliencyScore:
     for key, value in data.items():
         import capo_resiliencehub.types.disruption_type
 
-        out[capo_resiliencehub.types.disruption_type.deserialize_json(key)] = value
+        if value is None:
+            continue
+        out[capo_resiliencehub.types.disruption_type.deserialize_json(key)] = float(
+            value
+        )
     return out

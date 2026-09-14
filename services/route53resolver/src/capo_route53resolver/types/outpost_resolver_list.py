@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> OutpostResolverList:
 
     out: OutpostResolverList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_route53resolver.types.outpost_resolver.deserialize_aws_json_1_1(item)
         )

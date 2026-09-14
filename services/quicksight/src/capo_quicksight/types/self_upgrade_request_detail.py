@@ -73,29 +73,29 @@ def serialize_json(value: SelfUpgradeRequestDetail) -> dict:
 
 def deserialize_json(data: dict) -> SelfUpgradeRequestDetail:
     out: SelfUpgradeRequestDetail = {}  # type: ignore[typeddict-item]
-    if "UpgradeRequestId" in data:
+    if data.get("UpgradeRequestId") is not None:
         out["upgrade_request_id"] = data["UpgradeRequestId"]
-    if "UserName" in data:
+    if data.get("UserName") is not None:
         out["user_name"] = data["UserName"]
-    if "OriginalRole" in data:
+    if data.get("OriginalRole") is not None:
         import capo_quicksight.types.user_role
 
         out["original_role"] = capo_quicksight.types.user_role.deserialize_json(
             data["OriginalRole"]
         )
-    if "RequestedRole" in data:
+    if data.get("RequestedRole") is not None:
         import capo_quicksight.types.user_role
 
         out["requested_role"] = capo_quicksight.types.user_role.deserialize_json(
             data["RequestedRole"]
         )
-    if "RequestNote" in data:
+    if data.get("RequestNote") is not None:
         out["request_note"] = data["RequestNote"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         out["creation_time"] = data["CreationTime"]
     else:
         out["creation_time"] = 0
-    if "RequestStatus" in data:
+    if data.get("RequestStatus") is not None:
         import capo_quicksight.types.self_upgrade_request_status
 
         out["request_status"] = (
@@ -103,10 +103,10 @@ def deserialize_json(data: dict) -> SelfUpgradeRequestDetail:
                 data["RequestStatus"]
             )
         )
-    if "lastUpdateAttemptTime" in data:
+    if data.get("lastUpdateAttemptTime") is not None:
         out["last_update_attempt_time"] = data["lastUpdateAttemptTime"]
     else:
         out["last_update_attempt_time"] = 0
-    if "lastUpdateFailureReason" in data:
+    if data.get("lastUpdateFailureReason") is not None:
         out["last_update_failure_reason"] = data["lastUpdateFailureReason"]
     return out

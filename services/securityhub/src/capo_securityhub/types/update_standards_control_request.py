@@ -36,12 +36,12 @@ def serialize_json(value: UpdateStandardsControlRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateStandardsControlRequest:
     out: UpdateStandardsControlRequest = {}  # type: ignore[typeddict-item]
-    if "ControlStatus" in data:
+    if data.get("ControlStatus") is not None:
         import capo_securityhub.types.control_status
 
         out["control_status"] = capo_securityhub.types.control_status.deserialize_json(
             data["ControlStatus"]
         )
-    if "DisabledReason" in data:
+    if data.get("DisabledReason") is not None:
         out["disabled_reason"] = data["DisabledReason"]
     return out

@@ -56,11 +56,11 @@ def serialize_json(value: CreateGroupOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateGroupOutput:
     out: CreateGroupOutput = {}  # type: ignore[typeddict-item]
-    if "Group" in data:
+    if data.get("Group") is not None:
         import capo_resource_groups.types.group
 
         out["group"] = capo_resource_groups.types.group.deserialize_json(data["Group"])
-    if "ResourceQuery" in data:
+    if data.get("ResourceQuery") is not None:
         import capo_resource_groups.types.resource_query
 
         out["resource_query"] = (
@@ -68,11 +68,11 @@ def deserialize_json(data: dict) -> CreateGroupOutput:
                 data["ResourceQuery"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_resource_groups.types.tags
 
         out["tags"] = capo_resource_groups.types.tags.deserialize_json(data["Tags"])
-    if "GroupConfiguration" in data:
+    if data.get("GroupConfiguration") is not None:
         import capo_resource_groups.types.group_configuration
 
         out["group_configuration"] = (

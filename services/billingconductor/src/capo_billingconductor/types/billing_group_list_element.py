@@ -107,15 +107,15 @@ def serialize_json(value: BillingGroupListElement) -> dict:
 
 def deserialize_json(data: dict) -> BillingGroupListElement:
     out: BillingGroupListElement = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "PrimaryAccountId" in data:
+    if data.get("PrimaryAccountId") is not None:
         out["primary_account_id"] = data["PrimaryAccountId"]
-    if "ComputationPreference" in data:
+    if data.get("ComputationPreference") is not None:
         import capo_billingconductor.types.computation_preference
 
         out["computation_preference"] = (
@@ -123,19 +123,19 @@ def deserialize_json(data: dict) -> BillingGroupListElement:
                 data["ComputationPreference"]
             )
         )
-    if "Size" in data:
+    if data.get("Size") is not None:
         out["size"] = data["Size"]
     else:
         out["size"] = 0
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         out["creation_time"] = data["CreationTime"]
     else:
         out["creation_time"] = 0
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         out["last_modified_time"] = data["LastModifiedTime"]
     else:
         out["last_modified_time"] = 0
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_billingconductor.types.billing_group_status
 
         out["status"] = (
@@ -143,9 +143,9 @@ def deserialize_json(data: dict) -> BillingGroupListElement:
                 data["Status"]
             )
         )
-    if "StatusReason" in data:
+    if data.get("StatusReason") is not None:
         out["status_reason"] = data["StatusReason"]
-    if "AccountGrouping" in data:
+    if data.get("AccountGrouping") is not None:
         import capo_billingconductor.types.list_billing_group_account_grouping
 
         out["account_grouping"] = (
@@ -153,7 +153,7 @@ def deserialize_json(data: dict) -> BillingGroupListElement:
                 data["AccountGrouping"]
             )
         )
-    if "BillingGroupType" in data:
+    if data.get("BillingGroupType") is not None:
         import capo_billingconductor.types.billing_group_type
 
         out["billing_group_type"] = (

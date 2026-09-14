@@ -24,6 +24,8 @@ def serialize_aws_json_1_1(input_to_serialize: DataSourceMap) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> DataSourceMap:
     out: DataSourceMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_glue.types.data_source
 
         out[key] = capo_glue.types.data_source.deserialize_aws_json_1_1(value)

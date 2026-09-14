@@ -34,8 +34,8 @@ def deserialize_json(
     data: dict,
 ) -> AwsMskClusterClusterInfoEncryptionInfoEncryptionInTransitDetails:
     out: AwsMskClusterClusterInfoEncryptionInfoEncryptionInTransitDetails = {}  # type: ignore[typeddict-item]
-    if "InCluster" in data:
+    if data.get("InCluster") is not None:
         out["in_cluster"] = data["InCluster"]
-    if "ClientBroker" in data:
+    if data.get("ClientBroker") is not None:
         out["client_broker"] = data["ClientBroker"]
     return out

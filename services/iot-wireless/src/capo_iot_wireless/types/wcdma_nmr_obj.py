@@ -42,20 +42,20 @@ def serialize_json(value: WcdmaNmrObj) -> dict:
 
 def deserialize_json(data: dict) -> WcdmaNmrObj:
     out: WcdmaNmrObj = {}  # type: ignore[typeddict-item]
-    if "Uarfcndl" in data:
+    if data.get("Uarfcndl") is not None:
         out["uarfcndl"] = data["Uarfcndl"]
     else:
         raise DeserializationError("WcdmaNmrObj.uarfcndl required")
-    if "Psc" in data:
+    if data.get("Psc") is not None:
         out["psc"] = data["Psc"]
     else:
         raise DeserializationError("WcdmaNmrObj.psc required")
-    if "UtranCid" in data:
+    if data.get("UtranCid") is not None:
         out["utran_cid"] = data["UtranCid"]
     else:
         raise DeserializationError("WcdmaNmrObj.utran_cid required")
-    if "Rscp" in data:
+    if data.get("Rscp") is not None:
         out["rscp"] = data["Rscp"]
-    if "PathLoss" in data:
+    if data.get("PathLoss") is not None:
         out["path_loss"] = data["PathLoss"]
     return out

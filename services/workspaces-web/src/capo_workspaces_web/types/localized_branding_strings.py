@@ -68,26 +68,26 @@ def serialize_json(value: LocalizedBrandingStrings) -> dict:
 
 def deserialize_json(data: dict) -> LocalizedBrandingStrings:
     out: LocalizedBrandingStrings = {}  # type: ignore[typeddict-item]
-    if "browserTabTitle" in data:
+    if data.get("browserTabTitle") is not None:
         out["browser_tab_title"] = data["browserTabTitle"]
     else:
         raise DeserializationError(
             "LocalizedBrandingStrings.browser_tab_title required"
         )
-    if "welcomeText" in data:
+    if data.get("welcomeText") is not None:
         out["welcome_text"] = data["welcomeText"]
     else:
         raise DeserializationError("LocalizedBrandingStrings.welcome_text required")
-    if "loginTitle" in data:
+    if data.get("loginTitle") is not None:
         out["login_title"] = data["loginTitle"]
-    if "loginDescription" in data:
+    if data.get("loginDescription") is not None:
         out["login_description"] = data["loginDescription"]
-    if "loginButtonText" in data:
+    if data.get("loginButtonText") is not None:
         out["login_button_text"] = data["loginButtonText"]
-    if "contactLink" in data:
+    if data.get("contactLink") is not None:
         out["contact_link"] = data["contactLink"]
-    if "contactButtonText" in data:
+    if data.get("contactButtonText") is not None:
         out["contact_button_text"] = data["contactButtonText"]
-    if "loadingText" in data:
+    if data.get("loadingText") is not None:
         out["loading_text"] = data["loadingText"]
     return out

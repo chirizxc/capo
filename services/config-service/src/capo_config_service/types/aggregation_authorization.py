@@ -44,13 +44,13 @@ def serialize_aws_json_1_1(value: AggregationAuthorization) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AggregationAuthorization:
     out: AggregationAuthorization = {}  # type: ignore[typeddict-item]
-    if "AggregationAuthorizationArn" in data:
+    if data.get("AggregationAuthorizationArn") is not None:
         out["aggregation_authorization_arn"] = data["AggregationAuthorizationArn"]
-    if "AuthorizedAccountId" in data:
+    if data.get("AuthorizedAccountId") is not None:
         out["authorized_account_id"] = data["AuthorizedAccountId"]
-    if "AuthorizedAwsRegion" in data:
+    if data.get("AuthorizedAwsRegion") is not None:
         out["authorized_aws_region"] = data["AuthorizedAwsRegion"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_config_service.types.date
 
         out["creation_time"] = capo_config_service.types.date.deserialize_aws_json_1_1(

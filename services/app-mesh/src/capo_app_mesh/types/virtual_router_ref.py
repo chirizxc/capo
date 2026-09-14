@@ -57,31 +57,31 @@ def serialize_json(value: VirtualRouterRef) -> dict:
 
 def deserialize_json(data: dict) -> VirtualRouterRef:
     out: VirtualRouterRef = {}  # type: ignore[typeddict-item]
-    if "meshName" in data:
+    if data.get("meshName") is not None:
         out["mesh_name"] = data["meshName"]
     else:
         raise DeserializationError("VirtualRouterRef.mesh_name required")
-    if "virtualRouterName" in data:
+    if data.get("virtualRouterName") is not None:
         out["virtual_router_name"] = data["virtualRouterName"]
     else:
         raise DeserializationError("VirtualRouterRef.virtual_router_name required")
-    if "meshOwner" in data:
+    if data.get("meshOwner") is not None:
         out["mesh_owner"] = data["meshOwner"]
     else:
         raise DeserializationError("VirtualRouterRef.mesh_owner required")
-    if "resourceOwner" in data:
+    if data.get("resourceOwner") is not None:
         out["resource_owner"] = data["resourceOwner"]
     else:
         raise DeserializationError("VirtualRouterRef.resource_owner required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("VirtualRouterRef.arn required")
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     else:
         raise DeserializationError("VirtualRouterRef.version required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_app_mesh.types._prelude.timestamp
 
         out["created_at"] = capo_app_mesh.types._prelude.timestamp.deserialize_json(
@@ -89,7 +89,7 @@ def deserialize_json(data: dict) -> VirtualRouterRef:
         )
     else:
         raise DeserializationError("VirtualRouterRef.created_at required")
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_app_mesh.types._prelude.timestamp
 
         out["last_updated_at"] = (

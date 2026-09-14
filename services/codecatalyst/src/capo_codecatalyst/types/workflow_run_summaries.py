@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> WorkflowRunSummaries:
 
     out: WorkflowRunSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_codecatalyst.types.workflow_run_summary.deserialize_json(item))
     return out

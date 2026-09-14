@@ -30,10 +30,10 @@ def serialize_json(value: RefreshTokenRequestBody) -> dict:
 
 def deserialize_json(data: dict) -> RefreshTokenRequestBody:
     out: RefreshTokenRequestBody = {}  # type: ignore[typeddict-item]
-    if "token" in data:
+    if data.get("token") is not None:
         out["token"] = data["token"]
     else:
         raise DeserializationError("RefreshTokenRequestBody.token required")
-    if "clientId" in data:
+    if data.get("clientId") is not None:
         out["client_id"] = data["clientId"]
     return out

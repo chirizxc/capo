@@ -44,15 +44,15 @@ def serialize_json(value: CreateSiteRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateSiteRequest:
     out: CreateSiteRequest = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Location" in data:
+    if data.get("Location") is not None:
         import capo_networkmanager.types.location
 
         out["location"] = capo_networkmanager.types.location.deserialize_json(
             data["Location"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_networkmanager.types.tag_list
 
         out["tags"] = capo_networkmanager.types.tag_list.deserialize_json(data["Tags"])

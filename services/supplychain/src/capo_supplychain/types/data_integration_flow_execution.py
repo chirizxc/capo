@@ -94,19 +94,19 @@ def serialize_json(value: DataIntegrationFlowExecution) -> dict:
 
 def deserialize_json(data: dict) -> DataIntegrationFlowExecution:
     out: DataIntegrationFlowExecution = {}  # type: ignore[typeddict-item]
-    if "instanceId" in data:
+    if data.get("instanceId") is not None:
         out["instance_id"] = data["instanceId"]
     else:
         raise DeserializationError("DataIntegrationFlowExecution.instance_id required")
-    if "flowName" in data:
+    if data.get("flowName") is not None:
         out["flow_name"] = data["flowName"]
     else:
         raise DeserializationError("DataIntegrationFlowExecution.flow_name required")
-    if "executionId" in data:
+    if data.get("executionId") is not None:
         out["execution_id"] = data["executionId"]
     else:
         raise DeserializationError("DataIntegrationFlowExecution.execution_id required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_supplychain.types.data_integration_flow_execution_status
 
         out["status"] = (
@@ -114,7 +114,7 @@ def deserialize_json(data: dict) -> DataIntegrationFlowExecution:
                 data["status"]
             )
         )
-    if "sourceInfo" in data:
+    if data.get("sourceInfo") is not None:
         import capo_supplychain.types.data_integration_flow_execution_source_info
 
         out["source_info"] = (
@@ -122,21 +122,21 @@ def deserialize_json(data: dict) -> DataIntegrationFlowExecution:
                 data["sourceInfo"]
             )
         )
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_supplychain.types._prelude.timestamp
 
         out["start_time"] = capo_supplychain.types._prelude.timestamp.deserialize_json(
             data["startTime"]
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_supplychain.types._prelude.timestamp
 
         out["end_time"] = capo_supplychain.types._prelude.timestamp.deserialize_json(
             data["endTime"]
         )
-    if "outputMetadata" in data:
+    if data.get("outputMetadata") is not None:
         import capo_supplychain.types.data_integration_flow_execution_output_metadata
 
         out["output_metadata"] = (

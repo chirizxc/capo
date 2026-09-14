@@ -50,16 +50,16 @@ def serialize_aws_json_1_0(value: EffectiveLifecyclePolicyDetail) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EffectiveLifecyclePolicyDetail:
     out: EffectiveLifecyclePolicyDetail = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "resource" in data:
+    if data.get("resource") is not None:
         out["resource"] = data["resource"]
-    if "policyName" in data:
+    if data.get("policyName") is not None:
         out["policy_name"] = data["policyName"]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
-    if "retentionPeriod" in data:
+    if data.get("retentionPeriod") is not None:
         out["retention_period"] = data["retentionPeriod"]
-    if "noMinRetentionPeriod" in data:
+    if data.get("noMinRetentionPeriod") is not None:
         out["no_min_retention_period"] = data["noMinRetentionPeriod"]
     return out

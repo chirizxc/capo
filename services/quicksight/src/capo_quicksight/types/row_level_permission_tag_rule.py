@@ -42,16 +42,16 @@ def serialize_json(value: RowLevelPermissionTagRule) -> dict:
 
 def deserialize_json(data: dict) -> RowLevelPermissionTagRule:
     out: RowLevelPermissionTagRule = {}  # type: ignore[typeddict-item]
-    if "TagKey" in data:
+    if data.get("TagKey") is not None:
         out["tag_key"] = data["TagKey"]
     else:
         raise DeserializationError("RowLevelPermissionTagRule.tag_key required")
-    if "ColumnName" in data:
+    if data.get("ColumnName") is not None:
         out["column_name"] = data["ColumnName"]
     else:
         raise DeserializationError("RowLevelPermissionTagRule.column_name required")
-    if "TagMultiValueDelimiter" in data:
+    if data.get("TagMultiValueDelimiter") is not None:
         out["tag_multi_value_delimiter"] = data["TagMultiValueDelimiter"]
-    if "MatchAllValue" in data:
+    if data.get("MatchAllValue") is not None:
         out["match_all_value"] = data["MatchAllValue"]
     return out

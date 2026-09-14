@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> DakCertificateMetadataList:
 
     out: DakCertificateMetadataList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot_wireless.types.dak_certificate_metadata.deserialize_json(item)
         )

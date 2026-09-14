@@ -35,15 +35,15 @@ def serialize_json(value: StopCisSessionRequest) -> dict:
 
 def deserialize_json(data: dict) -> StopCisSessionRequest:
     out: StopCisSessionRequest = {}  # type: ignore[typeddict-item]
-    if "scanJobId" in data:
+    if data.get("scanJobId") is not None:
         out["scan_job_id"] = data["scanJobId"]
     else:
         raise DeserializationError("StopCisSessionRequest.scan_job_id required")
-    if "sessionToken" in data:
+    if data.get("sessionToken") is not None:
         out["session_token"] = data["sessionToken"]
     else:
         raise DeserializationError("StopCisSessionRequest.session_token required")
-    if "message" in data:
+    if data.get("message") is not None:
         import capo_inspector2.types.stop_cis_session_message
 
         out["message"] = (

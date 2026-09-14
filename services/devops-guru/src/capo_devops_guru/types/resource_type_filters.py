@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ResourceTypeFilters:
 
     out: ResourceTypeFilters = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_devops_guru.types.resource_type_filter.deserialize_json(item))
     return out

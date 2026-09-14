@@ -31,9 +31,9 @@ def serialize_json(value: ToolInstruction) -> dict:
 
 def deserialize_json(data: dict) -> ToolInstruction:
     out: ToolInstruction = {}  # type: ignore[typeddict-item]
-    if "instruction" in data:
+    if data.get("instruction") is not None:
         out["instruction"] = data["instruction"]
-    if "examples" in data:
+    if data.get("examples") is not None:
         import capo_qconnect.types.tool_example_list
 
         out["examples"] = capo_qconnect.types.tool_example_list.deserialize_json(

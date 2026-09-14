@@ -76,7 +76,7 @@ def serialize_json(value: InstanceTypeDetails) -> dict:
 
 def deserialize_json(data: dict) -> InstanceTypeDetails:
     out: InstanceTypeDetails = {}  # type: ignore[typeddict-item]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         import capo_opensearch.types.open_search_partition_instance_type
 
         out["instance_type"] = (
@@ -84,17 +84,17 @@ def deserialize_json(data: dict) -> InstanceTypeDetails:
                 data["InstanceType"]
             )
         )
-    if "EncryptionEnabled" in data:
+    if data.get("EncryptionEnabled") is not None:
         out["encryption_enabled"] = data["EncryptionEnabled"]
-    if "CognitoEnabled" in data:
+    if data.get("CognitoEnabled") is not None:
         out["cognito_enabled"] = data["CognitoEnabled"]
-    if "AppLogsEnabled" in data:
+    if data.get("AppLogsEnabled") is not None:
         out["app_logs_enabled"] = data["AppLogsEnabled"]
-    if "AdvancedSecurityEnabled" in data:
+    if data.get("AdvancedSecurityEnabled") is not None:
         out["advanced_security_enabled"] = data["AdvancedSecurityEnabled"]
-    if "WarmEnabled" in data:
+    if data.get("WarmEnabled") is not None:
         out["warm_enabled"] = data["WarmEnabled"]
-    if "InstanceRole" in data:
+    if data.get("InstanceRole") is not None:
         import capo_opensearch.types.instance_role_list
 
         out["instance_role"] = (
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> InstanceTypeDetails:
                 data["InstanceRole"]
             )
         )
-    if "AvailabilityZones" in data:
+    if data.get("AvailabilityZones") is not None:
         import capo_opensearch.types.availability_zone_list
 
         out["availability_zones"] = (

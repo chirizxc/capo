@@ -59,25 +59,25 @@ def serialize_json(value: AnomalousLogGroup) -> dict:
 
 def deserialize_json(data: dict) -> AnomalousLogGroup:
     out: AnomalousLogGroup = {}  # type: ignore[typeddict-item]
-    if "LogGroupName" in data:
+    if data.get("LogGroupName") is not None:
         out["log_group_name"] = data["LogGroupName"]
-    if "ImpactStartTime" in data:
+    if data.get("ImpactStartTime") is not None:
         import capo_devops_guru.types.timestamp
 
         out["impact_start_time"] = capo_devops_guru.types.timestamp.deserialize_json(
             data["ImpactStartTime"]
         )
-    if "ImpactEndTime" in data:
+    if data.get("ImpactEndTime") is not None:
         import capo_devops_guru.types.timestamp
 
         out["impact_end_time"] = capo_devops_guru.types.timestamp.deserialize_json(
             data["ImpactEndTime"]
         )
-    if "NumberOfLogLinesScanned" in data:
+    if data.get("NumberOfLogLinesScanned") is not None:
         out["number_of_log_lines_scanned"] = data["NumberOfLogLinesScanned"]
     else:
         out["number_of_log_lines_scanned"] = 0
-    if "LogAnomalyShowcases" in data:
+    if data.get("LogAnomalyShowcases") is not None:
         import capo_devops_guru.types.log_anomaly_showcases
 
         out["log_anomaly_showcases"] = (

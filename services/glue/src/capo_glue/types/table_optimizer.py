@@ -62,13 +62,13 @@ def serialize_aws_json_1_1(value: TableOptimizer) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TableOptimizer:
     out: TableOptimizer = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_glue.types.table_optimizer_type
 
         out["type"] = capo_glue.types.table_optimizer_type.deserialize_aws_json_1_1(
             data["type"]
         )
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_glue.types.table_optimizer_configuration
 
         out["configuration"] = (
@@ -76,13 +76,13 @@ def deserialize_aws_json_1_1(data: dict) -> TableOptimizer:
                 data["configuration"]
             )
         )
-    if "lastRun" in data:
+    if data.get("lastRun") is not None:
         import capo_glue.types.table_optimizer_run
 
         out["last_run"] = capo_glue.types.table_optimizer_run.deserialize_aws_json_1_1(
             data["lastRun"]
         )
-    if "configurationSource" in data:
+    if data.get("configurationSource") is not None:
         import capo_glue.types.configuration_source
 
         out["configuration_source"] = (

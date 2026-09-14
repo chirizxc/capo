@@ -47,15 +47,15 @@ def serialize_json(value: Type) -> dict:
 
 def deserialize_json(data: dict) -> Type:
     out: Type = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "definition" in data:
+    if data.get("definition") is not None:
         out["definition"] = data["definition"]
-    if "format" in data:
+    if data.get("format") is not None:
         import capo_appsync.types.type_definition_format
 
         out["format"] = capo_appsync.types.type_definition_format.deserialize_json(

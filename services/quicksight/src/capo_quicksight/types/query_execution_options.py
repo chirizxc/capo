@@ -31,7 +31,7 @@ def serialize_json(value: QueryExecutionOptions) -> dict:
 
 def deserialize_json(data: dict) -> QueryExecutionOptions:
     out: QueryExecutionOptions = {}  # type: ignore[typeddict-item]
-    if "QueryExecutionMode" in data:
+    if data.get("QueryExecutionMode") is not None:
         import capo_quicksight.types.query_execution_mode
 
         out["query_execution_mode"] = (

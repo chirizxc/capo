@@ -32,15 +32,15 @@ def serialize_json(value: PostgreSqlParameters) -> dict:
 
 def deserialize_json(data: dict) -> PostgreSqlParameters:
     out: PostgreSqlParameters = {}  # type: ignore[typeddict-item]
-    if "Host" in data:
+    if data.get("Host") is not None:
         out["host"] = data["Host"]
     else:
         raise DeserializationError("PostgreSqlParameters.host required")
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
     else:
         raise DeserializationError("PostgreSqlParameters.port required")
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
     else:
         raise DeserializationError("PostgreSqlParameters.database required")

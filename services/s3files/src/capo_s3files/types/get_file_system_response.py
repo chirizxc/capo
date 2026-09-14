@@ -92,42 +92,42 @@ def serialize_json(value: GetFileSystemResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetFileSystemResponse:
     out: GetFileSystemResponse = {}  # type: ignore[typeddict-item]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_s3files.types._prelude.timestamp
 
         out["creation_time"] = capo_s3files.types._prelude.timestamp.deserialize_json(
             data["creationTime"]
         )
-    if "fileSystemArn" in data:
+    if data.get("fileSystemArn") is not None:
         out["file_system_arn"] = data["fileSystemArn"]
-    if "fileSystemId" in data:
+    if data.get("fileSystemId") is not None:
         out["file_system_id"] = data["fileSystemId"]
-    if "bucket" in data:
+    if data.get("bucket") is not None:
         out["bucket"] = data["bucket"]
-    if "prefix" in data:
+    if data.get("prefix") is not None:
         out["prefix"] = data["prefix"]
     else:
         out["prefix"] = ""
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_s3files.types.life_cycle_state
 
         out["status"] = capo_s3files.types.life_cycle_state.deserialize_json(
             data["status"]
         )
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "ownerId" in data:
+    if data.get("ownerId") is not None:
         out["owner_id"] = data["ownerId"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_s3files.types.tag_list
 
         out["tags"] = capo_s3files.types.tag_list.deserialize_json(data["tags"])
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     return out

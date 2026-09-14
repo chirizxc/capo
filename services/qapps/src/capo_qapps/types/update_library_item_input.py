@@ -45,17 +45,17 @@ def serialize_json(value: UpdateLibraryItemInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateLibraryItemInput:
     out: UpdateLibraryItemInput = {}  # type: ignore[typeddict-item]
-    if "libraryItemId" in data:
+    if data.get("libraryItemId") is not None:
         out["library_item_id"] = data["libraryItemId"]
     else:
         raise DeserializationError("UpdateLibraryItemInput.library_item_id required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_qapps.types.library_item_status
 
         out["status"] = capo_qapps.types.library_item_status.deserialize_json(
             data["status"]
         )
-    if "categories" in data:
+    if data.get("categories") is not None:
         import capo_qapps.types.category_id_list
 
         out["categories"] = capo_qapps.types.category_id_list.deserialize_json(

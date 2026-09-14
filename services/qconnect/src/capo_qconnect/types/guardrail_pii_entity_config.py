@@ -28,11 +28,11 @@ def serialize_json(value: GuardrailPiiEntityConfig) -> dict:
 
 def deserialize_json(data: dict) -> GuardrailPiiEntityConfig:
     out: GuardrailPiiEntityConfig = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("GuardrailPiiEntityConfig.type required")
-    if "action" in data:
+    if data.get("action") is not None:
         out["action"] = data["action"]
     else:
         raise DeserializationError("GuardrailPiiEntityConfig.action required")

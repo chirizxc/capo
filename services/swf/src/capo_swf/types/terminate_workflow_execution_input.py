@@ -52,23 +52,23 @@ def serialize_aws_json_1_0(value: TerminateWorkflowExecutionInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TerminateWorkflowExecutionInput:
     out: TerminateWorkflowExecutionInput = {}  # type: ignore[typeddict-item]
-    if "domain" in data:
+    if data.get("domain") is not None:
         out["domain"] = data["domain"]
     else:
         raise DeserializationError("TerminateWorkflowExecutionInput.domain required")
-    if "workflowId" in data:
+    if data.get("workflowId") is not None:
         out["workflow_id"] = data["workflowId"]
     else:
         raise DeserializationError(
             "TerminateWorkflowExecutionInput.workflow_id required"
         )
-    if "runId" in data:
+    if data.get("runId") is not None:
         out["run_id"] = data["runId"]
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
-    if "details" in data:
+    if data.get("details") is not None:
         out["details"] = data["details"]
-    if "childPolicy" in data:
+    if data.get("childPolicy") is not None:
         import capo_swf.types.child_policy
 
         out["child_policy"] = capo_swf.types.child_policy.deserialize_aws_json_1_0(

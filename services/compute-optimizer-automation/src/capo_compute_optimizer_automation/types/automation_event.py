@@ -142,11 +142,11 @@ def serialize_aws_json_1_0(value: AutomationEvent) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AutomationEvent:
     out: AutomationEvent = {}  # type: ignore[typeddict-item]
-    if "eventId" in data:
+    if data.get("eventId") is not None:
         out["event_id"] = data["eventId"]
-    if "eventDescription" in data:
+    if data.get("eventDescription") is not None:
         out["event_description"] = data["eventDescription"]
-    if "eventType" in data:
+    if data.get("eventType") is not None:
         import capo_compute_optimizer_automation.types.event_type
 
         out["event_type"] = (
@@ -154,7 +154,7 @@ def deserialize_aws_json_1_0(data: dict) -> AutomationEvent:
                 data["eventType"]
             )
         )
-    if "eventStatus" in data:
+    if data.get("eventStatus") is not None:
         import capo_compute_optimizer_automation.types.event_status
 
         out["event_status"] = (
@@ -162,21 +162,21 @@ def deserialize_aws_json_1_0(data: dict) -> AutomationEvent:
                 data["eventStatus"]
             )
         )
-    if "eventStatusReason" in data:
+    if data.get("eventStatusReason") is not None:
         out["event_status_reason"] = data["eventStatusReason"]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         out["resource_id"] = data["resourceId"]
-    if "recommendedActionId" in data:
+    if data.get("recommendedActionId") is not None:
         out["recommended_action_id"] = data["recommendedActionId"]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
-    if "ruleId" in data:
+    if data.get("ruleId") is not None:
         out["rule_id"] = data["ruleId"]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_compute_optimizer_automation.types.resource_type
 
         out["resource_type"] = (
@@ -184,7 +184,7 @@ def deserialize_aws_json_1_0(data: dict) -> AutomationEvent:
                 data["resourceType"]
             )
         )
-    if "createdTimestamp" in data:
+    if data.get("createdTimestamp") is not None:
         import capo_compute_optimizer_automation.types._prelude.timestamp
 
         out["created_timestamp"] = (
@@ -192,7 +192,7 @@ def deserialize_aws_json_1_0(data: dict) -> AutomationEvent:
                 data["createdTimestamp"]
             )
         )
-    if "completedTimestamp" in data:
+    if data.get("completedTimestamp") is not None:
         import capo_compute_optimizer_automation.types._prelude.timestamp
 
         out["completed_timestamp"] = (
@@ -200,7 +200,7 @@ def deserialize_aws_json_1_0(data: dict) -> AutomationEvent:
                 data["completedTimestamp"]
             )
         )
-    if "estimatedMonthlySavings" in data:
+    if data.get("estimatedMonthlySavings") is not None:
         import capo_compute_optimizer_automation.types.estimated_monthly_savings
 
         out["estimated_monthly_savings"] = (

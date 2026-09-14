@@ -27,7 +27,7 @@ def serialize_json(value: GetTemplateResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetTemplateResponse:
     out: GetTemplateResponse = {}  # type: ignore[typeddict-item]
-    if "Template" in data:
+    if data.get("Template") is not None:
         import capo_pca_connector_ad.types.template
 
         out["template"] = capo_pca_connector_ad.types.template.deserialize_json(

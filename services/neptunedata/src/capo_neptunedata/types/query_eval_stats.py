@@ -30,12 +30,12 @@ def serialize_json(value: QueryEvalStats) -> dict:
 
 def deserialize_json(data: dict) -> QueryEvalStats:
     out: QueryEvalStats = {}  # type: ignore[typeddict-item]
-    if "waited" in data:
+    if data.get("waited") is not None:
         out["waited"] = data["waited"]
-    if "elapsed" in data:
+    if data.get("elapsed") is not None:
         out["elapsed"] = data["elapsed"]
-    if "cancelled" in data:
+    if data.get("cancelled") is not None:
         out["cancelled"] = data["cancelled"]
-    if "subqueries" in data:
+    if data.get("subqueries") is not None:
         out["subqueries"] = data["subqueries"]
     return out

@@ -96,11 +96,11 @@ def serialize_aws_json_1_1(value: S3DeltaCatalogTarget) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3DeltaCatalogTarget:
     out: S3DeltaCatalogTarget = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("S3DeltaCatalogTarget.name required")
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_glue.types.one_input
 
         out["inputs"] = capo_glue.types.one_input.deserialize_aws_json_1_1(
@@ -108,7 +108,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3DeltaCatalogTarget:
         )
     else:
         raise DeserializationError("S3DeltaCatalogTarget.inputs required")
-    if "PartitionKeys" in data:
+    if data.get("PartitionKeys") is not None:
         import capo_glue.types.glue_studio_path_list
 
         out["partition_keys"] = (
@@ -116,15 +116,15 @@ def deserialize_aws_json_1_1(data: dict) -> S3DeltaCatalogTarget:
                 data["PartitionKeys"]
             )
         )
-    if "Table" in data:
+    if data.get("Table") is not None:
         out["table"] = data["Table"]
     else:
         raise DeserializationError("S3DeltaCatalogTarget.table required")
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
     else:
         raise DeserializationError("S3DeltaCatalogTarget.database required")
-    if "AdditionalOptions" in data:
+    if data.get("AdditionalOptions") is not None:
         import capo_glue.types.additional_options
 
         out["additional_options"] = (
@@ -132,7 +132,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3DeltaCatalogTarget:
                 data["AdditionalOptions"]
             )
         )
-    if "SchemaChangePolicy" in data:
+    if data.get("SchemaChangePolicy") is not None:
         import capo_glue.types.catalog_schema_change_policy
 
         out["schema_change_policy"] = (
@@ -140,7 +140,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3DeltaCatalogTarget:
                 data["SchemaChangePolicy"]
             )
         )
-    if "AutoDataQuality" in data:
+    if data.get("AutoDataQuality") is not None:
         import capo_glue.types.auto_data_quality
 
         out["auto_data_quality"] = (
@@ -148,7 +148,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3DeltaCatalogTarget:
                 data["AutoDataQuality"]
             )
         )
-    if "OutputSchemas" in data:
+    if data.get("OutputSchemas") is not None:
         import capo_glue.types.glue_schemas
 
         out["output_schemas"] = capo_glue.types.glue_schemas.deserialize_aws_json_1_1(

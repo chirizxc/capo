@@ -25,6 +25,6 @@ def serialize_json(value: CreateMemberOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateMemberOutput:
     out: CreateMemberOutput = {}  # type: ignore[typeddict-item]
-    if "MemberId" in data:
+    if data.get("MemberId") is not None:
         out["member_id"] = data["MemberId"]
     return out

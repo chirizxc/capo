@@ -37,7 +37,7 @@ def serialize_aws_json_1_1(value: ShareError) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ShareError:
     out: ShareError = {}  # type: ignore[typeddict-item]
-    if "Accounts" in data:
+    if data.get("Accounts") is not None:
         import capo_service_catalog.types.namespaces
 
         out["accounts"] = (
@@ -45,8 +45,8 @@ def deserialize_aws_json_1_1(data: dict) -> ShareError:
                 data["Accounts"]
             )
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "Error" in data:
+    if data.get("Error") is not None:
         out["error"] = data["Error"]
     return out

@@ -40,9 +40,9 @@ def serialize_json(value: RedshiftCredentials) -> dict:
 
 
 def deserialize_json(data: dict) -> RedshiftCredentials:
-    if "secretArn" in data:
+    if data.get("secretArn") is not None:
         return {"secretArn": data["secretArn"]}
-    elif "usernamePassword" in data:
+    elif data.get("usernamePassword") is not None:
         import capo_datazone.types.username_password
 
         return {

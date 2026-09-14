@@ -31,10 +31,10 @@ def serialize_json(value: DICOMStudyDateAndTime) -> dict:
 
 def deserialize_json(data: dict) -> DICOMStudyDateAndTime:
     out: DICOMStudyDateAndTime = {}  # type: ignore[typeddict-item]
-    if "DICOMStudyDate" in data:
+    if data.get("DICOMStudyDate") is not None:
         out["dicom_study_date"] = data["DICOMStudyDate"]
     else:
         raise DeserializationError("DICOMStudyDateAndTime.dicom_study_date required")
-    if "DICOMStudyTime" in data:
+    if data.get("DICOMStudyTime") is not None:
         out["dicom_study_time"] = data["DICOMStudyTime"]
     return out

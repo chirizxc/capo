@@ -42,15 +42,15 @@ def serialize_aws_json_1_1(value: CreateHumanTaskUiRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateHumanTaskUiRequest:
     out: CreateHumanTaskUiRequest = {}  # type: ignore[typeddict-item]
-    if "HumanTaskUiName" in data:
+    if data.get("HumanTaskUiName") is not None:
         out["human_task_ui_name"] = data["HumanTaskUiName"]
-    if "UiTemplate" in data:
+    if data.get("UiTemplate") is not None:
         import capo_sagemaker.types.ui_template
 
         out["ui_template"] = capo_sagemaker.types.ui_template.deserialize_aws_json_1_1(
             data["UiTemplate"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(

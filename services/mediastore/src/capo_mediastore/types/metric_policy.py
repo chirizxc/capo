@@ -45,7 +45,7 @@ def serialize_aws_json_1_1(value: MetricPolicy) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MetricPolicy:
     out: MetricPolicy = {}  # type: ignore[typeddict-item]
-    if "ContainerLevelMetrics" in data:
+    if data.get("ContainerLevelMetrics") is not None:
         import capo_mediastore.types.container_level_metrics
 
         out["container_level_metrics"] = (
@@ -55,7 +55,7 @@ def deserialize_aws_json_1_1(data: dict) -> MetricPolicy:
         )
     else:
         raise DeserializationError("MetricPolicy.container_level_metrics required")
-    if "MetricPolicyRules" in data:
+    if data.get("MetricPolicyRules") is not None:
         import capo_mediastore.types.metric_policy_rules
 
         out["metric_policy_rules"] = (

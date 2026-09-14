@@ -25,7 +25,7 @@ def serialize_json(value: ReadReceiptConfig) -> dict:
 
 def deserialize_json(data: dict) -> ReadReceiptConfig:
     out: ReadReceiptConfig = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_wickr.types.status
 
         out["status"] = capo_wickr.types.status.deserialize_json(data["status"])

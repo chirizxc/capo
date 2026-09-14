@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> DatasetAugmentedManifestsList:
 
     out: DatasetAugmentedManifestsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_comprehend.types.dataset_augmented_manifests_list_item.deserialize_aws_json_1_1(
                 item

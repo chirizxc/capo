@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfSanitizationWarning:
 
     out: __listOfSanitizationWarning = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mq.types.sanitization_warning.deserialize_json(item))
     return out

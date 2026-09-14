@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DescribeUserPoolResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeUserPoolResponse:
     out: DescribeUserPoolResponse = {}  # type: ignore[typeddict-item]
-    if "UserPool" in data:
+    if data.get("UserPool") is not None:
         import capo_cognito_identity_provider.types.user_pool_type
 
         out["user_pool"] = (

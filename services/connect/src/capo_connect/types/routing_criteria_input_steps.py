@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> RoutingCriteriaInputSteps:
 
     out: RoutingCriteriaInputSteps = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.routing_criteria_input_step.deserialize_json(item)
         )

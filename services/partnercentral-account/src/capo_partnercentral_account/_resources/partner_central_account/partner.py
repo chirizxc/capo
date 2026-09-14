@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 from capo_partnercentral_account._services._pipeline import (
@@ -114,14 +115,16 @@ class Partner:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_account.types.create_partner_request.CreatePartnerRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["legal_name"] = legal_name
-        input_["primary_solution_type"] = primary_solution_type
-        input_["alliance_lead_contact"] = alliance_lead_contact
-        input_["email_verification_code"] = email_verification_code
+        input_: capo_partnercentral_account.types.create_partner_request.CreatePartnerRequest = {
+            "catalog": catalog,
+            "legal_name": legal_name,
+            "primary_solution_type": primary_solution_type,
+            "alliance_lead_contact": alliance_lead_contact,
+            "email_verification_code": email_verification_code,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -130,6 +133,7 @@ class Partner:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -169,15 +173,17 @@ class Partner:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_account.types.get_partner_request.GetPartnerRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
+        input_: capo_partnercentral_account.types.get_partner_request.GetPartnerRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -220,8 +226,9 @@ class Partner:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_account.types.list_partners_request.ListPartnersRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
+        input_: capo_partnercentral_account.types.list_partners_request.ListPartnersRequest = {
+            "catalog": catalog
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -230,6 +237,7 @@ class Partner:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_aws_training_certification_email_domain(
@@ -278,19 +286,22 @@ class Partner:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_account.types.associate_aws_training_certification_email_domain_request.AssociateAwsTrainingCertificationEmailDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["email"] = email
-        input_["email_verification_code"] = email_verification_code
+        input_: capo_partnercentral_account.types.associate_aws_training_certification_email_domain_request.AssociateAwsTrainingCertificationEmailDomainRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+            "email": email,
+            "email_verification_code": email_verification_code,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_profile_update_task(
@@ -337,18 +348,21 @@ class Partner:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_account.types.cancel_profile_update_task_request.CancelProfileUpdateTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["task_id"] = task_id
+        input_: capo_partnercentral_account.types.cancel_profile_update_task_request.CancelProfileUpdateTaskRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+            "task_id": task_id,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_aws_training_certification_email_domain(
@@ -394,18 +408,21 @@ class Partner:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_account.types.disassociate_aws_training_certification_email_domain_request.DisassociateAwsTrainingCertificationEmailDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["domain_name"] = domain_name
+        input_: capo_partnercentral_account.types.disassociate_aws_training_certification_email_domain_request.DisassociateAwsTrainingCertificationEmailDomainRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+            "domain_name": domain_name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_alliance_lead_contact(
@@ -445,15 +462,17 @@ class Partner:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_account.types.get_alliance_lead_contact_request.GetAllianceLeadContactRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
+        input_: capo_partnercentral_account.types.get_alliance_lead_contact_request.GetAllianceLeadContactRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_profile_update_task(
@@ -493,15 +512,17 @@ class Partner:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_account.types.get_profile_update_task_request.GetProfileUpdateTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
+        input_: capo_partnercentral_account.types.get_profile_update_task_request.GetProfileUpdateTaskRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_profile_visibility(
@@ -541,15 +562,17 @@ class Partner:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_account.types.get_profile_visibility_request.GetProfileVisibilityRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
+        input_: capo_partnercentral_account.types.get_profile_visibility_request.GetProfileVisibilityRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_alliance_lead_contact(
@@ -595,10 +618,11 @@ class Partner:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_account.types.put_alliance_lead_contact_request.PutAllianceLeadContactRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
-        input_["alliance_lead_contact"] = alliance_lead_contact
+        input_: capo_partnercentral_account.types.put_alliance_lead_contact_request.PutAllianceLeadContactRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+            "alliance_lead_contact": alliance_lead_contact,
+        }
         if email_verification_code is not None:
             input_["email_verification_code"] = email_verification_code
 
@@ -607,6 +631,7 @@ class Partner:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_profile_visibility(
@@ -649,16 +674,18 @@ class Partner:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_account.types.put_profile_visibility_request.PutProfileVisibilityRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
-        input_["visibility"] = visibility
+        input_: capo_partnercentral_account.types.put_profile_visibility_request.PutProfileVisibilityRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+            "visibility": visibility,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_profile_update_task(
@@ -706,18 +733,21 @@ class Partner:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_account.types.start_profile_update_task_request.StartProfileUpdateTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["task_details"] = task_details
+        input_: capo_partnercentral_account.types.start_profile_update_task_request.StartProfileUpdateTaskRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+            "task_details": task_details,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -775,14 +805,16 @@ class AsyncPartner:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_account.types.create_partner_request.CreatePartnerRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["legal_name"] = legal_name
-        input_["primary_solution_type"] = primary_solution_type
-        input_["alliance_lead_contact"] = alliance_lead_contact
-        input_["email_verification_code"] = email_verification_code
+        input_: capo_partnercentral_account.types.create_partner_request.CreatePartnerRequest = {
+            "catalog": catalog,
+            "legal_name": legal_name,
+            "primary_solution_type": primary_solution_type,
+            "alliance_lead_contact": alliance_lead_contact,
+            "email_verification_code": email_verification_code,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -791,6 +823,7 @@ class AsyncPartner:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -831,15 +864,17 @@ class AsyncPartner:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_account.types.get_partner_request.GetPartnerRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
+        input_: capo_partnercentral_account.types.get_partner_request.GetPartnerRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -883,8 +918,9 @@ class AsyncPartner:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_account.types.list_partners_request.ListPartnersRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
+        input_: capo_partnercentral_account.types.list_partners_request.ListPartnersRequest = {
+            "catalog": catalog
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -893,6 +929,7 @@ class AsyncPartner:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_aws_training_certification_email_domain(
@@ -942,19 +979,22 @@ class AsyncPartner:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_account.types.associate_aws_training_certification_email_domain_request.AssociateAwsTrainingCertificationEmailDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["email"] = email
-        input_["email_verification_code"] = email_verification_code
+        input_: capo_partnercentral_account.types.associate_aws_training_certification_email_domain_request.AssociateAwsTrainingCertificationEmailDomainRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+            "email": email,
+            "email_verification_code": email_verification_code,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def cancel_profile_update_task(
@@ -1002,18 +1042,21 @@ class AsyncPartner:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_account.types.cancel_profile_update_task_request.CancelProfileUpdateTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["task_id"] = task_id
+        input_: capo_partnercentral_account.types.cancel_profile_update_task_request.CancelProfileUpdateTaskRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+            "task_id": task_id,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_aws_training_certification_email_domain(
@@ -1060,18 +1103,21 @@ class AsyncPartner:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_account.types.disassociate_aws_training_certification_email_domain_request.DisassociateAwsTrainingCertificationEmailDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["domain_name"] = domain_name
+        input_: capo_partnercentral_account.types.disassociate_aws_training_certification_email_domain_request.DisassociateAwsTrainingCertificationEmailDomainRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+            "domain_name": domain_name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_alliance_lead_contact(
@@ -1112,15 +1158,17 @@ class AsyncPartner:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_account.types.get_alliance_lead_contact_request.GetAllianceLeadContactRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
+        input_: capo_partnercentral_account.types.get_alliance_lead_contact_request.GetAllianceLeadContactRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_profile_update_task(
@@ -1161,15 +1209,17 @@ class AsyncPartner:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_account.types.get_profile_update_task_request.GetProfileUpdateTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
+        input_: capo_partnercentral_account.types.get_profile_update_task_request.GetProfileUpdateTaskRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_profile_visibility(
@@ -1210,15 +1260,17 @@ class AsyncPartner:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_account.types.get_profile_visibility_request.GetProfileVisibilityRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
+        input_: capo_partnercentral_account.types.get_profile_visibility_request.GetProfileVisibilityRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_alliance_lead_contact(
@@ -1265,10 +1317,11 @@ class AsyncPartner:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_account.types.put_alliance_lead_contact_request.PutAllianceLeadContactRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
-        input_["alliance_lead_contact"] = alliance_lead_contact
+        input_: capo_partnercentral_account.types.put_alliance_lead_contact_request.PutAllianceLeadContactRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+            "alliance_lead_contact": alliance_lead_contact,
+        }
         if email_verification_code is not None:
             input_["email_verification_code"] = email_verification_code
 
@@ -1277,6 +1330,7 @@ class AsyncPartner:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_profile_visibility(
@@ -1320,16 +1374,18 @@ class AsyncPartner:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_account.types.put_profile_visibility_request.PutProfileVisibilityRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
-        input_["visibility"] = visibility
+        input_: capo_partnercentral_account.types.put_profile_visibility_request.PutProfileVisibilityRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+            "visibility": visibility,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_profile_update_task(
@@ -1378,16 +1434,19 @@ class AsyncPartner:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_account.types.start_profile_update_task_request.StartProfileUpdateTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["task_details"] = task_details
+        input_: capo_partnercentral_account.types.start_profile_update_task_request.StartProfileUpdateTaskRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+            "task_details": task_details,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

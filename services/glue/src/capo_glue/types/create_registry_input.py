@@ -38,13 +38,13 @@ def serialize_aws_json_1_1(value: CreateRegistryInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateRegistryInput:
     out: CreateRegistryInput = {}  # type: ignore[typeddict-item]
-    if "RegistryName" in data:
+    if data.get("RegistryName") is not None:
         out["registry_name"] = data["RegistryName"]
     else:
         raise DeserializationError("CreateRegistryInput.registry_name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_glue.types.tags_map
 
         out["tags"] = capo_glue.types.tags_map.deserialize_aws_json_1_1(data["Tags"])

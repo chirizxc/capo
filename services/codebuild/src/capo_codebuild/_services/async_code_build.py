@@ -349,14 +349,16 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.batch_delete_builds_input.BatchDeleteBuildsInput = {}  # type: ignore[typeddict-item]
-        input_["ids"] = ids
+        input_: capo_codebuild.types.batch_delete_builds_input.BatchDeleteBuildsInput = {
+            "ids": ids
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_build_batches(
@@ -393,14 +395,16 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.batch_get_build_batches_input.BatchGetBuildBatchesInput = {}  # type: ignore[typeddict-item]
-        input_["ids"] = ids
+        input_: capo_codebuild.types.batch_get_build_batches_input.BatchGetBuildBatchesInput = {
+            "ids": ids
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_builds(
@@ -435,14 +439,16 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.batch_get_builds_input.BatchGetBuildsInput = {}  # type: ignore[typeddict-item]
-        input_["ids"] = ids
+        input_: capo_codebuild.types.batch_get_builds_input.BatchGetBuildsInput = {
+            "ids": ids
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_command_executions(
@@ -479,15 +485,17 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.batch_get_command_executions_input.BatchGetCommandExecutionsInput = {}  # type: ignore[typeddict-item]
-        input_["sandbox_id"] = sandbox_id
-        input_["command_execution_ids"] = command_execution_ids
+        input_: capo_codebuild.types.batch_get_command_executions_input.BatchGetCommandExecutionsInput = {
+            "sandbox_id": sandbox_id,
+            "command_execution_ids": command_execution_ids,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_fleets(
@@ -522,14 +530,16 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.batch_get_fleets_input.BatchGetFleetsInput = {}  # type: ignore[typeddict-item]
-        input_["names"] = names
+        input_: capo_codebuild.types.batch_get_fleets_input.BatchGetFleetsInput = {
+            "names": names
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_projects(
@@ -564,14 +574,16 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.batch_get_projects_input.BatchGetProjectsInput = {}  # type: ignore[typeddict-item]
-        input_["names"] = names
+        input_: capo_codebuild.types.batch_get_projects_input.BatchGetProjectsInput = {
+            "names": names
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_report_groups(
@@ -608,14 +620,16 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.batch_get_report_groups_input.BatchGetReportGroupsInput = {}  # type: ignore[typeddict-item]
-        input_["report_group_arns"] = report_group_arns
+        input_: capo_codebuild.types.batch_get_report_groups_input.BatchGetReportGroupsInput = {
+            "report_group_arns": report_group_arns
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_reports(
@@ -650,14 +664,16 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.batch_get_reports_input.BatchGetReportsInput = {}  # type: ignore[typeddict-item]
-        input_["report_arns"] = report_arns
+        input_: capo_codebuild.types.batch_get_reports_input.BatchGetReportsInput = {
+            "report_arns": report_arns
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_sandboxes(
@@ -692,14 +708,16 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.batch_get_sandboxes_input.BatchGetSandboxesInput = {}  # type: ignore[typeddict-item]
-        input_["ids"] = ids
+        input_: capo_codebuild.types.batch_get_sandboxes_input.BatchGetSandboxesInput = {
+            "ids": ids
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_fleet(
@@ -769,11 +787,12 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.create_fleet_input.CreateFleetInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["base_capacity"] = base_capacity
-        input_["environment_type"] = environment_type
-        input_["compute_type"] = compute_type
+        input_: capo_codebuild.types.create_fleet_input.CreateFleetInput = {
+            "name": name,
+            "base_capacity": base_capacity,
+            "environment_type": environment_type,
+            "compute_type": compute_type,
+        }
         if compute_configuration is not None:
             input_["compute_configuration"] = compute_configuration
         if scaling_configuration is not None:
@@ -796,6 +815,7 @@ class AsyncCodeBuildClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_project(
@@ -898,24 +918,25 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.create_project_input.CreateProjectInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_codebuild.types.create_project_input.CreateProjectInput = {
+            "name": name,
+            "source": source,
+            "artifacts": artifacts,
+            "environment": environment,
+            "service_role": service_role,
+        }
         if description is not None:
             input_["description"] = description
-        input_["source"] = source
         if secondary_sources is not None:
             input_["secondary_sources"] = secondary_sources
         if source_version is not None:
             input_["source_version"] = source_version
         if secondary_source_versions is not None:
             input_["secondary_source_versions"] = secondary_source_versions
-        input_["artifacts"] = artifacts
         if secondary_artifacts is not None:
             input_["secondary_artifacts"] = secondary_artifacts
         if cache is not None:
             input_["cache"] = cache
-        input_["environment"] = environment
-        input_["service_role"] = service_role
         if timeout_in_minutes is not None:
             input_["timeout_in_minutes"] = timeout_in_minutes
         if queued_timeout_in_minutes is not None:
@@ -944,6 +965,7 @@ class AsyncCodeBuildClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_report_group(
@@ -986,10 +1008,11 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.create_report_group_input.CreateReportGroupInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["type"] = type
-        input_["export_config"] = export_config
+        input_: capo_codebuild.types.create_report_group_input.CreateReportGroupInput = {
+            "name": name,
+            "type": type,
+            "export_config": export_config,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -998,6 +1021,7 @@ class AsyncCodeBuildClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_webhook(
@@ -1057,8 +1081,9 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.create_webhook_input.CreateWebhookInput = {}  # type: ignore[typeddict-item]
-        input_["project_name"] = project_name
+        input_: capo_codebuild.types.create_webhook_input.CreateWebhookInput = {
+            "project_name": project_name
+        }
         if branch_filter is not None:
             input_["branch_filter"] = branch_filter
         if filter_groups is not None:
@@ -1077,6 +1102,7 @@ class AsyncCodeBuildClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_build_batch(
@@ -1111,14 +1137,16 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.delete_build_batch_input.DeleteBuildBatchInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_codebuild.types.delete_build_batch_input.DeleteBuildBatchInput = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_fleet(
@@ -1153,14 +1181,14 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.delete_fleet_input.DeleteFleetInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_codebuild.types.delete_fleet_input.DeleteFleetInput = {"arn": arn}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_project(
@@ -1195,14 +1223,16 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.delete_project_input.DeleteProjectInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_codebuild.types.delete_project_input.DeleteProjectInput = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_report(
@@ -1237,14 +1267,16 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.delete_report_input.DeleteReportInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_codebuild.types.delete_report_input.DeleteReportInput = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_report_group(
@@ -1281,8 +1313,9 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.delete_report_group_input.DeleteReportGroupInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_codebuild.types.delete_report_group_input.DeleteReportGroupInput = {
+            "arn": arn
+        }
         if delete_reports is not None:
             input_["delete_reports"] = delete_reports
 
@@ -1291,6 +1324,7 @@ class AsyncCodeBuildClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_resource_policy(
@@ -1327,14 +1361,16 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.delete_resource_policy_input.DeleteResourcePolicyInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_codebuild.types.delete_resource_policy_input.DeleteResourcePolicyInput = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_source_credentials(
@@ -1370,14 +1406,16 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.delete_source_credentials_input.DeleteSourceCredentialsInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_codebuild.types.delete_source_credentials_input.DeleteSourceCredentialsInput = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_webhook(
@@ -1414,14 +1452,16 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.delete_webhook_input.DeleteWebhookInput = {}  # type: ignore[typeddict-item]
-        input_["project_name"] = project_name
+        input_: capo_codebuild.types.delete_webhook_input.DeleteWebhookInput = {
+            "project_name": project_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_code_coverages(
@@ -1476,8 +1516,9 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.describe_code_coverages_input.DescribeCodeCoveragesInput = {}  # type: ignore[typeddict-item]
-        input_["report_arn"] = report_arn
+        input_: capo_codebuild.types.describe_code_coverages_input.DescribeCodeCoveragesInput = {
+            "report_arn": report_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1496,6 +1537,7 @@ class AsyncCodeBuildClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_code_coverages(
@@ -1576,8 +1618,9 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.describe_test_cases_input.DescribeTestCasesInput = {}  # type: ignore[typeddict-item]
-        input_["report_arn"] = report_arn
+        input_: capo_codebuild.types.describe_test_cases_input.DescribeTestCasesInput = {
+            "report_arn": report_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1590,6 +1633,7 @@ class AsyncCodeBuildClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_test_cases(
@@ -1654,17 +1698,19 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.get_report_group_trend_input.GetReportGroupTrendInput = {}  # type: ignore[typeddict-item]
-        input_["report_group_arn"] = report_group_arn
+        input_: capo_codebuild.types.get_report_group_trend_input.GetReportGroupTrendInput = {
+            "report_group_arn": report_group_arn,
+            "trend_field": trend_field,
+        }
         if num_of_reports is not None:
             input_["num_of_reports"] = num_of_reports
-        input_["trend_field"] = trend_field
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_resource_policy(
@@ -1700,14 +1746,16 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.get_resource_policy_input.GetResourcePolicyInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_codebuild.types.get_resource_policy_input.GetResourcePolicyInput = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def import_source_credentials(
@@ -1756,12 +1804,13 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.import_source_credentials_input.ImportSourceCredentialsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_codebuild.types.import_source_credentials_input.ImportSourceCredentialsInput = {
+            "token": token,
+            "server_type": server_type,
+            "auth_type": auth_type,
+        }
         if username is not None:
             input_["username"] = username
-        input_["token"] = token
-        input_["server_type"] = server_type
-        input_["auth_type"] = auth_type
         if should_overwrite is not None:
             input_["should_overwrite"] = should_overwrite
 
@@ -1770,6 +1819,7 @@ class AsyncCodeBuildClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def invalidate_project_cache(
@@ -1805,14 +1855,16 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.invalidate_project_cache_input.InvalidateProjectCacheInput = {}  # type: ignore[typeddict-item]
-        input_["project_name"] = project_name
+        input_: capo_codebuild.types.invalidate_project_cache_input.InvalidateProjectCacheInput = {
+            "project_name": project_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_build_batches(
@@ -1857,7 +1909,7 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.list_build_batches_input.ListBuildBatchesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_codebuild.types.list_build_batches_input.ListBuildBatchesInput = {}
         if filter is not None:
             input_["filter"] = filter
         if max_results is not None:
@@ -1872,6 +1924,7 @@ class AsyncCodeBuildClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_build_batches(
@@ -1950,7 +2003,7 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.list_build_batches_for_project_input.ListBuildBatchesForProjectInput = {}  # type: ignore[typeddict-item]
+        input_: capo_codebuild.types.list_build_batches_for_project_input.ListBuildBatchesForProjectInput = {}
         if project_name is not None:
             input_["project_name"] = project_name
         if filter is not None:
@@ -1967,6 +2020,7 @@ class AsyncCodeBuildClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_build_batches_for_project(
@@ -2038,7 +2092,7 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.list_builds_input.ListBuildsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_codebuild.types.list_builds_input.ListBuildsInput = {}
         if sort_order is not None:
             input_["sort_order"] = sort_order
         if next_token is not None:
@@ -2049,6 +2103,7 @@ class AsyncCodeBuildClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_builds(
@@ -2115,8 +2170,9 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.list_builds_for_project_input.ListBuildsForProjectInput = {}  # type: ignore[typeddict-item]
-        input_["project_name"] = project_name
+        input_: capo_codebuild.types.list_builds_for_project_input.ListBuildsForProjectInput = {
+            "project_name": project_name
+        }
         if sort_order is not None:
             input_["sort_order"] = sort_order
         if next_token is not None:
@@ -2127,6 +2183,7 @@ class AsyncCodeBuildClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_builds_for_project(
@@ -2197,8 +2254,9 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.list_command_executions_for_sandbox_input.ListCommandExecutionsForSandboxInput = {}  # type: ignore[typeddict-item]
-        input_["sandbox_id"] = sandbox_id
+        input_: capo_codebuild.types.list_command_executions_for_sandbox_input.ListCommandExecutionsForSandboxInput = {
+            "sandbox_id": sandbox_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if sort_order is not None:
@@ -2211,6 +2269,7 @@ class AsyncCodeBuildClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_command_executions_for_sandbox(
@@ -2267,13 +2326,14 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.list_curated_environment_images_input.ListCuratedEnvironmentImagesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_codebuild.types.list_curated_environment_images_input.ListCuratedEnvironmentImagesInput = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_fleets(
@@ -2320,7 +2380,7 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.list_fleets_input.ListFleetsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_codebuild.types.list_fleets_input.ListFleetsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2335,7 +2395,37 @@ class AsyncCodeBuildClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_fleets(
+        self,
+        *,
+        config_overrides: Optional[AsyncCodeBuildClientConfig] = None,
+        next_token: Optional[
+            "capo_codebuild.types.sensitive_string.SensitiveString"
+        ] = None,
+        max_results: Optional["capo_codebuild.types.page_size.PageSize"] = None,
+        sort_order: Optional[
+            "capo_codebuild.types.sort_order_type.SortOrderType"
+        ] = None,
+        sort_by: Optional[
+            "capo_codebuild.types.fleet_sort_by_type.FleetSortByType"
+        ] = None,
+    ) -> "AsyncIterator[capo_codebuild.types.list_fleets_output.ListFleetsOutput]":
+        _token = next_token
+        while True:
+            _response = await self.list_fleets(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                sort_order=sort_order,
+                sort_by=sort_by,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_projects(
         self,
@@ -2379,7 +2469,7 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.list_projects_input.ListProjectsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_codebuild.types.list_projects_input.ListProjectsInput = {}
         if sort_by is not None:
             input_["sort_by"] = sort_by
         if sort_order is not None:
@@ -2392,6 +2482,7 @@ class AsyncCodeBuildClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_projects(
@@ -2465,7 +2556,7 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.list_report_groups_input.ListReportGroupsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_codebuild.types.list_report_groups_input.ListReportGroupsInput = {}
         if sort_order is not None:
             input_["sort_order"] = sort_order
         if sort_by is not None:
@@ -2480,6 +2571,7 @@ class AsyncCodeBuildClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_report_groups(
@@ -2551,7 +2643,7 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.list_reports_input.ListReportsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_codebuild.types.list_reports_input.ListReportsInput = {}
         if sort_order is not None:
             input_["sort_order"] = sort_order
         if next_token is not None:
@@ -2566,6 +2658,7 @@ class AsyncCodeBuildClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_reports(
@@ -2638,8 +2731,9 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.list_reports_for_report_group_input.ListReportsForReportGroupInput = {}  # type: ignore[typeddict-item]
-        input_["report_group_arn"] = report_group_arn
+        input_: capo_codebuild.types.list_reports_for_report_group_input.ListReportsForReportGroupInput = {
+            "report_group_arn": report_group_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if sort_order is not None:
@@ -2654,6 +2748,7 @@ class AsyncCodeBuildClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_reports_for_report_group(
@@ -2723,7 +2818,7 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.list_sandboxes_input.ListSandboxesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_codebuild.types.list_sandboxes_input.ListSandboxesInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if sort_order is not None:
@@ -2736,6 +2831,7 @@ class AsyncCodeBuildClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_sandboxes(
@@ -2806,8 +2902,9 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.list_sandboxes_for_project_input.ListSandboxesForProjectInput = {}  # type: ignore[typeddict-item]
-        input_["project_name"] = project_name
+        input_: capo_codebuild.types.list_sandboxes_for_project_input.ListSandboxesForProjectInput = {
+            "project_name": project_name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if sort_order is not None:
@@ -2820,6 +2917,7 @@ class AsyncCodeBuildClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_sandboxes_for_project(
@@ -2895,7 +2993,7 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.list_shared_projects_input.ListSharedProjectsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_codebuild.types.list_shared_projects_input.ListSharedProjectsInput = {}
         if sort_by is not None:
             input_["sort_by"] = sort_by
         if sort_order is not None:
@@ -2910,6 +3008,7 @@ class AsyncCodeBuildClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_shared_projects(
@@ -2985,7 +3084,7 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.list_shared_report_groups_input.ListSharedReportGroupsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_codebuild.types.list_shared_report_groups_input.ListSharedReportGroupsInput = {}
         if sort_order is not None:
             input_["sort_order"] = sort_order
         if sort_by is not None:
@@ -3000,6 +3099,7 @@ class AsyncCodeBuildClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_shared_report_groups(
@@ -3057,13 +3157,14 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.list_source_credentials_input.ListSourceCredentialsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_codebuild.types.list_source_credentials_input.ListSourceCredentialsInput = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_resource_policy(
@@ -3101,15 +3202,17 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.put_resource_policy_input.PutResourcePolicyInput = {}  # type: ignore[typeddict-item]
-        input_["policy"] = policy
-        input_["resource_arn"] = resource_arn
+        input_: capo_codebuild.types.put_resource_policy_input.PutResourcePolicyInput = {
+            "policy": policy,
+            "resource_arn": resource_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def retry_build(
@@ -3148,7 +3251,7 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.retry_build_input.RetryBuildInput = {}  # type: ignore[typeddict-item]
+        input_: capo_codebuild.types.retry_build_input.RetryBuildInput = {}
         if id is not None:
             input_["id"] = id
         if idempotency_token is not None:
@@ -3159,6 +3262,7 @@ class AsyncCodeBuildClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def retry_build_batch(
@@ -3200,7 +3304,7 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.retry_build_batch_input.RetryBuildBatchInput = {}  # type: ignore[typeddict-item]
+        input_: capo_codebuild.types.retry_build_batch_input.RetryBuildBatchInput = {}
         if id is not None:
             input_["id"] = id
         if idempotency_token is not None:
@@ -3213,6 +3317,7 @@ class AsyncCodeBuildClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_build(
@@ -3367,8 +3472,9 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.start_build_input.StartBuildInput = {}  # type: ignore[typeddict-item]
-        input_["project_name"] = project_name
+        input_: capo_codebuild.types.start_build_input.StartBuildInput = {
+            "project_name": project_name
+        }
         if secondary_sources_override is not None:
             input_["secondary_sources_override"] = secondary_sources_override
         if secondary_sources_version_override is not None:
@@ -3445,6 +3551,7 @@ class AsyncCodeBuildClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_build_batch(
@@ -3590,8 +3697,9 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.start_build_batch_input.StartBuildBatchInput = {}  # type: ignore[typeddict-item]
-        input_["project_name"] = project_name
+        input_: capo_codebuild.types.start_build_batch_input.StartBuildBatchInput = {
+            "project_name": project_name
+        }
         if secondary_sources_override is not None:
             input_["secondary_sources_override"] = secondary_sources_override
         if secondary_sources_version_override is not None:
@@ -3668,6 +3776,7 @@ class AsyncCodeBuildClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_command_execution(
@@ -3707,9 +3816,10 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.start_command_execution_input.StartCommandExecutionInput = {}  # type: ignore[typeddict-item]
-        input_["sandbox_id"] = sandbox_id
-        input_["command"] = command
+        input_: capo_codebuild.types.start_command_execution_input.StartCommandExecutionInput = {
+            "sandbox_id": sandbox_id,
+            "command": command,
+        }
         if type is not None:
             input_["type"] = type
 
@@ -3718,6 +3828,7 @@ class AsyncCodeBuildClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_sandbox(
@@ -3760,7 +3871,7 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.start_sandbox_input.StartSandboxInput = {}  # type: ignore[typeddict-item]
+        input_: capo_codebuild.types.start_sandbox_input.StartSandboxInput = {}
         if project_name is not None:
             input_["project_name"] = project_name
         if idempotency_token is not None:
@@ -3771,6 +3882,7 @@ class AsyncCodeBuildClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_sandbox_connection(
@@ -3806,14 +3918,16 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.start_sandbox_connection_input.StartSandboxConnectionInput = {}  # type: ignore[typeddict-item]
-        input_["sandbox_id"] = sandbox_id
+        input_: capo_codebuild.types.start_sandbox_connection_input.StartSandboxConnectionInput = {
+            "sandbox_id": sandbox_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_build(
@@ -3849,14 +3963,14 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.stop_build_input.StopBuildInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_codebuild.types.stop_build_input.StopBuildInput = {"id": id}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_build_batch(
@@ -3892,14 +4006,16 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.stop_build_batch_input.StopBuildBatchInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_codebuild.types.stop_build_batch_input.StopBuildBatchInput = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_sandbox(
@@ -3935,14 +4051,14 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.stop_sandbox_input.StopSandboxInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_codebuild.types.stop_sandbox_input.StopSandboxInput = {"id": id}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_fleet(
@@ -4016,8 +4132,7 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.update_fleet_input.UpdateFleetInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_codebuild.types.update_fleet_input.UpdateFleetInput = {"arn": arn}
         if base_capacity is not None:
             input_["base_capacity"] = base_capacity
         if environment_type is not None:
@@ -4046,6 +4161,7 @@ class AsyncCodeBuildClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_project(
@@ -4152,8 +4268,9 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.update_project_input.UpdateProjectInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_codebuild.types.update_project_input.UpdateProjectInput = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if source is not None:
@@ -4202,6 +4319,7 @@ class AsyncCodeBuildClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_project_visibility(
@@ -4242,9 +4360,10 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.update_project_visibility_input.UpdateProjectVisibilityInput = {}  # type: ignore[typeddict-item]
-        input_["project_arn"] = project_arn
-        input_["project_visibility"] = project_visibility
+        input_: capo_codebuild.types.update_project_visibility_input.UpdateProjectVisibilityInput = {
+            "project_arn": project_arn,
+            "project_visibility": project_visibility,
+        }
         if resource_access_role is not None:
             input_["resource_access_role"] = resource_access_role
 
@@ -4253,6 +4372,7 @@ class AsyncCodeBuildClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_report_group(
@@ -4294,8 +4414,9 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.update_report_group_input.UpdateReportGroupInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_codebuild.types.update_report_group_input.UpdateReportGroupInput = {
+            "arn": arn
+        }
         if export_config is not None:
             input_["export_config"] = export_config
         if tags is not None:
@@ -4306,6 +4427,7 @@ class AsyncCodeBuildClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_webhook(
@@ -4358,8 +4480,9 @@ class AsyncCodeBuildClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codebuild.types.update_webhook_input.UpdateWebhookInput = {}  # type: ignore[typeddict-item]
-        input_["project_name"] = project_name
+        input_: capo_codebuild.types.update_webhook_input.UpdateWebhookInput = {
+            "project_name": project_name
+        }
         if branch_filter is not None:
             input_["branch_filter"] = branch_filter
         if rotate_secret is not None:
@@ -4376,6 +4499,7 @@ class AsyncCodeBuildClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

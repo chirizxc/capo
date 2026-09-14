@@ -25,6 +25,6 @@ def serialize_aws_json_1_0(value: Acceptor) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Acceptor:
     out: Acceptor = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
     return out

@@ -23,9 +23,9 @@ def serialize_json(value: SlackChannel) -> dict:
 
 def deserialize_json(data: dict) -> SlackChannel:
     out: SlackChannel = {}  # type: ignore[typeddict-item]
-    if "channelName" in data:
+    if data.get("channelName") is not None:
         out["channel_name"] = data["channelName"]
-    if "channelId" in data:
+    if data.get("channelId") is not None:
         out["channel_id"] = data["channelId"]
     else:
         raise DeserializationError("SlackChannel.channel_id required")

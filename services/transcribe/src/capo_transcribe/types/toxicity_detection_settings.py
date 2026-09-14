@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: ToxicityDetectionSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ToxicityDetectionSettings:
     out: ToxicityDetectionSettings = {}  # type: ignore[typeddict-item]
-    if "ToxicityCategories" in data:
+    if data.get("ToxicityCategories") is not None:
         import capo_transcribe.types.toxicity_categories
 
         out["toxicity_categories"] = (

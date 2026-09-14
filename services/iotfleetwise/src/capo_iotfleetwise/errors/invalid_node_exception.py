@@ -37,15 +37,15 @@ def serialize_aws_json_1_0(value: InvalidNodeException_) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InvalidNodeException_:
     out: InvalidNodeException_ = {}  # type: ignore[typeddict-item]
-    if "invalidNodes" in data:
+    if data.get("invalidNodes") is not None:
         import capo_iotfleetwise.types.nodes
 
         out["invalid_nodes"] = capo_iotfleetwise.types.nodes.deserialize_aws_json_1_0(
             data["invalidNodes"]
         )
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -55,15 +55,18 @@ class InvalidNodeException(ServiceError):
 
     code: str | None = "InvalidNodeException"
 
-    def __init__(self, data: InvalidNodeException_):
+    def __init__(self, data: InvalidNodeException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidNodeException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_0(cls, data: dict) -> "InvalidNodeException":
-        return cls(deserialize_aws_json_1_0(data))
+    def from_aws_json_1_0(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidNodeException":
+        return cls(deserialize_aws_json_1_0(data), message)

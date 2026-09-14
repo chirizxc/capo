@@ -40,7 +40,7 @@ def serialize_json(value: BatchUpdateFindingsUnprocessedFinding) -> dict:
 
 def deserialize_json(data: dict) -> BatchUpdateFindingsUnprocessedFinding:
     out: BatchUpdateFindingsUnprocessedFinding = {}  # type: ignore[typeddict-item]
-    if "FindingIdentifier" in data:
+    if data.get("FindingIdentifier") is not None:
         import capo_securityhub.types.aws_security_finding_identifier
 
         out["finding_identifier"] = (
@@ -48,8 +48,8 @@ def deserialize_json(data: dict) -> BatchUpdateFindingsUnprocessedFinding:
                 data["FindingIdentifier"]
             )
         )
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     return out

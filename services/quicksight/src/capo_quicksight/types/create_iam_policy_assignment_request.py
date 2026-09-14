@@ -54,13 +54,13 @@ def serialize_json(value: CreateIAMPolicyAssignmentRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateIAMPolicyAssignmentRequest:
     out: CreateIAMPolicyAssignmentRequest = {}  # type: ignore[typeddict-item]
-    if "AssignmentName" in data:
+    if data.get("AssignmentName") is not None:
         out["assignment_name"] = data["AssignmentName"]
     else:
         raise DeserializationError(
             "CreateIAMPolicyAssignmentRequest.assignment_name required"
         )
-    if "AssignmentStatus" in data:
+    if data.get("AssignmentStatus") is not None:
         import capo_quicksight.types.assignment_status
 
         out["assignment_status"] = (
@@ -72,9 +72,9 @@ def deserialize_json(data: dict) -> CreateIAMPolicyAssignmentRequest:
         raise DeserializationError(
             "CreateIAMPolicyAssignmentRequest.assignment_status required"
         )
-    if "PolicyArn" in data:
+    if data.get("PolicyArn") is not None:
         out["policy_arn"] = data["PolicyArn"]
-    if "Identities" in data:
+    if data.get("Identities") is not None:
         import capo_quicksight.types.identity_map
 
         out["identities"] = capo_quicksight.types.identity_map.deserialize_json(

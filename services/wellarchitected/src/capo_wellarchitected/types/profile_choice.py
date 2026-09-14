@@ -32,10 +32,10 @@ def serialize_json(value: ProfileChoice) -> dict:
 
 def deserialize_json(data: dict) -> ProfileChoice:
     out: ProfileChoice = {}  # type: ignore[typeddict-item]
-    if "ChoiceId" in data:
+    if data.get("ChoiceId") is not None:
         out["choice_id"] = data["ChoiceId"]
-    if "ChoiceTitle" in data:
+    if data.get("ChoiceTitle") is not None:
         out["choice_title"] = data["ChoiceTitle"]
-    if "ChoiceDescription" in data:
+    if data.get("ChoiceDescription") is not None:
         out["choice_description"] = data["ChoiceDescription"]
     return out

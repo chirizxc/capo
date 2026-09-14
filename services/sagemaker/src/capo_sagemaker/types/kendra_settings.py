@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: KendraSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> KendraSettings:
     out: KendraSettings = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.feature_status
 
         out["status"] = capo_sagemaker.types.feature_status.deserialize_aws_json_1_1(

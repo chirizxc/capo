@@ -51,13 +51,13 @@ def serialize_json(value: SensitivityInspectionTemplateIncludes) -> dict:
 
 def deserialize_json(data: dict) -> SensitivityInspectionTemplateIncludes:
     out: SensitivityInspectionTemplateIncludes = {}  # type: ignore[typeddict-item]
-    if "allowListIds" in data:
+    if data.get("allowListIds") is not None:
         import capo_macie2.types.__list_of__string
 
         out["allow_list_ids"] = capo_macie2.types.__list_of__string.deserialize_json(
             data["allowListIds"]
         )
-    if "customDataIdentifierIds" in data:
+    if data.get("customDataIdentifierIds") is not None:
         import capo_macie2.types.__list_of__string
 
         out["custom_data_identifier_ids"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> SensitivityInspectionTemplateIncludes:
                 data["customDataIdentifierIds"]
             )
         )
-    if "managedDataIdentifierIds" in data:
+    if data.get("managedDataIdentifierIds") is not None:
         import capo_macie2.types.__list_of__string
 
         out["managed_data_identifier_ids"] = (

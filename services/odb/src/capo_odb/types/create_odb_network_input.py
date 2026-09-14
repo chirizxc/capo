@@ -120,57 +120,57 @@ def serialize_aws_json_1_0(value: CreateOdbNetworkInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateOdbNetworkInput:
     out: CreateOdbNetworkInput = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError("CreateOdbNetworkInput.display_name required")
-    if "availabilityZone" in data:
+    if data.get("availabilityZone") is not None:
         out["availability_zone"] = data["availabilityZone"]
-    if "availabilityZoneId" in data:
+    if data.get("availabilityZoneId") is not None:
         out["availability_zone_id"] = data["availabilityZoneId"]
-    if "clientSubnetCidr" in data:
+    if data.get("clientSubnetCidr") is not None:
         out["client_subnet_cidr"] = data["clientSubnetCidr"]
     else:
         raise DeserializationError("CreateOdbNetworkInput.client_subnet_cidr required")
-    if "backupSubnetCidr" in data:
+    if data.get("backupSubnetCidr") is not None:
         out["backup_subnet_cidr"] = data["backupSubnetCidr"]
-    if "customDomainName" in data:
+    if data.get("customDomainName") is not None:
         out["custom_domain_name"] = data["customDomainName"]
-    if "defaultDnsPrefix" in data:
+    if data.get("defaultDnsPrefix") is not None:
         out["default_dns_prefix"] = data["defaultDnsPrefix"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "s3Access" in data:
+    if data.get("s3Access") is not None:
         import capo_odb.types.access
 
         out["s3_access"] = capo_odb.types.access.deserialize_aws_json_1_0(
             data["s3Access"]
         )
-    if "zeroEtlAccess" in data:
+    if data.get("zeroEtlAccess") is not None:
         import capo_odb.types.access
 
         out["zero_etl_access"] = capo_odb.types.access.deserialize_aws_json_1_0(
             data["zeroEtlAccess"]
         )
-    if "stsAccess" in data:
+    if data.get("stsAccess") is not None:
         import capo_odb.types.access
 
         out["sts_access"] = capo_odb.types.access.deserialize_aws_json_1_0(
             data["stsAccess"]
         )
-    if "kmsAccess" in data:
+    if data.get("kmsAccess") is not None:
         import capo_odb.types.access
 
         out["kms_access"] = capo_odb.types.access.deserialize_aws_json_1_0(
             data["kmsAccess"]
         )
-    if "s3PolicyDocument" in data:
+    if data.get("s3PolicyDocument") is not None:
         out["s3_policy_document"] = data["s3PolicyDocument"]
-    if "stsPolicyDocument" in data:
+    if data.get("stsPolicyDocument") is not None:
         out["sts_policy_document"] = data["stsPolicyDocument"]
-    if "kmsPolicyDocument" in data:
+    if data.get("kmsPolicyDocument") is not None:
         out["kms_policy_document"] = data["kmsPolicyDocument"]
-    if "crossRegionS3RestoreSourcesToEnable" in data:
+    if data.get("crossRegionS3RestoreSourcesToEnable") is not None:
         import capo_odb.types.string_list
 
         out["cross_region_s3_restore_sources_to_enable"] = (
@@ -178,7 +178,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateOdbNetworkInput:
                 data["crossRegionS3RestoreSourcesToEnable"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_odb.types.request_tag_map
 
         out["tags"] = capo_odb.types.request_tag_map.deserialize_aws_json_1_0(

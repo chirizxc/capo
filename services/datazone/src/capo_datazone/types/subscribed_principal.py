@@ -72,7 +72,7 @@ def serialize_json(value: SubscribedPrincipal) -> dict:
 
 
 def deserialize_json(data: dict) -> SubscribedPrincipal:
-    if "project" in data:
+    if data.get("project") is not None:
         import capo_datazone.types.subscribed_project
 
         return {
@@ -80,13 +80,13 @@ def deserialize_json(data: dict) -> SubscribedPrincipal:
                 data["project"]
             )
         }
-    elif "user" in data:
+    elif data.get("user") is not None:
         import capo_datazone.types.subscribed_user
 
         return {
             "user": capo_datazone.types.subscribed_user.deserialize_json(data["user"])
         }
-    elif "group" in data:
+    elif data.get("group") is not None:
         import capo_datazone.types.subscribed_group
 
         return {
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> SubscribedPrincipal:
                 data["group"]
             )
         }
-    elif "iam" in data:
+    elif data.get("iam") is not None:
         import capo_datazone.types.subscribed_iam_principal
 
         return {

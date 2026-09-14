@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: RegisterWorkspaceDirectoryResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RegisterWorkspaceDirectoryResult:
     out: RegisterWorkspaceDirectoryResult = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_workspaces.types.workspace_directory_state
 
         out["state"] = (

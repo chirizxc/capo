@@ -23,6 +23,6 @@ def serialize_json(value: Host) -> dict:
 
 def deserialize_json(data: dict) -> Host:
     out: Host = {}  # type: ignore[typeddict-item]
-    if "sourcePath" in data:
+    if data.get("sourcePath") is not None:
         out["source_path"] = data["sourcePath"]
     return out

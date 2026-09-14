@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> CollectionSummaries:
 
     out: CollectionSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_opensearchserverless.types.collection_summary.deserialize_aws_json_1_0(
                 item

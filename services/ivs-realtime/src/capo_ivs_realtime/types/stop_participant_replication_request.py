@@ -31,19 +31,19 @@ def serialize_json(value: StopParticipantReplicationRequest) -> dict:
 
 def deserialize_json(data: dict) -> StopParticipantReplicationRequest:
     out: StopParticipantReplicationRequest = {}  # type: ignore[typeddict-item]
-    if "sourceStageArn" in data:
+    if data.get("sourceStageArn") is not None:
         out["source_stage_arn"] = data["sourceStageArn"]
     else:
         raise DeserializationError(
             "StopParticipantReplicationRequest.source_stage_arn required"
         )
-    if "destinationStageArn" in data:
+    if data.get("destinationStageArn") is not None:
         out["destination_stage_arn"] = data["destinationStageArn"]
     else:
         raise DeserializationError(
             "StopParticipantReplicationRequest.destination_stage_arn required"
         )
-    if "participantId" in data:
+    if data.get("participantId") is not None:
         out["participant_id"] = data["participantId"]
     else:
         raise DeserializationError(

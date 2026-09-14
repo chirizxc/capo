@@ -31,7 +31,7 @@ def serialize_json(value: AiAgentsCriteria) -> dict:
 
 def deserialize_json(data: dict) -> AiAgentsCriteria:
     out: AiAgentsCriteria = {}  # type: ignore[typeddict-item]
-    if "Criteria" in data:
+    if data.get("Criteria") is not None:
         import capo_connect.types.ai_agent_search_criteria_list
 
         out["criteria"] = (

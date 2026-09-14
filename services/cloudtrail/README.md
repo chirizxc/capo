@@ -13,9 +13,9 @@ from capo_cloudtrail import AsyncCloudTrailClient
 
 
 async def main():
-    async with AsyncCloudTrailClient() as s3:
+    async with AsyncCloudTrailClient() as cloud_trail:
         # Example: call the add_tags operation
-        response = await s3.add_tags()
+        response = await cloud_trail.add_tags()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_cloudtrail import AsyncCloudTrailClient
 
 
 async def main():
-    async with AsyncCloudTrailClient() as s3:
-        # Example: paginate over list_import_failures
-        async for item in s3.iter_list_import_failures():
+    async with AsyncCloudTrailClient() as cloud_trail:
+        # Example: paginate over get_query_results
+        async for item in cloud_trail.iter_get_query_results():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_cloudtrail.error import ChannelARNInvalidException
 
 
 async def main():
-    async with AsyncCloudTrailClient() as s3:
+    async with AsyncCloudTrailClient() as cloud_trail:
         try:
-            await s3.add_tags()
+            await cloud_trail.add_tags()
         except ChannelARNInvalidException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_cloudtrail import AsyncCloudTrailClient
 
 
 async def main():
-    async with AsyncCloudTrailClient() as s3:
+    async with AsyncCloudTrailClient() as cloud_trail:
         # Default: 3 attempts for every operation
-        response = await s3.add_tags()
+        response = await cloud_trail.add_tags()
 
         # Override per operation
-        response = await s3.add_tags(config_overrides={"retry_max_attempts": 5})
+        response = await cloud_trail.add_tags(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.add_tags(config_overrides={"retry_max_attempts": 1})
+        response = await cloud_trail.add_tags(config_overrides={"retry_max_attempts": 1})
 ```

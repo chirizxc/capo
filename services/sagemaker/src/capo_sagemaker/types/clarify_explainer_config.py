@@ -51,9 +51,9 @@ def serialize_aws_json_1_1(value: ClarifyExplainerConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClarifyExplainerConfig:
     out: ClarifyExplainerConfig = {}  # type: ignore[typeddict-item]
-    if "EnableExplanations" in data:
+    if data.get("EnableExplanations") is not None:
         out["enable_explanations"] = data["EnableExplanations"]
-    if "InferenceConfig" in data:
+    if data.get("InferenceConfig") is not None:
         import capo_sagemaker.types.clarify_inference_config
 
         out["inference_config"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClarifyExplainerConfig:
                 data["InferenceConfig"]
             )
         )
-    if "ShapConfig" in data:
+    if data.get("ShapConfig") is not None:
         import capo_sagemaker.types.clarify_shap_config
 
         out["shap_config"] = (

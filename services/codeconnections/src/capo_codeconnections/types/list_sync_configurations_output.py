@@ -39,7 +39,7 @@ def serialize_aws_json_1_0(value: ListSyncConfigurationsOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListSyncConfigurationsOutput:
     out: ListSyncConfigurationsOutput = {}  # type: ignore[typeddict-item]
-    if "SyncConfigurations" in data:
+    if data.get("SyncConfigurations") is not None:
         import capo_codeconnections.types.sync_configuration_list
 
         out["sync_configurations"] = (
@@ -51,6 +51,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListSyncConfigurationsOutput:
         raise DeserializationError(
             "ListSyncConfigurationsOutput.sync_configurations required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

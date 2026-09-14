@@ -32,9 +32,9 @@ def serialize_json(value: StartCodeSecurityScanResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartCodeSecurityScanResponse:
     out: StartCodeSecurityScanResponse = {}  # type: ignore[typeddict-item]
-    if "scanId" in data:
+    if data.get("scanId") is not None:
         out["scan_id"] = data["scanId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_inspector2.types.code_scan_status
 
         out["status"] = capo_inspector2.types.code_scan_status.deserialize_json(

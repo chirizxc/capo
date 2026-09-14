@@ -34,12 +34,12 @@ def serialize_aws_json_1_0(value: GetAgreementTermsInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetAgreementTermsInput:
     out: GetAgreementTermsInput = {}  # type: ignore[typeddict-item]
-    if "agreementId" in data:
+    if data.get("agreementId") is not None:
         out["agreement_id"] = data["agreementId"]
     else:
         raise DeserializationError("GetAgreementTermsInput.agreement_id required")
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

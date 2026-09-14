@@ -31,7 +31,7 @@ def serialize_json(value: GetChannelMessageStatusResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetChannelMessageStatusResponse:
     out: GetChannelMessageStatusResponse = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_chime_sdk_messaging.types.channel_message_status_structure
 
         out["status"] = (

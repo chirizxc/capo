@@ -27,8 +27,8 @@ def serialize_json(value: UpdateConnectivityInfoResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateConnectivityInfoResponse:
     out: UpdateConnectivityInfoResponse = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
     return out

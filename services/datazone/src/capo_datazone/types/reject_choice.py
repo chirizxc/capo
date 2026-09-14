@@ -35,9 +35,9 @@ def serialize_json(value: RejectChoice) -> dict:
 
 def deserialize_json(data: dict) -> RejectChoice:
     out: RejectChoice = {}  # type: ignore[typeddict-item]
-    if "predictionTarget" in data:
+    if data.get("predictionTarget") is not None:
         out["prediction_target"] = data["predictionTarget"]
-    if "predictionChoices" in data:
+    if data.get("predictionChoices") is not None:
         import capo_datazone.types.prediction_choices
 
         out["prediction_choices"] = (

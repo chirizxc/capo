@@ -23,6 +23,6 @@ def serialize_json(value: AwsLambdaFunctionTracingConfig) -> dict:
 
 def deserialize_json(data: dict) -> AwsLambdaFunctionTracingConfig:
     out: AwsLambdaFunctionTracingConfig = {}  # type: ignore[typeddict-item]
-    if "Mode" in data:
+    if data.get("Mode") is not None:
         out["mode"] = data["Mode"]
     return out

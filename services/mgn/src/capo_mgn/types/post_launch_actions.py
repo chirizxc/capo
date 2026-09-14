@@ -51,15 +51,15 @@ def serialize_json(value: PostLaunchActions) -> dict:
 
 def deserialize_json(data: dict) -> PostLaunchActions:
     out: PostLaunchActions = {}  # type: ignore[typeddict-item]
-    if "deployment" in data:
+    if data.get("deployment") is not None:
         out["deployment"] = data["deployment"]
-    if "s3LogBucket" in data:
+    if data.get("s3LogBucket") is not None:
         out["s3_log_bucket"] = data["s3LogBucket"]
-    if "s3OutputKeyPrefix" in data:
+    if data.get("s3OutputKeyPrefix") is not None:
         out["s3_output_key_prefix"] = data["s3OutputKeyPrefix"]
-    if "cloudWatchLogGroupName" in data:
+    if data.get("cloudWatchLogGroupName") is not None:
         out["cloud_watch_log_group_name"] = data["cloudWatchLogGroupName"]
-    if "ssmDocuments" in data:
+    if data.get("ssmDocuments") is not None:
         import capo_mgn.types.ssm_documents
 
         out["ssm_documents"] = capo_mgn.types.ssm_documents.deserialize_json(

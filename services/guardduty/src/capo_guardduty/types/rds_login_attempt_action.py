@@ -39,7 +39,7 @@ def serialize_json(value: RdsLoginAttemptAction) -> dict:
 
 def deserialize_json(data: dict) -> RdsLoginAttemptAction:
     out: RdsLoginAttemptAction = {}  # type: ignore[typeddict-item]
-    if "remoteIpDetails" in data:
+    if data.get("remoteIpDetails") is not None:
         import capo_guardduty.types.remote_ip_details
 
         out["remote_ip_details"] = (
@@ -47,7 +47,7 @@ def deserialize_json(data: dict) -> RdsLoginAttemptAction:
                 data["remoteIpDetails"]
             )
         )
-    if "LoginAttributes" in data:
+    if data.get("LoginAttributes") is not None:
         import capo_guardduty.types.login_attributes
 
         out["login_attributes"] = (

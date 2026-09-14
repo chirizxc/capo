@@ -24,7 +24,7 @@ def serialize_json(value: BatchDeviceSuccessResponseItem) -> dict:
 
 def deserialize_json(data: dict) -> BatchDeviceSuccessResponseItem:
     out: BatchDeviceSuccessResponseItem = {}  # type: ignore[typeddict-item]
-    if "appId" in data:
+    if data.get("appId") is not None:
         out["app_id"] = data["appId"]
     else:
         raise DeserializationError("BatchDeviceSuccessResponseItem.app_id required")

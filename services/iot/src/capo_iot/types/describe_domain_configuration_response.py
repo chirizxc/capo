@@ -152,13 +152,13 @@ def serialize_json(value: DescribeDomainConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeDomainConfigurationResponse:
     out: DescribeDomainConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "domainConfigurationName" in data:
+    if data.get("domainConfigurationName") is not None:
         out["domain_configuration_name"] = data["domainConfigurationName"]
-    if "domainConfigurationArn" in data:
+    if data.get("domainConfigurationArn") is not None:
         out["domain_configuration_arn"] = data["domainConfigurationArn"]
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
-    if "serverCertificates" in data:
+    if data.get("serverCertificates") is not None:
         import capo_iot.types.server_certificates
 
         out["server_certificates"] = (
@@ -166,13 +166,13 @@ def deserialize_json(data: dict) -> DescribeDomainConfigurationResponse:
                 data["serverCertificates"]
             )
         )
-    if "authorizerConfig" in data:
+    if data.get("authorizerConfig") is not None:
         import capo_iot.types.authorizer_config
 
         out["authorizer_config"] = capo_iot.types.authorizer_config.deserialize_json(
             data["authorizerConfig"]
         )
-    if "domainConfigurationStatus" in data:
+    if data.get("domainConfigurationStatus") is not None:
         import capo_iot.types.domain_configuration_status
 
         out["domain_configuration_status"] = (
@@ -180,31 +180,31 @@ def deserialize_json(data: dict) -> DescribeDomainConfigurationResponse:
                 data["domainConfigurationStatus"]
             )
         )
-    if "serviceType" in data:
+    if data.get("serviceType") is not None:
         import capo_iot.types.service_type
 
         out["service_type"] = capo_iot.types.service_type.deserialize_json(
             data["serviceType"]
         )
-    if "domainType" in data:
+    if data.get("domainType") is not None:
         import capo_iot.types.domain_type
 
         out["domain_type"] = capo_iot.types.domain_type.deserialize_json(
             data["domainType"]
         )
-    if "lastStatusChangeDate" in data:
+    if data.get("lastStatusChangeDate") is not None:
         import capo_iot.types.date_type
 
         out["last_status_change_date"] = capo_iot.types.date_type.deserialize_json(
             data["lastStatusChangeDate"]
         )
-    if "tlsConfig" in data:
+    if data.get("tlsConfig") is not None:
         import capo_iot.types.tls_config
 
         out["tls_config"] = capo_iot.types.tls_config.deserialize_json(
             data["tlsConfig"]
         )
-    if "serverCertificateConfig" in data:
+    if data.get("serverCertificateConfig") is not None:
         import capo_iot.types.server_certificate_config
 
         out["server_certificate_config"] = (
@@ -212,7 +212,7 @@ def deserialize_json(data: dict) -> DescribeDomainConfigurationResponse:
                 data["serverCertificateConfig"]
             )
         )
-    if "authenticationType" in data:
+    if data.get("authenticationType") is not None:
         import capo_iot.types.authentication_type
 
         out["authentication_type"] = (
@@ -220,7 +220,7 @@ def deserialize_json(data: dict) -> DescribeDomainConfigurationResponse:
                 data["authenticationType"]
             )
         )
-    if "applicationProtocol" in data:
+    if data.get("applicationProtocol") is not None:
         import capo_iot.types.application_protocol
 
         out["application_protocol"] = (
@@ -228,7 +228,7 @@ def deserialize_json(data: dict) -> DescribeDomainConfigurationResponse:
                 data["applicationProtocol"]
             )
         )
-    if "clientCertificateConfig" in data:
+    if data.get("clientCertificateConfig") is not None:
         import capo_iot.types.client_certificate_config
 
         out["client_certificate_config"] = (

@@ -62,15 +62,15 @@ def serialize_json(value: UpgradeDomainResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpgradeDomainResponse:
     out: UpgradeDomainResponse = {}  # type: ignore[typeddict-item]
-    if "UpgradeId" in data:
+    if data.get("UpgradeId") is not None:
         out["upgrade_id"] = data["UpgradeId"]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
-    if "TargetVersion" in data:
+    if data.get("TargetVersion") is not None:
         out["target_version"] = data["TargetVersion"]
-    if "PerformCheckOnly" in data:
+    if data.get("PerformCheckOnly") is not None:
         out["perform_check_only"] = data["PerformCheckOnly"]
-    if "AdvancedOptions" in data:
+    if data.get("AdvancedOptions") is not None:
         import capo_opensearch.types.advanced_options
 
         out["advanced_options"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> UpgradeDomainResponse:
                 data["AdvancedOptions"]
             )
         )
-    if "ChangeProgressDetails" in data:
+    if data.get("ChangeProgressDetails") is not None:
         import capo_opensearch.types.change_progress_details
 
         out["change_progress_details"] = (

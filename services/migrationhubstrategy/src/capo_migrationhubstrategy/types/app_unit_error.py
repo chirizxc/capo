@@ -25,6 +25,6 @@ def serialize_json(value: AppUnitError) -> dict:
 
 def deserialize_json(data: dict) -> AppUnitError:
     out: AppUnitError = {}  # type: ignore[typeddict-item]
-    if "appUnitErrorCategory" in data:
+    if data.get("appUnitErrorCategory") is not None:
         out["app_unit_error_category"] = data["appUnitErrorCategory"]
     return out

@@ -41,9 +41,9 @@ def serialize_json(value: ListIntentStageMetricsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListIntentStageMetricsResponse:
     out: ListIntentStageMetricsResponse = {}  # type: ignore[typeddict-item]
-    if "botId" in data:
+    if data.get("botId") is not None:
         out["bot_id"] = data["botId"]
-    if "results" in data:
+    if data.get("results") is not None:
         import capo_lex_models_v2.types.analytics_intent_stage_results
 
         out["results"] = (
@@ -51,6 +51,6 @@ def deserialize_json(data: dict) -> ListIntentStageMetricsResponse:
                 data["results"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

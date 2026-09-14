@@ -137,15 +137,15 @@ def serialize_json(value: DescribeConnectorOperationResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeConnectorOperationResponse:
     out: DescribeConnectorOperationResponse = {}  # type: ignore[typeddict-item]
-    if "connectorArn" in data:
+    if data.get("connectorArn") is not None:
         out["connector_arn"] = data["connectorArn"]
-    if "connectorOperationArn" in data:
+    if data.get("connectorOperationArn") is not None:
         out["connector_operation_arn"] = data["connectorOperationArn"]
-    if "connectorOperationState" in data:
+    if data.get("connectorOperationState") is not None:
         out["connector_operation_state"] = data["connectorOperationState"]
-    if "connectorOperationType" in data:
+    if data.get("connectorOperationType") is not None:
         out["connector_operation_type"] = data["connectorOperationType"]
-    if "operationSteps" in data:
+    if data.get("operationSteps") is not None:
         import capo_kafkaconnect.types.__list_of_connector_operation_step
 
         out["operation_steps"] = (
@@ -153,7 +153,7 @@ def deserialize_json(data: dict) -> DescribeConnectorOperationResponse:
                 data["operationSteps"]
             )
         )
-    if "originWorkerSetting" in data:
+    if data.get("originWorkerSetting") is not None:
         import capo_kafkaconnect.types.worker_setting
 
         out["origin_worker_setting"] = (
@@ -161,7 +161,7 @@ def deserialize_json(data: dict) -> DescribeConnectorOperationResponse:
                 data["originWorkerSetting"]
             )
         )
-    if "originConnectorConfiguration" in data:
+    if data.get("originConnectorConfiguration") is not None:
         import capo_kafkaconnect.types.connector_configuration
 
         out["origin_connector_configuration"] = (
@@ -169,7 +169,7 @@ def deserialize_json(data: dict) -> DescribeConnectorOperationResponse:
                 data["originConnectorConfiguration"]
             )
         )
-    if "targetWorkerSetting" in data:
+    if data.get("targetWorkerSetting") is not None:
         import capo_kafkaconnect.types.worker_setting
 
         out["target_worker_setting"] = (
@@ -177,7 +177,7 @@ def deserialize_json(data: dict) -> DescribeConnectorOperationResponse:
                 data["targetWorkerSetting"]
             )
         )
-    if "targetConnectorConfiguration" in data:
+    if data.get("targetConnectorConfiguration") is not None:
         import capo_kafkaconnect.types.connector_configuration
 
         out["target_connector_configuration"] = (
@@ -185,13 +185,13 @@ def deserialize_json(data: dict) -> DescribeConnectorOperationResponse:
                 data["targetConnectorConfiguration"]
             )
         )
-    if "errorInfo" in data:
+    if data.get("errorInfo") is not None:
         import capo_kafkaconnect.types.state_description
 
         out["error_info"] = capo_kafkaconnect.types.state_description.deserialize_json(
             data["errorInfo"]
         )
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_kafkaconnect.types.__timestamp_iso8601
 
         out["creation_time"] = (
@@ -199,7 +199,7 @@ def deserialize_json(data: dict) -> DescribeConnectorOperationResponse:
                 data["creationTime"]
             )
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_kafkaconnect.types.__timestamp_iso8601
 
         out["end_time"] = capo_kafkaconnect.types.__timestamp_iso8601.deserialize_json(

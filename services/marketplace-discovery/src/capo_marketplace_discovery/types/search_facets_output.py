@@ -41,11 +41,11 @@ def serialize_json(value: SearchFacetsOutput) -> dict:
 
 def deserialize_json(data: dict) -> SearchFacetsOutput:
     out: SearchFacetsOutput = {}  # type: ignore[typeddict-item]
-    if "totalResults" in data:
+    if data.get("totalResults") is not None:
         out["total_results"] = data["totalResults"]
     else:
         raise DeserializationError("SearchFacetsOutput.total_results required")
-    if "listingFacets" in data:
+    if data.get("listingFacets") is not None:
         import capo_marketplace_discovery.types.type_to_facet_map
 
         out["listing_facets"] = (
@@ -55,6 +55,6 @@ def deserialize_json(data: dict) -> SearchFacetsOutput:
         )
     else:
         raise DeserializationError("SearchFacetsOutput.listing_facets required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

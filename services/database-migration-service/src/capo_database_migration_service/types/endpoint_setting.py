@@ -81,9 +81,9 @@ def serialize_aws_json_1_1(value: EndpointSetting) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EndpointSetting:
     out: EndpointSetting = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_database_migration_service.types.endpoint_setting_type_value
 
         out["type"] = (
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_1(data: dict) -> EndpointSetting:
                 data["Type"]
             )
         )
-    if "EnumValues" in data:
+    if data.get("EnumValues") is not None:
         import capo_database_migration_service.types.endpoint_setting_enum_values
 
         out["enum_values"] = (
@@ -99,16 +99,16 @@ def deserialize_aws_json_1_1(data: dict) -> EndpointSetting:
                 data["EnumValues"]
             )
         )
-    if "Sensitive" in data:
+    if data.get("Sensitive") is not None:
         out["sensitive"] = data["Sensitive"]
-    if "Units" in data:
+    if data.get("Units") is not None:
         out["units"] = data["Units"]
-    if "Applicability" in data:
+    if data.get("Applicability") is not None:
         out["applicability"] = data["Applicability"]
-    if "IntValueMin" in data:
+    if data.get("IntValueMin") is not None:
         out["int_value_min"] = data["IntValueMin"]
-    if "IntValueMax" in data:
+    if data.get("IntValueMax") is not None:
         out["int_value_max"] = data["IntValueMax"]
-    if "DefaultValue" in data:
+    if data.get("DefaultValue") is not None:
         out["default_value"] = data["DefaultValue"]
     return out

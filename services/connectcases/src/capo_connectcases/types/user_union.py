@@ -33,9 +33,9 @@ def serialize_json(value: UserUnion) -> dict:
 
 
 def deserialize_json(data: dict) -> UserUnion:
-    if "userArn" in data:
+    if data.get("userArn") is not None:
         return {"userArn": data["userArn"]}
-    elif "customEntity" in data:
+    elif data.get("customEntity") is not None:
         return {"customEntity": data["customEntity"]}
     else:
         raise DeserializationError("UserUnion: no recognized variant key")

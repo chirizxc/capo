@@ -28,7 +28,7 @@ def serialize_json(value: UpdateDataTablePrimaryValuesResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDataTablePrimaryValuesResponse:
     out: UpdateDataTablePrimaryValuesResponse = {}  # type: ignore[typeddict-item]
-    if "LockVersion" in data:
+    if data.get("LockVersion") is not None:
         import capo_connect.types.data_table_lock_version
 
         out["lock_version"] = (

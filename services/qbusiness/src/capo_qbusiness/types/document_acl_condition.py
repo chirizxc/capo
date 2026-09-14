@@ -45,19 +45,19 @@ def serialize_json(value: DocumentAclCondition) -> dict:
 
 def deserialize_json(data: dict) -> DocumentAclCondition:
     out: DocumentAclCondition = {}  # type: ignore[typeddict-item]
-    if "memberRelation" in data:
+    if data.get("memberRelation") is not None:
         import capo_qbusiness.types.member_relation
 
         out["member_relation"] = capo_qbusiness.types.member_relation.deserialize_json(
             data["memberRelation"]
         )
-    if "users" in data:
+    if data.get("users") is not None:
         import capo_qbusiness.types.document_acl_users
 
         out["users"] = capo_qbusiness.types.document_acl_users.deserialize_json(
             data["users"]
         )
-    if "groups" in data:
+    if data.get("groups") is not None:
         import capo_qbusiness.types.document_acl_groups
 
         out["groups"] = capo_qbusiness.types.document_acl_groups.deserialize_json(

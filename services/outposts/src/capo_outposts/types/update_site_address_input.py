@@ -37,7 +37,7 @@ def serialize_json(value: UpdateSiteAddressInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSiteAddressInput:
     out: UpdateSiteAddressInput = {}  # type: ignore[typeddict-item]
-    if "AddressType" in data:
+    if data.get("AddressType") is not None:
         import capo_outposts.types.address_type
 
         out["address_type"] = capo_outposts.types.address_type.deserialize_json(
@@ -45,7 +45,7 @@ def deserialize_json(data: dict) -> UpdateSiteAddressInput:
         )
     else:
         raise DeserializationError("UpdateSiteAddressInput.address_type required")
-    if "Address" in data:
+    if data.get("Address") is not None:
         import capo_outposts.types.address
 
         out["address"] = capo_outposts.types.address.deserialize_json(data["Address"])

@@ -49,13 +49,13 @@ def serialize_json(value: StartNotebookImportInput) -> dict:
 
 def deserialize_json(data: dict) -> StartNotebookImportInput:
     out: StartNotebookImportInput = {}  # type: ignore[typeddict-item]
-    if "owningProjectIdentifier" in data:
+    if data.get("owningProjectIdentifier") is not None:
         out["owning_project_identifier"] = data["owningProjectIdentifier"]
     else:
         raise DeserializationError(
             "StartNotebookImportInput.owning_project_identifier required"
         )
-    if "sourceLocation" in data:
+    if data.get("sourceLocation") is not None:
         import capo_datazone.types.source_location
 
         out["source_location"] = capo_datazone.types.source_location.deserialize_json(
@@ -63,12 +63,12 @@ def deserialize_json(data: dict) -> StartNotebookImportInput:
         )
     else:
         raise DeserializationError("StartNotebookImportInput.source_location required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("StartNotebookImportInput.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

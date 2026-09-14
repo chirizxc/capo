@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: DnsRecordCreationState) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DnsRecordCreationState:
     out: DnsRecordCreationState = {}  # type: ignore[typeddict-item]
-    if "code" in data:
+    if data.get("code") is not None:
         import capo_lightsail.types.dns_record_creation_state_code
 
         out["code"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> DnsRecordCreationState:
                 data["code"]
             )
         )
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out

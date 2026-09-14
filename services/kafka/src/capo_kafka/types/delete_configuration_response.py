@@ -32,9 +32,9 @@ def serialize_json(value: DeleteConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteConfigurationResponse:
     out: DeleteConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_kafka.types.configuration_state
 
         out["state"] = capo_kafka.types.configuration_state.deserialize_json(

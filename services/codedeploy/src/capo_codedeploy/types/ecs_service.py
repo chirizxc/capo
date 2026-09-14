@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: ECSService) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ECSService:
     out: ECSService = {}  # type: ignore[typeddict-item]
-    if "serviceName" in data:
+    if data.get("serviceName") is not None:
         out["service_name"] = data["serviceName"]
-    if "clusterName" in data:
+    if data.get("clusterName") is not None:
         out["cluster_name"] = data["clusterName"]
     return out

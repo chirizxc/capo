@@ -40,14 +40,14 @@ def serialize_json(value: ListContactsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListContactsRequest:
     out: ListContactsRequest = {}  # type: ignore[typeddict-item]
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_sesv2.types.list_contacts_filter
 
         out["filter"] = capo_sesv2.types.list_contacts_filter.deserialize_json(
             data["Filter"]
         )
-    if "PageSize" in data:
+    if data.get("PageSize") is not None:
         out["page_size"] = data["PageSize"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

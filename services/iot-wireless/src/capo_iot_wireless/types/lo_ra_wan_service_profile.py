@@ -64,28 +64,28 @@ def serialize_json(value: LoRaWANServiceProfile) -> dict:
 
 def deserialize_json(data: dict) -> LoRaWANServiceProfile:
     out: LoRaWANServiceProfile = {}  # type: ignore[typeddict-item]
-    if "AddGwMetadata" in data:
+    if data.get("AddGwMetadata") is not None:
         out["add_gw_metadata"] = data["AddGwMetadata"]
     else:
         out["add_gw_metadata"] = False
-    if "DrMin" in data:
+    if data.get("DrMin") is not None:
         out["dr_min"] = data["DrMin"]
-    if "DrMax" in data:
+    if data.get("DrMax") is not None:
         out["dr_max"] = data["DrMax"]
-    if "PrAllowed" in data:
+    if data.get("PrAllowed") is not None:
         out["pr_allowed"] = data["PrAllowed"]
     else:
         out["pr_allowed"] = False
-    if "RaAllowed" in data:
+    if data.get("RaAllowed") is not None:
         out["ra_allowed"] = data["RaAllowed"]
     else:
         out["ra_allowed"] = False
-    if "TxPowerIndexMin" in data:
+    if data.get("TxPowerIndexMin") is not None:
         out["tx_power_index_min"] = data["TxPowerIndexMin"]
-    if "TxPowerIndexMax" in data:
+    if data.get("TxPowerIndexMax") is not None:
         out["tx_power_index_max"] = data["TxPowerIndexMax"]
-    if "NbTransMin" in data:
+    if data.get("NbTransMin") is not None:
         out["nb_trans_min"] = data["NbTransMin"]
-    if "NbTransMax" in data:
+    if data.get("NbTransMax") is not None:
         out["nb_trans_max"] = data["NbTransMax"]
     return out

@@ -77,19 +77,19 @@ def serialize_aws_json_1_0(value: HypervisorDetails) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> HypervisorDetails:
     out: HypervisorDetails = {}  # type: ignore[typeddict-item]
-    if "Host" in data:
+    if data.get("Host") is not None:
         out["host"] = data["Host"]
-    if "HypervisorArn" in data:
+    if data.get("HypervisorArn") is not None:
         out["hypervisor_arn"] = data["HypervisorArn"]
-    if "KmsKeyArn" in data:
+    if data.get("KmsKeyArn") is not None:
         out["kms_key_arn"] = data["KmsKeyArn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "LogGroupArn" in data:
+    if data.get("LogGroupArn") is not None:
         out["log_group_arn"] = data["LogGroupArn"]
-    if "State" in data:
+    if data.get("State") is not None:
         out["state"] = data["State"]
-    if "LastSuccessfulMetadataSyncTime" in data:
+    if data.get("LastSuccessfulMetadataSyncTime") is not None:
         import capo_backup_gateway.types.time
 
         out["last_successful_metadata_sync_time"] = (
@@ -97,10 +97,10 @@ def deserialize_aws_json_1_0(data: dict) -> HypervisorDetails:
                 data["LastSuccessfulMetadataSyncTime"]
             )
         )
-    if "LatestMetadataSyncStatusMessage" in data:
+    if data.get("LatestMetadataSyncStatusMessage") is not None:
         out["latest_metadata_sync_status_message"] = data[
             "LatestMetadataSyncStatusMessage"
         ]
-    if "LatestMetadataSyncStatus" in data:
+    if data.get("LatestMetadataSyncStatus") is not None:
         out["latest_metadata_sync_status"] = data["LatestMetadataSyncStatus"]
     return out

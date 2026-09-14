@@ -25,7 +25,7 @@ def serialize_json(value: GetShareResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetShareResponse:
     out: GetShareResponse = {}  # type: ignore[typeddict-item]
-    if "share" in data:
+    if data.get("share") is not None:
         import capo_omics.types.share_details
 
         out["share"] = capo_omics.types.share_details.deserialize_json(data["share"])

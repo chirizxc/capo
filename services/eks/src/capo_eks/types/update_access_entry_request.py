@@ -40,14 +40,14 @@ def serialize_json(value: UpdateAccessEntryRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAccessEntryRequest:
     out: UpdateAccessEntryRequest = {}  # type: ignore[typeddict-item]
-    if "kubernetesGroups" in data:
+    if data.get("kubernetesGroups") is not None:
         import capo_eks.types.string_list
 
         out["kubernetes_groups"] = capo_eks.types.string_list.deserialize_json(
             data["kubernetesGroups"]
         )
-    if "clientRequestToken" in data:
+    if data.get("clientRequestToken") is not None:
         out["client_request_token"] = data["clientRequestToken"]
-    if "username" in data:
+    if data.get("username") is not None:
         out["username"] = data["username"]
     return out

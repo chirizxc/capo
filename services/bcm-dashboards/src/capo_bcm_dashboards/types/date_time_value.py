@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: DateTimeValue) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DateTimeValue:
     out: DateTimeValue = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_bcm_dashboards.types.date_time_type
 
         out["type"] = capo_bcm_dashboards.types.date_time_type.deserialize_aws_json_1_0(
@@ -40,7 +40,7 @@ def deserialize_aws_json_1_0(data: dict) -> DateTimeValue:
         )
     else:
         raise DeserializationError("DateTimeValue.type required")
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("DateTimeValue.value required")

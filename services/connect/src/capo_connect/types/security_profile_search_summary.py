@@ -54,17 +54,17 @@ def serialize_json(value: SecurityProfileSearchSummary) -> dict:
 
 def deserialize_json(data: dict) -> SecurityProfileSearchSummary:
     out: SecurityProfileSearchSummary = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "OrganizationResourceId" in data:
+    if data.get("OrganizationResourceId") is not None:
         out["organization_resource_id"] = data["OrganizationResourceId"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "SecurityProfileName" in data:
+    if data.get("SecurityProfileName") is not None:
         out["security_profile_name"] = data["SecurityProfileName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])

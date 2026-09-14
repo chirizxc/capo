@@ -89,17 +89,17 @@ def serialize_aws_json_1_1(value: RepositoryMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RepositoryMetadata:
     out: RepositoryMetadata = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "repositoryId" in data:
+    if data.get("repositoryId") is not None:
         out["repository_id"] = data["repositoryId"]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
-    if "repositoryDescription" in data:
+    if data.get("repositoryDescription") is not None:
         out["repository_description"] = data["repositoryDescription"]
-    if "defaultBranch" in data:
+    if data.get("defaultBranch") is not None:
         out["default_branch"] = data["defaultBranch"]
-    if "lastModifiedDate" in data:
+    if data.get("lastModifiedDate") is not None:
         import capo_codecommit.types.last_modified_date
 
         out["last_modified_date"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_1(data: dict) -> RepositoryMetadata:
                 data["lastModifiedDate"]
             )
         )
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_codecommit.types.creation_date
 
         out["creation_date"] = (
@@ -115,12 +115,12 @@ def deserialize_aws_json_1_1(data: dict) -> RepositoryMetadata:
                 data["creationDate"]
             )
         )
-    if "cloneUrlHttp" in data:
+    if data.get("cloneUrlHttp") is not None:
         out["clone_url_http"] = data["cloneUrlHttp"]
-    if "cloneUrlSsh" in data:
+    if data.get("cloneUrlSsh") is not None:
         out["clone_url_ssh"] = data["cloneUrlSsh"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
     return out

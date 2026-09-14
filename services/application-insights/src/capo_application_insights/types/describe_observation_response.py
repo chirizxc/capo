@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: DescribeObservationResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeObservationResponse:
     out: DescribeObservationResponse = {}  # type: ignore[typeddict-item]
-    if "Observation" in data:
+    if data.get("Observation") is not None:
         import capo_application_insights.types.observation
 
         out["observation"] = (

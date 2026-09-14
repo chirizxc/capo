@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> RouteFerryTravelStepList:
 
     out: RouteFerryTravelStepList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_geo_routes.types.route_ferry_travel_step.deserialize_json(item))
     return out

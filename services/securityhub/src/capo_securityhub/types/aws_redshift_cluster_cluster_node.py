@@ -35,10 +35,10 @@ def serialize_json(value: AwsRedshiftClusterClusterNode) -> dict:
 
 def deserialize_json(data: dict) -> AwsRedshiftClusterClusterNode:
     out: AwsRedshiftClusterClusterNode = {}  # type: ignore[typeddict-item]
-    if "NodeRole" in data:
+    if data.get("NodeRole") is not None:
         out["node_role"] = data["NodeRole"]
-    if "PrivateIpAddress" in data:
+    if data.get("PrivateIpAddress") is not None:
         out["private_ip_address"] = data["PrivateIpAddress"]
-    if "PublicIpAddress" in data:
+    if data.get("PublicIpAddress") is not None:
         out["public_ip_address"] = data["PublicIpAddress"]
     return out

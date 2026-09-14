@@ -23,6 +23,6 @@ def serialize_json(value: AnalyticsUtteranceAttributeResult) -> dict:
 
 def deserialize_json(data: dict) -> AnalyticsUtteranceAttributeResult:
     out: AnalyticsUtteranceAttributeResult = {}  # type: ignore[typeddict-item]
-    if "lastUsedIntent" in data:
+    if data.get("lastUsedIntent") is not None:
         out["last_used_intent"] = data["lastUsedIntent"]
     return out

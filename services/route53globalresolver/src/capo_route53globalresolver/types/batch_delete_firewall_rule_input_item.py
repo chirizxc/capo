@@ -24,7 +24,7 @@ def serialize_json(value: BatchDeleteFirewallRuleInputItem) -> dict:
 
 def deserialize_json(data: dict) -> BatchDeleteFirewallRuleInputItem:
     out: BatchDeleteFirewallRuleInputItem = {}  # type: ignore[typeddict-item]
-    if "firewallRuleId" in data:
+    if data.get("firewallRuleId") is not None:
         out["firewall_rule_id"] = data["firewallRuleId"]
     else:
         raise DeserializationError(

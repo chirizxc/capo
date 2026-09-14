@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: CreateWebAppResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateWebAppResponse:
     out: CreateWebAppResponse = {}  # type: ignore[typeddict-item]
-    if "WebAppId" in data:
+    if data.get("WebAppId") is not None:
         out["web_app_id"] = data["WebAppId"]
     else:
         raise DeserializationError("CreateWebAppResponse.web_app_id required")

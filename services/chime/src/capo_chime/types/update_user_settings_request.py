@@ -33,7 +33,7 @@ def serialize_json(value: UpdateUserSettingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateUserSettingsRequest:
     out: UpdateUserSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "UserSettings" in data:
+    if data.get("UserSettings") is not None:
         import capo_chime.types.user_settings
 
         out["user_settings"] = capo_chime.types.user_settings.deserialize_json(

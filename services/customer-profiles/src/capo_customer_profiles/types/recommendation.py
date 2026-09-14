@@ -26,13 +26,21 @@ def serialize_json(value: Recommendation) -> dict:
             value["catalog_item"]
         )
     if "score" in value:
-        out["Score"] = value["score"]
+        out["Score"] = (
+            "NaN"
+            if value["score"] != value["score"]
+            else "Infinity"
+            if value["score"] == float("inf")
+            else "-Infinity"
+            if value["score"] == float("-inf")
+            else value["score"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> Recommendation:
     out: Recommendation = {}  # type: ignore[typeddict-item]
-    if "CatalogItem" in data:
+    if data.get("CatalogItem") is not None:
         import capo_customer_profiles.types.catalog_item
 
         out["catalog_item"] = (
@@ -40,6 +48,6 @@ def deserialize_json(data: dict) -> Recommendation:
                 data["CatalogItem"]
             )
         )
-    if "Score" in data:
-        out["score"] = data["Score"]
+    if data.get("Score") is not None:
+        out["score"] = float(data["Score"])
     return out

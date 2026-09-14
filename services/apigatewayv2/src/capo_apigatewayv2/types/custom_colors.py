@@ -55,16 +55,16 @@ def serialize_json(value: CustomColors) -> dict:
 
 def deserialize_json(data: dict) -> CustomColors:
     out: CustomColors = {}  # type: ignore[typeddict-item]
-    if "accentColor" in data:
+    if data.get("accentColor") is not None:
         out["accent_color"] = data["accentColor"]
-    if "backgroundColor" in data:
+    if data.get("backgroundColor") is not None:
         out["background_color"] = data["backgroundColor"]
-    if "errorValidationColor" in data:
+    if data.get("errorValidationColor") is not None:
         out["error_validation_color"] = data["errorValidationColor"]
-    if "headerColor" in data:
+    if data.get("headerColor") is not None:
         out["header_color"] = data["headerColor"]
-    if "navigationColor" in data:
+    if data.get("navigationColor") is not None:
         out["navigation_color"] = data["navigationColor"]
-    if "textColor" in data:
+    if data.get("textColor") is not None:
         out["text_color"] = data["textColor"]
     return out

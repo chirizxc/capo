@@ -31,7 +31,7 @@ def serialize_json(value: ResponseConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ResponseConfiguration:
     out: ResponseConfiguration = {}  # type: ignore[typeddict-item]
-    if "instructionCollection" in data:
+    if data.get("instructionCollection") is not None:
         import capo_qbusiness.types.instruction_collection
 
         out["instruction_collection"] = (

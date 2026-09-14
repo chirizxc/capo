@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: DescribePermissionSetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribePermissionSetRequest:
     out: DescribePermissionSetRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceArn" in data:
+    if data.get("InstanceArn") is not None:
         out["instance_arn"] = data["InstanceArn"]
     else:
         raise DeserializationError("DescribePermissionSetRequest.instance_arn required")
-    if "PermissionSetArn" in data:
+    if data.get("PermissionSetArn") is not None:
         out["permission_set_arn"] = data["PermissionSetArn"]
     else:
         raise DeserializationError(

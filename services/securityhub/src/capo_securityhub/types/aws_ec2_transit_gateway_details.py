@@ -95,17 +95,17 @@ def serialize_json(value: AwsEc2TransitGatewayDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEc2TransitGatewayDetails:
     out: AwsEc2TransitGatewayDetails = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DefaultRouteTablePropagation" in data:
+    if data.get("DefaultRouteTablePropagation") is not None:
         out["default_route_table_propagation"] = data["DefaultRouteTablePropagation"]
-    if "AutoAcceptSharedAttachments" in data:
+    if data.get("AutoAcceptSharedAttachments") is not None:
         out["auto_accept_shared_attachments"] = data["AutoAcceptSharedAttachments"]
-    if "DefaultRouteTableAssociation" in data:
+    if data.get("DefaultRouteTableAssociation") is not None:
         out["default_route_table_association"] = data["DefaultRouteTableAssociation"]
-    if "TransitGatewayCidrBlocks" in data:
+    if data.get("TransitGatewayCidrBlocks") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["transit_gateway_cidr_blocks"] = (
@@ -113,20 +113,20 @@ def deserialize_json(data: dict) -> AwsEc2TransitGatewayDetails:
                 data["TransitGatewayCidrBlocks"]
             )
         )
-    if "AssociationDefaultRouteTableId" in data:
+    if data.get("AssociationDefaultRouteTableId") is not None:
         out["association_default_route_table_id"] = data[
             "AssociationDefaultRouteTableId"
         ]
-    if "PropagationDefaultRouteTableId" in data:
+    if data.get("PropagationDefaultRouteTableId") is not None:
         out["propagation_default_route_table_id"] = data[
             "PropagationDefaultRouteTableId"
         ]
-    if "VpnEcmpSupport" in data:
+    if data.get("VpnEcmpSupport") is not None:
         out["vpn_ecmp_support"] = data["VpnEcmpSupport"]
-    if "DnsSupport" in data:
+    if data.get("DnsSupport") is not None:
         out["dns_support"] = data["DnsSupport"]
-    if "MulticastSupport" in data:
+    if data.get("MulticastSupport") is not None:
         out["multicast_support"] = data["MulticastSupport"]
-    if "AmazonSideAsn" in data:
+    if data.get("AmazonSideAsn") is not None:
         out["amazon_side_asn"] = data["AmazonSideAsn"]
     return out

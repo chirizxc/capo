@@ -38,11 +38,11 @@ def serialize_json(value: GetSensitiveDataOccurrencesAvailabilityResponse) -> di
 
 def deserialize_json(data: dict) -> GetSensitiveDataOccurrencesAvailabilityResponse:
     out: GetSensitiveDataOccurrencesAvailabilityResponse = {}  # type: ignore[typeddict-item]
-    if "code" in data:
+    if data.get("code") is not None:
         import capo_macie2.types.availability_code
 
         out["code"] = capo_macie2.types.availability_code.deserialize_json(data["code"])
-    if "reasons" in data:
+    if data.get("reasons") is not None:
         import capo_macie2.types.__list_of_unavailability_reason_code
 
         out["reasons"] = (

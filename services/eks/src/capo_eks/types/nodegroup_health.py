@@ -25,7 +25,7 @@ def serialize_json(value: NodegroupHealth) -> dict:
 
 def deserialize_json(data: dict) -> NodegroupHealth:
     out: NodegroupHealth = {}  # type: ignore[typeddict-item]
-    if "issues" in data:
+    if data.get("issues") is not None:
         import capo_eks.types.issue_list
 
         out["issues"] = capo_eks.types.issue_list.deserialize_json(data["issues"])

@@ -35,16 +35,16 @@ def serialize_json(value: DisconnectParticipantRequest) -> dict:
 
 def deserialize_json(data: dict) -> DisconnectParticipantRequest:
     out: DisconnectParticipantRequest = {}  # type: ignore[typeddict-item]
-    if "stageArn" in data:
+    if data.get("stageArn") is not None:
         out["stage_arn"] = data["stageArn"]
     else:
         raise DeserializationError("DisconnectParticipantRequest.stage_arn required")
-    if "participantId" in data:
+    if data.get("participantId") is not None:
         out["participant_id"] = data["participantId"]
     else:
         raise DeserializationError(
             "DisconnectParticipantRequest.participant_id required"
         )
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
     return out

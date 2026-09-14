@@ -34,9 +34,9 @@ def serialize_json(value: ListUsageTotalsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListUsageTotalsResponse:
     out: ListUsageTotalsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "totals" in data:
+    if data.get("totals") is not None:
         import capo_inspector2.types.usage_total_list
 
         out["totals"] = capo_inspector2.types.usage_total_list.deserialize_json(

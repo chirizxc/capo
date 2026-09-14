@@ -49,7 +49,7 @@ def serialize_aws_json_1_1(value: ResourceSharingConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourceSharingConfig:
     out: ResourceSharingConfig = {}  # type: ignore[typeddict-item]
-    if "Strategy" in data:
+    if data.get("Strategy") is not None:
         import capo_sagemaker.types.resource_sharing_strategy
 
         out["strategy"] = (
@@ -57,9 +57,9 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceSharingConfig:
                 data["Strategy"]
             )
         )
-    if "BorrowLimit" in data:
+    if data.get("BorrowLimit") is not None:
         out["borrow_limit"] = data["BorrowLimit"]
-    if "AbsoluteBorrowLimits" in data:
+    if data.get("AbsoluteBorrowLimits") is not None:
         import capo_sagemaker.types.absolute_borrow_limit_resource_list
 
         out["absolute_borrow_limits"] = (

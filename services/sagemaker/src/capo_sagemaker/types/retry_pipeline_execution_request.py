@@ -45,11 +45,11 @@ def serialize_aws_json_1_1(value: RetryPipelineExecutionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RetryPipelineExecutionRequest:
     out: RetryPipelineExecutionRequest = {}  # type: ignore[typeddict-item]
-    if "PipelineExecutionArn" in data:
+    if data.get("PipelineExecutionArn") is not None:
         out["pipeline_execution_arn"] = data["PipelineExecutionArn"]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "ParallelismConfiguration" in data:
+    if data.get("ParallelismConfiguration") is not None:
         import capo_sagemaker.types.parallelism_configuration
 
         out["parallelism_configuration"] = (

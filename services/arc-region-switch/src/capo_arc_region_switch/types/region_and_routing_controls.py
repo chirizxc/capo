@@ -28,6 +28,8 @@ def serialize_aws_json_1_0(input_to_serialize: RegionAndRoutingControls) -> dict
 def deserialize_aws_json_1_0(data: dict) -> RegionAndRoutingControls:
     out: RegionAndRoutingControls = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_arc_region_switch.types.arc_routing_control_states
 
         out[key] = (

@@ -59,24 +59,24 @@ def serialize_json(value: UpdateChimeWebhookConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateChimeWebhookConfigurationRequest:
     out: UpdateChimeWebhookConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "ChatConfigurationArn" in data:
+    if data.get("ChatConfigurationArn") is not None:
         out["chat_configuration_arn"] = data["ChatConfigurationArn"]
     else:
         raise DeserializationError(
             "UpdateChimeWebhookConfigurationRequest.chat_configuration_arn required"
         )
-    if "WebhookDescription" in data:
+    if data.get("WebhookDescription") is not None:
         out["webhook_description"] = data["WebhookDescription"]
-    if "WebhookUrl" in data:
+    if data.get("WebhookUrl") is not None:
         out["webhook_url"] = data["WebhookUrl"]
-    if "SnsTopicArns" in data:
+    if data.get("SnsTopicArns") is not None:
         import capo_chatbot.types.sns_topic_arn_list
 
         out["sns_topic_arns"] = capo_chatbot.types.sns_topic_arn_list.deserialize_json(
             data["SnsTopicArns"]
         )
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
-    if "LoggingLevel" in data:
+    if data.get("LoggingLevel") is not None:
         out["logging_level"] = data["LoggingLevel"]
     return out

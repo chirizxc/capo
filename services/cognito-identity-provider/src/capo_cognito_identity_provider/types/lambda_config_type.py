@@ -129,27 +129,27 @@ def serialize_aws_json_1_1(value: LambdaConfigType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LambdaConfigType:
     out: LambdaConfigType = {}  # type: ignore[typeddict-item]
-    if "PreSignUp" in data:
+    if data.get("PreSignUp") is not None:
         out["pre_sign_up"] = data["PreSignUp"]
-    if "CustomMessage" in data:
+    if data.get("CustomMessage") is not None:
         out["custom_message"] = data["CustomMessage"]
-    if "PostConfirmation" in data:
+    if data.get("PostConfirmation") is not None:
         out["post_confirmation"] = data["PostConfirmation"]
-    if "PreAuthentication" in data:
+    if data.get("PreAuthentication") is not None:
         out["pre_authentication"] = data["PreAuthentication"]
-    if "PostAuthentication" in data:
+    if data.get("PostAuthentication") is not None:
         out["post_authentication"] = data["PostAuthentication"]
-    if "DefineAuthChallenge" in data:
+    if data.get("DefineAuthChallenge") is not None:
         out["define_auth_challenge"] = data["DefineAuthChallenge"]
-    if "CreateAuthChallenge" in data:
+    if data.get("CreateAuthChallenge") is not None:
         out["create_auth_challenge"] = data["CreateAuthChallenge"]
-    if "VerifyAuthChallengeResponse" in data:
+    if data.get("VerifyAuthChallengeResponse") is not None:
         out["verify_auth_challenge_response"] = data["VerifyAuthChallengeResponse"]
-    if "PreTokenGeneration" in data:
+    if data.get("PreTokenGeneration") is not None:
         out["pre_token_generation"] = data["PreTokenGeneration"]
-    if "UserMigration" in data:
+    if data.get("UserMigration") is not None:
         out["user_migration"] = data["UserMigration"]
-    if "PreTokenGenerationConfig" in data:
+    if data.get("PreTokenGenerationConfig") is not None:
         import capo_cognito_identity_provider.types.pre_token_generation_version_config_type
 
         out["pre_token_generation_config"] = (
@@ -157,7 +157,7 @@ def deserialize_aws_json_1_1(data: dict) -> LambdaConfigType:
                 data["PreTokenGenerationConfig"]
             )
         )
-    if "CustomSMSSender" in data:
+    if data.get("CustomSMSSender") is not None:
         import capo_cognito_identity_provider.types.custom_sms_lambda_version_config_type
 
         out["custom_sms_sender"] = (
@@ -165,7 +165,7 @@ def deserialize_aws_json_1_1(data: dict) -> LambdaConfigType:
                 data["CustomSMSSender"]
             )
         )
-    if "CustomEmailSender" in data:
+    if data.get("CustomEmailSender") is not None:
         import capo_cognito_identity_provider.types.custom_email_lambda_version_config_type
 
         out["custom_email_sender"] = (
@@ -173,9 +173,9 @@ def deserialize_aws_json_1_1(data: dict) -> LambdaConfigType:
                 data["CustomEmailSender"]
             )
         )
-    if "KMSKeyID" in data:
+    if data.get("KMSKeyID") is not None:
         out["kms_key_id"] = data["KMSKeyID"]
-    if "InboundFederation" in data:
+    if data.get("InboundFederation") is not None:
         import capo_cognito_identity_provider.types.inbound_federation_lambda_type
 
         out["inbound_federation"] = (

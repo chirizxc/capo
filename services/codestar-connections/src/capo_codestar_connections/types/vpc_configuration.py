@@ -53,11 +53,11 @@ def serialize_aws_json_1_0(value: VpcConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> VpcConfiguration:
     out: VpcConfiguration = {}  # type: ignore[typeddict-item]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
     else:
         raise DeserializationError("VpcConfiguration.vpc_id required")
-    if "SubnetIds" in data:
+    if data.get("SubnetIds") is not None:
         import capo_codestar_connections.types.subnet_ids
 
         out["subnet_ids"] = (
@@ -67,7 +67,7 @@ def deserialize_aws_json_1_0(data: dict) -> VpcConfiguration:
         )
     else:
         raise DeserializationError("VpcConfiguration.subnet_ids required")
-    if "SecurityGroupIds" in data:
+    if data.get("SecurityGroupIds") is not None:
         import capo_codestar_connections.types.security_group_ids
 
         out["security_group_ids"] = (
@@ -77,6 +77,6 @@ def deserialize_aws_json_1_0(data: dict) -> VpcConfiguration:
         )
     else:
         raise DeserializationError("VpcConfiguration.security_group_ids required")
-    if "TlsCertificate" in data:
+    if data.get("TlsCertificate") is not None:
         out["tls_certificate"] = data["TlsCertificate"]
     return out

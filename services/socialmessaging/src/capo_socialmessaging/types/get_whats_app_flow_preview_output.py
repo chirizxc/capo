@@ -32,11 +32,11 @@ def serialize_json(value: GetWhatsAppFlowPreviewOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetWhatsAppFlowPreviewOutput:
     out: GetWhatsAppFlowPreviewOutput = {}  # type: ignore[typeddict-item]
-    if "flowId" in data:
+    if data.get("flowId") is not None:
         out["flow_id"] = data["flowId"]
     else:
         raise DeserializationError("GetWhatsAppFlowPreviewOutput.flow_id required")
-    if "preview" in data:
+    if data.get("preview") is not None:
         import capo_socialmessaging.types.meta_flow_preview_info
 
         out["preview"] = (

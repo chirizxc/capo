@@ -47,7 +47,7 @@ def serialize_json(value: AnalyzerConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> AnalyzerConfiguration:
-    if "unusedAccess" in data:
+    if data.get("unusedAccess") is not None:
         import capo_accessanalyzer.types.unused_access_configuration
 
         return {
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> AnalyzerConfiguration:
                 data["unusedAccess"]
             )
         }
-    elif "internalAccess" in data:
+    elif data.get("internalAccess") is not None:
         import capo_accessanalyzer.types.internal_access_configuration
 
         return {

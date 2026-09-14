@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> DomainMaintenanceList:
 
     out: DomainMaintenanceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_opensearch.types.domain_maintenance_details.deserialize_json(item)
         )

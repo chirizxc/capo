@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetDeviceInstanceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDeviceInstanceRequest:
     out: GetDeviceInstanceRequest = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("GetDeviceInstanceRequest.arn required")

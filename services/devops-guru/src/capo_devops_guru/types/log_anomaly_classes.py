@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> LogAnomalyClasses:
 
     out: LogAnomalyClasses = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_devops_guru.types.log_anomaly_class.deserialize_json(item))
     return out

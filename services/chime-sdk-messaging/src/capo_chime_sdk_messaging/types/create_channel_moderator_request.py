@@ -28,7 +28,7 @@ def serialize_json(value: CreateChannelModeratorRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateChannelModeratorRequest:
     out: CreateChannelModeratorRequest = {}  # type: ignore[typeddict-item]
-    if "ChannelModeratorArn" in data:
+    if data.get("ChannelModeratorArn") is not None:
         out["channel_moderator_arn"] = data["ChannelModeratorArn"]
     else:
         raise DeserializationError(

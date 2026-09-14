@@ -36,14 +36,14 @@ def serialize_json(value: DocumentationVersion) -> dict:
 
 def deserialize_json(data: dict) -> DocumentationVersion:
     out: DocumentationVersion = {}  # type: ignore[typeddict-item]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
-    if "createdDate" in data:
+    if data.get("createdDate") is not None:
         import capo_api_gateway.types.timestamp
 
         out["created_date"] = capo_api_gateway.types.timestamp.deserialize_json(
             data["createdDate"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

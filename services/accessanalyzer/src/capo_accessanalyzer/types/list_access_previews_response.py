@@ -35,7 +35,7 @@ def serialize_json(value: ListAccessPreviewsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListAccessPreviewsResponse:
     out: ListAccessPreviewsResponse = {}  # type: ignore[typeddict-item]
-    if "accessPreviews" in data:
+    if data.get("accessPreviews") is not None:
         import capo_accessanalyzer.types.access_previews_list
 
         out["access_previews"] = (
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> ListAccessPreviewsResponse:
         raise DeserializationError(
             "ListAccessPreviewsResponse.access_previews required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

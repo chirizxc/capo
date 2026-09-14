@@ -34,18 +34,18 @@ def serialize_aws_json_1_0(value: GetParametersForImportInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetParametersForImportInput:
     out: GetParametersForImportInput = {}  # type: ignore[typeddict-item]
-    if "KeyMaterialType" in data:
+    if data.get("KeyMaterialType") is not None:
         out["key_material_type"] = data["KeyMaterialType"]
     else:
         raise DeserializationError(
             "GetParametersForImportInput.key_material_type required"
         )
-    if "WrappingKeyAlgorithm" in data:
+    if data.get("WrappingKeyAlgorithm") is not None:
         out["wrapping_key_algorithm"] = data["WrappingKeyAlgorithm"]
     else:
         raise DeserializationError(
             "GetParametersForImportInput.wrapping_key_algorithm required"
         )
-    if "ReuseLastGeneratedToken" in data:
+    if data.get("ReuseLastGeneratedToken") is not None:
         out["reuse_last_generated_token"] = data["ReuseLastGeneratedToken"]
     return out

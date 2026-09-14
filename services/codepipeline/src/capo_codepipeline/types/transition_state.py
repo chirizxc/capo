@@ -49,13 +49,13 @@ def serialize_aws_json_1_1(value: TransitionState) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TransitionState:
     out: TransitionState = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
     else:
         out["enabled"] = False
-    if "lastChangedBy" in data:
+    if data.get("lastChangedBy") is not None:
         out["last_changed_by"] = data["lastChangedBy"]
-    if "lastChangedAt" in data:
+    if data.get("lastChangedAt") is not None:
         import capo_codepipeline.types.last_changed_at
 
         out["last_changed_at"] = (
@@ -63,6 +63,6 @@ def deserialize_aws_json_1_1(data: dict) -> TransitionState:
                 data["lastChangedAt"]
             )
         )
-    if "disabledReason" in data:
+    if data.get("disabledReason") is not None:
         out["disabled_reason"] = data["disabledReason"]
     return out

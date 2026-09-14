@@ -18,6 +18,6 @@ def serialize_json(value: OwnerGroupPropertiesOutput) -> dict:
 
 def deserialize_json(data: dict) -> OwnerGroupPropertiesOutput:
     out: OwnerGroupPropertiesOutput = {}  # type: ignore[typeddict-item]
-    if "groupId" in data:
+    if data.get("groupId") is not None:
         out["group_id"] = data["groupId"]
     return out

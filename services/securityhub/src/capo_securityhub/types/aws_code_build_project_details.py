@@ -110,9 +110,9 @@ def serialize_json(value: AwsCodeBuildProjectDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsCodeBuildProjectDetails:
     out: AwsCodeBuildProjectDetails = {}  # type: ignore[typeddict-item]
-    if "EncryptionKey" in data:
+    if data.get("EncryptionKey") is not None:
         out["encryption_key"] = data["EncryptionKey"]
-    if "Artifacts" in data:
+    if data.get("Artifacts") is not None:
         import capo_securityhub.types.aws_code_build_project_artifacts_list
 
         out["artifacts"] = (
@@ -120,7 +120,7 @@ def deserialize_json(data: dict) -> AwsCodeBuildProjectDetails:
                 data["Artifacts"]
             )
         )
-    if "Environment" in data:
+    if data.get("Environment") is not None:
         import capo_securityhub.types.aws_code_build_project_environment
 
         out["environment"] = (
@@ -128,9 +128,9 @@ def deserialize_json(data: dict) -> AwsCodeBuildProjectDetails:
                 data["Environment"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Source" in data:
+    if data.get("Source") is not None:
         import capo_securityhub.types.aws_code_build_project_source
 
         out["source"] = (
@@ -138,9 +138,9 @@ def deserialize_json(data: dict) -> AwsCodeBuildProjectDetails:
                 data["Source"]
             )
         )
-    if "ServiceRole" in data:
+    if data.get("ServiceRole") is not None:
         out["service_role"] = data["ServiceRole"]
-    if "LogsConfig" in data:
+    if data.get("LogsConfig") is not None:
         import capo_securityhub.types.aws_code_build_project_logs_config_details
 
         out["logs_config"] = (
@@ -148,7 +148,7 @@ def deserialize_json(data: dict) -> AwsCodeBuildProjectDetails:
                 data["LogsConfig"]
             )
         )
-    if "VpcConfig" in data:
+    if data.get("VpcConfig") is not None:
         import capo_securityhub.types.aws_code_build_project_vpc_config
 
         out["vpc_config"] = (
@@ -156,7 +156,7 @@ def deserialize_json(data: dict) -> AwsCodeBuildProjectDetails:
                 data["VpcConfig"]
             )
         )
-    if "SecondaryArtifacts" in data:
+    if data.get("SecondaryArtifacts") is not None:
         import capo_securityhub.types.aws_code_build_project_artifacts_list
 
         out["secondary_artifacts"] = (

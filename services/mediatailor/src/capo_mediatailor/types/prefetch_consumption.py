@@ -49,7 +49,7 @@ def serialize_json(value: PrefetchConsumption) -> dict:
 
 def deserialize_json(data: dict) -> PrefetchConsumption:
     out: PrefetchConsumption = {}  # type: ignore[typeddict-item]
-    if "AvailMatchingCriteria" in data:
+    if data.get("AvailMatchingCriteria") is not None:
         import capo_mediatailor.types.__list_of_avail_matching_criteria
 
         out["avail_matching_criteria"] = (
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> PrefetchConsumption:
                 data["AvailMatchingCriteria"]
             )
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_mediatailor.types.__timestamp_unix
 
         out["end_time"] = capo_mediatailor.types.__timestamp_unix.deserialize_json(
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> PrefetchConsumption:
         )
     else:
         raise DeserializationError("PrefetchConsumption.end_time required")
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_mediatailor.types.__timestamp_unix
 
         out["start_time"] = capo_mediatailor.types.__timestamp_unix.deserialize_json(

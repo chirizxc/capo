@@ -41,14 +41,14 @@ def serialize_json(value: VoteSummary) -> dict:
 
 def deserialize_json(data: dict) -> VoteSummary:
     out: VoteSummary = {}  # type: ignore[typeddict-item]
-    if "Vote" in data:
+    if data.get("Vote") is not None:
         import capo_managedblockchain.types.vote_value
 
         out["vote"] = capo_managedblockchain.types.vote_value.deserialize_json(
             data["Vote"]
         )
-    if "MemberName" in data:
+    if data.get("MemberName") is not None:
         out["member_name"] = data["MemberName"]
-    if "MemberId" in data:
+    if data.get("MemberId") is not None:
         out["member_id"] = data["MemberId"]
     return out

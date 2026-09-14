@@ -31,11 +31,11 @@ def serialize_json(value: EksSource) -> dict:
 
 def deserialize_json(data: dict) -> EksSource:
     out: EksSource = {}  # type: ignore[typeddict-item]
-    if "clusterArn" in data:
+    if data.get("clusterArn") is not None:
         out["cluster_arn"] = data["clusterArn"]
     else:
         raise DeserializationError("EksSource.cluster_arn required")
-    if "namespaces" in data:
+    if data.get("namespaces") is not None:
         import capo_resiliencehubv2.types.eks_namespace_list
 
         out["namespaces"] = (

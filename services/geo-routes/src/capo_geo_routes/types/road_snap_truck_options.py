@@ -63,11 +63,11 @@ def serialize_json(value: RoadSnapTruckOptions) -> dict:
 
 def deserialize_json(data: dict) -> RoadSnapTruckOptions:
     out: RoadSnapTruckOptions = {}  # type: ignore[typeddict-item]
-    if "GrossWeight" in data:
+    if data.get("GrossWeight") is not None:
         out["gross_weight"] = data["GrossWeight"]
     else:
         out["gross_weight"] = 0
-    if "HazardousCargos" in data:
+    if data.get("HazardousCargos") is not None:
         import capo_geo_routes.types.road_snap_hazardous_cargo_type_list
 
         out["hazardous_cargos"] = (
@@ -75,15 +75,15 @@ def deserialize_json(data: dict) -> RoadSnapTruckOptions:
                 data["HazardousCargos"]
             )
         )
-    if "Height" in data:
+    if data.get("Height") is not None:
         out["height"] = data["Height"]
     else:
         out["height"] = 0
-    if "Length" in data:
+    if data.get("Length") is not None:
         out["length"] = data["Length"]
     else:
         out["length"] = 0
-    if "Trailer" in data:
+    if data.get("Trailer") is not None:
         import capo_geo_routes.types.road_snap_trailer_options
 
         out["trailer"] = (
@@ -91,9 +91,9 @@ def deserialize_json(data: dict) -> RoadSnapTruckOptions:
                 data["Trailer"]
             )
         )
-    if "TunnelRestrictionCode" in data:
+    if data.get("TunnelRestrictionCode") is not None:
         out["tunnel_restriction_code"] = data["TunnelRestrictionCode"]
-    if "Width" in data:
+    if data.get("Width") is not None:
         out["width"] = data["Width"]
     else:
         out["width"] = 0

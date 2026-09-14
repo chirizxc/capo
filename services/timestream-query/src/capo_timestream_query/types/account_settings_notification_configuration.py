@@ -36,7 +36,7 @@ def serialize_aws_json_1_0(value: AccountSettingsNotificationConfiguration) -> d
 
 def deserialize_aws_json_1_0(data: dict) -> AccountSettingsNotificationConfiguration:
     out: AccountSettingsNotificationConfiguration = {}  # type: ignore[typeddict-item]
-    if "SnsConfiguration" in data:
+    if data.get("SnsConfiguration") is not None:
         import capo_timestream_query.types.sns_configuration
 
         out["sns_configuration"] = (
@@ -44,7 +44,7 @@ def deserialize_aws_json_1_0(data: dict) -> AccountSettingsNotificationConfigura
                 data["SnsConfiguration"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError(

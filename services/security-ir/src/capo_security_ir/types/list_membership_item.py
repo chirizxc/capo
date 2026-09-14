@@ -56,21 +56,21 @@ def serialize_json(value: ListMembershipItem) -> dict:
 
 def deserialize_json(data: dict) -> ListMembershipItem:
     out: ListMembershipItem = {}  # type: ignore[typeddict-item]
-    if "membershipId" in data:
+    if data.get("membershipId") is not None:
         out["membership_id"] = data["membershipId"]
     else:
         raise DeserializationError("ListMembershipItem.membership_id required")
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "region" in data:
+    if data.get("region") is not None:
         import capo_security_ir.types.aws_region
 
         out["region"] = capo_security_ir.types.aws_region.deserialize_json(
             data["region"]
         )
-    if "membershipArn" in data:
+    if data.get("membershipArn") is not None:
         out["membership_arn"] = data["membershipArn"]
-    if "membershipStatus" in data:
+    if data.get("membershipStatus") is not None:
         import capo_security_ir.types.membership_status
 
         out["membership_status"] = (

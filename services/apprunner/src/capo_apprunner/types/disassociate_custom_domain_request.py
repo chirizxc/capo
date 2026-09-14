@@ -28,13 +28,13 @@ def serialize_aws_json_1_0(value: DisassociateCustomDomainRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DisassociateCustomDomainRequest:
     out: DisassociateCustomDomainRequest = {}  # type: ignore[typeddict-item]
-    if "ServiceArn" in data:
+    if data.get("ServiceArn") is not None:
         out["service_arn"] = data["ServiceArn"]
     else:
         raise DeserializationError(
             "DisassociateCustomDomainRequest.service_arn required"
         )
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError(

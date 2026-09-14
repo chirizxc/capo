@@ -29,10 +29,10 @@ def serialize_aws_json_1_1(value: CustomerManagedPolicyReference) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CustomerManagedPolicyReference:
     out: CustomerManagedPolicyReference = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CustomerManagedPolicyReference.name required")
-    if "Path" in data:
+    if data.get("Path") is not None:
         out["path"] = data["Path"]
     return out

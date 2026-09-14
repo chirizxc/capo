@@ -83,15 +83,15 @@ def serialize_aws_json_1_1(value: AssociationSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssociationSummary:
     out: AssociationSummary = {}  # type: ignore[typeddict-item]
-    if "SourceArn" in data:
+    if data.get("SourceArn") is not None:
         out["source_arn"] = data["SourceArn"]
-    if "DestinationArn" in data:
+    if data.get("DestinationArn") is not None:
         out["destination_arn"] = data["DestinationArn"]
-    if "SourceType" in data:
+    if data.get("SourceType") is not None:
         out["source_type"] = data["SourceType"]
-    if "DestinationType" in data:
+    if data.get("DestinationType") is not None:
         out["destination_type"] = data["DestinationType"]
-    if "AssociationType" in data:
+    if data.get("AssociationType") is not None:
         import capo_sagemaker.types.association_edge_type
 
         out["association_type"] = (
@@ -99,17 +99,17 @@ def deserialize_aws_json_1_1(data: dict) -> AssociationSummary:
                 data["AssociationType"]
             )
         )
-    if "SourceName" in data:
+    if data.get("SourceName") is not None:
         out["source_name"] = data["SourceName"]
-    if "DestinationName" in data:
+    if data.get("DestinationName") is not None:
         out["destination_name"] = data["DestinationName"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         import capo_sagemaker.types.user_context
 
         out["created_by"] = capo_sagemaker.types.user_context.deserialize_aws_json_1_1(

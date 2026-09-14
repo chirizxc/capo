@@ -24,6 +24,6 @@ def serialize_json(value: SendDataToMulticastGroupResponse) -> dict:
 
 def deserialize_json(data: dict) -> SendDataToMulticastGroupResponse:
     out: SendDataToMulticastGroupResponse = {}  # type: ignore[typeddict-item]
-    if "MessageId" in data:
+    if data.get("MessageId") is not None:
         out["message_id"] = data["MessageId"]
     return out

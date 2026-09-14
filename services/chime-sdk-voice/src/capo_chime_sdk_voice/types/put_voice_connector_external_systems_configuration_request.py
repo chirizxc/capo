@@ -51,7 +51,7 @@ def deserialize_json(
     data: dict,
 ) -> PutVoiceConnectorExternalSystemsConfigurationRequest:
     out: PutVoiceConnectorExternalSystemsConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "SessionBorderControllerTypes" in data:
+    if data.get("SessionBorderControllerTypes") is not None:
         import capo_chime_sdk_voice.types.session_border_controller_type_list
 
         out["session_border_controller_types"] = (
@@ -59,7 +59,7 @@ def deserialize_json(
                 data["SessionBorderControllerTypes"]
             )
         )
-    if "ContactCenterSystemTypes" in data:
+    if data.get("ContactCenterSystemTypes") is not None:
         import capo_chime_sdk_voice.types.contact_center_system_type_list
 
         out["contact_center_system_types"] = (

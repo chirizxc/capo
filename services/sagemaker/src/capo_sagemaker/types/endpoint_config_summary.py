@@ -41,11 +41,11 @@ def serialize_aws_json_1_1(value: EndpointConfigSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EndpointConfigSummary:
     out: EndpointConfigSummary = {}  # type: ignore[typeddict-item]
-    if "EndpointConfigName" in data:
+    if data.get("EndpointConfigName") is not None:
         out["endpoint_config_name"] = data["EndpointConfigName"]
-    if "EndpointConfigArn" in data:
+    if data.get("EndpointConfigArn") is not None:
         out["endpoint_config_arn"] = data["EndpointConfigArn"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(

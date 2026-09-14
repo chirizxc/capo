@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: DescribeEngineVersionsMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeEngineVersionsMessage:
     out: DescribeEngineVersionsMessage = {}  # type: ignore[typeddict-item]
-    if "MaxRecords" in data:
+    if data.get("MaxRecords") is not None:
         out["max_records"] = data["MaxRecords"]
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

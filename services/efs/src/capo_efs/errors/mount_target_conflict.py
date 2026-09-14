@@ -27,11 +27,11 @@ def serialize_json(value: MountTargetConflict_) -> dict:
 
 def deserialize_json(data: dict) -> MountTargetConflict_:
     out: MountTargetConflict_ = {}  # type: ignore[typeddict-item]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
     else:
         raise DeserializationError("MountTargetConflict_.error_code required")
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -41,15 +41,16 @@ class MountTargetConflict(ServiceError):
 
     code: str | None = "MountTargetConflict"
 
-    def __init__(self, data: MountTargetConflict_):
+    def __init__(self, data: MountTargetConflict_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="MountTargetConflict",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "MountTargetConflict":
-        return cls(deserialize_json(data))
+    def from_json(cls, data: dict, message: str | None = None) -> "MountTargetConflict":
+        return cls(deserialize_json(data), message)

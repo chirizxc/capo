@@ -46,7 +46,15 @@ def serialize_aws_json_1_1(value: Notification) -> dict:
             value["comparison_operator"]
         )
     )
-    out["Threshold"] = value.get("threshold", 0)
+    out["Threshold"] = (
+        "NaN"
+        if value.get("threshold", 0) != value.get("threshold", 0)
+        else "Infinity"
+        if value.get("threshold", 0) == float("inf")
+        else "-Infinity"
+        if value.get("threshold", 0) == float("-inf")
+        else value.get("threshold", 0)
+    )
     if "threshold_type" in value:
         import capo_budgets.types.threshold_type
 
@@ -66,7 +74,7 @@ def serialize_aws_json_1_1(value: Notification) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Notification:
     out: Notification = {}  # type: ignore[typeddict-item]
-    if "NotificationType" in data:
+    if data.get("NotificationType") is not None:
         import capo_budgets.types.notification_type
 
         out["notification_type"] = (
@@ -76,7 +84,7 @@ def deserialize_aws_json_1_1(data: dict) -> Notification:
         )
     else:
         raise DeserializationError("Notification.notification_type required")
-    if "ComparisonOperator" in data:
+    if data.get("ComparisonOperator") is not None:
         import capo_budgets.types.comparison_operator
 
         out["comparison_operator"] = (
@@ -86,11 +94,11 @@ def deserialize_aws_json_1_1(data: dict) -> Notification:
         )
     else:
         raise DeserializationError("Notification.comparison_operator required")
-    if "Threshold" in data:
-        out["threshold"] = data["Threshold"]
+    if data.get("Threshold") is not None:
+        out["threshold"] = float(data["Threshold"])
     else:
         out["threshold"] = 0
-    if "ThresholdType" in data:
+    if data.get("ThresholdType") is not None:
         import capo_budgets.types.threshold_type
 
         out["threshold_type"] = (
@@ -98,7 +106,7 @@ def deserialize_aws_json_1_1(data: dict) -> Notification:
                 data["ThresholdType"]
             )
         )
-    if "NotificationState" in data:
+    if data.get("NotificationState") is not None:
         import capo_budgets.types.notification_state
 
         out["notification_state"] = (

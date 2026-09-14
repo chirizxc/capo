@@ -51,13 +51,13 @@ def serialize_json(value: ConfigurationEvent) -> dict:
 
 def deserialize_json(data: dict) -> ConfigurationEvent:
     out: ConfigurationEvent = {}  # type: ignore[typeddict-item]
-    if "chatMode" in data:
+    if data.get("chatMode") is not None:
         import capo_qbusiness.types.chat_mode
 
         out["chat_mode"] = capo_qbusiness.types.chat_mode.deserialize_json(
             data["chatMode"]
         )
-    if "chatModeConfiguration" in data:
+    if data.get("chatModeConfiguration") is not None:
         import capo_qbusiness.types.chat_mode_configuration
 
         out["chat_mode_configuration"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> ConfigurationEvent:
                 data["chatModeConfiguration"]
             )
         )
-    if "attributeFilter" in data:
+    if data.get("attributeFilter") is not None:
         import capo_qbusiness.types.attribute_filter
 
         out["attribute_filter"] = (

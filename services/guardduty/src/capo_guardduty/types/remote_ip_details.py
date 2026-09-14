@@ -59,25 +59,25 @@ def serialize_json(value: RemoteIpDetails) -> dict:
 
 def deserialize_json(data: dict) -> RemoteIpDetails:
     out: RemoteIpDetails = {}  # type: ignore[typeddict-item]
-    if "city" in data:
+    if data.get("city") is not None:
         import capo_guardduty.types.city
 
         out["city"] = capo_guardduty.types.city.deserialize_json(data["city"])
-    if "country" in data:
+    if data.get("country") is not None:
         import capo_guardduty.types.country
 
         out["country"] = capo_guardduty.types.country.deserialize_json(data["country"])
-    if "geoLocation" in data:
+    if data.get("geoLocation") is not None:
         import capo_guardduty.types.geo_location
 
         out["geo_location"] = capo_guardduty.types.geo_location.deserialize_json(
             data["geoLocation"]
         )
-    if "ipAddressV4" in data:
+    if data.get("ipAddressV4") is not None:
         out["ip_address_v4"] = data["ipAddressV4"]
-    if "ipAddressV6" in data:
+    if data.get("ipAddressV6") is not None:
         out["ip_address_v6"] = data["ipAddressV6"]
-    if "organization" in data:
+    if data.get("organization") is not None:
         import capo_guardduty.types.organization
 
         out["organization"] = capo_guardduty.types.organization.deserialize_json(

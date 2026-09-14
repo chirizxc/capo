@@ -29,10 +29,10 @@ def serialize_aws_json_1_1(value: GetDataCatalogInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDataCatalogInput:
     out: GetDataCatalogInput = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("GetDataCatalogInput.name required")
-    if "WorkGroup" in data:
+    if data.get("WorkGroup") is not None:
         out["work_group"] = data["WorkGroup"]
     return out

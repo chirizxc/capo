@@ -51,13 +51,13 @@ def serialize_json(value: SimpleCondition) -> dict:
 
 def deserialize_json(data: dict) -> SimpleCondition:
     out: SimpleCondition = {}  # type: ignore[typeddict-item]
-    if "EventCondition" in data:
+    if data.get("EventCondition") is not None:
         import capo_pinpoint.types.event_condition
 
         out["event_condition"] = capo_pinpoint.types.event_condition.deserialize_json(
             data["EventCondition"]
         )
-    if "SegmentCondition" in data:
+    if data.get("SegmentCondition") is not None:
         import capo_pinpoint.types.segment_condition
 
         out["segment_condition"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> SimpleCondition:
                 data["SegmentCondition"]
             )
         )
-    if "segmentDimensions" in data:
+    if data.get("segmentDimensions") is not None:
         import capo_pinpoint.types.segment_dimensions
 
         out["segment_dimensions"] = (

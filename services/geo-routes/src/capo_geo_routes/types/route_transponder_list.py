@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> RouteTransponderList:
 
     out: RouteTransponderList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_geo_routes.types.route_transponder.deserialize_json(item))
     return out

@@ -39,7 +39,7 @@ def serialize_json(value: BatchGetServiceLevelObjectiveBudgetReportInput) -> dic
 
 def deserialize_json(data: dict) -> BatchGetServiceLevelObjectiveBudgetReportInput:
     out: BatchGetServiceLevelObjectiveBudgetReportInput = {}  # type: ignore[typeddict-item]
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         import capo_application_signals.types._prelude.timestamp
 
         out["timestamp"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> BatchGetServiceLevelObjectiveBudgetReportInp
         raise DeserializationError(
             "BatchGetServiceLevelObjectiveBudgetReportInput.timestamp required"
         )
-    if "SloIds" in data:
+    if data.get("SloIds") is not None:
         import capo_application_signals.types.service_level_objective_ids
 
         out["slo_ids"] = (

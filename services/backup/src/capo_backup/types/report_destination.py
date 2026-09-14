@@ -30,9 +30,9 @@ def serialize_json(value: ReportDestination) -> dict:
 
 def deserialize_json(data: dict) -> ReportDestination:
     out: ReportDestination = {}  # type: ignore[typeddict-item]
-    if "S3BucketName" in data:
+    if data.get("S3BucketName") is not None:
         out["s3_bucket_name"] = data["S3BucketName"]
-    if "S3Keys" in data:
+    if data.get("S3Keys") is not None:
         import capo_backup.types.string_list
 
         out["s3_keys"] = capo_backup.types.string_list.deserialize_json(data["S3Keys"])

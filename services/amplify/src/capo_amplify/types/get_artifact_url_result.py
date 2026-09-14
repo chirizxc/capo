@@ -28,11 +28,11 @@ def serialize_json(value: GetArtifactUrlResult) -> dict:
 
 def deserialize_json(data: dict) -> GetArtifactUrlResult:
     out: GetArtifactUrlResult = {}  # type: ignore[typeddict-item]
-    if "artifactId" in data:
+    if data.get("artifactId") is not None:
         out["artifact_id"] = data["artifactId"]
     else:
         raise DeserializationError("GetArtifactUrlResult.artifact_id required")
-    if "artifactUrl" in data:
+    if data.get("artifactUrl") is not None:
         out["artifact_url"] = data["artifactUrl"]
     else:
         raise DeserializationError("GetArtifactUrlResult.artifact_url required")

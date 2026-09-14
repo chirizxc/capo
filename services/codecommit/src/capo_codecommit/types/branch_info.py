@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: BranchInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BranchInfo:
     out: BranchInfo = {}  # type: ignore[typeddict-item]
-    if "branchName" in data:
+    if data.get("branchName") is not None:
         out["branch_name"] = data["branchName"]
-    if "commitId" in data:
+    if data.get("commitId") is not None:
         out["commit_id"] = data["commitId"]
     return out

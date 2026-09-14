@@ -20,16 +20,24 @@ def serialize_json(value: Match) -> dict:
     if "frame_address" in value:
         out["frameAddress"] = value["frame_address"]
     if "threshold_breach_value" in value:
-        out["thresholdBreachValue"] = value["threshold_breach_value"]
+        out["thresholdBreachValue"] = (
+            "NaN"
+            if value["threshold_breach_value"] != value["threshold_breach_value"]
+            else "Infinity"
+            if value["threshold_breach_value"] == float("inf")
+            else "-Infinity"
+            if value["threshold_breach_value"] == float("-inf")
+            else value["threshold_breach_value"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> Match:
     out: Match = {}  # type: ignore[typeddict-item]
-    if "targetFramesIndex" in data:
+    if data.get("targetFramesIndex") is not None:
         out["target_frames_index"] = data["targetFramesIndex"]
-    if "frameAddress" in data:
+    if data.get("frameAddress") is not None:
         out["frame_address"] = data["frameAddress"]
-    if "thresholdBreachValue" in data:
-        out["threshold_breach_value"] = data["thresholdBreachValue"]
+    if data.get("thresholdBreachValue") is not None:
+        out["threshold_breach_value"] = float(data["thresholdBreachValue"])
     return out

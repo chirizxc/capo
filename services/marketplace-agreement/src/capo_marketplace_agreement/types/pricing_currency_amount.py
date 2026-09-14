@@ -36,10 +36,10 @@ def serialize_aws_json_1_0(value: PricingCurrencyAmount) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PricingCurrencyAmount:
     out: PricingCurrencyAmount = {}  # type: ignore[typeddict-item]
-    if "amount" in data:
+    if data.get("amount") is not None:
         out["amount"] = data["amount"]
-    if "maxAdjustmentAmount" in data:
+    if data.get("maxAdjustmentAmount") is not None:
         out["max_adjustment_amount"] = data["maxAdjustmentAmount"]
-    if "currencyCode" in data:
+    if data.get("currencyCode") is not None:
         out["currency_code"] = data["currencyCode"]
     return out

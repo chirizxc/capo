@@ -39,12 +39,12 @@ def serialize_json(value: AwsAppSyncGraphQlApiUserPoolConfigDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsAppSyncGraphQlApiUserPoolConfigDetails:
     out: AwsAppSyncGraphQlApiUserPoolConfigDetails = {}  # type: ignore[typeddict-item]
-    if "AppIdClientRegex" in data:
+    if data.get("AppIdClientRegex") is not None:
         out["app_id_client_regex"] = data["AppIdClientRegex"]
-    if "AwsRegion" in data:
+    if data.get("AwsRegion") is not None:
         out["aws_region"] = data["AwsRegion"]
-    if "DefaultAction" in data:
+    if data.get("DefaultAction") is not None:
         out["default_action"] = data["DefaultAction"]
-    if "UserPoolId" in data:
+    if data.get("UserPoolId") is not None:
         out["user_pool_id"] = data["UserPoolId"]
     return out

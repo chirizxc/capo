@@ -31,10 +31,10 @@ def serialize_aws_json_1_1(value: GetSetupHistoryRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetSetupHistoryRequest:
     out: GetSetupHistoryRequest = {}  # type: ignore[typeddict-item]
-    if "resourceName" in data:
+    if data.get("resourceName") is not None:
         out["resource_name"] = data["resourceName"]
     else:
         raise DeserializationError("GetSetupHistoryRequest.resource_name required")
-    if "pageToken" in data:
+    if data.get("pageToken") is not None:
         out["page_token"] = data["pageToken"]
     return out

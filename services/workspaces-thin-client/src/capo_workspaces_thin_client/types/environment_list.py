@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> EnvironmentList:
 
     out: EnvironmentList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_workspaces_thin_client.types.environment_summary.deserialize_json(item)
         )

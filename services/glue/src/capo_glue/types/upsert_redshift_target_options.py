@@ -44,11 +44,11 @@ def serialize_aws_json_1_1(value: UpsertRedshiftTargetOptions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpsertRedshiftTargetOptions:
     out: UpsertRedshiftTargetOptions = {}  # type: ignore[typeddict-item]
-    if "TableLocation" in data:
+    if data.get("TableLocation") is not None:
         out["table_location"] = data["TableLocation"]
-    if "ConnectionName" in data:
+    if data.get("ConnectionName") is not None:
         out["connection_name"] = data["ConnectionName"]
-    if "UpsertKeys" in data:
+    if data.get("UpsertKeys") is not None:
         import capo_glue.types.enclosed_in_string_properties_min_one
 
         out["upsert_keys"] = (

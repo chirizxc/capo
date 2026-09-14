@@ -27,11 +27,11 @@ def serialize_aws_json_1_0(value: InvalidSensorData) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InvalidSensorData:
     out: InvalidSensorData = {}  # type: ignore[typeddict-item]
-    if "AffectedSensorCount" in data:
+    if data.get("AffectedSensorCount") is not None:
         out["affected_sensor_count"] = data["AffectedSensorCount"]
     else:
         raise DeserializationError("InvalidSensorData.affected_sensor_count required")
-    if "TotalNumberOfInvalidValues" in data:
+    if data.get("TotalNumberOfInvalidValues") is not None:
         out["total_number_of_invalid_values"] = data["TotalNumberOfInvalidValues"]
     else:
         raise DeserializationError(

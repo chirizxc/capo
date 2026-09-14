@@ -43,19 +43,19 @@ def serialize_aws_json_1_1(value: Location) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Location:
     out: Location = {}  # type: ignore[typeddict-item]
-    if "Jdbc" in data:
+    if data.get("Jdbc") is not None:
         import capo_glue.types.code_gen_node_args
 
         out["jdbc"] = capo_glue.types.code_gen_node_args.deserialize_aws_json_1_1(
             data["Jdbc"]
         )
-    if "S3" in data:
+    if data.get("S3") is not None:
         import capo_glue.types.code_gen_node_args
 
         out["s3"] = capo_glue.types.code_gen_node_args.deserialize_aws_json_1_1(
             data["S3"]
         )
-    if "DynamoDB" in data:
+    if data.get("DynamoDB") is not None:
         import capo_glue.types.code_gen_node_args
 
         out["dynamo_db"] = capo_glue.types.code_gen_node_args.deserialize_aws_json_1_1(

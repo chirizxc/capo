@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> BatchPutDocumentResponseFailedDocume
 
     out: BatchPutDocumentResponseFailedDocuments = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_kendra.types.batch_put_document_response_failed_document.deserialize_aws_json_1_1(
                 item

@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: XssMatchSetSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> XssMatchSetSummary:
     out: XssMatchSetSummary = {}  # type: ignore[typeddict-item]
-    if "XssMatchSetId" in data:
+    if data.get("XssMatchSetId") is not None:
         out["xss_match_set_id"] = data["XssMatchSetId"]
     else:
         raise DeserializationError("XssMatchSetSummary.xss_match_set_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("XssMatchSetSummary.name required")

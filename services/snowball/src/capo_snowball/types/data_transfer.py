@@ -31,19 +31,19 @@ def serialize_aws_json_1_1(value: DataTransfer) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataTransfer:
     out: DataTransfer = {}  # type: ignore[typeddict-item]
-    if "BytesTransferred" in data:
+    if data.get("BytesTransferred") is not None:
         out["bytes_transferred"] = data["BytesTransferred"]
     else:
         out["bytes_transferred"] = 0
-    if "ObjectsTransferred" in data:
+    if data.get("ObjectsTransferred") is not None:
         out["objects_transferred"] = data["ObjectsTransferred"]
     else:
         out["objects_transferred"] = 0
-    if "TotalBytes" in data:
+    if data.get("TotalBytes") is not None:
         out["total_bytes"] = data["TotalBytes"]
     else:
         out["total_bytes"] = 0
-    if "TotalObjects" in data:
+    if data.get("TotalObjects") is not None:
         out["total_objects"] = data["TotalObjects"]
     else:
         out["total_objects"] = 0

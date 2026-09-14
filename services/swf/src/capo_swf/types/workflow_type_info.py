@@ -57,7 +57,7 @@ def serialize_aws_json_1_0(value: WorkflowTypeInfo) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> WorkflowTypeInfo:
     out: WorkflowTypeInfo = {}  # type: ignore[typeddict-item]
-    if "workflowType" in data:
+    if data.get("workflowType") is not None:
         import capo_swf.types.workflow_type
 
         out["workflow_type"] = capo_swf.types.workflow_type.deserialize_aws_json_1_0(
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_0(data: dict) -> WorkflowTypeInfo:
         )
     else:
         raise DeserializationError("WorkflowTypeInfo.workflow_type required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_swf.types.registration_status
 
         out["status"] = capo_swf.types.registration_status.deserialize_aws_json_1_0(
@@ -73,9 +73,9 @@ def deserialize_aws_json_1_0(data: dict) -> WorkflowTypeInfo:
         )
     else:
         raise DeserializationError("WorkflowTypeInfo.status required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_swf.types.timestamp
 
         out["creation_date"] = capo_swf.types.timestamp.deserialize_aws_json_1_0(
@@ -83,7 +83,7 @@ def deserialize_aws_json_1_0(data: dict) -> WorkflowTypeInfo:
         )
     else:
         raise DeserializationError("WorkflowTypeInfo.creation_date required")
-    if "deprecationDate" in data:
+    if data.get("deprecationDate") is not None:
         import capo_swf.types.timestamp
 
         out["deprecation_date"] = capo_swf.types.timestamp.deserialize_aws_json_1_0(

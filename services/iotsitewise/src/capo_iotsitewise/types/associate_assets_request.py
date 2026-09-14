@@ -34,14 +34,14 @@ def serialize_json(value: AssociateAssetsRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociateAssetsRequest:
     out: AssociateAssetsRequest = {}  # type: ignore[typeddict-item]
-    if "hierarchyId" in data:
+    if data.get("hierarchyId") is not None:
         out["hierarchy_id"] = data["hierarchyId"]
     else:
         raise DeserializationError("AssociateAssetsRequest.hierarchy_id required")
-    if "childAssetId" in data:
+    if data.get("childAssetId") is not None:
         out["child_asset_id"] = data["childAssetId"]
     else:
         raise DeserializationError("AssociateAssetsRequest.child_asset_id required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

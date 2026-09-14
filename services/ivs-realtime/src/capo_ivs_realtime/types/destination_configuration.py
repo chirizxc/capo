@@ -49,9 +49,9 @@ def serialize_json(value: DestinationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DestinationConfiguration:
     out: DestinationConfiguration = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "channel" in data:
+    if data.get("channel") is not None:
         import capo_ivs_realtime.types.channel_destination_configuration
 
         out["channel"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> DestinationConfiguration:
                 data["channel"]
             )
         )
-    if "s3" in data:
+    if data.get("s3") is not None:
         import capo_ivs_realtime.types.s3_destination_configuration
 
         out["s3"] = (

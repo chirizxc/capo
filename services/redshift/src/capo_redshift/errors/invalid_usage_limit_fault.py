@@ -37,15 +37,18 @@ class InvalidUsageLimitFault(ServiceError):
 
     code: str | None = "InvalidUsageLimitFault"
 
-    def __init__(self, data: InvalidUsageLimitFault_):
+    def __init__(self, data: InvalidUsageLimitFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidUsageLimitFault",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "InvalidUsageLimitFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "InvalidUsageLimitFault":
+        return cls(deserialize_query(el), message)

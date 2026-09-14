@@ -32,10 +32,10 @@ def serialize_json(value: ImageDetails) -> dict:
 
 def deserialize_json(data: dict) -> ImageDetails:
     out: ImageDetails = {}  # type: ignore[typeddict-item]
-    if "image" in data:
+    if data.get("image") is not None:
         out["image"] = data["image"]
-    if "imageDigest" in data:
+    if data.get("imageDigest") is not None:
         out["image_digest"] = data["imageDigest"]
-    if "sourceImage" in data:
+    if data.get("sourceImage") is not None:
         out["source_image"] = data["sourceImage"]
     return out

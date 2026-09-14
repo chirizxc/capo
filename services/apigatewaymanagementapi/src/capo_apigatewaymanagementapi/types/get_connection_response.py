@@ -51,7 +51,7 @@ def serialize_json(value: GetConnectionResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetConnectionResponse:
     out: GetConnectionResponse = {}  # type: ignore[typeddict-item]
-    if "connectedAt" in data:
+    if data.get("connectedAt") is not None:
         import capo_apigatewaymanagementapi.types.__timestamp_iso8601
 
         out["connected_at"] = (
@@ -59,13 +59,13 @@ def deserialize_json(data: dict) -> GetConnectionResponse:
                 data["connectedAt"]
             )
         )
-    if "identity" in data:
+    if data.get("identity") is not None:
         import capo_apigatewaymanagementapi.types.identity
 
         out["identity"] = capo_apigatewaymanagementapi.types.identity.deserialize_json(
             data["identity"]
         )
-    if "lastActiveAt" in data:
+    if data.get("lastActiveAt") is not None:
         import capo_apigatewaymanagementapi.types.__timestamp_iso8601
 
         out["last_active_at"] = (

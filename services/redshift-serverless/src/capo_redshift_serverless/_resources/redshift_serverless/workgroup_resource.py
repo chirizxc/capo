@@ -124,9 +124,10 @@ class WorkgroupResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.create_workgroup_request.CreateWorkgroupRequest = {}  # type: ignore[typeddict-item]
-        input_["workgroup_name"] = workgroup_name
-        input_["namespace_name"] = namespace_name
+        input_: capo_redshift_serverless.types.create_workgroup_request.CreateWorkgroupRequest = {
+            "workgroup_name": workgroup_name,
+            "namespace_name": namespace_name,
+        }
         if base_capacity is not None:
             input_["base_capacity"] = base_capacity
         if enhanced_vpc_routing is not None:
@@ -161,6 +162,7 @@ class WorkgroupResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -196,14 +198,16 @@ class WorkgroupResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.get_workgroup_request.GetWorkgroupRequest = {}  # type: ignore[typeddict-item]
-        input_["workgroup_name"] = workgroup_name
+        input_: capo_redshift_serverless.types.get_workgroup_request.GetWorkgroupRequest = {
+            "workgroup_name": workgroup_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -278,8 +282,9 @@ class WorkgroupResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.update_workgroup_request.UpdateWorkgroupRequest = {}  # type: ignore[typeddict-item]
-        input_["workgroup_name"] = workgroup_name
+        input_: capo_redshift_serverless.types.update_workgroup_request.UpdateWorkgroupRequest = {
+            "workgroup_name": workgroup_name
+        }
         if base_capacity is not None:
             input_["base_capacity"] = base_capacity
         if enhanced_vpc_routing is not None:
@@ -312,6 +317,7 @@ class WorkgroupResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -348,14 +354,16 @@ class WorkgroupResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.delete_workgroup_request.DeleteWorkgroupRequest = {}  # type: ignore[typeddict-item]
-        input_["workgroup_name"] = workgroup_name
+        input_: capo_redshift_serverless.types.delete_workgroup_request.DeleteWorkgroupRequest = {
+            "workgroup_name": workgroup_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -398,7 +406,7 @@ class WorkgroupResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.list_workgroups_request.ListWorkgroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift_serverless.types.list_workgroups_request.ListWorkgroupsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -411,6 +419,7 @@ class WorkgroupResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -496,9 +505,10 @@ class AsyncWorkgroupResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.create_workgroup_request.CreateWorkgroupRequest = {}  # type: ignore[typeddict-item]
-        input_["workgroup_name"] = workgroup_name
-        input_["namespace_name"] = namespace_name
+        input_: capo_redshift_serverless.types.create_workgroup_request.CreateWorkgroupRequest = {
+            "workgroup_name": workgroup_name,
+            "namespace_name": namespace_name,
+        }
         if base_capacity is not None:
             input_["base_capacity"] = base_capacity
         if enhanced_vpc_routing is not None:
@@ -533,6 +543,7 @@ class AsyncWorkgroupResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -569,14 +580,16 @@ class AsyncWorkgroupResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.get_workgroup_request.GetWorkgroupRequest = {}  # type: ignore[typeddict-item]
-        input_["workgroup_name"] = workgroup_name
+        input_: capo_redshift_serverless.types.get_workgroup_request.GetWorkgroupRequest = {
+            "workgroup_name": workgroup_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -652,8 +665,9 @@ class AsyncWorkgroupResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.update_workgroup_request.UpdateWorkgroupRequest = {}  # type: ignore[typeddict-item]
-        input_["workgroup_name"] = workgroup_name
+        input_: capo_redshift_serverless.types.update_workgroup_request.UpdateWorkgroupRequest = {
+            "workgroup_name": workgroup_name
+        }
         if base_capacity is not None:
             input_["base_capacity"] = base_capacity
         if enhanced_vpc_routing is not None:
@@ -686,6 +700,7 @@ class AsyncWorkgroupResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -723,14 +738,16 @@ class AsyncWorkgroupResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.delete_workgroup_request.DeleteWorkgroupRequest = {}  # type: ignore[typeddict-item]
-        input_["workgroup_name"] = workgroup_name
+        input_: capo_redshift_serverless.types.delete_workgroup_request.DeleteWorkgroupRequest = {
+            "workgroup_name": workgroup_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -774,7 +791,7 @@ class AsyncWorkgroupResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.list_workgroups_request.ListWorkgroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift_serverless.types.list_workgroups_request.ListWorkgroupsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -787,4 +804,5 @@ class AsyncWorkgroupResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -46,7 +46,7 @@ def serialize_json(value: H264ColorSpaceSettings) -> dict:
 
 def deserialize_json(data: dict) -> H264ColorSpaceSettings:
     out: H264ColorSpaceSettings = {}  # type: ignore[typeddict-item]
-    if "colorSpacePassthroughSettings" in data:
+    if data.get("colorSpacePassthroughSettings") is not None:
         import capo_medialive.types.color_space_passthrough_settings
 
         out["color_space_passthrough_settings"] = (
@@ -54,13 +54,13 @@ def deserialize_json(data: dict) -> H264ColorSpaceSettings:
                 data["colorSpacePassthroughSettings"]
             )
         )
-    if "rec601Settings" in data:
+    if data.get("rec601Settings") is not None:
         import capo_medialive.types.rec601_settings
 
         out["rec601_settings"] = capo_medialive.types.rec601_settings.deserialize_json(
             data["rec601Settings"]
         )
-    if "rec709Settings" in data:
+    if data.get("rec709Settings") is not None:
         import capo_medialive.types.rec709_settings
 
         out["rec709_settings"] = capo_medialive.types.rec709_settings.deserialize_json(

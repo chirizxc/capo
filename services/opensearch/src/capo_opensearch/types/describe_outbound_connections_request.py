@@ -36,16 +36,16 @@ def serialize_json(value: DescribeOutboundConnectionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> DescribeOutboundConnectionsRequest:
     out: DescribeOutboundConnectionsRequest = {}  # type: ignore[typeddict-item]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_opensearch.types.filter_list
 
         out["filters"] = capo_opensearch.types.filter_list.deserialize_json(
             data["Filters"]
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     else:
         out["max_results"] = 0
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

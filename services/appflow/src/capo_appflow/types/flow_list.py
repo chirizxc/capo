@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> FlowList:
 
     out: FlowList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_appflow.types.flow_definition.deserialize_json(item))
     return out

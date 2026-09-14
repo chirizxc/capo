@@ -36,15 +36,15 @@ def serialize_aws_json_1_0(value: ErrorDetail) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ErrorDetail:
     out: ErrorDetail = {}  # type: ignore[typeddict-item]
-    if "Locale" in data:
+    if data.get("Locale") is not None:
         out["locale"] = data["Locale"]
     else:
         raise DeserializationError("ErrorDetail.locale required")
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     else:
         raise DeserializationError("ErrorDetail.message required")
-    if "Reason" in data:
+    if data.get("Reason") is not None:
         import capo_partnercentral_account.types.profile_validation_error_reason
 
         out["reason"] = (

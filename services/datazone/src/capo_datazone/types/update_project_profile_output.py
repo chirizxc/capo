@@ -93,15 +93,15 @@ def serialize_json(value: UpdateProjectProfileOutput) -> dict:
         )
     out["createdBy"] = value["created_by"]
     if "created_at" in value:
-        import capo_datazone.types._prelude.timestamp
+        import capo_datazone._protocol.serialize
 
-        out["createdAt"] = capo_datazone.types._prelude.timestamp.serialize_json(
+        out["createdAt"] = capo_datazone._protocol.serialize.fmt_date_time(
             value["created_at"]
         )
     if "last_updated_at" in value:
-        import capo_datazone.types._prelude.timestamp
+        import capo_datazone._protocol.serialize
 
-        out["lastUpdatedAt"] = capo_datazone.types._prelude.timestamp.serialize_json(
+        out["lastUpdatedAt"] = capo_datazone._protocol.serialize.fmt_date_time(
             value["last_updated_at"]
         )
     if "domain_unit_id" in value:
@@ -111,25 +111,25 @@ def serialize_json(value: UpdateProjectProfileOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateProjectProfileOutput:
     out: UpdateProjectProfileOutput = {}  # type: ignore[typeddict-item]
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
     else:
         raise DeserializationError("UpdateProjectProfileOutput.domain_id required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("UpdateProjectProfileOutput.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("UpdateProjectProfileOutput.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.status
 
         out["status"] = capo_datazone.types.status.deserialize_json(data["status"])
-    if "projectResourceTags" in data:
+    if data.get("projectResourceTags") is not None:
         import capo_datazone.types.project_resource_tag_parameters
 
         out["project_resource_tags"] = (
@@ -137,15 +137,15 @@ def deserialize_json(data: dict) -> UpdateProjectProfileOutput:
                 data["projectResourceTags"]
             )
         )
-    if "allowCustomProjectResourceTags" in data:
+    if data.get("allowCustomProjectResourceTags") is not None:
         out["allow_custom_project_resource_tags"] = data[
             "allowCustomProjectResourceTags"
         ]
-    if "projectResourceTagsDescription" in data:
+    if data.get("projectResourceTagsDescription") is not None:
         out["project_resource_tags_description"] = data[
             "projectResourceTagsDescription"
         ]
-    if "environmentConfigurations" in data:
+    if data.get("environmentConfigurations") is not None:
         import capo_datazone.types.environment_configurations_list
 
         out["environment_configurations"] = (
@@ -153,24 +153,22 @@ def deserialize_json(data: dict) -> UpdateProjectProfileOutput:
                 data["environmentConfigurations"]
             )
         )
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
     else:
         raise DeserializationError("UpdateProjectProfileOutput.created_by required")
-    if "createdAt" in data:
-        import capo_datazone.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = capo_datazone.types._prelude.timestamp.deserialize_json(
-            data["createdAt"]
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
-    if "lastUpdatedAt" in data:
-        import capo_datazone.types._prelude.timestamp
+    if data.get("lastUpdatedAt") is not None:
+        import datetime
 
-        out["last_updated_at"] = (
-            capo_datazone.types._prelude.timestamp.deserialize_json(
-                data["lastUpdatedAt"]
-            )
+        out["last_updated_at"] = datetime.datetime.fromisoformat(
+            data["lastUpdatedAt"].replace("Z", "+00:00")
         )
-    if "domainUnitId" in data:
+    if data.get("domainUnitId") is not None:
         out["domain_unit_id"] = data["domainUnitId"]
     return out

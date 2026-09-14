@@ -37,11 +37,11 @@ def serialize_aws_json_1_1(value: ResolutionContact) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResolutionContact:
     out: ResolutionContact = {}  # type: ignore[typeddict-item]
-    if "ContactArn" in data:
+    if data.get("ContactArn") is not None:
         out["contact_arn"] = data["ContactArn"]
     else:
         raise DeserializationError("ResolutionContact.contact_arn required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_ssm_contacts.types.contact_type
 
         out["type"] = capo_ssm_contacts.types.contact_type.deserialize_aws_json_1_1(
@@ -49,6 +49,6 @@ def deserialize_aws_json_1_1(data: dict) -> ResolutionContact:
         )
     else:
         raise DeserializationError("ResolutionContact.type required")
-    if "StageIndex" in data:
+    if data.get("StageIndex") is not None:
         out["stage_index"] = data["StageIndex"]
     return out

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> SchedulingPolicyListingDetailList:
 
     out: SchedulingPolicyListingDetailList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_batch.types.scheduling_policy_listing_detail.deserialize_json(item)
         )

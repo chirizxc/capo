@@ -140,7 +140,7 @@ def serialize_json(value: TransformOperation) -> dict:
 
 
 def deserialize_json(data: dict) -> TransformOperation:
-    if "ProjectOperation" in data:
+    if data.get("ProjectOperation") is not None:
         import capo_quicksight.types.project_operation
 
         return {
@@ -148,7 +148,7 @@ def deserialize_json(data: dict) -> TransformOperation:
                 data["ProjectOperation"]
             )
         }
-    elif "FilterOperation" in data:
+    elif data.get("FilterOperation") is not None:
         import capo_quicksight.types.filter_operation
 
         return {
@@ -156,7 +156,7 @@ def deserialize_json(data: dict) -> TransformOperation:
                 data["FilterOperation"]
             )
         }
-    elif "CreateColumnsOperation" in data:
+    elif data.get("CreateColumnsOperation") is not None:
         import capo_quicksight.types.create_columns_operation
 
         return {
@@ -164,7 +164,7 @@ def deserialize_json(data: dict) -> TransformOperation:
                 data["CreateColumnsOperation"]
             )
         }
-    elif "RenameColumnOperation" in data:
+    elif data.get("RenameColumnOperation") is not None:
         import capo_quicksight.types.rename_column_operation
 
         return {
@@ -172,7 +172,7 @@ def deserialize_json(data: dict) -> TransformOperation:
                 data["RenameColumnOperation"]
             )
         }
-    elif "CastColumnTypeOperation" in data:
+    elif data.get("CastColumnTypeOperation") is not None:
         import capo_quicksight.types.cast_column_type_operation
 
         return {
@@ -180,7 +180,7 @@ def deserialize_json(data: dict) -> TransformOperation:
                 data["CastColumnTypeOperation"]
             )
         }
-    elif "TagColumnOperation" in data:
+    elif data.get("TagColumnOperation") is not None:
         import capo_quicksight.types.tag_column_operation
 
         return {
@@ -188,7 +188,7 @@ def deserialize_json(data: dict) -> TransformOperation:
                 data["TagColumnOperation"]
             )
         }
-    elif "UntagColumnOperation" in data:
+    elif data.get("UntagColumnOperation") is not None:
         import capo_quicksight.types.untag_column_operation
 
         return {
@@ -196,7 +196,7 @@ def deserialize_json(data: dict) -> TransformOperation:
                 data["UntagColumnOperation"]
             )
         }
-    elif "OverrideDatasetParameterOperation" in data:
+    elif data.get("OverrideDatasetParameterOperation") is not None:
         import capo_quicksight.types.override_dataset_parameter_operation
 
         return {

@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: DescribeClustersResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeClustersResponse:
     out: DescribeClustersResponse = {}  # type: ignore[typeddict-item]
-    if "Clusters" in data:
+    if data.get("Clusters") is not None:
         import capo_cloudhsm_v2.types.clusters
 
         out["clusters"] = capo_cloudhsm_v2.types.clusters.deserialize_aws_json_1_1(
             data["Clusters"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

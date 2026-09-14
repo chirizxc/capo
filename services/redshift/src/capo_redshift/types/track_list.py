@@ -16,6 +16,9 @@ def serialize_query(
 ) -> None:
     import capo_redshift.types.maintenance_track
 
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         capo_redshift.types.maintenance_track.serialize_query(
             item, pairs, f"{prefix}.MaintenanceTrack.{n}"
@@ -36,6 +39,9 @@ def serialize_query_flat(
 ) -> None:
     import capo_redshift.types.maintenance_track
 
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         capo_redshift.types.maintenance_track.serialize_query(
             item, pairs, f"{prefix}.{n}"

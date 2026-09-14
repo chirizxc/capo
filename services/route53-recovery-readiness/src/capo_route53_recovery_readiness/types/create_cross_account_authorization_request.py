@@ -25,6 +25,6 @@ def serialize_json(value: CreateCrossAccountAuthorizationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateCrossAccountAuthorizationRequest:
     out: CreateCrossAccountAuthorizationRequest = {}  # type: ignore[typeddict-item]
-    if "crossAccountAuthorization" in data:
+    if data.get("crossAccountAuthorization") is not None:
         out["cross_account_authorization"] = data["crossAccountAuthorization"]
     return out

@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: BatchDescribeModelPackageInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchDescribeModelPackageInput:
     out: BatchDescribeModelPackageInput = {}  # type: ignore[typeddict-item]
-    if "ModelPackageArnList" in data:
+    if data.get("ModelPackageArnList") is not None:
         import capo_sagemaker.types.model_package_arn_list
 
         out["model_package_arn_list"] = (

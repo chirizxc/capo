@@ -28,11 +28,11 @@ def serialize_json(value: EksSourceClusterNamespace) -> dict:
 
 def deserialize_json(data: dict) -> EksSourceClusterNamespace:
     out: EksSourceClusterNamespace = {}  # type: ignore[typeddict-item]
-    if "eksClusterArn" in data:
+    if data.get("eksClusterArn") is not None:
         out["eks_cluster_arn"] = data["eksClusterArn"]
     else:
         raise DeserializationError("EksSourceClusterNamespace.eks_cluster_arn required")
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         out["namespace"] = data["namespace"]
     else:
         raise DeserializationError("EksSourceClusterNamespace.namespace required")

@@ -62,21 +62,21 @@ def serialize_json(value: CancelPracticeRunResponse) -> dict:
 
 def deserialize_json(data: dict) -> CancelPracticeRunResponse:
     out: CancelPracticeRunResponse = {}  # type: ignore[typeddict-item]
-    if "zonalShiftId" in data:
+    if data.get("zonalShiftId") is not None:
         out["zonal_shift_id"] = data["zonalShiftId"]
     else:
         raise DeserializationError("CancelPracticeRunResponse.zonal_shift_id required")
-    if "resourceIdentifier" in data:
+    if data.get("resourceIdentifier") is not None:
         out["resource_identifier"] = data["resourceIdentifier"]
     else:
         raise DeserializationError(
             "CancelPracticeRunResponse.resource_identifier required"
         )
-    if "awayFrom" in data:
+    if data.get("awayFrom") is not None:
         out["away_from"] = data["awayFrom"]
     else:
         raise DeserializationError("CancelPracticeRunResponse.away_from required")
-    if "expiryTime" in data:
+    if data.get("expiryTime") is not None:
         import capo_arc_zonal_shift.types.expiry_time
 
         out["expiry_time"] = capo_arc_zonal_shift.types.expiry_time.deserialize_json(
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> CancelPracticeRunResponse:
         )
     else:
         raise DeserializationError("CancelPracticeRunResponse.expiry_time required")
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_arc_zonal_shift.types.start_time
 
         out["start_time"] = capo_arc_zonal_shift.types.start_time.deserialize_json(
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> CancelPracticeRunResponse:
         )
     else:
         raise DeserializationError("CancelPracticeRunResponse.start_time required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_arc_zonal_shift.types.zonal_shift_status
 
         out["status"] = capo_arc_zonal_shift.types.zonal_shift_status.deserialize_json(
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> CancelPracticeRunResponse:
         )
     else:
         raise DeserializationError("CancelPracticeRunResponse.status required")
-    if "comment" in data:
+    if data.get("comment") is not None:
         out["comment"] = data["comment"]
     else:
         raise DeserializationError("CancelPracticeRunResponse.comment required")

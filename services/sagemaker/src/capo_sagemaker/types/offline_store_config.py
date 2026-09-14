@@ -58,7 +58,7 @@ def serialize_aws_json_1_1(value: OfflineStoreConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OfflineStoreConfig:
     out: OfflineStoreConfig = {}  # type: ignore[typeddict-item]
-    if "S3StorageConfig" in data:
+    if data.get("S3StorageConfig") is not None:
         import capo_sagemaker.types.s3_storage_config
 
         out["s3_storage_config"] = (
@@ -66,9 +66,9 @@ def deserialize_aws_json_1_1(data: dict) -> OfflineStoreConfig:
                 data["S3StorageConfig"]
             )
         )
-    if "DisableGlueTableCreation" in data:
+    if data.get("DisableGlueTableCreation") is not None:
         out["disable_glue_table_creation"] = data["DisableGlueTableCreation"]
-    if "DataCatalogConfig" in data:
+    if data.get("DataCatalogConfig") is not None:
         import capo_sagemaker.types.data_catalog_config
 
         out["data_catalog_config"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_1(data: dict) -> OfflineStoreConfig:
                 data["DataCatalogConfig"]
             )
         )
-    if "TableFormat" in data:
+    if data.get("TableFormat") is not None:
         import capo_sagemaker.types.table_format
 
         out["table_format"] = (

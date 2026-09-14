@@ -97,31 +97,31 @@ def serialize_json(value: Document) -> dict:
 
 def deserialize_json(data: dict) -> Document:
     out: Document = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("Document.id required")
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_qbusiness.types.document_attributes
 
         out["attributes"] = capo_qbusiness.types.document_attributes.deserialize_json(
             data["attributes"]
         )
-    if "content" in data:
+    if data.get("content") is not None:
         import capo_qbusiness.types.document_content
 
         out["content"] = capo_qbusiness.types.document_content.deserialize_json(
             data["content"]
         )
-    if "contentType" in data:
+    if data.get("contentType") is not None:
         import capo_qbusiness.types.content_type
 
         out["content_type"] = capo_qbusiness.types.content_type.deserialize_json(
             data["contentType"]
         )
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
-    if "accessConfiguration" in data:
+    if data.get("accessConfiguration") is not None:
         import capo_qbusiness.types.access_configuration
 
         out["access_configuration"] = (
@@ -129,7 +129,7 @@ def deserialize_json(data: dict) -> Document:
                 data["accessConfiguration"]
             )
         )
-    if "documentEnrichmentConfiguration" in data:
+    if data.get("documentEnrichmentConfiguration") is not None:
         import capo_qbusiness.types.document_enrichment_configuration
 
         out["document_enrichment_configuration"] = (
@@ -137,7 +137,7 @@ def deserialize_json(data: dict) -> Document:
                 data["documentEnrichmentConfiguration"]
             )
         )
-    if "mediaExtractionConfiguration" in data:
+    if data.get("mediaExtractionConfiguration") is not None:
         import capo_qbusiness.types.media_extraction_configuration
 
         out["media_extraction_configuration"] = (

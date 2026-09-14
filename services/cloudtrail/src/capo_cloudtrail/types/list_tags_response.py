@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListTagsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListTagsResponse:
     out: ListTagsResponse = {}  # type: ignore[typeddict-item]
-    if "ResourceTagList" in data:
+    if data.get("ResourceTagList") is not None:
         import capo_cloudtrail.types.resource_tag_list
 
         out["resource_tag_list"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListTagsResponse:
                 data["ResourceTagList"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

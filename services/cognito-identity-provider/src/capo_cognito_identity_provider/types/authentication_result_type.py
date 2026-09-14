@@ -61,19 +61,19 @@ def serialize_aws_json_1_1(value: AuthenticationResultType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AuthenticationResultType:
     out: AuthenticationResultType = {}  # type: ignore[typeddict-item]
-    if "AccessToken" in data:
+    if data.get("AccessToken") is not None:
         out["access_token"] = data["AccessToken"]
-    if "ExpiresIn" in data:
+    if data.get("ExpiresIn") is not None:
         out["expires_in"] = data["ExpiresIn"]
     else:
         out["expires_in"] = 0
-    if "TokenType" in data:
+    if data.get("TokenType") is not None:
         out["token_type"] = data["TokenType"]
-    if "RefreshToken" in data:
+    if data.get("RefreshToken") is not None:
         out["refresh_token"] = data["RefreshToken"]
-    if "IdToken" in data:
+    if data.get("IdToken") is not None:
         out["id_token"] = data["IdToken"]
-    if "NewDeviceMetadata" in data:
+    if data.get("NewDeviceMetadata") is not None:
         import capo_cognito_identity_provider.types.new_device_metadata_type
 
         out["new_device_metadata"] = (

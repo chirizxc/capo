@@ -97,15 +97,15 @@ def serialize_json(value: DescribeBotResourceGenerationResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeBotResourceGenerationResponse:
     out: DescribeBotResourceGenerationResponse = {}  # type: ignore[typeddict-item]
-    if "botId" in data:
+    if data.get("botId") is not None:
         out["bot_id"] = data["botId"]
-    if "botVersion" in data:
+    if data.get("botVersion") is not None:
         out["bot_version"] = data["botVersion"]
-    if "localeId" in data:
+    if data.get("localeId") is not None:
         out["locale_id"] = data["localeId"]
-    if "generationId" in data:
+    if data.get("generationId") is not None:
         out["generation_id"] = data["generationId"]
-    if "failureReasons" in data:
+    if data.get("failureReasons") is not None:
         import capo_lex_models_v2.types.failure_reasons
 
         out["failure_reasons"] = (
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> DescribeBotResourceGenerationResponse:
                 data["failureReasons"]
             )
         )
-    if "generationStatus" in data:
+    if data.get("generationStatus") is not None:
         import capo_lex_models_v2.types.generation_status
 
         out["generation_status"] = (
@@ -121,19 +121,19 @@ def deserialize_json(data: dict) -> DescribeBotResourceGenerationResponse:
                 data["generationStatus"]
             )
         )
-    if "generationInputPrompt" in data:
+    if data.get("generationInputPrompt") is not None:
         out["generation_input_prompt"] = data["generationInputPrompt"]
-    if "generatedBotLocaleUrl" in data:
+    if data.get("generatedBotLocaleUrl") is not None:
         out["generated_bot_locale_url"] = data["generatedBotLocaleUrl"]
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["creation_date_time"] = capo_lex_models_v2.types.timestamp.deserialize_json(
             data["creationDateTime"]
         )
-    if "modelArn" in data:
+    if data.get("modelArn") is not None:
         out["model_arn"] = data["modelArn"]
-    if "lastUpdatedDateTime" in data:
+    if data.get("lastUpdatedDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["last_updated_date_time"] = (

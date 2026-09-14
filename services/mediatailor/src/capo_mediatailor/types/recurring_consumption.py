@@ -38,9 +38,9 @@ def serialize_json(value: RecurringConsumption) -> dict:
 
 def deserialize_json(data: dict) -> RecurringConsumption:
     out: RecurringConsumption = {}  # type: ignore[typeddict-item]
-    if "RetrievedAdExpirationSeconds" in data:
+    if data.get("RetrievedAdExpirationSeconds") is not None:
         out["retrieved_ad_expiration_seconds"] = data["RetrievedAdExpirationSeconds"]
-    if "AvailMatchingCriteria" in data:
+    if data.get("AvailMatchingCriteria") is not None:
         import capo_mediatailor.types.__list_of_avail_matching_criteria
 
         out["avail_matching_criteria"] = (

@@ -48,7 +48,7 @@ def serialize_aws_json_1_1(value: ComputeLimits) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ComputeLimits:
     out: ComputeLimits = {}  # type: ignore[typeddict-item]
-    if "UnitType" in data:
+    if data.get("UnitType") is not None:
         import capo_emr.types.compute_limits_unit_type
 
         out["unit_type"] = (
@@ -56,12 +56,12 @@ def deserialize_aws_json_1_1(data: dict) -> ComputeLimits:
                 data["UnitType"]
             )
         )
-    if "MinimumCapacityUnits" in data:
+    if data.get("MinimumCapacityUnits") is not None:
         out["minimum_capacity_units"] = data["MinimumCapacityUnits"]
-    if "MaximumCapacityUnits" in data:
+    if data.get("MaximumCapacityUnits") is not None:
         out["maximum_capacity_units"] = data["MaximumCapacityUnits"]
-    if "MaximumOnDemandCapacityUnits" in data:
+    if data.get("MaximumOnDemandCapacityUnits") is not None:
         out["maximum_on_demand_capacity_units"] = data["MaximumOnDemandCapacityUnits"]
-    if "MaximumCoreCapacityUnits" in data:
+    if data.get("MaximumCoreCapacityUnits") is not None:
         out["maximum_core_capacity_units"] = data["MaximumCoreCapacityUnits"]
     return out

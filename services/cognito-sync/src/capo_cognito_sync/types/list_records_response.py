@@ -73,23 +73,23 @@ def serialize_json(value: ListRecordsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListRecordsResponse:
     out: ListRecordsResponse = {}  # type: ignore[typeddict-item]
-    if "Records" in data:
+    if data.get("Records") is not None:
         import capo_cognito_sync.types.record_list
 
         out["records"] = capo_cognito_sync.types.record_list.deserialize_json(
             data["Records"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Count" in data:
+    if data.get("Count") is not None:
         out["count"] = data["Count"]
     else:
         out["count"] = 0
-    if "DatasetSyncCount" in data:
+    if data.get("DatasetSyncCount") is not None:
         out["dataset_sync_count"] = data["DatasetSyncCount"]
-    if "LastModifiedBy" in data:
+    if data.get("LastModifiedBy") is not None:
         out["last_modified_by"] = data["LastModifiedBy"]
-    if "MergedDatasetNames" in data:
+    if data.get("MergedDatasetNames") is not None:
         import capo_cognito_sync.types.merged_dataset_name_list
 
         out["merged_dataset_names"] = (
@@ -97,16 +97,16 @@ def deserialize_json(data: dict) -> ListRecordsResponse:
                 data["MergedDatasetNames"]
             )
         )
-    if "DatasetExists" in data:
+    if data.get("DatasetExists") is not None:
         out["dataset_exists"] = data["DatasetExists"]
     else:
         out["dataset_exists"] = False
-    if "DatasetDeletedAfterRequestedSyncCount" in data:
+    if data.get("DatasetDeletedAfterRequestedSyncCount") is not None:
         out["dataset_deleted_after_requested_sync_count"] = data[
             "DatasetDeletedAfterRequestedSyncCount"
         ]
     else:
         out["dataset_deleted_after_requested_sync_count"] = False
-    if "SyncSessionToken" in data:
+    if data.get("SyncSessionToken") is not None:
         out["sync_session_token"] = data["SyncSessionToken"]
     return out

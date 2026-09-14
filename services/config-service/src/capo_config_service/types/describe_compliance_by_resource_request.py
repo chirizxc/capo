@@ -54,11 +54,11 @@ def serialize_aws_json_1_1(value: DescribeComplianceByResourceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeComplianceByResourceRequest:
     out: DescribeComplianceByResourceRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
-    if "ComplianceTypes" in data:
+    if data.get("ComplianceTypes") is not None:
         import capo_config_service.types.compliance_types
 
         out["compliance_types"] = (
@@ -66,10 +66,10 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeComplianceByResourceRequest:
                 data["ComplianceTypes"]
             )
         )
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
     else:
         out["limit"] = 0
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

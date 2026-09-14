@@ -59,15 +59,15 @@ def serialize_json(value: CreateRouteResponseRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateRouteResponseRequest:
     out: CreateRouteResponseRequest = {}  # type: ignore[typeddict-item]
-    if "modelSelectionExpression" in data:
+    if data.get("modelSelectionExpression") is not None:
         out["model_selection_expression"] = data["modelSelectionExpression"]
-    if "responseModels" in data:
+    if data.get("responseModels") is not None:
         import capo_apigatewayv2.types.route_models
 
         out["response_models"] = capo_apigatewayv2.types.route_models.deserialize_json(
             data["responseModels"]
         )
-    if "responseParameters" in data:
+    if data.get("responseParameters") is not None:
         import capo_apigatewayv2.types.route_parameters
 
         out["response_parameters"] = (
@@ -75,6 +75,6 @@ def deserialize_json(data: dict) -> CreateRouteResponseRequest:
                 data["responseParameters"]
             )
         )
-    if "routeResponseKey" in data:
+    if data.get("routeResponseKey") is not None:
         out["route_response_key"] = data["routeResponseKey"]
     return out

@@ -19,7 +19,7 @@ def serialize_aws_json_1_1(value: GetTableRestoreStatusRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetTableRestoreStatusRequest:
     out: GetTableRestoreStatusRequest = {}  # type: ignore[typeddict-item]
-    if "tableRestoreRequestId" in data:
+    if data.get("tableRestoreRequestId") is not None:
         out["table_restore_request_id"] = data["tableRestoreRequestId"]
     else:
         raise DeserializationError(

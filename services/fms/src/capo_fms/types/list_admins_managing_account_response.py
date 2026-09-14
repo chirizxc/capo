@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: ListAdminsManagingAccountResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListAdminsManagingAccountResponse:
     out: ListAdminsManagingAccountResponse = {}  # type: ignore[typeddict-item]
-    if "AdminAccounts" in data:
+    if data.get("AdminAccounts") is not None:
         import capo_fms.types.account_id_list
 
         out["admin_accounts"] = capo_fms.types.account_id_list.deserialize_aws_json_1_1(
             data["AdminAccounts"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

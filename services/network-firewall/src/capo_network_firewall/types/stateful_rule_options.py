@@ -29,7 +29,7 @@ def serialize_aws_json_1_0(value: StatefulRuleOptions) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StatefulRuleOptions:
     out: StatefulRuleOptions = {}  # type: ignore[typeddict-item]
-    if "RuleOrder" in data:
+    if data.get("RuleOrder") is not None:
         import capo_network_firewall.types.rule_order
 
         out["rule_order"] = (

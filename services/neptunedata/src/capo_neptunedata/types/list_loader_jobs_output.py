@@ -31,11 +31,11 @@ def serialize_json(value: ListLoaderJobsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListLoaderJobsOutput:
     out: ListLoaderJobsOutput = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("ListLoaderJobsOutput.status required")
-    if "payload" in data:
+    if data.get("payload") is not None:
         import capo_neptunedata.types.loader_id_result
 
         out["payload"] = capo_neptunedata.types.loader_id_result.deserialize_json(

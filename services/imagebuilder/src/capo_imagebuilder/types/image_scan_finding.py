@@ -102,7 +102,15 @@ def serialize_json(value: ImageScanFinding) -> dict:
             value["updated_at"]
         )
     if "inspector_score" in value:
-        out["inspectorScore"] = value["inspector_score"]
+        out["inspectorScore"] = (
+            "NaN"
+            if value["inspector_score"] != value["inspector_score"]
+            else "Infinity"
+            if value["inspector_score"] == float("inf")
+            else "-Infinity"
+            if value["inspector_score"] == float("-inf")
+            else value["inspector_score"]
+        )
     if "inspector_score_details" in value:
         import capo_imagebuilder.types.inspector_score_details
 
@@ -126,27 +134,27 @@ def serialize_json(value: ImageScanFinding) -> dict:
 
 def deserialize_json(data: dict) -> ImageScanFinding:
     out: ImageScanFinding = {}  # type: ignore[typeddict-item]
-    if "awsAccountId" in data:
+    if data.get("awsAccountId") is not None:
         out["aws_account_id"] = data["awsAccountId"]
-    if "imageBuildVersionArn" in data:
+    if data.get("imageBuildVersionArn") is not None:
         out["image_build_version_arn"] = data["imageBuildVersionArn"]
-    if "imagePipelineArn" in data:
+    if data.get("imagePipelineArn") is not None:
         out["image_pipeline_arn"] = data["imagePipelineArn"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
-    if "remediation" in data:
+    if data.get("remediation") is not None:
         import capo_imagebuilder.types.remediation
 
         out["remediation"] = capo_imagebuilder.types.remediation.deserialize_json(
             data["remediation"]
         )
-    if "severity" in data:
+    if data.get("severity") is not None:
         out["severity"] = data["severity"]
-    if "firstObservedAt" in data:
+    if data.get("firstObservedAt") is not None:
         import capo_imagebuilder.types.date_time_timestamp
 
         out["first_observed_at"] = (
@@ -154,7 +162,7 @@ def deserialize_json(data: dict) -> ImageScanFinding:
                 data["firstObservedAt"]
             )
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_imagebuilder.types.date_time_timestamp
 
         out["updated_at"] = (
@@ -162,9 +170,9 @@ def deserialize_json(data: dict) -> ImageScanFinding:
                 data["updatedAt"]
             )
         )
-    if "inspectorScore" in data:
-        out["inspector_score"] = data["inspectorScore"]
-    if "inspectorScoreDetails" in data:
+    if data.get("inspectorScore") is not None:
+        out["inspector_score"] = float(data["inspectorScore"])
+    if data.get("inspectorScoreDetails") is not None:
         import capo_imagebuilder.types.inspector_score_details
 
         out["inspector_score_details"] = (
@@ -172,7 +180,7 @@ def deserialize_json(data: dict) -> ImageScanFinding:
                 data["inspectorScoreDetails"]
             )
         )
-    if "packageVulnerabilityDetails" in data:
+    if data.get("packageVulnerabilityDetails") is not None:
         import capo_imagebuilder.types.package_vulnerability_details
 
         out["package_vulnerability_details"] = (
@@ -180,6 +188,6 @@ def deserialize_json(data: dict) -> ImageScanFinding:
                 data["packageVulnerabilityDetails"]
             )
         )
-    if "fixAvailable" in data:
+    if data.get("fixAvailable") is not None:
         out["fix_available"] = data["fixAvailable"]
     return out

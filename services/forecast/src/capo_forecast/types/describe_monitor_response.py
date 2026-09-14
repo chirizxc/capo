@@ -96,15 +96,15 @@ def serialize_aws_json_1_1(value: DescribeMonitorResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeMonitorResponse:
     out: DescribeMonitorResponse = {}  # type: ignore[typeddict-item]
-    if "MonitorName" in data:
+    if data.get("MonitorName") is not None:
         out["monitor_name"] = data["MonitorName"]
-    if "MonitorArn" in data:
+    if data.get("MonitorArn") is not None:
         out["monitor_arn"] = data["MonitorArn"]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "LastEvaluationTime" in data:
+    if data.get("LastEvaluationTime") is not None:
         import capo_forecast.types.timestamp
 
         out["last_evaluation_time"] = (
@@ -112,23 +112,23 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeMonitorResponse:
                 data["LastEvaluationTime"]
             )
         )
-    if "LastEvaluationState" in data:
+    if data.get("LastEvaluationState") is not None:
         out["last_evaluation_state"] = data["LastEvaluationState"]
-    if "Baseline" in data:
+    if data.get("Baseline") is not None:
         import capo_forecast.types.baseline
 
         out["baseline"] = capo_forecast.types.baseline.deserialize_aws_json_1_1(
             data["Baseline"]
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_forecast.types.timestamp
 
         out["creation_time"] = capo_forecast.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModificationTime" in data:
+    if data.get("LastModificationTime") is not None:
         import capo_forecast.types.timestamp
 
         out["last_modification_time"] = (
@@ -136,7 +136,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeMonitorResponse:
                 data["LastModificationTime"]
             )
         )
-    if "EstimatedEvaluationTimeRemainingInMinutes" in data:
+    if data.get("EstimatedEvaluationTimeRemainingInMinutes") is not None:
         out["estimated_evaluation_time_remaining_in_minutes"] = data[
             "EstimatedEvaluationTimeRemainingInMinutes"
         ]

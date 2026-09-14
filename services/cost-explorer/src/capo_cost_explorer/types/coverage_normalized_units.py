@@ -48,13 +48,13 @@ def serialize_aws_json_1_1(value: CoverageNormalizedUnits) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CoverageNormalizedUnits:
     out: CoverageNormalizedUnits = {}  # type: ignore[typeddict-item]
-    if "OnDemandNormalizedUnits" in data:
+    if data.get("OnDemandNormalizedUnits") is not None:
         out["on_demand_normalized_units"] = data["OnDemandNormalizedUnits"]
-    if "ReservedNormalizedUnits" in data:
+    if data.get("ReservedNormalizedUnits") is not None:
         out["reserved_normalized_units"] = data["ReservedNormalizedUnits"]
-    if "TotalRunningNormalizedUnits" in data:
+    if data.get("TotalRunningNormalizedUnits") is not None:
         out["total_running_normalized_units"] = data["TotalRunningNormalizedUnits"]
-    if "CoverageNormalizedUnitsPercentage" in data:
+    if data.get("CoverageNormalizedUnitsPercentage") is not None:
         out["coverage_normalized_units_percentage"] = data[
             "CoverageNormalizedUnitsPercentage"
         ]

@@ -13,9 +13,9 @@ from capo_partnercentral_account import AsyncPartnerCentralAccountClient
 
 
 async def main():
-    async with AsyncPartnerCentralAccountClient() as s3:
+    async with AsyncPartnerCentralAccountClient() as partner_central_account:
         # Example: call the get_verification operation
-        response = await s3.get_verification()
+        response = await partner_central_account.get_verification()
         print(response["verification_type"])
 ```
 
@@ -29,9 +29,9 @@ from capo_partnercentral_account.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncPartnerCentralAccountClient() as s3:
+    async with AsyncPartnerCentralAccountClient() as partner_central_account:
         try:
-            await s3.get_verification()
+            await partner_central_account.get_verification()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_partnercentral_account import AsyncPartnerCentralAccountClient
 
 
 async def main():
-    async with AsyncPartnerCentralAccountClient() as s3:
+    async with AsyncPartnerCentralAccountClient() as partner_central_account:
         # Default: 3 attempts for every operation
-        response = await s3.get_verification()
+        response = await partner_central_account.get_verification()
 
         # Override per operation
-        response = await s3.get_verification(config_overrides={"retry_max_attempts": 5})
+        response = await partner_central_account.get_verification(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.get_verification(config_overrides={"retry_max_attempts": 1})
+        response = await partner_central_account.get_verification(config_overrides={"retry_max_attempts": 1})
 ```

@@ -38,15 +38,15 @@ def serialize_aws_json_1_1(value: Facet) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Facet:
     out: Facet = {}  # type: ignore[typeddict-item]
-    if "DocumentAttributeKey" in data:
+    if data.get("DocumentAttributeKey") is not None:
         out["document_attribute_key"] = data["DocumentAttributeKey"]
-    if "Facets" in data:
+    if data.get("Facets") is not None:
         import capo_kendra.types.facet_list
 
         out["facets"] = capo_kendra.types.facet_list.deserialize_aws_json_1_1(
             data["Facets"]
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     else:
         out["max_results"] = 0

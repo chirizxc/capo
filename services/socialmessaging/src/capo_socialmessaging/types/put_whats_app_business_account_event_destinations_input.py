@@ -34,13 +34,13 @@ def serialize_json(value: PutWhatsAppBusinessAccountEventDestinationsInput) -> d
 
 def deserialize_json(data: dict) -> PutWhatsAppBusinessAccountEventDestinationsInput:
     out: PutWhatsAppBusinessAccountEventDestinationsInput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError(
             "PutWhatsAppBusinessAccountEventDestinationsInput.id required"
         )
-    if "eventDestinations" in data:
+    if data.get("eventDestinations") is not None:
         import capo_socialmessaging.types.whats_app_business_account_event_destinations
 
         out["event_destinations"] = (

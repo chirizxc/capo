@@ -30,7 +30,7 @@ def serialize_json(value: StartInstanceOnboardingJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartInstanceOnboardingJobResponse:
     out: StartInstanceOnboardingJobResponse = {}  # type: ignore[typeddict-item]
-    if "connectInstanceOnboardingJobStatus" in data:
+    if data.get("connectInstanceOnboardingJobStatus") is not None:
         import capo_connectcampaigns.types.instance_onboarding_job_status
 
         out["connect_instance_onboarding_job_status"] = (

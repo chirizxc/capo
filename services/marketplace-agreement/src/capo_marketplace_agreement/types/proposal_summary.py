@@ -41,7 +41,7 @@ def serialize_aws_json_1_0(value: ProposalSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ProposalSummary:
     out: ProposalSummary = {}  # type: ignore[typeddict-item]
-    if "resources" in data:
+    if data.get("resources") is not None:
         import capo_marketplace_agreement.types.resources
 
         out["resources"] = (
@@ -49,8 +49,8 @@ def deserialize_aws_json_1_0(data: dict) -> ProposalSummary:
                 data["resources"]
             )
         )
-    if "offerId" in data:
+    if data.get("offerId") is not None:
         out["offer_id"] = data["offerId"]
-    if "offerSetId" in data:
+    if data.get("offerSetId") is not None:
         out["offer_set_id"] = data["offerSetId"]
     return out

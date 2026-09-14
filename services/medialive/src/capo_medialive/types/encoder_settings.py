@@ -185,7 +185,7 @@ def serialize_json(value: EncoderSettings) -> dict:
 
 def deserialize_json(data: dict) -> EncoderSettings:
     out: EncoderSettings = {}  # type: ignore[typeddict-item]
-    if "audioDescriptions" in data:
+    if data.get("audioDescriptions") is not None:
         import capo_medialive.types.__list_of_audio_description
 
         out["audio_descriptions"] = (
@@ -193,13 +193,13 @@ def deserialize_json(data: dict) -> EncoderSettings:
                 data["audioDescriptions"]
             )
         )
-    if "availBlanking" in data:
+    if data.get("availBlanking") is not None:
         import capo_medialive.types.avail_blanking
 
         out["avail_blanking"] = capo_medialive.types.avail_blanking.deserialize_json(
             data["availBlanking"]
         )
-    if "availConfiguration" in data:
+    if data.get("availConfiguration") is not None:
         import capo_medialive.types.avail_configuration
 
         out["avail_configuration"] = (
@@ -207,13 +207,13 @@ def deserialize_json(data: dict) -> EncoderSettings:
                 data["availConfiguration"]
             )
         )
-    if "blackoutSlate" in data:
+    if data.get("blackoutSlate") is not None:
         import capo_medialive.types.blackout_slate
 
         out["blackout_slate"] = capo_medialive.types.blackout_slate.deserialize_json(
             data["blackoutSlate"]
         )
-    if "captionDescriptions" in data:
+    if data.get("captionDescriptions") is not None:
         import capo_medialive.types.__list_of_caption_description
 
         out["caption_descriptions"] = (
@@ -221,7 +221,7 @@ def deserialize_json(data: dict) -> EncoderSettings:
                 data["captionDescriptions"]
             )
         )
-    if "featureActivations" in data:
+    if data.get("featureActivations") is not None:
         import capo_medialive.types.feature_activations
 
         out["feature_activations"] = (
@@ -229,7 +229,7 @@ def deserialize_json(data: dict) -> EncoderSettings:
                 data["featureActivations"]
             )
         )
-    if "globalConfiguration" in data:
+    if data.get("globalConfiguration") is not None:
         import capo_medialive.types.global_configuration
 
         out["global_configuration"] = (
@@ -237,7 +237,7 @@ def deserialize_json(data: dict) -> EncoderSettings:
                 data["globalConfiguration"]
             )
         )
-    if "motionGraphicsConfiguration" in data:
+    if data.get("motionGraphicsConfiguration") is not None:
         import capo_medialive.types.motion_graphics_configuration
 
         out["motion_graphics_configuration"] = (
@@ -245,7 +245,7 @@ def deserialize_json(data: dict) -> EncoderSettings:
                 data["motionGraphicsConfiguration"]
             )
         )
-    if "nielsenConfiguration" in data:
+    if data.get("nielsenConfiguration") is not None:
         import capo_medialive.types.nielsen_configuration
 
         out["nielsen_configuration"] = (
@@ -253,7 +253,7 @@ def deserialize_json(data: dict) -> EncoderSettings:
                 data["nielsenConfiguration"]
             )
         )
-    if "outputGroups" in data:
+    if data.get("outputGroups") is not None:
         import capo_medialive.types.__list_of_output_group
 
         out["output_groups"] = (
@@ -261,13 +261,13 @@ def deserialize_json(data: dict) -> EncoderSettings:
                 data["outputGroups"]
             )
         )
-    if "timecodeConfig" in data:
+    if data.get("timecodeConfig") is not None:
         import capo_medialive.types.timecode_config
 
         out["timecode_config"] = capo_medialive.types.timecode_config.deserialize_json(
             data["timecodeConfig"]
         )
-    if "videoDescriptions" in data:
+    if data.get("videoDescriptions") is not None:
         import capo_medialive.types.__list_of_video_description
 
         out["video_descriptions"] = (
@@ -275,7 +275,7 @@ def deserialize_json(data: dict) -> EncoderSettings:
                 data["videoDescriptions"]
             )
         )
-    if "thumbnailConfiguration" in data:
+    if data.get("thumbnailConfiguration") is not None:
         import capo_medialive.types.thumbnail_configuration
 
         out["thumbnail_configuration"] = (
@@ -283,7 +283,7 @@ def deserialize_json(data: dict) -> EncoderSettings:
                 data["thumbnailConfiguration"]
             )
         )
-    if "colorCorrectionSettings" in data:
+    if data.get("colorCorrectionSettings") is not None:
         import capo_medialive.types.color_correction_settings
 
         out["color_correction_settings"] = (

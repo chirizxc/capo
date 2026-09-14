@@ -35,12 +35,12 @@ def serialize_aws_json_1_1(value: GetBlueprintRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetBlueprintRequest:
     out: GetBlueprintRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("GetBlueprintRequest.name required")
-    if "IncludeBlueprint" in data:
+    if data.get("IncludeBlueprint") is not None:
         out["include_blueprint"] = data["IncludeBlueprint"]
-    if "IncludeParameterSpec" in data:
+    if data.get("IncludeParameterSpec") is not None:
         out["include_parameter_spec"] = data["IncludeParameterSpec"]
     return out

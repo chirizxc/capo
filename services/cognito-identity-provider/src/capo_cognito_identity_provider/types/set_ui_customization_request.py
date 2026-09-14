@@ -51,15 +51,15 @@ def serialize_aws_json_1_1(value: SetUICustomizationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SetUICustomizationRequest:
     out: SetUICustomizationRequest = {}  # type: ignore[typeddict-item]
-    if "UserPoolId" in data:
+    if data.get("UserPoolId") is not None:
         out["user_pool_id"] = data["UserPoolId"]
     else:
         raise DeserializationError("SetUICustomizationRequest.user_pool_id required")
-    if "ClientId" in data:
+    if data.get("ClientId") is not None:
         out["client_id"] = data["ClientId"]
-    if "CSS" in data:
+    if data.get("CSS") is not None:
         out["css"] = data["CSS"]
-    if "ImageFile" in data:
+    if data.get("ImageFile") is not None:
         import capo_cognito_identity_provider.types.image_file_type
 
         out["image_file"] = (

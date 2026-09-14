@@ -34,13 +34,13 @@ def serialize_json(value: CreateMemberRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateMemberRequest:
     out: CreateMemberRequest = {}  # type: ignore[typeddict-item]
-    if "account" in data:
+    if data.get("account") is not None:
         import capo_macie2.types.account_detail
 
         out["account"] = capo_macie2.types.account_detail.deserialize_json(
             data["account"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_macie2.types.tag_map
 
         out["tags"] = capo_macie2.types.tag_map.deserialize_json(data["tags"])

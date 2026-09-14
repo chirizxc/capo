@@ -49,19 +49,19 @@ def serialize_json(value: RuleResult) -> dict:
 
 def deserialize_json(data: dict) -> RuleResult:
     out: RuleResult = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_ssm_sap.types.rule_result_status
 
         out["status"] = capo_ssm_sap.types.rule_result_status.deserialize_json(
             data["Status"]
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "Metadata" in data:
+    if data.get("Metadata") is not None:
         import capo_ssm_sap.types.rule_result_metadata
 
         out["metadata"] = capo_ssm_sap.types.rule_result_metadata.deserialize_json(

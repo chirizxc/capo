@@ -131,38 +131,38 @@ def serialize_aws_json_1_1(value: ReservationAggregates) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReservationAggregates:
     out: ReservationAggregates = {}  # type: ignore[typeddict-item]
-    if "UtilizationPercentage" in data:
+    if data.get("UtilizationPercentage") is not None:
         out["utilization_percentage"] = data["UtilizationPercentage"]
-    if "UtilizationPercentageInUnits" in data:
+    if data.get("UtilizationPercentageInUnits") is not None:
         out["utilization_percentage_in_units"] = data["UtilizationPercentageInUnits"]
-    if "PurchasedHours" in data:
+    if data.get("PurchasedHours") is not None:
         out["purchased_hours"] = data["PurchasedHours"]
-    if "PurchasedUnits" in data:
+    if data.get("PurchasedUnits") is not None:
         out["purchased_units"] = data["PurchasedUnits"]
-    if "TotalActualHours" in data:
+    if data.get("TotalActualHours") is not None:
         out["total_actual_hours"] = data["TotalActualHours"]
-    if "TotalActualUnits" in data:
+    if data.get("TotalActualUnits") is not None:
         out["total_actual_units"] = data["TotalActualUnits"]
-    if "UnusedHours" in data:
+    if data.get("UnusedHours") is not None:
         out["unused_hours"] = data["UnusedHours"]
-    if "UnusedUnits" in data:
+    if data.get("UnusedUnits") is not None:
         out["unused_units"] = data["UnusedUnits"]
-    if "OnDemandCostOfRIHoursUsed" in data:
+    if data.get("OnDemandCostOfRIHoursUsed") is not None:
         out["on_demand_cost_of_ri_hours_used"] = data["OnDemandCostOfRIHoursUsed"]
-    if "NetRISavings" in data:
+    if data.get("NetRISavings") is not None:
         out["net_ri_savings"] = data["NetRISavings"]
-    if "TotalPotentialRISavings" in data:
+    if data.get("TotalPotentialRISavings") is not None:
         out["total_potential_ri_savings"] = data["TotalPotentialRISavings"]
-    if "AmortizedUpfrontFee" in data:
+    if data.get("AmortizedUpfrontFee") is not None:
         out["amortized_upfront_fee"] = data["AmortizedUpfrontFee"]
-    if "AmortizedRecurringFee" in data:
+    if data.get("AmortizedRecurringFee") is not None:
         out["amortized_recurring_fee"] = data["AmortizedRecurringFee"]
-    if "TotalAmortizedFee" in data:
+    if data.get("TotalAmortizedFee") is not None:
         out["total_amortized_fee"] = data["TotalAmortizedFee"]
-    if "RICostForUnusedHours" in data:
+    if data.get("RICostForUnusedHours") is not None:
         out["ri_cost_for_unused_hours"] = data["RICostForUnusedHours"]
-    if "RealizedSavings" in data:
+    if data.get("RealizedSavings") is not None:
         out["realized_savings"] = data["RealizedSavings"]
-    if "UnrealizedSavings" in data:
+    if data.get("UnrealizedSavings") is not None:
         out["unrealized_savings"] = data["UnrealizedSavings"]
     return out

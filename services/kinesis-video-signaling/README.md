@@ -13,9 +13,9 @@ from capo_kinesis_video_signaling import AsyncKinesisVideoSignalingClient
 
 
 async def main():
-    async with AsyncKinesisVideoSignalingClient() as s3:
+    async with AsyncKinesisVideoSignalingClient() as kinesis_video_signaling:
         # Example: call the get_ice_server_config operation
-        response = await s3.get_ice_server_config()
+        response = await kinesis_video_signaling.get_ice_server_config()
         print(response["ice_server_list"])
 ```
 
@@ -29,9 +29,9 @@ from capo_kinesis_video_signaling.error import ClientLimitExceededException
 
 
 async def main():
-    async with AsyncKinesisVideoSignalingClient() as s3:
+    async with AsyncKinesisVideoSignalingClient() as kinesis_video_signaling:
         try:
-            await s3.get_ice_server_config()
+            await kinesis_video_signaling.get_ice_server_config()
         except ClientLimitExceededException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_kinesis_video_signaling import AsyncKinesisVideoSignalingClient
 
 
 async def main():
-    async with AsyncKinesisVideoSignalingClient() as s3:
+    async with AsyncKinesisVideoSignalingClient() as kinesis_video_signaling:
         # Default: 3 attempts for every operation
-        response = await s3.get_ice_server_config()
+        response = await kinesis_video_signaling.get_ice_server_config()
 
         # Override per operation
-        response = await s3.get_ice_server_config(config_overrides={"retry_max_attempts": 5})
+        response = await kinesis_video_signaling.get_ice_server_config(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.get_ice_server_config(config_overrides={"retry_max_attempts": 1})
+        response = await kinesis_video_signaling.get_ice_server_config(config_overrides={"retry_max_attempts": 1})
 ```

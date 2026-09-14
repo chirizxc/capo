@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: ListXssMatchSetsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListXssMatchSetsResponse:
     out: ListXssMatchSetsResponse = {}  # type: ignore[typeddict-item]
-    if "NextMarker" in data:
+    if data.get("NextMarker") is not None:
         out["next_marker"] = data["NextMarker"]
-    if "XssMatchSets" in data:
+    if data.get("XssMatchSets") is not None:
         import capo_waf_regional.types.xss_match_set_summaries
 
         out["xss_match_sets"] = (

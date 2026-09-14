@@ -22,8 +22,8 @@ def serialize_json(value: MatchOffset) -> dict:
 
 def deserialize_json(data: dict) -> MatchOffset:
     out: MatchOffset = {}  # type: ignore[typeddict-item]
-    if "startOffset" in data:
+    if data.get("startOffset") is not None:
         out["start_offset"] = data["startOffset"]
-    if "endOffset" in data:
+    if data.get("endOffset") is not None:
         out["end_offset"] = data["endOffset"]
     return out

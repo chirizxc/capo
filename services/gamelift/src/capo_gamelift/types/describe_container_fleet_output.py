@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: DescribeContainerFleetOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeContainerFleetOutput:
     out: DescribeContainerFleetOutput = {}  # type: ignore[typeddict-item]
-    if "ContainerFleet" in data:
+    if data.get("ContainerFleet") is not None:
         import capo_gamelift.types.container_fleet
 
         out["container_fleet"] = (

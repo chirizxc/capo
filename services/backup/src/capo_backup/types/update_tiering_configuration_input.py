@@ -35,7 +35,7 @@ def serialize_json(value: UpdateTieringConfigurationInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTieringConfigurationInput:
     out: UpdateTieringConfigurationInput = {}  # type: ignore[typeddict-item]
-    if "TieringConfiguration" in data:
+    if data.get("TieringConfiguration") is not None:
         import capo_backup.types.tiering_configuration_input_for_update
 
         out["tiering_configuration"] = (

@@ -48,17 +48,17 @@ def serialize_aws_json_1_1(value: CreateWhatIfAnalysisRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateWhatIfAnalysisRequest:
     out: CreateWhatIfAnalysisRequest = {}  # type: ignore[typeddict-item]
-    if "WhatIfAnalysisName" in data:
+    if data.get("WhatIfAnalysisName") is not None:
         out["what_if_analysis_name"] = data["WhatIfAnalysisName"]
     else:
         raise DeserializationError(
             "CreateWhatIfAnalysisRequest.what_if_analysis_name required"
         )
-    if "ForecastArn" in data:
+    if data.get("ForecastArn") is not None:
         out["forecast_arn"] = data["ForecastArn"]
     else:
         raise DeserializationError("CreateWhatIfAnalysisRequest.forecast_arn required")
-    if "TimeSeriesSelector" in data:
+    if data.get("TimeSeriesSelector") is not None:
         import capo_forecast.types.time_series_selector
 
         out["time_series_selector"] = (
@@ -66,7 +66,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateWhatIfAnalysisRequest:
                 data["TimeSeriesSelector"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_forecast.types.tags
 
         out["tags"] = capo_forecast.types.tags.deserialize_aws_json_1_1(data["Tags"])

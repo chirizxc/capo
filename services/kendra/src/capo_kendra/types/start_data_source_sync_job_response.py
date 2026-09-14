@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: StartDataSourceSyncJobResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartDataSourceSyncJobResponse:
     out: StartDataSourceSyncJobResponse = {}  # type: ignore[typeddict-item]
-    if "ExecutionId" in data:
+    if data.get("ExecutionId") is not None:
         out["execution_id"] = data["ExecutionId"]
     return out

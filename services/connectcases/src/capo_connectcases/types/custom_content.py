@@ -28,7 +28,7 @@ def serialize_json(value: CustomContent) -> dict:
 
 def deserialize_json(data: dict) -> CustomContent:
     out: CustomContent = {}  # type: ignore[typeddict-item]
-    if "fields" in data:
+    if data.get("fields") is not None:
         import capo_connectcases.types.field_value_list
 
         out["fields"] = capo_connectcases.types.field_value_list.deserialize_json(

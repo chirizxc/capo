@@ -50,9 +50,9 @@ def serialize_json(value: SystemAttributes) -> dict:
 
 def deserialize_json(data: dict) -> SystemAttributes:
     out: SystemAttributes = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "customerEndpoint" in data:
+    if data.get("customerEndpoint") is not None:
         import capo_qconnect.types.system_endpoint_attributes
 
         out["customer_endpoint"] = (
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> SystemAttributes:
                 data["customerEndpoint"]
             )
         )
-    if "systemEndpoint" in data:
+    if data.get("systemEndpoint") is not None:
         import capo_qconnect.types.system_endpoint_attributes
 
         out["system_endpoint"] = (

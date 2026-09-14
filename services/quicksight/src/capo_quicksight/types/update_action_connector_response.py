@@ -46,13 +46,13 @@ def serialize_json(value: UpdateActionConnectorResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateActionConnectorResponse:
     out: UpdateActionConnectorResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "ActionConnectorId" in data:
+    if data.get("ActionConnectorId") is not None:
         out["action_connector_id"] = data["ActionConnectorId"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
-    if "UpdateStatus" in data:
+    if data.get("UpdateStatus") is not None:
         import capo_quicksight.types.resource_status
 
         out["update_status"] = capo_quicksight.types.resource_status.deserialize_json(

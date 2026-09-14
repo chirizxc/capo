@@ -36,7 +36,7 @@ def serialize_json(value: RenderMessageTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> RenderMessageTemplateRequest:
     out: RenderMessageTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_qconnect.types.message_template_attributes
 
         out["attributes"] = (

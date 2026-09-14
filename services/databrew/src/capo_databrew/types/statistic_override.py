@@ -32,11 +32,11 @@ def serialize_json(value: StatisticOverride) -> dict:
 
 def deserialize_json(data: dict) -> StatisticOverride:
     out: StatisticOverride = {}  # type: ignore[typeddict-item]
-    if "Statistic" in data:
+    if data.get("Statistic") is not None:
         out["statistic"] = data["Statistic"]
     else:
         raise DeserializationError("StatisticOverride.statistic required")
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_databrew.types.parameter_map
 
         out["parameters"] = capo_databrew.types.parameter_map.deserialize_json(

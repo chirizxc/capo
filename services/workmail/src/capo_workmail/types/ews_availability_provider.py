@@ -32,15 +32,15 @@ def serialize_aws_json_1_1(value: EwsAvailabilityProvider) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EwsAvailabilityProvider:
     out: EwsAvailabilityProvider = {}  # type: ignore[typeddict-item]
-    if "EwsEndpoint" in data:
+    if data.get("EwsEndpoint") is not None:
         out["ews_endpoint"] = data["EwsEndpoint"]
     else:
         raise DeserializationError("EwsAvailabilityProvider.ews_endpoint required")
-    if "EwsUsername" in data:
+    if data.get("EwsUsername") is not None:
         out["ews_username"] = data["EwsUsername"]
     else:
         raise DeserializationError("EwsAvailabilityProvider.ews_username required")
-    if "EwsPassword" in data:
+    if data.get("EwsPassword") is not None:
         out["ews_password"] = data["EwsPassword"]
     else:
         raise DeserializationError("EwsAvailabilityProvider.ews_password required")

@@ -38,9 +38,9 @@ def serialize_json(value: SubSlotSetting) -> dict:
 
 def deserialize_json(data: dict) -> SubSlotSetting:
     out: SubSlotSetting = {}  # type: ignore[typeddict-item]
-    if "expression" in data:
+    if data.get("expression") is not None:
         out["expression"] = data["expression"]
-    if "slotSpecifications" in data:
+    if data.get("slotSpecifications") is not None:
         import capo_lex_models_v2.types.sub_slot_specification_map
 
         out["slot_specifications"] = (

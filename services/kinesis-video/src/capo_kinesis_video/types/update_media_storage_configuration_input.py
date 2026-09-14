@@ -36,13 +36,13 @@ def serialize_json(value: UpdateMediaStorageConfigurationInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateMediaStorageConfigurationInput:
     out: UpdateMediaStorageConfigurationInput = {}  # type: ignore[typeddict-item]
-    if "ChannelARN" in data:
+    if data.get("ChannelARN") is not None:
         out["channel_arn"] = data["ChannelARN"]
     else:
         raise DeserializationError(
             "UpdateMediaStorageConfigurationInput.channel_arn required"
         )
-    if "MediaStorageConfiguration" in data:
+    if data.get("MediaStorageConfiguration") is not None:
         import capo_kinesis_video.types.media_storage_configuration
 
         out["media_storage_configuration"] = (

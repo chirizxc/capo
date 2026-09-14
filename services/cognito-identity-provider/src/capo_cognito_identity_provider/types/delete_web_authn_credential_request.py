@@ -28,13 +28,13 @@ def serialize_aws_json_1_1(value: DeleteWebAuthnCredentialRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteWebAuthnCredentialRequest:
     out: DeleteWebAuthnCredentialRequest = {}  # type: ignore[typeddict-item]
-    if "AccessToken" in data:
+    if data.get("AccessToken") is not None:
         out["access_token"] = data["AccessToken"]
     else:
         raise DeserializationError(
             "DeleteWebAuthnCredentialRequest.access_token required"
         )
-    if "CredentialId" in data:
+    if data.get("CredentialId") is not None:
         out["credential_id"] = data["CredentialId"]
     else:
         raise DeserializationError(

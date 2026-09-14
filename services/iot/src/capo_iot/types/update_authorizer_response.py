@@ -28,8 +28,8 @@ def serialize_json(value: UpdateAuthorizerResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAuthorizerResponse:
     out: UpdateAuthorizerResponse = {}  # type: ignore[typeddict-item]
-    if "authorizerName" in data:
+    if data.get("authorizerName") is not None:
         out["authorizer_name"] = data["authorizerName"]
-    if "authorizerArn" in data:
+    if data.get("authorizerArn") is not None:
         out["authorizer_arn"] = data["authorizerArn"]
     return out

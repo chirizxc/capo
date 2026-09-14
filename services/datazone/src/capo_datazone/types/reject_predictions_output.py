@@ -32,15 +32,15 @@ def serialize_json(value: RejectPredictionsOutput) -> dict:
 
 def deserialize_json(data: dict) -> RejectPredictionsOutput:
     out: RejectPredictionsOutput = {}  # type: ignore[typeddict-item]
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
     else:
         raise DeserializationError("RejectPredictionsOutput.domain_id required")
-    if "assetId" in data:
+    if data.get("assetId") is not None:
         out["asset_id"] = data["assetId"]
     else:
         raise DeserializationError("RejectPredictionsOutput.asset_id required")
-    if "assetRevision" in data:
+    if data.get("assetRevision") is not None:
         out["asset_revision"] = data["assetRevision"]
     else:
         raise DeserializationError("RejectPredictionsOutput.asset_revision required")

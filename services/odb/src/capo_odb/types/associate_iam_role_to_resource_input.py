@@ -38,13 +38,13 @@ def serialize_aws_json_1_0(value: AssociateIamRoleToResourceInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AssociateIamRoleToResourceInput:
     out: AssociateIamRoleToResourceInput = {}  # type: ignore[typeddict-item]
-    if "iamRoleArn" in data:
+    if data.get("iamRoleArn") is not None:
         out["iam_role_arn"] = data["iamRoleArn"]
     else:
         raise DeserializationError(
             "AssociateIamRoleToResourceInput.iam_role_arn required"
         )
-    if "awsIntegration" in data:
+    if data.get("awsIntegration") is not None:
         import capo_odb.types.supported_aws_integration
 
         out["aws_integration"] = (
@@ -56,7 +56,7 @@ def deserialize_aws_json_1_0(data: dict) -> AssociateIamRoleToResourceInput:
         raise DeserializationError(
             "AssociateIamRoleToResourceInput.aws_integration required"
         )
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     else:
         raise DeserializationError(

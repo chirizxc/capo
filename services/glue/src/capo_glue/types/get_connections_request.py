@@ -46,20 +46,20 @@ def serialize_aws_json_1_1(value: GetConnectionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetConnectionsRequest:
     out: GetConnectionsRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_glue.types.get_connections_filter
 
         out["filter"] = capo_glue.types.get_connections_filter.deserialize_aws_json_1_1(
             data["Filter"]
         )
-    if "HidePassword" in data:
+    if data.get("HidePassword") is not None:
         out["hide_password"] = data["HidePassword"]
     else:
         out["hide_password"] = False
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

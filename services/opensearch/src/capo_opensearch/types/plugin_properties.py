@@ -47,14 +47,14 @@ def serialize_json(value: PluginProperties) -> dict:
 
 def deserialize_json(data: dict) -> PluginProperties:
     out: PluginProperties = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
-    if "ClassName" in data:
+    if data.get("ClassName") is not None:
         out["class_name"] = data["ClassName"]
-    if "UncompressedSizeInBytes" in data:
+    if data.get("UncompressedSizeInBytes") is not None:
         out["uncompressed_size_in_bytes"] = data["UncompressedSizeInBytes"]
     return out

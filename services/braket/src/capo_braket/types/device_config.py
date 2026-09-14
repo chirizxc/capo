@@ -24,7 +24,7 @@ def serialize_json(value: DeviceConfig) -> dict:
 
 def deserialize_json(data: dict) -> DeviceConfig:
     out: DeviceConfig = {}  # type: ignore[typeddict-item]
-    if "device" in data:
+    if data.get("device") is not None:
         out["device"] = data["device"]
     else:
         raise DeserializationError("DeviceConfig.device required")

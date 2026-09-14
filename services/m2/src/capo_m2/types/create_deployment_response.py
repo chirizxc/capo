@@ -24,7 +24,7 @@ def serialize_json(value: CreateDeploymentResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateDeploymentResponse:
     out: CreateDeploymentResponse = {}  # type: ignore[typeddict-item]
-    if "deploymentId" in data:
+    if data.get("deploymentId") is not None:
         out["deployment_id"] = data["deploymentId"]
     else:
         raise DeserializationError("CreateDeploymentResponse.deployment_id required")

@@ -80,11 +80,11 @@ def serialize_aws_json_1_0(value: SyncBlocker) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SyncBlocker:
     out: SyncBlocker = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("SyncBlocker.id required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_codeconnections.types.blocker_type
 
         out["type"] = capo_codeconnections.types.blocker_type.deserialize_aws_json_1_0(
@@ -92,7 +92,7 @@ def deserialize_aws_json_1_0(data: dict) -> SyncBlocker:
         )
     else:
         raise DeserializationError("SyncBlocker.type required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_codeconnections.types.blocker_status
 
         out["status"] = (
@@ -102,11 +102,11 @@ def deserialize_aws_json_1_0(data: dict) -> SyncBlocker:
         )
     else:
         raise DeserializationError("SyncBlocker.status required")
-    if "CreatedReason" in data:
+    if data.get("CreatedReason") is not None:
         out["created_reason"] = data["CreatedReason"]
     else:
         raise DeserializationError("SyncBlocker.created_reason required")
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_codeconnections.types.timestamp
 
         out["created_at"] = (
@@ -116,7 +116,7 @@ def deserialize_aws_json_1_0(data: dict) -> SyncBlocker:
         )
     else:
         raise DeserializationError("SyncBlocker.created_at required")
-    if "Contexts" in data:
+    if data.get("Contexts") is not None:
         import capo_codeconnections.types.sync_blocker_context_list
 
         out["contexts"] = (
@@ -124,9 +124,9 @@ def deserialize_aws_json_1_0(data: dict) -> SyncBlocker:
                 data["Contexts"]
             )
         )
-    if "ResolvedReason" in data:
+    if data.get("ResolvedReason") is not None:
         out["resolved_reason"] = data["ResolvedReason"]
-    if "ResolvedAt" in data:
+    if data.get("ResolvedAt") is not None:
         import capo_codeconnections.types.timestamp
 
         out["resolved_at"] = (

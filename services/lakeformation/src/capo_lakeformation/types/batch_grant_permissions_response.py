@@ -31,7 +31,7 @@ def serialize_json(value: BatchGrantPermissionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchGrantPermissionsResponse:
     out: BatchGrantPermissionsResponse = {}  # type: ignore[typeddict-item]
-    if "Failures" in data:
+    if data.get("Failures") is not None:
         import capo_lakeformation.types.batch_permissions_failure_list
 
         out["failures"] = (

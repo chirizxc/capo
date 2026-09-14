@@ -27,8 +27,8 @@ def serialize_json(value: SegmentDeliveryConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SegmentDeliveryConfiguration:
     out: SegmentDeliveryConfiguration = {}  # type: ignore[typeddict-item]
-    if "BaseUrl" in data:
+    if data.get("BaseUrl") is not None:
         out["base_url"] = data["BaseUrl"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     return out

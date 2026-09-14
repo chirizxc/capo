@@ -40,16 +40,16 @@ def serialize_json(value: InvokeRestApiRequest) -> dict:
 
 def deserialize_json(data: dict) -> InvokeRestApiRequest:
     out: InvokeRestApiRequest = {}  # type: ignore[typeddict-item]
-    if "Path" in data:
+    if data.get("Path") is not None:
         out["path"] = data["Path"]
     else:
         raise DeserializationError("InvokeRestApiRequest.path required")
-    if "Method" in data:
+    if data.get("Method") is not None:
         out["method"] = data["Method"]
     else:
         raise DeserializationError("InvokeRestApiRequest.method required")
-    if "QueryParameters" in data:
+    if data.get("QueryParameters") is not None:
         out["query_parameters"] = data["QueryParameters"]
-    if "Body" in data:
+    if data.get("Body") is not None:
         out["body"] = data["Body"]
     return out

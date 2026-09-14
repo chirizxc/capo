@@ -30,11 +30,11 @@ def serialize_aws_json_1_1(value: Entity) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Entity:
     out: Entity = {}  # type: ignore[typeddict-item]
-    if "entityType" in data:
+    if data.get("entityType") is not None:
         out["entity_type"] = data["entityType"]
     else:
         raise DeserializationError("Entity.entity_type required")
-    if "entityId" in data:
+    if data.get("entityId") is not None:
         out["entity_id"] = data["entityId"]
     else:
         raise DeserializationError("Entity.entity_id required")

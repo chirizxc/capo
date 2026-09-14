@@ -53,7 +53,7 @@ def serialize_json(value: WAFLoggingParameters) -> dict:
 
 def deserialize_json(data: dict) -> WAFLoggingParameters:
     out: WAFLoggingParameters = {}  # type: ignore[typeddict-item]
-    if "RedactedFields" in data:
+    if data.get("RedactedFields") is not None:
         import capo_observabilityadmin.types.redacted_fields
 
         out["redacted_fields"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> WAFLoggingParameters:
                 data["RedactedFields"]
             )
         )
-    if "LoggingFilter" in data:
+    if data.get("LoggingFilter") is not None:
         import capo_observabilityadmin.types.logging_filter
 
         out["logging_filter"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> WAFLoggingParameters:
                 data["LoggingFilter"]
             )
         )
-    if "LogType" in data:
+    if data.get("LogType") is not None:
         import capo_observabilityadmin.types.waf_log_type
 
         out["log_type"] = capo_observabilityadmin.types.waf_log_type.deserialize_json(

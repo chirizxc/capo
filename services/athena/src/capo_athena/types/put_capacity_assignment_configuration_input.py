@@ -38,13 +38,13 @@ def serialize_aws_json_1_1(value: PutCapacityAssignmentConfigurationInput) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> PutCapacityAssignmentConfigurationInput:
     out: PutCapacityAssignmentConfigurationInput = {}  # type: ignore[typeddict-item]
-    if "CapacityReservationName" in data:
+    if data.get("CapacityReservationName") is not None:
         out["capacity_reservation_name"] = data["CapacityReservationName"]
     else:
         raise DeserializationError(
             "PutCapacityAssignmentConfigurationInput.capacity_reservation_name required"
         )
-    if "CapacityAssignments" in data:
+    if data.get("CapacityAssignments") is not None:
         import capo_athena.types.capacity_assignments_list
 
         out["capacity_assignments"] = (

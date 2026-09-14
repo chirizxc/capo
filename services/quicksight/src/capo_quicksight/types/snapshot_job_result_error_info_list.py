@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> SnapshotJobResultErrorInfoList:
 
     out: SnapshotJobResultErrorInfoList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.snapshot_job_result_error_info.deserialize_json(item)
         )

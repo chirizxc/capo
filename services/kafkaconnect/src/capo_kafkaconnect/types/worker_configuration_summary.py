@@ -64,7 +64,7 @@ def serialize_json(value: WorkerConfigurationSummary) -> dict:
 
 def deserialize_json(data: dict) -> WorkerConfigurationSummary:
     out: WorkerConfigurationSummary = {}  # type: ignore[typeddict-item]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_kafkaconnect.types.__timestamp_iso8601
 
         out["creation_time"] = (
@@ -72,9 +72,9 @@ def deserialize_json(data: dict) -> WorkerConfigurationSummary:
                 data["creationTime"]
             )
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "latestRevision" in data:
+    if data.get("latestRevision") is not None:
         import capo_kafkaconnect.types.worker_configuration_revision_summary
 
         out["latest_revision"] = (
@@ -82,10 +82,10 @@ def deserialize_json(data: dict) -> WorkerConfigurationSummary:
                 data["latestRevision"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "workerConfigurationArn" in data:
+    if data.get("workerConfigurationArn") is not None:
         out["worker_configuration_arn"] = data["workerConfigurationArn"]
-    if "workerConfigurationState" in data:
+    if data.get("workerConfigurationState") is not None:
         out["worker_configuration_state"] = data["workerConfigurationState"]
     return out

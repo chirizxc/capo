@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> PrimaryAttributeValuesSet:
 
     out: PrimaryAttributeValuesSet = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.primary_attribute_value.deserialize_json(item))
     return out

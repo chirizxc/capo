@@ -33,12 +33,12 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> BatchUpdateBillScenarioCommitmentModificationEntry:
     out: BatchUpdateBillScenarioCommitmentModificationEntry = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError(
             "BatchUpdateBillScenarioCommitmentModificationEntry.id required"
         )
-    if "group" in data:
+    if data.get("group") is not None:
         out["group"] = data["group"]
     return out

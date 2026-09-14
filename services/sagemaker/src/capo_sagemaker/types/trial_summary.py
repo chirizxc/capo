@@ -61,13 +61,13 @@ def serialize_aws_json_1_1(value: TrialSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TrialSummary:
     out: TrialSummary = {}  # type: ignore[typeddict-item]
-    if "TrialArn" in data:
+    if data.get("TrialArn") is not None:
         out["trial_arn"] = data["TrialArn"]
-    if "TrialName" in data:
+    if data.get("TrialName") is not None:
         out["trial_name"] = data["TrialName"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "TrialSource" in data:
+    if data.get("TrialSource") is not None:
         import capo_sagemaker.types.trial_source
 
         out["trial_source"] = (
@@ -75,13 +75,13 @@ def deserialize_aws_json_1_1(data: dict) -> TrialSummary:
                 data["TrialSource"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (

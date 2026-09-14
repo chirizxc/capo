@@ -33,19 +33,19 @@ def serialize_json(value: QueryRefinement) -> dict:
 
 def deserialize_json(data: dict) -> QueryRefinement:
     out: QueryRefinement = {}  # type: ignore[typeddict-item]
-    if "RefinedTerm" in data:
+    if data.get("RefinedTerm") is not None:
         out["refined_term"] = data["RefinedTerm"]
     else:
         raise DeserializationError("QueryRefinement.refined_term required")
-    if "OriginalTerm" in data:
+    if data.get("OriginalTerm") is not None:
         out["original_term"] = data["OriginalTerm"]
     else:
         raise DeserializationError("QueryRefinement.original_term required")
-    if "StartIndex" in data:
+    if data.get("StartIndex") is not None:
         out["start_index"] = data["StartIndex"]
     else:
         raise DeserializationError("QueryRefinement.start_index required")
-    if "EndIndex" in data:
+    if data.get("EndIndex") is not None:
         out["end_index"] = data["EndIndex"]
     else:
         raise DeserializationError("QueryRefinement.end_index required")

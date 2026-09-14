@@ -32,8 +32,8 @@ def serialize_aws_json_1_1(value: ModelClientConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModelClientConfig:
     out: ModelClientConfig = {}  # type: ignore[typeddict-item]
-    if "InvocationsTimeoutInSeconds" in data:
+    if data.get("InvocationsTimeoutInSeconds") is not None:
         out["invocations_timeout_in_seconds"] = data["InvocationsTimeoutInSeconds"]
-    if "InvocationsMaxRetries" in data:
+    if data.get("InvocationsMaxRetries") is not None:
         out["invocations_max_retries"] = data["InvocationsMaxRetries"]
     return out

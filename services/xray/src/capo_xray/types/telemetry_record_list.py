@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> TelemetryRecordList:
 
     out: TelemetryRecordList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_xray.types.telemetry_record.deserialize_json(item))
     return out

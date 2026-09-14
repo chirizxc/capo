@@ -44,11 +44,11 @@ def serialize_aws_json_1_1(value: BatchDeleteDocumentRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchDeleteDocumentRequest:
     out: BatchDeleteDocumentRequest = {}  # type: ignore[typeddict-item]
-    if "IndexId" in data:
+    if data.get("IndexId") is not None:
         out["index_id"] = data["IndexId"]
     else:
         raise DeserializationError("BatchDeleteDocumentRequest.index_id required")
-    if "DocumentIdList" in data:
+    if data.get("DocumentIdList") is not None:
         import capo_kendra.types.document_id_list
 
         out["document_id_list"] = (
@@ -60,7 +60,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchDeleteDocumentRequest:
         raise DeserializationError(
             "BatchDeleteDocumentRequest.document_id_list required"
         )
-    if "DataSourceSyncJobMetricTarget" in data:
+    if data.get("DataSourceSyncJobMetricTarget") is not None:
         import capo_kendra.types.data_source_sync_job_metric_target
 
         out["data_source_sync_job_metric_target"] = (

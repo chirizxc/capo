@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> IsolineAvoidanceZoneCategoryList:
 
     out: IsolineAvoidanceZoneCategoryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_geo_routes.types.isoline_avoidance_zone_category.deserialize_json(item)
         )

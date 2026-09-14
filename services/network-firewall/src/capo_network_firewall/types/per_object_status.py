@@ -36,7 +36,7 @@ def serialize_aws_json_1_0(value: PerObjectStatus) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PerObjectStatus:
     out: PerObjectStatus = {}  # type: ignore[typeddict-item]
-    if "SyncStatus" in data:
+    if data.get("SyncStatus") is not None:
         import capo_network_firewall.types.per_object_sync_status
 
         out["sync_status"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_0(data: dict) -> PerObjectStatus:
                 data["SyncStatus"]
             )
         )
-    if "UpdateToken" in data:
+    if data.get("UpdateToken") is not None:
         out["update_token"] = data["UpdateToken"]
     return out

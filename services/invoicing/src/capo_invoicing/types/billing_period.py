@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: BillingPeriod) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> BillingPeriod:
     out: BillingPeriod = {}  # type: ignore[typeddict-item]
-    if "Month" in data:
+    if data.get("Month") is not None:
         out["month"] = data["Month"]
     else:
         raise DeserializationError("BillingPeriod.month required")
-    if "Year" in data:
+    if data.get("Year") is not None:
         out["year"] = data["Year"]
     else:
         raise DeserializationError("BillingPeriod.year required")

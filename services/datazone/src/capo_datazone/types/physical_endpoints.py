@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> PhysicalEndpoints:
 
     out: PhysicalEndpoints = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_datazone.types.physical_endpoint.deserialize_json(item))
     return out

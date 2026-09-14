@@ -79,38 +79,38 @@ def serialize_json(value: JobSummary) -> dict:
 
 def deserialize_json(data: dict) -> JobSummary:
     out: JobSummary = {}  # type: ignore[typeddict-item]
-    if "jobArn" in data:
+    if data.get("jobArn") is not None:
         out["job_arn"] = data["jobArn"]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
-    if "thingGroupId" in data:
+    if data.get("thingGroupId") is not None:
         out["thing_group_id"] = data["thingGroupId"]
-    if "targetSelection" in data:
+    if data.get("targetSelection") is not None:
         import capo_iot.types.target_selection
 
         out["target_selection"] = capo_iot.types.target_selection.deserialize_json(
             data["targetSelection"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iot.types.job_status
 
         out["status"] = capo_iot.types.job_status.deserialize_json(data["status"])
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_iot.types.date_type
 
         out["created_at"] = capo_iot.types.date_type.deserialize_json(data["createdAt"])
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_iot.types.date_type
 
         out["last_updated_at"] = capo_iot.types.date_type.deserialize_json(
             data["lastUpdatedAt"]
         )
-    if "completedAt" in data:
+    if data.get("completedAt") is not None:
         import capo_iot.types.date_type
 
         out["completed_at"] = capo_iot.types.date_type.deserialize_json(
             data["completedAt"]
         )
-    if "isConcurrent" in data:
+    if data.get("isConcurrent") is not None:
         out["is_concurrent"] = data["isConcurrent"]
     return out

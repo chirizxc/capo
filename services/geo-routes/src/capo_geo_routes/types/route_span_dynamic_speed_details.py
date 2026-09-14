@@ -25,24 +25,40 @@ class RouteSpanDynamicSpeedDetails(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: RouteSpanDynamicSpeedDetails) -> dict:
     out: dict = {}
-    out["BestCaseSpeed"] = value.get("best_case_speed", 0)
+    out["BestCaseSpeed"] = (
+        "NaN"
+        if value.get("best_case_speed", 0) != value.get("best_case_speed", 0)
+        else "Infinity"
+        if value.get("best_case_speed", 0) == float("inf")
+        else "-Infinity"
+        if value.get("best_case_speed", 0) == float("-inf")
+        else value.get("best_case_speed", 0)
+    )
     out["TurnDuration"] = value.get("turn_duration", 0)
-    out["TypicalSpeed"] = value.get("typical_speed", 0)
+    out["TypicalSpeed"] = (
+        "NaN"
+        if value.get("typical_speed", 0) != value.get("typical_speed", 0)
+        else "Infinity"
+        if value.get("typical_speed", 0) == float("inf")
+        else "-Infinity"
+        if value.get("typical_speed", 0) == float("-inf")
+        else value.get("typical_speed", 0)
+    )
     return out
 
 
 def deserialize_json(data: dict) -> RouteSpanDynamicSpeedDetails:
     out: RouteSpanDynamicSpeedDetails = {}  # type: ignore[typeddict-item]
-    if "BestCaseSpeed" in data:
-        out["best_case_speed"] = data["BestCaseSpeed"]
+    if data.get("BestCaseSpeed") is not None:
+        out["best_case_speed"] = float(data["BestCaseSpeed"])
     else:
         out["best_case_speed"] = 0
-    if "TurnDuration" in data:
+    if data.get("TurnDuration") is not None:
         out["turn_duration"] = data["TurnDuration"]
     else:
         out["turn_duration"] = 0
-    if "TypicalSpeed" in data:
-        out["typical_speed"] = data["TypicalSpeed"]
+    if data.get("TypicalSpeed") is not None:
+        out["typical_speed"] = float(data["TypicalSpeed"])
     else:
         out["typical_speed"] = 0
     return out

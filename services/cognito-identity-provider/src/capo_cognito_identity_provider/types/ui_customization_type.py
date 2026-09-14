@@ -76,17 +76,17 @@ def serialize_aws_json_1_1(value: UICustomizationType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UICustomizationType:
     out: UICustomizationType = {}  # type: ignore[typeddict-item]
-    if "UserPoolId" in data:
+    if data.get("UserPoolId") is not None:
         out["user_pool_id"] = data["UserPoolId"]
-    if "ClientId" in data:
+    if data.get("ClientId") is not None:
         out["client_id"] = data["ClientId"]
-    if "ImageUrl" in data:
+    if data.get("ImageUrl") is not None:
         out["image_url"] = data["ImageUrl"]
-    if "CSS" in data:
+    if data.get("CSS") is not None:
         out["css"] = data["CSS"]
-    if "CSSVersion" in data:
+    if data.get("CSSVersion") is not None:
         out["css_version"] = data["CSSVersion"]
-    if "LastModifiedDate" in data:
+    if data.get("LastModifiedDate") is not None:
         import capo_cognito_identity_provider.types.date_type
 
         out["last_modified_date"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_1(data: dict) -> UICustomizationType:
                 data["LastModifiedDate"]
             )
         )
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_cognito_identity_provider.types.date_type
 
         out["creation_date"] = (

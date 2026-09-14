@@ -46,11 +46,11 @@ def serialize_aws_json_1_1(value: EndpointMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EndpointMetadata:
     out: EndpointMetadata = {}  # type: ignore[typeddict-item]
-    if "EndpointName" in data:
+    if data.get("EndpointName") is not None:
         out["endpoint_name"] = data["EndpointName"]
-    if "EndpointConfigName" in data:
+    if data.get("EndpointConfigName") is not None:
         out["endpoint_config_name"] = data["EndpointConfigName"]
-    if "EndpointStatus" in data:
+    if data.get("EndpointStatus") is not None:
         import capo_sagemaker.types.endpoint_status
 
         out["endpoint_status"] = (
@@ -58,6 +58,6 @@ def deserialize_aws_json_1_1(data: dict) -> EndpointMetadata:
                 data["EndpointStatus"]
             )
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
     return out

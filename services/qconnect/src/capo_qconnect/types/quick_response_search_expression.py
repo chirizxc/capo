@@ -57,7 +57,7 @@ def serialize_json(value: QuickResponseSearchExpression) -> dict:
 
 def deserialize_json(data: dict) -> QuickResponseSearchExpression:
     out: QuickResponseSearchExpression = {}  # type: ignore[typeddict-item]
-    if "queries" in data:
+    if data.get("queries") is not None:
         import capo_qconnect.types.quick_response_query_field_list
 
         out["queries"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> QuickResponseSearchExpression:
                 data["queries"]
             )
         )
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_qconnect.types.quick_response_filter_field_list
 
         out["filters"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> QuickResponseSearchExpression:
                 data["filters"]
             )
         )
-    if "orderOnField" in data:
+    if data.get("orderOnField") is not None:
         import capo_qconnect.types.quick_response_order_field
 
         out["order_on_field"] = (

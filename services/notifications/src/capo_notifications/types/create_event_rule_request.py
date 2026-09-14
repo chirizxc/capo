@@ -45,23 +45,23 @@ def serialize_json(value: CreateEventRuleRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateEventRuleRequest:
     out: CreateEventRuleRequest = {}  # type: ignore[typeddict-item]
-    if "notificationConfigurationArn" in data:
+    if data.get("notificationConfigurationArn") is not None:
         out["notification_configuration_arn"] = data["notificationConfigurationArn"]
     else:
         raise DeserializationError(
             "CreateEventRuleRequest.notification_configuration_arn required"
         )
-    if "source" in data:
+    if data.get("source") is not None:
         out["source"] = data["source"]
     else:
         raise DeserializationError("CreateEventRuleRequest.source required")
-    if "eventType" in data:
+    if data.get("eventType") is not None:
         out["event_type"] = data["eventType"]
     else:
         raise DeserializationError("CreateEventRuleRequest.event_type required")
-    if "eventPattern" in data:
+    if data.get("eventPattern") is not None:
         out["event_pattern"] = data["eventPattern"]
-    if "regions" in data:
+    if data.get("regions") is not None:
         import capo_notifications.types.regions
 
         out["regions"] = capo_notifications.types.regions.deserialize_json(

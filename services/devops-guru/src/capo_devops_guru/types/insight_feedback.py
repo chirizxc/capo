@@ -34,9 +34,9 @@ def serialize_json(value: InsightFeedback) -> dict:
 
 def deserialize_json(data: dict) -> InsightFeedback:
     out: InsightFeedback = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Feedback" in data:
+    if data.get("Feedback") is not None:
         import capo_devops_guru.types.insight_feedback_option
 
         out["feedback"] = (

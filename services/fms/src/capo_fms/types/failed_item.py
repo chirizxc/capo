@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: FailedItem) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FailedItem:
     out: FailedItem = {}  # type: ignore[typeddict-item]
-    if "URI" in data:
+    if data.get("URI") is not None:
         out["uri"] = data["URI"]
-    if "Reason" in data:
+    if data.get("Reason") is not None:
         import capo_fms.types.failed_item_reason
 
         out["reason"] = capo_fms.types.failed_item_reason.deserialize_aws_json_1_1(

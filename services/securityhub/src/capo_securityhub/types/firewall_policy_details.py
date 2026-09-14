@@ -82,7 +82,7 @@ def serialize_json(value: FirewallPolicyDetails) -> dict:
 
 def deserialize_json(data: dict) -> FirewallPolicyDetails:
     out: FirewallPolicyDetails = {}  # type: ignore[typeddict-item]
-    if "StatefulRuleGroupReferences" in data:
+    if data.get("StatefulRuleGroupReferences") is not None:
         import capo_securityhub.types.firewall_policy_stateful_rule_group_references_list
 
         out["stateful_rule_group_references"] = (
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> FirewallPolicyDetails:
                 data["StatefulRuleGroupReferences"]
             )
         )
-    if "StatelessCustomActions" in data:
+    if data.get("StatelessCustomActions") is not None:
         import capo_securityhub.types.firewall_policy_stateless_custom_actions_list
 
         out["stateless_custom_actions"] = (
@@ -98,7 +98,7 @@ def deserialize_json(data: dict) -> FirewallPolicyDetails:
                 data["StatelessCustomActions"]
             )
         )
-    if "StatelessDefaultActions" in data:
+    if data.get("StatelessDefaultActions") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["stateless_default_actions"] = (
@@ -106,7 +106,7 @@ def deserialize_json(data: dict) -> FirewallPolicyDetails:
                 data["StatelessDefaultActions"]
             )
         )
-    if "StatelessFragmentDefaultActions" in data:
+    if data.get("StatelessFragmentDefaultActions") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["stateless_fragment_default_actions"] = (
@@ -114,7 +114,7 @@ def deserialize_json(data: dict) -> FirewallPolicyDetails:
                 data["StatelessFragmentDefaultActions"]
             )
         )
-    if "StatelessRuleGroupReferences" in data:
+    if data.get("StatelessRuleGroupReferences") is not None:
         import capo_securityhub.types.firewall_policy_stateless_rule_group_references_list
 
         out["stateless_rule_group_references"] = (

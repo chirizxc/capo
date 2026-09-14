@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: EncryptionConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EncryptionConfiguration:
     out: EncryptionConfiguration = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_mwaa_serverless.types.encryption_type
 
         out["type"] = (
@@ -42,6 +42,6 @@ def deserialize_aws_json_1_0(data: dict) -> EncryptionConfiguration:
         )
     else:
         raise DeserializationError("EncryptionConfiguration.type required")
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
     return out

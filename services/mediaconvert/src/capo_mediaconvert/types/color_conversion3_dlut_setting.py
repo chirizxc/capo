@@ -55,17 +55,17 @@ def serialize_json(value: ColorConversion3DLUTSetting) -> dict:
 
 def deserialize_json(data: dict) -> ColorConversion3DLUTSetting:
     out: ColorConversion3DLUTSetting = {}  # type: ignore[typeddict-item]
-    if "fileInput" in data:
+    if data.get("fileInput") is not None:
         out["file_input"] = data["fileInput"]
-    if "inputColorSpace" in data:
+    if data.get("inputColorSpace") is not None:
         import capo_mediaconvert.types.color_space
 
         out["input_color_space"] = capo_mediaconvert.types.color_space.deserialize_json(
             data["inputColorSpace"]
         )
-    if "inputMasteringLuminance" in data:
+    if data.get("inputMasteringLuminance") is not None:
         out["input_mastering_luminance"] = data["inputMasteringLuminance"]
-    if "outputColorSpace" in data:
+    if data.get("outputColorSpace") is not None:
         import capo_mediaconvert.types.color_space
 
         out["output_color_space"] = (
@@ -73,6 +73,6 @@ def deserialize_json(data: dict) -> ColorConversion3DLUTSetting:
                 data["outputColorSpace"]
             )
         )
-    if "outputMasteringLuminance" in data:
+    if data.get("outputMasteringLuminance") is not None:
         out["output_mastering_luminance"] = data["outputMasteringLuminance"]
     return out

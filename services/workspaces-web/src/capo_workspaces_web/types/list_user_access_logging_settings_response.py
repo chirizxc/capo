@@ -38,7 +38,7 @@ def serialize_json(value: ListUserAccessLoggingSettingsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListUserAccessLoggingSettingsResponse:
     out: ListUserAccessLoggingSettingsResponse = {}  # type: ignore[typeddict-item]
-    if "userAccessLoggingSettings" in data:
+    if data.get("userAccessLoggingSettings") is not None:
         import capo_workspaces_web.types.user_access_logging_settings_list
 
         out["user_access_logging_settings"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> ListUserAccessLoggingSettingsResponse:
                 data["userAccessLoggingSettings"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

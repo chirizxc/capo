@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> DeliveryChannelList:
 
     out: DeliveryChannelList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_config_service.types.delivery_channel.deserialize_aws_json_1_1(item)
         )

@@ -25,7 +25,7 @@ def serialize_json(value: PutEmailIdentityDkimAttributesRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutEmailIdentityDkimAttributesRequest:
     out: PutEmailIdentityDkimAttributesRequest = {}  # type: ignore[typeddict-item]
-    if "SigningEnabled" in data:
+    if data.get("SigningEnabled") is not None:
         out["signing_enabled"] = data["SigningEnabled"]
     else:
         out["signing_enabled"] = False

@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> IndustrySegmentList:
 
     out: IndustrySegmentList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_partnercentral_account.types.industry_segment.deserialize_aws_json_1_0(
                 item

@@ -16,5 +16,7 @@ def serialize_json(input_to_serialize: Filter) -> dict:
 def deserialize_json(data: dict) -> Filter:
     out: Filter = {}
     for key, value in data.items():
+        if value is None:
+            continue
         out[key] = value
     return out

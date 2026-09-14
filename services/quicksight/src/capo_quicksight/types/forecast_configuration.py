@@ -40,7 +40,7 @@ def serialize_json(value: ForecastConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ForecastConfiguration:
     out: ForecastConfiguration = {}  # type: ignore[typeddict-item]
-    if "ForecastProperties" in data:
+    if data.get("ForecastProperties") is not None:
         import capo_quicksight.types.time_based_forecast_properties
 
         out["forecast_properties"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> ForecastConfiguration:
                 data["ForecastProperties"]
             )
         )
-    if "Scenario" in data:
+    if data.get("Scenario") is not None:
         import capo_quicksight.types.forecast_scenario
 
         out["scenario"] = capo_quicksight.types.forecast_scenario.deserialize_json(

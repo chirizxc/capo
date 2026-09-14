@@ -55,6 +55,8 @@ def serialize_aws_json_1_0(value: CreateBillingViewRequest) -> dict:
                 value["data_filter_expression"]
             )
         )
+    if "client_token" in value:
+        out["clientToken"] = value["client_token"]
     if "resource_tags" in value:
         import capo_billing.types.resource_tag_list
 
@@ -68,13 +70,13 @@ def serialize_aws_json_1_0(value: CreateBillingViewRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateBillingViewRequest:
     out: CreateBillingViewRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateBillingViewRequest.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "sourceViews" in data:
+    if data.get("sourceViews") is not None:
         import capo_billing.types.billing_view_source_views_list
 
         out["source_views"] = (
@@ -84,7 +86,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateBillingViewRequest:
         )
     else:
         raise DeserializationError("CreateBillingViewRequest.source_views required")
-    if "dataFilterExpression" in data:
+    if data.get("dataFilterExpression") is not None:
         import capo_billing.types.expression
 
         out["data_filter_expression"] = (
@@ -92,7 +94,9 @@ def deserialize_aws_json_1_0(data: dict) -> CreateBillingViewRequest:
                 data["dataFilterExpression"]
             )
         )
-    if "resourceTags" in data:
+    if data.get("clientToken") is not None:
+        out["client_token"] = data["clientToken"]
+    if data.get("resourceTags") is not None:
         import capo_billing.types.resource_tag_list
 
         out["resource_tags"] = (

@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: CreateAccessResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateAccessResponse:
     out: CreateAccessResponse = {}  # type: ignore[typeddict-item]
-    if "ServerId" in data:
+    if data.get("ServerId") is not None:
         out["server_id"] = data["ServerId"]
     else:
         raise DeserializationError("CreateAccessResponse.server_id required")
-    if "ExternalId" in data:
+    if data.get("ExternalId") is not None:
         out["external_id"] = data["ExternalId"]
     else:
         raise DeserializationError("CreateAccessResponse.external_id required")

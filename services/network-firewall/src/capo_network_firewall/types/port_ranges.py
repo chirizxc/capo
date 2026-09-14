@@ -23,6 +23,8 @@ def deserialize_aws_json_1_0(data: list) -> PortRanges:
 
     out: PortRanges = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_network_firewall.types.port_range.deserialize_aws_json_1_0(item)
         )

@@ -25,6 +25,6 @@ def serialize_json(value: FindingAggregator) -> dict:
 
 def deserialize_json(data: dict) -> FindingAggregator:
     out: FindingAggregator = {}  # type: ignore[typeddict-item]
-    if "FindingAggregatorArn" in data:
+    if data.get("FindingAggregatorArn") is not None:
         out["finding_aggregator_arn"] = data["FindingAggregatorArn"]
     return out

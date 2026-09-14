@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> CisScanList:
 
     out: CisScanList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_inspector2.types.cis_scan.deserialize_json(item))
     return out

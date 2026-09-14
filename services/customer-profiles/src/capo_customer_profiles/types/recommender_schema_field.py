@@ -42,11 +42,11 @@ def serialize_json(value: RecommenderSchemaField) -> dict:
 
 def deserialize_json(data: dict) -> RecommenderSchemaField:
     out: RecommenderSchemaField = {}  # type: ignore[typeddict-item]
-    if "TargetFieldName" in data:
+    if data.get("TargetFieldName") is not None:
         out["target_field_name"] = data["TargetFieldName"]
     else:
         raise DeserializationError("RecommenderSchemaField.target_field_name required")
-    if "ContentType" in data:
+    if data.get("ContentType") is not None:
         import capo_customer_profiles.types.content_type
 
         out["content_type"] = (
@@ -54,7 +54,7 @@ def deserialize_json(data: dict) -> RecommenderSchemaField:
                 data["ContentType"]
             )
         )
-    if "FeatureType" in data:
+    if data.get("FeatureType") is not None:
         import capo_customer_profiles.types.feature_type
 
         out["feature_type"] = (

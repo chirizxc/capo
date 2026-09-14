@@ -34,7 +34,7 @@ def serialize_json(value: DescribeCanariesLastRunResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeCanariesLastRunResponse:
     out: DescribeCanariesLastRunResponse = {}  # type: ignore[typeddict-item]
-    if "CanariesLastRun" in data:
+    if data.get("CanariesLastRun") is not None:
         import capo_synthetics.types.canaries_last_run
 
         out["canaries_last_run"] = (
@@ -42,6 +42,6 @@ def deserialize_json(data: dict) -> DescribeCanariesLastRunResponse:
                 data["CanariesLastRun"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

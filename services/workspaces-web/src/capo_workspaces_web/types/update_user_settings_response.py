@@ -28,7 +28,7 @@ def serialize_json(value: UpdateUserSettingsResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateUserSettingsResponse:
     out: UpdateUserSettingsResponse = {}  # type: ignore[typeddict-item]
-    if "userSettings" in data:
+    if data.get("userSettings") is not None:
         import capo_workspaces_web.types.user_settings
 
         out["user_settings"] = capo_workspaces_web.types.user_settings.deserialize_json(

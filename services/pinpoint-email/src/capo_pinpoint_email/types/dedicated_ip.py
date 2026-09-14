@@ -43,11 +43,11 @@ def serialize_json(value: DedicatedIp) -> dict:
 
 def deserialize_json(data: dict) -> DedicatedIp:
     out: DedicatedIp = {}  # type: ignore[typeddict-item]
-    if "Ip" in data:
+    if data.get("Ip") is not None:
         out["ip"] = data["Ip"]
     else:
         raise DeserializationError("DedicatedIp.ip required")
-    if "WarmupStatus" in data:
+    if data.get("WarmupStatus") is not None:
         import capo_pinpoint_email.types.warmup_status
 
         out["warmup_status"] = capo_pinpoint_email.types.warmup_status.deserialize_json(
@@ -55,10 +55,10 @@ def deserialize_json(data: dict) -> DedicatedIp:
         )
     else:
         raise DeserializationError("DedicatedIp.warmup_status required")
-    if "WarmupPercentage" in data:
+    if data.get("WarmupPercentage") is not None:
         out["warmup_percentage"] = data["WarmupPercentage"]
     else:
         raise DeserializationError("DedicatedIp.warmup_percentage required")
-    if "PoolName" in data:
+    if data.get("PoolName") is not None:
         out["pool_name"] = data["PoolName"]
     return out

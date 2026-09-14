@@ -29,7 +29,7 @@ def serialize_json(value: UpdateCampaignScheduleRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateCampaignScheduleRequest:
     out: UpdateCampaignScheduleRequest = {}  # type: ignore[typeddict-item]
-    if "schedule" in data:
+    if data.get("schedule") is not None:
         import capo_connectcampaignsv2.types.schedule
 
         out["schedule"] = capo_connectcampaignsv2.types.schedule.deserialize_json(

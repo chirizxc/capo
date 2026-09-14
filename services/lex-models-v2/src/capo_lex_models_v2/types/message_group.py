@@ -39,7 +39,7 @@ def serialize_json(value: MessageGroup) -> dict:
 
 def deserialize_json(data: dict) -> MessageGroup:
     out: MessageGroup = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         import capo_lex_models_v2.types.message
 
         out["message"] = capo_lex_models_v2.types.message.deserialize_json(
@@ -47,7 +47,7 @@ def deserialize_json(data: dict) -> MessageGroup:
         )
     else:
         raise DeserializationError("MessageGroup.message required")
-    if "variations" in data:
+    if data.get("variations") is not None:
         import capo_lex_models_v2.types.message_variations_list
 
         out["variations"] = (

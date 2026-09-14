@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> ManagedResourceSummaryList:
 
     out: ManagedResourceSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_license_manager.types.managed_resource_summary.deserialize_aws_json_1_1(
                 item

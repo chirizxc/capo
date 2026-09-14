@@ -49,15 +49,15 @@ def serialize_aws_json_1_1(value: CreateNetworkAclEntriesAction) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateNetworkAclEntriesAction:
     out: CreateNetworkAclEntriesAction = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "NetworkAclId" in data:
+    if data.get("NetworkAclId") is not None:
         import capo_fms.types.action_target
 
         out["network_acl_id"] = capo_fms.types.action_target.deserialize_aws_json_1_1(
             data["NetworkAclId"]
         )
-    if "NetworkAclEntriesToBeCreated" in data:
+    if data.get("NetworkAclEntriesToBeCreated") is not None:
         import capo_fms.types.entries_description
 
         out["network_acl_entries_to_be_created"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateNetworkAclEntriesAction:
                 data["NetworkAclEntriesToBeCreated"]
             )
         )
-    if "FMSCanRemediate" in data:
+    if data.get("FMSCanRemediate") is not None:
         out["fms_can_remediate"] = data["FMSCanRemediate"]
     else:
         out["fms_can_remediate"] = False

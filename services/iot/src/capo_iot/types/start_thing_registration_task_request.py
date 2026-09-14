@@ -36,25 +36,25 @@ def serialize_json(value: StartThingRegistrationTaskRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartThingRegistrationTaskRequest:
     out: StartThingRegistrationTaskRequest = {}  # type: ignore[typeddict-item]
-    if "templateBody" in data:
+    if data.get("templateBody") is not None:
         out["template_body"] = data["templateBody"]
     else:
         raise DeserializationError(
             "StartThingRegistrationTaskRequest.template_body required"
         )
-    if "inputFileBucket" in data:
+    if data.get("inputFileBucket") is not None:
         out["input_file_bucket"] = data["inputFileBucket"]
     else:
         raise DeserializationError(
             "StartThingRegistrationTaskRequest.input_file_bucket required"
         )
-    if "inputFileKey" in data:
+    if data.get("inputFileKey") is not None:
         out["input_file_key"] = data["inputFileKey"]
     else:
         raise DeserializationError(
             "StartThingRegistrationTaskRequest.input_file_key required"
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError(

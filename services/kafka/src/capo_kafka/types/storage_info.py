@@ -27,7 +27,7 @@ def serialize_json(value: StorageInfo) -> dict:
 
 def deserialize_json(data: dict) -> StorageInfo:
     out: StorageInfo = {}  # type: ignore[typeddict-item]
-    if "ebsStorageInfo" in data:
+    if data.get("ebsStorageInfo") is not None:
         import capo_kafka.types.ebs_storage_info
 
         out["ebs_storage_info"] = capo_kafka.types.ebs_storage_info.deserialize_json(

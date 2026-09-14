@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: OrganizationScope) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> OrganizationScope:
     out: OrganizationScope = {}  # type: ignore[typeddict-item]
-    if "accountIds" in data:
+    if data.get("accountIds") is not None:
         import capo_compute_optimizer_automation.types.organization_configuration_account_ids
 
         out["account_ids"] = (

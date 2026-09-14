@@ -43,15 +43,15 @@ def serialize_json(value: PutRuleGroupsNamespaceResponse) -> dict:
 
 def deserialize_json(data: dict) -> PutRuleGroupsNamespaceResponse:
     out: PutRuleGroupsNamespaceResponse = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("PutRuleGroupsNamespaceResponse.name required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("PutRuleGroupsNamespaceResponse.arn required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_amp.types.rule_groups_namespace_status
 
         out["status"] = capo_amp.types.rule_groups_namespace_status.deserialize_json(
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> PutRuleGroupsNamespaceResponse:
         )
     else:
         raise DeserializationError("PutRuleGroupsNamespaceResponse.status required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_amp.types.tag_map
 
         out["tags"] = capo_amp.types.tag_map.deserialize_json(data["tags"])

@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> HdfsNameNodeList:
 
     out: HdfsNameNodeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_datasync.types.hdfs_name_node.deserialize_aws_json_1_1(item))
     return out

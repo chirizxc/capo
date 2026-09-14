@@ -31,7 +31,7 @@ def serialize_json(value: UpdateAccountSettingsOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAccountSettingsOutput:
     out: UpdateAccountSettingsOutput = {}  # type: ignore[typeddict-item]
-    if "AccountSettings" in data:
+    if data.get("AccountSettings") is not None:
         import capo_resource_groups.types.account_settings
 
         out["account_settings"] = (

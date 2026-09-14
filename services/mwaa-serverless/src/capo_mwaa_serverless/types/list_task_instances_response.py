@@ -35,7 +35,7 @@ def serialize_aws_json_1_0(value: ListTaskInstancesResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListTaskInstancesResponse:
     out: ListTaskInstancesResponse = {}  # type: ignore[typeddict-item]
-    if "TaskInstances" in data:
+    if data.get("TaskInstances") is not None:
         import capo_mwaa_serverless.types.task_instance_summaries
 
         out["task_instances"] = (
@@ -43,6 +43,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListTaskInstancesResponse:
                 data["TaskInstances"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

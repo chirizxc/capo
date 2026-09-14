@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DocumentAclGroups:
 
     out: DocumentAclGroups = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_qbusiness.types.document_acl_group.deserialize_json(item))
     return out

@@ -33,11 +33,11 @@ def serialize_json(value: BatchDeleteRecipeVersionResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchDeleteRecipeVersionResponse:
     out: BatchDeleteRecipeVersionResponse = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("BatchDeleteRecipeVersionResponse.name required")
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_databrew.types.recipe_error_list
 
         out["errors"] = capo_databrew.types.recipe_error_list.deserialize_json(

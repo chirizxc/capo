@@ -28,11 +28,11 @@ def serialize_json(value: ScanStatus) -> dict:
 
 def deserialize_json(data: dict) -> ScanStatus:
     out: ScanStatus = {}  # type: ignore[typeddict-item]
-    if "statusCode" in data:
+    if data.get("statusCode") is not None:
         out["status_code"] = data["statusCode"]
     else:
         raise DeserializationError("ScanStatus.status_code required")
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
     else:
         raise DeserializationError("ScanStatus.reason required")

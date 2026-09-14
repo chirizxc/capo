@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> SolutionVersions:
 
     out: SolutionVersions = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_personalize.types.solution_version_summary.deserialize_aws_json_1_1(
                 item

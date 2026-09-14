@@ -93,9 +93,10 @@ class NotificationConfiguration:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notifications.types.create_notification_configuration_request.CreateNotificationConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["description"] = description
+        input_: capo_notifications.types.create_notification_configuration_request.CreateNotificationConfigurationRequest = {
+            "name": name,
+            "description": description,
+        }
         if aggregation_duration is not None:
             input_["aggregation_duration"] = aggregation_duration
         if tags is not None:
@@ -106,6 +107,7 @@ class NotificationConfiguration:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put(
@@ -156,8 +158,9 @@ class NotificationConfiguration:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notifications.types.update_notification_configuration_request.UpdateNotificationConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_notifications.types.update_notification_configuration_request.UpdateNotificationConfigurationRequest = {
+            "arn": arn
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -170,6 +173,7 @@ class NotificationConfiguration:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -207,14 +211,16 @@ class NotificationConfiguration:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notifications.types.get_notification_configuration_request.GetNotificationConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_notifications.types.get_notification_configuration_request.GetNotificationConfigurationRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -253,14 +259,16 @@ class NotificationConfiguration:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notifications.types.delete_notification_configuration_request.DeleteNotificationConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_notifications.types.delete_notification_configuration_request.DeleteNotificationConfigurationRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -311,7 +319,7 @@ class NotificationConfiguration:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notifications.types.list_notification_configurations_request.ListNotificationConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_notifications.types.list_notification_configurations_request.ListNotificationConfigurationsRequest = {}
         if event_rule_source is not None:
             input_["event_rule_source"] = event_rule_source
         if channel_arn is not None:
@@ -330,6 +338,7 @@ class NotificationConfiguration:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -382,9 +391,10 @@ class AsyncNotificationConfiguration:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notifications.types.create_notification_configuration_request.CreateNotificationConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["description"] = description
+        input_: capo_notifications.types.create_notification_configuration_request.CreateNotificationConfigurationRequest = {
+            "name": name,
+            "description": description,
+        }
         if aggregation_duration is not None:
             input_["aggregation_duration"] = aggregation_duration
         if tags is not None:
@@ -395,6 +405,7 @@ class AsyncNotificationConfiguration:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put(
@@ -446,8 +457,9 @@ class AsyncNotificationConfiguration:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notifications.types.update_notification_configuration_request.UpdateNotificationConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_notifications.types.update_notification_configuration_request.UpdateNotificationConfigurationRequest = {
+            "arn": arn
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -460,6 +472,7 @@ class AsyncNotificationConfiguration:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -498,14 +511,16 @@ class AsyncNotificationConfiguration:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notifications.types.get_notification_configuration_request.GetNotificationConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_notifications.types.get_notification_configuration_request.GetNotificationConfigurationRequest = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -545,14 +560,16 @@ class AsyncNotificationConfiguration:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notifications.types.delete_notification_configuration_request.DeleteNotificationConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_notifications.types.delete_notification_configuration_request.DeleteNotificationConfigurationRequest = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -604,7 +621,7 @@ class AsyncNotificationConfiguration:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notifications.types.list_notification_configurations_request.ListNotificationConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_notifications.types.list_notification_configurations_request.ListNotificationConfigurationsRequest = {}
         if event_rule_source is not None:
             input_["event_rule_source"] = event_rule_source
         if channel_arn is not None:
@@ -623,4 +640,5 @@ class AsyncNotificationConfiguration:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

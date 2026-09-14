@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> DomainPackageDetailsList:
 
     out: DomainPackageDetailsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_elasticsearch_service.types.domain_package_details.deserialize_json(
                 item

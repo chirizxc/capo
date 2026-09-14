@@ -47,7 +47,7 @@ def serialize_json(value: CloudTrailProperties) -> dict:
 
 def deserialize_json(data: dict) -> CloudTrailProperties:
     out: CloudTrailProperties = {}  # type: ignore[typeddict-item]
-    if "trailProperties" in data:
+    if data.get("trailProperties") is not None:
         import capo_accessanalyzer.types.trail_properties_list
 
         out["trail_properties"] = (
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> CloudTrailProperties:
         )
     else:
         raise DeserializationError("CloudTrailProperties.trail_properties required")
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_accessanalyzer.types.timestamp
 
         out["start_time"] = capo_accessanalyzer.types.timestamp.deserialize_json(
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> CloudTrailProperties:
         )
     else:
         raise DeserializationError("CloudTrailProperties.start_time required")
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_accessanalyzer.types.timestamp
 
         out["end_time"] = capo_accessanalyzer.types.timestamp.deserialize_json(

@@ -18,14 +18,22 @@ class ProbabilisticRuleValueUpdate(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: ProbabilisticRuleValueUpdate) -> dict:
     out: dict = {}
-    out["DesiredSamplingPercentage"] = value["desired_sampling_percentage"]
+    out["DesiredSamplingPercentage"] = (
+        "NaN"
+        if value["desired_sampling_percentage"] != value["desired_sampling_percentage"]
+        else "Infinity"
+        if value["desired_sampling_percentage"] == float("inf")
+        else "-Infinity"
+        if value["desired_sampling_percentage"] == float("-inf")
+        else value["desired_sampling_percentage"]
+    )
     return out
 
 
 def deserialize_json(data: dict) -> ProbabilisticRuleValueUpdate:
     out: ProbabilisticRuleValueUpdate = {}  # type: ignore[typeddict-item]
-    if "DesiredSamplingPercentage" in data:
-        out["desired_sampling_percentage"] = data["DesiredSamplingPercentage"]
+    if data.get("DesiredSamplingPercentage") is not None:
+        out["desired_sampling_percentage"] = float(data["DesiredSamplingPercentage"])
     else:
         raise DeserializationError(
             "ProbabilisticRuleValueUpdate.desired_sampling_percentage required"

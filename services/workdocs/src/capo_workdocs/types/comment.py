@@ -80,35 +80,35 @@ def serialize_json(value: Comment) -> dict:
 
 def deserialize_json(data: dict) -> Comment:
     out: Comment = {}  # type: ignore[typeddict-item]
-    if "CommentId" in data:
+    if data.get("CommentId") is not None:
         out["comment_id"] = data["CommentId"]
     else:
         raise DeserializationError("Comment.comment_id required")
-    if "ParentId" in data:
+    if data.get("ParentId") is not None:
         out["parent_id"] = data["ParentId"]
-    if "ThreadId" in data:
+    if data.get("ThreadId") is not None:
         out["thread_id"] = data["ThreadId"]
-    if "Text" in data:
+    if data.get("Text") is not None:
         out["text"] = data["Text"]
-    if "Contributor" in data:
+    if data.get("Contributor") is not None:
         import capo_workdocs.types.user
 
         out["contributor"] = capo_workdocs.types.user.deserialize_json(
             data["Contributor"]
         )
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_workdocs.types.timestamp_type
 
         out["created_timestamp"] = capo_workdocs.types.timestamp_type.deserialize_json(
             data["CreatedTimestamp"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_workdocs.types.comment_status_type
 
         out["status"] = capo_workdocs.types.comment_status_type.deserialize_json(
             data["Status"]
         )
-    if "Visibility" in data:
+    if data.get("Visibility") is not None:
         import capo_workdocs.types.comment_visibility_type
 
         out["visibility"] = (
@@ -116,6 +116,6 @@ def deserialize_json(data: dict) -> Comment:
                 data["Visibility"]
             )
         )
-    if "RecipientId" in data:
+    if data.get("RecipientId") is not None:
         out["recipient_id"] = data["RecipientId"]
     return out

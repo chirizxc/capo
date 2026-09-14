@@ -40,6 +40,6 @@ def serialize_json(value: SendApiAssetRequest) -> dict:
 
 def deserialize_json(data: dict) -> SendApiAssetRequest:
     out: SendApiAssetRequest = {}  # type: ignore[typeddict-item]
-    if "Body" in data:
+    if data.get("Body") is not None:
         out["body"] = data["Body"]
     return out

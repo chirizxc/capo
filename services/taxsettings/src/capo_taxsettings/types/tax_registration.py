@@ -96,11 +96,11 @@ def serialize_json(value: TaxRegistration) -> dict:
 
 def deserialize_json(data: dict) -> TaxRegistration:
     out: TaxRegistration = {}  # type: ignore[typeddict-item]
-    if "registrationId" in data:
+    if data.get("registrationId") is not None:
         out["registration_id"] = data["registrationId"]
     else:
         raise DeserializationError("TaxRegistration.registration_id required")
-    if "registrationType" in data:
+    if data.get("registrationType") is not None:
         import capo_taxsettings.types.tax_registration_type
 
         out["registration_type"] = (
@@ -110,11 +110,11 @@ def deserialize_json(data: dict) -> TaxRegistration:
         )
     else:
         raise DeserializationError("TaxRegistration.registration_type required")
-    if "legalName" in data:
+    if data.get("legalName") is not None:
         out["legal_name"] = data["legalName"]
     else:
         raise DeserializationError("TaxRegistration.legal_name required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_taxsettings.types.tax_registration_status
 
         out["status"] = capo_taxsettings.types.tax_registration_status.deserialize_json(
@@ -122,11 +122,11 @@ def deserialize_json(data: dict) -> TaxRegistration:
         )
     else:
         raise DeserializationError("TaxRegistration.status required")
-    if "sector" in data:
+    if data.get("sector") is not None:
         import capo_taxsettings.types.sector
 
         out["sector"] = capo_taxsettings.types.sector.deserialize_json(data["sector"])
-    if "taxDocumentMetadatas" in data:
+    if data.get("taxDocumentMetadatas") is not None:
         import capo_taxsettings.types.tax_document_metadatas
 
         out["tax_document_metadatas"] = (
@@ -134,9 +134,9 @@ def deserialize_json(data: dict) -> TaxRegistration:
                 data["taxDocumentMetadatas"]
             )
         )
-    if "certifiedEmailId" in data:
+    if data.get("certifiedEmailId") is not None:
         out["certified_email_id"] = data["certifiedEmailId"]
-    if "additionalTaxInformation" in data:
+    if data.get("additionalTaxInformation") is not None:
         import capo_taxsettings.types.additional_info_response
 
         out["additional_tax_information"] = (
@@ -144,7 +144,7 @@ def deserialize_json(data: dict) -> TaxRegistration:
                 data["additionalTaxInformation"]
             )
         )
-    if "legalAddress" in data:
+    if data.get("legalAddress") is not None:
         import capo_taxsettings.types.address
 
         out["legal_address"] = capo_taxsettings.types.address.deserialize_json(

@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> DefaultCategoricalHyperParameterRang
 
     out: DefaultCategoricalHyperParameterRanges = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_personalize.types.default_categorical_hyper_parameter_range.deserialize_aws_json_1_1(
                 item

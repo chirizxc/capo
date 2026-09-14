@@ -43,7 +43,7 @@ def serialize_json(value: ListIdentityPropagationConfigsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListIdentityPropagationConfigsResponse:
     out: ListIdentityPropagationConfigsResponse = {}  # type: ignore[typeddict-item]
-    if "Services" in data:
+    if data.get("Services") is not None:
         import capo_quicksight.types.authorized_targets_by_services
 
         out["services"] = (
@@ -51,8 +51,8 @@ def deserialize_json(data: dict) -> ListIdentityPropagationConfigsResponse:
                 data["Services"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

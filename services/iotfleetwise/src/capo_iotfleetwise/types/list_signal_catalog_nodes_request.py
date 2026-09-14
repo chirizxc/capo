@@ -4,6 +4,8 @@ from typing import TYPE_CHECKING
 
 from typing_extensions import NotRequired, TypedDict
 
+from capo_iotfleetwise.errors import DeserializationError
+
 if TYPE_CHECKING:
     import capo_iotfleetwise.types.max_results
     import capo_iotfleetwise.types.next_token
@@ -27,9 +29,38 @@ class ListSignalCatalogNodesRequest(TypedDict, closed=True):
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: ListSignalCatalogNodesRequest) -> dict:
     out: dict = {}
+    out["name"] = value["name"]
+    if "next_token" in value:
+        out["nextToken"] = value["next_token"]
+    if "max_results" in value:
+        out["maxResults"] = value["max_results"]
+    if "signal_node_type" in value:
+        import capo_iotfleetwise.types.signal_node_type
+
+        out["signalNodeType"] = (
+            capo_iotfleetwise.types.signal_node_type.serialize_aws_json_1_0(
+                value["signal_node_type"]
+            )
+        )
     return out
 
 
 def deserialize_aws_json_1_0(data: dict) -> ListSignalCatalogNodesRequest:
     out: ListSignalCatalogNodesRequest = {}  # type: ignore[typeddict-item]
+    if data.get("name") is not None:
+        out["name"] = data["name"]
+    else:
+        raise DeserializationError("ListSignalCatalogNodesRequest.name required")
+    if data.get("nextToken") is not None:
+        out["next_token"] = data["nextToken"]
+    if data.get("maxResults") is not None:
+        out["max_results"] = data["maxResults"]
+    if data.get("signalNodeType") is not None:
+        import capo_iotfleetwise.types.signal_node_type
+
+        out["signal_node_type"] = (
+            capo_iotfleetwise.types.signal_node_type.deserialize_aws_json_1_0(
+                data["signalNodeType"]
+            )
+        )
     return out

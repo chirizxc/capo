@@ -34,10 +34,10 @@ def serialize_json(value: AwsEcsServiceCapacityProviderStrategyDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEcsServiceCapacityProviderStrategyDetails:
     out: AwsEcsServiceCapacityProviderStrategyDetails = {}  # type: ignore[typeddict-item]
-    if "Base" in data:
+    if data.get("Base") is not None:
         out["base"] = data["Base"]
-    if "CapacityProvider" in data:
+    if data.get("CapacityProvider") is not None:
         out["capacity_provider"] = data["CapacityProvider"]
-    if "Weight" in data:
+    if data.get("Weight") is not None:
         out["weight"] = data["Weight"]
     return out

@@ -50,23 +50,23 @@ def serialize_aws_json_1_0(value: Revision) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Revision:
     out: Revision = {}  # type: ignore[typeddict-item]
-    if "Branch" in data:
+    if data.get("Branch") is not None:
         out["branch"] = data["Branch"]
     else:
         raise DeserializationError("Revision.branch required")
-    if "Directory" in data:
+    if data.get("Directory") is not None:
         out["directory"] = data["Directory"]
     else:
         raise DeserializationError("Revision.directory required")
-    if "OwnerId" in data:
+    if data.get("OwnerId") is not None:
         out["owner_id"] = data["OwnerId"]
     else:
         raise DeserializationError("Revision.owner_id required")
-    if "RepositoryName" in data:
+    if data.get("RepositoryName") is not None:
         out["repository_name"] = data["RepositoryName"]
     else:
         raise DeserializationError("Revision.repository_name required")
-    if "ProviderType" in data:
+    if data.get("ProviderType") is not None:
         import capo_codestar_connections.types.provider_type
 
         out["provider_type"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_0(data: dict) -> Revision:
         )
     else:
         raise DeserializationError("Revision.provider_type required")
-    if "Sha" in data:
+    if data.get("Sha") is not None:
         out["sha"] = data["Sha"]
     else:
         raise DeserializationError("Revision.sha required")

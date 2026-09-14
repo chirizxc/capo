@@ -27,11 +27,11 @@ def serialize_json(value: AssociateTrustStoreResponse) -> dict:
 
 def deserialize_json(data: dict) -> AssociateTrustStoreResponse:
     out: AssociateTrustStoreResponse = {}  # type: ignore[typeddict-item]
-    if "portalArn" in data:
+    if data.get("portalArn") is not None:
         out["portal_arn"] = data["portalArn"]
     else:
         raise DeserializationError("AssociateTrustStoreResponse.portal_arn required")
-    if "trustStoreArn" in data:
+    if data.get("trustStoreArn") is not None:
         out["trust_store_arn"] = data["trustStoreArn"]
     else:
         raise DeserializationError(

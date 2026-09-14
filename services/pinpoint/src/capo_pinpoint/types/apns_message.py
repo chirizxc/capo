@@ -110,37 +110,37 @@ def serialize_json(value: APNSMessage) -> dict:
 
 def deserialize_json(data: dict) -> APNSMessage:
     out: APNSMessage = {}  # type: ignore[typeddict-item]
-    if "APNSPushType" in data:
+    if data.get("APNSPushType") is not None:
         out["apns_push_type"] = data["APNSPushType"]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_pinpoint.types.action
 
         out["action"] = capo_pinpoint.types.action.deserialize_json(data["Action"])
-    if "Badge" in data:
+    if data.get("Badge") is not None:
         out["badge"] = data["Badge"]
-    if "Body" in data:
+    if data.get("Body") is not None:
         out["body"] = data["Body"]
-    if "Category" in data:
+    if data.get("Category") is not None:
         out["category"] = data["Category"]
-    if "CollapseId" in data:
+    if data.get("CollapseId") is not None:
         out["collapse_id"] = data["CollapseId"]
-    if "Data" in data:
+    if data.get("Data") is not None:
         import capo_pinpoint.types.map_of__string
 
         out["data"] = capo_pinpoint.types.map_of__string.deserialize_json(data["Data"])
-    if "MediaUrl" in data:
+    if data.get("MediaUrl") is not None:
         out["media_url"] = data["MediaUrl"]
-    if "PreferredAuthenticationMethod" in data:
+    if data.get("PreferredAuthenticationMethod") is not None:
         out["preferred_authentication_method"] = data["PreferredAuthenticationMethod"]
-    if "Priority" in data:
+    if data.get("Priority") is not None:
         out["priority"] = data["Priority"]
-    if "RawContent" in data:
+    if data.get("RawContent") is not None:
         out["raw_content"] = data["RawContent"]
-    if "SilentPush" in data:
+    if data.get("SilentPush") is not None:
         out["silent_push"] = data["SilentPush"]
-    if "Sound" in data:
+    if data.get("Sound") is not None:
         out["sound"] = data["Sound"]
-    if "Substitutions" in data:
+    if data.get("Substitutions") is not None:
         import capo_pinpoint.types.map_of_list_of__string
 
         out["substitutions"] = (
@@ -148,12 +148,12 @@ def deserialize_json(data: dict) -> APNSMessage:
                 data["Substitutions"]
             )
         )
-    if "ThreadId" in data:
+    if data.get("ThreadId") is not None:
         out["thread_id"] = data["ThreadId"]
-    if "TimeToLive" in data:
+    if data.get("TimeToLive") is not None:
         out["time_to_live"] = data["TimeToLive"]
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
     return out

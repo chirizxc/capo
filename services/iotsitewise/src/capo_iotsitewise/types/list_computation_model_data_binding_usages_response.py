@@ -35,7 +35,7 @@ def serialize_json(value: ListComputationModelDataBindingUsagesResponse) -> dict
 
 def deserialize_json(data: dict) -> ListComputationModelDataBindingUsagesResponse:
     out: ListComputationModelDataBindingUsagesResponse = {}  # type: ignore[typeddict-item]
-    if "dataBindingUsageSummaries" in data:
+    if data.get("dataBindingUsageSummaries") is not None:
         import capo_iotsitewise.types.computation_model_data_binding_usage_summaries
 
         out["data_binding_usage_summaries"] = (
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> ListComputationModelDataBindingUsagesRespons
         raise DeserializationError(
             "ListComputationModelDataBindingUsagesResponse.data_binding_usage_summaries required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

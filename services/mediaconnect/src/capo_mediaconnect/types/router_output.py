@@ -130,14 +130,14 @@ def serialize_json(value: RouterOutput) -> dict:
     out["tier"] = capo_mediaconnect.types.router_output_tier.serialize_json(
         value["tier"]
     )
-    import capo_mediaconnect.types._prelude.timestamp
+    import capo_mediaconnect._protocol.serialize
 
-    out["createdAt"] = capo_mediaconnect.types._prelude.timestamp.serialize_json(
+    out["createdAt"] = capo_mediaconnect._protocol.serialize.fmt_date_time(
         value["created_at"]
     )
-    import capo_mediaconnect.types._prelude.timestamp
+    import capo_mediaconnect._protocol.serialize
 
-    out["updatedAt"] = capo_mediaconnect.types._prelude.timestamp.serialize_json(
+    out["updatedAt"] = capo_mediaconnect._protocol.serialize.fmt_date_time(
         value["updated_at"]
     )
     import capo_mediaconnect.types.router_output_messages
@@ -192,19 +192,19 @@ def serialize_json(value: RouterOutput) -> dict:
 
 def deserialize_json(data: dict) -> RouterOutput:
     out: RouterOutput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("RouterOutput.name required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("RouterOutput.arn required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("RouterOutput.id required")
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_mediaconnect.types.router_output_state
 
         out["state"] = capo_mediaconnect.types.router_output_state.deserialize_json(
@@ -212,7 +212,7 @@ def deserialize_json(data: dict) -> RouterOutput:
         )
     else:
         raise DeserializationError("RouterOutput.state required")
-    if "outputType" in data:
+    if data.get("outputType") is not None:
         import capo_mediaconnect.types.router_output_type
 
         out["output_type"] = (
@@ -222,7 +222,7 @@ def deserialize_json(data: dict) -> RouterOutput:
         )
     else:
         raise DeserializationError("RouterOutput.output_type required")
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_mediaconnect.types.router_output_configuration
 
         out["configuration"] = (
@@ -232,7 +232,7 @@ def deserialize_json(data: dict) -> RouterOutput:
         )
     else:
         raise DeserializationError("RouterOutput.configuration required")
-    if "routedState" in data:
+    if data.get("routedState") is not None:
         import capo_mediaconnect.types.router_output_routed_state
 
         out["routed_state"] = (
@@ -242,19 +242,19 @@ def deserialize_json(data: dict) -> RouterOutput:
         )
     else:
         raise DeserializationError("RouterOutput.routed_state required")
-    if "regionName" in data:
+    if data.get("regionName") is not None:
         out["region_name"] = data["regionName"]
     else:
         raise DeserializationError("RouterOutput.region_name required")
-    if "availabilityZone" in data:
+    if data.get("availabilityZone") is not None:
         out["availability_zone"] = data["availabilityZone"]
     else:
         raise DeserializationError("RouterOutput.availability_zone required")
-    if "maximumBitrate" in data:
+    if data.get("maximumBitrate") is not None:
         out["maximum_bitrate"] = data["maximumBitrate"]
     else:
         raise DeserializationError("RouterOutput.maximum_bitrate required")
-    if "routingScope" in data:
+    if data.get("routingScope") is not None:
         import capo_mediaconnect.types.routing_scope
 
         out["routing_scope"] = capo_mediaconnect.types.routing_scope.deserialize_json(
@@ -262,7 +262,7 @@ def deserialize_json(data: dict) -> RouterOutput:
         )
     else:
         raise DeserializationError("RouterOutput.routing_scope required")
-    if "tier" in data:
+    if data.get("tier") is not None:
         import capo_mediaconnect.types.router_output_tier
 
         out["tier"] = capo_mediaconnect.types.router_output_tier.deserialize_json(
@@ -270,23 +270,23 @@ def deserialize_json(data: dict) -> RouterOutput:
         )
     else:
         raise DeserializationError("RouterOutput.tier required")
-    if "createdAt" in data:
-        import capo_mediaconnect.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = capo_mediaconnect.types._prelude.timestamp.deserialize_json(
-            data["createdAt"]
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("RouterOutput.created_at required")
-    if "updatedAt" in data:
-        import capo_mediaconnect.types._prelude.timestamp
+    if data.get("updatedAt") is not None:
+        import datetime
 
-        out["updated_at"] = capo_mediaconnect.types._prelude.timestamp.deserialize_json(
-            data["updatedAt"]
+        out["updated_at"] = datetime.datetime.fromisoformat(
+            data["updatedAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("RouterOutput.updated_at required")
-    if "messages" in data:
+    if data.get("messages") is not None:
         import capo_mediaconnect.types.router_output_messages
 
         out["messages"] = (
@@ -296,7 +296,7 @@ def deserialize_json(data: dict) -> RouterOutput:
         )
     else:
         raise DeserializationError("RouterOutput.messages required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mediaconnect.types.__map_of_string
 
         out["tags"] = capo_mediaconnect.types.__map_of_string.deserialize_json(
@@ -304,7 +304,7 @@ def deserialize_json(data: dict) -> RouterOutput:
         )
     else:
         raise DeserializationError("RouterOutput.tags required")
-    if "streamDetails" in data:
+    if data.get("streamDetails") is not None:
         import capo_mediaconnect.types.router_output_stream_details
 
         out["stream_details"] = (
@@ -314,11 +314,11 @@ def deserialize_json(data: dict) -> RouterOutput:
         )
     else:
         raise DeserializationError("RouterOutput.stream_details required")
-    if "ipAddress" in data:
+    if data.get("ipAddress") is not None:
         out["ip_address"] = data["ipAddress"]
-    if "routedInputArn" in data:
+    if data.get("routedInputArn") is not None:
         out["routed_input_arn"] = data["routedInputArn"]
-    if "maintenanceType" in data:
+    if data.get("maintenanceType") is not None:
         import capo_mediaconnect.types.maintenance_type
 
         out["maintenance_type"] = (
@@ -328,7 +328,7 @@ def deserialize_json(data: dict) -> RouterOutput:
         )
     else:
         raise DeserializationError("RouterOutput.maintenance_type required")
-    if "maintenanceConfiguration" in data:
+    if data.get("maintenanceConfiguration") is not None:
         import capo_mediaconnect.types.maintenance_configuration
 
         out["maintenance_configuration"] = (
@@ -338,7 +338,7 @@ def deserialize_json(data: dict) -> RouterOutput:
         )
     else:
         raise DeserializationError("RouterOutput.maintenance_configuration required")
-    if "maintenanceScheduleType" in data:
+    if data.get("maintenanceScheduleType") is not None:
         import capo_mediaconnect.types.maintenance_schedule_type
 
         out["maintenance_schedule_type"] = (
@@ -346,7 +346,7 @@ def deserialize_json(data: dict) -> RouterOutput:
                 data["maintenanceScheduleType"]
             )
         )
-    if "maintenanceSchedule" in data:
+    if data.get("maintenanceSchedule") is not None:
         import capo_mediaconnect.types.maintenance_schedule
 
         out["maintenance_schedule"] = (

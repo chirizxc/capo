@@ -190,7 +190,9 @@ class ProviderResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_geo_routes.types.calculate_isolines_request.CalculateIsolinesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_geo_routes.types.calculate_isolines_request.CalculateIsolinesRequest = {
+            "thresholds": thresholds
+        }
         if allow is not None:
             input_["allow"] = allow
         if arrival_time is not None:
@@ -219,7 +221,6 @@ class ProviderResource:
             input_["origin"] = origin
         if origin_options is not None:
             input_["origin_options"] = origin_options
-        input_["thresholds"] = thresholds
         if traffic is not None:
             input_["traffic"] = traffic
         if travel_mode is not None:
@@ -232,6 +233,7 @@ class ProviderResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def calculate_route_matrix(
@@ -312,7 +314,10 @@ class ProviderResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_geo_routes.types.calculate_route_matrix_request.CalculateRouteMatrixRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_geo_routes.types.calculate_route_matrix_request.CalculateRouteMatrixRequest = {
+            "destinations": destinations,
+            "origins": origins,
+        }
         if allow is not None:
             input_["allow"] = allow
         if avoid is not None:
@@ -321,14 +326,12 @@ class ProviderResource:
             input_["depart_now"] = depart_now
         if departure_time is not None:
             input_["departure_time"] = departure_time
-        input_["destinations"] = destinations
         if exclude is not None:
             input_["exclude"] = exclude
         if key is not None:
             input_["key"] = key
         if optimize_routing_for is not None:
             input_["optimize_routing_for"] = optimize_routing_for
-        input_["origins"] = origins
         if routing_boundary is not None:
             input_["routing_boundary"] = routing_boundary
         if traffic is not None:
@@ -343,6 +346,7 @@ class ProviderResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def calculate_routes(
@@ -469,7 +473,10 @@ class ProviderResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_geo_routes.types.calculate_routes_request.CalculateRoutesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_geo_routes.types.calculate_routes_request.CalculateRoutesRequest = {
+            "destination": destination,
+            "origin": origin,
+        }
         if allow is not None:
             input_["allow"] = allow
         if arrival_time is not None:
@@ -480,7 +487,6 @@ class ProviderResource:
             input_["depart_now"] = depart_now
         if departure_time is not None:
             input_["departure_time"] = departure_time
-        input_["destination"] = destination
         if destination_options is not None:
             input_["destination_options"] = destination_options
         if driver is not None:
@@ -501,7 +507,6 @@ class ProviderResource:
             input_["max_alternatives"] = max_alternatives
         if optimize_routing_for is not None:
             input_["optimize_routing_for"] = optimize_routing_for
-        input_["origin"] = origin
         if origin_options is not None:
             input_["origin_options"] = origin_options
         if span_additional_features is not None:
@@ -524,6 +529,7 @@ class ProviderResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def optimize_waypoints(
@@ -612,7 +618,9 @@ class ProviderResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_geo_routes.types.optimize_waypoints_request.OptimizeWaypointsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_geo_routes.types.optimize_waypoints_request.OptimizeWaypointsRequest = {
+            "origin": origin
+        }
         if avoid is not None:
             input_["avoid"] = avoid
         if clustering is not None:
@@ -631,7 +639,6 @@ class ProviderResource:
             input_["key"] = key
         if optimize_sequencing_for is not None:
             input_["optimize_sequencing_for"] = optimize_sequencing_for
-        input_["origin"] = origin
         if origin_options is not None:
             input_["origin_options"] = origin_options
         if traffic is not None:
@@ -648,6 +655,7 @@ class ProviderResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def snap_to_roads(
@@ -702,14 +710,15 @@ class ProviderResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_geo_routes.types.snap_to_roads_request.SnapToRoadsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_geo_routes.types.snap_to_roads_request.SnapToRoadsRequest = {
+            "trace_points": trace_points
+        }
         if key is not None:
             input_["key"] = key
         if snapped_geometry_format is not None:
             input_["snapped_geometry_format"] = snapped_geometry_format
         if snap_radius is not None:
             input_["snap_radius"] = snap_radius
-        input_["trace_points"] = trace_points
         if travel_mode is not None:
             input_["travel_mode"] = travel_mode
         if travel_mode_options is not None:
@@ -720,6 +729,7 @@ class ProviderResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -824,7 +834,9 @@ class AsyncProviderResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_geo_routes.types.calculate_isolines_request.CalculateIsolinesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_geo_routes.types.calculate_isolines_request.CalculateIsolinesRequest = {
+            "thresholds": thresholds
+        }
         if allow is not None:
             input_["allow"] = allow
         if arrival_time is not None:
@@ -853,7 +865,6 @@ class AsyncProviderResource:
             input_["origin"] = origin
         if origin_options is not None:
             input_["origin_options"] = origin_options
-        input_["thresholds"] = thresholds
         if traffic is not None:
             input_["traffic"] = traffic
         if travel_mode is not None:
@@ -866,6 +877,7 @@ class AsyncProviderResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def calculate_route_matrix(
@@ -947,7 +959,10 @@ class AsyncProviderResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_geo_routes.types.calculate_route_matrix_request.CalculateRouteMatrixRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_geo_routes.types.calculate_route_matrix_request.CalculateRouteMatrixRequest = {
+            "destinations": destinations,
+            "origins": origins,
+        }
         if allow is not None:
             input_["allow"] = allow
         if avoid is not None:
@@ -956,14 +971,12 @@ class AsyncProviderResource:
             input_["depart_now"] = depart_now
         if departure_time is not None:
             input_["departure_time"] = departure_time
-        input_["destinations"] = destinations
         if exclude is not None:
             input_["exclude"] = exclude
         if key is not None:
             input_["key"] = key
         if optimize_routing_for is not None:
             input_["optimize_routing_for"] = optimize_routing_for
-        input_["origins"] = origins
         if routing_boundary is not None:
             input_["routing_boundary"] = routing_boundary
         if traffic is not None:
@@ -978,6 +991,7 @@ class AsyncProviderResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def calculate_routes(
@@ -1105,7 +1119,10 @@ class AsyncProviderResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_geo_routes.types.calculate_routes_request.CalculateRoutesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_geo_routes.types.calculate_routes_request.CalculateRoutesRequest = {
+            "destination": destination,
+            "origin": origin,
+        }
         if allow is not None:
             input_["allow"] = allow
         if arrival_time is not None:
@@ -1116,7 +1133,6 @@ class AsyncProviderResource:
             input_["depart_now"] = depart_now
         if departure_time is not None:
             input_["departure_time"] = departure_time
-        input_["destination"] = destination
         if destination_options is not None:
             input_["destination_options"] = destination_options
         if driver is not None:
@@ -1137,7 +1153,6 @@ class AsyncProviderResource:
             input_["max_alternatives"] = max_alternatives
         if optimize_routing_for is not None:
             input_["optimize_routing_for"] = optimize_routing_for
-        input_["origin"] = origin
         if origin_options is not None:
             input_["origin_options"] = origin_options
         if span_additional_features is not None:
@@ -1160,6 +1175,7 @@ class AsyncProviderResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def optimize_waypoints(
@@ -1249,7 +1265,9 @@ class AsyncProviderResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_geo_routes.types.optimize_waypoints_request.OptimizeWaypointsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_geo_routes.types.optimize_waypoints_request.OptimizeWaypointsRequest = {
+            "origin": origin
+        }
         if avoid is not None:
             input_["avoid"] = avoid
         if clustering is not None:
@@ -1268,7 +1286,6 @@ class AsyncProviderResource:
             input_["key"] = key
         if optimize_sequencing_for is not None:
             input_["optimize_sequencing_for"] = optimize_sequencing_for
-        input_["origin"] = origin
         if origin_options is not None:
             input_["origin_options"] = origin_options
         if traffic is not None:
@@ -1285,6 +1302,7 @@ class AsyncProviderResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def snap_to_roads(
@@ -1340,14 +1358,15 @@ class AsyncProviderResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_geo_routes.types.snap_to_roads_request.SnapToRoadsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_geo_routes.types.snap_to_roads_request.SnapToRoadsRequest = {
+            "trace_points": trace_points
+        }
         if key is not None:
             input_["key"] = key
         if snapped_geometry_format is not None:
             input_["snapped_geometry_format"] = snapped_geometry_format
         if snap_radius is not None:
             input_["snap_radius"] = snap_radius
-        input_["trace_points"] = trace_points
         if travel_mode is not None:
             input_["travel_mode"] = travel_mode
         if travel_mode_options is not None:
@@ -1358,4 +1377,5 @@ class AsyncProviderResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

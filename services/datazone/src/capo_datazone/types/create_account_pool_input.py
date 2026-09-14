@@ -48,13 +48,13 @@ def serialize_json(value: CreateAccountPoolInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateAccountPoolInput:
     out: CreateAccountPoolInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateAccountPoolInput.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "resolutionStrategy" in data:
+    if data.get("resolutionStrategy") is not None:
         import capo_datazone.types.resolution_strategy
 
         out["resolution_strategy"] = (
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> CreateAccountPoolInput:
         raise DeserializationError(
             "CreateAccountPoolInput.resolution_strategy required"
         )
-    if "accountSource" in data:
+    if data.get("accountSource") is not None:
         import capo_datazone.types.account_source
 
         out["account_source"] = capo_datazone.types.account_source.deserialize_json(

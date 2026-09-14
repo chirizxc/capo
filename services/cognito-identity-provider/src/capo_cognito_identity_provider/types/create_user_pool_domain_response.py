@@ -45,11 +45,11 @@ def serialize_aws_json_1_1(value: CreateUserPoolDomainResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateUserPoolDomainResponse:
     out: CreateUserPoolDomainResponse = {}  # type: ignore[typeddict-item]
-    if "ManagedLoginVersion" in data:
+    if data.get("ManagedLoginVersion") is not None:
         out["managed_login_version"] = data["ManagedLoginVersion"]
-    if "CloudFrontDomain" in data:
+    if data.get("CloudFrontDomain") is not None:
         out["cloud_front_domain"] = data["CloudFrontDomain"]
-    if "Routing" in data:
+    if data.get("Routing") is not None:
         import capo_cognito_identity_provider.types.routing_type
 
         out["routing"] = (

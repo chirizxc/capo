@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> PointsOfInterest:
 
     out: PointsOfInterest = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect_contact_lens.types.point_of_interest.deserialize_json(item)
         )

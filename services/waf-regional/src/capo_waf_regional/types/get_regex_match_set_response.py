@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetRegexMatchSetResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetRegexMatchSetResponse:
     out: GetRegexMatchSetResponse = {}  # type: ignore[typeddict-item]
-    if "RegexMatchSet" in data:
+    if data.get("RegexMatchSet") is not None:
         import capo_waf_regional.types.regex_match_set
 
         out["regex_match_set"] = (

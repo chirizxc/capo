@@ -36,12 +36,12 @@ def serialize_aws_json_1_1(value: EMRStepMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EMRStepMetadata:
     out: EMRStepMetadata = {}  # type: ignore[typeddict-item]
-    if "ClusterId" in data:
+    if data.get("ClusterId") is not None:
         out["cluster_id"] = data["ClusterId"]
-    if "StepId" in data:
+    if data.get("StepId") is not None:
         out["step_id"] = data["StepId"]
-    if "StepName" in data:
+    if data.get("StepName") is not None:
         out["step_name"] = data["StepName"]
-    if "LogFilePath" in data:
+    if data.get("LogFilePath") is not None:
         out["log_file_path"] = data["LogFilePath"]
     return out

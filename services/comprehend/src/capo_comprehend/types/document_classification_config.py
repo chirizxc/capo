@@ -37,7 +37,7 @@ def serialize_aws_json_1_1(value: DocumentClassificationConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DocumentClassificationConfig:
     out: DocumentClassificationConfig = {}  # type: ignore[typeddict-item]
-    if "Mode" in data:
+    if data.get("Mode") is not None:
         import capo_comprehend.types.document_classifier_mode
 
         out["mode"] = (
@@ -47,7 +47,7 @@ def deserialize_aws_json_1_1(data: dict) -> DocumentClassificationConfig:
         )
     else:
         raise DeserializationError("DocumentClassificationConfig.mode required")
-    if "Labels" in data:
+    if data.get("Labels") is not None:
         import capo_comprehend.types.labels_list
 
         out["labels"] = capo_comprehend.types.labels_list.deserialize_aws_json_1_1(

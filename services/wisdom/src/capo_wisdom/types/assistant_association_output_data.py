@@ -36,7 +36,7 @@ def serialize_json(value: AssistantAssociationOutputData) -> dict:
 
 
 def deserialize_json(data: dict) -> AssistantAssociationOutputData:
-    if "knowledgeBaseAssociation" in data:
+    if data.get("knowledgeBaseAssociation") is not None:
         import capo_wisdom.types.knowledge_base_association_data
 
         return {

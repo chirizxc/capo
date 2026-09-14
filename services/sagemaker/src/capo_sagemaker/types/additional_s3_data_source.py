@@ -54,7 +54,7 @@ def serialize_aws_json_1_1(value: AdditionalS3DataSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AdditionalS3DataSource:
     out: AdditionalS3DataSource = {}  # type: ignore[typeddict-item]
-    if "S3DataType" in data:
+    if data.get("S3DataType") is not None:
         import capo_sagemaker.types.additional_s3_data_source_data_type
 
         out["s3_data_type"] = (
@@ -62,9 +62,9 @@ def deserialize_aws_json_1_1(data: dict) -> AdditionalS3DataSource:
                 data["S3DataType"]
             )
         )
-    if "S3Uri" in data:
+    if data.get("S3Uri") is not None:
         out["s3_uri"] = data["S3Uri"]
-    if "CompressionType" in data:
+    if data.get("CompressionType") is not None:
         import capo_sagemaker.types.compression_type
 
         out["compression_type"] = (
@@ -72,6 +72,6 @@ def deserialize_aws_json_1_1(data: dict) -> AdditionalS3DataSource:
                 data["CompressionType"]
             )
         )
-    if "ETag" in data:
+    if data.get("ETag") is not None:
         out["e_tag"] = data["ETag"]
     return out

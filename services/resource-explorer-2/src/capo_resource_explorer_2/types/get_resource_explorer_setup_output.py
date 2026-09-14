@@ -35,7 +35,7 @@ def serialize_json(value: GetResourceExplorerSetupOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetResourceExplorerSetupOutput:
     out: GetResourceExplorerSetupOutput = {}  # type: ignore[typeddict-item]
-    if "Regions" in data:
+    if data.get("Regions") is not None:
         import capo_resource_explorer_2.types.region_status_list
 
         out["regions"] = (
@@ -43,6 +43,6 @@ def deserialize_json(data: dict) -> GetResourceExplorerSetupOutput:
                 data["Regions"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

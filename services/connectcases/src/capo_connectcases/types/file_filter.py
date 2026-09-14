@@ -23,6 +23,6 @@ def serialize_json(value: FileFilter) -> dict:
 
 def deserialize_json(data: dict) -> FileFilter:
     out: FileFilter = {}  # type: ignore[typeddict-item]
-    if "fileArn" in data:
+    if data.get("fileArn") is not None:
         out["file_arn"] = data["fileArn"]
     return out

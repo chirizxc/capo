@@ -32,7 +32,7 @@ def serialize_json(value: Policy) -> dict:
 
 
 def deserialize_json(data: dict) -> Policy:
-    if "SecurityHub" in data:
+    if data.get("SecurityHub") is not None:
         import capo_securityhub.types.security_hub_policy
 
         return {

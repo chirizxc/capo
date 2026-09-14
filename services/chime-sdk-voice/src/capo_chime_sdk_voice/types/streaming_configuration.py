@@ -56,17 +56,17 @@ def serialize_json(value: StreamingConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> StreamingConfiguration:
     out: StreamingConfiguration = {}  # type: ignore[typeddict-item]
-    if "DataRetentionInHours" in data:
+    if data.get("DataRetentionInHours") is not None:
         out["data_retention_in_hours"] = data["DataRetentionInHours"]
     else:
         raise DeserializationError(
             "StreamingConfiguration.data_retention_in_hours required"
         )
-    if "Disabled" in data:
+    if data.get("Disabled") is not None:
         out["disabled"] = data["Disabled"]
     else:
         raise DeserializationError("StreamingConfiguration.disabled required")
-    if "StreamingNotificationTargets" in data:
+    if data.get("StreamingNotificationTargets") is not None:
         import capo_chime_sdk_voice.types.streaming_notification_target_list
 
         out["streaming_notification_targets"] = (
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> StreamingConfiguration:
                 data["StreamingNotificationTargets"]
             )
         )
-    if "MediaInsightsConfiguration" in data:
+    if data.get("MediaInsightsConfiguration") is not None:
         import capo_chime_sdk_voice.types.media_insights_configuration
 
         out["media_insights_configuration"] = (

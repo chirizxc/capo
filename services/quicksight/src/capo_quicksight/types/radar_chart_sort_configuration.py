@@ -66,7 +66,7 @@ def serialize_json(value: RadarChartSortConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> RadarChartSortConfiguration:
     out: RadarChartSortConfiguration = {}  # type: ignore[typeddict-item]
-    if "CategorySort" in data:
+    if data.get("CategorySort") is not None:
         import capo_quicksight.types.field_sort_options_list
 
         out["category_sort"] = (
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> RadarChartSortConfiguration:
                 data["CategorySort"]
             )
         )
-    if "CategoryItemsLimit" in data:
+    if data.get("CategoryItemsLimit") is not None:
         import capo_quicksight.types.items_limit_configuration
 
         out["category_items_limit"] = (
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> RadarChartSortConfiguration:
                 data["CategoryItemsLimit"]
             )
         )
-    if "ColorSort" in data:
+    if data.get("ColorSort") is not None:
         import capo_quicksight.types.field_sort_options_list
 
         out["color_sort"] = (
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> RadarChartSortConfiguration:
                 data["ColorSort"]
             )
         )
-    if "ColorItemsLimit" in data:
+    if data.get("ColorItemsLimit") is not None:
         import capo_quicksight.types.items_limit_configuration
 
         out["color_items_limit"] = (

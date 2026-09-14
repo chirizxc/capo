@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> PortProbeDetailList:
 
     out: PortProbeDetailList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityhub.types.port_probe_detail.deserialize_json(item))
     return out

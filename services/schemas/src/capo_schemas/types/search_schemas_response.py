@@ -36,9 +36,9 @@ def serialize_json(value: SearchSchemasResponse) -> dict:
 
 def deserialize_json(data: dict) -> SearchSchemasResponse:
     out: SearchSchemasResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Schemas" in data:
+    if data.get("Schemas") is not None:
         import capo_schemas.types.__list_of_search_schema_summary
 
         out["schemas"] = (

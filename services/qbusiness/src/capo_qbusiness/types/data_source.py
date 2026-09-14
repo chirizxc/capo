@@ -59,25 +59,25 @@ def serialize_json(value: DataSource) -> dict:
 
 def deserialize_json(data: dict) -> DataSource:
     out: DataSource = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "dataSourceId" in data:
+    if data.get("dataSourceId") is not None:
         out["data_source_id"] = data["dataSourceId"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_qbusiness.types.timestamp
 
         out["created_at"] = capo_qbusiness.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_qbusiness.types.timestamp
 
         out["updated_at"] = capo_qbusiness.types.timestamp.deserialize_json(
             data["updatedAt"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_qbusiness.types.data_source_status
 
         out["status"] = capo_qbusiness.types.data_source_status.deserialize_json(

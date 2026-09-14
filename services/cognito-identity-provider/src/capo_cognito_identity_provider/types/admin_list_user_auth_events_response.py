@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: AdminListUserAuthEventsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AdminListUserAuthEventsResponse:
     out: AdminListUserAuthEventsResponse = {}  # type: ignore[typeddict-item]
-    if "AuthEvents" in data:
+    if data.get("AuthEvents") is not None:
         import capo_cognito_identity_provider.types.auth_events_type
 
         out["auth_events"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(data: dict) -> AdminListUserAuthEventsResponse:
                 data["AuthEvents"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -26,13 +26,21 @@ def serialize_json(value: AudienceQualityMetrics) -> dict:
         value["relevance_metrics"]
     )
     if "recall_metric" in value:
-        out["recallMetric"] = value["recall_metric"]
+        out["recallMetric"] = (
+            "NaN"
+            if value["recall_metric"] != value["recall_metric"]
+            else "Infinity"
+            if value["recall_metric"] == float("inf")
+            else "-Infinity"
+            if value["recall_metric"] == float("-inf")
+            else value["recall_metric"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> AudienceQualityMetrics:
     out: AudienceQualityMetrics = {}  # type: ignore[typeddict-item]
-    if "relevanceMetrics" in data:
+    if data.get("relevanceMetrics") is not None:
         import capo_cleanroomsml.types.relevance_metrics
 
         out["relevance_metrics"] = (
@@ -42,6 +50,6 @@ def deserialize_json(data: dict) -> AudienceQualityMetrics:
         )
     else:
         raise DeserializationError("AudienceQualityMetrics.relevance_metrics required")
-    if "recallMetric" in data:
-        out["recall_metric"] = data["recallMetric"]
+    if data.get("recallMetric") is not None:
+        out["recall_metric"] = float(data["recallMetric"])
     return out

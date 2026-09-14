@@ -58,15 +58,15 @@ def serialize_json(value: DatastoreSummary) -> dict:
 
 def deserialize_json(data: dict) -> DatastoreSummary:
     out: DatastoreSummary = {}  # type: ignore[typeddict-item]
-    if "datastoreId" in data:
+    if data.get("datastoreId") is not None:
         out["datastore_id"] = data["datastoreId"]
     else:
         raise DeserializationError("DatastoreSummary.datastore_id required")
-    if "datastoreName" in data:
+    if data.get("datastoreName") is not None:
         out["datastore_name"] = data["datastoreName"]
     else:
         raise DeserializationError("DatastoreSummary.datastore_name required")
-    if "datastoreStatus" in data:
+    if data.get("datastoreStatus") is not None:
         import capo_medical_imaging.types.datastore_status
 
         out["datastore_status"] = (
@@ -76,15 +76,15 @@ def deserialize_json(data: dict) -> DatastoreSummary:
         )
     else:
         raise DeserializationError("DatastoreSummary.datastore_status required")
-    if "datastoreArn" in data:
+    if data.get("datastoreArn") is not None:
         out["datastore_arn"] = data["datastoreArn"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_medical_imaging.types.date
 
         out["created_at"] = capo_medical_imaging.types.date.deserialize_json(
             data["createdAt"]
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_medical_imaging.types.date
 
         out["updated_at"] = capo_medical_imaging.types.date.deserialize_json(

@@ -24,7 +24,7 @@ def serialize_json(value: GetSinkPolicyInput) -> dict:
 
 def deserialize_json(data: dict) -> GetSinkPolicyInput:
     out: GetSinkPolicyInput = {}  # type: ignore[typeddict-item]
-    if "SinkIdentifier" in data:
+    if data.get("SinkIdentifier") is not None:
         out["sink_identifier"] = data["SinkIdentifier"]
     else:
         raise DeserializationError("GetSinkPolicyInput.sink_identifier required")

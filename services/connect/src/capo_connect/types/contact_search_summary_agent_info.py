@@ -32,9 +32,9 @@ def serialize_json(value: ContactSearchSummaryAgentInfo) -> dict:
 
 def deserialize_json(data: dict) -> ContactSearchSummaryAgentInfo:
     out: ContactSearchSummaryAgentInfo = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "ConnectedToAgentTimestamp" in data:
+    if data.get("ConnectedToAgentTimestamp") is not None:
         import capo_connect.types.timestamp
 
         out["connected_to_agent_timestamp"] = (

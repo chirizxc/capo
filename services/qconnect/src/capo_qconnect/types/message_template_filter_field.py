@@ -45,11 +45,11 @@ def serialize_json(value: MessageTemplateFilterField) -> dict:
 
 def deserialize_json(data: dict) -> MessageTemplateFilterField:
     out: MessageTemplateFilterField = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("MessageTemplateFilterField.name required")
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_qconnect.types.message_template_filter_value_list
 
         out["values"] = (
@@ -57,10 +57,10 @@ def deserialize_json(data: dict) -> MessageTemplateFilterField:
                 data["values"]
             )
         )
-    if "operator" in data:
+    if data.get("operator") is not None:
         out["operator"] = data["operator"]
     else:
         raise DeserializationError("MessageTemplateFilterField.operator required")
-    if "includeNoExistence" in data:
+    if data.get("includeNoExistence") is not None:
         out["include_no_existence"] = data["includeNoExistence"]
     return out

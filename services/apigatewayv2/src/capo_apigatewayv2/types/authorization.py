@@ -34,13 +34,13 @@ def serialize_json(value: Authorization) -> dict:
 
 def deserialize_json(data: dict) -> Authorization:
     out: Authorization = {}  # type: ignore[typeddict-item]
-    if "cognitoConfig" in data:
+    if data.get("cognitoConfig") is not None:
         import capo_apigatewayv2.types.cognito_config
 
         out["cognito_config"] = capo_apigatewayv2.types.cognito_config.deserialize_json(
             data["cognitoConfig"]
         )
-    if "none" in data:
+    if data.get("none") is not None:
         import capo_apigatewayv2.types.none
 
         out["none"] = capo_apigatewayv2.types.none.deserialize_json(data["none"])

@@ -26,7 +26,7 @@ def serialize_json(value: ListInsightsOngoingStatusFilter) -> dict:
 
 def deserialize_json(data: dict) -> ListInsightsOngoingStatusFilter:
     out: ListInsightsOngoingStatusFilter = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_devops_guru.types.insight_type
 
         out["type"] = capo_devops_guru.types.insight_type.deserialize_json(data["Type"])

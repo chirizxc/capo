@@ -24,7 +24,7 @@ def serialize_json(value: InvalidSnsTopicArnException_) -> dict:
 
 def deserialize_json(data: dict) -> InvalidSnsTopicArnException_:
     out: InvalidSnsTopicArnException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,18 @@ class InvalidSnsTopicArnException(ServiceError):
 
     code: str | None = "InvalidSnsTopicArnException"
 
-    def __init__(self, data: InvalidSnsTopicArnException_):
+    def __init__(self, data: InvalidSnsTopicArnException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidSnsTopicArnException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "InvalidSnsTopicArnException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidSnsTopicArnException":
+        return cls(deserialize_json(data), message)

@@ -47,9 +47,9 @@ def serialize_json(value: MembershipAccountsConfigurationsUpdate) -> dict:
 
 def deserialize_json(data: dict) -> MembershipAccountsConfigurationsUpdate:
     out: MembershipAccountsConfigurationsUpdate = {}  # type: ignore[typeddict-item]
-    if "coverEntireOrganization" in data:
+    if data.get("coverEntireOrganization") is not None:
         out["cover_entire_organization"] = data["coverEntireOrganization"]
-    if "organizationalUnitsToAdd" in data:
+    if data.get("organizationalUnitsToAdd") is not None:
         import capo_security_ir.types.organizational_units
 
         out["organizational_units_to_add"] = (
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> MembershipAccountsConfigurationsUpdate:
                 data["organizationalUnitsToAdd"]
             )
         )
-    if "organizationalUnitsToRemove" in data:
+    if data.get("organizationalUnitsToRemove") is not None:
         import capo_security_ir.types.organizational_units
 
         out["organizational_units_to_remove"] = (

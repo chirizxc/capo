@@ -65,15 +65,15 @@ def serialize_json(value: Sequence) -> dict:
 
 def deserialize_json(data: dict) -> Sequence:
     out: Sequence = {}  # type: ignore[typeddict-item]
-    if "Uid" in data:
+    if data.get("Uid") is not None:
         out["uid"] = data["Uid"]
-    if "Actors" in data:
+    if data.get("Actors") is not None:
         import capo_securityhub.types.actors_list
 
         out["actors"] = capo_securityhub.types.actors_list.deserialize_json(
             data["Actors"]
         )
-    if "Endpoints" in data:
+    if data.get("Endpoints") is not None:
         import capo_securityhub.types.network_endpoints_list
 
         out["endpoints"] = (
@@ -81,13 +81,13 @@ def deserialize_json(data: dict) -> Sequence:
                 data["Endpoints"]
             )
         )
-    if "Signals" in data:
+    if data.get("Signals") is not None:
         import capo_securityhub.types.signals_list
 
         out["signals"] = capo_securityhub.types.signals_list.deserialize_json(
             data["Signals"]
         )
-    if "SequenceIndicators" in data:
+    if data.get("SequenceIndicators") is not None:
         import capo_securityhub.types.indicators_list
 
         out["sequence_indicators"] = (

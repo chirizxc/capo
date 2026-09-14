@@ -62,21 +62,21 @@ def serialize_aws_json_1_1(value: ProjectSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProjectSummary:
     out: ProjectSummary = {}  # type: ignore[typeddict-item]
-    if "ProjectName" in data:
+    if data.get("ProjectName") is not None:
         out["project_name"] = data["ProjectName"]
-    if "ProjectDescription" in data:
+    if data.get("ProjectDescription") is not None:
         out["project_description"] = data["ProjectDescription"]
-    if "ProjectArn" in data:
+    if data.get("ProjectArn") is not None:
         out["project_arn"] = data["ProjectArn"]
-    if "ProjectId" in data:
+    if data.get("ProjectId") is not None:
         out["project_id"] = data["ProjectId"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "ProjectStatus" in data:
+    if data.get("ProjectStatus") is not None:
         import capo_sagemaker.types.project_status
 
         out["project_status"] = (

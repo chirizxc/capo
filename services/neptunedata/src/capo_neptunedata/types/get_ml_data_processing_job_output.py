@@ -39,11 +39,11 @@ def serialize_json(value: GetMLDataProcessingJobOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetMLDataProcessingJobOutput:
     out: GetMLDataProcessingJobOutput = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "processingJob" in data:
+    if data.get("processingJob") is not None:
         import capo_neptunedata.types.ml_resource_definition
 
         out["processing_job"] = (

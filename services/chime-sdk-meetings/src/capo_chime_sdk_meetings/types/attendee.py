@@ -50,13 +50,13 @@ def serialize_json(value: Attendee) -> dict:
 
 def deserialize_json(data: dict) -> Attendee:
     out: Attendee = {}  # type: ignore[typeddict-item]
-    if "ExternalUserId" in data:
+    if data.get("ExternalUserId") is not None:
         out["external_user_id"] = data["ExternalUserId"]
-    if "AttendeeId" in data:
+    if data.get("AttendeeId") is not None:
         out["attendee_id"] = data["AttendeeId"]
-    if "JoinToken" in data:
+    if data.get("JoinToken") is not None:
         out["join_token"] = data["JoinToken"]
-    if "Capabilities" in data:
+    if data.get("Capabilities") is not None:
         import capo_chime_sdk_meetings.types.attendee_capabilities
 
         out["capabilities"] = (

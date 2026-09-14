@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> SavingsPlanPaymentOptionList:
 
     out: SavingsPlanPaymentOptionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_savingsplans.types.savings_plan_payment_option.deserialize_json(item)
         )

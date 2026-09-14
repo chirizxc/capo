@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: DeprecateDomainInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeprecateDomainInput:
     out: DeprecateDomainInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("DeprecateDomainInput.name required")

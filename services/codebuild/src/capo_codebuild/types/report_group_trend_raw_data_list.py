@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ReportGroupTrendRawDataList:
 
     out: ReportGroupTrendRawDataList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codebuild.types.report_with_raw_data.deserialize_aws_json_1_1(item)
         )

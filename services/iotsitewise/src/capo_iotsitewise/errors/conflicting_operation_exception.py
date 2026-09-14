@@ -32,17 +32,17 @@ def serialize_json(value: ConflictingOperationException_) -> dict:
 
 def deserialize_json(data: dict) -> ConflictingOperationException_:
     out: ConflictingOperationException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("ConflictingOperationException_.message required")
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         out["resource_id"] = data["resourceId"]
     else:
         raise DeserializationError(
             "ConflictingOperationException_.resource_id required"
         )
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     else:
         raise DeserializationError(
@@ -56,18 +56,23 @@ class ConflictingOperationException(ServiceError):
 
     code: str | None = "ConflictingOperationException"
 
-    def __init__(self, data: ConflictingOperationException_):
+    def __init__(
+        self, data: ConflictingOperationException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ConflictingOperationException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ConflictingOperationException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "ConflictingOperationException":
+        return cls(deserialize_json(data), message)
 
 
 def serialize_event_json(value: ConflictingOperationException_) -> bytes:

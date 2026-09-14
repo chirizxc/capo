@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: LabelNameCondition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LabelNameCondition:
     out: LabelNameCondition = {}  # type: ignore[typeddict-item]
-    if "LabelName" in data:
+    if data.get("LabelName") is not None:
         out["label_name"] = data["LabelName"]
     else:
         raise DeserializationError("LabelNameCondition.label_name required")

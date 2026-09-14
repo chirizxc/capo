@@ -76,9 +76,9 @@ def serialize_aws_json_1_1(value: GetCostCategoriesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetCostCategoriesRequest:
     out: GetCostCategoriesRequest = {}  # type: ignore[typeddict-item]
-    if "SearchString" in data:
+    if data.get("SearchString") is not None:
         out["search_string"] = data["SearchString"]
-    if "TimePeriod" in data:
+    if data.get("TimePeriod") is not None:
         import capo_cost_explorer.types.date_interval
 
         out["time_period"] = (
@@ -88,15 +88,15 @@ def deserialize_aws_json_1_1(data: dict) -> GetCostCategoriesRequest:
         )
     else:
         raise DeserializationError("GetCostCategoriesRequest.time_period required")
-    if "CostCategoryName" in data:
+    if data.get("CostCategoryName") is not None:
         out["cost_category_name"] = data["CostCategoryName"]
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_cost_explorer.types.expression
 
         out["filter"] = capo_cost_explorer.types.expression.deserialize_aws_json_1_1(
             data["Filter"]
         )
-    if "SortBy" in data:
+    if data.get("SortBy") is not None:
         import capo_cost_explorer.types.sort_definitions
 
         out["sort_by"] = (
@@ -104,10 +104,10 @@ def deserialize_aws_json_1_1(data: dict) -> GetCostCategoriesRequest:
                 data["SortBy"]
             )
         )
-    if "BillingViewArn" in data:
+    if data.get("BillingViewArn") is not None:
         out["billing_view_arn"] = data["BillingViewArn"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextPageToken" in data:
+    if data.get("NextPageToken") is not None:
         out["next_page_token"] = data["NextPageToken"]
     return out

@@ -26,13 +26,21 @@ def serialize_aws_json_1_1(value: ComparedSourceImageFace) -> dict:
             value["bounding_box"]
         )
     if "confidence" in value:
-        out["Confidence"] = value["confidence"]
+        out["Confidence"] = (
+            "NaN"
+            if value["confidence"] != value["confidence"]
+            else "Infinity"
+            if value["confidence"] == float("inf")
+            else "-Infinity"
+            if value["confidence"] == float("-inf")
+            else value["confidence"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> ComparedSourceImageFace:
     out: ComparedSourceImageFace = {}  # type: ignore[typeddict-item]
-    if "BoundingBox" in data:
+    if data.get("BoundingBox") is not None:
         import capo_rekognition.types.bounding_box
 
         out["bounding_box"] = (
@@ -40,6 +48,6 @@ def deserialize_aws_json_1_1(data: dict) -> ComparedSourceImageFace:
                 data["BoundingBox"]
             )
         )
-    if "Confidence" in data:
-        out["confidence"] = data["Confidence"]
+    if data.get("Confidence") is not None:
+        out["confidence"] = float(data["Confidence"])
     return out

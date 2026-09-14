@@ -65,7 +65,15 @@ def serialize_json(value: ExportTask) -> dict:
     if "status" in value:
         out["status"] = value["status"]
     if "progress_percentage" in value:
-        out["progressPercentage"] = value["progress_percentage"]
+        out["progressPercentage"] = (
+            "NaN"
+            if value["progress_percentage"] != value["progress_percentage"]
+            else "Infinity"
+            if value["progress_percentage"] == float("inf")
+            else "-Infinity"
+            if value["progress_percentage"] == float("-inf")
+            else value["progress_percentage"]
+        )
     if "summary" in value:
         import capo_mgn.types.export_task_summary
 
@@ -81,31 +89,31 @@ def serialize_json(value: ExportTask) -> dict:
 
 def deserialize_json(data: dict) -> ExportTask:
     out: ExportTask = {}  # type: ignore[typeddict-item]
-    if "exportID" in data:
+    if data.get("exportID") is not None:
         out["export_id"] = data["exportID"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "s3Bucket" in data:
+    if data.get("s3Bucket") is not None:
         out["s3_bucket"] = data["s3Bucket"]
-    if "s3Key" in data:
+    if data.get("s3Key") is not None:
         out["s3_key"] = data["s3Key"]
-    if "s3BucketOwner" in data:
+    if data.get("s3BucketOwner") is not None:
         out["s3_bucket_owner"] = data["s3BucketOwner"]
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         out["creation_date_time"] = data["creationDateTime"]
-    if "endDateTime" in data:
+    if data.get("endDateTime") is not None:
         out["end_date_time"] = data["endDateTime"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "progressPercentage" in data:
-        out["progress_percentage"] = data["progressPercentage"]
-    if "summary" in data:
+    if data.get("progressPercentage") is not None:
+        out["progress_percentage"] = float(data["progressPercentage"])
+    if data.get("summary") is not None:
         import capo_mgn.types.export_task_summary
 
         out["summary"] = capo_mgn.types.export_task_summary.deserialize_json(
             data["summary"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mgn.types.tags_map
 
         out["tags"] = capo_mgn.types.tags_map.deserialize_json(data["tags"])

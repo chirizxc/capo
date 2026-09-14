@@ -27,7 +27,7 @@ def serialize_json(value: CampaignState) -> dict:
 
 def deserialize_json(data: dict) -> CampaignState:
     out: CampaignState = {}  # type: ignore[typeddict-item]
-    if "CampaignStatus" in data:
+    if data.get("CampaignStatus") is not None:
         import capo_pinpoint.types.campaign_status
 
         out["campaign_status"] = capo_pinpoint.types.campaign_status.deserialize_json(

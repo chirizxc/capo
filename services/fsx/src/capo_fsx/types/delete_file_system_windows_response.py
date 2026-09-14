@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: DeleteFileSystemWindowsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteFileSystemWindowsResponse:
     out: DeleteFileSystemWindowsResponse = {}  # type: ignore[typeddict-item]
-    if "FinalBackupId" in data:
+    if data.get("FinalBackupId") is not None:
         out["final_backup_id"] = data["FinalBackupId"]
-    if "FinalBackupTags" in data:
+    if data.get("FinalBackupTags") is not None:
         import capo_fsx.types.tags
 
         out["final_backup_tags"] = capo_fsx.types.tags.deserialize_aws_json_1_1(

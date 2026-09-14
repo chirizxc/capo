@@ -45,21 +45,21 @@ def serialize_aws_json_1_1(value: ExportMetadataModelAssessmentMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExportMetadataModelAssessmentMessage:
     out: ExportMetadataModelAssessmentMessage = {}  # type: ignore[typeddict-item]
-    if "MigrationProjectIdentifier" in data:
+    if data.get("MigrationProjectIdentifier") is not None:
         out["migration_project_identifier"] = data["MigrationProjectIdentifier"]
     else:
         raise DeserializationError(
             "ExportMetadataModelAssessmentMessage.migration_project_identifier required"
         )
-    if "SelectionRules" in data:
+    if data.get("SelectionRules") is not None:
         out["selection_rules"] = data["SelectionRules"]
     else:
         raise DeserializationError(
             "ExportMetadataModelAssessmentMessage.selection_rules required"
         )
-    if "FileName" in data:
+    if data.get("FileName") is not None:
         out["file_name"] = data["FileName"]
-    if "AssessmentReportTypes" in data:
+    if data.get("AssessmentReportTypes") is not None:
         import capo_database_migration_service.types.assessment_report_types_list
 
         out["assessment_report_types"] = (

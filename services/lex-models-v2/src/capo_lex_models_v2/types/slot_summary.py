@@ -73,13 +73,13 @@ def serialize_json(value: SlotSummary) -> dict:
 
 def deserialize_json(data: dict) -> SlotSummary:
     out: SlotSummary = {}  # type: ignore[typeddict-item]
-    if "slotId" in data:
+    if data.get("slotId") is not None:
         out["slot_id"] = data["slotId"]
-    if "slotName" in data:
+    if data.get("slotName") is not None:
         out["slot_name"] = data["slotName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "slotConstraint" in data:
+    if data.get("slotConstraint") is not None:
         import capo_lex_models_v2.types.slot_constraint
 
         out["slot_constraint"] = (
@@ -87,9 +87,9 @@ def deserialize_json(data: dict) -> SlotSummary:
                 data["slotConstraint"]
             )
         )
-    if "slotTypeId" in data:
+    if data.get("slotTypeId") is not None:
         out["slot_type_id"] = data["slotTypeId"]
-    if "valueElicitationPromptSpecification" in data:
+    if data.get("valueElicitationPromptSpecification") is not None:
         import capo_lex_models_v2.types.prompt_specification
 
         out["value_elicitation_prompt_specification"] = (
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> SlotSummary:
                 data["valueElicitationPromptSpecification"]
             )
         )
-    if "lastUpdatedDateTime" in data:
+    if data.get("lastUpdatedDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["last_updated_date_time"] = (

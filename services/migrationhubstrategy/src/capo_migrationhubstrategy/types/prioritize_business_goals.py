@@ -31,7 +31,7 @@ def serialize_json(value: PrioritizeBusinessGoals) -> dict:
 
 def deserialize_json(data: dict) -> PrioritizeBusinessGoals:
     out: PrioritizeBusinessGoals = {}  # type: ignore[typeddict-item]
-    if "businessGoals" in data:
+    if data.get("businessGoals") is not None:
         import capo_migrationhubstrategy.types.business_goals
 
         out["business_goals"] = (

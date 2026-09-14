@@ -70,15 +70,15 @@ def serialize_json(value: CreateServiceNetworkVpcAssociationResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateServiceNetworkVpcAssociationResponse:
     out: CreateServiceNetworkVpcAssociationResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_vpc_lattice.types.security_group_list
 
         out["security_group_ids"] = (
@@ -86,9 +86,9 @@ def deserialize_json(data: dict) -> CreateServiceNetworkVpcAssociationResponse:
                 data["securityGroupIds"]
             )
         )
-    if "privateDnsEnabled" in data:
+    if data.get("privateDnsEnabled") is not None:
         out["private_dns_enabled"] = data["privateDnsEnabled"]
-    if "dnsOptions" in data:
+    if data.get("dnsOptions") is not None:
         import capo_vpc_lattice.types.dns_options
 
         out["dns_options"] = capo_vpc_lattice.types.dns_options.deserialize_json(

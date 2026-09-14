@@ -34,11 +34,11 @@ def serialize_aws_json_1_1(value: InputConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InputConfiguration:
     out: InputConfiguration = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("InputConfiguration.id required")
-    if "InputStartingPositionConfiguration" in data:
+    if data.get("InputStartingPositionConfiguration") is not None:
         import capo_kinesis_analytics.types.input_starting_position_configuration
 
         out["input_starting_position_configuration"] = (

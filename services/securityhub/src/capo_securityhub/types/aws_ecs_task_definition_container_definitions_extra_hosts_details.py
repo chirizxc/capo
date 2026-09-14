@@ -31,8 +31,8 @@ def deserialize_json(
     data: dict,
 ) -> AwsEcsTaskDefinitionContainerDefinitionsExtraHostsDetails:
     out: AwsEcsTaskDefinitionContainerDefinitionsExtraHostsDetails = {}  # type: ignore[typeddict-item]
-    if "Hostname" in data:
+    if data.get("Hostname") is not None:
         out["hostname"] = data["Hostname"]
-    if "IpAddress" in data:
+    if data.get("IpAddress") is not None:
         out["ip_address"] = data["IpAddress"]
     return out

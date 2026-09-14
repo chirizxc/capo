@@ -36,7 +36,7 @@ def serialize_json(value: TableBucketMaintenanceSettings) -> dict:
 
 
 def deserialize_json(data: dict) -> TableBucketMaintenanceSettings:
-    if "icebergUnreferencedFileRemoval" in data:
+    if data.get("icebergUnreferencedFileRemoval") is not None:
         import capo_s3tables.types.iceberg_unreferenced_file_removal_settings
 
         return {

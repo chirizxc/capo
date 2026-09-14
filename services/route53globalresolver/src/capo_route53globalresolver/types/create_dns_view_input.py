@@ -84,13 +84,13 @@ def serialize_json(value: CreateDNSViewInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateDNSViewInput:
     out: CreateDNSViewInput = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateDNSViewInput.name required")
-    if "dnssecValidation" in data:
+    if data.get("dnssecValidation") is not None:
         import capo_route53globalresolver.types.dns_sec_validation_type
 
         out["dnssec_validation"] = (
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> CreateDNSViewInput:
         )
     else:
         out["dnssec_validation"] = "DISABLED"
-    if "ednsClientSubnet" in data:
+    if data.get("ednsClientSubnet") is not None:
         import capo_route53globalresolver.types.edns_client_subnet_type
 
         out["edns_client_subnet"] = (
@@ -110,7 +110,7 @@ def deserialize_json(data: dict) -> CreateDNSViewInput:
         )
     else:
         out["edns_client_subnet"] = "DISABLED"
-    if "firewallRulesFailOpen" in data:
+    if data.get("firewallRulesFailOpen") is not None:
         import capo_route53globalresolver.types.firewall_rules_fail_open_type
 
         out["firewall_rules_fail_open"] = (
@@ -120,9 +120,9 @@ def deserialize_json(data: dict) -> CreateDNSViewInput:
         )
     else:
         out["firewall_rules_fail_open"] = "DISABLED"
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_route53globalresolver.types.tags
 
         out["tags"] = capo_route53globalresolver.types.tags.deserialize_json(

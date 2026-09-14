@@ -58,7 +58,7 @@ def serialize_json(value: AwsElasticsearchDomainVPCOptions) -> dict:
 
 def deserialize_json(data: dict) -> AwsElasticsearchDomainVPCOptions:
     out: AwsElasticsearchDomainVPCOptions = {}  # type: ignore[typeddict-item]
-    if "AvailabilityZones" in data:
+    if data.get("AvailabilityZones") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["availability_zones"] = (
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> AwsElasticsearchDomainVPCOptions:
                 data["AvailabilityZones"]
             )
         )
-    if "SecurityGroupIds" in data:
+    if data.get("SecurityGroupIds") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["security_group_ids"] = (
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> AwsElasticsearchDomainVPCOptions:
                 data["SecurityGroupIds"]
             )
         )
-    if "SubnetIds" in data:
+    if data.get("SubnetIds") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["subnet_ids"] = (
@@ -82,6 +82,6 @@ def deserialize_json(data: dict) -> AwsElasticsearchDomainVPCOptions:
                 data["SubnetIds"]
             )
         )
-    if "VPCId" in data:
+    if data.get("VPCId") is not None:
         out["vpc_id"] = data["VPCId"]
     return out

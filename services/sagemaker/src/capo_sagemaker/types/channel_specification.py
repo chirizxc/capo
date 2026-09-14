@@ -72,13 +72,13 @@ def serialize_aws_json_1_1(value: ChannelSpecification) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ChannelSpecification:
     out: ChannelSpecification = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "IsRequired" in data:
+    if data.get("IsRequired") is not None:
         out["is_required"] = data["IsRequired"]
-    if "SupportedContentTypes" in data:
+    if data.get("SupportedContentTypes") is not None:
         import capo_sagemaker.types.content_types
 
         out["supported_content_types"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_1(data: dict) -> ChannelSpecification:
                 data["SupportedContentTypes"]
             )
         )
-    if "SupportedCompressionTypes" in data:
+    if data.get("SupportedCompressionTypes") is not None:
         import capo_sagemaker.types.compression_types
 
         out["supported_compression_types"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_1(data: dict) -> ChannelSpecification:
                 data["SupportedCompressionTypes"]
             )
         )
-    if "SupportedInputModes" in data:
+    if data.get("SupportedInputModes") is not None:
         import capo_sagemaker.types.input_modes
 
         out["supported_input_modes"] = (

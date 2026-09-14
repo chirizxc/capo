@@ -68,13 +68,13 @@ def serialize_json(value: ContactFlowSummary) -> dict:
 
 def deserialize_json(data: dict) -> ContactFlowSummary:
     out: ContactFlowSummary = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ContactFlowType" in data:
+    if data.get("ContactFlowType") is not None:
         import capo_connect.types.contact_flow_type
 
         out["contact_flow_type"] = (
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> ContactFlowSummary:
                 data["ContactFlowType"]
             )
         )
-    if "ContactFlowState" in data:
+    if data.get("ContactFlowState") is not None:
         import capo_connect.types.contact_flow_state
 
         out["contact_flow_state"] = (
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> ContactFlowSummary:
                 data["ContactFlowState"]
             )
         )
-    if "ContactFlowStatus" in data:
+    if data.get("ContactFlowStatus") is not None:
         import capo_connect.types.contact_flow_status
 
         out["contact_flow_status"] = (

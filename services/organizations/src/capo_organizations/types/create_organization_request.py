@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: CreateOrganizationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateOrganizationRequest:
     out: CreateOrganizationRequest = {}  # type: ignore[typeddict-item]
-    if "FeatureSet" in data:
+    if data.get("FeatureSet") is not None:
         import capo_organizations.types.organization_feature_set
 
         out["feature_set"] = (

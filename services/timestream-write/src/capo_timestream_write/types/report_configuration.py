@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: ReportConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ReportConfiguration:
     out: ReportConfiguration = {}  # type: ignore[typeddict-item]
-    if "ReportS3Configuration" in data:
+    if data.get("ReportS3Configuration") is not None:
         import capo_timestream_write.types.report_s3_configuration
 
         out["report_s3_configuration"] = (

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ContentClassifiers:
 
     out: ContentClassifiers = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker_a2i_runtime.types.content_classifier.deserialize_json(item)
         )

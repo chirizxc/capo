@@ -32,7 +32,7 @@ def serialize_json(value: TargetDefinition) -> dict:
 
 
 def deserialize_json(data: dict) -> TargetDefinition:
-    if "kinesis" in data:
+    if data.get("kinesis") is not None:
         import capo_dsql.types.kinesis_target_definition
 
         return {

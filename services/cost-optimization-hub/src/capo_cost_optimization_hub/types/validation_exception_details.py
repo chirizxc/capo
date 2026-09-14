@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> ValidationExceptionDetails:
 
     out: ValidationExceptionDetails = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cost_optimization_hub.types.validation_exception_detail.deserialize_aws_json_1_0(
                 item

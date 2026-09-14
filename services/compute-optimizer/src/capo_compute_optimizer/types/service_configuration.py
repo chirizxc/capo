@@ -61,11 +61,11 @@ def serialize_aws_json_1_0(value: ServiceConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ServiceConfiguration:
     out: ServiceConfiguration = {}  # type: ignore[typeddict-item]
-    if "memory" in data:
+    if data.get("memory") is not None:
         out["memory"] = data["memory"]
-    if "cpu" in data:
+    if data.get("cpu") is not None:
         out["cpu"] = data["cpu"]
-    if "containerConfigurations" in data:
+    if data.get("containerConfigurations") is not None:
         import capo_compute_optimizer.types.container_configurations
 
         out["container_configurations"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_0(data: dict) -> ServiceConfiguration:
                 data["containerConfigurations"]
             )
         )
-    if "autoScalingConfiguration" in data:
+    if data.get("autoScalingConfiguration") is not None:
         import capo_compute_optimizer.types.auto_scaling_configuration
 
         out["auto_scaling_configuration"] = (
@@ -81,6 +81,6 @@ def deserialize_aws_json_1_0(data: dict) -> ServiceConfiguration:
                 data["autoScalingConfiguration"]
             )
         )
-    if "taskDefinitionArn" in data:
+    if data.get("taskDefinitionArn") is not None:
         out["task_definition_arn"] = data["taskDefinitionArn"]
     return out

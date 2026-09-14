@@ -61,40 +61,40 @@ def serialize_json(value: WhatsAppPhoneNumberDetail) -> dict:
 
 def deserialize_json(data: dict) -> WhatsAppPhoneNumberDetail:
     out: WhatsAppPhoneNumberDetail = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("WhatsAppPhoneNumberDetail.arn required")
-    if "phoneNumber" in data:
+    if data.get("phoneNumber") is not None:
         out["phone_number"] = data["phoneNumber"]
     else:
         raise DeserializationError("WhatsAppPhoneNumberDetail.phone_number required")
-    if "phoneNumberId" in data:
+    if data.get("phoneNumberId") is not None:
         out["phone_number_id"] = data["phoneNumberId"]
     else:
         raise DeserializationError("WhatsAppPhoneNumberDetail.phone_number_id required")
-    if "metaPhoneNumberId" in data:
+    if data.get("metaPhoneNumberId") is not None:
         out["meta_phone_number_id"] = data["metaPhoneNumberId"]
     else:
         raise DeserializationError(
             "WhatsAppPhoneNumberDetail.meta_phone_number_id required"
         )
-    if "displayPhoneNumberName" in data:
+    if data.get("displayPhoneNumberName") is not None:
         out["display_phone_number_name"] = data["displayPhoneNumberName"]
     else:
         raise DeserializationError(
             "WhatsAppPhoneNumberDetail.display_phone_number_name required"
         )
-    if "displayPhoneNumber" in data:
+    if data.get("displayPhoneNumber") is not None:
         out["display_phone_number"] = data["displayPhoneNumber"]
     else:
         raise DeserializationError(
             "WhatsAppPhoneNumberDetail.display_phone_number required"
         )
-    if "qualityRating" in data:
+    if data.get("qualityRating") is not None:
         out["quality_rating"] = data["qualityRating"]
     else:
         raise DeserializationError("WhatsAppPhoneNumberDetail.quality_rating required")
-    if "dataLocalizationRegion" in data:
+    if data.get("dataLocalizationRegion") is not None:
         out["data_localization_region"] = data["dataLocalizationRegion"]
     return out

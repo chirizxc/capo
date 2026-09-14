@@ -74,19 +74,19 @@ def serialize_json(value: SubscriptionDescription) -> dict:
 
 def deserialize_json(data: dict) -> SubscriptionDescription:
     out: SubscriptionDescription = {}  # type: ignore[typeddict-item]
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
     else:
         raise DeserializationError("SubscriptionDescription.domain_id required")
-    if "subscriptionId" in data:
+    if data.get("subscriptionId") is not None:
         out["subscription_id"] = data["subscriptionId"]
     else:
         raise DeserializationError("SubscriptionDescription.subscription_id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("SubscriptionDescription.arn required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_connecthealth.types.subscription_status
 
         out["status"] = capo_connecthealth.types.subscription_status.deserialize_json(
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> SubscriptionDescription:
         )
     else:
         raise DeserializationError("SubscriptionDescription.status required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_connecthealth.types._prelude.timestamp
 
         out["created_at"] = (
@@ -104,7 +104,7 @@ def deserialize_json(data: dict) -> SubscriptionDescription:
         )
     else:
         raise DeserializationError("SubscriptionDescription.created_at required")
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_connecthealth.types._prelude.timestamp
 
         out["last_updated_at"] = (
@@ -114,7 +114,7 @@ def deserialize_json(data: dict) -> SubscriptionDescription:
         )
     else:
         raise DeserializationError("SubscriptionDescription.last_updated_at required")
-    if "activatedAt" in data:
+    if data.get("activatedAt") is not None:
         import capo_connecthealth.types._prelude.timestamp
 
         out["activated_at"] = (
@@ -122,7 +122,7 @@ def deserialize_json(data: dict) -> SubscriptionDescription:
                 data["activatedAt"]
             )
         )
-    if "deactivatedAt" in data:
+    if data.get("deactivatedAt") is not None:
         import capo_connecthealth.types._prelude.timestamp
 
         out["deactivated_at"] = (

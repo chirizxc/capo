@@ -28,7 +28,7 @@ def serialize_json(value: ReplaceDefaultPolicyVersionParams) -> dict:
 
 def deserialize_json(data: dict) -> ReplaceDefaultPolicyVersionParams:
     out: ReplaceDefaultPolicyVersionParams = {}  # type: ignore[typeddict-item]
-    if "templateName" in data:
+    if data.get("templateName") is not None:
         import capo_iot.types.policy_template_name
 
         out["template_name"] = capo_iot.types.policy_template_name.deserialize_json(

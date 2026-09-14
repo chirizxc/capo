@@ -74,9 +74,10 @@ class ConnectorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.create_connector_request.CreateConnectorRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["ssm_instance_id"] = ssm_instance_id
+        input_: capo_mgn.types.create_connector_request.CreateConnectorRequest = {
+            "name": name,
+            "ssm_instance_id": ssm_instance_id,
+        }
         if tags is not None:
             input_["tags"] = tags
         if ssm_command_config is not None:
@@ -87,6 +88,7 @@ class ConnectorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -126,8 +128,9 @@ class ConnectorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.update_connector_request.UpdateConnectorRequest = {}  # type: ignore[typeddict-item]
-        input_["connector_id"] = connector_id
+        input_: capo_mgn.types.update_connector_request.UpdateConnectorRequest = {
+            "connector_id": connector_id
+        }
         if name is not None:
             input_["name"] = name
         if ssm_command_config is not None:
@@ -138,6 +141,7 @@ class ConnectorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -171,14 +175,16 @@ class ConnectorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.delete_connector_request.DeleteConnectorRequest = {}  # type: ignore[typeddict-item]
-        input_["connector_id"] = connector_id
+        input_: capo_mgn.types.delete_connector_request.DeleteConnectorRequest = {
+            "connector_id": connector_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -219,7 +225,7 @@ class ConnectorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.list_connectors_request.ListConnectorsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mgn.types.list_connectors_request.ListConnectorsRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -232,6 +238,7 @@ class ConnectorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -278,9 +285,10 @@ class AsyncConnectorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.create_connector_request.CreateConnectorRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["ssm_instance_id"] = ssm_instance_id
+        input_: capo_mgn.types.create_connector_request.CreateConnectorRequest = {
+            "name": name,
+            "ssm_instance_id": ssm_instance_id,
+        }
         if tags is not None:
             input_["tags"] = tags
         if ssm_command_config is not None:
@@ -291,6 +299,7 @@ class AsyncConnectorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -331,8 +340,9 @@ class AsyncConnectorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.update_connector_request.UpdateConnectorRequest = {}  # type: ignore[typeddict-item]
-        input_["connector_id"] = connector_id
+        input_: capo_mgn.types.update_connector_request.UpdateConnectorRequest = {
+            "connector_id": connector_id
+        }
         if name is not None:
             input_["name"] = name
         if ssm_command_config is not None:
@@ -343,6 +353,7 @@ class AsyncConnectorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -377,14 +388,16 @@ class AsyncConnectorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.delete_connector_request.DeleteConnectorRequest = {}  # type: ignore[typeddict-item]
-        input_["connector_id"] = connector_id
+        input_: capo_mgn.types.delete_connector_request.DeleteConnectorRequest = {
+            "connector_id": connector_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -426,7 +439,7 @@ class AsyncConnectorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.list_connectors_request.ListConnectorsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mgn.types.list_connectors_request.ListConnectorsRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -439,4 +452,5 @@ class AsyncConnectorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

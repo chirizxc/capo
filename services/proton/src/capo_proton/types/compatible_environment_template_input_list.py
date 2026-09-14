@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> CompatibleEnvironmentTemplateInputLi
 
     out: CompatibleEnvironmentTemplateInputList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_proton.types.compatible_environment_template_input.deserialize_aws_json_1_0(
                 item

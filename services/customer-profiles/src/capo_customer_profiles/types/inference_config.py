@@ -25,6 +25,6 @@ def serialize_json(value: InferenceConfig) -> dict:
 
 def deserialize_json(data: dict) -> InferenceConfig:
     out: InferenceConfig = {}  # type: ignore[typeddict-item]
-    if "MinProvisionedTPS" in data:
+    if data.get("MinProvisionedTPS") is not None:
         out["min_provisioned_tps"] = data["MinProvisionedTPS"]
     return out

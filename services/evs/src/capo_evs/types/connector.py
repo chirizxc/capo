@@ -97,47 +97,47 @@ def serialize_aws_json_1_0(value: Connector) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Connector:
     out: Connector = {}  # type: ignore[typeddict-item]
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
-    if "connectorId" in data:
+    if data.get("connectorId") is not None:
         out["connector_id"] = data["connectorId"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_evs.types.connector_type
 
         out["type"] = capo_evs.types.connector_type.deserialize_aws_json_1_0(
             data["type"]
         )
-    if "applianceFqdn" in data:
+    if data.get("applianceFqdn") is not None:
         out["appliance_fqdn"] = data["applianceFqdn"]
-    if "secretArn" in data:
+    if data.get("secretArn") is not None:
         out["secret_arn"] = data["secretArn"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_evs.types.connector_state
 
         out["state"] = capo_evs.types.connector_state.deserialize_aws_json_1_0(
             data["state"]
         )
-    if "stateDetails" in data:
+    if data.get("stateDetails") is not None:
         out["state_details"] = data["stateDetails"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_evs.types.check_result
 
         out["status"] = capo_evs.types.check_result.deserialize_aws_json_1_0(
             data["status"]
         )
-    if "checks" in data:
+    if data.get("checks") is not None:
         import capo_evs.types.connectors_checks_list
 
         out["checks"] = capo_evs.types.connectors_checks_list.deserialize_aws_json_1_0(
             data["checks"]
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_evs.types._prelude.timestamp
 
         out["created_at"] = capo_evs.types._prelude.timestamp.deserialize_aws_json_1_0(
             data["createdAt"]
         )
-    if "modifiedAt" in data:
+    if data.get("modifiedAt") is not None:
         import capo_evs.types._prelude.timestamp
 
         out["modified_at"] = capo_evs.types._prelude.timestamp.deserialize_aws_json_1_0(

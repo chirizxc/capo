@@ -37,7 +37,7 @@ def serialize_json(value: ListReplicationSetsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListReplicationSetsOutput:
     out: ListReplicationSetsOutput = {}  # type: ignore[typeddict-item]
-    if "replicationSetArns" in data:
+    if data.get("replicationSetArns") is not None:
         import capo_ssm_incidents.types.replication_set_arn_list
 
         out["replication_set_arns"] = (
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> ListReplicationSetsOutput:
         raise DeserializationError(
             "ListReplicationSetsOutput.replication_set_arns required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

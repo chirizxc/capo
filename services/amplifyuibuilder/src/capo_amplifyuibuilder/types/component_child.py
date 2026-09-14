@@ -60,15 +60,15 @@ def serialize_json(value: ComponentChild) -> dict:
 
 def deserialize_json(data: dict) -> ComponentChild:
     out: ComponentChild = {}  # type: ignore[typeddict-item]
-    if "componentType" in data:
+    if data.get("componentType") is not None:
         out["component_type"] = data["componentType"]
     else:
         raise DeserializationError("ComponentChild.component_type required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ComponentChild.name required")
-    if "properties" in data:
+    if data.get("properties") is not None:
         import capo_amplifyuibuilder.types.component_properties
 
         out["properties"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> ComponentChild:
         )
     else:
         raise DeserializationError("ComponentChild.properties required")
-    if "children" in data:
+    if data.get("children") is not None:
         import capo_amplifyuibuilder.types.component_child_list
 
         out["children"] = (
@@ -86,12 +86,12 @@ def deserialize_json(data: dict) -> ComponentChild:
                 data["children"]
             )
         )
-    if "events" in data:
+    if data.get("events") is not None:
         import capo_amplifyuibuilder.types.component_events
 
         out["events"] = capo_amplifyuibuilder.types.component_events.deserialize_json(
             data["events"]
         )
-    if "sourceId" in data:
+    if data.get("sourceId") is not None:
         out["source_id"] = data["sourceId"]
     return out

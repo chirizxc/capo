@@ -124,11 +124,11 @@ def serialize_aws_json_1_1(value: CreateDevEndpointResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDevEndpointResponse:
     out: CreateDevEndpointResponse = {}  # type: ignore[typeddict-item]
-    if "EndpointName" in data:
+    if data.get("EndpointName") is not None:
         out["endpoint_name"] = data["EndpointName"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "SecurityGroupIds" in data:
+    if data.get("SecurityGroupIds") is not None:
         import capo_glue.types.string_list
 
         out["security_group_ids"] = (
@@ -136,45 +136,45 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDevEndpointResponse:
                 data["SecurityGroupIds"]
             )
         )
-    if "SubnetId" in data:
+    if data.get("SubnetId") is not None:
         out["subnet_id"] = data["SubnetId"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "YarnEndpointAddress" in data:
+    if data.get("YarnEndpointAddress") is not None:
         out["yarn_endpoint_address"] = data["YarnEndpointAddress"]
-    if "ZeppelinRemoteSparkInterpreterPort" in data:
+    if data.get("ZeppelinRemoteSparkInterpreterPort") is not None:
         out["zeppelin_remote_spark_interpreter_port"] = data[
             "ZeppelinRemoteSparkInterpreterPort"
         ]
     else:
         out["zeppelin_remote_spark_interpreter_port"] = 0
-    if "NumberOfNodes" in data:
+    if data.get("NumberOfNodes") is not None:
         out["number_of_nodes"] = data["NumberOfNodes"]
     else:
         out["number_of_nodes"] = 0
-    if "WorkerType" in data:
+    if data.get("WorkerType") is not None:
         import capo_glue.types.worker_type
 
         out["worker_type"] = capo_glue.types.worker_type.deserialize_aws_json_1_1(
             data["WorkerType"]
         )
-    if "GlueVersion" in data:
+    if data.get("GlueVersion") is not None:
         out["glue_version"] = data["GlueVersion"]
-    if "NumberOfWorkers" in data:
+    if data.get("NumberOfWorkers") is not None:
         out["number_of_workers"] = data["NumberOfWorkers"]
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
-    if "ExtraPythonLibsS3Path" in data:
+    if data.get("ExtraPythonLibsS3Path") is not None:
         out["extra_python_libs_s3_path"] = data["ExtraPythonLibsS3Path"]
-    if "ExtraJarsS3Path" in data:
+    if data.get("ExtraJarsS3Path") is not None:
         out["extra_jars_s3_path"] = data["ExtraJarsS3Path"]
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "SecurityConfiguration" in data:
+    if data.get("SecurityConfiguration") is not None:
         out["security_configuration"] = data["SecurityConfiguration"]
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_glue.types.timestamp_value
 
         out["created_timestamp"] = (
@@ -182,7 +182,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDevEndpointResponse:
                 data["CreatedTimestamp"]
             )
         )
-    if "Arguments" in data:
+    if data.get("Arguments") is not None:
         import capo_glue.types.map_value
 
         out["arguments"] = capo_glue.types.map_value.deserialize_aws_json_1_1(

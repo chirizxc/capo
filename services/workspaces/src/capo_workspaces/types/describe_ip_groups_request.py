@@ -37,7 +37,7 @@ def serialize_aws_json_1_1(value: DescribeIpGroupsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeIpGroupsRequest:
     out: DescribeIpGroupsRequest = {}  # type: ignore[typeddict-item]
-    if "GroupIds" in data:
+    if data.get("GroupIds") is not None:
         import capo_workspaces.types.ip_group_id_list
 
         out["group_ids"] = (
@@ -45,8 +45,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeIpGroupsRequest:
                 data["GroupIds"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

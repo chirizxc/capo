@@ -35,13 +35,13 @@ def serialize_json(value: UpdateGatewayCapabilityConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateGatewayCapabilityConfigurationRequest:
     out: UpdateGatewayCapabilityConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "capabilityNamespace" in data:
+    if data.get("capabilityNamespace") is not None:
         out["capability_namespace"] = data["capabilityNamespace"]
     else:
         raise DeserializationError(
             "UpdateGatewayCapabilityConfigurationRequest.capability_namespace required"
         )
-    if "capabilityConfiguration" in data:
+    if data.get("capabilityConfiguration") is not None:
         out["capability_configuration"] = data["capabilityConfiguration"]
     else:
         raise DeserializationError(

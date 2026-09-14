@@ -39,15 +39,15 @@ def serialize_json(value: TsvStoreOptions) -> dict:
 
 def deserialize_json(data: dict) -> TsvStoreOptions:
     out: TsvStoreOptions = {}  # type: ignore[typeddict-item]
-    if "annotationType" in data:
+    if data.get("annotationType") is not None:
         out["annotation_type"] = data["annotationType"]
-    if "formatToHeader" in data:
+    if data.get("formatToHeader") is not None:
         import capo_omics.types.format_to_header
 
         out["format_to_header"] = capo_omics.types.format_to_header.deserialize_json(
             data["formatToHeader"]
         )
-    if "schema" in data:
+    if data.get("schema") is not None:
         import capo_omics.types.schema
 
         out["schema"] = capo_omics.types.schema.deserialize_json(data["schema"])

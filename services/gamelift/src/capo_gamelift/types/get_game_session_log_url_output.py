@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: GetGameSessionLogUrlOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetGameSessionLogUrlOutput:
     out: GetGameSessionLogUrlOutput = {}  # type: ignore[typeddict-item]
-    if "PreSignedUrl" in data:
+    if data.get("PreSignedUrl") is not None:
         out["pre_signed_url"] = data["PreSignedUrl"]
     return out

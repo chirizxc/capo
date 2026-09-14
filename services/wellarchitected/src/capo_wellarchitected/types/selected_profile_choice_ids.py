@@ -16,4 +16,4 @@ def serialize_json(value: SelectedProfileChoiceIds) -> list:
 
 
 def deserialize_json(data: list) -> SelectedProfileChoiceIds:
-    return list(data)
+    return [item for item in data if item is not None]

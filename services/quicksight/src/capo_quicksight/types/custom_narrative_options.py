@@ -24,7 +24,7 @@ def serialize_json(value: CustomNarrativeOptions) -> dict:
 
 def deserialize_json(data: dict) -> CustomNarrativeOptions:
     out: CustomNarrativeOptions = {}  # type: ignore[typeddict-item]
-    if "Narrative" in data:
+    if data.get("Narrative") is not None:
         out["narrative"] = data["Narrative"]
     else:
         raise DeserializationError("CustomNarrativeOptions.narrative required")

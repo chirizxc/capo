@@ -44,7 +44,7 @@ def serialize_json(value: ControlTitleFontConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ControlTitleFontConfiguration:
     out: ControlTitleFontConfiguration = {}  # type: ignore[typeddict-item]
-    if "FontConfiguration" in data:
+    if data.get("FontConfiguration") is not None:
         import capo_quicksight.types.font_configuration
 
         out["font_configuration"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> ControlTitleFontConfiguration:
                 data["FontConfiguration"]
             )
         )
-    if "TextAlignment" in data:
+    if data.get("TextAlignment") is not None:
         import capo_quicksight.types.horizontal_text_alignment
 
         out["text_alignment"] = (

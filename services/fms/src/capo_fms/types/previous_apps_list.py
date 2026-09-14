@@ -25,6 +25,8 @@ def serialize_aws_json_1_1(input_to_serialize: PreviousAppsList) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> PreviousAppsList:
     out: PreviousAppsList = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_fms.types.apps_list
 
         out[key] = capo_fms.types.apps_list.deserialize_aws_json_1_1(value)

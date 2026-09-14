@@ -43,7 +43,7 @@ def serialize_json(value: SearchPredefinedAttributesResponse) -> dict:
 
 def deserialize_json(data: dict) -> SearchPredefinedAttributesResponse:
     out: SearchPredefinedAttributesResponse = {}  # type: ignore[typeddict-item]
-    if "PredefinedAttributes" in data:
+    if data.get("PredefinedAttributes") is not None:
         import capo_connect.types.predefined_attribute_search_summary_list
 
         out["predefined_attributes"] = (
@@ -51,8 +51,8 @@ def deserialize_json(data: dict) -> SearchPredefinedAttributesResponse:
                 data["PredefinedAttributes"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "ApproximateTotalCount" in data:
+    if data.get("ApproximateTotalCount") is not None:
         out["approximate_total_count"] = data["ApproximateTotalCount"]
     return out

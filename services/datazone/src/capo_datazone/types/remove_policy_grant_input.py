@@ -56,7 +56,7 @@ def serialize_json(value: RemovePolicyGrantInput) -> dict:
 
 def deserialize_json(data: dict) -> RemovePolicyGrantInput:
     out: RemovePolicyGrantInput = {}  # type: ignore[typeddict-item]
-    if "policyType" in data:
+    if data.get("policyType") is not None:
         import capo_datazone.types.managed_policy_type
 
         out["policy_type"] = capo_datazone.types.managed_policy_type.deserialize_json(
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> RemovePolicyGrantInput:
         )
     else:
         raise DeserializationError("RemovePolicyGrantInput.policy_type required")
-    if "principal" in data:
+    if data.get("principal") is not None:
         import capo_datazone.types.policy_grant_principal
 
         out["principal"] = capo_datazone.types.policy_grant_principal.deserialize_json(
@@ -72,8 +72,8 @@ def deserialize_json(data: dict) -> RemovePolicyGrantInput:
         )
     else:
         raise DeserializationError("RemovePolicyGrantInput.principal required")
-    if "grantIdentifier" in data:
+    if data.get("grantIdentifier") is not None:
         out["grant_identifier"] = data["grantIdentifier"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

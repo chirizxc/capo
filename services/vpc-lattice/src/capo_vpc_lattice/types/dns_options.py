@@ -38,9 +38,9 @@ def serialize_json(value: DnsOptions) -> dict:
 
 def deserialize_json(data: dict) -> DnsOptions:
     out: DnsOptions = {}  # type: ignore[typeddict-item]
-    if "privateDnsPreference" in data:
+    if data.get("privateDnsPreference") is not None:
         out["private_dns_preference"] = data["privateDnsPreference"]
-    if "privateDnsSpecifiedDomains" in data:
+    if data.get("privateDnsSpecifiedDomains") is not None:
         import capo_vpc_lattice.types.private_dns_specified_domains_list
 
         out["private_dns_specified_domains"] = (

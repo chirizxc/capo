@@ -47,13 +47,13 @@ def serialize_json(value: LogConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> LogConfiguration:
     out: LogConfiguration = {}  # type: ignore[typeddict-item]
-    if "logDriver" in data:
+    if data.get("logDriver") is not None:
         import capo_batch.types.log_driver
 
         out["log_driver"] = capo_batch.types.log_driver.deserialize_json(
             data["logDriver"]
         )
-    if "options" in data:
+    if data.get("options") is not None:
         import capo_batch.types.log_configuration_options_map
 
         out["options"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> LogConfiguration:
                 data["options"]
             )
         )
-    if "secretOptions" in data:
+    if data.get("secretOptions") is not None:
         import capo_batch.types.secret_list
 
         out["secret_options"] = capo_batch.types.secret_list.deserialize_json(

@@ -45,7 +45,15 @@ def serialize_json(value: AutomationRulesMetadataV2) -> dict:
     if "rule_id" in value:
         out["RuleId"] = value["rule_id"]
     if "rule_order" in value:
-        out["RuleOrder"] = value["rule_order"]
+        out["RuleOrder"] = (
+            "NaN"
+            if value["rule_order"] != value["rule_order"]
+            else "Infinity"
+            if value["rule_order"] == float("inf")
+            else "-Infinity"
+            if value["rule_order"] == float("-inf")
+            else value["rule_order"]
+        )
     if "rule_name" in value:
         out["RuleName"] = value["rule_name"]
     if "rule_status" in value:
@@ -81,23 +89,23 @@ def serialize_json(value: AutomationRulesMetadataV2) -> dict:
 
 def deserialize_json(data: dict) -> AutomationRulesMetadataV2:
     out: AutomationRulesMetadataV2 = {}  # type: ignore[typeddict-item]
-    if "RuleArn" in data:
+    if data.get("RuleArn") is not None:
         out["rule_arn"] = data["RuleArn"]
-    if "RuleId" in data:
+    if data.get("RuleId") is not None:
         out["rule_id"] = data["RuleId"]
-    if "RuleOrder" in data:
-        out["rule_order"] = data["RuleOrder"]
-    if "RuleName" in data:
+    if data.get("RuleOrder") is not None:
+        out["rule_order"] = float(data["RuleOrder"])
+    if data.get("RuleName") is not None:
         out["rule_name"] = data["RuleName"]
-    if "RuleStatus" in data:
+    if data.get("RuleStatus") is not None:
         import capo_securityhub.types.rule_status_v2
 
         out["rule_status"] = capo_securityhub.types.rule_status_v2.deserialize_json(
             data["RuleStatus"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Actions" in data:
+    if data.get("Actions") is not None:
         import capo_securityhub.types.automation_rules_action_type_list_v2
 
         out["actions"] = (
@@ -105,13 +113,13 @@ def deserialize_json(data: dict) -> AutomationRulesMetadataV2:
                 data["Actions"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_securityhub.types.timestamp
 
         out["created_at"] = capo_securityhub.types.timestamp.deserialize_json(
             data["CreatedAt"]
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_securityhub.types.timestamp
 
         out["updated_at"] = capo_securityhub.types.timestamp.deserialize_json(

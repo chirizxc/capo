@@ -31,7 +31,7 @@ def serialize_json(value: MediaConnectRouterGroupSettings) -> dict:
 
 def deserialize_json(data: dict) -> MediaConnectRouterGroupSettings:
     out: MediaConnectRouterGroupSettings = {}  # type: ignore[typeddict-item]
-    if "availabilityZones" in data:
+    if data.get("availabilityZones") is not None:
         import capo_medialive.types.__list_of__string
 
         out["availability_zones"] = (

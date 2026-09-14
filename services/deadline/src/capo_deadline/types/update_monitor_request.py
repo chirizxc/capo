@@ -36,10 +36,10 @@ def serialize_json(value: UpdateMonitorRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateMonitorRequest:
     out: UpdateMonitorRequest = {}  # type: ignore[typeddict-item]
-    if "subdomain" in data:
+    if data.get("subdomain") is not None:
         out["subdomain"] = data["subdomain"]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     return out

@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ServiceHealths:
 
     out: ServiceHealths = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_devops_guru.types.service_health.deserialize_json(item))
     return out

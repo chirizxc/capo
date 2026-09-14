@@ -42,15 +42,15 @@ def serialize_aws_json_1_0(value: AssociatedAlarm) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AssociatedAlarm:
     out: AssociatedAlarm = {}  # type: ignore[typeddict-item]
-    if "crossAccountRole" in data:
+    if data.get("crossAccountRole") is not None:
         out["cross_account_role"] = data["crossAccountRole"]
-    if "externalId" in data:
+    if data.get("externalId") is not None:
         out["external_id"] = data["externalId"]
-    if "resourceIdentifier" in data:
+    if data.get("resourceIdentifier") is not None:
         out["resource_identifier"] = data["resourceIdentifier"]
     else:
         raise DeserializationError("AssociatedAlarm.resource_identifier required")
-    if "alarmType" in data:
+    if data.get("alarmType") is not None:
         import capo_arc_region_switch.types.alarm_type
 
         out["alarm_type"] = (

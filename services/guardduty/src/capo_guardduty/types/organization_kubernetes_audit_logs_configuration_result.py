@@ -23,6 +23,6 @@ def serialize_json(value: OrganizationKubernetesAuditLogsConfigurationResult) ->
 
 def deserialize_json(data: dict) -> OrganizationKubernetesAuditLogsConfigurationResult:
     out: OrganizationKubernetesAuditLogsConfigurationResult = {}  # type: ignore[typeddict-item]
-    if "autoEnable" in data:
+    if data.get("autoEnable") is not None:
         out["auto_enable"] = data["autoEnable"]
     return out

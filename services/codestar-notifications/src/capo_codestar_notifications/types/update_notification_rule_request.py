@@ -77,13 +77,13 @@ def serialize_json(value: UpdateNotificationRuleRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateNotificationRuleRequest:
     out: UpdateNotificationRuleRequest = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("UpdateNotificationRuleRequest.arn required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_codestar_notifications.types.notification_rule_status
 
         out["status"] = (
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> UpdateNotificationRuleRequest:
                 data["Status"]
             )
         )
-    if "EventTypeIds" in data:
+    if data.get("EventTypeIds") is not None:
         import capo_codestar_notifications.types.event_type_ids
 
         out["event_type_ids"] = (
@@ -99,13 +99,13 @@ def deserialize_json(data: dict) -> UpdateNotificationRuleRequest:
                 data["EventTypeIds"]
             )
         )
-    if "Targets" in data:
+    if data.get("Targets") is not None:
         import capo_codestar_notifications.types.targets
 
         out["targets"] = capo_codestar_notifications.types.targets.deserialize_json(
             data["Targets"]
         )
-    if "DetailType" in data:
+    if data.get("DetailType") is not None:
         import capo_codestar_notifications.types.detail_type
 
         out["detail_type"] = (

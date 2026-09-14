@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.iottwinmaker#AWSIoTTwinMaker``."""
 
 import warnings
+from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +17,7 @@ from capo_iottwinmaker._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_iottwinmaker._auth._zapros_handler import AuthMiddleware
+from capo_iottwinmaker._pagination import resolve_path as _resolve_path
 from capo_iottwinmaker._services._aws_config import aaws_config
 from capo_iottwinmaker._services._pipeline import (
     AsyncInterceptor,
@@ -291,15 +293,17 @@ class AsyncIoTTwinMakerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iottwinmaker.types.batch_put_property_values_request.BatchPutPropertyValuesRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
-        input_["entries"] = entries
+        input_: capo_iottwinmaker.types.batch_put_property_values_request.BatchPutPropertyValuesRequest = {
+            "workspace_id": workspace_id,
+            "entries": entries,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def cancel_metadata_transfer_job(
@@ -339,14 +343,16 @@ class AsyncIoTTwinMakerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iottwinmaker.types.cancel_metadata_transfer_job_request.CancelMetadataTransferJobRequest = {}  # type: ignore[typeddict-item]
-        input_["metadata_transfer_job_id"] = metadata_transfer_job_id
+        input_: capo_iottwinmaker.types.cancel_metadata_transfer_job_request.CancelMetadataTransferJobRequest = {
+            "metadata_transfer_job_id": metadata_transfer_job_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_component_type(
@@ -418,11 +424,12 @@ class AsyncIoTTwinMakerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iottwinmaker.types.create_component_type_request.CreateComponentTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
+        input_: capo_iottwinmaker.types.create_component_type_request.CreateComponentTypeRequest = {
+            "workspace_id": workspace_id,
+            "component_type_id": component_type_id,
+        }
         if is_singleton is not None:
             input_["is_singleton"] = is_singleton
-        input_["component_type_id"] = component_type_id
         if description is not None:
             input_["description"] = description
         if property_definitions is not None:
@@ -445,6 +452,7 @@ class AsyncIoTTwinMakerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_entity(
@@ -504,11 +512,12 @@ class AsyncIoTTwinMakerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iottwinmaker.types.create_entity_request.CreateEntityRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
+        input_: capo_iottwinmaker.types.create_entity_request.CreateEntityRequest = {
+            "workspace_id": workspace_id,
+            "entity_name": entity_name,
+        }
         if entity_id is not None:
             input_["entity_id"] = entity_id
-        input_["entity_name"] = entity_name
         if description is not None:
             input_["description"] = description
         if components is not None:
@@ -525,6 +534,7 @@ class AsyncIoTTwinMakerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_metadata_transfer_job(
@@ -571,19 +581,21 @@ class AsyncIoTTwinMakerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iottwinmaker.types.create_metadata_transfer_job_request.CreateMetadataTransferJobRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iottwinmaker.types.create_metadata_transfer_job_request.CreateMetadataTransferJobRequest = {
+            "sources": sources,
+            "destination": destination,
+        }
         if metadata_transfer_job_id is not None:
             input_["metadata_transfer_job_id"] = metadata_transfer_job_id
         if description is not None:
             input_["description"] = description
-        input_["sources"] = sources
-        input_["destination"] = destination
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_scene(
@@ -639,10 +651,11 @@ class AsyncIoTTwinMakerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iottwinmaker.types.create_scene_request.CreateSceneRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
-        input_["scene_id"] = scene_id
-        input_["content_location"] = content_location
+        input_: capo_iottwinmaker.types.create_scene_request.CreateSceneRequest = {
+            "workspace_id": workspace_id,
+            "scene_id": scene_id,
+            "content_location": content_location,
+        }
         if description is not None:
             input_["description"] = description
         if capabilities is not None:
@@ -657,6 +670,7 @@ class AsyncIoTTwinMakerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_sync_job(
@@ -702,10 +716,11 @@ class AsyncIoTTwinMakerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iottwinmaker.types.create_sync_job_request.CreateSyncJobRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
-        input_["sync_source"] = sync_source
-        input_["sync_role"] = sync_role
+        input_: capo_iottwinmaker.types.create_sync_job_request.CreateSyncJobRequest = {
+            "workspace_id": workspace_id,
+            "sync_source": sync_source,
+            "sync_role": sync_role,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -714,6 +729,7 @@ class AsyncIoTTwinMakerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_workspace(
@@ -761,8 +777,9 @@ class AsyncIoTTwinMakerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iottwinmaker.types.create_workspace_request.CreateWorkspaceRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
+        input_: capo_iottwinmaker.types.create_workspace_request.CreateWorkspaceRequest = {
+            "workspace_id": workspace_id
+        }
         if description is not None:
             input_["description"] = description
         if s3_location is not None:
@@ -777,6 +794,7 @@ class AsyncIoTTwinMakerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_component_type(
@@ -817,15 +835,17 @@ class AsyncIoTTwinMakerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iottwinmaker.types.delete_component_type_request.DeleteComponentTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
-        input_["component_type_id"] = component_type_id
+        input_: capo_iottwinmaker.types.delete_component_type_request.DeleteComponentTypeRequest = {
+            "workspace_id": workspace_id,
+            "component_type_id": component_type_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_entity(
@@ -868,9 +888,10 @@ class AsyncIoTTwinMakerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iottwinmaker.types.delete_entity_request.DeleteEntityRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
-        input_["entity_id"] = entity_id
+        input_: capo_iottwinmaker.types.delete_entity_request.DeleteEntityRequest = {
+            "workspace_id": workspace_id,
+            "entity_id": entity_id,
+        }
         if is_recursive is not None:
             input_["is_recursive"] = is_recursive
 
@@ -879,6 +900,7 @@ class AsyncIoTTwinMakerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_scene(
@@ -919,15 +941,17 @@ class AsyncIoTTwinMakerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iottwinmaker.types.delete_scene_request.DeleteSceneRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
-        input_["scene_id"] = scene_id
+        input_: capo_iottwinmaker.types.delete_scene_request.DeleteSceneRequest = {
+            "workspace_id": workspace_id,
+            "scene_id": scene_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_sync_job(
@@ -969,15 +993,17 @@ class AsyncIoTTwinMakerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iottwinmaker.types.delete_sync_job_request.DeleteSyncJobRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
-        input_["sync_source"] = sync_source
+        input_: capo_iottwinmaker.types.delete_sync_job_request.DeleteSyncJobRequest = {
+            "workspace_id": workspace_id,
+            "sync_source": sync_source,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_workspace(
@@ -1016,14 +1042,16 @@ class AsyncIoTTwinMakerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iottwinmaker.types.delete_workspace_request.DeleteWorkspaceRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
+        input_: capo_iottwinmaker.types.delete_workspace_request.DeleteWorkspaceRequest = {
+            "workspace_id": workspace_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def execute_query(
@@ -1071,9 +1099,10 @@ class AsyncIoTTwinMakerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iottwinmaker.types.execute_query_request.ExecuteQueryRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
-        input_["query_statement"] = query_statement
+        input_: capo_iottwinmaker.types.execute_query_request.ExecuteQueryRequest = {
+            "workspace_id": workspace_id,
+            "query_statement": query_statement,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1084,7 +1113,33 @@ class AsyncIoTTwinMakerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_execute_query(
+        self,
+        workspace_id: "capo_iottwinmaker.types.id.Id",
+        query_statement: "capo_iottwinmaker.types.query_statement.QueryStatement",
+        *,
+        config_overrides: Optional[AsyncIoTTwinMakerClientConfig] = None,
+        max_results: Optional[
+            "capo_iottwinmaker.types.query_service_max_results.QueryServiceMaxResults"
+        ] = None,
+        next_token: Optional["capo_iottwinmaker.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_iottwinmaker.types.execute_query_response.ExecuteQueryResponse]":
+        _token = next_token
+        while True:
+            _response = await self.execute_query(
+                workspace_id,
+                query_statement,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_component_type(
         self,
@@ -1124,15 +1179,17 @@ class AsyncIoTTwinMakerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iottwinmaker.types.get_component_type_request.GetComponentTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
-        input_["component_type_id"] = component_type_id
+        input_: capo_iottwinmaker.types.get_component_type_request.GetComponentTypeRequest = {
+            "workspace_id": workspace_id,
+            "component_type_id": component_type_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_entity(
@@ -1173,15 +1230,17 @@ class AsyncIoTTwinMakerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iottwinmaker.types.get_entity_request.GetEntityRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
-        input_["entity_id"] = entity_id
+        input_: capo_iottwinmaker.types.get_entity_request.GetEntityRequest = {
+            "workspace_id": workspace_id,
+            "entity_id": entity_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_metadata_transfer_job(
@@ -1220,14 +1279,16 @@ class AsyncIoTTwinMakerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iottwinmaker.types.get_metadata_transfer_job_request.GetMetadataTransferJobRequest = {}  # type: ignore[typeddict-item]
-        input_["metadata_transfer_job_id"] = metadata_transfer_job_id
+        input_: capo_iottwinmaker.types.get_metadata_transfer_job_request.GetMetadataTransferJobRequest = {
+            "metadata_transfer_job_id": metadata_transfer_job_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_pricing_plan(
@@ -1259,13 +1320,14 @@ class AsyncIoTTwinMakerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iottwinmaker.types.get_pricing_plan_request.GetPricingPlanRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iottwinmaker.types.get_pricing_plan_request.GetPricingPlanRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_property_value(
@@ -1330,7 +1392,10 @@ class AsyncIoTTwinMakerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iottwinmaker.types.get_property_value_request.GetPropertyValueRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iottwinmaker.types.get_property_value_request.GetPropertyValueRequest = {
+            "selected_properties": selected_properties,
+            "workspace_id": workspace_id,
+        }
         if component_name is not None:
             input_["component_name"] = component_name
         if component_path is not None:
@@ -1339,8 +1404,6 @@ class AsyncIoTTwinMakerClient:
             input_["component_type_id"] = component_type_id
         if entity_id is not None:
             input_["entity_id"] = entity_id
-        input_["selected_properties"] = selected_properties
-        input_["workspace_id"] = workspace_id
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1355,7 +1418,49 @@ class AsyncIoTTwinMakerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_property_value(
+        self,
+        selected_properties: "capo_iottwinmaker.types.selected_property_list.SelectedPropertyList",
+        workspace_id: "capo_iottwinmaker.types.id.Id",
+        *,
+        config_overrides: Optional[AsyncIoTTwinMakerClientConfig] = None,
+        component_name: Optional["capo_iottwinmaker.types.name.Name"] = None,
+        component_path: Optional[
+            "capo_iottwinmaker.types.component_path.ComponentPath"
+        ] = None,
+        component_type_id: Optional[
+            "capo_iottwinmaker.types.component_type_id.ComponentTypeId"
+        ] = None,
+        entity_id: Optional["capo_iottwinmaker.types.entity_id.EntityId"] = None,
+        max_results: Optional["capo_iottwinmaker.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_iottwinmaker.types.next_token.NextToken"] = None,
+        property_group_name: Optional["capo_iottwinmaker.types.name.Name"] = None,
+        tabular_conditions: Optional[
+            "capo_iottwinmaker.types.tabular_conditions.TabularConditions"
+        ] = None,
+    ) -> "AsyncIterator[capo_iottwinmaker.types.get_property_value_response.GetPropertyValueResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_property_value(
+                selected_properties,
+                workspace_id,
+                config_overrides=config_overrides,
+                component_name=component_name,
+                component_path=component_path,
+                component_type_id=component_type_id,
+                entity_id=entity_id,
+                max_results=max_results,
+                next_token=_token,
+                property_group_name=property_group_name,
+                tabular_conditions=tabular_conditions,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_property_value_history(
         self,
@@ -1433,8 +1538,10 @@ class AsyncIoTTwinMakerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iottwinmaker.types.get_property_value_history_request.GetPropertyValueHistoryRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
+        input_: capo_iottwinmaker.types.get_property_value_history_request.GetPropertyValueHistoryRequest = {
+            "workspace_id": workspace_id,
+            "selected_properties": selected_properties,
+        }
         if entity_id is not None:
             input_["entity_id"] = entity_id
         if component_name is not None:
@@ -1443,7 +1550,6 @@ class AsyncIoTTwinMakerClient:
             input_["component_path"] = component_path
         if component_type_id is not None:
             input_["component_type_id"] = component_type_id
-        input_["selected_properties"] = selected_properties
         if property_filters is not None:
             input_["property_filters"] = property_filters
         if start_date_time is not None:
@@ -1468,7 +1574,63 @@ class AsyncIoTTwinMakerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_property_value_history(
+        self,
+        workspace_id: "capo_iottwinmaker.types.id.Id",
+        selected_properties: "capo_iottwinmaker.types.selected_property_list.SelectedPropertyList",
+        *,
+        config_overrides: Optional[AsyncIoTTwinMakerClientConfig] = None,
+        entity_id: Optional["capo_iottwinmaker.types.entity_id.EntityId"] = None,
+        component_name: Optional["capo_iottwinmaker.types.name.Name"] = None,
+        component_path: Optional[
+            "capo_iottwinmaker.types.component_path.ComponentPath"
+        ] = None,
+        component_type_id: Optional[
+            "capo_iottwinmaker.types.component_type_id.ComponentTypeId"
+        ] = None,
+        property_filters: Optional[
+            "capo_iottwinmaker.types.property_filters.PropertyFilters"
+        ] = None,
+        start_date_time: Optional["capo_iottwinmaker.types.timestamp.Timestamp"] = None,
+        end_date_time: Optional["capo_iottwinmaker.types.timestamp.Timestamp"] = None,
+        interpolation: Optional[
+            "capo_iottwinmaker.types.interpolation_parameters.InterpolationParameters"
+        ] = None,
+        next_token: Optional["capo_iottwinmaker.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_iottwinmaker.types.max_results.MaxResults"] = None,
+        order_by_time: Optional[
+            "capo_iottwinmaker.types.order_by_time.OrderByTime"
+        ] = None,
+        start_time: Optional["capo_iottwinmaker.types.time.Time"] = None,
+        end_time: Optional["capo_iottwinmaker.types.time.Time"] = None,
+    ) -> "AsyncIterator[capo_iottwinmaker.types.get_property_value_history_response.GetPropertyValueHistoryResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_property_value_history(
+                workspace_id,
+                selected_properties,
+                config_overrides=config_overrides,
+                entity_id=entity_id,
+                component_name=component_name,
+                component_path=component_path,
+                component_type_id=component_type_id,
+                property_filters=property_filters,
+                start_date_time=start_date_time,
+                end_date_time=end_date_time,
+                interpolation=interpolation,
+                next_token=_token,
+                max_results=max_results,
+                order_by_time=order_by_time,
+                start_time=start_time,
+                end_time=end_time,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_scene(
         self,
@@ -1508,15 +1670,17 @@ class AsyncIoTTwinMakerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iottwinmaker.types.get_scene_request.GetSceneRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
-        input_["scene_id"] = scene_id
+        input_: capo_iottwinmaker.types.get_scene_request.GetSceneRequest = {
+            "workspace_id": workspace_id,
+            "scene_id": scene_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_sync_job(
@@ -1558,8 +1722,9 @@ class AsyncIoTTwinMakerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iottwinmaker.types.get_sync_job_request.GetSyncJobRequest = {}  # type: ignore[typeddict-item]
-        input_["sync_source"] = sync_source
+        input_: capo_iottwinmaker.types.get_sync_job_request.GetSyncJobRequest = {
+            "sync_source": sync_source
+        }
         if workspace_id is not None:
             input_["workspace_id"] = workspace_id
 
@@ -1568,6 +1733,7 @@ class AsyncIoTTwinMakerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_workspace(
@@ -1606,14 +1772,16 @@ class AsyncIoTTwinMakerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iottwinmaker.types.get_workspace_request.GetWorkspaceRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
+        input_: capo_iottwinmaker.types.get_workspace_request.GetWorkspaceRequest = {
+            "workspace_id": workspace_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_components(
@@ -1662,9 +1830,10 @@ class AsyncIoTTwinMakerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iottwinmaker.types.list_components_request.ListComponentsRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
-        input_["entity_id"] = entity_id
+        input_: capo_iottwinmaker.types.list_components_request.ListComponentsRequest = {
+            "workspace_id": workspace_id,
+            "entity_id": entity_id,
+        }
         if component_path is not None:
             input_["component_path"] = component_path
         if max_results is not None:
@@ -1677,7 +1846,35 @@ class AsyncIoTTwinMakerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_components(
+        self,
+        workspace_id: "capo_iottwinmaker.types.id.Id",
+        entity_id: "capo_iottwinmaker.types.entity_id.EntityId",
+        *,
+        config_overrides: Optional[AsyncIoTTwinMakerClientConfig] = None,
+        component_path: Optional[
+            "capo_iottwinmaker.types.component_path.ComponentPath"
+        ] = None,
+        max_results: Optional["capo_iottwinmaker.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_iottwinmaker.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_iottwinmaker.types.list_components_response.ListComponentsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_components(
+                workspace_id,
+                entity_id,
+                config_overrides=config_overrides,
+                component_path=component_path,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_component_types(
         self,
@@ -1722,8 +1919,9 @@ class AsyncIoTTwinMakerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iottwinmaker.types.list_component_types_request.ListComponentTypesRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
+        input_: capo_iottwinmaker.types.list_component_types_request.ListComponentTypesRequest = {
+            "workspace_id": workspace_id
+        }
         if filters is not None:
             input_["filters"] = filters
         if next_token is not None:
@@ -1736,7 +1934,33 @@ class AsyncIoTTwinMakerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_component_types(
+        self,
+        workspace_id: "capo_iottwinmaker.types.id.Id",
+        *,
+        config_overrides: Optional[AsyncIoTTwinMakerClientConfig] = None,
+        filters: Optional[
+            "capo_iottwinmaker.types.list_component_types_filters.ListComponentTypesFilters"
+        ] = None,
+        next_token: Optional["capo_iottwinmaker.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_iottwinmaker.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_iottwinmaker.types.list_component_types_response.ListComponentTypesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_component_types(
+                workspace_id,
+                config_overrides=config_overrides,
+                filters=filters,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_entities(
         self,
@@ -1781,8 +2005,9 @@ class AsyncIoTTwinMakerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iottwinmaker.types.list_entities_request.ListEntitiesRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
+        input_: capo_iottwinmaker.types.list_entities_request.ListEntitiesRequest = {
+            "workspace_id": workspace_id
+        }
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -1795,7 +2020,33 @@ class AsyncIoTTwinMakerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_entities(
+        self,
+        workspace_id: "capo_iottwinmaker.types.id.Id",
+        *,
+        config_overrides: Optional[AsyncIoTTwinMakerClientConfig] = None,
+        filters: Optional[
+            "capo_iottwinmaker.types.list_entities_filters.ListEntitiesFilters"
+        ] = None,
+        max_results: Optional["capo_iottwinmaker.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_iottwinmaker.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_iottwinmaker.types.list_entities_response.ListEntitiesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_entities(
+                workspace_id,
+                config_overrides=config_overrides,
+                filters=filters,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_metadata_transfer_jobs(
         self,
@@ -1842,9 +2093,10 @@ class AsyncIoTTwinMakerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iottwinmaker.types.list_metadata_transfer_jobs_request.ListMetadataTransferJobsRequest = {}  # type: ignore[typeddict-item]
-        input_["source_type"] = source_type
-        input_["destination_type"] = destination_type
+        input_: capo_iottwinmaker.types.list_metadata_transfer_jobs_request.ListMetadataTransferJobsRequest = {
+            "source_type": source_type,
+            "destination_type": destination_type,
+        }
         if filters is not None:
             input_["filters"] = filters
         if next_token is not None:
@@ -1857,7 +2109,35 @@ class AsyncIoTTwinMakerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_metadata_transfer_jobs(
+        self,
+        source_type: "capo_iottwinmaker.types.source_type.SourceType",
+        destination_type: "capo_iottwinmaker.types.destination_type.DestinationType",
+        *,
+        config_overrides: Optional[AsyncIoTTwinMakerClientConfig] = None,
+        filters: Optional[
+            "capo_iottwinmaker.types.list_metadata_transfer_jobs_filters.ListMetadataTransferJobsFilters"
+        ] = None,
+        next_token: Optional["capo_iottwinmaker.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_iottwinmaker.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_iottwinmaker.types.list_metadata_transfer_jobs_response.ListMetadataTransferJobsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_metadata_transfer_jobs(
+                source_type,
+                destination_type,
+                config_overrides=config_overrides,
+                filters=filters,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_properties(
         self,
@@ -1907,13 +2187,14 @@ class AsyncIoTTwinMakerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iottwinmaker.types.list_properties_request.ListPropertiesRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
+        input_: capo_iottwinmaker.types.list_properties_request.ListPropertiesRequest = {
+            "workspace_id": workspace_id,
+            "entity_id": entity_id,
+        }
         if component_name is not None:
             input_["component_name"] = component_name
         if component_path is not None:
             input_["component_path"] = component_path
-        input_["entity_id"] = entity_id
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1924,7 +2205,37 @@ class AsyncIoTTwinMakerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_properties(
+        self,
+        workspace_id: "capo_iottwinmaker.types.id.Id",
+        entity_id: "capo_iottwinmaker.types.entity_id.EntityId",
+        *,
+        config_overrides: Optional[AsyncIoTTwinMakerClientConfig] = None,
+        component_name: Optional["capo_iottwinmaker.types.name.Name"] = None,
+        component_path: Optional[
+            "capo_iottwinmaker.types.component_path.ComponentPath"
+        ] = None,
+        max_results: Optional["capo_iottwinmaker.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_iottwinmaker.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_iottwinmaker.types.list_properties_response.ListPropertiesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_properties(
+                workspace_id,
+                entity_id,
+                config_overrides=config_overrides,
+                component_name=component_name,
+                component_path=component_path,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_scenes(
         self,
@@ -1965,8 +2276,9 @@ class AsyncIoTTwinMakerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iottwinmaker.types.list_scenes_request.ListScenesRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
+        input_: capo_iottwinmaker.types.list_scenes_request.ListScenesRequest = {
+            "workspace_id": workspace_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1977,7 +2289,31 @@ class AsyncIoTTwinMakerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_scenes(
+        self,
+        workspace_id: "capo_iottwinmaker.types.id.Id",
+        *,
+        config_overrides: Optional[AsyncIoTTwinMakerClientConfig] = None,
+        max_results: Optional["capo_iottwinmaker.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_iottwinmaker.types.next_token.NextToken"] = None,
+    ) -> (
+        "AsyncIterator[capo_iottwinmaker.types.list_scenes_response.ListScenesResponse]"
+    ):
+        _token = next_token
+        while True:
+            _response = await self.list_scenes(
+                workspace_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_sync_jobs(
         self,
@@ -2019,8 +2355,9 @@ class AsyncIoTTwinMakerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iottwinmaker.types.list_sync_jobs_request.ListSyncJobsRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
+        input_: capo_iottwinmaker.types.list_sync_jobs_request.ListSyncJobsRequest = {
+            "workspace_id": workspace_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2031,7 +2368,29 @@ class AsyncIoTTwinMakerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_sync_jobs(
+        self,
+        workspace_id: "capo_iottwinmaker.types.id.Id",
+        *,
+        config_overrides: Optional[AsyncIoTTwinMakerClientConfig] = None,
+        max_results: Optional["capo_iottwinmaker.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_iottwinmaker.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_iottwinmaker.types.list_sync_jobs_response.ListSyncJobsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_sync_jobs(
+                workspace_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_sync_resources(
         self,
@@ -2081,9 +2440,10 @@ class AsyncIoTTwinMakerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iottwinmaker.types.list_sync_resources_request.ListSyncResourcesRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
-        input_["sync_source"] = sync_source
+        input_: capo_iottwinmaker.types.list_sync_resources_request.ListSyncResourcesRequest = {
+            "workspace_id": workspace_id,
+            "sync_source": sync_source,
+        }
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -2096,7 +2456,35 @@ class AsyncIoTTwinMakerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_sync_resources(
+        self,
+        workspace_id: "capo_iottwinmaker.types.id.Id",
+        sync_source: "capo_iottwinmaker.types.sync_source.SyncSource",
+        *,
+        config_overrides: Optional[AsyncIoTTwinMakerClientConfig] = None,
+        filters: Optional[
+            "capo_iottwinmaker.types.sync_resource_filters.SyncResourceFilters"
+        ] = None,
+        max_results: Optional["capo_iottwinmaker.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_iottwinmaker.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_iottwinmaker.types.list_sync_resources_response.ListSyncResourcesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_sync_resources(
+                workspace_id,
+                sync_source,
+                config_overrides=config_overrides,
+                filters=filters,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_tags_for_resource(
         self,
@@ -2135,8 +2523,9 @@ class AsyncIoTTwinMakerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iottwinmaker.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_iottwinmaker.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2147,6 +2536,7 @@ class AsyncIoTTwinMakerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_workspaces(
@@ -2186,7 +2576,7 @@ class AsyncIoTTwinMakerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iottwinmaker.types.list_workspaces_request.ListWorkspacesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iottwinmaker.types.list_workspaces_request.ListWorkspacesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2197,7 +2587,27 @@ class AsyncIoTTwinMakerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_workspaces(
+        self,
+        *,
+        config_overrides: Optional[AsyncIoTTwinMakerClientConfig] = None,
+        max_results: Optional["capo_iottwinmaker.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_iottwinmaker.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_iottwinmaker.types.list_workspaces_response.ListWorkspacesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_workspaces(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def tag_resource(
         self,
@@ -2235,15 +2645,17 @@ class AsyncIoTTwinMakerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iottwinmaker.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_iottwinmaker.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -2281,15 +2693,17 @@ class AsyncIoTTwinMakerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iottwinmaker.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_iottwinmaker.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_component_type(
@@ -2359,11 +2773,12 @@ class AsyncIoTTwinMakerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iottwinmaker.types.update_component_type_request.UpdateComponentTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
+        input_: capo_iottwinmaker.types.update_component_type_request.UpdateComponentTypeRequest = {
+            "workspace_id": workspace_id,
+            "component_type_id": component_type_id,
+        }
         if is_singleton is not None:
             input_["is_singleton"] = is_singleton
-        input_["component_type_id"] = component_type_id
         if description is not None:
             input_["description"] = description
         if property_definitions is not None:
@@ -2384,6 +2799,7 @@ class AsyncIoTTwinMakerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_entity(
@@ -2442,9 +2858,10 @@ class AsyncIoTTwinMakerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iottwinmaker.types.update_entity_request.UpdateEntityRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
-        input_["entity_id"] = entity_id
+        input_: capo_iottwinmaker.types.update_entity_request.UpdateEntityRequest = {
+            "workspace_id": workspace_id,
+            "entity_id": entity_id,
+        }
         if entity_name is not None:
             input_["entity_name"] = entity_name
         if description is not None:
@@ -2461,6 +2878,7 @@ class AsyncIoTTwinMakerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_pricing_plan(
@@ -2504,8 +2922,9 @@ class AsyncIoTTwinMakerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iottwinmaker.types.update_pricing_plan_request.UpdatePricingPlanRequest = {}  # type: ignore[typeddict-item]
-        input_["pricing_mode"] = pricing_mode
+        input_: capo_iottwinmaker.types.update_pricing_plan_request.UpdatePricingPlanRequest = {
+            "pricing_mode": pricing_mode
+        }
         if bundle_names is not None:
             input_["bundle_names"] = bundle_names
 
@@ -2514,6 +2933,7 @@ class AsyncIoTTwinMakerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_scene(
@@ -2566,9 +2986,10 @@ class AsyncIoTTwinMakerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iottwinmaker.types.update_scene_request.UpdateSceneRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
-        input_["scene_id"] = scene_id
+        input_: capo_iottwinmaker.types.update_scene_request.UpdateSceneRequest = {
+            "workspace_id": workspace_id,
+            "scene_id": scene_id,
+        }
         if content_location is not None:
             input_["content_location"] = content_location
         if description is not None:
@@ -2583,6 +3004,7 @@ class AsyncIoTTwinMakerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_workspace(
@@ -2628,8 +3050,9 @@ class AsyncIoTTwinMakerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iottwinmaker.types.update_workspace_request.UpdateWorkspaceRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
+        input_: capo_iottwinmaker.types.update_workspace_request.UpdateWorkspaceRequest = {
+            "workspace_id": workspace_id
+        }
         if description is not None:
             input_["description"] = description
         if role is not None:
@@ -2642,6 +3065,7 @@ class AsyncIoTTwinMakerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

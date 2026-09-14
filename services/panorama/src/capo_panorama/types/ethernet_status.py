@@ -35,10 +35,10 @@ def serialize_json(value: EthernetStatus) -> dict:
 
 def deserialize_json(data: dict) -> EthernetStatus:
     out: EthernetStatus = {}  # type: ignore[typeddict-item]
-    if "IpAddress" in data:
+    if data.get("IpAddress") is not None:
         out["ip_address"] = data["IpAddress"]
-    if "ConnectionStatus" in data:
+    if data.get("ConnectionStatus") is not None:
         out["connection_status"] = data["ConnectionStatus"]
-    if "HwAddress" in data:
+    if data.get("HwAddress") is not None:
         out["hw_address"] = data["HwAddress"]
     return out

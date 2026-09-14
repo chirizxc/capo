@@ -43,17 +43,17 @@ def serialize_aws_json_1_1(value: Event) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Event:
     out: Event = {}  # type: ignore[typeddict-item]
-    if "SourceName" in data:
+    if data.get("SourceName") is not None:
         out["source_name"] = data["SourceName"]
-    if "SourceType" in data:
+    if data.get("SourceType") is not None:
         import capo_dax.types.source_type
 
         out["source_type"] = capo_dax.types.source_type.deserialize_aws_json_1_1(
             data["SourceType"]
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "Date" in data:
+    if data.get("Date") is not None:
         import capo_dax.types.t_stamp
 
         out["date"] = capo_dax.types.t_stamp.deserialize_aws_json_1_1(data["Date"])

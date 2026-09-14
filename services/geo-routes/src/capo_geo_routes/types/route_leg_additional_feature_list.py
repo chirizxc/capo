@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> RouteLegAdditionalFeatureList:
 
     out: RouteLegAdditionalFeatureList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_geo_routes.types.route_leg_additional_feature.deserialize_json(item)
         )

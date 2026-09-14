@@ -122,9 +122,9 @@ def serialize_json(value: Ac3Settings) -> dict:
 
 def deserialize_json(data: dict) -> Ac3Settings:
     out: Ac3Settings = {}  # type: ignore[typeddict-item]
-    if "bitrate" in data:
+    if data.get("bitrate") is not None:
         out["bitrate"] = data["bitrate"]
-    if "bitstreamMode" in data:
+    if data.get("bitstreamMode") is not None:
         import capo_mediaconvert.types.ac3_bitstream_mode
 
         out["bitstream_mode"] = (
@@ -132,15 +132,15 @@ def deserialize_json(data: dict) -> Ac3Settings:
                 data["bitstreamMode"]
             )
         )
-    if "codingMode" in data:
+    if data.get("codingMode") is not None:
         import capo_mediaconvert.types.ac3_coding_mode
 
         out["coding_mode"] = capo_mediaconvert.types.ac3_coding_mode.deserialize_json(
             data["codingMode"]
         )
-    if "dialnorm" in data:
+    if data.get("dialnorm") is not None:
         out["dialnorm"] = data["dialnorm"]
-    if "dynamicRangeCompressionLine" in data:
+    if data.get("dynamicRangeCompressionLine") is not None:
         import capo_mediaconvert.types.ac3_dynamic_range_compression_line
 
         out["dynamic_range_compression_line"] = (
@@ -148,7 +148,7 @@ def deserialize_json(data: dict) -> Ac3Settings:
                 data["dynamicRangeCompressionLine"]
             )
         )
-    if "dynamicRangeCompressionProfile" in data:
+    if data.get("dynamicRangeCompressionProfile") is not None:
         import capo_mediaconvert.types.ac3_dynamic_range_compression_profile
 
         out["dynamic_range_compression_profile"] = (
@@ -156,7 +156,7 @@ def deserialize_json(data: dict) -> Ac3Settings:
                 data["dynamicRangeCompressionProfile"]
             )
         )
-    if "dynamicRangeCompressionRf" in data:
+    if data.get("dynamicRangeCompressionRf") is not None:
         import capo_mediaconvert.types.ac3_dynamic_range_compression_rf
 
         out["dynamic_range_compression_rf"] = (
@@ -164,13 +164,13 @@ def deserialize_json(data: dict) -> Ac3Settings:
                 data["dynamicRangeCompressionRf"]
             )
         )
-    if "lfeFilter" in data:
+    if data.get("lfeFilter") is not None:
         import capo_mediaconvert.types.ac3_lfe_filter
 
         out["lfe_filter"] = capo_mediaconvert.types.ac3_lfe_filter.deserialize_json(
             data["lfeFilter"]
         )
-    if "metadataControl" in data:
+    if data.get("metadataControl") is not None:
         import capo_mediaconvert.types.ac3_metadata_control
 
         out["metadata_control"] = (
@@ -178,6 +178,6 @@ def deserialize_json(data: dict) -> Ac3Settings:
                 data["metadataControl"]
             )
         )
-    if "sampleRate" in data:
+    if data.get("sampleRate") is not None:
         out["sample_rate"] = data["sampleRate"]
     return out

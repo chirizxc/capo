@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: HumanLoopActivationConditionsConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HumanLoopActivationConditionsConfig:
     out: HumanLoopActivationConditionsConfig = {}  # type: ignore[typeddict-item]
-    if "HumanLoopActivationConditions" in data:
+    if data.get("HumanLoopActivationConditions") is not None:
         out["human_loop_activation_conditions"] = data["HumanLoopActivationConditions"]
     return out

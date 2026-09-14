@@ -39,7 +39,7 @@ def serialize_json(value: UpdateAssessmentFrameworkShareRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAssessmentFrameworkShareRequest:
     out: UpdateAssessmentFrameworkShareRequest = {}  # type: ignore[typeddict-item]
-    if "requestType" in data:
+    if data.get("requestType") is not None:
         import capo_auditmanager.types.share_request_type
 
         out["request_type"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> UpdateAssessmentFrameworkShareRequest:
         raise DeserializationError(
             "UpdateAssessmentFrameworkShareRequest.request_type required"
         )
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_auditmanager.types.share_request_action
 
         out["action"] = capo_auditmanager.types.share_request_action.deserialize_json(

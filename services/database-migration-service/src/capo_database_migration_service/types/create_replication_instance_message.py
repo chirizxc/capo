@@ -135,21 +135,21 @@ def serialize_aws_json_1_1(value: CreateReplicationInstanceMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateReplicationInstanceMessage:
     out: CreateReplicationInstanceMessage = {}  # type: ignore[typeddict-item]
-    if "ReplicationInstanceIdentifier" in data:
+    if data.get("ReplicationInstanceIdentifier") is not None:
         out["replication_instance_identifier"] = data["ReplicationInstanceIdentifier"]
     else:
         raise DeserializationError(
             "CreateReplicationInstanceMessage.replication_instance_identifier required"
         )
-    if "AllocatedStorage" in data:
+    if data.get("AllocatedStorage") is not None:
         out["allocated_storage"] = data["AllocatedStorage"]
-    if "ReplicationInstanceClass" in data:
+    if data.get("ReplicationInstanceClass") is not None:
         out["replication_instance_class"] = data["ReplicationInstanceClass"]
     else:
         raise DeserializationError(
             "CreateReplicationInstanceMessage.replication_instance_class required"
         )
-    if "VpcSecurityGroupIds" in data:
+    if data.get("VpcSecurityGroupIds") is not None:
         import capo_database_migration_service.types.vpc_security_group_id_list
 
         out["vpc_security_group_ids"] = (
@@ -157,21 +157,21 @@ def deserialize_aws_json_1_1(data: dict) -> CreateReplicationInstanceMessage:
                 data["VpcSecurityGroupIds"]
             )
         )
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
-    if "ReplicationSubnetGroupIdentifier" in data:
+    if data.get("ReplicationSubnetGroupIdentifier") is not None:
         out["replication_subnet_group_identifier"] = data[
             "ReplicationSubnetGroupIdentifier"
         ]
-    if "PreferredMaintenanceWindow" in data:
+    if data.get("PreferredMaintenanceWindow") is not None:
         out["preferred_maintenance_window"] = data["PreferredMaintenanceWindow"]
-    if "MultiAZ" in data:
+    if data.get("MultiAZ") is not None:
         out["multi_az"] = data["MultiAZ"]
-    if "EngineVersion" in data:
+    if data.get("EngineVersion") is not None:
         out["engine_version"] = data["EngineVersion"]
-    if "AutoMinorVersionUpgrade" in data:
+    if data.get("AutoMinorVersionUpgrade") is not None:
         out["auto_minor_version_upgrade"] = data["AutoMinorVersionUpgrade"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_database_migration_service.types.tag_list
 
         out["tags"] = (
@@ -179,17 +179,17 @@ def deserialize_aws_json_1_1(data: dict) -> CreateReplicationInstanceMessage:
                 data["Tags"]
             )
         )
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "PubliclyAccessible" in data:
+    if data.get("PubliclyAccessible") is not None:
         out["publicly_accessible"] = data["PubliclyAccessible"]
-    if "DnsNameServers" in data:
+    if data.get("DnsNameServers") is not None:
         out["dns_name_servers"] = data["DnsNameServers"]
-    if "ResourceIdentifier" in data:
+    if data.get("ResourceIdentifier") is not None:
         out["resource_identifier"] = data["ResourceIdentifier"]
-    if "NetworkType" in data:
+    if data.get("NetworkType") is not None:
         out["network_type"] = data["NetworkType"]
-    if "KerberosAuthenticationSettings" in data:
+    if data.get("KerberosAuthenticationSettings") is not None:
         import capo_database_migration_service.types.kerberos_authentication_settings
 
         out["kerberos_authentication_settings"] = (

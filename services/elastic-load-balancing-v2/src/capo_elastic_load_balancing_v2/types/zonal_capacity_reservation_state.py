@@ -44,7 +44,16 @@ def serialize_query(
         pairs.append(
             (
                 f"{key_prefix}EffectiveCapacityUnits",
-                str(value["effective_capacity_units"]),
+                (
+                    "NaN"
+                    if value["effective_capacity_units"]
+                    != value["effective_capacity_units"]
+                    else "Infinity"
+                    if value["effective_capacity_units"] == float("inf")
+                    else "-Infinity"
+                    if value["effective_capacity_units"] == float("-inf")
+                    else str(value["effective_capacity_units"])
+                ),
             )
         )
 

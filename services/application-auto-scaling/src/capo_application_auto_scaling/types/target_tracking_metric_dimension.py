@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: TargetTrackingMetricDimension) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TargetTrackingMetricDimension:
     out: TargetTrackingMetricDimension = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("TargetTrackingMetricDimension.name required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("TargetTrackingMetricDimension.value required")

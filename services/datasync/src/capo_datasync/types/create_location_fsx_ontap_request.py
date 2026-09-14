@@ -61,7 +61,7 @@ def serialize_aws_json_1_1(value: CreateLocationFsxOntapRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateLocationFsxOntapRequest:
     out: CreateLocationFsxOntapRequest = {}  # type: ignore[typeddict-item]
-    if "Protocol" in data:
+    if data.get("Protocol") is not None:
         import capo_datasync.types.fsx_protocol
 
         out["protocol"] = capo_datasync.types.fsx_protocol.deserialize_aws_json_1_1(
@@ -69,7 +69,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateLocationFsxOntapRequest:
         )
     else:
         raise DeserializationError("CreateLocationFsxOntapRequest.protocol required")
-    if "SecurityGroupArns" in data:
+    if data.get("SecurityGroupArns") is not None:
         import capo_datasync.types.ec2_security_group_arn_list
 
         out["security_group_arns"] = (
@@ -81,15 +81,15 @@ def deserialize_aws_json_1_1(data: dict) -> CreateLocationFsxOntapRequest:
         raise DeserializationError(
             "CreateLocationFsxOntapRequest.security_group_arns required"
         )
-    if "StorageVirtualMachineArn" in data:
+    if data.get("StorageVirtualMachineArn") is not None:
         out["storage_virtual_machine_arn"] = data["StorageVirtualMachineArn"]
     else:
         raise DeserializationError(
             "CreateLocationFsxOntapRequest.storage_virtual_machine_arn required"
         )
-    if "Subdirectory" in data:
+    if data.get("Subdirectory") is not None:
         out["subdirectory"] = data["Subdirectory"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_datasync.types.input_tag_list
 
         out["tags"] = capo_datasync.types.input_tag_list.deserialize_aws_json_1_1(

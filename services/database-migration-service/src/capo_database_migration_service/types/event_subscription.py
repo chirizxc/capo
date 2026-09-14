@@ -77,19 +77,19 @@ def serialize_aws_json_1_1(value: EventSubscription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EventSubscription:
     out: EventSubscription = {}  # type: ignore[typeddict-item]
-    if "CustomerAwsId" in data:
+    if data.get("CustomerAwsId") is not None:
         out["customer_aws_id"] = data["CustomerAwsId"]
-    if "CustSubscriptionId" in data:
+    if data.get("CustSubscriptionId") is not None:
         out["cust_subscription_id"] = data["CustSubscriptionId"]
-    if "SnsTopicArn" in data:
+    if data.get("SnsTopicArn") is not None:
         out["sns_topic_arn"] = data["SnsTopicArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "SubscriptionCreationTime" in data:
+    if data.get("SubscriptionCreationTime") is not None:
         out["subscription_creation_time"] = data["SubscriptionCreationTime"]
-    if "SourceType" in data:
+    if data.get("SourceType") is not None:
         out["source_type"] = data["SourceType"]
-    if "SourceIdsList" in data:
+    if data.get("SourceIdsList") is not None:
         import capo_database_migration_service.types.source_ids_list
 
         out["source_ids_list"] = (
@@ -97,7 +97,7 @@ def deserialize_aws_json_1_1(data: dict) -> EventSubscription:
                 data["SourceIdsList"]
             )
         )
-    if "EventCategoriesList" in data:
+    if data.get("EventCategoriesList") is not None:
         import capo_database_migration_service.types.event_categories_list
 
         out["event_categories_list"] = (
@@ -105,7 +105,7 @@ def deserialize_aws_json_1_1(data: dict) -> EventSubscription:
                 data["EventCategoriesList"]
             )
         )
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
     else:
         out["enabled"] = False

@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> BatchDeleteFirewallRuleErrors:
 
     out: BatchDeleteFirewallRuleErrors = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_route53resolver.types.batch_delete_firewall_rule_error.deserialize_aws_json_1_1(
                 item

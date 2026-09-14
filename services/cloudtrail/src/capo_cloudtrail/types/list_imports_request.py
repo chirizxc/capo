@@ -48,11 +48,11 @@ def serialize_aws_json_1_1(value: ListImportsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListImportsRequest:
     out: ListImportsRequest = {}  # type: ignore[typeddict-item]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "Destination" in data:
+    if data.get("Destination") is not None:
         out["destination"] = data["Destination"]
-    if "ImportStatus" in data:
+    if data.get("ImportStatus") is not None:
         import capo_cloudtrail.types.import_status
 
         out["import_status"] = (
@@ -60,6 +60,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListImportsRequest:
                 data["ImportStatus"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

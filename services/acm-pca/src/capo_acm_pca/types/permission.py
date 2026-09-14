@@ -56,24 +56,24 @@ def serialize_aws_json_1_1(value: Permission) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Permission:
     out: Permission = {}  # type: ignore[typeddict-item]
-    if "CertificateAuthorityArn" in data:
+    if data.get("CertificateAuthorityArn") is not None:
         out["certificate_authority_arn"] = data["CertificateAuthorityArn"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_acm_pca.types.t_stamp
 
         out["created_at"] = capo_acm_pca.types.t_stamp.deserialize_aws_json_1_1(
             data["CreatedAt"]
         )
-    if "Principal" in data:
+    if data.get("Principal") is not None:
         out["principal"] = data["Principal"]
-    if "SourceAccount" in data:
+    if data.get("SourceAccount") is not None:
         out["source_account"] = data["SourceAccount"]
-    if "Actions" in data:
+    if data.get("Actions") is not None:
         import capo_acm_pca.types.action_list
 
         out["actions"] = capo_acm_pca.types.action_list.deserialize_aws_json_1_1(
             data["Actions"]
         )
-    if "Policy" in data:
+    if data.get("Policy") is not None:
         out["policy"] = data["Policy"]
     return out

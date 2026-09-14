@@ -40,11 +40,11 @@ def serialize_aws_json_1_1(value: InstanceSnapshotInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InstanceSnapshotInfo:
     out: InstanceSnapshotInfo = {}  # type: ignore[typeddict-item]
-    if "fromBundleId" in data:
+    if data.get("fromBundleId") is not None:
         out["from_bundle_id"] = data["fromBundleId"]
-    if "fromBlueprintId" in data:
+    if data.get("fromBlueprintId") is not None:
         out["from_blueprint_id"] = data["fromBlueprintId"]
-    if "fromDiskInfo" in data:
+    if data.get("fromDiskInfo") is not None:
         import capo_lightsail.types.disk_info_list
 
         out["from_disk_info"] = (

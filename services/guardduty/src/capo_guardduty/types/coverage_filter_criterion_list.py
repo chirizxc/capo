@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> CoverageFilterCriterionList:
 
     out: CoverageFilterCriterionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_guardduty.types.coverage_filter_criterion.deserialize_json(item)
         )

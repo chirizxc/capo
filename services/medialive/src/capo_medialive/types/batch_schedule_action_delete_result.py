@@ -31,7 +31,7 @@ def serialize_json(value: BatchScheduleActionDeleteResult) -> dict:
 
 def deserialize_json(data: dict) -> BatchScheduleActionDeleteResult:
     out: BatchScheduleActionDeleteResult = {}  # type: ignore[typeddict-item]
-    if "scheduleActions" in data:
+    if data.get("scheduleActions") is not None:
         import capo_medialive.types.__list_of_schedule_action
 
         out["schedule_actions"] = (

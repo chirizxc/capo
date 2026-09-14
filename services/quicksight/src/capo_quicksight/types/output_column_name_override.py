@@ -28,9 +28,9 @@ def serialize_json(value: OutputColumnNameOverride) -> dict:
 
 def deserialize_json(data: dict) -> OutputColumnNameOverride:
     out: OutputColumnNameOverride = {}  # type: ignore[typeddict-item]
-    if "SourceColumnName" in data:
+    if data.get("SourceColumnName") is not None:
         out["source_column_name"] = data["SourceColumnName"]
-    if "OutputColumnName" in data:
+    if data.get("OutputColumnName") is not None:
         out["output_column_name"] = data["OutputColumnName"]
     else:
         raise DeserializationError(

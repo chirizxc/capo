@@ -57,7 +57,7 @@ def serialize_json(value: NotificationDetails) -> dict:
 
 def deserialize_json(data: dict) -> NotificationDetails:
     out: NotificationDetails = {}  # type: ignore[typeddict-item]
-    if "DataUpdate" in data:
+    if data.get("DataUpdate") is not None:
         import capo_dataexchange.types.data_update_request_details
 
         out["data_update"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> NotificationDetails:
                 data["DataUpdate"]
             )
         )
-    if "Deprecation" in data:
+    if data.get("Deprecation") is not None:
         import capo_dataexchange.types.deprecation_request_details
 
         out["deprecation"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> NotificationDetails:
                 data["Deprecation"]
             )
         )
-    if "SchemaChange" in data:
+    if data.get("SchemaChange") is not None:
         import capo_dataexchange.types.schema_change_request_details
 
         out["schema_change"] = (

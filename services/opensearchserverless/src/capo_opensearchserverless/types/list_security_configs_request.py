@@ -32,12 +32,12 @@ def serialize_aws_json_1_0(value: ListSecurityConfigsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListSecurityConfigsRequest:
     out: ListSecurityConfigsRequest = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("ListSecurityConfigsRequest.type required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

@@ -29,12 +29,12 @@ def serialize_json(value: NetworkSettingsSummary) -> dict:
 
 def deserialize_json(data: dict) -> NetworkSettingsSummary:
     out: NetworkSettingsSummary = {}  # type: ignore[typeddict-item]
-    if "networkSettingsArn" in data:
+    if data.get("networkSettingsArn") is not None:
         out["network_settings_arn"] = data["networkSettingsArn"]
     else:
         raise DeserializationError(
             "NetworkSettingsSummary.network_settings_arn required"
         )
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
     return out

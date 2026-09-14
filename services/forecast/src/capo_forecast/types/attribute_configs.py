@@ -25,5 +25,7 @@ def deserialize_aws_json_1_1(data: list) -> AttributeConfigs:
 
     out: AttributeConfigs = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_forecast.types.attribute_config.deserialize_aws_json_1_1(item))
     return out

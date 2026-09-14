@@ -32,7 +32,7 @@ def serialize_json(value: BrowserExtensionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> BrowserExtensionConfiguration:
     out: BrowserExtensionConfiguration = {}  # type: ignore[typeddict-item]
-    if "enabledBrowserExtensions" in data:
+    if data.get("enabledBrowserExtensions") is not None:
         import capo_qbusiness.types.browser_extension_list
 
         out["enabled_browser_extensions"] = (

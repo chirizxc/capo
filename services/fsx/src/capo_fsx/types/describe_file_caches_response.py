@@ -31,12 +31,12 @@ def serialize_aws_json_1_1(value: DescribeFileCachesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeFileCachesResponse:
     out: DescribeFileCachesResponse = {}  # type: ignore[typeddict-item]
-    if "FileCaches" in data:
+    if data.get("FileCaches") is not None:
         import capo_fsx.types.file_caches
 
         out["file_caches"] = capo_fsx.types.file_caches.deserialize_aws_json_1_1(
             data["FileCaches"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

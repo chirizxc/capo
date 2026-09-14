@@ -27,11 +27,11 @@ def serialize_json(value: DeleteAssertionRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteAssertionRequest:
     out: DeleteAssertionRequest = {}  # type: ignore[typeddict-item]
-    if "serviceArn" in data:
+    if data.get("serviceArn") is not None:
         out["service_arn"] = data["serviceArn"]
     else:
         raise DeserializationError("DeleteAssertionRequest.service_arn required")
-    if "assertionId" in data:
+    if data.get("assertionId") is not None:
         out["assertion_id"] = data["assertionId"]
     else:
         raise DeserializationError("DeleteAssertionRequest.assertion_id required")

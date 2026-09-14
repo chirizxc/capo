@@ -56,11 +56,11 @@ def serialize_json(value: PurchaseOfferingRequest) -> dict:
 
 def deserialize_json(data: dict) -> PurchaseOfferingRequest:
     out: PurchaseOfferingRequest = {}  # type: ignore[typeddict-item]
-    if "count" in data:
+    if data.get("count") is not None:
         out["count"] = data["count"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "renewalSettings" in data:
+    if data.get("renewalSettings") is not None:
         import capo_medialive.types.renewal_settings
 
         out["renewal_settings"] = (
@@ -68,11 +68,11 @@ def deserialize_json(data: dict) -> PurchaseOfferingRequest:
                 data["renewalSettings"]
             )
         )
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
-    if "start" in data:
+    if data.get("start") is not None:
         out["start"] = data["start"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_medialive.types.tags
 
         out["tags"] = capo_medialive.types.tags.deserialize_json(data["tags"])

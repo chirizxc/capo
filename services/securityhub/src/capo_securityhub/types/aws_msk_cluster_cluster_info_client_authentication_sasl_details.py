@@ -48,7 +48,7 @@ def deserialize_json(
     data: dict,
 ) -> AwsMskClusterClusterInfoClientAuthenticationSaslDetails:
     out: AwsMskClusterClusterInfoClientAuthenticationSaslDetails = {}  # type: ignore[typeddict-item]
-    if "Iam" in data:
+    if data.get("Iam") is not None:
         import capo_securityhub.types.aws_msk_cluster_cluster_info_client_authentication_sasl_iam_details
 
         out["iam"] = (
@@ -56,7 +56,7 @@ def deserialize_json(
                 data["Iam"]
             )
         )
-    if "Scram" in data:
+    if data.get("Scram") is not None:
         import capo_securityhub.types.aws_msk_cluster_cluster_info_client_authentication_sasl_scram_details
 
         out["scram"] = (

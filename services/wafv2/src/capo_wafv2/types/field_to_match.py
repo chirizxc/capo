@@ -148,13 +148,13 @@ def serialize_aws_json_1_1(value: FieldToMatch) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FieldToMatch:
     out: FieldToMatch = {}  # type: ignore[typeddict-item]
-    if "SingleHeader" in data:
+    if data.get("SingleHeader") is not None:
         import capo_wafv2.types.single_header
 
         out["single_header"] = capo_wafv2.types.single_header.deserialize_aws_json_1_1(
             data["SingleHeader"]
         )
-    if "SingleQueryArgument" in data:
+    if data.get("SingleQueryArgument") is not None:
         import capo_wafv2.types.single_query_argument
 
         out["single_query_argument"] = (
@@ -162,7 +162,7 @@ def deserialize_aws_json_1_1(data: dict) -> FieldToMatch:
                 data["SingleQueryArgument"]
             )
         )
-    if "AllQueryArguments" in data:
+    if data.get("AllQueryArguments") is not None:
         import capo_wafv2.types.all_query_arguments
 
         out["all_query_arguments"] = (
@@ -170,51 +170,51 @@ def deserialize_aws_json_1_1(data: dict) -> FieldToMatch:
                 data["AllQueryArguments"]
             )
         )
-    if "UriPath" in data:
+    if data.get("UriPath") is not None:
         import capo_wafv2.types.uri_path
 
         out["uri_path"] = capo_wafv2.types.uri_path.deserialize_aws_json_1_1(
             data["UriPath"]
         )
-    if "QueryString" in data:
+    if data.get("QueryString") is not None:
         import capo_wafv2.types.query_string
 
         out["query_string"] = capo_wafv2.types.query_string.deserialize_aws_json_1_1(
             data["QueryString"]
         )
-    if "Body" in data:
+    if data.get("Body") is not None:
         import capo_wafv2.types.body
 
         out["body"] = capo_wafv2.types.body.deserialize_aws_json_1_1(data["Body"])
-    if "Method" in data:
+    if data.get("Method") is not None:
         import capo_wafv2.types.method
 
         out["method"] = capo_wafv2.types.method.deserialize_aws_json_1_1(data["Method"])
-    if "JsonBody" in data:
+    if data.get("JsonBody") is not None:
         import capo_wafv2.types.json_body
 
         out["json_body"] = capo_wafv2.types.json_body.deserialize_aws_json_1_1(
             data["JsonBody"]
         )
-    if "Headers" in data:
+    if data.get("Headers") is not None:
         import capo_wafv2.types.headers
 
         out["headers"] = capo_wafv2.types.headers.deserialize_aws_json_1_1(
             data["Headers"]
         )
-    if "Cookies" in data:
+    if data.get("Cookies") is not None:
         import capo_wafv2.types.cookies
 
         out["cookies"] = capo_wafv2.types.cookies.deserialize_aws_json_1_1(
             data["Cookies"]
         )
-    if "HeaderOrder" in data:
+    if data.get("HeaderOrder") is not None:
         import capo_wafv2.types.header_order
 
         out["header_order"] = capo_wafv2.types.header_order.deserialize_aws_json_1_1(
             data["HeaderOrder"]
         )
-    if "JA3Fingerprint" in data:
+    if data.get("JA3Fingerprint") is not None:
         import capo_wafv2.types.ja3_fingerprint
 
         out["ja3_fingerprint"] = (
@@ -222,7 +222,7 @@ def deserialize_aws_json_1_1(data: dict) -> FieldToMatch:
                 data["JA3Fingerprint"]
             )
         )
-    if "JA4Fingerprint" in data:
+    if data.get("JA4Fingerprint") is not None:
         import capo_wafv2.types.ja4_fingerprint
 
         out["ja4_fingerprint"] = (
@@ -230,7 +230,7 @@ def deserialize_aws_json_1_1(data: dict) -> FieldToMatch:
                 data["JA4Fingerprint"]
             )
         )
-    if "UriFragment" in data:
+    if data.get("UriFragment") is not None:
         import capo_wafv2.types.uri_fragment
 
         out["uri_fragment"] = capo_wafv2.types.uri_fragment.deserialize_aws_json_1_1(

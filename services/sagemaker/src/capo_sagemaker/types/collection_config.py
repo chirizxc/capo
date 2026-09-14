@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: CollectionConfig) -> dict:
 
 
 def deserialize_aws_json_1_1(data: dict) -> CollectionConfig:
-    if "VectorConfig" in data:
+    if data.get("VectorConfig") is not None:
         import capo_sagemaker.types.vector_config
 
         return {

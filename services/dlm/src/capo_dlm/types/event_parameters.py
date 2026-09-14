@@ -41,18 +41,18 @@ def serialize_json(value: EventParameters) -> dict:
 
 def deserialize_json(data: dict) -> EventParameters:
     out: EventParameters = {}  # type: ignore[typeddict-item]
-    if "EventType" in data:
+    if data.get("EventType") is not None:
         import capo_dlm.types.event_type_values
 
         out["event_type"] = capo_dlm.types.event_type_values.deserialize_json(
             data["EventType"]
         )
-    if "SnapshotOwner" in data:
+    if data.get("SnapshotOwner") is not None:
         import capo_dlm.types.snapshot_owner_list
 
         out["snapshot_owner"] = capo_dlm.types.snapshot_owner_list.deserialize_json(
             data["SnapshotOwner"]
         )
-    if "DescriptionRegex" in data:
+    if data.get("DescriptionRegex") is not None:
         out["description_regex"] = data["DescriptionRegex"]
     return out

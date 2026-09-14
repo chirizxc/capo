@@ -45,7 +45,7 @@ def serialize_aws_json_1_1(value: FeaturizationMethod) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FeaturizationMethod:
     out: FeaturizationMethod = {}  # type: ignore[typeddict-item]
-    if "FeaturizationMethodName" in data:
+    if data.get("FeaturizationMethodName") is not None:
         import capo_forecast.types.featurization_method_name
 
         out["featurization_method_name"] = (
@@ -57,7 +57,7 @@ def deserialize_aws_json_1_1(data: dict) -> FeaturizationMethod:
         raise DeserializationError(
             "FeaturizationMethod.featurization_method_name required"
         )
-    if "FeaturizationMethodParameters" in data:
+    if data.get("FeaturizationMethodParameters") is not None:
         import capo_forecast.types.featurization_method_parameters
 
         out["featurization_method_parameters"] = (

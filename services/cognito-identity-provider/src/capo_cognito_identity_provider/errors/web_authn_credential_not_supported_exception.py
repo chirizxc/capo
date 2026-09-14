@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: WebAuthnCredentialNotSupportedException_) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> WebAuthnCredentialNotSupportedException_:
     out: WebAuthnCredentialNotSupportedException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -36,15 +36,20 @@ class WebAuthnCredentialNotSupportedException(ServiceError):
 
     code: str | None = "WebAuthnCredentialNotSupportedException"
 
-    def __init__(self, data: WebAuthnCredentialNotSupportedException_):
+    def __init__(
+        self, data: WebAuthnCredentialNotSupportedException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="WebAuthnCredentialNotSupportedException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "WebAuthnCredentialNotSupportedException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "WebAuthnCredentialNotSupportedException":
+        return cls(deserialize_aws_json_1_1(data), message)

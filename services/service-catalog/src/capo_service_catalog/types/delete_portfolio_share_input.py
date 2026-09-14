@@ -49,15 +49,15 @@ def serialize_aws_json_1_1(value: DeletePortfolioShareInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeletePortfolioShareInput:
     out: DeletePortfolioShareInput = {}  # type: ignore[typeddict-item]
-    if "AcceptLanguage" in data:
+    if data.get("AcceptLanguage") is not None:
         out["accept_language"] = data["AcceptLanguage"]
-    if "PortfolioId" in data:
+    if data.get("PortfolioId") is not None:
         out["portfolio_id"] = data["PortfolioId"]
     else:
         raise DeserializationError("DeletePortfolioShareInput.portfolio_id required")
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "OrganizationNode" in data:
+    if data.get("OrganizationNode") is not None:
         import capo_service_catalog.types.organization_node
 
         out["organization_node"] = (

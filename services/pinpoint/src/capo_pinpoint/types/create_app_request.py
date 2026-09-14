@@ -30,7 +30,7 @@ def serialize_json(value: CreateAppRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateAppRequest:
     out: CreateAppRequest = {}  # type: ignore[typeddict-item]
-    if "CreateApplicationRequest" in data:
+    if data.get("CreateApplicationRequest") is not None:
         import capo_pinpoint.types.create_application_request
 
         out["create_application_request"] = (

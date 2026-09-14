@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: UpdateQueueSlurmConfigurationRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateQueueSlurmConfigurationRequest:
     out: UpdateQueueSlurmConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "slurmCustomSettings" in data:
+    if data.get("slurmCustomSettings") is not None:
         import capo_pcs.types.slurm_custom_settings
 
         out["slurm_custom_settings"] = (

@@ -45,9 +45,9 @@ def serialize_aws_json_1_1(value: AuditContext) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AuditContext:
     out: AuditContext = {}  # type: ignore[typeddict-item]
-    if "AdditionalAuditContext" in data:
+    if data.get("AdditionalAuditContext") is not None:
         out["additional_audit_context"] = data["AdditionalAuditContext"]
-    if "RequestedColumns" in data:
+    if data.get("RequestedColumns") is not None:
         import capo_glue.types.audit_column_names_list
 
         out["requested_columns"] = (
@@ -55,6 +55,6 @@ def deserialize_aws_json_1_1(data: dict) -> AuditContext:
                 data["RequestedColumns"]
             )
         )
-    if "AllColumnsRequested" in data:
+    if data.get("AllColumnsRequested") is not None:
         out["all_columns_requested"] = data["AllColumnsRequested"]
     return out

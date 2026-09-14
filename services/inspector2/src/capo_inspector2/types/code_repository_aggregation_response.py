@@ -55,30 +55,30 @@ def serialize_json(value: CodeRepositoryAggregationResponse) -> dict:
 
 def deserialize_json(data: dict) -> CodeRepositoryAggregationResponse:
     out: CodeRepositoryAggregationResponse = {}  # type: ignore[typeddict-item]
-    if "projectNames" in data:
+    if data.get("projectNames") is not None:
         out["project_names"] = data["projectNames"]
     else:
         raise DeserializationError(
             "CodeRepositoryAggregationResponse.project_names required"
         )
-    if "providerType" in data:
+    if data.get("providerType") is not None:
         out["provider_type"] = data["providerType"]
-    if "severityCounts" in data:
+    if data.get("severityCounts") is not None:
         import capo_inspector2.types.severity_counts
 
         out["severity_counts"] = capo_inspector2.types.severity_counts.deserialize_json(
             data["severityCounts"]
         )
-    if "exploitAvailableActiveFindingsCount" in data:
+    if data.get("exploitAvailableActiveFindingsCount") is not None:
         out["exploit_available_active_findings_count"] = data[
             "exploitAvailableActiveFindingsCount"
         ]
-    if "fixAvailableActiveFindingsCount" in data:
+    if data.get("fixAvailableActiveFindingsCount") is not None:
         out["fix_available_active_findings_count"] = data[
             "fixAvailableActiveFindingsCount"
         ]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         out["resource_id"] = data["resourceId"]
     return out

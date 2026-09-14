@@ -29,7 +29,7 @@ def serialize_json(value: BatchDeleteReadSetResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchDeleteReadSetResponse:
     out: BatchDeleteReadSetResponse = {}  # type: ignore[typeddict-item]
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_omics.types.read_set_batch_error_list
 
         out["errors"] = capo_omics.types.read_set_batch_error_list.deserialize_json(

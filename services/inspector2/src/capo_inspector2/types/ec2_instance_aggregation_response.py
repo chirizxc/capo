@@ -59,30 +59,30 @@ def serialize_json(value: Ec2InstanceAggregationResponse) -> dict:
 
 def deserialize_json(data: dict) -> Ec2InstanceAggregationResponse:
     out: Ec2InstanceAggregationResponse = {}  # type: ignore[typeddict-item]
-    if "instanceId" in data:
+    if data.get("instanceId") is not None:
         out["instance_id"] = data["instanceId"]
     else:
         raise DeserializationError(
             "Ec2InstanceAggregationResponse.instance_id required"
         )
-    if "ami" in data:
+    if data.get("ami") is not None:
         out["ami"] = data["ami"]
-    if "operatingSystem" in data:
+    if data.get("operatingSystem") is not None:
         out["operating_system"] = data["operatingSystem"]
-    if "instanceTags" in data:
+    if data.get("instanceTags") is not None:
         import capo_inspector2.types.tag_map
 
         out["instance_tags"] = capo_inspector2.types.tag_map.deserialize_json(
             data["instanceTags"]
         )
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "severityCounts" in data:
+    if data.get("severityCounts") is not None:
         import capo_inspector2.types.severity_counts
 
         out["severity_counts"] = capo_inspector2.types.severity_counts.deserialize_json(
             data["severityCounts"]
         )
-    if "networkFindings" in data:
+    if data.get("networkFindings") is not None:
         out["network_findings"] = data["networkFindings"]
     return out

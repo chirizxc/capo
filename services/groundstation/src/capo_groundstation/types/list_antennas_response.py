@@ -33,7 +33,7 @@ def serialize_json(value: ListAntennasResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListAntennasResponse:
     out: ListAntennasResponse = {}  # type: ignore[typeddict-item]
-    if "antennaList" in data:
+    if data.get("antennaList") is not None:
         import capo_groundstation.types.antenna_list
 
         out["antenna_list"] = capo_groundstation.types.antenna_list.deserialize_json(
@@ -41,6 +41,6 @@ def deserialize_json(data: dict) -> ListAntennasResponse:
         )
     else:
         raise DeserializationError("ListAntennasResponse.antenna_list required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

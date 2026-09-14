@@ -39,7 +39,7 @@ def serialize_json(value: SendInvitesInput) -> dict:
 
 def deserialize_json(data: dict) -> SendInvitesInput:
     out: SendInvitesInput = {}  # type: ignore[typeddict-item]
-    if "accessorIds" in data:
+    if data.get("accessorIds") is not None:
         import capo_repostspace.types.accessor_id_list
 
         out["accessor_ids"] = capo_repostspace.types.accessor_id_list.deserialize_json(
@@ -47,11 +47,11 @@ def deserialize_json(data: dict) -> SendInvitesInput:
         )
     else:
         raise DeserializationError("SendInvitesInput.accessor_ids required")
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
     else:
         raise DeserializationError("SendInvitesInput.title required")
-    if "body" in data:
+    if data.get("body") is not None:
         out["body"] = data["body"]
     else:
         raise DeserializationError("SendInvitesInput.body required")

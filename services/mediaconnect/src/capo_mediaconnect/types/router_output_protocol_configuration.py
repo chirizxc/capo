@@ -78,7 +78,7 @@ def serialize_json(value: RouterOutputProtocolConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> RouterOutputProtocolConfiguration:
-    if "rist" in data:
+    if data.get("rist") is not None:
         import capo_mediaconnect.types.rist_router_output_configuration
 
         return {
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> RouterOutputProtocolConfiguration:
                 data["rist"]
             )
         }
-    elif "srtListener" in data:
+    elif data.get("srtListener") is not None:
         import capo_mediaconnect.types.srt_listener_router_output_configuration
 
         return {
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> RouterOutputProtocolConfiguration:
                 data["srtListener"]
             )
         }
-    elif "srtCaller" in data:
+    elif data.get("srtCaller") is not None:
         import capo_mediaconnect.types.srt_caller_router_output_configuration
 
         return {
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> RouterOutputProtocolConfiguration:
                 data["srtCaller"]
             )
         }
-    elif "rtp" in data:
+    elif data.get("rtp") is not None:
         import capo_mediaconnect.types.rtp_router_output_configuration
 
         return {

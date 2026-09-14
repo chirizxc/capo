@@ -46,7 +46,7 @@ def serialize_aws_json_1_0(value: StatefulRule) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StatefulRule:
     out: StatefulRule = {}  # type: ignore[typeddict-item]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_network_firewall.types.stateful_action
 
         out["action"] = (
@@ -56,7 +56,7 @@ def deserialize_aws_json_1_0(data: dict) -> StatefulRule:
         )
     else:
         raise DeserializationError("StatefulRule.action required")
-    if "Header" in data:
+    if data.get("Header") is not None:
         import capo_network_firewall.types.header
 
         out["header"] = capo_network_firewall.types.header.deserialize_aws_json_1_0(
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_0(data: dict) -> StatefulRule:
         )
     else:
         raise DeserializationError("StatefulRule.header required")
-    if "RuleOptions" in data:
+    if data.get("RuleOptions") is not None:
         import capo_network_firewall.types.rule_options
 
         out["rule_options"] = (

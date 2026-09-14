@@ -84,7 +84,7 @@ def serialize_json(value: ServiceManagedEc2FleetConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ServiceManagedEc2FleetConfiguration:
     out: ServiceManagedEc2FleetConfiguration = {}  # type: ignore[typeddict-item]
-    if "instanceCapabilities" in data:
+    if data.get("instanceCapabilities") is not None:
         import capo_deadline.types.service_managed_ec2_instance_capabilities
 
         out["instance_capabilities"] = (
@@ -96,7 +96,7 @@ def deserialize_json(data: dict) -> ServiceManagedEc2FleetConfiguration:
         raise DeserializationError(
             "ServiceManagedEc2FleetConfiguration.instance_capabilities required"
         )
-    if "instanceMarketOptions" in data:
+    if data.get("instanceMarketOptions") is not None:
         import capo_deadline.types.service_managed_ec2_instance_market_options
 
         out["instance_market_options"] = (
@@ -108,7 +108,7 @@ def deserialize_json(data: dict) -> ServiceManagedEc2FleetConfiguration:
         raise DeserializationError(
             "ServiceManagedEc2FleetConfiguration.instance_market_options required"
         )
-    if "vpcConfiguration" in data:
+    if data.get("vpcConfiguration") is not None:
         import capo_deadline.types.vpc_configuration
 
         out["vpc_configuration"] = (
@@ -116,9 +116,9 @@ def deserialize_json(data: dict) -> ServiceManagedEc2FleetConfiguration:
                 data["vpcConfiguration"]
             )
         )
-    if "storageProfileId" in data:
+    if data.get("storageProfileId") is not None:
         out["storage_profile_id"] = data["storageProfileId"]
-    if "persistentVolumeConfiguration" in data:
+    if data.get("persistentVolumeConfiguration") is not None:
         import capo_deadline.types.persistent_volume_configuration
 
         out["persistent_volume_configuration"] = (
@@ -126,7 +126,7 @@ def deserialize_json(data: dict) -> ServiceManagedEc2FleetConfiguration:
                 data["persistentVolumeConfiguration"]
             )
         )
-    if "autoScalingConfiguration" in data:
+    if data.get("autoScalingConfiguration") is not None:
         import capo_deadline.types.service_managed_ec2_auto_scaling_configuration
 
         out["auto_scaling_configuration"] = (

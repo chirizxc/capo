@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> EntityRecognizerSummariesList:
 
     out: EntityRecognizerSummariesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_comprehend.types.entity_recognizer_summary.deserialize_aws_json_1_1(
                 item

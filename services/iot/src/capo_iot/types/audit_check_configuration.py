@@ -33,11 +33,11 @@ def serialize_json(value: AuditCheckConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AuditCheckConfiguration:
     out: AuditCheckConfiguration = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
     else:
         out["enabled"] = False
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_iot.types.check_custom_configuration
 
         out["configuration"] = (

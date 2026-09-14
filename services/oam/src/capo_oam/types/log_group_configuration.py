@@ -24,7 +24,7 @@ def serialize_json(value: LogGroupConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> LogGroupConfiguration:
     out: LogGroupConfiguration = {}  # type: ignore[typeddict-item]
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         out["filter"] = data["Filter"]
     else:
         raise DeserializationError("LogGroupConfiguration.filter required")

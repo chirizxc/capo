@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> RequestedInstancePools:
 
     out: RequestedInstancePools = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_outposts.types.instance_type_capacity.deserialize_json(item))
     return out

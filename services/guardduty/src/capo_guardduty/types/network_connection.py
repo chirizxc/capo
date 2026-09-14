@@ -27,7 +27,7 @@ def serialize_json(value: NetworkConnection) -> dict:
 
 def deserialize_json(data: dict) -> NetworkConnection:
     out: NetworkConnection = {}  # type: ignore[typeddict-item]
-    if "direction" in data:
+    if data.get("direction") is not None:
         import capo_guardduty.types.network_direction
 
         out["direction"] = capo_guardduty.types.network_direction.deserialize_json(

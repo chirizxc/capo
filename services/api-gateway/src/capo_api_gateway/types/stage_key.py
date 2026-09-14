@@ -27,8 +27,8 @@ def serialize_json(value: StageKey) -> dict:
 
 def deserialize_json(data: dict) -> StageKey:
     out: StageKey = {}  # type: ignore[typeddict-item]
-    if "restApiId" in data:
+    if data.get("restApiId") is not None:
         out["rest_api_id"] = data["restApiId"]
-    if "stageName" in data:
+    if data.get("stageName") is not None:
         out["stage_name"] = data["stageName"]
     return out

@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: GetTrailResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetTrailResponse:
     out: GetTrailResponse = {}  # type: ignore[typeddict-item]
-    if "Trail" in data:
+    if data.get("Trail") is not None:
         import capo_cloudtrail.types.trail
 
         out["trail"] = capo_cloudtrail.types.trail.deserialize_aws_json_1_1(

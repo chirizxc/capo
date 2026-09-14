@@ -64,7 +64,7 @@ def serialize_json(value: HlsSettings) -> dict:
 
 def deserialize_json(data: dict) -> HlsSettings:
     out: HlsSettings = {}  # type: ignore[typeddict-item]
-    if "audioOnlyHlsSettings" in data:
+    if data.get("audioOnlyHlsSettings") is not None:
         import capo_medialive.types.audio_only_hls_settings
 
         out["audio_only_hls_settings"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> HlsSettings:
                 data["audioOnlyHlsSettings"]
             )
         )
-    if "fmp4HlsSettings" in data:
+    if data.get("fmp4HlsSettings") is not None:
         import capo_medialive.types.fmp4_hls_settings
 
         out["fmp4_hls_settings"] = (
@@ -80,7 +80,7 @@ def deserialize_json(data: dict) -> HlsSettings:
                 data["fmp4HlsSettings"]
             )
         )
-    if "frameCaptureHlsSettings" in data:
+    if data.get("frameCaptureHlsSettings") is not None:
         import capo_medialive.types.frame_capture_hls_settings
 
         out["frame_capture_hls_settings"] = (
@@ -88,7 +88,7 @@ def deserialize_json(data: dict) -> HlsSettings:
                 data["frameCaptureHlsSettings"]
             )
         )
-    if "standardHlsSettings" in data:
+    if data.get("standardHlsSettings") is not None:
         import capo_medialive.types.standard_hls_settings
 
         out["standard_hls_settings"] = (

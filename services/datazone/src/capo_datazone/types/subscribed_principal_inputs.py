@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> SubscribedPrincipalInputs:
 
     out: SubscribedPrincipalInputs = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_datazone.types.subscribed_principal_input.deserialize_json(item)
         )

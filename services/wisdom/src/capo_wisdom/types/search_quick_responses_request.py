@@ -48,7 +48,7 @@ def serialize_json(value: SearchQuickResponsesRequest) -> dict:
 
 def deserialize_json(data: dict) -> SearchQuickResponsesRequest:
     out: SearchQuickResponsesRequest = {}  # type: ignore[typeddict-item]
-    if "searchExpression" in data:
+    if data.get("searchExpression") is not None:
         import capo_wisdom.types.quick_response_search_expression
 
         out["search_expression"] = (
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> SearchQuickResponsesRequest:
         raise DeserializationError(
             "SearchQuickResponsesRequest.search_expression required"
         )
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_wisdom.types.contact_attributes
 
         out["attributes"] = capo_wisdom.types.contact_attributes.deserialize_json(

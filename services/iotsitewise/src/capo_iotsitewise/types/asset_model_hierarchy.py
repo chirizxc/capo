@@ -37,15 +37,15 @@ def serialize_json(value: AssetModelHierarchy) -> dict:
 
 def deserialize_json(data: dict) -> AssetModelHierarchy:
     out: AssetModelHierarchy = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "externalId" in data:
+    if data.get("externalId") is not None:
         out["external_id"] = data["externalId"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("AssetModelHierarchy.name required")
-    if "childAssetModelId" in data:
+    if data.get("childAssetModelId") is not None:
         out["child_asset_model_id"] = data["childAssetModelId"]
     else:
         raise DeserializationError("AssetModelHierarchy.child_asset_model_id required")

@@ -26,11 +26,11 @@ def serialize_json(value: OAuth2ClientApplication) -> dict:
 
 def deserialize_json(data: dict) -> OAuth2ClientApplication:
     out: OAuth2ClientApplication = {}  # type: ignore[typeddict-item]
-    if "userManagedClientApplicationClientId" in data:
+    if data.get("userManagedClientApplicationClientId") is not None:
         out["user_managed_client_application_client_id"] = data[
             "userManagedClientApplicationClientId"
         ]
-    if "aWSManagedClientApplicationReference" in data:
+    if data.get("aWSManagedClientApplicationReference") is not None:
         out["a_ws_managed_client_application_reference"] = data[
             "aWSManagedClientApplicationReference"
         ]

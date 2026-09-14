@@ -13,10 +13,25 @@ from capo_pinpoint_email import AsyncPinpointEmailClient
 
 
 async def main():
-    async with AsyncPinpointEmailClient() as s3:
+    async with AsyncPinpointEmailClient() as pinpoint_email:
         # Example: call the create_configuration_set operation
-        response = await s3.create_configuration_set()
+        response = await pinpoint_email.create_configuration_set()
         print(response)
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_pinpoint_email import AsyncPinpointEmailClient
+
+
+async def main():
+    async with AsyncPinpointEmailClient() as pinpoint_email:
+        # Example: paginate over get_dedicated_ips
+        async for item in pinpoint_email.iter_get_dedicated_ips():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_pinpoint_email.error import AlreadyExistsException
 
 
 async def main():
-    async with AsyncPinpointEmailClient() as s3:
+    async with AsyncPinpointEmailClient() as pinpoint_email:
         try:
-            await s3.create_configuration_set()
+            await pinpoint_email.create_configuration_set()
         except AlreadyExistsException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_pinpoint_email import AsyncPinpointEmailClient
 
 
 async def main():
-    async with AsyncPinpointEmailClient() as s3:
+    async with AsyncPinpointEmailClient() as pinpoint_email:
         # Default: 3 attempts for every operation
-        response = await s3.create_configuration_set()
+        response = await pinpoint_email.create_configuration_set()
 
         # Override per operation
-        response = await s3.create_configuration_set(config_overrides={"retry_max_attempts": 5})
+        response = await pinpoint_email.create_configuration_set(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_configuration_set(config_overrides={"retry_max_attempts": 1})
+        response = await pinpoint_email.create_configuration_set(config_overrides={"retry_max_attempts": 1})
 ```

@@ -34,13 +34,13 @@ def serialize_aws_json_1_1(value: ModifyWorkspaceCreationPropertiesRequest) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> ModifyWorkspaceCreationPropertiesRequest:
     out: ModifyWorkspaceCreationPropertiesRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     else:
         raise DeserializationError(
             "ModifyWorkspaceCreationPropertiesRequest.resource_id required"
         )
-    if "WorkspaceCreationProperties" in data:
+    if data.get("WorkspaceCreationProperties") is not None:
         import capo_workspaces.types.workspace_creation_properties
 
         out["workspace_creation_properties"] = (

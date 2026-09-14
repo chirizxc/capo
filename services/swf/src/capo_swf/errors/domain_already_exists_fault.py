@@ -25,7 +25,7 @@ def serialize_aws_json_1_0(value: DomainAlreadyExistsFault_) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DomainAlreadyExistsFault_:
     out: DomainAlreadyExistsFault_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,18 @@ class DomainAlreadyExistsFault(ServiceError):
 
     code: str | None = "DomainAlreadyExistsFault"
 
-    def __init__(self, data: DomainAlreadyExistsFault_):
+    def __init__(self, data: DomainAlreadyExistsFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="DomainAlreadyExistsFault",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_0(cls, data: dict) -> "DomainAlreadyExistsFault":
-        return cls(deserialize_aws_json_1_0(data))
+    def from_aws_json_1_0(
+        cls, data: dict, message: str | None = None
+    ) -> "DomainAlreadyExistsFault":
+        return cls(deserialize_aws_json_1_0(data), message)

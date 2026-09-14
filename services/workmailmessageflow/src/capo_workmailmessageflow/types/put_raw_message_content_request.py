@@ -31,7 +31,7 @@ def serialize_json(value: PutRawMessageContentRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutRawMessageContentRequest:
     out: PutRawMessageContentRequest = {}  # type: ignore[typeddict-item]
-    if "content" in data:
+    if data.get("content") is not None:
         import capo_workmailmessageflow.types.raw_message_content
 
         out["content"] = (

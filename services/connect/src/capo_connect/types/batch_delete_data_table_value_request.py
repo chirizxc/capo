@@ -36,7 +36,7 @@ def serialize_json(value: BatchDeleteDataTableValueRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchDeleteDataTableValueRequest:
     out: BatchDeleteDataTableValueRequest = {}  # type: ignore[typeddict-item]
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_connect.types.data_table_delete_value_identifier_list
 
         out["values"] = (

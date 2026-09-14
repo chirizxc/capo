@@ -212,11 +212,12 @@ class ConnectCampaignsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaigns.types.create_campaign_request.CreateCampaignRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["connect_instance_id"] = connect_instance_id
-        input_["dialer_config"] = dialer_config
-        input_["outbound_call_config"] = outbound_call_config
+        input_: capo_connectcampaigns.types.create_campaign_request.CreateCampaignRequest = {
+            "name": name,
+            "connect_instance_id": connect_instance_id,
+            "dialer_config": dialer_config,
+            "outbound_call_config": outbound_call_config,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -225,6 +226,7 @@ class ConnectCampaignsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_campaign(
@@ -256,14 +258,16 @@ class ConnectCampaignsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaigns.types.delete_campaign_request.DeleteCampaignRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_connectcampaigns.types.delete_campaign_request.DeleteCampaignRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_connect_instance_config(
@@ -297,14 +301,16 @@ class ConnectCampaignsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaigns.types.delete_connect_instance_config_request.DeleteConnectInstanceConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["connect_instance_id"] = connect_instance_id
+        input_: capo_connectcampaigns.types.delete_connect_instance_config_request.DeleteConnectInstanceConfigRequest = {
+            "connect_instance_id": connect_instance_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_instance_onboarding_job(
@@ -337,14 +343,16 @@ class ConnectCampaignsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaigns.types.delete_instance_onboarding_job_request.DeleteInstanceOnboardingJobRequest = {}  # type: ignore[typeddict-item]
-        input_["connect_instance_id"] = connect_instance_id
+        input_: capo_connectcampaigns.types.delete_instance_onboarding_job_request.DeleteInstanceOnboardingJobRequest = {
+            "connect_instance_id": connect_instance_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_campaign(
@@ -378,14 +386,16 @@ class ConnectCampaignsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaigns.types.describe_campaign_request.DescribeCampaignRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_connectcampaigns.types.describe_campaign_request.DescribeCampaignRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_campaign_state(
@@ -420,14 +430,16 @@ class ConnectCampaignsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaigns.types.get_campaign_state_request.GetCampaignStateRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_connectcampaigns.types.get_campaign_state_request.GetCampaignStateRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_campaign_state_batch(
@@ -461,14 +473,16 @@ class ConnectCampaignsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaigns.types.get_campaign_state_batch_request.GetCampaignStateBatchRequest = {}  # type: ignore[typeddict-item]
-        input_["campaign_ids"] = campaign_ids
+        input_: capo_connectcampaigns.types.get_campaign_state_batch_request.GetCampaignStateBatchRequest = {
+            "campaign_ids": campaign_ids
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_connect_instance_config(
@@ -502,14 +516,16 @@ class ConnectCampaignsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaigns.types.get_connect_instance_config_request.GetConnectInstanceConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["connect_instance_id"] = connect_instance_id
+        input_: capo_connectcampaigns.types.get_connect_instance_config_request.GetConnectInstanceConfigRequest = {
+            "connect_instance_id": connect_instance_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_instance_onboarding_job_status(
@@ -543,14 +559,16 @@ class ConnectCampaignsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaigns.types.get_instance_onboarding_job_status_request.GetInstanceOnboardingJobStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["connect_instance_id"] = connect_instance_id
+        input_: capo_connectcampaigns.types.get_instance_onboarding_job_status_request.GetInstanceOnboardingJobStatusRequest = {
+            "connect_instance_id": connect_instance_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_campaigns(
@@ -589,7 +607,7 @@ class ConnectCampaignsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaigns.types.list_campaigns_request.ListCampaignsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_connectcampaigns.types.list_campaigns_request.ListCampaignsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -602,6 +620,7 @@ class ConnectCampaignsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_campaigns(
@@ -663,14 +682,16 @@ class ConnectCampaignsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaigns.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_connectcampaigns.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def pause_campaign(
@@ -705,14 +726,16 @@ class ConnectCampaignsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaigns.types.pause_campaign_request.PauseCampaignRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_connectcampaigns.types.pause_campaign_request.PauseCampaignRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_dial_request_batch(
@@ -750,15 +773,17 @@ class ConnectCampaignsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaigns.types.put_dial_request_batch_request.PutDialRequestBatchRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["dial_requests"] = dial_requests
+        input_: capo_connectcampaigns.types.put_dial_request_batch_request.PutDialRequestBatchRequest = {
+            "id": id,
+            "dial_requests": dial_requests,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def resume_campaign(
@@ -793,14 +818,16 @@ class ConnectCampaignsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaigns.types.resume_campaign_request.ResumeCampaignRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_connectcampaigns.types.resume_campaign_request.ResumeCampaignRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_campaign(
@@ -835,14 +862,16 @@ class ConnectCampaignsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaigns.types.start_campaign_request.StartCampaignRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_connectcampaigns.types.start_campaign_request.StartCampaignRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_instance_onboarding_job(
@@ -879,15 +908,17 @@ class ConnectCampaignsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaigns.types.start_instance_onboarding_job_request.StartInstanceOnboardingJobRequest = {}  # type: ignore[typeddict-item]
-        input_["connect_instance_id"] = connect_instance_id
-        input_["encryption_config"] = encryption_config
+        input_: capo_connectcampaigns.types.start_instance_onboarding_job_request.StartInstanceOnboardingJobRequest = {
+            "connect_instance_id": connect_instance_id,
+            "encryption_config": encryption_config,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_campaign(
@@ -922,14 +953,16 @@ class ConnectCampaignsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaigns.types.stop_campaign_request.StopCampaignRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_connectcampaigns.types.stop_campaign_request.StopCampaignRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -963,15 +996,17 @@ class ConnectCampaignsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaigns.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["tags"] = tags
+        input_: capo_connectcampaigns.types.tag_resource_request.TagResourceRequest = {
+            "arn": arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -1005,15 +1040,17 @@ class ConnectCampaignsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaigns.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_connectcampaigns.types.untag_resource_request.UntagResourceRequest = {
+            "arn": arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_campaign_dialer_config(
@@ -1047,15 +1084,17 @@ class ConnectCampaignsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaigns.types.update_campaign_dialer_config_request.UpdateCampaignDialerConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["dialer_config"] = dialer_config
+        input_: capo_connectcampaigns.types.update_campaign_dialer_config_request.UpdateCampaignDialerConfigRequest = {
+            "id": id,
+            "dialer_config": dialer_config,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_campaign_name(
@@ -1089,15 +1128,17 @@ class ConnectCampaignsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaigns.types.update_campaign_name_request.UpdateCampaignNameRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["name"] = name
+        input_: capo_connectcampaigns.types.update_campaign_name_request.UpdateCampaignNameRequest = {
+            "id": id,
+            "name": name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_campaign_outbound_call_config(
@@ -1140,8 +1181,9 @@ class ConnectCampaignsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaigns.types.update_campaign_outbound_call_config_request.UpdateCampaignOutboundCallConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_connectcampaigns.types.update_campaign_outbound_call_config_request.UpdateCampaignOutboundCallConfigRequest = {
+            "id": id
+        }
         if connect_contact_flow_id is not None:
             input_["connect_contact_flow_id"] = connect_contact_flow_id
         if connect_source_phone_number is not None:
@@ -1154,6 +1196,7 @@ class ConnectCampaignsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

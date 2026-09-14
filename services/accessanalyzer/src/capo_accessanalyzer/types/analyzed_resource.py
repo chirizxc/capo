@@ -83,15 +83,15 @@ def serialize_json(value: AnalyzedResource) -> dict:
 
 def deserialize_json(data: dict) -> AnalyzedResource:
     out: AnalyzedResource = {}  # type: ignore[typeddict-item]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     else:
         raise DeserializationError("AnalyzedResource.resource_arn required")
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
     else:
         raise DeserializationError("AnalyzedResource.resource_type required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_accessanalyzer.types.timestamp
 
         out["created_at"] = capo_accessanalyzer.types.timestamp.deserialize_json(
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> AnalyzedResource:
         )
     else:
         raise DeserializationError("AnalyzedResource.created_at required")
-    if "analyzedAt" in data:
+    if data.get("analyzedAt") is not None:
         import capo_accessanalyzer.types.timestamp
 
         out["analyzed_at"] = capo_accessanalyzer.types.timestamp.deserialize_json(
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> AnalyzedResource:
         )
     else:
         raise DeserializationError("AnalyzedResource.analyzed_at required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_accessanalyzer.types.timestamp
 
         out["updated_at"] = capo_accessanalyzer.types.timestamp.deserialize_json(
@@ -115,28 +115,28 @@ def deserialize_json(data: dict) -> AnalyzedResource:
         )
     else:
         raise DeserializationError("AnalyzedResource.updated_at required")
-    if "isPublic" in data:
+    if data.get("isPublic") is not None:
         out["is_public"] = data["isPublic"]
     else:
         raise DeserializationError("AnalyzedResource.is_public required")
-    if "actions" in data:
+    if data.get("actions") is not None:
         import capo_accessanalyzer.types.action_list
 
         out["actions"] = capo_accessanalyzer.types.action_list.deserialize_json(
             data["actions"]
         )
-    if "sharedVia" in data:
+    if data.get("sharedVia") is not None:
         import capo_accessanalyzer.types.shared_via_list
 
         out["shared_via"] = capo_accessanalyzer.types.shared_via_list.deserialize_json(
             data["sharedVia"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "resourceOwnerAccount" in data:
+    if data.get("resourceOwnerAccount") is not None:
         out["resource_owner_account"] = data["resourceOwnerAccount"]
     else:
         raise DeserializationError("AnalyzedResource.resource_owner_account required")
-    if "error" in data:
+    if data.get("error") is not None:
         out["error"] = data["error"]
     return out

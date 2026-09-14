@@ -26,7 +26,7 @@ def serialize_json(value: CreateAppInstanceAdminRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateAppInstanceAdminRequest:
     out: CreateAppInstanceAdminRequest = {}  # type: ignore[typeddict-item]
-    if "AppInstanceAdminArn" in data:
+    if data.get("AppInstanceAdminArn") is not None:
         out["app_instance_admin_arn"] = data["AppInstanceAdminArn"]
     else:
         raise DeserializationError(

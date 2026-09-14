@@ -43,15 +43,15 @@ def serialize_aws_json_1_1(value: CreatePlayerSessionsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreatePlayerSessionsInput:
     out: CreatePlayerSessionsInput = {}  # type: ignore[typeddict-item]
-    if "GameSessionId" in data:
+    if data.get("GameSessionId") is not None:
         out["game_session_id"] = data["GameSessionId"]
-    if "PlayerIds" in data:
+    if data.get("PlayerIds") is not None:
         import capo_gamelift.types.player_id_list
 
         out["player_ids"] = capo_gamelift.types.player_id_list.deserialize_aws_json_1_1(
             data["PlayerIds"]
         )
-    if "PlayerDataMap" in data:
+    if data.get("PlayerDataMap") is not None:
         import capo_gamelift.types.player_data_map
 
         out["player_data_map"] = (

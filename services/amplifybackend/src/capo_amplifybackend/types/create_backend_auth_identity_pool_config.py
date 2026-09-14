@@ -28,8 +28,8 @@ def serialize_json(value: CreateBackendAuthIdentityPoolConfig) -> dict:
 
 def deserialize_json(data: dict) -> CreateBackendAuthIdentityPoolConfig:
     out: CreateBackendAuthIdentityPoolConfig = {}  # type: ignore[typeddict-item]
-    if "identityPoolName" in data:
+    if data.get("identityPoolName") is not None:
         out["identity_pool_name"] = data["identityPoolName"]
-    if "unauthenticatedLogin" in data:
+    if data.get("unauthenticatedLogin") is not None:
         out["unauthenticated_login"] = data["unauthenticatedLogin"]
     return out

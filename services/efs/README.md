@@ -13,9 +13,9 @@ from capo_efs import AsyncEFSClient
 
 
 async def main():
-    async with AsyncEFSClient() as s3:
+    async with AsyncEFSClient() as efs:
         # Example: call the create_access_point operation
-        response = await s3.create_access_point()
+        response = await efs.create_access_point()
         print(response["client_token"])
 ```
 
@@ -28,9 +28,9 @@ from capo_efs import AsyncEFSClient
 
 
 async def main():
-    async with AsyncEFSClient() as s3:
+    async with AsyncEFSClient() as efs:
         # Example: paginate over describe_access_points
-        async for item in s3.iter_describe_access_points():
+        async for item in efs.iter_describe_access_points():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_efs.error import AccessPointAlreadyExists
 
 
 async def main():
-    async with AsyncEFSClient() as s3:
+    async with AsyncEFSClient() as efs:
         try:
-            await s3.create_access_point()
+            await efs.create_access_point()
         except AccessPointAlreadyExists as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_efs import AsyncEFSClient
 
 
 async def main():
-    async with AsyncEFSClient() as s3:
+    async with AsyncEFSClient() as efs:
         # Default: 3 attempts for every operation
-        response = await s3.create_access_point()
+        response = await efs.create_access_point()
 
         # Override per operation
-        response = await s3.create_access_point(config_overrides={"retry_max_attempts": 5})
+        response = await efs.create_access_point(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_access_point(config_overrides={"retry_max_attempts": 1})
+        response = await efs.create_access_point(config_overrides={"retry_max_attempts": 1})
 ```

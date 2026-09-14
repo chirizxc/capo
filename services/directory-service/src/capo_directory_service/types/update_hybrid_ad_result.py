@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: UpdateHybridADResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateHybridADResult:
     out: UpdateHybridADResult = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
-    if "AssessmentId" in data:
+    if data.get("AssessmentId") is not None:
         out["assessment_id"] = data["AssessmentId"]
     return out

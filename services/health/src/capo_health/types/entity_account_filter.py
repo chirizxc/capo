@@ -42,13 +42,13 @@ def serialize_aws_json_1_1(value: EntityAccountFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EntityAccountFilter:
     out: EntityAccountFilter = {}  # type: ignore[typeddict-item]
-    if "eventArn" in data:
+    if data.get("eventArn") is not None:
         out["event_arn"] = data["eventArn"]
     else:
         raise DeserializationError("EntityAccountFilter.event_arn required")
-    if "awsAccountId" in data:
+    if data.get("awsAccountId") is not None:
         out["aws_account_id"] = data["awsAccountId"]
-    if "statusCodes" in data:
+    if data.get("statusCodes") is not None:
         import capo_health.types.entity_status_code_list
 
         out["status_codes"] = (

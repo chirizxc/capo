@@ -88,25 +88,25 @@ def serialize_aws_json_1_1(value: SandboxSession) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SandboxSession:
     out: SandboxSession = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_codebuild.types.timestamp
 
         out["start_time"] = capo_codebuild.types.timestamp.deserialize_aws_json_1_1(
             data["startTime"]
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_codebuild.types.timestamp
 
         out["end_time"] = capo_codebuild.types.timestamp.deserialize_aws_json_1_1(
             data["endTime"]
         )
-    if "currentPhase" in data:
+    if data.get("currentPhase") is not None:
         out["current_phase"] = data["currentPhase"]
-    if "phases" in data:
+    if data.get("phases") is not None:
         import capo_codebuild.types.sandbox_session_phases
 
         out["phases"] = (
@@ -114,15 +114,15 @@ def deserialize_aws_json_1_1(data: dict) -> SandboxSession:
                 data["phases"]
             )
         )
-    if "resolvedSourceVersion" in data:
+    if data.get("resolvedSourceVersion") is not None:
         out["resolved_source_version"] = data["resolvedSourceVersion"]
-    if "logs" in data:
+    if data.get("logs") is not None:
         import capo_codebuild.types.logs_location
 
         out["logs"] = capo_codebuild.types.logs_location.deserialize_aws_json_1_1(
             data["logs"]
         )
-    if "networkInterface" in data:
+    if data.get("networkInterface") is not None:
         import capo_codebuild.types.network_interface
 
         out["network_interface"] = (

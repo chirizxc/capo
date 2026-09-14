@@ -41,16 +41,16 @@ def serialize_json(value: ListRecommendationsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListRecommendationsRequest:
     out: ListRecommendationsRequest = {}  # type: ignore[typeddict-item]
-    if "InsightId" in data:
+    if data.get("InsightId") is not None:
         out["insight_id"] = data["InsightId"]
     else:
         raise DeserializationError("ListRecommendationsRequest.insight_id required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Locale" in data:
+    if data.get("Locale") is not None:
         import capo_devops_guru.types.locale
 
         out["locale"] = capo_devops_guru.types.locale.deserialize_json(data["Locale"])
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
     return out

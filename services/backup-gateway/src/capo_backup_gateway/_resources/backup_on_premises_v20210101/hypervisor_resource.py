@@ -93,9 +93,10 @@ class HypervisorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backup_gateway.types.import_hypervisor_configuration_input.ImportHypervisorConfigurationInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["host"] = host
+        input_: capo_backup_gateway.types.import_hypervisor_configuration_input.ImportHypervisorConfigurationInput = {
+            "name": name,
+            "host": host,
+        }
         if username is not None:
             input_["username"] = username
         if password is not None:
@@ -110,6 +111,7 @@ class HypervisorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -146,14 +148,16 @@ class HypervisorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backup_gateway.types.get_hypervisor_input.GetHypervisorInput = {}  # type: ignore[typeddict-item]
-        input_["hypervisor_arn"] = hypervisor_arn
+        input_: capo_backup_gateway.types.get_hypervisor_input.GetHypervisorInput = {
+            "hypervisor_arn": hypervisor_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -204,8 +208,9 @@ class HypervisorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backup_gateway.types.update_hypervisor_input.UpdateHypervisorInput = {}  # type: ignore[typeddict-item]
-        input_["hypervisor_arn"] = hypervisor_arn
+        input_: capo_backup_gateway.types.update_hypervisor_input.UpdateHypervisorInput = {
+            "hypervisor_arn": hypervisor_arn
+        }
         if host is not None:
             input_["host"] = host
         if username is not None:
@@ -222,6 +227,7 @@ class HypervisorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -260,14 +266,16 @@ class HypervisorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backup_gateway.types.delete_hypervisor_input.DeleteHypervisorInput = {}  # type: ignore[typeddict-item]
-        input_["hypervisor_arn"] = hypervisor_arn
+        input_: capo_backup_gateway.types.delete_hypervisor_input.DeleteHypervisorInput = {
+            "hypervisor_arn": hypervisor_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -307,7 +315,7 @@ class HypervisorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backup_gateway.types.list_hypervisors_input.ListHypervisorsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_backup_gateway.types.list_hypervisors_input.ListHypervisorsInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -318,6 +326,7 @@ class HypervisorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_virtual_machines_metadata_sync(
@@ -355,14 +364,16 @@ class HypervisorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backup_gateway.types.start_virtual_machines_metadata_sync_input.StartVirtualMachinesMetadataSyncInput = {}  # type: ignore[typeddict-item]
-        input_["hypervisor_arn"] = hypervisor_arn
+        input_: capo_backup_gateway.types.start_virtual_machines_metadata_sync_input.StartVirtualMachinesMetadataSyncInput = {
+            "hypervisor_arn": hypervisor_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -416,9 +427,10 @@ class AsyncHypervisorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backup_gateway.types.import_hypervisor_configuration_input.ImportHypervisorConfigurationInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["host"] = host
+        input_: capo_backup_gateway.types.import_hypervisor_configuration_input.ImportHypervisorConfigurationInput = {
+            "name": name,
+            "host": host,
+        }
         if username is not None:
             input_["username"] = username
         if password is not None:
@@ -433,6 +445,7 @@ class AsyncHypervisorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -470,14 +483,16 @@ class AsyncHypervisorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backup_gateway.types.get_hypervisor_input.GetHypervisorInput = {}  # type: ignore[typeddict-item]
-        input_["hypervisor_arn"] = hypervisor_arn
+        input_: capo_backup_gateway.types.get_hypervisor_input.GetHypervisorInput = {
+            "hypervisor_arn": hypervisor_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -529,8 +544,9 @@ class AsyncHypervisorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backup_gateway.types.update_hypervisor_input.UpdateHypervisorInput = {}  # type: ignore[typeddict-item]
-        input_["hypervisor_arn"] = hypervisor_arn
+        input_: capo_backup_gateway.types.update_hypervisor_input.UpdateHypervisorInput = {
+            "hypervisor_arn": hypervisor_arn
+        }
         if host is not None:
             input_["host"] = host
         if username is not None:
@@ -547,6 +563,7 @@ class AsyncHypervisorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -586,14 +603,16 @@ class AsyncHypervisorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backup_gateway.types.delete_hypervisor_input.DeleteHypervisorInput = {}  # type: ignore[typeddict-item]
-        input_["hypervisor_arn"] = hypervisor_arn
+        input_: capo_backup_gateway.types.delete_hypervisor_input.DeleteHypervisorInput = {
+            "hypervisor_arn": hypervisor_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -634,7 +653,7 @@ class AsyncHypervisorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backup_gateway.types.list_hypervisors_input.ListHypervisorsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_backup_gateway.types.list_hypervisors_input.ListHypervisorsInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -645,6 +664,7 @@ class AsyncHypervisorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_virtual_machines_metadata_sync(
@@ -683,12 +703,14 @@ class AsyncHypervisorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backup_gateway.types.start_virtual_machines_metadata_sync_input.StartVirtualMachinesMetadataSyncInput = {}  # type: ignore[typeddict-item]
-        input_["hypervisor_arn"] = hypervisor_arn
+        input_: capo_backup_gateway.types.start_virtual_machines_metadata_sync_input.StartVirtualMachinesMetadataSyncInput = {
+            "hypervisor_arn": hypervisor_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

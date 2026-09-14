@@ -36,7 +36,15 @@ def serialize_aws_json_1_1(value: EntitlementValue) -> dict:
     if "integer_value" in value:
         out["IntegerValue"] = value["integer_value"]
     if "double_value" in value:
-        out["DoubleValue"] = value["double_value"]
+        out["DoubleValue"] = (
+            "NaN"
+            if value["double_value"] != value["double_value"]
+            else "Infinity"
+            if value["double_value"] == float("inf")
+            else "-Infinity"
+            if value["double_value"] == float("-inf")
+            else value["double_value"]
+        )
     if "boolean_value" in value:
         out["BooleanValue"] = value["boolean_value"]
     if "string_value" in value:
@@ -46,12 +54,12 @@ def serialize_aws_json_1_1(value: EntitlementValue) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EntitlementValue:
     out: EntitlementValue = {}  # type: ignore[typeddict-item]
-    if "IntegerValue" in data:
+    if data.get("IntegerValue") is not None:
         out["integer_value"] = data["IntegerValue"]
-    if "DoubleValue" in data:
-        out["double_value"] = data["DoubleValue"]
-    if "BooleanValue" in data:
+    if data.get("DoubleValue") is not None:
+        out["double_value"] = float(data["DoubleValue"])
+    if data.get("BooleanValue") is not None:
         out["boolean_value"] = data["BooleanValue"]
-    if "StringValue" in data:
+    if data.get("StringValue") is not None:
         out["string_value"] = data["StringValue"]
     return out

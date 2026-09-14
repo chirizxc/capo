@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: NotifyWorkersResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NotifyWorkersResponse:
     out: NotifyWorkersResponse = {}  # type: ignore[typeddict-item]
-    if "NotifyWorkersFailureStatuses" in data:
+    if data.get("NotifyWorkersFailureStatuses") is not None:
         import capo_mturk.types.notify_workers_failure_status_list
 
         out["notify_workers_failure_statuses"] = (

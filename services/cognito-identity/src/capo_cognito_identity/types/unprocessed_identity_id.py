@@ -34,9 +34,9 @@ def serialize_aws_json_1_1(value: UnprocessedIdentityId) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UnprocessedIdentityId:
     out: UnprocessedIdentityId = {}  # type: ignore[typeddict-item]
-    if "IdentityId" in data:
+    if data.get("IdentityId") is not None:
         out["identity_id"] = data["IdentityId"]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         import capo_cognito_identity.types.error_code
 
         out["error_code"] = (

@@ -72,21 +72,21 @@ def serialize_json(value: UpdateRelatedItemResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRelatedItemResponse:
     out: UpdateRelatedItemResponse = {}  # type: ignore[typeddict-item]
-    if "relatedItemId" in data:
+    if data.get("relatedItemId") is not None:
         out["related_item_id"] = data["relatedItemId"]
     else:
         raise DeserializationError("UpdateRelatedItemResponse.related_item_id required")
-    if "relatedItemArn" in data:
+    if data.get("relatedItemArn") is not None:
         out["related_item_arn"] = data["relatedItemArn"]
     else:
         raise DeserializationError(
             "UpdateRelatedItemResponse.related_item_arn required"
         )
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("UpdateRelatedItemResponse.type required")
-    if "content" in data:
+    if data.get("content") is not None:
         import capo_connectcases.types.related_item_content
 
         out["content"] = capo_connectcases.types.related_item_content.deserialize_json(
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> UpdateRelatedItemResponse:
         )
     else:
         raise DeserializationError("UpdateRelatedItemResponse.content required")
-    if "associationTime" in data:
+    if data.get("associationTime") is not None:
         import capo_connectcases.types.association_time
 
         out["association_time"] = (
@@ -106,17 +106,17 @@ def deserialize_json(data: dict) -> UpdateRelatedItemResponse:
         raise DeserializationError(
             "UpdateRelatedItemResponse.association_time required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_connectcases.types.tags
 
         out["tags"] = capo_connectcases.types.tags.deserialize_json(data["tags"])
-    if "lastUpdatedUser" in data:
+    if data.get("lastUpdatedUser") is not None:
         import capo_connectcases.types.user_union
 
         out["last_updated_user"] = capo_connectcases.types.user_union.deserialize_json(
             data["lastUpdatedUser"]
         )
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         import capo_connectcases.types.user_union
 
         out["created_by"] = capo_connectcases.types.user_union.deserialize_json(

@@ -31,6 +31,8 @@ def deserialize_json(
 
     out: ExperimentReportConfigurationCloudWatchDashboardList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_fis.types.experiment_report_configuration_cloud_watch_dashboard.deserialize_json(
                 item

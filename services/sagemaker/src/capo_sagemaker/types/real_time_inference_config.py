@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: RealTimeInferenceConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RealTimeInferenceConfig:
     out: RealTimeInferenceConfig = {}  # type: ignore[typeddict-item]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         import capo_sagemaker.types.production_variant_instance_type
 
         out["instance_type"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> RealTimeInferenceConfig:
                 data["InstanceType"]
             )
         )
-    if "InstanceCount" in data:
+    if data.get("InstanceCount") is not None:
         out["instance_count"] = data["InstanceCount"]
     return out

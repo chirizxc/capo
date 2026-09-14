@@ -23,7 +23,15 @@ class ProtectiveEquipmentSummarizationAttributes(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: ProtectiveEquipmentSummarizationAttributes) -> dict:
     out: dict = {}
-    out["MinConfidence"] = value["min_confidence"]
+    out["MinConfidence"] = (
+        "NaN"
+        if value["min_confidence"] != value["min_confidence"]
+        else "Infinity"
+        if value["min_confidence"] == float("inf")
+        else "-Infinity"
+        if value["min_confidence"] == float("-inf")
+        else value["min_confidence"]
+    )
     import capo_rekognition.types.protective_equipment_types
 
     out["RequiredEquipmentTypes"] = (
@@ -36,13 +44,13 @@ def serialize_aws_json_1_1(value: ProtectiveEquipmentSummarizationAttributes) ->
 
 def deserialize_aws_json_1_1(data: dict) -> ProtectiveEquipmentSummarizationAttributes:
     out: ProtectiveEquipmentSummarizationAttributes = {}  # type: ignore[typeddict-item]
-    if "MinConfidence" in data:
-        out["min_confidence"] = data["MinConfidence"]
+    if data.get("MinConfidence") is not None:
+        out["min_confidence"] = float(data["MinConfidence"])
     else:
         raise DeserializationError(
             "ProtectiveEquipmentSummarizationAttributes.min_confidence required"
         )
-    if "RequiredEquipmentTypes" in data:
+    if data.get("RequiredEquipmentTypes") is not None:
         import capo_rekognition.types.protective_equipment_types
 
         out["required_equipment_types"] = (

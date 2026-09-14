@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: DataValueMap) -> dict:
 def deserialize_json(data: dict) -> DataValueMap:
     out: DataValueMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_iottwinmaker.types.data_value
 
         out[key] = capo_iottwinmaker.types.data_value.deserialize_json(value)

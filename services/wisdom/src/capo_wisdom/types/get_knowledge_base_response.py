@@ -29,7 +29,7 @@ def serialize_json(value: GetKnowledgeBaseResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetKnowledgeBaseResponse:
     out: GetKnowledgeBaseResponse = {}  # type: ignore[typeddict-item]
-    if "knowledgeBase" in data:
+    if data.get("knowledgeBase") is not None:
         import capo_wisdom.types.knowledge_base_data
 
         out["knowledge_base"] = capo_wisdom.types.knowledge_base_data.deserialize_json(

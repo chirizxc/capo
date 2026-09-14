@@ -34,18 +34,18 @@ def serialize_json(value: ManagedNotificationChannelAssociationSummary) -> dict:
 
 def deserialize_json(data: dict) -> ManagedNotificationChannelAssociationSummary:
     out: ManagedNotificationChannelAssociationSummary = {}  # type: ignore[typeddict-item]
-    if "channelIdentifier" in data:
+    if data.get("channelIdentifier") is not None:
         out["channel_identifier"] = data["channelIdentifier"]
     else:
         raise DeserializationError(
             "ManagedNotificationChannelAssociationSummary.channel_identifier required"
         )
-    if "channelType" in data:
+    if data.get("channelType") is not None:
         out["channel_type"] = data["channelType"]
     else:
         raise DeserializationError(
             "ManagedNotificationChannelAssociationSummary.channel_type required"
         )
-    if "overrideOption" in data:
+    if data.get("overrideOption") is not None:
         out["override_option"] = data["overrideOption"]
     return out

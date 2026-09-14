@@ -42,7 +42,7 @@ def serialize_aws_json_1_1(value: StreamProcessorOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StreamProcessorOutput:
     out: StreamProcessorOutput = {}  # type: ignore[typeddict-item]
-    if "KinesisDataStream" in data:
+    if data.get("KinesisDataStream") is not None:
         import capo_rekognition.types.kinesis_data_stream
 
         out["kinesis_data_stream"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> StreamProcessorOutput:
                 data["KinesisDataStream"]
             )
         )
-    if "S3Destination" in data:
+    if data.get("S3Destination") is not None:
         import capo_rekognition.types.s3_destination
 
         out["s3_destination"] = (

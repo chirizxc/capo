@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: EnableAddOnRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EnableAddOnRequest:
     out: EnableAddOnRequest = {}  # type: ignore[typeddict-item]
-    if "resourceName" in data:
+    if data.get("resourceName") is not None:
         out["resource_name"] = data["resourceName"]
     else:
         raise DeserializationError("EnableAddOnRequest.resource_name required")
-    if "addOnRequest" in data:
+    if data.get("addOnRequest") is not None:
         import capo_lightsail.types.add_on_request
 
         out["add_on_request"] = (

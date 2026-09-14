@@ -50,7 +50,7 @@ def serialize_json(value: EksPodPropertiesOverride) -> dict:
 
 def deserialize_json(data: dict) -> EksPodPropertiesOverride:
     out: EksPodPropertiesOverride = {}  # type: ignore[typeddict-item]
-    if "containers" in data:
+    if data.get("containers") is not None:
         import capo_batch.types.eks_container_override_list
 
         out["containers"] = (
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> EksPodPropertiesOverride:
                 data["containers"]
             )
         )
-    if "initContainers" in data:
+    if data.get("initContainers") is not None:
         import capo_batch.types.eks_container_override_list
 
         out["init_containers"] = (
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> EksPodPropertiesOverride:
                 data["initContainers"]
             )
         )
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         import capo_batch.types.eks_metadata
 
         out["metadata"] = capo_batch.types.eks_metadata.deserialize_json(

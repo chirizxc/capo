@@ -46,13 +46,13 @@ def serialize_json(value: CreateFindingAggregatorResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateFindingAggregatorResponse:
     out: CreateFindingAggregatorResponse = {}  # type: ignore[typeddict-item]
-    if "FindingAggregatorArn" in data:
+    if data.get("FindingAggregatorArn") is not None:
         out["finding_aggregator_arn"] = data["FindingAggregatorArn"]
-    if "FindingAggregationRegion" in data:
+    if data.get("FindingAggregationRegion") is not None:
         out["finding_aggregation_region"] = data["FindingAggregationRegion"]
-    if "RegionLinkingMode" in data:
+    if data.get("RegionLinkingMode") is not None:
         out["region_linking_mode"] = data["RegionLinkingMode"]
-    if "Regions" in data:
+    if data.get("Regions") is not None:
         import capo_securityhub.types.string_list
 
         out["regions"] = capo_securityhub.types.string_list.deserialize_json(

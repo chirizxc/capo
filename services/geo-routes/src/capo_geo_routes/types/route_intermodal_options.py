@@ -100,7 +100,7 @@ def serialize_json(value: RouteIntermodalOptions) -> dict:
 
 def deserialize_json(data: dict) -> RouteIntermodalOptions:
     out: RouteIntermodalOptions = {}  # type: ignore[typeddict-item]
-    if "AccessibilityAttributes" in data:
+    if data.get("AccessibilityAttributes") is not None:
         import capo_geo_routes.types.route_accessibility_attribute_list
 
         out["accessibility_attributes"] = (
@@ -108,9 +108,9 @@ def deserialize_json(data: dict) -> RouteIntermodalOptions:
                 data["AccessibilityAttributes"]
             )
         )
-    if "MaxTransfers" in data:
+    if data.get("MaxTransfers") is not None:
         out["max_transfers"] = data["MaxTransfers"]
-    if "Pedestrian" in data:
+    if data.get("Pedestrian") is not None:
         import capo_geo_routes.types.route_intermodal_pedestrian_options
 
         out["pedestrian"] = (
@@ -118,7 +118,7 @@ def deserialize_json(data: dict) -> RouteIntermodalOptions:
                 data["Pedestrian"]
             )
         )
-    if "Rental" in data:
+    if data.get("Rental") is not None:
         import capo_geo_routes.types.route_intermodal_rental_options
 
         out["rental"] = (
@@ -126,7 +126,7 @@ def deserialize_json(data: dict) -> RouteIntermodalOptions:
                 data["Rental"]
             )
         )
-    if "Taxi" in data:
+    if data.get("Taxi") is not None:
         import capo_geo_routes.types.route_intermodal_taxi_options
 
         out["taxi"] = (
@@ -134,7 +134,7 @@ def deserialize_json(data: dict) -> RouteIntermodalOptions:
                 data["Taxi"]
             )
         )
-    if "Transit" in data:
+    if data.get("Transit") is not None:
         import capo_geo_routes.types.route_intermodal_transit_options
 
         out["transit"] = (
@@ -142,7 +142,7 @@ def deserialize_json(data: dict) -> RouteIntermodalOptions:
                 data["Transit"]
             )
         )
-    if "Vehicle" in data:
+    if data.get("Vehicle") is not None:
         import capo_geo_routes.types.route_intermodal_vehicle_options
 
         out["vehicle"] = (

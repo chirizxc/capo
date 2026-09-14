@@ -28,13 +28,21 @@ def serialize_json(value: TrainedModelExportsMaxSize) -> dict:
             value["unit"]
         )
     )
-    out["value"] = value["value"]
+    out["value"] = (
+        "NaN"
+        if value["value"] != value["value"]
+        else "Infinity"
+        if value["value"] == float("inf")
+        else "-Infinity"
+        if value["value"] == float("-inf")
+        else value["value"]
+    )
     return out
 
 
 def deserialize_json(data: dict) -> TrainedModelExportsMaxSize:
     out: TrainedModelExportsMaxSize = {}  # type: ignore[typeddict-item]
-    if "unit" in data:
+    if data.get("unit") is not None:
         import capo_cleanroomsml.types.trained_model_exports_max_size_unit_type
 
         out["unit"] = (
@@ -44,8 +52,8 @@ def deserialize_json(data: dict) -> TrainedModelExportsMaxSize:
         )
     else:
         raise DeserializationError("TrainedModelExportsMaxSize.unit required")
-    if "value" in data:
-        out["value"] = data["value"]
+    if data.get("value") is not None:
+        out["value"] = float(data["value"])
     else:
         raise DeserializationError("TrainedModelExportsMaxSize.value required")
     return out

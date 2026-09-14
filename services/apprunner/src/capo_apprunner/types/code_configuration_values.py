@@ -69,7 +69,7 @@ def serialize_aws_json_1_0(value: CodeConfigurationValues) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CodeConfigurationValues:
     out: CodeConfigurationValues = {}  # type: ignore[typeddict-item]
-    if "Runtime" in data:
+    if data.get("Runtime") is not None:
         import capo_apprunner.types.runtime
 
         out["runtime"] = capo_apprunner.types.runtime.deserialize_aws_json_1_0(
@@ -77,13 +77,13 @@ def deserialize_aws_json_1_0(data: dict) -> CodeConfigurationValues:
         )
     else:
         raise DeserializationError("CodeConfigurationValues.runtime required")
-    if "BuildCommand" in data:
+    if data.get("BuildCommand") is not None:
         out["build_command"] = data["BuildCommand"]
-    if "StartCommand" in data:
+    if data.get("StartCommand") is not None:
         out["start_command"] = data["StartCommand"]
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
-    if "RuntimeEnvironmentVariables" in data:
+    if data.get("RuntimeEnvironmentVariables") is not None:
         import capo_apprunner.types.runtime_environment_variables
 
         out["runtime_environment_variables"] = (
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_0(data: dict) -> CodeConfigurationValues:
                 data["RuntimeEnvironmentVariables"]
             )
         )
-    if "RuntimeEnvironmentSecrets" in data:
+    if data.get("RuntimeEnvironmentSecrets") is not None:
         import capo_apprunner.types.runtime_environment_secrets
 
         out["runtime_environment_secrets"] = (

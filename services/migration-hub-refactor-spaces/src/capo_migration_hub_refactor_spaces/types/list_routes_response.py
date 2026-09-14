@@ -38,7 +38,7 @@ def serialize_json(value: ListRoutesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListRoutesResponse:
     out: ListRoutesResponse = {}  # type: ignore[typeddict-item]
-    if "RouteSummaryList" in data:
+    if data.get("RouteSummaryList") is not None:
         import capo_migration_hub_refactor_spaces.types.route_summaries
 
         out["route_summary_list"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> ListRoutesResponse:
                 data["RouteSummaryList"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

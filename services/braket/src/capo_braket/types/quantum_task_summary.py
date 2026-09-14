@@ -45,15 +45,15 @@ def serialize_json(value: QuantumTaskSummary) -> dict:
     out["shots"] = value["shots"]
     out["outputS3Bucket"] = value["output_s3_bucket"]
     out["outputS3Directory"] = value["output_s3_directory"]
-    import capo_braket.types._prelude.timestamp
+    import capo_braket._protocol.serialize
 
-    out["createdAt"] = capo_braket.types._prelude.timestamp.serialize_json(
+    out["createdAt"] = capo_braket._protocol.serialize.fmt_date_time(
         value["created_at"]
     )
     if "ended_at" in value:
-        import capo_braket.types._prelude.timestamp
+        import capo_braket._protocol.serialize
 
-        out["endedAt"] = capo_braket.types._prelude.timestamp.serialize_json(
+        out["endedAt"] = capo_braket._protocol.serialize.fmt_date_time(
             value["ended_at"]
         )
     if "tags" in value:
@@ -65,45 +65,45 @@ def serialize_json(value: QuantumTaskSummary) -> dict:
 
 def deserialize_json(data: dict) -> QuantumTaskSummary:
     out: QuantumTaskSummary = {}  # type: ignore[typeddict-item]
-    if "quantumTaskArn" in data:
+    if data.get("quantumTaskArn") is not None:
         out["quantum_task_arn"] = data["quantumTaskArn"]
     else:
         raise DeserializationError("QuantumTaskSummary.quantum_task_arn required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("QuantumTaskSummary.status required")
-    if "deviceArn" in data:
+    if data.get("deviceArn") is not None:
         out["device_arn"] = data["deviceArn"]
     else:
         raise DeserializationError("QuantumTaskSummary.device_arn required")
-    if "shots" in data:
+    if data.get("shots") is not None:
         out["shots"] = data["shots"]
     else:
         raise DeserializationError("QuantumTaskSummary.shots required")
-    if "outputS3Bucket" in data:
+    if data.get("outputS3Bucket") is not None:
         out["output_s3_bucket"] = data["outputS3Bucket"]
     else:
         raise DeserializationError("QuantumTaskSummary.output_s3_bucket required")
-    if "outputS3Directory" in data:
+    if data.get("outputS3Directory") is not None:
         out["output_s3_directory"] = data["outputS3Directory"]
     else:
         raise DeserializationError("QuantumTaskSummary.output_s3_directory required")
-    if "createdAt" in data:
-        import capo_braket.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = capo_braket.types._prelude.timestamp.deserialize_json(
-            data["createdAt"]
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("QuantumTaskSummary.created_at required")
-    if "endedAt" in data:
-        import capo_braket.types._prelude.timestamp
+    if data.get("endedAt") is not None:
+        import datetime
 
-        out["ended_at"] = capo_braket.types._prelude.timestamp.deserialize_json(
-            data["endedAt"]
+        out["ended_at"] = datetime.datetime.fromisoformat(
+            data["endedAt"].replace("Z", "+00:00")
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_braket.types.tags_map
 
         out["tags"] = capo_braket.types.tags_map.deserialize_json(data["tags"])

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AcceptedAssetScopes:
 
     out: AcceptedAssetScopes = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_datazone.types.accepted_asset_scope.deserialize_json(item))
     return out

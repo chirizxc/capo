@@ -47,11 +47,11 @@ def serialize_json(value: IntegratedResourceSummary) -> dict:
 
 def deserialize_json(data: dict) -> IntegratedResourceSummary:
     out: IntegratedResourceSummary = {}  # type: ignore[typeddict-item]
-    if "integrationId" in data:
+    if data.get("integrationId") is not None:
         out["integration_id"] = data["integrationId"]
     else:
         raise DeserializationError("IntegratedResourceSummary.integration_id required")
-    if "resource" in data:
+    if data.get("resource") is not None:
         import capo_securityagent.types.integrated_resource_metadata
 
         out["resource"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> IntegratedResourceSummary:
         )
     else:
         raise DeserializationError("IntegratedResourceSummary.resource required")
-    if "capabilities" in data:
+    if data.get("capabilities") is not None:
         import capo_securityagent.types.provider_resource_capabilities
 
         out["capabilities"] = (

@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> BotSummaryList:
 
     out: BotSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_lex_models_v2.types.bot_summary.deserialize_json(item))
     return out

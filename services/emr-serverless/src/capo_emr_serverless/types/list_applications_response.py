@@ -33,7 +33,7 @@ def serialize_json(value: ListApplicationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListApplicationsResponse:
     out: ListApplicationsResponse = {}  # type: ignore[typeddict-item]
-    if "applications" in data:
+    if data.get("applications") is not None:
         import capo_emr_serverless.types.application_list
 
         out["applications"] = (
@@ -43,6 +43,6 @@ def deserialize_json(data: dict) -> ListApplicationsResponse:
         )
     else:
         raise DeserializationError("ListApplicationsResponse.applications required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

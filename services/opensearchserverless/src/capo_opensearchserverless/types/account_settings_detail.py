@@ -30,7 +30,7 @@ def serialize_aws_json_1_0(value: AccountSettingsDetail) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AccountSettingsDetail:
     out: AccountSettingsDetail = {}  # type: ignore[typeddict-item]
-    if "capacityLimits" in data:
+    if data.get("capacityLimits") is not None:
         import capo_opensearchserverless.types.capacity_limits
 
         out["capacity_limits"] = (

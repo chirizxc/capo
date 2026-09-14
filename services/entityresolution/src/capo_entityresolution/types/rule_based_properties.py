@@ -47,7 +47,7 @@ def serialize_json(value: RuleBasedProperties) -> dict:
 
 def deserialize_json(data: dict) -> RuleBasedProperties:
     out: RuleBasedProperties = {}  # type: ignore[typeddict-item]
-    if "rules" in data:
+    if data.get("rules") is not None:
         import capo_entityresolution.types.rule_list
 
         out["rules"] = capo_entityresolution.types.rule_list.deserialize_json(
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> RuleBasedProperties:
         )
     else:
         raise DeserializationError("RuleBasedProperties.rules required")
-    if "attributeMatchingModel" in data:
+    if data.get("attributeMatchingModel") is not None:
         import capo_entityresolution.types.attribute_matching_model
 
         out["attribute_matching_model"] = (
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> RuleBasedProperties:
         raise DeserializationError(
             "RuleBasedProperties.attribute_matching_model required"
         )
-    if "matchPurpose" in data:
+    if data.get("matchPurpose") is not None:
         import capo_entityresolution.types.match_purpose
 
         out["match_purpose"] = (

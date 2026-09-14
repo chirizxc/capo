@@ -50,31 +50,31 @@ def serialize_json(value: GeneratePinDataOutput) -> dict:
 
 def deserialize_json(data: dict) -> GeneratePinDataOutput:
     out: GeneratePinDataOutput = {}  # type: ignore[typeddict-item]
-    if "GenerationKeyArn" in data:
+    if data.get("GenerationKeyArn") is not None:
         out["generation_key_arn"] = data["GenerationKeyArn"]
     else:
         raise DeserializationError("GeneratePinDataOutput.generation_key_arn required")
-    if "GenerationKeyCheckValue" in data:
+    if data.get("GenerationKeyCheckValue") is not None:
         out["generation_key_check_value"] = data["GenerationKeyCheckValue"]
     else:
         raise DeserializationError(
             "GeneratePinDataOutput.generation_key_check_value required"
         )
-    if "EncryptionKeyArn" in data:
+    if data.get("EncryptionKeyArn") is not None:
         out["encryption_key_arn"] = data["EncryptionKeyArn"]
     else:
         raise DeserializationError("GeneratePinDataOutput.encryption_key_arn required")
-    if "EncryptionKeyCheckValue" in data:
+    if data.get("EncryptionKeyCheckValue") is not None:
         out["encryption_key_check_value"] = data["EncryptionKeyCheckValue"]
     else:
         raise DeserializationError(
             "GeneratePinDataOutput.encryption_key_check_value required"
         )
-    if "EncryptedPinBlock" in data:
+    if data.get("EncryptedPinBlock") is not None:
         out["encrypted_pin_block"] = data["EncryptedPinBlock"]
     else:
         raise DeserializationError("GeneratePinDataOutput.encrypted_pin_block required")
-    if "PinData" in data:
+    if data.get("PinData") is not None:
         import capo_payment_cryptography_data.types.pin_data
 
         out["pin_data"] = (

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ExperimentTargetFilterList:
 
     out: ExperimentTargetFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_fis.types.experiment_target_filter.deserialize_json(item))
     return out

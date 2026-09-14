@@ -34,23 +34,23 @@ def serialize_json(value: WeightPerAxleGroup) -> dict:
 
 def deserialize_json(data: dict) -> WeightPerAxleGroup:
     out: WeightPerAxleGroup = {}  # type: ignore[typeddict-item]
-    if "Single" in data:
+    if data.get("Single") is not None:
         out["single"] = data["Single"]
     else:
         out["single"] = 0
-    if "Tandem" in data:
+    if data.get("Tandem") is not None:
         out["tandem"] = data["Tandem"]
     else:
         out["tandem"] = 0
-    if "Triple" in data:
+    if data.get("Triple") is not None:
         out["triple"] = data["Triple"]
     else:
         out["triple"] = 0
-    if "Quad" in data:
+    if data.get("Quad") is not None:
         out["quad"] = data["Quad"]
     else:
         out["quad"] = 0
-    if "Quint" in data:
+    if data.get("Quint") is not None:
         out["quint"] = data["Quint"]
     else:
         out["quint"] = 0

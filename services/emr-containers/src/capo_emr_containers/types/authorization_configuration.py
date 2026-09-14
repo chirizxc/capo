@@ -44,7 +44,7 @@ def serialize_json(value: AuthorizationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AuthorizationConfiguration:
     out: AuthorizationConfiguration = {}  # type: ignore[typeddict-item]
-    if "lakeFormationConfiguration" in data:
+    if data.get("lakeFormationConfiguration") is not None:
         import capo_emr_containers.types.lake_formation_configuration
 
         out["lake_formation_configuration"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> AuthorizationConfiguration:
                 data["lakeFormationConfiguration"]
             )
         )
-    if "encryptionConfiguration" in data:
+    if data.get("encryptionConfiguration") is not None:
         import capo_emr_containers.types.encryption_configuration
 
         out["encryption_configuration"] = (

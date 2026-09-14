@@ -70,19 +70,19 @@ def serialize_json(value: ImprovementSummary) -> dict:
 
 def deserialize_json(data: dict) -> ImprovementSummary:
     out: ImprovementSummary = {}  # type: ignore[typeddict-item]
-    if "QuestionId" in data:
+    if data.get("QuestionId") is not None:
         out["question_id"] = data["QuestionId"]
-    if "PillarId" in data:
+    if data.get("PillarId") is not None:
         out["pillar_id"] = data["PillarId"]
-    if "QuestionTitle" in data:
+    if data.get("QuestionTitle") is not None:
         out["question_title"] = data["QuestionTitle"]
-    if "Risk" in data:
+    if data.get("Risk") is not None:
         import capo_wellarchitected.types.risk
 
         out["risk"] = capo_wellarchitected.types.risk.deserialize_json(data["Risk"])
-    if "ImprovementPlanUrl" in data:
+    if data.get("ImprovementPlanUrl") is not None:
         out["improvement_plan_url"] = data["ImprovementPlanUrl"]
-    if "ImprovementPlans" in data:
+    if data.get("ImprovementPlans") is not None:
         import capo_wellarchitected.types.choice_improvement_plans
 
         out["improvement_plans"] = (
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> ImprovementSummary:
                 data["ImprovementPlans"]
             )
         )
-    if "JiraConfiguration" in data:
+    if data.get("JiraConfiguration") is not None:
         import capo_wellarchitected.types.jira_configuration
 
         out["jira_configuration"] = (

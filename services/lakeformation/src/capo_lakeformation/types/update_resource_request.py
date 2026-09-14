@@ -48,18 +48,18 @@ def serialize_json(value: UpdateResourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateResourceRequest:
     out: UpdateResourceRequest = {}  # type: ignore[typeddict-item]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError("UpdateResourceRequest.role_arn required")
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     else:
         raise DeserializationError("UpdateResourceRequest.resource_arn required")
-    if "WithFederation" in data:
+    if data.get("WithFederation") is not None:
         out["with_federation"] = data["WithFederation"]
-    if "HybridAccessEnabled" in data:
+    if data.get("HybridAccessEnabled") is not None:
         out["hybrid_access_enabled"] = data["HybridAccessEnabled"]
-    if "ExpectedResourceOwnerAccount" in data:
+    if data.get("ExpectedResourceOwnerAccount") is not None:
         out["expected_resource_owner_account"] = data["ExpectedResourceOwnerAccount"]
     return out

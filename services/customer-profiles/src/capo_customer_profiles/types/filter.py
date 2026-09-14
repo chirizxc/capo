@@ -36,7 +36,7 @@ def serialize_json(value: Filter) -> dict:
 
 def deserialize_json(data: dict) -> Filter:
     out: Filter = {}  # type: ignore[typeddict-item]
-    if "Include" in data:
+    if data.get("Include") is not None:
         import capo_customer_profiles.types.include
 
         out["include"] = capo_customer_profiles.types.include.deserialize_json(
@@ -44,7 +44,7 @@ def deserialize_json(data: dict) -> Filter:
         )
     else:
         raise DeserializationError("Filter.include required")
-    if "Groups" in data:
+    if data.get("Groups") is not None:
         import capo_customer_profiles.types.group_list
 
         out["groups"] = capo_customer_profiles.types.group_list.deserialize_json(

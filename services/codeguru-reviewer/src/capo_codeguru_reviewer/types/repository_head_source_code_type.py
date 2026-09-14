@@ -24,7 +24,7 @@ def serialize_json(value: RepositoryHeadSourceCodeType) -> dict:
 
 def deserialize_json(data: dict) -> RepositoryHeadSourceCodeType:
     out: RepositoryHeadSourceCodeType = {}  # type: ignore[typeddict-item]
-    if "BranchName" in data:
+    if data.get("BranchName") is not None:
         out["branch_name"] = data["BranchName"]
     else:
         raise DeserializationError("RepositoryHeadSourceCodeType.branch_name required")

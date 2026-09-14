@@ -59,9 +59,9 @@ def serialize_json(value: ArgoCdConfigRequest) -> dict:
 
 def deserialize_json(data: dict) -> ArgoCdConfigRequest:
     out: ArgoCdConfigRequest = {}  # type: ignore[typeddict-item]
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         out["namespace"] = data["namespace"]
-    if "awsIdc" in data:
+    if data.get("awsIdc") is not None:
         import capo_eks.types.argo_cd_aws_idc_config_request
 
         out["aws_idc"] = capo_eks.types.argo_cd_aws_idc_config_request.deserialize_json(
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> ArgoCdConfigRequest:
         )
     else:
         raise DeserializationError("ArgoCdConfigRequest.aws_idc required")
-    if "rbacRoleMappings" in data:
+    if data.get("rbacRoleMappings") is not None:
         import capo_eks.types.argo_cd_role_mapping_list
 
         out["rbac_role_mappings"] = (
@@ -77,7 +77,7 @@ def deserialize_json(data: dict) -> ArgoCdConfigRequest:
                 data["rbacRoleMappings"]
             )
         )
-    if "networkAccess" in data:
+    if data.get("networkAccess") is not None:
         import capo_eks.types.argo_cd_network_access_config_request
 
         out["network_access"] = (

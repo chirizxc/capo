@@ -24,7 +24,7 @@ def serialize_json(value: CreateBudgetResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateBudgetResponse:
     out: CreateBudgetResponse = {}  # type: ignore[typeddict-item]
-    if "budgetId" in data:
+    if data.get("budgetId") is not None:
         out["budget_id"] = data["budgetId"]
     else:
         raise DeserializationError("CreateBudgetResponse.budget_id required")

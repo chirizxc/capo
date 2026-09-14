@@ -50,16 +50,16 @@ def serialize_json(value: Esam) -> dict:
 
 def deserialize_json(data: dict) -> Esam:
     out: Esam = {}  # type: ignore[typeddict-item]
-    if "acquisitionPointId" in data:
+    if data.get("acquisitionPointId") is not None:
         out["acquisition_point_id"] = data["acquisitionPointId"]
-    if "adAvailOffset" in data:
+    if data.get("adAvailOffset") is not None:
         out["ad_avail_offset"] = data["adAvailOffset"]
-    if "passwordParam" in data:
+    if data.get("passwordParam") is not None:
         out["password_param"] = data["passwordParam"]
-    if "poisEndpoint" in data:
+    if data.get("poisEndpoint") is not None:
         out["pois_endpoint"] = data["poisEndpoint"]
-    if "username" in data:
+    if data.get("username") is not None:
         out["username"] = data["username"]
-    if "zoneIdentity" in data:
+    if data.get("zoneIdentity") is not None:
         out["zone_identity"] = data["zoneIdentity"]
     return out

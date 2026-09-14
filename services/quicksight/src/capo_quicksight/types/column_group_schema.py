@@ -36,9 +36,9 @@ def serialize_json(value: ColumnGroupSchema) -> dict:
 
 def deserialize_json(data: dict) -> ColumnGroupSchema:
     out: ColumnGroupSchema = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ColumnGroupColumnSchemaList" in data:
+    if data.get("ColumnGroupColumnSchemaList") is not None:
         import capo_quicksight.types.column_group_column_schema_list
 
         out["column_group_column_schema_list"] = (

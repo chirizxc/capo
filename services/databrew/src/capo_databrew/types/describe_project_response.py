@@ -103,51 +103,51 @@ def serialize_json(value: DescribeProjectResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeProjectResponse:
     out: DescribeProjectResponse = {}  # type: ignore[typeddict-item]
-    if "CreateDate" in data:
+    if data.get("CreateDate") is not None:
         import capo_databrew.types.date
 
         out["create_date"] = capo_databrew.types.date.deserialize_json(
             data["CreateDate"]
         )
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         out["created_by"] = data["CreatedBy"]
-    if "DatasetName" in data:
+    if data.get("DatasetName") is not None:
         out["dataset_name"] = data["DatasetName"]
-    if "LastModifiedDate" in data:
+    if data.get("LastModifiedDate") is not None:
         import capo_databrew.types.date
 
         out["last_modified_date"] = capo_databrew.types.date.deserialize_json(
             data["LastModifiedDate"]
         )
-    if "LastModifiedBy" in data:
+    if data.get("LastModifiedBy") is not None:
         out["last_modified_by"] = data["LastModifiedBy"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("DescribeProjectResponse.name required")
-    if "RecipeName" in data:
+    if data.get("RecipeName") is not None:
         out["recipe_name"] = data["RecipeName"]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "Sample" in data:
+    if data.get("Sample") is not None:
         import capo_databrew.types.sample
 
         out["sample"] = capo_databrew.types.sample.deserialize_json(data["Sample"])
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_databrew.types.tag_map
 
         out["tags"] = capo_databrew.types.tag_map.deserialize_json(data["Tags"])
-    if "SessionStatus" in data:
+    if data.get("SessionStatus") is not None:
         import capo_databrew.types.session_status
 
         out["session_status"] = capo_databrew.types.session_status.deserialize_json(
             data["SessionStatus"]
         )
-    if "OpenedBy" in data:
+    if data.get("OpenedBy") is not None:
         out["opened_by"] = data["OpenedBy"]
-    if "OpenDate" in data:
+    if data.get("OpenDate") is not None:
         import capo_databrew.types.date
 
         out["open_date"] = capo_databrew.types.date.deserialize_json(data["OpenDate"])

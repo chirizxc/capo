@@ -51,21 +51,21 @@ def serialize_json(value: TTPsObservedDetail) -> dict:
 
 def deserialize_json(data: dict) -> TTPsObservedDetail:
     out: TTPsObservedDetail = {}  # type: ignore[typeddict-item]
-    if "Tactic" in data:
+    if data.get("Tactic") is not None:
         out["tactic"] = data["Tactic"]
-    if "Technique" in data:
+    if data.get("Technique") is not None:
         out["technique"] = data["Technique"]
-    if "Procedure" in data:
+    if data.get("Procedure") is not None:
         out["procedure"] = data["Procedure"]
-    if "IpAddress" in data:
+    if data.get("IpAddress") is not None:
         out["ip_address"] = data["IpAddress"]
-    if "APIName" in data:
+    if data.get("APIName") is not None:
         out["api_name"] = data["APIName"]
-    if "APISuccessCount" in data:
+    if data.get("APISuccessCount") is not None:
         out["api_success_count"] = data["APISuccessCount"]
     else:
         out["api_success_count"] = 0
-    if "APIFailureCount" in data:
+    if data.get("APIFailureCount") is not None:
         out["api_failure_count"] = data["APIFailureCount"]
     else:
         out["api_failure_count"] = 0

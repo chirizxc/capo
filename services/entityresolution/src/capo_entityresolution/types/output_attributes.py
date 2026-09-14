@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> OutputAttributes:
 
     out: OutputAttributes = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_entityresolution.types.output_attribute.deserialize_json(item))
     return out

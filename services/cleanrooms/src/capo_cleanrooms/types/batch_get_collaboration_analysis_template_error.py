@@ -30,19 +30,19 @@ def serialize_json(value: BatchGetCollaborationAnalysisTemplateError) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetCollaborationAnalysisTemplateError:
     out: BatchGetCollaborationAnalysisTemplateError = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError(
             "BatchGetCollaborationAnalysisTemplateError.arn required"
         )
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
     else:
         raise DeserializationError(
             "BatchGetCollaborationAnalysisTemplateError.code required"
         )
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError(

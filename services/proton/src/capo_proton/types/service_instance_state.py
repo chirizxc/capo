@@ -69,27 +69,27 @@ def serialize_aws_json_1_0(value: ServiceInstanceState) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ServiceInstanceState:
     out: ServiceInstanceState = {}  # type: ignore[typeddict-item]
-    if "spec" in data:
+    if data.get("spec") is not None:
         out["spec"] = data["spec"]
     else:
         raise DeserializationError("ServiceInstanceState.spec required")
-    if "templateName" in data:
+    if data.get("templateName") is not None:
         out["template_name"] = data["templateName"]
     else:
         raise DeserializationError("ServiceInstanceState.template_name required")
-    if "templateMajorVersion" in data:
+    if data.get("templateMajorVersion") is not None:
         out["template_major_version"] = data["templateMajorVersion"]
     else:
         raise DeserializationError(
             "ServiceInstanceState.template_major_version required"
         )
-    if "templateMinorVersion" in data:
+    if data.get("templateMinorVersion") is not None:
         out["template_minor_version"] = data["templateMinorVersion"]
     else:
         raise DeserializationError(
             "ServiceInstanceState.template_minor_version required"
         )
-    if "lastSuccessfulComponentDeploymentIds" in data:
+    if data.get("lastSuccessfulComponentDeploymentIds") is not None:
         import capo_proton.types.component_deployment_id_list
 
         out["last_successful_component_deployment_ids"] = (
@@ -97,11 +97,11 @@ def deserialize_aws_json_1_0(data: dict) -> ServiceInstanceState:
                 data["lastSuccessfulComponentDeploymentIds"]
             )
         )
-    if "lastSuccessfulEnvironmentDeploymentId" in data:
+    if data.get("lastSuccessfulEnvironmentDeploymentId") is not None:
         out["last_successful_environment_deployment_id"] = data[
             "lastSuccessfulEnvironmentDeploymentId"
         ]
-    if "lastSuccessfulServicePipelineDeploymentId" in data:
+    if data.get("lastSuccessfulServicePipelineDeploymentId") is not None:
         out["last_successful_service_pipeline_deployment_id"] = data[
             "lastSuccessfulServicePipelineDeploymentId"
         ]

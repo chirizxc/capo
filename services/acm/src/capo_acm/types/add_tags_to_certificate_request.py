@@ -30,13 +30,13 @@ def serialize_aws_json_1_1(value: AddTagsToCertificateRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AddTagsToCertificateRequest:
     out: AddTagsToCertificateRequest = {}  # type: ignore[typeddict-item]
-    if "CertificateArn" in data:
+    if data.get("CertificateArn") is not None:
         out["certificate_arn"] = data["CertificateArn"]
     else:
         raise DeserializationError(
             "AddTagsToCertificateRequest.certificate_arn required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_acm.types.tag_list
 
         out["tags"] = capo_acm.types.tag_list.deserialize_aws_json_1_1(data["Tags"])

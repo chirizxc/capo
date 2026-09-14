@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ScanActions:
 
     out: ScanActions = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_backup.types.scan_action.deserialize_json(item))
     return out

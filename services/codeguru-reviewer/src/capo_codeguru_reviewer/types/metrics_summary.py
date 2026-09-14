@@ -38,10 +38,10 @@ def serialize_json(value: MetricsSummary) -> dict:
 
 def deserialize_json(data: dict) -> MetricsSummary:
     out: MetricsSummary = {}  # type: ignore[typeddict-item]
-    if "MeteredLinesOfCodeCount" in data:
+    if data.get("MeteredLinesOfCodeCount") is not None:
         out["metered_lines_of_code_count"] = data["MeteredLinesOfCodeCount"]
-    if "SuppressedLinesOfCodeCount" in data:
+    if data.get("SuppressedLinesOfCodeCount") is not None:
         out["suppressed_lines_of_code_count"] = data["SuppressedLinesOfCodeCount"]
-    if "FindingsCount" in data:
+    if data.get("FindingsCount") is not None:
         out["findings_count"] = data["FindingsCount"]
     return out

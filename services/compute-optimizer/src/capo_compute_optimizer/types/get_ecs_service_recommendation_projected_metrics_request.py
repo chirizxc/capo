@@ -55,13 +55,13 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> GetECSServiceRecommendationProjectedMetricsRequest:
     out: GetECSServiceRecommendationProjectedMetricsRequest = {}  # type: ignore[typeddict-item]
-    if "serviceArn" in data:
+    if data.get("serviceArn") is not None:
         out["service_arn"] = data["serviceArn"]
     else:
         raise DeserializationError(
             "GetECSServiceRecommendationProjectedMetricsRequest.service_arn required"
         )
-    if "stat" in data:
+    if data.get("stat") is not None:
         import capo_compute_optimizer.types.metric_statistic
 
         out["stat"] = (
@@ -73,11 +73,11 @@ def deserialize_aws_json_1_0(
         raise DeserializationError(
             "GetECSServiceRecommendationProjectedMetricsRequest.stat required"
         )
-    if "period" in data:
+    if data.get("period") is not None:
         out["period"] = data["period"]
     else:
         out["period"] = 0
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_compute_optimizer.types.timestamp
 
         out["start_time"] = (
@@ -89,7 +89,7 @@ def deserialize_aws_json_1_0(
         raise DeserializationError(
             "GetECSServiceRecommendationProjectedMetricsRequest.start_time required"
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_compute_optimizer.types.timestamp
 
         out["end_time"] = (

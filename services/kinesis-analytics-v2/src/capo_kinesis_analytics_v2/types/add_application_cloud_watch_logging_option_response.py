@@ -56,11 +56,11 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> AddApplicationCloudWatchLoggingOptionResponse:
     out: AddApplicationCloudWatchLoggingOptionResponse = {}  # type: ignore[typeddict-item]
-    if "ApplicationARN" in data:
+    if data.get("ApplicationARN") is not None:
         out["application_arn"] = data["ApplicationARN"]
-    if "ApplicationVersionId" in data:
+    if data.get("ApplicationVersionId") is not None:
         out["application_version_id"] = data["ApplicationVersionId"]
-    if "CloudWatchLoggingOptionDescriptions" in data:
+    if data.get("CloudWatchLoggingOptionDescriptions") is not None:
         import capo_kinesis_analytics_v2.types.cloud_watch_logging_option_descriptions
 
         out["cloud_watch_logging_option_descriptions"] = (
@@ -68,6 +68,6 @@ def deserialize_aws_json_1_1(
                 data["CloudWatchLoggingOptionDescriptions"]
             )
         )
-    if "OperationId" in data:
+    if data.get("OperationId") is not None:
         out["operation_id"] = data["OperationId"]
     return out

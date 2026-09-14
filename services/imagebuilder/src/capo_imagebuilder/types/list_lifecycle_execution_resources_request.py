@@ -45,16 +45,16 @@ def serialize_json(value: ListLifecycleExecutionResourcesRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListLifecycleExecutionResourcesRequest:
     out: ListLifecycleExecutionResourcesRequest = {}  # type: ignore[typeddict-item]
-    if "lifecycleExecutionId" in data:
+    if data.get("lifecycleExecutionId") is not None:
         out["lifecycle_execution_id"] = data["lifecycleExecutionId"]
     else:
         raise DeserializationError(
             "ListLifecycleExecutionResourcesRequest.lifecycle_execution_id required"
         )
-    if "parentResourceId" in data:
+    if data.get("parentResourceId") is not None:
         out["parent_resource_id"] = data["parentResourceId"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -143,7 +143,7 @@ def serialize_json(value: RuleAction) -> dict:
 
 def deserialize_json(data: dict) -> RuleAction:
     out: RuleAction = {}  # type: ignore[typeddict-item]
-    if "ActionType" in data:
+    if data.get("ActionType") is not None:
         import capo_connect.types.action_type
 
         out["action_type"] = capo_connect.types.action_type.deserialize_json(
@@ -151,13 +151,13 @@ def deserialize_json(data: dict) -> RuleAction:
         )
     else:
         raise DeserializationError("RuleAction.action_type required")
-    if "TaskAction" in data:
+    if data.get("TaskAction") is not None:
         import capo_connect.types.task_action_definition
 
         out["task_action"] = capo_connect.types.task_action_definition.deserialize_json(
             data["TaskAction"]
         )
-    if "EventBridgeAction" in data:
+    if data.get("EventBridgeAction") is not None:
         import capo_connect.types.event_bridge_action_definition
 
         out["event_bridge_action"] = (
@@ -165,7 +165,7 @@ def deserialize_json(data: dict) -> RuleAction:
                 data["EventBridgeAction"]
             )
         )
-    if "AssignContactCategoryAction" in data:
+    if data.get("AssignContactCategoryAction") is not None:
         import capo_connect.types.assign_contact_category_action_definition
 
         out["assign_contact_category_action"] = (
@@ -173,7 +173,7 @@ def deserialize_json(data: dict) -> RuleAction:
                 data["AssignContactCategoryAction"]
             )
         )
-    if "SendNotificationAction" in data:
+    if data.get("SendNotificationAction") is not None:
         import capo_connect.types.send_notification_action_definition
 
         out["send_notification_action"] = (
@@ -181,7 +181,7 @@ def deserialize_json(data: dict) -> RuleAction:
                 data["SendNotificationAction"]
             )
         )
-    if "CreateCaseAction" in data:
+    if data.get("CreateCaseAction") is not None:
         import capo_connect.types.create_case_action_definition
 
         out["create_case_action"] = (
@@ -189,7 +189,7 @@ def deserialize_json(data: dict) -> RuleAction:
                 data["CreateCaseAction"]
             )
         )
-    if "UpdateCaseAction" in data:
+    if data.get("UpdateCaseAction") is not None:
         import capo_connect.types.update_case_action_definition
 
         out["update_case_action"] = (
@@ -197,7 +197,7 @@ def deserialize_json(data: dict) -> RuleAction:
                 data["UpdateCaseAction"]
             )
         )
-    if "AssignSlaAction" in data:
+    if data.get("AssignSlaAction") is not None:
         import capo_connect.types.assign_sla_action_definition
 
         out["assign_sla_action"] = (
@@ -205,7 +205,7 @@ def deserialize_json(data: dict) -> RuleAction:
                 data["AssignSlaAction"]
             )
         )
-    if "EndAssociatedTasksAction" in data:
+    if data.get("EndAssociatedTasksAction") is not None:
         import capo_connect.types.end_associated_tasks_action_definition
 
         out["end_associated_tasks_action"] = (
@@ -213,7 +213,7 @@ def deserialize_json(data: dict) -> RuleAction:
                 data["EndAssociatedTasksAction"]
             )
         )
-    if "SubmitAutoEvaluationAction" in data:
+    if data.get("SubmitAutoEvaluationAction") is not None:
         import capo_connect.types.submit_auto_evaluation_action_definition
 
         out["submit_auto_evaluation_action"] = (

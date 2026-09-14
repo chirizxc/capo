@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: ScpActionDefinition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ScpActionDefinition:
     out: ScpActionDefinition = {}  # type: ignore[typeddict-item]
-    if "PolicyId" in data:
+    if data.get("PolicyId") is not None:
         out["policy_id"] = data["PolicyId"]
     else:
         raise DeserializationError("ScpActionDefinition.policy_id required")
-    if "TargetIds" in data:
+    if data.get("TargetIds") is not None:
         import capo_budgets.types.target_ids
 
         out["target_ids"] = capo_budgets.types.target_ids.deserialize_aws_json_1_1(

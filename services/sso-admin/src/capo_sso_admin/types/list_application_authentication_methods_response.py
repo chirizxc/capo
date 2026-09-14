@@ -38,7 +38,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> ListApplicationAuthenticationMethodsResponse:
     out: ListApplicationAuthenticationMethodsResponse = {}  # type: ignore[typeddict-item]
-    if "AuthenticationMethods" in data:
+    if data.get("AuthenticationMethods") is not None:
         import capo_sso_admin.types.authentication_methods
 
         out["authentication_methods"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(
                 data["AuthenticationMethods"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

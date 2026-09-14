@@ -43,11 +43,11 @@ def serialize_json(value: ListDevicePositionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListDevicePositionsRequest:
     out: ListDevicePositionsRequest = {}  # type: ignore[typeddict-item]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "FilterGeometry" in data:
+    if data.get("FilterGeometry") is not None:
         import capo_location.types.tracking_filter_geometry
 
         out["filter_geometry"] = (

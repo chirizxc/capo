@@ -40,12 +40,12 @@ def deserialize_json(
     data: dict,
 ) -> AwsEc2LaunchTemplateDataPrivateDnsNameOptionsDetails:
     out: AwsEc2LaunchTemplateDataPrivateDnsNameOptionsDetails = {}  # type: ignore[typeddict-item]
-    if "EnableResourceNameDnsAAAARecord" in data:
+    if data.get("EnableResourceNameDnsAAAARecord") is not None:
         out["enable_resource_name_dns_aaaa_record"] = data[
             "EnableResourceNameDnsAAAARecord"
         ]
-    if "EnableResourceNameDnsARecord" in data:
+    if data.get("EnableResourceNameDnsARecord") is not None:
         out["enable_resource_name_dns_a_record"] = data["EnableResourceNameDnsARecord"]
-    if "HostnameType" in data:
+    if data.get("HostnameType") is not None:
         out["hostname_type"] = data["HostnameType"]
     return out

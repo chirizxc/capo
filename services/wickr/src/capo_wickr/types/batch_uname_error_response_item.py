@@ -33,11 +33,11 @@ def serialize_json(value: BatchUnameErrorResponseItem) -> dict:
 
 def deserialize_json(data: dict) -> BatchUnameErrorResponseItem:
     out: BatchUnameErrorResponseItem = {}  # type: ignore[typeddict-item]
-    if "field" in data:
+    if data.get("field") is not None:
         out["field"] = data["field"]
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
-    if "uname" in data:
+    if data.get("uname") is not None:
         out["uname"] = data["uname"]
     else:
         raise DeserializationError("BatchUnameErrorResponseItem.uname required")

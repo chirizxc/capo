@@ -23,6 +23,6 @@ def serialize_json(value: ServiceJobTimeout) -> dict:
 
 def deserialize_json(data: dict) -> ServiceJobTimeout:
     out: ServiceJobTimeout = {}  # type: ignore[typeddict-item]
-    if "attemptDurationSeconds" in data:
+    if data.get("attemptDurationSeconds") is not None:
         out["attempt_duration_seconds"] = data["attemptDurationSeconds"]
     return out

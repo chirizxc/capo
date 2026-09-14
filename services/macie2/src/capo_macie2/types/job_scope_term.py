@@ -38,13 +38,13 @@ def serialize_json(value: JobScopeTerm) -> dict:
 
 def deserialize_json(data: dict) -> JobScopeTerm:
     out: JobScopeTerm = {}  # type: ignore[typeddict-item]
-    if "simpleScopeTerm" in data:
+    if data.get("simpleScopeTerm") is not None:
         import capo_macie2.types.simple_scope_term
 
         out["simple_scope_term"] = capo_macie2.types.simple_scope_term.deserialize_json(
             data["simpleScopeTerm"]
         )
-    if "tagScopeTerm" in data:
+    if data.get("tagScopeTerm") is not None:
         import capo_macie2.types.tag_scope_term
 
         out["tag_scope_term"] = capo_macie2.types.tag_scope_term.deserialize_json(

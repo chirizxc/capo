@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: RejectAssignmentRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RejectAssignmentRequest:
     out: RejectAssignmentRequest = {}  # type: ignore[typeddict-item]
-    if "AssignmentId" in data:
+    if data.get("AssignmentId") is not None:
         out["assignment_id"] = data["AssignmentId"]
     else:
         raise DeserializationError("RejectAssignmentRequest.assignment_id required")
-    if "RequesterFeedback" in data:
+    if data.get("RequesterFeedback") is not None:
         out["requester_feedback"] = data["RequesterFeedback"]
     else:
         raise DeserializationError(

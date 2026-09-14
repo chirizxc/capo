@@ -198,14 +198,16 @@ class LicenseManagerLinuxSubscriptionsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager_linux_subscriptions.types.deregister_subscription_provider_request.DeregisterSubscriptionProviderRequest = {}  # type: ignore[typeddict-item]
-        input_["subscription_provider_arn"] = subscription_provider_arn
+        input_: capo_license_manager_linux_subscriptions.types.deregister_subscription_provider_request.DeregisterSubscriptionProviderRequest = {
+            "subscription_provider_arn": subscription_provider_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_registered_subscription_provider(
@@ -242,14 +244,16 @@ class LicenseManagerLinuxSubscriptionsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager_linux_subscriptions.types.get_registered_subscription_provider_request.GetRegisteredSubscriptionProviderRequest = {}  # type: ignore[typeddict-item]
-        input_["subscription_provider_arn"] = subscription_provider_arn
+        input_: capo_license_manager_linux_subscriptions.types.get_registered_subscription_provider_request.GetRegisteredSubscriptionProviderRequest = {
+            "subscription_provider_arn": subscription_provider_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_service_settings(
@@ -281,13 +285,14 @@ class LicenseManagerLinuxSubscriptionsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager_linux_subscriptions.types.get_service_settings_request.GetServiceSettingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_license_manager_linux_subscriptions.types.get_service_settings_request.GetServiceSettingsRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_linux_subscription_instances(
@@ -331,7 +336,7 @@ class LicenseManagerLinuxSubscriptionsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager_linux_subscriptions.types.list_linux_subscription_instances_request.ListLinuxSubscriptionInstancesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_license_manager_linux_subscriptions.types.list_linux_subscription_instances_request.ListLinuxSubscriptionInstancesRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -344,6 +349,7 @@ class LicenseManagerLinuxSubscriptionsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_linux_subscription_instances(
@@ -414,7 +420,7 @@ class LicenseManagerLinuxSubscriptionsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager_linux_subscriptions.types.list_linux_subscriptions_request.ListLinuxSubscriptionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_license_manager_linux_subscriptions.types.list_linux_subscriptions_request.ListLinuxSubscriptionsRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -427,6 +433,7 @@ class LicenseManagerLinuxSubscriptionsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_linux_subscriptions(
@@ -497,7 +504,7 @@ class LicenseManagerLinuxSubscriptionsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager_linux_subscriptions.types.list_registered_subscription_providers_request.ListRegisteredSubscriptionProvidersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_license_manager_linux_subscriptions.types.list_registered_subscription_providers_request.ListRegisteredSubscriptionProvidersRequest = {}
         if subscription_provider_sources is not None:
             input_["subscription_provider_sources"] = subscription_provider_sources
         if max_results is not None:
@@ -510,6 +517,7 @@ class LicenseManagerLinuxSubscriptionsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_registered_subscription_providers(
@@ -572,14 +580,16 @@ class LicenseManagerLinuxSubscriptionsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager_linux_subscriptions.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_license_manager_linux_subscriptions.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def register_subscription_provider(
@@ -621,9 +631,10 @@ class LicenseManagerLinuxSubscriptionsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager_linux_subscriptions.types.register_subscription_provider_request.RegisterSubscriptionProviderRequest = {}  # type: ignore[typeddict-item]
-        input_["subscription_provider_source"] = subscription_provider_source
-        input_["secret_arn"] = secret_arn
+        input_: capo_license_manager_linux_subscriptions.types.register_subscription_provider_request.RegisterSubscriptionProviderRequest = {
+            "subscription_provider_source": subscription_provider_source,
+            "secret_arn": secret_arn,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -632,6 +643,7 @@ class LicenseManagerLinuxSubscriptionsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -669,15 +681,17 @@ class LicenseManagerLinuxSubscriptionsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager_linux_subscriptions.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_license_manager_linux_subscriptions.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -714,15 +728,17 @@ class LicenseManagerLinuxSubscriptionsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager_linux_subscriptions.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_license_manager_linux_subscriptions.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_service_settings(
@@ -762,11 +778,10 @@ class LicenseManagerLinuxSubscriptionsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager_linux_subscriptions.types.update_service_settings_request.UpdateServiceSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["linux_subscriptions_discovery"] = linux_subscriptions_discovery
-        input_["linux_subscriptions_discovery_settings"] = (
-            linux_subscriptions_discovery_settings
-        )
+        input_: capo_license_manager_linux_subscriptions.types.update_service_settings_request.UpdateServiceSettingsRequest = {
+            "linux_subscriptions_discovery": linux_subscriptions_discovery,
+            "linux_subscriptions_discovery_settings": linux_subscriptions_discovery_settings,
+        }
         if allow_update is not None:
             input_["allow_update"] = allow_update
 
@@ -775,6 +790,7 @@ class LicenseManagerLinuxSubscriptionsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

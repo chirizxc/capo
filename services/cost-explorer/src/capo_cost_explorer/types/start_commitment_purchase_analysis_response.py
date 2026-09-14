@@ -31,19 +31,19 @@ def serialize_aws_json_1_1(value: StartCommitmentPurchaseAnalysisResponse) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> StartCommitmentPurchaseAnalysisResponse:
     out: StartCommitmentPurchaseAnalysisResponse = {}  # type: ignore[typeddict-item]
-    if "AnalysisId" in data:
+    if data.get("AnalysisId") is not None:
         out["analysis_id"] = data["AnalysisId"]
     else:
         raise DeserializationError(
             "StartCommitmentPurchaseAnalysisResponse.analysis_id required"
         )
-    if "AnalysisStartedTime" in data:
+    if data.get("AnalysisStartedTime") is not None:
         out["analysis_started_time"] = data["AnalysisStartedTime"]
     else:
         raise DeserializationError(
             "StartCommitmentPurchaseAnalysisResponse.analysis_started_time required"
         )
-    if "EstimatedCompletionTime" in data:
+    if data.get("EstimatedCompletionTime") is not None:
         out["estimated_completion_time"] = data["EstimatedCompletionTime"]
     else:
         raise DeserializationError(

@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: GetQueueRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetQueueRequest:
     out: GetQueueRequest = {}  # type: ignore[typeddict-item]
-    if "clusterIdentifier" in data:
+    if data.get("clusterIdentifier") is not None:
         out["cluster_identifier"] = data["clusterIdentifier"]
     else:
         raise DeserializationError("GetQueueRequest.cluster_identifier required")
-    if "queueIdentifier" in data:
+    if data.get("queueIdentifier") is not None:
         out["queue_identifier"] = data["queueIdentifier"]
     else:
         raise DeserializationError("GetQueueRequest.queue_identifier required")

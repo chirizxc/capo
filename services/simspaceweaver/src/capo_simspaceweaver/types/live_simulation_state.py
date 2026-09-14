@@ -38,13 +38,13 @@ def serialize_json(value: LiveSimulationState) -> dict:
 
 def deserialize_json(data: dict) -> LiveSimulationState:
     out: LiveSimulationState = {}  # type: ignore[typeddict-item]
-    if "Domains" in data:
+    if data.get("Domains") is not None:
         import capo_simspaceweaver.types.domain_list
 
         out["domains"] = capo_simspaceweaver.types.domain_list.deserialize_json(
             data["Domains"]
         )
-    if "Clocks" in data:
+    if data.get("Clocks") is not None:
         import capo_simspaceweaver.types.simulation_clock_list
 
         out["clocks"] = (

@@ -44,17 +44,17 @@ def serialize_json(value: RuntimeVersion) -> dict:
 
 def deserialize_json(data: dict) -> RuntimeVersion:
     out: RuntimeVersion = {}  # type: ignore[typeddict-item]
-    if "VersionName" in data:
+    if data.get("VersionName") is not None:
         out["version_name"] = data["VersionName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ReleaseDate" in data:
+    if data.get("ReleaseDate") is not None:
         import capo_synthetics.types.timestamp
 
         out["release_date"] = capo_synthetics.types.timestamp.deserialize_json(
             data["ReleaseDate"]
         )
-    if "DeprecationDate" in data:
+    if data.get("DeprecationDate") is not None:
         import capo_synthetics.types.timestamp
 
         out["deprecation_date"] = capo_synthetics.types.timestamp.deserialize_json(

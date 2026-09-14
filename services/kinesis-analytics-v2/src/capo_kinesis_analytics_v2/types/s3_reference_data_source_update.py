@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: S3ReferenceDataSourceUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3ReferenceDataSourceUpdate:
     out: S3ReferenceDataSourceUpdate = {}  # type: ignore[typeddict-item]
-    if "BucketARNUpdate" in data:
+    if data.get("BucketARNUpdate") is not None:
         out["bucket_arn_update"] = data["BucketARNUpdate"]
-    if "FileKeyUpdate" in data:
+    if data.get("FileKeyUpdate") is not None:
         out["file_key_update"] = data["FileKeyUpdate"]
     return out

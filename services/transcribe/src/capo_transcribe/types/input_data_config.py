@@ -32,13 +32,13 @@ def serialize_aws_json_1_1(value: InputDataConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InputDataConfig:
     out: InputDataConfig = {}  # type: ignore[typeddict-item]
-    if "S3Uri" in data:
+    if data.get("S3Uri") is not None:
         out["s3_uri"] = data["S3Uri"]
     else:
         raise DeserializationError("InputDataConfig.s3_uri required")
-    if "TuningDataS3Uri" in data:
+    if data.get("TuningDataS3Uri") is not None:
         out["tuning_data_s3_uri"] = data["TuningDataS3Uri"]
-    if "DataAccessRoleArn" in data:
+    if data.get("DataAccessRoleArn") is not None:
         out["data_access_role_arn"] = data["DataAccessRoleArn"]
     else:
         raise DeserializationError("InputDataConfig.data_access_role_arn required")

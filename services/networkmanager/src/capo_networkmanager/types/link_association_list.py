@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> LinkAssociationList:
 
     out: LinkAssociationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_networkmanager.types.link_association.deserialize_json(item))
     return out

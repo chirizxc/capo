@@ -53,11 +53,11 @@ def serialize_json(value: TagSearchCondition) -> dict:
 
 def deserialize_json(data: dict) -> TagSearchCondition:
     out: TagSearchCondition = {}  # type: ignore[typeddict-item]
-    if "tagKey" in data:
+    if data.get("tagKey") is not None:
         out["tag_key"] = data["tagKey"]
-    if "tagValue" in data:
+    if data.get("tagValue") is not None:
         out["tag_value"] = data["tagValue"]
-    if "tagKeyComparisonType" in data:
+    if data.get("tagKeyComparisonType") is not None:
         import capo_connect.types.string_comparison_type
 
         out["tag_key_comparison_type"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> TagSearchCondition:
                 data["tagKeyComparisonType"]
             )
         )
-    if "tagValueComparisonType" in data:
+    if data.get("tagValueComparisonType") is not None:
         import capo_connect.types.string_comparison_type
 
         out["tag_value_comparison_type"] = (

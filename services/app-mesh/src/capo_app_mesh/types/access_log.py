@@ -30,7 +30,7 @@ def serialize_json(value: AccessLog) -> dict:
 
 
 def deserialize_json(data: dict) -> AccessLog:
-    if "file" in data:
+    if data.get("file") is not None:
         import capo_app_mesh.types.file_access_log
 
         return {

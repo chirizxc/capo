@@ -92,7 +92,16 @@ def serialize_aws_json_1_0(value: ECSServiceRecommendation) -> dict:
                 value["utilization_metrics"]
             )
         )
-    out["lookbackPeriodInDays"] = value.get("lookback_period_in_days", 0)
+    out["lookbackPeriodInDays"] = (
+        "NaN"
+        if value.get("lookback_period_in_days", 0)
+        != value.get("lookback_period_in_days", 0)
+        else "Infinity"
+        if value.get("lookback_period_in_days", 0) == float("inf")
+        else "-Infinity"
+        if value.get("lookback_period_in_days", 0) == float("-inf")
+        else value.get("lookback_period_in_days", 0)
+    )
     if "launch_type" in value:
         import capo_compute_optimizer.types.ecs_service_launch_type
 
@@ -160,11 +169,11 @@ def serialize_aws_json_1_0(value: ECSServiceRecommendation) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ECSServiceRecommendation:
     out: ECSServiceRecommendation = {}  # type: ignore[typeddict-item]
-    if "serviceArn" in data:
+    if data.get("serviceArn") is not None:
         out["service_arn"] = data["serviceArn"]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "currentServiceConfiguration" in data:
+    if data.get("currentServiceConfiguration") is not None:
         import capo_compute_optimizer.types.service_configuration
 
         out["current_service_configuration"] = (
@@ -172,7 +181,7 @@ def deserialize_aws_json_1_0(data: dict) -> ECSServiceRecommendation:
                 data["currentServiceConfiguration"]
             )
         )
-    if "utilizationMetrics" in data:
+    if data.get("utilizationMetrics") is not None:
         import capo_compute_optimizer.types.ecs_service_utilization_metrics
 
         out["utilization_metrics"] = (
@@ -180,11 +189,11 @@ def deserialize_aws_json_1_0(data: dict) -> ECSServiceRecommendation:
                 data["utilizationMetrics"]
             )
         )
-    if "lookbackPeriodInDays" in data:
-        out["lookback_period_in_days"] = data["lookbackPeriodInDays"]
+    if data.get("lookbackPeriodInDays") is not None:
+        out["lookback_period_in_days"] = float(data["lookbackPeriodInDays"])
     else:
         out["lookback_period_in_days"] = 0
-    if "launchType" in data:
+    if data.get("launchType") is not None:
         import capo_compute_optimizer.types.ecs_service_launch_type
 
         out["launch_type"] = (
@@ -192,7 +201,7 @@ def deserialize_aws_json_1_0(data: dict) -> ECSServiceRecommendation:
                 data["launchType"]
             )
         )
-    if "lastRefreshTimestamp" in data:
+    if data.get("lastRefreshTimestamp") is not None:
         import capo_compute_optimizer.types.last_refresh_timestamp
 
         out["last_refresh_timestamp"] = (
@@ -200,7 +209,7 @@ def deserialize_aws_json_1_0(data: dict) -> ECSServiceRecommendation:
                 data["lastRefreshTimestamp"]
             )
         )
-    if "finding" in data:
+    if data.get("finding") is not None:
         import capo_compute_optimizer.types.ecs_service_recommendation_finding
 
         out["finding"] = (
@@ -208,7 +217,7 @@ def deserialize_aws_json_1_0(data: dict) -> ECSServiceRecommendation:
                 data["finding"]
             )
         )
-    if "findingReasonCodes" in data:
+    if data.get("findingReasonCodes") is not None:
         import capo_compute_optimizer.types.ecs_service_recommendation_finding_reason_codes
 
         out["finding_reason_codes"] = (
@@ -216,7 +225,7 @@ def deserialize_aws_json_1_0(data: dict) -> ECSServiceRecommendation:
                 data["findingReasonCodes"]
             )
         )
-    if "serviceRecommendationOptions" in data:
+    if data.get("serviceRecommendationOptions") is not None:
         import capo_compute_optimizer.types.ecs_service_recommendation_options
 
         out["service_recommendation_options"] = (
@@ -224,7 +233,7 @@ def deserialize_aws_json_1_0(data: dict) -> ECSServiceRecommendation:
                 data["serviceRecommendationOptions"]
             )
         )
-    if "currentPerformanceRisk" in data:
+    if data.get("currentPerformanceRisk") is not None:
         import capo_compute_optimizer.types.current_performance_risk
 
         out["current_performance_risk"] = (
@@ -232,7 +241,7 @@ def deserialize_aws_json_1_0(data: dict) -> ECSServiceRecommendation:
                 data["currentPerformanceRisk"]
             )
         )
-    if "effectiveRecommendationPreferences" in data:
+    if data.get("effectiveRecommendationPreferences") is not None:
         import capo_compute_optimizer.types.ecs_effective_recommendation_preferences
 
         out["effective_recommendation_preferences"] = (
@@ -240,7 +249,7 @@ def deserialize_aws_json_1_0(data: dict) -> ECSServiceRecommendation:
                 data["effectiveRecommendationPreferences"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_compute_optimizer.types.tags
 
         out["tags"] = capo_compute_optimizer.types.tags.deserialize_aws_json_1_0(

@@ -29,12 +29,12 @@ def serialize_aws_json_1_0(value: RespondActivityTaskCompletedInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RespondActivityTaskCompletedInput:
     out: RespondActivityTaskCompletedInput = {}  # type: ignore[typeddict-item]
-    if "taskToken" in data:
+    if data.get("taskToken") is not None:
         out["task_token"] = data["taskToken"]
     else:
         raise DeserializationError(
             "RespondActivityTaskCompletedInput.task_token required"
         )
-    if "result" in data:
+    if data.get("result") is not None:
         out["result"] = data["result"]
     return out

@@ -57,11 +57,11 @@ def serialize_aws_json_1_1(value: DocumentClassifierSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DocumentClassifierSummary:
     out: DocumentClassifierSummary = {}  # type: ignore[typeddict-item]
-    if "DocumentClassifierName" in data:
+    if data.get("DocumentClassifierName") is not None:
         out["document_classifier_name"] = data["DocumentClassifierName"]
-    if "NumberOfVersions" in data:
+    if data.get("NumberOfVersions") is not None:
         out["number_of_versions"] = data["NumberOfVersions"]
-    if "LatestVersionCreatedAt" in data:
+    if data.get("LatestVersionCreatedAt") is not None:
         import capo_comprehend.types.timestamp
 
         out["latest_version_created_at"] = (
@@ -69,9 +69,9 @@ def deserialize_aws_json_1_1(data: dict) -> DocumentClassifierSummary:
                 data["LatestVersionCreatedAt"]
             )
         )
-    if "LatestVersionName" in data:
+    if data.get("LatestVersionName") is not None:
         out["latest_version_name"] = data["LatestVersionName"]
-    if "LatestVersionStatus" in data:
+    if data.get("LatestVersionStatus") is not None:
         import capo_comprehend.types.model_status
 
         out["latest_version_status"] = (

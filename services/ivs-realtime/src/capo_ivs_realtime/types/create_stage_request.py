@@ -56,9 +56,9 @@ def serialize_json(value: CreateStageRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateStageRequest:
     out: CreateStageRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "participantTokenConfigurations" in data:
+    if data.get("participantTokenConfigurations") is not None:
         import capo_ivs_realtime.types.participant_token_configurations
 
         out["participant_token_configurations"] = (
@@ -66,11 +66,11 @@ def deserialize_json(data: dict) -> CreateStageRequest:
                 data["participantTokenConfigurations"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_ivs_realtime.types.tags
 
         out["tags"] = capo_ivs_realtime.types.tags.deserialize_json(data["tags"])
-    if "autoParticipantRecordingConfiguration" in data:
+    if data.get("autoParticipantRecordingConfiguration") is not None:
         import capo_ivs_realtime.types.auto_participant_recording_configuration
 
         out["auto_participant_recording_configuration"] = (

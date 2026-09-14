@@ -35,14 +35,14 @@ def serialize_json(value: EnvironmentResolvedAccount) -> dict:
 
 def deserialize_json(data: dict) -> EnvironmentResolvedAccount:
     out: EnvironmentResolvedAccount = {}  # type: ignore[typeddict-item]
-    if "awsAccountId" in data:
+    if data.get("awsAccountId") is not None:
         out["aws_account_id"] = data["awsAccountId"]
     else:
         raise DeserializationError("EnvironmentResolvedAccount.aws_account_id required")
-    if "regionName" in data:
+    if data.get("regionName") is not None:
         out["region_name"] = data["regionName"]
     else:
         raise DeserializationError("EnvironmentResolvedAccount.region_name required")
-    if "sourceAccountPoolId" in data:
+    if data.get("sourceAccountPoolId") is not None:
         out["source_account_pool_id"] = data["sourceAccountPoolId"]
     return out

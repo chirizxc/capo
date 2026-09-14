@@ -31,7 +31,7 @@ def serialize_json(value: PutTraceSegmentsResult) -> dict:
 
 def deserialize_json(data: dict) -> PutTraceSegmentsResult:
     out: PutTraceSegmentsResult = {}  # type: ignore[typeddict-item]
-    if "UnprocessedTraceSegments" in data:
+    if data.get("UnprocessedTraceSegments") is not None:
         import capo_xray.types.unprocessed_trace_segment_list
 
         out["unprocessed_trace_segments"] = (

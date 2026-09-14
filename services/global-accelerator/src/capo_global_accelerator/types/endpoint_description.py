@@ -54,11 +54,11 @@ def serialize_aws_json_1_1(value: EndpointDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EndpointDescription:
     out: EndpointDescription = {}  # type: ignore[typeddict-item]
-    if "EndpointId" in data:
+    if data.get("EndpointId") is not None:
         out["endpoint_id"] = data["EndpointId"]
-    if "Weight" in data:
+    if data.get("Weight") is not None:
         out["weight"] = data["Weight"]
-    if "HealthState" in data:
+    if data.get("HealthState") is not None:
         import capo_global_accelerator.types.health_state
 
         out["health_state"] = (
@@ -66,8 +66,8 @@ def deserialize_aws_json_1_1(data: dict) -> EndpointDescription:
                 data["HealthState"]
             )
         )
-    if "HealthReason" in data:
+    if data.get("HealthReason") is not None:
         out["health_reason"] = data["HealthReason"]
-    if "ClientIPPreservationEnabled" in data:
+    if data.get("ClientIPPreservationEnabled") is not None:
         out["client_ip_preservation_enabled"] = data["ClientIPPreservationEnabled"]
     return out

@@ -37,7 +37,7 @@ def serialize_aws_json_1_0(value: ListRepositorySyncDefinitionsOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListRepositorySyncDefinitionsOutput:
     out: ListRepositorySyncDefinitionsOutput = {}  # type: ignore[typeddict-item]
-    if "RepositorySyncDefinitions" in data:
+    if data.get("RepositorySyncDefinitions") is not None:
         import capo_codeconnections.types.repository_sync_definition_list
 
         out["repository_sync_definitions"] = (
@@ -49,6 +49,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListRepositorySyncDefinitionsOutput:
         raise DeserializationError(
             "ListRepositorySyncDefinitionsOutput.repository_sync_definitions required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

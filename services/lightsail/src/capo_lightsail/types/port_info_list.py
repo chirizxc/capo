@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> PortInfoList:
 
     out: PortInfoList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_lightsail.types.port_info.deserialize_aws_json_1_1(item))
     return out

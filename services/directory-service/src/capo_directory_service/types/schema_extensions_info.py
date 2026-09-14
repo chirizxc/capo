@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> SchemaExtensionsInfo:
 
     out: SchemaExtensionsInfo = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_directory_service.types.schema_extension_info.deserialize_aws_json_1_1(
                 item

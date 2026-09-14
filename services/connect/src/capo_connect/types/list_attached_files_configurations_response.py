@@ -36,7 +36,7 @@ def serialize_json(value: ListAttachedFilesConfigurationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListAttachedFilesConfigurationsResponse:
     out: ListAttachedFilesConfigurationsResponse = {}  # type: ignore[typeddict-item]
-    if "AttachedFilesConfigurations" in data:
+    if data.get("AttachedFilesConfigurations") is not None:
         import capo_connect.types.attached_files_configuration_summary_list
 
         out["attached_files_configurations"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListAttachedFilesConfigurationsResponse:
                 data["AttachedFilesConfigurations"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -39,13 +39,13 @@ def serialize_json(value: ClusterIssue) -> dict:
 
 def deserialize_json(data: dict) -> ClusterIssue:
     out: ClusterIssue = {}  # type: ignore[typeddict-item]
-    if "code" in data:
+    if data.get("code") is not None:
         import capo_eks.types.cluster_issue_code
 
         out["code"] = capo_eks.types.cluster_issue_code.deserialize_json(data["code"])
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "resourceIds" in data:
+    if data.get("resourceIds") is not None:
         import capo_eks.types.string_list
 
         out["resource_ids"] = capo_eks.types.string_list.deserialize_json(

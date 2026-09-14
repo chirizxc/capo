@@ -43,11 +43,11 @@ def serialize_aws_json_1_1(value: Computer) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Computer:
     out: Computer = {}  # type: ignore[typeddict-item]
-    if "ComputerId" in data:
+    if data.get("ComputerId") is not None:
         out["computer_id"] = data["ComputerId"]
-    if "ComputerName" in data:
+    if data.get("ComputerName") is not None:
         out["computer_name"] = data["ComputerName"]
-    if "ComputerAttributes" in data:
+    if data.get("ComputerAttributes") is not None:
         import capo_directory_service.types.attributes
 
         out["computer_attributes"] = (

@@ -48,16 +48,16 @@ def serialize_aws_json_1_1(value: ListStageDevicesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListStageDevicesRequest:
     out: ListStageDevicesRequest = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "EdgeDeploymentPlanName" in data:
+    if data.get("EdgeDeploymentPlanName") is not None:
         out["edge_deployment_plan_name"] = data["EdgeDeploymentPlanName"]
-    if "ExcludeDevicesDeployedInOtherStage" in data:
+    if data.get("ExcludeDevicesDeployedInOtherStage") is not None:
         out["exclude_devices_deployed_in_other_stage"] = data[
             "ExcludeDevicesDeployedInOtherStage"
         ]
-    if "StageName" in data:
+    if data.get("StageName") is not None:
         out["stage_name"] = data["StageName"]
     return out

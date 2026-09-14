@@ -24,7 +24,7 @@ def serialize_json(value: DecimalPlacesConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DecimalPlacesConfiguration:
     out: DecimalPlacesConfiguration = {}  # type: ignore[typeddict-item]
-    if "DecimalPlaces" in data:
+    if data.get("DecimalPlaces") is not None:
         out["decimal_places"] = data["DecimalPlaces"]
     else:
         raise DeserializationError("DecimalPlacesConfiguration.decimal_places required")

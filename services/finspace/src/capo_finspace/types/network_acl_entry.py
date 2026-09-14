@@ -58,15 +58,15 @@ def serialize_json(value: NetworkACLEntry) -> dict:
 
 def deserialize_json(data: dict) -> NetworkACLEntry:
     out: NetworkACLEntry = {}  # type: ignore[typeddict-item]
-    if "ruleNumber" in data:
+    if data.get("ruleNumber") is not None:
         out["rule_number"] = data["ruleNumber"]
     else:
         raise DeserializationError("NetworkACLEntry.rule_number required")
-    if "protocol" in data:
+    if data.get("protocol") is not None:
         out["protocol"] = data["protocol"]
     else:
         raise DeserializationError("NetworkACLEntry.protocol required")
-    if "ruleAction" in data:
+    if data.get("ruleAction") is not None:
         import capo_finspace.types.rule_action
 
         out["rule_action"] = capo_finspace.types.rule_action.deserialize_json(
@@ -74,19 +74,19 @@ def deserialize_json(data: dict) -> NetworkACLEntry:
         )
     else:
         raise DeserializationError("NetworkACLEntry.rule_action required")
-    if "portRange" in data:
+    if data.get("portRange") is not None:
         import capo_finspace.types.port_range
 
         out["port_range"] = capo_finspace.types.port_range.deserialize_json(
             data["portRange"]
         )
-    if "icmpTypeCode" in data:
+    if data.get("icmpTypeCode") is not None:
         import capo_finspace.types.icmp_type_code
 
         out["icmp_type_code"] = capo_finspace.types.icmp_type_code.deserialize_json(
             data["icmpTypeCode"]
         )
-    if "cidrBlock" in data:
+    if data.get("cidrBlock") is not None:
         out["cidr_block"] = data["cidrBlock"]
     else:
         raise DeserializationError("NetworkACLEntry.cidr_block required")

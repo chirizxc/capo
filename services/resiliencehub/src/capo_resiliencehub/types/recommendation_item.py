@@ -79,17 +79,17 @@ def serialize_json(value: RecommendationItem) -> dict:
 
 def deserialize_json(data: dict) -> RecommendationItem:
     out: RecommendationItem = {}  # type: ignore[typeddict-item]
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         out["resource_id"] = data["resourceId"]
-    if "targetAccountId" in data:
+    if data.get("targetAccountId") is not None:
         out["target_account_id"] = data["targetAccountId"]
-    if "targetRegion" in data:
+    if data.get("targetRegion") is not None:
         out["target_region"] = data["targetRegion"]
-    if "alreadyImplemented" in data:
+    if data.get("alreadyImplemented") is not None:
         out["already_implemented"] = data["alreadyImplemented"]
-    if "excluded" in data:
+    if data.get("excluded") is not None:
         out["excluded"] = data["excluded"]
-    if "excludeReason" in data:
+    if data.get("excludeReason") is not None:
         import capo_resiliencehub.types.exclude_recommendation_reason
 
         out["exclude_reason"] = (
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> RecommendationItem:
                 data["excludeReason"]
             )
         )
-    if "latestDiscoveredExperiment" in data:
+    if data.get("latestDiscoveredExperiment") is not None:
         import capo_resiliencehub.types.experiment
 
         out["latest_discovered_experiment"] = (
@@ -105,7 +105,7 @@ def deserialize_json(data: dict) -> RecommendationItem:
                 data["latestDiscoveredExperiment"]
             )
         )
-    if "discoveredAlarm" in data:
+    if data.get("discoveredAlarm") is not None:
         import capo_resiliencehub.types.alarm
 
         out["discovered_alarm"] = capo_resiliencehub.types.alarm.deserialize_json(

@@ -141,37 +141,37 @@ def serialize_json(value: AudioCodecSettings) -> dict:
 
 def deserialize_json(data: dict) -> AudioCodecSettings:
     out: AudioCodecSettings = {}  # type: ignore[typeddict-item]
-    if "aacSettings" in data:
+    if data.get("aacSettings") is not None:
         import capo_mediaconvert.types.aac_settings
 
         out["aac_settings"] = capo_mediaconvert.types.aac_settings.deserialize_json(
             data["aacSettings"]
         )
-    if "ac3Settings" in data:
+    if data.get("ac3Settings") is not None:
         import capo_mediaconvert.types.ac3_settings
 
         out["ac3_settings"] = capo_mediaconvert.types.ac3_settings.deserialize_json(
             data["ac3Settings"]
         )
-    if "ac4Settings" in data:
+    if data.get("ac4Settings") is not None:
         import capo_mediaconvert.types.ac4_settings
 
         out["ac4_settings"] = capo_mediaconvert.types.ac4_settings.deserialize_json(
             data["ac4Settings"]
         )
-    if "aiffSettings" in data:
+    if data.get("aiffSettings") is not None:
         import capo_mediaconvert.types.aiff_settings
 
         out["aiff_settings"] = capo_mediaconvert.types.aiff_settings.deserialize_json(
             data["aiffSettings"]
         )
-    if "codec" in data:
+    if data.get("codec") is not None:
         import capo_mediaconvert.types.audio_codec
 
         out["codec"] = capo_mediaconvert.types.audio_codec.deserialize_json(
             data["codec"]
         )
-    if "eac3AtmosSettings" in data:
+    if data.get("eac3AtmosSettings") is not None:
         import capo_mediaconvert.types.eac3_atmos_settings
 
         out["eac3_atmos_settings"] = (
@@ -179,37 +179,37 @@ def deserialize_json(data: dict) -> AudioCodecSettings:
                 data["eac3AtmosSettings"]
             )
         )
-    if "eac3Settings" in data:
+    if data.get("eac3Settings") is not None:
         import capo_mediaconvert.types.eac3_settings
 
         out["eac3_settings"] = capo_mediaconvert.types.eac3_settings.deserialize_json(
             data["eac3Settings"]
         )
-    if "flacSettings" in data:
+    if data.get("flacSettings") is not None:
         import capo_mediaconvert.types.flac_settings
 
         out["flac_settings"] = capo_mediaconvert.types.flac_settings.deserialize_json(
             data["flacSettings"]
         )
-    if "mp2Settings" in data:
+    if data.get("mp2Settings") is not None:
         import capo_mediaconvert.types.mp2_settings
 
         out["mp2_settings"] = capo_mediaconvert.types.mp2_settings.deserialize_json(
             data["mp2Settings"]
         )
-    if "mp3Settings" in data:
+    if data.get("mp3Settings") is not None:
         import capo_mediaconvert.types.mp3_settings
 
         out["mp3_settings"] = capo_mediaconvert.types.mp3_settings.deserialize_json(
             data["mp3Settings"]
         )
-    if "opusSettings" in data:
+    if data.get("opusSettings") is not None:
         import capo_mediaconvert.types.opus_settings
 
         out["opus_settings"] = capo_mediaconvert.types.opus_settings.deserialize_json(
             data["opusSettings"]
         )
-    if "vorbisSettings" in data:
+    if data.get("vorbisSettings") is not None:
         import capo_mediaconvert.types.vorbis_settings
 
         out["vorbis_settings"] = (
@@ -217,7 +217,7 @@ def deserialize_json(data: dict) -> AudioCodecSettings:
                 data["vorbisSettings"]
             )
         )
-    if "wavSettings" in data:
+    if data.get("wavSettings") is not None:
         import capo_mediaconvert.types.wav_settings
 
         out["wav_settings"] = capo_mediaconvert.types.wav_settings.deserialize_json(

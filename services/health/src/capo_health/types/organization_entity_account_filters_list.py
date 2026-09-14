@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> OrganizationEntityAccountFiltersList
 
     out: OrganizationEntityAccountFiltersList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_health.types.entity_account_filter.deserialize_aws_json_1_1(item)
         )

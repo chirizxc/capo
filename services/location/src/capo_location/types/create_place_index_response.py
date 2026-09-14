@@ -36,15 +36,15 @@ def serialize_json(value: CreatePlaceIndexResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreatePlaceIndexResponse:
     out: CreatePlaceIndexResponse = {}  # type: ignore[typeddict-item]
-    if "IndexName" in data:
+    if data.get("IndexName") is not None:
         out["index_name"] = data["IndexName"]
     else:
         raise DeserializationError("CreatePlaceIndexResponse.index_name required")
-    if "IndexArn" in data:
+    if data.get("IndexArn") is not None:
         out["index_arn"] = data["IndexArn"]
     else:
         raise DeserializationError("CreatePlaceIndexResponse.index_arn required")
-    if "CreateTime" in data:
+    if data.get("CreateTime") is not None:
         import capo_location.types.timestamp
 
         out["create_time"] = capo_location.types.timestamp.deserialize_json(

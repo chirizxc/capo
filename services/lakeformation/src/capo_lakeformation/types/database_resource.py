@@ -31,9 +31,9 @@ def serialize_json(value: DatabaseResource) -> dict:
 
 def deserialize_json(data: dict) -> DatabaseResource:
     out: DatabaseResource = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("DatabaseResource.name required")

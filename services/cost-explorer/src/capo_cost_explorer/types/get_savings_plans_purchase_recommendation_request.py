@@ -95,7 +95,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> GetSavingsPlansPurchaseRecommendationRequest:
     out: GetSavingsPlansPurchaseRecommendationRequest = {}  # type: ignore[typeddict-item]
-    if "SavingsPlansType" in data:
+    if data.get("SavingsPlansType") is not None:
         import capo_cost_explorer.types.supported_savings_plans_type
 
         out["savings_plans_type"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_1(
         raise DeserializationError(
             "GetSavingsPlansPurchaseRecommendationRequest.savings_plans_type required"
         )
-    if "TermInYears" in data:
+    if data.get("TermInYears") is not None:
         import capo_cost_explorer.types.term_in_years
 
         out["term_in_years"] = (
@@ -119,7 +119,7 @@ def deserialize_aws_json_1_1(
         raise DeserializationError(
             "GetSavingsPlansPurchaseRecommendationRequest.term_in_years required"
         )
-    if "PaymentOption" in data:
+    if data.get("PaymentOption") is not None:
         import capo_cost_explorer.types.payment_option
 
         out["payment_option"] = (
@@ -131,7 +131,7 @@ def deserialize_aws_json_1_1(
         raise DeserializationError(
             "GetSavingsPlansPurchaseRecommendationRequest.payment_option required"
         )
-    if "AccountScope" in data:
+    if data.get("AccountScope") is not None:
         import capo_cost_explorer.types.account_scope
 
         out["account_scope"] = (
@@ -139,13 +139,13 @@ def deserialize_aws_json_1_1(
                 data["AccountScope"]
             )
         )
-    if "NextPageToken" in data:
+    if data.get("NextPageToken") is not None:
         out["next_page_token"] = data["NextPageToken"]
-    if "PageSize" in data:
+    if data.get("PageSize") is not None:
         out["page_size"] = data["PageSize"]
     else:
         out["page_size"] = 0
-    if "LookbackPeriodInDays" in data:
+    if data.get("LookbackPeriodInDays") is not None:
         import capo_cost_explorer.types.lookback_period_in_days
 
         out["lookback_period_in_days"] = (
@@ -157,7 +157,7 @@ def deserialize_aws_json_1_1(
         raise DeserializationError(
             "GetSavingsPlansPurchaseRecommendationRequest.lookback_period_in_days required"
         )
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_cost_explorer.types.expression
 
         out["filter"] = capo_cost_explorer.types.expression.deserialize_aws_json_1_1(

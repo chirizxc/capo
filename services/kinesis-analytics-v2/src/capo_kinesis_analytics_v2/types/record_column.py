@@ -37,13 +37,13 @@ def serialize_aws_json_1_1(value: RecordColumn) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RecordColumn:
     out: RecordColumn = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("RecordColumn.name required")
-    if "Mapping" in data:
+    if data.get("Mapping") is not None:
         out["mapping"] = data["Mapping"]
-    if "SqlType" in data:
+    if data.get("SqlType") is not None:
         out["sql_type"] = data["SqlType"]
     else:
         raise DeserializationError("RecordColumn.sql_type required")

@@ -35,7 +35,7 @@ def serialize_aws_json_1_0(value: ListSecurityPoliciesResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListSecurityPoliciesResponse:
     out: ListSecurityPoliciesResponse = {}  # type: ignore[typeddict-item]
-    if "securityPolicySummaries" in data:
+    if data.get("securityPolicySummaries") is not None:
         import capo_opensearchserverless.types.security_policy_summaries
 
         out["security_policy_summaries"] = (
@@ -43,6 +43,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListSecurityPoliciesResponse:
                 data["securityPolicySummaries"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

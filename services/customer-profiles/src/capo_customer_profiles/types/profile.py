@@ -214,79 +214,79 @@ def serialize_json(value: Profile) -> dict:
 
 def deserialize_json(data: dict) -> Profile:
     out: Profile = {}  # type: ignore[typeddict-item]
-    if "ProfileId" in data:
+    if data.get("ProfileId") is not None:
         out["profile_id"] = data["ProfileId"]
-    if "AccountNumber" in data:
+    if data.get("AccountNumber") is not None:
         out["account_number"] = data["AccountNumber"]
-    if "AdditionalInformation" in data:
+    if data.get("AdditionalInformation") is not None:
         out["additional_information"] = data["AdditionalInformation"]
-    if "PartyType" in data:
+    if data.get("PartyType") is not None:
         import capo_customer_profiles.types.party_type
 
         out["party_type"] = capo_customer_profiles.types.party_type.deserialize_json(
             data["PartyType"]
         )
-    if "BusinessName" in data:
+    if data.get("BusinessName") is not None:
         out["business_name"] = data["BusinessName"]
-    if "FirstName" in data:
+    if data.get("FirstName") is not None:
         out["first_name"] = data["FirstName"]
-    if "MiddleName" in data:
+    if data.get("MiddleName") is not None:
         out["middle_name"] = data["MiddleName"]
-    if "LastName" in data:
+    if data.get("LastName") is not None:
         out["last_name"] = data["LastName"]
-    if "BirthDate" in data:
+    if data.get("BirthDate") is not None:
         out["birth_date"] = data["BirthDate"]
-    if "Gender" in data:
+    if data.get("Gender") is not None:
         import capo_customer_profiles.types.gender
 
         out["gender"] = capo_customer_profiles.types.gender.deserialize_json(
             data["Gender"]
         )
-    if "PhoneNumber" in data:
+    if data.get("PhoneNumber") is not None:
         out["phone_number"] = data["PhoneNumber"]
-    if "MobilePhoneNumber" in data:
+    if data.get("MobilePhoneNumber") is not None:
         out["mobile_phone_number"] = data["MobilePhoneNumber"]
-    if "HomePhoneNumber" in data:
+    if data.get("HomePhoneNumber") is not None:
         out["home_phone_number"] = data["HomePhoneNumber"]
-    if "BusinessPhoneNumber" in data:
+    if data.get("BusinessPhoneNumber") is not None:
         out["business_phone_number"] = data["BusinessPhoneNumber"]
-    if "EmailAddress" in data:
+    if data.get("EmailAddress") is not None:
         out["email_address"] = data["EmailAddress"]
-    if "PersonalEmailAddress" in data:
+    if data.get("PersonalEmailAddress") is not None:
         out["personal_email_address"] = data["PersonalEmailAddress"]
-    if "BusinessEmailAddress" in data:
+    if data.get("BusinessEmailAddress") is not None:
         out["business_email_address"] = data["BusinessEmailAddress"]
-    if "Address" in data:
+    if data.get("Address") is not None:
         import capo_customer_profiles.types.address
 
         out["address"] = capo_customer_profiles.types.address.deserialize_json(
             data["Address"]
         )
-    if "ShippingAddress" in data:
+    if data.get("ShippingAddress") is not None:
         import capo_customer_profiles.types.address
 
         out["shipping_address"] = capo_customer_profiles.types.address.deserialize_json(
             data["ShippingAddress"]
         )
-    if "MailingAddress" in data:
+    if data.get("MailingAddress") is not None:
         import capo_customer_profiles.types.address
 
         out["mailing_address"] = capo_customer_profiles.types.address.deserialize_json(
             data["MailingAddress"]
         )
-    if "BillingAddress" in data:
+    if data.get("BillingAddress") is not None:
         import capo_customer_profiles.types.address
 
         out["billing_address"] = capo_customer_profiles.types.address.deserialize_json(
             data["BillingAddress"]
         )
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_customer_profiles.types.attributes
 
         out["attributes"] = capo_customer_profiles.types.attributes.deserialize_json(
             data["Attributes"]
         )
-    if "FoundByItems" in data:
+    if data.get("FoundByItems") is not None:
         import capo_customer_profiles.types.found_by_list
 
         out["found_by_items"] = (
@@ -294,11 +294,11 @@ def deserialize_json(data: dict) -> Profile:
                 data["FoundByItems"]
             )
         )
-    if "PartyTypeString" in data:
+    if data.get("PartyTypeString") is not None:
         out["party_type_string"] = data["PartyTypeString"]
-    if "GenderString" in data:
+    if data.get("GenderString") is not None:
         out["gender_string"] = data["GenderString"]
-    if "ProfileType" in data:
+    if data.get("ProfileType") is not None:
         import capo_customer_profiles.types.profile_type
 
         out["profile_type"] = (
@@ -306,7 +306,7 @@ def deserialize_json(data: dict) -> Profile:
                 data["ProfileType"]
             )
         )
-    if "EngagementPreferences" in data:
+    if data.get("EngagementPreferences") is not None:
         import capo_customer_profiles.types.engagement_preferences
 
         out["engagement_preferences"] = (

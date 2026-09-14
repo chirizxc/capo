@@ -78,7 +78,7 @@ def serialize_aws_json_1_1(value: Extensions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Extensions:
     out: Extensions = {}  # type: ignore[typeddict-item]
-    if "CertificatePolicies" in data:
+    if data.get("CertificatePolicies") is not None:
         import capo_acm_pca.types.certificate_policy_list
 
         out["certificate_policies"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_1(data: dict) -> Extensions:
                 data["CertificatePolicies"]
             )
         )
-    if "ExtendedKeyUsage" in data:
+    if data.get("ExtendedKeyUsage") is not None:
         import capo_acm_pca.types.extended_key_usage_list
 
         out["extended_key_usage"] = (
@@ -94,13 +94,13 @@ def deserialize_aws_json_1_1(data: dict) -> Extensions:
                 data["ExtendedKeyUsage"]
             )
         )
-    if "KeyUsage" in data:
+    if data.get("KeyUsage") is not None:
         import capo_acm_pca.types.key_usage
 
         out["key_usage"] = capo_acm_pca.types.key_usage.deserialize_aws_json_1_1(
             data["KeyUsage"]
         )
-    if "SubjectAlternativeNames" in data:
+    if data.get("SubjectAlternativeNames") is not None:
         import capo_acm_pca.types.general_name_list
 
         out["subject_alternative_names"] = (
@@ -108,7 +108,7 @@ def deserialize_aws_json_1_1(data: dict) -> Extensions:
                 data["SubjectAlternativeNames"]
             )
         )
-    if "CustomExtensions" in data:
+    if data.get("CustomExtensions") is not None:
         import capo_acm_pca.types.custom_extension_list
 
         out["custom_extensions"] = (

@@ -82,25 +82,31 @@ def serialize_aws_json_1_0(value: AutonomousDatabaseBackup) -> dict:
     if "retention_period_in_days" in value:
         out["retentionPeriodInDays"] = value["retention_period_in_days"]
     if "size_in_t_bs" in value:
-        out["sizeInTBs"] = value["size_in_t_bs"]
+        out["sizeInTBs"] = (
+            "NaN"
+            if value["size_in_t_bs"] != value["size_in_t_bs"]
+            else "Infinity"
+            if value["size_in_t_bs"] == float("inf")
+            else "-Infinity"
+            if value["size_in_t_bs"] == float("-inf")
+            else value["size_in_t_bs"]
+        )
     if "time_available_till" in value:
-        import capo_odb.types._prelude.timestamp
+        import capo_odb._protocol.serialize
 
-        out["timeAvailableTill"] = (
-            capo_odb.types._prelude.timestamp.serialize_aws_json_1_0(
-                value["time_available_till"]
-            )
+        out["timeAvailableTill"] = capo_odb._protocol.serialize.fmt_date_time(
+            value["time_available_till"]
         )
     if "time_started" in value:
-        import capo_odb.types._prelude.timestamp
+        import capo_odb._protocol.serialize
 
-        out["timeStarted"] = capo_odb.types._prelude.timestamp.serialize_aws_json_1_0(
+        out["timeStarted"] = capo_odb._protocol.serialize.fmt_date_time(
             value["time_started"]
         )
     if "time_ended" in value:
-        import capo_odb.types._prelude.timestamp
+        import capo_odb._protocol.serialize
 
-        out["timeEnded"] = capo_odb.types._prelude.timestamp.serialize_aws_json_1_0(
+        out["timeEnded"] = capo_odb._protocol.serialize.fmt_date_time(
             value["time_ended"]
         )
     if "type" in value:
@@ -116,19 +122,19 @@ def serialize_aws_json_1_0(value: AutonomousDatabaseBackup) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabaseBackup:
     out: AutonomousDatabaseBackup = {}  # type: ignore[typeddict-item]
-    if "autonomousDatabaseBackupId" in data:
+    if data.get("autonomousDatabaseBackupId") is not None:
         out["autonomous_database_backup_id"] = data["autonomousDatabaseBackupId"]
-    if "autonomousDatabaseBackupArn" in data:
+    if data.get("autonomousDatabaseBackupArn") is not None:
         out["autonomous_database_backup_arn"] = data["autonomousDatabaseBackupArn"]
-    if "autonomousDatabaseId" in data:
+    if data.get("autonomousDatabaseId") is not None:
         out["autonomous_database_id"] = data["autonomousDatabaseId"]
-    if "ocid" in data:
+    if data.get("ocid") is not None:
         out["ocid"] = data["ocid"]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "dbVersion" in data:
+    if data.get("dbVersion") is not None:
         out["db_version"] = data["dbVersion"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_odb.types.autonomous_database_backup_status
 
         out["status"] = (
@@ -136,37 +142,33 @@ def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabaseBackup:
                 data["status"]
             )
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "isAutomatic" in data:
+    if data.get("isAutomatic") is not None:
         out["is_automatic"] = data["isAutomatic"]
-    if "retentionPeriodInDays" in data:
+    if data.get("retentionPeriodInDays") is not None:
         out["retention_period_in_days"] = data["retentionPeriodInDays"]
-    if "sizeInTBs" in data:
-        out["size_in_t_bs"] = data["sizeInTBs"]
-    if "timeAvailableTill" in data:
-        import capo_odb.types._prelude.timestamp
+    if data.get("sizeInTBs") is not None:
+        out["size_in_t_bs"] = float(data["sizeInTBs"])
+    if data.get("timeAvailableTill") is not None:
+        import datetime
 
-        out["time_available_till"] = (
-            capo_odb.types._prelude.timestamp.deserialize_aws_json_1_0(
-                data["timeAvailableTill"]
-            )
+        out["time_available_till"] = datetime.datetime.fromisoformat(
+            data["timeAvailableTill"].replace("Z", "+00:00")
         )
-    if "timeStarted" in data:
-        import capo_odb.types._prelude.timestamp
+    if data.get("timeStarted") is not None:
+        import datetime
 
-        out["time_started"] = (
-            capo_odb.types._prelude.timestamp.deserialize_aws_json_1_0(
-                data["timeStarted"]
-            )
+        out["time_started"] = datetime.datetime.fromisoformat(
+            data["timeStarted"].replace("Z", "+00:00")
         )
-    if "timeEnded" in data:
-        import capo_odb.types._prelude.timestamp
+    if data.get("timeEnded") is not None:
+        import datetime
 
-        out["time_ended"] = capo_odb.types._prelude.timestamp.deserialize_aws_json_1_0(
-            data["timeEnded"]
+        out["time_ended"] = datetime.datetime.fromisoformat(
+            data["timeEnded"].replace("Z", "+00:00")
         )
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_odb.types.autonomous_database_backup_type
 
         out["type"] = (

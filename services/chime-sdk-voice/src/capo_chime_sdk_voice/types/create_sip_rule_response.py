@@ -27,7 +27,7 @@ def serialize_json(value: CreateSipRuleResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateSipRuleResponse:
     out: CreateSipRuleResponse = {}  # type: ignore[typeddict-item]
-    if "SipRule" in data:
+    if data.get("SipRule") is not None:
         import capo_chime_sdk_voice.types.sip_rule
 
         out["sip_rule"] = capo_chime_sdk_voice.types.sip_rule.deserialize_json(

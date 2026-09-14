@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AppRequiredCapabilities:
 
     out: AppRequiredCapabilities = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_qapps.types.app_required_capability.deserialize_json(item))
     return out

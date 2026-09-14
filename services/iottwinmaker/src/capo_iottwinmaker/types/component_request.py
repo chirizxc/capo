@@ -54,17 +54,17 @@ def serialize_json(value: ComponentRequest) -> dict:
 
 def deserialize_json(data: dict) -> ComponentRequest:
     out: ComponentRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "componentTypeId" in data:
+    if data.get("componentTypeId") is not None:
         out["component_type_id"] = data["componentTypeId"]
-    if "properties" in data:
+    if data.get("properties") is not None:
         import capo_iottwinmaker.types.property_requests
 
         out["properties"] = capo_iottwinmaker.types.property_requests.deserialize_json(
             data["properties"]
         )
-    if "propertyGroups" in data:
+    if data.get("propertyGroups") is not None:
         import capo_iottwinmaker.types.component_property_group_requests
 
         out["property_groups"] = (

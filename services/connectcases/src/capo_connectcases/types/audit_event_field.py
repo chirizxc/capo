@@ -46,11 +46,11 @@ def serialize_json(value: AuditEventField) -> dict:
 
 def deserialize_json(data: dict) -> AuditEventField:
     out: AuditEventField = {}  # type: ignore[typeddict-item]
-    if "eventFieldId" in data:
+    if data.get("eventFieldId") is not None:
         out["event_field_id"] = data["eventFieldId"]
     else:
         raise DeserializationError("AuditEventField.event_field_id required")
-    if "oldValue" in data:
+    if data.get("oldValue") is not None:
         import capo_connectcases.types.audit_event_field_value_union
 
         out["old_value"] = (
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> AuditEventField:
                 data["oldValue"]
             )
         )
-    if "newValue" in data:
+    if data.get("newValue") is not None:
         import capo_connectcases.types.audit_event_field_value_union
 
         out["new_value"] = (

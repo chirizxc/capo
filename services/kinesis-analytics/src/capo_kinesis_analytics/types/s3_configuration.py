@@ -32,15 +32,15 @@ def serialize_aws_json_1_1(value: S3Configuration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3Configuration:
     out: S3Configuration = {}  # type: ignore[typeddict-item]
-    if "RoleARN" in data:
+    if data.get("RoleARN") is not None:
         out["role_arn"] = data["RoleARN"]
     else:
         raise DeserializationError("S3Configuration.role_arn required")
-    if "BucketARN" in data:
+    if data.get("BucketARN") is not None:
         out["bucket_arn"] = data["BucketARN"]
     else:
         raise DeserializationError("S3Configuration.bucket_arn required")
-    if "FileKey" in data:
+    if data.get("FileKey") is not None:
         out["file_key"] = data["FileKey"]
     else:
         raise DeserializationError("S3Configuration.file_key required")

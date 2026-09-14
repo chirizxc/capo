@@ -29,10 +29,10 @@ def serialize_json(value: Sort) -> dict:
 
 def deserialize_json(data: dict) -> Sort:
     out: Sort = {}  # type: ignore[typeddict-item]
-    if "field" in data:
+    if data.get("field") is not None:
         out["field"] = data["field"]
     else:
         raise DeserializationError("Sort.field required")
-    if "ascending" in data:
+    if data.get("ascending") is not None:
         out["ascending"] = data["ascending"]
     return out

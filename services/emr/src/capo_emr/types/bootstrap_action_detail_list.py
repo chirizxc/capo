@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> BootstrapActionDetailList:
 
     out: BootstrapActionDetailList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_emr.types.bootstrap_action_detail.deserialize_aws_json_1_1(item)
         )

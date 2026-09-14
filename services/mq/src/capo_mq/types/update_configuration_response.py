@@ -62,25 +62,25 @@ def serialize_json(value: UpdateConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateConfigurationResponse:
     out: UpdateConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "created" in data:
+    if data.get("created") is not None:
         import capo_mq.types.__timestamp_iso8601
 
         out["created"] = capo_mq.types.__timestamp_iso8601.deserialize_json(
             data["created"]
         )
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "latestRevision" in data:
+    if data.get("latestRevision") is not None:
         import capo_mq.types.configuration_revision
 
         out["latest_revision"] = capo_mq.types.configuration_revision.deserialize_json(
             data["latestRevision"]
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "warnings" in data:
+    if data.get("warnings") is not None:
         import capo_mq.types.__list_of_sanitization_warning
 
         out["warnings"] = capo_mq.types.__list_of_sanitization_warning.deserialize_json(

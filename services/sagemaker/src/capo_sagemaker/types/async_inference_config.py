@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: AsyncInferenceConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AsyncInferenceConfig:
     out: AsyncInferenceConfig = {}  # type: ignore[typeddict-item]
-    if "ClientConfig" in data:
+    if data.get("ClientConfig") is not None:
         import capo_sagemaker.types.async_inference_client_config
 
         out["client_config"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> AsyncInferenceConfig:
                 data["ClientConfig"]
             )
         )
-    if "OutputConfig" in data:
+    if data.get("OutputConfig") is not None:
         import capo_sagemaker.types.async_inference_output_config
 
         out["output_config"] = (

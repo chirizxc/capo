@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> GroupBy:
 
     out: GroupBy = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_resource_groups_tagging_api.types.group_by_attribute.deserialize_aws_json_1_1(
                 item

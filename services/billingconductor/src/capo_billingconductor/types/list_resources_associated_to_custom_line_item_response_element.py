@@ -49,9 +49,9 @@ def deserialize_json(
     data: dict,
 ) -> ListResourcesAssociatedToCustomLineItemResponseElement:
     out: ListResourcesAssociatedToCustomLineItemResponseElement = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Relationship" in data:
+    if data.get("Relationship") is not None:
         import capo_billingconductor.types.custom_line_item_relationship
 
         out["relationship"] = (
@@ -59,6 +59,6 @@ def deserialize_json(
                 data["Relationship"]
             )
         )
-    if "EndBillingPeriod" in data:
+    if data.get("EndBillingPeriod") is not None:
         out["end_billing_period"] = data["EndBillingPeriod"]
     return out

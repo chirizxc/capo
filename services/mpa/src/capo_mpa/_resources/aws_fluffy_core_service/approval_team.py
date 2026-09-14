@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_mpa._auth._signers
@@ -97,14 +98,16 @@ class ApprovalTeam:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mpa.types.create_approval_team_request.CreateApprovalTeamRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["approval_strategy"] = approval_strategy
-        input_["approvers"] = approvers
-        input_["description"] = description
-        input_["policies"] = policies
-        input_["name"] = name
+        input_: capo_mpa.types.create_approval_team_request.CreateApprovalTeamRequest = {
+            "approval_strategy": approval_strategy,
+            "approvers": approvers,
+            "description": description,
+            "policies": policies,
+            "name": name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -113,6 +116,7 @@ class ApprovalTeam:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -150,14 +154,16 @@ class ApprovalTeam:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mpa.types.get_approval_team_request.GetApprovalTeamRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_mpa.types.get_approval_team_request.GetApprovalTeamRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -209,14 +215,15 @@ class ApprovalTeam:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mpa.types.update_approval_team_request.UpdateApprovalTeamRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mpa.types.update_approval_team_request.UpdateApprovalTeamRequest = {
+            "arn": arn
+        }
         if approval_strategy is not None:
             input_["approval_strategy"] = approval_strategy
         if approvers is not None:
             input_["approvers"] = approvers
         if description is not None:
             input_["description"] = description
-        input_["arn"] = arn
         if update_actions is not None:
             input_["update_actions"] = update_actions
 
@@ -225,6 +232,7 @@ class ApprovalTeam:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -265,15 +273,17 @@ class ApprovalTeam:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mpa.types.delete_inactive_approval_team_version_request.DeleteInactiveApprovalTeamVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["version_id"] = version_id
+        input_: capo_mpa.types.delete_inactive_approval_team_version_request.DeleteInactiveApprovalTeamVersionRequest = {
+            "arn": arn,
+            "version_id": version_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -312,7 +322,7 @@ class ApprovalTeam:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mpa.types.list_approval_teams_request.ListApprovalTeamsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mpa.types.list_approval_teams_request.ListApprovalTeamsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -323,6 +333,7 @@ class ApprovalTeam:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_active_approval_team_deletion(
@@ -363,16 +374,18 @@ class ApprovalTeam:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mpa.types.start_active_approval_team_deletion_request.StartActiveApprovalTeamDeletionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mpa.types.start_active_approval_team_deletion_request.StartActiveApprovalTeamDeletionRequest = {
+            "arn": arn
+        }
         if pending_window_days is not None:
             input_["pending_window_days"] = pending_window_days
-        input_["arn"] = arn
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_approval_team_baseline(
@@ -414,8 +427,9 @@ class ApprovalTeam:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mpa.types.start_approval_team_baseline_request.StartApprovalTeamBaselineRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_mpa.types.start_approval_team_baseline_request.StartApprovalTeamBaselineRequest = {
+            "arn": arn
+        }
         if approver_ids is not None:
             input_["approver_ids"] = approver_ids
 
@@ -424,6 +438,7 @@ class ApprovalTeam:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -480,14 +495,16 @@ class AsyncApprovalTeam:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mpa.types.create_approval_team_request.CreateApprovalTeamRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["approval_strategy"] = approval_strategy
-        input_["approvers"] = approvers
-        input_["description"] = description
-        input_["policies"] = policies
-        input_["name"] = name
+        input_: capo_mpa.types.create_approval_team_request.CreateApprovalTeamRequest = {
+            "approval_strategy": approval_strategy,
+            "approvers": approvers,
+            "description": description,
+            "policies": policies,
+            "name": name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -496,6 +513,7 @@ class AsyncApprovalTeam:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -534,14 +552,16 @@ class AsyncApprovalTeam:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mpa.types.get_approval_team_request.GetApprovalTeamRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_mpa.types.get_approval_team_request.GetApprovalTeamRequest = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -594,14 +614,15 @@ class AsyncApprovalTeam:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mpa.types.update_approval_team_request.UpdateApprovalTeamRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mpa.types.update_approval_team_request.UpdateApprovalTeamRequest = {
+            "arn": arn
+        }
         if approval_strategy is not None:
             input_["approval_strategy"] = approval_strategy
         if approvers is not None:
             input_["approvers"] = approvers
         if description is not None:
             input_["description"] = description
-        input_["arn"] = arn
         if update_actions is not None:
             input_["update_actions"] = update_actions
 
@@ -610,6 +631,7 @@ class AsyncApprovalTeam:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -651,15 +673,17 @@ class AsyncApprovalTeam:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mpa.types.delete_inactive_approval_team_version_request.DeleteInactiveApprovalTeamVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["version_id"] = version_id
+        input_: capo_mpa.types.delete_inactive_approval_team_version_request.DeleteInactiveApprovalTeamVersionRequest = {
+            "arn": arn,
+            "version_id": version_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -699,7 +723,7 @@ class AsyncApprovalTeam:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mpa.types.list_approval_teams_request.ListApprovalTeamsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mpa.types.list_approval_teams_request.ListApprovalTeamsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -710,6 +734,7 @@ class AsyncApprovalTeam:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_active_approval_team_deletion(
@@ -751,16 +776,18 @@ class AsyncApprovalTeam:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mpa.types.start_active_approval_team_deletion_request.StartActiveApprovalTeamDeletionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mpa.types.start_active_approval_team_deletion_request.StartActiveApprovalTeamDeletionRequest = {
+            "arn": arn
+        }
         if pending_window_days is not None:
             input_["pending_window_days"] = pending_window_days
-        input_["arn"] = arn
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_approval_team_baseline(
@@ -803,8 +830,9 @@ class AsyncApprovalTeam:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mpa.types.start_approval_team_baseline_request.StartApprovalTeamBaselineRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_mpa.types.start_approval_team_baseline_request.StartApprovalTeamBaselineRequest = {
+            "arn": arn
+        }
         if approver_ids is not None:
             input_["approver_ids"] = approver_ids
 
@@ -813,4 +841,5 @@ class AsyncApprovalTeam:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

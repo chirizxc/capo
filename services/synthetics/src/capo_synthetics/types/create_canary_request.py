@@ -137,11 +137,11 @@ def serialize_json(value: CreateCanaryRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateCanaryRequest:
     out: CreateCanaryRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateCanaryRequest.name required")
-    if "Code" in data:
+    if data.get("Code") is not None:
         import capo_synthetics.types.canary_code_input
 
         out["code"] = capo_synthetics.types.canary_code_input.deserialize_json(
@@ -149,15 +149,15 @@ def deserialize_json(data: dict) -> CreateCanaryRequest:
         )
     else:
         raise DeserializationError("CreateCanaryRequest.code required")
-    if "ArtifactS3Location" in data:
+    if data.get("ArtifactS3Location") is not None:
         out["artifact_s3_location"] = data["ArtifactS3Location"]
     else:
         raise DeserializationError("CreateCanaryRequest.artifact_s3_location required")
-    if "ExecutionRoleArn" in data:
+    if data.get("ExecutionRoleArn") is not None:
         out["execution_role_arn"] = data["ExecutionRoleArn"]
     else:
         raise DeserializationError("CreateCanaryRequest.execution_role_arn required")
-    if "Schedule" in data:
+    if data.get("Schedule") is not None:
         import capo_synthetics.types.canary_schedule_input
 
         out["schedule"] = capo_synthetics.types.canary_schedule_input.deserialize_json(
@@ -165,7 +165,7 @@ def deserialize_json(data: dict) -> CreateCanaryRequest:
         )
     else:
         raise DeserializationError("CreateCanaryRequest.schedule required")
-    if "RunConfig" in data:
+    if data.get("RunConfig") is not None:
         import capo_synthetics.types.canary_run_config_input
 
         out["run_config"] = (
@@ -173,21 +173,21 @@ def deserialize_json(data: dict) -> CreateCanaryRequest:
                 data["RunConfig"]
             )
         )
-    if "SuccessRetentionPeriodInDays" in data:
+    if data.get("SuccessRetentionPeriodInDays") is not None:
         out["success_retention_period_in_days"] = data["SuccessRetentionPeriodInDays"]
-    if "FailureRetentionPeriodInDays" in data:
+    if data.get("FailureRetentionPeriodInDays") is not None:
         out["failure_retention_period_in_days"] = data["FailureRetentionPeriodInDays"]
-    if "RuntimeVersion" in data:
+    if data.get("RuntimeVersion") is not None:
         out["runtime_version"] = data["RuntimeVersion"]
     else:
         raise DeserializationError("CreateCanaryRequest.runtime_version required")
-    if "VpcConfig" in data:
+    if data.get("VpcConfig") is not None:
         import capo_synthetics.types.vpc_config_input
 
         out["vpc_config"] = capo_synthetics.types.vpc_config_input.deserialize_json(
             data["VpcConfig"]
         )
-    if "ResourcesToReplicateTags" in data:
+    if data.get("ResourcesToReplicateTags") is not None:
         import capo_synthetics.types.resource_list
 
         out["resources_to_replicate_tags"] = (
@@ -195,7 +195,7 @@ def deserialize_json(data: dict) -> CreateCanaryRequest:
                 data["ResourcesToReplicateTags"]
             )
         )
-    if "ProvisionedResourceCleanup" in data:
+    if data.get("ProvisionedResourceCleanup") is not None:
         import capo_synthetics.types.provisioned_resource_cleanup_setting
 
         out["provisioned_resource_cleanup"] = (
@@ -203,17 +203,17 @@ def deserialize_json(data: dict) -> CreateCanaryRequest:
                 data["ProvisionedResourceCleanup"]
             )
         )
-    if "BrowserConfigs" in data:
+    if data.get("BrowserConfigs") is not None:
         import capo_synthetics.types.browser_configs
 
         out["browser_configs"] = capo_synthetics.types.browser_configs.deserialize_json(
             data["BrowserConfigs"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_synthetics.types.tag_map
 
         out["tags"] = capo_synthetics.types.tag_map.deserialize_json(data["Tags"])
-    if "ArtifactConfig" in data:
+    if data.get("ArtifactConfig") is not None:
         import capo_synthetics.types.artifact_config_input
 
         out["artifact_config"] = (

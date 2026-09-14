@@ -32,13 +32,13 @@ def serialize_json(value: RevisionDestinationEntry) -> dict:
 
 def deserialize_json(data: dict) -> RevisionDestinationEntry:
     out: RevisionDestinationEntry = {}  # type: ignore[typeddict-item]
-    if "Bucket" in data:
+    if data.get("Bucket") is not None:
         out["bucket"] = data["Bucket"]
     else:
         raise DeserializationError("RevisionDestinationEntry.bucket required")
-    if "KeyPattern" in data:
+    if data.get("KeyPattern") is not None:
         out["key_pattern"] = data["KeyPattern"]
-    if "RevisionId" in data:
+    if data.get("RevisionId") is not None:
         out["revision_id"] = data["RevisionId"]
     else:
         raise DeserializationError("RevisionDestinationEntry.revision_id required")

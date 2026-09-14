@@ -47,7 +47,7 @@ def serialize_aws_json_1_1(value: DocumentAttributeValueCountPair) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DocumentAttributeValueCountPair:
     out: DocumentAttributeValueCountPair = {}  # type: ignore[typeddict-item]
-    if "DocumentAttributeValue" in data:
+    if data.get("DocumentAttributeValue") is not None:
         import capo_kendra.types.document_attribute_value
 
         out["document_attribute_value"] = (
@@ -55,9 +55,9 @@ def deserialize_aws_json_1_1(data: dict) -> DocumentAttributeValueCountPair:
                 data["DocumentAttributeValue"]
             )
         )
-    if "Count" in data:
+    if data.get("Count") is not None:
         out["count"] = data["Count"]
-    if "FacetResults" in data:
+    if data.get("FacetResults") is not None:
         import capo_kendra.types.facet_result_list
 
         out["facet_results"] = (

@@ -52,24 +52,24 @@ def serialize_json(value: Predicate) -> dict:
 
 def deserialize_json(data: dict) -> Predicate:
     out: Predicate = {}  # type: ignore[typeddict-item]
-    if "or" in data:
+    if data.get("or") is not None:
         import capo_amplifyuibuilder.types.predicate_list
 
         out["or"] = capo_amplifyuibuilder.types.predicate_list.deserialize_json(
             data["or"]
         )
-    if "and" in data:
+    if data.get("and") is not None:
         import capo_amplifyuibuilder.types.predicate_list
 
         out["and"] = capo_amplifyuibuilder.types.predicate_list.deserialize_json(
             data["and"]
         )
-    if "field" in data:
+    if data.get("field") is not None:
         out["field"] = data["field"]
-    if "operator" in data:
+    if data.get("operator") is not None:
         out["operator"] = data["operator"]
-    if "operand" in data:
+    if data.get("operand") is not None:
         out["operand"] = data["operand"]
-    if "operandType" in data:
+    if data.get("operandType") is not None:
         out["operand_type"] = data["operandType"]
     return out

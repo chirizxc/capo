@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: DescribeClientPropertiesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeClientPropertiesRequest:
     out: DescribeClientPropertiesRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceIds" in data:
+    if data.get("ResourceIds") is not None:
         import capo_workspaces.types.resource_id_list
 
         out["resource_ids"] = (

@@ -141,9 +141,9 @@ def serialize_aws_json_1_1(value: SplunkDestinationDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SplunkDestinationDescription:
     out: SplunkDestinationDescription = {}  # type: ignore[typeddict-item]
-    if "HECEndpoint" in data:
+    if data.get("HECEndpoint") is not None:
         out["hec_endpoint"] = data["HECEndpoint"]
-    if "HECEndpointType" in data:
+    if data.get("HECEndpointType") is not None:
         import capo_firehose.types.hec_endpoint_type
 
         out["hec_endpoint_type"] = (
@@ -151,13 +151,13 @@ def deserialize_aws_json_1_1(data: dict) -> SplunkDestinationDescription:
                 data["HECEndpointType"]
             )
         )
-    if "HECToken" in data:
+    if data.get("HECToken") is not None:
         out["hec_token"] = data["HECToken"]
-    if "HECAcknowledgmentTimeoutInSeconds" in data:
+    if data.get("HECAcknowledgmentTimeoutInSeconds") is not None:
         out["hec_acknowledgment_timeout_in_seconds"] = data[
             "HECAcknowledgmentTimeoutInSeconds"
         ]
-    if "RetryOptions" in data:
+    if data.get("RetryOptions") is not None:
         import capo_firehose.types.splunk_retry_options
 
         out["retry_options"] = (
@@ -165,7 +165,7 @@ def deserialize_aws_json_1_1(data: dict) -> SplunkDestinationDescription:
                 data["RetryOptions"]
             )
         )
-    if "S3BackupMode" in data:
+    if data.get("S3BackupMode") is not None:
         import capo_firehose.types.splunk_s3_backup_mode
 
         out["s3_backup_mode"] = (
@@ -173,7 +173,7 @@ def deserialize_aws_json_1_1(data: dict) -> SplunkDestinationDescription:
                 data["S3BackupMode"]
             )
         )
-    if "S3DestinationDescription" in data:
+    if data.get("S3DestinationDescription") is not None:
         import capo_firehose.types.s3_destination_description
 
         out["s3_destination_description"] = (
@@ -181,7 +181,7 @@ def deserialize_aws_json_1_1(data: dict) -> SplunkDestinationDescription:
                 data["S3DestinationDescription"]
             )
         )
-    if "ProcessingConfiguration" in data:
+    if data.get("ProcessingConfiguration") is not None:
         import capo_firehose.types.processing_configuration
 
         out["processing_configuration"] = (
@@ -189,7 +189,7 @@ def deserialize_aws_json_1_1(data: dict) -> SplunkDestinationDescription:
                 data["ProcessingConfiguration"]
             )
         )
-    if "CloudWatchLoggingOptions" in data:
+    if data.get("CloudWatchLoggingOptions") is not None:
         import capo_firehose.types.cloud_watch_logging_options
 
         out["cloud_watch_logging_options"] = (
@@ -197,7 +197,7 @@ def deserialize_aws_json_1_1(data: dict) -> SplunkDestinationDescription:
                 data["CloudWatchLoggingOptions"]
             )
         )
-    if "BufferingHints" in data:
+    if data.get("BufferingHints") is not None:
         import capo_firehose.types.splunk_buffering_hints
 
         out["buffering_hints"] = (
@@ -205,7 +205,7 @@ def deserialize_aws_json_1_1(data: dict) -> SplunkDestinationDescription:
                 data["BufferingHints"]
             )
         )
-    if "SecretsManagerConfiguration" in data:
+    if data.get("SecretsManagerConfiguration") is not None:
         import capo_firehose.types.secrets_manager_configuration
 
         out["secrets_manager_configuration"] = (

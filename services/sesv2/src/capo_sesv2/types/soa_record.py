@@ -34,11 +34,11 @@ def serialize_json(value: SOARecord) -> dict:
 
 def deserialize_json(data: dict) -> SOARecord:
     out: SOARecord = {}  # type: ignore[typeddict-item]
-    if "PrimaryNameServer" in data:
+    if data.get("PrimaryNameServer") is not None:
         out["primary_name_server"] = data["PrimaryNameServer"]
-    if "AdminEmail" in data:
+    if data.get("AdminEmail") is not None:
         out["admin_email"] = data["AdminEmail"]
-    if "SerialNumber" in data:
+    if data.get("SerialNumber") is not None:
         out["serial_number"] = data["SerialNumber"]
     else:
         out["serial_number"] = 0

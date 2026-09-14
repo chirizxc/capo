@@ -49,7 +49,7 @@ def serialize_json(value: VirtualGatewayClientTlsCertificate) -> dict:
 
 
 def deserialize_json(data: dict) -> VirtualGatewayClientTlsCertificate:
-    if "file" in data:
+    if data.get("file") is not None:
         import capo_app_mesh.types.virtual_gateway_listener_tls_file_certificate
 
         return {
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> VirtualGatewayClientTlsCertificate:
                 data["file"]
             )
         }
-    elif "sds" in data:
+    elif data.get("sds") is not None:
         import capo_app_mesh.types.virtual_gateway_listener_tls_sds_certificate
 
         return {

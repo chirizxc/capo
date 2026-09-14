@@ -24,13 +24,21 @@ def serialize_json(value: BudgetActionToRemove) -> dict:
     import capo_deadline.types.budget_action_type
 
     out["type"] = capo_deadline.types.budget_action_type.serialize_json(value["type"])
-    out["thresholdPercentage"] = value["threshold_percentage"]
+    out["thresholdPercentage"] = (
+        "NaN"
+        if value["threshold_percentage"] != value["threshold_percentage"]
+        else "Infinity"
+        if value["threshold_percentage"] == float("inf")
+        else "-Infinity"
+        if value["threshold_percentage"] == float("-inf")
+        else value["threshold_percentage"]
+    )
     return out
 
 
 def deserialize_json(data: dict) -> BudgetActionToRemove:
     out: BudgetActionToRemove = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_deadline.types.budget_action_type
 
         out["type"] = capo_deadline.types.budget_action_type.deserialize_json(
@@ -38,8 +46,8 @@ def deserialize_json(data: dict) -> BudgetActionToRemove:
         )
     else:
         raise DeserializationError("BudgetActionToRemove.type required")
-    if "thresholdPercentage" in data:
-        out["threshold_percentage"] = data["thresholdPercentage"]
+    if data.get("thresholdPercentage") is not None:
+        out["threshold_percentage"] = float(data["thresholdPercentage"])
     else:
         raise DeserializationError("BudgetActionToRemove.threshold_percentage required")
     return out

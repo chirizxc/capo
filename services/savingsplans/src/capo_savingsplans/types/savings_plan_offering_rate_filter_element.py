@@ -40,7 +40,7 @@ def serialize_json(value: SavingsPlanOfferingRateFilterElement) -> dict:
 
 def deserialize_json(data: dict) -> SavingsPlanOfferingRateFilterElement:
     out: SavingsPlanOfferingRateFilterElement = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         import capo_savingsplans.types.savings_plan_rate_filter_attribute
 
         out["name"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> SavingsPlanOfferingRateFilterElement:
                 data["name"]
             )
         )
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_savingsplans.types.filter_values_list
 
         out["values"] = capo_savingsplans.types.filter_values_list.deserialize_json(

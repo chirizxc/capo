@@ -36,7 +36,7 @@ def serialize_json(value: RenewalSettings) -> dict:
 
 def deserialize_json(data: dict) -> RenewalSettings:
     out: RenewalSettings = {}  # type: ignore[typeddict-item]
-    if "automaticRenewal" in data:
+    if data.get("automaticRenewal") is not None:
         import capo_medialive.types.reservation_automatic_renewal
 
         out["automatic_renewal"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> RenewalSettings:
                 data["automaticRenewal"]
             )
         )
-    if "renewalCount" in data:
+    if data.get("renewalCount") is not None:
         out["renewal_count"] = data["renewalCount"]
     return out

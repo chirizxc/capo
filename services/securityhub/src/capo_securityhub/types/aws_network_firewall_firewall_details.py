@@ -75,25 +75,25 @@ def serialize_json(value: AwsNetworkFirewallFirewallDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsNetworkFirewallFirewallDetails:
     out: AwsNetworkFirewallFirewallDetails = {}  # type: ignore[typeddict-item]
-    if "DeleteProtection" in data:
+    if data.get("DeleteProtection") is not None:
         out["delete_protection"] = data["DeleteProtection"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "FirewallArn" in data:
+    if data.get("FirewallArn") is not None:
         out["firewall_arn"] = data["FirewallArn"]
-    if "FirewallId" in data:
+    if data.get("FirewallId") is not None:
         out["firewall_id"] = data["FirewallId"]
-    if "FirewallName" in data:
+    if data.get("FirewallName") is not None:
         out["firewall_name"] = data["FirewallName"]
-    if "FirewallPolicyArn" in data:
+    if data.get("FirewallPolicyArn") is not None:
         out["firewall_policy_arn"] = data["FirewallPolicyArn"]
-    if "FirewallPolicyChangeProtection" in data:
+    if data.get("FirewallPolicyChangeProtection") is not None:
         out["firewall_policy_change_protection"] = data[
             "FirewallPolicyChangeProtection"
         ]
-    if "SubnetChangeProtection" in data:
+    if data.get("SubnetChangeProtection") is not None:
         out["subnet_change_protection"] = data["SubnetChangeProtection"]
-    if "SubnetMappings" in data:
+    if data.get("SubnetMappings") is not None:
         import capo_securityhub.types.aws_network_firewall_firewall_subnet_mappings_list
 
         out["subnet_mappings"] = (
@@ -101,6 +101,6 @@ def deserialize_json(data: dict) -> AwsNetworkFirewallFirewallDetails:
                 data["SubnetMappings"]
             )
         )
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
     return out

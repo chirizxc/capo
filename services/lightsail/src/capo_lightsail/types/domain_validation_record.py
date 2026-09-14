@@ -60,9 +60,9 @@ def serialize_aws_json_1_1(value: DomainValidationRecord) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DomainValidationRecord:
     out: DomainValidationRecord = {}  # type: ignore[typeddict-item]
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
-    if "resourceRecord" in data:
+    if data.get("resourceRecord") is not None:
         import capo_lightsail.types.resource_record
 
         out["resource_record"] = (
@@ -70,7 +70,7 @@ def deserialize_aws_json_1_1(data: dict) -> DomainValidationRecord:
                 data["resourceRecord"]
             )
         )
-    if "dnsRecordCreationState" in data:
+    if data.get("dnsRecordCreationState") is not None:
         import capo_lightsail.types.dns_record_creation_state
 
         out["dns_record_creation_state"] = (
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_1(data: dict) -> DomainValidationRecord:
                 data["dnsRecordCreationState"]
             )
         )
-    if "validationStatus" in data:
+    if data.get("validationStatus") is not None:
         import capo_lightsail.types.certificate_domain_validation_status
 
         out["validation_status"] = (

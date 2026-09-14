@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> UsageGroupBy:
 
     out: UsageGroupBy = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_deadline.types.usage_group_by_field.deserialize_json(item))
     return out

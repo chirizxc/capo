@@ -40,13 +40,13 @@ def serialize_aws_json_1_1(value: ListDeploymentTargetsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListDeploymentTargetsInput:
     out: ListDeploymentTargetsInput = {}  # type: ignore[typeddict-item]
-    if "deploymentId" in data:
+    if data.get("deploymentId") is not None:
         out["deployment_id"] = data["deploymentId"]
     else:
         raise DeserializationError("ListDeploymentTargetsInput.deployment_id required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "targetFilters" in data:
+    if data.get("targetFilters") is not None:
         import capo_codedeploy.types.target_filters
 
         out["target_filters"] = (

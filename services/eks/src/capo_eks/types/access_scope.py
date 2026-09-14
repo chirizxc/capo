@@ -34,11 +34,11 @@ def serialize_json(value: AccessScope) -> dict:
 
 def deserialize_json(data: dict) -> AccessScope:
     out: AccessScope = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_eks.types.access_scope_type
 
         out["type"] = capo_eks.types.access_scope_type.deserialize_json(data["type"])
-    if "namespaces" in data:
+    if data.get("namespaces") is not None:
         import capo_eks.types.string_list
 
         out["namespaces"] = capo_eks.types.string_list.deserialize_json(

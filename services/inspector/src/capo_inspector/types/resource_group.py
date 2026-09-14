@@ -40,11 +40,11 @@ def serialize_aws_json_1_1(value: ResourceGroup) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourceGroup:
     out: ResourceGroup = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("ResourceGroup.arn required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_inspector.types.resource_group_tags
 
         out["tags"] = capo_inspector.types.resource_group_tags.deserialize_aws_json_1_1(
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceGroup:
         )
     else:
         raise DeserializationError("ResourceGroup.tags required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_inspector.types.timestamp
 
         out["created_at"] = capo_inspector.types.timestamp.deserialize_aws_json_1_1(

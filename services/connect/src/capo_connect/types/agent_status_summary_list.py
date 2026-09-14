@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AgentStatusSummaryList:
 
     out: AgentStatusSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.agent_status_summary.deserialize_json(item))
     return out

@@ -22,6 +22,6 @@ def serialize_aws_json_1_1(value: UpdateBandwidthRateLimitScheduleOutput) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateBandwidthRateLimitScheduleOutput:
     out: UpdateBandwidthRateLimitScheduleOutput = {}  # type: ignore[typeddict-item]
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
     return out

@@ -23,6 +23,6 @@ def serialize_json(value: TableRecordExpirationSettings) -> dict:
 
 def deserialize_json(data: dict) -> TableRecordExpirationSettings:
     out: TableRecordExpirationSettings = {}  # type: ignore[typeddict-item]
-    if "days" in data:
+    if data.get("days") is not None:
         out["days"] = data["days"]
     return out

@@ -23,6 +23,6 @@ def serialize_json(value: StartReportJobOutput) -> dict:
 
 def deserialize_json(data: dict) -> StartReportJobOutput:
     out: StartReportJobOutput = {}  # type: ignore[typeddict-item]
-    if "ReportJobId" in data:
+    if data.get("ReportJobId") is not None:
         out["report_job_id"] = data["ReportJobId"]
     return out

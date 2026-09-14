@@ -28,13 +28,13 @@ def serialize_aws_json_1_1(value: DeleteByteMatchSetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteByteMatchSetRequest:
     out: DeleteByteMatchSetRequest = {}  # type: ignore[typeddict-item]
-    if "ByteMatchSetId" in data:
+    if data.get("ByteMatchSetId") is not None:
         out["byte_match_set_id"] = data["ByteMatchSetId"]
     else:
         raise DeserializationError(
             "DeleteByteMatchSetRequest.byte_match_set_id required"
         )
-    if "ChangeToken" in data:
+    if data.get("ChangeToken") is not None:
         out["change_token"] = data["ChangeToken"]
     else:
         raise DeserializationError("DeleteByteMatchSetRequest.change_token required")

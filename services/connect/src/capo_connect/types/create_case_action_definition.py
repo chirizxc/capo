@@ -30,13 +30,13 @@ def serialize_json(value: CreateCaseActionDefinition) -> dict:
 
 def deserialize_json(data: dict) -> CreateCaseActionDefinition:
     out: CreateCaseActionDefinition = {}  # type: ignore[typeddict-item]
-    if "Fields" in data:
+    if data.get("Fields") is not None:
         import capo_connect.types.field_values
 
         out["fields"] = capo_connect.types.field_values.deserialize_json(data["Fields"])
     else:
         raise DeserializationError("CreateCaseActionDefinition.fields required")
-    if "TemplateId" in data:
+    if data.get("TemplateId") is not None:
         out["template_id"] = data["TemplateId"]
     else:
         raise DeserializationError("CreateCaseActionDefinition.template_id required")

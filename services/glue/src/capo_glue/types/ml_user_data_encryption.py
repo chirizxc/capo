@@ -35,7 +35,7 @@ def serialize_aws_json_1_1(value: MLUserDataEncryption) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MLUserDataEncryption:
     out: MLUserDataEncryption = {}  # type: ignore[typeddict-item]
-    if "MlUserDataEncryptionMode" in data:
+    if data.get("MlUserDataEncryptionMode") is not None:
         import capo_glue.types.ml_user_data_encryption_mode_string
 
         out["ml_user_data_encryption_mode"] = (
@@ -47,6 +47,6 @@ def deserialize_aws_json_1_1(data: dict) -> MLUserDataEncryption:
         raise DeserializationError(
             "MLUserDataEncryption.ml_user_data_encryption_mode required"
         )
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
     return out

@@ -85,15 +85,15 @@ def serialize_json(value: SubscribedAsset) -> dict:
 
 def deserialize_json(data: dict) -> SubscribedAsset:
     out: SubscribedAsset = {}  # type: ignore[typeddict-item]
-    if "assetId" in data:
+    if data.get("assetId") is not None:
         out["asset_id"] = data["assetId"]
     else:
         raise DeserializationError("SubscribedAsset.asset_id required")
-    if "assetRevision" in data:
+    if data.get("assetRevision") is not None:
         out["asset_revision"] = data["assetRevision"]
     else:
         raise DeserializationError("SubscribedAsset.asset_revision required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.subscription_grant_status
 
         out["status"] = capo_datazone.types.subscription_grant_status.deserialize_json(
@@ -101,15 +101,15 @@ def deserialize_json(data: dict) -> SubscribedAsset:
         )
     else:
         raise DeserializationError("SubscribedAsset.status required")
-    if "targetName" in data:
+    if data.get("targetName") is not None:
         out["target_name"] = data["targetName"]
-    if "failureCause" in data:
+    if data.get("failureCause") is not None:
         import capo_datazone.types.failure_cause
 
         out["failure_cause"] = capo_datazone.types.failure_cause.deserialize_json(
             data["failureCause"]
         )
-    if "grantedTimestamp" in data:
+    if data.get("grantedTimestamp") is not None:
         import capo_datazone.types._prelude.timestamp
 
         out["granted_timestamp"] = (
@@ -117,7 +117,7 @@ def deserialize_json(data: dict) -> SubscribedAsset:
                 data["grantedTimestamp"]
             )
         )
-    if "failureTimestamp" in data:
+    if data.get("failureTimestamp") is not None:
         import capo_datazone.types._prelude.timestamp
 
         out["failure_timestamp"] = (
@@ -125,13 +125,13 @@ def deserialize_json(data: dict) -> SubscribedAsset:
                 data["failureTimestamp"]
             )
         )
-    if "assetScope" in data:
+    if data.get("assetScope") is not None:
         import capo_datazone.types.asset_scope
 
         out["asset_scope"] = capo_datazone.types.asset_scope.deserialize_json(
             data["assetScope"]
         )
-    if "permissions" in data:
+    if data.get("permissions") is not None:
         import capo_datazone.types.permissions
 
         out["permissions"] = capo_datazone.types.permissions.deserialize_json(

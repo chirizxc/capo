@@ -30,8 +30,8 @@ def serialize_json(value: DeleteWorkerConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteWorkerConfigurationResponse:
     out: DeleteWorkerConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "workerConfigurationArn" in data:
+    if data.get("workerConfigurationArn") is not None:
         out["worker_configuration_arn"] = data["workerConfigurationArn"]
-    if "workerConfigurationState" in data:
+    if data.get("workerConfigurationState") is not None:
         out["worker_configuration_state"] = data["workerConfigurationState"]
     return out

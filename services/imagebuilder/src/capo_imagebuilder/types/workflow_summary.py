@@ -78,33 +78,33 @@ def serialize_json(value: WorkflowSummary) -> dict:
 
 def deserialize_json(data: dict) -> WorkflowSummary:
     out: WorkflowSummary = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "changeDescription" in data:
+    if data.get("changeDescription") is not None:
         out["change_description"] = data["changeDescription"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_imagebuilder.types.workflow_type
 
         out["type"] = capo_imagebuilder.types.workflow_type.deserialize_json(
             data["type"]
         )
-    if "owner" in data:
+    if data.get("owner") is not None:
         out["owner"] = data["owner"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_imagebuilder.types.workflow_state
 
         out["state"] = capo_imagebuilder.types.workflow_state.deserialize_json(
             data["state"]
         )
-    if "dateCreated" in data:
+    if data.get("dateCreated") is not None:
         out["date_created"] = data["dateCreated"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_imagebuilder.types.tag_map
 
         out["tags"] = capo_imagebuilder.types.tag_map.deserialize_json(data["tags"])

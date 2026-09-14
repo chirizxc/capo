@@ -93,45 +93,45 @@ def serialize_json(value: GetCustomDataIdentifierResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetCustomDataIdentifierResponse:
     out: GetCustomDataIdentifierResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_macie2.types.__timestamp_iso8601
 
         out["created_at"] = capo_macie2.types.__timestamp_iso8601.deserialize_json(
             data["createdAt"]
         )
-    if "deleted" in data:
+    if data.get("deleted") is not None:
         out["deleted"] = data["deleted"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "ignoreWords" in data:
+    if data.get("ignoreWords") is not None:
         import capo_macie2.types.__list_of__string
 
         out["ignore_words"] = capo_macie2.types.__list_of__string.deserialize_json(
             data["ignoreWords"]
         )
-    if "keywords" in data:
+    if data.get("keywords") is not None:
         import capo_macie2.types.__list_of__string
 
         out["keywords"] = capo_macie2.types.__list_of__string.deserialize_json(
             data["keywords"]
         )
-    if "maximumMatchDistance" in data:
+    if data.get("maximumMatchDistance") is not None:
         out["maximum_match_distance"] = data["maximumMatchDistance"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "regex" in data:
+    if data.get("regex") is not None:
         out["regex"] = data["regex"]
-    if "severityLevels" in data:
+    if data.get("severityLevels") is not None:
         import capo_macie2.types.severity_level_list
 
         out["severity_levels"] = capo_macie2.types.severity_level_list.deserialize_json(
             data["severityLevels"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_macie2.types.tag_map
 
         out["tags"] = capo_macie2.types.tag_map.deserialize_json(data["tags"])

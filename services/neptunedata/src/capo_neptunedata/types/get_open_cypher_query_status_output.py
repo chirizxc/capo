@@ -37,11 +37,11 @@ def serialize_json(value: GetOpenCypherQueryStatusOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetOpenCypherQueryStatusOutput:
     out: GetOpenCypherQueryStatusOutput = {}  # type: ignore[typeddict-item]
-    if "queryId" in data:
+    if data.get("queryId") is not None:
         out["query_id"] = data["queryId"]
-    if "queryString" in data:
+    if data.get("queryString") is not None:
         out["query_string"] = data["queryString"]
-    if "queryEvalStats" in data:
+    if data.get("queryEvalStats") is not None:
         import capo_neptunedata.types.query_eval_stats
 
         out["query_eval_stats"] = (

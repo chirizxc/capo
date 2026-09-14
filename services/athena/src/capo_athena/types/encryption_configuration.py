@@ -35,7 +35,7 @@ def serialize_aws_json_1_1(value: EncryptionConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EncryptionConfiguration:
     out: EncryptionConfiguration = {}  # type: ignore[typeddict-item]
-    if "EncryptionOption" in data:
+    if data.get("EncryptionOption") is not None:
         import capo_athena.types.encryption_option
 
         out["encryption_option"] = (
@@ -45,6 +45,6 @@ def deserialize_aws_json_1_1(data: dict) -> EncryptionConfiguration:
         )
     else:
         raise DeserializationError("EncryptionConfiguration.encryption_option required")
-    if "KmsKey" in data:
+    if data.get("KmsKey") is not None:
         out["kms_key"] = data["KmsKey"]
     return out

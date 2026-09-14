@@ -239,11 +239,11 @@ def serialize_aws_json_1_1(value: DescribeAutoMLJobResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeAutoMLJobResponse:
     out: DescribeAutoMLJobResponse = {}  # type: ignore[typeddict-item]
-    if "AutoMLJobName" in data:
+    if data.get("AutoMLJobName") is not None:
         out["auto_ml_job_name"] = data["AutoMLJobName"]
-    if "AutoMLJobArn" in data:
+    if data.get("AutoMLJobArn") is not None:
         out["auto_ml_job_arn"] = data["AutoMLJobArn"]
-    if "InputDataConfig" in data:
+    if data.get("InputDataConfig") is not None:
         import capo_sagemaker.types.auto_ml_input_data_config
 
         out["input_data_config"] = (
@@ -251,7 +251,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAutoMLJobResponse:
                 data["InputDataConfig"]
             )
         )
-    if "OutputDataConfig" in data:
+    if data.get("OutputDataConfig") is not None:
         import capo_sagemaker.types.auto_ml_output_data_config
 
         out["output_data_config"] = (
@@ -259,9 +259,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAutoMLJobResponse:
                 data["OutputDataConfig"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "AutoMLJobObjective" in data:
+    if data.get("AutoMLJobObjective") is not None:
         import capo_sagemaker.types.auto_ml_job_objective
 
         out["auto_ml_job_objective"] = (
@@ -269,7 +269,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAutoMLJobResponse:
                 data["AutoMLJobObjective"]
             )
         )
-    if "ProblemType" in data:
+    if data.get("ProblemType") is not None:
         import capo_sagemaker.types.problem_type
 
         out["problem_type"] = (
@@ -277,7 +277,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAutoMLJobResponse:
                 data["ProblemType"]
             )
         )
-    if "AutoMLJobConfig" in data:
+    if data.get("AutoMLJobConfig") is not None:
         import capo_sagemaker.types.auto_ml_job_config
 
         out["auto_ml_job_config"] = (
@@ -285,19 +285,19 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAutoMLJobResponse:
                 data["AutoMLJobConfig"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["end_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["EndTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (
@@ -305,9 +305,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAutoMLJobResponse:
                 data["LastModifiedTime"]
             )
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "PartialFailureReasons" in data:
+    if data.get("PartialFailureReasons") is not None:
         import capo_sagemaker.types.auto_ml_partial_failure_reasons
 
         out["partial_failure_reasons"] = (
@@ -315,7 +315,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAutoMLJobResponse:
                 data["PartialFailureReasons"]
             )
         )
-    if "BestCandidate" in data:
+    if data.get("BestCandidate") is not None:
         import capo_sagemaker.types.auto_ml_candidate
 
         out["best_candidate"] = (
@@ -323,7 +323,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAutoMLJobResponse:
                 data["BestCandidate"]
             )
         )
-    if "AutoMLJobStatus" in data:
+    if data.get("AutoMLJobStatus") is not None:
         import capo_sagemaker.types.auto_ml_job_status
 
         out["auto_ml_job_status"] = (
@@ -331,7 +331,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAutoMLJobResponse:
                 data["AutoMLJobStatus"]
             )
         )
-    if "AutoMLJobSecondaryStatus" in data:
+    if data.get("AutoMLJobSecondaryStatus") is not None:
         import capo_sagemaker.types.auto_ml_job_secondary_status
 
         out["auto_ml_job_secondary_status"] = (
@@ -339,11 +339,11 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAutoMLJobResponse:
                 data["AutoMLJobSecondaryStatus"]
             )
         )
-    if "GenerateCandidateDefinitionsOnly" in data:
+    if data.get("GenerateCandidateDefinitionsOnly") is not None:
         out["generate_candidate_definitions_only"] = data[
             "GenerateCandidateDefinitionsOnly"
         ]
-    if "AutoMLJobArtifacts" in data:
+    if data.get("AutoMLJobArtifacts") is not None:
         import capo_sagemaker.types.auto_ml_job_artifacts
 
         out["auto_ml_job_artifacts"] = (
@@ -351,7 +351,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAutoMLJobResponse:
                 data["AutoMLJobArtifacts"]
             )
         )
-    if "ResolvedAttributes" in data:
+    if data.get("ResolvedAttributes") is not None:
         import capo_sagemaker.types.resolved_attributes
 
         out["resolved_attributes"] = (
@@ -359,7 +359,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAutoMLJobResponse:
                 data["ResolvedAttributes"]
             )
         )
-    if "ModelDeployConfig" in data:
+    if data.get("ModelDeployConfig") is not None:
         import capo_sagemaker.types.model_deploy_config
 
         out["model_deploy_config"] = (
@@ -367,7 +367,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAutoMLJobResponse:
                 data["ModelDeployConfig"]
             )
         )
-    if "ModelDeployResult" in data:
+    if data.get("ModelDeployResult") is not None:
         import capo_sagemaker.types.model_deploy_result
 
         out["model_deploy_result"] = (

@@ -37,7 +37,7 @@ def serialize_aws_json_1_1(value: PredefinedMetricSpecification) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PredefinedMetricSpecification:
     out: PredefinedMetricSpecification = {}  # type: ignore[typeddict-item]
-    if "PredefinedMetricType" in data:
+    if data.get("PredefinedMetricType") is not None:
         import capo_application_auto_scaling.types.metric_type
 
         out["predefined_metric_type"] = (
@@ -49,6 +49,6 @@ def deserialize_aws_json_1_1(data: dict) -> PredefinedMetricSpecification:
         raise DeserializationError(
             "PredefinedMetricSpecification.predefined_metric_type required"
         )
-    if "ResourceLabel" in data:
+    if data.get("ResourceLabel") is not None:
         out["resource_label"] = data["ResourceLabel"]
     return out

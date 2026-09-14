@@ -27,7 +27,7 @@ def serialize_json(value: Logging) -> dict:
 
 def deserialize_json(data: dict) -> Logging:
     out: Logging = {}  # type: ignore[typeddict-item]
-    if "accessLog" in data:
+    if data.get("accessLog") is not None:
         import capo_app_mesh.types.access_log
 
         out["access_log"] = capo_app_mesh.types.access_log.deserialize_json(

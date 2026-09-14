@@ -33,7 +33,7 @@ def serialize_json(value: UpdateAdmChannelRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAdmChannelRequest:
     out: UpdateAdmChannelRequest = {}  # type: ignore[typeddict-item]
-    if "ADMChannelRequest" in data:
+    if data.get("ADMChannelRequest") is not None:
         import capo_pinpoint.types.adm_channel_request
 
         out["adm_channel_request"] = (

@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: RevocationConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RevocationConfiguration:
     out: RevocationConfiguration = {}  # type: ignore[typeddict-item]
-    if "CrlConfiguration" in data:
+    if data.get("CrlConfiguration") is not None:
         import capo_acm_pca.types.crl_configuration
 
         out["crl_configuration"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> RevocationConfiguration:
                 data["CrlConfiguration"]
             )
         )
-    if "OcspConfiguration" in data:
+    if data.get("OcspConfiguration") is not None:
         import capo_acm_pca.types.ocsp_configuration
 
         out["ocsp_configuration"] = (

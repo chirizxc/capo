@@ -42,7 +42,7 @@ def serialize_json(value: ContainerRegistryMap) -> dict:
 
 def deserialize_json(data: dict) -> ContainerRegistryMap:
     out: ContainerRegistryMap = {}  # type: ignore[typeddict-item]
-    if "registryMappings" in data:
+    if data.get("registryMappings") is not None:
         import capo_omics.types.registry_mappings_list
 
         out["registry_mappings"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> ContainerRegistryMap:
                 data["registryMappings"]
             )
         )
-    if "imageMappings" in data:
+    if data.get("imageMappings") is not None:
         import capo_omics.types.image_mappings_list
 
         out["image_mappings"] = capo_omics.types.image_mappings_list.deserialize_json(

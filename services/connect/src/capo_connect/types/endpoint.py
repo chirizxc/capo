@@ -30,10 +30,10 @@ def serialize_json(value: Endpoint) -> dict:
 
 def deserialize_json(data: dict) -> Endpoint:
     out: Endpoint = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_connect.types.endpoint_type
 
         out["type"] = capo_connect.types.endpoint_type.deserialize_json(data["Type"])
-    if "Address" in data:
+    if data.get("Address") is not None:
         out["address"] = data["Address"]
     return out

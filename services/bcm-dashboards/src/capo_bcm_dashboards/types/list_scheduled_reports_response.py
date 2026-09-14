@@ -35,7 +35,7 @@ def serialize_aws_json_1_0(value: ListScheduledReportsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListScheduledReportsResponse:
     out: ListScheduledReportsResponse = {}  # type: ignore[typeddict-item]
-    if "scheduledReports" in data:
+    if data.get("scheduledReports") is not None:
         import capo_bcm_dashboards.types.scheduled_report_summary_list
 
         out["scheduled_reports"] = (
@@ -47,6 +47,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListScheduledReportsResponse:
         raise DeserializationError(
             "ListScheduledReportsResponse.scheduled_reports required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: StopInferenceRecommendationsJobRequest) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> StopInferenceRecommendationsJobRequest:
     out: StopInferenceRecommendationsJobRequest = {}  # type: ignore[typeddict-item]
-    if "JobName" in data:
+    if data.get("JobName") is not None:
         out["job_name"] = data["JobName"]
     return out

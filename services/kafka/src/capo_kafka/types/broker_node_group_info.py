@@ -81,7 +81,7 @@ def serialize_json(value: BrokerNodeGroupInfo) -> dict:
 
 def deserialize_json(data: dict) -> BrokerNodeGroupInfo:
     out: BrokerNodeGroupInfo = {}  # type: ignore[typeddict-item]
-    if "brokerAZDistribution" in data:
+    if data.get("brokerAZDistribution") is not None:
         import capo_kafka.types.broker_az_distribution
 
         out["broker_az_distribution"] = (
@@ -89,33 +89,33 @@ def deserialize_json(data: dict) -> BrokerNodeGroupInfo:
                 data["brokerAZDistribution"]
             )
         )
-    if "clientSubnets" in data:
+    if data.get("clientSubnets") is not None:
         import capo_kafka.types.__list_of__string
 
         out["client_subnets"] = capo_kafka.types.__list_of__string.deserialize_json(
             data["clientSubnets"]
         )
-    if "instanceType" in data:
+    if data.get("instanceType") is not None:
         out["instance_type"] = data["instanceType"]
-    if "securityGroups" in data:
+    if data.get("securityGroups") is not None:
         import capo_kafka.types.__list_of__string
 
         out["security_groups"] = capo_kafka.types.__list_of__string.deserialize_json(
             data["securityGroups"]
         )
-    if "storageInfo" in data:
+    if data.get("storageInfo") is not None:
         import capo_kafka.types.storage_info
 
         out["storage_info"] = capo_kafka.types.storage_info.deserialize_json(
             data["storageInfo"]
         )
-    if "connectivityInfo" in data:
+    if data.get("connectivityInfo") is not None:
         import capo_kafka.types.connectivity_info
 
         out["connectivity_info"] = capo_kafka.types.connectivity_info.deserialize_json(
             data["connectivityInfo"]
         )
-    if "zoneIds" in data:
+    if data.get("zoneIds") is not None:
         import capo_kafka.types.__list_of__string
 
         out["zone_ids"] = capo_kafka.types.__list_of__string.deserialize_json(

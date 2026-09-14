@@ -37,9 +37,9 @@ def serialize_json(value: CreateRevisionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateRevisionRequest:
     out: CreateRevisionRequest = {}  # type: ignore[typeddict-item]
-    if "Comment" in data:
+    if data.get("Comment") is not None:
         out["comment"] = data["Comment"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_dataexchange.types.map_of__string
 
         out["tags"] = capo_dataexchange.types.map_of__string.deserialize_json(

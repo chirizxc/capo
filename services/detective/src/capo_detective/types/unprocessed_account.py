@@ -28,8 +28,8 @@ def serialize_json(value: UnprocessedAccount) -> dict:
 
 def deserialize_json(data: dict) -> UnprocessedAccount:
     out: UnprocessedAccount = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "Reason" in data:
+    if data.get("Reason") is not None:
         out["reason"] = data["Reason"]
     return out

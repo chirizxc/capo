@@ -33,6 +33,8 @@ def deserialize_json(
 
     out: AnonymousUserDashboardEmbeddingConfigurationEnabledFeatures = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.anonymous_user_dashboard_embedding_configuration_enabled_feature.deserialize_json(
                 item

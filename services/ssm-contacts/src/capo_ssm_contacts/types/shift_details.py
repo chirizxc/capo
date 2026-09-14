@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: ShiftDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ShiftDetails:
     out: ShiftDetails = {}  # type: ignore[typeddict-item]
-    if "OverriddenContactIds" in data:
+    if data.get("OverriddenContactIds") is not None:
         import capo_ssm_contacts.types.ssm_contacts_arn_list
 
         out["overridden_contact_ids"] = (

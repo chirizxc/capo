@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> BotAliasReplicaSummaryList:
 
     out: BotAliasReplicaSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lex_models_v2.types.bot_alias_replica_summary.deserialize_json(item)
         )

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: RegistryNotFoundException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RegistryNotFoundException_:
     out: RegistryNotFoundException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,18 @@ class RegistryNotFoundException(ServiceError):
 
     code: str | None = "RegistryNotFoundException"
 
-    def __init__(self, data: RegistryNotFoundException_):
+    def __init__(self, data: RegistryNotFoundException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="RegistryNotFoundException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "RegistryNotFoundException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "RegistryNotFoundException":
+        return cls(deserialize_aws_json_1_1(data), message)

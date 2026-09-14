@@ -48,11 +48,11 @@ def serialize_aws_json_1_0(value: UpdateProxyConfigurationRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateProxyConfigurationRequest:
     out: UpdateProxyConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "ProxyConfigurationName" in data:
+    if data.get("ProxyConfigurationName") is not None:
         out["proxy_configuration_name"] = data["ProxyConfigurationName"]
-    if "ProxyConfigurationArn" in data:
+    if data.get("ProxyConfigurationArn") is not None:
         out["proxy_configuration_arn"] = data["ProxyConfigurationArn"]
-    if "DefaultRulePhaseActions" in data:
+    if data.get("DefaultRulePhaseActions") is not None:
         import capo_network_firewall.types.proxy_config_default_rule_phase_actions_request
 
         out["default_rule_phase_actions"] = (
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateProxyConfigurationRequest:
         raise DeserializationError(
             "UpdateProxyConfigurationRequest.default_rule_phase_actions required"
         )
-    if "UpdateToken" in data:
+    if data.get("UpdateToken") is not None:
         out["update_token"] = data["UpdateToken"]
     else:
         raise DeserializationError(

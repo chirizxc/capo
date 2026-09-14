@@ -34,7 +34,7 @@ def serialize_json(value: UpdateBackendConfigRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateBackendConfigRequest:
     out: UpdateBackendConfigRequest = {}  # type: ignore[typeddict-item]
-    if "loginAuthConfig" in data:
+    if data.get("loginAuthConfig") is not None:
         import capo_amplifybackend.types.login_auth_config_req_obj
 
         out["login_auth_config"] = (

@@ -32,7 +32,7 @@ def serialize_json(value: AudienceSize) -> dict:
 
 def deserialize_json(data: dict) -> AudienceSize:
     out: AudienceSize = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_cleanroomsml.types.audience_size_type
 
         out["type"] = capo_cleanroomsml.types.audience_size_type.deserialize_json(
@@ -40,7 +40,7 @@ def deserialize_json(data: dict) -> AudienceSize:
         )
     else:
         raise DeserializationError("AudienceSize.type required")
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("AudienceSize.value required")

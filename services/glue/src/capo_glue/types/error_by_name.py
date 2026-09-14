@@ -24,6 +24,8 @@ def serialize_aws_json_1_1(input_to_serialize: ErrorByName) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> ErrorByName:
     out: ErrorByName = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_glue.types.error_detail
 
         out[key] = capo_glue.types.error_detail.deserialize_aws_json_1_1(value)

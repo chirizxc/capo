@@ -218,11 +218,11 @@ def serialize_json(value: UpdateApplicationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateApplicationRequest:
     out: UpdateApplicationRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("UpdateApplicationRequest.client_token required")
-    if "initialCapacity" in data:
+    if data.get("initialCapacity") is not None:
         import capo_emr_serverless.types.initial_capacity_config_map
 
         out["initial_capacity"] = (
@@ -230,7 +230,7 @@ def deserialize_json(data: dict) -> UpdateApplicationRequest:
                 data["initialCapacity"]
             )
         )
-    if "maximumCapacity" in data:
+    if data.get("maximumCapacity") is not None:
         import capo_emr_serverless.types.maximum_allowed_resources
 
         out["maximum_capacity"] = (
@@ -238,7 +238,7 @@ def deserialize_json(data: dict) -> UpdateApplicationRequest:
                 data["maximumCapacity"]
             )
         )
-    if "autoStartConfiguration" in data:
+    if data.get("autoStartConfiguration") is not None:
         import capo_emr_serverless.types.auto_start_config
 
         out["auto_start_configuration"] = (
@@ -246,7 +246,7 @@ def deserialize_json(data: dict) -> UpdateApplicationRequest:
                 data["autoStartConfiguration"]
             )
         )
-    if "autoStopConfiguration" in data:
+    if data.get("autoStopConfiguration") is not None:
         import capo_emr_serverless.types.auto_stop_config
 
         out["auto_stop_configuration"] = (
@@ -254,7 +254,7 @@ def deserialize_json(data: dict) -> UpdateApplicationRequest:
                 data["autoStopConfiguration"]
             )
         )
-    if "networkConfiguration" in data:
+    if data.get("networkConfiguration") is not None:
         import capo_emr_serverless.types.network_configuration
 
         out["network_configuration"] = (
@@ -262,9 +262,9 @@ def deserialize_json(data: dict) -> UpdateApplicationRequest:
                 data["networkConfiguration"]
             )
         )
-    if "architecture" in data:
+    if data.get("architecture") is not None:
         out["architecture"] = data["architecture"]
-    if "imageConfiguration" in data:
+    if data.get("imageConfiguration") is not None:
         import capo_emr_serverless.types.image_configuration_input
 
         out["image_configuration"] = (
@@ -272,7 +272,7 @@ def deserialize_json(data: dict) -> UpdateApplicationRequest:
                 data["imageConfiguration"]
             )
         )
-    if "workerTypeSpecifications" in data:
+    if data.get("workerTypeSpecifications") is not None:
         import capo_emr_serverless.types.worker_type_specification_input_map
 
         out["worker_type_specifications"] = (
@@ -280,7 +280,7 @@ def deserialize_json(data: dict) -> UpdateApplicationRequest:
                 data["workerTypeSpecifications"]
             )
         )
-    if "interactiveConfiguration" in data:
+    if data.get("interactiveConfiguration") is not None:
         import capo_emr_serverless.types.interactive_configuration
 
         out["interactive_configuration"] = (
@@ -288,9 +288,9 @@ def deserialize_json(data: dict) -> UpdateApplicationRequest:
                 data["interactiveConfiguration"]
             )
         )
-    if "releaseLabel" in data:
+    if data.get("releaseLabel") is not None:
         out["release_label"] = data["releaseLabel"]
-    if "runtimeConfiguration" in data:
+    if data.get("runtimeConfiguration") is not None:
         import capo_emr_serverless.types.configuration_list
 
         out["runtime_configuration"] = (
@@ -298,7 +298,7 @@ def deserialize_json(data: dict) -> UpdateApplicationRequest:
                 data["runtimeConfiguration"]
             )
         )
-    if "monitoringConfiguration" in data:
+    if data.get("monitoringConfiguration") is not None:
         import capo_emr_serverless.types.monitoring_configuration
 
         out["monitoring_configuration"] = (
@@ -306,7 +306,7 @@ def deserialize_json(data: dict) -> UpdateApplicationRequest:
                 data["monitoringConfiguration"]
             )
         )
-    if "diskEncryptionConfiguration" in data:
+    if data.get("diskEncryptionConfiguration") is not None:
         import capo_emr_serverless.types.disk_encryption_configuration
 
         out["disk_encryption_configuration"] = (
@@ -314,7 +314,7 @@ def deserialize_json(data: dict) -> UpdateApplicationRequest:
                 data["diskEncryptionConfiguration"]
             )
         )
-    if "schedulerConfiguration" in data:
+    if data.get("schedulerConfiguration") is not None:
         import capo_emr_serverless.types.scheduler_configuration
 
         out["scheduler_configuration"] = (
@@ -322,7 +322,7 @@ def deserialize_json(data: dict) -> UpdateApplicationRequest:
                 data["schedulerConfiguration"]
             )
         )
-    if "identityCenterConfiguration" in data:
+    if data.get("identityCenterConfiguration") is not None:
         import capo_emr_serverless.types.identity_center_configuration_input
 
         out["identity_center_configuration"] = (
@@ -330,7 +330,7 @@ def deserialize_json(data: dict) -> UpdateApplicationRequest:
                 data["identityCenterConfiguration"]
             )
         )
-    if "jobLevelCostAllocationConfiguration" in data:
+    if data.get("jobLevelCostAllocationConfiguration") is not None:
         import capo_emr_serverless.types.job_level_cost_allocation_configuration
 
         out["job_level_cost_allocation_configuration"] = (

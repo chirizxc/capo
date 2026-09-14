@@ -35,16 +35,16 @@ def serialize_json(value: CreateDeploymentRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDeploymentRequest:
     out: CreateDeploymentRequest = {}  # type: ignore[typeddict-item]
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
     else:
         raise DeserializationError("CreateDeploymentRequest.environment_id required")
-    if "applicationVersion" in data:
+    if data.get("applicationVersion") is not None:
         out["application_version"] = data["applicationVersion"]
     else:
         raise DeserializationError(
             "CreateDeploymentRequest.application_version required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

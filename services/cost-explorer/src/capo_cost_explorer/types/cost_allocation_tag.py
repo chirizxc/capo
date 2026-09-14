@@ -59,11 +59,11 @@ def serialize_aws_json_1_1(value: CostAllocationTag) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CostAllocationTag:
     out: CostAllocationTag = {}  # type: ignore[typeddict-item]
-    if "TagKey" in data:
+    if data.get("TagKey") is not None:
         out["tag_key"] = data["TagKey"]
     else:
         raise DeserializationError("CostAllocationTag.tag_key required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_cost_explorer.types.cost_allocation_tag_type
 
         out["type"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> CostAllocationTag:
         )
     else:
         raise DeserializationError("CostAllocationTag.type required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_cost_explorer.types.cost_allocation_tag_status
 
         out["status"] = (
@@ -83,8 +83,8 @@ def deserialize_aws_json_1_1(data: dict) -> CostAllocationTag:
         )
     else:
         raise DeserializationError("CostAllocationTag.status required")
-    if "LastUpdatedDate" in data:
+    if data.get("LastUpdatedDate") is not None:
         out["last_updated_date"] = data["LastUpdatedDate"]
-    if "LastUsedDate" in data:
+    if data.get("LastUsedDate") is not None:
         out["last_used_date"] = data["LastUsedDate"]
     return out

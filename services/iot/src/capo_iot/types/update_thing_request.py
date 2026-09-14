@@ -44,17 +44,17 @@ def serialize_json(value: UpdateThingRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateThingRequest:
     out: UpdateThingRequest = {}  # type: ignore[typeddict-item]
-    if "thingTypeName" in data:
+    if data.get("thingTypeName") is not None:
         out["thing_type_name"] = data["thingTypeName"]
-    if "attributePayload" in data:
+    if data.get("attributePayload") is not None:
         import capo_iot.types.attribute_payload
 
         out["attribute_payload"] = capo_iot.types.attribute_payload.deserialize_json(
             data["attributePayload"]
         )
-    if "expectedVersion" in data:
+    if data.get("expectedVersion") is not None:
         out["expected_version"] = data["expectedVersion"]
-    if "removeThingType" in data:
+    if data.get("removeThingType") is not None:
         out["remove_thing_type"] = data["removeThingType"]
     else:
         out["remove_thing_type"] = False

@@ -32,8 +32,8 @@ def serialize_json(value: UpdateRoutingControlRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRoutingControlRequest:
     out: UpdateRoutingControlRequest = {}  # type: ignore[typeddict-item]
-    if "RoutingControlArn" in data:
+    if data.get("RoutingControlArn") is not None:
         out["routing_control_arn"] = data["RoutingControlArn"]
-    if "RoutingControlName" in data:
+    if data.get("RoutingControlName") is not None:
         out["routing_control_name"] = data["RoutingControlName"]
     return out

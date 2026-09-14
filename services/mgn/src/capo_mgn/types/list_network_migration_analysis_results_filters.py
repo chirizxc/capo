@@ -25,7 +25,7 @@ def serialize_json(value: ListNetworkMigrationAnalysisResultsFilters) -> dict:
 
 def deserialize_json(data: dict) -> ListNetworkMigrationAnalysisResultsFilters:
     out: ListNetworkMigrationAnalysisResultsFilters = {}  # type: ignore[typeddict-item]
-    if "vpcIDs" in data:
+    if data.get("vpcIDs") is not None:
         import capo_mgn.types.vpc_i_ds_filter
 
         out["vpc_i_ds"] = capo_mgn.types.vpc_i_ds_filter.deserialize_json(

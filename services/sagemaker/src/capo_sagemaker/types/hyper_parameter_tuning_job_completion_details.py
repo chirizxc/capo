@@ -38,11 +38,11 @@ def serialize_aws_json_1_1(value: HyperParameterTuningJobCompletionDetails) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> HyperParameterTuningJobCompletionDetails:
     out: HyperParameterTuningJobCompletionDetails = {}  # type: ignore[typeddict-item]
-    if "NumberOfTrainingJobsObjectiveNotImproving" in data:
+    if data.get("NumberOfTrainingJobsObjectiveNotImproving") is not None:
         out["number_of_training_jobs_objective_not_improving"] = data[
             "NumberOfTrainingJobsObjectiveNotImproving"
         ]
-    if "ConvergenceDetectedTime" in data:
+    if data.get("ConvergenceDetectedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["convergence_detected_time"] = (

@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: InvalidInstanceNameException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidInstanceNameException_:
     out: InvalidInstanceNameException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,18 @@ class InvalidInstanceNameException(ServiceError):
 
     code: str | None = "InvalidInstanceNameException"
 
-    def __init__(self, data: InvalidInstanceNameException_):
+    def __init__(self, data: InvalidInstanceNameException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidInstanceNameException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidInstanceNameException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidInstanceNameException":
+        return cls(deserialize_aws_json_1_1(data), message)

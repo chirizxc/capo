@@ -48,18 +48,18 @@ def serialize_json(value: VolumeDetail) -> dict:
 
 def deserialize_json(data: dict) -> VolumeDetail:
     out: VolumeDetail = {}  # type: ignore[typeddict-item]
-    if "volumeArn" in data:
+    if data.get("volumeArn") is not None:
         out["volume_arn"] = data["volumeArn"]
-    if "volumeType" in data:
+    if data.get("volumeType") is not None:
         out["volume_type"] = data["volumeType"]
-    if "deviceName" in data:
+    if data.get("deviceName") is not None:
         out["device_name"] = data["deviceName"]
-    if "volumeSizeInGB" in data:
+    if data.get("volumeSizeInGB") is not None:
         out["volume_size_in_gb"] = data["volumeSizeInGB"]
-    if "encryptionType" in data:
+    if data.get("encryptionType") is not None:
         out["encryption_type"] = data["encryptionType"]
-    if "snapshotArn" in data:
+    if data.get("snapshotArn") is not None:
         out["snapshot_arn"] = data["snapshotArn"]
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
     return out

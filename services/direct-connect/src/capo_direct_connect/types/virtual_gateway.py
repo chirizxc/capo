@@ -32,8 +32,8 @@ def serialize_aws_json_1_1(value: VirtualGateway) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> VirtualGateway:
     out: VirtualGateway = {}  # type: ignore[typeddict-item]
-    if "virtualGatewayId" in data:
+    if data.get("virtualGatewayId") is not None:
         out["virtual_gateway_id"] = data["virtualGatewayId"]
-    if "virtualGatewayState" in data:
+    if data.get("virtualGatewayState") is not None:
         out["virtual_gateway_state"] = data["virtualGatewayState"]
     return out

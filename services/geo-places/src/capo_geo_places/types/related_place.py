@@ -57,29 +57,29 @@ def serialize_json(value: RelatedPlace) -> dict:
 
 def deserialize_json(data: dict) -> RelatedPlace:
     out: RelatedPlace = {}  # type: ignore[typeddict-item]
-    if "PlaceId" in data:
+    if data.get("PlaceId") is not None:
         out["place_id"] = data["PlaceId"]
     else:
         raise DeserializationError("RelatedPlace.place_id required")
-    if "PlaceType" in data:
+    if data.get("PlaceType") is not None:
         out["place_type"] = data["PlaceType"]
     else:
         raise DeserializationError("RelatedPlace.place_type required")
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
     else:
         raise DeserializationError("RelatedPlace.title required")
-    if "Address" in data:
+    if data.get("Address") is not None:
         import capo_geo_places.types.address
 
         out["address"] = capo_geo_places.types.address.deserialize_json(data["Address"])
-    if "Position" in data:
+    if data.get("Position") is not None:
         import capo_geo_places.types.position
 
         out["position"] = capo_geo_places.types.position.deserialize_json(
             data["Position"]
         )
-    if "AccessPoints" in data:
+    if data.get("AccessPoints") is not None:
         import capo_geo_places.types.access_point_list
 
         out["access_points"] = capo_geo_places.types.access_point_list.deserialize_json(

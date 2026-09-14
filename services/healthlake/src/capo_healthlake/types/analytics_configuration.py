@@ -27,7 +27,7 @@ def serialize_aws_json_1_0(value: AnalyticsConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AnalyticsConfiguration:
     out: AnalyticsConfiguration = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_healthlake.types.analytics_status
 
         out["status"] = capo_healthlake.types.analytics_status.deserialize_aws_json_1_0(

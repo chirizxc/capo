@@ -44,13 +44,13 @@ def serialize_aws_json_1_1(value: StartBgpFailoverTestRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartBgpFailoverTestRequest:
     out: StartBgpFailoverTestRequest = {}  # type: ignore[typeddict-item]
-    if "virtualInterfaceId" in data:
+    if data.get("virtualInterfaceId") is not None:
         out["virtual_interface_id"] = data["virtualInterfaceId"]
     else:
         raise DeserializationError(
             "StartBgpFailoverTestRequest.virtual_interface_id required"
         )
-    if "bgpPeers" in data:
+    if data.get("bgpPeers") is not None:
         import capo_direct_connect.types.bgp_peer_id_list
 
         out["bgp_peers"] = (
@@ -58,6 +58,6 @@ def deserialize_aws_json_1_1(data: dict) -> StartBgpFailoverTestRequest:
                 data["bgpPeers"]
             )
         )
-    if "testDurationInMinutes" in data:
+    if data.get("testDurationInMinutes") is not None:
         out["test_duration_in_minutes"] = data["testDurationInMinutes"]
     return out

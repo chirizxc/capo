@@ -14,4 +14,4 @@ def serialize_json(value: ContactTagKeys) -> list:
 
 
 def deserialize_json(data: list) -> ContactTagKeys:
-    return list(data)
+    return [item for item in data if item is not None]

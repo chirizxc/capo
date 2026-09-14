@@ -57,11 +57,11 @@ def serialize_json(value: FulfillmentUpdatesSpecification) -> dict:
 
 def deserialize_json(data: dict) -> FulfillmentUpdatesSpecification:
     out: FulfillmentUpdatesSpecification = {}  # type: ignore[typeddict-item]
-    if "active" in data:
+    if data.get("active") is not None:
         out["active"] = data["active"]
     else:
         raise DeserializationError("FulfillmentUpdatesSpecification.active required")
-    if "startResponse" in data:
+    if data.get("startResponse") is not None:
         import capo_lex_models_v2.types.fulfillment_start_response_specification
 
         out["start_response"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> FulfillmentUpdatesSpecification:
                 data["startResponse"]
             )
         )
-    if "updateResponse" in data:
+    if data.get("updateResponse") is not None:
         import capo_lex_models_v2.types.fulfillment_update_response_specification
 
         out["update_response"] = (
@@ -77,6 +77,6 @@ def deserialize_json(data: dict) -> FulfillmentUpdatesSpecification:
                 data["updateResponse"]
             )
         )
-    if "timeoutInSeconds" in data:
+    if data.get("timeoutInSeconds") is not None:
         out["timeout_in_seconds"] = data["timeoutInSeconds"]
     return out

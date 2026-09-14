@@ -121,7 +121,7 @@ def serialize_json(value: AddressComponentPhonemes) -> dict:
 
 def deserialize_json(data: dict) -> AddressComponentPhonemes:
     out: AddressComponentPhonemes = {}  # type: ignore[typeddict-item]
-    if "Country" in data:
+    if data.get("Country") is not None:
         import capo_geo_places.types.phoneme_transcription_list
 
         out["country"] = (
@@ -129,7 +129,7 @@ def deserialize_json(data: dict) -> AddressComponentPhonemes:
                 data["Country"]
             )
         )
-    if "Region" in data:
+    if data.get("Region") is not None:
         import capo_geo_places.types.phoneme_transcription_list
 
         out["region"] = (
@@ -137,7 +137,7 @@ def deserialize_json(data: dict) -> AddressComponentPhonemes:
                 data["Region"]
             )
         )
-    if "SubRegion" in data:
+    if data.get("SubRegion") is not None:
         import capo_geo_places.types.phoneme_transcription_list
 
         out["sub_region"] = (
@@ -145,7 +145,7 @@ def deserialize_json(data: dict) -> AddressComponentPhonemes:
                 data["SubRegion"]
             )
         )
-    if "Locality" in data:
+    if data.get("Locality") is not None:
         import capo_geo_places.types.phoneme_transcription_list
 
         out["locality"] = (
@@ -153,7 +153,7 @@ def deserialize_json(data: dict) -> AddressComponentPhonemes:
                 data["Locality"]
             )
         )
-    if "District" in data:
+    if data.get("District") is not None:
         import capo_geo_places.types.phoneme_transcription_list
 
         out["district"] = (
@@ -161,7 +161,7 @@ def deserialize_json(data: dict) -> AddressComponentPhonemes:
                 data["District"]
             )
         )
-    if "SubDistrict" in data:
+    if data.get("SubDistrict") is not None:
         import capo_geo_places.types.phoneme_transcription_list
 
         out["sub_district"] = (
@@ -169,7 +169,7 @@ def deserialize_json(data: dict) -> AddressComponentPhonemes:
                 data["SubDistrict"]
             )
         )
-    if "Block" in data:
+    if data.get("Block") is not None:
         import capo_geo_places.types.phoneme_transcription_list
 
         out["block"] = (
@@ -177,7 +177,7 @@ def deserialize_json(data: dict) -> AddressComponentPhonemes:
                 data["Block"]
             )
         )
-    if "SubBlock" in data:
+    if data.get("SubBlock") is not None:
         import capo_geo_places.types.phoneme_transcription_list
 
         out["sub_block"] = (
@@ -185,7 +185,7 @@ def deserialize_json(data: dict) -> AddressComponentPhonemes:
                 data["SubBlock"]
             )
         )
-    if "Street" in data:
+    if data.get("Street") is not None:
         import capo_geo_places.types.phoneme_transcription_list
 
         out["street"] = (

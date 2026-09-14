@@ -32,12 +32,12 @@ def serialize_json(value: PersistentChat) -> dict:
 
 def deserialize_json(data: dict) -> PersistentChat:
     out: PersistentChat = {}  # type: ignore[typeddict-item]
-    if "RehydrationType" in data:
+    if data.get("RehydrationType") is not None:
         import capo_connect.types.rehydration_type
 
         out["rehydration_type"] = capo_connect.types.rehydration_type.deserialize_json(
             data["RehydrationType"]
         )
-    if "SourceContactId" in data:
+    if data.get("SourceContactId") is not None:
         out["source_contact_id"] = data["SourceContactId"]
     return out

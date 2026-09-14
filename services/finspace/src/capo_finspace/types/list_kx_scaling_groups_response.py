@@ -34,7 +34,7 @@ def serialize_json(value: ListKxScalingGroupsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListKxScalingGroupsResponse:
     out: ListKxScalingGroupsResponse = {}  # type: ignore[typeddict-item]
-    if "scalingGroups" in data:
+    if data.get("scalingGroups") is not None:
         import capo_finspace.types.kx_scaling_group_list
 
         out["scaling_groups"] = (
@@ -42,6 +42,6 @@ def deserialize_json(data: dict) -> ListKxScalingGroupsResponse:
                 data["scalingGroups"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

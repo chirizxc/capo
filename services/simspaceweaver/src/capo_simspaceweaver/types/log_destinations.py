@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> LogDestinations:
 
     out: LogDestinations = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_simspaceweaver.types.log_destination.deserialize_json(item))
     return out

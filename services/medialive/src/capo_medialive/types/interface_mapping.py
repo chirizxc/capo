@@ -27,8 +27,8 @@ def serialize_json(value: InterfaceMapping) -> dict:
 
 def deserialize_json(data: dict) -> InterfaceMapping:
     out: InterfaceMapping = {}  # type: ignore[typeddict-item]
-    if "logicalInterfaceName" in data:
+    if data.get("logicalInterfaceName") is not None:
         out["logical_interface_name"] = data["logicalInterfaceName"]
-    if "networkId" in data:
+    if data.get("networkId") is not None:
         out["network_id"] = data["networkId"]
     return out

@@ -41,7 +41,15 @@ def serialize_aws_json_1_1(value: StartColumnStatisticsTaskRunRequest) -> dict:
             value["column_name_list"]
         )
     out["Role"] = value["role"]
-    out["SampleSize"] = value.get("sample_size", 0)
+    out["SampleSize"] = (
+        "NaN"
+        if value.get("sample_size", 0) != value.get("sample_size", 0)
+        else "Infinity"
+        if value.get("sample_size", 0) == float("inf")
+        else "-Infinity"
+        if value.get("sample_size", 0) == float("-inf")
+        else value.get("sample_size", 0)
+    )
     if "catalog_id" in value:
         out["CatalogID"] = value["catalog_id"]
     if "security_configuration" in value:
@@ -51,19 +59,19 @@ def serialize_aws_json_1_1(value: StartColumnStatisticsTaskRunRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartColumnStatisticsTaskRunRequest:
     out: StartColumnStatisticsTaskRunRequest = {}  # type: ignore[typeddict-item]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError(
             "StartColumnStatisticsTaskRunRequest.database_name required"
         )
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
     else:
         raise DeserializationError(
             "StartColumnStatisticsTaskRunRequest.table_name required"
         )
-    if "ColumnNameList" in data:
+    if data.get("ColumnNameList") is not None:
         import capo_glue.types.column_name_list
 
         out["column_name_list"] = (
@@ -71,16 +79,16 @@ def deserialize_aws_json_1_1(data: dict) -> StartColumnStatisticsTaskRunRequest:
                 data["ColumnNameList"]
             )
         )
-    if "Role" in data:
+    if data.get("Role") is not None:
         out["role"] = data["Role"]
     else:
         raise DeserializationError("StartColumnStatisticsTaskRunRequest.role required")
-    if "SampleSize" in data:
-        out["sample_size"] = data["SampleSize"]
+    if data.get("SampleSize") is not None:
+        out["sample_size"] = float(data["SampleSize"])
     else:
         out["sample_size"] = 0
-    if "CatalogID" in data:
+    if data.get("CatalogID") is not None:
         out["catalog_id"] = data["CatalogID"]
-    if "SecurityConfiguration" in data:
+    if data.get("SecurityConfiguration") is not None:
         out["security_configuration"] = data["SecurityConfiguration"]
     return out

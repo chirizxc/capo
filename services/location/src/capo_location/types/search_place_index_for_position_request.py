@@ -44,7 +44,7 @@ def serialize_json(value: SearchPlaceIndexForPositionRequest) -> dict:
 
 def deserialize_json(data: dict) -> SearchPlaceIndexForPositionRequest:
     out: SearchPlaceIndexForPositionRequest = {}  # type: ignore[typeddict-item]
-    if "Position" in data:
+    if data.get("Position") is not None:
         import capo_location.types.position
 
         out["position"] = capo_location.types.position.deserialize_json(
@@ -54,8 +54,8 @@ def deserialize_json(data: dict) -> SearchPlaceIndexForPositionRequest:
         raise DeserializationError(
             "SearchPlaceIndexForPositionRequest.position required"
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "Language" in data:
+    if data.get("Language") is not None:
         out["language"] = data["Language"]
     return out

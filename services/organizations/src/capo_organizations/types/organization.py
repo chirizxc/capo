@@ -69,11 +69,11 @@ def serialize_aws_json_1_1(value: Organization) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Organization:
     out: Organization = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "FeatureSet" in data:
+    if data.get("FeatureSet") is not None:
         import capo_organizations.types.organization_feature_set
 
         out["feature_set"] = (
@@ -81,13 +81,13 @@ def deserialize_aws_json_1_1(data: dict) -> Organization:
                 data["FeatureSet"]
             )
         )
-    if "MasterAccountArn" in data:
+    if data.get("MasterAccountArn") is not None:
         out["master_account_arn"] = data["MasterAccountArn"]
-    if "MasterAccountId" in data:
+    if data.get("MasterAccountId") is not None:
         out["master_account_id"] = data["MasterAccountId"]
-    if "MasterAccountEmail" in data:
+    if data.get("MasterAccountEmail") is not None:
         out["master_account_email"] = data["MasterAccountEmail"]
-    if "AvailablePolicyTypes" in data:
+    if data.get("AvailablePolicyTypes") is not None:
         import capo_organizations.types.policy_types
 
         out["available_policy_types"] = (

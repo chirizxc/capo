@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: ListBudgetsForResourceOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListBudgetsForResourceOutput:
     out: ListBudgetsForResourceOutput = {}  # type: ignore[typeddict-item]
-    if "Budgets" in data:
+    if data.get("Budgets") is not None:
         import capo_service_catalog.types.budgets
 
         out["budgets"] = capo_service_catalog.types.budgets.deserialize_aws_json_1_1(
             data["Budgets"]
         )
-    if "NextPageToken" in data:
+    if data.get("NextPageToken") is not None:
         out["next_page_token"] = data["NextPageToken"]
     return out

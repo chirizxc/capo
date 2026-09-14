@@ -120,7 +120,7 @@ def serialize_aws_json_1_1(value: ProjectEnvironment) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProjectEnvironment:
     out: ProjectEnvironment = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_codebuild.types.environment_type
 
         out["type"] = capo_codebuild.types.environment_type.deserialize_aws_json_1_1(
@@ -128,11 +128,11 @@ def deserialize_aws_json_1_1(data: dict) -> ProjectEnvironment:
         )
     else:
         raise DeserializationError("ProjectEnvironment.type required")
-    if "image" in data:
+    if data.get("image") is not None:
         out["image"] = data["image"]
     else:
         raise DeserializationError("ProjectEnvironment.image required")
-    if "computeType" in data:
+    if data.get("computeType") is not None:
         import capo_codebuild.types.compute_type
 
         out["compute_type"] = (
@@ -142,7 +142,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProjectEnvironment:
         )
     else:
         raise DeserializationError("ProjectEnvironment.compute_type required")
-    if "computeConfiguration" in data:
+    if data.get("computeConfiguration") is not None:
         import capo_codebuild.types.compute_configuration
 
         out["compute_configuration"] = (
@@ -150,13 +150,13 @@ def deserialize_aws_json_1_1(data: dict) -> ProjectEnvironment:
                 data["computeConfiguration"]
             )
         )
-    if "fleet" in data:
+    if data.get("fleet") is not None:
         import capo_codebuild.types.project_fleet
 
         out["fleet"] = capo_codebuild.types.project_fleet.deserialize_aws_json_1_1(
             data["fleet"]
         )
-    if "environmentVariables" in data:
+    if data.get("environmentVariables") is not None:
         import capo_codebuild.types.environment_variables
 
         out["environment_variables"] = (
@@ -164,11 +164,11 @@ def deserialize_aws_json_1_1(data: dict) -> ProjectEnvironment:
                 data["environmentVariables"]
             )
         )
-    if "privilegedMode" in data:
+    if data.get("privilegedMode") is not None:
         out["privileged_mode"] = data["privilegedMode"]
-    if "certificate" in data:
+    if data.get("certificate") is not None:
         out["certificate"] = data["certificate"]
-    if "registryCredential" in data:
+    if data.get("registryCredential") is not None:
         import capo_codebuild.types.registry_credential
 
         out["registry_credential"] = (
@@ -176,7 +176,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProjectEnvironment:
                 data["registryCredential"]
             )
         )
-    if "imagePullCredentialsType" in data:
+    if data.get("imagePullCredentialsType") is not None:
         import capo_codebuild.types.image_pull_credentials_type
 
         out["image_pull_credentials_type"] = (
@@ -184,7 +184,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProjectEnvironment:
                 data["imagePullCredentialsType"]
             )
         )
-    if "dockerServer" in data:
+    if data.get("dockerServer") is not None:
         import capo_codebuild.types.docker_server
 
         out["docker_server"] = (

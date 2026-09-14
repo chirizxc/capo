@@ -27,7 +27,7 @@ def serialize_json(value: PurchaseOfferingResponse) -> dict:
 
 def deserialize_json(data: dict) -> PurchaseOfferingResponse:
     out: PurchaseOfferingResponse = {}  # type: ignore[typeddict-item]
-    if "reservation" in data:
+    if data.get("reservation") is not None:
         import capo_mediaconnect.types.reservation
 
         out["reservation"] = capo_mediaconnect.types.reservation.deserialize_json(

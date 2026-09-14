@@ -62,7 +62,7 @@ def serialize_json(value: ListSourceAssociationsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListSourceAssociationsRequest:
     out: ListSourceAssociationsRequest = {}  # type: ignore[typeddict-item]
-    if "resourceShareArns" in data:
+    if data.get("resourceShareArns") is not None:
         import capo_ram.types.resource_share_arn_list
 
         out["resource_share_arns"] = (
@@ -70,11 +70,11 @@ def deserialize_json(data: dict) -> ListSourceAssociationsRequest:
                 data["resourceShareArns"]
             )
         )
-    if "sourceId" in data:
+    if data.get("sourceId") is not None:
         out["source_id"] = data["sourceId"]
-    if "sourceType" in data:
+    if data.get("sourceType") is not None:
         out["source_type"] = data["sourceType"]
-    if "associationStatus" in data:
+    if data.get("associationStatus") is not None:
         import capo_ram.types.resource_share_association_status
 
         out["association_status"] = (
@@ -82,8 +82,8 @@ def deserialize_json(data: dict) -> ListSourceAssociationsRequest:
                 data["associationStatus"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

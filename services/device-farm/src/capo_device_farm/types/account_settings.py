@@ -88,9 +88,9 @@ def serialize_aws_json_1_1(value: AccountSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AccountSettings:
     out: AccountSettings = {}  # type: ignore[typeddict-item]
-    if "awsAccountNumber" in data:
+    if data.get("awsAccountNumber") is not None:
         out["aws_account_number"] = data["awsAccountNumber"]
-    if "unmeteredDevices" in data:
+    if data.get("unmeteredDevices") is not None:
         import capo_device_farm.types.purchased_devices_map
 
         out["unmetered_devices"] = (
@@ -98,7 +98,7 @@ def deserialize_aws_json_1_1(data: dict) -> AccountSettings:
                 data["unmeteredDevices"]
             )
         )
-    if "unmeteredRemoteAccessDevices" in data:
+    if data.get("unmeteredRemoteAccessDevices") is not None:
         import capo_device_farm.types.purchased_devices_map
 
         out["unmetered_remote_access_devices"] = (
@@ -106,9 +106,9 @@ def deserialize_aws_json_1_1(data: dict) -> AccountSettings:
                 data["unmeteredRemoteAccessDevices"]
             )
         )
-    if "maxJobTimeoutMinutes" in data:
+    if data.get("maxJobTimeoutMinutes") is not None:
         out["max_job_timeout_minutes"] = data["maxJobTimeoutMinutes"]
-    if "trialMinutes" in data:
+    if data.get("trialMinutes") is not None:
         import capo_device_farm.types.trial_minutes
 
         out["trial_minutes"] = (
@@ -116,14 +116,14 @@ def deserialize_aws_json_1_1(data: dict) -> AccountSettings:
                 data["trialMinutes"]
             )
         )
-    if "maxSlots" in data:
+    if data.get("maxSlots") is not None:
         import capo_device_farm.types.max_slot_map
 
         out["max_slots"] = capo_device_farm.types.max_slot_map.deserialize_aws_json_1_1(
             data["maxSlots"]
         )
-    if "defaultJobTimeoutMinutes" in data:
+    if data.get("defaultJobTimeoutMinutes") is not None:
         out["default_job_timeout_minutes"] = data["defaultJobTimeoutMinutes"]
-    if "skipAppResign" in data:
+    if data.get("skipAppResign") is not None:
         out["skip_app_resign"] = data["skipAppResign"]
     return out

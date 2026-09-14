@@ -42,11 +42,11 @@ def serialize_json(value: CreateMitigationActionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateMitigationActionRequest:
     out: CreateMitigationActionRequest = {}  # type: ignore[typeddict-item]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("CreateMitigationActionRequest.role_arn required")
-    if "actionParams" in data:
+    if data.get("actionParams") is not None:
         import capo_iot.types.mitigation_action_params
 
         out["action_params"] = capo_iot.types.mitigation_action_params.deserialize_json(
@@ -56,7 +56,7 @@ def deserialize_json(data: dict) -> CreateMitigationActionRequest:
         raise DeserializationError(
             "CreateMitigationActionRequest.action_params required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iot.types.tag_list
 
         out["tags"] = capo_iot.types.tag_list.deserialize_json(data["tags"])

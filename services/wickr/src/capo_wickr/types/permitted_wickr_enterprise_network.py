@@ -28,11 +28,11 @@ def serialize_json(value: PermittedWickrEnterpriseNetwork) -> dict:
 
 def deserialize_json(data: dict) -> PermittedWickrEnterpriseNetwork:
     out: PermittedWickrEnterpriseNetwork = {}  # type: ignore[typeddict-item]
-    if "domain" in data:
+    if data.get("domain") is not None:
         out["domain"] = data["domain"]
     else:
         raise DeserializationError("PermittedWickrEnterpriseNetwork.domain required")
-    if "networkId" in data:
+    if data.get("networkId") is not None:
         out["network_id"] = data["networkId"]
     else:
         raise DeserializationError(

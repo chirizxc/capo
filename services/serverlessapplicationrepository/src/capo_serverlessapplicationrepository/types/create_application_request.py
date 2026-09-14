@@ -112,13 +112,13 @@ def serialize_json(value: CreateApplicationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateApplicationRequest:
     out: CreateApplicationRequest = {}  # type: ignore[typeddict-item]
-    if "author" in data:
+    if data.get("author") is not None:
         out["author"] = data["author"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "homePageUrl" in data:
+    if data.get("homePageUrl") is not None:
         out["home_page_url"] = data["homePageUrl"]
-    if "labels" in data:
+    if data.get("labels") is not None:
         import capo_serverlessapplicationrepository.types.__list_of__string
 
         out["labels"] = (
@@ -126,26 +126,26 @@ def deserialize_json(data: dict) -> CreateApplicationRequest:
                 data["labels"]
             )
         )
-    if "licenseBody" in data:
+    if data.get("licenseBody") is not None:
         out["license_body"] = data["licenseBody"]
-    if "licenseUrl" in data:
+    if data.get("licenseUrl") is not None:
         out["license_url"] = data["licenseUrl"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "readmeBody" in data:
+    if data.get("readmeBody") is not None:
         out["readme_body"] = data["readmeBody"]
-    if "readmeUrl" in data:
+    if data.get("readmeUrl") is not None:
         out["readme_url"] = data["readmeUrl"]
-    if "semanticVersion" in data:
+    if data.get("semanticVersion") is not None:
         out["semantic_version"] = data["semanticVersion"]
-    if "sourceCodeArchiveUrl" in data:
+    if data.get("sourceCodeArchiveUrl") is not None:
         out["source_code_archive_url"] = data["sourceCodeArchiveUrl"]
-    if "sourceCodeUrl" in data:
+    if data.get("sourceCodeUrl") is not None:
         out["source_code_url"] = data["sourceCodeUrl"]
-    if "spdxLicenseId" in data:
+    if data.get("spdxLicenseId") is not None:
         out["spdx_license_id"] = data["spdxLicenseId"]
-    if "templateBody" in data:
+    if data.get("templateBody") is not None:
         out["template_body"] = data["templateBody"]
-    if "templateUrl" in data:
+    if data.get("templateUrl") is not None:
         out["template_url"] = data["templateUrl"]
     return out

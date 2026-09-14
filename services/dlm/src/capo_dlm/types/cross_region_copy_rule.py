@@ -67,17 +67,17 @@ def serialize_json(value: CrossRegionCopyRule) -> dict:
 
 def deserialize_json(data: dict) -> CrossRegionCopyRule:
     out: CrossRegionCopyRule = {}  # type: ignore[typeddict-item]
-    if "TargetRegion" in data:
+    if data.get("TargetRegion") is not None:
         out["target_region"] = data["TargetRegion"]
-    if "Target" in data:
+    if data.get("Target") is not None:
         out["target"] = data["Target"]
-    if "Encrypted" in data:
+    if data.get("Encrypted") is not None:
         out["encrypted"] = data["Encrypted"]
-    if "CmkArn" in data:
+    if data.get("CmkArn") is not None:
         out["cmk_arn"] = data["CmkArn"]
-    if "CopyTags" in data:
+    if data.get("CopyTags") is not None:
         out["copy_tags"] = data["CopyTags"]
-    if "RetainRule" in data:
+    if data.get("RetainRule") is not None:
         import capo_dlm.types.cross_region_copy_retain_rule
 
         out["retain_rule"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> CrossRegionCopyRule:
                 data["RetainRule"]
             )
         )
-    if "DeprecateRule" in data:
+    if data.get("DeprecateRule") is not None:
         import capo_dlm.types.cross_region_copy_deprecate_rule
 
         out["deprecate_rule"] = (

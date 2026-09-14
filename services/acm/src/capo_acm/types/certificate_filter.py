@@ -58,9 +58,9 @@ def serialize_aws_json_1_1(value: CertificateFilter) -> dict:
 
 
 def deserialize_aws_json_1_1(data: dict) -> CertificateFilter:
-    if "CertificateArn" in data:
+    if data.get("CertificateArn") is not None:
         return {"CertificateArn": data["CertificateArn"]}
-    elif "X509AttributeFilter" in data:
+    elif data.get("X509AttributeFilter") is not None:
         import capo_acm.types.x509_attribute_filter
 
         return {
@@ -68,7 +68,7 @@ def deserialize_aws_json_1_1(data: dict) -> CertificateFilter:
                 data["X509AttributeFilter"]
             )
         }
-    elif "AcmCertificateMetadataFilter" in data:
+    elif data.get("AcmCertificateMetadataFilter") is not None:
         import capo_acm.types.acm_certificate_metadata_filter
 
         return {

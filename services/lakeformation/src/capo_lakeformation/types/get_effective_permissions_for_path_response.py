@@ -36,7 +36,7 @@ def serialize_json(value: GetEffectivePermissionsForPathResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetEffectivePermissionsForPathResponse:
     out: GetEffectivePermissionsForPathResponse = {}  # type: ignore[typeddict-item]
-    if "Permissions" in data:
+    if data.get("Permissions") is not None:
         import capo_lakeformation.types.principal_resource_permissions_list
 
         out["permissions"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> GetEffectivePermissionsForPathResponse:
                 data["Permissions"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -56,19 +56,19 @@ def serialize_aws_json_1_1(value: UpdateScalingPlanRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateScalingPlanRequest:
     out: UpdateScalingPlanRequest = {}  # type: ignore[typeddict-item]
-    if "ScalingPlanName" in data:
+    if data.get("ScalingPlanName") is not None:
         out["scaling_plan_name"] = data["ScalingPlanName"]
     else:
         raise DeserializationError(
             "UpdateScalingPlanRequest.scaling_plan_name required"
         )
-    if "ScalingPlanVersion" in data:
+    if data.get("ScalingPlanVersion") is not None:
         out["scaling_plan_version"] = data["ScalingPlanVersion"]
     else:
         raise DeserializationError(
             "UpdateScalingPlanRequest.scaling_plan_version required"
         )
-    if "ApplicationSource" in data:
+    if data.get("ApplicationSource") is not None:
         import capo_auto_scaling_plans.types.application_source
 
         out["application_source"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateScalingPlanRequest:
                 data["ApplicationSource"]
             )
         )
-    if "ScalingInstructions" in data:
+    if data.get("ScalingInstructions") is not None:
         import capo_auto_scaling_plans.types.scaling_instructions
 
         out["scaling_instructions"] = (

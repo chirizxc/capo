@@ -108,15 +108,15 @@ def serialize_aws_json_1_1(value: CreateDevEndpointRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDevEndpointRequest:
     out: CreateDevEndpointRequest = {}  # type: ignore[typeddict-item]
-    if "EndpointName" in data:
+    if data.get("EndpointName") is not None:
         out["endpoint_name"] = data["EndpointName"]
     else:
         raise DeserializationError("CreateDevEndpointRequest.endpoint_name required")
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError("CreateDevEndpointRequest.role_arn required")
-    if "SecurityGroupIds" in data:
+    if data.get("SecurityGroupIds") is not None:
         import capo_glue.types.string_list
 
         out["security_group_ids"] = (
@@ -124,41 +124,41 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDevEndpointRequest:
                 data["SecurityGroupIds"]
             )
         )
-    if "SubnetId" in data:
+    if data.get("SubnetId") is not None:
         out["subnet_id"] = data["SubnetId"]
-    if "PublicKey" in data:
+    if data.get("PublicKey") is not None:
         out["public_key"] = data["PublicKey"]
-    if "PublicKeys" in data:
+    if data.get("PublicKeys") is not None:
         import capo_glue.types.public_keys_list
 
         out["public_keys"] = capo_glue.types.public_keys_list.deserialize_aws_json_1_1(
             data["PublicKeys"]
         )
-    if "NumberOfNodes" in data:
+    if data.get("NumberOfNodes") is not None:
         out["number_of_nodes"] = data["NumberOfNodes"]
     else:
         out["number_of_nodes"] = 0
-    if "WorkerType" in data:
+    if data.get("WorkerType") is not None:
         import capo_glue.types.worker_type
 
         out["worker_type"] = capo_glue.types.worker_type.deserialize_aws_json_1_1(
             data["WorkerType"]
         )
-    if "GlueVersion" in data:
+    if data.get("GlueVersion") is not None:
         out["glue_version"] = data["GlueVersion"]
-    if "NumberOfWorkers" in data:
+    if data.get("NumberOfWorkers") is not None:
         out["number_of_workers"] = data["NumberOfWorkers"]
-    if "ExtraPythonLibsS3Path" in data:
+    if data.get("ExtraPythonLibsS3Path") is not None:
         out["extra_python_libs_s3_path"] = data["ExtraPythonLibsS3Path"]
-    if "ExtraJarsS3Path" in data:
+    if data.get("ExtraJarsS3Path") is not None:
         out["extra_jars_s3_path"] = data["ExtraJarsS3Path"]
-    if "SecurityConfiguration" in data:
+    if data.get("SecurityConfiguration") is not None:
         out["security_configuration"] = data["SecurityConfiguration"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_glue.types.tags_map
 
         out["tags"] = capo_glue.types.tags_map.deserialize_aws_json_1_1(data["Tags"])
-    if "Arguments" in data:
+    if data.get("Arguments") is not None:
         import capo_glue.types.map_value
 
         out["arguments"] = capo_glue.types.map_value.deserialize_aws_json_1_1(

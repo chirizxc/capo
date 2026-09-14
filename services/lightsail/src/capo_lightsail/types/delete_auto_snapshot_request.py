@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: DeleteAutoSnapshotRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteAutoSnapshotRequest:
     out: DeleteAutoSnapshotRequest = {}  # type: ignore[typeddict-item]
-    if "resourceName" in data:
+    if data.get("resourceName") is not None:
         out["resource_name"] = data["resourceName"]
     else:
         raise DeserializationError("DeleteAutoSnapshotRequest.resource_name required")
-    if "date" in data:
+    if data.get("date") is not None:
         out["date"] = data["date"]
     else:
         raise DeserializationError("DeleteAutoSnapshotRequest.date required")

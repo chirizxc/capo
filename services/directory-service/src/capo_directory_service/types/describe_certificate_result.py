@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: DescribeCertificateResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeCertificateResult:
     out: DescribeCertificateResult = {}  # type: ignore[typeddict-item]
-    if "Certificate" in data:
+    if data.get("Certificate") is not None:
         import capo_directory_service.types.certificate
 
         out["certificate"] = (

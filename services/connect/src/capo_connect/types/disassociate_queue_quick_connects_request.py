@@ -34,7 +34,7 @@ def serialize_json(value: DisassociateQueueQuickConnectsRequest) -> dict:
 
 def deserialize_json(data: dict) -> DisassociateQueueQuickConnectsRequest:
     out: DisassociateQueueQuickConnectsRequest = {}  # type: ignore[typeddict-item]
-    if "QuickConnectIds" in data:
+    if data.get("QuickConnectIds") is not None:
         import capo_connect.types.quick_connects_list
 
         out["quick_connect_ids"] = (

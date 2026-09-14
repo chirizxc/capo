@@ -55,7 +55,7 @@ def serialize_json(value: FormStyle) -> dict:
 
 def deserialize_json(data: dict) -> FormStyle:
     out: FormStyle = {}  # type: ignore[typeddict-item]
-    if "horizontalGap" in data:
+    if data.get("horizontalGap") is not None:
         import capo_amplifyuibuilder.types.form_style_config
 
         out["horizontal_gap"] = (
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> FormStyle:
                 data["horizontalGap"]
             )
         )
-    if "verticalGap" in data:
+    if data.get("verticalGap") is not None:
         import capo_amplifyuibuilder.types.form_style_config
 
         out["vertical_gap"] = (
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> FormStyle:
                 data["verticalGap"]
             )
         )
-    if "outerPadding" in data:
+    if data.get("outerPadding") is not None:
         import capo_amplifyuibuilder.types.form_style_config
 
         out["outer_padding"] = (

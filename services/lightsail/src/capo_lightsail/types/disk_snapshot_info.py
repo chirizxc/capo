@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: DiskSnapshotInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DiskSnapshotInfo:
     out: DiskSnapshotInfo = {}  # type: ignore[typeddict-item]
-    if "sizeInGb" in data:
+    if data.get("sizeInGb") is not None:
         out["size_in_gb"] = data["sizeInGb"]
     return out

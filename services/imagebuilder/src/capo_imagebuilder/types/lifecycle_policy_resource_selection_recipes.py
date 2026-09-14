@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> LifecyclePolicyResourceSelectionRecipes:
 
     out: LifecyclePolicyResourceSelectionRecipes = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_imagebuilder.types.lifecycle_policy_resource_selection_recipe.deserialize_json(
                 item

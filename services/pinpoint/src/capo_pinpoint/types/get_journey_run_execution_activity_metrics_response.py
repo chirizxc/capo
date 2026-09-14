@@ -30,7 +30,7 @@ def serialize_json(value: GetJourneyRunExecutionActivityMetricsResponse) -> dict
 
 def deserialize_json(data: dict) -> GetJourneyRunExecutionActivityMetricsResponse:
     out: GetJourneyRunExecutionActivityMetricsResponse = {}  # type: ignore[typeddict-item]
-    if "JourneyRunExecutionActivityMetricsResponse" in data:
+    if data.get("JourneyRunExecutionActivityMetricsResponse") is not None:
         import capo_pinpoint.types.journey_run_execution_activity_metrics_response
 
         out["journey_run_execution_activity_metrics_response"] = (

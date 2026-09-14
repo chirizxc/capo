@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> TelemetryMetadataList:
 
     out: TelemetryMetadataList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_inspector.types.telemetry_metadata.deserialize_aws_json_1_1(item)
         )

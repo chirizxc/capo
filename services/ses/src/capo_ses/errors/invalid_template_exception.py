@@ -44,15 +44,18 @@ class InvalidTemplateException(ServiceError):
 
     code: str | None = "InvalidTemplateException"
 
-    def __init__(self, data: InvalidTemplateException_):
+    def __init__(self, data: InvalidTemplateException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidTemplateException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "InvalidTemplateException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "InvalidTemplateException":
+        return cls(deserialize_query(el), message)

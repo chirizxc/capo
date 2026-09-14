@@ -31,17 +31,17 @@ def serialize_json(value: ResourceAlreadyExistsException_) -> dict:
 
 def deserialize_json(data: dict) -> ResourceAlreadyExistsException_:
     out: ResourceAlreadyExistsException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("ResourceAlreadyExistsException_.message required")
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         out["resource_id"] = data["resourceId"]
     else:
         raise DeserializationError(
             "ResourceAlreadyExistsException_.resource_id required"
         )
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     else:
         raise DeserializationError(
@@ -55,15 +55,20 @@ class ResourceAlreadyExistsException(ServiceError):
 
     code: str | None = "ResourceAlreadyExistsException"
 
-    def __init__(self, data: ResourceAlreadyExistsException_):
+    def __init__(
+        self, data: ResourceAlreadyExistsException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ResourceAlreadyExistsException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ResourceAlreadyExistsException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "ResourceAlreadyExistsException":
+        return cls(deserialize_json(data), message)

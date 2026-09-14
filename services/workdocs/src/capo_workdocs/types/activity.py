@@ -93,35 +93,35 @@ def serialize_json(value: Activity) -> dict:
 
 def deserialize_json(data: dict) -> Activity:
     out: Activity = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_workdocs.types.activity_type
 
         out["type"] = capo_workdocs.types.activity_type.deserialize_json(data["Type"])
-    if "TimeStamp" in data:
+    if data.get("TimeStamp") is not None:
         import capo_workdocs.types.timestamp_type
 
         out["time_stamp"] = capo_workdocs.types.timestamp_type.deserialize_json(
             data["TimeStamp"]
         )
-    if "IsIndirectActivity" in data:
+    if data.get("IsIndirectActivity") is not None:
         out["is_indirect_activity"] = data["IsIndirectActivity"]
     else:
         out["is_indirect_activity"] = False
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
-    if "Initiator" in data:
+    if data.get("Initiator") is not None:
         import capo_workdocs.types.user_metadata
 
         out["initiator"] = capo_workdocs.types.user_metadata.deserialize_json(
             data["Initiator"]
         )
-    if "Participants" in data:
+    if data.get("Participants") is not None:
         import capo_workdocs.types.participants
 
         out["participants"] = capo_workdocs.types.participants.deserialize_json(
             data["Participants"]
         )
-    if "ResourceMetadata" in data:
+    if data.get("ResourceMetadata") is not None:
         import capo_workdocs.types.resource_metadata
 
         out["resource_metadata"] = (
@@ -129,13 +129,13 @@ def deserialize_json(data: dict) -> Activity:
                 data["ResourceMetadata"]
             )
         )
-    if "OriginalParent" in data:
+    if data.get("OriginalParent") is not None:
         import capo_workdocs.types.resource_metadata
 
         out["original_parent"] = capo_workdocs.types.resource_metadata.deserialize_json(
             data["OriginalParent"]
         )
-    if "CommentMetadata" in data:
+    if data.get("CommentMetadata") is not None:
         import capo_workdocs.types.comment_metadata
 
         out["comment_metadata"] = capo_workdocs.types.comment_metadata.deserialize_json(

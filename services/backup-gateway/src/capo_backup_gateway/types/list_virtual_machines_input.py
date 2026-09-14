@@ -33,10 +33,10 @@ def serialize_aws_json_1_0(value: ListVirtualMachinesInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListVirtualMachinesInput:
     out: ListVirtualMachinesInput = {}  # type: ignore[typeddict-item]
-    if "HypervisorArn" in data:
+    if data.get("HypervisorArn") is not None:
         out["hypervisor_arn"] = data["HypervisorArn"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

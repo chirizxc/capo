@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: PutCorsPolicyInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutCorsPolicyInput:
     out: PutCorsPolicyInput = {}  # type: ignore[typeddict-item]
-    if "ContainerName" in data:
+    if data.get("ContainerName") is not None:
         out["container_name"] = data["ContainerName"]
     else:
         raise DeserializationError("PutCorsPolicyInput.container_name required")
-    if "CorsPolicy" in data:
+    if data.get("CorsPolicy") is not None:
         import capo_mediastore.types.cors_policy
 
         out["cors_policy"] = capo_mediastore.types.cors_policy.deserialize_aws_json_1_1(

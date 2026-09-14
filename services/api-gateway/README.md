@@ -13,9 +13,9 @@ from capo_api_gateway import AsyncAPIGatewayClient
 
 
 async def main():
-    async with AsyncAPIGatewayClient() as s3:
+    async with AsyncAPIGatewayClient() as api_gateway:
         # Example: call the create_api_key operation
-        response = await s3.create_api_key()
+        response = await api_gateway.create_api_key()
         print(response["id"])
 ```
 
@@ -28,9 +28,9 @@ from capo_api_gateway import AsyncAPIGatewayClient
 
 
 async def main():
-    async with AsyncAPIGatewayClient() as s3:
+    async with AsyncAPIGatewayClient() as api_gateway:
         # Example: paginate over get_api_keys
-        async for item in s3.iter_get_api_keys():
+        async for item in api_gateway.iter_get_api_keys():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_api_gateway.error import BadRequestException
 
 
 async def main():
-    async with AsyncAPIGatewayClient() as s3:
+    async with AsyncAPIGatewayClient() as api_gateway:
         try:
-            await s3.create_api_key()
+            await api_gateway.create_api_key()
         except BadRequestException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_api_gateway import AsyncAPIGatewayClient
 
 
 async def main():
-    async with AsyncAPIGatewayClient() as s3:
+    async with AsyncAPIGatewayClient() as api_gateway:
         # Default: 3 attempts for every operation
-        response = await s3.create_api_key()
+        response = await api_gateway.create_api_key()
 
         # Override per operation
-        response = await s3.create_api_key(config_overrides={"retry_max_attempts": 5})
+        response = await api_gateway.create_api_key(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_api_key(config_overrides={"retry_max_attempts": 1})
+        response = await api_gateway.create_api_key(config_overrides={"retry_max_attempts": 1})
 ```

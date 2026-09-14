@@ -38,7 +38,7 @@ def serialize_json(value: ListPortalProductsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListPortalProductsResponse:
     out: ListPortalProductsResponse = {}  # type: ignore[typeddict-item]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_apigatewayv2.types.__list_of_portal_product_summary
 
         out["items"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> ListPortalProductsResponse:
                 data["items"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -16,4 +16,4 @@ def serialize_aws_json_1_1(value: GitHubAccountTokenNameList) -> list:
 
 
 def deserialize_aws_json_1_1(data: list) -> GitHubAccountTokenNameList:
-    return list(data)
+    return [item for item in data if item is not None]

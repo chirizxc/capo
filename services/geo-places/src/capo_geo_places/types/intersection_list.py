@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> IntersectionList:
 
     out: IntersectionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_geo_places.types.intersection.deserialize_json(item))
     return out

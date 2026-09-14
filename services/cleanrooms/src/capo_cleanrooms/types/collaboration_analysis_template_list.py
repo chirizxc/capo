@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> CollaborationAnalysisTemplateList:
 
     out: CollaborationAnalysisTemplateList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanrooms.types.collaboration_analysis_template.deserialize_json(item)
         )

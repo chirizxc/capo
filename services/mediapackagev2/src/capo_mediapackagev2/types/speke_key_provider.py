@@ -51,7 +51,7 @@ def serialize_json(value: SpekeKeyProvider) -> dict:
 
 def deserialize_json(data: dict) -> SpekeKeyProvider:
     out: SpekeKeyProvider = {}  # type: ignore[typeddict-item]
-    if "EncryptionContractConfiguration" in data:
+    if data.get("EncryptionContractConfiguration") is not None:
         import capo_mediapackagev2.types.encryption_contract_configuration
 
         out["encryption_contract_configuration"] = (
@@ -63,11 +63,11 @@ def deserialize_json(data: dict) -> SpekeKeyProvider:
         raise DeserializationError(
             "SpekeKeyProvider.encryption_contract_configuration required"
         )
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     else:
         raise DeserializationError("SpekeKeyProvider.resource_id required")
-    if "DrmSystems" in data:
+    if data.get("DrmSystems") is not None:
         import capo_mediapackagev2.types.drm_systems
 
         out["drm_systems"] = capo_mediapackagev2.types.drm_systems.deserialize_json(
@@ -75,14 +75,14 @@ def deserialize_json(data: dict) -> SpekeKeyProvider:
         )
     else:
         raise DeserializationError("SpekeKeyProvider.drm_systems required")
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError("SpekeKeyProvider.role_arn required")
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
     else:
         raise DeserializationError("SpekeKeyProvider.url required")
-    if "CertificateArn" in data:
+    if data.get("CertificateArn") is not None:
         out["certificate_arn"] = data["CertificateArn"]
     return out

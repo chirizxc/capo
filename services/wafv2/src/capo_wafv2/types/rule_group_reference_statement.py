@@ -46,11 +46,11 @@ def serialize_aws_json_1_1(value: RuleGroupReferenceStatement) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RuleGroupReferenceStatement:
     out: RuleGroupReferenceStatement = {}  # type: ignore[typeddict-item]
-    if "ARN" in data:
+    if data.get("ARN") is not None:
         out["arn"] = data["ARN"]
     else:
         raise DeserializationError("RuleGroupReferenceStatement.arn required")
-    if "ExcludedRules" in data:
+    if data.get("ExcludedRules") is not None:
         import capo_wafv2.types.excluded_rules
 
         out["excluded_rules"] = (
@@ -58,7 +58,7 @@ def deserialize_aws_json_1_1(data: dict) -> RuleGroupReferenceStatement:
                 data["ExcludedRules"]
             )
         )
-    if "RuleActionOverrides" in data:
+    if data.get("RuleActionOverrides") is not None:
         import capo_wafv2.types.rule_action_overrides
 
         out["rule_action_overrides"] = (

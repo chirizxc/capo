@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: PhysicalTableMap) -> dict:
 def deserialize_json(data: dict) -> PhysicalTableMap:
     out: PhysicalTableMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_quicksight.types.physical_table
 
         out[key] = capo_quicksight.types.physical_table.deserialize_json(value)

@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: DescribeReservedCapacityRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeReservedCapacityRequest:
     out: DescribeReservedCapacityRequest = {}  # type: ignore[typeddict-item]
-    if "ReservedCapacityArn" in data:
+    if data.get("ReservedCapacityArn") is not None:
         out["reserved_capacity_arn"] = data["ReservedCapacityArn"]
     return out

@@ -28,11 +28,11 @@ def serialize_json(value: JobOutputOptions) -> dict:
 
 def deserialize_json(data: dict) -> JobOutputOptions:
     out: JobOutputOptions = {}  # type: ignore[typeddict-item]
-    if "Format" in data:
+    if data.get("Format") is not None:
         out["format"] = data["Format"]
     else:
         raise DeserializationError("JobOutputOptions.format required")
-    if "Location" in data:
+    if data.get("Location") is not None:
         out["location"] = data["Location"]
     else:
         raise DeserializationError("JobOutputOptions.location required")

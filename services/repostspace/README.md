@@ -13,9 +13,9 @@ from capo_repostspace import AsyncrepostspaceClient
 
 
 async def main():
-    async with AsyncrepostspaceClient() as s3:
+    async with AsyncrepostspaceClient() as repostspace:
         # Example: call the batch_add_channel_role_to_accessors operation
-        response = await s3.batch_add_channel_role_to_accessors()
+        response = await repostspace.batch_add_channel_role_to_accessors()
         print(response["added_accessor_ids"])
 ```
 
@@ -28,9 +28,9 @@ from capo_repostspace import AsyncrepostspaceClient
 
 
 async def main():
-    async with AsyncrepostspaceClient() as s3:
+    async with AsyncrepostspaceClient() as repostspace:
         # Example: paginate over list_channels
-        async for item in s3.iter_list_channels():
+        async for item in repostspace.iter_list_channels():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_repostspace.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncrepostspaceClient() as s3:
+    async with AsyncrepostspaceClient() as repostspace:
         try:
-            await s3.batch_add_channel_role_to_accessors()
+            await repostspace.batch_add_channel_role_to_accessors()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_repostspace import AsyncrepostspaceClient
 
 
 async def main():
-    async with AsyncrepostspaceClient() as s3:
+    async with AsyncrepostspaceClient() as repostspace:
         # Default: 3 attempts for every operation
-        response = await s3.batch_add_channel_role_to_accessors()
+        response = await repostspace.batch_add_channel_role_to_accessors()
 
         # Override per operation
-        response = await s3.batch_add_channel_role_to_accessors(config_overrides={"retry_max_attempts": 5})
+        response = await repostspace.batch_add_channel_role_to_accessors(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.batch_add_channel_role_to_accessors(config_overrides={"retry_max_attempts": 1})
+        response = await repostspace.batch_add_channel_role_to_accessors(config_overrides={"retry_max_attempts": 1})
 ```

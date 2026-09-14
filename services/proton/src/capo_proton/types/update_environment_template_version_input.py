@@ -43,26 +43,26 @@ def serialize_aws_json_1_0(value: UpdateEnvironmentTemplateVersionInput) -> dict
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateEnvironmentTemplateVersionInput:
     out: UpdateEnvironmentTemplateVersionInput = {}  # type: ignore[typeddict-item]
-    if "templateName" in data:
+    if data.get("templateName") is not None:
         out["template_name"] = data["templateName"]
     else:
         raise DeserializationError(
             "UpdateEnvironmentTemplateVersionInput.template_name required"
         )
-    if "majorVersion" in data:
+    if data.get("majorVersion") is not None:
         out["major_version"] = data["majorVersion"]
     else:
         raise DeserializationError(
             "UpdateEnvironmentTemplateVersionInput.major_version required"
         )
-    if "minorVersion" in data:
+    if data.get("minorVersion") is not None:
         out["minor_version"] = data["minorVersion"]
     else:
         raise DeserializationError(
             "UpdateEnvironmentTemplateVersionInput.minor_version required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     return out

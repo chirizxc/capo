@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.supportapp#SupportApp``."""
 
 import warnings
+from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +17,7 @@ from capo_support_app._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_support_app._auth._zapros_handler import AuthMiddleware
+from capo_support_app._pagination import resolve_path as _resolve_path
 from capo_support_app._services._aws_config import aaws_config
 from capo_support_app._services._pipeline import (
     AsyncInterceptor,
@@ -208,9 +210,12 @@ class AsyncSupportAppClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_support_app.types.create_slack_channel_configuration_request.CreateSlackChannelConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["team_id"] = team_id
-        input_["channel_id"] = channel_id
+        input_: capo_support_app.types.create_slack_channel_configuration_request.CreateSlackChannelConfigurationRequest = {
+            "team_id": team_id,
+            "channel_id": channel_id,
+            "notify_on_case_severity": notify_on_case_severity,
+            "channel_role_arn": channel_role_arn,
+        }
         if channel_name is not None:
             input_["channel_name"] = channel_name
         if notify_on_create_or_reopen_case is not None:
@@ -221,14 +226,13 @@ class AsyncSupportAppClient:
             )
         if notify_on_resolve_case is not None:
             input_["notify_on_resolve_case"] = notify_on_resolve_case
-        input_["notify_on_case_severity"] = notify_on_case_severity
-        input_["channel_role_arn"] = channel_role_arn
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_account_alias(
@@ -259,13 +263,14 @@ class AsyncSupportAppClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_support_app.types.delete_account_alias_request.DeleteAccountAliasRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_support_app.types.delete_account_alias_request.DeleteAccountAliasRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_slack_channel_configuration(
@@ -306,15 +311,17 @@ class AsyncSupportAppClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_support_app.types.delete_slack_channel_configuration_request.DeleteSlackChannelConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["team_id"] = team_id
-        input_["channel_id"] = channel_id
+        input_: capo_support_app.types.delete_slack_channel_configuration_request.DeleteSlackChannelConfigurationRequest = {
+            "team_id": team_id,
+            "channel_id": channel_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_slack_workspace_configuration(
@@ -353,14 +360,16 @@ class AsyncSupportAppClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_support_app.types.delete_slack_workspace_configuration_request.DeleteSlackWorkspaceConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["team_id"] = team_id
+        input_: capo_support_app.types.delete_slack_workspace_configuration_request.DeleteSlackWorkspaceConfigurationRequest = {
+            "team_id": team_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_account_alias(
@@ -389,13 +398,14 @@ class AsyncSupportAppClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_support_app.types.get_account_alias_request.GetAccountAliasRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_support_app.types.get_account_alias_request.GetAccountAliasRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_slack_channel_configurations(
@@ -433,7 +443,7 @@ class AsyncSupportAppClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_support_app.types.list_slack_channel_configurations_request.ListSlackChannelConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_support_app.types.list_slack_channel_configurations_request.ListSlackChannelConfigurationsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -442,7 +452,27 @@ class AsyncSupportAppClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_slack_channel_configurations(
+        self,
+        *,
+        config_overrides: Optional[AsyncSupportAppClientConfig] = None,
+        next_token: Optional[
+            "capo_support_app.types.pagination_token.paginationToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_support_app.types.list_slack_channel_configurations_result.ListSlackChannelConfigurationsResult]":
+        _token = next_token
+        while True:
+            _response = await self.list_slack_channel_configurations(
+                config_overrides=config_overrides,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_slack_workspace_configurations(
         self,
@@ -479,7 +509,7 @@ class AsyncSupportAppClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_support_app.types.list_slack_workspace_configurations_request.ListSlackWorkspaceConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_support_app.types.list_slack_workspace_configurations_request.ListSlackWorkspaceConfigurationsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -488,7 +518,27 @@ class AsyncSupportAppClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_slack_workspace_configurations(
+        self,
+        *,
+        config_overrides: Optional[AsyncSupportAppClientConfig] = None,
+        next_token: Optional[
+            "capo_support_app.types.pagination_token.paginationToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_support_app.types.list_slack_workspace_configurations_result.ListSlackWorkspaceConfigurationsResult]":
+        _token = next_token
+        while True:
+            _response = await self.list_slack_workspace_configurations(
+                config_overrides=config_overrides,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def put_account_alias(
         self,
@@ -524,14 +574,16 @@ class AsyncSupportAppClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_support_app.types.put_account_alias_request.PutAccountAliasRequest = {}  # type: ignore[typeddict-item]
-        input_["account_alias"] = account_alias
+        input_: capo_support_app.types.put_account_alias_request.PutAccountAliasRequest = {
+            "account_alias": account_alias
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def register_slack_workspace_for_organization(
@@ -570,14 +622,16 @@ class AsyncSupportAppClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_support_app.types.register_slack_workspace_for_organization_request.RegisterSlackWorkspaceForOrganizationRequest = {}  # type: ignore[typeddict-item]
-        input_["team_id"] = team_id
+        input_: capo_support_app.types.register_slack_workspace_for_organization_request.RegisterSlackWorkspaceForOrganizationRequest = {
+            "team_id": team_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_slack_channel_configuration(
@@ -640,9 +694,10 @@ class AsyncSupportAppClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_support_app.types.update_slack_channel_configuration_request.UpdateSlackChannelConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["team_id"] = team_id
-        input_["channel_id"] = channel_id
+        input_: capo_support_app.types.update_slack_channel_configuration_request.UpdateSlackChannelConfigurationRequest = {
+            "team_id": team_id,
+            "channel_id": channel_id,
+        }
         if channel_name is not None:
             input_["channel_name"] = channel_name
         if notify_on_create_or_reopen_case is not None:
@@ -663,6 +718,7 @@ class AsyncSupportAppClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

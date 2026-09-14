@@ -27,7 +27,7 @@ def serialize_json(value: FlowLogsConfigurationResult) -> dict:
 
 def deserialize_json(data: dict) -> FlowLogsConfigurationResult:
     out: FlowLogsConfigurationResult = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_guardduty.types.data_source_status
 
         out["status"] = capo_guardduty.types.data_source_status.deserialize_json(

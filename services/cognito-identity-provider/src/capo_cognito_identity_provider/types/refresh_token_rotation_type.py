@@ -37,7 +37,7 @@ def serialize_aws_json_1_1(value: RefreshTokenRotationType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RefreshTokenRotationType:
     out: RefreshTokenRotationType = {}  # type: ignore[typeddict-item]
-    if "Feature" in data:
+    if data.get("Feature") is not None:
         import capo_cognito_identity_provider.types.feature_type
 
         out["feature"] = (
@@ -47,6 +47,6 @@ def deserialize_aws_json_1_1(data: dict) -> RefreshTokenRotationType:
         )
     else:
         raise DeserializationError("RefreshTokenRotationType.feature required")
-    if "RetryGracePeriodSeconds" in data:
+    if data.get("RetryGracePeriodSeconds") is not None:
         out["retry_grace_period_seconds"] = data["RetryGracePeriodSeconds"]
     return out

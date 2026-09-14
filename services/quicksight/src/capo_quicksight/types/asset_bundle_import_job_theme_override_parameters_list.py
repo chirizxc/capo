@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AssetBundleImportJobThemeOverrideParametersL
 
     out: AssetBundleImportJobThemeOverrideParametersList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.asset_bundle_import_job_theme_override_parameters.deserialize_json(
                 item

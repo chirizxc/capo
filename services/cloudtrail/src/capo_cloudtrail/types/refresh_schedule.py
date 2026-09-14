@@ -49,7 +49,7 @@ def serialize_aws_json_1_1(value: RefreshSchedule) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RefreshSchedule:
     out: RefreshSchedule = {}  # type: ignore[typeddict-item]
-    if "Frequency" in data:
+    if data.get("Frequency") is not None:
         import capo_cloudtrail.types.refresh_schedule_frequency
 
         out["frequency"] = (
@@ -57,7 +57,7 @@ def deserialize_aws_json_1_1(data: dict) -> RefreshSchedule:
                 data["Frequency"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_cloudtrail.types.refresh_schedule_status
 
         out["status"] = (
@@ -65,6 +65,6 @@ def deserialize_aws_json_1_1(data: dict) -> RefreshSchedule:
                 data["Status"]
             )
         )
-    if "TimeOfDay" in data:
+    if data.get("TimeOfDay") is not None:
         out["time_of_day"] = data["TimeOfDay"]
     return out

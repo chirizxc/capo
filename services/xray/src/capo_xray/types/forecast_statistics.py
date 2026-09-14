@@ -27,8 +27,8 @@ def serialize_json(value: ForecastStatistics) -> dict:
 
 def deserialize_json(data: dict) -> ForecastStatistics:
     out: ForecastStatistics = {}  # type: ignore[typeddict-item]
-    if "FaultCountHigh" in data:
+    if data.get("FaultCountHigh") is not None:
         out["fault_count_high"] = data["FaultCountHigh"]
-    if "FaultCountLow" in data:
+    if data.get("FaultCountLow") is not None:
         out["fault_count_low"] = data["FaultCountLow"]
     return out

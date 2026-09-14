@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> BatchGetViewErrors:
 
     out: BatchGetViewErrors = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_resource_explorer_2.types.batch_get_view_error.deserialize_json(item)
         )

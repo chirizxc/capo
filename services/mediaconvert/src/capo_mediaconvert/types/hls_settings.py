@@ -83,9 +83,9 @@ def serialize_json(value: HlsSettings) -> dict:
 
 def deserialize_json(data: dict) -> HlsSettings:
     out: HlsSettings = {}  # type: ignore[typeddict-item]
-    if "audioGroupId" in data:
+    if data.get("audioGroupId") is not None:
         out["audio_group_id"] = data["audioGroupId"]
-    if "audioOnlyContainer" in data:
+    if data.get("audioOnlyContainer") is not None:
         import capo_mediaconvert.types.hls_audio_only_container
 
         out["audio_only_container"] = (
@@ -93,9 +93,9 @@ def deserialize_json(data: dict) -> HlsSettings:
                 data["audioOnlyContainer"]
             )
         )
-    if "audioRenditionSets" in data:
+    if data.get("audioRenditionSets") is not None:
         out["audio_rendition_sets"] = data["audioRenditionSets"]
-    if "audioTrackType" in data:
+    if data.get("audioTrackType") is not None:
         import capo_mediaconvert.types.hls_audio_track_type
 
         out["audio_track_type"] = (
@@ -103,7 +103,7 @@ def deserialize_json(data: dict) -> HlsSettings:
                 data["audioTrackType"]
             )
         )
-    if "descriptiveVideoServiceFlag" in data:
+    if data.get("descriptiveVideoServiceFlag") is not None:
         import capo_mediaconvert.types.hls_descriptive_video_service_flag
 
         out["descriptive_video_service_flag"] = (
@@ -111,7 +111,7 @@ def deserialize_json(data: dict) -> HlsSettings:
                 data["descriptiveVideoServiceFlag"]
             )
         )
-    if "iFrameOnlyManifest" in data:
+    if data.get("iFrameOnlyManifest") is not None:
         import capo_mediaconvert.types.hls_i_frame_only_manifest
 
         out["i_frame_only_manifest"] = (
@@ -119,6 +119,6 @@ def deserialize_json(data: dict) -> HlsSettings:
                 data["iFrameOnlyManifest"]
             )
         )
-    if "segmentModifier" in data:
+    if data.get("segmentModifier") is not None:
         out["segment_modifier"] = data["segmentModifier"]
     return out

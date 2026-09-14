@@ -198,7 +198,7 @@ def serialize_aws_json_1_0(value: AcceptedTerm) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> AcceptedTerm:
-    if "legalTerm" in data:
+    if data.get("legalTerm") is not None:
         import capo_marketplace_agreement.types.legal_term
 
         return {
@@ -206,7 +206,7 @@ def deserialize_aws_json_1_0(data: dict) -> AcceptedTerm:
                 data["legalTerm"]
             )
         }
-    elif "supportTerm" in data:
+    elif data.get("supportTerm") is not None:
         import capo_marketplace_agreement.types.support_term
 
         return {
@@ -214,7 +214,7 @@ def deserialize_aws_json_1_0(data: dict) -> AcceptedTerm:
                 data["supportTerm"]
             )
         }
-    elif "renewalTerm" in data:
+    elif data.get("renewalTerm") is not None:
         import capo_marketplace_agreement.types.renewal_term
 
         return {
@@ -222,7 +222,7 @@ def deserialize_aws_json_1_0(data: dict) -> AcceptedTerm:
                 data["renewalTerm"]
             )
         }
-    elif "usageBasedPricingTerm" in data:
+    elif data.get("usageBasedPricingTerm") is not None:
         import capo_marketplace_agreement.types.usage_based_pricing_term
 
         return {
@@ -230,7 +230,7 @@ def deserialize_aws_json_1_0(data: dict) -> AcceptedTerm:
                 data["usageBasedPricingTerm"]
             )
         }
-    elif "configurableUpfrontPricingTerm" in data:
+    elif data.get("configurableUpfrontPricingTerm") is not None:
         import capo_marketplace_agreement.types.configurable_upfront_pricing_term
 
         return {
@@ -238,7 +238,7 @@ def deserialize_aws_json_1_0(data: dict) -> AcceptedTerm:
                 data["configurableUpfrontPricingTerm"]
             )
         }
-    elif "byolPricingTerm" in data:
+    elif data.get("byolPricingTerm") is not None:
         import capo_marketplace_agreement.types.byol_pricing_term
 
         return {
@@ -246,7 +246,7 @@ def deserialize_aws_json_1_0(data: dict) -> AcceptedTerm:
                 data["byolPricingTerm"]
             )
         }
-    elif "recurringPaymentTerm" in data:
+    elif data.get("recurringPaymentTerm") is not None:
         import capo_marketplace_agreement.types.recurring_payment_term
 
         return {
@@ -254,7 +254,7 @@ def deserialize_aws_json_1_0(data: dict) -> AcceptedTerm:
                 data["recurringPaymentTerm"]
             )
         }
-    elif "validityTerm" in data:
+    elif data.get("validityTerm") is not None:
         import capo_marketplace_agreement.types.validity_term
 
         return {
@@ -262,7 +262,7 @@ def deserialize_aws_json_1_0(data: dict) -> AcceptedTerm:
                 data["validityTerm"]
             )
         }
-    elif "paymentScheduleTerm" in data:
+    elif data.get("paymentScheduleTerm") is not None:
         import capo_marketplace_agreement.types.payment_schedule_term
 
         return {
@@ -270,7 +270,7 @@ def deserialize_aws_json_1_0(data: dict) -> AcceptedTerm:
                 data["paymentScheduleTerm"]
             )
         }
-    elif "freeTrialPricingTerm" in data:
+    elif data.get("freeTrialPricingTerm") is not None:
         import capo_marketplace_agreement.types.free_trial_pricing_term
 
         return {
@@ -278,7 +278,7 @@ def deserialize_aws_json_1_0(data: dict) -> AcceptedTerm:
                 data["freeTrialPricingTerm"]
             )
         }
-    elif "fixedUpfrontPricingTerm" in data:
+    elif data.get("fixedUpfrontPricingTerm") is not None:
         import capo_marketplace_agreement.types.fixed_upfront_pricing_term
 
         return {
@@ -286,7 +286,7 @@ def deserialize_aws_json_1_0(data: dict) -> AcceptedTerm:
                 data["fixedUpfrontPricingTerm"]
             )
         }
-    elif "variablePaymentTerm" in data:
+    elif data.get("variablePaymentTerm") is not None:
         import capo_marketplace_agreement.types.variable_payment_term
 
         return {

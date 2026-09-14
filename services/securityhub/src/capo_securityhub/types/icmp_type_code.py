@@ -27,8 +27,8 @@ def serialize_json(value: IcmpTypeCode) -> dict:
 
 def deserialize_json(data: dict) -> IcmpTypeCode:
     out: IcmpTypeCode = {}  # type: ignore[typeddict-item]
-    if "Code" in data:
+    if data.get("Code") is not None:
         out["code"] = data["Code"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     return out

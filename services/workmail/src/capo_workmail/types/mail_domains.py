@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> MailDomains:
 
     out: MailDomains = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_workmail.types.mail_domain_summary.deserialize_aws_json_1_1(item)
         )

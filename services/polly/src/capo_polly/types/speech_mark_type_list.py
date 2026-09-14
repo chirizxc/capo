@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> SpeechMarkTypeList:
 
     out: SpeechMarkTypeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_polly.types.speech_mark_type.deserialize_json(item))
     return out

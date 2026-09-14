@@ -27,8 +27,8 @@ def serialize_json(value: QuietTime) -> dict:
 
 def deserialize_json(data: dict) -> QuietTime:
     out: QuietTime = {}  # type: ignore[typeddict-item]
-    if "End" in data:
+    if data.get("End") is not None:
         out["end"] = data["End"]
-    if "Start" in data:
+    if data.get("Start") is not None:
         out["start"] = data["Start"]
     return out

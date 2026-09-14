@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: Datum) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Datum:
     out: Datum = {}  # type: ignore[typeddict-item]
-    if "VarCharValue" in data:
+    if data.get("VarCharValue") is not None:
         out["var_char_value"] = data["VarCharValue"]
     return out

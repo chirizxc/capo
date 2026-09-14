@@ -38,15 +38,15 @@ def serialize_json(value: IdMappingWorkflowInputSource) -> dict:
 
 def deserialize_json(data: dict) -> IdMappingWorkflowInputSource:
     out: IdMappingWorkflowInputSource = {}  # type: ignore[typeddict-item]
-    if "inputSourceARN" in data:
+    if data.get("inputSourceARN") is not None:
         out["input_source_arn"] = data["inputSourceARN"]
     else:
         raise DeserializationError(
             "IdMappingWorkflowInputSource.input_source_arn required"
         )
-    if "schemaName" in data:
+    if data.get("schemaName") is not None:
         out["schema_name"] = data["schemaName"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_entityresolution.types.id_namespace_type
 
         out["type"] = capo_entityresolution.types.id_namespace_type.deserialize_json(

@@ -31,8 +31,8 @@ def serialize_aws_json_1_1(value: DefaultEbsStorageSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DefaultEbsStorageSettings:
     out: DefaultEbsStorageSettings = {}  # type: ignore[typeddict-item]
-    if "DefaultEbsVolumeSizeInGb" in data:
+    if data.get("DefaultEbsVolumeSizeInGb") is not None:
         out["default_ebs_volume_size_in_gb"] = data["DefaultEbsVolumeSizeInGb"]
-    if "MaximumEbsVolumeSizeInGb" in data:
+    if data.get("MaximumEbsVolumeSizeInGb") is not None:
         out["maximum_ebs_volume_size_in_gb"] = data["MaximumEbsVolumeSizeInGb"]
     return out

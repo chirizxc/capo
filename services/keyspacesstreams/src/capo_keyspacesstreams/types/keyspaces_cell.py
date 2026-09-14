@@ -44,7 +44,7 @@ def serialize_aws_json_1_0(value: KeyspacesCell) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> KeyspacesCell:
     out: KeyspacesCell = {}  # type: ignore[typeddict-item]
-    if "value" in data:
+    if data.get("value") is not None:
         import capo_keyspacesstreams.types.keyspaces_cell_value
 
         out["value"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_0(data: dict) -> KeyspacesCell:
                 data["value"]
             )
         )
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         import capo_keyspacesstreams.types.keyspaces_metadata
 
         out["metadata"] = (

@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ListOfAuthenticatedElement:
 
     out: ListOfAuthenticatedElement = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_amplifybackend.types.authenticated_element.deserialize_json(item)
         )

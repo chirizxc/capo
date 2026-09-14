@@ -54,17 +54,17 @@ def serialize_aws_json_1_0(value: ConnectorCheck) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ConnectorCheck:
     out: ConnectorCheck = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_evs.types.check_type
 
         out["type"] = capo_evs.types.check_type.deserialize_aws_json_1_0(data["type"])
-    if "result" in data:
+    if data.get("result") is not None:
         import capo_evs.types.check_result
 
         out["result"] = capo_evs.types.check_result.deserialize_aws_json_1_0(
             data["result"]
         )
-    if "lastCheckAttempt" in data:
+    if data.get("lastCheckAttempt") is not None:
         import capo_evs.types._prelude.timestamp
 
         out["last_check_attempt"] = (
@@ -72,7 +72,7 @@ def deserialize_aws_json_1_0(data: dict) -> ConnectorCheck:
                 data["lastCheckAttempt"]
             )
         )
-    if "impairedSince" in data:
+    if data.get("impairedSince") is not None:
         import capo_evs.types._prelude.timestamp
 
         out["impaired_since"] = (

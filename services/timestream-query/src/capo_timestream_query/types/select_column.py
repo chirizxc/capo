@@ -45,18 +45,18 @@ def serialize_aws_json_1_0(value: SelectColumn) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SelectColumn:
     out: SelectColumn = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_timestream_query.types.type
 
         out["type"] = capo_timestream_query.types.type.deserialize_aws_json_1_0(
             data["Type"]
         )
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
-    if "Aliased" in data:
+    if data.get("Aliased") is not None:
         out["aliased"] = data["Aliased"]
     return out

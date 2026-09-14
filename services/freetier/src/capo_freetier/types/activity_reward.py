@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: ActivityReward) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> ActivityReward:
-    if "credit" in data:
+    if data.get("credit") is not None:
         import capo_freetier.types.monetary_amount
 
         return {

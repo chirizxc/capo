@@ -31,10 +31,10 @@ def serialize_json(value: AwsCloudFormationStackOutputsDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsCloudFormationStackOutputsDetails:
     out: AwsCloudFormationStackOutputsDetails = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "OutputKey" in data:
+    if data.get("OutputKey") is not None:
         out["output_key"] = data["OutputKey"]
-    if "OutputValue" in data:
+    if data.get("OutputValue") is not None:
         out["output_value"] = data["OutputValue"]
     return out

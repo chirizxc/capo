@@ -30,7 +30,7 @@ def serialize_json(value: StartProductSubscriptionResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartProductSubscriptionResponse:
     out: StartProductSubscriptionResponse = {}  # type: ignore[typeddict-item]
-    if "ProductUserSummary" in data:
+    if data.get("ProductUserSummary") is not None:
         import capo_license_manager_user_subscriptions.types.product_user_summary
 
         out["product_user_summary"] = (

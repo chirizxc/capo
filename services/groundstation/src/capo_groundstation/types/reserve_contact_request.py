@@ -71,13 +71,13 @@ def serialize_json(value: ReserveContactRequest) -> dict:
 
 def deserialize_json(data: dict) -> ReserveContactRequest:
     out: ReserveContactRequest = {}  # type: ignore[typeddict-item]
-    if "missionProfileArn" in data:
+    if data.get("missionProfileArn") is not None:
         out["mission_profile_arn"] = data["missionProfileArn"]
     else:
         raise DeserializationError("ReserveContactRequest.mission_profile_arn required")
-    if "satelliteArn" in data:
+    if data.get("satelliteArn") is not None:
         out["satellite_arn"] = data["satelliteArn"]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_groundstation.types._prelude.timestamp
 
         out["start_time"] = (
@@ -87,7 +87,7 @@ def deserialize_json(data: dict) -> ReserveContactRequest:
         )
     else:
         raise DeserializationError("ReserveContactRequest.start_time required")
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_groundstation.types._prelude.timestamp
 
         out["end_time"] = capo_groundstation.types._prelude.timestamp.deserialize_json(
@@ -95,15 +95,15 @@ def deserialize_json(data: dict) -> ReserveContactRequest:
         )
     else:
         raise DeserializationError("ReserveContactRequest.end_time required")
-    if "groundStation" in data:
+    if data.get("groundStation") is not None:
         out["ground_station"] = data["groundStation"]
     else:
         raise DeserializationError("ReserveContactRequest.ground_station required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_groundstation.types.tags_map
 
         out["tags"] = capo_groundstation.types.tags_map.deserialize_json(data["tags"])
-    if "trackingOverrides" in data:
+    if data.get("trackingOverrides") is not None:
         import capo_groundstation.types.tracking_overrides
 
         out["tracking_overrides"] = (

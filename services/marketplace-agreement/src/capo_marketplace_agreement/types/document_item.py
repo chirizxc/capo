@@ -33,10 +33,10 @@ def serialize_aws_json_1_0(value: DocumentItem) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DocumentItem:
     out: DocumentItem = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     return out

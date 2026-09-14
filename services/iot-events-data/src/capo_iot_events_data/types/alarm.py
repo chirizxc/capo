@@ -68,27 +68,27 @@ def serialize_json(value: Alarm) -> dict:
 
 def deserialize_json(data: dict) -> Alarm:
     out: Alarm = {}  # type: ignore[typeddict-item]
-    if "alarmModelName" in data:
+    if data.get("alarmModelName") is not None:
         out["alarm_model_name"] = data["alarmModelName"]
-    if "alarmModelVersion" in data:
+    if data.get("alarmModelVersion") is not None:
         out["alarm_model_version"] = data["alarmModelVersion"]
-    if "keyValue" in data:
+    if data.get("keyValue") is not None:
         out["key_value"] = data["keyValue"]
-    if "alarmState" in data:
+    if data.get("alarmState") is not None:
         import capo_iot_events_data.types.alarm_state
 
         out["alarm_state"] = capo_iot_events_data.types.alarm_state.deserialize_json(
             data["alarmState"]
         )
-    if "severity" in data:
+    if data.get("severity") is not None:
         out["severity"] = data["severity"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_iot_events_data.types.timestamp
 
         out["creation_time"] = capo_iot_events_data.types.timestamp.deserialize_json(
             data["creationTime"]
         )
-    if "lastUpdateTime" in data:
+    if data.get("lastUpdateTime") is not None:
         import capo_iot_events_data.types.timestamp
 
         out["last_update_time"] = capo_iot_events_data.types.timestamp.deserialize_json(

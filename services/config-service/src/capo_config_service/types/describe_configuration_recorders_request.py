@@ -45,7 +45,7 @@ def serialize_aws_json_1_1(value: DescribeConfigurationRecordersRequest) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeConfigurationRecordersRequest:
     out: DescribeConfigurationRecordersRequest = {}  # type: ignore[typeddict-item]
-    if "ConfigurationRecorderNames" in data:
+    if data.get("ConfigurationRecorderNames") is not None:
         import capo_config_service.types.configuration_recorder_name_list
 
         out["configuration_recorder_names"] = (
@@ -53,8 +53,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeConfigurationRecordersReques
                 data["ConfigurationRecorderNames"]
             )
         )
-    if "ServicePrincipal" in data:
+    if data.get("ServicePrincipal") is not None:
         out["service_principal"] = data["ServicePrincipal"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     return out

@@ -67,11 +67,11 @@ def serialize_aws_json_1_1(value: ImportTerminologyRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ImportTerminologyRequest:
     out: ImportTerminologyRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("ImportTerminologyRequest.name required")
-    if "MergeStrategy" in data:
+    if data.get("MergeStrategy") is not None:
         import capo_translate.types.merge_strategy
 
         out["merge_strategy"] = (
@@ -81,9 +81,9 @@ def deserialize_aws_json_1_1(data: dict) -> ImportTerminologyRequest:
         )
     else:
         raise DeserializationError("ImportTerminologyRequest.merge_strategy required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "TerminologyData" in data:
+    if data.get("TerminologyData") is not None:
         import capo_translate.types.terminology_data
 
         out["terminology_data"] = (
@@ -93,7 +93,7 @@ def deserialize_aws_json_1_1(data: dict) -> ImportTerminologyRequest:
         )
     else:
         raise DeserializationError("ImportTerminologyRequest.terminology_data required")
-    if "EncryptionKey" in data:
+    if data.get("EncryptionKey") is not None:
         import capo_translate.types.encryption_key
 
         out["encryption_key"] = (
@@ -101,7 +101,7 @@ def deserialize_aws_json_1_1(data: dict) -> ImportTerminologyRequest:
                 data["EncryptionKey"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_translate.types.tag_list
 
         out["tags"] = capo_translate.types.tag_list.deserialize_aws_json_1_1(

@@ -42,19 +42,19 @@ def serialize_aws_json_1_0(value: GetCertificateSigningRequestInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetCertificateSigningRequestInput:
     out: GetCertificateSigningRequestInput = {}  # type: ignore[typeddict-item]
-    if "KeyIdentifier" in data:
+    if data.get("KeyIdentifier") is not None:
         out["key_identifier"] = data["KeyIdentifier"]
     else:
         raise DeserializationError(
             "GetCertificateSigningRequestInput.key_identifier required"
         )
-    if "SigningAlgorithm" in data:
+    if data.get("SigningAlgorithm") is not None:
         out["signing_algorithm"] = data["SigningAlgorithm"]
     else:
         raise DeserializationError(
             "GetCertificateSigningRequestInput.signing_algorithm required"
         )
-    if "CertificateSubject" in data:
+    if data.get("CertificateSubject") is not None:
         import capo_payment_cryptography.types.certificate_subject_type
 
         out["certificate_subject"] = (

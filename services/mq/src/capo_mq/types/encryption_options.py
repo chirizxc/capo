@@ -28,8 +28,8 @@ def serialize_json(value: EncryptionOptions) -> dict:
 
 def deserialize_json(data: dict) -> EncryptionOptions:
     out: EncryptionOptions = {}  # type: ignore[typeddict-item]
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
-    if "useAwsOwnedKey" in data:
+    if data.get("useAwsOwnedKey") is not None:
         out["use_aws_owned_key"] = data["useAwsOwnedKey"]
     return out

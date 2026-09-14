@@ -34,9 +34,25 @@ def serialize_aws_json_1_0(value: ROS2PrimitiveMessageDefinition) -> dict:
         )
     )
     if "offset" in value:
-        out["offset"] = value["offset"]
+        out["offset"] = (
+            "NaN"
+            if value["offset"] != value["offset"]
+            else "Infinity"
+            if value["offset"] == float("inf")
+            else "-Infinity"
+            if value["offset"] == float("-inf")
+            else value["offset"]
+        )
     if "scaling" in value:
-        out["scaling"] = value["scaling"]
+        out["scaling"] = (
+            "NaN"
+            if value["scaling"] != value["scaling"]
+            else "Infinity"
+            if value["scaling"] == float("inf")
+            else "-Infinity"
+            if value["scaling"] == float("-inf")
+            else value["scaling"]
+        )
     if "upper_bound" in value:
         out["upperBound"] = value["upper_bound"]
     return out
@@ -44,7 +60,7 @@ def serialize_aws_json_1_0(value: ROS2PrimitiveMessageDefinition) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ROS2PrimitiveMessageDefinition:
     out: ROS2PrimitiveMessageDefinition = {}  # type: ignore[typeddict-item]
-    if "primitiveType" in data:
+    if data.get("primitiveType") is not None:
         import capo_iotfleetwise.types.ros2_primitive_type
 
         out["primitive_type"] = (
@@ -56,10 +72,10 @@ def deserialize_aws_json_1_0(data: dict) -> ROS2PrimitiveMessageDefinition:
         raise DeserializationError(
             "ROS2PrimitiveMessageDefinition.primitive_type required"
         )
-    if "offset" in data:
-        out["offset"] = data["offset"]
-    if "scaling" in data:
-        out["scaling"] = data["scaling"]
-    if "upperBound" in data:
+    if data.get("offset") is not None:
+        out["offset"] = float(data["offset"])
+    if data.get("scaling") is not None:
+        out["scaling"] = float(data["scaling"])
+    if data.get("upperBound") is not None:
         out["upper_bound"] = data["upperBound"]
     return out

@@ -26,7 +26,7 @@ def serialize_json(value: ImpactedAwsRegion) -> dict:
 
 def deserialize_json(data: dict) -> ImpactedAwsRegion:
     out: ImpactedAwsRegion = {}  # type: ignore[typeddict-item]
-    if "region" in data:
+    if data.get("region") is not None:
         import capo_security_ir.types.aws_region
 
         out["region"] = capo_security_ir.types.aws_region.deserialize_json(

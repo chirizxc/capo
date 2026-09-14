@@ -27,6 +27,8 @@ def deserialize_aws_json_1_0(data: list) -> BatchLoadTaskList:
 
     out: BatchLoadTaskList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_timestream_write.types.batch_load_task.deserialize_aws_json_1_0(item)
         )

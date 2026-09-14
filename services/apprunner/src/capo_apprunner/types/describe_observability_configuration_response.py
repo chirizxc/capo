@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: DescribeObservabilityConfigurationResponse) ->
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeObservabilityConfigurationResponse:
     out: DescribeObservabilityConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "ObservabilityConfiguration" in data:
+    if data.get("ObservabilityConfiguration") is not None:
         import capo_apprunner.types.observability_configuration
 
         out["observability_configuration"] = (

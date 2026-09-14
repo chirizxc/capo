@@ -37,7 +37,7 @@ def serialize_json(value: EventActor) -> dict:
 
 def deserialize_json(data: dict) -> EventActor:
     out: EventActor = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_resiliencehubv2.types.actor_type
 
         out["type"] = capo_resiliencehubv2.types.actor_type.deserialize_json(
@@ -45,12 +45,12 @@ def deserialize_json(data: dict) -> EventActor:
         )
     else:
         raise DeserializationError("EventActor.type required")
-    if "principalId" in data:
+    if data.get("principalId") is not None:
         out["principal_id"] = data["principalId"]
     else:
         raise DeserializationError("EventActor.principal_id required")
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "userName" in data:
+    if data.get("userName") is not None:
         out["user_name"] = data["userName"]
     return out

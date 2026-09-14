@@ -61,7 +61,7 @@ def serialize_json(value: AwsIamGroupDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsIamGroupDetails:
     out: AwsIamGroupDetails = {}  # type: ignore[typeddict-item]
-    if "AttachedManagedPolicies" in data:
+    if data.get("AttachedManagedPolicies") is not None:
         import capo_securityhub.types.aws_iam_attached_managed_policy_list
 
         out["attached_managed_policies"] = (
@@ -69,13 +69,13 @@ def deserialize_json(data: dict) -> AwsIamGroupDetails:
                 data["AttachedManagedPolicies"]
             )
         )
-    if "CreateDate" in data:
+    if data.get("CreateDate") is not None:
         out["create_date"] = data["CreateDate"]
-    if "GroupId" in data:
+    if data.get("GroupId") is not None:
         out["group_id"] = data["GroupId"]
-    if "GroupName" in data:
+    if data.get("GroupName") is not None:
         out["group_name"] = data["GroupName"]
-    if "GroupPolicyList" in data:
+    if data.get("GroupPolicyList") is not None:
         import capo_securityhub.types.aws_iam_group_policy_list
 
         out["group_policy_list"] = (
@@ -83,6 +83,6 @@ def deserialize_json(data: dict) -> AwsIamGroupDetails:
                 data["GroupPolicyList"]
             )
         )
-    if "Path" in data:
+    if data.get("Path") is not None:
         out["path"] = data["Path"]
     return out

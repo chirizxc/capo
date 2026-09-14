@@ -31,7 +31,7 @@ def serialize_json(value: BatchGetObjectAttributesResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetObjectAttributesResponse:
     out: BatchGetObjectAttributesResponse = {}  # type: ignore[typeddict-item]
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_clouddirectory.types.attribute_key_and_value_list
 
         out["attributes"] = (

@@ -35,9 +35,9 @@ def serialize_json(value: ListDirectQueryDataSourcesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListDirectQueryDataSourcesResponse:
     out: ListDirectQueryDataSourcesResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "DirectQueryDataSources" in data:
+    if data.get("DirectQueryDataSources") is not None:
         import capo_opensearch.types.direct_query_data_source_list
 
         out["direct_query_data_sources"] = (

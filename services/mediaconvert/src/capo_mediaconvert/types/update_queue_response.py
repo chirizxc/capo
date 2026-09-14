@@ -25,7 +25,7 @@ def serialize_json(value: UpdateQueueResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateQueueResponse:
     out: UpdateQueueResponse = {}  # type: ignore[typeddict-item]
-    if "queue" in data:
+    if data.get("queue") is not None:
         import capo_mediaconvert.types.queue
 
         out["queue"] = capo_mediaconvert.types.queue.deserialize_json(data["queue"])

@@ -54,13 +54,13 @@ def serialize_aws_json_1_1(value: TestGridProject) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TestGridProject:
     out: TestGridProject = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "vpcConfig" in data:
+    if data.get("vpcConfig") is not None:
         import capo_device_farm.types.test_grid_vpc_config
 
         out["vpc_config"] = (
@@ -68,7 +68,7 @@ def deserialize_aws_json_1_1(data: dict) -> TestGridProject:
                 data["vpcConfig"]
             )
         )
-    if "created" in data:
+    if data.get("created") is not None:
         import capo_device_farm.types.date_time
 
         out["created"] = capo_device_farm.types.date_time.deserialize_aws_json_1_1(

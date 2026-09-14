@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: FirewallManagerStatement) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FirewallManagerStatement:
     out: FirewallManagerStatement = {}  # type: ignore[typeddict-item]
-    if "ManagedRuleGroupStatement" in data:
+    if data.get("ManagedRuleGroupStatement") is not None:
         import capo_wafv2.types.managed_rule_group_statement
 
         out["managed_rule_group_statement"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> FirewallManagerStatement:
                 data["ManagedRuleGroupStatement"]
             )
         )
-    if "RuleGroupReferenceStatement" in data:
+    if data.get("RuleGroupReferenceStatement") is not None:
         import capo_wafv2.types.rule_group_reference_statement
 
         out["rule_group_reference_statement"] = (

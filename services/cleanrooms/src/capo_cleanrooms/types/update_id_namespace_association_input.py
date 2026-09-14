@@ -49,11 +49,11 @@ def serialize_json(value: UpdateIdNamespaceAssociationInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateIdNamespaceAssociationInput:
     out: UpdateIdNamespaceAssociationInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "idMappingConfig" in data:
+    if data.get("idMappingConfig") is not None:
         import capo_cleanrooms.types.id_mapping_config
 
         out["id_mapping_config"] = (

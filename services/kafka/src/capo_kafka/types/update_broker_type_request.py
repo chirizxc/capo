@@ -29,8 +29,8 @@ def serialize_json(value: UpdateBrokerTypeRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateBrokerTypeRequest:
     out: UpdateBrokerTypeRequest = {}  # type: ignore[typeddict-item]
-    if "currentVersion" in data:
+    if data.get("currentVersion") is not None:
         out["current_version"] = data["currentVersion"]
-    if "targetInstanceType" in data:
+    if data.get("targetInstanceType") is not None:
         out["target_instance_type"] = data["targetInstanceType"]
     return out

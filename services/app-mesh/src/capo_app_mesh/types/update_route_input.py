@@ -40,12 +40,12 @@ def serialize_json(value: UpdateRouteInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRouteInput:
     out: UpdateRouteInput = {}  # type: ignore[typeddict-item]
-    if "spec" in data:
+    if data.get("spec") is not None:
         import capo_app_mesh.types.route_spec
 
         out["spec"] = capo_app_mesh.types.route_spec.deserialize_json(data["spec"])
     else:
         raise DeserializationError("UpdateRouteInput.spec required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

@@ -38,16 +38,16 @@ def serialize_json(value: CustomRule) -> dict:
 
 def deserialize_json(data: dict) -> CustomRule:
     out: CustomRule = {}  # type: ignore[typeddict-item]
-    if "source" in data:
+    if data.get("source") is not None:
         out["source"] = data["source"]
     else:
         raise DeserializationError("CustomRule.source required")
-    if "target" in data:
+    if data.get("target") is not None:
         out["target"] = data["target"]
     else:
         raise DeserializationError("CustomRule.target required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "condition" in data:
+    if data.get("condition") is not None:
         out["condition"] = data["condition"]
     return out

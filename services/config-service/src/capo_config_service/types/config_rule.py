@@ -130,21 +130,21 @@ def serialize_aws_json_1_1(value: ConfigRule) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConfigRule:
     out: ConfigRule = {}  # type: ignore[typeddict-item]
-    if "ConfigRuleName" in data:
+    if data.get("ConfigRuleName") is not None:
         out["config_rule_name"] = data["ConfigRuleName"]
-    if "ConfigRuleArn" in data:
+    if data.get("ConfigRuleArn") is not None:
         out["config_rule_arn"] = data["ConfigRuleArn"]
-    if "ConfigRuleId" in data:
+    if data.get("ConfigRuleId") is not None:
         out["config_rule_id"] = data["ConfigRuleId"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Scope" in data:
+    if data.get("Scope") is not None:
         import capo_config_service.types.scope
 
         out["scope"] = capo_config_service.types.scope.deserialize_aws_json_1_1(
             data["Scope"]
         )
-    if "Source" in data:
+    if data.get("Source") is not None:
         import capo_config_service.types.source
 
         out["source"] = capo_config_service.types.source.deserialize_aws_json_1_1(
@@ -152,9 +152,9 @@ def deserialize_aws_json_1_1(data: dict) -> ConfigRule:
         )
     else:
         raise DeserializationError("ConfigRule.source required")
-    if "InputParameters" in data:
+    if data.get("InputParameters") is not None:
         out["input_parameters"] = data["InputParameters"]
-    if "MaximumExecutionFrequency" in data:
+    if data.get("MaximumExecutionFrequency") is not None:
         import capo_config_service.types.maximum_execution_frequency
 
         out["maximum_execution_frequency"] = (
@@ -162,7 +162,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConfigRule:
                 data["MaximumExecutionFrequency"]
             )
         )
-    if "ConfigRuleState" in data:
+    if data.get("ConfigRuleState") is not None:
         import capo_config_service.types.config_rule_state
 
         out["config_rule_state"] = (
@@ -170,9 +170,9 @@ def deserialize_aws_json_1_1(data: dict) -> ConfigRule:
                 data["ConfigRuleState"]
             )
         )
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         out["created_by"] = data["CreatedBy"]
-    if "EvaluationModes" in data:
+    if data.get("EvaluationModes") is not None:
         import capo_config_service.types.evaluation_modes
 
         out["evaluation_modes"] = (
@@ -180,7 +180,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConfigRule:
                 data["EvaluationModes"]
             )
         )
-    if "RuleEvaluationVisibility" in data:
+    if data.get("RuleEvaluationVisibility") is not None:
         import capo_config_service.types.rule_evaluation_visibility
 
         out["rule_evaluation_visibility"] = (

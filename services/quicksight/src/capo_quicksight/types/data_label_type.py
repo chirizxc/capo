@@ -81,7 +81,7 @@ def serialize_json(value: DataLabelType) -> dict:
 
 def deserialize_json(data: dict) -> DataLabelType:
     out: DataLabelType = {}  # type: ignore[typeddict-item]
-    if "FieldLabelType" in data:
+    if data.get("FieldLabelType") is not None:
         import capo_quicksight.types.field_label_type
 
         out["field_label_type"] = (
@@ -89,7 +89,7 @@ def deserialize_json(data: dict) -> DataLabelType:
                 data["FieldLabelType"]
             )
         )
-    if "DataPathLabelType" in data:
+    if data.get("DataPathLabelType") is not None:
         import capo_quicksight.types.data_path_label_type
 
         out["data_path_label_type"] = (
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> DataLabelType:
                 data["DataPathLabelType"]
             )
         )
-    if "RangeEndsLabelType" in data:
+    if data.get("RangeEndsLabelType") is not None:
         import capo_quicksight.types.range_ends_label_type
 
         out["range_ends_label_type"] = (
@@ -105,7 +105,7 @@ def deserialize_json(data: dict) -> DataLabelType:
                 data["RangeEndsLabelType"]
             )
         )
-    if "MinimumLabelType" in data:
+    if data.get("MinimumLabelType") is not None:
         import capo_quicksight.types.minimum_label_type
 
         out["minimum_label_type"] = (
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> DataLabelType:
                 data["MinimumLabelType"]
             )
         )
-    if "MaximumLabelType" in data:
+    if data.get("MaximumLabelType") is not None:
         import capo_quicksight.types.maximum_label_type
 
         out["maximum_label_type"] = (

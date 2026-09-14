@@ -28,7 +28,7 @@ def serialize_json(value: RetrieveResponse) -> dict:
 
 def deserialize_json(data: dict) -> RetrieveResponse:
     out: RetrieveResponse = {}  # type: ignore[typeddict-item]
-    if "results" in data:
+    if data.get("results") is not None:
         import capo_qconnect.types.retrieve_result_list
 
         out["results"] = capo_qconnect.types.retrieve_result_list.deserialize_json(

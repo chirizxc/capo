@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.autoscaling#AutoScaling_2011_01_01``."""
 
+import uuid
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -377,7 +378,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.attach_instances_query.AttachInstancesQuery = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.attach_instances_query.AttachInstancesQuery = {}
         if instance_ids is not None:
             input_["instance_ids"] = instance_ids
         if auto_scaling_group_name is not None:
@@ -388,6 +389,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def attach_load_balancers(
@@ -435,7 +437,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.attach_load_balancers_type.AttachLoadBalancersType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.attach_load_balancers_type.AttachLoadBalancersType = {}
         if auto_scaling_group_name is not None:
             input_["auto_scaling_group_name"] = auto_scaling_group_name
         if load_balancer_names is not None:
@@ -446,6 +448,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def attach_load_balancer_target_groups(
@@ -493,7 +496,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.attach_load_balancer_target_groups_type.AttachLoadBalancerTargetGroupsType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.attach_load_balancer_target_groups_type.AttachLoadBalancerTargetGroupsType = {}
         if auto_scaling_group_name is not None:
             input_["auto_scaling_group_name"] = auto_scaling_group_name
         if target_group_ar_ns is not None:
@@ -504,6 +507,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def attach_traffic_sources(
@@ -555,7 +559,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.attach_traffic_sources_type.AttachTrafficSourcesType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.attach_traffic_sources_type.AttachTrafficSourcesType = {}
         if auto_scaling_group_name is not None:
             input_["auto_scaling_group_name"] = auto_scaling_group_name
         if traffic_sources is not None:
@@ -568,6 +572,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_delete_scheduled_action(
@@ -607,7 +612,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.batch_delete_scheduled_action_type.BatchDeleteScheduledActionType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.batch_delete_scheduled_action_type.BatchDeleteScheduledActionType = {}
         if auto_scaling_group_name is not None:
             input_["auto_scaling_group_name"] = auto_scaling_group_name
         if scheduled_action_names is not None:
@@ -618,6 +623,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_put_scheduled_update_group_action(
@@ -659,7 +665,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.batch_put_scheduled_update_group_action_type.BatchPutScheduledUpdateGroupActionType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.batch_put_scheduled_update_group_action_type.BatchPutScheduledUpdateGroupActionType = {}
         if auto_scaling_group_name is not None:
             input_["auto_scaling_group_name"] = auto_scaling_group_name
         if scheduled_update_group_actions is not None:
@@ -670,6 +676,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_instance_refresh(
@@ -717,7 +724,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.cancel_instance_refresh_type.CancelInstanceRefreshType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.cancel_instance_refresh_type.CancelInstanceRefreshType = {}
         if auto_scaling_group_name is not None:
             input_["auto_scaling_group_name"] = auto_scaling_group_name
         if wait_for_transitioning_instances is not None:
@@ -730,6 +737,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def complete_lifecycle_action(
@@ -787,7 +795,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.complete_lifecycle_action_type.CompleteLifecycleActionType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.complete_lifecycle_action_type.CompleteLifecycleActionType = {}
         if lifecycle_hook_name is not None:
             input_["lifecycle_hook_name"] = lifecycle_hook_name
         if auto_scaling_group_name is not None:
@@ -804,6 +812,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_auto_scaling_group(
@@ -988,7 +997,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.create_auto_scaling_group_type.CreateAutoScalingGroupType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.create_auto_scaling_group_type.CreateAutoScalingGroupType = {}
         if auto_scaling_group_name is not None:
             input_["auto_scaling_group_name"] = auto_scaling_group_name
         if launch_configuration_name is not None:
@@ -1073,6 +1082,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_launch_configuration(
@@ -1184,7 +1194,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.create_launch_configuration_type.CreateLaunchConfigurationType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.create_launch_configuration_type.CreateLaunchConfigurationType = {}
         if launch_configuration_name is not None:
             input_["launch_configuration_name"] = launch_configuration_name
         if image_id is not None:
@@ -1231,6 +1241,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_or_update_tags(
@@ -1271,7 +1282,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.create_or_update_tags_type.CreateOrUpdateTagsType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.create_or_update_tags_type.CreateOrUpdateTagsType = {}
         if tags is not None:
             input_["tags"] = tags
 
@@ -1280,6 +1291,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_auto_scaling_group(
@@ -1329,7 +1341,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.delete_auto_scaling_group_type.DeleteAutoScalingGroupType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.delete_auto_scaling_group_type.DeleteAutoScalingGroupType = {}
         if auto_scaling_group_name is not None:
             input_["auto_scaling_group_name"] = auto_scaling_group_name
         if force_delete is not None:
@@ -1340,6 +1352,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_launch_configuration(
@@ -1380,7 +1393,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.launch_configuration_name_type.LaunchConfigurationNameType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.launch_configuration_name_type.LaunchConfigurationNameType = {}
         if launch_configuration_name is not None:
             input_["launch_configuration_name"] = launch_configuration_name
 
@@ -1389,6 +1402,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_lifecycle_hook(
@@ -1436,7 +1450,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.delete_lifecycle_hook_type.DeleteLifecycleHookType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.delete_lifecycle_hook_type.DeleteLifecycleHookType = {}
         if lifecycle_hook_name is not None:
             input_["lifecycle_hook_name"] = lifecycle_hook_name
         if auto_scaling_group_name is not None:
@@ -1447,6 +1461,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_notification_configuration(
@@ -1490,7 +1505,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.delete_notification_configuration_type.DeleteNotificationConfigurationType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.delete_notification_configuration_type.DeleteNotificationConfigurationType = {}
         if auto_scaling_group_name is not None:
             input_["auto_scaling_group_name"] = auto_scaling_group_name
         if topic_arn is not None:
@@ -1501,6 +1516,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_policy(
@@ -1545,7 +1561,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.delete_policy_type.DeletePolicyType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.delete_policy_type.DeletePolicyType = {}
         if auto_scaling_group_name is not None:
             input_["auto_scaling_group_name"] = auto_scaling_group_name
         if policy_name is not None:
@@ -1556,6 +1572,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_scheduled_action(
@@ -1599,7 +1616,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.delete_scheduled_action_type.DeleteScheduledActionType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.delete_scheduled_action_type.DeleteScheduledActionType = {}
         if auto_scaling_group_name is not None:
             input_["auto_scaling_group_name"] = auto_scaling_group_name
         if scheduled_action_name is not None:
@@ -1610,6 +1627,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_tags(
@@ -1648,7 +1666,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.delete_tags_type.DeleteTagsType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.delete_tags_type.DeleteTagsType = {}
         if tags is not None:
             input_["tags"] = tags
 
@@ -1657,6 +1675,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_warm_pool(
@@ -1699,7 +1718,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.delete_warm_pool_type.DeleteWarmPoolType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.delete_warm_pool_type.DeleteWarmPoolType = {}
         if auto_scaling_group_name is not None:
             input_["auto_scaling_group_name"] = auto_scaling_group_name
         if force_delete is not None:
@@ -1710,6 +1729,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_account_limits(
@@ -1749,6 +1769,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_adjustment_types(
@@ -1788,6 +1809,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_auto_scaling_groups(
@@ -1840,7 +1862,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.auto_scaling_group_names_type.AutoScalingGroupNamesType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.auto_scaling_group_names_type.AutoScalingGroupNamesType = {}
         if auto_scaling_group_names is not None:
             input_["auto_scaling_group_names"] = auto_scaling_group_names
         if include_instances is not None:
@@ -1857,6 +1879,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_auto_scaling_groups(
@@ -1934,7 +1957,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.describe_auto_scaling_instances_type.DescribeAutoScalingInstancesType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.describe_auto_scaling_instances_type.DescribeAutoScalingInstancesType = {}
         if instance_ids is not None:
             input_["instance_ids"] = instance_ids
         if max_records is not None:
@@ -1947,6 +1970,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_auto_scaling_instances(
@@ -2011,6 +2035,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_instance_refreshes(
@@ -2055,7 +2080,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.describe_instance_refreshes_type.DescribeInstanceRefreshesType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.describe_instance_refreshes_type.DescribeInstanceRefreshesType = {}
         if auto_scaling_group_name is not None:
             input_["auto_scaling_group_name"] = auto_scaling_group_name
         if instance_refresh_ids is not None:
@@ -2070,7 +2095,35 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_describe_instance_refreshes(
+        self,
+        *,
+        config_overrides: Optional[AutoScalingClientConfig] = None,
+        auto_scaling_group_name: Optional[
+            "capo_auto_scaling.types.xml_string_max_len255.XmlStringMaxLen255"
+        ] = None,
+        instance_refresh_ids: Optional[
+            "capo_auto_scaling.types.instance_refresh_ids.InstanceRefreshIds"
+        ] = None,
+        next_token: Optional["capo_auto_scaling.types.xml_string.XmlString"] = None,
+        max_records: Optional["capo_auto_scaling.types.max_records.MaxRecords"] = None,
+    ) -> "Iterator[capo_auto_scaling.types.describe_instance_refreshes_answer.DescribeInstanceRefreshesAnswer]":
+        _token = next_token
+        while True:
+            _response = self.describe_instance_refreshes(
+                config_overrides=config_overrides,
+                auto_scaling_group_name=auto_scaling_group_name,
+                instance_refresh_ids=instance_refresh_ids,
+                next_token=_token,
+                max_records=max_records,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def describe_launch_configurations(
         self,
@@ -2116,7 +2169,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.launch_configuration_names_type.LaunchConfigurationNamesType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.launch_configuration_names_type.LaunchConfigurationNamesType = {}
         if launch_configuration_names is not None:
             input_["launch_configuration_names"] = launch_configuration_names
         if next_token is not None:
@@ -2129,6 +2182,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_launch_configurations(
@@ -2199,7 +2253,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.describe_lifecycle_hooks_type.DescribeLifecycleHooksType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.describe_lifecycle_hooks_type.DescribeLifecycleHooksType = {}
         if auto_scaling_group_name is not None:
             input_["auto_scaling_group_name"] = auto_scaling_group_name
         if lifecycle_hook_names is not None:
@@ -2210,6 +2264,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_lifecycle_hook_types(
@@ -2249,6 +2304,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_load_balancers(
@@ -2295,7 +2351,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.describe_load_balancers_request.DescribeLoadBalancersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.describe_load_balancers_request.DescribeLoadBalancersRequest = {}
         if auto_scaling_group_name is not None:
             input_["auto_scaling_group_name"] = auto_scaling_group_name
         if next_token is not None:
@@ -2308,7 +2364,31 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_describe_load_balancers(
+        self,
+        *,
+        config_overrides: Optional[AutoScalingClientConfig] = None,
+        auto_scaling_group_name: Optional[
+            "capo_auto_scaling.types.xml_string_max_len255.XmlStringMaxLen255"
+        ] = None,
+        next_token: Optional["capo_auto_scaling.types.xml_string.XmlString"] = None,
+        max_records: Optional["capo_auto_scaling.types.max_records.MaxRecords"] = None,
+    ) -> "Iterator[capo_auto_scaling.types.describe_load_balancers_response.DescribeLoadBalancersResponse]":
+        _token = next_token
+        while True:
+            _response = self.describe_load_balancers(
+                config_overrides=config_overrides,
+                auto_scaling_group_name=auto_scaling_group_name,
+                next_token=_token,
+                max_records=max_records,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def describe_load_balancer_target_groups(
         self,
@@ -2354,7 +2434,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.describe_load_balancer_target_groups_request.DescribeLoadBalancerTargetGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.describe_load_balancer_target_groups_request.DescribeLoadBalancerTargetGroupsRequest = {}
         if auto_scaling_group_name is not None:
             input_["auto_scaling_group_name"] = auto_scaling_group_name
         if next_token is not None:
@@ -2367,7 +2447,31 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_describe_load_balancer_target_groups(
+        self,
+        *,
+        config_overrides: Optional[AutoScalingClientConfig] = None,
+        auto_scaling_group_name: Optional[
+            "capo_auto_scaling.types.xml_string_max_len255.XmlStringMaxLen255"
+        ] = None,
+        next_token: Optional["capo_auto_scaling.types.xml_string.XmlString"] = None,
+        max_records: Optional["capo_auto_scaling.types.max_records.MaxRecords"] = None,
+    ) -> "Iterator[capo_auto_scaling.types.describe_load_balancer_target_groups_response.DescribeLoadBalancerTargetGroupsResponse]":
+        _token = next_token
+        while True:
+            _response = self.describe_load_balancer_target_groups(
+                config_overrides=config_overrides,
+                auto_scaling_group_name=auto_scaling_group_name,
+                next_token=_token,
+                max_records=max_records,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def describe_metric_collection_types(
         self, *, config_overrides: Optional[AutoScalingClientConfig] = None
@@ -2406,6 +2510,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_notification_configurations(
@@ -2452,7 +2557,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.describe_notification_configurations_type.DescribeNotificationConfigurationsType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.describe_notification_configurations_type.DescribeNotificationConfigurationsType = {}
         if auto_scaling_group_names is not None:
             input_["auto_scaling_group_names"] = auto_scaling_group_names
         if next_token is not None:
@@ -2465,6 +2570,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_notification_configurations(
@@ -2543,7 +2649,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.describe_policies_type.DescribePoliciesType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.describe_policies_type.DescribePoliciesType = {}
         if auto_scaling_group_name is not None:
             input_["auto_scaling_group_name"] = auto_scaling_group_name
         if policy_names is not None:
@@ -2560,6 +2666,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_policies(
@@ -2649,7 +2756,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.describe_scaling_activities_type.DescribeScalingActivitiesType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.describe_scaling_activities_type.DescribeScalingActivitiesType = {}
         if activity_ids is not None:
             input_["activity_ids"] = activity_ids
         if auto_scaling_group_name is not None:
@@ -2668,6 +2775,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_scaling_activities(
@@ -2740,6 +2848,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_scheduled_actions(
@@ -2798,7 +2907,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.describe_scheduled_actions_type.DescribeScheduledActionsType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.describe_scheduled_actions_type.DescribeScheduledActionsType = {}
         if auto_scaling_group_name is not None:
             input_["auto_scaling_group_name"] = auto_scaling_group_name
         if scheduled_action_names is not None:
@@ -2817,6 +2926,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_scheduled_actions(
@@ -2896,7 +3006,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.describe_tags_type.DescribeTagsType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.describe_tags_type.DescribeTagsType = {}
         if filters is not None:
             input_["filters"] = filters
         if next_token is not None:
@@ -2909,6 +3019,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_tags(
@@ -2971,6 +3082,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_traffic_sources(
@@ -3021,7 +3133,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.describe_traffic_sources_request.DescribeTrafficSourcesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.describe_traffic_sources_request.DescribeTrafficSourcesRequest = {}
         if auto_scaling_group_name is not None:
             input_["auto_scaling_group_name"] = auto_scaling_group_name
         if traffic_source_type is not None:
@@ -3036,7 +3148,35 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_describe_traffic_sources(
+        self,
+        *,
+        config_overrides: Optional[AutoScalingClientConfig] = None,
+        auto_scaling_group_name: Optional[
+            "capo_auto_scaling.types.xml_string_max_len255.XmlStringMaxLen255"
+        ] = None,
+        traffic_source_type: Optional[
+            "capo_auto_scaling.types.xml_string_max_len255.XmlStringMaxLen255"
+        ] = None,
+        next_token: Optional["capo_auto_scaling.types.xml_string.XmlString"] = None,
+        max_records: Optional["capo_auto_scaling.types.max_records.MaxRecords"] = None,
+    ) -> "Iterator[capo_auto_scaling.types.describe_traffic_sources_response.DescribeTrafficSourcesResponse]":
+        _token = next_token
+        while True:
+            _response = self.describe_traffic_sources(
+                config_overrides=config_overrides,
+                auto_scaling_group_name=auto_scaling_group_name,
+                traffic_source_type=traffic_source_type,
+                next_token=_token,
+                max_records=max_records,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def describe_warm_pool(
         self,
@@ -3077,7 +3217,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.describe_warm_pool_type.DescribeWarmPoolType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.describe_warm_pool_type.DescribeWarmPoolType = {}
         if auto_scaling_group_name is not None:
             input_["auto_scaling_group_name"] = auto_scaling_group_name
         if max_records is not None:
@@ -3090,6 +3230,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_warm_pool(
@@ -3164,7 +3305,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.detach_instances_query.DetachInstancesQuery = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.detach_instances_query.DetachInstancesQuery = {}
         if instance_ids is not None:
             input_["instance_ids"] = instance_ids
         if auto_scaling_group_name is not None:
@@ -3179,6 +3320,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def detach_load_balancers(
@@ -3224,7 +3366,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.detach_load_balancers_type.DetachLoadBalancersType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.detach_load_balancers_type.DetachLoadBalancersType = {}
         if auto_scaling_group_name is not None:
             input_["auto_scaling_group_name"] = auto_scaling_group_name
         if load_balancer_names is not None:
@@ -3235,6 +3377,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def detach_load_balancer_target_groups(
@@ -3280,7 +3423,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.detach_load_balancer_target_groups_type.DetachLoadBalancerTargetGroupsType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.detach_load_balancer_target_groups_type.DetachLoadBalancerTargetGroupsType = {}
         if auto_scaling_group_name is not None:
             input_["auto_scaling_group_name"] = auto_scaling_group_name
         if target_group_ar_ns is not None:
@@ -3291,6 +3434,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def detach_traffic_sources(
@@ -3336,7 +3480,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.detach_traffic_sources_type.DetachTrafficSourcesType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.detach_traffic_sources_type.DetachTrafficSourcesType = {}
         if auto_scaling_group_name is not None:
             input_["auto_scaling_group_name"] = auto_scaling_group_name
         if traffic_sources is not None:
@@ -3347,6 +3491,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disable_metrics_collection(
@@ -3388,7 +3533,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.disable_metrics_collection_query.DisableMetricsCollectionQuery = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.disable_metrics_collection_query.DisableMetricsCollectionQuery = {}
         if auto_scaling_group_name is not None:
             input_["auto_scaling_group_name"] = auto_scaling_group_name
         if metrics is not None:
@@ -3399,6 +3544,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def enable_metrics_collection(
@@ -3444,7 +3590,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.enable_metrics_collection_query.EnableMetricsCollectionQuery = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.enable_metrics_collection_query.EnableMetricsCollectionQuery = {}
         if auto_scaling_group_name is not None:
             input_["auto_scaling_group_name"] = auto_scaling_group_name
         if metrics is not None:
@@ -3457,6 +3603,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def enter_standby(
@@ -3506,7 +3653,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.enter_standby_query.EnterStandbyQuery = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.enter_standby_query.EnterStandbyQuery = {}
         if instance_ids is not None:
             input_["instance_ids"] = instance_ids
         if auto_scaling_group_name is not None:
@@ -3521,6 +3668,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def execute_policy(
@@ -3577,7 +3725,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.execute_policy_type.ExecutePolicyType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.execute_policy_type.ExecutePolicyType = {}
         if auto_scaling_group_name is not None:
             input_["auto_scaling_group_name"] = auto_scaling_group_name
         if policy_name is not None:
@@ -3594,6 +3742,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def exit_standby(
@@ -3639,7 +3788,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.exit_standby_query.ExitStandbyQuery = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.exit_standby_query.ExitStandbyQuery = {}
         if instance_ids is not None:
             input_["instance_ids"] = instance_ids
         if auto_scaling_group_name is not None:
@@ -3650,6 +3799,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_predictive_scaling_forecast(
@@ -3697,7 +3847,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.get_predictive_scaling_forecast_type.GetPredictiveScalingForecastType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.get_predictive_scaling_forecast_type.GetPredictiveScalingForecastType = {}
         if auto_scaling_group_name is not None:
             input_["auto_scaling_group_name"] = auto_scaling_group_name
         if policy_name is not None:
@@ -3712,6 +3862,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def launch_instances(
@@ -3772,13 +3923,14 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.launch_instances_request.LaunchInstancesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.launch_instances_request.LaunchInstancesRequest = {}
         if auto_scaling_group_name is not None:
             input_["auto_scaling_group_name"] = auto_scaling_group_name
         if requested_capacity is not None:
             input_["requested_capacity"] = requested_capacity
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if availability_zones is not None:
             input_["availability_zones"] = availability_zones
         if availability_zone_ids is not None:
@@ -3793,6 +3945,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_lifecycle_hook(
@@ -3863,7 +4016,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.put_lifecycle_hook_type.PutLifecycleHookType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.put_lifecycle_hook_type.PutLifecycleHookType = {}
         if lifecycle_hook_name is not None:
             input_["lifecycle_hook_name"] = lifecycle_hook_name
         if auto_scaling_group_name is not None:
@@ -3886,6 +4039,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_notification_configuration(
@@ -3935,7 +4089,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.put_notification_configuration_type.PutNotificationConfigurationType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.put_notification_configuration_type.PutNotificationConfigurationType = {}
         if auto_scaling_group_name is not None:
             input_["auto_scaling_group_name"] = auto_scaling_group_name
         if topic_arn is not None:
@@ -3948,6 +4102,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_scaling_policy(
@@ -4039,7 +4194,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.put_scaling_policy_type.PutScalingPolicyType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.put_scaling_policy_type.PutScalingPolicyType = {}
         if auto_scaling_group_name is not None:
             input_["auto_scaling_group_name"] = auto_scaling_group_name
         if policy_name is not None:
@@ -4076,6 +4231,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_scheduled_update_group_action(
@@ -4151,7 +4307,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.put_scheduled_update_group_action_type.PutScheduledUpdateGroupActionType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.put_scheduled_update_group_action_type.PutScheduledUpdateGroupActionType = {}
         if auto_scaling_group_name is not None:
             input_["auto_scaling_group_name"] = auto_scaling_group_name
         if scheduled_action_name is not None:
@@ -4178,6 +4334,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_warm_pool(
@@ -4237,7 +4394,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.put_warm_pool_type.PutWarmPoolType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.put_warm_pool_type.PutWarmPoolType = {}
         if auto_scaling_group_name is not None:
             input_["auto_scaling_group_name"] = auto_scaling_group_name
         if max_group_prepared_capacity is not None:
@@ -4254,6 +4411,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def record_lifecycle_action_heartbeat(
@@ -4307,7 +4465,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.record_lifecycle_action_heartbeat_type.RecordLifecycleActionHeartbeatType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.record_lifecycle_action_heartbeat_type.RecordLifecycleActionHeartbeatType = {}
         if lifecycle_hook_name is not None:
             input_["lifecycle_hook_name"] = lifecycle_hook_name
         if auto_scaling_group_name is not None:
@@ -4322,6 +4480,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def resume_processes(
@@ -4366,7 +4525,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.scaling_process_query.ScalingProcessQuery = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.scaling_process_query.ScalingProcessQuery = {}
         if auto_scaling_group_name is not None:
             input_["auto_scaling_group_name"] = auto_scaling_group_name
         if scaling_processes is not None:
@@ -4377,6 +4536,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def rollback_instance_refresh(
@@ -4415,7 +4575,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.rollback_instance_refresh_type.RollbackInstanceRefreshType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.rollback_instance_refresh_type.RollbackInstanceRefreshType = {}
         if auto_scaling_group_name is not None:
             input_["auto_scaling_group_name"] = auto_scaling_group_name
 
@@ -4424,6 +4584,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def set_desired_capacity(
@@ -4472,7 +4633,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.set_desired_capacity_type.SetDesiredCapacityType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.set_desired_capacity_type.SetDesiredCapacityType = {}
         if auto_scaling_group_name is not None:
             input_["auto_scaling_group_name"] = auto_scaling_group_name
         if desired_capacity is not None:
@@ -4485,6 +4646,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def set_instance_health(
@@ -4532,7 +4694,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.set_instance_health_query.SetInstanceHealthQuery = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.set_instance_health_query.SetInstanceHealthQuery = {}
         if instance_id is not None:
             input_["instance_id"] = instance_id
         if health_status is not None:
@@ -4545,6 +4707,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def set_instance_protection(
@@ -4599,7 +4762,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.set_instance_protection_query.SetInstanceProtectionQuery = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.set_instance_protection_query.SetInstanceProtectionQuery = {}
         if instance_ids is not None:
             input_["instance_ids"] = instance_ids
         if auto_scaling_group_name is not None:
@@ -4612,6 +4775,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_instance_refresh(
@@ -4667,7 +4831,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.start_instance_refresh_type.StartInstanceRefreshType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.start_instance_refresh_type.StartInstanceRefreshType = {}
         if auto_scaling_group_name is not None:
             input_["auto_scaling_group_name"] = auto_scaling_group_name
         if strategy is not None:
@@ -4682,6 +4846,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def suspend_processes(
@@ -4726,7 +4891,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.scaling_process_query.ScalingProcessQuery = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.scaling_process_query.ScalingProcessQuery = {}
         if auto_scaling_group_name is not None:
             input_["auto_scaling_group_name"] = auto_scaling_group_name
         if scaling_processes is not None:
@@ -4737,6 +4902,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def terminate_instance_in_auto_scaling_group(
@@ -4781,7 +4947,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.terminate_instance_in_auto_scaling_group_type.TerminateInstanceInAutoScalingGroupType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.terminate_instance_in_auto_scaling_group_type.TerminateInstanceInAutoScalingGroupType = {}
         if instance_id is not None:
             input_["instance_id"] = instance_id
         if should_decrement_desired_capacity is not None:
@@ -4794,6 +4960,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_auto_scaling_group(
@@ -4943,7 +5110,7 @@ class AutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling.types.update_auto_scaling_group_type.UpdateAutoScalingGroupType = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling.types.update_auto_scaling_group_type.UpdateAutoScalingGroupType = {}
         if auto_scaling_group_name is not None:
             input_["auto_scaling_group_name"] = auto_scaling_group_name
         if launch_configuration_name is not None:
@@ -5014,6 +5181,7 @@ class AutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

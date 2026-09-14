@@ -86,15 +86,15 @@ def serialize_json(value: TelemetryPipeline) -> dict:
 
 def deserialize_json(data: dict) -> TelemetryPipeline:
     out: TelemetryPipeline = {}  # type: ignore[typeddict-item]
-    if "CreatedTimeStamp" in data:
+    if data.get("CreatedTimeStamp") is not None:
         out["created_time_stamp"] = data["CreatedTimeStamp"]
-    if "LastUpdateTimeStamp" in data:
+    if data.get("LastUpdateTimeStamp") is not None:
         out["last_update_time_stamp"] = data["LastUpdateTimeStamp"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Configuration" in data:
+    if data.get("Configuration") is not None:
         import capo_observabilityadmin.types.telemetry_pipeline_configuration
 
         out["configuration"] = (
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> TelemetryPipeline:
                 data["Configuration"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_observabilityadmin.types.telemetry_pipeline_status
 
         out["status"] = (
@@ -110,7 +110,7 @@ def deserialize_json(data: dict) -> TelemetryPipeline:
                 data["Status"]
             )
         )
-    if "StatusReason" in data:
+    if data.get("StatusReason") is not None:
         import capo_observabilityadmin.types.telemetry_pipeline_status_reason
 
         out["status_reason"] = (
@@ -118,7 +118,7 @@ def deserialize_json(data: dict) -> TelemetryPipeline:
                 data["StatusReason"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_observabilityadmin.types.tag_map_output
 
         out["tags"] = capo_observabilityadmin.types.tag_map_output.deserialize_json(

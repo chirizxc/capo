@@ -34,12 +34,12 @@ def serialize_json(value: MonitorErrorDetails) -> dict:
 
 def deserialize_json(data: dict) -> MonitorErrorDetails:
     out: MonitorErrorDetails = {}  # type: ignore[typeddict-item]
-    if "code" in data:
+    if data.get("code") is not None:
         import capo_iotsitewise.types.monitor_error_code
 
         out["code"] = capo_iotsitewise.types.monitor_error_code.deserialize_json(
             data["code"]
         )
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out

@@ -28,8 +28,8 @@ def serialize_json(value: AWSLocation) -> dict:
 
 def deserialize_json(data: dict) -> AWSLocation:
     out: AWSLocation = {}  # type: ignore[typeddict-item]
-    if "Zone" in data:
+    if data.get("Zone") is not None:
         out["zone"] = data["Zone"]
-    if "SubnetArn" in data:
+    if data.get("SubnetArn") is not None:
         out["subnet_arn"] = data["SubnetArn"]
     return out

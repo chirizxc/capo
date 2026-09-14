@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: DynamoDBCapacityDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DynamoDBCapacityDetails:
     out: DynamoDBCapacityDetails = {}  # type: ignore[typeddict-item]
-    if "CapacityUnits" in data:
+    if data.get("CapacityUnits") is not None:
         out["capacity_units"] = data["CapacityUnits"]
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
     return out

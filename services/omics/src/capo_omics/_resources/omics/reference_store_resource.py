@@ -101,8 +101,9 @@ class ReferenceStoreResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.create_reference_store_request.CreateReferenceStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_omics.types.create_reference_store_request.CreateReferenceStoreRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if sse_config is not None:
@@ -117,6 +118,7 @@ class ReferenceStoreResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -155,14 +157,16 @@ class ReferenceStoreResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.get_reference_store_request.GetReferenceStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_omics.types.get_reference_store_request.GetReferenceStoreRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -204,14 +208,16 @@ class ReferenceStoreResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.delete_reference_store_request.DeleteReferenceStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_omics.types.delete_reference_store_request.DeleteReferenceStoreRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -255,7 +261,7 @@ class ReferenceStoreResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.list_reference_stores_request.ListReferenceStoresRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.list_reference_stores_request.ListReferenceStoresRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -268,6 +274,7 @@ class ReferenceStoreResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_reference_import_job(
@@ -308,15 +315,17 @@ class ReferenceStoreResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.get_reference_import_job_request.GetReferenceImportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["reference_store_id"] = reference_store_id
+        input_: capo_omics.types.get_reference_import_job_request.GetReferenceImportJobRequest = {
+            "id": id,
+            "reference_store_id": reference_store_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_reference_import_jobs(
@@ -363,12 +372,13 @@ class ReferenceStoreResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.list_reference_import_jobs_request.ListReferenceImportJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.list_reference_import_jobs_request.ListReferenceImportJobsRequest = {
+            "reference_store_id": reference_store_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["reference_store_id"] = reference_store_id
         if filter is not None:
             input_["filter"] = filter
 
@@ -377,6 +387,7 @@ class ReferenceStoreResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_reference_import_job(
@@ -422,18 +433,20 @@ class ReferenceStoreResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.start_reference_import_job_request.StartReferenceImportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["reference_store_id"] = reference_store_id
-        input_["role_arn"] = role_arn
+        input_: capo_omics.types.start_reference_import_job_request.StartReferenceImportJobRequest = {
+            "reference_store_id": reference_store_id,
+            "role_arn": role_arn,
+            "sources": sources,
+        }
         if client_token is not None:
             input_["client_token"] = client_token
-        input_["sources"] = sources
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -490,8 +503,9 @@ class AsyncReferenceStoreResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.create_reference_store_request.CreateReferenceStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_omics.types.create_reference_store_request.CreateReferenceStoreRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if sse_config is not None:
@@ -506,6 +520,7 @@ class AsyncReferenceStoreResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -545,14 +560,16 @@ class AsyncReferenceStoreResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.get_reference_store_request.GetReferenceStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_omics.types.get_reference_store_request.GetReferenceStoreRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -595,14 +612,16 @@ class AsyncReferenceStoreResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.delete_reference_store_request.DeleteReferenceStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_omics.types.delete_reference_store_request.DeleteReferenceStoreRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -647,7 +666,7 @@ class AsyncReferenceStoreResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.list_reference_stores_request.ListReferenceStoresRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.list_reference_stores_request.ListReferenceStoresRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -660,6 +679,7 @@ class AsyncReferenceStoreResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_reference_import_job(
@@ -701,15 +721,17 @@ class AsyncReferenceStoreResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.get_reference_import_job_request.GetReferenceImportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["reference_store_id"] = reference_store_id
+        input_: capo_omics.types.get_reference_import_job_request.GetReferenceImportJobRequest = {
+            "id": id,
+            "reference_store_id": reference_store_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_reference_import_jobs(
@@ -757,12 +779,13 @@ class AsyncReferenceStoreResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.list_reference_import_jobs_request.ListReferenceImportJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.list_reference_import_jobs_request.ListReferenceImportJobsRequest = {
+            "reference_store_id": reference_store_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["reference_store_id"] = reference_store_id
         if filter is not None:
             input_["filter"] = filter
 
@@ -771,6 +794,7 @@ class AsyncReferenceStoreResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_reference_import_job(
@@ -817,16 +841,18 @@ class AsyncReferenceStoreResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.start_reference_import_job_request.StartReferenceImportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["reference_store_id"] = reference_store_id
-        input_["role_arn"] = role_arn
+        input_: capo_omics.types.start_reference_import_job_request.StartReferenceImportJobRequest = {
+            "reference_store_id": reference_store_id,
+            "role_arn": role_arn,
+            "sources": sources,
+        }
         if client_token is not None:
             input_["client_token"] = client_token
-        input_["sources"] = sources
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

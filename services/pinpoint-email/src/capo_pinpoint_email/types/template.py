@@ -28,8 +28,8 @@ def serialize_json(value: Template) -> dict:
 
 def deserialize_json(data: dict) -> Template:
     out: Template = {}  # type: ignore[typeddict-item]
-    if "TemplateArn" in data:
+    if data.get("TemplateArn") is not None:
         out["template_arn"] = data["TemplateArn"]
-    if "TemplateData" in data:
+    if data.get("TemplateData") is not None:
         out["template_data"] = data["TemplateData"]
     return out

@@ -66,19 +66,19 @@ def serialize_json(value: CommonControlSummary) -> dict:
 
 def deserialize_json(data: dict) -> CommonControlSummary:
     out: CommonControlSummary = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("CommonControlSummary.arn required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CommonControlSummary.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     else:
         raise DeserializationError("CommonControlSummary.description required")
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         import capo_controlcatalog.types.associated_domain_summary
 
         out["domain"] = (
@@ -88,7 +88,7 @@ def deserialize_json(data: dict) -> CommonControlSummary:
         )
     else:
         raise DeserializationError("CommonControlSummary.domain required")
-    if "Objective" in data:
+    if data.get("Objective") is not None:
         import capo_controlcatalog.types.associated_objective_summary
 
         out["objective"] = (
@@ -98,7 +98,7 @@ def deserialize_json(data: dict) -> CommonControlSummary:
         )
     else:
         raise DeserializationError("CommonControlSummary.objective required")
-    if "CreateTime" in data:
+    if data.get("CreateTime") is not None:
         import capo_controlcatalog.types._prelude.timestamp
 
         out["create_time"] = (
@@ -108,7 +108,7 @@ def deserialize_json(data: dict) -> CommonControlSummary:
         )
     else:
         raise DeserializationError("CommonControlSummary.create_time required")
-    if "LastUpdateTime" in data:
+    if data.get("LastUpdateTime") is not None:
         import capo_controlcatalog.types._prelude.timestamp
 
         out["last_update_time"] = (

@@ -45,13 +45,13 @@ def serialize_aws_json_1_1(value: BlockReference) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BlockReference:
     out: BlockReference = {}  # type: ignore[typeddict-item]
-    if "BlockId" in data:
+    if data.get("BlockId") is not None:
         out["block_id"] = data["BlockId"]
-    if "BeginOffset" in data:
+    if data.get("BeginOffset") is not None:
         out["begin_offset"] = data["BeginOffset"]
-    if "EndOffset" in data:
+    if data.get("EndOffset") is not None:
         out["end_offset"] = data["EndOffset"]
-    if "ChildBlocks" in data:
+    if data.get("ChildBlocks") is not None:
         import capo_comprehend.types.list_of_child_blocks
 
         out["child_blocks"] = (

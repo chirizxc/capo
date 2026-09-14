@@ -18,6 +18,6 @@ def serialize_json(value: WorkflowsMwaaPropertiesInput) -> dict:
 
 def deserialize_json(data: dict) -> WorkflowsMwaaPropertiesInput:
     out: WorkflowsMwaaPropertiesInput = {}  # type: ignore[typeddict-item]
-    if "mwaaEnvironmentName" in data:
+    if data.get("mwaaEnvironmentName") is not None:
         out["mwaa_environment_name"] = data["mwaaEnvironmentName"]
     return out

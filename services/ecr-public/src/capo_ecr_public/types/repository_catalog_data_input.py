@@ -72,9 +72,9 @@ def serialize_aws_json_1_1(value: RepositoryCatalogDataInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RepositoryCatalogDataInput:
     out: RepositoryCatalogDataInput = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "architectures" in data:
+    if data.get("architectures") is not None:
         import capo_ecr_public.types.architecture_list
 
         out["architectures"] = (
@@ -82,7 +82,7 @@ def deserialize_aws_json_1_1(data: dict) -> RepositoryCatalogDataInput:
                 data["architectures"]
             )
         )
-    if "operatingSystems" in data:
+    if data.get("operatingSystems") is not None:
         import capo_ecr_public.types.operating_system_list
 
         out["operating_systems"] = (
@@ -90,7 +90,7 @@ def deserialize_aws_json_1_1(data: dict) -> RepositoryCatalogDataInput:
                 data["operatingSystems"]
             )
         )
-    if "logoImageBlob" in data:
+    if data.get("logoImageBlob") is not None:
         import capo_ecr_public.types.logo_image_blob
 
         out["logo_image_blob"] = (
@@ -98,8 +98,8 @@ def deserialize_aws_json_1_1(data: dict) -> RepositoryCatalogDataInput:
                 data["logoImageBlob"]
             )
         )
-    if "aboutText" in data:
+    if data.get("aboutText") is not None:
         out["about_text"] = data["aboutText"]
-    if "usageText" in data:
+    if data.get("usageText") is not None:
         out["usage_text"] = data["usageText"]
     return out

@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> BatchReplaceClusterNodesErrors:
 
     out: BatchReplaceClusterNodesErrors = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.batch_replace_cluster_nodes_error.deserialize_aws_json_1_1(
                 item

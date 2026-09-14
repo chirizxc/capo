@@ -31,9 +31,9 @@ def serialize_json(value: SoftwareUpdateOptions) -> dict:
 
 def deserialize_json(data: dict) -> SoftwareUpdateOptions:
     out: SoftwareUpdateOptions = {}  # type: ignore[typeddict-item]
-    if "AutoSoftwareUpdateEnabled" in data:
+    if data.get("AutoSoftwareUpdateEnabled") is not None:
         out["auto_software_update_enabled"] = data["AutoSoftwareUpdateEnabled"]
-    if "UseLatestServiceSoftwareForBlueGreen" in data:
+    if data.get("UseLatestServiceSoftwareForBlueGreen") is not None:
         out["use_latest_service_software_for_blue_green"] = data[
             "UseLatestServiceSoftwareForBlueGreen"
         ]

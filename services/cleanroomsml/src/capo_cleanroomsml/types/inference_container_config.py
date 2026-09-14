@@ -24,7 +24,7 @@ def serialize_json(value: InferenceContainerConfig) -> dict:
 
 def deserialize_json(data: dict) -> InferenceContainerConfig:
     out: InferenceContainerConfig = {}  # type: ignore[typeddict-item]
-    if "imageUri" in data:
+    if data.get("imageUri") is not None:
         out["image_uri"] = data["imageUri"]
     else:
         raise DeserializationError("InferenceContainerConfig.image_uri required")

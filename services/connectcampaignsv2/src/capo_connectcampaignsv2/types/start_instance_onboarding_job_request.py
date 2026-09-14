@@ -33,7 +33,7 @@ def serialize_json(value: StartInstanceOnboardingJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartInstanceOnboardingJobRequest:
     out: StartInstanceOnboardingJobRequest = {}  # type: ignore[typeddict-item]
-    if "encryptionConfig" in data:
+    if data.get("encryptionConfig") is not None:
         import capo_connectcampaignsv2.types.encryption_config
 
         out["encryption_config"] = (

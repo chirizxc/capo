@@ -62,7 +62,7 @@ def serialize_json(value: SearchWorkersRequest) -> dict:
 
 def deserialize_json(data: dict) -> SearchWorkersRequest:
     out: SearchWorkersRequest = {}  # type: ignore[typeddict-item]
-    if "filterExpressions" in data:
+    if data.get("filterExpressions") is not None:
         import capo_deadline.types.search_grouped_filter_expressions
 
         out["filter_expressions"] = (
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> SearchWorkersRequest:
                 data["filterExpressions"]
             )
         )
-    if "sortExpressions" in data:
+    if data.get("sortExpressions") is not None:
         import capo_deadline.types.search_sort_expressions
 
         out["sort_expressions"] = (
@@ -78,15 +78,15 @@ def deserialize_json(data: dict) -> SearchWorkersRequest:
                 data["sortExpressions"]
             )
         )
-    if "itemOffset" in data:
+    if data.get("itemOffset") is not None:
         out["item_offset"] = data["itemOffset"]
     else:
         raise DeserializationError("SearchWorkersRequest.item_offset required")
-    if "pageSize" in data:
+    if data.get("pageSize") is not None:
         out["page_size"] = data["pageSize"]
     else:
         out["page_size"] = 100
-    if "fleetIds" in data:
+    if data.get("fleetIds") is not None:
         import capo_deadline.types.fleet_ids
 
         out["fleet_ids"] = capo_deadline.types.fleet_ids.deserialize_json(

@@ -39,10 +39,10 @@ def serialize_aws_json_1_1(value: CandidateArtifactLocations) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CandidateArtifactLocations:
     out: CandidateArtifactLocations = {}  # type: ignore[typeddict-item]
-    if "Explainability" in data:
+    if data.get("Explainability") is not None:
         out["explainability"] = data["Explainability"]
-    if "ModelInsights" in data:
+    if data.get("ModelInsights") is not None:
         out["model_insights"] = data["ModelInsights"]
-    if "BacktestResults" in data:
+    if data.get("BacktestResults") is not None:
         out["backtest_results"] = data["BacktestResults"]
     return out

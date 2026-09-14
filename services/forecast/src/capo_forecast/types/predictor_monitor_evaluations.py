@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> PredictorMonitorEvaluations:
 
     out: PredictorMonitorEvaluations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_forecast.types.predictor_monitor_evaluation.deserialize_aws_json_1_1(
                 item

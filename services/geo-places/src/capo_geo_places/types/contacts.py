@@ -53,25 +53,25 @@ def serialize_json(value: Contacts) -> dict:
 
 def deserialize_json(data: dict) -> Contacts:
     out: Contacts = {}  # type: ignore[typeddict-item]
-    if "Phones" in data:
+    if data.get("Phones") is not None:
         import capo_geo_places.types.contact_details_list
 
         out["phones"] = capo_geo_places.types.contact_details_list.deserialize_json(
             data["Phones"]
         )
-    if "Faxes" in data:
+    if data.get("Faxes") is not None:
         import capo_geo_places.types.contact_details_list
 
         out["faxes"] = capo_geo_places.types.contact_details_list.deserialize_json(
             data["Faxes"]
         )
-    if "Websites" in data:
+    if data.get("Websites") is not None:
         import capo_geo_places.types.contact_details_list
 
         out["websites"] = capo_geo_places.types.contact_details_list.deserialize_json(
             data["Websites"]
         )
-    if "Emails" in data:
+    if data.get("Emails") is not None:
         import capo_geo_places.types.contact_details_list
 
         out["emails"] = capo_geo_places.types.contact_details_list.deserialize_json(

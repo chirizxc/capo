@@ -28,7 +28,7 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> DeleteNetworkFirewallTransitGatewayAttachmentRequest:
     out: DeleteNetworkFirewallTransitGatewayAttachmentRequest = {}  # type: ignore[typeddict-item]
-    if "TransitGatewayAttachmentId" in data:
+    if data.get("TransitGatewayAttachmentId") is not None:
         out["transit_gateway_attachment_id"] = data["TransitGatewayAttachmentId"]
     else:
         raise DeserializationError(

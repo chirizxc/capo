@@ -31,8 +31,8 @@ def serialize_json(value: Hdr10Plus) -> dict:
 
 def deserialize_json(data: dict) -> Hdr10Plus:
     out: Hdr10Plus = {}  # type: ignore[typeddict-item]
-    if "masteringMonitorNits" in data:
+    if data.get("masteringMonitorNits") is not None:
         out["mastering_monitor_nits"] = data["masteringMonitorNits"]
-    if "targetMonitorNits" in data:
+    if data.get("targetMonitorNits") is not None:
         out["target_monitor_nits"] = data["targetMonitorNits"]
     return out

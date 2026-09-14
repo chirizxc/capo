@@ -36,9 +36,9 @@ def serialize_aws_json_1_0(value: ListenerProperty) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListenerProperty:
     out: ListenerProperty = {}  # type: ignore[typeddict-item]
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_network_firewall.types.listener_property_type
 
         out["type"] = (

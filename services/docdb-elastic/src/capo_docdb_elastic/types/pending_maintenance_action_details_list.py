@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> PendingMaintenanceActionDetailsList:
 
     out: PendingMaintenanceActionDetailsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_docdb_elastic.types.pending_maintenance_action_details.deserialize_json(
                 item

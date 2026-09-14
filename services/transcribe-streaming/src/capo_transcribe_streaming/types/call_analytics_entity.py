@@ -39,22 +39,30 @@ def serialize_json(value: CallAnalyticsEntity) -> dict:
     if "content" in value:
         out["Content"] = value["content"]
     if "confidence" in value:
-        out["Confidence"] = value["confidence"]
+        out["Confidence"] = (
+            "NaN"
+            if value["confidence"] != value["confidence"]
+            else "Infinity"
+            if value["confidence"] == float("inf")
+            else "-Infinity"
+            if value["confidence"] == float("-inf")
+            else value["confidence"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> CallAnalyticsEntity:
     out: CallAnalyticsEntity = {}  # type: ignore[typeddict-item]
-    if "BeginOffsetMillis" in data:
+    if data.get("BeginOffsetMillis") is not None:
         out["begin_offset_millis"] = data["BeginOffsetMillis"]
-    if "EndOffsetMillis" in data:
+    if data.get("EndOffsetMillis") is not None:
         out["end_offset_millis"] = data["EndOffsetMillis"]
-    if "Category" in data:
+    if data.get("Category") is not None:
         out["category"] = data["Category"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
-    if "Confidence" in data:
-        out["confidence"] = data["Confidence"]
+    if data.get("Confidence") is not None:
+        out["confidence"] = float(data["Confidence"])
     return out

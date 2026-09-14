@@ -31,7 +31,7 @@ def serialize_json(value: InTransitEncryptionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> InTransitEncryptionConfiguration:
     out: InTransitEncryptionConfiguration = {}  # type: ignore[typeddict-item]
-    if "tlsCertificateConfiguration" in data:
+    if data.get("tlsCertificateConfiguration") is not None:
         import capo_emr_containers.types.tls_certificate_configuration
 
         out["tls_certificate_configuration"] = (

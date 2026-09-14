@@ -35,10 +35,10 @@ def serialize_json(value: TemplateAlias) -> dict:
 
 def deserialize_json(data: dict) -> TemplateAlias:
     out: TemplateAlias = {}  # type: ignore[typeddict-item]
-    if "AliasName" in data:
+    if data.get("AliasName") is not None:
         out["alias_name"] = data["AliasName"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "TemplateVersionNumber" in data:
+    if data.get("TemplateVersionNumber") is not None:
         out["template_version_number"] = data["TemplateVersionNumber"]
     return out

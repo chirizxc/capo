@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: TrialComponentArtifact) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TrialComponentArtifact:
     out: TrialComponentArtifact = {}  # type: ignore[typeddict-item]
-    if "MediaType" in data:
+    if data.get("MediaType") is not None:
         out["media_type"] = data["MediaType"]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     return out

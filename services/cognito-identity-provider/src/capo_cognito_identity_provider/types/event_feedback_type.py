@@ -49,7 +49,7 @@ def serialize_aws_json_1_1(value: EventFeedbackType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EventFeedbackType:
     out: EventFeedbackType = {}  # type: ignore[typeddict-item]
-    if "FeedbackValue" in data:
+    if data.get("FeedbackValue") is not None:
         import capo_cognito_identity_provider.types.feedback_value_type
 
         out["feedback_value"] = (
@@ -59,11 +59,11 @@ def deserialize_aws_json_1_1(data: dict) -> EventFeedbackType:
         )
     else:
         raise DeserializationError("EventFeedbackType.feedback_value required")
-    if "Provider" in data:
+    if data.get("Provider") is not None:
         out["provider"] = data["Provider"]
     else:
         raise DeserializationError("EventFeedbackType.provider required")
-    if "FeedbackDate" in data:
+    if data.get("FeedbackDate") is not None:
         import capo_cognito_identity_provider.types.date_type
 
         out["feedback_date"] = (

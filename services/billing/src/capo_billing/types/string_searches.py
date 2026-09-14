@@ -23,5 +23,7 @@ def deserialize_aws_json_1_0(data: list) -> StringSearches:
 
     out: StringSearches = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_billing.types.string_search.deserialize_aws_json_1_0(item))
     return out

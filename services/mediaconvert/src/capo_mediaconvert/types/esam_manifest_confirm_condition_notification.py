@@ -25,6 +25,6 @@ def serialize_json(value: EsamManifestConfirmConditionNotification) -> dict:
 
 def deserialize_json(data: dict) -> EsamManifestConfirmConditionNotification:
     out: EsamManifestConfirmConditionNotification = {}  # type: ignore[typeddict-item]
-    if "mccXml" in data:
+    if data.get("mccXml") is not None:
         out["mcc_xml"] = data["mccXml"]
     return out

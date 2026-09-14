@@ -34,15 +34,15 @@ def serialize_json(value: RdsDataApiConfig) -> dict:
 
 def deserialize_json(data: dict) -> RdsDataApiConfig:
     out: RdsDataApiConfig = {}  # type: ignore[typeddict-item]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     else:
         raise DeserializationError("RdsDataApiConfig.resource_arn required")
-    if "secretArn" in data:
+    if data.get("secretArn") is not None:
         out["secret_arn"] = data["secretArn"]
     else:
         raise DeserializationError("RdsDataApiConfig.secret_arn required")
-    if "databaseName" in data:
+    if data.get("databaseName") is not None:
         out["database_name"] = data["databaseName"]
     else:
         raise DeserializationError("RdsDataApiConfig.database_name required")

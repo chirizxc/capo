@@ -65,7 +65,15 @@ def serialize_json(value: SamplingRule) -> dict:
         out["RuleARN"] = value["rule_arn"]
     out["ResourceARN"] = value["resource_arn"]
     out["Priority"] = value["priority"]
-    out["FixedRate"] = value.get("fixed_rate", 0)
+    out["FixedRate"] = (
+        "NaN"
+        if value.get("fixed_rate", 0) != value.get("fixed_rate", 0)
+        else "Infinity"
+        if value.get("fixed_rate", 0) == float("inf")
+        else "-Infinity"
+        if value.get("fixed_rate", 0) == float("-inf")
+        else value.get("fixed_rate", 0)
+    )
     out["ReservoirSize"] = value.get("reservoir_size", 0)
     out["ServiceName"] = value["service_name"]
     out["ServiceType"] = value["service_type"]
@@ -90,57 +98,57 @@ def serialize_json(value: SamplingRule) -> dict:
 
 def deserialize_json(data: dict) -> SamplingRule:
     out: SamplingRule = {}  # type: ignore[typeddict-item]
-    if "RuleName" in data:
+    if data.get("RuleName") is not None:
         out["rule_name"] = data["RuleName"]
-    if "RuleARN" in data:
+    if data.get("RuleARN") is not None:
         out["rule_arn"] = data["RuleARN"]
-    if "ResourceARN" in data:
+    if data.get("ResourceARN") is not None:
         out["resource_arn"] = data["ResourceARN"]
     else:
         raise DeserializationError("SamplingRule.resource_arn required")
-    if "Priority" in data:
+    if data.get("Priority") is not None:
         out["priority"] = data["Priority"]
     else:
         raise DeserializationError("SamplingRule.priority required")
-    if "FixedRate" in data:
-        out["fixed_rate"] = data["FixedRate"]
+    if data.get("FixedRate") is not None:
+        out["fixed_rate"] = float(data["FixedRate"])
     else:
         out["fixed_rate"] = 0
-    if "ReservoirSize" in data:
+    if data.get("ReservoirSize") is not None:
         out["reservoir_size"] = data["ReservoirSize"]
     else:
         out["reservoir_size"] = 0
-    if "ServiceName" in data:
+    if data.get("ServiceName") is not None:
         out["service_name"] = data["ServiceName"]
     else:
         raise DeserializationError("SamplingRule.service_name required")
-    if "ServiceType" in data:
+    if data.get("ServiceType") is not None:
         out["service_type"] = data["ServiceType"]
     else:
         raise DeserializationError("SamplingRule.service_type required")
-    if "Host" in data:
+    if data.get("Host") is not None:
         out["host"] = data["Host"]
     else:
         raise DeserializationError("SamplingRule.host required")
-    if "HTTPMethod" in data:
+    if data.get("HTTPMethod") is not None:
         out["http_method"] = data["HTTPMethod"]
     else:
         raise DeserializationError("SamplingRule.http_method required")
-    if "URLPath" in data:
+    if data.get("URLPath") is not None:
         out["url_path"] = data["URLPath"]
     else:
         raise DeserializationError("SamplingRule.url_path required")
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
     else:
         raise DeserializationError("SamplingRule.version required")
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_xray.types.attribute_map
 
         out["attributes"] = capo_xray.types.attribute_map.deserialize_json(
             data["Attributes"]
         )
-    if "SamplingRateBoost" in data:
+    if data.get("SamplingRateBoost") is not None:
         import capo_xray.types.sampling_rate_boost
 
         out["sampling_rate_boost"] = (

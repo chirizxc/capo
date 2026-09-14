@@ -60,7 +60,7 @@ def serialize_aws_json_1_0(value: BatchIsAuthorizedWithTokenOutputItem) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> BatchIsAuthorizedWithTokenOutputItem:
     out: BatchIsAuthorizedWithTokenOutputItem = {}  # type: ignore[typeddict-item]
-    if "request" in data:
+    if data.get("request") is not None:
         import capo_verifiedpermissions.types.batch_is_authorized_with_token_input_item
 
         out["request"] = (
@@ -72,7 +72,7 @@ def deserialize_aws_json_1_0(data: dict) -> BatchIsAuthorizedWithTokenOutputItem
         raise DeserializationError(
             "BatchIsAuthorizedWithTokenOutputItem.request required"
         )
-    if "decision" in data:
+    if data.get("decision") is not None:
         import capo_verifiedpermissions.types.decision
 
         out["decision"] = (
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_0(data: dict) -> BatchIsAuthorizedWithTokenOutputItem
         raise DeserializationError(
             "BatchIsAuthorizedWithTokenOutputItem.decision required"
         )
-    if "determiningPolicies" in data:
+    if data.get("determiningPolicies") is not None:
         import capo_verifiedpermissions.types.determining_policy_list
 
         out["determining_policies"] = (
@@ -96,7 +96,7 @@ def deserialize_aws_json_1_0(data: dict) -> BatchIsAuthorizedWithTokenOutputItem
         raise DeserializationError(
             "BatchIsAuthorizedWithTokenOutputItem.determining_policies required"
         )
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_verifiedpermissions.types.evaluation_error_list
 
         out["errors"] = (

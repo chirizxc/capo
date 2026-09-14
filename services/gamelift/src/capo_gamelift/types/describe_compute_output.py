@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: DescribeComputeOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeComputeOutput:
     out: DescribeComputeOutput = {}  # type: ignore[typeddict-item]
-    if "Compute" in data:
+    if data.get("Compute") is not None:
         import capo_gamelift.types.compute
 
         out["compute"] = capo_gamelift.types.compute.deserialize_aws_json_1_1(

@@ -61,7 +61,7 @@ def serialize_json(value: VpcOutputSettingsDescription) -> dict:
 
 def deserialize_json(data: dict) -> VpcOutputSettingsDescription:
     out: VpcOutputSettingsDescription = {}  # type: ignore[typeddict-item]
-    if "availabilityZones" in data:
+    if data.get("availabilityZones") is not None:
         import capo_medialive.types.__list_of__string
 
         out["availability_zones"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> VpcOutputSettingsDescription:
                 data["availabilityZones"]
             )
         )
-    if "networkInterfaceIds" in data:
+    if data.get("networkInterfaceIds") is not None:
         import capo_medialive.types.__list_of__string
 
         out["network_interface_ids"] = (
@@ -77,7 +77,7 @@ def deserialize_json(data: dict) -> VpcOutputSettingsDescription:
                 data["networkInterfaceIds"]
             )
         )
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_medialive.types.__list_of__string
 
         out["security_group_ids"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> VpcOutputSettingsDescription:
                 data["securityGroupIds"]
             )
         )
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_medialive.types.__list_of__string
 
         out["subnet_ids"] = capo_medialive.types.__list_of__string.deserialize_json(

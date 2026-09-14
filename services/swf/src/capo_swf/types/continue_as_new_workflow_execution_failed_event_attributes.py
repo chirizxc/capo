@@ -40,7 +40,7 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> ContinueAsNewWorkflowExecutionFailedEventAttributes:
     out: ContinueAsNewWorkflowExecutionFailedEventAttributes = {}  # type: ignore[typeddict-item]
-    if "cause" in data:
+    if data.get("cause") is not None:
         import capo_swf.types.continue_as_new_workflow_execution_failed_cause
 
         out["cause"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_0(
         raise DeserializationError(
             "ContinueAsNewWorkflowExecutionFailedEventAttributes.cause required"
         )
-    if "decisionTaskCompletedEventId" in data:
+    if data.get("decisionTaskCompletedEventId") is not None:
         out["decision_task_completed_event_id"] = data["decisionTaskCompletedEventId"]
     else:
         out["decision_task_completed_event_id"] = 0

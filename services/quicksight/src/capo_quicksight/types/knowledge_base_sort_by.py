@@ -40,7 +40,7 @@ def serialize_json(value: KnowledgeBaseSortBy) -> dict:
 
 def deserialize_json(data: dict) -> KnowledgeBaseSortBy:
     out: KnowledgeBaseSortBy = {}  # type: ignore[typeddict-item]
-    if "sortByField" in data:
+    if data.get("sortByField") is not None:
         import capo_quicksight.types.knowledge_base_sort_by_field
 
         out["sort_by_field"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> KnowledgeBaseSortBy:
         )
     else:
         raise DeserializationError("KnowledgeBaseSortBy.sort_by_field required")
-    if "sortOrder" in data:
+    if data.get("sortOrder") is not None:
         import capo_quicksight.types.sort_order
 
         out["sort_order"] = capo_quicksight.types.sort_order.deserialize_json(

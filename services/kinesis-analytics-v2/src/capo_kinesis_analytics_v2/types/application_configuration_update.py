@@ -135,7 +135,7 @@ def serialize_aws_json_1_1(value: ApplicationConfigurationUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ApplicationConfigurationUpdate:
     out: ApplicationConfigurationUpdate = {}  # type: ignore[typeddict-item]
-    if "SqlApplicationConfigurationUpdate" in data:
+    if data.get("SqlApplicationConfigurationUpdate") is not None:
         import capo_kinesis_analytics_v2.types.sql_application_configuration_update
 
         out["sql_application_configuration_update"] = (
@@ -143,7 +143,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationConfigurationUpdate:
                 data["SqlApplicationConfigurationUpdate"]
             )
         )
-    if "ApplicationCodeConfigurationUpdate" in data:
+    if data.get("ApplicationCodeConfigurationUpdate") is not None:
         import capo_kinesis_analytics_v2.types.application_code_configuration_update
 
         out["application_code_configuration_update"] = (
@@ -151,7 +151,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationConfigurationUpdate:
                 data["ApplicationCodeConfigurationUpdate"]
             )
         )
-    if "FlinkApplicationConfigurationUpdate" in data:
+    if data.get("FlinkApplicationConfigurationUpdate") is not None:
         import capo_kinesis_analytics_v2.types.flink_application_configuration_update
 
         out["flink_application_configuration_update"] = (
@@ -159,7 +159,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationConfigurationUpdate:
                 data["FlinkApplicationConfigurationUpdate"]
             )
         )
-    if "EnvironmentPropertyUpdates" in data:
+    if data.get("EnvironmentPropertyUpdates") is not None:
         import capo_kinesis_analytics_v2.types.environment_property_updates
 
         out["environment_property_updates"] = (
@@ -167,7 +167,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationConfigurationUpdate:
                 data["EnvironmentPropertyUpdates"]
             )
         )
-    if "ApplicationSnapshotConfigurationUpdate" in data:
+    if data.get("ApplicationSnapshotConfigurationUpdate") is not None:
         import capo_kinesis_analytics_v2.types.application_snapshot_configuration_update
 
         out["application_snapshot_configuration_update"] = (
@@ -175,7 +175,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationConfigurationUpdate:
                 data["ApplicationSnapshotConfigurationUpdate"]
             )
         )
-    if "ApplicationSystemRollbackConfigurationUpdate" in data:
+    if data.get("ApplicationSystemRollbackConfigurationUpdate") is not None:
         import capo_kinesis_analytics_v2.types.application_system_rollback_configuration_update
 
         out["application_system_rollback_configuration_update"] = (
@@ -183,7 +183,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationConfigurationUpdate:
                 data["ApplicationSystemRollbackConfigurationUpdate"]
             )
         )
-    if "VpcConfigurationUpdates" in data:
+    if data.get("VpcConfigurationUpdates") is not None:
         import capo_kinesis_analytics_v2.types.vpc_configuration_updates
 
         out["vpc_configuration_updates"] = (
@@ -191,7 +191,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationConfigurationUpdate:
                 data["VpcConfigurationUpdates"]
             )
         )
-    if "ZeppelinApplicationConfigurationUpdate" in data:
+    if data.get("ZeppelinApplicationConfigurationUpdate") is not None:
         import capo_kinesis_analytics_v2.types.zeppelin_application_configuration_update
 
         out["zeppelin_application_configuration_update"] = (
@@ -199,7 +199,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationConfigurationUpdate:
                 data["ZeppelinApplicationConfigurationUpdate"]
             )
         )
-    if "ApplicationEncryptionConfigurationUpdate" in data:
+    if data.get("ApplicationEncryptionConfigurationUpdate") is not None:
         import capo_kinesis_analytics_v2.types.application_encryption_configuration_update
 
         out["application_encryption_configuration_update"] = (

@@ -96,47 +96,47 @@ def serialize_json(value: Cluster) -> dict:
 
 def deserialize_json(data: dict) -> Cluster:
     out: Cluster = {}  # type: ignore[typeddict-item]
-    if "activeOperationArn" in data:
+    if data.get("activeOperationArn") is not None:
         out["active_operation_arn"] = data["activeOperationArn"]
-    if "clusterType" in data:
+    if data.get("clusterType") is not None:
         import capo_kafka.types.cluster_type
 
         out["cluster_type"] = capo_kafka.types.cluster_type.deserialize_json(
             data["clusterType"]
         )
-    if "clusterArn" in data:
+    if data.get("clusterArn") is not None:
         out["cluster_arn"] = data["clusterArn"]
-    if "clusterName" in data:
+    if data.get("clusterName") is not None:
         out["cluster_name"] = data["clusterName"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_kafka.types.__timestamp_iso8601
 
         out["creation_time"] = capo_kafka.types.__timestamp_iso8601.deserialize_json(
             data["creationTime"]
         )
-    if "currentVersion" in data:
+    if data.get("currentVersion") is not None:
         out["current_version"] = data["currentVersion"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_kafka.types.cluster_state
 
         out["state"] = capo_kafka.types.cluster_state.deserialize_json(data["state"])
-    if "stateInfo" in data:
+    if data.get("stateInfo") is not None:
         import capo_kafka.types.state_info
 
         out["state_info"] = capo_kafka.types.state_info.deserialize_json(
             data["stateInfo"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_kafka.types.__map_of__string
 
         out["tags"] = capo_kafka.types.__map_of__string.deserialize_json(data["tags"])
-    if "provisioned" in data:
+    if data.get("provisioned") is not None:
         import capo_kafka.types.provisioned
 
         out["provisioned"] = capo_kafka.types.provisioned.deserialize_json(
             data["provisioned"]
         )
-    if "serverless" in data:
+    if data.get("serverless") is not None:
         import capo_kafka.types.serverless
 
         out["serverless"] = capo_kafka.types.serverless.deserialize_json(

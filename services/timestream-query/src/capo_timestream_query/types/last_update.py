@@ -41,9 +41,9 @@ def serialize_aws_json_1_0(value: LastUpdate) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> LastUpdate:
     out: LastUpdate = {}  # type: ignore[typeddict-item]
-    if "TargetQueryTCU" in data:
+    if data.get("TargetQueryTCU") is not None:
         out["target_query_tcu"] = data["TargetQueryTCU"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_timestream_query.types.last_update_status
 
         out["status"] = (
@@ -51,6 +51,6 @@ def deserialize_aws_json_1_0(data: dict) -> LastUpdate:
                 data["Status"]
             )
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
     return out

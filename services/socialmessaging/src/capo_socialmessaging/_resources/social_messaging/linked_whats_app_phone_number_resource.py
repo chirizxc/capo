@@ -80,14 +80,16 @@ class LinkedWhatsAppPhoneNumberResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_socialmessaging.types.get_linked_whats_app_business_account_phone_number_input.GetLinkedWhatsAppBusinessAccountPhoneNumberInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_socialmessaging.types.get_linked_whats_app_business_account_phone_number_input.GetLinkedWhatsAppBusinessAccountPhoneNumberInput = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_whats_app_message_media(
@@ -130,15 +132,17 @@ class LinkedWhatsAppPhoneNumberResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_socialmessaging.types.delete_whats_app_message_media_input.DeleteWhatsAppMessageMediaInput = {}  # type: ignore[typeddict-item]
-        input_["media_id"] = media_id
-        input_["origination_phone_number_id"] = origination_phone_number_id
+        input_: capo_socialmessaging.types.delete_whats_app_message_media_input.DeleteWhatsAppMessageMediaInput = {
+            "media_id": media_id,
+            "origination_phone_number_id": origination_phone_number_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_whats_app_message_media(
@@ -191,9 +195,10 @@ class LinkedWhatsAppPhoneNumberResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_socialmessaging.types.get_whats_app_message_media_input.GetWhatsAppMessageMediaInput = {}  # type: ignore[typeddict-item]
-        input_["media_id"] = media_id
-        input_["origination_phone_number_id"] = origination_phone_number_id
+        input_: capo_socialmessaging.types.get_whats_app_message_media_input.GetWhatsAppMessageMediaInput = {
+            "media_id": media_id,
+            "origination_phone_number_id": origination_phone_number_id,
+        }
         if metadata_only is not None:
             input_["metadata_only"] = metadata_only
         if destination_s3_presigned_url is not None:
@@ -206,6 +211,7 @@ class LinkedWhatsAppPhoneNumberResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def post_whats_app_message_media(
@@ -252,8 +258,9 @@ class LinkedWhatsAppPhoneNumberResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_socialmessaging.types.post_whats_app_message_media_input.PostWhatsAppMessageMediaInput = {}  # type: ignore[typeddict-item]
-        input_["origination_phone_number_id"] = origination_phone_number_id
+        input_: capo_socialmessaging.types.post_whats_app_message_media_input.PostWhatsAppMessageMediaInput = {
+            "origination_phone_number_id": origination_phone_number_id
+        }
         if source_s3_presigned_url is not None:
             input_["source_s3_presigned_url"] = source_s3_presigned_url
         if source_s3_file is not None:
@@ -264,6 +271,7 @@ class LinkedWhatsAppPhoneNumberResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def send_whats_app_message(
@@ -307,16 +315,18 @@ class LinkedWhatsAppPhoneNumberResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_socialmessaging.types.send_whats_app_message_input.SendWhatsAppMessageInput = {}  # type: ignore[typeddict-item]
-        input_["origination_phone_number_id"] = origination_phone_number_id
-        input_["message"] = message
-        input_["meta_api_version"] = meta_api_version
+        input_: capo_socialmessaging.types.send_whats_app_message_input.SendWhatsAppMessageInput = {
+            "origination_phone_number_id": origination_phone_number_id,
+            "message": message,
+            "meta_api_version": meta_api_version,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -362,14 +372,16 @@ class AsyncLinkedWhatsAppPhoneNumberResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_socialmessaging.types.get_linked_whats_app_business_account_phone_number_input.GetLinkedWhatsAppBusinessAccountPhoneNumberInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_socialmessaging.types.get_linked_whats_app_business_account_phone_number_input.GetLinkedWhatsAppBusinessAccountPhoneNumberInput = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_whats_app_message_media(
@@ -413,15 +425,17 @@ class AsyncLinkedWhatsAppPhoneNumberResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_socialmessaging.types.delete_whats_app_message_media_input.DeleteWhatsAppMessageMediaInput = {}  # type: ignore[typeddict-item]
-        input_["media_id"] = media_id
-        input_["origination_phone_number_id"] = origination_phone_number_id
+        input_: capo_socialmessaging.types.delete_whats_app_message_media_input.DeleteWhatsAppMessageMediaInput = {
+            "media_id": media_id,
+            "origination_phone_number_id": origination_phone_number_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_whats_app_message_media(
@@ -475,9 +489,10 @@ class AsyncLinkedWhatsAppPhoneNumberResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_socialmessaging.types.get_whats_app_message_media_input.GetWhatsAppMessageMediaInput = {}  # type: ignore[typeddict-item]
-        input_["media_id"] = media_id
-        input_["origination_phone_number_id"] = origination_phone_number_id
+        input_: capo_socialmessaging.types.get_whats_app_message_media_input.GetWhatsAppMessageMediaInput = {
+            "media_id": media_id,
+            "origination_phone_number_id": origination_phone_number_id,
+        }
         if metadata_only is not None:
             input_["metadata_only"] = metadata_only
         if destination_s3_presigned_url is not None:
@@ -490,6 +505,7 @@ class AsyncLinkedWhatsAppPhoneNumberResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def post_whats_app_message_media(
@@ -537,8 +553,9 @@ class AsyncLinkedWhatsAppPhoneNumberResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_socialmessaging.types.post_whats_app_message_media_input.PostWhatsAppMessageMediaInput = {}  # type: ignore[typeddict-item]
-        input_["origination_phone_number_id"] = origination_phone_number_id
+        input_: capo_socialmessaging.types.post_whats_app_message_media_input.PostWhatsAppMessageMediaInput = {
+            "origination_phone_number_id": origination_phone_number_id
+        }
         if source_s3_presigned_url is not None:
             input_["source_s3_presigned_url"] = source_s3_presigned_url
         if source_s3_file is not None:
@@ -549,6 +566,7 @@ class AsyncLinkedWhatsAppPhoneNumberResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def send_whats_app_message(
@@ -593,14 +611,16 @@ class AsyncLinkedWhatsAppPhoneNumberResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_socialmessaging.types.send_whats_app_message_input.SendWhatsAppMessageInput = {}  # type: ignore[typeddict-item]
-        input_["origination_phone_number_id"] = origination_phone_number_id
-        input_["message"] = message
-        input_["meta_api_version"] = meta_api_version
+        input_: capo_socialmessaging.types.send_whats_app_message_input.SendWhatsAppMessageInput = {
+            "origination_phone_number_id": origination_phone_number_id,
+            "message": message,
+            "meta_api_version": meta_api_version,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: BatchDetectDominantLanguageItemResult) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> BatchDetectDominantLanguageItemResult:
     out: BatchDetectDominantLanguageItemResult = {}  # type: ignore[typeddict-item]
-    if "Index" in data:
+    if data.get("Index") is not None:
         out["index"] = data["Index"]
-    if "Languages" in data:
+    if data.get("Languages") is not None:
         import capo_comprehend.types.list_of_dominant_languages
 
         out["languages"] = (

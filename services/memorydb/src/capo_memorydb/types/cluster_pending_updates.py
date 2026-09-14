@@ -51,7 +51,7 @@ def serialize_aws_json_1_1(value: ClusterPendingUpdates) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClusterPendingUpdates:
     out: ClusterPendingUpdates = {}  # type: ignore[typeddict-item]
-    if "Resharding" in data:
+    if data.get("Resharding") is not None:
         import capo_memorydb.types.resharding_status
 
         out["resharding"] = (
@@ -59,13 +59,13 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterPendingUpdates:
                 data["Resharding"]
             )
         )
-    if "ACLs" in data:
+    if data.get("ACLs") is not None:
         import capo_memorydb.types.ac_ls_update_status
 
         out["ac_ls"] = capo_memorydb.types.ac_ls_update_status.deserialize_aws_json_1_1(
             data["ACLs"]
         )
-    if "ServiceUpdates" in data:
+    if data.get("ServiceUpdates") is not None:
         import capo_memorydb.types.pending_modified_service_update_list
 
         out["service_updates"] = (

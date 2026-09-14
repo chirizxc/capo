@@ -49,13 +49,13 @@ def serialize_aws_json_1_0(value: CreateVpcConnectorRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateVpcConnectorRequest:
     out: CreateVpcConnectorRequest = {}  # type: ignore[typeddict-item]
-    if "VpcConnectorName" in data:
+    if data.get("VpcConnectorName") is not None:
         out["vpc_connector_name"] = data["VpcConnectorName"]
     else:
         raise DeserializationError(
             "CreateVpcConnectorRequest.vpc_connector_name required"
         )
-    if "Subnets" in data:
+    if data.get("Subnets") is not None:
         import capo_apprunner.types.string_list
 
         out["subnets"] = capo_apprunner.types.string_list.deserialize_aws_json_1_0(
@@ -63,7 +63,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateVpcConnectorRequest:
         )
     else:
         raise DeserializationError("CreateVpcConnectorRequest.subnets required")
-    if "SecurityGroups" in data:
+    if data.get("SecurityGroups") is not None:
         import capo_apprunner.types.string_list
 
         out["security_groups"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateVpcConnectorRequest:
                 data["SecurityGroups"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_apprunner.types.tag_list
 
         out["tags"] = capo_apprunner.types.tag_list.deserialize_aws_json_1_0(

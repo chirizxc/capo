@@ -27,6 +27,7 @@ class CreateMedicalVocabularyRequest(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: CreateMedicalVocabularyRequest) -> dict:
     out: dict = {}
+    out["VocabularyName"] = value["vocabulary_name"]
     import capo_transcribe.types.language_code
 
     out["LanguageCode"] = capo_transcribe.types.language_code.serialize_aws_json_1_1(
@@ -44,7 +45,13 @@ def serialize_aws_json_1_1(value: CreateMedicalVocabularyRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateMedicalVocabularyRequest:
     out: CreateMedicalVocabularyRequest = {}  # type: ignore[typeddict-item]
-    if "LanguageCode" in data:
+    if data.get("VocabularyName") is not None:
+        out["vocabulary_name"] = data["VocabularyName"]
+    else:
+        raise DeserializationError(
+            "CreateMedicalVocabularyRequest.vocabulary_name required"
+        )
+    if data.get("LanguageCode") is not None:
         import capo_transcribe.types.language_code
 
         out["language_code"] = (
@@ -56,13 +63,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateMedicalVocabularyRequest:
         raise DeserializationError(
             "CreateMedicalVocabularyRequest.language_code required"
         )
-    if "VocabularyFileUri" in data:
+    if data.get("VocabularyFileUri") is not None:
         out["vocabulary_file_uri"] = data["VocabularyFileUri"]
     else:
         raise DeserializationError(
             "CreateMedicalVocabularyRequest.vocabulary_file_uri required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_transcribe.types.tag_list
 
         out["tags"] = capo_transcribe.types.tag_list.deserialize_aws_json_1_1(

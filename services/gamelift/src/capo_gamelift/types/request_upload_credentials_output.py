@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: RequestUploadCredentialsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RequestUploadCredentialsOutput:
     out: RequestUploadCredentialsOutput = {}  # type: ignore[typeddict-item]
-    if "UploadCredentials" in data:
+    if data.get("UploadCredentials") is not None:
         import capo_gamelift.types.aws_credentials
 
         out["upload_credentials"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> RequestUploadCredentialsOutput:
                 data["UploadCredentials"]
             )
         )
-    if "StorageLocation" in data:
+    if data.get("StorageLocation") is not None:
         import capo_gamelift.types.s3_location
 
         out["storage_location"] = (

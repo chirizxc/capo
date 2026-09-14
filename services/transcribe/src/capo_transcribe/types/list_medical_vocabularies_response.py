@@ -41,15 +41,15 @@ def serialize_aws_json_1_1(value: ListMedicalVocabulariesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListMedicalVocabulariesResponse:
     out: ListMedicalVocabulariesResponse = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_transcribe.types.vocabulary_state
 
         out["status"] = capo_transcribe.types.vocabulary_state.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Vocabularies" in data:
+    if data.get("Vocabularies") is not None:
         import capo_transcribe.types.vocabularies
 
         out["vocabularies"] = (

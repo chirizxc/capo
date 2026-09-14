@@ -32,7 +32,7 @@ def serialize_json(value: PagerDutyConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> PagerDutyConfiguration:
     out: PagerDutyConfiguration = {}  # type: ignore[typeddict-item]
-    if "services" in data:
+    if data.get("services") is not None:
         import capo_devops_agent.types.pager_duty_services_list
 
         out["services"] = (
@@ -42,7 +42,7 @@ def deserialize_json(data: dict) -> PagerDutyConfiguration:
         )
     else:
         raise DeserializationError("PagerDutyConfiguration.services required")
-    if "customerEmail" in data:
+    if data.get("customerEmail") is not None:
         out["customer_email"] = data["customerEmail"]
     else:
         raise DeserializationError("PagerDutyConfiguration.customer_email required")

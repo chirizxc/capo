@@ -55,15 +55,15 @@ def serialize_json(value: CreateAssessmentFrameworkRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateAssessmentFrameworkRequest:
     out: CreateAssessmentFrameworkRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateAssessmentFrameworkRequest.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "complianceType" in data:
+    if data.get("complianceType") is not None:
         out["compliance_type"] = data["complianceType"]
-    if "controlSets" in data:
+    if data.get("controlSets") is not None:
         import capo_auditmanager.types.create_assessment_framework_control_sets
 
         out["control_sets"] = (
@@ -75,7 +75,7 @@ def deserialize_json(data: dict) -> CreateAssessmentFrameworkRequest:
         raise DeserializationError(
             "CreateAssessmentFrameworkRequest.control_sets required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_auditmanager.types.tag_map
 
         out["tags"] = capo_auditmanager.types.tag_map.deserialize_json(data["tags"])

@@ -37,24 +37,24 @@ def serialize_aws_json_1_0(value: ListRepositorySyncDefinitionsInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListRepositorySyncDefinitionsInput:
     out: ListRepositorySyncDefinitionsInput = {}  # type: ignore[typeddict-item]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
     else:
         raise DeserializationError(
             "ListRepositorySyncDefinitionsInput.repository_name required"
         )
-    if "repositoryProvider" in data:
+    if data.get("repositoryProvider") is not None:
         out["repository_provider"] = data["repositoryProvider"]
     else:
         raise DeserializationError(
             "ListRepositorySyncDefinitionsInput.repository_provider required"
         )
-    if "syncType" in data:
+    if data.get("syncType") is not None:
         out["sync_type"] = data["syncType"]
     else:
         raise DeserializationError(
             "ListRepositorySyncDefinitionsInput.sync_type required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

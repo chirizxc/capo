@@ -102,10 +102,11 @@ class Field:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.create_field_request.CreateFieldRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["name"] = name
-        input_["type"] = type
+        input_: capo_connectcases.types.create_field_request.CreateFieldRequest = {
+            "domain_id": domain_id,
+            "name": name,
+            "type": type,
+        }
         if description is not None:
             input_["description"] = description
         if attributes is not None:
@@ -116,6 +117,7 @@ class Field:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -166,9 +168,10 @@ class Field:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.update_field_request.UpdateFieldRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["field_id"] = field_id
+        input_: capo_connectcases.types.update_field_request.UpdateFieldRequest = {
+            "domain_id": domain_id,
+            "field_id": field_id,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -181,6 +184,7 @@ class Field:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -222,15 +226,17 @@ class Field:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.delete_field_request.DeleteFieldRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["field_id"] = field_id
+        input_: capo_connectcases.types.delete_field_request.DeleteFieldRequest = {
+            "domain_id": domain_id,
+            "field_id": field_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -272,8 +278,9 @@ class Field:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.list_fields_request.ListFieldsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
+        input_: capo_connectcases.types.list_fields_request.ListFieldsRequest = {
+            "domain_id": domain_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -284,6 +291,7 @@ class Field:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_put_field_options(
@@ -326,16 +334,18 @@ class Field:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.batch_put_field_options_request.BatchPutFieldOptionsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["field_id"] = field_id
-        input_["options"] = options
+        input_: capo_connectcases.types.batch_put_field_options_request.BatchPutFieldOptionsRequest = {
+            "domain_id": domain_id,
+            "field_id": field_id,
+            "options": options,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_field_options(
@@ -381,9 +391,10 @@ class Field:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.list_field_options_request.ListFieldOptionsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["field_id"] = field_id
+        input_: capo_connectcases.types.list_field_options_request.ListFieldOptionsRequest = {
+            "domain_id": domain_id,
+            "field_id": field_id,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -396,6 +407,7 @@ class Field:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_get_field(
@@ -435,15 +447,17 @@ class Field:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.batch_get_field_request.BatchGetFieldRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["fields"] = fields
+        input_: capo_connectcases.types.batch_get_field_request.BatchGetFieldRequest = {
+            "domain_id": domain_id,
+            "fields": fields,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -501,10 +515,11 @@ class AsyncField:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.create_field_request.CreateFieldRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["name"] = name
-        input_["type"] = type
+        input_: capo_connectcases.types.create_field_request.CreateFieldRequest = {
+            "domain_id": domain_id,
+            "name": name,
+            "type": type,
+        }
         if description is not None:
             input_["description"] = description
         if attributes is not None:
@@ -515,6 +530,7 @@ class AsyncField:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -566,9 +582,10 @@ class AsyncField:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.update_field_request.UpdateFieldRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["field_id"] = field_id
+        input_: capo_connectcases.types.update_field_request.UpdateFieldRequest = {
+            "domain_id": domain_id,
+            "field_id": field_id,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -581,6 +598,7 @@ class AsyncField:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -623,15 +641,17 @@ class AsyncField:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.delete_field_request.DeleteFieldRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["field_id"] = field_id
+        input_: capo_connectcases.types.delete_field_request.DeleteFieldRequest = {
+            "domain_id": domain_id,
+            "field_id": field_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -674,8 +694,9 @@ class AsyncField:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.list_fields_request.ListFieldsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
+        input_: capo_connectcases.types.list_fields_request.ListFieldsRequest = {
+            "domain_id": domain_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -686,6 +707,7 @@ class AsyncField:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_put_field_options(
@@ -729,16 +751,18 @@ class AsyncField:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.batch_put_field_options_request.BatchPutFieldOptionsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["field_id"] = field_id
-        input_["options"] = options
+        input_: capo_connectcases.types.batch_put_field_options_request.BatchPutFieldOptionsRequest = {
+            "domain_id": domain_id,
+            "field_id": field_id,
+            "options": options,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_field_options(
@@ -785,9 +809,10 @@ class AsyncField:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.list_field_options_request.ListFieldOptionsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["field_id"] = field_id
+        input_: capo_connectcases.types.list_field_options_request.ListFieldOptionsRequest = {
+            "domain_id": domain_id,
+            "field_id": field_id,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -800,6 +825,7 @@ class AsyncField:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_field(
@@ -840,13 +866,15 @@ class AsyncField:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.batch_get_field_request.BatchGetFieldRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["fields"] = fields
+        input_: capo_connectcases.types.batch_get_field_request.BatchGetFieldRequest = {
+            "domain_id": domain_id,
+            "fields": fields,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -41,7 +41,7 @@ def serialize_aws_json_1_1(value: ListApplicationStatesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListApplicationStatesRequest:
     out: ListApplicationStatesRequest = {}  # type: ignore[typeddict-item]
-    if "ApplicationIds" in data:
+    if data.get("ApplicationIds") is not None:
         import capo_migration_hub.types.application_ids
 
         out["application_ids"] = (
@@ -49,8 +49,8 @@ def deserialize_aws_json_1_1(data: dict) -> ListApplicationStatesRequest:
                 data["ApplicationIds"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

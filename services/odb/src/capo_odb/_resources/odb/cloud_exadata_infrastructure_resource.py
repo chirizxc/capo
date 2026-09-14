@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 from capo_odb._services._pipeline import (
@@ -114,25 +115,27 @@ class CloudExadataInfrastructureResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.create_cloud_exadata_infrastructure_input.CreateCloudExadataInfrastructureInput = {}  # type: ignore[typeddict-item]
-        input_["display_name"] = display_name
-        input_["shape"] = shape
+        input_: capo_odb.types.create_cloud_exadata_infrastructure_input.CreateCloudExadataInfrastructureInput = {
+            "display_name": display_name,
+            "shape": shape,
+            "compute_count": compute_count,
+            "storage_count": storage_count,
+        }
         if availability_zone is not None:
             input_["availability_zone"] = availability_zone
         if availability_zone_id is not None:
             input_["availability_zone_id"] = availability_zone_id
         if tags is not None:
             input_["tags"] = tags
-        input_["compute_count"] = compute_count
         if customer_contacts_to_send_to_oci is not None:
             input_["customer_contacts_to_send_to_oci"] = (
                 customer_contacts_to_send_to_oci
             )
         if maintenance_window is not None:
             input_["maintenance_window"] = maintenance_window
-        input_["storage_count"] = storage_count
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if database_server_type is not None:
             input_["database_server_type"] = database_server_type
         if storage_server_type is not None:
@@ -143,6 +146,7 @@ class CloudExadataInfrastructureResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -180,14 +184,16 @@ class CloudExadataInfrastructureResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.get_cloud_exadata_infrastructure_input.GetCloudExadataInfrastructureInput = {}  # type: ignore[typeddict-item]
-        input_["cloud_exadata_infrastructure_id"] = cloud_exadata_infrastructure_id
+        input_: capo_odb.types.get_cloud_exadata_infrastructure_input.GetCloudExadataInfrastructureInput = {
+            "cloud_exadata_infrastructure_id": cloud_exadata_infrastructure_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -229,8 +235,9 @@ class CloudExadataInfrastructureResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.update_cloud_exadata_infrastructure_input.UpdateCloudExadataInfrastructureInput = {}  # type: ignore[typeddict-item]
-        input_["cloud_exadata_infrastructure_id"] = cloud_exadata_infrastructure_id
+        input_: capo_odb.types.update_cloud_exadata_infrastructure_input.UpdateCloudExadataInfrastructureInput = {
+            "cloud_exadata_infrastructure_id": cloud_exadata_infrastructure_id
+        }
         if maintenance_window is not None:
             input_["maintenance_window"] = maintenance_window
 
@@ -239,6 +246,7 @@ class CloudExadataInfrastructureResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -277,14 +285,16 @@ class CloudExadataInfrastructureResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.delete_cloud_exadata_infrastructure_input.DeleteCloudExadataInfrastructureInput = {}  # type: ignore[typeddict-item]
-        input_["cloud_exadata_infrastructure_id"] = cloud_exadata_infrastructure_id
+        input_: capo_odb.types.delete_cloud_exadata_infrastructure_input.DeleteCloudExadataInfrastructureInput = {
+            "cloud_exadata_infrastructure_id": cloud_exadata_infrastructure_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -323,7 +333,7 @@ class CloudExadataInfrastructureResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.list_cloud_exadata_infrastructures_input.ListCloudExadataInfrastructuresInput = {}  # type: ignore[typeddict-item]
+        input_: capo_odb.types.list_cloud_exadata_infrastructures_input.ListCloudExadataInfrastructuresInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -334,6 +344,7 @@ class CloudExadataInfrastructureResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_cloud_exadata_infrastructure_unallocated_resources(
@@ -373,8 +384,9 @@ class CloudExadataInfrastructureResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.get_cloud_exadata_infrastructure_unallocated_resources_input.GetCloudExadataInfrastructureUnallocatedResourcesInput = {}  # type: ignore[typeddict-item]
-        input_["cloud_exadata_infrastructure_id"] = cloud_exadata_infrastructure_id
+        input_: capo_odb.types.get_cloud_exadata_infrastructure_unallocated_resources_input.GetCloudExadataInfrastructureUnallocatedResourcesInput = {
+            "cloud_exadata_infrastructure_id": cloud_exadata_infrastructure_id
+        }
         if db_servers is not None:
             input_["db_servers"] = db_servers
 
@@ -383,6 +395,7 @@ class CloudExadataInfrastructureResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_db_server(
@@ -420,15 +433,17 @@ class CloudExadataInfrastructureResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.get_db_server_input.GetDbServerInput = {}  # type: ignore[typeddict-item]
-        input_["cloud_exadata_infrastructure_id"] = cloud_exadata_infrastructure_id
-        input_["db_server_id"] = db_server_id
+        input_: capo_odb.types.get_db_server_input.GetDbServerInput = {
+            "cloud_exadata_infrastructure_id": cloud_exadata_infrastructure_id,
+            "db_server_id": db_server_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_db_servers(
@@ -470,8 +485,9 @@ class CloudExadataInfrastructureResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.list_db_servers_input.ListDbServersInput = {}  # type: ignore[typeddict-item]
-        input_["cloud_exadata_infrastructure_id"] = cloud_exadata_infrastructure_id
+        input_: capo_odb.types.list_db_servers_input.ListDbServersInput = {
+            "cloud_exadata_infrastructure_id": cloud_exadata_infrastructure_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -482,6 +498,7 @@ class CloudExadataInfrastructureResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -558,25 +575,27 @@ class AsyncCloudExadataInfrastructureResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.create_cloud_exadata_infrastructure_input.CreateCloudExadataInfrastructureInput = {}  # type: ignore[typeddict-item]
-        input_["display_name"] = display_name
-        input_["shape"] = shape
+        input_: capo_odb.types.create_cloud_exadata_infrastructure_input.CreateCloudExadataInfrastructureInput = {
+            "display_name": display_name,
+            "shape": shape,
+            "compute_count": compute_count,
+            "storage_count": storage_count,
+        }
         if availability_zone is not None:
             input_["availability_zone"] = availability_zone
         if availability_zone_id is not None:
             input_["availability_zone_id"] = availability_zone_id
         if tags is not None:
             input_["tags"] = tags
-        input_["compute_count"] = compute_count
         if customer_contacts_to_send_to_oci is not None:
             input_["customer_contacts_to_send_to_oci"] = (
                 customer_contacts_to_send_to_oci
             )
         if maintenance_window is not None:
             input_["maintenance_window"] = maintenance_window
-        input_["storage_count"] = storage_count
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if database_server_type is not None:
             input_["database_server_type"] = database_server_type
         if storage_server_type is not None:
@@ -587,6 +606,7 @@ class AsyncCloudExadataInfrastructureResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -625,14 +645,16 @@ class AsyncCloudExadataInfrastructureResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.get_cloud_exadata_infrastructure_input.GetCloudExadataInfrastructureInput = {}  # type: ignore[typeddict-item]
-        input_["cloud_exadata_infrastructure_id"] = cloud_exadata_infrastructure_id
+        input_: capo_odb.types.get_cloud_exadata_infrastructure_input.GetCloudExadataInfrastructureInput = {
+            "cloud_exadata_infrastructure_id": cloud_exadata_infrastructure_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -675,8 +697,9 @@ class AsyncCloudExadataInfrastructureResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.update_cloud_exadata_infrastructure_input.UpdateCloudExadataInfrastructureInput = {}  # type: ignore[typeddict-item]
-        input_["cloud_exadata_infrastructure_id"] = cloud_exadata_infrastructure_id
+        input_: capo_odb.types.update_cloud_exadata_infrastructure_input.UpdateCloudExadataInfrastructureInput = {
+            "cloud_exadata_infrastructure_id": cloud_exadata_infrastructure_id
+        }
         if maintenance_window is not None:
             input_["maintenance_window"] = maintenance_window
 
@@ -685,6 +708,7 @@ class AsyncCloudExadataInfrastructureResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -724,14 +748,16 @@ class AsyncCloudExadataInfrastructureResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.delete_cloud_exadata_infrastructure_input.DeleteCloudExadataInfrastructureInput = {}  # type: ignore[typeddict-item]
-        input_["cloud_exadata_infrastructure_id"] = cloud_exadata_infrastructure_id
+        input_: capo_odb.types.delete_cloud_exadata_infrastructure_input.DeleteCloudExadataInfrastructureInput = {
+            "cloud_exadata_infrastructure_id": cloud_exadata_infrastructure_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -771,7 +797,7 @@ class AsyncCloudExadataInfrastructureResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.list_cloud_exadata_infrastructures_input.ListCloudExadataInfrastructuresInput = {}  # type: ignore[typeddict-item]
+        input_: capo_odb.types.list_cloud_exadata_infrastructures_input.ListCloudExadataInfrastructuresInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -782,6 +808,7 @@ class AsyncCloudExadataInfrastructureResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_cloud_exadata_infrastructure_unallocated_resources(
@@ -822,8 +849,9 @@ class AsyncCloudExadataInfrastructureResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.get_cloud_exadata_infrastructure_unallocated_resources_input.GetCloudExadataInfrastructureUnallocatedResourcesInput = {}  # type: ignore[typeddict-item]
-        input_["cloud_exadata_infrastructure_id"] = cloud_exadata_infrastructure_id
+        input_: capo_odb.types.get_cloud_exadata_infrastructure_unallocated_resources_input.GetCloudExadataInfrastructureUnallocatedResourcesInput = {
+            "cloud_exadata_infrastructure_id": cloud_exadata_infrastructure_id
+        }
         if db_servers is not None:
             input_["db_servers"] = db_servers
 
@@ -832,6 +860,7 @@ class AsyncCloudExadataInfrastructureResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_db_server(
@@ -872,15 +901,17 @@ class AsyncCloudExadataInfrastructureResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.get_db_server_input.GetDbServerInput = {}  # type: ignore[typeddict-item]
-        input_["cloud_exadata_infrastructure_id"] = cloud_exadata_infrastructure_id
-        input_["db_server_id"] = db_server_id
+        input_: capo_odb.types.get_db_server_input.GetDbServerInput = {
+            "cloud_exadata_infrastructure_id": cloud_exadata_infrastructure_id,
+            "db_server_id": db_server_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_db_servers(
@@ -923,8 +954,9 @@ class AsyncCloudExadataInfrastructureResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.list_db_servers_input.ListDbServersInput = {}  # type: ignore[typeddict-item]
-        input_["cloud_exadata_infrastructure_id"] = cloud_exadata_infrastructure_id
+        input_: capo_odb.types.list_db_servers_input.ListDbServersInput = {
+            "cloud_exadata_infrastructure_id": cloud_exadata_infrastructure_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -935,4 +967,5 @@ class AsyncCloudExadataInfrastructureResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

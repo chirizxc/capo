@@ -31,7 +31,7 @@ def serialize_json(value: DescribeMediaStorageConfigurationOutput) -> dict:
 
 def deserialize_json(data: dict) -> DescribeMediaStorageConfigurationOutput:
     out: DescribeMediaStorageConfigurationOutput = {}  # type: ignore[typeddict-item]
-    if "MediaStorageConfiguration" in data:
+    if data.get("MediaStorageConfiguration") is not None:
         import capo_kinesis_video.types.media_storage_configuration
 
         out["media_storage_configuration"] = (

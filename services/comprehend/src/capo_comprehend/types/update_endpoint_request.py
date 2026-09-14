@@ -52,16 +52,16 @@ def serialize_aws_json_1_1(value: UpdateEndpointRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateEndpointRequest:
     out: UpdateEndpointRequest = {}  # type: ignore[typeddict-item]
-    if "EndpointArn" in data:
+    if data.get("EndpointArn") is not None:
         out["endpoint_arn"] = data["EndpointArn"]
     else:
         raise DeserializationError("UpdateEndpointRequest.endpoint_arn required")
-    if "DesiredModelArn" in data:
+    if data.get("DesiredModelArn") is not None:
         out["desired_model_arn"] = data["DesiredModelArn"]
-    if "DesiredInferenceUnits" in data:
+    if data.get("DesiredInferenceUnits") is not None:
         out["desired_inference_units"] = data["DesiredInferenceUnits"]
-    if "DesiredDataAccessRoleArn" in data:
+    if data.get("DesiredDataAccessRoleArn") is not None:
         out["desired_data_access_role_arn"] = data["DesiredDataAccessRoleArn"]
-    if "FlywheelArn" in data:
+    if data.get("FlywheelArn") is not None:
         out["flywheel_arn"] = data["FlywheelArn"]
     return out

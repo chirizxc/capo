@@ -52,13 +52,13 @@ def serialize_json(value: DataViewDestinationTypeParams) -> dict:
 
 def deserialize_json(data: dict) -> DataViewDestinationTypeParams:
     out: DataViewDestinationTypeParams = {}  # type: ignore[typeddict-item]
-    if "destinationType" in data:
+    if data.get("destinationType") is not None:
         out["destination_type"] = data["destinationType"]
     else:
         raise DeserializationError(
             "DataViewDestinationTypeParams.destination_type required"
         )
-    if "s3DestinationExportFileFormat" in data:
+    if data.get("s3DestinationExportFileFormat") is not None:
         import capo_finspace_data.types.export_file_format
 
         out["s3_destination_export_file_format"] = (
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> DataViewDestinationTypeParams:
                 data["s3DestinationExportFileFormat"]
             )
         )
-    if "s3DestinationExportFileFormatOptions" in data:
+    if data.get("s3DestinationExportFileFormatOptions") is not None:
         import capo_finspace_data.types.s3_destination_format_options
 
         out["s3_destination_export_file_format_options"] = (

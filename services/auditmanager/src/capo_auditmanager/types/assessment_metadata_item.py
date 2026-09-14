@@ -77,35 +77,35 @@ def serialize_json(value: AssessmentMetadataItem) -> dict:
 
 def deserialize_json(data: dict) -> AssessmentMetadataItem:
     out: AssessmentMetadataItem = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "complianceType" in data:
+    if data.get("complianceType") is not None:
         out["compliance_type"] = data["complianceType"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_auditmanager.types.assessment_status
 
         out["status"] = capo_auditmanager.types.assessment_status.deserialize_json(
             data["status"]
         )
-    if "roles" in data:
+    if data.get("roles") is not None:
         import capo_auditmanager.types.roles
 
         out["roles"] = capo_auditmanager.types.roles.deserialize_json(data["roles"])
-    if "delegations" in data:
+    if data.get("delegations") is not None:
         import capo_auditmanager.types.delegations
 
         out["delegations"] = capo_auditmanager.types.delegations.deserialize_json(
             data["delegations"]
         )
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_auditmanager.types.timestamp
 
         out["creation_time"] = capo_auditmanager.types.timestamp.deserialize_json(
             data["creationTime"]
         )
-    if "lastUpdated" in data:
+    if data.get("lastUpdated") is not None:
         import capo_auditmanager.types.timestamp
 
         out["last_updated"] = capo_auditmanager.types.timestamp.deserialize_json(

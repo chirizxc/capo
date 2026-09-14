@@ -30,11 +30,11 @@ def serialize_aws_json_1_0(value: TimestreamConfig) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TimestreamConfig:
     out: TimestreamConfig = {}  # type: ignore[typeddict-item]
-    if "timestreamTableArn" in data:
+    if data.get("timestreamTableArn") is not None:
         out["timestream_table_arn"] = data["timestreamTableArn"]
     else:
         raise DeserializationError("TimestreamConfig.timestream_table_arn required")
-    if "executionRoleArn" in data:
+    if data.get("executionRoleArn") is not None:
         out["execution_role_arn"] = data["executionRoleArn"]
     else:
         raise DeserializationError("TimestreamConfig.execution_role_arn required")

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: UpdateAnomalyMonitorResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateAnomalyMonitorResponse:
     out: UpdateAnomalyMonitorResponse = {}  # type: ignore[typeddict-item]
-    if "MonitorArn" in data:
+    if data.get("MonitorArn") is not None:
         out["monitor_arn"] = data["MonitorArn"]
     else:
         raise DeserializationError("UpdateAnomalyMonitorResponse.monitor_arn required")

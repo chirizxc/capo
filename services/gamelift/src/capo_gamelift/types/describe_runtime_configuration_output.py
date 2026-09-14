@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DescribeRuntimeConfigurationOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeRuntimeConfigurationOutput:
     out: DescribeRuntimeConfigurationOutput = {}  # type: ignore[typeddict-item]
-    if "RuntimeConfiguration" in data:
+    if data.get("RuntimeConfiguration") is not None:
         import capo_gamelift.types.runtime_configuration
 
         out["runtime_configuration"] = (

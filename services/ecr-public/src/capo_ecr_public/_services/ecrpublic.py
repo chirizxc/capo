@@ -238,17 +238,19 @@ class ECRPUBLICClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ecr_public.types.batch_check_layer_availability_request.BatchCheckLayerAvailabilityRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ecr_public.types.batch_check_layer_availability_request.BatchCheckLayerAvailabilityRequest = {
+            "repository_name": repository_name,
+            "layer_digests": layer_digests,
+        }
         if registry_id is not None:
             input_["registry_id"] = registry_id
-        input_["repository_name"] = repository_name
-        input_["layer_digests"] = layer_digests
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_delete_image(
@@ -291,17 +293,19 @@ class ECRPUBLICClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ecr_public.types.batch_delete_image_request.BatchDeleteImageRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ecr_public.types.batch_delete_image_request.BatchDeleteImageRequest = {
+            "repository_name": repository_name,
+            "image_ids": image_ids,
+        }
         if registry_id is not None:
             input_["registry_id"] = registry_id
-        input_["repository_name"] = repository_name
-        input_["image_ids"] = image_ids
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def complete_layer_upload(
@@ -352,18 +356,20 @@ class ECRPUBLICClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ecr_public.types.complete_layer_upload_request.CompleteLayerUploadRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ecr_public.types.complete_layer_upload_request.CompleteLayerUploadRequest = {
+            "repository_name": repository_name,
+            "upload_id": upload_id,
+            "layer_digests": layer_digests,
+        }
         if registry_id is not None:
             input_["registry_id"] = registry_id
-        input_["repository_name"] = repository_name
-        input_["upload_id"] = upload_id
-        input_["layer_digests"] = layer_digests
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_repository(
@@ -409,8 +415,9 @@ class ECRPUBLICClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ecr_public.types.create_repository_request.CreateRepositoryRequest = {}  # type: ignore[typeddict-item]
-        input_["repository_name"] = repository_name
+        input_: capo_ecr_public.types.create_repository_request.CreateRepositoryRequest = {
+            "repository_name": repository_name
+        }
         if catalog_data is not None:
             input_["catalog_data"] = catalog_data
         if tags is not None:
@@ -421,6 +428,7 @@ class ECRPUBLICClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_repository(
@@ -462,10 +470,11 @@ class ECRPUBLICClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ecr_public.types.delete_repository_request.DeleteRepositoryRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ecr_public.types.delete_repository_request.DeleteRepositoryRequest = {
+            "repository_name": repository_name
+        }
         if registry_id is not None:
             input_["registry_id"] = registry_id
-        input_["repository_name"] = repository_name
         if force is not None:
             input_["force"] = force
 
@@ -474,6 +483,7 @@ class ECRPUBLICClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_repository_policy(
@@ -513,16 +523,18 @@ class ECRPUBLICClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ecr_public.types.delete_repository_policy_request.DeleteRepositoryPolicyRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ecr_public.types.delete_repository_policy_request.DeleteRepositoryPolicyRequest = {
+            "repository_name": repository_name
+        }
         if registry_id is not None:
             input_["registry_id"] = registry_id
-        input_["repository_name"] = repository_name
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_images(
@@ -570,10 +582,11 @@ class ECRPUBLICClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ecr_public.types.describe_images_request.DescribeImagesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ecr_public.types.describe_images_request.DescribeImagesRequest = {
+            "repository_name": repository_name
+        }
         if registry_id is not None:
             input_["registry_id"] = registry_id
-        input_["repository_name"] = repository_name
         if image_ids is not None:
             input_["image_ids"] = image_ids
         if next_token is not None:
@@ -586,6 +599,7 @@ class ECRPUBLICClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_images(
@@ -657,10 +671,11 @@ class ECRPUBLICClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ecr_public.types.describe_image_tags_request.DescribeImageTagsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ecr_public.types.describe_image_tags_request.DescribeImageTagsRequest = {
+            "repository_name": repository_name
+        }
         if registry_id is not None:
             input_["registry_id"] = registry_id
-        input_["repository_name"] = repository_name
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -671,6 +686,7 @@ class ECRPUBLICClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_image_tags(
@@ -735,7 +751,7 @@ class ECRPUBLICClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ecr_public.types.describe_registries_request.DescribeRegistriesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ecr_public.types.describe_registries_request.DescribeRegistriesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -746,6 +762,7 @@ class ECRPUBLICClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_registries(
@@ -811,7 +828,7 @@ class ECRPUBLICClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ecr_public.types.describe_repositories_request.DescribeRepositoriesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ecr_public.types.describe_repositories_request.DescribeRepositoriesRequest = {}
         if registry_id is not None:
             input_["registry_id"] = registry_id
         if repository_names is not None:
@@ -826,6 +843,7 @@ class ECRPUBLICClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_repositories(
@@ -882,13 +900,14 @@ class ECRPUBLICClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ecr_public.types.get_authorization_token_request.GetAuthorizationTokenRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ecr_public.types.get_authorization_token_request.GetAuthorizationTokenRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_registry_catalog_data(
@@ -917,13 +936,14 @@ class ECRPUBLICClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ecr_public.types.get_registry_catalog_data_request.GetRegistryCatalogDataRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ecr_public.types.get_registry_catalog_data_request.GetRegistryCatalogDataRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_repository_catalog_data(
@@ -963,16 +983,18 @@ class ECRPUBLICClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ecr_public.types.get_repository_catalog_data_request.GetRepositoryCatalogDataRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ecr_public.types.get_repository_catalog_data_request.GetRepositoryCatalogDataRequest = {
+            "repository_name": repository_name
+        }
         if registry_id is not None:
             input_["registry_id"] = registry_id
-        input_["repository_name"] = repository_name
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_repository_policy(
@@ -1012,16 +1034,18 @@ class ECRPUBLICClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ecr_public.types.get_repository_policy_request.GetRepositoryPolicyRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ecr_public.types.get_repository_policy_request.GetRepositoryPolicyRequest = {
+            "repository_name": repository_name
+        }
         if registry_id is not None:
             input_["registry_id"] = registry_id
-        input_["repository_name"] = repository_name
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def initiate_layer_upload(
@@ -1063,16 +1087,18 @@ class ECRPUBLICClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ecr_public.types.initiate_layer_upload_request.InitiateLayerUploadRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ecr_public.types.initiate_layer_upload_request.InitiateLayerUploadRequest = {
+            "repository_name": repository_name
+        }
         if registry_id is not None:
             input_["registry_id"] = registry_id
-        input_["repository_name"] = repository_name
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_tags_for_resource(
@@ -1109,14 +1135,16 @@ class ECRPUBLICClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ecr_public.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_ecr_public.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_image(
@@ -1174,11 +1202,12 @@ class ECRPUBLICClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ecr_public.types.put_image_request.PutImageRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ecr_public.types.put_image_request.PutImageRequest = {
+            "repository_name": repository_name,
+            "image_manifest": image_manifest,
+        }
         if registry_id is not None:
             input_["registry_id"] = registry_id
-        input_["repository_name"] = repository_name
-        input_["image_manifest"] = image_manifest
         if image_manifest_media_type is not None:
             input_["image_manifest_media_type"] = image_manifest_media_type
         if image_tag is not None:
@@ -1191,6 +1220,7 @@ class ECRPUBLICClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_registry_catalog_data(
@@ -1228,7 +1258,7 @@ class ECRPUBLICClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ecr_public.types.put_registry_catalog_data_request.PutRegistryCatalogDataRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ecr_public.types.put_registry_catalog_data_request.PutRegistryCatalogDataRequest = {}
         if display_name is not None:
             input_["display_name"] = display_name
 
@@ -1237,6 +1267,7 @@ class ECRPUBLICClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_repository_catalog_data(
@@ -1277,17 +1308,19 @@ class ECRPUBLICClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ecr_public.types.put_repository_catalog_data_request.PutRepositoryCatalogDataRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ecr_public.types.put_repository_catalog_data_request.PutRepositoryCatalogDataRequest = {
+            "repository_name": repository_name,
+            "catalog_data": catalog_data,
+        }
         if registry_id is not None:
             input_["registry_id"] = registry_id
-        input_["repository_name"] = repository_name
-        input_["catalog_data"] = catalog_data
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def set_repository_policy(
@@ -1330,11 +1363,12 @@ class ECRPUBLICClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ecr_public.types.set_repository_policy_request.SetRepositoryPolicyRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ecr_public.types.set_repository_policy_request.SetRepositoryPolicyRequest = {
+            "repository_name": repository_name,
+            "policy_text": policy_text,
+        }
         if registry_id is not None:
             input_["registry_id"] = registry_id
-        input_["repository_name"] = repository_name
-        input_["policy_text"] = policy_text
         if force is not None:
             input_["force"] = force
 
@@ -1343,6 +1377,7 @@ class ECRPUBLICClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -1383,15 +1418,17 @@ class ECRPUBLICClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ecr_public.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_ecr_public.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -1432,15 +1469,17 @@ class ECRPUBLICClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ecr_public.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_ecr_public.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def upload_layer_part(
@@ -1493,20 +1532,22 @@ class ECRPUBLICClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ecr_public.types.upload_layer_part_request.UploadLayerPartRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ecr_public.types.upload_layer_part_request.UploadLayerPartRequest = {
+            "repository_name": repository_name,
+            "upload_id": upload_id,
+            "part_first_byte": part_first_byte,
+            "part_last_byte": part_last_byte,
+            "layer_part_blob": layer_part_blob,
+        }
         if registry_id is not None:
             input_["registry_id"] = registry_id
-        input_["repository_name"] = repository_name
-        input_["upload_id"] = upload_id
-        input_["part_first_byte"] = part_first_byte
-        input_["part_last_byte"] = part_last_byte
-        input_["layer_part_blob"] = layer_part_blob
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

@@ -28,8 +28,8 @@ def serialize_json(value: EncryptionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> EncryptionConfiguration:
     out: EncryptionConfiguration = {}  # type: ignore[typeddict-item]
-    if "Encrypted" in data:
+    if data.get("Encrypted") is not None:
         out["encrypted"] = data["Encrypted"]
-    if "CmkArn" in data:
+    if data.get("CmkArn") is not None:
         out["cmk_arn"] = data["CmkArn"]
     return out

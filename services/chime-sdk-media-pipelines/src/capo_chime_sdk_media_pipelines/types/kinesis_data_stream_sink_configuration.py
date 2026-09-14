@@ -23,6 +23,6 @@ def serialize_json(value: KinesisDataStreamSinkConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> KinesisDataStreamSinkConfiguration:
     out: KinesisDataStreamSinkConfiguration = {}  # type: ignore[typeddict-item]
-    if "InsightsTarget" in data:
+    if data.get("InsightsTarget") is not None:
         out["insights_target"] = data["InsightsTarget"]
     return out

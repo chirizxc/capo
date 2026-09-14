@@ -113,13 +113,13 @@ def serialize_json(value: JobSummary) -> dict:
 
 def deserialize_json(data: dict) -> JobSummary:
     out: JobSummary = {}  # type: ignore[typeddict-item]
-    if "jobArn" in data:
+    if data.get("jobArn") is not None:
         out["job_arn"] = data["jobArn"]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
-    if "jobName" in data:
+    if data.get("jobName") is not None:
         out["job_name"] = data["jobName"]
-    if "capacityUsage" in data:
+    if data.get("capacityUsage") is not None:
         import capo_batch.types.job_capacity_usage_summary_list
 
         out["capacity_usage"] = (
@@ -127,29 +127,29 @@ def deserialize_json(data: dict) -> JobSummary:
                 data["capacityUsage"]
             )
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         out["created_at"] = data["createdAt"]
-    if "scheduledAt" in data:
+    if data.get("scheduledAt") is not None:
         out["scheduled_at"] = data["scheduledAt"]
-    if "shareIdentifier" in data:
+    if data.get("shareIdentifier") is not None:
         out["share_identifier"] = data["shareIdentifier"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_batch.types.job_status
 
         out["status"] = capo_batch.types.job_status.deserialize_json(data["status"])
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "startedAt" in data:
+    if data.get("startedAt") is not None:
         out["started_at"] = data["startedAt"]
-    if "stoppedAt" in data:
+    if data.get("stoppedAt") is not None:
         out["stopped_at"] = data["stoppedAt"]
-    if "container" in data:
+    if data.get("container") is not None:
         import capo_batch.types.container_summary
 
         out["container"] = capo_batch.types.container_summary.deserialize_json(
             data["container"]
         )
-    if "arrayProperties" in data:
+    if data.get("arrayProperties") is not None:
         import capo_batch.types.array_properties_summary
 
         out["array_properties"] = (
@@ -157,7 +157,7 @@ def deserialize_json(data: dict) -> JobSummary:
                 data["arrayProperties"]
             )
         )
-    if "nodeProperties" in data:
+    if data.get("nodeProperties") is not None:
         import capo_batch.types.node_properties_summary
 
         out["node_properties"] = (
@@ -165,6 +165,6 @@ def deserialize_json(data: dict) -> JobSummary:
                 data["nodeProperties"]
             )
         )
-    if "jobDefinition" in data:
+    if data.get("jobDefinition") is not None:
         out["job_definition"] = data["jobDefinition"]
     return out

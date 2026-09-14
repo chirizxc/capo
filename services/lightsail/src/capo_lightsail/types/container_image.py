@@ -36,11 +36,11 @@ def serialize_aws_json_1_1(value: ContainerImage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ContainerImage:
     out: ContainerImage = {}  # type: ignore[typeddict-item]
-    if "image" in data:
+    if data.get("image") is not None:
         out["image"] = data["image"]
-    if "digest" in data:
+    if data.get("digest") is not None:
         out["digest"] = data["digest"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_lightsail.types.iso_date
 
         out["created_at"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(

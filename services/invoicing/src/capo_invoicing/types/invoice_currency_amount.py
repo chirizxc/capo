@@ -60,13 +60,13 @@ def serialize_aws_json_1_0(value: InvoiceCurrencyAmount) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InvoiceCurrencyAmount:
     out: InvoiceCurrencyAmount = {}  # type: ignore[typeddict-item]
-    if "TotalAmount" in data:
+    if data.get("TotalAmount") is not None:
         out["total_amount"] = data["TotalAmount"]
-    if "TotalAmountBeforeTax" in data:
+    if data.get("TotalAmountBeforeTax") is not None:
         out["total_amount_before_tax"] = data["TotalAmountBeforeTax"]
-    if "CurrencyCode" in data:
+    if data.get("CurrencyCode") is not None:
         out["currency_code"] = data["CurrencyCode"]
-    if "AmountBreakdown" in data:
+    if data.get("AmountBreakdown") is not None:
         import capo_invoicing.types.amount_breakdown
 
         out["amount_breakdown"] = (
@@ -74,7 +74,7 @@ def deserialize_aws_json_1_0(data: dict) -> InvoiceCurrencyAmount:
                 data["AmountBreakdown"]
             )
         )
-    if "CurrencyExchangeDetails" in data:
+    if data.get("CurrencyExchangeDetails") is not None:
         import capo_invoicing.types.currency_exchange_details
 
         out["currency_exchange_details"] = (

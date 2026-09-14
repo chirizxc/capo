@@ -34,11 +34,11 @@ def serialize_json(value: Grant) -> dict:
 
 def deserialize_json(data: dict) -> Grant:
     out: Grant = {}  # type: ignore[typeddict-item]
-    if "Grantee" in data:
+    if data.get("Grantee") is not None:
         import capo_glacier.types.grantee
 
         out["grantee"] = capo_glacier.types.grantee.deserialize_json(data["Grantee"])
-    if "Permission" in data:
+    if data.get("Permission") is not None:
         import capo_glacier.types.permission
 
         out["permission"] = capo_glacier.types.permission.deserialize_json(

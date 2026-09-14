@@ -57,7 +57,7 @@ def serialize_json(value: DestinationLogsConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DestinationLogsConfiguration:
     out: DestinationLogsConfiguration = {}  # type: ignore[typeddict-item]
-    if "LogsEncryptionConfiguration" in data:
+    if data.get("LogsEncryptionConfiguration") is not None:
         import capo_observabilityadmin.types.logs_encryption_configuration
 
         out["logs_encryption_configuration"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> DestinationLogsConfiguration:
                 data["LogsEncryptionConfiguration"]
             )
         )
-    if "BackupConfiguration" in data:
+    if data.get("BackupConfiguration") is not None:
         import capo_observabilityadmin.types.logs_backup_configuration
 
         out["backup_configuration"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> DestinationLogsConfiguration:
                 data["BackupConfiguration"]
             )
         )
-    if "LogGroupNameConfiguration" in data:
+    if data.get("LogGroupNameConfiguration") is not None:
         import capo_observabilityadmin.types.log_group_name_configuration
 
         out["log_group_name_configuration"] = (

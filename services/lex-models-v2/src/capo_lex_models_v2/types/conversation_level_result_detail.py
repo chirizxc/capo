@@ -44,7 +44,7 @@ def serialize_json(value: ConversationLevelResultDetail) -> dict:
 
 def deserialize_json(data: dict) -> ConversationLevelResultDetail:
     out: ConversationLevelResultDetail = {}  # type: ignore[typeddict-item]
-    if "endToEndResult" in data:
+    if data.get("endToEndResult") is not None:
         import capo_lex_models_v2.types.test_result_match_status
 
         out["end_to_end_result"] = (
@@ -56,7 +56,7 @@ def deserialize_json(data: dict) -> ConversationLevelResultDetail:
         raise DeserializationError(
             "ConversationLevelResultDetail.end_to_end_result required"
         )
-    if "speechTranscriptionResult" in data:
+    if data.get("speechTranscriptionResult") is not None:
         import capo_lex_models_v2.types.test_result_match_status
 
         out["speech_transcription_result"] = (

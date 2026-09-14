@@ -31,7 +31,7 @@ def serialize_json(value: UpdateDimensionRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDimensionRequest:
     out: UpdateDimensionRequest = {}  # type: ignore[typeddict-item]
-    if "stringValues" in data:
+    if data.get("stringValues") is not None:
         import capo_iot.types.dimension_string_values
 
         out["string_values"] = capo_iot.types.dimension_string_values.deserialize_json(

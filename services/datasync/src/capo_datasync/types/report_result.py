@@ -36,14 +36,14 @@ def serialize_aws_json_1_1(value: ReportResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReportResult:
     out: ReportResult = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_datasync.types.phase_status
 
         out["status"] = capo_datasync.types.phase_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
-    if "ErrorDetail" in data:
+    if data.get("ErrorDetail") is not None:
         out["error_detail"] = data["ErrorDetail"]
     return out

@@ -33,7 +33,7 @@ def serialize_json(value: UpdateCampaignEntryLimitsRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateCampaignEntryLimitsRequest:
     out: UpdateCampaignEntryLimitsRequest = {}  # type: ignore[typeddict-item]
-    if "entryLimitsConfig" in data:
+    if data.get("entryLimitsConfig") is not None:
         import capo_connectcampaignsv2.types.entry_limits_config
 
         out["entry_limits_config"] = (

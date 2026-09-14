@@ -25,7 +25,15 @@ def serialize_json(value: RetrievedTrace) -> dict:
     if "id" in value:
         out["Id"] = value["id"]
     if "duration" in value:
-        out["Duration"] = value["duration"]
+        out["Duration"] = (
+            "NaN"
+            if value["duration"] != value["duration"]
+            else "Infinity"
+            if value["duration"] == float("inf")
+            else "-Infinity"
+            if value["duration"] == float("-inf")
+            else value["duration"]
+        )
     if "spans" in value:
         import capo_xray.types.span_list
 
@@ -35,11 +43,11 @@ def serialize_json(value: RetrievedTrace) -> dict:
 
 def deserialize_json(data: dict) -> RetrievedTrace:
     out: RetrievedTrace = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Duration" in data:
-        out["duration"] = data["Duration"]
-    if "Spans" in data:
+    if data.get("Duration") is not None:
+        out["duration"] = float(data["Duration"])
+    if data.get("Spans") is not None:
         import capo_xray.types.span_list
 
         out["spans"] = capo_xray.types.span_list.deserialize_json(data["Spans"])

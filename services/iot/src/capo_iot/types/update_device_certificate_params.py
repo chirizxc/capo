@@ -30,7 +30,7 @@ def serialize_json(value: UpdateDeviceCertificateParams) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDeviceCertificateParams:
     out: UpdateDeviceCertificateParams = {}  # type: ignore[typeddict-item]
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_iot.types.device_certificate_update_action
 
         out["action"] = (

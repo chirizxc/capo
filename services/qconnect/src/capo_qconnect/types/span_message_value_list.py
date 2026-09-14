@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SpanMessageValueList:
 
     out: SpanMessageValueList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_qconnect.types.span_message_value.deserialize_json(item))
     return out

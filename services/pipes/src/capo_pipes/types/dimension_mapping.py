@@ -32,15 +32,15 @@ def serialize_json(value: DimensionMapping) -> dict:
 
 def deserialize_json(data: dict) -> DimensionMapping:
     out: DimensionMapping = {}  # type: ignore[typeddict-item]
-    if "DimensionValue" in data:
+    if data.get("DimensionValue") is not None:
         out["dimension_value"] = data["DimensionValue"]
     else:
         raise DeserializationError("DimensionMapping.dimension_value required")
-    if "DimensionValueType" in data:
+    if data.get("DimensionValueType") is not None:
         out["dimension_value_type"] = data["DimensionValueType"]
     else:
         raise DeserializationError("DimensionMapping.dimension_value_type required")
-    if "DimensionName" in data:
+    if data.get("DimensionName") is not None:
         out["dimension_name"] = data["DimensionName"]
     else:
         raise DeserializationError("DimensionMapping.dimension_name required")

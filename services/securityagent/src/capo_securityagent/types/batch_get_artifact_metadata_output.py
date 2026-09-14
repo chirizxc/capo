@@ -32,7 +32,7 @@ def serialize_json(value: BatchGetArtifactMetadataOutput) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetArtifactMetadataOutput:
     out: BatchGetArtifactMetadataOutput = {}  # type: ignore[typeddict-item]
-    if "artifactMetadataList" in data:
+    if data.get("artifactMetadataList") is not None:
         import capo_securityagent.types.artifact_metadata_list
 
         out["artifact_metadata_list"] = (

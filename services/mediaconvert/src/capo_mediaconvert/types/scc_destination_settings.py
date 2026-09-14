@@ -31,7 +31,7 @@ def serialize_json(value: SccDestinationSettings) -> dict:
 
 def deserialize_json(data: dict) -> SccDestinationSettings:
     out: SccDestinationSettings = {}  # type: ignore[typeddict-item]
-    if "framerate" in data:
+    if data.get("framerate") is not None:
         import capo_mediaconvert.types.scc_destination_framerate
 
         out["framerate"] = (

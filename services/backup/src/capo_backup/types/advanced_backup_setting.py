@@ -32,9 +32,9 @@ def serialize_json(value: AdvancedBackupSetting) -> dict:
 
 def deserialize_json(data: dict) -> AdvancedBackupSetting:
     out: AdvancedBackupSetting = {}  # type: ignore[typeddict-item]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
-    if "BackupOptions" in data:
+    if data.get("BackupOptions") is not None:
         import capo_backup.types.backup_options
 
         out["backup_options"] = capo_backup.types.backup_options.deserialize_json(

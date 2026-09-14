@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AnalyticsIntentMetricResults:
 
     out: AnalyticsIntentMetricResults = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lex_models_v2.types.analytics_intent_metric_result.deserialize_json(
                 item

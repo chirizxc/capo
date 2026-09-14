@@ -42,19 +42,19 @@ def serialize_json(value: CreateWorkerConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateWorkerConfigurationRequest:
     out: CreateWorkerConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateWorkerConfigurationRequest.name required")
-    if "propertiesFileContent" in data:
+    if data.get("propertiesFileContent") is not None:
         out["properties_file_content"] = data["propertiesFileContent"]
     else:
         raise DeserializationError(
             "CreateWorkerConfigurationRequest.properties_file_content required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_kafkaconnect.types.tags
 
         out["tags"] = capo_kafkaconnect.types.tags.deserialize_json(data["tags"])

@@ -31,8 +31,8 @@ def serialize_json(value: CharacterOffsets) -> dict:
 
 def deserialize_json(data: dict) -> CharacterOffsets:
     out: CharacterOffsets = {}  # type: ignore[typeddict-item]
-    if "BeginOffsetChar" in data:
+    if data.get("BeginOffsetChar") is not None:
         out["begin_offset_char"] = data["BeginOffsetChar"]
-    if "EndOffsetChar" in data:
+    if data.get("EndOffsetChar") is not None:
         out["end_offset_char"] = data["EndOffsetChar"]
     return out

@@ -41,13 +41,13 @@ def serialize_json(value: CreateUserHierarchyGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateUserHierarchyGroupRequest:
     out: CreateUserHierarchyGroupRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateUserHierarchyGroupRequest.name required")
-    if "ParentGroupId" in data:
+    if data.get("ParentGroupId") is not None:
         out["parent_group_id"] = data["ParentGroupId"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])

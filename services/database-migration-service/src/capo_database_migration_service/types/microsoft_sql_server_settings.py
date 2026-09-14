@@ -145,21 +145,21 @@ def serialize_aws_json_1_1(value: MicrosoftSQLServerSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MicrosoftSQLServerSettings:
     out: MicrosoftSQLServerSettings = {}  # type: ignore[typeddict-item]
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
-    if "BcpPacketSize" in data:
+    if data.get("BcpPacketSize") is not None:
         out["bcp_packet_size"] = data["BcpPacketSize"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
-    if "ControlTablesFileGroup" in data:
+    if data.get("ControlTablesFileGroup") is not None:
         out["control_tables_file_group"] = data["ControlTablesFileGroup"]
-    if "Password" in data:
+    if data.get("Password") is not None:
         out["password"] = data["Password"]
-    if "QuerySingleAlwaysOnNode" in data:
+    if data.get("QuerySingleAlwaysOnNode") is not None:
         out["query_single_always_on_node"] = data["QuerySingleAlwaysOnNode"]
-    if "ReadBackupOnly" in data:
+    if data.get("ReadBackupOnly") is not None:
         out["read_backup_only"] = data["ReadBackupOnly"]
-    if "SafeguardPolicy" in data:
+    if data.get("SafeguardPolicy") is not None:
         import capo_database_migration_service.types.safeguard_policy
 
         out["safeguard_policy"] = (
@@ -167,21 +167,21 @@ def deserialize_aws_json_1_1(data: dict) -> MicrosoftSQLServerSettings:
                 data["SafeguardPolicy"]
             )
         )
-    if "ServerName" in data:
+    if data.get("ServerName") is not None:
         out["server_name"] = data["ServerName"]
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
-    if "UseBcpFullLoad" in data:
+    if data.get("UseBcpFullLoad") is not None:
         out["use_bcp_full_load"] = data["UseBcpFullLoad"]
-    if "UseThirdPartyBackupDevice" in data:
+    if data.get("UseThirdPartyBackupDevice") is not None:
         out["use_third_party_backup_device"] = data["UseThirdPartyBackupDevice"]
-    if "SecretsManagerAccessRoleArn" in data:
+    if data.get("SecretsManagerAccessRoleArn") is not None:
         out["secrets_manager_access_role_arn"] = data["SecretsManagerAccessRoleArn"]
-    if "SecretsManagerSecretId" in data:
+    if data.get("SecretsManagerSecretId") is not None:
         out["secrets_manager_secret_id"] = data["SecretsManagerSecretId"]
-    if "TrimSpaceInChar" in data:
+    if data.get("TrimSpaceInChar") is not None:
         out["trim_space_in_char"] = data["TrimSpaceInChar"]
-    if "TlogAccessMode" in data:
+    if data.get("TlogAccessMode") is not None:
         import capo_database_migration_service.types.tlog_access_mode
 
         out["tlog_access_mode"] = (
@@ -189,9 +189,9 @@ def deserialize_aws_json_1_1(data: dict) -> MicrosoftSQLServerSettings:
                 data["TlogAccessMode"]
             )
         )
-    if "ForceLobLookup" in data:
+    if data.get("ForceLobLookup") is not None:
         out["force_lob_lookup"] = data["ForceLobLookup"]
-    if "AuthenticationMethod" in data:
+    if data.get("AuthenticationMethod") is not None:
         import capo_database_migration_service.types.sql_server_authentication_method
 
         out["authentication_method"] = (

@@ -49,13 +49,13 @@ def serialize_aws_json_1_1(value: UpdateWorkflowRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateWorkflowRequest:
     out: UpdateWorkflowRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateWorkflowRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DefaultRunProperties" in data:
+    if data.get("DefaultRunProperties") is not None:
         import capo_glue.types.workflow_run_properties
 
         out["default_run_properties"] = (
@@ -63,6 +63,6 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateWorkflowRequest:
                 data["DefaultRunProperties"]
             )
         )
-    if "MaxConcurrentRuns" in data:
+    if data.get("MaxConcurrentRuns") is not None:
         out["max_concurrent_runs"] = data["MaxConcurrentRuns"]
     return out

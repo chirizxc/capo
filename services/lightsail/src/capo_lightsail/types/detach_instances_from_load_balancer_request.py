@@ -34,13 +34,13 @@ def serialize_aws_json_1_1(value: DetachInstancesFromLoadBalancerRequest) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> DetachInstancesFromLoadBalancerRequest:
     out: DetachInstancesFromLoadBalancerRequest = {}  # type: ignore[typeddict-item]
-    if "loadBalancerName" in data:
+    if data.get("loadBalancerName") is not None:
         out["load_balancer_name"] = data["loadBalancerName"]
     else:
         raise DeserializationError(
             "DetachInstancesFromLoadBalancerRequest.load_balancer_name required"
         )
-    if "instanceNames" in data:
+    if data.get("instanceNames") is not None:
         import capo_lightsail.types.resource_name_list
 
         out["instance_names"] = (

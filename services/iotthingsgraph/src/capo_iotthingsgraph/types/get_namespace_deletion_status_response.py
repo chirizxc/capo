@@ -61,11 +61,11 @@ def serialize_aws_json_1_1(value: GetNamespaceDeletionStatusResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetNamespaceDeletionStatusResponse:
     out: GetNamespaceDeletionStatusResponse = {}  # type: ignore[typeddict-item]
-    if "namespaceArn" in data:
+    if data.get("namespaceArn") is not None:
         out["namespace_arn"] = data["namespaceArn"]
-    if "namespaceName" in data:
+    if data.get("namespaceName") is not None:
         out["namespace_name"] = data["namespaceName"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iotthingsgraph.types.namespace_deletion_status
 
         out["status"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetNamespaceDeletionStatusResponse:
                 data["status"]
             )
         )
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         import capo_iotthingsgraph.types.namespace_deletion_status_error_codes
 
         out["error_code"] = (
@@ -81,6 +81,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetNamespaceDeletionStatusResponse:
                 data["errorCode"]
             )
         )
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     return out

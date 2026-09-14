@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ReferenceTypes:
 
     out: ReferenceTypes = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.reference_type.deserialize_json(item))
     return out

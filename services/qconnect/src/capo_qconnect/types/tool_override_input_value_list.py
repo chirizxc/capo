@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ToolOverrideInputValueList:
 
     out: ToolOverrideInputValueList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_qconnect.types.tool_override_input_value.deserialize_json(item))
     return out

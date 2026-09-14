@@ -52,9 +52,9 @@ def serialize_json(value: CreateRepositoryRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateRepositoryRequest:
     out: CreateRepositoryRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "upstreams" in data:
+    if data.get("upstreams") is not None:
         import capo_codeartifact.types.upstream_repository_list
 
         out["upstreams"] = (
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> CreateRepositoryRequest:
                 data["upstreams"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_codeartifact.types.tag_list
 
         out["tags"] = capo_codeartifact.types.tag_list.deserialize_json(data["tags"])

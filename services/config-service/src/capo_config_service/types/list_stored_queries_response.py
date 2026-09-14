@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListStoredQueriesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListStoredQueriesResponse:
     out: ListStoredQueriesResponse = {}  # type: ignore[typeddict-item]
-    if "StoredQueryMetadata" in data:
+    if data.get("StoredQueryMetadata") is not None:
         import capo_config_service.types.stored_query_metadata_list
 
         out["stored_query_metadata"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListStoredQueriesResponse:
                 data["StoredQueryMetadata"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

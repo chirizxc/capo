@@ -13,10 +13,25 @@ from capo_kinesis import AsyncKinesisClient
 
 
 async def main():
-    async with AsyncKinesisClient() as s3:
+    async with AsyncKinesisClient() as kinesis:
         # Example: call the add_tags_to_stream operation
-        response = await s3.add_tags_to_stream()
+        response = await kinesis.add_tags_to_stream()
         print(response)
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_kinesis import AsyncKinesisClient
+
+
+async def main():
+    async with AsyncKinesisClient() as kinesis:
+        # Example: paginate over list_stream_consumers
+        async for item in kinesis.iter_list_stream_consumers():
+            print(item)
 ```
 
 ## Waiters
@@ -28,9 +43,9 @@ from capo_kinesis import AsyncKinesisClient
 
 
 async def main():
-    async with AsyncKinesisClient() as s3:
+    async with AsyncKinesisClient() as kinesis:
         # Example: wait for stream_not_exists
-        await s3.wait_until_stream_not_exists(max_wait_time=300)
+        await kinesis.wait_until_stream_not_exists(max_wait_time=300)
 ```
 
 ## Error Handling
@@ -43,9 +58,9 @@ from capo_kinesis.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncKinesisClient() as s3:
+    async with AsyncKinesisClient() as kinesis:
         try:
-            await s3.add_tags_to_stream()
+            await kinesis.add_tags_to_stream()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -62,13 +77,13 @@ from capo_kinesis import AsyncKinesisClient
 
 
 async def main():
-    async with AsyncKinesisClient() as s3:
+    async with AsyncKinesisClient() as kinesis:
         # Default: 3 attempts for every operation
-        response = await s3.add_tags_to_stream()
+        response = await kinesis.add_tags_to_stream()
 
         # Override per operation
-        response = await s3.add_tags_to_stream(config_overrides={"retry_max_attempts": 5})
+        response = await kinesis.add_tags_to_stream(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.add_tags_to_stream(config_overrides={"retry_max_attempts": 1})
+        response = await kinesis.add_tags_to_stream(config_overrides={"retry_max_attempts": 1})
 ```

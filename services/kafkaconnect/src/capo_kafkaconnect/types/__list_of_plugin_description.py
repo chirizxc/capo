@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfPluginDescription:
 
     out: __listOfPluginDescription = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_kafkaconnect.types.plugin_description.deserialize_json(item))
     return out

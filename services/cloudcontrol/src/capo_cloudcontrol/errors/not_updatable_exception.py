@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: NotUpdatableException_) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> NotUpdatableException_:
     out: NotUpdatableException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class NotUpdatableException(ServiceError):
 
     code: str | None = "NotUpdatableException"
 
-    def __init__(self, data: NotUpdatableException_):
+    def __init__(self, data: NotUpdatableException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="NotUpdatableException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_0(cls, data: dict) -> "NotUpdatableException":
-        return cls(deserialize_aws_json_1_0(data))
+    def from_aws_json_1_0(
+        cls, data: dict, message: str | None = None
+    ) -> "NotUpdatableException":
+        return cls(deserialize_aws_json_1_0(data), message)

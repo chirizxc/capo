@@ -74,7 +74,7 @@ def serialize_json(value: BooleanCondition) -> dict:
 
 
 def deserialize_json(data: dict) -> BooleanCondition:
-    if "equalTo" in data:
+    if data.get("equalTo") is not None:
         import capo_connectcases.types.boolean_operands
 
         return {
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> BooleanCondition:
                 data["equalTo"]
             )
         }
-    elif "notEqualTo" in data:
+    elif data.get("notEqualTo") is not None:
         import capo_connectcases.types.boolean_operands
 
         return {
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> BooleanCondition:
                 data["notEqualTo"]
             )
         }
-    elif "andAll" in data:
+    elif data.get("andAll") is not None:
         import capo_connectcases.types.compound_condition
 
         return {
@@ -98,7 +98,7 @@ def deserialize_json(data: dict) -> BooleanCondition:
                 data["andAll"]
             )
         }
-    elif "orAll" in data:
+    elif data.get("orAll") is not None:
         import capo_connectcases.types.compound_condition
 
         return {

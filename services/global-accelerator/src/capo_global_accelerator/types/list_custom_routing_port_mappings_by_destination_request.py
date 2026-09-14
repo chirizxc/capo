@@ -44,20 +44,20 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> ListCustomRoutingPortMappingsByDestinationRequest:
     out: ListCustomRoutingPortMappingsByDestinationRequest = {}  # type: ignore[typeddict-item]
-    if "EndpointId" in data:
+    if data.get("EndpointId") is not None:
         out["endpoint_id"] = data["EndpointId"]
     else:
         raise DeserializationError(
             "ListCustomRoutingPortMappingsByDestinationRequest.endpoint_id required"
         )
-    if "DestinationAddress" in data:
+    if data.get("DestinationAddress") is not None:
         out["destination_address"] = data["DestinationAddress"]
     else:
         raise DeserializationError(
             "ListCustomRoutingPortMappingsByDestinationRequest.destination_address required"
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Outposts:
 
     out: Outposts = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_s3outposts.types.outpost.deserialize_json(item))
     return out

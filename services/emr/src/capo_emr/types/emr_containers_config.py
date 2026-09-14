@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: EMRContainersConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EMRContainersConfig:
     out: EMRContainersConfig = {}  # type: ignore[typeddict-item]
-    if "JobRunId" in data:
+    if data.get("JobRunId") is not None:
         out["job_run_id"] = data["JobRunId"]
     return out

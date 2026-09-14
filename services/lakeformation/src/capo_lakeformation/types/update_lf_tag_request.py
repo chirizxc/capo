@@ -54,13 +54,13 @@ def serialize_json(value: UpdateLFTagRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateLFTagRequest:
     out: UpdateLFTagRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "TagKey" in data:
+    if data.get("TagKey") is not None:
         out["tag_key"] = data["TagKey"]
     else:
         raise DeserializationError("UpdateLFTagRequest.tag_key required")
-    if "TagValuesToDelete" in data:
+    if data.get("TagValuesToDelete") is not None:
         import capo_lakeformation.types.tag_value_list
 
         out["tag_values_to_delete"] = (
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> UpdateLFTagRequest:
                 data["TagValuesToDelete"]
             )
         )
-    if "TagValuesToAdd" in data:
+    if data.get("TagValuesToAdd") is not None:
         import capo_lakeformation.types.tag_value_list
 
         out["tag_values_to_add"] = (

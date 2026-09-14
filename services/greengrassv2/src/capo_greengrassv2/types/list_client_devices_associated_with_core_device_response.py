@@ -36,7 +36,7 @@ def serialize_json(value: ListClientDevicesAssociatedWithCoreDeviceResponse) -> 
 
 def deserialize_json(data: dict) -> ListClientDevicesAssociatedWithCoreDeviceResponse:
     out: ListClientDevicesAssociatedWithCoreDeviceResponse = {}  # type: ignore[typeddict-item]
-    if "associatedClientDevices" in data:
+    if data.get("associatedClientDevices") is not None:
         import capo_greengrassv2.types.associated_client_device_list
 
         out["associated_client_devices"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListClientDevicesAssociatedWithCoreDeviceRes
                 data["associatedClientDevices"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

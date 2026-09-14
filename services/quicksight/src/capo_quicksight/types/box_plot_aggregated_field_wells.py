@@ -44,7 +44,7 @@ def serialize_json(value: BoxPlotAggregatedFieldWells) -> dict:
 
 def deserialize_json(data: dict) -> BoxPlotAggregatedFieldWells:
     out: BoxPlotAggregatedFieldWells = {}  # type: ignore[typeddict-item]
-    if "GroupBy" in data:
+    if data.get("GroupBy") is not None:
         import capo_quicksight.types.box_plot_dimension_field_list
 
         out["group_by"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> BoxPlotAggregatedFieldWells:
                 data["GroupBy"]
             )
         )
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_quicksight.types.box_plot_measure_field_list
 
         out["values"] = (

@@ -27,13 +27,21 @@ def serialize_json(value: MembershipInferenceAttackScore) -> dict:
             value["attack_version"]
         )
     )
-    out["score"] = value["score"]
+    out["score"] = (
+        "NaN"
+        if value["score"] != value["score"]
+        else "Infinity"
+        if value["score"] == float("inf")
+        else "-Infinity"
+        if value["score"] == float("-inf")
+        else value["score"]
+    )
     return out
 
 
 def deserialize_json(data: dict) -> MembershipInferenceAttackScore:
     out: MembershipInferenceAttackScore = {}  # type: ignore[typeddict-item]
-    if "attackVersion" in data:
+    if data.get("attackVersion") is not None:
         import capo_cleanroomsml.types.membership_inference_attack_version
 
         out["attack_version"] = (
@@ -45,8 +53,8 @@ def deserialize_json(data: dict) -> MembershipInferenceAttackScore:
         raise DeserializationError(
             "MembershipInferenceAttackScore.attack_version required"
         )
-    if "score" in data:
-        out["score"] = data["score"]
+    if data.get("score") is not None:
+        out["score"] = float(data["score"])
     else:
         raise DeserializationError("MembershipInferenceAttackScore.score required")
     return out

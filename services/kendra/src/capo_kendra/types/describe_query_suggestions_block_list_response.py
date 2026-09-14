@@ -101,15 +101,15 @@ def serialize_aws_json_1_1(value: DescribeQuerySuggestionsBlockListResponse) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeQuerySuggestionsBlockListResponse:
     out: DescribeQuerySuggestionsBlockListResponse = {}  # type: ignore[typeddict-item]
-    if "IndexId" in data:
+    if data.get("IndexId") is not None:
         out["index_id"] = data["IndexId"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_kendra.types.query_suggestions_block_list_status
 
         out["status"] = (
@@ -117,30 +117,30 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeQuerySuggestionsBlockListRes
                 data["Status"]
             )
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_kendra.types.timestamp
 
         out["created_at"] = capo_kendra.types.timestamp.deserialize_aws_json_1_1(
             data["CreatedAt"]
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_kendra.types.timestamp
 
         out["updated_at"] = capo_kendra.types.timestamp.deserialize_aws_json_1_1(
             data["UpdatedAt"]
         )
-    if "SourceS3Path" in data:
+    if data.get("SourceS3Path") is not None:
         import capo_kendra.types.s3_path
 
         out["source_s3_path"] = capo_kendra.types.s3_path.deserialize_aws_json_1_1(
             data["SourceS3Path"]
         )
-    if "ItemCount" in data:
+    if data.get("ItemCount") is not None:
         out["item_count"] = data["ItemCount"]
-    if "FileSizeBytes" in data:
+    if data.get("FileSizeBytes") is not None:
         out["file_size_bytes"] = data["FileSizeBytes"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     return out

@@ -23,6 +23,6 @@ def serialize_json(value: LoRaWANListDevice) -> dict:
 
 def deserialize_json(data: dict) -> LoRaWANListDevice:
     out: LoRaWANListDevice = {}  # type: ignore[typeddict-item]
-    if "DevEui" in data:
+    if data.get("DevEui") is not None:
         out["dev_eui"] = data["DevEui"]
     return out

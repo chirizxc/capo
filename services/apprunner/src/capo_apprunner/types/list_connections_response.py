@@ -37,7 +37,7 @@ def serialize_aws_json_1_0(value: ListConnectionsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListConnectionsResponse:
     out: ListConnectionsResponse = {}  # type: ignore[typeddict-item]
-    if "ConnectionSummaryList" in data:
+    if data.get("ConnectionSummaryList") is not None:
         import capo_apprunner.types.connection_summary_list
 
         out["connection_summary_list"] = (
@@ -49,6 +49,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListConnectionsResponse:
         raise DeserializationError(
             "ListConnectionsResponse.connection_summary_list required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

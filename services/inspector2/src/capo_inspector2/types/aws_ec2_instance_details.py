@@ -83,11 +83,11 @@ def serialize_json(value: AwsEc2InstanceDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEc2InstanceDetails:
     out: AwsEc2InstanceDetails = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "imageId" in data:
+    if data.get("imageId") is not None:
         out["image_id"] = data["imageId"]
-    if "ipV4Addresses" in data:
+    if data.get("ipV4Addresses") is not None:
         import capo_inspector2.types.ip_v4_address_list
 
         out["ip_v4_addresses"] = (
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> AwsEc2InstanceDetails:
                 data["ipV4Addresses"]
             )
         )
-    if "ipV6Addresses" in data:
+    if data.get("ipV6Addresses") is not None:
         import capo_inspector2.types.ip_v6_address_list
 
         out["ip_v6_addresses"] = (
@@ -103,20 +103,20 @@ def deserialize_json(data: dict) -> AwsEc2InstanceDetails:
                 data["ipV6Addresses"]
             )
         )
-    if "keyName" in data:
+    if data.get("keyName") is not None:
         out["key_name"] = data["keyName"]
-    if "iamInstanceProfileArn" in data:
+    if data.get("iamInstanceProfileArn") is not None:
         out["iam_instance_profile_arn"] = data["iamInstanceProfileArn"]
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
-    if "subnetId" in data:
+    if data.get("subnetId") is not None:
         out["subnet_id"] = data["subnetId"]
-    if "launchedAt" in data:
+    if data.get("launchedAt") is not None:
         import capo_inspector2.types.date_time_timestamp
 
         out["launched_at"] = capo_inspector2.types.date_time_timestamp.deserialize_json(
             data["launchedAt"]
         )
-    if "platform" in data:
+    if data.get("platform") is not None:
         out["platform"] = data["platform"]
     return out

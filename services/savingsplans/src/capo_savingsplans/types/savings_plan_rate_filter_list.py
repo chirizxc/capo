@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> SavingsPlanRateFilterList:
 
     out: SavingsPlanRateFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_savingsplans.types.savings_plan_rate_filter.deserialize_json(item)
         )

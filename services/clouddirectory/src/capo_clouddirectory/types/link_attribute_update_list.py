@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> LinkAttributeUpdateList:
 
     out: LinkAttributeUpdateList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_clouddirectory.types.link_attribute_update.deserialize_json(item)
         )

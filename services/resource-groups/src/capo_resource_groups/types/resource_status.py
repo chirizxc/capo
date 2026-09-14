@@ -29,7 +29,7 @@ def serialize_json(value: ResourceStatus) -> dict:
 
 def deserialize_json(data: dict) -> ResourceStatus:
     out: ResourceStatus = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         import capo_resource_groups.types.resource_status_value
 
         out["name"] = capo_resource_groups.types.resource_status_value.deserialize_json(

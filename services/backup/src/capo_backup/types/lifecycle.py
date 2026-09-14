@@ -49,15 +49,15 @@ def serialize_json(value: Lifecycle) -> dict:
 
 def deserialize_json(data: dict) -> Lifecycle:
     out: Lifecycle = {}  # type: ignore[typeddict-item]
-    if "MoveToColdStorageAfterDays" in data:
+    if data.get("MoveToColdStorageAfterDays") is not None:
         out["move_to_cold_storage_after_days"] = data["MoveToColdStorageAfterDays"]
-    if "DeleteAfterDays" in data:
+    if data.get("DeleteAfterDays") is not None:
         out["delete_after_days"] = data["DeleteAfterDays"]
-    if "OptInToArchiveForSupportedResources" in data:
+    if data.get("OptInToArchiveForSupportedResources") is not None:
         out["opt_in_to_archive_for_supported_resources"] = data[
             "OptInToArchiveForSupportedResources"
         ]
-    if "DeleteAfterEvent" in data:
+    if data.get("DeleteAfterEvent") is not None:
         import capo_backup.types.lifecycle_delete_after_event
 
         out["delete_after_event"] = (

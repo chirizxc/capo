@@ -51,7 +51,7 @@ def serialize_json(value: LifeCycleLastTest) -> dict:
 
 def deserialize_json(data: dict) -> LifeCycleLastTest:
     out: LifeCycleLastTest = {}  # type: ignore[typeddict-item]
-    if "initiated" in data:
+    if data.get("initiated") is not None:
         import capo_mgn.types.life_cycle_last_test_initiated
 
         out["initiated"] = (
@@ -59,13 +59,13 @@ def deserialize_json(data: dict) -> LifeCycleLastTest:
                 data["initiated"]
             )
         )
-    if "reverted" in data:
+    if data.get("reverted") is not None:
         import capo_mgn.types.life_cycle_last_test_reverted
 
         out["reverted"] = capo_mgn.types.life_cycle_last_test_reverted.deserialize_json(
             data["reverted"]
         )
-    if "finalized" in data:
+    if data.get("finalized") is not None:
         import capo_mgn.types.life_cycle_last_test_finalized
 
         out["finalized"] = (

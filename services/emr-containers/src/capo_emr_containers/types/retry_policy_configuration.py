@@ -24,7 +24,7 @@ def serialize_json(value: RetryPolicyConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> RetryPolicyConfiguration:
     out: RetryPolicyConfiguration = {}  # type: ignore[typeddict-item]
-    if "maxAttempts" in data:
+    if data.get("maxAttempts") is not None:
         out["max_attempts"] = data["maxAttempts"]
     else:
         raise DeserializationError("RetryPolicyConfiguration.max_attempts required")

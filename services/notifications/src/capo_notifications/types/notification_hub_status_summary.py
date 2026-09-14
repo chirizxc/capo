@@ -28,11 +28,11 @@ def serialize_json(value: NotificationHubStatusSummary) -> dict:
 
 def deserialize_json(data: dict) -> NotificationHubStatusSummary:
     out: NotificationHubStatusSummary = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("NotificationHubStatusSummary.status required")
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
     else:
         raise DeserializationError("NotificationHubStatusSummary.reason required")

@@ -34,13 +34,13 @@ def serialize_json(value: ListInsightsAnyStatusFilter) -> dict:
 
 def deserialize_json(data: dict) -> ListInsightsAnyStatusFilter:
     out: ListInsightsAnyStatusFilter = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_devops_guru.types.insight_type
 
         out["type"] = capo_devops_guru.types.insight_type.deserialize_json(data["Type"])
     else:
         raise DeserializationError("ListInsightsAnyStatusFilter.type required")
-    if "StartTimeRange" in data:
+    if data.get("StartTimeRange") is not None:
         import capo_devops_guru.types.start_time_range
 
         out["start_time_range"] = (

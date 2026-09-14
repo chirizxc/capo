@@ -28,7 +28,7 @@ def serialize_json(value: RouteExclusionOptions) -> dict:
 
 def deserialize_json(data: dict) -> RouteExclusionOptions:
     out: RouteExclusionOptions = {}  # type: ignore[typeddict-item]
-    if "Countries" in data:
+    if data.get("Countries") is not None:
         import capo_geo_routes.types.country_code_list
 
         out["countries"] = capo_geo_routes.types.country_code_list.deserialize_json(

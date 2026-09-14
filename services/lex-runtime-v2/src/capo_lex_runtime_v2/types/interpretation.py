@@ -64,7 +64,7 @@ def serialize_json(value: Interpretation) -> dict:
 
 def deserialize_json(data: dict) -> Interpretation:
     out: Interpretation = {}  # type: ignore[typeddict-item]
-    if "nluConfidence" in data:
+    if data.get("nluConfidence") is not None:
         import capo_lex_runtime_v2.types.confidence_score
 
         out["nlu_confidence"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> Interpretation:
                 data["nluConfidence"]
             )
         )
-    if "sentimentResponse" in data:
+    if data.get("sentimentResponse") is not None:
         import capo_lex_runtime_v2.types.sentiment_response
 
         out["sentiment_response"] = (
@@ -80,13 +80,13 @@ def deserialize_json(data: dict) -> Interpretation:
                 data["sentimentResponse"]
             )
         )
-    if "intent" in data:
+    if data.get("intent") is not None:
         import capo_lex_runtime_v2.types.intent
 
         out["intent"] = capo_lex_runtime_v2.types.intent.deserialize_json(
             data["intent"]
         )
-    if "interpretationSource" in data:
+    if data.get("interpretationSource") is not None:
         import capo_lex_runtime_v2.types.interpretation_source
 
         out["interpretation_source"] = (

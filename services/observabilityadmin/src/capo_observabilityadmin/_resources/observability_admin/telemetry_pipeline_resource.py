@@ -87,9 +87,10 @@ class TelemetryPipelineResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_observabilityadmin.types.create_telemetry_pipeline_input.CreateTelemetryPipelineInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["configuration"] = configuration
+        input_: capo_observabilityadmin.types.create_telemetry_pipeline_input.CreateTelemetryPipelineInput = {
+            "name": name,
+            "configuration": configuration,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -98,6 +99,7 @@ class TelemetryPipelineResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -135,14 +137,16 @@ class TelemetryPipelineResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_observabilityadmin.types.get_telemetry_pipeline_input.GetTelemetryPipelineInput = {}  # type: ignore[typeddict-item]
-        input_["pipeline_identifier"] = pipeline_identifier
+        input_: capo_observabilityadmin.types.get_telemetry_pipeline_input.GetTelemetryPipelineInput = {
+            "pipeline_identifier": pipeline_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -182,15 +186,17 @@ class TelemetryPipelineResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_observabilityadmin.types.update_telemetry_pipeline_input.UpdateTelemetryPipelineInput = {}  # type: ignore[typeddict-item]
-        input_["pipeline_identifier"] = pipeline_identifier
-        input_["configuration"] = configuration
+        input_: capo_observabilityadmin.types.update_telemetry_pipeline_input.UpdateTelemetryPipelineInput = {
+            "pipeline_identifier": pipeline_identifier,
+            "configuration": configuration,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -229,14 +235,16 @@ class TelemetryPipelineResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_observabilityadmin.types.delete_telemetry_pipeline_input.DeleteTelemetryPipelineInput = {}  # type: ignore[typeddict-item]
-        input_["pipeline_identifier"] = pipeline_identifier
+        input_: capo_observabilityadmin.types.delete_telemetry_pipeline_input.DeleteTelemetryPipelineInput = {
+            "pipeline_identifier": pipeline_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -279,7 +287,7 @@ class TelemetryPipelineResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_observabilityadmin.types.list_telemetry_pipelines_input.ListTelemetryPipelinesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_observabilityadmin.types.list_telemetry_pipelines_input.ListTelemetryPipelinesInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -290,6 +298,7 @@ class TelemetryPipelineResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -340,9 +349,10 @@ class AsyncTelemetryPipelineResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_observabilityadmin.types.create_telemetry_pipeline_input.CreateTelemetryPipelineInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["configuration"] = configuration
+        input_: capo_observabilityadmin.types.create_telemetry_pipeline_input.CreateTelemetryPipelineInput = {
+            "name": name,
+            "configuration": configuration,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -351,6 +361,7 @@ class AsyncTelemetryPipelineResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -389,14 +400,16 @@ class AsyncTelemetryPipelineResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_observabilityadmin.types.get_telemetry_pipeline_input.GetTelemetryPipelineInput = {}  # type: ignore[typeddict-item]
-        input_["pipeline_identifier"] = pipeline_identifier
+        input_: capo_observabilityadmin.types.get_telemetry_pipeline_input.GetTelemetryPipelineInput = {
+            "pipeline_identifier": pipeline_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -437,15 +450,17 @@ class AsyncTelemetryPipelineResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_observabilityadmin.types.update_telemetry_pipeline_input.UpdateTelemetryPipelineInput = {}  # type: ignore[typeddict-item]
-        input_["pipeline_identifier"] = pipeline_identifier
-        input_["configuration"] = configuration
+        input_: capo_observabilityadmin.types.update_telemetry_pipeline_input.UpdateTelemetryPipelineInput = {
+            "pipeline_identifier": pipeline_identifier,
+            "configuration": configuration,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -485,14 +500,16 @@ class AsyncTelemetryPipelineResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_observabilityadmin.types.delete_telemetry_pipeline_input.DeleteTelemetryPipelineInput = {}  # type: ignore[typeddict-item]
-        input_["pipeline_identifier"] = pipeline_identifier
+        input_: capo_observabilityadmin.types.delete_telemetry_pipeline_input.DeleteTelemetryPipelineInput = {
+            "pipeline_identifier": pipeline_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -536,7 +553,7 @@ class AsyncTelemetryPipelineResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_observabilityadmin.types.list_telemetry_pipelines_input.ListTelemetryPipelinesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_observabilityadmin.types.list_telemetry_pipelines_input.ListTelemetryPipelinesInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -547,4 +564,5 @@ class AsyncTelemetryPipelineResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -43,7 +43,7 @@ def serialize_json(value: CreateResourceExplorerSetupInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateResourceExplorerSetupInput:
     out: CreateResourceExplorerSetupInput = {}  # type: ignore[typeddict-item]
-    if "RegionList" in data:
+    if data.get("RegionList") is not None:
         import capo_resource_explorer_2.types.region_list
 
         out["region_list"] = (
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> CreateResourceExplorerSetupInput:
         raise DeserializationError(
             "CreateResourceExplorerSetupInput.region_list required"
         )
-    if "AggregatorRegions" in data:
+    if data.get("AggregatorRegions") is not None:
         import capo_resource_explorer_2.types.region_list
 
         out["aggregator_regions"] = (
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> CreateResourceExplorerSetupInput:
                 data["AggregatorRegions"]
             )
         )
-    if "ViewName" in data:
+    if data.get("ViewName") is not None:
         out["view_name"] = data["ViewName"]
     else:
         raise DeserializationError(

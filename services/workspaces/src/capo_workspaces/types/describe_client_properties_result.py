@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DescribeClientPropertiesResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeClientPropertiesResult:
     out: DescribeClientPropertiesResult = {}  # type: ignore[typeddict-item]
-    if "ClientPropertiesList" in data:
+    if data.get("ClientPropertiesList") is not None:
         import capo_workspaces.types.client_properties_list
 
         out["client_properties_list"] = (

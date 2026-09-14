@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: AuthorizationCodeGrant) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AuthorizationCodeGrant:
     out: AuthorizationCodeGrant = {}  # type: ignore[typeddict-item]
-    if "RedirectUris" in data:
+    if data.get("RedirectUris") is not None:
         import capo_sso_admin.types.redirect_uris
 
         out["redirect_uris"] = (

@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> MigrationTaskSummaryList:
 
     out: MigrationTaskSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_migration_hub.types.migration_task_summary.deserialize_aws_json_1_1(
                 item

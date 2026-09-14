@@ -33,7 +33,7 @@ def serialize_json(value: StartMeetingTranscriptionRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartMeetingTranscriptionRequest:
     out: StartMeetingTranscriptionRequest = {}  # type: ignore[typeddict-item]
-    if "TranscriptionConfiguration" in data:
+    if data.get("TranscriptionConfiguration") is not None:
         import capo_chime_sdk_meetings.types.transcription_configuration
 
         out["transcription_configuration"] = (

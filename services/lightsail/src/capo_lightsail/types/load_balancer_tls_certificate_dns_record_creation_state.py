@@ -40,7 +40,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> LoadBalancerTlsCertificateDnsRecordCreationState:
     out: LoadBalancerTlsCertificateDnsRecordCreationState = {}  # type: ignore[typeddict-item]
-    if "code" in data:
+    if data.get("code") is not None:
         import capo_lightsail.types.load_balancer_tls_certificate_dns_record_creation_state_code
 
         out["code"] = (
@@ -48,6 +48,6 @@ def deserialize_aws_json_1_1(
                 data["code"]
             )
         )
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out

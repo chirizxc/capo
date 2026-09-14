@@ -300,15 +300,17 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.batch_delete_recipe_version_request.BatchDeleteRecipeVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["recipe_versions"] = recipe_versions
+        input_: capo_databrew.types.batch_delete_recipe_version_request.BatchDeleteRecipeVersionRequest = {
+            "name": name,
+            "recipe_versions": recipe_versions,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_dataset(
@@ -356,13 +358,14 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.create_dataset_request.CreateDatasetRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_databrew.types.create_dataset_request.CreateDatasetRequest = {
+            "name": name,
+            "input": input,
+        }
         if format is not None:
             input_["format"] = format
         if format_options is not None:
             input_["format_options"] = format_options
-        input_["input"] = input
         if path_options is not None:
             input_["path_options"] = path_options
         if tags is not None:
@@ -373,6 +376,7 @@ class AsyncDataBrewClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_profile_job(
@@ -446,25 +450,26 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.create_profile_job_request.CreateProfileJobRequest = {}  # type: ignore[typeddict-item]
-        input_["dataset_name"] = dataset_name
+        input_: capo_databrew.types.create_profile_job_request.CreateProfileJobRequest = {
+            "dataset_name": dataset_name,
+            "name": name,
+            "output_location": output_location,
+            "role_arn": role_arn,
+        }
         if encryption_key_arn is not None:
             input_["encryption_key_arn"] = encryption_key_arn
         if encryption_mode is not None:
             input_["encryption_mode"] = encryption_mode
-        input_["name"] = name
         if log_subscription is not None:
             input_["log_subscription"] = log_subscription
         if max_capacity is not None:
             input_["max_capacity"] = max_capacity
         if max_retries is not None:
             input_["max_retries"] = max_retries
-        input_["output_location"] = output_location
         if configuration is not None:
             input_["configuration"] = configuration
         if validation_configurations is not None:
             input_["validation_configurations"] = validation_configurations
-        input_["role_arn"] = role_arn
         if tags is not None:
             input_["tags"] = tags
         if timeout is not None:
@@ -477,6 +482,7 @@ class AsyncDataBrewClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_project(
@@ -523,13 +529,14 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.create_project_request.CreateProjectRequest = {}  # type: ignore[typeddict-item]
-        input_["dataset_name"] = dataset_name
-        input_["name"] = name
-        input_["recipe_name"] = recipe_name
+        input_: capo_databrew.types.create_project_request.CreateProjectRequest = {
+            "dataset_name": dataset_name,
+            "name": name,
+            "recipe_name": recipe_name,
+            "role_arn": role_arn,
+        }
         if sample is not None:
             input_["sample"] = sample
-        input_["role_arn"] = role_arn
         if tags is not None:
             input_["tags"] = tags
 
@@ -538,6 +545,7 @@ class AsyncDataBrewClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_recipe(
@@ -582,11 +590,12 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.create_recipe_request.CreateRecipeRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_databrew.types.create_recipe_request.CreateRecipeRequest = {
+            "name": name,
+            "steps": steps,
+        }
         if description is not None:
             input_["description"] = description
-        input_["name"] = name
-        input_["steps"] = steps
         if tags is not None:
             input_["tags"] = tags
 
@@ -595,6 +604,7 @@ class AsyncDataBrewClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_recipe_job(
@@ -672,14 +682,16 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.create_recipe_job_request.CreateRecipeJobRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_databrew.types.create_recipe_job_request.CreateRecipeJobRequest = {
+            "name": name,
+            "role_arn": role_arn,
+        }
         if dataset_name is not None:
             input_["dataset_name"] = dataset_name
         if encryption_key_arn is not None:
             input_["encryption_key_arn"] = encryption_key_arn
         if encryption_mode is not None:
             input_["encryption_mode"] = encryption_mode
-        input_["name"] = name
         if log_subscription is not None:
             input_["log_subscription"] = log_subscription
         if max_capacity is not None:
@@ -696,7 +708,6 @@ class AsyncDataBrewClient:
             input_["project_name"] = project_name
         if recipe_reference is not None:
             input_["recipe_reference"] = recipe_reference
-        input_["role_arn"] = role_arn
         if tags is not None:
             input_["tags"] = tags
         if timeout is not None:
@@ -707,6 +718,7 @@ class AsyncDataBrewClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_ruleset(
@@ -753,12 +765,13 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.create_ruleset_request.CreateRulesetRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_databrew.types.create_ruleset_request.CreateRulesetRequest = {
+            "name": name,
+            "target_arn": target_arn,
+            "rules": rules,
+        }
         if description is not None:
             input_["description"] = description
-        input_["target_arn"] = target_arn
-        input_["rules"] = rules
         if tags is not None:
             input_["tags"] = tags
 
@@ -767,6 +780,7 @@ class AsyncDataBrewClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_schedule(
@@ -809,19 +823,21 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.create_schedule_request.CreateScheduleRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_databrew.types.create_schedule_request.CreateScheduleRequest = {
+            "cron_expression": cron_expression,
+            "name": name,
+        }
         if job_names is not None:
             input_["job_names"] = job_names
-        input_["cron_expression"] = cron_expression
         if tags is not None:
             input_["tags"] = tags
-        input_["name"] = name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_dataset(
@@ -858,14 +874,16 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.delete_dataset_request.DeleteDatasetRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_databrew.types.delete_dataset_request.DeleteDatasetRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_job(
@@ -902,14 +920,14 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.delete_job_request.DeleteJobRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_databrew.types.delete_job_request.DeleteJobRequest = {"name": name}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_project(
@@ -946,14 +964,16 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.delete_project_request.DeleteProjectRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_databrew.types.delete_project_request.DeleteProjectRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_recipe_version(
@@ -994,15 +1014,17 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.delete_recipe_version_request.DeleteRecipeVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["recipe_version"] = recipe_version
+        input_: capo_databrew.types.delete_recipe_version_request.DeleteRecipeVersionRequest = {
+            "name": name,
+            "recipe_version": recipe_version,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_ruleset(
@@ -1039,14 +1061,16 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.delete_ruleset_request.DeleteRulesetRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_databrew.types.delete_ruleset_request.DeleteRulesetRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_schedule(
@@ -1082,14 +1106,16 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.delete_schedule_request.DeleteScheduleRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_databrew.types.delete_schedule_request.DeleteScheduleRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_dataset(
@@ -1125,14 +1151,16 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.describe_dataset_request.DescribeDatasetRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_databrew.types.describe_dataset_request.DescribeDatasetRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_job(
@@ -1168,14 +1196,16 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.describe_job_request.DescribeJobRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_databrew.types.describe_job_request.DescribeJobRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_job_run(
@@ -1213,15 +1243,17 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.describe_job_run_request.DescribeJobRunRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["run_id"] = run_id
+        input_: capo_databrew.types.describe_job_run_request.DescribeJobRunRequest = {
+            "name": name,
+            "run_id": run_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_project(
@@ -1257,14 +1289,16 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.describe_project_request.DescribeProjectRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_databrew.types.describe_project_request.DescribeProjectRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_recipe(
@@ -1304,8 +1338,9 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.describe_recipe_request.DescribeRecipeRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_databrew.types.describe_recipe_request.DescribeRecipeRequest = {
+            "name": name
+        }
         if recipe_version is not None:
             input_["recipe_version"] = recipe_version
 
@@ -1314,6 +1349,7 @@ class AsyncDataBrewClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_ruleset(
@@ -1349,14 +1385,16 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.describe_ruleset_request.DescribeRulesetRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_databrew.types.describe_ruleset_request.DescribeRulesetRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_schedule(
@@ -1392,14 +1430,16 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.describe_schedule_request.DescribeScheduleRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_databrew.types.describe_schedule_request.DescribeScheduleRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_datasets(
@@ -1438,7 +1478,7 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.list_datasets_request.ListDatasetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_databrew.types.list_datasets_request.ListDatasetsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1449,6 +1489,7 @@ class AsyncDataBrewClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_datasets(
@@ -1513,8 +1554,9 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.list_job_runs_request.ListJobRunsRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_databrew.types.list_job_runs_request.ListJobRunsRequest = {
+            "name": name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1525,6 +1567,7 @@ class AsyncDataBrewClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_job_runs(
@@ -1592,7 +1635,7 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.list_jobs_request.ListJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_databrew.types.list_jobs_request.ListJobsRequest = {}
         if dataset_name is not None:
             input_["dataset_name"] = dataset_name
         if max_results is not None:
@@ -1607,6 +1650,7 @@ class AsyncDataBrewClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_jobs(
@@ -1672,7 +1716,7 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.list_projects_request.ListProjectsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_databrew.types.list_projects_request.ListProjectsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1683,6 +1727,7 @@ class AsyncDataBrewClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_projects(
@@ -1748,7 +1793,7 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.list_recipes_request.ListRecipesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_databrew.types.list_recipes_request.ListRecipesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1761,6 +1806,7 @@ class AsyncDataBrewClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_recipes(
@@ -1828,18 +1874,20 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.list_recipe_versions_request.ListRecipeVersionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_databrew.types.list_recipe_versions_request.ListRecipeVersionsRequest = {
+            "name": name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["name"] = name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_recipe_versions(
@@ -1906,7 +1954,7 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.list_rulesets_request.ListRulesetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_databrew.types.list_rulesets_request.ListRulesetsRequest = {}
         if target_arn is not None:
             input_["target_arn"] = target_arn
         if max_results is not None:
@@ -1919,6 +1967,7 @@ class AsyncDataBrewClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_rulesets(
@@ -1984,7 +2033,7 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.list_schedules_request.ListSchedulesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_databrew.types.list_schedules_request.ListSchedulesRequest = {}
         if job_name is not None:
             input_["job_name"] = job_name
         if max_results is not None:
@@ -1997,6 +2046,7 @@ class AsyncDataBrewClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_schedules(
@@ -2058,14 +2108,16 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_databrew.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def publish_recipe(
@@ -2106,16 +2158,18 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.publish_recipe_request.PublishRecipeRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_databrew.types.publish_recipe_request.PublishRecipeRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
-        input_["name"] = name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def send_project_session_action(
@@ -2162,10 +2216,11 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.send_project_session_action_request.SendProjectSessionActionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_databrew.types.send_project_session_action_request.SendProjectSessionActionRequest = {
+            "name": name
+        }
         if preview is not None:
             input_["preview"] = preview
-        input_["name"] = name
         if recipe_step is not None:
             input_["recipe_step"] = recipe_step
         if step_index is not None:
@@ -2180,6 +2235,7 @@ class AsyncDataBrewClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_job_run(
@@ -2217,14 +2273,16 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.start_job_run_request.StartJobRunRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_databrew.types.start_job_run_request.StartJobRunRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_project_session(
@@ -2268,8 +2326,9 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.start_project_session_request.StartProjectSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_databrew.types.start_project_session_request.StartProjectSessionRequest = {
+            "name": name
+        }
         if assume_control is not None:
             input_["assume_control"] = assume_control
 
@@ -2278,6 +2337,7 @@ class AsyncDataBrewClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_job_run(
@@ -2315,15 +2375,17 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.stop_job_run_request.StopJobRunRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["run_id"] = run_id
+        input_: capo_databrew.types.stop_job_run_request.StopJobRunRequest = {
+            "name": name,
+            "run_id": run_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -2362,15 +2424,17 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_databrew.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -2409,15 +2473,17 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_databrew.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_dataset(
@@ -2462,13 +2528,14 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.update_dataset_request.UpdateDatasetRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_databrew.types.update_dataset_request.UpdateDatasetRequest = {
+            "name": name,
+            "input": input,
+        }
         if format is not None:
             input_["format"] = format
         if format_options is not None:
             input_["format_options"] = format_options
-        input_["input"] = input
         if path_options is not None:
             input_["path_options"] = path_options
 
@@ -2477,6 +2544,7 @@ class AsyncDataBrewClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_profile_job(
@@ -2544,24 +2612,25 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.update_profile_job_request.UpdateProfileJobRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_databrew.types.update_profile_job_request.UpdateProfileJobRequest = {
+            "name": name,
+            "output_location": output_location,
+            "role_arn": role_arn,
+        }
         if configuration is not None:
             input_["configuration"] = configuration
         if encryption_key_arn is not None:
             input_["encryption_key_arn"] = encryption_key_arn
         if encryption_mode is not None:
             input_["encryption_mode"] = encryption_mode
-        input_["name"] = name
         if log_subscription is not None:
             input_["log_subscription"] = log_subscription
         if max_capacity is not None:
             input_["max_capacity"] = max_capacity
         if max_retries is not None:
             input_["max_retries"] = max_retries
-        input_["output_location"] = output_location
         if validation_configurations is not None:
             input_["validation_configurations"] = validation_configurations
-        input_["role_arn"] = role_arn
         if timeout is not None:
             input_["timeout"] = timeout
         if job_sample is not None:
@@ -2572,6 +2641,7 @@ class AsyncDataBrewClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_project(
@@ -2610,17 +2680,19 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.update_project_request.UpdateProjectRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_databrew.types.update_project_request.UpdateProjectRequest = {
+            "role_arn": role_arn,
+            "name": name,
+        }
         if sample is not None:
             input_["sample"] = sample
-        input_["role_arn"] = role_arn
-        input_["name"] = name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_recipe(
@@ -2662,10 +2734,11 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.update_recipe_request.UpdateRecipeRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_databrew.types.update_recipe_request.UpdateRecipeRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
-        input_["name"] = name
         if steps is not None:
             input_["steps"] = steps
 
@@ -2674,6 +2747,7 @@ class AsyncDataBrewClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_recipe_job(
@@ -2740,12 +2814,14 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.update_recipe_job_request.UpdateRecipeJobRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_databrew.types.update_recipe_job_request.UpdateRecipeJobRequest = {
+            "name": name,
+            "role_arn": role_arn,
+        }
         if encryption_key_arn is not None:
             input_["encryption_key_arn"] = encryption_key_arn
         if encryption_mode is not None:
             input_["encryption_mode"] = encryption_mode
-        input_["name"] = name
         if log_subscription is not None:
             input_["log_subscription"] = log_subscription
         if max_capacity is not None:
@@ -2758,7 +2834,6 @@ class AsyncDataBrewClient:
             input_["data_catalog_outputs"] = data_catalog_outputs
         if database_outputs is not None:
             input_["database_outputs"] = database_outputs
-        input_["role_arn"] = role_arn
         if timeout is not None:
             input_["timeout"] = timeout
 
@@ -2767,6 +2842,7 @@ class AsyncDataBrewClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_ruleset(
@@ -2808,17 +2884,19 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.update_ruleset_request.UpdateRulesetRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_databrew.types.update_ruleset_request.UpdateRulesetRequest = {
+            "name": name,
+            "rules": rules,
+        }
         if description is not None:
             input_["description"] = description
-        input_["rules"] = rules
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_schedule(
@@ -2859,17 +2937,19 @@ class AsyncDataBrewClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_databrew.types.update_schedule_request.UpdateScheduleRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_databrew.types.update_schedule_request.UpdateScheduleRequest = {
+            "cron_expression": cron_expression,
+            "name": name,
+        }
         if job_names is not None:
             input_["job_names"] = job_names
-        input_["cron_expression"] = cron_expression
-        input_["name"] = name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

@@ -56,11 +56,11 @@ def serialize_aws_json_1_1(value: DescribeLocationNfsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeLocationNfsResponse:
     out: DescribeLocationNfsResponse = {}  # type: ignore[typeddict-item]
-    if "LocationArn" in data:
+    if data.get("LocationArn") is not None:
         out["location_arn"] = data["LocationArn"]
-    if "LocationUri" in data:
+    if data.get("LocationUri") is not None:
         out["location_uri"] = data["LocationUri"]
-    if "OnPremConfig" in data:
+    if data.get("OnPremConfig") is not None:
         import capo_datasync.types.on_prem_config
 
         out["on_prem_config"] = (
@@ -68,7 +68,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeLocationNfsResponse:
                 data["OnPremConfig"]
             )
         )
-    if "MountOptions" in data:
+    if data.get("MountOptions") is not None:
         import capo_datasync.types.nfs_mount_options
 
         out["mount_options"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeLocationNfsResponse:
                 data["MountOptions"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_datasync.types.time
 
         out["creation_time"] = capo_datasync.types.time.deserialize_aws_json_1_1(

@@ -44,14 +44,14 @@ def serialize_json(value: AwsEc2InstanceMetadataOptions) -> dict:
 
 def deserialize_json(data: dict) -> AwsEc2InstanceMetadataOptions:
     out: AwsEc2InstanceMetadataOptions = {}  # type: ignore[typeddict-item]
-    if "HttpEndpoint" in data:
+    if data.get("HttpEndpoint") is not None:
         out["http_endpoint"] = data["HttpEndpoint"]
-    if "HttpProtocolIpv6" in data:
+    if data.get("HttpProtocolIpv6") is not None:
         out["http_protocol_ipv6"] = data["HttpProtocolIpv6"]
-    if "HttpPutResponseHopLimit" in data:
+    if data.get("HttpPutResponseHopLimit") is not None:
         out["http_put_response_hop_limit"] = data["HttpPutResponseHopLimit"]
-    if "HttpTokens" in data:
+    if data.get("HttpTokens") is not None:
         out["http_tokens"] = data["HttpTokens"]
-    if "InstanceMetadataTags" in data:
+    if data.get("InstanceMetadataTags") is not None:
         out["instance_metadata_tags"] = data["InstanceMetadataTags"]
     return out

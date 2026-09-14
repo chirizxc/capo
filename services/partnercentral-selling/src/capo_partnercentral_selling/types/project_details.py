@@ -41,19 +41,19 @@ def serialize_aws_json_1_0(value: ProjectDetails) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ProjectDetails:
     out: ProjectDetails = {}  # type: ignore[typeddict-item]
-    if "BusinessProblem" in data:
+    if data.get("BusinessProblem") is not None:
         out["business_problem"] = data["BusinessProblem"]
     else:
         raise DeserializationError("ProjectDetails.business_problem required")
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
     else:
         raise DeserializationError("ProjectDetails.title required")
-    if "TargetCompletionDate" in data:
+    if data.get("TargetCompletionDate") is not None:
         out["target_completion_date"] = data["TargetCompletionDate"]
     else:
         raise DeserializationError("ProjectDetails.target_completion_date required")
-    if "ExpectedCustomerSpend" in data:
+    if data.get("ExpectedCustomerSpend") is not None:
         import capo_partnercentral_selling.types.expected_customer_spend_list
 
         out["expected_customer_spend"] = (

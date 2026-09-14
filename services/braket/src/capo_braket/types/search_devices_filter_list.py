@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SearchDevicesFilterList:
 
     out: SearchDevicesFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_braket.types.search_devices_filter.deserialize_json(item))
     return out

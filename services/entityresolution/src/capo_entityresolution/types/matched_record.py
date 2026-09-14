@@ -27,11 +27,11 @@ def serialize_json(value: MatchedRecord) -> dict:
 
 def deserialize_json(data: dict) -> MatchedRecord:
     out: MatchedRecord = {}  # type: ignore[typeddict-item]
-    if "inputSourceARN" in data:
+    if data.get("inputSourceARN") is not None:
         out["input_source_arn"] = data["inputSourceARN"]
     else:
         raise DeserializationError("MatchedRecord.input_source_arn required")
-    if "recordId" in data:
+    if data.get("recordId") is not None:
         out["record_id"] = data["recordId"]
     else:
         raise DeserializationError("MatchedRecord.record_id required")

@@ -44,7 +44,7 @@ def serialize_json(value: SelectedVideoStreams) -> dict:
 
 def deserialize_json(data: dict) -> SelectedVideoStreams:
     out: SelectedVideoStreams = {}  # type: ignore[typeddict-item]
-    if "AttendeeIds" in data:
+    if data.get("AttendeeIds") is not None:
         import capo_chime_sdk_media_pipelines.types.attendee_id_list
 
         out["attendee_ids"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> SelectedVideoStreams:
                 data["AttendeeIds"]
             )
         )
-    if "ExternalUserIds" in data:
+    if data.get("ExternalUserIds") is not None:
         import capo_chime_sdk_media_pipelines.types.external_user_id_list
 
         out["external_user_ids"] = (

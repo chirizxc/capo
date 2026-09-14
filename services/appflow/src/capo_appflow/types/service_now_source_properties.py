@@ -24,7 +24,7 @@ def serialize_json(value: ServiceNowSourceProperties) -> dict:
 
 def deserialize_json(data: dict) -> ServiceNowSourceProperties:
     out: ServiceNowSourceProperties = {}  # type: ignore[typeddict-item]
-    if "object" in data:
+    if data.get("object") is not None:
         out["object"] = data["object"]
     else:
         raise DeserializationError("ServiceNowSourceProperties.object required")

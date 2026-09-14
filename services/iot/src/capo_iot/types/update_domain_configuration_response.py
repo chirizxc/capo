@@ -32,8 +32,8 @@ def serialize_json(value: UpdateDomainConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDomainConfigurationResponse:
     out: UpdateDomainConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "domainConfigurationName" in data:
+    if data.get("domainConfigurationName") is not None:
         out["domain_configuration_name"] = data["domainConfigurationName"]
-    if "domainConfigurationArn" in data:
+    if data.get("domainConfigurationArn") is not None:
         out["domain_configuration_arn"] = data["domainConfigurationArn"]
     return out

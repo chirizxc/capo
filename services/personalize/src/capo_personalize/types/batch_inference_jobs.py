@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> BatchInferenceJobs:
 
     out: BatchInferenceJobs = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_personalize.types.batch_inference_job_summary.deserialize_aws_json_1_1(
                 item

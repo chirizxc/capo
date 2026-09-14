@@ -142,11 +142,11 @@ def serialize_aws_json_1_0(value: DescribeDatasetResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeDatasetResponse:
     out: DescribeDatasetResponse = {}  # type: ignore[typeddict-item]
-    if "DatasetName" in data:
+    if data.get("DatasetName") is not None:
         out["dataset_name"] = data["DatasetName"]
-    if "DatasetArn" in data:
+    if data.get("DatasetArn") is not None:
         out["dataset_arn"] = data["DatasetArn"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["created_at"] = (
@@ -154,7 +154,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeDatasetResponse:
                 data["CreatedAt"]
             )
         )
-    if "LastUpdatedAt" in data:
+    if data.get("LastUpdatedAt") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["last_updated_at"] = (
@@ -162,7 +162,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeDatasetResponse:
                 data["LastUpdatedAt"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_lookoutequipment.types.dataset_status
 
         out["status"] = (
@@ -170,11 +170,11 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeDatasetResponse:
                 data["Status"]
             )
         )
-    if "Schema" in data:
+    if data.get("Schema") is not None:
         out["schema"] = data["Schema"]
-    if "ServerSideKmsKeyId" in data:
+    if data.get("ServerSideKmsKeyId") is not None:
         out["server_side_kms_key_id"] = data["ServerSideKmsKeyId"]
-    if "IngestionInputConfiguration" in data:
+    if data.get("IngestionInputConfiguration") is not None:
         import capo_lookoutequipment.types.ingestion_input_configuration
 
         out["ingestion_input_configuration"] = (
@@ -182,7 +182,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeDatasetResponse:
                 data["IngestionInputConfiguration"]
             )
         )
-    if "DataQualitySummary" in data:
+    if data.get("DataQualitySummary") is not None:
         import capo_lookoutequipment.types.data_quality_summary
 
         out["data_quality_summary"] = (
@@ -190,7 +190,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeDatasetResponse:
                 data["DataQualitySummary"]
             )
         )
-    if "IngestedFilesSummary" in data:
+    if data.get("IngestedFilesSummary") is not None:
         import capo_lookoutequipment.types.ingested_files_summary
 
         out["ingested_files_summary"] = (
@@ -198,9 +198,9 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeDatasetResponse:
                 data["IngestedFilesSummary"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "DataStartTime" in data:
+    if data.get("DataStartTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["data_start_time"] = (
@@ -208,7 +208,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeDatasetResponse:
                 data["DataStartTime"]
             )
         )
-    if "DataEndTime" in data:
+    if data.get("DataEndTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["data_end_time"] = (
@@ -216,6 +216,6 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeDatasetResponse:
                 data["DataEndTime"]
             )
         )
-    if "SourceDatasetArn" in data:
+    if data.get("SourceDatasetArn") is not None:
         out["source_dataset_arn"] = data["SourceDatasetArn"]
     return out

@@ -35,7 +35,7 @@ def serialize_aws_json_1_1(value: ListActionTypesOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListActionTypesOutput:
     out: ListActionTypesOutput = {}  # type: ignore[typeddict-item]
-    if "actionTypes" in data:
+    if data.get("actionTypes") is not None:
         import capo_codepipeline.types.action_type_list
 
         out["action_types"] = (
@@ -45,6 +45,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListActionTypesOutput:
         )
     else:
         raise DeserializationError("ListActionTypesOutput.action_types required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

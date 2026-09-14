@@ -38,7 +38,7 @@ def serialize_json(value: ListEnvironmentVpcsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListEnvironmentVpcsResponse:
     out: ListEnvironmentVpcsResponse = {}  # type: ignore[typeddict-item]
-    if "EnvironmentVpcList" in data:
+    if data.get("EnvironmentVpcList") is not None:
         import capo_migration_hub_refactor_spaces.types.environment_vpcs
 
         out["environment_vpc_list"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> ListEnvironmentVpcsResponse:
                 data["EnvironmentVpcList"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

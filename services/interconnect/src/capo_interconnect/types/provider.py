@@ -35,9 +35,9 @@ def serialize_aws_json_1_0(value: Provider) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> Provider:
-    if "cloudServiceProvider" in data:
+    if data.get("cloudServiceProvider") is not None:
         return {"cloudServiceProvider": data["cloudServiceProvider"]}
-    elif "lastMileProvider" in data:
+    elif data.get("lastMileProvider") is not None:
         return {"lastMileProvider": data["lastMileProvider"]}
     else:
         raise DeserializationError("Provider: no recognized variant key")

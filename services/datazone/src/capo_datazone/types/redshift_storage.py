@@ -51,7 +51,7 @@ def serialize_json(value: RedshiftStorage) -> dict:
 
 
 def deserialize_json(data: dict) -> RedshiftStorage:
-    if "redshiftClusterSource" in data:
+    if data.get("redshiftClusterSource") is not None:
         import capo_datazone.types.redshift_cluster_storage
 
         return {
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> RedshiftStorage:
                 data["redshiftClusterSource"]
             )
         }
-    elif "redshiftServerlessSource" in data:
+    elif data.get("redshiftServerlessSource") is not None:
         import capo_datazone.types.redshift_serverless_storage
 
         return {

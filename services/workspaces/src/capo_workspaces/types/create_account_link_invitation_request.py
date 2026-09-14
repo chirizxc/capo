@@ -29,12 +29,12 @@ def serialize_aws_json_1_1(value: CreateAccountLinkInvitationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateAccountLinkInvitationRequest:
     out: CreateAccountLinkInvitationRequest = {}  # type: ignore[typeddict-item]
-    if "TargetAccountId" in data:
+    if data.get("TargetAccountId") is not None:
         out["target_account_id"] = data["TargetAccountId"]
     else:
         raise DeserializationError(
             "CreateAccountLinkInvitationRequest.target_account_id required"
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

@@ -35,18 +35,18 @@ def serialize_aws_json_1_0(value: DeleteProgramManagementAccountRequest) -> dict
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteProgramManagementAccountRequest:
     out: DeleteProgramManagementAccountRequest = {}  # type: ignore[typeddict-item]
-    if "catalog" in data:
+    if data.get("catalog") is not None:
         out["catalog"] = data["catalog"]
     else:
         raise DeserializationError(
             "DeleteProgramManagementAccountRequest.catalog required"
         )
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
     else:
         raise DeserializationError(
             "DeleteProgramManagementAccountRequest.identifier required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

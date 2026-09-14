@@ -55,13 +55,13 @@ def serialize_json(value: CreateFilterRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateFilterRequest:
     out: CreateFilterRequest = {}  # type: ignore[typeddict-item]
-    if "action" in data:
+    if data.get("action") is not None:
         out["action"] = data["action"]
     else:
         raise DeserializationError("CreateFilterRequest.action required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "filterCriteria" in data:
+    if data.get("filterCriteria") is not None:
         import capo_inspector2.types.filter_criteria
 
         out["filter_criteria"] = capo_inspector2.types.filter_criteria.deserialize_json(
@@ -69,14 +69,14 @@ def deserialize_json(data: dict) -> CreateFilterRequest:
         )
     else:
         raise DeserializationError("CreateFilterRequest.filter_criteria required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateFilterRequest.name required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_inspector2.types.tag_map
 
         out["tags"] = capo_inspector2.types.tag_map.deserialize_json(data["tags"])
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
     return out

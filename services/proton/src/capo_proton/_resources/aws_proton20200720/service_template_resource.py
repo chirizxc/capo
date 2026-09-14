@@ -90,8 +90,9 @@ class ServiceTemplateResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.create_service_template_input.CreateServiceTemplateInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_proton.types.create_service_template_input.CreateServiceTemplateInput = {
+            "name": name
+        }
         if display_name is not None:
             input_["display_name"] = display_name
         if description is not None:
@@ -108,6 +109,7 @@ class ServiceTemplateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -145,14 +147,16 @@ class ServiceTemplateResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.get_service_template_input.GetServiceTemplateInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_proton.types.get_service_template_input.GetServiceTemplateInput = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -195,8 +199,9 @@ class ServiceTemplateResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.update_service_template_input.UpdateServiceTemplateInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_proton.types.update_service_template_input.UpdateServiceTemplateInput = {
+            "name": name
+        }
         if display_name is not None:
             input_["display_name"] = display_name
         if description is not None:
@@ -207,6 +212,7 @@ class ServiceTemplateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -245,14 +251,16 @@ class ServiceTemplateResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.delete_service_template_input.DeleteServiceTemplateInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_proton.types.delete_service_template_input.DeleteServiceTemplateInput = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -293,7 +301,7 @@ class ServiceTemplateResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.list_service_templates_input.ListServiceTemplatesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_proton.types.list_service_templates_input.ListServiceTemplatesInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -304,6 +312,7 @@ class ServiceTemplateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -360,8 +369,9 @@ class AsyncServiceTemplateResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.create_service_template_input.CreateServiceTemplateInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_proton.types.create_service_template_input.CreateServiceTemplateInput = {
+            "name": name
+        }
         if display_name is not None:
             input_["display_name"] = display_name
         if description is not None:
@@ -378,6 +388,7 @@ class AsyncServiceTemplateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -416,14 +427,16 @@ class AsyncServiceTemplateResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.get_service_template_input.GetServiceTemplateInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_proton.types.get_service_template_input.GetServiceTemplateInput = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -467,8 +480,9 @@ class AsyncServiceTemplateResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.update_service_template_input.UpdateServiceTemplateInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_proton.types.update_service_template_input.UpdateServiceTemplateInput = {
+            "name": name
+        }
         if display_name is not None:
             input_["display_name"] = display_name
         if description is not None:
@@ -479,6 +493,7 @@ class AsyncServiceTemplateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -518,14 +533,16 @@ class AsyncServiceTemplateResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.delete_service_template_input.DeleteServiceTemplateInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_proton.types.delete_service_template_input.DeleteServiceTemplateInput = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -567,7 +584,7 @@ class AsyncServiceTemplateResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.list_service_templates_input.ListServiceTemplatesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_proton.types.list_service_templates_input.ListServiceTemplatesInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -578,4 +595,5 @@ class AsyncServiceTemplateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

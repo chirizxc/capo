@@ -75,7 +75,7 @@ def serialize_json(value: AssetBundleExportJobSummary) -> dict:
 
 def deserialize_json(data: dict) -> AssetBundleExportJobSummary:
     out: AssetBundleExportJobSummary = {}  # type: ignore[typeddict-item]
-    if "JobStatus" in data:
+    if data.get("JobStatus") is not None:
         import capo_quicksight.types.asset_bundle_export_job_status
 
         out["job_status"] = (
@@ -83,21 +83,21 @@ def deserialize_json(data: dict) -> AssetBundleExportJobSummary:
                 data["JobStatus"]
             )
         )
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_quicksight.types.timestamp
 
         out["created_time"] = capo_quicksight.types.timestamp.deserialize_json(
             data["CreatedTime"]
         )
-    if "AssetBundleExportJobId" in data:
+    if data.get("AssetBundleExportJobId") is not None:
         out["asset_bundle_export_job_id"] = data["AssetBundleExportJobId"]
-    if "IncludeAllDependencies" in data:
+    if data.get("IncludeAllDependencies") is not None:
         out["include_all_dependencies"] = data["IncludeAllDependencies"]
     else:
         out["include_all_dependencies"] = False
-    if "ExportFormat" in data:
+    if data.get("ExportFormat") is not None:
         import capo_quicksight.types.asset_bundle_export_format
 
         out["export_format"] = (
@@ -105,11 +105,11 @@ def deserialize_json(data: dict) -> AssetBundleExportJobSummary:
                 data["ExportFormat"]
             )
         )
-    if "IncludePermissions" in data:
+    if data.get("IncludePermissions") is not None:
         out["include_permissions"] = data["IncludePermissions"]
     else:
         out["include_permissions"] = False
-    if "IncludeTags" in data:
+    if data.get("IncludeTags") is not None:
         out["include_tags"] = data["IncludeTags"]
     else:
         out["include_tags"] = False

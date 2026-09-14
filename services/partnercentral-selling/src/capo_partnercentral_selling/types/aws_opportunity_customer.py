@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: AwsOpportunityCustomer) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AwsOpportunityCustomer:
     out: AwsOpportunityCustomer = {}  # type: ignore[typeddict-item]
-    if "Contacts" in data:
+    if data.get("Contacts") is not None:
         import capo_partnercentral_selling.types.customer_contacts_list
 
         out["contacts"] = (

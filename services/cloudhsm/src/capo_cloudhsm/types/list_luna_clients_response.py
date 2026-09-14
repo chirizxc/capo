@@ -33,7 +33,7 @@ def serialize_aws_json_1_1(value: ListLunaClientsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListLunaClientsResponse:
     out: ListLunaClientsResponse = {}  # type: ignore[typeddict-item]
-    if "ClientList" in data:
+    if data.get("ClientList") is not None:
         import capo_cloudhsm.types.client_list
 
         out["client_list"] = capo_cloudhsm.types.client_list.deserialize_aws_json_1_1(
@@ -41,6 +41,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListLunaClientsResponse:
         )
     else:
         raise DeserializationError("ListLunaClientsResponse.client_list required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

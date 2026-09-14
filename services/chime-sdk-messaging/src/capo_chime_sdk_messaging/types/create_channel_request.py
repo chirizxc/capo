@@ -127,21 +127,21 @@ def serialize_json(value: CreateChannelRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateChannelRequest:
     out: CreateChannelRequest = {}  # type: ignore[typeddict-item]
-    if "AppInstanceArn" in data:
+    if data.get("AppInstanceArn") is not None:
         out["app_instance_arn"] = data["AppInstanceArn"]
     else:
         raise DeserializationError("CreateChannelRequest.app_instance_arn required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateChannelRequest.name required")
-    if "Mode" in data:
+    if data.get("Mode") is not None:
         import capo_chime_sdk_messaging.types.channel_mode
 
         out["mode"] = capo_chime_sdk_messaging.types.channel_mode.deserialize_json(
             data["Mode"]
         )
-    if "Privacy" in data:
+    if data.get("Privacy") is not None:
         import capo_chime_sdk_messaging.types.channel_privacy
 
         out["privacy"] = (
@@ -149,21 +149,21 @@ def deserialize_json(data: dict) -> CreateChannelRequest:
                 data["Privacy"]
             )
         )
-    if "Metadata" in data:
+    if data.get("Metadata") is not None:
         out["metadata"] = data["Metadata"]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
     else:
         raise DeserializationError("CreateChannelRequest.client_request_token required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_chime_sdk_messaging.types.tag_list
 
         out["tags"] = capo_chime_sdk_messaging.types.tag_list.deserialize_json(
             data["Tags"]
         )
-    if "ChannelId" in data:
+    if data.get("ChannelId") is not None:
         out["channel_id"] = data["ChannelId"]
-    if "MemberArns" in data:
+    if data.get("MemberArns") is not None:
         import capo_chime_sdk_messaging.types.channel_member_arns
 
         out["member_arns"] = (
@@ -171,7 +171,7 @@ def deserialize_json(data: dict) -> CreateChannelRequest:
                 data["MemberArns"]
             )
         )
-    if "ModeratorArns" in data:
+    if data.get("ModeratorArns") is not None:
         import capo_chime_sdk_messaging.types.channel_moderator_arns
 
         out["moderator_arns"] = (
@@ -179,7 +179,7 @@ def deserialize_json(data: dict) -> CreateChannelRequest:
                 data["ModeratorArns"]
             )
         )
-    if "ElasticChannelConfiguration" in data:
+    if data.get("ElasticChannelConfiguration") is not None:
         import capo_chime_sdk_messaging.types.elastic_channel_configuration
 
         out["elastic_channel_configuration"] = (
@@ -187,7 +187,7 @@ def deserialize_json(data: dict) -> CreateChannelRequest:
                 data["ElasticChannelConfiguration"]
             )
         )
-    if "ExpirationSettings" in data:
+    if data.get("ExpirationSettings") is not None:
         import capo_chime_sdk_messaging.types.expiration_settings
 
         out["expiration_settings"] = (

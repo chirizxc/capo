@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: ResourceConfigForUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourceConfigForUpdate:
     out: ResourceConfigForUpdate = {}  # type: ignore[typeddict-item]
-    if "KeepAlivePeriodInSeconds" in data:
+    if data.get("KeepAlivePeriodInSeconds") is not None:
         out["keep_alive_period_in_seconds"] = data["KeepAlivePeriodInSeconds"]
     return out

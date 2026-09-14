@@ -54,16 +54,16 @@ def serialize_aws_json_1_0(value: SecurityConfigSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SecurityConfigSummary:
     out: SecurityConfigSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "configVersion" in data:
+    if data.get("configVersion") is not None:
         out["config_version"] = data["configVersion"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "createdDate" in data:
+    if data.get("createdDate") is not None:
         out["created_date"] = data["createdDate"]
-    if "lastModifiedDate" in data:
+    if data.get("lastModifiedDate") is not None:
         out["last_modified_date"] = data["lastModifiedDate"]
     return out

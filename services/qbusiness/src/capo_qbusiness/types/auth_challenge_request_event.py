@@ -25,7 +25,7 @@ def serialize_json(value: AuthChallengeRequestEvent) -> dict:
 
 def deserialize_json(data: dict) -> AuthChallengeRequestEvent:
     out: AuthChallengeRequestEvent = {}  # type: ignore[typeddict-item]
-    if "authorizationUrl" in data:
+    if data.get("authorizationUrl") is not None:
         out["authorization_url"] = data["authorizationUrl"]
     else:
         raise DeserializationError(

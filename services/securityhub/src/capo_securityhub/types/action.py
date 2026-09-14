@@ -75,9 +75,9 @@ def serialize_json(value: Action) -> dict:
 
 def deserialize_json(data: dict) -> Action:
     out: Action = {}  # type: ignore[typeddict-item]
-    if "ActionType" in data:
+    if data.get("ActionType") is not None:
         out["action_type"] = data["ActionType"]
-    if "NetworkConnectionAction" in data:
+    if data.get("NetworkConnectionAction") is not None:
         import capo_securityhub.types.network_connection_action
 
         out["network_connection_action"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> Action:
                 data["NetworkConnectionAction"]
             )
         )
-    if "AwsApiCallAction" in data:
+    if data.get("AwsApiCallAction") is not None:
         import capo_securityhub.types.aws_api_call_action
 
         out["aws_api_call_action"] = (
@@ -93,7 +93,7 @@ def deserialize_json(data: dict) -> Action:
                 data["AwsApiCallAction"]
             )
         )
-    if "DnsRequestAction" in data:
+    if data.get("DnsRequestAction") is not None:
         import capo_securityhub.types.dns_request_action
 
         out["dns_request_action"] = (
@@ -101,7 +101,7 @@ def deserialize_json(data: dict) -> Action:
                 data["DnsRequestAction"]
             )
         )
-    if "PortProbeAction" in data:
+    if data.get("PortProbeAction") is not None:
         import capo_securityhub.types.port_probe_action
 
         out["port_probe_action"] = (

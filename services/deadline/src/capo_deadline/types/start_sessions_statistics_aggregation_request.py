@@ -47,12 +47,14 @@ def serialize_json(value: StartSessionsStatisticsAggregationRequest) -> dict:
             value["resource_ids"]
         )
     )
-    import capo_deadline.types.timestamp
+    import capo_deadline._protocol.serialize
 
-    out["startTime"] = capo_deadline.types.timestamp.serialize_json(value["start_time"])
-    import capo_deadline.types.timestamp
+    out["startTime"] = capo_deadline._protocol.serialize.fmt_date_time(
+        value["start_time"]
+    )
+    import capo_deadline._protocol.serialize
 
-    out["endTime"] = capo_deadline.types.timestamp.serialize_json(value["end_time"])
+    out["endTime"] = capo_deadline._protocol.serialize.fmt_date_time(value["end_time"])
     if "timezone" in value:
         out["timezone"] = value["timezone"]
     if "period" in value:
@@ -74,7 +76,7 @@ def serialize_json(value: StartSessionsStatisticsAggregationRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartSessionsStatisticsAggregationRequest:
     out: StartSessionsStatisticsAggregationRequest = {}  # type: ignore[typeddict-item]
-    if "resourceIds" in data:
+    if data.get("resourceIds") is not None:
         import capo_deadline.types.sessions_statistics_resources
 
         out["resource_ids"] = (
@@ -86,33 +88,33 @@ def deserialize_json(data: dict) -> StartSessionsStatisticsAggregationRequest:
         raise DeserializationError(
             "StartSessionsStatisticsAggregationRequest.resource_ids required"
         )
-    if "startTime" in data:
-        import capo_deadline.types.timestamp
+    if data.get("startTime") is not None:
+        import datetime
 
-        out["start_time"] = capo_deadline.types.timestamp.deserialize_json(
-            data["startTime"]
+        out["start_time"] = datetime.datetime.fromisoformat(
+            data["startTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError(
             "StartSessionsStatisticsAggregationRequest.start_time required"
         )
-    if "endTime" in data:
-        import capo_deadline.types.timestamp
+    if data.get("endTime") is not None:
+        import datetime
 
-        out["end_time"] = capo_deadline.types.timestamp.deserialize_json(
-            data["endTime"]
+        out["end_time"] = datetime.datetime.fromisoformat(
+            data["endTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError(
             "StartSessionsStatisticsAggregationRequest.end_time required"
         )
-    if "timezone" in data:
+    if data.get("timezone") is not None:
         out["timezone"] = data["timezone"]
-    if "period" in data:
+    if data.get("period") is not None:
         import capo_deadline.types.period
 
         out["period"] = capo_deadline.types.period.deserialize_json(data["period"])
-    if "groupBy" in data:
+    if data.get("groupBy") is not None:
         import capo_deadline.types.usage_group_by
 
         out["group_by"] = capo_deadline.types.usage_group_by.deserialize_json(
@@ -122,7 +124,7 @@ def deserialize_json(data: dict) -> StartSessionsStatisticsAggregationRequest:
         raise DeserializationError(
             "StartSessionsStatisticsAggregationRequest.group_by required"
         )
-    if "statistics" in data:
+    if data.get("statistics") is not None:
         import capo_deadline.types.usage_statistics
 
         out["statistics"] = capo_deadline.types.usage_statistics.deserialize_json(

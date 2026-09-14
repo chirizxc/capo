@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ListImportFileTaskInformation:
 
     out: ListImportFileTaskInformation = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_migrationhubstrategy.types.import_file_task_information.deserialize_json(
                 item

@@ -44,13 +44,13 @@ def serialize_json(value: Actor) -> dict:
 
 def deserialize_json(data: dict) -> Actor:
     out: Actor = {}  # type: ignore[typeddict-item]
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
-    if "uris" in data:
+    if data.get("uris") is not None:
         import capo_securityagent.types.uri_list
 
         out["uris"] = capo_securityagent.types.uri_list.deserialize_json(data["uris"])
-    if "authentication" in data:
+    if data.get("authentication") is not None:
         import capo_securityagent.types.authentication
 
         out["authentication"] = (
@@ -58,6 +58,6 @@ def deserialize_json(data: dict) -> Actor:
                 data["authentication"]
             )
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

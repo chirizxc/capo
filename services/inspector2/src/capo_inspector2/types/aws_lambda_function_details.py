@@ -82,49 +82,49 @@ def serialize_json(value: AwsLambdaFunctionDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsLambdaFunctionDetails:
     out: AwsLambdaFunctionDetails = {}  # type: ignore[typeddict-item]
-    if "functionName" in data:
+    if data.get("functionName") is not None:
         out["function_name"] = data["functionName"]
     else:
         raise DeserializationError("AwsLambdaFunctionDetails.function_name required")
-    if "runtime" in data:
+    if data.get("runtime") is not None:
         out["runtime"] = data["runtime"]
     else:
         raise DeserializationError("AwsLambdaFunctionDetails.runtime required")
-    if "codeSha256" in data:
+    if data.get("codeSha256") is not None:
         out["code_sha256"] = data["codeSha256"]
     else:
         raise DeserializationError("AwsLambdaFunctionDetails.code_sha256 required")
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     else:
         raise DeserializationError("AwsLambdaFunctionDetails.version required")
-    if "executionRoleArn" in data:
+    if data.get("executionRoleArn") is not None:
         out["execution_role_arn"] = data["executionRoleArn"]
     else:
         raise DeserializationError(
             "AwsLambdaFunctionDetails.execution_role_arn required"
         )
-    if "layers" in data:
+    if data.get("layers") is not None:
         import capo_inspector2.types.layer_list
 
         out["layers"] = capo_inspector2.types.layer_list.deserialize_json(
             data["layers"]
         )
-    if "vpcConfig" in data:
+    if data.get("vpcConfig") is not None:
         import capo_inspector2.types.lambda_vpc_config
 
         out["vpc_config"] = capo_inspector2.types.lambda_vpc_config.deserialize_json(
             data["vpcConfig"]
         )
-    if "packageType" in data:
+    if data.get("packageType") is not None:
         out["package_type"] = data["packageType"]
-    if "architectures" in data:
+    if data.get("architectures") is not None:
         import capo_inspector2.types.architecture_list
 
         out["architectures"] = capo_inspector2.types.architecture_list.deserialize_json(
             data["architectures"]
         )
-    if "lastModifiedAt" in data:
+    if data.get("lastModifiedAt") is not None:
         import capo_inspector2.types._prelude.timestamp
 
         out["last_modified_at"] = (

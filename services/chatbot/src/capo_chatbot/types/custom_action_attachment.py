@@ -58,11 +58,11 @@ def serialize_json(value: CustomActionAttachment) -> dict:
 
 def deserialize_json(data: dict) -> CustomActionAttachment:
     out: CustomActionAttachment = {}  # type: ignore[typeddict-item]
-    if "NotificationType" in data:
+    if data.get("NotificationType") is not None:
         out["notification_type"] = data["NotificationType"]
-    if "ButtonText" in data:
+    if data.get("ButtonText") is not None:
         out["button_text"] = data["ButtonText"]
-    if "Criteria" in data:
+    if data.get("Criteria") is not None:
         import capo_chatbot.types.custom_action_attachment_criteria_list
 
         out["criteria"] = (
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> CustomActionAttachment:
                 data["Criteria"]
             )
         )
-    if "Variables" in data:
+    if data.get("Variables") is not None:
         import capo_chatbot.types.custom_action_attachment_variables
 
         out["variables"] = (

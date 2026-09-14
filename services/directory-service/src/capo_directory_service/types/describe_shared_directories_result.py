@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: DescribeSharedDirectoriesResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeSharedDirectoriesResult:
     out: DescribeSharedDirectoriesResult = {}  # type: ignore[typeddict-item]
-    if "SharedDirectories" in data:
+    if data.get("SharedDirectories") is not None:
         import capo_directory_service.types.shared_directories
 
         out["shared_directories"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeSharedDirectoriesResult:
                 data["SharedDirectories"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

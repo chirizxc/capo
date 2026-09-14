@@ -39,14 +39,14 @@ def serialize_json(value: RdsHttpEndpointConfig) -> dict:
 
 def deserialize_json(data: dict) -> RdsHttpEndpointConfig:
     out: RdsHttpEndpointConfig = {}  # type: ignore[typeddict-item]
-    if "awsRegion" in data:
+    if data.get("awsRegion") is not None:
         out["aws_region"] = data["awsRegion"]
-    if "dbClusterIdentifier" in data:
+    if data.get("dbClusterIdentifier") is not None:
         out["db_cluster_identifier"] = data["dbClusterIdentifier"]
-    if "databaseName" in data:
+    if data.get("databaseName") is not None:
         out["database_name"] = data["databaseName"]
-    if "schema" in data:
+    if data.get("schema") is not None:
         out["schema"] = data["schema"]
-    if "awsSecretStoreArn" in data:
+    if data.get("awsSecretStoreArn") is not None:
         out["aws_secret_store_arn"] = data["awsSecretStoreArn"]
     return out

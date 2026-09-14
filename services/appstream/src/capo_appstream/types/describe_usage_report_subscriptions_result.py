@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: DescribeUsageReportSubscriptionsResult) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeUsageReportSubscriptionsResult:
     out: DescribeUsageReportSubscriptionsResult = {}  # type: ignore[typeddict-item]
-    if "UsageReportSubscriptions" in data:
+    if data.get("UsageReportSubscriptions") is not None:
         import capo_appstream.types.usage_report_subscription_list
 
         out["usage_report_subscriptions"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeUsageReportSubscriptionsResu
                 data["UsageReportSubscriptions"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

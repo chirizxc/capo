@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: GetInstanceSnapshotsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetInstanceSnapshotsResult:
     out: GetInstanceSnapshotsResult = {}  # type: ignore[typeddict-item]
-    if "instanceSnapshots" in data:
+    if data.get("instanceSnapshots") is not None:
         import capo_lightsail.types.instance_snapshot_list
 
         out["instance_snapshots"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetInstanceSnapshotsResult:
                 data["instanceSnapshots"]
             )
         )
-    if "nextPageToken" in data:
+    if data.get("nextPageToken") is not None:
         out["next_page_token"] = data["nextPageToken"]
     return out

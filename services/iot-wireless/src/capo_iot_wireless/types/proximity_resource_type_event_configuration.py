@@ -31,7 +31,7 @@ def serialize_json(value: ProximityResourceTypeEventConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ProximityResourceTypeEventConfiguration:
     out: ProximityResourceTypeEventConfiguration = {}  # type: ignore[typeddict-item]
-    if "Sidewalk" in data:
+    if data.get("Sidewalk") is not None:
         import capo_iot_wireless.types.sidewalk_resource_type_event_configuration
 
         out["sidewalk"] = (

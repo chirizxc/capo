@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> EksAttemptDetails:
 
     out: EksAttemptDetails = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_batch.types.eks_attempt_detail.deserialize_json(item))
     return out

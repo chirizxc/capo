@@ -42,12 +42,12 @@ def serialize_json(value: AwsDynamoDbTableRestoreSummary) -> dict:
 
 def deserialize_json(data: dict) -> AwsDynamoDbTableRestoreSummary:
     out: AwsDynamoDbTableRestoreSummary = {}  # type: ignore[typeddict-item]
-    if "SourceBackupArn" in data:
+    if data.get("SourceBackupArn") is not None:
         out["source_backup_arn"] = data["SourceBackupArn"]
-    if "SourceTableArn" in data:
+    if data.get("SourceTableArn") is not None:
         out["source_table_arn"] = data["SourceTableArn"]
-    if "RestoreDateTime" in data:
+    if data.get("RestoreDateTime") is not None:
         out["restore_date_time"] = data["RestoreDateTime"]
-    if "RestoreInProgress" in data:
+    if data.get("RestoreInProgress") is not None:
         out["restore_in_progress"] = data["RestoreInProgress"]
     return out

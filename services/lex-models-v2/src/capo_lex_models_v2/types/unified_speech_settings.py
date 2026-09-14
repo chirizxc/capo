@@ -32,7 +32,7 @@ def serialize_json(value: UnifiedSpeechSettings) -> dict:
 
 def deserialize_json(data: dict) -> UnifiedSpeechSettings:
     out: UnifiedSpeechSettings = {}  # type: ignore[typeddict-item]
-    if "speechFoundationModel" in data:
+    if data.get("speechFoundationModel") is not None:
         import capo_lex_models_v2.types.speech_foundation_model
 
         out["speech_foundation_model"] = (

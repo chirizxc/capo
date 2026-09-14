@@ -123,35 +123,35 @@ def serialize_json(value: Address) -> dict:
 
 def deserialize_json(data: dict) -> Address:
     out: Address = {}  # type: ignore[typeddict-item]
-    if "Label" in data:
+    if data.get("Label") is not None:
         out["label"] = data["Label"]
-    if "Country" in data:
+    if data.get("Country") is not None:
         import capo_geo_places.types.country
 
         out["country"] = capo_geo_places.types.country.deserialize_json(data["Country"])
-    if "Region" in data:
+    if data.get("Region") is not None:
         import capo_geo_places.types.region
 
         out["region"] = capo_geo_places.types.region.deserialize_json(data["Region"])
-    if "SubRegion" in data:
+    if data.get("SubRegion") is not None:
         import capo_geo_places.types.sub_region
 
         out["sub_region"] = capo_geo_places.types.sub_region.deserialize_json(
             data["SubRegion"]
         )
-    if "Locality" in data:
+    if data.get("Locality") is not None:
         out["locality"] = data["Locality"]
-    if "District" in data:
+    if data.get("District") is not None:
         out["district"] = data["District"]
-    if "SubDistrict" in data:
+    if data.get("SubDistrict") is not None:
         out["sub_district"] = data["SubDistrict"]
-    if "PostalCode" in data:
+    if data.get("PostalCode") is not None:
         out["postal_code"] = data["PostalCode"]
-    if "Block" in data:
+    if data.get("Block") is not None:
         out["block"] = data["Block"]
-    if "SubBlock" in data:
+    if data.get("SubBlock") is not None:
         out["sub_block"] = data["SubBlock"]
-    if "Intersection" in data:
+    if data.get("Intersection") is not None:
         import capo_geo_places.types.intersection_street_list
 
         out["intersection"] = (
@@ -159,9 +159,9 @@ def deserialize_json(data: dict) -> Address:
                 data["Intersection"]
             )
         )
-    if "Street" in data:
+    if data.get("Street") is not None:
         out["street"] = data["Street"]
-    if "StreetComponents" in data:
+    if data.get("StreetComponents") is not None:
         import capo_geo_places.types.street_components_list
 
         out["street_components"] = (
@@ -169,11 +169,11 @@ def deserialize_json(data: dict) -> Address:
                 data["StreetComponents"]
             )
         )
-    if "AddressNumber" in data:
+    if data.get("AddressNumber") is not None:
         out["address_number"] = data["AddressNumber"]
-    if "Building" in data:
+    if data.get("Building") is not None:
         out["building"] = data["Building"]
-    if "SecondaryAddressComponents" in data:
+    if data.get("SecondaryAddressComponents") is not None:
         import capo_geo_places.types.secondary_address_component_list
 
         out["secondary_address_components"] = (

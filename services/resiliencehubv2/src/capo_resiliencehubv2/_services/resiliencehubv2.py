@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.resiliencehubv2#NGRHServiceCore``."""
 
 import datetime
+import uuid
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -348,17 +349,20 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.create_assertion_request.CreateAssertionRequest = {}  # type: ignore[typeddict-item]
-        input_["service_arn"] = service_arn
-        input_["text"] = text
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_resiliencehubv2.types.create_assertion_request.CreateAssertionRequest = {
+            "service_arn": service_arn,
+            "text": text,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_input_source(
@@ -398,17 +402,20 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.create_input_source_request.CreateInputSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["service_arn"] = service_arn
-        input_["resource_configuration"] = resource_configuration
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_resiliencehubv2.types.create_input_source_request.CreateInputSourceRequest = {
+            "service_arn": service_arn,
+            "resource_configuration": resource_configuration,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_policy(
@@ -470,8 +477,9 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.create_policy_request.CreatePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_resiliencehubv2.types.create_policy_request.CreatePolicyRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if availability_slo is not None:
@@ -486,14 +494,16 @@ class resiliencehubv2Client:
             input_["kms_key_id"] = kms_key_id
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_report(
@@ -536,17 +546,20 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.create_report_request.CreateReportRequest = {}  # type: ignore[typeddict-item]
-        input_["service_arn"] = service_arn
-        input_["report_type"] = report_type
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_resiliencehubv2.types.create_report_request.CreateReportRequest = {
+            "service_arn": service_arn,
+            "report_type": report_type,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_service(
@@ -607,16 +620,17 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.create_service_request.CreateServiceRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_resiliencehubv2.types.create_service_request.CreateServiceRequest = {
+            "name": name,
+            "regions": regions,
+            "permission_model": permission_model,
+        }
         if description is not None:
             input_["description"] = description
         if associated_systems is not None:
             input_["associated_systems"] = associated_systems
         if policy_arn is not None:
             input_["policy_arn"] = policy_arn
-        input_["regions"] = regions
-        input_["permission_model"] = permission_model
         if dependency_discovery is not None:
             input_["dependency_discovery"] = dependency_discovery
         if report_configuration is not None:
@@ -625,14 +639,16 @@ class resiliencehubv2Client:
             input_["kms_key_id"] = kms_key_id
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_service_function(
@@ -679,20 +695,23 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.create_service_function_request.CreateServiceFunctionRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["service_arn"] = service_arn
+        input_: capo_resiliencehubv2.types.create_service_function_request.CreateServiceFunctionRequest = {
+            "name": name,
+            "service_arn": service_arn,
+            "criticality": criticality,
+        }
         if description is not None:
             input_["description"] = description
-        input_["criticality"] = criticality
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_service_function_resources(
@@ -733,16 +752,18 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.create_service_function_resources_request.CreateServiceFunctionResourcesRequest = {}  # type: ignore[typeddict-item]
-        input_["service_arn"] = service_arn
-        input_["service_function_id"] = service_function_id
-        input_["resources"] = resources
+        input_: capo_resiliencehubv2.types.create_service_function_resources_request.CreateServiceFunctionResourcesRequest = {
+            "service_arn": service_arn,
+            "service_function_id": service_function_id,
+            "resources": resources,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_system(
@@ -790,8 +811,9 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.create_system_request.CreateSystemRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_resiliencehubv2.types.create_system_request.CreateSystemRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if sharing_enabled is not None:
@@ -800,14 +822,16 @@ class resiliencehubv2Client:
             input_["kms_key_id"] = kms_key_id
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_user_journey(
@@ -851,21 +875,24 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.create_user_journey_request.CreateUserJourneyRequest = {}  # type: ignore[typeddict-item]
-        input_["system_arn"] = system_arn
-        input_["name"] = name
+        input_: capo_resiliencehubv2.types.create_user_journey_request.CreateUserJourneyRequest = {
+            "system_arn": system_arn,
+            "name": name,
+        }
         if description is not None:
             input_["description"] = description
         if policy_arn is not None:
             input_["policy_arn"] = policy_arn
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_assertion(
@@ -903,15 +930,17 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.delete_assertion_request.DeleteAssertionRequest = {}  # type: ignore[typeddict-item]
-        input_["service_arn"] = service_arn
-        input_["assertion_id"] = assertion_id
+        input_: capo_resiliencehubv2.types.delete_assertion_request.DeleteAssertionRequest = {
+            "service_arn": service_arn,
+            "assertion_id": assertion_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_input_source(
@@ -949,15 +978,17 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.delete_input_source_request.DeleteInputSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["service_arn"] = service_arn
-        input_["input_source_id"] = input_source_id
+        input_: capo_resiliencehubv2.types.delete_input_source_request.DeleteInputSourceRequest = {
+            "service_arn": service_arn,
+            "input_source_id": input_source_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_policy(
@@ -992,14 +1023,16 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.delete_policy_request.DeletePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_arn"] = policy_arn
+        input_: capo_resiliencehubv2.types.delete_policy_request.DeletePolicyRequest = {
+            "policy_arn": policy_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_service(
@@ -1034,14 +1067,16 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.delete_service_request.DeleteServiceRequest = {}  # type: ignore[typeddict-item]
-        input_["service_arn"] = service_arn
+        input_: capo_resiliencehubv2.types.delete_service_request.DeleteServiceRequest = {
+            "service_arn": service_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_service_function(
@@ -1080,15 +1115,17 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.delete_service_function_request.DeleteServiceFunctionRequest = {}  # type: ignore[typeddict-item]
-        input_["service_arn"] = service_arn
-        input_["service_function_id"] = service_function_id
+        input_: capo_resiliencehubv2.types.delete_service_function_request.DeleteServiceFunctionRequest = {
+            "service_arn": service_arn,
+            "service_function_id": service_function_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_service_function_resources(
@@ -1129,16 +1166,18 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.delete_service_function_resources_request.DeleteServiceFunctionResourcesRequest = {}  # type: ignore[typeddict-item]
-        input_["service_arn"] = service_arn
-        input_["service_function_id"] = service_function_id
-        input_["resources"] = resources
+        input_: capo_resiliencehubv2.types.delete_service_function_resources_request.DeleteServiceFunctionResourcesRequest = {
+            "service_arn": service_arn,
+            "service_function_id": service_function_id,
+            "resources": resources,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_system(
@@ -1173,14 +1212,16 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.delete_system_request.DeleteSystemRequest = {}  # type: ignore[typeddict-item]
-        input_["system_arn"] = system_arn
+        input_: capo_resiliencehubv2.types.delete_system_request.DeleteSystemRequest = {
+            "system_arn": system_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_user_journey(
@@ -1219,15 +1260,17 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.delete_user_journey_request.DeleteUserJourneyRequest = {}  # type: ignore[typeddict-item]
-        input_["system_arn"] = system_arn
-        input_["user_journey_id"] = user_journey_id
+        input_: capo_resiliencehubv2.types.delete_user_journey_request.DeleteUserJourneyRequest = {
+            "system_arn": system_arn,
+            "user_journey_id": user_journey_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_failure_mode_finding(
@@ -1265,15 +1308,17 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.get_failure_mode_finding_request.GetFailureModeFindingRequest = {}  # type: ignore[typeddict-item]
-        input_["finding_id"] = finding_id
-        input_["service_arn"] = service_arn
+        input_: capo_resiliencehubv2.types.get_failure_mode_finding_request.GetFailureModeFindingRequest = {
+            "finding_id": finding_id,
+            "service_arn": service_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_policy(
@@ -1307,14 +1352,16 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.get_policy_request.GetPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_arn"] = policy_arn
+        input_: capo_resiliencehubv2.types.get_policy_request.GetPolicyRequest = {
+            "policy_arn": policy_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_service(
@@ -1348,14 +1395,16 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.get_service_request.GetServiceRequest = {}  # type: ignore[typeddict-item]
-        input_["service_arn"] = service_arn
+        input_: capo_resiliencehubv2.types.get_service_request.GetServiceRequest = {
+            "service_arn": service_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_system(
@@ -1389,14 +1438,16 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.get_system_request.GetSystemRequest = {}  # type: ignore[typeddict-item]
-        input_["system_arn"] = system_arn
+        input_: capo_resiliencehubv2.types.get_system_request.GetSystemRequest = {
+            "system_arn": system_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_user_journey(
@@ -1434,15 +1485,17 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.get_user_journey_request.GetUserJourneyRequest = {}  # type: ignore[typeddict-item]
-        input_["system_arn"] = system_arn
-        input_["user_journey_id"] = user_journey_id
+        input_: capo_resiliencehubv2.types.get_user_journey_request.GetUserJourneyRequest = {
+            "system_arn": system_arn,
+            "user_journey_id": user_journey_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def import_app(
@@ -1491,8 +1544,9 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.import_app_request.ImportAppRequest = {}  # type: ignore[typeddict-item]
-        input_["v1_app_arn"] = v1_app_arn
+        input_: capo_resiliencehubv2.types.import_app_request.ImportAppRequest = {
+            "v1_app_arn": v1_app_arn
+        }
         if policy_arn is not None:
             input_["policy_arn"] = policy_arn
         if kms_key_id is not None:
@@ -1503,14 +1557,16 @@ class resiliencehubv2Client:
             input_["associated_systems"] = associated_systems
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def import_policy(
@@ -1564,8 +1620,9 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.import_policy_request.ImportPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["v1_policy_arn"] = v1_policy_arn
+        input_: capo_resiliencehubv2.types.import_policy_request.ImportPolicyRequest = {
+            "v1_policy_arn": v1_policy_arn
+        }
         if kms_key_id is not None:
             input_["kms_key_id"] = kms_key_id
         if availability_slo is not None:
@@ -1580,14 +1637,16 @@ class resiliencehubv2Client:
             )
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_assertions(
@@ -1631,8 +1690,9 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.list_assertions_request.ListAssertionsRequest = {}  # type: ignore[typeddict-item]
-        input_["service_arn"] = service_arn
+        input_: capo_resiliencehubv2.types.list_assertions_request.ListAssertionsRequest = {
+            "service_arn": service_arn
+        }
         if source is not None:
             input_["source"] = source
         if max_results is not None:
@@ -1645,6 +1705,7 @@ class resiliencehubv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_assertions(
@@ -1723,7 +1784,7 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.list_dependencies_request.ListDependenciesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_resiliencehubv2.types.list_dependencies_request.ListDependenciesRequest = {}
         if service_arn is not None:
             input_["service_arn"] = service_arn
         if query_range_start_time is not None:
@@ -1742,6 +1803,7 @@ class resiliencehubv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_dependencies(
@@ -1812,8 +1874,9 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.list_failure_mode_assessments_request.ListFailureModeAssessmentsRequest = {}  # type: ignore[typeddict-item]
-        input_["service_arn"] = service_arn
+        input_: capo_resiliencehubv2.types.list_failure_mode_assessments_request.ListFailureModeAssessmentsRequest = {
+            "service_arn": service_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1824,6 +1887,7 @@ class resiliencehubv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_failure_mode_assessments(
@@ -1900,8 +1964,9 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.list_failure_mode_findings_request.ListFailureModeFindingsRequest = {}  # type: ignore[typeddict-item]
-        input_["service_arn"] = service_arn
+        input_: capo_resiliencehubv2.types.list_failure_mode_findings_request.ListFailureModeFindingsRequest = {
+            "service_arn": service_arn
+        }
         if severity is not None:
             input_["severity"] = severity
         if failure_category is not None:
@@ -1918,6 +1983,7 @@ class resiliencehubv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_failure_mode_findings(
@@ -1998,8 +2064,9 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.list_input_sources_request.ListInputSourcesRequest = {}  # type: ignore[typeddict-item]
-        input_["service_arn"] = service_arn
+        input_: capo_resiliencehubv2.types.list_input_sources_request.ListInputSourcesRequest = {
+            "service_arn": service_arn
+        }
         if type is not None:
             input_["type"] = type
         if max_results is not None:
@@ -2012,6 +2079,7 @@ class resiliencehubv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_input_sources(
@@ -2076,7 +2144,7 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.list_policies_request.ListPoliciesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_resiliencehubv2.types.list_policies_request.ListPoliciesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2087,6 +2155,7 @@ class resiliencehubv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_policies(
@@ -2155,7 +2224,7 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.list_reports_request.ListReportsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_resiliencehubv2.types.list_reports_request.ListReportsRequest = {}
         if service_arn is not None:
             input_["service_arn"] = service_arn
         if report_type is not None:
@@ -2170,6 +2239,7 @@ class resiliencehubv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_reports(
@@ -2244,8 +2314,9 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.list_resources_request.ListResourcesRequest = {}  # type: ignore[typeddict-item]
-        input_["service_arn"] = service_arn
+        input_: capo_resiliencehubv2.types.list_resources_request.ListResourcesRequest = {
+            "service_arn": service_arn
+        }
         if service_function_id is not None:
             input_["service_function_id"] = service_function_id
         if aws_region is not None:
@@ -2260,6 +2331,7 @@ class resiliencehubv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_resources(
@@ -2338,8 +2410,9 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.list_service_events_request.ListServiceEventsRequest = {}  # type: ignore[typeddict-item]
-        input_["service_arn"] = service_arn
+        input_: capo_resiliencehubv2.types.list_service_events_request.ListServiceEventsRequest = {
+            "service_arn": service_arn
+        }
         if event_types is not None:
             input_["event_types"] = event_types
         if start_time is not None:
@@ -2356,6 +2429,7 @@ class resiliencehubv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_service_events(
@@ -2426,8 +2500,9 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.list_service_functions_request.ListServiceFunctionsRequest = {}  # type: ignore[typeddict-item]
-        input_["service_arn"] = service_arn
+        input_: capo_resiliencehubv2.types.list_service_functions_request.ListServiceFunctionsRequest = {
+            "service_arn": service_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2438,6 +2513,7 @@ class resiliencehubv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_service_functions(
@@ -2514,7 +2590,7 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.list_services_request.ListServicesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_resiliencehubv2.types.list_services_request.ListServicesRequest = {}
         if system_arn is not None:
             input_["system_arn"] = system_arn
         if user_journey_id is not None:
@@ -2537,6 +2613,7 @@ class resiliencehubv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_services(
@@ -2612,8 +2689,9 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.list_service_topology_edges_request.ListServiceTopologyEdgesRequest = {}  # type: ignore[typeddict-item]
-        input_["service_arn"] = service_arn
+        input_: capo_resiliencehubv2.types.list_service_topology_edges_request.ListServiceTopologyEdgesRequest = {
+            "service_arn": service_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2624,6 +2702,7 @@ class resiliencehubv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_service_topology_edges(
@@ -2696,8 +2775,9 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.list_system_events_request.ListSystemEventsRequest = {}  # type: ignore[typeddict-item]
-        input_["system_arn"] = system_arn
+        input_: capo_resiliencehubv2.types.list_system_events_request.ListSystemEventsRequest = {
+            "system_arn": system_arn
+        }
         if event_types is not None:
             input_["event_types"] = event_types
         if start_time is not None:
@@ -2714,6 +2794,7 @@ class resiliencehubv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_system_events(
@@ -2786,7 +2867,7 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.list_systems_request.ListSystemsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_resiliencehubv2.types.list_systems_request.ListSystemsRequest = {}
         if ou_id is not None:
             input_["ou_id"] = ou_id
         if max_results is not None:
@@ -2799,6 +2880,7 @@ class resiliencehubv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_systems(
@@ -2858,14 +2940,16 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_resiliencehubv2.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_user_journeys(
@@ -2903,8 +2987,9 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.list_user_journeys_request.ListUserJourneysRequest = {}  # type: ignore[typeddict-item]
-        input_["system_arn"] = system_arn
+        input_: capo_resiliencehubv2.types.list_user_journeys_request.ListUserJourneysRequest = {
+            "system_arn": system_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2915,6 +3000,7 @@ class resiliencehubv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_user_journeys(
@@ -2978,16 +3064,19 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.start_failure_mode_assessment_request.StartFailureModeAssessmentRequest = {}  # type: ignore[typeddict-item]
-        input_["service_arn"] = service_arn
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_resiliencehubv2.types.start_failure_mode_assessment_request.StartFailureModeAssessmentRequest = {
+            "service_arn": service_arn
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -3023,15 +3112,17 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_resiliencehubv2.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -3070,15 +3161,17 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_resiliencehubv2.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_assertion(
@@ -3121,9 +3214,10 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.update_assertion_request.UpdateAssertionRequest = {}  # type: ignore[typeddict-item]
-        input_["service_arn"] = service_arn
-        input_["assertion_id"] = assertion_id
+        input_: capo_resiliencehubv2.types.update_assertion_request.UpdateAssertionRequest = {
+            "service_arn": service_arn,
+            "assertion_id": assertion_id,
+        }
         if text is not None:
             input_["text"] = text
 
@@ -3132,6 +3226,7 @@ class resiliencehubv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_dependency(
@@ -3178,9 +3273,10 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.update_dependency_request.UpdateDependencyRequest = {}  # type: ignore[typeddict-item]
-        input_["service_arn"] = service_arn
-        input_["dependency_id"] = dependency_id
+        input_: capo_resiliencehubv2.types.update_dependency_request.UpdateDependencyRequest = {
+            "service_arn": service_arn,
+            "dependency_id": dependency_id,
+        }
         if criticality is not None:
             input_["criticality"] = criticality
         if comment is not None:
@@ -3191,6 +3287,7 @@ class resiliencehubv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_failure_mode_finding(
@@ -3233,10 +3330,11 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.update_failure_mode_finding_request.UpdateFailureModeFindingRequest = {}  # type: ignore[typeddict-item]
-        input_["finding_id"] = finding_id
-        input_["status"] = status
-        input_["service_arn"] = service_arn
+        input_: capo_resiliencehubv2.types.update_failure_mode_finding_request.UpdateFailureModeFindingRequest = {
+            "finding_id": finding_id,
+            "status": status,
+            "service_arn": service_arn,
+        }
         if comment is not None:
             input_["comment"] = comment
 
@@ -3245,6 +3343,7 @@ class resiliencehubv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_policy(
@@ -3300,8 +3399,9 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.update_policy_request.UpdatePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_arn"] = policy_arn
+        input_: capo_resiliencehubv2.types.update_policy_request.UpdatePolicyRequest = {
+            "policy_arn": policy_arn
+        }
         if description is not None:
             input_["description"] = description
         if availability_slo is not None:
@@ -3318,6 +3418,7 @@ class resiliencehubv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_service(
@@ -3375,8 +3476,9 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.update_service_request.UpdateServiceRequest = {}  # type: ignore[typeddict-item]
-        input_["service_arn"] = service_arn
+        input_: capo_resiliencehubv2.types.update_service_request.UpdateServiceRequest = {
+            "service_arn": service_arn
+        }
         if description is not None:
             input_["description"] = description
         if associated_systems is not None:
@@ -3397,6 +3499,7 @@ class resiliencehubv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_service_function(
@@ -3443,9 +3546,10 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.update_service_function_request.UpdateServiceFunctionRequest = {}  # type: ignore[typeddict-item]
-        input_["service_arn"] = service_arn
-        input_["service_function_id"] = service_function_id
+        input_: capo_resiliencehubv2.types.update_service_function_request.UpdateServiceFunctionRequest = {
+            "service_arn": service_arn,
+            "service_function_id": service_function_id,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -3458,6 +3562,7 @@ class resiliencehubv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_system(
@@ -3499,8 +3604,9 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.update_system_request.UpdateSystemRequest = {}  # type: ignore[typeddict-item]
-        input_["system_arn"] = system_arn
+        input_: capo_resiliencehubv2.types.update_system_request.UpdateSystemRequest = {
+            "system_arn": system_arn
+        }
         if description is not None:
             input_["description"] = description
         if sharing_enabled is not None:
@@ -3511,6 +3617,7 @@ class resiliencehubv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_user_journey(
@@ -3554,9 +3661,10 @@ class resiliencehubv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehubv2.types.update_user_journey_request.UpdateUserJourneyRequest = {}  # type: ignore[typeddict-item]
-        input_["system_arn"] = system_arn
-        input_["user_journey_id"] = user_journey_id
+        input_: capo_resiliencehubv2.types.update_user_journey_request.UpdateUserJourneyRequest = {
+            "system_arn": system_arn,
+            "user_journey_id": user_journey_id,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -3569,6 +3677,7 @@ class resiliencehubv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

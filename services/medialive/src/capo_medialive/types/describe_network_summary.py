@@ -68,9 +68,9 @@ def serialize_json(value: DescribeNetworkSummary) -> dict:
 
 def deserialize_json(data: dict) -> DescribeNetworkSummary:
     out: DescribeNetworkSummary = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "associatedClusterIds" in data:
+    if data.get("associatedClusterIds") is not None:
         import capo_medialive.types.__list_of__string
 
         out["associated_cluster_ids"] = (
@@ -78,23 +78,23 @@ def deserialize_json(data: dict) -> DescribeNetworkSummary:
                 data["associatedClusterIds"]
             )
         )
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "ipPools" in data:
+    if data.get("ipPools") is not None:
         import capo_medialive.types.__list_of_ip_pool
 
         out["ip_pools"] = capo_medialive.types.__list_of_ip_pool.deserialize_json(
             data["ipPools"]
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "routes" in data:
+    if data.get("routes") is not None:
         import capo_medialive.types.__list_of_route
 
         out["routes"] = capo_medialive.types.__list_of_route.deserialize_json(
             data["routes"]
         )
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_medialive.types.network_state
 
         out["state"] = capo_medialive.types.network_state.deserialize_json(

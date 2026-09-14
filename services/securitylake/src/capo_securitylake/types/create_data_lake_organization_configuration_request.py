@@ -31,7 +31,7 @@ def serialize_json(value: CreateDataLakeOrganizationConfigurationRequest) -> dic
 
 def deserialize_json(data: dict) -> CreateDataLakeOrganizationConfigurationRequest:
     out: CreateDataLakeOrganizationConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "autoEnableNewAccount" in data:
+    if data.get("autoEnableNewAccount") is not None:
         import capo_securitylake.types.data_lake_auto_enable_new_account_configuration_list
 
         out["auto_enable_new_account"] = (

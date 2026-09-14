@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ReviewTemplatePillarReviewSummaries:
 
     out: ReviewTemplatePillarReviewSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_wellarchitected.types.review_template_pillar_review_summary.deserialize_json(
                 item

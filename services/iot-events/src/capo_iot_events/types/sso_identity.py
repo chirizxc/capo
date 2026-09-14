@@ -29,10 +29,10 @@ def serialize_json(value: SSOIdentity) -> dict:
 
 def deserialize_json(data: dict) -> SSOIdentity:
     out: SSOIdentity = {}  # type: ignore[typeddict-item]
-    if "identityStoreId" in data:
+    if data.get("identityStoreId") is not None:
         out["identity_store_id"] = data["identityStoreId"]
     else:
         raise DeserializationError("SSOIdentity.identity_store_id required")
-    if "userId" in data:
+    if data.get("userId") is not None:
         out["user_id"] = data["userId"]
     return out

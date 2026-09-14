@@ -40,18 +40,18 @@ def serialize_json(value: AwsVpcConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AwsVpcConfiguration:
     out: AwsVpcConfiguration = {}  # type: ignore[typeddict-item]
-    if "Subnets" in data:
+    if data.get("Subnets") is not None:
         import capo_pipes.types.subnets
 
         out["subnets"] = capo_pipes.types.subnets.deserialize_json(data["Subnets"])
     else:
         raise DeserializationError("AwsVpcConfiguration.subnets required")
-    if "SecurityGroups" in data:
+    if data.get("SecurityGroups") is not None:
         import capo_pipes.types.security_groups
 
         out["security_groups"] = capo_pipes.types.security_groups.deserialize_json(
             data["SecurityGroups"]
         )
-    if "AssignPublicIp" in data:
+    if data.get("AssignPublicIp") is not None:
         out["assign_public_ip"] = data["AssignPublicIp"]
     return out

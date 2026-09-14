@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SharePrincipalList:
 
     out: SharePrincipalList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_workdocs.types.share_principal.deserialize_json(item))
     return out

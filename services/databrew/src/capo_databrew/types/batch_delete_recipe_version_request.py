@@ -31,7 +31,7 @@ def serialize_json(value: BatchDeleteRecipeVersionRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchDeleteRecipeVersionRequest:
     out: BatchDeleteRecipeVersionRequest = {}  # type: ignore[typeddict-item]
-    if "RecipeVersions" in data:
+    if data.get("RecipeVersions") is not None:
         import capo_databrew.types.recipe_version_list
 
         out["recipe_versions"] = (

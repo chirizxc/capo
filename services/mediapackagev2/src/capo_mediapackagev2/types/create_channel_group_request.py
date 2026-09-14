@@ -43,15 +43,15 @@ def serialize_json(value: CreateChannelGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateChannelGroupRequest:
     out: CreateChannelGroupRequest = {}  # type: ignore[typeddict-item]
-    if "ChannelGroupName" in data:
+    if data.get("ChannelGroupName") is not None:
         out["channel_group_name"] = data["ChannelGroupName"]
     else:
         raise DeserializationError(
             "CreateChannelGroupRequest.channel_group_name required"
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mediapackagev2.types.tag_map
 
         out["tags"] = capo_mediapackagev2.types.tag_map.deserialize_json(data["tags"])

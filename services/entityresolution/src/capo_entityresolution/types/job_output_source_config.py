@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> JobOutputSourceConfig:
 
     out: JobOutputSourceConfig = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_entityresolution.types.job_output_source.deserialize_json(item))
     return out

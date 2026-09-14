@@ -29,10 +29,10 @@ def serialize_aws_json_1_1(value: UpdateAgentRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateAgentRequest:
     out: UpdateAgentRequest = {}  # type: ignore[typeddict-item]
-    if "AgentArn" in data:
+    if data.get("AgentArn") is not None:
         out["agent_arn"] = data["AgentArn"]
     else:
         raise DeserializationError("UpdateAgentRequest.agent_arn required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     return out

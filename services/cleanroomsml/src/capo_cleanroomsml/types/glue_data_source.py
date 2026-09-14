@@ -33,14 +33,14 @@ def serialize_json(value: GlueDataSource) -> dict:
 
 def deserialize_json(data: dict) -> GlueDataSource:
     out: GlueDataSource = {}  # type: ignore[typeddict-item]
-    if "tableName" in data:
+    if data.get("tableName") is not None:
         out["table_name"] = data["tableName"]
     else:
         raise DeserializationError("GlueDataSource.table_name required")
-    if "databaseName" in data:
+    if data.get("databaseName") is not None:
         out["database_name"] = data["databaseName"]
     else:
         raise DeserializationError("GlueDataSource.database_name required")
-    if "catalogId" in data:
+    if data.get("catalogId") is not None:
         out["catalog_id"] = data["catalogId"]
     return out

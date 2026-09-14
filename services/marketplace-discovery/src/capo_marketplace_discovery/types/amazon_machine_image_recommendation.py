@@ -19,7 +19,7 @@ def serialize_json(value: AmazonMachineImageRecommendation) -> dict:
 
 def deserialize_json(data: dict) -> AmazonMachineImageRecommendation:
     out: AmazonMachineImageRecommendation = {}  # type: ignore[typeddict-item]
-    if "instanceType" in data:
+    if data.get("instanceType") is not None:
         out["instance_type"] = data["instanceType"]
     else:
         raise DeserializationError(

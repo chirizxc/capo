@@ -36,7 +36,7 @@ def serialize_json(value: ListScheduledActionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListScheduledActionsResponse:
     out: ListScheduledActionsResponse = {}  # type: ignore[typeddict-item]
-    if "ScheduledActions" in data:
+    if data.get("ScheduledActions") is not None:
         import capo_opensearch.types.scheduled_actions_list
 
         out["scheduled_actions"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListScheduledActionsResponse:
                 data["ScheduledActions"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

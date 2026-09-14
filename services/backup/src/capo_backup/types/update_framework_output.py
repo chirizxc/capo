@@ -37,11 +37,11 @@ def serialize_json(value: UpdateFrameworkOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateFrameworkOutput:
     out: UpdateFrameworkOutput = {}  # type: ignore[typeddict-item]
-    if "FrameworkName" in data:
+    if data.get("FrameworkName") is not None:
         out["framework_name"] = data["FrameworkName"]
-    if "FrameworkArn" in data:
+    if data.get("FrameworkArn") is not None:
         out["framework_arn"] = data["FrameworkArn"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_backup.types.timestamp
 
         out["creation_time"] = capo_backup.types.timestamp.deserialize_json(

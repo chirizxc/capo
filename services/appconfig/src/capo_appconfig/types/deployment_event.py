@@ -65,21 +65,21 @@ def serialize_json(value: DeploymentEvent) -> dict:
 
 def deserialize_json(data: dict) -> DeploymentEvent:
     out: DeploymentEvent = {}  # type: ignore[typeddict-item]
-    if "EventType" in data:
+    if data.get("EventType") is not None:
         import capo_appconfig.types.deployment_event_type
 
         out["event_type"] = capo_appconfig.types.deployment_event_type.deserialize_json(
             data["EventType"]
         )
-    if "TriggeredBy" in data:
+    if data.get("TriggeredBy") is not None:
         import capo_appconfig.types.triggered_by
 
         out["triggered_by"] = capo_appconfig.types.triggered_by.deserialize_json(
             data["TriggeredBy"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ActionInvocations" in data:
+    if data.get("ActionInvocations") is not None:
         import capo_appconfig.types.action_invocations
 
         out["action_invocations"] = (
@@ -87,7 +87,7 @@ def deserialize_json(data: dict) -> DeploymentEvent:
                 data["ActionInvocations"]
             )
         )
-    if "OccurredAt" in data:
+    if data.get("OccurredAt") is not None:
         import capo_appconfig.types.iso8601_date_time
 
         out["occurred_at"] = capo_appconfig.types.iso8601_date_time.deserialize_json(

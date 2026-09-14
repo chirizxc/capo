@@ -13,9 +13,9 @@ from capo_kinesis_video_media import AsyncKinesisVideoMediaClient
 
 
 async def main():
-    async with AsyncKinesisVideoMediaClient() as s3:
+    async with AsyncKinesisVideoMediaClient() as kinesis_video_media:
         # Example: call the get_media operation
-        response = await s3.get_media()
+        response = await kinesis_video_media.get_media()
         print(response["content_type"])
 ```
 
@@ -28,9 +28,9 @@ from capo_kinesis_video_media import AsyncKinesisVideoMediaClient
 
 
 async def main():
-    async with AsyncKinesisVideoMediaClient() as s3:
+    async with AsyncKinesisVideoMediaClient() as kinesis_video_media:
         # Example: call get_media and read the streaming response
-        async with s3.get_media() as response:
+        async with kinesis_video_media.get_media() as response:
             async for chunk in response["payload"]:
                 print(chunk)
 ```
@@ -45,9 +45,9 @@ from capo_kinesis_video_media.error import ClientLimitExceededException
 
 
 async def main():
-    async with AsyncKinesisVideoMediaClient() as s3:
+    async with AsyncKinesisVideoMediaClient() as kinesis_video_media:
         try:
-            await s3.get_media()
+            await kinesis_video_media.get_media()
         except ClientLimitExceededException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -64,13 +64,13 @@ from capo_kinesis_video_media import AsyncKinesisVideoMediaClient
 
 
 async def main():
-    async with AsyncKinesisVideoMediaClient() as s3:
+    async with AsyncKinesisVideoMediaClient() as kinesis_video_media:
         # Default: 3 attempts for every operation
-        response = await s3.get_media()
+        response = await kinesis_video_media.get_media()
 
         # Override per operation
-        response = await s3.get_media(config_overrides={"retry_max_attempts": 5})
+        response = await kinesis_video_media.get_media(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.get_media(config_overrides={"retry_max_attempts": 1})
+        response = await kinesis_video_media.get_media(config_overrides={"retry_max_attempts": 1})
 ```

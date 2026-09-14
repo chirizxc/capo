@@ -29,10 +29,10 @@ def serialize_aws_json_1_1(value: GetGrantRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetGrantRequest:
     out: GetGrantRequest = {}  # type: ignore[typeddict-item]
-    if "GrantArn" in data:
+    if data.get("GrantArn") is not None:
         out["grant_arn"] = data["GrantArn"]
     else:
         raise DeserializationError("GetGrantRequest.grant_arn required")
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
     return out

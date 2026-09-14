@@ -31,10 +31,10 @@ def serialize_json(value: FindingHistoryUpdate) -> dict:
 
 def deserialize_json(data: dict) -> FindingHistoryUpdate:
     out: FindingHistoryUpdate = {}  # type: ignore[typeddict-item]
-    if "UpdatedField" in data:
+    if data.get("UpdatedField") is not None:
         out["updated_field"] = data["UpdatedField"]
-    if "OldValue" in data:
+    if data.get("OldValue") is not None:
         out["old_value"] = data["OldValue"]
-    if "NewValue" in data:
+    if data.get("NewValue") is not None:
         out["new_value"] = data["NewValue"]
     return out

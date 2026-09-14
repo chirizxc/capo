@@ -43,11 +43,11 @@ def serialize_aws_json_1_1(value: TriggerConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TriggerConfig:
     out: TriggerConfig = {}  # type: ignore[typeddict-item]
-    if "triggerName" in data:
+    if data.get("triggerName") is not None:
         out["trigger_name"] = data["triggerName"]
-    if "triggerTargetArn" in data:
+    if data.get("triggerTargetArn") is not None:
         out["trigger_target_arn"] = data["triggerTargetArn"]
-    if "triggerEvents" in data:
+    if data.get("triggerEvents") is not None:
         import capo_codedeploy.types.trigger_event_type_list
 
         out["trigger_events"] = (

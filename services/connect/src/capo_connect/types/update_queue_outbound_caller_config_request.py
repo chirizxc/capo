@@ -38,7 +38,7 @@ def serialize_json(value: UpdateQueueOutboundCallerConfigRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateQueueOutboundCallerConfigRequest:
     out: UpdateQueueOutboundCallerConfigRequest = {}  # type: ignore[typeddict-item]
-    if "OutboundCallerConfig" in data:
+    if data.get("OutboundCallerConfig") is not None:
         import capo_connect.types.outbound_caller_config
 
         out["outbound_caller_config"] = (

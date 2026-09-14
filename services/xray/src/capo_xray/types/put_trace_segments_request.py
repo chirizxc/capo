@@ -32,7 +32,7 @@ def serialize_json(value: PutTraceSegmentsRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutTraceSegmentsRequest:
     out: PutTraceSegmentsRequest = {}  # type: ignore[typeddict-item]
-    if "TraceSegmentDocuments" in data:
+    if data.get("TraceSegmentDocuments") is not None:
         import capo_xray.types.trace_segment_document_list
 
         out["trace_segment_documents"] = (

@@ -35,11 +35,11 @@ def serialize_aws_json_1_1(value: UpdateTagsForDomainRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateTagsForDomainRequest:
     out: UpdateTagsForDomainRequest = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError("UpdateTagsForDomainRequest.domain_name required")
-    if "TagsToUpdate" in data:
+    if data.get("TagsToUpdate") is not None:
         import capo_route_53_domains.types.tag_list
 
         out["tags_to_update"] = (

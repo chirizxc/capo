@@ -46,19 +46,19 @@ def serialize_json(value: TimeSeriesDataPointFormInput) -> dict:
 
 def deserialize_json(data: dict) -> TimeSeriesDataPointFormInput:
     out: TimeSeriesDataPointFormInput = {}  # type: ignore[typeddict-item]
-    if "formName" in data:
+    if data.get("formName") is not None:
         out["form_name"] = data["formName"]
     else:
         raise DeserializationError("TimeSeriesDataPointFormInput.form_name required")
-    if "typeIdentifier" in data:
+    if data.get("typeIdentifier") is not None:
         out["type_identifier"] = data["typeIdentifier"]
     else:
         raise DeserializationError(
             "TimeSeriesDataPointFormInput.type_identifier required"
         )
-    if "typeRevision" in data:
+    if data.get("typeRevision") is not None:
         out["type_revision"] = data["typeRevision"]
-    if "timestamp" in data:
+    if data.get("timestamp") is not None:
         import capo_datazone.types._prelude.timestamp
 
         out["timestamp"] = capo_datazone.types._prelude.timestamp.deserialize_json(
@@ -66,6 +66,6 @@ def deserialize_json(data: dict) -> TimeSeriesDataPointFormInput:
         )
     else:
         raise DeserializationError("TimeSeriesDataPointFormInput.timestamp required")
-    if "content" in data:
+    if data.get("content") is not None:
         out["content"] = data["content"]
     return out

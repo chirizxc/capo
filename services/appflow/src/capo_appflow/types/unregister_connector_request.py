@@ -28,13 +28,13 @@ def serialize_json(value: UnregisterConnectorRequest) -> dict:
 
 def deserialize_json(data: dict) -> UnregisterConnectorRequest:
     out: UnregisterConnectorRequest = {}  # type: ignore[typeddict-item]
-    if "connectorLabel" in data:
+    if data.get("connectorLabel") is not None:
         out["connector_label"] = data["connectorLabel"]
     else:
         raise DeserializationError(
             "UnregisterConnectorRequest.connector_label required"
         )
-    if "forceDelete" in data:
+    if data.get("forceDelete") is not None:
         out["force_delete"] = data["forceDelete"]
     else:
         out["force_delete"] = False

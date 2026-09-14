@@ -42,7 +42,7 @@ def serialize_json(value: NamedEntityDefinitionMetric) -> dict:
 
 def deserialize_json(data: dict) -> NamedEntityDefinitionMetric:
     out: NamedEntityDefinitionMetric = {}  # type: ignore[typeddict-item]
-    if "Aggregation" in data:
+    if data.get("Aggregation") is not None:
         import capo_quicksight.types.named_entity_agg_type
 
         out["aggregation"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> NamedEntityDefinitionMetric:
                 data["Aggregation"]
             )
         )
-    if "AggregationFunctionParameters" in data:
+    if data.get("AggregationFunctionParameters") is not None:
         import capo_quicksight.types.aggregation_function_parameters
 
         out["aggregation_function_parameters"] = (

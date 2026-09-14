@@ -60,22 +60,22 @@ def serialize_json(value: ImportReferenceSourceItem) -> dict:
 
 def deserialize_json(data: dict) -> ImportReferenceSourceItem:
     out: ImportReferenceSourceItem = {}  # type: ignore[typeddict-item]
-    if "sourceFile" in data:
+    if data.get("sourceFile") is not None:
         out["source_file"] = data["sourceFile"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("ImportReferenceSourceItem.status required")
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_omics.types.tag_map
 
         out["tags"] = capo_omics.types.tag_map.deserialize_json(data["tags"])
-    if "referenceId" in data:
+    if data.get("referenceId") is not None:
         out["reference_id"] = data["referenceId"]
     return out

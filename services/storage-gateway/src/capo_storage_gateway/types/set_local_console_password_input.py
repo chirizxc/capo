@@ -29,11 +29,11 @@ def serialize_aws_json_1_1(value: SetLocalConsolePasswordInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SetLocalConsolePasswordInput:
     out: SetLocalConsolePasswordInput = {}  # type: ignore[typeddict-item]
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
     else:
         raise DeserializationError("SetLocalConsolePasswordInput.gateway_arn required")
-    if "LocalConsolePassword" in data:
+    if data.get("LocalConsolePassword") is not None:
         out["local_console_password"] = data["LocalConsolePassword"]
     else:
         raise DeserializationError(

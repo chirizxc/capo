@@ -34,13 +34,13 @@ def serialize_json(value: StartMetricsExportResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartMetricsExportResponse:
     out: StartMetricsExportResponse = {}  # type: ignore[typeddict-item]
-    if "metricsExportId" in data:
+    if data.get("metricsExportId") is not None:
         out["metrics_export_id"] = data["metricsExportId"]
     else:
         raise DeserializationError(
             "StartMetricsExportResponse.metrics_export_id required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_resiliencehub.types.metrics_export_status_type
 
         out["status"] = (

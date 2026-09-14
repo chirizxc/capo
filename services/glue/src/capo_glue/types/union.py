@@ -38,11 +38,11 @@ def serialize_aws_json_1_1(value: Union) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Union:
     out: Union = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("Union.name required")
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_glue.types.two_inputs
 
         out["inputs"] = capo_glue.types.two_inputs.deserialize_aws_json_1_1(
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> Union:
         )
     else:
         raise DeserializationError("Union.inputs required")
-    if "UnionType" in data:
+    if data.get("UnionType") is not None:
         import capo_glue.types.union_type
 
         out["union_type"] = capo_glue.types.union_type.deserialize_aws_json_1_1(

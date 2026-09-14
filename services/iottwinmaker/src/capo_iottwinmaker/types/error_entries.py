@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ErrorEntries:
 
     out: ErrorEntries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iottwinmaker.types.batch_put_property_error_entry.deserialize_json(
                 item

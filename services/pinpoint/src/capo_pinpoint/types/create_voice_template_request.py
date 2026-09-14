@@ -33,7 +33,7 @@ def serialize_json(value: CreateVoiceTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateVoiceTemplateRequest:
     out: CreateVoiceTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "VoiceTemplateRequest" in data:
+    if data.get("VoiceTemplateRequest") is not None:
         import capo_pinpoint.types.voice_template_request
 
         out["voice_template_request"] = (

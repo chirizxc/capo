@@ -27,7 +27,7 @@ def serialize_aws_json_1_0(value: GetServiceOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetServiceOutput:
     out: GetServiceOutput = {}  # type: ignore[typeddict-item]
-    if "service" in data:
+    if data.get("service") is not None:
         import capo_proton.types.service
 
         out["service"] = capo_proton.types.service.deserialize_aws_json_1_0(

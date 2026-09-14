@@ -32,10 +32,10 @@ def serialize_aws_json_1_1(value: AnnotationError) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AnnotationError:
     out: AnnotationError = {}  # type: ignore[typeddict-item]
-    if "ProfileId" in data:
+    if data.get("ProfileId") is not None:
         out["profile_id"] = data["ProfileId"]
-    if "StatisticId" in data:
+    if data.get("StatisticId") is not None:
         out["statistic_id"] = data["StatisticId"]
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
     return out

@@ -89,23 +89,23 @@ def serialize_aws_json_1_1(value: TermsType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TermsType:
     out: TermsType = {}  # type: ignore[typeddict-item]
-    if "TermsId" in data:
+    if data.get("TermsId") is not None:
         out["terms_id"] = data["TermsId"]
     else:
         raise DeserializationError("TermsType.terms_id required")
-    if "UserPoolId" in data:
+    if data.get("UserPoolId") is not None:
         out["user_pool_id"] = data["UserPoolId"]
     else:
         raise DeserializationError("TermsType.user_pool_id required")
-    if "ClientId" in data:
+    if data.get("ClientId") is not None:
         out["client_id"] = data["ClientId"]
     else:
         raise DeserializationError("TermsType.client_id required")
-    if "TermsName" in data:
+    if data.get("TermsName") is not None:
         out["terms_name"] = data["TermsName"]
     else:
         raise DeserializationError("TermsType.terms_name required")
-    if "TermsSource" in data:
+    if data.get("TermsSource") is not None:
         import capo_cognito_identity_provider.types.terms_source_type
 
         out["terms_source"] = (
@@ -115,7 +115,7 @@ def deserialize_aws_json_1_1(data: dict) -> TermsType:
         )
     else:
         raise DeserializationError("TermsType.terms_source required")
-    if "Enforcement" in data:
+    if data.get("Enforcement") is not None:
         import capo_cognito_identity_provider.types.terms_enforcement_type
 
         out["enforcement"] = (
@@ -125,7 +125,7 @@ def deserialize_aws_json_1_1(data: dict) -> TermsType:
         )
     else:
         raise DeserializationError("TermsType.enforcement required")
-    if "Links" in data:
+    if data.get("Links") is not None:
         import capo_cognito_identity_provider.types.links_type
 
         out["links"] = (
@@ -135,7 +135,7 @@ def deserialize_aws_json_1_1(data: dict) -> TermsType:
         )
     else:
         raise DeserializationError("TermsType.links required")
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_cognito_identity_provider.types.date_type
 
         out["creation_date"] = (
@@ -145,7 +145,7 @@ def deserialize_aws_json_1_1(data: dict) -> TermsType:
         )
     else:
         raise DeserializationError("TermsType.creation_date required")
-    if "LastModifiedDate" in data:
+    if data.get("LastModifiedDate") is not None:
         import capo_cognito_identity_provider.types.date_type
 
         out["last_modified_date"] = (

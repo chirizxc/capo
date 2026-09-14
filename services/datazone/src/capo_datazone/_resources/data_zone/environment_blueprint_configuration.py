@@ -112,9 +112,11 @@ class EnvironmentBlueprintConfiguration:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.put_environment_blueprint_configuration_input.PutEnvironmentBlueprintConfigurationInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["environment_blueprint_identifier"] = environment_blueprint_identifier
+        input_: capo_datazone.types.put_environment_blueprint_configuration_input.PutEnvironmentBlueprintConfigurationInput = {
+            "domain_identifier": domain_identifier,
+            "environment_blueprint_identifier": environment_blueprint_identifier,
+            "enabled_regions": enabled_regions,
+        }
         if provisioning_role_arn is not None:
             input_["provisioning_role_arn"] = provisioning_role_arn
         if manage_access_role_arn is not None:
@@ -123,7 +125,6 @@ class EnvironmentBlueprintConfiguration:
             input_["environment_role_permission_boundary"] = (
                 environment_role_permission_boundary
             )
-        input_["enabled_regions"] = enabled_regions
         if regional_parameters is not None:
             input_["regional_parameters"] = regional_parameters
         if resource_configurations is not None:
@@ -142,6 +143,7 @@ class EnvironmentBlueprintConfiguration:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -182,15 +184,17 @@ class EnvironmentBlueprintConfiguration:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.get_environment_blueprint_configuration_input.GetEnvironmentBlueprintConfigurationInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["environment_blueprint_identifier"] = environment_blueprint_identifier
+        input_: capo_datazone.types.get_environment_blueprint_configuration_input.GetEnvironmentBlueprintConfigurationInput = {
+            "domain_identifier": domain_identifier,
+            "environment_blueprint_identifier": environment_blueprint_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -230,15 +234,17 @@ class EnvironmentBlueprintConfiguration:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.delete_environment_blueprint_configuration_input.DeleteEnvironmentBlueprintConfigurationInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["environment_blueprint_identifier"] = environment_blueprint_identifier
+        input_: capo_datazone.types.delete_environment_blueprint_configuration_input.DeleteEnvironmentBlueprintConfigurationInput = {
+            "domain_identifier": domain_identifier,
+            "environment_blueprint_identifier": environment_blueprint_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -283,8 +289,9 @@ class EnvironmentBlueprintConfiguration:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.list_environment_blueprint_configurations_input.ListEnvironmentBlueprintConfigurationsInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
+        input_: capo_datazone.types.list_environment_blueprint_configurations_input.ListEnvironmentBlueprintConfigurationsInput = {
+            "domain_identifier": domain_identifier
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -295,6 +302,7 @@ class EnvironmentBlueprintConfiguration:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -370,9 +378,11 @@ class AsyncEnvironmentBlueprintConfiguration:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.put_environment_blueprint_configuration_input.PutEnvironmentBlueprintConfigurationInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["environment_blueprint_identifier"] = environment_blueprint_identifier
+        input_: capo_datazone.types.put_environment_blueprint_configuration_input.PutEnvironmentBlueprintConfigurationInput = {
+            "domain_identifier": domain_identifier,
+            "environment_blueprint_identifier": environment_blueprint_identifier,
+            "enabled_regions": enabled_regions,
+        }
         if provisioning_role_arn is not None:
             input_["provisioning_role_arn"] = provisioning_role_arn
         if manage_access_role_arn is not None:
@@ -381,7 +391,6 @@ class AsyncEnvironmentBlueprintConfiguration:
             input_["environment_role_permission_boundary"] = (
                 environment_role_permission_boundary
             )
-        input_["enabled_regions"] = enabled_regions
         if regional_parameters is not None:
             input_["regional_parameters"] = regional_parameters
         if resource_configurations is not None:
@@ -400,6 +409,7 @@ class AsyncEnvironmentBlueprintConfiguration:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -441,15 +451,17 @@ class AsyncEnvironmentBlueprintConfiguration:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.get_environment_blueprint_configuration_input.GetEnvironmentBlueprintConfigurationInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["environment_blueprint_identifier"] = environment_blueprint_identifier
+        input_: capo_datazone.types.get_environment_blueprint_configuration_input.GetEnvironmentBlueprintConfigurationInput = {
+            "domain_identifier": domain_identifier,
+            "environment_blueprint_identifier": environment_blueprint_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -490,15 +502,17 @@ class AsyncEnvironmentBlueprintConfiguration:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.delete_environment_blueprint_configuration_input.DeleteEnvironmentBlueprintConfigurationInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["environment_blueprint_identifier"] = environment_blueprint_identifier
+        input_: capo_datazone.types.delete_environment_blueprint_configuration_input.DeleteEnvironmentBlueprintConfigurationInput = {
+            "domain_identifier": domain_identifier,
+            "environment_blueprint_identifier": environment_blueprint_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -544,8 +558,9 @@ class AsyncEnvironmentBlueprintConfiguration:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.list_environment_blueprint_configurations_input.ListEnvironmentBlueprintConfigurationsInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
+        input_: capo_datazone.types.list_environment_blueprint_configurations_input.ListEnvironmentBlueprintConfigurationsInput = {
+            "domain_identifier": domain_identifier
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -556,4 +571,5 @@ class AsyncEnvironmentBlueprintConfiguration:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

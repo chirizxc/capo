@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: CreateGeoMatchSetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateGeoMatchSetRequest:
     out: CreateGeoMatchSetRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateGeoMatchSetRequest.name required")
-    if "ChangeToken" in data:
+    if data.get("ChangeToken") is not None:
         out["change_token"] = data["ChangeToken"]
     else:
         raise DeserializationError("CreateGeoMatchSetRequest.change_token required")

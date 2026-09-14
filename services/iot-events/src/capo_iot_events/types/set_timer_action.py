@@ -36,12 +36,12 @@ def serialize_json(value: SetTimerAction) -> dict:
 
 def deserialize_json(data: dict) -> SetTimerAction:
     out: SetTimerAction = {}  # type: ignore[typeddict-item]
-    if "timerName" in data:
+    if data.get("timerName") is not None:
         out["timer_name"] = data["timerName"]
     else:
         raise DeserializationError("SetTimerAction.timer_name required")
-    if "seconds" in data:
+    if data.get("seconds") is not None:
         out["seconds"] = data["seconds"]
-    if "durationExpression" in data:
+    if data.get("durationExpression") is not None:
         out["duration_expression"] = data["durationExpression"]
     return out

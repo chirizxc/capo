@@ -37,7 +37,7 @@ def serialize_aws_json_1_1(value: ListReservationOfferingsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListReservationOfferingsResponse:
     out: ListReservationOfferingsResponse = {}  # type: ignore[typeddict-item]
-    if "reservationOfferingsList" in data:
+    if data.get("reservationOfferingsList") is not None:
         import capo_redshift_serverless.types.reservation_offerings_list
 
         out["reservation_offerings_list"] = (
@@ -49,6 +49,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListReservationOfferingsResponse:
         raise DeserializationError(
             "ListReservationOfferingsResponse.reservation_offerings_list required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

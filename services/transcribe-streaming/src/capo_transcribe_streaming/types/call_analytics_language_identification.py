@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> CallAnalyticsLanguageIdentification:
 
     out: CallAnalyticsLanguageIdentification = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_transcribe_streaming.types.call_analytics_language_with_score.deserialize_json(
                 item

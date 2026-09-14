@@ -49,7 +49,7 @@ def serialize_aws_json_1_0(value: ReportOutput) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> ReportOutput:
-    if "s3ReportOutput" in data:
+    if data.get("s3ReportOutput") is not None:
         import capo_arc_region_switch.types.s3_report_output
 
         return {
@@ -57,7 +57,7 @@ def deserialize_aws_json_1_0(data: dict) -> ReportOutput:
                 data["s3ReportOutput"]
             )
         }
-    elif "failedReportOutput" in data:
+    elif data.get("failedReportOutput") is not None:
         import capo_arc_region_switch.types.failed_report_output
 
         return {

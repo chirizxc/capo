@@ -95,7 +95,7 @@ def serialize_json(value: PrincipalResourcePermissions) -> dict:
 
 def deserialize_json(data: dict) -> PrincipalResourcePermissions:
     out: PrincipalResourcePermissions = {}  # type: ignore[typeddict-item]
-    if "Principal" in data:
+    if data.get("Principal") is not None:
         import capo_lakeformation.types.data_lake_principal
 
         out["principal"] = (
@@ -103,25 +103,25 @@ def deserialize_json(data: dict) -> PrincipalResourcePermissions:
                 data["Principal"]
             )
         )
-    if "Resource" in data:
+    if data.get("Resource") is not None:
         import capo_lakeformation.types.resource
 
         out["resource"] = capo_lakeformation.types.resource.deserialize_json(
             data["Resource"]
         )
-    if "Condition" in data:
+    if data.get("Condition") is not None:
         import capo_lakeformation.types.condition
 
         out["condition"] = capo_lakeformation.types.condition.deserialize_json(
             data["Condition"]
         )
-    if "Permissions" in data:
+    if data.get("Permissions") is not None:
         import capo_lakeformation.types.permission_list
 
         out["permissions"] = capo_lakeformation.types.permission_list.deserialize_json(
             data["Permissions"]
         )
-    if "PermissionsWithGrantOption" in data:
+    if data.get("PermissionsWithGrantOption") is not None:
         import capo_lakeformation.types.permission_list
 
         out["permissions_with_grant_option"] = (
@@ -129,7 +129,7 @@ def deserialize_json(data: dict) -> PrincipalResourcePermissions:
                 data["PermissionsWithGrantOption"]
             )
         )
-    if "AdditionalDetails" in data:
+    if data.get("AdditionalDetails") is not None:
         import capo_lakeformation.types.details_map
 
         out["additional_details"] = (
@@ -137,7 +137,7 @@ def deserialize_json(data: dict) -> PrincipalResourcePermissions:
                 data["AdditionalDetails"]
             )
         )
-    if "LastUpdated" in data:
+    if data.get("LastUpdated") is not None:
         import capo_lakeformation.types.last_modified_timestamp
 
         out["last_updated"] = (
@@ -145,6 +145,6 @@ def deserialize_json(data: dict) -> PrincipalResourcePermissions:
                 data["LastUpdated"]
             )
         )
-    if "LastUpdatedBy" in data:
+    if data.get("LastUpdatedBy") is not None:
         out["last_updated_by"] = data["LastUpdatedBy"]
     return out

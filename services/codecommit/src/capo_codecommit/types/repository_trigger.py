@@ -56,17 +56,17 @@ def serialize_aws_json_1_1(value: RepositoryTrigger) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RepositoryTrigger:
     out: RepositoryTrigger = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("RepositoryTrigger.name required")
-    if "destinationArn" in data:
+    if data.get("destinationArn") is not None:
         out["destination_arn"] = data["destinationArn"]
     else:
         raise DeserializationError("RepositoryTrigger.destination_arn required")
-    if "customData" in data:
+    if data.get("customData") is not None:
         out["custom_data"] = data["customData"]
-    if "branches" in data:
+    if data.get("branches") is not None:
         import capo_codecommit.types.branch_name_list
 
         out["branches"] = (
@@ -74,7 +74,7 @@ def deserialize_aws_json_1_1(data: dict) -> RepositoryTrigger:
                 data["branches"]
             )
         )
-    if "events" in data:
+    if data.get("events") is not None:
         import capo_codecommit.types.repository_trigger_event_list
 
         out["events"] = (

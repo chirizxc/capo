@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListAvailableResourceMetricsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListAvailableResourceMetricsResponse:
     out: ListAvailableResourceMetricsResponse = {}  # type: ignore[typeddict-item]
-    if "Metrics" in data:
+    if data.get("Metrics") is not None:
         import capo_pi.types.response_resource_metric_list
 
         out["metrics"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListAvailableResourceMetricsResponse
                 data["Metrics"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

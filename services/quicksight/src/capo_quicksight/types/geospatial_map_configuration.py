@@ -109,7 +109,7 @@ def serialize_json(value: GeospatialMapConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> GeospatialMapConfiguration:
     out: GeospatialMapConfiguration = {}  # type: ignore[typeddict-item]
-    if "FieldWells" in data:
+    if data.get("FieldWells") is not None:
         import capo_quicksight.types.geospatial_map_field_wells
 
         out["field_wells"] = (
@@ -117,19 +117,19 @@ def deserialize_json(data: dict) -> GeospatialMapConfiguration:
                 data["FieldWells"]
             )
         )
-    if "Legend" in data:
+    if data.get("Legend") is not None:
         import capo_quicksight.types.legend_options
 
         out["legend"] = capo_quicksight.types.legend_options.deserialize_json(
             data["Legend"]
         )
-    if "Tooltip" in data:
+    if data.get("Tooltip") is not None:
         import capo_quicksight.types.tooltip_options
 
         out["tooltip"] = capo_quicksight.types.tooltip_options.deserialize_json(
             data["Tooltip"]
         )
-    if "WindowOptions" in data:
+    if data.get("WindowOptions") is not None:
         import capo_quicksight.types.geospatial_window_options
 
         out["window_options"] = (
@@ -137,7 +137,7 @@ def deserialize_json(data: dict) -> GeospatialMapConfiguration:
                 data["WindowOptions"]
             )
         )
-    if "MapStyleOptions" in data:
+    if data.get("MapStyleOptions") is not None:
         import capo_quicksight.types.geospatial_map_style_options
 
         out["map_style_options"] = (
@@ -145,7 +145,7 @@ def deserialize_json(data: dict) -> GeospatialMapConfiguration:
                 data["MapStyleOptions"]
             )
         )
-    if "PointStyleOptions" in data:
+    if data.get("PointStyleOptions") is not None:
         import capo_quicksight.types.geospatial_point_style_options
 
         out["point_style_options"] = (
@@ -153,13 +153,13 @@ def deserialize_json(data: dict) -> GeospatialMapConfiguration:
                 data["PointStyleOptions"]
             )
         )
-    if "VisualPalette" in data:
+    if data.get("VisualPalette") is not None:
         import capo_quicksight.types.visual_palette
 
         out["visual_palette"] = capo_quicksight.types.visual_palette.deserialize_json(
             data["VisualPalette"]
         )
-    if "Interactions" in data:
+    if data.get("Interactions") is not None:
         import capo_quicksight.types.visual_interaction_options
 
         out["interactions"] = (

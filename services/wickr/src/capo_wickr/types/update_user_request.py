@@ -36,11 +36,11 @@ def serialize_json(value: UpdateUserRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateUserRequest:
     out: UpdateUserRequest = {}  # type: ignore[typeddict-item]
-    if "userId" in data:
+    if data.get("userId") is not None:
         out["user_id"] = data["userId"]
     else:
         raise DeserializationError("UpdateUserRequest.user_id required")
-    if "userDetails" in data:
+    if data.get("userDetails") is not None:
         import capo_wickr.types.update_user_details
 
         out["user_details"] = capo_wickr.types.update_user_details.deserialize_json(

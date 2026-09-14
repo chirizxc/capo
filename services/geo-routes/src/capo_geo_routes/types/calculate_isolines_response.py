@@ -68,11 +68,11 @@ def serialize_json(value: CalculateIsolinesResponse) -> dict:
 
 def deserialize_json(data: dict) -> CalculateIsolinesResponse:
     out: CalculateIsolinesResponse = {}  # type: ignore[typeddict-item]
-    if "ArrivalTime" in data:
+    if data.get("ArrivalTime") is not None:
         out["arrival_time"] = data["ArrivalTime"]
-    if "DepartureTime" in data:
+    if data.get("DepartureTime") is not None:
         out["departure_time"] = data["DepartureTime"]
-    if "IsolineGeometryFormat" in data:
+    if data.get("IsolineGeometryFormat") is not None:
         import capo_geo_routes.types.geometry_format
 
         out["isoline_geometry_format"] = (
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> CalculateIsolinesResponse:
         raise DeserializationError(
             "CalculateIsolinesResponse.isoline_geometry_format required"
         )
-    if "Isolines" in data:
+    if data.get("Isolines") is not None:
         import capo_geo_routes.types.isoline_list
 
         out["isolines"] = capo_geo_routes.types.isoline_list.deserialize_json(
@@ -92,13 +92,13 @@ def deserialize_json(data: dict) -> CalculateIsolinesResponse:
         )
     else:
         raise DeserializationError("CalculateIsolinesResponse.isolines required")
-    if "SnappedDestination" in data:
+    if data.get("SnappedDestination") is not None:
         import capo_geo_routes.types.position
 
         out["snapped_destination"] = capo_geo_routes.types.position.deserialize_json(
             data["SnappedDestination"]
         )
-    if "SnappedOrigin" in data:
+    if data.get("SnappedOrigin") is not None:
         import capo_geo_routes.types.position
 
         out["snapped_origin"] = capo_geo_routes.types.position.deserialize_json(

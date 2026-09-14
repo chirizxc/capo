@@ -58,15 +58,15 @@ def serialize_aws_json_1_1(value: SearchFlowExecutionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SearchFlowExecutionsRequest:
     out: SearchFlowExecutionsRequest = {}  # type: ignore[typeddict-item]
-    if "systemInstanceId" in data:
+    if data.get("systemInstanceId") is not None:
         out["system_instance_id"] = data["systemInstanceId"]
     else:
         raise DeserializationError(
             "SearchFlowExecutionsRequest.system_instance_id required"
         )
-    if "flowExecutionId" in data:
+    if data.get("flowExecutionId") is not None:
         out["flow_execution_id"] = data["flowExecutionId"]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_iotthingsgraph.types.timestamp
 
         out["start_time"] = (
@@ -74,14 +74,14 @@ def deserialize_aws_json_1_1(data: dict) -> SearchFlowExecutionsRequest:
                 data["startTime"]
             )
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_iotthingsgraph.types.timestamp
 
         out["end_time"] = capo_iotthingsgraph.types.timestamp.deserialize_aws_json_1_1(
             data["endTime"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

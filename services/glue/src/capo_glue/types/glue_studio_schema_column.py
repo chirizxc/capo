@@ -33,12 +33,12 @@ def serialize_aws_json_1_1(value: GlueStudioSchemaColumn) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GlueStudioSchemaColumn:
     out: GlueStudioSchemaColumn = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("GlueStudioSchemaColumn.name required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "GlueStudioType" in data:
+    if data.get("GlueStudioType") is not None:
         out["glue_studio_type"] = data["GlueStudioType"]
     return out

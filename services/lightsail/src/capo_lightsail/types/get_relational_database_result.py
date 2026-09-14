@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetRelationalDatabaseResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetRelationalDatabaseResult:
     out: GetRelationalDatabaseResult = {}  # type: ignore[typeddict-item]
-    if "relationalDatabase" in data:
+    if data.get("relationalDatabase") is not None:
         import capo_lightsail.types.relational_database
 
         out["relational_database"] = (

@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: Resolution) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Resolution:
     out: Resolution = {}  # type: ignore[typeddict-item]
-    if "width" in data:
+    if data.get("width") is not None:
         out["width"] = data["width"]
-    if "height" in data:
+    if data.get("height") is not None:
         out["height"] = data["height"]
     return out

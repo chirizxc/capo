@@ -33,10 +33,10 @@ def serialize_json(value: CodeRepositoryDetails) -> dict:
 
 def deserialize_json(data: dict) -> CodeRepositoryDetails:
     out: CodeRepositoryDetails = {}  # type: ignore[typeddict-item]
-    if "ProviderType" in data:
+    if data.get("ProviderType") is not None:
         out["provider_type"] = data["ProviderType"]
-    if "ProjectName" in data:
+    if data.get("ProjectName") is not None:
         out["project_name"] = data["ProjectName"]
-    if "CodeSecurityIntegrationArn" in data:
+    if data.get("CodeSecurityIntegrationArn") is not None:
         out["code_security_integration_arn"] = data["CodeSecurityIntegrationArn"]
     return out

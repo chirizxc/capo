@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.translate#AWSShineFrontendService_20170701``."""
 
 import warnings
+from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +17,7 @@ from capo_translate._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_translate._auth._zapros_handler import AuthMiddleware
+from capo_translate._pagination import resolve_path as _resolve_path
 from capo_translate._services._aws_config import aaws_config
 from capo_translate._services._pipeline import (
     AsyncInterceptor,
@@ -237,14 +239,15 @@ class AsyncTranslateClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_translate.types.create_parallel_data_request.CreateParallelDataRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_translate.types.create_parallel_data_request.CreateParallelDataRequest = {
+            "name": name,
+            "parallel_data_config": parallel_data_config,
+            "client_token": client_token,
+        }
         if description is not None:
             input_["description"] = description
-        input_["parallel_data_config"] = parallel_data_config
         if encryption_key is not None:
             input_["encryption_key"] = encryption_key
-        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -253,6 +256,7 @@ class AsyncTranslateClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_parallel_data(
@@ -292,14 +296,16 @@ class AsyncTranslateClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_translate.types.delete_parallel_data_request.DeleteParallelDataRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_translate.types.delete_parallel_data_request.DeleteParallelDataRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_terminology(
@@ -335,14 +341,16 @@ class AsyncTranslateClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_translate.types.delete_terminology_request.DeleteTerminologyRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_translate.types.delete_terminology_request.DeleteTerminologyRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_text_translation_job(
@@ -379,14 +387,16 @@ class AsyncTranslateClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_translate.types.describe_text_translation_job_request.DescribeTextTranslationJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_translate.types.describe_text_translation_job_request.DescribeTextTranslationJobRequest = {
+            "job_id": job_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_parallel_data(
@@ -424,14 +434,16 @@ class AsyncTranslateClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_translate.types.get_parallel_data_request.GetParallelDataRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_translate.types.get_parallel_data_request.GetParallelDataRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_terminology(
@@ -473,8 +485,9 @@ class AsyncTranslateClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_translate.types.get_terminology_request.GetTerminologyRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_translate.types.get_terminology_request.GetTerminologyRequest = {
+            "name": name
+        }
         if terminology_data_format is not None:
             input_["terminology_data_format"] = terminology_data_format
 
@@ -483,6 +496,7 @@ class AsyncTranslateClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def import_terminology(
@@ -534,12 +548,13 @@ class AsyncTranslateClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_translate.types.import_terminology_request.ImportTerminologyRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["merge_strategy"] = merge_strategy
+        input_: capo_translate.types.import_terminology_request.ImportTerminologyRequest = {
+            "name": name,
+            "merge_strategy": merge_strategy,
+            "terminology_data": terminology_data,
+        }
         if description is not None:
             input_["description"] = description
-        input_["terminology_data"] = terminology_data
         if encryption_key is not None:
             input_["encryption_key"] = encryption_key
         if tags is not None:
@@ -550,6 +565,7 @@ class AsyncTranslateClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_languages(
@@ -595,7 +611,7 @@ class AsyncTranslateClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_translate.types.list_languages_request.ListLanguagesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_translate.types.list_languages_request.ListLanguagesRequest = {}
         if display_language_code is not None:
             input_["display_language_code"] = display_language_code
         if next_token is not None:
@@ -608,7 +624,33 @@ class AsyncTranslateClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_languages(
+        self,
+        *,
+        config_overrides: Optional[AsyncTranslateClientConfig] = None,
+        display_language_code: Optional[
+            "capo_translate.types.display_language_code.DisplayLanguageCode"
+        ] = None,
+        next_token: Optional["capo_translate.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_translate.types.max_results_integer.MaxResultsInteger"
+        ] = None,
+    ) -> "AsyncIterator[capo_translate.types.list_languages_response.ListLanguagesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_languages(
+                config_overrides=config_overrides,
+                display_language_code=display_language_code,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_parallel_data(
         self,
@@ -648,7 +690,7 @@ class AsyncTranslateClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_translate.types.list_parallel_data_request.ListParallelDataRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_translate.types.list_parallel_data_request.ListParallelDataRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -659,7 +701,29 @@ class AsyncTranslateClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_parallel_data(
+        self,
+        *,
+        config_overrides: Optional[AsyncTranslateClientConfig] = None,
+        next_token: Optional["capo_translate.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_translate.types.max_results_integer.MaxResultsInteger"
+        ] = None,
+    ) -> "AsyncIterator[capo_translate.types.list_parallel_data_response.ListParallelDataResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_parallel_data(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_tags_for_resource(
         self,
@@ -695,14 +759,16 @@ class AsyncTranslateClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_translate.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_translate.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_terminologies(
@@ -743,7 +809,7 @@ class AsyncTranslateClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_translate.types.list_terminologies_request.ListTerminologiesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_translate.types.list_terminologies_request.ListTerminologiesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -754,7 +820,29 @@ class AsyncTranslateClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_terminologies(
+        self,
+        *,
+        config_overrides: Optional[AsyncTranslateClientConfig] = None,
+        next_token: Optional["capo_translate.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_translate.types.max_results_integer.MaxResultsInteger"
+        ] = None,
+    ) -> "AsyncIterator[capo_translate.types.list_terminologies_response.ListTerminologiesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_terminologies(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_text_translation_jobs(
         self,
@@ -799,7 +887,7 @@ class AsyncTranslateClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_translate.types.list_text_translation_jobs_request.ListTextTranslationJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_translate.types.list_text_translation_jobs_request.ListTextTranslationJobsRequest = {}
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -812,7 +900,33 @@ class AsyncTranslateClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_text_translation_jobs(
+        self,
+        *,
+        config_overrides: Optional[AsyncTranslateClientConfig] = None,
+        filter: Optional[
+            "capo_translate.types.text_translation_job_filter.TextTranslationJobFilter"
+        ] = None,
+        next_token: Optional["capo_translate.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_translate.types.max_results_integer.MaxResultsInteger"
+        ] = None,
+    ) -> "AsyncIterator[capo_translate.types.list_text_translation_jobs_response.ListTextTranslationJobsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_text_translation_jobs(
+                config_overrides=config_overrides,
+                filter=filter,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def start_text_translation_job(
         self,
@@ -875,19 +989,20 @@ class AsyncTranslateClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_translate.types.start_text_translation_job_request.StartTextTranslationJobRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_translate.types.start_text_translation_job_request.StartTextTranslationJobRequest = {
+            "input_data_config": input_data_config,
+            "output_data_config": output_data_config,
+            "data_access_role_arn": data_access_role_arn,
+            "source_language_code": source_language_code,
+            "target_language_codes": target_language_codes,
+            "client_token": client_token,
+        }
         if job_name is not None:
             input_["job_name"] = job_name
-        input_["input_data_config"] = input_data_config
-        input_["output_data_config"] = output_data_config
-        input_["data_access_role_arn"] = data_access_role_arn
-        input_["source_language_code"] = source_language_code
-        input_["target_language_codes"] = target_language_codes
         if terminology_names is not None:
             input_["terminology_names"] = terminology_names
         if parallel_data_names is not None:
             input_["parallel_data_names"] = parallel_data_names
-        input_["client_token"] = client_token
         if settings is not None:
             input_["settings"] = settings
 
@@ -896,6 +1011,7 @@ class AsyncTranslateClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_text_translation_job(
@@ -932,14 +1048,16 @@ class AsyncTranslateClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_translate.types.stop_text_translation_job_request.StopTextTranslationJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_translate.types.stop_text_translation_job_request.StopTextTranslationJobRequest = {
+            "job_id": job_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -980,15 +1098,17 @@ class AsyncTranslateClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_translate.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_translate.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def translate_document(
@@ -1041,12 +1161,13 @@ class AsyncTranslateClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_translate.types.translate_document_request.TranslateDocumentRequest = {}  # type: ignore[typeddict-item]
-        input_["document"] = document
+        input_: capo_translate.types.translate_document_request.TranslateDocumentRequest = {
+            "document": document,
+            "source_language_code": source_language_code,
+            "target_language_code": target_language_code,
+        }
         if terminology_names is not None:
             input_["terminology_names"] = terminology_names
-        input_["source_language_code"] = source_language_code
-        input_["target_language_code"] = target_language_code
         if settings is not None:
             input_["settings"] = settings
 
@@ -1055,6 +1176,7 @@ class AsyncTranslateClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def translate_text(
@@ -1108,12 +1230,13 @@ class AsyncTranslateClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_translate.types.translate_text_request.TranslateTextRequest = {}  # type: ignore[typeddict-item]
-        input_["text"] = text
+        input_: capo_translate.types.translate_text_request.TranslateTextRequest = {
+            "text": text,
+            "source_language_code": source_language_code,
+            "target_language_code": target_language_code,
+        }
         if terminology_names is not None:
             input_["terminology_names"] = terminology_names
-        input_["source_language_code"] = source_language_code
-        input_["target_language_code"] = target_language_code
         if settings is not None:
             input_["settings"] = settings
 
@@ -1122,6 +1245,7 @@ class AsyncTranslateClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -1161,15 +1285,17 @@ class AsyncTranslateClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_translate.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_translate.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_parallel_data(
@@ -1219,18 +1345,20 @@ class AsyncTranslateClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_translate.types.update_parallel_data_request.UpdateParallelDataRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_translate.types.update_parallel_data_request.UpdateParallelDataRequest = {
+            "name": name,
+            "parallel_data_config": parallel_data_config,
+            "client_token": client_token,
+        }
         if description is not None:
             input_["description"] = description
-        input_["parallel_data_config"] = parallel_data_config
-        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

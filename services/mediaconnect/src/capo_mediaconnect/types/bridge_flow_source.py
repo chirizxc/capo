@@ -43,9 +43,9 @@ def serialize_json(value: BridgeFlowSource) -> dict:
 
 def deserialize_json(data: dict) -> BridgeFlowSource:
     out: BridgeFlowSource = {}  # type: ignore[typeddict-item]
-    if "flowArn" in data:
+    if data.get("flowArn") is not None:
         out["flow_arn"] = data["flowArn"]
-    if "flowVpcInterfaceAttachment" in data:
+    if data.get("flowVpcInterfaceAttachment") is not None:
         import capo_mediaconnect.types.vpc_interface_attachment
 
         out["flow_vpc_interface_attachment"] = (
@@ -53,8 +53,8 @@ def deserialize_json(data: dict) -> BridgeFlowSource:
                 data["flowVpcInterfaceAttachment"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "outputArn" in data:
+    if data.get("outputArn") is not None:
         out["output_arn"] = data["outputArn"]
     return out

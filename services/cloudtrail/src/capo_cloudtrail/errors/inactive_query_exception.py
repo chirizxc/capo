@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: InactiveQueryException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InactiveQueryException_:
     out: InactiveQueryException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -35,15 +35,18 @@ class InactiveQueryException(ServiceError):
 
     code: str | None = "InactiveQueryException"
 
-    def __init__(self, data: InactiveQueryException_):
+    def __init__(self, data: InactiveQueryException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InactiveQueryException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InactiveQueryException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InactiveQueryException":
+        return cls(deserialize_aws_json_1_1(data), message)

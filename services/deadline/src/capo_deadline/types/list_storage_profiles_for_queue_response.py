@@ -37,7 +37,7 @@ def serialize_json(value: ListStorageProfilesForQueueResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListStorageProfilesForQueueResponse:
     out: ListStorageProfilesForQueueResponse = {}  # type: ignore[typeddict-item]
-    if "storageProfiles" in data:
+    if data.get("storageProfiles") is not None:
         import capo_deadline.types.storage_profile_summaries
 
         out["storage_profiles"] = (
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> ListStorageProfilesForQueueResponse:
         raise DeserializationError(
             "ListStorageProfilesForQueueResponse.storage_profiles required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

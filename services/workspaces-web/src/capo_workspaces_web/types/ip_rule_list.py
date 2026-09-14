@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> IpRuleList:
 
     out: IpRuleList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_workspaces_web.types.ip_rule.deserialize_json(item))
     return out

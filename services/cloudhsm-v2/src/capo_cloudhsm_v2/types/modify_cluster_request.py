@@ -42,9 +42,9 @@ def serialize_aws_json_1_1(value: ModifyClusterRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModifyClusterRequest:
     out: ModifyClusterRequest = {}  # type: ignore[typeddict-item]
-    if "HsmType" in data:
+    if data.get("HsmType") is not None:
         out["hsm_type"] = data["HsmType"]
-    if "BackupRetentionPolicy" in data:
+    if data.get("BackupRetentionPolicy") is not None:
         import capo_cloudhsm_v2.types.backup_retention_policy
 
         out["backup_retention_policy"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> ModifyClusterRequest:
                 data["BackupRetentionPolicy"]
             )
         )
-    if "ClusterId" in data:
+    if data.get("ClusterId") is not None:
         out["cluster_id"] = data["ClusterId"]
     else:
         raise DeserializationError("ModifyClusterRequest.cluster_id required")

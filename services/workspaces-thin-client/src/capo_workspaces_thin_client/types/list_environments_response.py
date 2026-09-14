@@ -38,7 +38,7 @@ def serialize_json(value: ListEnvironmentsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListEnvironmentsResponse:
     out: ListEnvironmentsResponse = {}  # type: ignore[typeddict-item]
-    if "environments" in data:
+    if data.get("environments") is not None:
         import capo_workspaces_thin_client.types.environment_list
 
         out["environments"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> ListEnvironmentsResponse:
                 data["environments"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -33,6 +33,8 @@ def deserialize_json(
 
     out: CollaborationConfiguredAudienceModelAssociationSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanrooms.types.collaboration_configured_audience_model_association_summary.deserialize_json(
                 item

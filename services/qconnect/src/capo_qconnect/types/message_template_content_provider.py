@@ -78,7 +78,7 @@ def serialize_json(value: MessageTemplateContentProvider) -> dict:
 
 
 def deserialize_json(data: dict) -> MessageTemplateContentProvider:
-    if "email" in data:
+    if data.get("email") is not None:
         import capo_qconnect.types.email_message_template_content
 
         return {
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> MessageTemplateContentProvider:
                 data["email"]
             )
         }
-    elif "sms" in data:
+    elif data.get("sms") is not None:
         import capo_qconnect.types.sms_message_template_content
 
         return {
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> MessageTemplateContentProvider:
                 data["sms"]
             )
         }
-    elif "whatsApp" in data:
+    elif data.get("whatsApp") is not None:
         import capo_qconnect.types.whats_app_message_template_content
 
         return {
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> MessageTemplateContentProvider:
                 data["whatsApp"]
             )
         }
-    elif "push" in data:
+    elif data.get("push") is not None:
         import capo_qconnect.types.push_message_template_content
 
         return {

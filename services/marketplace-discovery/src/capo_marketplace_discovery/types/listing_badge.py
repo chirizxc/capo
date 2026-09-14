@@ -34,11 +34,11 @@ def serialize_json(value: ListingBadge) -> dict:
 
 def deserialize_json(data: dict) -> ListingBadge:
     out: ListingBadge = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError("ListingBadge.display_name required")
-    if "badgeType" in data:
+    if data.get("badgeType") is not None:
         import capo_marketplace_discovery.types.listing_badge_type
 
         out["badge_type"] = (

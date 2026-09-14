@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> TopicRefreshScheduleSummaries:
 
     out: TopicRefreshScheduleSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.topic_refresh_schedule_summary.deserialize_json(item)
         )

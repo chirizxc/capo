@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AnalysisTemplateArtifactList:
 
     out: AnalysisTemplateArtifactList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanrooms.types.analysis_template_artifact.deserialize_json(item)
         )

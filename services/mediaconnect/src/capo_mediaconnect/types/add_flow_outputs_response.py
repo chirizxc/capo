@@ -31,9 +31,9 @@ def serialize_json(value: AddFlowOutputsResponse) -> dict:
 
 def deserialize_json(data: dict) -> AddFlowOutputsResponse:
     out: AddFlowOutputsResponse = {}  # type: ignore[typeddict-item]
-    if "flowArn" in data:
+    if data.get("flowArn") is not None:
         out["flow_arn"] = data["flowArn"]
-    if "outputs" in data:
+    if data.get("outputs") is not None:
         import capo_mediaconnect.types.__list_of_output
 
         out["outputs"] = capo_mediaconnect.types.__list_of_output.deserialize_json(

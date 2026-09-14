@@ -38,20 +38,20 @@ def serialize_aws_json_1_1(value: AssociateQualificationWithWorkerRequest) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> AssociateQualificationWithWorkerRequest:
     out: AssociateQualificationWithWorkerRequest = {}  # type: ignore[typeddict-item]
-    if "QualificationTypeId" in data:
+    if data.get("QualificationTypeId") is not None:
         out["qualification_type_id"] = data["QualificationTypeId"]
     else:
         raise DeserializationError(
             "AssociateQualificationWithWorkerRequest.qualification_type_id required"
         )
-    if "WorkerId" in data:
+    if data.get("WorkerId") is not None:
         out["worker_id"] = data["WorkerId"]
     else:
         raise DeserializationError(
             "AssociateQualificationWithWorkerRequest.worker_id required"
         )
-    if "IntegerValue" in data:
+    if data.get("IntegerValue") is not None:
         out["integer_value"] = data["IntegerValue"]
-    if "SendNotification" in data:
+    if data.get("SendNotification") is not None:
         out["send_notification"] = data["SendNotification"]
     return out

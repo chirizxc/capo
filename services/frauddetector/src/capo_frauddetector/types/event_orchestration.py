@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: EventOrchestration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EventOrchestration:
     out: EventOrchestration = {}  # type: ignore[typeddict-item]
-    if "eventBridgeEnabled" in data:
+    if data.get("eventBridgeEnabled") is not None:
         out["event_bridge_enabled"] = data["eventBridgeEnabled"]
     else:
         raise DeserializationError("EventOrchestration.event_bridge_enabled required")

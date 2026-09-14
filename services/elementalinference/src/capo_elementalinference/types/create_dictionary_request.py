@@ -48,11 +48,11 @@ def serialize_json(value: CreateDictionaryRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDictionaryRequest:
     out: CreateDictionaryRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateDictionaryRequest.name required")
-    if "language" in data:
+    if data.get("language") is not None:
         import capo_elementalinference.types.dictionary_language
 
         out["language"] = (
@@ -62,9 +62,9 @@ def deserialize_json(data: dict) -> CreateDictionaryRequest:
         )
     else:
         raise DeserializationError("CreateDictionaryRequest.language required")
-    if "entries" in data:
+    if data.get("entries") is not None:
         out["entries"] = data["entries"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_elementalinference.types.tag_map
 
         out["tags"] = capo_elementalinference.types.tag_map.deserialize_json(

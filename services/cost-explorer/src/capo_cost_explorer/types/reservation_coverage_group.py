@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ReservationCoverageGroup) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReservationCoverageGroup:
     out: ReservationCoverageGroup = {}  # type: ignore[typeddict-item]
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_cost_explorer.types.attributes
 
         out["attributes"] = (
@@ -44,7 +44,7 @@ def deserialize_aws_json_1_1(data: dict) -> ReservationCoverageGroup:
                 data["Attributes"]
             )
         )
-    if "Coverage" in data:
+    if data.get("Coverage") is not None:
         import capo_cost_explorer.types.coverage
 
         out["coverage"] = capo_cost_explorer.types.coverage.deserialize_aws_json_1_1(

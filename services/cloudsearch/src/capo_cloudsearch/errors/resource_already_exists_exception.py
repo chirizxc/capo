@@ -44,15 +44,20 @@ class ResourceAlreadyExistsException(ServiceError):
 
     code: str | None = "ResourceAlreadyExistsException"
 
-    def __init__(self, data: ResourceAlreadyExistsException_):
+    def __init__(
+        self, data: ResourceAlreadyExistsException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ResourceAlreadyExistsException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "ResourceAlreadyExistsException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "ResourceAlreadyExistsException":
+        return cls(deserialize_query(el), message)

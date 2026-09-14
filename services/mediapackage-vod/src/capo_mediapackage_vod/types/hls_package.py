@@ -59,13 +59,13 @@ def serialize_json(value: HlsPackage) -> dict:
 
 def deserialize_json(data: dict) -> HlsPackage:
     out: HlsPackage = {}  # type: ignore[typeddict-item]
-    if "encryption" in data:
+    if data.get("encryption") is not None:
         import capo_mediapackage_vod.types.hls_encryption
 
         out["encryption"] = capo_mediapackage_vod.types.hls_encryption.deserialize_json(
             data["encryption"]
         )
-    if "hlsManifests" in data:
+    if data.get("hlsManifests") is not None:
         import capo_mediapackage_vod.types.__list_of_hls_manifest
 
         out["hls_manifests"] = (
@@ -73,10 +73,10 @@ def deserialize_json(data: dict) -> HlsPackage:
                 data["hlsManifests"]
             )
         )
-    if "includeDvbSubtitles" in data:
+    if data.get("includeDvbSubtitles") is not None:
         out["include_dvb_subtitles"] = data["includeDvbSubtitles"]
-    if "segmentDurationSeconds" in data:
+    if data.get("segmentDurationSeconds") is not None:
         out["segment_duration_seconds"] = data["segmentDurationSeconds"]
-    if "useAudioRenditionGroup" in data:
+    if data.get("useAudioRenditionGroup") is not None:
         out["use_audio_rendition_group"] = data["useAudioRenditionGroup"]
     return out

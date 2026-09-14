@@ -23,6 +23,6 @@ def serialize_aws_json_1_0(value: IPSetReference) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> IPSetReference:
     out: IPSetReference = {}  # type: ignore[typeddict-item]
-    if "ReferenceArn" in data:
+    if data.get("ReferenceArn") is not None:
         out["reference_arn"] = data["ReferenceArn"]
     return out

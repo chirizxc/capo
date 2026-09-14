@@ -45,9 +45,9 @@ def serialize_aws_json_1_1(value: IdentityDocument) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IdentityDocument:
     out: IdentityDocument = {}  # type: ignore[typeddict-item]
-    if "DocumentIndex" in data:
+    if data.get("DocumentIndex") is not None:
         out["document_index"] = data["DocumentIndex"]
-    if "IdentityDocumentFields" in data:
+    if data.get("IdentityDocumentFields") is not None:
         import capo_textract.types.identity_document_field_list
 
         out["identity_document_fields"] = (
@@ -55,7 +55,7 @@ def deserialize_aws_json_1_1(data: dict) -> IdentityDocument:
                 data["IdentityDocumentFields"]
             )
         )
-    if "Blocks" in data:
+    if data.get("Blocks") is not None:
         import capo_textract.types.block_list
 
         out["blocks"] = capo_textract.types.block_list.deserialize_aws_json_1_1(

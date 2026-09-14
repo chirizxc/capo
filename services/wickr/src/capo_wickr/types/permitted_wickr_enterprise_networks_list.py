@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> PermittedWickrEnterpriseNetworksList:
 
     out: PermittedWickrEnterpriseNetworksList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_wickr.types.permitted_wickr_enterprise_network.deserialize_json(item)
         )

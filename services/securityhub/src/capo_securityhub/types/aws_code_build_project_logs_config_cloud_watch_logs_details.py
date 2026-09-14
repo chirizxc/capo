@@ -31,10 +31,10 @@ def serialize_json(value: AwsCodeBuildProjectLogsConfigCloudWatchLogsDetails) ->
 
 def deserialize_json(data: dict) -> AwsCodeBuildProjectLogsConfigCloudWatchLogsDetails:
     out: AwsCodeBuildProjectLogsConfigCloudWatchLogsDetails = {}  # type: ignore[typeddict-item]
-    if "GroupName" in data:
+    if data.get("GroupName") is not None:
         out["group_name"] = data["GroupName"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "StreamName" in data:
+    if data.get("StreamName") is not None:
         out["stream_name"] = data["StreamName"]
     return out

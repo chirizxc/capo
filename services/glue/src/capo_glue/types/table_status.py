@@ -80,41 +80,41 @@ def serialize_aws_json_1_1(value: TableStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TableStatus:
     out: TableStatus = {}  # type: ignore[typeddict-item]
-    if "RequestedBy" in data:
+    if data.get("RequestedBy") is not None:
         out["requested_by"] = data["RequestedBy"]
-    if "UpdatedBy" in data:
+    if data.get("UpdatedBy") is not None:
         out["updated_by"] = data["UpdatedBy"]
-    if "RequestTime" in data:
+    if data.get("RequestTime") is not None:
         import capo_glue.types.timestamp
 
         out["request_time"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["RequestTime"]
         )
-    if "UpdateTime" in data:
+    if data.get("UpdateTime") is not None:
         import capo_glue.types.timestamp
 
         out["update_time"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["UpdateTime"]
         )
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_glue.types.resource_action
 
         out["action"] = capo_glue.types.resource_action.deserialize_aws_json_1_1(
             data["Action"]
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_glue.types.resource_state
 
         out["state"] = capo_glue.types.resource_state.deserialize_aws_json_1_1(
             data["State"]
         )
-    if "Error" in data:
+    if data.get("Error") is not None:
         import capo_glue.types.error_detail
 
         out["error"] = capo_glue.types.error_detail.deserialize_aws_json_1_1(
             data["Error"]
         )
-    if "Details" in data:
+    if data.get("Details") is not None:
         import capo_glue.types.status_details
 
         out["details"] = capo_glue.types.status_details.deserialize_aws_json_1_1(

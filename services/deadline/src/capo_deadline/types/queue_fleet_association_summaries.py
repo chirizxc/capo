@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> QueueFleetAssociationSummaries:
 
     out: QueueFleetAssociationSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_deadline.types.queue_fleet_association_summary.deserialize_json(item)
         )

@@ -44,16 +44,16 @@ def serialize_json(value: GrpcRouteMatch) -> dict:
 
 def deserialize_json(data: dict) -> GrpcRouteMatch:
     out: GrpcRouteMatch = {}  # type: ignore[typeddict-item]
-    if "serviceName" in data:
+    if data.get("serviceName") is not None:
         out["service_name"] = data["serviceName"]
-    if "methodName" in data:
+    if data.get("methodName") is not None:
         out["method_name"] = data["methodName"]
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         import capo_app_mesh.types.grpc_route_metadata_list
 
         out["metadata"] = capo_app_mesh.types.grpc_route_metadata_list.deserialize_json(
             data["metadata"]
         )
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
     return out

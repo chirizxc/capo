@@ -38,9 +38,9 @@ def serialize_json(value: RollbackConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> RollbackConfiguration:
     out: RollbackConfiguration = {}  # type: ignore[typeddict-item]
-    if "monitoringTimeInMinutes" in data:
+    if data.get("monitoringTimeInMinutes") is not None:
         out["monitoring_time_in_minutes"] = data["monitoringTimeInMinutes"]
-    if "rollbackTriggers" in data:
+    if data.get("rollbackTriggers") is not None:
         import capo_serverlessapplicationrepository.types.__list_of_rollback_trigger
 
         out["rollback_triggers"] = (

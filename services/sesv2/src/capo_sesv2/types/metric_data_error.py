@@ -35,12 +35,12 @@ def serialize_json(value: MetricDataError) -> dict:
 
 def deserialize_json(data: dict) -> MetricDataError:
     out: MetricDataError = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Code" in data:
+    if data.get("Code") is not None:
         import capo_sesv2.types.query_error_code
 
         out["code"] = capo_sesv2.types.query_error_code.deserialize_json(data["Code"])
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

@@ -58,19 +58,19 @@ def serialize_json(value: StartNetworkMigrationMappingUpdateRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartNetworkMigrationMappingUpdateRequest:
     out: StartNetworkMigrationMappingUpdateRequest = {}  # type: ignore[typeddict-item]
-    if "networkMigrationExecutionID" in data:
+    if data.get("networkMigrationExecutionID") is not None:
         out["network_migration_execution_id"] = data["networkMigrationExecutionID"]
     else:
         raise DeserializationError(
             "StartNetworkMigrationMappingUpdateRequest.network_migration_execution_id required"
         )
-    if "networkMigrationDefinitionID" in data:
+    if data.get("networkMigrationDefinitionID") is not None:
         out["network_migration_definition_id"] = data["networkMigrationDefinitionID"]
     else:
         raise DeserializationError(
             "StartNetworkMigrationMappingUpdateRequest.network_migration_definition_id required"
         )
-    if "constructs" in data:
+    if data.get("constructs") is not None:
         import capo_mgn.types.start_network_migration_mapping_update_constructs
 
         out["constructs"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> StartNetworkMigrationMappingUpdateRequest:
                 data["constructs"]
             )
         )
-    if "segments" in data:
+    if data.get("segments") is not None:
         import capo_mgn.types.start_network_migration_mapping_update_segments
 
         out["segments"] = (

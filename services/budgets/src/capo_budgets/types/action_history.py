@@ -55,7 +55,7 @@ def serialize_aws_json_1_1(value: ActionHistory) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ActionHistory:
     out: ActionHistory = {}  # type: ignore[typeddict-item]
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         import capo_budgets.types.generic_timestamp
 
         out["timestamp"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> ActionHistory:
         )
     else:
         raise DeserializationError("ActionHistory.timestamp required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_budgets.types.action_status
 
         out["status"] = capo_budgets.types.action_status.deserialize_aws_json_1_1(
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> ActionHistory:
         )
     else:
         raise DeserializationError("ActionHistory.status required")
-    if "EventType" in data:
+    if data.get("EventType") is not None:
         import capo_budgets.types.event_type
 
         out["event_type"] = capo_budgets.types.event_type.deserialize_aws_json_1_1(
@@ -81,7 +81,7 @@ def deserialize_aws_json_1_1(data: dict) -> ActionHistory:
         )
     else:
         raise DeserializationError("ActionHistory.event_type required")
-    if "ActionHistoryDetails" in data:
+    if data.get("ActionHistoryDetails") is not None:
         import capo_budgets.types.action_history_details
 
         out["action_history_details"] = (

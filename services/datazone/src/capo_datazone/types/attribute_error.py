@@ -30,15 +30,15 @@ def serialize_json(value: AttributeError) -> dict:
 
 def deserialize_json(data: dict) -> AttributeError:
     out: AttributeError = {}  # type: ignore[typeddict-item]
-    if "attributeIdentifier" in data:
+    if data.get("attributeIdentifier") is not None:
         out["attribute_identifier"] = data["attributeIdentifier"]
     else:
         raise DeserializationError("AttributeError.attribute_identifier required")
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
     else:
         raise DeserializationError("AttributeError.code required")
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("AttributeError.message required")

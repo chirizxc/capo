@@ -28,11 +28,11 @@ def serialize_json(value: TemplateRule) -> dict:
 
 def deserialize_json(data: dict) -> TemplateRule:
     out: TemplateRule = {}  # type: ignore[typeddict-item]
-    if "caseRuleId" in data:
+    if data.get("caseRuleId") is not None:
         out["case_rule_id"] = data["caseRuleId"]
     else:
         raise DeserializationError("TemplateRule.case_rule_id required")
-    if "fieldId" in data:
+    if data.get("fieldId") is not None:
         out["field_id"] = data["fieldId"]
     else:
         out["field_id"] = "NULL"

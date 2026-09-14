@@ -25,6 +25,6 @@ def serialize_aws_json_1_0(value: CognitoGroupConfigurationDetail) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CognitoGroupConfigurationDetail:
     out: CognitoGroupConfigurationDetail = {}  # type: ignore[typeddict-item]
-    if "groupEntityType" in data:
+    if data.get("groupEntityType") is not None:
         out["group_entity_type"] = data["groupEntityType"]
     return out

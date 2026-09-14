@@ -102,7 +102,7 @@ def serialize_json(value: RtmpGroupSettings) -> dict:
 
 def deserialize_json(data: dict) -> RtmpGroupSettings:
     out: RtmpGroupSettings = {}  # type: ignore[typeddict-item]
-    if "adMarkers" in data:
+    if data.get("adMarkers") is not None:
         import capo_medialive.types.__list_of_rtmp_ad_markers
 
         out["ad_markers"] = (
@@ -110,7 +110,7 @@ def deserialize_json(data: dict) -> RtmpGroupSettings:
                 data["adMarkers"]
             )
         )
-    if "authenticationScheme" in data:
+    if data.get("authenticationScheme") is not None:
         import capo_medialive.types.authentication_scheme
 
         out["authentication_scheme"] = (
@@ -118,7 +118,7 @@ def deserialize_json(data: dict) -> RtmpGroupSettings:
                 data["authenticationScheme"]
             )
         )
-    if "cacheFullBehavior" in data:
+    if data.get("cacheFullBehavior") is not None:
         import capo_medialive.types.rtmp_cache_full_behavior
 
         out["cache_full_behavior"] = (
@@ -126,15 +126,15 @@ def deserialize_json(data: dict) -> RtmpGroupSettings:
                 data["cacheFullBehavior"]
             )
         )
-    if "cacheLength" in data:
+    if data.get("cacheLength") is not None:
         out["cache_length"] = data["cacheLength"]
-    if "captionData" in data:
+    if data.get("captionData") is not None:
         import capo_medialive.types.rtmp_caption_data
 
         out["caption_data"] = capo_medialive.types.rtmp_caption_data.deserialize_json(
             data["captionData"]
         )
-    if "inputLossAction" in data:
+    if data.get("inputLossAction") is not None:
         import capo_medialive.types.input_loss_action_for_rtmp_out
 
         out["input_loss_action"] = (
@@ -142,9 +142,9 @@ def deserialize_json(data: dict) -> RtmpGroupSettings:
                 data["inputLossAction"]
             )
         )
-    if "restartDelay" in data:
+    if data.get("restartDelay") is not None:
         out["restart_delay"] = data["restartDelay"]
-    if "includeFillerNalUnits" in data:
+    if data.get("includeFillerNalUnits") is not None:
         import capo_medialive.types.include_filler_nal_units
 
         out["include_filler_nal_units"] = (

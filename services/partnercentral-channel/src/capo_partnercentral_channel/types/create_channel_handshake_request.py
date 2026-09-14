@@ -67,7 +67,7 @@ def serialize_aws_json_1_0(value: CreateChannelHandshakeRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateChannelHandshakeRequest:
     out: CreateChannelHandshakeRequest = {}  # type: ignore[typeddict-item]
-    if "handshakeType" in data:
+    if data.get("handshakeType") is not None:
         import capo_partnercentral_channel.types.handshake_type
 
         out["handshake_type"] = (
@@ -79,17 +79,17 @@ def deserialize_aws_json_1_0(data: dict) -> CreateChannelHandshakeRequest:
         raise DeserializationError(
             "CreateChannelHandshakeRequest.handshake_type required"
         )
-    if "catalog" in data:
+    if data.get("catalog") is not None:
         out["catalog"] = data["catalog"]
     else:
         raise DeserializationError("CreateChannelHandshakeRequest.catalog required")
-    if "associatedResourceIdentifier" in data:
+    if data.get("associatedResourceIdentifier") is not None:
         out["associated_resource_identifier"] = data["associatedResourceIdentifier"]
     else:
         raise DeserializationError(
             "CreateChannelHandshakeRequest.associated_resource_identifier required"
         )
-    if "payload" in data:
+    if data.get("payload") is not None:
         import capo_partnercentral_channel.types.channel_handshake_payload
 
         out["payload"] = (
@@ -97,9 +97,9 @@ def deserialize_aws_json_1_0(data: dict) -> CreateChannelHandshakeRequest:
                 data["payload"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_partnercentral_channel.types.tag_list
 
         out["tags"] = (

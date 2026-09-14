@@ -28,11 +28,11 @@ def serialize_json(value: GsmLocalId) -> dict:
 
 def deserialize_json(data: dict) -> GsmLocalId:
     out: GsmLocalId = {}  # type: ignore[typeddict-item]
-    if "Bsic" in data:
+    if data.get("Bsic") is not None:
         out["bsic"] = data["Bsic"]
     else:
         raise DeserializationError("GsmLocalId.bsic required")
-    if "Bcch" in data:
+    if data.get("Bcch") is not None:
         out["bcch"] = data["Bcch"]
     else:
         raise DeserializationError("GsmLocalId.bcch required")

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> GroupIdentifierList:
 
     out: GroupIdentifierList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_resource_groups.types.group_identifier.deserialize_json(item))
     return out

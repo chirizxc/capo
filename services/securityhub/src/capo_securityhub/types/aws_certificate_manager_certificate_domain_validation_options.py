@@ -33,6 +33,8 @@ def deserialize_json(
 
     out: AwsCertificateManagerCertificateDomainValidationOptions = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_certificate_manager_certificate_domain_validation_option.deserialize_json(
                 item

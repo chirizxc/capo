@@ -42,15 +42,15 @@ def serialize_aws_json_1_1(value: CostCategoryValues) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CostCategoryValues:
     out: CostCategoryValues = {}  # type: ignore[typeddict-item]
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_cost_explorer.types.values
 
         out["values"] = capo_cost_explorer.types.values.deserialize_aws_json_1_1(
             data["Values"]
         )
-    if "MatchOptions" in data:
+    if data.get("MatchOptions") is not None:
         import capo_cost_explorer.types.match_options
 
         out["match_options"] = (

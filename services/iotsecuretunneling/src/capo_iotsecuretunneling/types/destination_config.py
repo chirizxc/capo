@@ -33,9 +33,9 @@ def serialize_aws_json_1_1(value: DestinationConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DestinationConfig:
     out: DestinationConfig = {}  # type: ignore[typeddict-item]
-    if "thingName" in data:
+    if data.get("thingName") is not None:
         out["thing_name"] = data["thingName"]
-    if "services" in data:
+    if data.get("services") is not None:
         import capo_iotsecuretunneling.types.service_list
 
         out["services"] = (

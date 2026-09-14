@@ -38,12 +38,12 @@ def serialize_aws_json_1_1(value: DiscoveredResource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DiscoveredResource:
     out: DiscoveredResource = {}  # type: ignore[typeddict-item]
-    if "URI" in data:
+    if data.get("URI") is not None:
         out["uri"] = data["URI"]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     return out

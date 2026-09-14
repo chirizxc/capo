@@ -63,7 +63,15 @@ def serialize_json(value: CatalogItem) -> dict:
             )
         )
     if "power_kva" in value:
-        out["PowerKva"] = value["power_kva"]
+        out["PowerKva"] = (
+            "NaN"
+            if value["power_kva"] != value["power_kva"]
+            else "Infinity"
+            if value["power_kva"] == float("inf")
+            else "-Infinity"
+            if value["power_kva"] == float("-inf")
+            else value["power_kva"]
+        )
     if "weight_lbs" in value:
         out["WeightLbs"] = value["weight_lbs"]
     if "supported_uplink_gbps" in value:
@@ -87,15 +95,15 @@ def serialize_json(value: CatalogItem) -> dict:
 
 def deserialize_json(data: dict) -> CatalogItem:
     out: CatalogItem = {}  # type: ignore[typeddict-item]
-    if "CatalogItemId" in data:
+    if data.get("CatalogItemId") is not None:
         out["catalog_item_id"] = data["CatalogItemId"]
-    if "ItemStatus" in data:
+    if data.get("ItemStatus") is not None:
         import capo_outposts.types.catalog_item_status
 
         out["item_status"] = capo_outposts.types.catalog_item_status.deserialize_json(
             data["ItemStatus"]
         )
-    if "EC2Capacities" in data:
+    if data.get("EC2Capacities") is not None:
         import capo_outposts.types.ec2_capacity_list_definition
 
         out["ec2_capacities"] = (
@@ -103,11 +111,11 @@ def deserialize_json(data: dict) -> CatalogItem:
                 data["EC2Capacities"]
             )
         )
-    if "PowerKva" in data:
-        out["power_kva"] = data["PowerKva"]
-    if "WeightLbs" in data:
+    if data.get("PowerKva") is not None:
+        out["power_kva"] = float(data["PowerKva"])
+    if data.get("WeightLbs") is not None:
         out["weight_lbs"] = data["WeightLbs"]
-    if "SupportedUplinkGbps" in data:
+    if data.get("SupportedUplinkGbps") is not None:
         import capo_outposts.types.supported_uplink_gbps_list_definition
 
         out["supported_uplink_gbps"] = (
@@ -115,7 +123,7 @@ def deserialize_json(data: dict) -> CatalogItem:
                 data["SupportedUplinkGbps"]
             )
         )
-    if "SupportedStorage" in data:
+    if data.get("SupportedStorage") is not None:
         import capo_outposts.types.supported_storage_list
 
         out["supported_storage"] = (

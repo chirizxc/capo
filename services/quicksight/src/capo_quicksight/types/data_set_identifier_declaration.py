@@ -28,11 +28,11 @@ def serialize_json(value: DataSetIdentifierDeclaration) -> dict:
 
 def deserialize_json(data: dict) -> DataSetIdentifierDeclaration:
     out: DataSetIdentifierDeclaration = {}  # type: ignore[typeddict-item]
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
     else:
         raise DeserializationError("DataSetIdentifierDeclaration.identifier required")
-    if "DataSetArn" in data:
+    if data.get("DataSetArn") is not None:
         out["data_set_arn"] = data["DataSetArn"]
     else:
         raise DeserializationError("DataSetIdentifierDeclaration.data_set_arn required")

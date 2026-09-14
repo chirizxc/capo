@@ -49,9 +49,9 @@ def serialize_json(value: UserTurnSlotOutput) -> dict:
 
 def deserialize_json(data: dict) -> UserTurnSlotOutput:
     out: UserTurnSlotOutput = {}  # type: ignore[typeddict-item]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_lex_models_v2.types.user_turn_slot_output_list
 
         out["values"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> UserTurnSlotOutput:
                 data["values"]
             )
         )
-    if "subSlots" in data:
+    if data.get("subSlots") is not None:
         import capo_lex_models_v2.types.user_turn_slot_output_map
 
         out["sub_slots"] = (

@@ -68,7 +68,7 @@ def serialize_aws_json_1_1(value: ClusterInstanceStorageConfig) -> dict:
 
 
 def deserialize_aws_json_1_1(data: dict) -> ClusterInstanceStorageConfig:
-    if "EbsVolumeConfig" in data:
+    if data.get("EbsVolumeConfig") is not None:
         import capo_sagemaker.types.cluster_ebs_volume_config
 
         return {
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterInstanceStorageConfig:
                 data["EbsVolumeConfig"]
             )
         }
-    elif "FsxLustreConfig" in data:
+    elif data.get("FsxLustreConfig") is not None:
         import capo_sagemaker.types.cluster_fsx_lustre_config
 
         return {
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterInstanceStorageConfig:
                 data["FsxLustreConfig"]
             )
         }
-    elif "FsxOpenZfsConfig" in data:
+    elif data.get("FsxOpenZfsConfig") is not None:
         import capo_sagemaker.types.cluster_fsx_open_zfs_config
 
         return {

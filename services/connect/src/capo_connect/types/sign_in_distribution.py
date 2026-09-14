@@ -28,11 +28,11 @@ def serialize_json(value: SignInDistribution) -> dict:
 
 def deserialize_json(data: dict) -> SignInDistribution:
     out: SignInDistribution = {}  # type: ignore[typeddict-item]
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
     else:
         raise DeserializationError("SignInDistribution.region required")
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
     else:
         out["enabled"] = False

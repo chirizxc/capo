@@ -165,27 +165,27 @@ def serialize_json(value: GetServiceResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetServiceResponse:
     out: GetServiceResponse = {}  # type: ignore[typeddict-item]
-    if "ServiceId" in data:
+    if data.get("ServiceId") is not None:
         out["service_id"] = data["ServiceId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "OwnerAccountId" in data:
+    if data.get("OwnerAccountId") is not None:
         out["owner_account_id"] = data["OwnerAccountId"]
-    if "CreatedByAccountId" in data:
+    if data.get("CreatedByAccountId") is not None:
         out["created_by_account_id"] = data["CreatedByAccountId"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "EnvironmentId" in data:
+    if data.get("EnvironmentId") is not None:
         out["environment_id"] = data["EnvironmentId"]
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
-    if "EndpointType" in data:
+    if data.get("EndpointType") is not None:
         out["endpoint_type"] = data["EndpointType"]
-    if "UrlEndpoint" in data:
+    if data.get("UrlEndpoint") is not None:
         import capo_migration_hub_refactor_spaces.types.url_endpoint_config
 
         out["url_endpoint"] = (
@@ -193,7 +193,7 @@ def deserialize_json(data: dict) -> GetServiceResponse:
                 data["UrlEndpoint"]
             )
         )
-    if "LambdaEndpoint" in data:
+    if data.get("LambdaEndpoint") is not None:
         import capo_migration_hub_refactor_spaces.types.lambda_endpoint_config
 
         out["lambda_endpoint"] = (
@@ -201,15 +201,15 @@ def deserialize_json(data: dict) -> GetServiceResponse:
                 data["LambdaEndpoint"]
             )
         )
-    if "State" in data:
+    if data.get("State") is not None:
         out["state"] = data["State"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_migration_hub_refactor_spaces.types.tag_map
 
         out["tags"] = capo_migration_hub_refactor_spaces.types.tag_map.deserialize_json(
             data["Tags"]
         )
-    if "Error" in data:
+    if data.get("Error") is not None:
         import capo_migration_hub_refactor_spaces.types.error_response
 
         out["error"] = (
@@ -217,7 +217,7 @@ def deserialize_json(data: dict) -> GetServiceResponse:
                 data["Error"]
             )
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_migration_hub_refactor_spaces.types.timestamp
 
         out["last_updated_time"] = (
@@ -225,7 +225,7 @@ def deserialize_json(data: dict) -> GetServiceResponse:
                 data["LastUpdatedTime"]
             )
         )
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_migration_hub_refactor_spaces.types.timestamp
 
         out["created_time"] = (

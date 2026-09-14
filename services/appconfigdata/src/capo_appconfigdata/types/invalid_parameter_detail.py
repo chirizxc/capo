@@ -25,6 +25,6 @@ def serialize_json(value: InvalidParameterDetail) -> dict:
 
 def deserialize_json(data: dict) -> InvalidParameterDetail:
     out: InvalidParameterDetail = {}  # type: ignore[typeddict-item]
-    if "Problem" in data:
+    if data.get("Problem") is not None:
         out["problem"] = data["Problem"]
     return out

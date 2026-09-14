@@ -48,19 +48,19 @@ def serialize_json(value: SuggestFilter) -> dict:
 
 def deserialize_json(data: dict) -> SuggestFilter:
     out: SuggestFilter = {}  # type: ignore[typeddict-item]
-    if "BoundingBox" in data:
+    if data.get("BoundingBox") is not None:
         import capo_geo_places.types.bounding_box
 
         out["bounding_box"] = capo_geo_places.types.bounding_box.deserialize_json(
             data["BoundingBox"]
         )
-    if "Circle" in data:
+    if data.get("Circle") is not None:
         import capo_geo_places.types.filter_circle
 
         out["circle"] = capo_geo_places.types.filter_circle.deserialize_json(
             data["Circle"]
         )
-    if "IncludeCountries" in data:
+    if data.get("IncludeCountries") is not None:
         import capo_geo_places.types.country_code_list
 
         out["include_countries"] = (

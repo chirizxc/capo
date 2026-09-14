@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> OpenZFSUserAndGroupQuotas:
 
     out: OpenZFSUserAndGroupQuotas = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_fsx.types.open_zfs_user_or_group_quota.deserialize_aws_json_1_1(item)
         )

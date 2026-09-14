@@ -60,7 +60,7 @@ def serialize_json(value: CaseRuleDetails) -> dict:
 
 
 def deserialize_json(data: dict) -> CaseRuleDetails:
-    if "required" in data:
+    if data.get("required") is not None:
         import capo_connectcases.types.required_case_rule
 
         return {
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> CaseRuleDetails:
                 data["required"]
             )
         }
-    elif "fieldOptions" in data:
+    elif data.get("fieldOptions") is not None:
         import capo_connectcases.types.field_options_case_rule
 
         return {
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> CaseRuleDetails:
                 data["fieldOptions"]
             )
         }
-    elif "hidden" in data:
+    elif data.get("hidden") is not None:
         import capo_connectcases.types.hidden_case_rule
 
         return {

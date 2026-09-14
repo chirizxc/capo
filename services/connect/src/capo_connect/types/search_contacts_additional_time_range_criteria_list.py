@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> SearchContactsAdditionalTimeRangeCriteriaLis
 
     out: SearchContactsAdditionalTimeRangeCriteriaList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.search_contacts_additional_time_range_criteria.deserialize_json(
                 item

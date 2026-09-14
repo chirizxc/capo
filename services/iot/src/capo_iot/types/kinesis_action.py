@@ -33,14 +33,14 @@ def serialize_json(value: KinesisAction) -> dict:
 
 def deserialize_json(data: dict) -> KinesisAction:
     out: KinesisAction = {}  # type: ignore[typeddict-item]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("KinesisAction.role_arn required")
-    if "streamName" in data:
+    if data.get("streamName") is not None:
         out["stream_name"] = data["streamName"]
     else:
         raise DeserializationError("KinesisAction.stream_name required")
-    if "partitionKey" in data:
+    if data.get("partitionKey") is not None:
         out["partition_key"] = data["partitionKey"]
     return out

@@ -40,11 +40,11 @@ def serialize_json(value: ApiStage) -> dict:
 
 def deserialize_json(data: dict) -> ApiStage:
     out: ApiStage = {}  # type: ignore[typeddict-item]
-    if "apiId" in data:
+    if data.get("apiId") is not None:
         out["api_id"] = data["apiId"]
-    if "stage" in data:
+    if data.get("stage") is not None:
         out["stage"] = data["stage"]
-    if "throttle" in data:
+    if data.get("throttle") is not None:
         import capo_api_gateway.types.map_of_api_stage_throttle_settings
 
         out["throttle"] = (

@@ -70,7 +70,7 @@ def serialize_json(value: TopicIRContributionAnalysis) -> dict:
 
 def deserialize_json(data: dict) -> TopicIRContributionAnalysis:
     out: TopicIRContributionAnalysis = {}  # type: ignore[typeddict-item]
-    if "Factors" in data:
+    if data.get("Factors") is not None:
         import capo_quicksight.types.contribution_analysis_factors_list
 
         out["factors"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> TopicIRContributionAnalysis:
                 data["Factors"]
             )
         )
-    if "TimeRanges" in data:
+    if data.get("TimeRanges") is not None:
         import capo_quicksight.types.contribution_analysis_time_ranges
 
         out["time_ranges"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> TopicIRContributionAnalysis:
                 data["TimeRanges"]
             )
         )
-    if "Direction" in data:
+    if data.get("Direction") is not None:
         import capo_quicksight.types.contribution_analysis_direction
 
         out["direction"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> TopicIRContributionAnalysis:
                 data["Direction"]
             )
         )
-    if "SortType" in data:
+    if data.get("SortType") is not None:
         import capo_quicksight.types.contribution_analysis_sort_type
 
         out["sort_type"] = (

@@ -73,28 +73,28 @@ def serialize_aws_json_1_1(value: QualityCheckStepMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> QualityCheckStepMetadata:
     out: QualityCheckStepMetadata = {}  # type: ignore[typeddict-item]
-    if "CheckType" in data:
+    if data.get("CheckType") is not None:
         out["check_type"] = data["CheckType"]
-    if "BaselineUsedForDriftCheckStatistics" in data:
+    if data.get("BaselineUsedForDriftCheckStatistics") is not None:
         out["baseline_used_for_drift_check_statistics"] = data[
             "BaselineUsedForDriftCheckStatistics"
         ]
-    if "BaselineUsedForDriftCheckConstraints" in data:
+    if data.get("BaselineUsedForDriftCheckConstraints") is not None:
         out["baseline_used_for_drift_check_constraints"] = data[
             "BaselineUsedForDriftCheckConstraints"
         ]
-    if "CalculatedBaselineStatistics" in data:
+    if data.get("CalculatedBaselineStatistics") is not None:
         out["calculated_baseline_statistics"] = data["CalculatedBaselineStatistics"]
-    if "CalculatedBaselineConstraints" in data:
+    if data.get("CalculatedBaselineConstraints") is not None:
         out["calculated_baseline_constraints"] = data["CalculatedBaselineConstraints"]
-    if "ModelPackageGroupName" in data:
+    if data.get("ModelPackageGroupName") is not None:
         out["model_package_group_name"] = data["ModelPackageGroupName"]
-    if "ViolationReport" in data:
+    if data.get("ViolationReport") is not None:
         out["violation_report"] = data["ViolationReport"]
-    if "CheckJobArn" in data:
+    if data.get("CheckJobArn") is not None:
         out["check_job_arn"] = data["CheckJobArn"]
-    if "SkipCheck" in data:
+    if data.get("SkipCheck") is not None:
         out["skip_check"] = data["SkipCheck"]
-    if "RegisterNewBaseline" in data:
+    if data.get("RegisterNewBaseline") is not None:
         out["register_new_baseline"] = data["RegisterNewBaseline"]
     return out

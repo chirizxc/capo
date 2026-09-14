@@ -51,7 +51,7 @@ def serialize_aws_json_1_1(value: JobSecondaryStatusTransition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> JobSecondaryStatusTransition:
     out: JobSecondaryStatusTransition = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.job_secondary_status
 
         out["status"] = (
@@ -59,18 +59,18 @@ def deserialize_aws_json_1_1(data: dict) -> JobSecondaryStatusTransition:
                 data["Status"]
             )
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["start_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["end_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["EndTime"]
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
     return out

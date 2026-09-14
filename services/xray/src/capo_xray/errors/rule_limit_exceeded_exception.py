@@ -24,7 +24,7 @@ def serialize_json(value: RuleLimitExceededException_) -> dict:
 
 def deserialize_json(data: dict) -> RuleLimitExceededException_:
     out: RuleLimitExceededException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class RuleLimitExceededException(ServiceError):
 
     code: str | None = "RuleLimitExceededException"
 
-    def __init__(self, data: RuleLimitExceededException_):
+    def __init__(self, data: RuleLimitExceededException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="RuleLimitExceededException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "RuleLimitExceededException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "RuleLimitExceededException":
+        return cls(deserialize_json(data), message)

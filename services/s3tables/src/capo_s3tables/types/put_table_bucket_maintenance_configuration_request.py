@@ -36,7 +36,7 @@ def serialize_json(value: PutTableBucketMaintenanceConfigurationRequest) -> dict
 
 def deserialize_json(data: dict) -> PutTableBucketMaintenanceConfigurationRequest:
     out: PutTableBucketMaintenanceConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "value" in data:
+    if data.get("value") is not None:
         import capo_s3tables.types.table_bucket_maintenance_configuration_value
 
         out["value"] = (

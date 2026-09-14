@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Cpus:
 
     out: Cpus = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_drs.types.cpu.deserialize_json(item))
     return out

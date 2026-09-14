@@ -40,11 +40,11 @@ def serialize_json(value: SaaSTable) -> dict:
 
 def deserialize_json(data: dict) -> SaaSTable:
     out: SaaSTable = {}  # type: ignore[typeddict-item]
-    if "DataSourceArn" in data:
+    if data.get("DataSourceArn") is not None:
         out["data_source_arn"] = data["DataSourceArn"]
     else:
         raise DeserializationError("SaaSTable.data_source_arn required")
-    if "TablePath" in data:
+    if data.get("TablePath") is not None:
         import capo_quicksight.types.table_path_element_list
 
         out["table_path"] = (
@@ -54,7 +54,7 @@ def deserialize_json(data: dict) -> SaaSTable:
         )
     else:
         raise DeserializationError("SaaSTable.table_path required")
-    if "InputColumns" in data:
+    if data.get("InputColumns") is not None:
         import capo_quicksight.types.input_column_list
 
         out["input_columns"] = capo_quicksight.types.input_column_list.deserialize_json(

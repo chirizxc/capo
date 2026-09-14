@@ -31,7 +31,7 @@ def serialize_json(value: ReplicationStartingPosition) -> dict:
 
 def deserialize_json(data: dict) -> ReplicationStartingPosition:
     out: ReplicationStartingPosition = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_kafka.types.replication_starting_position_type
 
         out["type"] = (

@@ -33,7 +33,7 @@ def serialize_json(value: BundleInformation) -> dict:
 
 def deserialize_json(data: dict) -> BundleInformation:
     out: BundleInformation = {}  # type: ignore[typeddict-item]
-    if "bundleNames" in data:
+    if data.get("bundleNames") is not None:
         import capo_iottwinmaker.types.pricing_bundles
 
         out["bundle_names"] = capo_iottwinmaker.types.pricing_bundles.deserialize_json(
@@ -41,6 +41,6 @@ def deserialize_json(data: dict) -> BundleInformation:
         )
     else:
         raise DeserializationError("BundleInformation.bundle_names required")
-    if "pricingTier" in data:
+    if data.get("pricingTier") is not None:
         out["pricing_tier"] = data["pricingTier"]
     return out

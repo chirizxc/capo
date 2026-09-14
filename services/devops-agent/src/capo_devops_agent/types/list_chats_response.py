@@ -32,7 +32,7 @@ def serialize_json(value: ListChatsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListChatsResponse:
     out: ListChatsResponse = {}  # type: ignore[typeddict-item]
-    if "executions" in data:
+    if data.get("executions") is not None:
         import capo_devops_agent.types.chat_execution_list
 
         out["executions"] = (
@@ -42,6 +42,6 @@ def deserialize_json(data: dict) -> ListChatsResponse:
         )
     else:
         raise DeserializationError("ListChatsResponse.executions required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

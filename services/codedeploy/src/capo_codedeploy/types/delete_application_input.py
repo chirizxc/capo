@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteApplicationInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteApplicationInput:
     out: DeleteApplicationInput = {}  # type: ignore[typeddict-item]
-    if "applicationName" in data:
+    if data.get("applicationName") is not None:
         out["application_name"] = data["applicationName"]
     else:
         raise DeserializationError("DeleteApplicationInput.application_name required")

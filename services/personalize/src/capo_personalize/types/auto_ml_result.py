@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: AutoMLResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AutoMLResult:
     out: AutoMLResult = {}  # type: ignore[typeddict-item]
-    if "bestRecipeArn" in data:
+    if data.get("bestRecipeArn") is not None:
         out["best_recipe_arn"] = data["bestRecipeArn"]
     return out

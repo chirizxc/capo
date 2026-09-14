@@ -24,7 +24,7 @@ def serialize_json(value: InvalidPolicyRevisionIdException_) -> dict:
 
 def deserialize_json(data: dict) -> InvalidPolicyRevisionIdException_:
     out: InvalidPolicyRevisionIdException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,20 @@ class InvalidPolicyRevisionIdException(ServiceError):
 
     code: str | None = "InvalidPolicyRevisionIdException"
 
-    def __init__(self, data: InvalidPolicyRevisionIdException_):
+    def __init__(
+        self, data: InvalidPolicyRevisionIdException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidPolicyRevisionIdException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "InvalidPolicyRevisionIdException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidPolicyRevisionIdException":
+        return cls(deserialize_json(data), message)

@@ -23,6 +23,6 @@ def serialize_json(value: DeletePricingPlanOutput) -> dict:
 
 def deserialize_json(data: dict) -> DeletePricingPlanOutput:
     out: DeletePricingPlanOutput = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     return out

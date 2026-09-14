@@ -48,11 +48,11 @@ def serialize_json(value: UpdateThemeData) -> dict:
 
 def deserialize_json(data: dict) -> UpdateThemeData:
     out: UpdateThemeData = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_amplifyuibuilder.types.theme_values_list
 
         out["values"] = capo_amplifyuibuilder.types.theme_values_list.deserialize_json(
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> UpdateThemeData:
         )
     else:
         raise DeserializationError("UpdateThemeData.values required")
-    if "overrides" in data:
+    if data.get("overrides") is not None:
         import capo_amplifyuibuilder.types.theme_values_list
 
         out["overrides"] = (

@@ -16,4 +16,4 @@ def serialize_json(value: LaunchConfigurationTemplateIDs) -> list:
 
 
 def deserialize_json(data: list) -> LaunchConfigurationTemplateIDs:
-    return list(data)
+    return [item for item in data if item is not None]

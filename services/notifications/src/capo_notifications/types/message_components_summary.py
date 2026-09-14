@@ -19,7 +19,7 @@ def serialize_json(value: MessageComponentsSummary) -> dict:
 
 def deserialize_json(data: dict) -> MessageComponentsSummary:
     out: MessageComponentsSummary = {}  # type: ignore[typeddict-item]
-    if "headline" in data:
+    if data.get("headline") is not None:
         out["headline"] = data["headline"]
     else:
         raise DeserializationError("MessageComponentsSummary.headline required")

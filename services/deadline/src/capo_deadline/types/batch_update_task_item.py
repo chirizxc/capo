@@ -48,27 +48,27 @@ def serialize_json(value: BatchUpdateTaskItem) -> dict:
 
 def deserialize_json(data: dict) -> BatchUpdateTaskItem:
     out: BatchUpdateTaskItem = {}  # type: ignore[typeddict-item]
-    if "farmId" in data:
+    if data.get("farmId") is not None:
         out["farm_id"] = data["farmId"]
     else:
         raise DeserializationError("BatchUpdateTaskItem.farm_id required")
-    if "queueId" in data:
+    if data.get("queueId") is not None:
         out["queue_id"] = data["queueId"]
     else:
         raise DeserializationError("BatchUpdateTaskItem.queue_id required")
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
     else:
         raise DeserializationError("BatchUpdateTaskItem.job_id required")
-    if "stepId" in data:
+    if data.get("stepId") is not None:
         out["step_id"] = data["stepId"]
     else:
         raise DeserializationError("BatchUpdateTaskItem.step_id required")
-    if "taskId" in data:
+    if data.get("taskId") is not None:
         out["task_id"] = data["taskId"]
     else:
         raise DeserializationError("BatchUpdateTaskItem.task_id required")
-    if "targetRunStatus" in data:
+    if data.get("targetRunStatus") is not None:
         import capo_deadline.types.task_target_run_status
 
         out["target_run_status"] = (

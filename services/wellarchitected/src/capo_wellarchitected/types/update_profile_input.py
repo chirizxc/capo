@@ -41,9 +41,9 @@ def serialize_json(value: UpdateProfileInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateProfileInput:
     out: UpdateProfileInput = {}  # type: ignore[typeddict-item]
-    if "ProfileDescription" in data:
+    if data.get("ProfileDescription") is not None:
         out["profile_description"] = data["ProfileDescription"]
-    if "ProfileQuestions" in data:
+    if data.get("ProfileQuestions") is not None:
         import capo_wellarchitected.types.profile_question_updates
 
         out["profile_questions"] = (

@@ -44,7 +44,7 @@ def serialize_json(value: NetworkTrafficConfig) -> dict:
 
 def deserialize_json(data: dict) -> NetworkTrafficConfig:
     out: NetworkTrafficConfig = {}  # type: ignore[typeddict-item]
-    if "rules" in data:
+    if data.get("rules") is not None:
         import capo_securityagent.types.network_traffic_rule_list
 
         out["rules"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> NetworkTrafficConfig:
                 data["rules"]
             )
         )
-    if "customHeaders" in data:
+    if data.get("customHeaders") is not None:
         import capo_securityagent.types.custom_header_list
 
         out["custom_headers"] = (

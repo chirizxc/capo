@@ -39,24 +39,24 @@ def serialize_json(value: AssumeDecoratedRoleWithSAMLRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssumeDecoratedRoleWithSAMLRequest:
     out: AssumeDecoratedRoleWithSAMLRequest = {}  # type: ignore[typeddict-item]
-    if "SAMLAssertion" in data:
+    if data.get("SAMLAssertion") is not None:
         out["saml_assertion"] = data["SAMLAssertion"]
     else:
         raise DeserializationError(
             "AssumeDecoratedRoleWithSAMLRequest.saml_assertion required"
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError(
             "AssumeDecoratedRoleWithSAMLRequest.role_arn required"
         )
-    if "PrincipalArn" in data:
+    if data.get("PrincipalArn") is not None:
         out["principal_arn"] = data["PrincipalArn"]
     else:
         raise DeserializationError(
             "AssumeDecoratedRoleWithSAMLRequest.principal_arn required"
         )
-    if "DurationSeconds" in data:
+    if data.get("DurationSeconds") is not None:
         out["duration_seconds"] = data["DurationSeconds"]
     return out

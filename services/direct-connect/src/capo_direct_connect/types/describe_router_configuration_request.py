@@ -33,12 +33,12 @@ def serialize_aws_json_1_1(value: DescribeRouterConfigurationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeRouterConfigurationRequest:
     out: DescribeRouterConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "virtualInterfaceId" in data:
+    if data.get("virtualInterfaceId") is not None:
         out["virtual_interface_id"] = data["virtualInterfaceId"]
     else:
         raise DeserializationError(
             "DescribeRouterConfigurationRequest.virtual_interface_id required"
         )
-    if "routerTypeIdentifier" in data:
+    if data.get("routerTypeIdentifier") is not None:
         out["router_type_identifier"] = data["routerTypeIdentifier"]
     return out

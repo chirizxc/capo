@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> InferenceEventSummaries:
 
     out: InferenceEventSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lookoutequipment.types.inference_event_summary.deserialize_aws_json_1_0(
                 item

@@ -73,35 +73,35 @@ def serialize_aws_json_1_1(value: AdvancedFieldSelector) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AdvancedFieldSelector:
     out: AdvancedFieldSelector = {}  # type: ignore[typeddict-item]
-    if "Field" in data:
+    if data.get("Field") is not None:
         out["field"] = data["Field"]
     else:
         raise DeserializationError("AdvancedFieldSelector.field required")
-    if "Equals" in data:
+    if data.get("Equals") is not None:
         import capo_cloudtrail.types.operator
 
         out["equals"] = capo_cloudtrail.types.operator.deserialize_aws_json_1_1(
             data["Equals"]
         )
-    if "StartsWith" in data:
+    if data.get("StartsWith") is not None:
         import capo_cloudtrail.types.operator
 
         out["starts_with"] = capo_cloudtrail.types.operator.deserialize_aws_json_1_1(
             data["StartsWith"]
         )
-    if "EndsWith" in data:
+    if data.get("EndsWith") is not None:
         import capo_cloudtrail.types.operator
 
         out["ends_with"] = capo_cloudtrail.types.operator.deserialize_aws_json_1_1(
             data["EndsWith"]
         )
-    if "NotEquals" in data:
+    if data.get("NotEquals") is not None:
         import capo_cloudtrail.types.operator
 
         out["not_equals"] = capo_cloudtrail.types.operator.deserialize_aws_json_1_1(
             data["NotEquals"]
         )
-    if "NotStartsWith" in data:
+    if data.get("NotStartsWith") is not None:
         import capo_cloudtrail.types.operator
 
         out["not_starts_with"] = (
@@ -109,7 +109,7 @@ def deserialize_aws_json_1_1(data: dict) -> AdvancedFieldSelector:
                 data["NotStartsWith"]
             )
         )
-    if "NotEndsWith" in data:
+    if data.get("NotEndsWith") is not None:
         import capo_cloudtrail.types.operator
 
         out["not_ends_with"] = capo_cloudtrail.types.operator.deserialize_aws_json_1_1(

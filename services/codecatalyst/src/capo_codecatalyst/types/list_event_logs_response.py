@@ -32,9 +32,9 @@ def serialize_json(value: ListEventLogsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListEventLogsResponse:
     out: ListEventLogsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_codecatalyst.types.event_log_entries
 
         out["items"] = capo_codecatalyst.types.event_log_entries.deserialize_json(

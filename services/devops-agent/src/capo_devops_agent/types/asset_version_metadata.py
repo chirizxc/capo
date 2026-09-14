@@ -38,11 +38,11 @@ def serialize_json(value: AssetVersionMetadata) -> dict:
 
 def deserialize_json(data: dict) -> AssetVersionMetadata:
     out: AssetVersionMetadata = {}  # type: ignore[typeddict-item]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     else:
         raise DeserializationError("AssetVersionMetadata.version required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_devops_agent.types._prelude.timestamp
 
         out["created_at"] = capo_devops_agent.types._prelude.timestamp.deserialize_json(
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> AssetVersionMetadata:
         )
     else:
         raise DeserializationError("AssetVersionMetadata.created_at required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_devops_agent.types._prelude.timestamp
 
         out["updated_at"] = capo_devops_agent.types._prelude.timestamp.deserialize_json(

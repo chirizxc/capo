@@ -49,7 +49,7 @@ def serialize_json(value: BatchGetCalculatedAttributeForProfileRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetCalculatedAttributeForProfileRequest:
     out: BatchGetCalculatedAttributeForProfileRequest = {}  # type: ignore[typeddict-item]
-    if "ProfileIds" in data:
+    if data.get("ProfileIds") is not None:
         import capo_customer_profiles.types.batch_get_calculated_attribute_for_profile_id_list
 
         out["profile_ids"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> BatchGetCalculatedAttributeForProfileRequest
         raise DeserializationError(
             "BatchGetCalculatedAttributeForProfileRequest.profile_ids required"
         )
-    if "ConditionOverrides" in data:
+    if data.get("ConditionOverrides") is not None:
         import capo_customer_profiles.types.condition_overrides
 
         out["condition_overrides"] = (

@@ -37,11 +37,11 @@ def serialize_aws_json_1_1(value: TableVersionError) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TableVersionError:
     out: TableVersionError = {}  # type: ignore[typeddict-item]
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
-    if "VersionId" in data:
+    if data.get("VersionId") is not None:
         out["version_id"] = data["VersionId"]
-    if "ErrorDetail" in data:
+    if data.get("ErrorDetail") is not None:
         import capo_glue.types.error_detail
 
         out["error_detail"] = capo_glue.types.error_detail.deserialize_aws_json_1_1(

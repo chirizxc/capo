@@ -51,14 +51,14 @@ class GetConfiguredModelAlgorithmResponse(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: GetConfiguredModelAlgorithmResponse) -> dict:
     out: dict = {}
-    import capo_cleanroomsml.types._prelude.timestamp
+    import capo_cleanroomsml._protocol.serialize
 
-    out["createTime"] = capo_cleanroomsml.types._prelude.timestamp.serialize_json(
+    out["createTime"] = capo_cleanroomsml._protocol.serialize.fmt_date_time(
         value["create_time"]
     )
-    import capo_cleanroomsml.types._prelude.timestamp
+    import capo_cleanroomsml._protocol.serialize
 
-    out["updateTime"] = capo_cleanroomsml.types._prelude.timestamp.serialize_json(
+    out["updateTime"] = capo_cleanroomsml._protocol.serialize.fmt_date_time(
         value["update_time"]
     )
     out["configuredModelAlgorithmArn"] = value["configured_model_algorithm_arn"]
@@ -93,41 +93,37 @@ def serialize_json(value: GetConfiguredModelAlgorithmResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetConfiguredModelAlgorithmResponse:
     out: GetConfiguredModelAlgorithmResponse = {}  # type: ignore[typeddict-item]
-    if "createTime" in data:
-        import capo_cleanroomsml.types._prelude.timestamp
+    if data.get("createTime") is not None:
+        import datetime
 
-        out["create_time"] = (
-            capo_cleanroomsml.types._prelude.timestamp.deserialize_json(
-                data["createTime"]
-            )
+        out["create_time"] = datetime.datetime.fromisoformat(
+            data["createTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError(
             "GetConfiguredModelAlgorithmResponse.create_time required"
         )
-    if "updateTime" in data:
-        import capo_cleanroomsml.types._prelude.timestamp
+    if data.get("updateTime") is not None:
+        import datetime
 
-        out["update_time"] = (
-            capo_cleanroomsml.types._prelude.timestamp.deserialize_json(
-                data["updateTime"]
-            )
+        out["update_time"] = datetime.datetime.fromisoformat(
+            data["updateTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError(
             "GetConfiguredModelAlgorithmResponse.update_time required"
         )
-    if "configuredModelAlgorithmArn" in data:
+    if data.get("configuredModelAlgorithmArn") is not None:
         out["configured_model_algorithm_arn"] = data["configuredModelAlgorithmArn"]
     else:
         raise DeserializationError(
             "GetConfiguredModelAlgorithmResponse.configured_model_algorithm_arn required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GetConfiguredModelAlgorithmResponse.name required")
-    if "trainingContainerConfig" in data:
+    if data.get("trainingContainerConfig") is not None:
         import capo_cleanroomsml.types.container_config
 
         out["training_container_config"] = (
@@ -135,7 +131,7 @@ def deserialize_json(data: dict) -> GetConfiguredModelAlgorithmResponse:
                 data["trainingContainerConfig"]
             )
         )
-    if "inferenceContainerConfig" in data:
+    if data.get("inferenceContainerConfig") is not None:
         import capo_cleanroomsml.types.inference_container_config
 
         out["inference_container_config"] = (
@@ -143,18 +139,18 @@ def deserialize_json(data: dict) -> GetConfiguredModelAlgorithmResponse:
                 data["inferenceContainerConfig"]
             )
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError(
             "GetConfiguredModelAlgorithmResponse.role_arn required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_cleanroomsml.types.tag_map
 
         out["tags"] = capo_cleanroomsml.types.tag_map.deserialize_json(data["tags"])
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
     return out

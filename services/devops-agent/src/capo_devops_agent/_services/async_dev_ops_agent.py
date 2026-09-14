@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.devopsagent#DevOpsAgent``."""
 
 import datetime
+import uuid
 import warnings
 from collections.abc import AsyncGenerator, AsyncIterator
 from contextlib import asynccontextmanager
@@ -282,20 +283,23 @@ class AsyncDevOpsAgentClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_agent.types.create_asset_request.CreateAssetRequest = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
-        input_["asset_type"] = asset_type
+        input_: capo_devops_agent.types.create_asset_request.CreateAssetRequest = {
+            "agent_space_id": agent_space_id,
+            "asset_type": asset_type,
+            "content": content,
+        }
         if metadata is not None:
             input_["metadata"] = metadata
-        input_["content"] = content
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_asset_file(
@@ -348,21 +352,24 @@ class AsyncDevOpsAgentClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_agent.types.create_asset_file_request.CreateAssetFileRequest = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
-        input_["asset_id"] = asset_id
-        input_["path"] = path
-        input_["content"] = content
+        input_: capo_devops_agent.types.create_asset_file_request.CreateAssetFileRequest = {
+            "agent_space_id": agent_space_id,
+            "asset_id": asset_id,
+            "path": path,
+            "content": content,
+        }
         if metadata is not None:
             input_["metadata"] = metadata
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_backlog_task(
@@ -423,23 +430,26 @@ class AsyncDevOpsAgentClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_agent.types.create_backlog_task_request.CreateBacklogTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
+        input_: capo_devops_agent.types.create_backlog_task_request.CreateBacklogTaskRequest = {
+            "agent_space_id": agent_space_id,
+            "task_type": task_type,
+            "title": title,
+            "priority": priority,
+        }
         if reference is not None:
             input_["reference"] = reference
-        input_["task_type"] = task_type
-        input_["title"] = title
         if description is not None:
             input_["description"] = description
-        input_["priority"] = priority
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_chat(
@@ -485,8 +495,9 @@ class AsyncDevOpsAgentClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_agent.types.create_chat_request.CreateChatRequest = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
+        input_: capo_devops_agent.types.create_chat_request.CreateChatRequest = {
+            "agent_space_id": agent_space_id
+        }
         if user_id is not None:
             input_["user_id"] = user_id
         if user_type is not None:
@@ -497,6 +508,7 @@ class AsyncDevOpsAgentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_asset(
@@ -541,15 +553,17 @@ class AsyncDevOpsAgentClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_agent.types.delete_asset_request.DeleteAssetRequest = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
-        input_["asset_id"] = asset_id
+        input_: capo_devops_agent.types.delete_asset_request.DeleteAssetRequest = {
+            "agent_space_id": agent_space_id,
+            "asset_id": asset_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_asset_file(
@@ -596,16 +610,18 @@ class AsyncDevOpsAgentClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_agent.types.delete_asset_file_request.DeleteAssetFileRequest = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
-        input_["asset_id"] = asset_id
-        input_["path"] = path
+        input_: capo_devops_agent.types.delete_asset_file_request.DeleteAssetFileRequest = {
+            "agent_space_id": agent_space_id,
+            "asset_id": asset_id,
+            "path": path,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_account_usage(
@@ -642,13 +658,14 @@ class AsyncDevOpsAgentClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_agent.types.get_account_usage_input.GetAccountUsageInput = {}  # type: ignore[typeddict-item]
+        input_: capo_devops_agent.types.get_account_usage_input.GetAccountUsageInput = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_asset(
@@ -695,9 +712,10 @@ class AsyncDevOpsAgentClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_agent.types.get_asset_request.GetAssetRequest = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
-        input_["asset_id"] = asset_id
+        input_: capo_devops_agent.types.get_asset_request.GetAssetRequest = {
+            "agent_space_id": agent_space_id,
+            "asset_id": asset_id,
+        }
         if asset_version is not None:
             input_["asset_version"] = asset_version
 
@@ -706,6 +724,7 @@ class AsyncDevOpsAgentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_asset_content(
@@ -752,9 +771,10 @@ class AsyncDevOpsAgentClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_agent.types.get_asset_content_request.GetAssetContentRequest = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
-        input_["asset_id"] = asset_id
+        input_: capo_devops_agent.types.get_asset_content_request.GetAssetContentRequest = {
+            "agent_space_id": agent_space_id,
+            "asset_id": asset_id,
+        }
         if asset_version is not None:
             input_["asset_version"] = asset_version
 
@@ -763,6 +783,7 @@ class AsyncDevOpsAgentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_asset_file(
@@ -811,10 +832,11 @@ class AsyncDevOpsAgentClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_agent.types.get_asset_file_request.GetAssetFileRequest = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
-        input_["asset_id"] = asset_id
-        input_["path"] = path
+        input_: capo_devops_agent.types.get_asset_file_request.GetAssetFileRequest = {
+            "agent_space_id": agent_space_id,
+            "asset_id": asset_id,
+            "path": path,
+        }
         if asset_version is not None:
             input_["asset_version"] = asset_version
 
@@ -823,6 +845,7 @@ class AsyncDevOpsAgentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_backlog_task(
@@ -867,15 +890,17 @@ class AsyncDevOpsAgentClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_agent.types.get_backlog_task_request.GetBacklogTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
-        input_["task_id"] = task_id
+        input_: capo_devops_agent.types.get_backlog_task_request.GetBacklogTaskRequest = {
+            "agent_space_id": agent_space_id,
+            "task_id": task_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_recommendation(
@@ -924,9 +949,10 @@ class AsyncDevOpsAgentClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_agent.types.get_recommendation_request.GetRecommendationRequest = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
-        input_["recommendation_id"] = recommendation_id
+        input_: capo_devops_agent.types.get_recommendation_request.GetRecommendationRequest = {
+            "agent_space_id": agent_space_id,
+            "recommendation_id": recommendation_id,
+        }
         if recommendation_version is not None:
             input_["recommendation_version"] = recommendation_version
 
@@ -935,6 +961,7 @@ class AsyncDevOpsAgentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_asset_files(
@@ -985,9 +1012,10 @@ class AsyncDevOpsAgentClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_agent.types.list_asset_files_request.ListAssetFilesRequest = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
-        input_["asset_id"] = asset_id
+        input_: capo_devops_agent.types.list_asset_files_request.ListAssetFilesRequest = {
+            "agent_space_id": agent_space_id,
+            "asset_id": asset_id,
+        }
         if asset_version is not None:
             input_["asset_version"] = asset_version
         if next_token is not None:
@@ -1000,6 +1028,7 @@ class AsyncDevOpsAgentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_asset_files(
@@ -1079,8 +1108,9 @@ class AsyncDevOpsAgentClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_agent.types.list_assets_request.ListAssetsRequest = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
+        input_: capo_devops_agent.types.list_assets_request.ListAssetsRequest = {
+            "agent_space_id": agent_space_id
+        }
         if asset_type is not None:
             input_["asset_type"] = asset_type
         if updated_after is not None:
@@ -1097,6 +1127,7 @@ class AsyncDevOpsAgentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_assets(
@@ -1170,7 +1201,7 @@ class AsyncDevOpsAgentClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_agent.types.list_asset_types_request.ListAssetTypesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_devops_agent.types.list_asset_types_request.ListAssetTypesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1181,6 +1212,7 @@ class AsyncDevOpsAgentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_asset_types(
@@ -1252,9 +1284,10 @@ class AsyncDevOpsAgentClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_agent.types.list_asset_versions_request.ListAssetVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
-        input_["asset_id"] = asset_id
+        input_: capo_devops_agent.types.list_asset_versions_request.ListAssetVersionsRequest = {
+            "agent_space_id": agent_space_id,
+            "asset_id": asset_id,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1265,6 +1298,7 @@ class AsyncDevOpsAgentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_asset_versions(
@@ -1344,8 +1378,9 @@ class AsyncDevOpsAgentClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_agent.types.list_backlog_tasks_request.ListBacklogTasksRequest = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
+        input_: capo_devops_agent.types.list_backlog_tasks_request.ListBacklogTasksRequest = {
+            "agent_space_id": agent_space_id
+        }
         if filter is not None:
             input_["filter"] = filter
         if limit is not None:
@@ -1362,6 +1397,7 @@ class AsyncDevOpsAgentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_backlog_tasks(
@@ -1440,8 +1476,9 @@ class AsyncDevOpsAgentClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_agent.types.list_chats_request.ListChatsRequest = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
+        input_: capo_devops_agent.types.list_chats_request.ListChatsRequest = {
+            "agent_space_id": agent_space_id
+        }
         if user_id is not None:
             input_["user_id"] = user_id
         if max_results is not None:
@@ -1454,6 +1491,7 @@ class AsyncDevOpsAgentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_executions(
@@ -1502,9 +1540,10 @@ class AsyncDevOpsAgentClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_agent.types.list_executions_request.ListExecutionsRequest = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
-        input_["task_id"] = task_id
+        input_: capo_devops_agent.types.list_executions_request.ListExecutionsRequest = {
+            "agent_space_id": agent_space_id,
+            "task_id": task_id,
+        }
         if limit is not None:
             input_["limit"] = limit
         if next_token is not None:
@@ -1515,6 +1554,7 @@ class AsyncDevOpsAgentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_executions(
@@ -1590,8 +1630,9 @@ class AsyncDevOpsAgentClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_agent.types.list_goals_request.ListGoalsRequest = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
+        input_: capo_devops_agent.types.list_goals_request.ListGoalsRequest = {
+            "agent_space_id": agent_space_id
+        }
         if status is not None:
             input_["status"] = status
         if goal_type is not None:
@@ -1606,6 +1647,7 @@ class AsyncDevOpsAgentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_goals(
@@ -1685,9 +1727,10 @@ class AsyncDevOpsAgentClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_agent.types.list_journal_records_request.ListJournalRecordsRequest = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
-        input_["execution_id"] = execution_id
+        input_: capo_devops_agent.types.list_journal_records_request.ListJournalRecordsRequest = {
+            "agent_space_id": agent_space_id,
+            "execution_id": execution_id,
+        }
         if limit is not None:
             input_["limit"] = limit
         if next_token is not None:
@@ -1702,6 +1745,7 @@ class AsyncDevOpsAgentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_journal_records(
@@ -1774,15 +1818,17 @@ class AsyncDevOpsAgentClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_agent.types.list_pending_messages_request.ListPendingMessagesRequest = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
-        input_["execution_id"] = execution_id
+        input_: capo_devops_agent.types.list_pending_messages_request.ListPendingMessagesRequest = {
+            "agent_space_id": agent_space_id,
+            "execution_id": execution_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_recommendations(
@@ -1841,8 +1887,9 @@ class AsyncDevOpsAgentClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_agent.types.list_recommendations_request.ListRecommendationsRequest = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
+        input_: capo_devops_agent.types.list_recommendations_request.ListRecommendationsRequest = {
+            "agent_space_id": agent_space_id
+        }
         if task_id is not None:
             input_["task_id"] = task_id
         if goal_id is not None:
@@ -1861,6 +1908,7 @@ class AsyncDevOpsAgentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_tags_for_resource(
@@ -1903,14 +1951,16 @@ class AsyncDevOpsAgentClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_agent.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_devops_agent.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     @asynccontextmanager
@@ -1966,10 +2016,11 @@ class AsyncDevOpsAgentClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_agent.types.send_message_request.SendMessageRequest = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
-        input_["execution_id"] = execution_id
-        input_["content"] = content
+        input_: capo_devops_agent.types.send_message_request.SendMessageRequest = {
+            "agent_space_id": agent_space_id,
+            "execution_id": execution_id,
+            "content": content,
+        }
         if context is not None:
             input_["context"] = context
         if user_id is not None:
@@ -1982,7 +2033,10 @@ class AsyncDevOpsAgentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
-        yield response.output
+        try:
+            yield response.output
+        finally:
+            await response.response.aclose()
 
     async def tag_resource(
         self,
@@ -2026,15 +2080,17 @@ class AsyncDevOpsAgentClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_agent.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_devops_agent.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -2079,15 +2135,17 @@ class AsyncDevOpsAgentClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_agent.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_devops_agent.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_asset(
@@ -2138,21 +2196,24 @@ class AsyncDevOpsAgentClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_agent.types.update_asset_request.UpdateAssetRequest = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
-        input_["asset_id"] = asset_id
+        input_: capo_devops_agent.types.update_asset_request.UpdateAssetRequest = {
+            "agent_space_id": agent_space_id,
+            "asset_id": asset_id,
+        }
         if metadata is not None:
             input_["metadata"] = metadata
         if content is not None:
             input_["content"] = content
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_asset_file(
@@ -2207,22 +2268,25 @@ class AsyncDevOpsAgentClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_agent.types.update_asset_file_request.UpdateAssetFileRequest = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
-        input_["asset_id"] = asset_id
-        input_["path"] = path
+        input_: capo_devops_agent.types.update_asset_file_request.UpdateAssetFileRequest = {
+            "agent_space_id": agent_space_id,
+            "asset_id": asset_id,
+            "path": path,
+        }
         if content is not None:
             input_["content"] = content
         if metadata is not None:
             input_["metadata"] = metadata
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_backlog_task(
@@ -2273,19 +2337,22 @@ class AsyncDevOpsAgentClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_agent.types.update_backlog_task_request.UpdateBacklogTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
-        input_["task_id"] = task_id
+        input_: capo_devops_agent.types.update_backlog_task_request.UpdateBacklogTaskRequest = {
+            "agent_space_id": agent_space_id,
+            "task_id": task_id,
+        }
         if task_status is not None:
             input_["task_status"] = task_status
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_goal(
@@ -2336,19 +2403,22 @@ class AsyncDevOpsAgentClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_agent.types.update_goal_request.UpdateGoalRequest = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
-        input_["goal_id"] = goal_id
+        input_: capo_devops_agent.types.update_goal_request.UpdateGoalRequest = {
+            "agent_space_id": agent_space_id,
+            "goal_id": goal_id,
+        }
         if evaluation_schedule is not None:
             input_["evaluation_schedule"] = evaluation_schedule
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_recommendation(
@@ -2401,21 +2471,24 @@ class AsyncDevOpsAgentClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_agent.types.update_recommendation_request.UpdateRecommendationRequest = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
-        input_["recommendation_id"] = recommendation_id
+        input_: capo_devops_agent.types.update_recommendation_request.UpdateRecommendationRequest = {
+            "agent_space_id": agent_space_id,
+            "recommendation_id": recommendation_id,
+        }
         if status is not None:
             input_["status"] = status
         if additional_context is not None:
             input_["additional_context"] = additional_context
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

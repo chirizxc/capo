@@ -27,13 +27,13 @@ def serialize_aws_json_1_1(value: TestConnectionMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TestConnectionMessage:
     out: TestConnectionMessage = {}  # type: ignore[typeddict-item]
-    if "ReplicationInstanceArn" in data:
+    if data.get("ReplicationInstanceArn") is not None:
         out["replication_instance_arn"] = data["ReplicationInstanceArn"]
     else:
         raise DeserializationError(
             "TestConnectionMessage.replication_instance_arn required"
         )
-    if "EndpointArn" in data:
+    if data.get("EndpointArn") is not None:
         out["endpoint_arn"] = data["EndpointArn"]
     else:
         raise DeserializationError("TestConnectionMessage.endpoint_arn required")

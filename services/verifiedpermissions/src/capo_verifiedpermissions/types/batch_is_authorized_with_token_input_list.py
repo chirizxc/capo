@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> BatchIsAuthorizedWithTokenInputList:
 
     out: BatchIsAuthorizedWithTokenInputList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_verifiedpermissions.types.batch_is_authorized_with_token_input_item.deserialize_aws_json_1_0(
                 item

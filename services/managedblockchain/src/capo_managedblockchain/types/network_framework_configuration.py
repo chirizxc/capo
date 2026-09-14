@@ -31,7 +31,7 @@ def serialize_json(value: NetworkFrameworkConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> NetworkFrameworkConfiguration:
     out: NetworkFrameworkConfiguration = {}  # type: ignore[typeddict-item]
-    if "Fabric" in data:
+    if data.get("Fabric") is not None:
         import capo_managedblockchain.types.network_fabric_configuration
 
         out["fabric"] = (

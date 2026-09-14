@@ -96,9 +96,10 @@ class SchemaVersionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.get_schema_version_request.GetSchemaVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["type"] = type
-        input_["schema_versioned_id"] = schema_versioned_id
+        input_: capo_iot_managed_integrations.types.get_schema_version_request.GetSchemaVersionRequest = {
+            "type": type,
+            "schema_versioned_id": schema_versioned_id,
+        }
         if format is not None:
             input_["format"] = format
 
@@ -107,6 +108,7 @@ class SchemaVersionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -180,8 +182,9 @@ class SchemaVersionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.list_schema_versions_request.ListSchemaVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["type"] = type
+        input_: capo_iot_managed_integrations.types.list_schema_versions_request.ListSchemaVersionsRequest = {
+            "type": type
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -200,6 +203,7 @@ class SchemaVersionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -262,9 +266,10 @@ class AsyncSchemaVersionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.get_schema_version_request.GetSchemaVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["type"] = type
-        input_["schema_versioned_id"] = schema_versioned_id
+        input_: capo_iot_managed_integrations.types.get_schema_version_request.GetSchemaVersionRequest = {
+            "type": type,
+            "schema_versioned_id": schema_versioned_id,
+        }
         if format is not None:
             input_["format"] = format
 
@@ -273,6 +278,7 @@ class AsyncSchemaVersionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -347,8 +353,9 @@ class AsyncSchemaVersionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.list_schema_versions_request.ListSchemaVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["type"] = type
+        input_: capo_iot_managed_integrations.types.list_schema_versions_request.ListSchemaVersionsRequest = {
+            "type": type
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -367,4 +374,5 @@ class AsyncSchemaVersionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

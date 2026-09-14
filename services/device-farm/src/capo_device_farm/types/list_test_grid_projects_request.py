@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: ListTestGridProjectsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListTestGridProjectsRequest:
     out: ListTestGridProjectsRequest = {}  # type: ignore[typeddict-item]
-    if "maxResult" in data:
+    if data.get("maxResult") is not None:
         out["max_result"] = data["maxResult"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

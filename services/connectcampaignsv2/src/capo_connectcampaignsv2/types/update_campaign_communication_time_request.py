@@ -31,7 +31,7 @@ def serialize_json(value: UpdateCampaignCommunicationTimeRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateCampaignCommunicationTimeRequest:
     out: UpdateCampaignCommunicationTimeRequest = {}  # type: ignore[typeddict-item]
-    if "communicationTimeConfig" in data:
+    if data.get("communicationTimeConfig") is not None:
         import capo_connectcampaignsv2.types.communication_time_config
 
         out["communication_time_config"] = (

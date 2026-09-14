@@ -30,10 +30,10 @@ def serialize_json(value: MulticastGroup) -> dict:
 
 def deserialize_json(data: dict) -> MulticastGroup:
     out: MulticastGroup = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     return out

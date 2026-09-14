@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: SavingsPlansCostCalculation) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SavingsPlansCostCalculation:
     out: SavingsPlansCostCalculation = {}  # type: ignore[typeddict-item]
-    if "pricing" in data:
+    if data.get("pricing") is not None:
         import capo_cost_optimization_hub.types.savings_plans_pricing
 
         out["pricing"] = (

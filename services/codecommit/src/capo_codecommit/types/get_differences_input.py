@@ -51,24 +51,24 @@ def serialize_aws_json_1_1(value: GetDifferencesInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDifferencesInput:
     out: GetDifferencesInput = {}  # type: ignore[typeddict-item]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
     else:
         raise DeserializationError("GetDifferencesInput.repository_name required")
-    if "beforeCommitSpecifier" in data:
+    if data.get("beforeCommitSpecifier") is not None:
         out["before_commit_specifier"] = data["beforeCommitSpecifier"]
-    if "afterCommitSpecifier" in data:
+    if data.get("afterCommitSpecifier") is not None:
         out["after_commit_specifier"] = data["afterCommitSpecifier"]
     else:
         raise DeserializationError(
             "GetDifferencesInput.after_commit_specifier required"
         )
-    if "beforePath" in data:
+    if data.get("beforePath") is not None:
         out["before_path"] = data["beforePath"]
-    if "afterPath" in data:
+    if data.get("afterPath") is not None:
         out["after_path"] = data["afterPath"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

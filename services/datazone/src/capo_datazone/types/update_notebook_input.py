@@ -86,35 +86,35 @@ def serialize_json(value: UpdateNotebookInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateNotebookInput:
     out: UpdateNotebookInput = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.notebook_status
 
         out["status"] = capo_datazone.types.notebook_status.deserialize_json(
             data["status"]
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "cellOrder" in data:
+    if data.get("cellOrder") is not None:
         import capo_datazone.types.cell_order
 
         out["cell_order"] = capo_datazone.types.cell_order.deserialize_json(
             data["cellOrder"]
         )
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         import capo_datazone.types.metadata
 
         out["metadata"] = capo_datazone.types.metadata.deserialize_json(
             data["metadata"]
         )
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_datazone.types.parameters
 
         out["parameters"] = capo_datazone.types.parameters.deserialize_json(
             data["parameters"]
         )
-    if "environmentConfiguration" in data:
+    if data.get("environmentConfiguration") is not None:
         import capo_datazone.types.environment_config
 
         out["environment_configuration"] = (
@@ -122,6 +122,6 @@ def deserialize_json(data: dict) -> UpdateNotebookInput:
                 data["environmentConfiguration"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

@@ -34,9 +34,9 @@ def serialize_json(value: CustomValuesConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> CustomValuesConfiguration:
     out: CustomValuesConfiguration = {}  # type: ignore[typeddict-item]
-    if "IncludeNullValue" in data:
+    if data.get("IncludeNullValue") is not None:
         out["include_null_value"] = data["IncludeNullValue"]
-    if "CustomValues" in data:
+    if data.get("CustomValues") is not None:
         import capo_quicksight.types.custom_parameter_values
 
         out["custom_values"] = (

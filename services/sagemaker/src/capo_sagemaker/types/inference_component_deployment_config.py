@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: InferenceComponentDeploymentConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InferenceComponentDeploymentConfig:
     out: InferenceComponentDeploymentConfig = {}  # type: ignore[typeddict-item]
-    if "RollingUpdatePolicy" in data:
+    if data.get("RollingUpdatePolicy") is not None:
         import capo_sagemaker.types.inference_component_rolling_update_policy
 
         out["rolling_update_policy"] = (
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_1(data: dict) -> InferenceComponentDeploymentConfig:
                 data["RollingUpdatePolicy"]
             )
         )
-    if "AutoRollbackConfiguration" in data:
+    if data.get("AutoRollbackConfiguration") is not None:
         import capo_sagemaker.types.auto_rollback_config
 
         out["auto_rollback_configuration"] = (

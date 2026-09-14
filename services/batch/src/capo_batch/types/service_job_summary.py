@@ -104,7 +104,7 @@ def serialize_json(value: ServiceJobSummary) -> dict:
 
 def deserialize_json(data: dict) -> ServiceJobSummary:
     out: ServiceJobSummary = {}  # type: ignore[typeddict-item]
-    if "latestAttempt" in data:
+    if data.get("latestAttempt") is not None:
         import capo_batch.types.latest_service_job_attempt
 
         out["latest_attempt"] = (
@@ -112,7 +112,7 @@ def deserialize_json(data: dict) -> ServiceJobSummary:
                 data["latestAttempt"]
             )
         )
-    if "capacityUsage" in data:
+    if data.get("capacityUsage") is not None:
         import capo_batch.types.service_job_capacity_usage_summary_list
 
         out["capacity_usage"] = (
@@ -120,36 +120,36 @@ def deserialize_json(data: dict) -> ServiceJobSummary:
                 data["capacityUsage"]
             )
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         out["created_at"] = data["createdAt"]
-    if "jobArn" in data:
+    if data.get("jobArn") is not None:
         out["job_arn"] = data["jobArn"]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
-    if "jobName" in data:
+    if data.get("jobName") is not None:
         out["job_name"] = data["jobName"]
-    if "scheduledAt" in data:
+    if data.get("scheduledAt") is not None:
         out["scheduled_at"] = data["scheduledAt"]
-    if "serviceJobType" in data:
+    if data.get("serviceJobType") is not None:
         import capo_batch.types.service_job_type
 
         out["service_job_type"] = capo_batch.types.service_job_type.deserialize_json(
             data["serviceJobType"]
         )
-    if "shareIdentifier" in data:
+    if data.get("shareIdentifier") is not None:
         out["share_identifier"] = data["shareIdentifier"]
-    if "quotaShareName" in data:
+    if data.get("quotaShareName") is not None:
         out["quota_share_name"] = data["quotaShareName"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_batch.types.service_job_status
 
         out["status"] = capo_batch.types.service_job_status.deserialize_json(
             data["status"]
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "startedAt" in data:
+    if data.get("startedAt") is not None:
         out["started_at"] = data["startedAt"]
-    if "stoppedAt" in data:
+    if data.get("stoppedAt") is not None:
         out["stopped_at"] = data["stoppedAt"]
     return out

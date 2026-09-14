@@ -94,10 +94,10 @@ def serialize_aws_json_1_1(value: Namespace) -> dict:
     if "status" in value:
         out["status"] = value["status"]
     if "creation_date" in value:
-        import capo_redshift_serverless.types._prelude.timestamp
+        import capo_redshift_serverless._protocol.serialize
 
         out["creationDate"] = (
-            capo_redshift_serverless.types._prelude.timestamp.serialize_aws_json_1_1(
+            capo_redshift_serverless._protocol.serialize.fmt_date_time(
                 value["creation_date"]
             )
         )
@@ -114,21 +114,21 @@ def serialize_aws_json_1_1(value: Namespace) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Namespace:
     out: Namespace = {}  # type: ignore[typeddict-item]
-    if "namespaceArn" in data:
+    if data.get("namespaceArn") is not None:
         out["namespace_arn"] = data["namespaceArn"]
-    if "namespaceId" in data:
+    if data.get("namespaceId") is not None:
         out["namespace_id"] = data["namespaceId"]
-    if "namespaceName" in data:
+    if data.get("namespaceName") is not None:
         out["namespace_name"] = data["namespaceName"]
-    if "adminUsername" in data:
+    if data.get("adminUsername") is not None:
         out["admin_username"] = data["adminUsername"]
-    if "dbName" in data:
+    if data.get("dbName") is not None:
         out["db_name"] = data["dbName"]
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
-    if "defaultIamRoleArn" in data:
+    if data.get("defaultIamRoleArn") is not None:
         out["default_iam_role_arn"] = data["defaultIamRoleArn"]
-    if "iamRoles" in data:
+    if data.get("iamRoles") is not None:
         import capo_redshift_serverless.types.iam_role_arn_list
 
         out["iam_roles"] = (
@@ -136,7 +136,7 @@ def deserialize_aws_json_1_1(data: dict) -> Namespace:
                 data["iamRoles"]
             )
         )
-    if "logExports" in data:
+    if data.get("logExports") is not None:
         import capo_redshift_serverless.types.log_export_list
 
         out["log_exports"] = (
@@ -144,22 +144,20 @@ def deserialize_aws_json_1_1(data: dict) -> Namespace:
                 data["logExports"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "creationDate" in data:
-        import capo_redshift_serverless.types._prelude.timestamp
+    if data.get("creationDate") is not None:
+        import datetime
 
-        out["creation_date"] = (
-            capo_redshift_serverless.types._prelude.timestamp.deserialize_aws_json_1_1(
-                data["creationDate"]
-            )
+        out["creation_date"] = datetime.datetime.fromisoformat(
+            data["creationDate"].replace("Z", "+00:00")
         )
-    if "adminPasswordSecretArn" in data:
+    if data.get("adminPasswordSecretArn") is not None:
         out["admin_password_secret_arn"] = data["adminPasswordSecretArn"]
-    if "adminPasswordSecretKmsKeyId" in data:
+    if data.get("adminPasswordSecretKmsKeyId") is not None:
         out["admin_password_secret_kms_key_id"] = data["adminPasswordSecretKmsKeyId"]
-    if "lakehouseRegistrationStatus" in data:
+    if data.get("lakehouseRegistrationStatus") is not None:
         out["lakehouse_registration_status"] = data["lakehouseRegistrationStatus"]
-    if "catalogArn" in data:
+    if data.get("catalogArn") is not None:
         out["catalog_arn"] = data["catalogArn"]
     return out

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DescribeSolutionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeSolutionRequest:
     out: DescribeSolutionRequest = {}  # type: ignore[typeddict-item]
-    if "solutionArn" in data:
+    if data.get("solutionArn") is not None:
         out["solution_arn"] = data["solutionArn"]
     else:
         raise DeserializationError("DescribeSolutionRequest.solution_arn required")

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> UserHierarchyGroupSearchConditionList:
 
     out: UserHierarchyGroupSearchConditionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.user_hierarchy_group_search_criteria.deserialize_json(
                 item

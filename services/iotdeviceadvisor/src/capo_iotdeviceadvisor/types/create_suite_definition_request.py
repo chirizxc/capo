@@ -43,7 +43,7 @@ def serialize_json(value: CreateSuiteDefinitionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateSuiteDefinitionRequest:
     out: CreateSuiteDefinitionRequest = {}  # type: ignore[typeddict-item]
-    if "suiteDefinitionConfiguration" in data:
+    if data.get("suiteDefinitionConfiguration") is not None:
         import capo_iotdeviceadvisor.types.suite_definition_configuration
 
         out["suite_definition_configuration"] = (
@@ -51,10 +51,10 @@ def deserialize_json(data: dict) -> CreateSuiteDefinitionRequest:
                 data["suiteDefinitionConfiguration"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iotdeviceadvisor.types.tag_map
 
         out["tags"] = capo_iotdeviceadvisor.types.tag_map.deserialize_json(data["tags"])
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

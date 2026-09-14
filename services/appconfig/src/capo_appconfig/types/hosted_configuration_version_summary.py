@@ -53,20 +53,20 @@ def serialize_json(value: HostedConfigurationVersionSummary) -> dict:
 
 def deserialize_json(data: dict) -> HostedConfigurationVersionSummary:
     out: HostedConfigurationVersionSummary = {}  # type: ignore[typeddict-item]
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
-    if "ConfigurationProfileId" in data:
+    if data.get("ConfigurationProfileId") is not None:
         out["configuration_profile_id"] = data["ConfigurationProfileId"]
-    if "VersionNumber" in data:
+    if data.get("VersionNumber") is not None:
         out["version_number"] = data["VersionNumber"]
     else:
         out["version_number"] = 0
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ContentType" in data:
+    if data.get("ContentType") is not None:
         out["content_type"] = data["ContentType"]
-    if "VersionLabel" in data:
+    if data.get("VersionLabel") is not None:
         out["version_label"] = data["VersionLabel"]
-    if "KmsKeyArn" in data:
+    if data.get("KmsKeyArn") is not None:
         out["kms_key_arn"] = data["KmsKeyArn"]
     return out

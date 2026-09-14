@@ -22,7 +22,7 @@ def serialize_aws_json_1_1(value: ReportTaskProgressOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReportTaskProgressOutput:
     out: ReportTaskProgressOutput = {}  # type: ignore[typeddict-item]
-    if "canceled" in data:
+    if data.get("canceled") is not None:
         out["canceled"] = data["canceled"]
     else:
         out["canceled"] = False

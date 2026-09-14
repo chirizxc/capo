@@ -27,7 +27,7 @@ def serialize_json(value: ParticipantConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ParticipantConfiguration:
     out: ParticipantConfiguration = {}  # type: ignore[typeddict-item]
-    if "ResponseMode" in data:
+    if data.get("ResponseMode") is not None:
         import capo_connect.types.response_mode
 
         out["response_mode"] = capo_connect.types.response_mode.deserialize_json(

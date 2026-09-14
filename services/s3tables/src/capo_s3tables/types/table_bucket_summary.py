@@ -37,9 +37,9 @@ def serialize_json(value: TableBucketSummary) -> dict:
     out["arn"] = value["arn"]
     out["name"] = value["name"]
     out["ownerAccountId"] = value["owner_account_id"]
-    import capo_s3tables.types._prelude.timestamp
+    import capo_s3tables._protocol.serialize
 
-    out["createdAt"] = capo_s3tables.types._prelude.timestamp.serialize_json(
+    out["createdAt"] = capo_s3tables._protocol.serialize.fmt_date_time(
         value["created_at"]
     )
     if "table_bucket_id" in value:
@@ -55,29 +55,29 @@ def serialize_json(value: TableBucketSummary) -> dict:
 
 def deserialize_json(data: dict) -> TableBucketSummary:
     out: TableBucketSummary = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("TableBucketSummary.arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("TableBucketSummary.name required")
-    if "ownerAccountId" in data:
+    if data.get("ownerAccountId") is not None:
         out["owner_account_id"] = data["ownerAccountId"]
     else:
         raise DeserializationError("TableBucketSummary.owner_account_id required")
-    if "createdAt" in data:
-        import capo_s3tables.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = capo_s3tables.types._prelude.timestamp.deserialize_json(
-            data["createdAt"]
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("TableBucketSummary.created_at required")
-    if "tableBucketId" in data:
+    if data.get("tableBucketId") is not None:
         out["table_bucket_id"] = data["tableBucketId"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_s3tables.types.table_bucket_type
 
         out["type"] = capo_s3tables.types.table_bucket_type.deserialize_json(

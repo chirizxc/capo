@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: AcceleratorPartitionConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AcceleratorPartitionConfig:
     out: AcceleratorPartitionConfig = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_sagemaker.types.mig_profile_type
 
         out["type"] = capo_sagemaker.types.mig_profile_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "Count" in data:
+    if data.get("Count") is not None:
         out["count"] = data["Count"]
     return out

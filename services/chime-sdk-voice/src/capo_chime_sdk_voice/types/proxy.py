@@ -50,13 +50,13 @@ def serialize_json(value: Proxy) -> dict:
 
 def deserialize_json(data: dict) -> Proxy:
     out: Proxy = {}  # type: ignore[typeddict-item]
-    if "DefaultSessionExpiryMinutes" in data:
+    if data.get("DefaultSessionExpiryMinutes") is not None:
         out["default_session_expiry_minutes"] = data["DefaultSessionExpiryMinutes"]
-    if "Disabled" in data:
+    if data.get("Disabled") is not None:
         out["disabled"] = data["Disabled"]
-    if "FallBackPhoneNumber" in data:
+    if data.get("FallBackPhoneNumber") is not None:
         out["fall_back_phone_number"] = data["FallBackPhoneNumber"]
-    if "PhoneNumberCountries" in data:
+    if data.get("PhoneNumberCountries") is not None:
         import capo_chime_sdk_voice.types.string_list
 
         out["phone_number_countries"] = (

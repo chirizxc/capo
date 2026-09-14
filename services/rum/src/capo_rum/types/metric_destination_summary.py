@@ -33,10 +33,10 @@ def serialize_json(value: MetricDestinationSummary) -> dict:
 
 def deserialize_json(data: dict) -> MetricDestinationSummary:
     out: MetricDestinationSummary = {}  # type: ignore[typeddict-item]
-    if "Destination" in data:
+    if data.get("Destination") is not None:
         out["destination"] = data["Destination"]
-    if "DestinationArn" in data:
+    if data.get("DestinationArn") is not None:
         out["destination_arn"] = data["DestinationArn"]
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
     return out

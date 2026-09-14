@@ -35,10 +35,10 @@ def serialize_aws_json_1_0(value: ServerSideEncryptionUpdateDetails) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ServerSideEncryptionUpdateDetails:
     out: ServerSideEncryptionUpdateDetails = {}  # type: ignore[typeddict-item]
-    if "OldKmsKeyId" in data:
+    if data.get("OldKmsKeyId") is not None:
         out["old_kms_key_id"] = data["OldKmsKeyId"]
-    if "UpdateStatus" in data:
+    if data.get("UpdateStatus") is not None:
         out["update_status"] = data["UpdateStatus"]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

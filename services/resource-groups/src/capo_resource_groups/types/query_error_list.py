@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> QueryErrorList:
 
     out: QueryErrorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_resource_groups.types.query_error.deserialize_json(item))
     return out

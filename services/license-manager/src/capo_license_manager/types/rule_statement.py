@@ -57,7 +57,7 @@ def serialize_aws_json_1_1(value: RuleStatement) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RuleStatement:
     out: RuleStatement = {}  # type: ignore[typeddict-item]
-    if "LicenseConfigurationRuleStatement" in data:
+    if data.get("LicenseConfigurationRuleStatement") is not None:
         import capo_license_manager.types.license_configuration_rule_statement
 
         out["license_configuration_rule_statement"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> RuleStatement:
                 data["LicenseConfigurationRuleStatement"]
             )
         )
-    if "LicenseRuleStatement" in data:
+    if data.get("LicenseRuleStatement") is not None:
         import capo_license_manager.types.license_rule_statement
 
         out["license_rule_statement"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> RuleStatement:
                 data["LicenseRuleStatement"]
             )
         )
-    if "InstanceRuleStatement" in data:
+    if data.get("InstanceRuleStatement") is not None:
         import capo_license_manager.types.instance_rule_statement
 
         out["instance_rule_statement"] = (

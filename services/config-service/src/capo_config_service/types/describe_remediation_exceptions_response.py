@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: DescribeRemediationExceptionsResponse) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeRemediationExceptionsResponse:
     out: DescribeRemediationExceptionsResponse = {}  # type: ignore[typeddict-item]
-    if "RemediationExceptions" in data:
+    if data.get("RemediationExceptions") is not None:
         import capo_config_service.types.remediation_exceptions
 
         out["remediation_exceptions"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeRemediationExceptionsRespons
                 data["RemediationExceptions"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

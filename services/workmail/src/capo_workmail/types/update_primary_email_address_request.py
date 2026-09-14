@@ -32,19 +32,19 @@ def serialize_aws_json_1_1(value: UpdatePrimaryEmailAddressRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdatePrimaryEmailAddressRequest:
     out: UpdatePrimaryEmailAddressRequest = {}  # type: ignore[typeddict-item]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
     else:
         raise DeserializationError(
             "UpdatePrimaryEmailAddressRequest.organization_id required"
         )
-    if "EntityId" in data:
+    if data.get("EntityId") is not None:
         out["entity_id"] = data["EntityId"]
     else:
         raise DeserializationError(
             "UpdatePrimaryEmailAddressRequest.entity_id required"
         )
-    if "Email" in data:
+    if data.get("Email") is not None:
         out["email"] = data["Email"]
     else:
         raise DeserializationError("UpdatePrimaryEmailAddressRequest.email required")

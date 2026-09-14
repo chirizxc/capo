@@ -118,11 +118,11 @@ def serialize_json(value: RelativeDatesFilter) -> dict:
 
 def deserialize_json(data: dict) -> RelativeDatesFilter:
     out: RelativeDatesFilter = {}  # type: ignore[typeddict-item]
-    if "FilterId" in data:
+    if data.get("FilterId") is not None:
         out["filter_id"] = data["FilterId"]
     else:
         raise DeserializationError("RelativeDatesFilter.filter_id required")
-    if "Column" in data:
+    if data.get("Column") is not None:
         import capo_quicksight.types.column_identifier
 
         out["column"] = capo_quicksight.types.column_identifier.deserialize_json(
@@ -130,7 +130,7 @@ def deserialize_json(data: dict) -> RelativeDatesFilter:
         )
     else:
         raise DeserializationError("RelativeDatesFilter.column required")
-    if "AnchorDateConfiguration" in data:
+    if data.get("AnchorDateConfiguration") is not None:
         import capo_quicksight.types.anchor_date_configuration
 
         out["anchor_date_configuration"] = (
@@ -142,7 +142,7 @@ def deserialize_json(data: dict) -> RelativeDatesFilter:
         raise DeserializationError(
             "RelativeDatesFilter.anchor_date_configuration required"
         )
-    if "MinimumGranularity" in data:
+    if data.get("MinimumGranularity") is not None:
         import capo_quicksight.types.time_granularity
 
         out["minimum_granularity"] = (
@@ -150,7 +150,7 @@ def deserialize_json(data: dict) -> RelativeDatesFilter:
                 data["MinimumGranularity"]
             )
         )
-    if "TimeGranularity" in data:
+    if data.get("TimeGranularity") is not None:
         import capo_quicksight.types.time_granularity
 
         out["time_granularity"] = (
@@ -160,7 +160,7 @@ def deserialize_json(data: dict) -> RelativeDatesFilter:
         )
     else:
         raise DeserializationError("RelativeDatesFilter.time_granularity required")
-    if "RelativeDateType" in data:
+    if data.get("RelativeDateType") is not None:
         import capo_quicksight.types.relative_date_type
 
         out["relative_date_type"] = (
@@ -170,11 +170,11 @@ def deserialize_json(data: dict) -> RelativeDatesFilter:
         )
     else:
         raise DeserializationError("RelativeDatesFilter.relative_date_type required")
-    if "RelativeDateValue" in data:
+    if data.get("RelativeDateValue") is not None:
         out["relative_date_value"] = data["RelativeDateValue"]
-    if "ParameterName" in data:
+    if data.get("ParameterName") is not None:
         out["parameter_name"] = data["ParameterName"]
-    if "NullOption" in data:
+    if data.get("NullOption") is not None:
         import capo_quicksight.types.filter_null_option
 
         out["null_option"] = capo_quicksight.types.filter_null_option.deserialize_json(
@@ -182,7 +182,7 @@ def deserialize_json(data: dict) -> RelativeDatesFilter:
         )
     else:
         raise DeserializationError("RelativeDatesFilter.null_option required")
-    if "ExcludePeriodConfiguration" in data:
+    if data.get("ExcludePeriodConfiguration") is not None:
         import capo_quicksight.types.exclude_period_configuration
 
         out["exclude_period_configuration"] = (
@@ -190,7 +190,7 @@ def deserialize_json(data: dict) -> RelativeDatesFilter:
                 data["ExcludePeriodConfiguration"]
             )
         )
-    if "DefaultFilterControlConfiguration" in data:
+    if data.get("DefaultFilterControlConfiguration") is not None:
         import capo_quicksight.types.default_filter_control_configuration
 
         out["default_filter_control_configuration"] = (

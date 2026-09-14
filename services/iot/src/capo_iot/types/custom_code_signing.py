@@ -52,13 +52,13 @@ def serialize_json(value: CustomCodeSigning) -> dict:
 
 def deserialize_json(data: dict) -> CustomCodeSigning:
     out: CustomCodeSigning = {}  # type: ignore[typeddict-item]
-    if "signature" in data:
+    if data.get("signature") is not None:
         import capo_iot.types.code_signing_signature
 
         out["signature"] = capo_iot.types.code_signing_signature.deserialize_json(
             data["signature"]
         )
-    if "certificateChain" in data:
+    if data.get("certificateChain") is not None:
         import capo_iot.types.code_signing_certificate_chain
 
         out["certificate_chain"] = (
@@ -66,8 +66,8 @@ def deserialize_json(data: dict) -> CustomCodeSigning:
                 data["certificateChain"]
             )
         )
-    if "hashAlgorithm" in data:
+    if data.get("hashAlgorithm") is not None:
         out["hash_algorithm"] = data["hashAlgorithm"]
-    if "signatureAlgorithm" in data:
+    if data.get("signatureAlgorithm") is not None:
         out["signature_algorithm"] = data["signatureAlgorithm"]
     return out

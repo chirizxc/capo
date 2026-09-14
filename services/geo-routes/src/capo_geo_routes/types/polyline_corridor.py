@@ -27,11 +27,11 @@ def serialize_json(value: PolylineCorridor) -> dict:
 
 def deserialize_json(data: dict) -> PolylineCorridor:
     out: PolylineCorridor = {}  # type: ignore[typeddict-item]
-    if "Polyline" in data:
+    if data.get("Polyline") is not None:
         out["polyline"] = data["Polyline"]
     else:
         raise DeserializationError("PolylineCorridor.polyline required")
-    if "Radius" in data:
+    if data.get("Radius") is not None:
         out["radius"] = data["Radius"]
     else:
         raise DeserializationError("PolylineCorridor.radius required")

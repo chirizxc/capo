@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> RumEventList:
 
     out: RumEventList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_rum.types.rum_event.deserialize_json(item))
     return out

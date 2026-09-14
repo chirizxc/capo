@@ -27,10 +27,10 @@ def serialize_aws_json_1_0(value: ListHostsInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListHostsInput:
     out: ListHostsInput = {}  # type: ignore[typeddict-item]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     else:
         out["max_results"] = 0
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

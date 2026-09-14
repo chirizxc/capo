@@ -44,16 +44,16 @@ def serialize_json(value: EksContainerSecurityContext) -> dict:
 
 def deserialize_json(data: dict) -> EksContainerSecurityContext:
     out: EksContainerSecurityContext = {}  # type: ignore[typeddict-item]
-    if "runAsUser" in data:
+    if data.get("runAsUser") is not None:
         out["run_as_user"] = data["runAsUser"]
-    if "runAsGroup" in data:
+    if data.get("runAsGroup") is not None:
         out["run_as_group"] = data["runAsGroup"]
-    if "privileged" in data:
+    if data.get("privileged") is not None:
         out["privileged"] = data["privileged"]
-    if "allowPrivilegeEscalation" in data:
+    if data.get("allowPrivilegeEscalation") is not None:
         out["allow_privilege_escalation"] = data["allowPrivilegeEscalation"]
-    if "readOnlyRootFilesystem" in data:
+    if data.get("readOnlyRootFilesystem") is not None:
         out["read_only_root_filesystem"] = data["readOnlyRootFilesystem"]
-    if "runAsNonRoot" in data:
+    if data.get("runAsNonRoot") is not None:
         out["run_as_non_root"] = data["runAsNonRoot"]
     return out

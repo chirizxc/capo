@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: DeleteVpcIngressConnectionResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteVpcIngressConnectionResponse:
     out: DeleteVpcIngressConnectionResponse = {}  # type: ignore[typeddict-item]
-    if "VpcIngressConnection" in data:
+    if data.get("VpcIngressConnection") is not None:
         import capo_apprunner.types.vpc_ingress_connection
 
         out["vpc_ingress_connection"] = (

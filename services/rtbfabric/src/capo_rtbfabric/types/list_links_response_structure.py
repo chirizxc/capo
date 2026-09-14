@@ -127,17 +127,17 @@ def serialize_json(value: ListLinksResponseStructure) -> dict:
 
 def deserialize_json(data: dict) -> ListLinksResponseStructure:
     out: ListLinksResponseStructure = {}  # type: ignore[typeddict-item]
-    if "gatewayId" in data:
+    if data.get("gatewayId") is not None:
         out["gateway_id"] = data["gatewayId"]
     else:
         raise DeserializationError("ListLinksResponseStructure.gateway_id required")
-    if "peerGatewayId" in data:
+    if data.get("peerGatewayId") is not None:
         out["peer_gateway_id"] = data["peerGatewayId"]
     else:
         raise DeserializationError(
             "ListLinksResponseStructure.peer_gateway_id required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_rtbfabric.types.link_status
 
         out["status"] = capo_rtbfabric.types.link_status.deserialize_json(
@@ -145,7 +145,7 @@ def deserialize_json(data: dict) -> ListLinksResponseStructure:
         )
     else:
         raise DeserializationError("ListLinksResponseStructure.status required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_rtbfabric.types._prelude.timestamp
 
         out["created_at"] = capo_rtbfabric.types._prelude.timestamp.deserialize_json(
@@ -153,7 +153,7 @@ def deserialize_json(data: dict) -> ListLinksResponseStructure:
         )
     else:
         raise DeserializationError("ListLinksResponseStructure.created_at required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_rtbfabric.types._prelude.timestamp
 
         out["updated_at"] = capo_rtbfabric.types._prelude.timestamp.deserialize_json(
@@ -161,13 +161,13 @@ def deserialize_json(data: dict) -> ListLinksResponseStructure:
         )
     else:
         raise DeserializationError("ListLinksResponseStructure.updated_at required")
-    if "direction" in data:
+    if data.get("direction") is not None:
         import capo_rtbfabric.types.link_direction
 
         out["direction"] = capo_rtbfabric.types.link_direction.deserialize_json(
             data["direction"]
         )
-    if "flowModules" in data:
+    if data.get("flowModules") is not None:
         import capo_rtbfabric.types.module_configuration_list
 
         out["flow_modules"] = (
@@ -175,7 +175,7 @@ def deserialize_json(data: dict) -> ListLinksResponseStructure:
                 data["flowModules"]
             )
         )
-    if "pendingFlowModules" in data:
+    if data.get("pendingFlowModules") is not None:
         import capo_rtbfabric.types.module_configuration_list
 
         out["pending_flow_modules"] = (
@@ -183,19 +183,19 @@ def deserialize_json(data: dict) -> ListLinksResponseStructure:
                 data["pendingFlowModules"]
             )
         )
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_rtbfabric.types.link_attributes
 
         out["attributes"] = capo_rtbfabric.types.link_attributes.deserialize_json(
             data["attributes"]
         )
-    if "logSettings" in data:
+    if data.get("logSettings") is not None:
         import capo_rtbfabric.types.link_log_settings
 
         out["log_settings"] = capo_rtbfabric.types.link_log_settings.deserialize_json(
             data["logSettings"]
         )
-    if "connectivityType" in data:
+    if data.get("connectivityType") is not None:
         import capo_rtbfabric.types.connectivity_type
 
         out["connectivity_type"] = (
@@ -203,14 +203,14 @@ def deserialize_json(data: dict) -> ListLinksResponseStructure:
                 data["connectivityType"]
             )
         )
-    if "linkId" in data:
+    if data.get("linkId") is not None:
         out["link_id"] = data["linkId"]
     else:
         raise DeserializationError("ListLinksResponseStructure.link_id required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_rtbfabric.types.tags_map
 
         out["tags"] = capo_rtbfabric.types.tags_map.deserialize_json(data["tags"])
-    if "publicEndpoint" in data:
+    if data.get("publicEndpoint") is not None:
         out["public_endpoint"] = data["publicEndpoint"]
     return out

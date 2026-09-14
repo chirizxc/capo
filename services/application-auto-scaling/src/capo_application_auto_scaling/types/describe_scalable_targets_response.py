@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: DescribeScalableTargetsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeScalableTargetsResponse:
     out: DescribeScalableTargetsResponse = {}  # type: ignore[typeddict-item]
-    if "ScalableTargets" in data:
+    if data.get("ScalableTargets") is not None:
         import capo_application_auto_scaling.types.scalable_targets
 
         out["scalable_targets"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeScalableTargetsResponse:
                 data["ScalableTargets"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

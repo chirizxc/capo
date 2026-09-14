@@ -49,15 +49,15 @@ def serialize_json(value: CreatePackageGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreatePackageGroupRequest:
     out: CreatePackageGroupRequest = {}  # type: ignore[typeddict-item]
-    if "packageGroup" in data:
+    if data.get("packageGroup") is not None:
         out["package_group"] = data["packageGroup"]
     else:
         raise DeserializationError("CreatePackageGroupRequest.package_group required")
-    if "contactInfo" in data:
+    if data.get("contactInfo") is not None:
         out["contact_info"] = data["contactInfo"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_codeartifact.types.tag_list
 
         out["tags"] = capo_codeartifact.types.tag_list.deserialize_json(data["tags"])

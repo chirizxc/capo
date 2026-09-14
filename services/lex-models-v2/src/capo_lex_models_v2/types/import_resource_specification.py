@@ -69,7 +69,7 @@ def serialize_json(value: ImportResourceSpecification) -> dict:
 
 def deserialize_json(data: dict) -> ImportResourceSpecification:
     out: ImportResourceSpecification = {}  # type: ignore[typeddict-item]
-    if "botImportSpecification" in data:
+    if data.get("botImportSpecification") is not None:
         import capo_lex_models_v2.types.bot_import_specification
 
         out["bot_import_specification"] = (
@@ -77,7 +77,7 @@ def deserialize_json(data: dict) -> ImportResourceSpecification:
                 data["botImportSpecification"]
             )
         )
-    if "botLocaleImportSpecification" in data:
+    if data.get("botLocaleImportSpecification") is not None:
         import capo_lex_models_v2.types.bot_locale_import_specification
 
         out["bot_locale_import_specification"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> ImportResourceSpecification:
                 data["botLocaleImportSpecification"]
             )
         )
-    if "customVocabularyImportSpecification" in data:
+    if data.get("customVocabularyImportSpecification") is not None:
         import capo_lex_models_v2.types.custom_vocabulary_import_specification
 
         out["custom_vocabulary_import_specification"] = (
@@ -93,7 +93,7 @@ def deserialize_json(data: dict) -> ImportResourceSpecification:
                 data["customVocabularyImportSpecification"]
             )
         )
-    if "testSetImportResourceSpecification" in data:
+    if data.get("testSetImportResourceSpecification") is not None:
         import capo_lex_models_v2.types.test_set_import_resource_specification
 
         out["test_set_import_resource_specification"] = (

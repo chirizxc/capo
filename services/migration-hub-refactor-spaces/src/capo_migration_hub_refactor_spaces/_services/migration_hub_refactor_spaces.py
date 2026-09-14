@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.migrationhubrefactorspaces#RefactorSpaces``."""
 
+import uuid
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -260,23 +261,26 @@ class MigrationHubRefactorSpacesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_migration_hub_refactor_spaces.types.create_application_request.CreateApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["environment_identifier"] = environment_identifier
-        input_["vpc_id"] = vpc_id
-        input_["proxy_type"] = proxy_type
+        input_: capo_migration_hub_refactor_spaces.types.create_application_request.CreateApplicationRequest = {
+            "name": name,
+            "environment_identifier": environment_identifier,
+            "vpc_id": vpc_id,
+            "proxy_type": proxy_type,
+        }
         if api_gateway_proxy is not None:
             input_["api_gateway_proxy"] = api_gateway_proxy
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_environment(
@@ -330,21 +334,24 @@ class MigrationHubRefactorSpacesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_migration_hub_refactor_spaces.types.create_environment_request.CreateEnvironmentRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_migration_hub_refactor_spaces.types.create_environment_request.CreateEnvironmentRequest = {
+            "name": name,
+            "network_fabric_type": network_fabric_type,
+        }
         if description is not None:
             input_["description"] = description
-        input_["network_fabric_type"] = network_fabric_type
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_route(
@@ -406,25 +413,28 @@ class MigrationHubRefactorSpacesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_migration_hub_refactor_spaces.types.create_route_request.CreateRouteRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_identifier"] = environment_identifier
-        input_["application_identifier"] = application_identifier
-        input_["service_identifier"] = service_identifier
-        input_["route_type"] = route_type
+        input_: capo_migration_hub_refactor_spaces.types.create_route_request.CreateRouteRequest = {
+            "environment_identifier": environment_identifier,
+            "application_identifier": application_identifier,
+            "service_identifier": service_identifier,
+            "route_type": route_type,
+        }
         if default_route is not None:
             input_["default_route"] = default_route
         if uri_path_route is not None:
             input_["uri_path_route"] = uri_path_route
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_service(
@@ -494,29 +504,32 @@ class MigrationHubRefactorSpacesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_migration_hub_refactor_spaces.types.create_service_request.CreateServiceRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_migration_hub_refactor_spaces.types.create_service_request.CreateServiceRequest = {
+            "name": name,
+            "environment_identifier": environment_identifier,
+            "application_identifier": application_identifier,
+            "endpoint_type": endpoint_type,
+        }
         if description is not None:
             input_["description"] = description
-        input_["environment_identifier"] = environment_identifier
-        input_["application_identifier"] = application_identifier
         if vpc_id is not None:
             input_["vpc_id"] = vpc_id
-        input_["endpoint_type"] = endpoint_type
         if url_endpoint is not None:
             input_["url_endpoint"] = url_endpoint
         if lambda_endpoint is not None:
             input_["lambda_endpoint"] = lambda_endpoint
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_application(
@@ -557,15 +570,17 @@ class MigrationHubRefactorSpacesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_migration_hub_refactor_spaces.types.delete_application_request.DeleteApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_identifier"] = environment_identifier
-        input_["application_identifier"] = application_identifier
+        input_: capo_migration_hub_refactor_spaces.types.delete_application_request.DeleteApplicationRequest = {
+            "environment_identifier": environment_identifier,
+            "application_identifier": application_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_environment(
@@ -604,14 +619,16 @@ class MigrationHubRefactorSpacesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_migration_hub_refactor_spaces.types.delete_environment_request.DeleteEnvironmentRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_identifier"] = environment_identifier
+        input_: capo_migration_hub_refactor_spaces.types.delete_environment_request.DeleteEnvironmentRequest = {
+            "environment_identifier": environment_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_resource_policy(
@@ -649,14 +666,16 @@ class MigrationHubRefactorSpacesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_migration_hub_refactor_spaces.types.delete_resource_policy_request.DeleteResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_migration_hub_refactor_spaces.types.delete_resource_policy_request.DeleteResourcePolicyRequest = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_route(
@@ -699,16 +718,18 @@ class MigrationHubRefactorSpacesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_migration_hub_refactor_spaces.types.delete_route_request.DeleteRouteRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_identifier"] = environment_identifier
-        input_["application_identifier"] = application_identifier
-        input_["route_identifier"] = route_identifier
+        input_: capo_migration_hub_refactor_spaces.types.delete_route_request.DeleteRouteRequest = {
+            "environment_identifier": environment_identifier,
+            "application_identifier": application_identifier,
+            "route_identifier": route_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_service(
@@ -751,16 +772,18 @@ class MigrationHubRefactorSpacesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_migration_hub_refactor_spaces.types.delete_service_request.DeleteServiceRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_identifier"] = environment_identifier
-        input_["application_identifier"] = application_identifier
-        input_["service_identifier"] = service_identifier
+        input_: capo_migration_hub_refactor_spaces.types.delete_service_request.DeleteServiceRequest = {
+            "environment_identifier": environment_identifier,
+            "application_identifier": application_identifier,
+            "service_identifier": service_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_application(
@@ -800,15 +823,17 @@ class MigrationHubRefactorSpacesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_migration_hub_refactor_spaces.types.get_application_request.GetApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_identifier"] = environment_identifier
-        input_["application_identifier"] = application_identifier
+        input_: capo_migration_hub_refactor_spaces.types.get_application_request.GetApplicationRequest = {
+            "environment_identifier": environment_identifier,
+            "application_identifier": application_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_environment(
@@ -846,14 +871,16 @@ class MigrationHubRefactorSpacesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_migration_hub_refactor_spaces.types.get_environment_request.GetEnvironmentRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_identifier"] = environment_identifier
+        input_: capo_migration_hub_refactor_spaces.types.get_environment_request.GetEnvironmentRequest = {
+            "environment_identifier": environment_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_resource_policy(
@@ -891,14 +918,16 @@ class MigrationHubRefactorSpacesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_migration_hub_refactor_spaces.types.get_resource_policy_request.GetResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_migration_hub_refactor_spaces.types.get_resource_policy_request.GetResourcePolicyRequest = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_route(
@@ -940,16 +969,18 @@ class MigrationHubRefactorSpacesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_migration_hub_refactor_spaces.types.get_route_request.GetRouteRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_identifier"] = environment_identifier
-        input_["application_identifier"] = application_identifier
-        input_["route_identifier"] = route_identifier
+        input_: capo_migration_hub_refactor_spaces.types.get_route_request.GetRouteRequest = {
+            "environment_identifier": environment_identifier,
+            "application_identifier": application_identifier,
+            "route_identifier": route_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_service(
@@ -991,16 +1022,18 @@ class MigrationHubRefactorSpacesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_migration_hub_refactor_spaces.types.get_service_request.GetServiceRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_identifier"] = environment_identifier
-        input_["application_identifier"] = application_identifier
-        input_["service_identifier"] = service_identifier
+        input_: capo_migration_hub_refactor_spaces.types.get_service_request.GetServiceRequest = {
+            "environment_identifier": environment_identifier,
+            "application_identifier": application_identifier,
+            "service_identifier": service_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_applications(
@@ -1048,8 +1081,9 @@ class MigrationHubRefactorSpacesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_migration_hub_refactor_spaces.types.list_applications_request.ListApplicationsRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_identifier"] = environment_identifier
+        input_: capo_migration_hub_refactor_spaces.types.list_applications_request.ListApplicationsRequest = {
+            "environment_identifier": environment_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1060,6 +1094,7 @@ class MigrationHubRefactorSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_applications(
@@ -1130,7 +1165,7 @@ class MigrationHubRefactorSpacesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_migration_hub_refactor_spaces.types.list_environments_request.ListEnvironmentsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_migration_hub_refactor_spaces.types.list_environments_request.ListEnvironmentsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1141,6 +1176,7 @@ class MigrationHubRefactorSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_environments(
@@ -1211,8 +1247,9 @@ class MigrationHubRefactorSpacesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_migration_hub_refactor_spaces.types.list_environment_vpcs_request.ListEnvironmentVpcsRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_identifier"] = environment_identifier
+        input_: capo_migration_hub_refactor_spaces.types.list_environment_vpcs_request.ListEnvironmentVpcsRequest = {
+            "environment_identifier": environment_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1223,6 +1260,7 @@ class MigrationHubRefactorSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_environment_vpcs(
@@ -1299,9 +1337,10 @@ class MigrationHubRefactorSpacesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_migration_hub_refactor_spaces.types.list_routes_request.ListRoutesRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_identifier"] = environment_identifier
-        input_["application_identifier"] = application_identifier
+        input_: capo_migration_hub_refactor_spaces.types.list_routes_request.ListRoutesRequest = {
+            "environment_identifier": environment_identifier,
+            "application_identifier": application_identifier,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1312,6 +1351,7 @@ class MigrationHubRefactorSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_routes(
@@ -1392,9 +1432,10 @@ class MigrationHubRefactorSpacesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_migration_hub_refactor_spaces.types.list_services_request.ListServicesRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_identifier"] = environment_identifier
-        input_["application_identifier"] = application_identifier
+        input_: capo_migration_hub_refactor_spaces.types.list_services_request.ListServicesRequest = {
+            "environment_identifier": environment_identifier,
+            "application_identifier": application_identifier,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1405,6 +1446,7 @@ class MigrationHubRefactorSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_services(
@@ -1469,14 +1511,16 @@ class MigrationHubRefactorSpacesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_migration_hub_refactor_spaces.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_migration_hub_refactor_spaces.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_resource_policy(
@@ -1517,15 +1561,17 @@ class MigrationHubRefactorSpacesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_migration_hub_refactor_spaces.types.put_resource_policy_request.PutResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["policy"] = policy
+        input_: capo_migration_hub_refactor_spaces.types.put_resource_policy_request.PutResourcePolicyRequest = {
+            "resource_arn": resource_arn,
+            "policy": policy,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -1563,15 +1609,17 @@ class MigrationHubRefactorSpacesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_migration_hub_refactor_spaces.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_migration_hub_refactor_spaces.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -1609,15 +1657,17 @@ class MigrationHubRefactorSpacesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_migration_hub_refactor_spaces.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_migration_hub_refactor_spaces.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_route(
@@ -1661,17 +1711,19 @@ class MigrationHubRefactorSpacesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_migration_hub_refactor_spaces.types.update_route_request.UpdateRouteRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_identifier"] = environment_identifier
-        input_["application_identifier"] = application_identifier
-        input_["route_identifier"] = route_identifier
-        input_["activation_state"] = activation_state
+        input_: capo_migration_hub_refactor_spaces.types.update_route_request.UpdateRouteRequest = {
+            "environment_identifier": environment_identifier,
+            "application_identifier": application_identifier,
+            "route_identifier": route_identifier,
+            "activation_state": activation_state,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

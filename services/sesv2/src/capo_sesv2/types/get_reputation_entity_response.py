@@ -29,7 +29,7 @@ def serialize_json(value: GetReputationEntityResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetReputationEntityResponse:
     out: GetReputationEntityResponse = {}  # type: ignore[typeddict-item]
-    if "ReputationEntity" in data:
+    if data.get("ReputationEntity") is not None:
         import capo_sesv2.types.reputation_entity
 
         out["reputation_entity"] = capo_sesv2.types.reputation_entity.deserialize_json(

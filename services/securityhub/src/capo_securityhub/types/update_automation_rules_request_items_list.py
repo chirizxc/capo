@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> UpdateAutomationRulesRequestItemsList:
 
     out: UpdateAutomationRulesRequestItemsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.update_automation_rules_request_item.deserialize_json(
                 item

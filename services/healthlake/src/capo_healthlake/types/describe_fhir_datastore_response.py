@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: DescribeFHIRDatastoreResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeFHIRDatastoreResponse:
     out: DescribeFHIRDatastoreResponse = {}  # type: ignore[typeddict-item]
-    if "DatastoreProperties" in data:
+    if data.get("DatastoreProperties") is not None:
         import capo_healthlake.types.datastore_properties
 
         out["datastore_properties"] = (

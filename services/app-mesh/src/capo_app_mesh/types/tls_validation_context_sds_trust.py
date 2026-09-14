@@ -24,7 +24,7 @@ def serialize_json(value: TlsValidationContextSdsTrust) -> dict:
 
 def deserialize_json(data: dict) -> TlsValidationContextSdsTrust:
     out: TlsValidationContextSdsTrust = {}  # type: ignore[typeddict-item]
-    if "secretName" in data:
+    if data.get("secretName") is not None:
         out["secret_name"] = data["secretName"]
     else:
         raise DeserializationError("TlsValidationContextSdsTrust.secret_name required")

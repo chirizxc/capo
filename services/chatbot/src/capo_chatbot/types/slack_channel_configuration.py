@@ -107,37 +107,37 @@ def serialize_json(value: SlackChannelConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SlackChannelConfiguration:
     out: SlackChannelConfiguration = {}  # type: ignore[typeddict-item]
-    if "SlackTeamName" in data:
+    if data.get("SlackTeamName") is not None:
         out["slack_team_name"] = data["SlackTeamName"]
     else:
         raise DeserializationError("SlackChannelConfiguration.slack_team_name required")
-    if "SlackTeamId" in data:
+    if data.get("SlackTeamId") is not None:
         out["slack_team_id"] = data["SlackTeamId"]
     else:
         raise DeserializationError("SlackChannelConfiguration.slack_team_id required")
-    if "SlackChannelId" in data:
+    if data.get("SlackChannelId") is not None:
         out["slack_channel_id"] = data["SlackChannelId"]
     else:
         raise DeserializationError(
             "SlackChannelConfiguration.slack_channel_id required"
         )
-    if "SlackChannelName" in data:
+    if data.get("SlackChannelName") is not None:
         out["slack_channel_name"] = data["SlackChannelName"]
     else:
         raise DeserializationError(
             "SlackChannelConfiguration.slack_channel_name required"
         )
-    if "ChatConfigurationArn" in data:
+    if data.get("ChatConfigurationArn") is not None:
         out["chat_configuration_arn"] = data["ChatConfigurationArn"]
     else:
         raise DeserializationError(
             "SlackChannelConfiguration.chat_configuration_arn required"
         )
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
     else:
         raise DeserializationError("SlackChannelConfiguration.iam_role_arn required")
-    if "SnsTopicArns" in data:
+    if data.get("SnsTopicArns") is not None:
         import capo_chatbot.types.sns_topic_arn_list
 
         out["sns_topic_arns"] = capo_chatbot.types.sns_topic_arn_list.deserialize_json(
@@ -145,11 +145,11 @@ def deserialize_json(data: dict) -> SlackChannelConfiguration:
         )
     else:
         raise DeserializationError("SlackChannelConfiguration.sns_topic_arns required")
-    if "ConfigurationName" in data:
+    if data.get("ConfigurationName") is not None:
         out["configuration_name"] = data["ConfigurationName"]
-    if "LoggingLevel" in data:
+    if data.get("LoggingLevel") is not None:
         out["logging_level"] = data["LoggingLevel"]
-    if "GuardrailPolicyArns" in data:
+    if data.get("GuardrailPolicyArns") is not None:
         import capo_chatbot.types.guardrail_policy_arn_list
 
         out["guardrail_policy_arns"] = (
@@ -157,14 +157,14 @@ def deserialize_json(data: dict) -> SlackChannelConfiguration:
                 data["GuardrailPolicyArns"]
             )
         )
-    if "UserAuthorizationRequired" in data:
+    if data.get("UserAuthorizationRequired") is not None:
         out["user_authorization_required"] = data["UserAuthorizationRequired"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_chatbot.types.tags
 
         out["tags"] = capo_chatbot.types.tags.deserialize_json(data["Tags"])
-    if "State" in data:
+    if data.get("State") is not None:
         out["state"] = data["State"]
-    if "StateReason" in data:
+    if data.get("StateReason") is not None:
         out["state_reason"] = data["StateReason"]
     return out

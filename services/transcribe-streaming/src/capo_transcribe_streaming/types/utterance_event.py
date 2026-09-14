@@ -129,13 +129,13 @@ def serialize_json(value: UtteranceEvent) -> dict:
 
 def deserialize_json(data: dict) -> UtteranceEvent:
     out: UtteranceEvent = {}  # type: ignore[typeddict-item]
-    if "UtteranceId" in data:
+    if data.get("UtteranceId") is not None:
         out["utterance_id"] = data["UtteranceId"]
-    if "IsPartial" in data:
+    if data.get("IsPartial") is not None:
         out["is_partial"] = data["IsPartial"]
     else:
         out["is_partial"] = False
-    if "ParticipantRole" in data:
+    if data.get("ParticipantRole") is not None:
         import capo_transcribe_streaming.types.participant_role
 
         out["participant_role"] = (
@@ -143,13 +143,13 @@ def deserialize_json(data: dict) -> UtteranceEvent:
                 data["ParticipantRole"]
             )
         )
-    if "BeginOffsetMillis" in data:
+    if data.get("BeginOffsetMillis") is not None:
         out["begin_offset_millis"] = data["BeginOffsetMillis"]
-    if "EndOffsetMillis" in data:
+    if data.get("EndOffsetMillis") is not None:
         out["end_offset_millis"] = data["EndOffsetMillis"]
-    if "Transcript" in data:
+    if data.get("Transcript") is not None:
         out["transcript"] = data["Transcript"]
-    if "Items" in data:
+    if data.get("Items") is not None:
         import capo_transcribe_streaming.types.call_analytics_item_list
 
         out["items"] = (
@@ -157,7 +157,7 @@ def deserialize_json(data: dict) -> UtteranceEvent:
                 data["Items"]
             )
         )
-    if "Entities" in data:
+    if data.get("Entities") is not None:
         import capo_transcribe_streaming.types.call_analytics_entity_list
 
         out["entities"] = (
@@ -165,13 +165,13 @@ def deserialize_json(data: dict) -> UtteranceEvent:
                 data["Entities"]
             )
         )
-    if "Sentiment" in data:
+    if data.get("Sentiment") is not None:
         import capo_transcribe_streaming.types.sentiment
 
         out["sentiment"] = capo_transcribe_streaming.types.sentiment.deserialize_json(
             data["Sentiment"]
         )
-    if "IssuesDetected" in data:
+    if data.get("IssuesDetected") is not None:
         import capo_transcribe_streaming.types.issues_detected
 
         out["issues_detected"] = (
@@ -179,7 +179,7 @@ def deserialize_json(data: dict) -> UtteranceEvent:
                 data["IssuesDetected"]
             )
         )
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_transcribe_streaming.types.call_analytics_language_code
 
         out["language_code"] = (
@@ -187,7 +187,7 @@ def deserialize_json(data: dict) -> UtteranceEvent:
                 data["LanguageCode"]
             )
         )
-    if "LanguageIdentification" in data:
+    if data.get("LanguageIdentification") is not None:
         import capo_transcribe_streaming.types.call_analytics_language_identification
 
         out["language_identification"] = (

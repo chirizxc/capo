@@ -37,19 +37,19 @@ def serialize_json(value: Credentials) -> dict:
 
 def deserialize_json(data: dict) -> Credentials:
     out: Credentials = {}  # type: ignore[typeddict-item]
-    if "sessionToken" in data:
+    if data.get("sessionToken") is not None:
         out["session_token"] = data["sessionToken"]
     else:
         raise DeserializationError("Credentials.session_token required")
-    if "secretAccessKey" in data:
+    if data.get("secretAccessKey") is not None:
         out["secret_access_key"] = data["secretAccessKey"]
     else:
         raise DeserializationError("Credentials.secret_access_key required")
-    if "accessKeyId" in data:
+    if data.get("accessKeyId") is not None:
         out["access_key_id"] = data["accessKeyId"]
     else:
         raise DeserializationError("Credentials.access_key_id required")
-    if "expiration" in data:
+    if data.get("expiration") is not None:
         import capo_eks_auth.types._prelude.timestamp
 
         out["expiration"] = capo_eks_auth.types._prelude.timestamp.deserialize_json(

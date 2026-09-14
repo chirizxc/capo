@@ -45,17 +45,17 @@ def serialize_aws_json_1_1(value: ScalingRule) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ScalingRule:
     out: ScalingRule = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_emr.types.scaling_action
 
         out["action"] = capo_emr.types.scaling_action.deserialize_aws_json_1_1(
             data["Action"]
         )
-    if "Trigger" in data:
+    if data.get("Trigger") is not None:
         import capo_emr.types.scaling_trigger
 
         out["trigger"] = capo_emr.types.scaling_trigger.deserialize_aws_json_1_1(

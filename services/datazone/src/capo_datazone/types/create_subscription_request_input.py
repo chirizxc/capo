@@ -88,7 +88,7 @@ def serialize_json(value: CreateSubscriptionRequestInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateSubscriptionRequestInput:
     out: CreateSubscriptionRequestInput = {}  # type: ignore[typeddict-item]
-    if "subscribedPrincipals" in data:
+    if data.get("subscribedPrincipals") is not None:
         import capo_datazone.types.subscribed_principal_inputs
 
         out["subscribed_principals"] = (
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> CreateSubscriptionRequestInput:
         raise DeserializationError(
             "CreateSubscriptionRequestInput.subscribed_principals required"
         )
-    if "subscribedListings" in data:
+    if data.get("subscribedListings") is not None:
         import capo_datazone.types.subscribed_listing_inputs
 
         out["subscribed_listings"] = (
@@ -112,15 +112,15 @@ def deserialize_json(data: dict) -> CreateSubscriptionRequestInput:
         raise DeserializationError(
             "CreateSubscriptionRequestInput.subscribed_listings required"
         )
-    if "requestReason" in data:
+    if data.get("requestReason") is not None:
         out["request_reason"] = data["requestReason"]
     else:
         raise DeserializationError(
             "CreateSubscriptionRequestInput.request_reason required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "metadataForms" in data:
+    if data.get("metadataForms") is not None:
         import capo_datazone.types.metadata_form_inputs
 
         out["metadata_forms"] = (
@@ -128,7 +128,7 @@ def deserialize_json(data: dict) -> CreateSubscriptionRequestInput:
                 data["metadataForms"]
             )
         )
-    if "assetPermissions" in data:
+    if data.get("assetPermissions") is not None:
         import capo_datazone.types.asset_permissions
 
         out["asset_permissions"] = (
@@ -136,7 +136,7 @@ def deserialize_json(data: dict) -> CreateSubscriptionRequestInput:
                 data["assetPermissions"]
             )
         )
-    if "assetScopes" in data:
+    if data.get("assetScopes") is not None:
         import capo_datazone.types.accepted_asset_scopes
 
         out["asset_scopes"] = (

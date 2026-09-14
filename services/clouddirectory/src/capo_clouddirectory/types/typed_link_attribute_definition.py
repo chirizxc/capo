@@ -66,11 +66,11 @@ def serialize_json(value: TypedLinkAttributeDefinition) -> dict:
 
 def deserialize_json(data: dict) -> TypedLinkAttributeDefinition:
     out: TypedLinkAttributeDefinition = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("TypedLinkAttributeDefinition.name required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_clouddirectory.types.facet_attribute_type
 
         out["type"] = capo_clouddirectory.types.facet_attribute_type.deserialize_json(
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> TypedLinkAttributeDefinition:
         )
     else:
         raise DeserializationError("TypedLinkAttributeDefinition.type required")
-    if "DefaultValue" in data:
+    if data.get("DefaultValue") is not None:
         import capo_clouddirectory.types.typed_attribute_value
 
         out["default_value"] = (
@@ -86,17 +86,17 @@ def deserialize_json(data: dict) -> TypedLinkAttributeDefinition:
                 data["DefaultValue"]
             )
         )
-    if "IsImmutable" in data:
+    if data.get("IsImmutable") is not None:
         out["is_immutable"] = data["IsImmutable"]
     else:
         out["is_immutable"] = False
-    if "Rules" in data:
+    if data.get("Rules") is not None:
         import capo_clouddirectory.types.rule_map
 
         out["rules"] = capo_clouddirectory.types.rule_map.deserialize_json(
             data["Rules"]
         )
-    if "RequiredBehavior" in data:
+    if data.get("RequiredBehavior") is not None:
         import capo_clouddirectory.types.required_attribute_behavior
 
         out["required_behavior"] = (

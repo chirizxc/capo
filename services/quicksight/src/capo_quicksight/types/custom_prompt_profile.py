@@ -32,15 +32,15 @@ def serialize_json(value: CustomPromptProfile) -> dict:
 
 def deserialize_json(data: dict) -> CustomPromptProfile:
     out: CustomPromptProfile = {}  # type: ignore[typeddict-item]
-    if "ModelProfileId" in data:
+    if data.get("ModelProfileId") is not None:
         out["model_profile_id"] = data["ModelProfileId"]
     else:
         raise DeserializationError("CustomPromptProfile.model_profile_id required")
-    if "SubscriptionId" in data:
+    if data.get("SubscriptionId") is not None:
         out["subscription_id"] = data["SubscriptionId"]
     else:
         raise DeserializationError("CustomPromptProfile.subscription_id required")
-    if "QbsAwsAccountId" in data:
+    if data.get("QbsAwsAccountId") is not None:
         out["qbs_aws_account_id"] = data["QbsAwsAccountId"]
     else:
         raise DeserializationError("CustomPromptProfile.qbs_aws_account_id required")

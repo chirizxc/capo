@@ -32,10 +32,10 @@ def serialize_aws_json_1_1(value: EventDetailsErrorItem) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EventDetailsErrorItem:
     out: EventDetailsErrorItem = {}  # type: ignore[typeddict-item]
-    if "eventArn" in data:
+    if data.get("eventArn") is not None:
         out["event_arn"] = data["eventArn"]
-    if "errorName" in data:
+    if data.get("errorName") is not None:
         out["error_name"] = data["errorName"]
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     return out

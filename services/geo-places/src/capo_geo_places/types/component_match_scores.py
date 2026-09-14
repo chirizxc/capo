@@ -21,7 +21,15 @@ class ComponentMatchScores(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: ComponentMatchScores) -> dict:
     out: dict = {}
-    out["Title"] = value.get("title", 0)
+    out["Title"] = (
+        "NaN"
+        if value.get("title", 0) != value.get("title", 0)
+        else "Infinity"
+        if value.get("title", 0) == float("inf")
+        else "-Infinity"
+        if value.get("title", 0) == float("-inf")
+        else value.get("title", 0)
+    )
     if "address" in value:
         import capo_geo_places.types.address_component_match_scores
 
@@ -35,11 +43,11 @@ def serialize_json(value: ComponentMatchScores) -> dict:
 
 def deserialize_json(data: dict) -> ComponentMatchScores:
     out: ComponentMatchScores = {}  # type: ignore[typeddict-item]
-    if "Title" in data:
-        out["title"] = data["Title"]
+    if data.get("Title") is not None:
+        out["title"] = float(data["Title"])
     else:
         out["title"] = 0
-    if "Address" in data:
+    if data.get("Address") is not None:
         import capo_geo_places.types.address_component_match_scores
 
         out["address"] = (

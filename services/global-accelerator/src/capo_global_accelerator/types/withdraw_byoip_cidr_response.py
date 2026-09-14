@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: WithdrawByoipCidrResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WithdrawByoipCidrResponse:
     out: WithdrawByoipCidrResponse = {}  # type: ignore[typeddict-item]
-    if "ByoipCidr" in data:
+    if data.get("ByoipCidr") is not None:
         import capo_global_accelerator.types.byoip_cidr
 
         out["byoip_cidr"] = (

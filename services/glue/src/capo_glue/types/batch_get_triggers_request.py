@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: BatchGetTriggersRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetTriggersRequest:
     out: BatchGetTriggersRequest = {}  # type: ignore[typeddict-item]
-    if "TriggerNames" in data:
+    if data.get("TriggerNames") is not None:
         import capo_glue.types.trigger_name_list
 
         out["trigger_names"] = (

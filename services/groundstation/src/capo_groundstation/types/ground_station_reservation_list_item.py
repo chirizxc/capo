@@ -64,7 +64,7 @@ def serialize_json(value: GroundStationReservationListItem) -> dict:
 
 def deserialize_json(data: dict) -> GroundStationReservationListItem:
     out: GroundStationReservationListItem = {}  # type: ignore[typeddict-item]
-    if "reservationType" in data:
+    if data.get("reservationType") is not None:
         import capo_groundstation.types.reservation_type
 
         out["reservation_type"] = (
@@ -76,19 +76,19 @@ def deserialize_json(data: dict) -> GroundStationReservationListItem:
         raise DeserializationError(
             "GroundStationReservationListItem.reservation_type required"
         )
-    if "groundStationId" in data:
+    if data.get("groundStationId") is not None:
         out["ground_station_id"] = data["groundStationId"]
     else:
         raise DeserializationError(
             "GroundStationReservationListItem.ground_station_id required"
         )
-    if "antennaName" in data:
+    if data.get("antennaName") is not None:
         out["antenna_name"] = data["antennaName"]
     else:
         raise DeserializationError(
             "GroundStationReservationListItem.antenna_name required"
         )
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_groundstation.types._prelude.timestamp
 
         out["start_time"] = (
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> GroundStationReservationListItem:
         raise DeserializationError(
             "GroundStationReservationListItem.start_time required"
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_groundstation.types._prelude.timestamp
 
         out["end_time"] = capo_groundstation.types._prelude.timestamp.deserialize_json(
@@ -108,7 +108,7 @@ def deserialize_json(data: dict) -> GroundStationReservationListItem:
         )
     else:
         raise DeserializationError("GroundStationReservationListItem.end_time required")
-    if "reservationDetails" in data:
+    if data.get("reservationDetails") is not None:
         import capo_groundstation.types.reservation_details
 
         out["reservation_details"] = (

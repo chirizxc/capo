@@ -37,14 +37,14 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> ListFailuresForLicenseConfigurationOperationsRequest:
     out: ListFailuresForLicenseConfigurationOperationsRequest = {}  # type: ignore[typeddict-item]
-    if "LicenseConfigurationArn" in data:
+    if data.get("LicenseConfigurationArn") is not None:
         out["license_configuration_arn"] = data["LicenseConfigurationArn"]
     else:
         raise DeserializationError(
             "ListFailuresForLicenseConfigurationOperationsRequest.license_configuration_arn required"
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

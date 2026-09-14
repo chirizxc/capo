@@ -31,7 +31,7 @@ def serialize_json(value: BatchUpdateStandardsControlAssociationsResponse) -> di
 
 def deserialize_json(data: dict) -> BatchUpdateStandardsControlAssociationsResponse:
     out: BatchUpdateStandardsControlAssociationsResponse = {}  # type: ignore[typeddict-item]
-    if "UnprocessedAssociationUpdates" in data:
+    if data.get("UnprocessedAssociationUpdates") is not None:
         import capo_securityhub.types.unprocessed_standards_control_association_updates
 
         out["unprocessed_association_updates"] = (

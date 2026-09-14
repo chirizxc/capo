@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: SearchEntitiesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SearchEntitiesResponse:
     out: SearchEntitiesResponse = {}  # type: ignore[typeddict-item]
-    if "descriptions" in data:
+    if data.get("descriptions") is not None:
         import capo_iotthingsgraph.types.entity_descriptions
 
         out["descriptions"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> SearchEntitiesResponse:
                 data["descriptions"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> SensorStatisticsSummaries:
 
     out: SensorStatisticsSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lookoutequipment.types.sensor_statistics_summary.deserialize_aws_json_1_0(
                 item

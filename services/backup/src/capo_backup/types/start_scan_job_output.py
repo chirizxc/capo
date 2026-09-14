@@ -31,7 +31,7 @@ def serialize_json(value: StartScanJobOutput) -> dict:
 
 def deserialize_json(data: dict) -> StartScanJobOutput:
     out: StartScanJobOutput = {}  # type: ignore[typeddict-item]
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_backup.types._prelude.timestamp
 
         out["creation_date"] = capo_backup.types._prelude.timestamp.deserialize_json(
@@ -39,7 +39,7 @@ def deserialize_json(data: dict) -> StartScanJobOutput:
         )
     else:
         raise DeserializationError("StartScanJobOutput.creation_date required")
-    if "ScanJobId" in data:
+    if data.get("ScanJobId") is not None:
         out["scan_job_id"] = data["ScanJobId"]
     else:
         raise DeserializationError("StartScanJobOutput.scan_job_id required")

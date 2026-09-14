@@ -63,7 +63,7 @@ def serialize_json(value: GroupConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> GroupConfiguration:
     out: GroupConfiguration = {}  # type: ignore[typeddict-item]
-    if "Configuration" in data:
+    if data.get("Configuration") is not None:
         import capo_resource_groups.types.group_configuration_list
 
         out["configuration"] = (
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> GroupConfiguration:
                 data["Configuration"]
             )
         )
-    if "ProposedConfiguration" in data:
+    if data.get("ProposedConfiguration") is not None:
         import capo_resource_groups.types.group_configuration_list
 
         out["proposed_configuration"] = (
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> GroupConfiguration:
                 data["ProposedConfiguration"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_resource_groups.types.group_configuration_status
 
         out["status"] = (
@@ -87,6 +87,6 @@ def deserialize_json(data: dict) -> GroupConfiguration:
                 data["Status"]
             )
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
     return out

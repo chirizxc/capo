@@ -145,7 +145,7 @@ def serialize_aws_json_1_0(value: Project) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Project:
     out: Project = {}  # type: ignore[typeddict-item]
-    if "DeliveryModels" in data:
+    if data.get("DeliveryModels") is not None:
         import capo_partnercentral_selling.types.delivery_models
 
         out["delivery_models"] = (
@@ -153,7 +153,7 @@ def deserialize_aws_json_1_0(data: dict) -> Project:
                 data["DeliveryModels"]
             )
         )
-    if "ExpectedCustomerSpend" in data:
+    if data.get("ExpectedCustomerSpend") is not None:
         import capo_partnercentral_selling.types.expected_customer_spend_list
 
         out["expected_customer_spend"] = (
@@ -161,7 +161,7 @@ def deserialize_aws_json_1_0(data: dict) -> Project:
                 data["ExpectedCustomerSpend"]
             )
         )
-    if "ExpectedContractDuration" in data:
+    if data.get("ExpectedContractDuration") is not None:
         import capo_partnercentral_selling.types.expected_contract_duration
 
         out["expected_contract_duration"] = (
@@ -169,9 +169,9 @@ def deserialize_aws_json_1_0(data: dict) -> Project:
                 data["ExpectedContractDuration"]
             )
         )
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
-    if "ApnPrograms" in data:
+    if data.get("ApnPrograms") is not None:
         import capo_partnercentral_selling.types.apn_programs
 
         out["apn_programs"] = (
@@ -179,13 +179,13 @@ def deserialize_aws_json_1_0(data: dict) -> Project:
                 data["ApnPrograms"]
             )
         )
-    if "CustomerBusinessProblem" in data:
+    if data.get("CustomerBusinessProblem") is not None:
         out["customer_business_problem"] = data["CustomerBusinessProblem"]
-    if "CustomerUseCase" in data:
+    if data.get("CustomerUseCase") is not None:
         out["customer_use_case"] = data["CustomerUseCase"]
-    if "RelatedOpportunityIdentifier" in data:
+    if data.get("RelatedOpportunityIdentifier") is not None:
         out["related_opportunity_identifier"] = data["RelatedOpportunityIdentifier"]
-    if "SalesActivities" in data:
+    if data.get("SalesActivities") is not None:
         import capo_partnercentral_selling.types.sales_activities
 
         out["sales_activities"] = (
@@ -193,7 +193,7 @@ def deserialize_aws_json_1_0(data: dict) -> Project:
                 data["SalesActivities"]
             )
         )
-    if "CompetitorName" in data:
+    if data.get("CompetitorName") is not None:
         import capo_partnercentral_selling.types.competitor_name
 
         out["competitor_name"] = (
@@ -201,13 +201,13 @@ def deserialize_aws_json_1_0(data: dict) -> Project:
                 data["CompetitorName"]
             )
         )
-    if "OtherCompetitorNames" in data:
+    if data.get("OtherCompetitorNames") is not None:
         out["other_competitor_names"] = data["OtherCompetitorNames"]
-    if "OtherSolutionDescription" in data:
+    if data.get("OtherSolutionDescription") is not None:
         out["other_solution_description"] = data["OtherSolutionDescription"]
-    if "AdditionalComments" in data:
+    if data.get("AdditionalComments") is not None:
         out["additional_comments"] = data["AdditionalComments"]
-    if "AwsPartition" in data:
+    if data.get("AwsPartition") is not None:
         import capo_partnercentral_selling.types.aws_partition
 
         out["aws_partition"] = (

@@ -36,7 +36,7 @@ def serialize_json(value: LookupPolicyResponse) -> dict:
 
 def deserialize_json(data: dict) -> LookupPolicyResponse:
     out: LookupPolicyResponse = {}  # type: ignore[typeddict-item]
-    if "PolicyToPathList" in data:
+    if data.get("PolicyToPathList") is not None:
         import capo_clouddirectory.types.policy_to_path_list
 
         out["policy_to_path_list"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> LookupPolicyResponse:
                 data["PolicyToPathList"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

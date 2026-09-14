@@ -24,7 +24,7 @@ def serialize_json(value: StartPolicyGenerationResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartPolicyGenerationResponse:
     out: StartPolicyGenerationResponse = {}  # type: ignore[typeddict-item]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
     else:
         raise DeserializationError("StartPolicyGenerationResponse.job_id required")

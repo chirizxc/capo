@@ -88,13 +88,13 @@ def serialize_aws_json_1_1(value: AssessmentSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssessmentSummary:
     out: AssessmentSummary = {}  # type: ignore[typeddict-item]
-    if "AssessmentId" in data:
+    if data.get("AssessmentId") is not None:
         out["assessment_id"] = data["AssessmentId"]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
-    if "DnsName" in data:
+    if data.get("DnsName") is not None:
         out["dns_name"] = data["DnsName"]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_directory_service.types.assessment_start_time
 
         out["start_time"] = (
@@ -102,7 +102,7 @@ def deserialize_aws_json_1_1(data: dict) -> AssessmentSummary:
                 data["StartTime"]
             )
         )
-    if "LastUpdateDateTime" in data:
+    if data.get("LastUpdateDateTime") is not None:
         import capo_directory_service.types.last_update_date_time
 
         out["last_update_date_time"] = (
@@ -110,9 +110,9 @@ def deserialize_aws_json_1_1(data: dict) -> AssessmentSummary:
                 data["LastUpdateDateTime"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "CustomerDnsIps" in data:
+    if data.get("CustomerDnsIps") is not None:
         import capo_directory_service.types.customer_dns_ips
 
         out["customer_dns_ips"] = (
@@ -120,6 +120,6 @@ def deserialize_aws_json_1_1(data: dict) -> AssessmentSummary:
                 data["CustomerDnsIps"]
             )
         )
-    if "ReportType" in data:
+    if data.get("ReportType") is not None:
         out["report_type"] = data["ReportType"]
     return out

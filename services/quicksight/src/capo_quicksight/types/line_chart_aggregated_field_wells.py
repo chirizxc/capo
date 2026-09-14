@@ -59,25 +59,25 @@ def serialize_json(value: LineChartAggregatedFieldWells) -> dict:
 
 def deserialize_json(data: dict) -> LineChartAggregatedFieldWells:
     out: LineChartAggregatedFieldWells = {}  # type: ignore[typeddict-item]
-    if "Category" in data:
+    if data.get("Category") is not None:
         import capo_quicksight.types.dimension_field_list
 
         out["category"] = capo_quicksight.types.dimension_field_list.deserialize_json(
             data["Category"]
         )
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_quicksight.types.measure_field_list
 
         out["values"] = capo_quicksight.types.measure_field_list.deserialize_json(
             data["Values"]
         )
-    if "Colors" in data:
+    if data.get("Colors") is not None:
         import capo_quicksight.types.dimension_field_list
 
         out["colors"] = capo_quicksight.types.dimension_field_list.deserialize_json(
             data["Colors"]
         )
-    if "SmallMultiples" in data:
+    if data.get("SmallMultiples") is not None:
         import capo_quicksight.types.small_multiples_dimension_field_list
 
         out["small_multiples"] = (

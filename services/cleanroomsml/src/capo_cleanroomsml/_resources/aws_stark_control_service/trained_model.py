@@ -134,24 +134,23 @@ class TrainedModel:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.create_trained_model_request.CreateTrainedModelRequest = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["name"] = name
-        input_["configured_model_algorithm_association_arn"] = (
-            configured_model_algorithm_association_arn
-        )
+        input_: capo_cleanroomsml.types.create_trained_model_request.CreateTrainedModelRequest = {
+            "membership_identifier": membership_identifier,
+            "name": name,
+            "configured_model_algorithm_association_arn": configured_model_algorithm_association_arn,
+            "resource_config": resource_config,
+            "data_channels": data_channels,
+        }
         if hyperparameters is not None:
             input_["hyperparameters"] = hyperparameters
         if environment is not None:
             input_["environment"] = environment
-        input_["resource_config"] = resource_config
         if stopping_condition is not None:
             input_["stopping_condition"] = stopping_condition
         if incremental_training_data_channels is not None:
             input_["incremental_training_data_channels"] = (
                 incremental_training_data_channels
             )
-        input_["data_channels"] = data_channels
         if training_input_mode is not None:
             input_["training_input_mode"] = training_input_mode
         if description is not None:
@@ -170,6 +169,7 @@ class TrainedModel:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -210,9 +210,10 @@ class TrainedModel:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.get_trained_model_request.GetTrainedModelRequest = {}  # type: ignore[typeddict-item]
-        input_["trained_model_arn"] = trained_model_arn
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanroomsml.types.get_trained_model_request.GetTrainedModelRequest = {
+            "trained_model_arn": trained_model_arn,
+            "membership_identifier": membership_identifier,
+        }
         if version_identifier is not None:
             input_["version_identifier"] = version_identifier
 
@@ -221,6 +222,7 @@ class TrainedModel:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -260,9 +262,10 @@ class TrainedModel:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.delete_trained_model_output_request.DeleteTrainedModelOutputRequest = {}  # type: ignore[typeddict-item]
-        input_["trained_model_arn"] = trained_model_arn
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanroomsml.types.delete_trained_model_output_request.DeleteTrainedModelOutputRequest = {
+            "trained_model_arn": trained_model_arn,
+            "membership_identifier": membership_identifier,
+        }
         if version_identifier is not None:
             input_["version_identifier"] = version_identifier
 
@@ -271,6 +274,7 @@ class TrainedModel:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -312,18 +316,20 @@ class TrainedModel:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.list_trained_models_request.ListTrainedModelsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cleanroomsml.types.list_trained_models_request.ListTrainedModelsRequest = {
+            "membership_identifier": membership_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["membership_identifier"] = membership_identifier
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_trained_model(
@@ -363,9 +369,10 @@ class TrainedModel:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.cancel_trained_model_request.CancelTrainedModelRequest = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["trained_model_arn"] = trained_model_arn
+        input_: capo_cleanroomsml.types.cancel_trained_model_request.CancelTrainedModelRequest = {
+            "membership_identifier": membership_identifier,
+            "trained_model_arn": trained_model_arn,
+        }
         if version_identifier is not None:
             input_["version_identifier"] = version_identifier
 
@@ -374,6 +381,7 @@ class TrainedModel:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_collaboration_trained_model(
@@ -414,9 +422,10 @@ class TrainedModel:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.get_collaboration_trained_model_request.GetCollaborationTrainedModelRequest = {}  # type: ignore[typeddict-item]
-        input_["trained_model_arn"] = trained_model_arn
-        input_["collaboration_identifier"] = collaboration_identifier
+        input_: capo_cleanroomsml.types.get_collaboration_trained_model_request.GetCollaborationTrainedModelRequest = {
+            "trained_model_arn": trained_model_arn,
+            "collaboration_identifier": collaboration_identifier,
+        }
         if version_identifier is not None:
             input_["version_identifier"] = version_identifier
 
@@ -425,6 +434,7 @@ class TrainedModel:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_trained_model_versions(
@@ -471,13 +481,14 @@ class TrainedModel:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.list_trained_model_versions_request.ListTrainedModelVersionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cleanroomsml.types.list_trained_model_versions_request.ListTrainedModelVersionsRequest = {
+            "membership_identifier": membership_identifier,
+            "trained_model_arn": trained_model_arn,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["membership_identifier"] = membership_identifier
-        input_["trained_model_arn"] = trained_model_arn
         if status is not None:
             input_["status"] = status
 
@@ -486,6 +497,7 @@ class TrainedModel:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -569,24 +581,23 @@ class AsyncTrainedModel:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.create_trained_model_request.CreateTrainedModelRequest = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["name"] = name
-        input_["configured_model_algorithm_association_arn"] = (
-            configured_model_algorithm_association_arn
-        )
+        input_: capo_cleanroomsml.types.create_trained_model_request.CreateTrainedModelRequest = {
+            "membership_identifier": membership_identifier,
+            "name": name,
+            "configured_model_algorithm_association_arn": configured_model_algorithm_association_arn,
+            "resource_config": resource_config,
+            "data_channels": data_channels,
+        }
         if hyperparameters is not None:
             input_["hyperparameters"] = hyperparameters
         if environment is not None:
             input_["environment"] = environment
-        input_["resource_config"] = resource_config
         if stopping_condition is not None:
             input_["stopping_condition"] = stopping_condition
         if incremental_training_data_channels is not None:
             input_["incremental_training_data_channels"] = (
                 incremental_training_data_channels
             )
-        input_["data_channels"] = data_channels
         if training_input_mode is not None:
             input_["training_input_mode"] = training_input_mode
         if description is not None:
@@ -605,6 +616,7 @@ class AsyncTrainedModel:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -646,9 +658,10 @@ class AsyncTrainedModel:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.get_trained_model_request.GetTrainedModelRequest = {}  # type: ignore[typeddict-item]
-        input_["trained_model_arn"] = trained_model_arn
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanroomsml.types.get_trained_model_request.GetTrainedModelRequest = {
+            "trained_model_arn": trained_model_arn,
+            "membership_identifier": membership_identifier,
+        }
         if version_identifier is not None:
             input_["version_identifier"] = version_identifier
 
@@ -657,6 +670,7 @@ class AsyncTrainedModel:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -697,9 +711,10 @@ class AsyncTrainedModel:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.delete_trained_model_output_request.DeleteTrainedModelOutputRequest = {}  # type: ignore[typeddict-item]
-        input_["trained_model_arn"] = trained_model_arn
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanroomsml.types.delete_trained_model_output_request.DeleteTrainedModelOutputRequest = {
+            "trained_model_arn": trained_model_arn,
+            "membership_identifier": membership_identifier,
+        }
         if version_identifier is not None:
             input_["version_identifier"] = version_identifier
 
@@ -708,6 +723,7 @@ class AsyncTrainedModel:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -750,18 +766,20 @@ class AsyncTrainedModel:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.list_trained_models_request.ListTrainedModelsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cleanroomsml.types.list_trained_models_request.ListTrainedModelsRequest = {
+            "membership_identifier": membership_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["membership_identifier"] = membership_identifier
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def cancel_trained_model(
@@ -802,9 +820,10 @@ class AsyncTrainedModel:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.cancel_trained_model_request.CancelTrainedModelRequest = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["trained_model_arn"] = trained_model_arn
+        input_: capo_cleanroomsml.types.cancel_trained_model_request.CancelTrainedModelRequest = {
+            "membership_identifier": membership_identifier,
+            "trained_model_arn": trained_model_arn,
+        }
         if version_identifier is not None:
             input_["version_identifier"] = version_identifier
 
@@ -813,6 +832,7 @@ class AsyncTrainedModel:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_collaboration_trained_model(
@@ -854,9 +874,10 @@ class AsyncTrainedModel:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.get_collaboration_trained_model_request.GetCollaborationTrainedModelRequest = {}  # type: ignore[typeddict-item]
-        input_["trained_model_arn"] = trained_model_arn
-        input_["collaboration_identifier"] = collaboration_identifier
+        input_: capo_cleanroomsml.types.get_collaboration_trained_model_request.GetCollaborationTrainedModelRequest = {
+            "trained_model_arn": trained_model_arn,
+            "collaboration_identifier": collaboration_identifier,
+        }
         if version_identifier is not None:
             input_["version_identifier"] = version_identifier
 
@@ -865,6 +886,7 @@ class AsyncTrainedModel:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_trained_model_versions(
@@ -912,13 +934,14 @@ class AsyncTrainedModel:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.list_trained_model_versions_request.ListTrainedModelVersionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cleanroomsml.types.list_trained_model_versions_request.ListTrainedModelVersionsRequest = {
+            "membership_identifier": membership_identifier,
+            "trained_model_arn": trained_model_arn,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["membership_identifier"] = membership_identifier
-        input_["trained_model_arn"] = trained_model_arn
         if status is not None:
             input_["status"] = status
 
@@ -927,4 +950,5 @@ class AsyncTrainedModel:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

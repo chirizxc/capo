@@ -72,7 +72,7 @@ def serialize_json(value: DisposePackageVersionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> DisposePackageVersionsRequest:
     out: DisposePackageVersionsRequest = {}  # type: ignore[typeddict-item]
-    if "versions" in data:
+    if data.get("versions") is not None:
         import capo_codeartifact.types.package_version_list
 
         out["versions"] = capo_codeartifact.types.package_version_list.deserialize_json(
@@ -80,7 +80,7 @@ def deserialize_json(data: dict) -> DisposePackageVersionsRequest:
         )
     else:
         raise DeserializationError("DisposePackageVersionsRequest.versions required")
-    if "versionRevisions" in data:
+    if data.get("versionRevisions") is not None:
         import capo_codeartifact.types.package_version_revision_map
 
         out["version_revisions"] = (
@@ -88,7 +88,7 @@ def deserialize_json(data: dict) -> DisposePackageVersionsRequest:
                 data["versionRevisions"]
             )
         )
-    if "expectedStatus" in data:
+    if data.get("expectedStatus") is not None:
         import capo_codeartifact.types.package_version_status
 
         out["expected_status"] = (

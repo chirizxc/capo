@@ -34,7 +34,7 @@ def serialize_aws_json_1_0(value: ShardFilter) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ShardFilter:
     out: ShardFilter = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_keyspacesstreams.types.shard_filter_type
 
         out["type"] = (
@@ -42,6 +42,6 @@ def deserialize_aws_json_1_0(data: dict) -> ShardFilter:
                 data["type"]
             )
         )
-    if "shardId" in data:
+    if data.get("shardId") is not None:
         out["shard_id"] = data["shardId"]
     return out

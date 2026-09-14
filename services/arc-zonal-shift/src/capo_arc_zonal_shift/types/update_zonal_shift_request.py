@@ -33,8 +33,8 @@ def serialize_json(value: UpdateZonalShiftRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateZonalShiftRequest:
     out: UpdateZonalShiftRequest = {}  # type: ignore[typeddict-item]
-    if "comment" in data:
+    if data.get("comment") is not None:
         out["comment"] = data["comment"]
-    if "expiresIn" in data:
+    if data.get("expiresIn") is not None:
         out["expires_in"] = data["expiresIn"]
     return out

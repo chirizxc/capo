@@ -46,7 +46,7 @@ def serialize_aws_json_1_1(value: RuleTypeId) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RuleTypeId:
     out: RuleTypeId = {}  # type: ignore[typeddict-item]
-    if "category" in data:
+    if data.get("category") is not None:
         import capo_codepipeline.types.rule_category
 
         out["category"] = (
@@ -56,16 +56,16 @@ def deserialize_aws_json_1_1(data: dict) -> RuleTypeId:
         )
     else:
         raise DeserializationError("RuleTypeId.category required")
-    if "owner" in data:
+    if data.get("owner") is not None:
         import capo_codepipeline.types.rule_owner
 
         out["owner"] = capo_codepipeline.types.rule_owner.deserialize_aws_json_1_1(
             data["owner"]
         )
-    if "provider" in data:
+    if data.get("provider") is not None:
         out["provider"] = data["provider"]
     else:
         raise DeserializationError("RuleTypeId.provider required")
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     return out

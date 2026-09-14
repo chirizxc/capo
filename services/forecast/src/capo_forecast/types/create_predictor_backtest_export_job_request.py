@@ -47,7 +47,7 @@ def serialize_aws_json_1_1(value: CreatePredictorBacktestExportJobRequest) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> CreatePredictorBacktestExportJobRequest:
     out: CreatePredictorBacktestExportJobRequest = {}  # type: ignore[typeddict-item]
-    if "PredictorBacktestExportJobName" in data:
+    if data.get("PredictorBacktestExportJobName") is not None:
         out["predictor_backtest_export_job_name"] = data[
             "PredictorBacktestExportJobName"
         ]
@@ -55,13 +55,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreatePredictorBacktestExportJobRequ
         raise DeserializationError(
             "CreatePredictorBacktestExportJobRequest.predictor_backtest_export_job_name required"
         )
-    if "PredictorArn" in data:
+    if data.get("PredictorArn") is not None:
         out["predictor_arn"] = data["PredictorArn"]
     else:
         raise DeserializationError(
             "CreatePredictorBacktestExportJobRequest.predictor_arn required"
         )
-    if "Destination" in data:
+    if data.get("Destination") is not None:
         import capo_forecast.types.data_destination
 
         out["destination"] = (
@@ -73,10 +73,10 @@ def deserialize_aws_json_1_1(data: dict) -> CreatePredictorBacktestExportJobRequ
         raise DeserializationError(
             "CreatePredictorBacktestExportJobRequest.destination required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_forecast.types.tags
 
         out["tags"] = capo_forecast.types.tags.deserialize_aws_json_1_1(data["Tags"])
-    if "Format" in data:
+    if data.get("Format") is not None:
         out["format"] = data["Format"]
     return out

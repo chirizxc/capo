@@ -22,11 +22,11 @@ def serialize_json(value: GoalContent) -> dict:
 
 def deserialize_json(data: dict) -> GoalContent:
     out: GoalContent = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     else:
         raise DeserializationError("GoalContent.description required")
-    if "objectives" in data:
+    if data.get("objectives") is not None:
         out["objectives"] = data["objectives"]
     else:
         raise DeserializationError("GoalContent.objectives required")

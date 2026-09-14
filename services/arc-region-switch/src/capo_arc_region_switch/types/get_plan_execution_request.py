@@ -36,18 +36,18 @@ def serialize_aws_json_1_0(value: GetPlanExecutionRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetPlanExecutionRequest:
     out: GetPlanExecutionRequest = {}  # type: ignore[typeddict-item]
-    if "planArn" in data:
+    if data.get("planArn") is not None:
         out["plan_arn"] = data["planArn"]
     else:
         raise DeserializationError("GetPlanExecutionRequest.plan_arn required")
-    if "executionId" in data:
+    if data.get("executionId") is not None:
         out["execution_id"] = data["executionId"]
     else:
         raise DeserializationError("GetPlanExecutionRequest.execution_id required")
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     else:
         out["max_results"] = 100
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

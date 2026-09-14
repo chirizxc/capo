@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: RetrieveDomainAuthCodeResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RetrieveDomainAuthCodeResponse:
     out: RetrieveDomainAuthCodeResponse = {}  # type: ignore[typeddict-item]
-    if "AuthCode" in data:
+    if data.get("AuthCode") is not None:
         out["auth_code"] = data["AuthCode"]
     return out

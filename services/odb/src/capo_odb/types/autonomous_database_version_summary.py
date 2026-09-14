@@ -35,14 +35,14 @@ def serialize_aws_json_1_0(value: AutonomousDatabaseVersionSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabaseVersionSummary:
     out: AutonomousDatabaseVersionSummary = {}  # type: ignore[typeddict-item]
-    if "dbWorkload" in data:
+    if data.get("dbWorkload") is not None:
         import capo_odb.types.db_workload
 
         out["db_workload"] = capo_odb.types.db_workload.deserialize_aws_json_1_0(
             data["dbWorkload"]
         )
-    if "details" in data:
+    if data.get("details") is not None:
         out["details"] = data["details"]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     return out

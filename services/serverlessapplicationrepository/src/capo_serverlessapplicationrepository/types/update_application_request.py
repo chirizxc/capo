@@ -62,13 +62,13 @@ def serialize_json(value: UpdateApplicationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateApplicationRequest:
     out: UpdateApplicationRequest = {}  # type: ignore[typeddict-item]
-    if "author" in data:
+    if data.get("author") is not None:
         out["author"] = data["author"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "homePageUrl" in data:
+    if data.get("homePageUrl") is not None:
         out["home_page_url"] = data["homePageUrl"]
-    if "labels" in data:
+    if data.get("labels") is not None:
         import capo_serverlessapplicationrepository.types.__list_of__string
 
         out["labels"] = (
@@ -76,8 +76,8 @@ def deserialize_json(data: dict) -> UpdateApplicationRequest:
                 data["labels"]
             )
         )
-    if "readmeBody" in data:
+    if data.get("readmeBody") is not None:
         out["readme_body"] = data["readmeBody"]
-    if "readmeUrl" in data:
+    if data.get("readmeUrl") is not None:
         out["readme_url"] = data["readmeUrl"]
     return out

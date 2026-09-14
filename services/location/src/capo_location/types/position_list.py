@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> PositionList:
 
     out: PositionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_location.types.position.deserialize_json(item))
     return out

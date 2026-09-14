@@ -44,7 +44,7 @@ def serialize_json(value: BatchGetAutomationRulesResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetAutomationRulesResponse:
     out: BatchGetAutomationRulesResponse = {}  # type: ignore[typeddict-item]
-    if "Rules" in data:
+    if data.get("Rules") is not None:
         import capo_securityhub.types.automation_rules_config_list
 
         out["rules"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> BatchGetAutomationRulesResponse:
                 data["Rules"]
             )
         )
-    if "UnprocessedAutomationRules" in data:
+    if data.get("UnprocessedAutomationRules") is not None:
         import capo_securityhub.types.unprocessed_automation_rules_list
 
         out["unprocessed_automation_rules"] = (

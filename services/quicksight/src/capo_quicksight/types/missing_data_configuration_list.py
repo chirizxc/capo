@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> MissingDataConfigurationList:
 
     out: MissingDataConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.missing_data_configuration.deserialize_json(item)
         )

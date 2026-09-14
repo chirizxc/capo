@@ -32,8 +32,8 @@ def serialize_aws_json_1_1(value: ProductionVariantServerlessUpdateConfig) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> ProductionVariantServerlessUpdateConfig:
     out: ProductionVariantServerlessUpdateConfig = {}  # type: ignore[typeddict-item]
-    if "MaxConcurrency" in data:
+    if data.get("MaxConcurrency") is not None:
         out["max_concurrency"] = data["MaxConcurrency"]
-    if "ProvisionedConcurrency" in data:
+    if data.get("ProvisionedConcurrency") is not None:
         out["provisioned_concurrency"] = data["ProvisionedConcurrency"]
     return out

@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: UpdateWebhookOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateWebhookOutput:
     out: UpdateWebhookOutput = {}  # type: ignore[typeddict-item]
-    if "webhook" in data:
+    if data.get("webhook") is not None:
         import capo_codebuild.types.webhook
 
         out["webhook"] = capo_codebuild.types.webhook.deserialize_aws_json_1_1(

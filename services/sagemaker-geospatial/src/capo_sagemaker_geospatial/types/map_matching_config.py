@@ -28,19 +28,19 @@ def serialize_json(value: MapMatchingConfig) -> dict:
 
 def deserialize_json(data: dict) -> MapMatchingConfig:
     out: MapMatchingConfig = {}  # type: ignore[typeddict-item]
-    if "IdAttributeName" in data:
+    if data.get("IdAttributeName") is not None:
         out["id_attribute_name"] = data["IdAttributeName"]
     else:
         raise DeserializationError("MapMatchingConfig.id_attribute_name required")
-    if "YAttributeName" in data:
+    if data.get("YAttributeName") is not None:
         out["y_attribute_name"] = data["YAttributeName"]
     else:
         raise DeserializationError("MapMatchingConfig.y_attribute_name required")
-    if "XAttributeName" in data:
+    if data.get("XAttributeName") is not None:
         out["x_attribute_name"] = data["XAttributeName"]
     else:
         raise DeserializationError("MapMatchingConfig.x_attribute_name required")
-    if "TimestampAttributeName" in data:
+    if data.get("TimestampAttributeName") is not None:
         out["timestamp_attribute_name"] = data["TimestampAttributeName"]
     else:
         raise DeserializationError(

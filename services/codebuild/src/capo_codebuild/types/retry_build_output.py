@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: RetryBuildOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RetryBuildOutput:
     out: RetryBuildOutput = {}  # type: ignore[typeddict-item]
-    if "build" in data:
+    if data.get("build") is not None:
         import capo_codebuild.types.build
 
         out["build"] = capo_codebuild.types.build.deserialize_aws_json_1_1(

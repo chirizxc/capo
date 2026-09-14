@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetRequestedServiceQuotaChangeRequest) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> GetRequestedServiceQuotaChangeRequest:
     out: GetRequestedServiceQuotaChangeRequest = {}  # type: ignore[typeddict-item]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     else:
         raise DeserializationError(

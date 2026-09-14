@@ -66,9 +66,9 @@ def serialize_json(value: CreateApprovalTeamRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateApprovalTeamRequest:
     out: CreateApprovalTeamRequest = {}  # type: ignore[typeddict-item]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "ApprovalStrategy" in data:
+    if data.get("ApprovalStrategy") is not None:
         import capo_mpa.types.approval_strategy
 
         out["approval_strategy"] = capo_mpa.types.approval_strategy.deserialize_json(
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> CreateApprovalTeamRequest:
         raise DeserializationError(
             "CreateApprovalTeamRequest.approval_strategy required"
         )
-    if "Approvers" in data:
+    if data.get("Approvers") is not None:
         import capo_mpa.types.approval_team_request_approvers
 
         out["approvers"] = (
@@ -88,11 +88,11 @@ def deserialize_json(data: dict) -> CreateApprovalTeamRequest:
         )
     else:
         raise DeserializationError("CreateApprovalTeamRequest.approvers required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     else:
         raise DeserializationError("CreateApprovalTeamRequest.description required")
-    if "Policies" in data:
+    if data.get("Policies") is not None:
         import capo_mpa.types.policies_references
 
         out["policies"] = capo_mpa.types.policies_references.deserialize_json(
@@ -100,11 +100,11 @@ def deserialize_json(data: dict) -> CreateApprovalTeamRequest:
         )
     else:
         raise DeserializationError("CreateApprovalTeamRequest.policies required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateApprovalTeamRequest.name required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_mpa.types.tags
 
         out["tags"] = capo_mpa.types.tags.deserialize_json(data["Tags"])

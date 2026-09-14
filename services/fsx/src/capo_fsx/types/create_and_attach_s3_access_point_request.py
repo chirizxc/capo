@@ -82,11 +82,11 @@ def serialize_aws_json_1_1(value: CreateAndAttachS3AccessPointRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateAndAttachS3AccessPointRequest:
     out: CreateAndAttachS3AccessPointRequest = {}  # type: ignore[typeddict-item]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_fsx.types.s3_access_point_attachment_type
 
         out["type"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAndAttachS3AccessPointRequest:
                 data["Type"]
             )
         )
-    if "OpenZFSConfiguration" in data:
+    if data.get("OpenZFSConfiguration") is not None:
         import capo_fsx.types.create_and_attach_s3_access_point_open_zfs_configuration
 
         out["open_zfs_configuration"] = (
@@ -102,7 +102,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAndAttachS3AccessPointRequest:
                 data["OpenZFSConfiguration"]
             )
         )
-    if "OntapConfiguration" in data:
+    if data.get("OntapConfiguration") is not None:
         import capo_fsx.types.create_and_attach_s3_access_point_ontap_configuration
 
         out["ontap_configuration"] = (
@@ -110,7 +110,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAndAttachS3AccessPointRequest:
                 data["OntapConfiguration"]
             )
         )
-    if "S3AccessPoint" in data:
+    if data.get("S3AccessPoint") is not None:
         import capo_fsx.types.create_and_attach_s3_access_point_s3_configuration
 
         out["s3_access_point"] = (

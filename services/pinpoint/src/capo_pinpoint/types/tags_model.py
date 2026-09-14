@@ -25,7 +25,7 @@ def serialize_json(value: TagsModel) -> dict:
 
 def deserialize_json(data: dict) -> TagsModel:
     out: TagsModel = {}  # type: ignore[typeddict-item]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_pinpoint.types.map_of__string
 
         out["tags"] = capo_pinpoint.types.map_of__string.deserialize_json(data["tags"])

@@ -31,11 +31,11 @@ def serialize_json(value: ResultSetMetadata) -> dict:
 
 def deserialize_json(data: dict) -> ResultSetMetadata:
     out: ResultSetMetadata = {}  # type: ignore[typeddict-item]
-    if "columnCount" in data:
+    if data.get("columnCount") is not None:
         out["column_count"] = data["columnCount"]
     else:
         out["column_count"] = 0
-    if "columnMetadata" in data:
+    if data.get("columnMetadata") is not None:
         import capo_rds_data.types.metadata
 
         out["column_metadata"] = capo_rds_data.types.metadata.deserialize_json(

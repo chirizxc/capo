@@ -27,8 +27,8 @@ def serialize_json(value: RegisterConnectorV2Response) -> dict:
 
 def deserialize_json(data: dict) -> RegisterConnectorV2Response:
     out: RegisterConnectorV2Response = {}  # type: ignore[typeddict-item]
-    if "ConnectorArn" in data:
+    if data.get("ConnectorArn") is not None:
         out["connector_arn"] = data["ConnectorArn"]
-    if "ConnectorId" in data:
+    if data.get("ConnectorId") is not None:
         out["connector_id"] = data["ConnectorId"]
     return out

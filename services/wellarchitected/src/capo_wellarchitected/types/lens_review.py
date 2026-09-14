@@ -116,21 +116,21 @@ def serialize_json(value: LensReview) -> dict:
 
 def deserialize_json(data: dict) -> LensReview:
     out: LensReview = {}  # type: ignore[typeddict-item]
-    if "LensAlias" in data:
+    if data.get("LensAlias") is not None:
         out["lens_alias"] = data["LensAlias"]
-    if "LensArn" in data:
+    if data.get("LensArn") is not None:
         out["lens_arn"] = data["LensArn"]
-    if "LensVersion" in data:
+    if data.get("LensVersion") is not None:
         out["lens_version"] = data["LensVersion"]
-    if "LensName" in data:
+    if data.get("LensName") is not None:
         out["lens_name"] = data["LensName"]
-    if "LensStatus" in data:
+    if data.get("LensStatus") is not None:
         import capo_wellarchitected.types.lens_status
 
         out["lens_status"] = capo_wellarchitected.types.lens_status.deserialize_json(
             data["LensStatus"]
         )
-    if "PillarReviewSummaries" in data:
+    if data.get("PillarReviewSummaries") is not None:
         import capo_wellarchitected.types.pillar_review_summaries
 
         out["pillar_review_summaries"] = (
@@ -138,7 +138,7 @@ def deserialize_json(data: dict) -> LensReview:
                 data["PillarReviewSummaries"]
             )
         )
-    if "JiraConfiguration" in data:
+    if data.get("JiraConfiguration") is not None:
         import capo_wellarchitected.types.jira_selected_question_configuration
 
         out["jira_configuration"] = (
@@ -146,29 +146,29 @@ def deserialize_json(data: dict) -> LensReview:
                 data["JiraConfiguration"]
             )
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_wellarchitected.types.timestamp
 
         out["updated_at"] = capo_wellarchitected.types.timestamp.deserialize_json(
             data["UpdatedAt"]
         )
-    if "Notes" in data:
+    if data.get("Notes") is not None:
         out["notes"] = data["Notes"]
-    if "RiskCounts" in data:
+    if data.get("RiskCounts") is not None:
         import capo_wellarchitected.types.risk_counts
 
         out["risk_counts"] = capo_wellarchitected.types.risk_counts.deserialize_json(
             data["RiskCounts"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Profiles" in data:
+    if data.get("Profiles") is not None:
         import capo_wellarchitected.types.workload_profiles
 
         out["profiles"] = capo_wellarchitected.types.workload_profiles.deserialize_json(
             data["Profiles"]
         )
-    if "PrioritizedRiskCounts" in data:
+    if data.get("PrioritizedRiskCounts") is not None:
         import capo_wellarchitected.types.risk_counts
 
         out["prioritized_risk_counts"] = (

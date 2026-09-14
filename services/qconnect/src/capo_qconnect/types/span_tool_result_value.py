@@ -37,11 +37,11 @@ def serialize_json(value: SpanToolResultValue) -> dict:
 
 def deserialize_json(data: dict) -> SpanToolResultValue:
     out: SpanToolResultValue = {}  # type: ignore[typeddict-item]
-    if "toolUseId" in data:
+    if data.get("toolUseId") is not None:
         out["tool_use_id"] = data["toolUseId"]
     else:
         raise DeserializationError("SpanToolResultValue.tool_use_id required")
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_qconnect.types.span_message_value_list
 
         out["values"] = capo_qconnect.types.span_message_value_list.deserialize_json(
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> SpanToolResultValue:
         )
     else:
         raise DeserializationError("SpanToolResultValue.values required")
-    if "error" in data:
+    if data.get("error") is not None:
         out["error"] = data["error"]
     return out

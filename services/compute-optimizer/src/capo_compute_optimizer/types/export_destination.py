@@ -27,7 +27,7 @@ def serialize_aws_json_1_0(value: ExportDestination) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ExportDestination:
     out: ExportDestination = {}  # type: ignore[typeddict-item]
-    if "s3" in data:
+    if data.get("s3") is not None:
         import capo_compute_optimizer.types.s3_destination
 
         out["s3"] = (

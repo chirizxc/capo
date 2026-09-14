@@ -29,7 +29,7 @@ def serialize_json(value: UpdateKnowledgeBaseTemplateUriResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateKnowledgeBaseTemplateUriResponse:
     out: UpdateKnowledgeBaseTemplateUriResponse = {}  # type: ignore[typeddict-item]
-    if "knowledgeBase" in data:
+    if data.get("knowledgeBase") is not None:
         import capo_qconnect.types.knowledge_base_data
 
         out["knowledge_base"] = (

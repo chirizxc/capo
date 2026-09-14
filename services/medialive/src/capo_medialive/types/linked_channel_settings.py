@@ -42,7 +42,7 @@ def serialize_json(value: LinkedChannelSettings) -> dict:
 
 def deserialize_json(data: dict) -> LinkedChannelSettings:
     out: LinkedChannelSettings = {}  # type: ignore[typeddict-item]
-    if "followerChannelSettings" in data:
+    if data.get("followerChannelSettings") is not None:
         import capo_medialive.types.follower_channel_settings
 
         out["follower_channel_settings"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> LinkedChannelSettings:
                 data["followerChannelSettings"]
             )
         )
-    if "primaryChannelSettings" in data:
+    if data.get("primaryChannelSettings") is not None:
         import capo_medialive.types.primary_channel_settings
 
         out["primary_channel_settings"] = (

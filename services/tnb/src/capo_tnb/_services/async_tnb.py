@@ -247,14 +247,16 @@ class AsynctnbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_tnb.types.cancel_sol_network_operation_input.CancelSolNetworkOperationInput = {}  # type: ignore[typeddict-item]
-        input_["ns_lcm_op_occ_id"] = ns_lcm_op_occ_id
+        input_: capo_tnb.types.cancel_sol_network_operation_input.CancelSolNetworkOperationInput = {
+            "ns_lcm_op_occ_id": ns_lcm_op_occ_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_sol_function_package(
@@ -298,7 +300,7 @@ class AsynctnbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_tnb.types.create_sol_function_package_input.CreateSolFunctionPackageInput = {}  # type: ignore[typeddict-item]
+        input_: capo_tnb.types.create_sol_function_package_input.CreateSolFunctionPackageInput = {}
         if tags is not None:
             input_["tags"] = tags
 
@@ -307,6 +309,7 @@ class AsynctnbClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_sol_network_instance(
@@ -357,9 +360,10 @@ class AsynctnbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_tnb.types.create_sol_network_instance_input.CreateSolNetworkInstanceInput = {}  # type: ignore[typeddict-item]
-        input_["nsd_info_id"] = nsd_info_id
-        input_["ns_name"] = ns_name
+        input_: capo_tnb.types.create_sol_network_instance_input.CreateSolNetworkInstanceInput = {
+            "nsd_info_id": nsd_info_id,
+            "ns_name": ns_name,
+        }
         if ns_description is not None:
             input_["ns_description"] = ns_description
         if tags is not None:
@@ -370,6 +374,7 @@ class AsynctnbClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_sol_network_package(
@@ -415,7 +420,7 @@ class AsynctnbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_tnb.types.create_sol_network_package_input.CreateSolNetworkPackageInput = {}  # type: ignore[typeddict-item]
+        input_: capo_tnb.types.create_sol_network_package_input.CreateSolNetworkPackageInput = {}
         if tags is not None:
             input_["tags"] = tags
 
@@ -424,6 +429,7 @@ class AsynctnbClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_sol_function_package(
@@ -465,14 +471,16 @@ class AsynctnbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_tnb.types.delete_sol_function_package_input.DeleteSolFunctionPackageInput = {}  # type: ignore[typeddict-item]
-        input_["vnf_pkg_id"] = vnf_pkg_id
+        input_: capo_tnb.types.delete_sol_function_package_input.DeleteSolFunctionPackageInput = {
+            "vnf_pkg_id": vnf_pkg_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_sol_network_instance(
@@ -514,14 +522,16 @@ class AsynctnbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_tnb.types.delete_sol_network_instance_input.DeleteSolNetworkInstanceInput = {}  # type: ignore[typeddict-item]
-        input_["ns_instance_id"] = ns_instance_id
+        input_: capo_tnb.types.delete_sol_network_instance_input.DeleteSolNetworkInstanceInput = {
+            "ns_instance_id": ns_instance_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_sol_network_package(
@@ -563,14 +573,16 @@ class AsynctnbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_tnb.types.delete_sol_network_package_input.DeleteSolNetworkPackageInput = {}  # type: ignore[typeddict-item]
-        input_["nsd_info_id"] = nsd_info_id
+        input_: capo_tnb.types.delete_sol_network_package_input.DeleteSolNetworkPackageInput = {
+            "nsd_info_id": nsd_info_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_sol_function_instance(
@@ -614,14 +626,16 @@ class AsynctnbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_tnb.types.get_sol_function_instance_input.GetSolFunctionInstanceInput = {}  # type: ignore[typeddict-item]
-        input_["vnf_instance_id"] = vnf_instance_id
+        input_: capo_tnb.types.get_sol_function_instance_input.GetSolFunctionInstanceInput = {
+            "vnf_instance_id": vnf_instance_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_sol_function_package(
@@ -665,14 +679,16 @@ class AsynctnbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_tnb.types.get_sol_function_package_input.GetSolFunctionPackageInput = {}  # type: ignore[typeddict-item]
-        input_["vnf_pkg_id"] = vnf_pkg_id
+        input_: capo_tnb.types.get_sol_function_package_input.GetSolFunctionPackageInput = {
+            "vnf_pkg_id": vnf_pkg_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_sol_function_package_content(
@@ -718,15 +734,17 @@ class AsynctnbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_tnb.types.get_sol_function_package_content_input.GetSolFunctionPackageContentInput = {}  # type: ignore[typeddict-item]
-        input_["vnf_pkg_id"] = vnf_pkg_id
-        input_["accept"] = accept
+        input_: capo_tnb.types.get_sol_function_package_content_input.GetSolFunctionPackageContentInput = {
+            "vnf_pkg_id": vnf_pkg_id,
+            "accept": accept,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_sol_function_package_descriptor(
@@ -772,15 +790,17 @@ class AsynctnbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_tnb.types.get_sol_function_package_descriptor_input.GetSolFunctionPackageDescriptorInput = {}  # type: ignore[typeddict-item]
-        input_["vnf_pkg_id"] = vnf_pkg_id
-        input_["accept"] = accept
+        input_: capo_tnb.types.get_sol_function_package_descriptor_input.GetSolFunctionPackageDescriptorInput = {
+            "vnf_pkg_id": vnf_pkg_id,
+            "accept": accept,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_sol_network_instance(
@@ -824,14 +844,16 @@ class AsynctnbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_tnb.types.get_sol_network_instance_input.GetSolNetworkInstanceInput = {}  # type: ignore[typeddict-item]
-        input_["ns_instance_id"] = ns_instance_id
+        input_: capo_tnb.types.get_sol_network_instance_input.GetSolNetworkInstanceInput = {
+            "ns_instance_id": ns_instance_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_sol_network_operation(
@@ -884,14 +906,16 @@ class AsynctnbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_tnb.types.get_sol_network_operation_input.GetSolNetworkOperationInput = {}  # type: ignore[typeddict-item]
-        input_["ns_lcm_op_occ_id"] = ns_lcm_op_occ_id
+        input_: capo_tnb.types.get_sol_network_operation_input.GetSolNetworkOperationInput = {
+            "ns_lcm_op_occ_id": ns_lcm_op_occ_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_sol_network_package(
@@ -935,14 +959,16 @@ class AsynctnbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_tnb.types.get_sol_network_package_input.GetSolNetworkPackageInput = {}  # type: ignore[typeddict-item]
-        input_["nsd_info_id"] = nsd_info_id
+        input_: capo_tnb.types.get_sol_network_package_input.GetSolNetworkPackageInput = {
+            "nsd_info_id": nsd_info_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_sol_network_package_content(
@@ -988,15 +1014,17 @@ class AsynctnbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_tnb.types.get_sol_network_package_content_input.GetSolNetworkPackageContentInput = {}  # type: ignore[typeddict-item]
-        input_["nsd_info_id"] = nsd_info_id
-        input_["accept"] = accept
+        input_: capo_tnb.types.get_sol_network_package_content_input.GetSolNetworkPackageContentInput = {
+            "nsd_info_id": nsd_info_id,
+            "accept": accept,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_sol_network_package_descriptor(
@@ -1040,14 +1068,16 @@ class AsynctnbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_tnb.types.get_sol_network_package_descriptor_input.GetSolNetworkPackageDescriptorInput = {}  # type: ignore[typeddict-item]
-        input_["nsd_info_id"] = nsd_info_id
+        input_: capo_tnb.types.get_sol_network_package_descriptor_input.GetSolNetworkPackageDescriptorInput = {
+            "nsd_info_id": nsd_info_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def instantiate_sol_network_instance(
@@ -1101,8 +1131,9 @@ class AsynctnbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_tnb.types.instantiate_sol_network_instance_input.InstantiateSolNetworkInstanceInput = {}  # type: ignore[typeddict-item]
-        input_["ns_instance_id"] = ns_instance_id
+        input_: capo_tnb.types.instantiate_sol_network_instance_input.InstantiateSolNetworkInstanceInput = {
+            "ns_instance_id": ns_instance_id
+        }
         if dry_run is not None:
             input_["dry_run"] = dry_run
         if additional_params_for_ns is not None:
@@ -1115,6 +1146,7 @@ class AsynctnbClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_sol_function_instances(
@@ -1162,7 +1194,7 @@ class AsynctnbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_tnb.types.list_sol_function_instances_input.ListSolFunctionInstancesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_tnb.types.list_sol_function_instances_input.ListSolFunctionInstancesInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1173,6 +1205,7 @@ class AsynctnbClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_sol_function_instances(
@@ -1246,7 +1279,7 @@ class AsynctnbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_tnb.types.list_sol_function_packages_input.ListSolFunctionPackagesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_tnb.types.list_sol_function_packages_input.ListSolFunctionPackagesInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1257,6 +1290,7 @@ class AsynctnbClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_sol_function_packages(
@@ -1327,7 +1361,7 @@ class AsynctnbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_tnb.types.list_sol_network_instances_input.ListSolNetworkInstancesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_tnb.types.list_sol_network_instances_input.ListSolNetworkInstancesInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1338,6 +1372,7 @@ class AsynctnbClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_sol_network_instances(
@@ -1414,7 +1449,7 @@ class AsynctnbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_tnb.types.list_sol_network_operations_input.ListSolNetworkOperationsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_tnb.types.list_sol_network_operations_input.ListSolNetworkOperationsInput = {}
         if ns_instance_id is not None:
             input_["ns_instance_id"] = ns_instance_id
         if max_results is not None:
@@ -1427,6 +1462,7 @@ class AsynctnbClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_sol_network_operations(
@@ -1500,7 +1536,7 @@ class AsynctnbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_tnb.types.list_sol_network_packages_input.ListSolNetworkPackagesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_tnb.types.list_sol_network_packages_input.ListSolNetworkPackagesInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1511,6 +1547,7 @@ class AsynctnbClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_sol_network_packages(
@@ -1570,14 +1607,16 @@ class AsynctnbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_tnb.types.list_tags_for_resource_input.ListTagsForResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_tnb.types.list_tags_for_resource_input.ListTagsForResourceInput = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_sol_function_package_content(
@@ -1627,17 +1666,19 @@ class AsynctnbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_tnb.types.put_sol_function_package_content_input.PutSolFunctionPackageContentInput = {}  # type: ignore[typeddict-item]
-        input_["vnf_pkg_id"] = vnf_pkg_id
+        input_: capo_tnb.types.put_sol_function_package_content_input.PutSolFunctionPackageContentInput = {
+            "vnf_pkg_id": vnf_pkg_id,
+            "file": file,
+        }
         if content_type is not None:
             input_["content_type"] = content_type
-        input_["file"] = file
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_sol_network_package_content(
@@ -1687,17 +1728,19 @@ class AsynctnbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_tnb.types.put_sol_network_package_content_input.PutSolNetworkPackageContentInput = {}  # type: ignore[typeddict-item]
-        input_["nsd_info_id"] = nsd_info_id
+        input_: capo_tnb.types.put_sol_network_package_content_input.PutSolNetworkPackageContentInput = {
+            "nsd_info_id": nsd_info_id,
+            "file": file,
+        }
         if content_type is not None:
             input_["content_type"] = content_type
-        input_["file"] = file
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -1738,15 +1781,17 @@ class AsynctnbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_tnb.types.tag_resource_input.TagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_tnb.types.tag_resource_input.TagResourceInput = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def terminate_sol_network_instance(
@@ -1793,8 +1838,9 @@ class AsynctnbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_tnb.types.terminate_sol_network_instance_input.TerminateSolNetworkInstanceInput = {}  # type: ignore[typeddict-item]
-        input_["ns_instance_id"] = ns_instance_id
+        input_: capo_tnb.types.terminate_sol_network_instance_input.TerminateSolNetworkInstanceInput = {
+            "ns_instance_id": ns_instance_id
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -1803,6 +1849,7 @@ class AsynctnbClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -1843,15 +1890,17 @@ class AsynctnbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_tnb.types.untag_resource_input.UntagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_tnb.types.untag_resource_input.UntagResourceInput = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_sol_function_package(
@@ -1900,15 +1949,17 @@ class AsynctnbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_tnb.types.update_sol_function_package_input.UpdateSolFunctionPackageInput = {}  # type: ignore[typeddict-item]
-        input_["vnf_pkg_id"] = vnf_pkg_id
-        input_["operational_state"] = operational_state
+        input_: capo_tnb.types.update_sol_function_package_input.UpdateSolFunctionPackageInput = {
+            "vnf_pkg_id": vnf_pkg_id,
+            "operational_state": operational_state,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_sol_network_instance(
@@ -1968,9 +2019,10 @@ class AsynctnbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_tnb.types.update_sol_network_instance_input.UpdateSolNetworkInstanceInput = {}  # type: ignore[typeddict-item]
-        input_["ns_instance_id"] = ns_instance_id
-        input_["update_type"] = update_type
+        input_: capo_tnb.types.update_sol_network_instance_input.UpdateSolNetworkInstanceInput = {
+            "ns_instance_id": ns_instance_id,
+            "update_type": update_type,
+        }
         if modify_vnf_info_data is not None:
             input_["modify_vnf_info_data"] = modify_vnf_info_data
         if update_ns is not None:
@@ -1983,6 +2035,7 @@ class AsynctnbClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_sol_network_package(
@@ -2033,15 +2086,17 @@ class AsynctnbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_tnb.types.update_sol_network_package_input.UpdateSolNetworkPackageInput = {}  # type: ignore[typeddict-item]
-        input_["nsd_info_id"] = nsd_info_id
-        input_["nsd_operational_state"] = nsd_operational_state
+        input_: capo_tnb.types.update_sol_network_package_input.UpdateSolNetworkPackageInput = {
+            "nsd_info_id": nsd_info_id,
+            "nsd_operational_state": nsd_operational_state,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def validate_sol_function_package_content(
@@ -2091,17 +2146,19 @@ class AsynctnbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_tnb.types.validate_sol_function_package_content_input.ValidateSolFunctionPackageContentInput = {}  # type: ignore[typeddict-item]
-        input_["vnf_pkg_id"] = vnf_pkg_id
+        input_: capo_tnb.types.validate_sol_function_package_content_input.ValidateSolFunctionPackageContentInput = {
+            "vnf_pkg_id": vnf_pkg_id,
+            "file": file,
+        }
         if content_type is not None:
             input_["content_type"] = content_type
-        input_["file"] = file
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def validate_sol_network_package_content(
@@ -2151,17 +2208,19 @@ class AsynctnbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_tnb.types.validate_sol_network_package_content_input.ValidateSolNetworkPackageContentInput = {}  # type: ignore[typeddict-item]
-        input_["nsd_info_id"] = nsd_info_id
+        input_: capo_tnb.types.validate_sol_network_package_content_input.ValidateSolNetworkPackageContentInput = {
+            "nsd_info_id": nsd_info_id,
+            "file": file,
+        }
         if content_type is not None:
             input_["content_type"] = content_type
-        input_["file"] = file
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

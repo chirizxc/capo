@@ -53,7 +53,7 @@ def serialize_aws_json_1_1(value: AssociateFacesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssociateFacesResponse:
     out: AssociateFacesResponse = {}  # type: ignore[typeddict-item]
-    if "AssociatedFaces" in data:
+    if data.get("AssociatedFaces") is not None:
         import capo_rekognition.types.associated_faces_list
 
         out["associated_faces"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_1(data: dict) -> AssociateFacesResponse:
                 data["AssociatedFaces"]
             )
         )
-    if "UnsuccessfulFaceAssociations" in data:
+    if data.get("UnsuccessfulFaceAssociations") is not None:
         import capo_rekognition.types.unsuccessful_face_association_list
 
         out["unsuccessful_face_associations"] = (
@@ -69,7 +69,7 @@ def deserialize_aws_json_1_1(data: dict) -> AssociateFacesResponse:
                 data["UnsuccessfulFaceAssociations"]
             )
         )
-    if "UserStatus" in data:
+    if data.get("UserStatus") is not None:
         import capo_rekognition.types.user_status
 
         out["user_status"] = (

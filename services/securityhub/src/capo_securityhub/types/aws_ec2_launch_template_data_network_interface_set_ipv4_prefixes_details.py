@@ -29,6 +29,6 @@ def deserialize_json(
     data: dict,
 ) -> AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv4PrefixesDetails:
     out: AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv4PrefixesDetails = {}  # type: ignore[typeddict-item]
-    if "Ipv4Prefix" in data:
+    if data.get("Ipv4Prefix") is not None:
         out["ipv4_prefix"] = data["Ipv4Prefix"]
     return out

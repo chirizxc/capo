@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: StreamProcessorSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StreamProcessorSettings:
     out: StreamProcessorSettings = {}  # type: ignore[typeddict-item]
-    if "FaceSearch" in data:
+    if data.get("FaceSearch") is not None:
         import capo_rekognition.types.face_search_settings
 
         out["face_search"] = (
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_1(data: dict) -> StreamProcessorSettings:
                 data["FaceSearch"]
             )
         )
-    if "ConnectedHome" in data:
+    if data.get("ConnectedHome") is not None:
         import capo_rekognition.types.connected_home_settings
 
         out["connected_home"] = (

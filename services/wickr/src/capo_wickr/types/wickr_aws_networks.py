@@ -28,11 +28,11 @@ def serialize_json(value: WickrAwsNetworks) -> dict:
 
 def deserialize_json(data: dict) -> WickrAwsNetworks:
     out: WickrAwsNetworks = {}  # type: ignore[typeddict-item]
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
     else:
         raise DeserializationError("WickrAwsNetworks.region required")
-    if "networkId" in data:
+    if data.get("networkId") is not None:
         out["network_id"] = data["networkId"]
     else:
         raise DeserializationError("WickrAwsNetworks.network_id required")

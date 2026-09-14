@@ -37,10 +37,10 @@ def serialize_json(value: KinesisVideoStreamPoolSummary) -> dict:
 
 def deserialize_json(data: dict) -> KinesisVideoStreamPoolSummary:
     out: KinesisVideoStreamPoolSummary = {}  # type: ignore[typeddict-item]
-    if "PoolName" in data:
+    if data.get("PoolName") is not None:
         out["pool_name"] = data["PoolName"]
-    if "PoolId" in data:
+    if data.get("PoolId") is not None:
         out["pool_id"] = data["PoolId"]
-    if "PoolArn" in data:
+    if data.get("PoolArn") is not None:
         out["pool_arn"] = data["PoolArn"]
     return out

@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> __listOfFindingType:
 
     out: __listOfFindingType = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_macie2.types.finding_type.deserialize_json(item))
     return out

@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: SoftwareUpdatePreferences) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SoftwareUpdatePreferences:
     out: SoftwareUpdatePreferences = {}  # type: ignore[typeddict-item]
-    if "AutomaticUpdatePolicy" in data:
+    if data.get("AutomaticUpdatePolicy") is not None:
         import capo_storage_gateway.types.automatic_update_policy
 
         out["automatic_update_policy"] = (

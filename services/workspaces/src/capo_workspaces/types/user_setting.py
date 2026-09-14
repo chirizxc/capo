@@ -47,7 +47,7 @@ def serialize_aws_json_1_1(value: UserSetting) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UserSetting:
     out: UserSetting = {}  # type: ignore[typeddict-item]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_workspaces.types.user_setting_action_enum
 
         out["action"] = (
@@ -57,7 +57,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserSetting:
         )
     else:
         raise DeserializationError("UserSetting.action required")
-    if "Permission" in data:
+    if data.get("Permission") is not None:
         import capo_workspaces.types.user_setting_permission_enum
 
         out["permission"] = (
@@ -67,6 +67,6 @@ def deserialize_aws_json_1_1(data: dict) -> UserSetting:
         )
     else:
         raise DeserializationError("UserSetting.permission required")
-    if "MaximumLength" in data:
+    if data.get("MaximumLength") is not None:
         out["maximum_length"] = data["MaximumLength"]
     return out

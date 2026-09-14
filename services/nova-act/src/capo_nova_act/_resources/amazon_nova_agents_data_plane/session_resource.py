@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_nova_act._auth._signers
@@ -77,17 +78,20 @@ class SessionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_nova_act.types.create_session_request.CreateSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_definition_name"] = workflow_definition_name
-        input_["workflow_run_id"] = workflow_run_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_nova_act.types.create_session_request.CreateSessionRequest = {
+            "workflow_definition_name": workflow_definition_name,
+            "workflow_run_id": workflow_run_id,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -134,9 +138,10 @@ class SessionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_nova_act.types.list_sessions_request.ListSessionsRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_definition_name"] = workflow_definition_name
-        input_["workflow_run_id"] = workflow_run_id
+        input_: capo_nova_act.types.list_sessions_request.ListSessionsRequest = {
+            "workflow_definition_name": workflow_definition_name,
+            "workflow_run_id": workflow_run_id,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -149,6 +154,7 @@ class SessionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -198,17 +204,20 @@ class AsyncSessionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_nova_act.types.create_session_request.CreateSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_definition_name"] = workflow_definition_name
-        input_["workflow_run_id"] = workflow_run_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_nova_act.types.create_session_request.CreateSessionRequest = {
+            "workflow_definition_name": workflow_definition_name,
+            "workflow_run_id": workflow_run_id,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -256,9 +265,10 @@ class AsyncSessionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_nova_act.types.list_sessions_request.ListSessionsRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_definition_name"] = workflow_definition_name
-        input_["workflow_run_id"] = workflow_run_id
+        input_: capo_nova_act.types.list_sessions_request.ListSessionsRequest = {
+            "workflow_definition_name": workflow_definition_name,
+            "workflow_run_id": workflow_run_id,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -271,4 +281,5 @@ class AsyncSessionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

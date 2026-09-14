@@ -97,7 +97,7 @@ def serialize_json(value: GetRequesterGatewayResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetRequesterGatewayResponse:
     out: GetRequesterGatewayResponse = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_rtbfabric.types.requester_gateway_status
 
         out["status"] = capo_rtbfabric.types.requester_gateway_status.deserialize_json(
@@ -105,29 +105,29 @@ def deserialize_json(data: dict) -> GetRequesterGatewayResponse:
         )
     else:
         raise DeserializationError("GetRequesterGatewayResponse.status required")
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
     else:
         raise DeserializationError("GetRequesterGatewayResponse.domain_name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_rtbfabric.types._prelude.timestamp
 
         out["created_at"] = capo_rtbfabric.types._prelude.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_rtbfabric.types._prelude.timestamp
 
         out["updated_at"] = capo_rtbfabric.types._prelude.timestamp.deserialize_json(
             data["updatedAt"]
         )
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
     else:
         raise DeserializationError("GetRequesterGatewayResponse.vpc_id required")
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_rtbfabric.types.subnet_id_list
 
         out["subnet_ids"] = capo_rtbfabric.types.subnet_id_list.deserialize_json(
@@ -135,7 +135,7 @@ def deserialize_json(data: dict) -> GetRequesterGatewayResponse:
         )
     else:
         raise DeserializationError("GetRequesterGatewayResponse.subnet_ids required")
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_rtbfabric.types.security_group_id_list
 
         out["security_group_ids"] = (
@@ -147,16 +147,16 @@ def deserialize_json(data: dict) -> GetRequesterGatewayResponse:
         raise DeserializationError(
             "GetRequesterGatewayResponse.security_group_ids required"
         )
-    if "gatewayId" in data:
+    if data.get("gatewayId") is not None:
         out["gateway_id"] = data["gatewayId"]
     else:
         raise DeserializationError("GetRequesterGatewayResponse.gateway_id required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_rtbfabric.types.tags_map
 
         out["tags"] = capo_rtbfabric.types.tags_map.deserialize_json(data["tags"])
-    if "activeLinksCount" in data:
+    if data.get("activeLinksCount") is not None:
         out["active_links_count"] = data["activeLinksCount"]
-    if "totalLinksCount" in data:
+    if data.get("totalLinksCount") is not None:
         out["total_links_count"] = data["totalLinksCount"]
     return out

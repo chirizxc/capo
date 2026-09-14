@@ -27,7 +27,7 @@ def serialize_json(value: DescribeAccessEntryResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeAccessEntryResponse:
     out: DescribeAccessEntryResponse = {}  # type: ignore[typeddict-item]
-    if "accessEntry" in data:
+    if data.get("accessEntry") is not None:
         import capo_eks.types.access_entry
 
         out["access_entry"] = capo_eks.types.access_entry.deserialize_json(

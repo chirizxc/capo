@@ -16,4 +16,4 @@ def serialize_json(value: ExperimentActionStartAfterList) -> list:
 
 
 def deserialize_json(data: list) -> ExperimentActionStartAfterList:
-    return list(data)
+    return [item for item in data if item is not None]

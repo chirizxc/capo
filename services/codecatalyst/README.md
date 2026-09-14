@@ -13,9 +13,9 @@ from capo_codecatalyst import AsyncCodeCatalystClient
 
 
 async def main():
-    async with AsyncCodeCatalystClient() as s3:
+    async with AsyncCodeCatalystClient() as code_catalyst:
         # Example: call the get_user_details operation
-        response = await s3.get_user_details()
+        response = await code_catalyst.get_user_details()
         print(response["user_id"])
 ```
 
@@ -29,9 +29,9 @@ from capo_codecatalyst.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncCodeCatalystClient() as s3:
+    async with AsyncCodeCatalystClient() as code_catalyst:
         try:
-            await s3.get_user_details()
+            await code_catalyst.get_user_details()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_codecatalyst import AsyncCodeCatalystClient
 
 
 async def main():
-    async with AsyncCodeCatalystClient() as s3:
+    async with AsyncCodeCatalystClient() as code_catalyst:
         # Default: 3 attempts for every operation
-        response = await s3.get_user_details()
+        response = await code_catalyst.get_user_details()
 
         # Override per operation
-        response = await s3.get_user_details(config_overrides={"retry_max_attempts": 5})
+        response = await code_catalyst.get_user_details(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.get_user_details(config_overrides={"retry_max_attempts": 1})
+        response = await code_catalyst.get_user_details(config_overrides={"retry_max_attempts": 1})
 ```

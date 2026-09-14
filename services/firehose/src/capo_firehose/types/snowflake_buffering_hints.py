@@ -32,8 +32,8 @@ def serialize_aws_json_1_1(value: SnowflakeBufferingHints) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SnowflakeBufferingHints:
     out: SnowflakeBufferingHints = {}  # type: ignore[typeddict-item]
-    if "SizeInMBs" in data:
+    if data.get("SizeInMBs") is not None:
         out["size_in_m_bs"] = data["SizeInMBs"]
-    if "IntervalInSeconds" in data:
+    if data.get("IntervalInSeconds") is not None:
         out["interval_in_seconds"] = data["IntervalInSeconds"]
     return out

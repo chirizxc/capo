@@ -40,13 +40,13 @@ def serialize_json(value: HistoricalMetricResult) -> dict:
 
 def deserialize_json(data: dict) -> HistoricalMetricResult:
     out: HistoricalMetricResult = {}  # type: ignore[typeddict-item]
-    if "Dimensions" in data:
+    if data.get("Dimensions") is not None:
         import capo_connect.types.dimensions
 
         out["dimensions"] = capo_connect.types.dimensions.deserialize_json(
             data["Dimensions"]
         )
-    if "Collections" in data:
+    if data.get("Collections") is not None:
         import capo_connect.types.historical_metric_data_collections
 
         out["collections"] = (

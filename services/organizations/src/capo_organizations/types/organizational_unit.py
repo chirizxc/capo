@@ -44,12 +44,12 @@ def serialize_aws_json_1_1(value: OrganizationalUnit) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OrganizationalUnit:
     out: OrganizationalUnit = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Path" in data:
+    if data.get("Path") is not None:
         out["path"] = data["Path"]
     return out

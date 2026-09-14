@@ -31,12 +31,12 @@ def serialize_aws_json_1_1(value: InspectorServiceAttributes) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InspectorServiceAttributes:
     out: InspectorServiceAttributes = {}  # type: ignore[typeddict-item]
-    if "schemaVersion" in data:
+    if data.get("schemaVersion") is not None:
         out["schema_version"] = data["schemaVersion"]
     else:
         out["schema_version"] = 0
-    if "assessmentRunArn" in data:
+    if data.get("assessmentRunArn") is not None:
         out["assessment_run_arn"] = data["assessmentRunArn"]
-    if "rulesPackageArn" in data:
+    if data.get("rulesPackageArn") is not None:
         out["rules_package_arn"] = data["rulesPackageArn"]
     return out

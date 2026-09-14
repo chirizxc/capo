@@ -47,29 +47,29 @@ def serialize_json(value: GetOriginEndpointPolicyResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetOriginEndpointPolicyResponse:
     out: GetOriginEndpointPolicyResponse = {}  # type: ignore[typeddict-item]
-    if "ChannelGroupName" in data:
+    if data.get("ChannelGroupName") is not None:
         out["channel_group_name"] = data["ChannelGroupName"]
     else:
         raise DeserializationError(
             "GetOriginEndpointPolicyResponse.channel_group_name required"
         )
-    if "ChannelName" in data:
+    if data.get("ChannelName") is not None:
         out["channel_name"] = data["ChannelName"]
     else:
         raise DeserializationError(
             "GetOriginEndpointPolicyResponse.channel_name required"
         )
-    if "OriginEndpointName" in data:
+    if data.get("OriginEndpointName") is not None:
         out["origin_endpoint_name"] = data["OriginEndpointName"]
     else:
         raise DeserializationError(
             "GetOriginEndpointPolicyResponse.origin_endpoint_name required"
         )
-    if "Policy" in data:
+    if data.get("Policy") is not None:
         out["policy"] = data["Policy"]
     else:
         raise DeserializationError("GetOriginEndpointPolicyResponse.policy required")
-    if "CdnAuthConfiguration" in data:
+    if data.get("CdnAuthConfiguration") is not None:
         import capo_mediapackagev2.types.cdn_auth_configuration
 
         out["cdn_auth_configuration"] = (

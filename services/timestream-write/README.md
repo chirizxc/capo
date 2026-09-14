@@ -13,10 +13,25 @@ from capo_timestream_write import AsyncTimestreamWriteClient
 
 
 async def main():
-    async with AsyncTimestreamWriteClient() as s3:
+    async with AsyncTimestreamWriteClient() as timestream_write:
         # Example: call the create_batch_load_task operation
-        response = await s3.create_batch_load_task()
+        response = await timestream_write.create_batch_load_task()
         print(response["task_id"])
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_timestream_write import AsyncTimestreamWriteClient
+
+
+async def main():
+    async with AsyncTimestreamWriteClient() as timestream_write:
+        # Example: paginate over list_batch_load_tasks
+        async for item in timestream_write.iter_list_batch_load_tasks():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_timestream_write.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncTimestreamWriteClient() as s3:
+    async with AsyncTimestreamWriteClient() as timestream_write:
         try:
-            await s3.create_batch_load_task()
+            await timestream_write.create_batch_load_task()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_timestream_write import AsyncTimestreamWriteClient
 
 
 async def main():
-    async with AsyncTimestreamWriteClient() as s3:
+    async with AsyncTimestreamWriteClient() as timestream_write:
         # Default: 3 attempts for every operation
-        response = await s3.create_batch_load_task()
+        response = await timestream_write.create_batch_load_task()
 
         # Override per operation
-        response = await s3.create_batch_load_task(config_overrides={"retry_max_attempts": 5})
+        response = await timestream_write.create_batch_load_task(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_batch_load_task(config_overrides={"retry_max_attempts": 1})
+        response = await timestream_write.create_batch_load_task(config_overrides={"retry_max_attempts": 1})
 ```

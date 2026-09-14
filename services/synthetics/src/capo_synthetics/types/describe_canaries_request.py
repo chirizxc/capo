@@ -43,11 +43,11 @@ def serialize_json(value: DescribeCanariesRequest) -> dict:
 
 def deserialize_json(data: dict) -> DescribeCanariesRequest:
     out: DescribeCanariesRequest = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "Names" in data:
+    if data.get("Names") is not None:
         import capo_synthetics.types.describe_canaries_name_filter
 
         out["names"] = (

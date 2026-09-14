@@ -85,27 +85,27 @@ def serialize_aws_json_1_1(value: Snapshot) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Snapshot:
     out: Snapshot = {}  # type: ignore[typeddict-item]
-    if "ResourceARN" in data:
+    if data.get("ResourceARN") is not None:
         out["resource_arn"] = data["ResourceARN"]
-    if "SnapshotId" in data:
+    if data.get("SnapshotId") is not None:
         out["snapshot_id"] = data["SnapshotId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "VolumeId" in data:
+    if data.get("VolumeId") is not None:
         out["volume_id"] = data["VolumeId"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_fsx.types.creation_time
 
         out["creation_time"] = capo_fsx.types.creation_time.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "Lifecycle" in data:
+    if data.get("Lifecycle") is not None:
         import capo_fsx.types.snapshot_lifecycle
 
         out["lifecycle"] = capo_fsx.types.snapshot_lifecycle.deserialize_aws_json_1_1(
             data["Lifecycle"]
         )
-    if "LifecycleTransitionReason" in data:
+    if data.get("LifecycleTransitionReason") is not None:
         import capo_fsx.types.lifecycle_transition_reason
 
         out["lifecycle_transition_reason"] = (
@@ -113,11 +113,11 @@ def deserialize_aws_json_1_1(data: dict) -> Snapshot:
                 data["LifecycleTransitionReason"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_fsx.types.tags
 
         out["tags"] = capo_fsx.types.tags.deserialize_aws_json_1_1(data["Tags"])
-    if "AdministrativeActions" in data:
+    if data.get("AdministrativeActions") is not None:
         import capo_fsx.types.administrative_actions
 
         out["administrative_actions"] = (

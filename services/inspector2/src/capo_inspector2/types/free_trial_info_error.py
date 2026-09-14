@@ -31,15 +31,15 @@ def serialize_json(value: FreeTrialInfoError) -> dict:
 
 def deserialize_json(data: dict) -> FreeTrialInfoError:
     out: FreeTrialInfoError = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
     else:
         raise DeserializationError("FreeTrialInfoError.account_id required")
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
     else:
         raise DeserializationError("FreeTrialInfoError.code required")
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("FreeTrialInfoError.message required")

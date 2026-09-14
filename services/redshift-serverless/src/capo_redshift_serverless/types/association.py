@@ -35,10 +35,10 @@ def serialize_aws_json_1_1(value: Association) -> dict:
     if "custom_domain_certificate_arn" in value:
         out["customDomainCertificateArn"] = value["custom_domain_certificate_arn"]
     if "custom_domain_certificate_expiry_time" in value:
-        import capo_redshift_serverless.types._prelude.timestamp
+        import capo_redshift_serverless._protocol.serialize
 
         out["customDomainCertificateExpiryTime"] = (
-            capo_redshift_serverless.types._prelude.timestamp.serialize_aws_json_1_1(
+            capo_redshift_serverless._protocol.serialize.fmt_date_time(
                 value["custom_domain_certificate_expiry_time"]
             )
         )
@@ -51,18 +51,16 @@ def serialize_aws_json_1_1(value: Association) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Association:
     out: Association = {}  # type: ignore[typeddict-item]
-    if "customDomainCertificateArn" in data:
+    if data.get("customDomainCertificateArn") is not None:
         out["custom_domain_certificate_arn"] = data["customDomainCertificateArn"]
-    if "customDomainCertificateExpiryTime" in data:
-        import capo_redshift_serverless.types._prelude.timestamp
+    if data.get("customDomainCertificateExpiryTime") is not None:
+        import datetime
 
-        out["custom_domain_certificate_expiry_time"] = (
-            capo_redshift_serverless.types._prelude.timestamp.deserialize_aws_json_1_1(
-                data["customDomainCertificateExpiryTime"]
-            )
+        out["custom_domain_certificate_expiry_time"] = datetime.datetime.fromisoformat(
+            data["customDomainCertificateExpiryTime"].replace("Z", "+00:00")
         )
-    if "customDomainName" in data:
+    if data.get("customDomainName") is not None:
         out["custom_domain_name"] = data["customDomainName"]
-    if "workgroupName" in data:
+    if data.get("workgroupName") is not None:
         out["workgroup_name"] = data["workgroupName"]
     return out

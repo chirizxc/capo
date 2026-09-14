@@ -29,6 +29,8 @@ def serialize_json(input_to_serialize: TemplateParameterConfigurationMap) -> dic
 def deserialize_json(data: dict) -> TemplateParameterConfigurationMap:
     out: TemplateParameterConfigurationMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_emr_containers.types.template_parameter_configuration
 
         out[key] = (

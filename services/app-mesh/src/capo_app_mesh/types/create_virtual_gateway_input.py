@@ -46,13 +46,13 @@ def serialize_json(value: CreateVirtualGatewayInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateVirtualGatewayInput:
     out: CreateVirtualGatewayInput = {}  # type: ignore[typeddict-item]
-    if "virtualGatewayName" in data:
+    if data.get("virtualGatewayName") is not None:
         out["virtual_gateway_name"] = data["virtualGatewayName"]
     else:
         raise DeserializationError(
             "CreateVirtualGatewayInput.virtual_gateway_name required"
         )
-    if "spec" in data:
+    if data.get("spec") is not None:
         import capo_app_mesh.types.virtual_gateway_spec
 
         out["spec"] = capo_app_mesh.types.virtual_gateway_spec.deserialize_json(
@@ -60,10 +60,10 @@ def deserialize_json(data: dict) -> CreateVirtualGatewayInput:
         )
     else:
         raise DeserializationError("CreateVirtualGatewayInput.spec required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_app_mesh.types.tag_list
 
         out["tags"] = capo_app_mesh.types.tag_list.deserialize_json(data["tags"])
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

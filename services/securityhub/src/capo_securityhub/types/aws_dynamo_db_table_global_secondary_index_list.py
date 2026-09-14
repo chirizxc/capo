@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsDynamoDbTableGlobalSecondaryIndexList:
 
     out: AwsDynamoDbTableGlobalSecondaryIndexList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_dynamo_db_table_global_secondary_index.deserialize_json(
                 item

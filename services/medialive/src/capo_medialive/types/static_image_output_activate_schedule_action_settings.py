@@ -78,34 +78,34 @@ def serialize_json(value: StaticImageOutputActivateScheduleActionSettings) -> di
 
 def deserialize_json(data: dict) -> StaticImageOutputActivateScheduleActionSettings:
     out: StaticImageOutputActivateScheduleActionSettings = {}  # type: ignore[typeddict-item]
-    if "duration" in data:
+    if data.get("duration") is not None:
         out["duration"] = data["duration"]
-    if "fadeIn" in data:
+    if data.get("fadeIn") is not None:
         out["fade_in"] = data["fadeIn"]
-    if "fadeOut" in data:
+    if data.get("fadeOut") is not None:
         out["fade_out"] = data["fadeOut"]
-    if "height" in data:
+    if data.get("height") is not None:
         out["height"] = data["height"]
-    if "image" in data:
+    if data.get("image") is not None:
         import capo_medialive.types.input_location
 
         out["image"] = capo_medialive.types.input_location.deserialize_json(
             data["image"]
         )
-    if "imageX" in data:
+    if data.get("imageX") is not None:
         out["image_x"] = data["imageX"]
-    if "imageY" in data:
+    if data.get("imageY") is not None:
         out["image_y"] = data["imageY"]
-    if "layer" in data:
+    if data.get("layer") is not None:
         out["layer"] = data["layer"]
-    if "opacity" in data:
+    if data.get("opacity") is not None:
         out["opacity"] = data["opacity"]
-    if "outputNames" in data:
+    if data.get("outputNames") is not None:
         import capo_medialive.types.__list_of__string
 
         out["output_names"] = capo_medialive.types.__list_of__string.deserialize_json(
             data["outputNames"]
         )
-    if "width" in data:
+    if data.get("width") is not None:
         out["width"] = data["width"]
     return out

@@ -109,29 +109,29 @@ def serialize_json(value: GetEngineStatusOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetEngineStatusOutput:
     out: GetEngineStatusOutput = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         out["start_time"] = data["startTime"]
-    if "dbEngineVersion" in data:
+    if data.get("dbEngineVersion") is not None:
         out["db_engine_version"] = data["dbEngineVersion"]
-    if "role" in data:
+    if data.get("role") is not None:
         out["role"] = data["role"]
-    if "dfeQueryEngine" in data:
+    if data.get("dfeQueryEngine") is not None:
         out["dfe_query_engine"] = data["dfeQueryEngine"]
-    if "gremlin" in data:
+    if data.get("gremlin") is not None:
         import capo_neptunedata.types.query_language_version
 
         out["gremlin"] = capo_neptunedata.types.query_language_version.deserialize_json(
             data["gremlin"]
         )
-    if "sparql" in data:
+    if data.get("sparql") is not None:
         import capo_neptunedata.types.query_language_version
 
         out["sparql"] = capo_neptunedata.types.query_language_version.deserialize_json(
             data["sparql"]
         )
-    if "opencypher" in data:
+    if data.get("opencypher") is not None:
         import capo_neptunedata.types.query_language_version
 
         out["opencypher"] = (
@@ -139,25 +139,25 @@ def deserialize_json(data: dict) -> GetEngineStatusOutput:
                 data["opencypher"]
             )
         )
-    if "labMode" in data:
+    if data.get("labMode") is not None:
         import capo_neptunedata.types.string_valued_map
 
         out["lab_mode"] = capo_neptunedata.types.string_valued_map.deserialize_json(
             data["labMode"]
         )
-    if "rollingBackTrxCount" in data:
+    if data.get("rollingBackTrxCount") is not None:
         out["rolling_back_trx_count"] = data["rollingBackTrxCount"]
-    if "rollingBackTrxEarliestStartTime" in data:
+    if data.get("rollingBackTrxEarliestStartTime") is not None:
         out["rolling_back_trx_earliest_start_time"] = data[
             "rollingBackTrxEarliestStartTime"
         ]
-    if "features" in data:
+    if data.get("features") is not None:
         import capo_neptunedata.types.document_valued_map
 
         out["features"] = capo_neptunedata.types.document_valued_map.deserialize_json(
             data["features"]
         )
-    if "settings" in data:
+    if data.get("settings") is not None:
         import capo_neptunedata.types.string_valued_map
 
         out["settings"] = capo_neptunedata.types.string_valued_map.deserialize_json(

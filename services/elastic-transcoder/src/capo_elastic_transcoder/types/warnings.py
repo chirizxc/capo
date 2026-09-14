@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Warnings:
 
     out: Warnings = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_elastic_transcoder.types.warning.deserialize_json(item))
     return out

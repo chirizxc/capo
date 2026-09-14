@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> StandardIdentifierList:
 
     out: StandardIdentifierList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_customer_profiles.types.standard_identifier.deserialize_json(item)
         )

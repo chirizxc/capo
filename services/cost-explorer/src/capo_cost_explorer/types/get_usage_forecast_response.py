@@ -40,13 +40,13 @@ def serialize_aws_json_1_1(value: GetUsageForecastResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetUsageForecastResponse:
     out: GetUsageForecastResponse = {}  # type: ignore[typeddict-item]
-    if "Total" in data:
+    if data.get("Total") is not None:
         import capo_cost_explorer.types.metric_value
 
         out["total"] = capo_cost_explorer.types.metric_value.deserialize_aws_json_1_1(
             data["Total"]
         )
-    if "ForecastResultsByTime" in data:
+    if data.get("ForecastResultsByTime") is not None:
         import capo_cost_explorer.types.forecast_results_by_time
 
         out["forecast_results_by_time"] = (

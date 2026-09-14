@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListLicenseManagerReportGeneratorsResponse) ->
 
 def deserialize_aws_json_1_1(data: dict) -> ListLicenseManagerReportGeneratorsResponse:
     out: ListLicenseManagerReportGeneratorsResponse = {}  # type: ignore[typeddict-item]
-    if "ReportGenerators" in data:
+    if data.get("ReportGenerators") is not None:
         import capo_license_manager.types.report_generator_list
 
         out["report_generators"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListLicenseManagerReportGeneratorsRe
                 data["ReportGenerators"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> FieldValueList:
 
     out: FieldValueList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connectcases.types.field_value.deserialize_json(item))
     return out

@@ -50,15 +50,15 @@ def serialize_aws_json_1_1(value: CreateTrainingPlanRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateTrainingPlanRequest:
     out: CreateTrainingPlanRequest = {}  # type: ignore[typeddict-item]
-    if "TrainingPlanName" in data:
+    if data.get("TrainingPlanName") is not None:
         out["training_plan_name"] = data["TrainingPlanName"]
-    if "TrainingPlanOfferingId" in data:
+    if data.get("TrainingPlanOfferingId") is not None:
         out["training_plan_offering_id"] = data["TrainingPlanOfferingId"]
-    if "SpareInstanceCountPerUltraServer" in data:
+    if data.get("SpareInstanceCountPerUltraServer") is not None:
         out["spare_instance_count_per_ultra_server"] = data[
             "SpareInstanceCountPerUltraServer"
         ]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(

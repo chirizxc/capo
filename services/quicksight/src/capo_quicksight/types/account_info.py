@@ -46,18 +46,18 @@ def serialize_json(value: AccountInfo) -> dict:
 
 def deserialize_json(data: dict) -> AccountInfo:
     out: AccountInfo = {}  # type: ignore[typeddict-item]
-    if "AccountName" in data:
+    if data.get("AccountName") is not None:
         out["account_name"] = data["AccountName"]
-    if "Edition" in data:
+    if data.get("Edition") is not None:
         import capo_quicksight.types.edition
 
         out["edition"] = capo_quicksight.types.edition.deserialize_json(data["Edition"])
-    if "NotificationEmail" in data:
+    if data.get("NotificationEmail") is not None:
         out["notification_email"] = data["NotificationEmail"]
-    if "AuthenticationType" in data:
+    if data.get("AuthenticationType") is not None:
         out["authentication_type"] = data["AuthenticationType"]
-    if "AccountSubscriptionStatus" in data:
+    if data.get("AccountSubscriptionStatus") is not None:
         out["account_subscription_status"] = data["AccountSubscriptionStatus"]
-    if "IAMIdentityCenterInstanceArn" in data:
+    if data.get("IAMIdentityCenterInstanceArn") is not None:
         out["iam_identity_center_instance_arn"] = data["IAMIdentityCenterInstanceArn"]
     return out

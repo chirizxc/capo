@@ -28,13 +28,13 @@ def serialize_aws_json_1_1(value: KinesisStreamSourceConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> KinesisStreamSourceConfiguration:
     out: KinesisStreamSourceConfiguration = {}  # type: ignore[typeddict-item]
-    if "KinesisStreamARN" in data:
+    if data.get("KinesisStreamARN") is not None:
         out["kinesis_stream_arn"] = data["KinesisStreamARN"]
     else:
         raise DeserializationError(
             "KinesisStreamSourceConfiguration.kinesis_stream_arn required"
         )
-    if "RoleARN" in data:
+    if data.get("RoleARN") is not None:
         out["role_arn"] = data["RoleARN"]
     else:
         raise DeserializationError("KinesisStreamSourceConfiguration.role_arn required")

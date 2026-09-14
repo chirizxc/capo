@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DescribeEventTrackerRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeEventTrackerRequest:
     out: DescribeEventTrackerRequest = {}  # type: ignore[typeddict-item]
-    if "eventTrackerArn" in data:
+    if data.get("eventTrackerArn") is not None:
         out["event_tracker_arn"] = data["eventTrackerArn"]
     else:
         raise DeserializationError(

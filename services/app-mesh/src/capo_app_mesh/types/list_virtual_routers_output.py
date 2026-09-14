@@ -32,7 +32,7 @@ def serialize_json(value: ListVirtualRoutersOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListVirtualRoutersOutput:
     out: ListVirtualRoutersOutput = {}  # type: ignore[typeddict-item]
-    if "virtualRouters" in data:
+    if data.get("virtualRouters") is not None:
         import capo_app_mesh.types.virtual_router_list
 
         out["virtual_routers"] = (
@@ -42,6 +42,6 @@ def deserialize_json(data: dict) -> ListVirtualRoutersOutput:
         )
     else:
         raise DeserializationError("ListVirtualRoutersOutput.virtual_routers required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

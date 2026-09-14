@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: CustomDomainConfigType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CustomDomainConfigType:
     out: CustomDomainConfigType = {}  # type: ignore[typeddict-item]
-    if "CertificateArn" in data:
+    if data.get("CertificateArn") is not None:
         out["certificate_arn"] = data["CertificateArn"]
     else:
         raise DeserializationError("CustomDomainConfigType.certificate_arn required")

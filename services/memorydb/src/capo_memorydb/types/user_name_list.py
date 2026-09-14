@@ -14,4 +14,4 @@ def serialize_aws_json_1_1(value: UserNameList) -> list:
 
 
 def deserialize_aws_json_1_1(data: list) -> UserNameList:
-    return list(data)
+    return [item for item in data if item is not None]

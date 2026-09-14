@@ -32,9 +32,9 @@ def serialize_json(value: StopFlowResponse) -> dict:
 
 def deserialize_json(data: dict) -> StopFlowResponse:
     out: StopFlowResponse = {}  # type: ignore[typeddict-item]
-    if "flowArn" in data:
+    if data.get("flowArn") is not None:
         out["flow_arn"] = data["flowArn"]
-    if "flowStatus" in data:
+    if data.get("flowStatus") is not None:
         import capo_appflow.types.flow_status
 
         out["flow_status"] = capo_appflow.types.flow_status.deserialize_json(

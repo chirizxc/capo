@@ -90,15 +90,15 @@ def serialize_json(value: AwsEventsEndpointDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEventsEndpointDetails:
     out: AwsEventsEndpointDetails = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "EndpointId" in data:
+    if data.get("EndpointId") is not None:
         out["endpoint_id"] = data["EndpointId"]
-    if "EndpointUrl" in data:
+    if data.get("EndpointUrl") is not None:
         out["endpoint_url"] = data["EndpointUrl"]
-    if "EventBuses" in data:
+    if data.get("EventBuses") is not None:
         import capo_securityhub.types.aws_events_endpoint_event_buses_list
 
         out["event_buses"] = (
@@ -106,9 +106,9 @@ def deserialize_json(data: dict) -> AwsEventsEndpointDetails:
                 data["EventBuses"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ReplicationConfig" in data:
+    if data.get("ReplicationConfig") is not None:
         import capo_securityhub.types.aws_events_endpoint_replication_config_details
 
         out["replication_config"] = (
@@ -116,9 +116,9 @@ def deserialize_json(data: dict) -> AwsEventsEndpointDetails:
                 data["ReplicationConfig"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "RoutingConfig" in data:
+    if data.get("RoutingConfig") is not None:
         import capo_securityhub.types.aws_events_endpoint_routing_config_details
 
         out["routing_config"] = (
@@ -126,8 +126,8 @@ def deserialize_json(data: dict) -> AwsEventsEndpointDetails:
                 data["RoutingConfig"]
             )
         )
-    if "State" in data:
+    if data.get("State") is not None:
         out["state"] = data["State"]
-    if "StateReason" in data:
+    if data.get("StateReason") is not None:
         out["state_reason"] = data["StateReason"]
     return out

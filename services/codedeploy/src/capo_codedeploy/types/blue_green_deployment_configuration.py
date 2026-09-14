@@ -57,7 +57,7 @@ def serialize_aws_json_1_1(value: BlueGreenDeploymentConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BlueGreenDeploymentConfiguration:
     out: BlueGreenDeploymentConfiguration = {}  # type: ignore[typeddict-item]
-    if "terminateBlueInstancesOnDeploymentSuccess" in data:
+    if data.get("terminateBlueInstancesOnDeploymentSuccess") is not None:
         import capo_codedeploy.types.blue_instance_termination_option
 
         out["terminate_blue_instances_on_deployment_success"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> BlueGreenDeploymentConfiguration:
                 data["terminateBlueInstancesOnDeploymentSuccess"]
             )
         )
-    if "deploymentReadyOption" in data:
+    if data.get("deploymentReadyOption") is not None:
         import capo_codedeploy.types.deployment_ready_option
 
         out["deployment_ready_option"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> BlueGreenDeploymentConfiguration:
                 data["deploymentReadyOption"]
             )
         )
-    if "greenFleetProvisioningOption" in data:
+    if data.get("greenFleetProvisioningOption") is not None:
         import capo_codedeploy.types.green_fleet_provisioning_option
 
         out["green_fleet_provisioning_option"] = (

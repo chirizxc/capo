@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteSchemaRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteSchemaRequest:
     out: DeleteSchemaRequest = {}  # type: ignore[typeddict-item]
-    if "schemaArn" in data:
+    if data.get("schemaArn") is not None:
         out["schema_arn"] = data["schemaArn"]
     else:
         raise DeserializationError("DeleteSchemaRequest.schema_arn required")

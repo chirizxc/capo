@@ -21,9 +21,9 @@ class StreamingAccessDetails(TypedDict, closed=True):
 def serialize_json(value: StreamingAccessDetails) -> dict:
     out: dict = {}
     out["ServicePrincipal"] = value["service_principal"]
-    import capo_resource_explorer_2.types._prelude.timestamp
+    import capo_resource_explorer_2._protocol.serialize
 
-    out["CreatedAt"] = capo_resource_explorer_2.types._prelude.timestamp.serialize_json(
+    out["CreatedAt"] = capo_resource_explorer_2._protocol.serialize.fmt_date_time(
         value["created_at"]
     )
     return out
@@ -31,17 +31,15 @@ def serialize_json(value: StreamingAccessDetails) -> dict:
 
 def deserialize_json(data: dict) -> StreamingAccessDetails:
     out: StreamingAccessDetails = {}  # type: ignore[typeddict-item]
-    if "ServicePrincipal" in data:
+    if data.get("ServicePrincipal") is not None:
         out["service_principal"] = data["ServicePrincipal"]
     else:
         raise DeserializationError("StreamingAccessDetails.service_principal required")
-    if "CreatedAt" in data:
-        import capo_resource_explorer_2.types._prelude.timestamp
+    if data.get("CreatedAt") is not None:
+        import datetime
 
-        out["created_at"] = (
-            capo_resource_explorer_2.types._prelude.timestamp.deserialize_json(
-                data["CreatedAt"]
-            )
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["CreatedAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("StreamingAccessDetails.created_at required")

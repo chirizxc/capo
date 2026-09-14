@@ -38,19 +38,19 @@ def serialize_aws_json_1_1(value: DescribeMetadataModelMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeMetadataModelMessage:
     out: DescribeMetadataModelMessage = {}  # type: ignore[typeddict-item]
-    if "SelectionRules" in data:
+    if data.get("SelectionRules") is not None:
         out["selection_rules"] = data["SelectionRules"]
     else:
         raise DeserializationError(
             "DescribeMetadataModelMessage.selection_rules required"
         )
-    if "MigrationProjectIdentifier" in data:
+    if data.get("MigrationProjectIdentifier") is not None:
         out["migration_project_identifier"] = data["MigrationProjectIdentifier"]
     else:
         raise DeserializationError(
             "DescribeMetadataModelMessage.migration_project_identifier required"
         )
-    if "Origin" in data:
+    if data.get("Origin") is not None:
         import capo_database_migration_service.types.origin_type_value
 
         out["origin"] = (

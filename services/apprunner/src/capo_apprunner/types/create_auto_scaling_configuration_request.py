@@ -50,19 +50,19 @@ def serialize_aws_json_1_0(value: CreateAutoScalingConfigurationRequest) -> dict
 
 def deserialize_aws_json_1_0(data: dict) -> CreateAutoScalingConfigurationRequest:
     out: CreateAutoScalingConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "AutoScalingConfigurationName" in data:
+    if data.get("AutoScalingConfigurationName") is not None:
         out["auto_scaling_configuration_name"] = data["AutoScalingConfigurationName"]
     else:
         raise DeserializationError(
             "CreateAutoScalingConfigurationRequest.auto_scaling_configuration_name required"
         )
-    if "MaxConcurrency" in data:
+    if data.get("MaxConcurrency") is not None:
         out["max_concurrency"] = data["MaxConcurrency"]
-    if "MinSize" in data:
+    if data.get("MinSize") is not None:
         out["min_size"] = data["MinSize"]
-    if "MaxSize" in data:
+    if data.get("MaxSize") is not None:
         out["max_size"] = data["MaxSize"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_apprunner.types.tag_list
 
         out["tags"] = capo_apprunner.types.tag_list.deserialize_aws_json_1_0(

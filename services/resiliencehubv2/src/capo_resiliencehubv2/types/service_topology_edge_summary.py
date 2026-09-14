@@ -39,19 +39,19 @@ def serialize_json(value: ServiceTopologyEdgeSummary) -> dict:
 
 def deserialize_json(data: dict) -> ServiceTopologyEdgeSummary:
     out: ServiceTopologyEdgeSummary = {}  # type: ignore[typeddict-item]
-    if "sourceResourceIdentifier" in data:
+    if data.get("sourceResourceIdentifier") is not None:
         out["source_resource_identifier"] = data["sourceResourceIdentifier"]
     else:
         raise DeserializationError(
             "ServiceTopologyEdgeSummary.source_resource_identifier required"
         )
-    if "destinationResourceIdentifier" in data:
+    if data.get("destinationResourceIdentifier") is not None:
         out["destination_resource_identifier"] = data["destinationResourceIdentifier"]
     else:
         raise DeserializationError(
             "ServiceTopologyEdgeSummary.destination_resource_identifier required"
         )
-    if "properties" in data:
+    if data.get("properties") is not None:
         import capo_resiliencehubv2.types.edge_property_list
 
         out["properties"] = (

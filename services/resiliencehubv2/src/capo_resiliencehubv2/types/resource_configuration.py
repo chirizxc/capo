@@ -69,7 +69,7 @@ def serialize_json(value: ResourceConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> ResourceConfiguration:
-    if "resourceTags" in data:
+    if data.get("resourceTags") is not None:
         import capo_resiliencehubv2.types.resource_tag_list
 
         return {
@@ -77,17 +77,17 @@ def deserialize_json(data: dict) -> ResourceConfiguration:
                 data["resourceTags"]
             )
         }
-    elif "cfnStackArn" in data:
+    elif data.get("cfnStackArn") is not None:
         return {"cfnStackArn": data["cfnStackArn"]}
-    elif "tfStateFileUrl" in data:
+    elif data.get("tfStateFileUrl") is not None:
         return {"tfStateFileUrl": data["tfStateFileUrl"]}
-    elif "eks" in data:
+    elif data.get("eks") is not None:
         import capo_resiliencehubv2.types.eks_source
 
         return {
             "eks": capo_resiliencehubv2.types.eks_source.deserialize_json(data["eks"])
         }
-    elif "designFileS3Url" in data:
+    elif data.get("designFileS3Url") is not None:
         return {"designFileS3Url": data["designFileS3Url"]}
     else:
         raise DeserializationError("ResourceConfiguration: no recognized variant key")

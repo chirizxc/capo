@@ -91,29 +91,29 @@ def serialize_json(value: DescribeComponentResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeComponentResponse:
     out: DescribeComponentResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "componentName" in data:
+    if data.get("componentName") is not None:
         out["component_name"] = data["componentName"]
-    if "componentVersion" in data:
+    if data.get("componentVersion") is not None:
         out["component_version"] = data["componentVersion"]
-    if "creationTimestamp" in data:
+    if data.get("creationTimestamp") is not None:
         import capo_greengrassv2.types.timestamp
 
         out["creation_timestamp"] = capo_greengrassv2.types.timestamp.deserialize_json(
             data["creationTimestamp"]
         )
-    if "publisher" in data:
+    if data.get("publisher") is not None:
         out["publisher"] = data["publisher"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_greengrassv2.types.cloud_component_status
 
         out["status"] = capo_greengrassv2.types.cloud_component_status.deserialize_json(
             data["status"]
         )
-    if "platforms" in data:
+    if data.get("platforms") is not None:
         import capo_greengrassv2.types.component_platform_list
 
         out["platforms"] = (
@@ -121,7 +121,7 @@ def deserialize_json(data: dict) -> DescribeComponentResponse:
                 data["platforms"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_greengrassv2.types.tag_map
 
         out["tags"] = capo_greengrassv2.types.tag_map.deserialize_json(data["tags"])

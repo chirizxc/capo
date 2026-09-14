@@ -62,7 +62,7 @@ def serialize_aws_json_1_0(value: CreateTLSInspectionConfigurationRequest) -> di
 
 def deserialize_aws_json_1_0(data: dict) -> CreateTLSInspectionConfigurationRequest:
     out: CreateTLSInspectionConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "TLSInspectionConfigurationName" in data:
+    if data.get("TLSInspectionConfigurationName") is not None:
         out["tls_inspection_configuration_name"] = data[
             "TLSInspectionConfigurationName"
         ]
@@ -70,7 +70,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateTLSInspectionConfigurationRequ
         raise DeserializationError(
             "CreateTLSInspectionConfigurationRequest.tls_inspection_configuration_name required"
         )
-    if "TLSInspectionConfiguration" in data:
+    if data.get("TLSInspectionConfiguration") is not None:
         import capo_network_firewall.types.tls_inspection_configuration
 
         out["tls_inspection_configuration"] = (
@@ -82,15 +82,15 @@ def deserialize_aws_json_1_0(data: dict) -> CreateTLSInspectionConfigurationRequ
         raise DeserializationError(
             "CreateTLSInspectionConfigurationRequest.tls_inspection_configuration required"
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_network_firewall.types.tag_list
 
         out["tags"] = capo_network_firewall.types.tag_list.deserialize_aws_json_1_0(
             data["Tags"]
         )
-    if "EncryptionConfiguration" in data:
+    if data.get("EncryptionConfiguration") is not None:
         import capo_network_firewall.types.encryption_configuration
 
         out["encryption_configuration"] = (

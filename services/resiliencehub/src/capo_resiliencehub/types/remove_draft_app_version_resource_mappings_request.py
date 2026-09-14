@@ -94,13 +94,13 @@ def serialize_json(value: RemoveDraftAppVersionResourceMappingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> RemoveDraftAppVersionResourceMappingsRequest:
     out: RemoveDraftAppVersionResourceMappingsRequest = {}  # type: ignore[typeddict-item]
-    if "appArn" in data:
+    if data.get("appArn") is not None:
         out["app_arn"] = data["appArn"]
     else:
         raise DeserializationError(
             "RemoveDraftAppVersionResourceMappingsRequest.app_arn required"
         )
-    if "resourceNames" in data:
+    if data.get("resourceNames") is not None:
         import capo_resiliencehub.types.entity_name_list
 
         out["resource_names"] = (
@@ -108,7 +108,7 @@ def deserialize_json(data: dict) -> RemoveDraftAppVersionResourceMappingsRequest
                 data["resourceNames"]
             )
         )
-    if "logicalStackNames" in data:
+    if data.get("logicalStackNames") is not None:
         import capo_resiliencehub.types.string255_list
 
         out["logical_stack_names"] = (
@@ -116,7 +116,7 @@ def deserialize_json(data: dict) -> RemoveDraftAppVersionResourceMappingsRequest
                 data["logicalStackNames"]
             )
         )
-    if "appRegistryAppNames" in data:
+    if data.get("appRegistryAppNames") is not None:
         import capo_resiliencehub.types.entity_name_list
 
         out["app_registry_app_names"] = (
@@ -124,7 +124,7 @@ def deserialize_json(data: dict) -> RemoveDraftAppVersionResourceMappingsRequest
                 data["appRegistryAppNames"]
             )
         )
-    if "resourceGroupNames" in data:
+    if data.get("resourceGroupNames") is not None:
         import capo_resiliencehub.types.entity_name_list
 
         out["resource_group_names"] = (
@@ -132,7 +132,7 @@ def deserialize_json(data: dict) -> RemoveDraftAppVersionResourceMappingsRequest
                 data["resourceGroupNames"]
             )
         )
-    if "terraformSourceNames" in data:
+    if data.get("terraformSourceNames") is not None:
         import capo_resiliencehub.types.string255_list
 
         out["terraform_source_names"] = (
@@ -140,7 +140,7 @@ def deserialize_json(data: dict) -> RemoveDraftAppVersionResourceMappingsRequest
                 data["terraformSourceNames"]
             )
         )
-    if "eksSourceNames" in data:
+    if data.get("eksSourceNames") is not None:
         import capo_resiliencehub.types.string255_list
 
         out["eks_source_names"] = (

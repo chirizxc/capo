@@ -49,9 +49,9 @@ def serialize_aws_json_1_0(value: GetECSServiceRecommendationsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetECSServiceRecommendationsResponse:
     out: GetECSServiceRecommendationsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "ecsServiceRecommendations" in data:
+    if data.get("ecsServiceRecommendations") is not None:
         import capo_compute_optimizer.types.ecs_service_recommendations
 
         out["ecs_service_recommendations"] = (
@@ -59,7 +59,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetECSServiceRecommendationsResponse
                 data["ecsServiceRecommendations"]
             )
         )
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_compute_optimizer.types.get_recommendation_errors
 
         out["errors"] = (

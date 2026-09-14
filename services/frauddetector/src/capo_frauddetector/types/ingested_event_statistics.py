@@ -40,14 +40,14 @@ def serialize_aws_json_1_1(value: IngestedEventStatistics) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IngestedEventStatistics:
     out: IngestedEventStatistics = {}  # type: ignore[typeddict-item]
-    if "numberOfEvents" in data:
+    if data.get("numberOfEvents") is not None:
         out["number_of_events"] = data["numberOfEvents"]
-    if "eventDataSizeInBytes" in data:
+    if data.get("eventDataSizeInBytes") is not None:
         out["event_data_size_in_bytes"] = data["eventDataSizeInBytes"]
-    if "leastRecentEvent" in data:
+    if data.get("leastRecentEvent") is not None:
         out["least_recent_event"] = data["leastRecentEvent"]
-    if "mostRecentEvent" in data:
+    if data.get("mostRecentEvent") is not None:
         out["most_recent_event"] = data["mostRecentEvent"]
-    if "lastUpdatedTime" in data:
+    if data.get("lastUpdatedTime") is not None:
         out["last_updated_time"] = data["lastUpdatedTime"]
     return out

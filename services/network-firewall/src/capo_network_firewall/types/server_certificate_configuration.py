@@ -64,7 +64,7 @@ def serialize_aws_json_1_0(value: ServerCertificateConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ServerCertificateConfiguration:
     out: ServerCertificateConfiguration = {}  # type: ignore[typeddict-item]
-    if "ServerCertificates" in data:
+    if data.get("ServerCertificates") is not None:
         import capo_network_firewall.types.server_certificates
 
         out["server_certificates"] = (
@@ -72,7 +72,7 @@ def deserialize_aws_json_1_0(data: dict) -> ServerCertificateConfiguration:
                 data["ServerCertificates"]
             )
         )
-    if "Scopes" in data:
+    if data.get("Scopes") is not None:
         import capo_network_firewall.types.server_certificate_scopes
 
         out["scopes"] = (
@@ -80,9 +80,9 @@ def deserialize_aws_json_1_0(data: dict) -> ServerCertificateConfiguration:
                 data["Scopes"]
             )
         )
-    if "CertificateAuthorityArn" in data:
+    if data.get("CertificateAuthorityArn") is not None:
         out["certificate_authority_arn"] = data["CertificateAuthorityArn"]
-    if "CheckCertificateRevocationStatus" in data:
+    if data.get("CheckCertificateRevocationStatus") is not None:
         import capo_network_firewall.types.check_certificate_revocation_status_actions
 
         out["check_certificate_revocation_status"] = (

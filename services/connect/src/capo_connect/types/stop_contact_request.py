@@ -39,15 +39,15 @@ def serialize_json(value: StopContactRequest) -> dict:
 
 def deserialize_json(data: dict) -> StopContactRequest:
     out: StopContactRequest = {}  # type: ignore[typeddict-item]
-    if "ContactId" in data:
+    if data.get("ContactId") is not None:
         out["contact_id"] = data["ContactId"]
     else:
         raise DeserializationError("StopContactRequest.contact_id required")
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     else:
         raise DeserializationError("StopContactRequest.instance_id required")
-    if "DisconnectReason" in data:
+    if data.get("DisconnectReason") is not None:
         import capo_connect.types.disconnect_reason
 
         out["disconnect_reason"] = (

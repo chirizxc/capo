@@ -27,11 +27,11 @@ def serialize_json(value: PortRange) -> dict:
 
 def deserialize_json(data: dict) -> PortRange:
     out: PortRange = {}  # type: ignore[typeddict-item]
-    if "from" in data:
+    if data.get("from") is not None:
         out["from"] = data["from"]
     else:
         out["from"] = 0
-    if "to" in data:
+    if data.get("to") is not None:
         out["to"] = data["to"]
     else:
         out["to"] = 0

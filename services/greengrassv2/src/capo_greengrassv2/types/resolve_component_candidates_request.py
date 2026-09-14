@@ -42,13 +42,13 @@ def serialize_json(value: ResolveComponentCandidatesRequest) -> dict:
 
 def deserialize_json(data: dict) -> ResolveComponentCandidatesRequest:
     out: ResolveComponentCandidatesRequest = {}  # type: ignore[typeddict-item]
-    if "platform" in data:
+    if data.get("platform") is not None:
         import capo_greengrassv2.types.component_platform
 
         out["platform"] = capo_greengrassv2.types.component_platform.deserialize_json(
             data["platform"]
         )
-    if "componentCandidates" in data:
+    if data.get("componentCandidates") is not None:
         import capo_greengrassv2.types.component_candidate_list
 
         out["component_candidates"] = (

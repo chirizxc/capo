@@ -62,7 +62,7 @@ def serialize_json(value: PublishRequest) -> dict:
 
 def deserialize_json(data: dict) -> PublishRequest:
     out: PublishRequest = {}  # type: ignore[typeddict-item]
-    if "payload" in data:
+    if data.get("payload") is not None:
         import capo_iot_data_plane.types.payload
 
         out["payload"] = capo_iot_data_plane.types.payload.deserialize_json(

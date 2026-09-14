@@ -36,13 +36,13 @@ def serialize_aws_json_1_1(value: FileCacheNFSConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FileCacheNFSConfiguration:
     out: FileCacheNFSConfiguration = {}  # type: ignore[typeddict-item]
-    if "Version" in data:
+    if data.get("Version") is not None:
         import capo_fsx.types.nfs_version
 
         out["version"] = capo_fsx.types.nfs_version.deserialize_aws_json_1_1(
             data["Version"]
         )
-    if "DnsIps" in data:
+    if data.get("DnsIps") is not None:
         import capo_fsx.types.repository_dns_ips
 
         out["dns_ips"] = capo_fsx.types.repository_dns_ips.deserialize_aws_json_1_1(

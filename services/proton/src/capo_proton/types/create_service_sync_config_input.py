@@ -40,27 +40,27 @@ def serialize_aws_json_1_0(value: CreateServiceSyncConfigInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateServiceSyncConfigInput:
     out: CreateServiceSyncConfigInput = {}  # type: ignore[typeddict-item]
-    if "serviceName" in data:
+    if data.get("serviceName") is not None:
         out["service_name"] = data["serviceName"]
     else:
         raise DeserializationError("CreateServiceSyncConfigInput.service_name required")
-    if "repositoryProvider" in data:
+    if data.get("repositoryProvider") is not None:
         out["repository_provider"] = data["repositoryProvider"]
     else:
         raise DeserializationError(
             "CreateServiceSyncConfigInput.repository_provider required"
         )
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
     else:
         raise DeserializationError(
             "CreateServiceSyncConfigInput.repository_name required"
         )
-    if "branch" in data:
+    if data.get("branch") is not None:
         out["branch"] = data["branch"]
     else:
         raise DeserializationError("CreateServiceSyncConfigInput.branch required")
-    if "filePath" in data:
+    if data.get("filePath") is not None:
         out["file_path"] = data["filePath"]
     else:
         raise DeserializationError("CreateServiceSyncConfigInput.file_path required")

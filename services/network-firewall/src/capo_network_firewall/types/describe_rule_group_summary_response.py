@@ -38,15 +38,15 @@ def serialize_aws_json_1_0(value: DescribeRuleGroupSummaryResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeRuleGroupSummaryResponse:
     out: DescribeRuleGroupSummaryResponse = {}  # type: ignore[typeddict-item]
-    if "RuleGroupName" in data:
+    if data.get("RuleGroupName") is not None:
         out["rule_group_name"] = data["RuleGroupName"]
     else:
         raise DeserializationError(
             "DescribeRuleGroupSummaryResponse.rule_group_name required"
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Summary" in data:
+    if data.get("Summary") is not None:
         import capo_network_firewall.types.summary
 
         out["summary"] = capo_network_firewall.types.summary.deserialize_aws_json_1_0(

@@ -99,11 +99,11 @@ def serialize_aws_json_1_1(value: StartPipelineExecutionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartPipelineExecutionRequest:
     out: StartPipelineExecutionRequest = {}  # type: ignore[typeddict-item]
-    if "PipelineName" in data:
+    if data.get("PipelineName") is not None:
         out["pipeline_name"] = data["PipelineName"]
-    if "PipelineExecutionDisplayName" in data:
+    if data.get("PipelineExecutionDisplayName") is not None:
         out["pipeline_execution_display_name"] = data["PipelineExecutionDisplayName"]
-    if "PipelineParameters" in data:
+    if data.get("PipelineParameters") is not None:
         import capo_sagemaker.types.parameter_list
 
         out["pipeline_parameters"] = (
@@ -111,11 +111,11 @@ def deserialize_aws_json_1_1(data: dict) -> StartPipelineExecutionRequest:
                 data["PipelineParameters"]
             )
         )
-    if "PipelineExecutionDescription" in data:
+    if data.get("PipelineExecutionDescription") is not None:
         out["pipeline_execution_description"] = data["PipelineExecutionDescription"]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "ParallelismConfiguration" in data:
+    if data.get("ParallelismConfiguration") is not None:
         import capo_sagemaker.types.parallelism_configuration
 
         out["parallelism_configuration"] = (
@@ -123,7 +123,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartPipelineExecutionRequest:
                 data["ParallelismConfiguration"]
             )
         )
-    if "SelectiveExecutionConfig" in data:
+    if data.get("SelectiveExecutionConfig") is not None:
         import capo_sagemaker.types.selective_execution_config
 
         out["selective_execution_config"] = (
@@ -131,8 +131,8 @@ def deserialize_aws_json_1_1(data: dict) -> StartPipelineExecutionRequest:
                 data["SelectiveExecutionConfig"]
             )
         )
-    if "PipelineVersionId" in data:
+    if data.get("PipelineVersionId") is not None:
         out["pipeline_version_id"] = data["PipelineVersionId"]
-    if "MlflowExperimentName" in data:
+    if data.get("MlflowExperimentName") is not None:
         out["mlflow_experiment_name"] = data["MlflowExperimentName"]
     return out

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SystemEventTypeList:
 
     out: SystemEventTypeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_resiliencehubv2.types.system_event_type.deserialize_json(item))
     return out

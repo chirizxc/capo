@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DescribeVpcPeeringConnectionsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeVpcPeeringConnectionsOutput:
     out: DescribeVpcPeeringConnectionsOutput = {}  # type: ignore[typeddict-item]
-    if "VpcPeeringConnections" in data:
+    if data.get("VpcPeeringConnections") is not None:
         import capo_gamelift.types.vpc_peering_connection_list
 
         out["vpc_peering_connections"] = (

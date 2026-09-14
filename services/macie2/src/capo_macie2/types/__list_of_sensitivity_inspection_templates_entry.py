@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> __listOfSensitivityInspectionTemplatesEntry:
 
     out: __listOfSensitivityInspectionTemplatesEntry = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_macie2.types.sensitivity_inspection_templates_entry.deserialize_json(
                 item

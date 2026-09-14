@@ -13,9 +13,9 @@ from capo_cloudhsm import AsyncCloudHSMClient
 
 
 async def main():
-    async with AsyncCloudHSMClient() as s3:
+    async with AsyncCloudHSMClient() as cloud_hsm:
         # Example: call the add_tags_to_resource operation
-        response = await s3.add_tags_to_resource()
+        response = await cloud_hsm.add_tags_to_resource()
         print(response["status"])
 ```
 
@@ -29,9 +29,9 @@ from capo_cloudhsm.error import CloudHsmInternalException
 
 
 async def main():
-    async with AsyncCloudHSMClient() as s3:
+    async with AsyncCloudHSMClient() as cloud_hsm:
         try:
-            await s3.add_tags_to_resource()
+            await cloud_hsm.add_tags_to_resource()
         except CloudHsmInternalException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_cloudhsm import AsyncCloudHSMClient
 
 
 async def main():
-    async with AsyncCloudHSMClient() as s3:
+    async with AsyncCloudHSMClient() as cloud_hsm:
         # Default: 3 attempts for every operation
-        response = await s3.add_tags_to_resource()
+        response = await cloud_hsm.add_tags_to_resource()
 
         # Override per operation
-        response = await s3.add_tags_to_resource(config_overrides={"retry_max_attempts": 5})
+        response = await cloud_hsm.add_tags_to_resource(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.add_tags_to_resource(config_overrides={"retry_max_attempts": 1})
+        response = await cloud_hsm.add_tags_to_resource(config_overrides={"retry_max_attempts": 1})
 ```

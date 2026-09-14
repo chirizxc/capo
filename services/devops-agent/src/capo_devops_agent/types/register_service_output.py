@@ -48,9 +48,9 @@ def serialize_json(value: RegisterServiceOutput) -> dict:
 
 def deserialize_json(data: dict) -> RegisterServiceOutput:
     out: RegisterServiceOutput = {}  # type: ignore[typeddict-item]
-    if "serviceId" in data:
+    if data.get("serviceId") is not None:
         out["service_id"] = data["serviceId"]
-    if "additionalStep" in data:
+    if data.get("additionalStep") is not None:
         import capo_devops_agent.types.additional_service_registration_step
 
         out["additional_step"] = (
@@ -58,9 +58,9 @@ def deserialize_json(data: dict) -> RegisterServiceOutput:
                 data["additionalStep"]
             )
         )
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_devops_agent.types.tags
 
         out["tags"] = capo_devops_agent.types.tags.deserialize_json(data["tags"])

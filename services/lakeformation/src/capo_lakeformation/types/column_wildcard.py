@@ -31,7 +31,7 @@ def serialize_json(value: ColumnWildcard) -> dict:
 
 def deserialize_json(data: dict) -> ColumnWildcard:
     out: ColumnWildcard = {}  # type: ignore[typeddict-item]
-    if "ExcludedColumnNames" in data:
+    if data.get("ExcludedColumnNames") is not None:
         import capo_lakeformation.types.column_names
 
         out["excluded_column_names"] = (

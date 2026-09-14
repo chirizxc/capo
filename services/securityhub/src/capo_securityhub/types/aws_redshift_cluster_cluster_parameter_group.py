@@ -44,7 +44,7 @@ def serialize_json(value: AwsRedshiftClusterClusterParameterGroup) -> dict:
 
 def deserialize_json(data: dict) -> AwsRedshiftClusterClusterParameterGroup:
     out: AwsRedshiftClusterClusterParameterGroup = {}  # type: ignore[typeddict-item]
-    if "ClusterParameterStatusList" in data:
+    if data.get("ClusterParameterStatusList") is not None:
         import capo_securityhub.types.aws_redshift_cluster_cluster_parameter_status_list
 
         out["cluster_parameter_status_list"] = (
@@ -52,8 +52,8 @@ def deserialize_json(data: dict) -> AwsRedshiftClusterClusterParameterGroup:
                 data["ClusterParameterStatusList"]
             )
         )
-    if "ParameterApplyStatus" in data:
+    if data.get("ParameterApplyStatus") is not None:
         out["parameter_apply_status"] = data["ParameterApplyStatus"]
-    if "ParameterGroupName" in data:
+    if data.get("ParameterGroupName") is not None:
         out["parameter_group_name"] = data["ParameterGroupName"]
     return out

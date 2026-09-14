@@ -68,13 +68,13 @@ def serialize_json(value: AnalyticsUtteranceResult) -> dict:
 
 def deserialize_json(data: dict) -> AnalyticsUtteranceResult:
     out: AnalyticsUtteranceResult = {}  # type: ignore[typeddict-item]
-    if "binKeys" in data:
+    if data.get("binKeys") is not None:
         import capo_lex_models_v2.types.analytics_bin_keys
 
         out["bin_keys"] = capo_lex_models_v2.types.analytics_bin_keys.deserialize_json(
             data["binKeys"]
         )
-    if "groupByKeys" in data:
+    if data.get("groupByKeys") is not None:
         import capo_lex_models_v2.types.analytics_utterance_group_by_keys
 
         out["group_by_keys"] = (
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> AnalyticsUtteranceResult:
                 data["groupByKeys"]
             )
         )
-    if "metricsResults" in data:
+    if data.get("metricsResults") is not None:
         import capo_lex_models_v2.types.analytics_utterance_metric_results
 
         out["metrics_results"] = (
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> AnalyticsUtteranceResult:
                 data["metricsResults"]
             )
         )
-    if "attributeResults" in data:
+    if data.get("attributeResults") is not None:
         import capo_lex_models_v2.types.analytics_utterance_attribute_results
 
         out["attribute_results"] = (

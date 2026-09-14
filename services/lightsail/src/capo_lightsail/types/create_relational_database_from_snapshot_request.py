@@ -74,33 +74,33 @@ def serialize_aws_json_1_1(value: CreateRelationalDatabaseFromSnapshotRequest) -
 
 def deserialize_aws_json_1_1(data: dict) -> CreateRelationalDatabaseFromSnapshotRequest:
     out: CreateRelationalDatabaseFromSnapshotRequest = {}  # type: ignore[typeddict-item]
-    if "relationalDatabaseName" in data:
+    if data.get("relationalDatabaseName") is not None:
         out["relational_database_name"] = data["relationalDatabaseName"]
     else:
         raise DeserializationError(
             "CreateRelationalDatabaseFromSnapshotRequest.relational_database_name required"
         )
-    if "availabilityZone" in data:
+    if data.get("availabilityZone") is not None:
         out["availability_zone"] = data["availabilityZone"]
-    if "publiclyAccessible" in data:
+    if data.get("publiclyAccessible") is not None:
         out["publicly_accessible"] = data["publiclyAccessible"]
-    if "relationalDatabaseSnapshotName" in data:
+    if data.get("relationalDatabaseSnapshotName") is not None:
         out["relational_database_snapshot_name"] = data[
             "relationalDatabaseSnapshotName"
         ]
-    if "relationalDatabaseBundleId" in data:
+    if data.get("relationalDatabaseBundleId") is not None:
         out["relational_database_bundle_id"] = data["relationalDatabaseBundleId"]
-    if "sourceRelationalDatabaseName" in data:
+    if data.get("sourceRelationalDatabaseName") is not None:
         out["source_relational_database_name"] = data["sourceRelationalDatabaseName"]
-    if "restoreTime" in data:
+    if data.get("restoreTime") is not None:
         import capo_lightsail.types.iso_date
 
         out["restore_time"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
             data["restoreTime"]
         )
-    if "useLatestRestorableTime" in data:
+    if data.get("useLatestRestorableTime") is not None:
         out["use_latest_restorable_time"] = data["useLatestRestorableTime"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_lightsail.types.tag_list
 
         out["tags"] = capo_lightsail.types.tag_list.deserialize_aws_json_1_1(

@@ -183,9 +183,9 @@ def serialize_json(value: StartDeleteMonitorDeploymentResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartDeleteMonitorDeploymentResponse:
     out: StartDeleteMonitorDeploymentResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "cloudWatchAlarmTemplateGroupIds" in data:
+    if data.get("cloudWatchAlarmTemplateGroupIds") is not None:
         import capo_medialive.types.__list_of__string_min7_max11_pattern_aws097
 
         out["cloud_watch_alarm_template_group_ids"] = (
@@ -193,19 +193,19 @@ def deserialize_json(data: dict) -> StartDeleteMonitorDeploymentResponse:
                 data["cloudWatchAlarmTemplateGroupIds"]
             )
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_medialive.types.__timestamp_iso8601
 
         out["created_at"] = capo_medialive.types.__timestamp_iso8601.deserialize_json(
             data["createdAt"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "discoveryEntryPointArn" in data:
+    if data.get("discoveryEntryPointArn") is not None:
         out["discovery_entry_point_arn"] = data["discoveryEntryPointArn"]
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
-    if "eventBridgeRuleTemplateGroupIds" in data:
+    if data.get("eventBridgeRuleTemplateGroupIds") is not None:
         import capo_medialive.types.__list_of__string_min7_max11_pattern_aws097
 
         out["event_bridge_rule_template_group_ids"] = (
@@ -213,7 +213,7 @@ def deserialize_json(data: dict) -> StartDeleteMonitorDeploymentResponse:
                 data["eventBridgeRuleTemplateGroupIds"]
             )
         )
-    if "failedMediaResourceMap" in data:
+    if data.get("failedMediaResourceMap") is not None:
         import capo_medialive.types.failed_media_resource_map
 
         out["failed_media_resource_map"] = (
@@ -221,9 +221,9 @@ def deserialize_json(data: dict) -> StartDeleteMonitorDeploymentResponse:
                 data["failedMediaResourceMap"]
             )
         )
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "lastDiscoveredAt" in data:
+    if data.get("lastDiscoveredAt") is not None:
         import capo_medialive.types.__timestamp_iso8601
 
         out["last_discovered_at"] = (
@@ -231,7 +231,7 @@ def deserialize_json(data: dict) -> StartDeleteMonitorDeploymentResponse:
                 data["lastDiscoveredAt"]
             )
         )
-    if "lastSuccessfulMonitorDeployment" in data:
+    if data.get("lastSuccessfulMonitorDeployment") is not None:
         import capo_medialive.types.successful_monitor_deployment
 
         out["last_successful_monitor_deployment"] = (
@@ -239,7 +239,7 @@ def deserialize_json(data: dict) -> StartDeleteMonitorDeploymentResponse:
                 data["lastSuccessfulMonitorDeployment"]
             )
         )
-    if "mediaResourceMap" in data:
+    if data.get("mediaResourceMap") is not None:
         import capo_medialive.types.media_resource_map
 
         out["media_resource_map"] = (
@@ -247,17 +247,17 @@ def deserialize_json(data: dict) -> StartDeleteMonitorDeploymentResponse:
                 data["mediaResourceMap"]
             )
         )
-    if "modifiedAt" in data:
+    if data.get("modifiedAt") is not None:
         import capo_medialive.types.__timestamp_iso8601
 
         out["modified_at"] = capo_medialive.types.__timestamp_iso8601.deserialize_json(
             data["modifiedAt"]
         )
-    if "monitorChangesPendingDeployment" in data:
+    if data.get("monitorChangesPendingDeployment") is not None:
         out["monitor_changes_pending_deployment"] = data[
             "monitorChangesPendingDeployment"
         ]
-    if "monitorDeployment" in data:
+    if data.get("monitorDeployment") is not None:
         import capo_medialive.types.monitor_deployment
 
         out["monitor_deployment"] = (
@@ -265,15 +265,15 @@ def deserialize_json(data: dict) -> StartDeleteMonitorDeploymentResponse:
                 data["monitorDeployment"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_medialive.types.signal_map_status
 
         out["status"] = capo_medialive.types.signal_map_status.deserialize_json(
             data["status"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_medialive.types.tag_map
 
         out["tags"] = capo_medialive.types.tag_map.deserialize_json(data["tags"])

@@ -152,13 +152,13 @@ def serialize_aws_json_1_1(value: MatchmakingConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MatchmakingConfiguration:
     out: MatchmakingConfiguration = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ConfigurationArn" in data:
+    if data.get("ConfigurationArn") is not None:
         out["configuration_arn"] = data["ConfigurationArn"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "GameSessionQueueArns" in data:
+    if data.get("GameSessionQueueArns") is not None:
         import capo_gamelift.types.queue_arns_list
 
         out["game_session_queue_arns"] = (
@@ -166,29 +166,29 @@ def deserialize_aws_json_1_1(data: dict) -> MatchmakingConfiguration:
                 data["GameSessionQueueArns"]
             )
         )
-    if "RequestTimeoutSeconds" in data:
+    if data.get("RequestTimeoutSeconds") is not None:
         out["request_timeout_seconds"] = data["RequestTimeoutSeconds"]
-    if "AcceptanceTimeoutSeconds" in data:
+    if data.get("AcceptanceTimeoutSeconds") is not None:
         out["acceptance_timeout_seconds"] = data["AcceptanceTimeoutSeconds"]
-    if "AcceptanceRequired" in data:
+    if data.get("AcceptanceRequired") is not None:
         out["acceptance_required"] = data["AcceptanceRequired"]
-    if "RuleSetName" in data:
+    if data.get("RuleSetName") is not None:
         out["rule_set_name"] = data["RuleSetName"]
-    if "RuleSetArn" in data:
+    if data.get("RuleSetArn") is not None:
         out["rule_set_arn"] = data["RuleSetArn"]
-    if "NotificationTarget" in data:
+    if data.get("NotificationTarget") is not None:
         out["notification_target"] = data["NotificationTarget"]
-    if "AdditionalPlayerCount" in data:
+    if data.get("AdditionalPlayerCount") is not None:
         out["additional_player_count"] = data["AdditionalPlayerCount"]
-    if "CustomEventData" in data:
+    if data.get("CustomEventData") is not None:
         out["custom_event_data"] = data["CustomEventData"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_gamelift.types.timestamp
 
         out["creation_time"] = capo_gamelift.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "GameProperties" in data:
+    if data.get("GameProperties") is not None:
         import capo_gamelift.types.game_property_list
 
         out["game_properties"] = (
@@ -196,9 +196,9 @@ def deserialize_aws_json_1_1(data: dict) -> MatchmakingConfiguration:
                 data["GameProperties"]
             )
         )
-    if "GameSessionData" in data:
+    if data.get("GameSessionData") is not None:
         out["game_session_data"] = data["GameSessionData"]
-    if "BackfillMode" in data:
+    if data.get("BackfillMode") is not None:
         import capo_gamelift.types.backfill_mode
 
         out["backfill_mode"] = (
@@ -206,7 +206,7 @@ def deserialize_aws_json_1_1(data: dict) -> MatchmakingConfiguration:
                 data["BackfillMode"]
             )
         )
-    if "FlexMatchMode" in data:
+    if data.get("FlexMatchMode") is not None:
         import capo_gamelift.types.flex_match_mode
 
         out["flex_match_mode"] = (

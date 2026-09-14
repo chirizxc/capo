@@ -13,9 +13,9 @@ from capo_backupsearch import AsyncBackupSearchClient
 
 
 async def main():
-    async with AsyncBackupSearchClient() as s3:
+    async with AsyncBackupSearchClient() as backup_search:
         # Example: call the list_search_job_backups operation
-        response = await s3.list_search_job_backups()
+        response = await backup_search.list_search_job_backups()
         print(response["results"])
 ```
 
@@ -28,9 +28,9 @@ from capo_backupsearch import AsyncBackupSearchClient
 
 
 async def main():
-    async with AsyncBackupSearchClient() as s3:
+    async with AsyncBackupSearchClient() as backup_search:
         # Example: paginate over list_search_job_backups
-        async for item in s3.iter_list_search_job_backups():
+        async for item in backup_search.iter_list_search_job_backups():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_backupsearch.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncBackupSearchClient() as s3:
+    async with AsyncBackupSearchClient() as backup_search:
         try:
-            await s3.list_search_job_backups()
+            await backup_search.list_search_job_backups()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_backupsearch import AsyncBackupSearchClient
 
 
 async def main():
-    async with AsyncBackupSearchClient() as s3:
+    async with AsyncBackupSearchClient() as backup_search:
         # Default: 3 attempts for every operation
-        response = await s3.list_search_job_backups()
+        response = await backup_search.list_search_job_backups()
 
         # Override per operation
-        response = await s3.list_search_job_backups(config_overrides={"retry_max_attempts": 5})
+        response = await backup_search.list_search_job_backups(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.list_search_job_backups(config_overrides={"retry_max_attempts": 1})
+        response = await backup_search.list_search_job_backups(config_overrides={"retry_max_attempts": 1})
 ```

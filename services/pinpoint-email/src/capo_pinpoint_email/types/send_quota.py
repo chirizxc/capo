@@ -22,24 +22,48 @@ class SendQuota(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: SendQuota) -> dict:
     out: dict = {}
-    out["Max24HourSend"] = value.get("max24_hour_send", 0)
-    out["MaxSendRate"] = value.get("max_send_rate", 0)
-    out["SentLast24Hours"] = value.get("sent_last24_hours", 0)
+    out["Max24HourSend"] = (
+        "NaN"
+        if value.get("max24_hour_send", 0) != value.get("max24_hour_send", 0)
+        else "Infinity"
+        if value.get("max24_hour_send", 0) == float("inf")
+        else "-Infinity"
+        if value.get("max24_hour_send", 0) == float("-inf")
+        else value.get("max24_hour_send", 0)
+    )
+    out["MaxSendRate"] = (
+        "NaN"
+        if value.get("max_send_rate", 0) != value.get("max_send_rate", 0)
+        else "Infinity"
+        if value.get("max_send_rate", 0) == float("inf")
+        else "-Infinity"
+        if value.get("max_send_rate", 0) == float("-inf")
+        else value.get("max_send_rate", 0)
+    )
+    out["SentLast24Hours"] = (
+        "NaN"
+        if value.get("sent_last24_hours", 0) != value.get("sent_last24_hours", 0)
+        else "Infinity"
+        if value.get("sent_last24_hours", 0) == float("inf")
+        else "-Infinity"
+        if value.get("sent_last24_hours", 0) == float("-inf")
+        else value.get("sent_last24_hours", 0)
+    )
     return out
 
 
 def deserialize_json(data: dict) -> SendQuota:
     out: SendQuota = {}  # type: ignore[typeddict-item]
-    if "Max24HourSend" in data:
-        out["max24_hour_send"] = data["Max24HourSend"]
+    if data.get("Max24HourSend") is not None:
+        out["max24_hour_send"] = float(data["Max24HourSend"])
     else:
         out["max24_hour_send"] = 0
-    if "MaxSendRate" in data:
-        out["max_send_rate"] = data["MaxSendRate"]
+    if data.get("MaxSendRate") is not None:
+        out["max_send_rate"] = float(data["MaxSendRate"])
     else:
         out["max_send_rate"] = 0
-    if "SentLast24Hours" in data:
-        out["sent_last24_hours"] = data["SentLast24Hours"]
+    if data.get("SentLast24Hours") is not None:
+        out["sent_last24_hours"] = float(data["SentLast24Hours"])
     else:
         out["sent_last24_hours"] = 0
     return out

@@ -40,9 +40,9 @@ def serialize_json(value: DataSetExportConfig) -> dict:
 
 
 def deserialize_json(data: dict) -> DataSetExportConfig:
-    if "s3Location" in data:
+    if data.get("s3Location") is not None:
         return {"s3Location": data["s3Location"]}
-    elif "dataSets" in data:
+    elif data.get("dataSets") is not None:
         import capo_m2.types.data_set_export_list
 
         return {

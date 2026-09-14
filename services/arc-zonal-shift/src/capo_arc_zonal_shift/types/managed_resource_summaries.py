@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ManagedResourceSummaries:
 
     out: ManagedResourceSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_arc_zonal_shift.types.managed_resource_summary.deserialize_json(item)
         )

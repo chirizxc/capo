@@ -43,7 +43,7 @@ def serialize_json(value: ListJobsFilterCriteria) -> dict:
 
 def deserialize_json(data: dict) -> ListJobsFilterCriteria:
     out: ListJobsFilterCriteria = {}  # type: ignore[typeddict-item]
-    if "excludes" in data:
+    if data.get("excludes") is not None:
         import capo_macie2.types.__list_of_list_jobs_filter_term
 
         out["excludes"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> ListJobsFilterCriteria:
                 data["excludes"]
             )
         )
-    if "includes" in data:
+    if data.get("includes") is not None:
         import capo_macie2.types.__list_of_list_jobs_filter_term
 
         out["includes"] = (

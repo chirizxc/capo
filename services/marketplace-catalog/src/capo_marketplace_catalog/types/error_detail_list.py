@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ErrorDetailList:
 
     out: ErrorDetailList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_marketplace_catalog.types.error_detail.deserialize_json(item))
     return out

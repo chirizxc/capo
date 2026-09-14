@@ -36,9 +36,9 @@ def serialize_json(value: PolicyToPath) -> dict:
 
 def deserialize_json(data: dict) -> PolicyToPath:
     out: PolicyToPath = {}  # type: ignore[typeddict-item]
-    if "Path" in data:
+    if data.get("Path") is not None:
         out["path"] = data["Path"]
-    if "Policies" in data:
+    if data.get("Policies") is not None:
         import capo_clouddirectory.types.policy_attachment_list
 
         out["policies"] = (

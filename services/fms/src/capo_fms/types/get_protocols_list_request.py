@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: GetProtocolsListRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetProtocolsListRequest:
     out: GetProtocolsListRequest = {}  # type: ignore[typeddict-item]
-    if "ListId" in data:
+    if data.get("ListId") is not None:
         out["list_id"] = data["ListId"]
     else:
         raise DeserializationError("GetProtocolsListRequest.list_id required")
-    if "DefaultList" in data:
+    if data.get("DefaultList") is not None:
         out["default_list"] = data["DefaultList"]
     else:
         out["default_list"] = False

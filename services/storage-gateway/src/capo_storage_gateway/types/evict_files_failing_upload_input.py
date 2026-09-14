@@ -28,13 +28,13 @@ def serialize_aws_json_1_1(value: EvictFilesFailingUploadInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EvictFilesFailingUploadInput:
     out: EvictFilesFailingUploadInput = {}  # type: ignore[typeddict-item]
-    if "FileShareARN" in data:
+    if data.get("FileShareARN") is not None:
         out["file_share_arn"] = data["FileShareARN"]
     else:
         raise DeserializationError(
             "EvictFilesFailingUploadInput.file_share_arn required"
         )
-    if "ForceRemove" in data:
+    if data.get("ForceRemove") is not None:
         out["force_remove"] = data["ForceRemove"]
     else:
         out["force_remove"] = False

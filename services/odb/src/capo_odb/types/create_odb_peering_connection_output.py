@@ -40,17 +40,17 @@ def serialize_aws_json_1_0(value: CreateOdbPeeringConnectionOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateOdbPeeringConnectionOutput:
     out: CreateOdbPeeringConnectionOutput = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_odb.types.resource_status
 
         out["status"] = capo_odb.types.resource_status.deserialize_aws_json_1_0(
             data["status"]
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "odbPeeringConnectionId" in data:
+    if data.get("odbPeeringConnectionId") is not None:
         out["odb_peering_connection_id"] = data["odbPeeringConnectionId"]
     else:
         raise DeserializationError(

@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> ConfigurationRecorderStatusList:
 
     out: ConfigurationRecorderStatusList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_config_service.types.configuration_recorder_status.deserialize_aws_json_1_1(
                 item

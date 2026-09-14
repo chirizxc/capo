@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DataSetConfigurationList:
 
     out: DataSetConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.data_set_configuration.deserialize_json(item))
     return out

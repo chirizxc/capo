@@ -54,7 +54,7 @@ def serialize_aws_json_1_1(value: ModelBiasJobInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModelBiasJobInput:
     out: ModelBiasJobInput = {}  # type: ignore[typeddict-item]
-    if "EndpointInput" in data:
+    if data.get("EndpointInput") is not None:
         import capo_sagemaker.types.endpoint_input
 
         out["endpoint_input"] = (
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_1(data: dict) -> ModelBiasJobInput:
                 data["EndpointInput"]
             )
         )
-    if "BatchTransformInput" in data:
+    if data.get("BatchTransformInput") is not None:
         import capo_sagemaker.types.batch_transform_input
 
         out["batch_transform_input"] = (
@@ -70,7 +70,7 @@ def deserialize_aws_json_1_1(data: dict) -> ModelBiasJobInput:
                 data["BatchTransformInput"]
             )
         )
-    if "GroundTruthS3Input" in data:
+    if data.get("GroundTruthS3Input") is not None:
         import capo_sagemaker.types.monitoring_ground_truth_s3_input
 
         out["ground_truth_s3_input"] = (

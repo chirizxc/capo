@@ -41,13 +41,13 @@ def serialize_json(value: MultiplexOutputSettings) -> dict:
 
 def deserialize_json(data: dict) -> MultiplexOutputSettings:
     out: MultiplexOutputSettings = {}  # type: ignore[typeddict-item]
-    if "destination" in data:
+    if data.get("destination") is not None:
         import capo_medialive.types.output_location_ref
 
         out["destination"] = capo_medialive.types.output_location_ref.deserialize_json(
             data["destination"]
         )
-    if "containerSettings" in data:
+    if data.get("containerSettings") is not None:
         import capo_medialive.types.multiplex_container_settings
 
         out["container_settings"] = (

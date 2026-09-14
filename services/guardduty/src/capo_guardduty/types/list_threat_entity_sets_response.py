@@ -36,7 +36,7 @@ def serialize_json(value: ListThreatEntitySetsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListThreatEntitySetsResponse:
     out: ListThreatEntitySetsResponse = {}  # type: ignore[typeddict-item]
-    if "threatEntitySetIds" in data:
+    if data.get("threatEntitySetIds") is not None:
         import capo_guardduty.types.threat_entity_set_ids
 
         out["threat_entity_set_ids"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListThreatEntitySetsResponse:
                 data["threatEntitySetIds"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> PlacedPlayerSessionList:
 
     out: PlacedPlayerSessionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_gamelift.types.placed_player_session.deserialize_aws_json_1_1(item)
         )

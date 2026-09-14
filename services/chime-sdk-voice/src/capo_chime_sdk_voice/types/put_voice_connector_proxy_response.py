@@ -25,7 +25,7 @@ def serialize_json(value: PutVoiceConnectorProxyResponse) -> dict:
 
 def deserialize_json(data: dict) -> PutVoiceConnectorProxyResponse:
     out: PutVoiceConnectorProxyResponse = {}  # type: ignore[typeddict-item]
-    if "Proxy" in data:
+    if data.get("Proxy") is not None:
         import capo_chime_sdk_voice.types.proxy
 
         out["proxy"] = capo_chime_sdk_voice.types.proxy.deserialize_json(data["Proxy"])

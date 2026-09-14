@@ -32,12 +32,12 @@ def serialize_json(value: WorkflowState) -> dict:
 
 def deserialize_json(data: dict) -> WorkflowState:
     out: WorkflowState = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_imagebuilder.types.workflow_status
 
         out["status"] = capo_imagebuilder.types.workflow_status.deserialize_json(
             data["status"]
         )
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
     return out

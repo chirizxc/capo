@@ -73,15 +73,15 @@ def serialize_json(value: GatewaySummary) -> dict:
 
 def deserialize_json(data: dict) -> GatewaySummary:
     out: GatewaySummary = {}  # type: ignore[typeddict-item]
-    if "gatewayId" in data:
+    if data.get("gatewayId") is not None:
         out["gateway_id"] = data["gatewayId"]
     else:
         raise DeserializationError("GatewaySummary.gateway_id required")
-    if "gatewayName" in data:
+    if data.get("gatewayName") is not None:
         out["gateway_name"] = data["gatewayName"]
     else:
         raise DeserializationError("GatewaySummary.gateway_name required")
-    if "gatewayPlatform" in data:
+    if data.get("gatewayPlatform") is not None:
         import capo_iotsitewise.types.gateway_platform
 
         out["gateway_platform"] = (
@@ -89,9 +89,9 @@ def deserialize_json(data: dict) -> GatewaySummary:
                 data["gatewayPlatform"]
             )
         )
-    if "gatewayVersion" in data:
+    if data.get("gatewayVersion") is not None:
         out["gateway_version"] = data["gatewayVersion"]
-    if "gatewayCapabilitySummaries" in data:
+    if data.get("gatewayCapabilitySummaries") is not None:
         import capo_iotsitewise.types.gateway_capability_summaries
 
         out["gateway_capability_summaries"] = (
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> GatewaySummary:
                 data["gatewayCapabilitySummaries"]
             )
         )
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_iotsitewise.types.timestamp
 
         out["creation_date"] = capo_iotsitewise.types.timestamp.deserialize_json(
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> GatewaySummary:
         )
     else:
         raise DeserializationError("GatewaySummary.creation_date required")
-    if "lastUpdateDate" in data:
+    if data.get("lastUpdateDate") is not None:
         import capo_iotsitewise.types.timestamp
 
         out["last_update_date"] = capo_iotsitewise.types.timestamp.deserialize_json(

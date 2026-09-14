@@ -28,8 +28,8 @@ def serialize_json(value: AssetBundleExportJobWarning) -> dict:
 
 def deserialize_json(data: dict) -> AssetBundleExportJobWarning:
     out: AssetBundleExportJobWarning = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

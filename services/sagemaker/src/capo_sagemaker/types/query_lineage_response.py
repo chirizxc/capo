@@ -39,18 +39,18 @@ def serialize_aws_json_1_1(value: QueryLineageResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> QueryLineageResponse:
     out: QueryLineageResponse = {}  # type: ignore[typeddict-item]
-    if "Vertices" in data:
+    if data.get("Vertices") is not None:
         import capo_sagemaker.types.vertices
 
         out["vertices"] = capo_sagemaker.types.vertices.deserialize_aws_json_1_1(
             data["Vertices"]
         )
-    if "Edges" in data:
+    if data.get("Edges") is not None:
         import capo_sagemaker.types.edges
 
         out["edges"] = capo_sagemaker.types.edges.deserialize_aws_json_1_1(
             data["Edges"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

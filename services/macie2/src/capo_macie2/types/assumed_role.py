@@ -44,15 +44,15 @@ def serialize_json(value: AssumedRole) -> dict:
 
 def deserialize_json(data: dict) -> AssumedRole:
     out: AssumedRole = {}  # type: ignore[typeddict-item]
-    if "accessKeyId" in data:
+    if data.get("accessKeyId") is not None:
         out["access_key_id"] = data["accessKeyId"]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "principalId" in data:
+    if data.get("principalId") is not None:
         out["principal_id"] = data["principalId"]
-    if "sessionContext" in data:
+    if data.get("sessionContext") is not None:
         import capo_macie2.types.session_context
 
         out["session_context"] = capo_macie2.types.session_context.deserialize_json(

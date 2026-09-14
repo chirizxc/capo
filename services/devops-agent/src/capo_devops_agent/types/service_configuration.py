@@ -264,7 +264,7 @@ def serialize_json(value: ServiceConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> ServiceConfiguration:
-    if "sourceAws" in data:
+    if data.get("sourceAws") is not None:
         import capo_devops_agent.types.source_aws_configuration
 
         return {
@@ -272,7 +272,7 @@ def deserialize_json(data: dict) -> ServiceConfiguration:
                 data["sourceAws"]
             )
         }
-    elif "aws" in data:
+    elif data.get("aws") is not None:
         import capo_devops_agent.types.aws_configuration
 
         return {
@@ -280,7 +280,7 @@ def deserialize_json(data: dict) -> ServiceConfiguration:
                 data["aws"]
             )
         }
-    elif "github" in data:
+    elif data.get("github") is not None:
         import capo_devops_agent.types.git_hub_configuration
 
         return {
@@ -288,7 +288,7 @@ def deserialize_json(data: dict) -> ServiceConfiguration:
                 data["github"]
             )
         }
-    elif "slack" in data:
+    elif data.get("slack") is not None:
         import capo_devops_agent.types.slack_configuration
 
         return {
@@ -296,7 +296,7 @@ def deserialize_json(data: dict) -> ServiceConfiguration:
                 data["slack"]
             )
         }
-    elif "dynatrace" in data:
+    elif data.get("dynatrace") is not None:
         import capo_devops_agent.types.dynatrace_configuration
 
         return {
@@ -304,7 +304,7 @@ def deserialize_json(data: dict) -> ServiceConfiguration:
                 data["dynatrace"]
             )
         }
-    elif "servicenow" in data:
+    elif data.get("servicenow") is not None:
         import capo_devops_agent.types.service_now_configuration
 
         return {
@@ -312,7 +312,7 @@ def deserialize_json(data: dict) -> ServiceConfiguration:
                 data["servicenow"]
             )
         }
-    elif "mcpservernewrelic" in data:
+    elif data.get("mcpservernewrelic") is not None:
         import capo_devops_agent.types.mcp_server_new_relic_configuration
 
         return {
@@ -320,7 +320,7 @@ def deserialize_json(data: dict) -> ServiceConfiguration:
                 data["mcpservernewrelic"]
             )
         }
-    elif "mcpserverdatadog" in data:
+    elif data.get("mcpserverdatadog") is not None:
         import capo_devops_agent.types.mcp_server_datadog_configuration
 
         return {
@@ -328,7 +328,7 @@ def deserialize_json(data: dict) -> ServiceConfiguration:
                 data["mcpserverdatadog"]
             )
         }
-    elif "mcpserver" in data:
+    elif data.get("mcpserver") is not None:
         import capo_devops_agent.types.mcp_server_configuration
 
         return {
@@ -336,7 +336,7 @@ def deserialize_json(data: dict) -> ServiceConfiguration:
                 data["mcpserver"]
             )
         }
-    elif "gitlab" in data:
+    elif data.get("gitlab") is not None:
         import capo_devops_agent.types.git_lab_configuration
 
         return {
@@ -344,7 +344,7 @@ def deserialize_json(data: dict) -> ServiceConfiguration:
                 data["gitlab"]
             )
         }
-    elif "mcpserversplunk" in data:
+    elif data.get("mcpserversplunk") is not None:
         import capo_devops_agent.types.mcp_server_splunk_configuration
 
         return {
@@ -352,7 +352,7 @@ def deserialize_json(data: dict) -> ServiceConfiguration:
                 data["mcpserversplunk"]
             )
         }
-    elif "eventChannel" in data:
+    elif data.get("eventChannel") is not None:
         import capo_devops_agent.types.event_channel_configuration
 
         return {
@@ -360,7 +360,7 @@ def deserialize_json(data: dict) -> ServiceConfiguration:
                 data["eventChannel"]
             )
         }
-    elif "azure" in data:
+    elif data.get("azure") is not None:
         import capo_devops_agent.types.azure_configuration
 
         return {
@@ -368,7 +368,7 @@ def deserialize_json(data: dict) -> ServiceConfiguration:
                 data["azure"]
             )
         }
-    elif "azuredevops" in data:
+    elif data.get("azuredevops") is not None:
         import capo_devops_agent.types.azure_dev_ops_configuration
 
         return {
@@ -376,7 +376,7 @@ def deserialize_json(data: dict) -> ServiceConfiguration:
                 data["azuredevops"]
             )
         }
-    elif "mcpservergrafana" in data:
+    elif data.get("mcpservergrafana") is not None:
         import capo_devops_agent.types.mcp_server_grafana_configuration
 
         return {
@@ -384,7 +384,7 @@ def deserialize_json(data: dict) -> ServiceConfiguration:
                 data["mcpservergrafana"]
             )
         }
-    elif "pagerduty" in data:
+    elif data.get("pagerduty") is not None:
         import capo_devops_agent.types.pager_duty_configuration
 
         return {
@@ -392,7 +392,7 @@ def deserialize_json(data: dict) -> ServiceConfiguration:
                 data["pagerduty"]
             )
         }
-    elif "mcpserversigv4" in data:
+    elif data.get("mcpserversigv4") is not None:
         import capo_devops_agent.types.mcp_server_sig_v4_configuration
 
         return {

@@ -82,9 +82,9 @@ def serialize_aws_json_1_1(value: AIRecommendation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AIRecommendation:
     out: AIRecommendation = {}  # type: ignore[typeddict-item]
-    if "RecommendationDescription" in data:
+    if data.get("RecommendationDescription") is not None:
         out["recommendation_description"] = data["RecommendationDescription"]
-    if "OptimizationDetails" in data:
+    if data.get("OptimizationDetails") is not None:
         import capo_sagemaker.types.ai_recommendation_optimization_detail_list
 
         out["optimization_details"] = (
@@ -92,7 +92,7 @@ def deserialize_aws_json_1_1(data: dict) -> AIRecommendation:
                 data["OptimizationDetails"]
             )
         )
-    if "ModelDetails" in data:
+    if data.get("ModelDetails") is not None:
         import capo_sagemaker.types.ai_recommendation_model_details
 
         out["model_details"] = (
@@ -100,7 +100,7 @@ def deserialize_aws_json_1_1(data: dict) -> AIRecommendation:
                 data["ModelDetails"]
             )
         )
-    if "DeploymentConfiguration" in data:
+    if data.get("DeploymentConfiguration") is not None:
         import capo_sagemaker.types.ai_recommendation_deployment_configuration
 
         out["deployment_configuration"] = (
@@ -108,9 +108,9 @@ def deserialize_aws_json_1_1(data: dict) -> AIRecommendation:
                 data["DeploymentConfiguration"]
             )
         )
-    if "AIBenchmarkJobArn" in data:
+    if data.get("AIBenchmarkJobArn") is not None:
         out["ai_benchmark_job_arn"] = data["AIBenchmarkJobArn"]
-    if "ExpectedPerformance" in data:
+    if data.get("ExpectedPerformance") is not None:
         import capo_sagemaker.types.expected_performance_list
 
         out["expected_performance"] = (

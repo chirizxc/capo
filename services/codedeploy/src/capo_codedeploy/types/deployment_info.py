@@ -312,15 +312,15 @@ def serialize_aws_json_1_1(value: DeploymentInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeploymentInfo:
     out: DeploymentInfo = {}  # type: ignore[typeddict-item]
-    if "applicationName" in data:
+    if data.get("applicationName") is not None:
         out["application_name"] = data["applicationName"]
-    if "deploymentGroupName" in data:
+    if data.get("deploymentGroupName") is not None:
         out["deployment_group_name"] = data["deploymentGroupName"]
-    if "deploymentConfigName" in data:
+    if data.get("deploymentConfigName") is not None:
         out["deployment_config_name"] = data["deploymentConfigName"]
-    if "deploymentId" in data:
+    if data.get("deploymentId") is not None:
         out["deployment_id"] = data["deploymentId"]
-    if "previousRevision" in data:
+    if data.get("previousRevision") is not None:
         import capo_codedeploy.types.revision_location
 
         out["previous_revision"] = (
@@ -328,7 +328,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentInfo:
                 data["previousRevision"]
             )
         )
-    if "revision" in data:
+    if data.get("revision") is not None:
         import capo_codedeploy.types.revision_location
 
         out["revision"] = (
@@ -336,7 +336,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentInfo:
                 data["revision"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_codedeploy.types.deployment_status
 
         out["status"] = (
@@ -344,7 +344,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentInfo:
                 data["status"]
             )
         )
-    if "errorInformation" in data:
+    if data.get("errorInformation") is not None:
         import capo_codedeploy.types.error_information
 
         out["error_information"] = (
@@ -352,25 +352,25 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentInfo:
                 data["errorInformation"]
             )
         )
-    if "createTime" in data:
+    if data.get("createTime") is not None:
         import capo_codedeploy.types.timestamp
 
         out["create_time"] = capo_codedeploy.types.timestamp.deserialize_aws_json_1_1(
             data["createTime"]
         )
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_codedeploy.types.timestamp
 
         out["start_time"] = capo_codedeploy.types.timestamp.deserialize_aws_json_1_1(
             data["startTime"]
         )
-    if "completeTime" in data:
+    if data.get("completeTime") is not None:
         import capo_codedeploy.types.timestamp
 
         out["complete_time"] = capo_codedeploy.types.timestamp.deserialize_aws_json_1_1(
             data["completeTime"]
         )
-    if "deploymentOverview" in data:
+    if data.get("deploymentOverview") is not None:
         import capo_codedeploy.types.deployment_overview
 
         out["deployment_overview"] = (
@@ -378,9 +378,9 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentInfo:
                 data["deploymentOverview"]
             )
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "creator" in data:
+    if data.get("creator") is not None:
         import capo_codedeploy.types.deployment_creator
 
         out["creator"] = (
@@ -388,11 +388,11 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentInfo:
                 data["creator"]
             )
         )
-    if "ignoreApplicationStopFailures" in data:
+    if data.get("ignoreApplicationStopFailures") is not None:
         out["ignore_application_stop_failures"] = data["ignoreApplicationStopFailures"]
     else:
         out["ignore_application_stop_failures"] = False
-    if "autoRollbackConfiguration" in data:
+    if data.get("autoRollbackConfiguration") is not None:
         import capo_codedeploy.types.auto_rollback_configuration
 
         out["auto_rollback_configuration"] = (
@@ -400,11 +400,11 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentInfo:
                 data["autoRollbackConfiguration"]
             )
         )
-    if "updateOutdatedInstancesOnly" in data:
+    if data.get("updateOutdatedInstancesOnly") is not None:
         out["update_outdated_instances_only"] = data["updateOutdatedInstancesOnly"]
     else:
         out["update_outdated_instances_only"] = False
-    if "rollbackInfo" in data:
+    if data.get("rollbackInfo") is not None:
         import capo_codedeploy.types.rollback_info
 
         out["rollback_info"] = (
@@ -412,7 +412,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentInfo:
                 data["rollbackInfo"]
             )
         )
-    if "deploymentStyle" in data:
+    if data.get("deploymentStyle") is not None:
         import capo_codedeploy.types.deployment_style
 
         out["deployment_style"] = (
@@ -420,7 +420,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentInfo:
                 data["deploymentStyle"]
             )
         )
-    if "targetInstances" in data:
+    if data.get("targetInstances") is not None:
         import capo_codedeploy.types.target_instances
 
         out["target_instances"] = (
@@ -428,13 +428,13 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentInfo:
                 data["targetInstances"]
             )
         )
-    if "instanceTerminationWaitTimeStarted" in data:
+    if data.get("instanceTerminationWaitTimeStarted") is not None:
         out["instance_termination_wait_time_started"] = data[
             "instanceTerminationWaitTimeStarted"
         ]
     else:
         out["instance_termination_wait_time_started"] = False
-    if "blueGreenDeploymentConfiguration" in data:
+    if data.get("blueGreenDeploymentConfiguration") is not None:
         import capo_codedeploy.types.blue_green_deployment_configuration
 
         out["blue_green_deployment_configuration"] = (
@@ -442,7 +442,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentInfo:
                 data["blueGreenDeploymentConfiguration"]
             )
         )
-    if "loadBalancerInfo" in data:
+    if data.get("loadBalancerInfo") is not None:
         import capo_codedeploy.types.load_balancer_info
 
         out["load_balancer_info"] = (
@@ -450,11 +450,11 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentInfo:
                 data["loadBalancerInfo"]
             )
         )
-    if "additionalDeploymentStatusInfo" in data:
+    if data.get("additionalDeploymentStatusInfo") is not None:
         out["additional_deployment_status_info"] = data[
             "additionalDeploymentStatusInfo"
         ]
-    if "fileExistsBehavior" in data:
+    if data.get("fileExistsBehavior") is not None:
         import capo_codedeploy.types.file_exists_behavior
 
         out["file_exists_behavior"] = (
@@ -462,7 +462,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentInfo:
                 data["fileExistsBehavior"]
             )
         )
-    if "deploymentStatusMessages" in data:
+    if data.get("deploymentStatusMessages") is not None:
         import capo_codedeploy.types.deployment_status_message_list
 
         out["deployment_status_messages"] = (
@@ -470,7 +470,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentInfo:
                 data["deploymentStatusMessages"]
             )
         )
-    if "computePlatform" in data:
+    if data.get("computePlatform") is not None:
         import capo_codedeploy.types.compute_platform
 
         out["compute_platform"] = (
@@ -478,9 +478,9 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentInfo:
                 data["computePlatform"]
             )
         )
-    if "externalId" in data:
+    if data.get("externalId") is not None:
         out["external_id"] = data["externalId"]
-    if "relatedDeployments" in data:
+    if data.get("relatedDeployments") is not None:
         import capo_codedeploy.types.related_deployments
 
         out["related_deployments"] = (
@@ -488,7 +488,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentInfo:
                 data["relatedDeployments"]
             )
         )
-    if "overrideAlarmConfiguration" in data:
+    if data.get("overrideAlarmConfiguration") is not None:
         import capo_codedeploy.types.alarm_configuration
 
         out["override_alarm_configuration"] = (

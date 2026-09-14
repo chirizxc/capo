@@ -37,13 +37,13 @@ def serialize_json(value: GaugeChartFieldWells) -> dict:
 
 def deserialize_json(data: dict) -> GaugeChartFieldWells:
     out: GaugeChartFieldWells = {}  # type: ignore[typeddict-item]
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_quicksight.types.measure_field_list
 
         out["values"] = capo_quicksight.types.measure_field_list.deserialize_json(
             data["Values"]
         )
-    if "TargetValues" in data:
+    if data.get("TargetValues") is not None:
         import capo_quicksight.types.measure_field_list
 
         out["target_values"] = (

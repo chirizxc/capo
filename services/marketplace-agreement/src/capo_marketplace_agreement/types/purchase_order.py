@@ -42,14 +42,14 @@ def serialize_aws_json_1_0(value: PurchaseOrder) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PurchaseOrder:
     out: PurchaseOrder = {}  # type: ignore[typeddict-item]
-    if "chargeId" in data:
+    if data.get("chargeId") is not None:
         out["charge_id"] = data["chargeId"]
     else:
         raise DeserializationError("PurchaseOrder.charge_id required")
-    if "chargeRevision" in data:
+    if data.get("chargeRevision") is not None:
         out["charge_revision"] = data["chargeRevision"]
-    if "agreementId" in data:
+    if data.get("agreementId") is not None:
         out["agreement_id"] = data["agreementId"]
-    if "purchaseOrderReference" in data:
+    if data.get("purchaseOrderReference") is not None:
         out["purchase_order_reference"] = data["purchaseOrderReference"]
     return out

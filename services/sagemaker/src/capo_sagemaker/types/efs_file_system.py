@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: EFSFileSystem) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EFSFileSystem:
     out: EFSFileSystem = {}  # type: ignore[typeddict-item]
-    if "FileSystemId" in data:
+    if data.get("FileSystemId") is not None:
         out["file_system_id"] = data["FileSystemId"]
     return out

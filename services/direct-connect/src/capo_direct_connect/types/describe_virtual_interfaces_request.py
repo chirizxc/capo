@@ -44,12 +44,12 @@ def serialize_aws_json_1_1(value: DescribeVirtualInterfacesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeVirtualInterfacesRequest:
     out: DescribeVirtualInterfacesRequest = {}  # type: ignore[typeddict-item]
-    if "connectionId" in data:
+    if data.get("connectionId") is not None:
         out["connection_id"] = data["connectionId"]
-    if "virtualInterfaceId" in data:
+    if data.get("virtualInterfaceId") is not None:
         out["virtual_interface_id"] = data["virtualInterfaceId"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

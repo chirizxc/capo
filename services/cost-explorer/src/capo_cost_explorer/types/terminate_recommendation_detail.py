@@ -29,8 +29,8 @@ def serialize_aws_json_1_1(value: TerminateRecommendationDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TerminateRecommendationDetail:
     out: TerminateRecommendationDetail = {}  # type: ignore[typeddict-item]
-    if "EstimatedMonthlySavings" in data:
+    if data.get("EstimatedMonthlySavings") is not None:
         out["estimated_monthly_savings"] = data["EstimatedMonthlySavings"]
-    if "CurrencyCode" in data:
+    if data.get("CurrencyCode") is not None:
         out["currency_code"] = data["CurrencyCode"]
     return out

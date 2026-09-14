@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DescribeTrustedAdvisorCheckResultResponse) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeTrustedAdvisorCheckResultResponse:
     out: DescribeTrustedAdvisorCheckResultResponse = {}  # type: ignore[typeddict-item]
-    if "result" in data:
+    if data.get("result") is not None:
         import capo_support.types.trusted_advisor_check_result
 
         out["result"] = (

@@ -37,15 +37,18 @@ class StackSetNotFoundException(ServiceError):
 
     code: str | None = "StackSetNotFoundException"
 
-    def __init__(self, data: StackSetNotFoundException_):
+    def __init__(self, data: StackSetNotFoundException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="StackSetNotFoundException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "StackSetNotFoundException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "StackSetNotFoundException":
+        return cls(deserialize_query(el), message)

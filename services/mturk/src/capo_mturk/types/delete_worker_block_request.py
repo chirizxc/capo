@@ -29,10 +29,10 @@ def serialize_aws_json_1_1(value: DeleteWorkerBlockRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteWorkerBlockRequest:
     out: DeleteWorkerBlockRequest = {}  # type: ignore[typeddict-item]
-    if "WorkerId" in data:
+    if data.get("WorkerId") is not None:
         out["worker_id"] = data["WorkerId"]
     else:
         raise DeserializationError("DeleteWorkerBlockRequest.worker_id required")
-    if "Reason" in data:
+    if data.get("Reason") is not None:
         out["reason"] = data["Reason"]
     return out

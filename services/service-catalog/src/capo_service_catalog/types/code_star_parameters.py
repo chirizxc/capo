@@ -40,19 +40,19 @@ def serialize_aws_json_1_1(value: CodeStarParameters) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CodeStarParameters:
     out: CodeStarParameters = {}  # type: ignore[typeddict-item]
-    if "ConnectionArn" in data:
+    if data.get("ConnectionArn") is not None:
         out["connection_arn"] = data["ConnectionArn"]
     else:
         raise DeserializationError("CodeStarParameters.connection_arn required")
-    if "Repository" in data:
+    if data.get("Repository") is not None:
         out["repository"] = data["Repository"]
     else:
         raise DeserializationError("CodeStarParameters.repository required")
-    if "Branch" in data:
+    if data.get("Branch") is not None:
         out["branch"] = data["Branch"]
     else:
         raise DeserializationError("CodeStarParameters.branch required")
-    if "ArtifactPath" in data:
+    if data.get("ArtifactPath") is not None:
         out["artifact_path"] = data["ArtifactPath"]
     else:
         raise DeserializationError("CodeStarParameters.artifact_path required")

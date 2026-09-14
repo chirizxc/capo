@@ -43,15 +43,15 @@ def serialize_aws_json_1_1(value: ExperienceEntitiesSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExperienceEntitiesSummary:
     out: ExperienceEntitiesSummary = {}  # type: ignore[typeddict-item]
-    if "EntityId" in data:
+    if data.get("EntityId") is not None:
         out["entity_id"] = data["EntityId"]
-    if "EntityType" in data:
+    if data.get("EntityType") is not None:
         import capo_kendra.types.entity_type
 
         out["entity_type"] = capo_kendra.types.entity_type.deserialize_aws_json_1_1(
             data["EntityType"]
         )
-    if "DisplayData" in data:
+    if data.get("DisplayData") is not None:
         import capo_kendra.types.entity_display_data
 
         out["display_data"] = (

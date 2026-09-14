@@ -51,11 +51,11 @@ def serialize_json(value: AuditSuppression) -> dict:
 
 def deserialize_json(data: dict) -> AuditSuppression:
     out: AuditSuppression = {}  # type: ignore[typeddict-item]
-    if "checkName" in data:
+    if data.get("checkName") is not None:
         out["check_name"] = data["checkName"]
     else:
         raise DeserializationError("AuditSuppression.check_name required")
-    if "resourceIdentifier" in data:
+    if data.get("resourceIdentifier") is not None:
         import capo_iot.types.resource_identifier
 
         out["resource_identifier"] = (
@@ -65,14 +65,14 @@ def deserialize_json(data: dict) -> AuditSuppression:
         )
     else:
         raise DeserializationError("AuditSuppression.resource_identifier required")
-    if "expirationDate" in data:
+    if data.get("expirationDate") is not None:
         import capo_iot.types.timestamp
 
         out["expiration_date"] = capo_iot.types.timestamp.deserialize_json(
             data["expirationDate"]
         )
-    if "suppressIndefinitely" in data:
+    if data.get("suppressIndefinitely") is not None:
         out["suppress_indefinitely"] = data["suppressIndefinitely"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

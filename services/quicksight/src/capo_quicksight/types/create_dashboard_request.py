@@ -158,17 +158,17 @@ def serialize_json(value: CreateDashboardRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDashboardRequest:
     out: CreateDashboardRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateDashboardRequest.name required")
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_quicksight.types.parameters
 
         out["parameters"] = capo_quicksight.types.parameters.deserialize_json(
             data["Parameters"]
         )
-    if "Permissions" in data:
+    if data.get("Permissions") is not None:
         import capo_quicksight.types.resource_permission_list
 
         out["permissions"] = (
@@ -176,7 +176,7 @@ def deserialize_json(data: dict) -> CreateDashboardRequest:
                 data["Permissions"]
             )
         )
-    if "SourceEntity" in data:
+    if data.get("SourceEntity") is not None:
         import capo_quicksight.types.dashboard_source_entity
 
         out["source_entity"] = (
@@ -184,13 +184,13 @@ def deserialize_json(data: dict) -> CreateDashboardRequest:
                 data["SourceEntity"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_quicksight.types.tag_list
 
         out["tags"] = capo_quicksight.types.tag_list.deserialize_json(data["Tags"])
-    if "VersionDescription" in data:
+    if data.get("VersionDescription") is not None:
         out["version_description"] = data["VersionDescription"]
-    if "DashboardPublishOptions" in data:
+    if data.get("DashboardPublishOptions") is not None:
         import capo_quicksight.types.dashboard_publish_options
 
         out["dashboard_publish_options"] = (
@@ -198,9 +198,9 @@ def deserialize_json(data: dict) -> CreateDashboardRequest:
                 data["DashboardPublishOptions"]
             )
         )
-    if "ThemeArn" in data:
+    if data.get("ThemeArn") is not None:
         out["theme_arn"] = data["ThemeArn"]
-    if "Definition" in data:
+    if data.get("Definition") is not None:
         import capo_quicksight.types.dashboard_version_definition
 
         out["definition"] = (
@@ -208,7 +208,7 @@ def deserialize_json(data: dict) -> CreateDashboardRequest:
                 data["Definition"]
             )
         )
-    if "ValidationStrategy" in data:
+    if data.get("ValidationStrategy") is not None:
         import capo_quicksight.types.validation_strategy
 
         out["validation_strategy"] = (
@@ -216,13 +216,13 @@ def deserialize_json(data: dict) -> CreateDashboardRequest:
                 data["ValidationStrategy"]
             )
         )
-    if "FolderArns" in data:
+    if data.get("FolderArns") is not None:
         import capo_quicksight.types.folder_arn_list
 
         out["folder_arns"] = capo_quicksight.types.folder_arn_list.deserialize_json(
             data["FolderArns"]
         )
-    if "LinkSharingConfiguration" in data:
+    if data.get("LinkSharingConfiguration") is not None:
         import capo_quicksight.types.link_sharing_configuration
 
         out["link_sharing_configuration"] = (
@@ -230,7 +230,7 @@ def deserialize_json(data: dict) -> CreateDashboardRequest:
                 data["LinkSharingConfiguration"]
             )
         )
-    if "LinkEntities" in data:
+    if data.get("LinkEntities") is not None:
         import capo_quicksight.types.link_entity_arn_list
 
         out["link_entities"] = (

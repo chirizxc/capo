@@ -37,10 +37,10 @@ def serialize_json(value: StartAppOutput) -> dict:
 
 def deserialize_json(data: dict) -> StartAppOutput:
     out: StartAppOutput = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         out["domain"] = data["Domain"]
-    if "Simulation" in data:
+    if data.get("Simulation") is not None:
         out["simulation"] = data["Simulation"]
     return out

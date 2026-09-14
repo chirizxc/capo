@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> __listOfInput:
 
     out: __listOfInput = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediaconvert.types.input.deserialize_json(item))
     return out

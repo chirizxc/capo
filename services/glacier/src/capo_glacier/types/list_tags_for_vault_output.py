@@ -25,7 +25,7 @@ def serialize_json(value: ListTagsForVaultOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListTagsForVaultOutput:
     out: ListTagsForVaultOutput = {}  # type: ignore[typeddict-item]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_glacier.types.tag_map
 
         out["tags"] = capo_glacier.types.tag_map.deserialize_json(data["Tags"])

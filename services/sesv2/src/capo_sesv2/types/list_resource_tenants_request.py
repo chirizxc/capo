@@ -34,12 +34,12 @@ def serialize_json(value: ListResourceTenantsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListResourceTenantsRequest:
     out: ListResourceTenantsRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     else:
         raise DeserializationError("ListResourceTenantsRequest.resource_arn required")
-    if "PageSize" in data:
+    if data.get("PageSize") is not None:
         out["page_size"] = data["PageSize"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

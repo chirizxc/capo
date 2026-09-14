@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: SpaceAppLifecycleManagement) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SpaceAppLifecycleManagement:
     out: SpaceAppLifecycleManagement = {}  # type: ignore[typeddict-item]
-    if "IdleSettings" in data:
+    if data.get("IdleSettings") is not None:
         import capo_sagemaker.types.space_idle_settings
 
         out["idle_settings"] = (

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfScheduleAdBreak:
 
     out: __listOfScheduleAdBreak = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediatailor.types.schedule_ad_break.deserialize_json(item))
     return out

@@ -23,6 +23,6 @@ def serialize_aws_json_1_0(value: CompleteWorkflowExecutionDecisionAttributes) -
 
 def deserialize_aws_json_1_0(data: dict) -> CompleteWorkflowExecutionDecisionAttributes:
     out: CompleteWorkflowExecutionDecisionAttributes = {}  # type: ignore[typeddict-item]
-    if "result" in data:
+    if data.get("result") is not None:
         out["result"] = data["result"]
     return out

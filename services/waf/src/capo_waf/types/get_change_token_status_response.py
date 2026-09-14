@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetChangeTokenStatusResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetChangeTokenStatusResponse:
     out: GetChangeTokenStatusResponse = {}  # type: ignore[typeddict-item]
-    if "ChangeTokenStatus" in data:
+    if data.get("ChangeTokenStatus") is not None:
         import capo_waf.types.change_token_status
 
         out["change_token_status"] = (

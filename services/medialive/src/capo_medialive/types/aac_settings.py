@@ -42,7 +42,15 @@ class AacSettings(TypedDict, closed=True):
 def serialize_json(value: AacSettings) -> dict:
     out: dict = {}
     if "bitrate" in value:
-        out["bitrate"] = value["bitrate"]
+        out["bitrate"] = (
+            "NaN"
+            if value["bitrate"] != value["bitrate"]
+            else "Infinity"
+            if value["bitrate"] == float("inf")
+            else "-Infinity"
+            if value["bitrate"] == float("-inf")
+            else value["bitrate"]
+        )
     if "coding_mode" in value:
         import capo_medialive.types.aac_coding_mode
 
@@ -76,7 +84,15 @@ def serialize_json(value: AacSettings) -> dict:
             value["raw_format"]
         )
     if "sample_rate" in value:
-        out["sampleRate"] = value["sample_rate"]
+        out["sampleRate"] = (
+            "NaN"
+            if value["sample_rate"] != value["sample_rate"]
+            else "Infinity"
+            if value["sample_rate"] == float("inf")
+            else "-Infinity"
+            if value["sample_rate"] == float("-inf")
+            else value["sample_rate"]
+        )
     if "spec" in value:
         import capo_medialive.types.aac_spec
 
@@ -92,27 +108,27 @@ def serialize_json(value: AacSettings) -> dict:
 
 def deserialize_json(data: dict) -> AacSettings:
     out: AacSettings = {}  # type: ignore[typeddict-item]
-    if "bitrate" in data:
-        out["bitrate"] = data["bitrate"]
-    if "codingMode" in data:
+    if data.get("bitrate") is not None:
+        out["bitrate"] = float(data["bitrate"])
+    if data.get("codingMode") is not None:
         import capo_medialive.types.aac_coding_mode
 
         out["coding_mode"] = capo_medialive.types.aac_coding_mode.deserialize_json(
             data["codingMode"]
         )
-    if "inputType" in data:
+    if data.get("inputType") is not None:
         import capo_medialive.types.aac_input_type
 
         out["input_type"] = capo_medialive.types.aac_input_type.deserialize_json(
             data["inputType"]
         )
-    if "profile" in data:
+    if data.get("profile") is not None:
         import capo_medialive.types.aac_profile
 
         out["profile"] = capo_medialive.types.aac_profile.deserialize_json(
             data["profile"]
         )
-    if "rateControlMode" in data:
+    if data.get("rateControlMode") is not None:
         import capo_medialive.types.aac_rate_control_mode
 
         out["rate_control_mode"] = (
@@ -120,19 +136,19 @@ def deserialize_json(data: dict) -> AacSettings:
                 data["rateControlMode"]
             )
         )
-    if "rawFormat" in data:
+    if data.get("rawFormat") is not None:
         import capo_medialive.types.aac_raw_format
 
         out["raw_format"] = capo_medialive.types.aac_raw_format.deserialize_json(
             data["rawFormat"]
         )
-    if "sampleRate" in data:
-        out["sample_rate"] = data["sampleRate"]
-    if "spec" in data:
+    if data.get("sampleRate") is not None:
+        out["sample_rate"] = float(data["sampleRate"])
+    if data.get("spec") is not None:
         import capo_medialive.types.aac_spec
 
         out["spec"] = capo_medialive.types.aac_spec.deserialize_json(data["spec"])
-    if "vbrQuality" in data:
+    if data.get("vbrQuality") is not None:
         import capo_medialive.types.aac_vbr_quality
 
         out["vbr_quality"] = capo_medialive.types.aac_vbr_quality.deserialize_json(

@@ -252,7 +252,15 @@ def serialize_json(value: CmafGroupSettings) -> dict:
     if "min_buffer_time" in value:
         out["minBufferTime"] = value["min_buffer_time"]
     if "min_final_segment_length" in value:
-        out["minFinalSegmentLength"] = value["min_final_segment_length"]
+        out["minFinalSegmentLength"] = (
+            "NaN"
+            if value["min_final_segment_length"] != value["min_final_segment_length"]
+            else "Infinity"
+            if value["min_final_segment_length"] == float("inf")
+            else "-Infinity"
+            if value["min_final_segment_length"] == float("-inf")
+            else value["min_final_segment_length"]
+        )
     if "mpd_manifest_bandwidth_type" in value:
         import capo_mediaconvert.types.cmaf_mpd_manifest_bandwidth_type
 
@@ -346,7 +354,7 @@ def serialize_json(value: CmafGroupSettings) -> dict:
 
 def deserialize_json(data: dict) -> CmafGroupSettings:
     out: CmafGroupSettings = {}  # type: ignore[typeddict-item]
-    if "additionalManifests" in data:
+    if data.get("additionalManifests") is not None:
         import capo_mediaconvert.types.__list_of_cmaf_additional_manifest
 
         out["additional_manifests"] = (
@@ -354,9 +362,9 @@ def deserialize_json(data: dict) -> CmafGroupSettings:
                 data["additionalManifests"]
             )
         )
-    if "baseUrl" in data:
+    if data.get("baseUrl") is not None:
         out["base_url"] = data["baseUrl"]
-    if "clientCache" in data:
+    if data.get("clientCache") is not None:
         import capo_mediaconvert.types.cmaf_client_cache
 
         out["client_cache"] = (
@@ -364,7 +372,7 @@ def deserialize_json(data: dict) -> CmafGroupSettings:
                 data["clientCache"]
             )
         )
-    if "codecSpecification" in data:
+    if data.get("codecSpecification") is not None:
         import capo_mediaconvert.types.cmaf_codec_specification
 
         out["codec_specification"] = (
@@ -372,11 +380,11 @@ def deserialize_json(data: dict) -> CmafGroupSettings:
                 data["codecSpecification"]
             )
         )
-    if "dashIFrameTrickPlayNameModifier" in data:
+    if data.get("dashIFrameTrickPlayNameModifier") is not None:
         out["dash_i_frame_trick_play_name_modifier"] = data[
             "dashIFrameTrickPlayNameModifier"
         ]
-    if "dashManifestStyle" in data:
+    if data.get("dashManifestStyle") is not None:
         import capo_mediaconvert.types.dash_manifest_style
 
         out["dash_manifest_style"] = (
@@ -384,9 +392,9 @@ def deserialize_json(data: dict) -> CmafGroupSettings:
                 data["dashManifestStyle"]
             )
         )
-    if "destination" in data:
+    if data.get("destination") is not None:
         out["destination"] = data["destination"]
-    if "destinationSettings" in data:
+    if data.get("destinationSettings") is not None:
         import capo_mediaconvert.types.destination_settings
 
         out["destination_settings"] = (
@@ -394,7 +402,7 @@ def deserialize_json(data: dict) -> CmafGroupSettings:
                 data["destinationSettings"]
             )
         )
-    if "encryption" in data:
+    if data.get("encryption") is not None:
         import capo_mediaconvert.types.cmaf_encryption_settings
 
         out["encryption"] = (
@@ -402,9 +410,9 @@ def deserialize_json(data: dict) -> CmafGroupSettings:
                 data["encryption"]
             )
         )
-    if "fragmentLength" in data:
+    if data.get("fragmentLength") is not None:
         out["fragment_length"] = data["fragmentLength"]
-    if "imageBasedTrickPlay" in data:
+    if data.get("imageBasedTrickPlay") is not None:
         import capo_mediaconvert.types.cmaf_image_based_trick_play
 
         out["image_based_trick_play"] = (
@@ -412,7 +420,7 @@ def deserialize_json(data: dict) -> CmafGroupSettings:
                 data["imageBasedTrickPlay"]
             )
         )
-    if "imageBasedTrickPlaySettings" in data:
+    if data.get("imageBasedTrickPlaySettings") is not None:
         import capo_mediaconvert.types.cmaf_image_based_trick_play_settings
 
         out["image_based_trick_play_settings"] = (
@@ -420,7 +428,7 @@ def deserialize_json(data: dict) -> CmafGroupSettings:
                 data["imageBasedTrickPlaySettings"]
             )
         )
-    if "imageBasedTrickPlayVariants" in data:
+    if data.get("imageBasedTrickPlayVariants") is not None:
         import capo_mediaconvert.types.__list_of_cmaf_image_based_trick_play_variant
 
         out["image_based_trick_play_variants"] = (
@@ -428,7 +436,7 @@ def deserialize_json(data: dict) -> CmafGroupSettings:
                 data["imageBasedTrickPlayVariants"]
             )
         )
-    if "manifestCompression" in data:
+    if data.get("manifestCompression") is not None:
         import capo_mediaconvert.types.cmaf_manifest_compression
 
         out["manifest_compression"] = (
@@ -436,7 +444,7 @@ def deserialize_json(data: dict) -> CmafGroupSettings:
                 data["manifestCompression"]
             )
         )
-    if "manifestDurationFormat" in data:
+    if data.get("manifestDurationFormat") is not None:
         import capo_mediaconvert.types.cmaf_manifest_duration_format
 
         out["manifest_duration_format"] = (
@@ -444,11 +452,11 @@ def deserialize_json(data: dict) -> CmafGroupSettings:
                 data["manifestDurationFormat"]
             )
         )
-    if "minBufferTime" in data:
+    if data.get("minBufferTime") is not None:
         out["min_buffer_time"] = data["minBufferTime"]
-    if "minFinalSegmentLength" in data:
-        out["min_final_segment_length"] = data["minFinalSegmentLength"]
-    if "mpdManifestBandwidthType" in data:
+    if data.get("minFinalSegmentLength") is not None:
+        out["min_final_segment_length"] = float(data["minFinalSegmentLength"])
+    if data.get("mpdManifestBandwidthType") is not None:
         import capo_mediaconvert.types.cmaf_mpd_manifest_bandwidth_type
 
         out["mpd_manifest_bandwidth_type"] = (
@@ -456,13 +464,13 @@ def deserialize_json(data: dict) -> CmafGroupSettings:
                 data["mpdManifestBandwidthType"]
             )
         )
-    if "mpdProfile" in data:
+    if data.get("mpdProfile") is not None:
         import capo_mediaconvert.types.cmaf_mpd_profile
 
         out["mpd_profile"] = capo_mediaconvert.types.cmaf_mpd_profile.deserialize_json(
             data["mpdProfile"]
         )
-    if "ptsOffsetHandlingForBFrames" in data:
+    if data.get("ptsOffsetHandlingForBFrames") is not None:
         import capo_mediaconvert.types.cmaf_pts_offset_handling_for_b_frames
 
         out["pts_offset_handling_for_b_frames"] = (
@@ -470,7 +478,7 @@ def deserialize_json(data: dict) -> CmafGroupSettings:
                 data["ptsOffsetHandlingForBFrames"]
             )
         )
-    if "segmentControl" in data:
+    if data.get("segmentControl") is not None:
         import capo_mediaconvert.types.cmaf_segment_control
 
         out["segment_control"] = (
@@ -478,9 +486,9 @@ def deserialize_json(data: dict) -> CmafGroupSettings:
                 data["segmentControl"]
             )
         )
-    if "segmentLength" in data:
+    if data.get("segmentLength") is not None:
         out["segment_length"] = data["segmentLength"]
-    if "segmentLengthControl" in data:
+    if data.get("segmentLengthControl") is not None:
         import capo_mediaconvert.types.cmaf_segment_length_control
 
         out["segment_length_control"] = (
@@ -488,7 +496,7 @@ def deserialize_json(data: dict) -> CmafGroupSettings:
                 data["segmentLengthControl"]
             )
         )
-    if "streamInfResolution" in data:
+    if data.get("streamInfResolution") is not None:
         import capo_mediaconvert.types.cmaf_stream_inf_resolution
 
         out["stream_inf_resolution"] = (
@@ -496,7 +504,7 @@ def deserialize_json(data: dict) -> CmafGroupSettings:
                 data["streamInfResolution"]
             )
         )
-    if "targetDurationCompatibilityMode" in data:
+    if data.get("targetDurationCompatibilityMode") is not None:
         import capo_mediaconvert.types.cmaf_target_duration_compatibility_mode
 
         out["target_duration_compatibility_mode"] = (
@@ -504,7 +512,7 @@ def deserialize_json(data: dict) -> CmafGroupSettings:
                 data["targetDurationCompatibilityMode"]
             )
         )
-    if "videoCompositionOffsets" in data:
+    if data.get("videoCompositionOffsets") is not None:
         import capo_mediaconvert.types.cmaf_video_composition_offsets
 
         out["video_composition_offsets"] = (
@@ -512,7 +520,7 @@ def deserialize_json(data: dict) -> CmafGroupSettings:
                 data["videoCompositionOffsets"]
             )
         )
-    if "writeDashManifest" in data:
+    if data.get("writeDashManifest") is not None:
         import capo_mediaconvert.types.cmaf_write_dash_manifest
 
         out["write_dash_manifest"] = (
@@ -520,7 +528,7 @@ def deserialize_json(data: dict) -> CmafGroupSettings:
                 data["writeDashManifest"]
             )
         )
-    if "writeHlsManifest" in data:
+    if data.get("writeHlsManifest") is not None:
         import capo_mediaconvert.types.cmaf_write_hls_manifest
 
         out["write_hls_manifest"] = (
@@ -528,7 +536,7 @@ def deserialize_json(data: dict) -> CmafGroupSettings:
                 data["writeHlsManifest"]
             )
         )
-    if "writeSegmentTimelineInRepresentation" in data:
+    if data.get("writeSegmentTimelineInRepresentation") is not None:
         import capo_mediaconvert.types.cmaf_write_segment_timeline_in_representation
 
         out["write_segment_timeline_in_representation"] = (

@@ -91,11 +91,11 @@ def serialize_json(value: SheetImage) -> dict:
 
 def deserialize_json(data: dict) -> SheetImage:
     out: SheetImage = {}  # type: ignore[typeddict-item]
-    if "SheetImageId" in data:
+    if data.get("SheetImageId") is not None:
         out["sheet_image_id"] = data["SheetImageId"]
     else:
         raise DeserializationError("SheetImage.sheet_image_id required")
-    if "Source" in data:
+    if data.get("Source") is not None:
         import capo_quicksight.types.sheet_image_source
 
         out["source"] = capo_quicksight.types.sheet_image_source.deserialize_json(
@@ -103,7 +103,7 @@ def deserialize_json(data: dict) -> SheetImage:
         )
     else:
         raise DeserializationError("SheetImage.source required")
-    if "Scaling" in data:
+    if data.get("Scaling") is not None:
         import capo_quicksight.types.sheet_image_scaling_configuration
 
         out["scaling"] = (
@@ -111,7 +111,7 @@ def deserialize_json(data: dict) -> SheetImage:
                 data["Scaling"]
             )
         )
-    if "Tooltip" in data:
+    if data.get("Tooltip") is not None:
         import capo_quicksight.types.sheet_image_tooltip_configuration
 
         out["tooltip"] = (
@@ -119,9 +119,9 @@ def deserialize_json(data: dict) -> SheetImage:
                 data["Tooltip"]
             )
         )
-    if "ImageContentAltText" in data:
+    if data.get("ImageContentAltText") is not None:
         out["image_content_alt_text"] = data["ImageContentAltText"]
-    if "Interactions" in data:
+    if data.get("Interactions") is not None:
         import capo_quicksight.types.image_interaction_options
 
         out["interactions"] = (
@@ -129,7 +129,7 @@ def deserialize_json(data: dict) -> SheetImage:
                 data["Interactions"]
             )
         )
-    if "Actions" in data:
+    if data.get("Actions") is not None:
         import capo_quicksight.types.image_custom_action_list
 
         out["actions"] = (

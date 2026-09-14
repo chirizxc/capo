@@ -86,43 +86,43 @@ def serialize_json(value: GetListingOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetListingOutput:
     out: GetListingOutput = {}  # type: ignore[typeddict-item]
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
     else:
         raise DeserializationError("GetListingOutput.domain_id required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("GetListingOutput.id required")
-    if "listingRevision" in data:
+    if data.get("listingRevision") is not None:
         out["listing_revision"] = data["listingRevision"]
     else:
         raise DeserializationError("GetListingOutput.listing_revision required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_datazone.types.created_at
 
         out["created_at"] = capo_datazone.types.created_at.deserialize_json(
             data["createdAt"]
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_datazone.types.updated_at
 
         out["updated_at"] = capo_datazone.types.updated_at.deserialize_json(
             data["updatedAt"]
         )
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
-    if "updatedBy" in data:
+    if data.get("updatedBy") is not None:
         out["updated_by"] = data["updatedBy"]
-    if "item" in data:
+    if data.get("item") is not None:
         import capo_datazone.types.listing_item
 
         out["item"] = capo_datazone.types.listing_item.deserialize_json(data["item"])
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.listing_status
 
         out["status"] = capo_datazone.types.listing_status.deserialize_json(

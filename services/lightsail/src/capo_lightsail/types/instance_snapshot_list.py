@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> InstanceSnapshotList:
 
     out: InstanceSnapshotList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lightsail.types.instance_snapshot.deserialize_aws_json_1_1(item)
         )

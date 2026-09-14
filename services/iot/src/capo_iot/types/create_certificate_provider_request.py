@@ -51,13 +51,13 @@ def serialize_json(value: CreateCertificateProviderRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateCertificateProviderRequest:
     out: CreateCertificateProviderRequest = {}  # type: ignore[typeddict-item]
-    if "lambdaFunctionArn" in data:
+    if data.get("lambdaFunctionArn") is not None:
         out["lambda_function_arn"] = data["lambdaFunctionArn"]
     else:
         raise DeserializationError(
             "CreateCertificateProviderRequest.lambda_function_arn required"
         )
-    if "accountDefaultForOperations" in data:
+    if data.get("accountDefaultForOperations") is not None:
         import capo_iot.types.certificate_provider_account_default_for_operations
 
         out["account_default_for_operations"] = (
@@ -69,9 +69,9 @@ def deserialize_json(data: dict) -> CreateCertificateProviderRequest:
         raise DeserializationError(
             "CreateCertificateProviderRequest.account_default_for_operations required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iot.types.tag_list
 
         out["tags"] = capo_iot.types.tag_list.deserialize_json(data["tags"])

@@ -35,7 +35,7 @@ def serialize_json(value: ListKnowledgeBasesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListKnowledgeBasesResponse:
     out: ListKnowledgeBasesResponse = {}  # type: ignore[typeddict-item]
-    if "knowledgeBaseSummaries" in data:
+    if data.get("knowledgeBaseSummaries") is not None:
         import capo_wisdom.types.knowledge_base_list
 
         out["knowledge_base_summaries"] = (
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> ListKnowledgeBasesResponse:
         raise DeserializationError(
             "ListKnowledgeBasesResponse.knowledge_base_summaries required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

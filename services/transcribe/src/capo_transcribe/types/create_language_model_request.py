@@ -42,6 +42,7 @@ def serialize_aws_json_1_1(value: CreateLanguageModelRequest) -> dict:
     out["BaseModelName"] = capo_transcribe.types.base_model_name.serialize_aws_json_1_1(
         value["base_model_name"]
     )
+    out["ModelName"] = value["model_name"]
     import capo_transcribe.types.input_data_config
 
     out["InputDataConfig"] = (
@@ -60,7 +61,7 @@ def serialize_aws_json_1_1(value: CreateLanguageModelRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateLanguageModelRequest:
     out: CreateLanguageModelRequest = {}  # type: ignore[typeddict-item]
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_transcribe.types.clm_language_code
 
         out["language_code"] = (
@@ -70,7 +71,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateLanguageModelRequest:
         )
     else:
         raise DeserializationError("CreateLanguageModelRequest.language_code required")
-    if "BaseModelName" in data:
+    if data.get("BaseModelName") is not None:
         import capo_transcribe.types.base_model_name
 
         out["base_model_name"] = (
@@ -82,7 +83,11 @@ def deserialize_aws_json_1_1(data: dict) -> CreateLanguageModelRequest:
         raise DeserializationError(
             "CreateLanguageModelRequest.base_model_name required"
         )
-    if "InputDataConfig" in data:
+    if data.get("ModelName") is not None:
+        out["model_name"] = data["ModelName"]
+    else:
+        raise DeserializationError("CreateLanguageModelRequest.model_name required")
+    if data.get("InputDataConfig") is not None:
         import capo_transcribe.types.input_data_config
 
         out["input_data_config"] = (
@@ -94,7 +99,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateLanguageModelRequest:
         raise DeserializationError(
             "CreateLanguageModelRequest.input_data_config required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_transcribe.types.tag_list
 
         out["tags"] = capo_transcribe.types.tag_list.deserialize_aws_json_1_1(

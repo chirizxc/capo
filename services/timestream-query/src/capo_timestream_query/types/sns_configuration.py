@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: SnsConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SnsConfiguration:
     out: SnsConfiguration = {}  # type: ignore[typeddict-item]
-    if "TopicArn" in data:
+    if data.get("TopicArn") is not None:
         out["topic_arn"] = data["TopicArn"]
     else:
         raise DeserializationError("SnsConfiguration.topic_arn required")

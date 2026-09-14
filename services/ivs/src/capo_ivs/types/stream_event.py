@@ -38,14 +38,14 @@ def serialize_json(value: StreamEvent) -> dict:
 
 def deserialize_json(data: dict) -> StreamEvent:
     out: StreamEvent = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "eventTime" in data:
+    if data.get("eventTime") is not None:
         import capo_ivs.types.time
 
         out["event_time"] = capo_ivs.types.time.deserialize_json(data["eventTime"])
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
     return out

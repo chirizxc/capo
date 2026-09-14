@@ -24,9 +24,9 @@ def serialize_json(value: SendMessageResponseInProgressEvent) -> dict:
 
 def deserialize_json(data: dict) -> SendMessageResponseInProgressEvent:
     out: SendMessageResponseInProgressEvent = {}  # type: ignore[typeddict-item]
-    if "responseId" in data:
+    if data.get("responseId") is not None:
         out["response_id"] = data["responseId"]
-    if "sequenceNumber" in data:
+    if data.get("sequenceNumber") is not None:
         out["sequence_number"] = data["sequenceNumber"]
     return out
 

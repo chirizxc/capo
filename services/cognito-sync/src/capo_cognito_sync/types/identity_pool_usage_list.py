@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> IdentityPoolUsageList:
 
     out: IdentityPoolUsageList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_cognito_sync.types.identity_pool_usage.deserialize_json(item))
     return out

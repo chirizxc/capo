@@ -54,11 +54,11 @@ def serialize_json(value: CreateResourceSetRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateResourceSetRequest:
     out: CreateResourceSetRequest = {}  # type: ignore[typeddict-item]
-    if "resourceSetName" in data:
+    if data.get("resourceSetName") is not None:
         out["resource_set_name"] = data["resourceSetName"]
-    if "resourceSetType" in data:
+    if data.get("resourceSetType") is not None:
         out["resource_set_type"] = data["resourceSetType"]
-    if "resources" in data:
+    if data.get("resources") is not None:
         import capo_route53_recovery_readiness.types.__list_of_resource
 
         out["resources"] = (
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> CreateResourceSetRequest:
                 data["resources"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_route53_recovery_readiness.types.tags
 
         out["tags"] = capo_route53_recovery_readiness.types.tags.deserialize_json(

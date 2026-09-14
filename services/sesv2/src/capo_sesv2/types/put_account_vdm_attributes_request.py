@@ -28,7 +28,7 @@ def serialize_json(value: PutAccountVdmAttributesRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutAccountVdmAttributesRequest:
     out: PutAccountVdmAttributesRequest = {}  # type: ignore[typeddict-item]
-    if "VdmAttributes" in data:
+    if data.get("VdmAttributes") is not None:
         import capo_sesv2.types.vdm_attributes
 
         out["vdm_attributes"] = capo_sesv2.types.vdm_attributes.deserialize_json(

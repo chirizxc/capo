@@ -92,9 +92,9 @@ def serialize_json(value: UserNotificationSummary) -> dict:
 
 def deserialize_json(data: dict) -> UserNotificationSummary:
     out: UserNotificationSummary = {}  # type: ignore[typeddict-item]
-    if "NotificationId" in data:
+    if data.get("NotificationId") is not None:
         out["notification_id"] = data["NotificationId"]
-    if "NotificationStatus" in data:
+    if data.get("NotificationStatus") is not None:
         import capo_connect.types.notification_status
 
         out["notification_status"] = (
@@ -102,35 +102,35 @@ def deserialize_json(data: dict) -> UserNotificationSummary:
                 data["NotificationStatus"]
             )
         )
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
-    if "RecipientId" in data:
+    if data.get("RecipientId") is not None:
         out["recipient_id"] = data["RecipientId"]
-    if "Content" in data:
+    if data.get("Content") is not None:
         import capo_connect.types.notification_content
 
         out["content"] = capo_connect.types.notification_content.deserialize_json(
             data["Content"]
         )
-    if "Priority" in data:
+    if data.get("Priority") is not None:
         import capo_connect.types.notification_priority
 
         out["priority"] = capo_connect.types.notification_priority.deserialize_json(
             data["Priority"]
         )
-    if "Source" in data:
+    if data.get("Source") is not None:
         import capo_connect.types.notification_source
 
         out["source"] = capo_connect.types.notification_source.deserialize_json(
             data["Source"]
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_connect.types.timestamp
 
         out["created_at"] = capo_connect.types.timestamp.deserialize_json(
             data["CreatedAt"]
         )
-    if "ExpiresAt" in data:
+    if data.get("ExpiresAt") is not None:
         import capo_connect.types.timestamp
 
         out["expires_at"] = capo_connect.types.timestamp.deserialize_json(

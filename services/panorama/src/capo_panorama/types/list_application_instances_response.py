@@ -36,7 +36,7 @@ def serialize_json(value: ListApplicationInstancesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListApplicationInstancesResponse:
     out: ListApplicationInstancesResponse = {}  # type: ignore[typeddict-item]
-    if "ApplicationInstances" in data:
+    if data.get("ApplicationInstances") is not None:
         import capo_panorama.types.application_instances
 
         out["application_instances"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListApplicationInstancesResponse:
                 data["ApplicationInstances"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

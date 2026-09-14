@@ -63,33 +63,33 @@ def serialize_json(value: BackupSelection) -> dict:
 
 def deserialize_json(data: dict) -> BackupSelection:
     out: BackupSelection = {}  # type: ignore[typeddict-item]
-    if "SelectionName" in data:
+    if data.get("SelectionName") is not None:
         out["selection_name"] = data["SelectionName"]
     else:
         raise DeserializationError("BackupSelection.selection_name required")
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
     else:
         raise DeserializationError("BackupSelection.iam_role_arn required")
-    if "Resources" in data:
+    if data.get("Resources") is not None:
         import capo_backup.types.resource_arns
 
         out["resources"] = capo_backup.types.resource_arns.deserialize_json(
             data["Resources"]
         )
-    if "ListOfTags" in data:
+    if data.get("ListOfTags") is not None:
         import capo_backup.types.list_of_tags
 
         out["list_of_tags"] = capo_backup.types.list_of_tags.deserialize_json(
             data["ListOfTags"]
         )
-    if "NotResources" in data:
+    if data.get("NotResources") is not None:
         import capo_backup.types.resource_arns
 
         out["not_resources"] = capo_backup.types.resource_arns.deserialize_json(
             data["NotResources"]
         )
-    if "Conditions" in data:
+    if data.get("Conditions") is not None:
         import capo_backup.types.conditions
 
         out["conditions"] = capo_backup.types.conditions.deserialize_json(

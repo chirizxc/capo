@@ -30,11 +30,11 @@ def serialize_aws_json_1_0(value: GetPolicyTemplateInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetPolicyTemplateInput:
     out: GetPolicyTemplateInput = {}  # type: ignore[typeddict-item]
-    if "policyStoreId" in data:
+    if data.get("policyStoreId") is not None:
         out["policy_store_id"] = data["policyStoreId"]
     else:
         raise DeserializationError("GetPolicyTemplateInput.policy_store_id required")
-    if "policyTemplateId" in data:
+    if data.get("policyTemplateId") is not None:
         out["policy_template_id"] = data["policyTemplateId"]
     else:
         raise DeserializationError("GetPolicyTemplateInput.policy_template_id required")

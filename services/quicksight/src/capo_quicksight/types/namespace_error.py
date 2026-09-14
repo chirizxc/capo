@@ -32,12 +32,12 @@ def serialize_json(value: NamespaceError) -> dict:
 
 def deserialize_json(data: dict) -> NamespaceError:
     out: NamespaceError = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_quicksight.types.namespace_error_type
 
         out["type"] = capo_quicksight.types.namespace_error_type.deserialize_json(
             data["Type"]
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> __listOfGroupCount:
 
     out: __listOfGroupCount = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_macie2.types.group_count.deserialize_json(item))
     return out

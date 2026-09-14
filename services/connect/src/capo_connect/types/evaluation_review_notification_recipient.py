@@ -40,7 +40,7 @@ def serialize_json(value: EvaluationReviewNotificationRecipient) -> dict:
 
 def deserialize_json(data: dict) -> EvaluationReviewNotificationRecipient:
     out: EvaluationReviewNotificationRecipient = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_connect.types.evaluation_review_notification_recipient_type
 
         out["type"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> EvaluationReviewNotificationRecipient:
         raise DeserializationError(
             "EvaluationReviewNotificationRecipient.type required"
         )
-    if "Value" in data:
+    if data.get("Value") is not None:
         import capo_connect.types.evaluation_review_notification_recipient_value
 
         out["value"] = (

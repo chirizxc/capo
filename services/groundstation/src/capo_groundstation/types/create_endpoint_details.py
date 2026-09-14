@@ -52,7 +52,7 @@ def serialize_json(value: CreateEndpointDetails) -> dict:
 
 
 def deserialize_json(data: dict) -> CreateEndpointDetails:
-    if "uplinkAwsGroundStationAgentEndpoint" in data:
+    if data.get("uplinkAwsGroundStationAgentEndpoint") is not None:
         import capo_groundstation.types.uplink_aws_ground_station_agent_endpoint
 
         return {
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> CreateEndpointDetails:
                 data["uplinkAwsGroundStationAgentEndpoint"]
             )
         }
-    elif "downlinkAwsGroundStationAgentEndpoint" in data:
+    elif data.get("downlinkAwsGroundStationAgentEndpoint") is not None:
         import capo_groundstation.types.downlink_aws_ground_station_agent_endpoint
 
         return {

@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: ScalingTrigger) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ScalingTrigger:
     out: ScalingTrigger = {}  # type: ignore[typeddict-item]
-    if "CloudWatchAlarmDefinition" in data:
+    if data.get("CloudWatchAlarmDefinition") is not None:
         import capo_emr.types.cloud_watch_alarm_definition
 
         out["cloud_watch_alarm_definition"] = (

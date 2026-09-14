@@ -38,12 +38,12 @@ def serialize_json(value: UpdateStreamRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateStreamRequest:
     out: UpdateStreamRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "files" in data:
+    if data.get("files") is not None:
         import capo_iot.types.stream_files
 
         out["files"] = capo_iot.types.stream_files.deserialize_json(data["files"])
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     return out

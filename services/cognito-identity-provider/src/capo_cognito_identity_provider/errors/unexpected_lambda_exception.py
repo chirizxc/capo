@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: UnexpectedLambdaException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UnexpectedLambdaException_:
     out: UnexpectedLambdaException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -37,15 +37,18 @@ class UnexpectedLambdaException(ServiceError):
 
     code: str | None = "UnexpectedLambdaException"
 
-    def __init__(self, data: UnexpectedLambdaException_):
+    def __init__(self, data: UnexpectedLambdaException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="UnexpectedLambdaException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "UnexpectedLambdaException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "UnexpectedLambdaException":
+        return cls(deserialize_aws_json_1_1(data), message)

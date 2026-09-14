@@ -42,7 +42,7 @@ def serialize_json(value: GaugeChartPrimaryValueConditionalFormatting) -> dict:
 
 def deserialize_json(data: dict) -> GaugeChartPrimaryValueConditionalFormatting:
     out: GaugeChartPrimaryValueConditionalFormatting = {}  # type: ignore[typeddict-item]
-    if "TextColor" in data:
+    if data.get("TextColor") is not None:
         import capo_quicksight.types.conditional_formatting_color
 
         out["text_color"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> GaugeChartPrimaryValueConditionalFormatting:
                 data["TextColor"]
             )
         )
-    if "Icon" in data:
+    if data.get("Icon") is not None:
         import capo_quicksight.types.conditional_formatting_icon
 
         out["icon"] = (

@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> ActionList:
 
     out: ActionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_acm_pca.types.action_type.deserialize_aws_json_1_1(item))
     return out

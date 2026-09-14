@@ -31,7 +31,7 @@ def serialize_json(value: EcsPropertiesOverride) -> dict:
 
 def deserialize_json(data: dict) -> EcsPropertiesOverride:
     out: EcsPropertiesOverride = {}  # type: ignore[typeddict-item]
-    if "taskProperties" in data:
+    if data.get("taskProperties") is not None:
         import capo_batch.types.list_task_properties_override
 
         out["task_properties"] = (

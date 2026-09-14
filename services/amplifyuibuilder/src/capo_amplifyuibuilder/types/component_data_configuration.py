@@ -52,23 +52,23 @@ def serialize_json(value: ComponentDataConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ComponentDataConfiguration:
     out: ComponentDataConfiguration = {}  # type: ignore[typeddict-item]
-    if "model" in data:
+    if data.get("model") is not None:
         out["model"] = data["model"]
     else:
         raise DeserializationError("ComponentDataConfiguration.model required")
-    if "sort" in data:
+    if data.get("sort") is not None:
         import capo_amplifyuibuilder.types.sort_property_list
 
         out["sort"] = capo_amplifyuibuilder.types.sort_property_list.deserialize_json(
             data["sort"]
         )
-    if "predicate" in data:
+    if data.get("predicate") is not None:
         import capo_amplifyuibuilder.types.predicate
 
         out["predicate"] = capo_amplifyuibuilder.types.predicate.deserialize_json(
             data["predicate"]
         )
-    if "identifiers" in data:
+    if data.get("identifiers") is not None:
         import capo_amplifyuibuilder.types.identifier_list
 
         out["identifiers"] = (

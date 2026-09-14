@@ -34,12 +34,12 @@ def serialize_json(value: ListImportFileEnrichmentsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListImportFileEnrichmentsResponse:
     out: ListImportFileEnrichmentsResponse = {}  # type: ignore[typeddict-item]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_mgn.types.import_file_enrichments_list
 
         out["items"] = capo_mgn.types.import_file_enrichments_list.deserialize_json(
             data["items"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

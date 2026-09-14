@@ -61,7 +61,7 @@ def serialize_json(value: IdentityProviderSummary) -> dict:
 
 def deserialize_json(data: dict) -> IdentityProviderSummary:
     out: IdentityProviderSummary = {}  # type: ignore[typeddict-item]
-    if "IdentityProvider" in data:
+    if data.get("IdentityProvider") is not None:
         import capo_license_manager_user_subscriptions.types.identity_provider
 
         out["identity_provider"] = (
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> IdentityProviderSummary:
         )
     else:
         raise DeserializationError("IdentityProviderSummary.identity_provider required")
-    if "Settings" in data:
+    if data.get("Settings") is not None:
         import capo_license_manager_user_subscriptions.types.settings
 
         out["settings"] = (
@@ -81,18 +81,18 @@ def deserialize_json(data: dict) -> IdentityProviderSummary:
         )
     else:
         raise DeserializationError("IdentityProviderSummary.settings required")
-    if "Product" in data:
+    if data.get("Product") is not None:
         out["product"] = data["Product"]
     else:
         raise DeserializationError("IdentityProviderSummary.product required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     else:
         raise DeserializationError("IdentityProviderSummary.status required")
-    if "IdentityProviderArn" in data:
+    if data.get("IdentityProviderArn") is not None:
         out["identity_provider_arn"] = data["IdentityProviderArn"]
-    if "FailureMessage" in data:
+    if data.get("FailureMessage") is not None:
         out["failure_message"] = data["FailureMessage"]
-    if "OwnerAccountId" in data:
+    if data.get("OwnerAccountId") is not None:
         out["owner_account_id"] = data["OwnerAccountId"]
     return out

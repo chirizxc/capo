@@ -34,7 +34,7 @@ def serialize_json(value: FuotaTaskEventLogOption) -> dict:
 
 def deserialize_json(data: dict) -> FuotaTaskEventLogOption:
     out: FuotaTaskEventLogOption = {}  # type: ignore[typeddict-item]
-    if "Event" in data:
+    if data.get("Event") is not None:
         import capo_iot_wireless.types.fuota_task_event
 
         out["event"] = capo_iot_wireless.types.fuota_task_event.deserialize_json(
@@ -42,7 +42,7 @@ def deserialize_json(data: dict) -> FuotaTaskEventLogOption:
         )
     else:
         raise DeserializationError("FuotaTaskEventLogOption.event required")
-    if "LogLevel" in data:
+    if data.get("LogLevel") is not None:
         import capo_iot_wireless.types.log_level
 
         out["log_level"] = capo_iot_wireless.types.log_level.deserialize_json(

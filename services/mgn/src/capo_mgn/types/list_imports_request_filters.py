@@ -27,7 +27,7 @@ def serialize_json(value: ListImportsRequestFilters) -> dict:
 
 def deserialize_json(data: dict) -> ListImportsRequestFilters:
     out: ListImportsRequestFilters = {}  # type: ignore[typeddict-item]
-    if "importIDs" in data:
+    if data.get("importIDs") is not None:
         import capo_mgn.types.import_i_ds_filter
 
         out["import_i_ds"] = capo_mgn.types.import_i_ds_filter.deserialize_json(

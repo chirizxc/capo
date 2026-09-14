@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ImportFileEnrichmentsList:
 
     out: ImportFileEnrichmentsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mgn.types.import_file_enrichment.deserialize_json(item))
     return out

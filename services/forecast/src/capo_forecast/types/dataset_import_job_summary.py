@@ -75,27 +75,27 @@ def serialize_aws_json_1_1(value: DatasetImportJobSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DatasetImportJobSummary:
     out: DatasetImportJobSummary = {}  # type: ignore[typeddict-item]
-    if "DatasetImportJobArn" in data:
+    if data.get("DatasetImportJobArn") is not None:
         out["dataset_import_job_arn"] = data["DatasetImportJobArn"]
-    if "DatasetImportJobName" in data:
+    if data.get("DatasetImportJobName") is not None:
         out["dataset_import_job_name"] = data["DatasetImportJobName"]
-    if "DataSource" in data:
+    if data.get("DataSource") is not None:
         import capo_forecast.types.data_source
 
         out["data_source"] = capo_forecast.types.data_source.deserialize_aws_json_1_1(
             data["DataSource"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_forecast.types.timestamp
 
         out["creation_time"] = capo_forecast.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModificationTime" in data:
+    if data.get("LastModificationTime") is not None:
         import capo_forecast.types.timestamp
 
         out["last_modification_time"] = (
@@ -103,7 +103,7 @@ def deserialize_aws_json_1_1(data: dict) -> DatasetImportJobSummary:
                 data["LastModificationTime"]
             )
         )
-    if "ImportMode" in data:
+    if data.get("ImportMode") is not None:
         import capo_forecast.types.import_mode
 
         out["import_mode"] = capo_forecast.types.import_mode.deserialize_aws_json_1_1(

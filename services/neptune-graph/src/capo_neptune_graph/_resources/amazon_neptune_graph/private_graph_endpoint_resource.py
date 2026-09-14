@@ -87,8 +87,9 @@ class PrivateGraphEndpointResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.create_private_graph_endpoint_input.CreatePrivateGraphEndpointInput = {}  # type: ignore[typeddict-item]
-        input_["graph_identifier"] = graph_identifier
+        input_: capo_neptune_graph.types.create_private_graph_endpoint_input.CreatePrivateGraphEndpointInput = {
+            "graph_identifier": graph_identifier
+        }
         if vpc_id is not None:
             input_["vpc_id"] = vpc_id
         if subnet_ids is not None:
@@ -101,6 +102,7 @@ class PrivateGraphEndpointResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_private_graph_endpoint(
@@ -140,15 +142,17 @@ class PrivateGraphEndpointResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.delete_private_graph_endpoint_input.DeletePrivateGraphEndpointInput = {}  # type: ignore[typeddict-item]
-        input_["graph_identifier"] = graph_identifier
-        input_["vpc_id"] = vpc_id
+        input_: capo_neptune_graph.types.delete_private_graph_endpoint_input.DeletePrivateGraphEndpointInput = {
+            "graph_identifier": graph_identifier,
+            "vpc_id": vpc_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_private_graph_endpoint(
@@ -187,15 +191,17 @@ class PrivateGraphEndpointResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.get_private_graph_endpoint_input.GetPrivateGraphEndpointInput = {}  # type: ignore[typeddict-item]
-        input_["graph_identifier"] = graph_identifier
-        input_["vpc_id"] = vpc_id
+        input_: capo_neptune_graph.types.get_private_graph_endpoint_input.GetPrivateGraphEndpointInput = {
+            "graph_identifier": graph_identifier,
+            "vpc_id": vpc_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_private_graph_endpoints(
@@ -238,8 +244,9 @@ class PrivateGraphEndpointResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.list_private_graph_endpoints_input.ListPrivateGraphEndpointsInput = {}  # type: ignore[typeddict-item]
-        input_["graph_identifier"] = graph_identifier
+        input_: capo_neptune_graph.types.list_private_graph_endpoints_input.ListPrivateGraphEndpointsInput = {
+            "graph_identifier": graph_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -250,6 +257,7 @@ class PrivateGraphEndpointResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -302,8 +310,9 @@ class AsyncPrivateGraphEndpointResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.create_private_graph_endpoint_input.CreatePrivateGraphEndpointInput = {}  # type: ignore[typeddict-item]
-        input_["graph_identifier"] = graph_identifier
+        input_: capo_neptune_graph.types.create_private_graph_endpoint_input.CreatePrivateGraphEndpointInput = {
+            "graph_identifier": graph_identifier
+        }
         if vpc_id is not None:
             input_["vpc_id"] = vpc_id
         if subnet_ids is not None:
@@ -316,6 +325,7 @@ class AsyncPrivateGraphEndpointResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_private_graph_endpoint(
@@ -356,15 +366,17 @@ class AsyncPrivateGraphEndpointResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.delete_private_graph_endpoint_input.DeletePrivateGraphEndpointInput = {}  # type: ignore[typeddict-item]
-        input_["graph_identifier"] = graph_identifier
-        input_["vpc_id"] = vpc_id
+        input_: capo_neptune_graph.types.delete_private_graph_endpoint_input.DeletePrivateGraphEndpointInput = {
+            "graph_identifier": graph_identifier,
+            "vpc_id": vpc_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_private_graph_endpoint(
@@ -404,15 +416,17 @@ class AsyncPrivateGraphEndpointResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.get_private_graph_endpoint_input.GetPrivateGraphEndpointInput = {}  # type: ignore[typeddict-item]
-        input_["graph_identifier"] = graph_identifier
-        input_["vpc_id"] = vpc_id
+        input_: capo_neptune_graph.types.get_private_graph_endpoint_input.GetPrivateGraphEndpointInput = {
+            "graph_identifier": graph_identifier,
+            "vpc_id": vpc_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_private_graph_endpoints(
@@ -456,8 +470,9 @@ class AsyncPrivateGraphEndpointResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.list_private_graph_endpoints_input.ListPrivateGraphEndpointsInput = {}  # type: ignore[typeddict-item]
-        input_["graph_identifier"] = graph_identifier
+        input_: capo_neptune_graph.types.list_private_graph_endpoints_input.ListPrivateGraphEndpointsInput = {
+            "graph_identifier": graph_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -468,4 +483,5 @@ class AsyncPrivateGraphEndpointResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

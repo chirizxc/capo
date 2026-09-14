@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> NetworkMigrationMappingsList:
 
     out: NetworkMigrationMappingsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mgn.types.network_migration_mapping_job_details.deserialize_json(item)
         )

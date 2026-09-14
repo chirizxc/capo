@@ -36,9 +36,9 @@ def serialize_json(value: ListRecommenderRecipesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListRecommenderRecipesResponse:
     out: ListRecommenderRecipesResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "RecommenderRecipes" in data:
+    if data.get("RecommenderRecipes") is not None:
         import capo_customer_profiles.types.recommender_recipes_list
 
         out["recommender_recipes"] = (

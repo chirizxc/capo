@@ -40,15 +40,15 @@ def serialize_json(value: Page) -> dict:
 
 def deserialize_json(data: dict) -> Page:
     out: Page = {}  # type: ignore[typeddict-item]
-    if "PageNumber" in data:
+    if data.get("PageNumber") is not None:
         out["page_number"] = data["PageNumber"]
-    if "LineRange" in data:
+    if data.get("LineRange") is not None:
         import capo_securityhub.types.range
 
         out["line_range"] = capo_securityhub.types.range.deserialize_json(
             data["LineRange"]
         )
-    if "OffsetRange" in data:
+    if data.get("OffsetRange") is not None:
         import capo_securityhub.types.range
 
         out["offset_range"] = capo_securityhub.types.range.deserialize_json(

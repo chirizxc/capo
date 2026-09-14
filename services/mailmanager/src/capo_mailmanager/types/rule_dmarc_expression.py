@@ -36,7 +36,7 @@ def serialize_aws_json_1_0(value: RuleDmarcExpression) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RuleDmarcExpression:
     out: RuleDmarcExpression = {}  # type: ignore[typeddict-item]
-    if "Operator" in data:
+    if data.get("Operator") is not None:
         import capo_mailmanager.types.rule_dmarc_operator
 
         out["operator"] = (
@@ -46,7 +46,7 @@ def deserialize_aws_json_1_0(data: dict) -> RuleDmarcExpression:
         )
     else:
         raise DeserializationError("RuleDmarcExpression.operator required")
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_mailmanager.types.rule_dmarc_value_list
 
         out["values"] = (

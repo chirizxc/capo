@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> SubmissionList:
 
     out: SubmissionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_qapps.types.submission.deserialize_json(item))
     return out

@@ -68,11 +68,11 @@ def serialize_aws_json_1_1(value: MeterUsageRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MeterUsageRequest:
     out: MeterUsageRequest = {}  # type: ignore[typeddict-item]
-    if "ProductCode" in data:
+    if data.get("ProductCode") is not None:
         out["product_code"] = data["ProductCode"]
     else:
         raise DeserializationError("MeterUsageRequest.product_code required")
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         import capo_marketplace_metering.types.timestamp
 
         out["timestamp"] = (
@@ -82,15 +82,15 @@ def deserialize_aws_json_1_1(data: dict) -> MeterUsageRequest:
         )
     else:
         raise DeserializationError("MeterUsageRequest.timestamp required")
-    if "UsageDimension" in data:
+    if data.get("UsageDimension") is not None:
         out["usage_dimension"] = data["UsageDimension"]
     else:
         raise DeserializationError("MeterUsageRequest.usage_dimension required")
-    if "UsageQuantity" in data:
+    if data.get("UsageQuantity") is not None:
         out["usage_quantity"] = data["UsageQuantity"]
-    if "DryRun" in data:
+    if data.get("DryRun") is not None:
         out["dry_run"] = data["DryRun"]
-    if "UsageAllocations" in data:
+    if data.get("UsageAllocations") is not None:
         import capo_marketplace_metering.types.usage_allocations
 
         out["usage_allocations"] = (
@@ -98,6 +98,6 @@ def deserialize_aws_json_1_1(data: dict) -> MeterUsageRequest:
                 data["UsageAllocations"]
             )
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

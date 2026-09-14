@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> ArcRoutingControlStates:
 
     out: ArcRoutingControlStates = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_arc_region_switch.types.arc_routing_control_state.deserialize_aws_json_1_0(
                 item

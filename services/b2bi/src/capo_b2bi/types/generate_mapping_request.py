@@ -36,17 +36,17 @@ def serialize_aws_json_1_0(value: GenerateMappingRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GenerateMappingRequest:
     out: GenerateMappingRequest = {}  # type: ignore[typeddict-item]
-    if "inputFileContent" in data:
+    if data.get("inputFileContent") is not None:
         out["input_file_content"] = data["inputFileContent"]
     else:
         raise DeserializationError("GenerateMappingRequest.input_file_content required")
-    if "outputFileContent" in data:
+    if data.get("outputFileContent") is not None:
         out["output_file_content"] = data["outputFileContent"]
     else:
         raise DeserializationError(
             "GenerateMappingRequest.output_file_content required"
         )
-    if "mappingType" in data:
+    if data.get("mappingType") is not None:
         import capo_b2bi.types.mapping_type
 
         out["mapping_type"] = capo_b2bi.types.mapping_type.deserialize_aws_json_1_0(

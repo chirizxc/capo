@@ -30,7 +30,7 @@ def serialize_json(value: UtteranceAggregationDuration) -> dict:
 
 def deserialize_json(data: dict) -> UtteranceAggregationDuration:
     out: UtteranceAggregationDuration = {}  # type: ignore[typeddict-item]
-    if "relativeAggregationDuration" in data:
+    if data.get("relativeAggregationDuration") is not None:
         import capo_lex_models_v2.types.relative_aggregation_duration
 
         out["relative_aggregation_duration"] = (

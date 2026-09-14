@@ -46,15 +46,15 @@ def serialize_aws_json_1_0(value: WorkflowExecutionSignaledEventAttributes) -> d
 
 def deserialize_aws_json_1_0(data: dict) -> WorkflowExecutionSignaledEventAttributes:
     out: WorkflowExecutionSignaledEventAttributes = {}  # type: ignore[typeddict-item]
-    if "signalName" in data:
+    if data.get("signalName") is not None:
         out["signal_name"] = data["signalName"]
     else:
         raise DeserializationError(
             "WorkflowExecutionSignaledEventAttributes.signal_name required"
         )
-    if "input" in data:
+    if data.get("input") is not None:
         out["input"] = data["input"]
-    if "externalWorkflowExecution" in data:
+    if data.get("externalWorkflowExecution") is not None:
         import capo_swf.types.workflow_execution
 
         out["external_workflow_execution"] = (
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_0(data: dict) -> WorkflowExecutionSignaledEventAttrib
                 data["externalWorkflowExecution"]
             )
         )
-    if "externalInitiatedEventId" in data:
+    if data.get("externalInitiatedEventId") is not None:
         out["external_initiated_event_id"] = data["externalInitiatedEventId"]
     else:
         out["external_initiated_event_id"] = 0

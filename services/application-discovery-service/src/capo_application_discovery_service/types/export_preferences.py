@@ -35,7 +35,7 @@ def serialize_aws_json_1_1(value: ExportPreferences) -> dict:
 
 
 def deserialize_aws_json_1_1(data: dict) -> ExportPreferences:
-    if "ec2RecommendationsPreferences" in data:
+    if data.get("ec2RecommendationsPreferences") is not None:
         import capo_application_discovery_service.types.ec2_recommendations_export_preferences
 
         return {

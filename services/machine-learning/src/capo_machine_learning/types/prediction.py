@@ -28,7 +28,15 @@ def serialize_aws_json_1_1(value: Prediction) -> dict:
     if "predicted_label" in value:
         out["predictedLabel"] = value["predicted_label"]
     if "predicted_value" in value:
-        out["predictedValue"] = value["predicted_value"]
+        out["predictedValue"] = (
+            "NaN"
+            if value["predicted_value"] != value["predicted_value"]
+            else "Infinity"
+            if value["predicted_value"] == float("inf")
+            else "-Infinity"
+            if value["predicted_value"] == float("-inf")
+            else value["predicted_value"]
+        )
     if "predicted_scores" in value:
         import capo_machine_learning.types.score_value_per_label_map
 
@@ -48,11 +56,11 @@ def serialize_aws_json_1_1(value: Prediction) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Prediction:
     out: Prediction = {}  # type: ignore[typeddict-item]
-    if "predictedLabel" in data:
+    if data.get("predictedLabel") is not None:
         out["predicted_label"] = data["predictedLabel"]
-    if "predictedValue" in data:
-        out["predicted_value"] = data["predictedValue"]
-    if "predictedScores" in data:
+    if data.get("predictedValue") is not None:
+        out["predicted_value"] = float(data["predictedValue"])
+    if data.get("predictedScores") is not None:
         import capo_machine_learning.types.score_value_per_label_map
 
         out["predicted_scores"] = (
@@ -60,7 +68,7 @@ def deserialize_aws_json_1_1(data: dict) -> Prediction:
                 data["predictedScores"]
             )
         )
-    if "details" in data:
+    if data.get("details") is not None:
         import capo_machine_learning.types.details_map
 
         out["details"] = (

@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: PriorityConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PriorityConfiguration:
     out: PriorityConfiguration = {}  # type: ignore[typeddict-item]
-    if "PriorityOrder" in data:
+    if data.get("PriorityOrder") is not None:
         import capo_gamelift.types.priority_type_list
 
         out["priority_order"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> PriorityConfiguration:
                 data["PriorityOrder"]
             )
         )
-    if "LocationOrder" in data:
+    if data.get("LocationOrder") is not None:
         import capo_gamelift.types.location_list
 
         out["location_order"] = (

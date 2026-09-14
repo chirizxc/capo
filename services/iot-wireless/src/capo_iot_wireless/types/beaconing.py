@@ -38,9 +38,9 @@ def serialize_json(value: Beaconing) -> dict:
 
 def deserialize_json(data: dict) -> Beaconing:
     out: Beaconing = {}  # type: ignore[typeddict-item]
-    if "DataRate" in data:
+    if data.get("DataRate") is not None:
         out["data_rate"] = data["DataRate"]
-    if "Frequencies" in data:
+    if data.get("Frequencies") is not None:
         import capo_iot_wireless.types.beaconing_frequencies
 
         out["frequencies"] = (

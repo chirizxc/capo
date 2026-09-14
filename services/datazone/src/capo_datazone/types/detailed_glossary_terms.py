@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DetailedGlossaryTerms:
 
     out: DetailedGlossaryTerms = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_datazone.types.detailed_glossary_term.deserialize_json(item))
     return out

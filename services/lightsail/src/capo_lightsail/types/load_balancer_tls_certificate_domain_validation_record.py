@@ -66,13 +66,13 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> LoadBalancerTlsCertificateDomainValidationRecord:
     out: LoadBalancerTlsCertificateDomainValidationRecord = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
-    if "validationStatus" in data:
+    if data.get("validationStatus") is not None:
         import capo_lightsail.types.load_balancer_tls_certificate_domain_status
 
         out["validation_status"] = (
@@ -80,9 +80,9 @@ def deserialize_aws_json_1_1(
                 data["validationStatus"]
             )
         )
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
-    if "dnsRecordCreationState" in data:
+    if data.get("dnsRecordCreationState") is not None:
         import capo_lightsail.types.load_balancer_tls_certificate_dns_record_creation_state
 
         out["dns_record_creation_state"] = (

@@ -49,18 +49,18 @@ def serialize_aws_json_1_1(value: DescribeAppRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeAppRequest:
     out: DescribeAppRequest = {}  # type: ignore[typeddict-item]
-    if "DomainId" in data:
+    if data.get("DomainId") is not None:
         out["domain_id"] = data["DomainId"]
-    if "UserProfileName" in data:
+    if data.get("UserProfileName") is not None:
         out["user_profile_name"] = data["UserProfileName"]
-    if "SpaceName" in data:
+    if data.get("SpaceName") is not None:
         out["space_name"] = data["SpaceName"]
-    if "AppType" in data:
+    if data.get("AppType") is not None:
         import capo_sagemaker.types.app_type
 
         out["app_type"] = capo_sagemaker.types.app_type.deserialize_aws_json_1_1(
             data["AppType"]
         )
-    if "AppName" in data:
+    if data.get("AppName") is not None:
         out["app_name"] = data["AppName"]
     return out

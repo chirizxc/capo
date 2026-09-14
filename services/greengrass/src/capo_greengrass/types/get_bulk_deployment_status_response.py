@@ -69,7 +69,7 @@ def serialize_json(value: GetBulkDeploymentStatusResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetBulkDeploymentStatusResponse:
     out: GetBulkDeploymentStatusResponse = {}  # type: ignore[typeddict-item]
-    if "BulkDeploymentMetrics" in data:
+    if data.get("BulkDeploymentMetrics") is not None:
         import capo_greengrass.types.bulk_deployment_metrics
 
         out["bulk_deployment_metrics"] = (
@@ -77,7 +77,7 @@ def deserialize_json(data: dict) -> GetBulkDeploymentStatusResponse:
                 data["BulkDeploymentMetrics"]
             )
         )
-    if "BulkDeploymentStatus" in data:
+    if data.get("BulkDeploymentStatus") is not None:
         import capo_greengrass.types.bulk_deployment_status
 
         out["bulk_deployment_status"] = (
@@ -85,17 +85,17 @@ def deserialize_json(data: dict) -> GetBulkDeploymentStatusResponse:
                 data["BulkDeploymentStatus"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         out["created_at"] = data["CreatedAt"]
-    if "ErrorDetails" in data:
+    if data.get("ErrorDetails") is not None:
         import capo_greengrass.types.error_details
 
         out["error_details"] = capo_greengrass.types.error_details.deserialize_json(
             data["ErrorDetails"]
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_greengrass.types.tags
 
         out["tags"] = capo_greengrass.types.tags.deserialize_json(data["tags"])

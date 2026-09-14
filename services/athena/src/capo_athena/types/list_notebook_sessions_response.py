@@ -37,7 +37,7 @@ def serialize_aws_json_1_1(value: ListNotebookSessionsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListNotebookSessionsResponse:
     out: ListNotebookSessionsResponse = {}  # type: ignore[typeddict-item]
-    if "NotebookSessionsList" in data:
+    if data.get("NotebookSessionsList") is not None:
         import capo_athena.types.notebook_sessions_list
 
         out["notebook_sessions_list"] = (
@@ -49,6 +49,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListNotebookSessionsResponse:
         raise DeserializationError(
             "ListNotebookSessionsResponse.notebook_sessions_list required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

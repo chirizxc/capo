@@ -47,29 +47,29 @@ def serialize_aws_json_1_0(value: AmendBenefitApplicationInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AmendBenefitApplicationInput:
     out: AmendBenefitApplicationInput = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("AmendBenefitApplicationInput.catalog required")
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     else:
         raise DeserializationError("AmendBenefitApplicationInput.client_token required")
-    if "Revision" in data:
+    if data.get("Revision") is not None:
         out["revision"] = data["Revision"]
     else:
         raise DeserializationError("AmendBenefitApplicationInput.revision required")
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
     else:
         raise DeserializationError("AmendBenefitApplicationInput.identifier required")
-    if "AmendmentReason" in data:
+    if data.get("AmendmentReason") is not None:
         out["amendment_reason"] = data["AmendmentReason"]
     else:
         raise DeserializationError(
             "AmendBenefitApplicationInput.amendment_reason required"
         )
-    if "Amendments" in data:
+    if data.get("Amendments") is not None:
         import capo_partnercentral_benefits.types.amendment_list
 
         out["amendments"] = (

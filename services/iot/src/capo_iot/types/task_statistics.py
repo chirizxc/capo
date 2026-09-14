@@ -65,20 +65,20 @@ def serialize_json(value: TaskStatistics) -> dict:
 
 def deserialize_json(data: dict) -> TaskStatistics:
     out: TaskStatistics = {}  # type: ignore[typeddict-item]
-    if "totalChecks" in data:
+    if data.get("totalChecks") is not None:
         out["total_checks"] = data["totalChecks"]
-    if "inProgressChecks" in data:
+    if data.get("inProgressChecks") is not None:
         out["in_progress_checks"] = data["inProgressChecks"]
-    if "waitingForDataCollectionChecks" in data:
+    if data.get("waitingForDataCollectionChecks") is not None:
         out["waiting_for_data_collection_checks"] = data[
             "waitingForDataCollectionChecks"
         ]
-    if "compliantChecks" in data:
+    if data.get("compliantChecks") is not None:
         out["compliant_checks"] = data["compliantChecks"]
-    if "nonCompliantChecks" in data:
+    if data.get("nonCompliantChecks") is not None:
         out["non_compliant_checks"] = data["nonCompliantChecks"]
-    if "failedChecks" in data:
+    if data.get("failedChecks") is not None:
         out["failed_checks"] = data["failedChecks"]
-    if "canceledChecks" in data:
+    if data.get("canceledChecks") is not None:
         out["canceled_checks"] = data["canceledChecks"]
     return out

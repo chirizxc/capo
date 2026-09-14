@@ -43,20 +43,20 @@ def serialize_json(value: Criterion) -> dict:
 
 def deserialize_json(data: dict) -> Criterion:
     out: Criterion = {}  # type: ignore[typeddict-item]
-    if "eq" in data:
+    if data.get("eq") is not None:
         import capo_accessanalyzer.types.value_list
 
         out["eq"] = capo_accessanalyzer.types.value_list.deserialize_json(data["eq"])
-    if "neq" in data:
+    if data.get("neq") is not None:
         import capo_accessanalyzer.types.value_list
 
         out["neq"] = capo_accessanalyzer.types.value_list.deserialize_json(data["neq"])
-    if "contains" in data:
+    if data.get("contains") is not None:
         import capo_accessanalyzer.types.value_list
 
         out["contains"] = capo_accessanalyzer.types.value_list.deserialize_json(
             data["contains"]
         )
-    if "exists" in data:
+    if data.get("exists") is not None:
         out["exists"] = data["exists"]
     return out

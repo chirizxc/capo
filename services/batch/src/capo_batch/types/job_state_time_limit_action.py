@@ -54,9 +54,9 @@ def serialize_json(value: JobStateTimeLimitAction) -> dict:
 
 def deserialize_json(data: dict) -> JobStateTimeLimitAction:
     out: JobStateTimeLimitAction = {}  # type: ignore[typeddict-item]
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_batch.types.job_state_time_limit_actions_state
 
         out["state"] = (
@@ -64,9 +64,9 @@ def deserialize_json(data: dict) -> JobStateTimeLimitAction:
                 data["state"]
             )
         )
-    if "maxTimeSeconds" in data:
+    if data.get("maxTimeSeconds") is not None:
         out["max_time_seconds"] = data["maxTimeSeconds"]
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_batch.types.job_state_time_limit_actions_action
 
         out["action"] = (

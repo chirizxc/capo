@@ -29,7 +29,7 @@ def serialize_aws_json_1_0(value: PolicyVariables) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PolicyVariables:
     out: PolicyVariables = {}  # type: ignore[typeddict-item]
-    if "RuleVariables" in data:
+    if data.get("RuleVariables") is not None:
         import capo_network_firewall.types.ip_sets
 
         out["rule_variables"] = (

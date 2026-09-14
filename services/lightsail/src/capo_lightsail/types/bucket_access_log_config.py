@@ -36,12 +36,12 @@ def serialize_aws_json_1_1(value: BucketAccessLogConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BucketAccessLogConfig:
     out: BucketAccessLogConfig = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
     else:
         raise DeserializationError("BucketAccessLogConfig.enabled required")
-    if "destination" in data:
+    if data.get("destination") is not None:
         out["destination"] = data["destination"]
-    if "prefix" in data:
+    if data.get("prefix") is not None:
         out["prefix"] = data["prefix"]
     return out

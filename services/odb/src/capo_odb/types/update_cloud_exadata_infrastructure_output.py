@@ -40,17 +40,17 @@ def serialize_aws_json_1_0(value: UpdateCloudExadataInfrastructureOutput) -> dic
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateCloudExadataInfrastructureOutput:
     out: UpdateCloudExadataInfrastructureOutput = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_odb.types.resource_status
 
         out["status"] = capo_odb.types.resource_status.deserialize_aws_json_1_0(
             data["status"]
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "cloudExadataInfrastructureId" in data:
+    if data.get("cloudExadataInfrastructureId") is not None:
         out["cloud_exadata_infrastructure_id"] = data["cloudExadataInfrastructureId"]
     else:
         raise DeserializationError(

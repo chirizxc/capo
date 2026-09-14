@@ -34,14 +34,14 @@ def serialize_aws_json_1_1(value: ListHITsForQualificationTypeRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListHITsForQualificationTypeRequest:
     out: ListHITsForQualificationTypeRequest = {}  # type: ignore[typeddict-item]
-    if "QualificationTypeId" in data:
+    if data.get("QualificationTypeId") is not None:
         out["qualification_type_id"] = data["QualificationTypeId"]
     else:
         raise DeserializationError(
             "ListHITsForQualificationTypeRequest.qualification_type_id required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

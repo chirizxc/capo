@@ -97,25 +97,25 @@ def serialize_json(value: AwsEcrContainerAggregation) -> dict:
 
 def deserialize_json(data: dict) -> AwsEcrContainerAggregation:
     out: AwsEcrContainerAggregation = {}  # type: ignore[typeddict-item]
-    if "resourceIds" in data:
+    if data.get("resourceIds") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["resource_ids"] = capo_inspector2.types.string_filter_list.deserialize_json(
             data["resourceIds"]
         )
-    if "imageShas" in data:
+    if data.get("imageShas") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["image_shas"] = capo_inspector2.types.string_filter_list.deserialize_json(
             data["imageShas"]
         )
-    if "repositories" in data:
+    if data.get("repositories") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["repositories"] = capo_inspector2.types.string_filter_list.deserialize_json(
             data["repositories"]
         )
-    if "architectures" in data:
+    if data.get("architectures") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["architectures"] = (
@@ -123,23 +123,23 @@ def deserialize_json(data: dict) -> AwsEcrContainerAggregation:
                 data["architectures"]
             )
         )
-    if "imageTags" in data:
+    if data.get("imageTags") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["image_tags"] = capo_inspector2.types.string_filter_list.deserialize_json(
             data["imageTags"]
         )
-    if "sortOrder" in data:
+    if data.get("sortOrder") is not None:
         out["sort_order"] = data["sortOrder"]
-    if "sortBy" in data:
+    if data.get("sortBy") is not None:
         out["sort_by"] = data["sortBy"]
-    if "lastInUseAt" in data:
+    if data.get("lastInUseAt") is not None:
         import capo_inspector2.types.date_filter_list
 
         out["last_in_use_at"] = capo_inspector2.types.date_filter_list.deserialize_json(
             data["lastInUseAt"]
         )
-    if "inUseCount" in data:
+    if data.get("inUseCount") is not None:
         import capo_inspector2.types.number_filter_list
 
         out["in_use_count"] = capo_inspector2.types.number_filter_list.deserialize_json(

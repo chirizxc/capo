@@ -54,9 +54,9 @@ def serialize_aws_json_1_0(value: AnalysisReport) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AnalysisReport:
     out: AnalysisReport = {}  # type: ignore[typeddict-item]
-    if "AnalysisReportId" in data:
+    if data.get("AnalysisReportId") is not None:
         out["analysis_report_id"] = data["AnalysisReportId"]
-    if "AnalysisType" in data:
+    if data.get("AnalysisType") is not None:
         import capo_network_firewall.types.enabled_analysis_type
 
         out["analysis_type"] = (
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_0(data: dict) -> AnalysisReport:
                 data["AnalysisType"]
             )
         )
-    if "ReportTime" in data:
+    if data.get("ReportTime") is not None:
         import capo_network_firewall.types.report_time
 
         out["report_time"] = (
@@ -72,6 +72,6 @@ def deserialize_aws_json_1_0(data: dict) -> AnalysisReport:
                 data["ReportTime"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     return out

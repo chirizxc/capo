@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> UserPoolClientListType:
 
     out: UserPoolClientListType = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cognito_identity_provider.types.user_pool_client_description.deserialize_aws_json_1_1(
                 item

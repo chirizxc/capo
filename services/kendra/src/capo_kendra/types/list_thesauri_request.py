@@ -36,12 +36,12 @@ def serialize_aws_json_1_1(value: ListThesauriRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListThesauriRequest:
     out: ListThesauriRequest = {}  # type: ignore[typeddict-item]
-    if "IndexId" in data:
+    if data.get("IndexId") is not None:
         out["index_id"] = data["IndexId"]
     else:
         raise DeserializationError("ListThesauriRequest.index_id required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

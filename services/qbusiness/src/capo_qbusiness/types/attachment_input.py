@@ -39,13 +39,13 @@ def serialize_json(value: AttachmentInput) -> dict:
 
 def deserialize_json(data: dict) -> AttachmentInput:
     out: AttachmentInput = {}  # type: ignore[typeddict-item]
-    if "data" in data:
+    if data.get("data") is not None:
         import capo_qbusiness.types.blob
 
         out["data"] = capo_qbusiness.types.blob.deserialize_json(data["data"])
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "copyFrom" in data:
+    if data.get("copyFrom") is not None:
         import capo_qbusiness.types.copy_from_source
 
         out["copy_from"] = capo_qbusiness.types.copy_from_source.deserialize_json(

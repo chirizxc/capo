@@ -36,7 +36,7 @@ def serialize_aws_json_1_0(value: ListSensorStatisticsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListSensorStatisticsResponse:
     out: ListSensorStatisticsResponse = {}  # type: ignore[typeddict-item]
-    if "SensorStatisticsSummaries" in data:
+    if data.get("SensorStatisticsSummaries") is not None:
         import capo_lookoutequipment.types.sensor_statistics_summaries
 
         out["sensor_statistics_summaries"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListSensorStatisticsResponse:
                 data["SensorStatisticsSummaries"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

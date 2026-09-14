@@ -42,19 +42,19 @@ def serialize_json(value: SamplingRuleRecord) -> dict:
 
 def deserialize_json(data: dict) -> SamplingRuleRecord:
     out: SamplingRuleRecord = {}  # type: ignore[typeddict-item]
-    if "SamplingRule" in data:
+    if data.get("SamplingRule") is not None:
         import capo_xray.types.sampling_rule
 
         out["sampling_rule"] = capo_xray.types.sampling_rule.deserialize_json(
             data["SamplingRule"]
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_xray.types.timestamp
 
         out["created_at"] = capo_xray.types.timestamp.deserialize_json(
             data["CreatedAt"]
         )
-    if "ModifiedAt" in data:
+    if data.get("ModifiedAt") is not None:
         import capo_xray.types.timestamp
 
         out["modified_at"] = capo_xray.types.timestamp.deserialize_json(

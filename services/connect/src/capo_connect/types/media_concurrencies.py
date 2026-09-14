@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> MediaConcurrencies:
 
     out: MediaConcurrencies = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.media_concurrency.deserialize_json(item))
     return out

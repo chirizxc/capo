@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: StartSupportDataExportResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartSupportDataExportResult:
     out: StartSupportDataExportResult = {}  # type: ignore[typeddict-item]
-    if "dataSetRequestId" in data:
+    if data.get("dataSetRequestId") is not None:
         out["data_set_request_id"] = data["dataSetRequestId"]
     return out

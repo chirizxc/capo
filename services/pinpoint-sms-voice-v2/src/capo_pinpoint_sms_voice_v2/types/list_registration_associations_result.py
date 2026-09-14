@@ -47,25 +47,25 @@ def serialize_aws_json_1_0(value: ListRegistrationAssociationsResult) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListRegistrationAssociationsResult:
     out: ListRegistrationAssociationsResult = {}  # type: ignore[typeddict-item]
-    if "RegistrationArn" in data:
+    if data.get("RegistrationArn") is not None:
         out["registration_arn"] = data["RegistrationArn"]
     else:
         raise DeserializationError(
             "ListRegistrationAssociationsResult.registration_arn required"
         )
-    if "RegistrationId" in data:
+    if data.get("RegistrationId") is not None:
         out["registration_id"] = data["RegistrationId"]
     else:
         raise DeserializationError(
             "ListRegistrationAssociationsResult.registration_id required"
         )
-    if "RegistrationType" in data:
+    if data.get("RegistrationType") is not None:
         out["registration_type"] = data["RegistrationType"]
     else:
         raise DeserializationError(
             "ListRegistrationAssociationsResult.registration_type required"
         )
-    if "RegistrationAssociations" in data:
+    if data.get("RegistrationAssociations") is not None:
         import capo_pinpoint_sms_voice_v2.types.registration_association_metadata_list
 
         out["registration_associations"] = (
@@ -77,6 +77,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListRegistrationAssociationsResult:
         raise DeserializationError(
             "ListRegistrationAssociationsResult.registration_associations required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

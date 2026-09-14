@@ -55,47 +55,47 @@ def serialize_json(value: MessageTemplateVersionSummary) -> dict:
 
 def deserialize_json(data: dict) -> MessageTemplateVersionSummary:
     out: MessageTemplateVersionSummary = {}  # type: ignore[typeddict-item]
-    if "messageTemplateArn" in data:
+    if data.get("messageTemplateArn") is not None:
         out["message_template_arn"] = data["messageTemplateArn"]
     else:
         raise DeserializationError(
             "MessageTemplateVersionSummary.message_template_arn required"
         )
-    if "messageTemplateId" in data:
+    if data.get("messageTemplateId") is not None:
         out["message_template_id"] = data["messageTemplateId"]
     else:
         raise DeserializationError(
             "MessageTemplateVersionSummary.message_template_id required"
         )
-    if "knowledgeBaseArn" in data:
+    if data.get("knowledgeBaseArn") is not None:
         out["knowledge_base_arn"] = data["knowledgeBaseArn"]
     else:
         raise DeserializationError(
             "MessageTemplateVersionSummary.knowledge_base_arn required"
         )
-    if "knowledgeBaseId" in data:
+    if data.get("knowledgeBaseId") is not None:
         out["knowledge_base_id"] = data["knowledgeBaseId"]
     else:
         raise DeserializationError(
             "MessageTemplateVersionSummary.knowledge_base_id required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("MessageTemplateVersionSummary.name required")
-    if "channel" in data:
+    if data.get("channel") is not None:
         out["channel"] = data["channel"]
-    if "channelSubtype" in data:
+    if data.get("channelSubtype") is not None:
         out["channel_subtype"] = data["channelSubtype"]
     else:
         raise DeserializationError(
             "MessageTemplateVersionSummary.channel_subtype required"
         )
-    if "isActive" in data:
+    if data.get("isActive") is not None:
         out["is_active"] = data["isActive"]
     else:
         raise DeserializationError("MessageTemplateVersionSummary.is_active required")
-    if "versionNumber" in data:
+    if data.get("versionNumber") is not None:
         out["version_number"] = data["versionNumber"]
     else:
         raise DeserializationError(

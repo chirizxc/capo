@@ -92,35 +92,35 @@ def serialize_aws_json_1_1(value: BudgetPerformanceHistory) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BudgetPerformanceHistory:
     out: BudgetPerformanceHistory = {}  # type: ignore[typeddict-item]
-    if "BudgetName" in data:
+    if data.get("BudgetName") is not None:
         out["budget_name"] = data["BudgetName"]
-    if "BudgetType" in data:
+    if data.get("BudgetType") is not None:
         import capo_budgets.types.budget_type
 
         out["budget_type"] = capo_budgets.types.budget_type.deserialize_aws_json_1_1(
             data["BudgetType"]
         )
-    if "CostFilters" in data:
+    if data.get("CostFilters") is not None:
         import capo_budgets.types.cost_filters
 
         out["cost_filters"] = capo_budgets.types.cost_filters.deserialize_aws_json_1_1(
             data["CostFilters"]
         )
-    if "CostTypes" in data:
+    if data.get("CostTypes") is not None:
         import capo_budgets.types.cost_types
 
         out["cost_types"] = capo_budgets.types.cost_types.deserialize_aws_json_1_1(
             data["CostTypes"]
         )
-    if "TimeUnit" in data:
+    if data.get("TimeUnit") is not None:
         import capo_budgets.types.time_unit
 
         out["time_unit"] = capo_budgets.types.time_unit.deserialize_aws_json_1_1(
             data["TimeUnit"]
         )
-    if "BillingViewArn" in data:
+    if data.get("BillingViewArn") is not None:
         out["billing_view_arn"] = data["BillingViewArn"]
-    if "BudgetedAndActualAmountsList" in data:
+    if data.get("BudgetedAndActualAmountsList") is not None:
         import capo_budgets.types.budgeted_and_actual_amounts_list
 
         out["budgeted_and_actual_amounts_list"] = (
@@ -128,7 +128,7 @@ def deserialize_aws_json_1_1(data: dict) -> BudgetPerformanceHistory:
                 data["BudgetedAndActualAmountsList"]
             )
         )
-    if "FilterExpression" in data:
+    if data.get("FilterExpression") is not None:
         import capo_budgets.types.expression
 
         out["filter_expression"] = (
@@ -136,7 +136,7 @@ def deserialize_aws_json_1_1(data: dict) -> BudgetPerformanceHistory:
                 data["FilterExpression"]
             )
         )
-    if "Metrics" in data:
+    if data.get("Metrics") is not None:
         import capo_budgets.types.metrics
 
         out["metrics"] = capo_budgets.types.metrics.deserialize_aws_json_1_1(

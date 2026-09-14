@@ -13,9 +13,9 @@ from capo_billing import AsyncBillingClient
 
 
 async def main():
-    async with AsyncBillingClient() as s3:
+    async with AsyncBillingClient() as billing:
         # Example: call the associate_source_views operation
-        response = await s3.associate_source_views()
+        response = await billing.associate_source_views()
         print(response["arn"])
 ```
 
@@ -28,9 +28,9 @@ from capo_billing import AsyncBillingClient
 
 
 async def main():
-    async with AsyncBillingClient() as s3:
+    async with AsyncBillingClient() as billing:
         # Example: paginate over list_billing_views
-        async for item in s3.iter_list_billing_views():
+        async for item in billing.iter_list_billing_views():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_billing.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncBillingClient() as s3:
+    async with AsyncBillingClient() as billing:
         try:
-            await s3.associate_source_views()
+            await billing.associate_source_views()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_billing import AsyncBillingClient
 
 
 async def main():
-    async with AsyncBillingClient() as s3:
+    async with AsyncBillingClient() as billing:
         # Default: 3 attempts for every operation
-        response = await s3.associate_source_views()
+        response = await billing.associate_source_views()
 
         # Override per operation
-        response = await s3.associate_source_views(config_overrides={"retry_max_attempts": 5})
+        response = await billing.associate_source_views(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.associate_source_views(config_overrides={"retry_max_attempts": 1})
+        response = await billing.associate_source_views(config_overrides={"retry_max_attempts": 1})
 ```

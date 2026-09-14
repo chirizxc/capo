@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: RdsDbInstanceConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RdsDbInstanceConfiguration:
     out: RdsDbInstanceConfiguration = {}  # type: ignore[typeddict-item]
-    if "instance" in data:
+    if data.get("instance") is not None:
         import capo_cost_optimization_hub.types.db_instance_configuration
 
         out["instance"] = (

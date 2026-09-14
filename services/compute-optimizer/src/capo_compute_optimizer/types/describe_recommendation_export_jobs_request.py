@@ -48,13 +48,13 @@ def serialize_aws_json_1_0(value: DescribeRecommendationExportJobsRequest) -> di
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeRecommendationExportJobsRequest:
     out: DescribeRecommendationExportJobsRequest = {}  # type: ignore[typeddict-item]
-    if "jobIds" in data:
+    if data.get("jobIds") is not None:
         import capo_compute_optimizer.types.job_ids
 
         out["job_ids"] = capo_compute_optimizer.types.job_ids.deserialize_aws_json_1_0(
             data["jobIds"]
         )
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_compute_optimizer.types.job_filters
 
         out["filters"] = (
@@ -62,8 +62,8 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeRecommendationExportJobsRequ
                 data["filters"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

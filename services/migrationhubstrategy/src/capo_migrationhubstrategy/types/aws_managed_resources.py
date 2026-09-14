@@ -30,7 +30,7 @@ def serialize_json(value: AwsManagedResources) -> dict:
 
 def deserialize_json(data: dict) -> AwsManagedResources:
     out: AwsManagedResources = {}  # type: ignore[typeddict-item]
-    if "targetDestination" in data:
+    if data.get("targetDestination") is not None:
         import capo_migrationhubstrategy.types.aws_managed_target_destinations
 
         out["target_destination"] = (

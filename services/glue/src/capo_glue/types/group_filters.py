@@ -42,11 +42,11 @@ def serialize_aws_json_1_1(value: GroupFilters) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GroupFilters:
     out: GroupFilters = {}  # type: ignore[typeddict-item]
-    if "GroupName" in data:
+    if data.get("GroupName") is not None:
         out["group_name"] = data["GroupName"]
     else:
         raise DeserializationError("GroupFilters.group_name required")
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_glue.types.filter_expressions
 
         out["filters"] = capo_glue.types.filter_expressions.deserialize_aws_json_1_1(
@@ -54,7 +54,7 @@ def deserialize_aws_json_1_1(data: dict) -> GroupFilters:
         )
     else:
         raise DeserializationError("GroupFilters.filters required")
-    if "LogicalOperator" in data:
+    if data.get("LogicalOperator") is not None:
         import capo_glue.types.filter_logical_operator
 
         out["logical_operator"] = (

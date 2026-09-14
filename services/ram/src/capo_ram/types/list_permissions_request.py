@@ -43,13 +43,13 @@ def serialize_json(value: ListPermissionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListPermissionsRequest:
     out: ListPermissionsRequest = {}  # type: ignore[typeddict-item]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "permissionType" in data:
+    if data.get("permissionType") is not None:
         import capo_ram.types.permission_type_filter
 
         out["permission_type"] = capo_ram.types.permission_type_filter.deserialize_json(

@@ -69,7 +69,7 @@ def serialize_aws_json_1_0(value: BatchIsAuthorizedInputItem) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> BatchIsAuthorizedInputItem:
     out: BatchIsAuthorizedInputItem = {}  # type: ignore[typeddict-item]
-    if "principal" in data:
+    if data.get("principal") is not None:
         import capo_verifiedpermissions.types.entity_identifier
 
         out["principal"] = (
@@ -77,7 +77,7 @@ def deserialize_aws_json_1_0(data: dict) -> BatchIsAuthorizedInputItem:
                 data["principal"]
             )
         )
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_verifiedpermissions.types.action_identifier
 
         out["action"] = (
@@ -85,7 +85,7 @@ def deserialize_aws_json_1_0(data: dict) -> BatchIsAuthorizedInputItem:
                 data["action"]
             )
         )
-    if "resource" in data:
+    if data.get("resource") is not None:
         import capo_verifiedpermissions.types.entity_identifier
 
         out["resource"] = (
@@ -93,7 +93,7 @@ def deserialize_aws_json_1_0(data: dict) -> BatchIsAuthorizedInputItem:
                 data["resource"]
             )
         )
-    if "context" in data:
+    if data.get("context") is not None:
         import capo_verifiedpermissions.types.context_definition
 
         out["context"] = (

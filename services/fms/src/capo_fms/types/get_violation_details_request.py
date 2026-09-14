@@ -36,19 +36,19 @@ def serialize_aws_json_1_1(value: GetViolationDetailsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetViolationDetailsRequest:
     out: GetViolationDetailsRequest = {}  # type: ignore[typeddict-item]
-    if "PolicyId" in data:
+    if data.get("PolicyId") is not None:
         out["policy_id"] = data["PolicyId"]
     else:
         raise DeserializationError("GetViolationDetailsRequest.policy_id required")
-    if "MemberAccount" in data:
+    if data.get("MemberAccount") is not None:
         out["member_account"] = data["MemberAccount"]
     else:
         raise DeserializationError("GetViolationDetailsRequest.member_account required")
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     else:
         raise DeserializationError("GetViolationDetailsRequest.resource_id required")
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
     else:
         raise DeserializationError("GetViolationDetailsRequest.resource_type required")

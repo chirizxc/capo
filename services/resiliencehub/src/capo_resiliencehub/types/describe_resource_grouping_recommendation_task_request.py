@@ -29,12 +29,12 @@ def serialize_json(value: DescribeResourceGroupingRecommendationTaskRequest) -> 
 
 def deserialize_json(data: dict) -> DescribeResourceGroupingRecommendationTaskRequest:
     out: DescribeResourceGroupingRecommendationTaskRequest = {}  # type: ignore[typeddict-item]
-    if "appArn" in data:
+    if data.get("appArn") is not None:
         out["app_arn"] = data["appArn"]
     else:
         raise DeserializationError(
             "DescribeResourceGroupingRecommendationTaskRequest.app_arn required"
         )
-    if "groupingId" in data:
+    if data.get("groupingId") is not None:
         out["grouping_id"] = data["groupingId"]
     return out

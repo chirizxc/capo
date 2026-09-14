@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: PrivateIp) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PrivateIp:
     out: PrivateIp = {}  # type: ignore[typeddict-item]
-    if "privateDnsName" in data:
+    if data.get("privateDnsName") is not None:
         out["private_dns_name"] = data["privateDnsName"]
-    if "privateIpAddress" in data:
+    if data.get("privateIpAddress") is not None:
         out["private_ip_address"] = data["privateIpAddress"]
     return out

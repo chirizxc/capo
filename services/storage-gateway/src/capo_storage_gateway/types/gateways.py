@@ -23,6 +23,8 @@ def deserialize_aws_json_1_1(data: list) -> Gateways:
 
     out: Gateways = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_storage_gateway.types.gateway_info.deserialize_aws_json_1_1(item)
         )

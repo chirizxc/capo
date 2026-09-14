@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> SuccessfulKeyRegistrationEntries:
 
     out: SuccessfulKeyRegistrationEntries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.successful_key_registration_entry.deserialize_json(
                 item

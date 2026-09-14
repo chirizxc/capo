@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ServiceMetadataList:
 
     out: ServiceMetadataList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_auditmanager.types.service_metadata.deserialize_json(item))
     return out

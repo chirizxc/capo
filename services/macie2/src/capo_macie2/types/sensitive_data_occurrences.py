@@ -27,6 +27,8 @@ def serialize_json(input_to_serialize: SensitiveDataOccurrences) -> dict:
 def deserialize_json(data: dict) -> SensitiveDataOccurrences:
     out: SensitiveDataOccurrences = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_macie2.types.__list_of_detected_data_details
 
         out[key] = capo_macie2.types.__list_of_detected_data_details.deserialize_json(

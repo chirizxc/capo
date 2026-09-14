@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: ConstraintSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConstraintSummary:
     out: ConstraintSummary = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

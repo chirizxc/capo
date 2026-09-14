@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> BlacklistEntries:
 
     out: BlacklistEntries = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_sesv2.types.blacklist_entry.deserialize_json(item))
     return out

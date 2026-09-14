@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: ListCrawlsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListCrawlsResponse:
     out: ListCrawlsResponse = {}  # type: ignore[typeddict-item]
-    if "Crawls" in data:
+    if data.get("Crawls") is not None:
         import capo_glue.types.crawler_history_list
 
         out["crawls"] = capo_glue.types.crawler_history_list.deserialize_aws_json_1_1(
             data["Crawls"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

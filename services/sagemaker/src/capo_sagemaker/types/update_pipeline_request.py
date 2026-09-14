@@ -74,13 +74,13 @@ def serialize_aws_json_1_1(value: UpdatePipelineRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdatePipelineRequest:
     out: UpdatePipelineRequest = {}  # type: ignore[typeddict-item]
-    if "PipelineName" in data:
+    if data.get("PipelineName") is not None:
         out["pipeline_name"] = data["PipelineName"]
-    if "PipelineDisplayName" in data:
+    if data.get("PipelineDisplayName") is not None:
         out["pipeline_display_name"] = data["PipelineDisplayName"]
-    if "PipelineDefinition" in data:
+    if data.get("PipelineDefinition") is not None:
         out["pipeline_definition"] = data["PipelineDefinition"]
-    if "PipelineDefinitionS3Location" in data:
+    if data.get("PipelineDefinitionS3Location") is not None:
         import capo_sagemaker.types.pipeline_definition_s3_location
 
         out["pipeline_definition_s3_location"] = (
@@ -88,11 +88,11 @@ def deserialize_aws_json_1_1(data: dict) -> UpdatePipelineRequest:
                 data["PipelineDefinitionS3Location"]
             )
         )
-    if "PipelineDescription" in data:
+    if data.get("PipelineDescription") is not None:
         out["pipeline_description"] = data["PipelineDescription"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "ParallelismConfiguration" in data:
+    if data.get("ParallelismConfiguration") is not None:
         import capo_sagemaker.types.parallelism_configuration
 
         out["parallelism_configuration"] = (

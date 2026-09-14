@@ -148,10 +148,10 @@ def serialize_aws_json_1_1(value: Workgroup) -> dict:
     if "publicly_accessible" in value:
         out["publiclyAccessible"] = value["publicly_accessible"]
     if "creation_date" in value:
-        import capo_redshift_serverless.types._prelude.timestamp
+        import capo_redshift_serverless._protocol.serialize
 
         out["creationDate"] = (
-            capo_redshift_serverless.types._prelude.timestamp.serialize_aws_json_1_1(
+            capo_redshift_serverless._protocol.serialize.fmt_date_time(
                 value["creation_date"]
             )
         )
@@ -162,10 +162,10 @@ def serialize_aws_json_1_1(value: Workgroup) -> dict:
     if "custom_domain_certificate_arn" in value:
         out["customDomainCertificateArn"] = value["custom_domain_certificate_arn"]
     if "custom_domain_certificate_expiry_time" in value:
-        import capo_redshift_serverless.types._prelude.timestamp
+        import capo_redshift_serverless._protocol.serialize
 
         out["customDomainCertificateExpiryTime"] = (
-            capo_redshift_serverless.types._prelude.timestamp.serialize_aws_json_1_1(
+            capo_redshift_serverless._protocol.serialize.fmt_date_time(
                 value["custom_domain_certificate_expiry_time"]
             )
         )
@@ -206,19 +206,19 @@ def serialize_aws_json_1_1(value: Workgroup) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Workgroup:
     out: Workgroup = {}  # type: ignore[typeddict-item]
-    if "workgroupId" in data:
+    if data.get("workgroupId") is not None:
         out["workgroup_id"] = data["workgroupId"]
-    if "workgroupArn" in data:
+    if data.get("workgroupArn") is not None:
         out["workgroup_arn"] = data["workgroupArn"]
-    if "workgroupName" in data:
+    if data.get("workgroupName") is not None:
         out["workgroup_name"] = data["workgroupName"]
-    if "namespaceName" in data:
+    if data.get("namespaceName") is not None:
         out["namespace_name"] = data["namespaceName"]
-    if "baseCapacity" in data:
+    if data.get("baseCapacity") is not None:
         out["base_capacity"] = data["baseCapacity"]
-    if "enhancedVpcRouting" in data:
+    if data.get("enhancedVpcRouting") is not None:
         out["enhanced_vpc_routing"] = data["enhancedVpcRouting"]
-    if "configParameters" in data:
+    if data.get("configParameters") is not None:
         import capo_redshift_serverless.types.config_parameter_list
 
         out["config_parameters"] = (
@@ -226,7 +226,7 @@ def deserialize_aws_json_1_1(data: dict) -> Workgroup:
                 data["configParameters"]
             )
         )
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_redshift_serverless.types.security_group_id_list
 
         out["security_group_ids"] = (
@@ -234,7 +234,7 @@ def deserialize_aws_json_1_1(data: dict) -> Workgroup:
                 data["securityGroupIds"]
             )
         )
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_redshift_serverless.types.subnet_id_list
 
         out["subnet_ids"] = (
@@ -242,9 +242,9 @@ def deserialize_aws_json_1_1(data: dict) -> Workgroup:
                 data["subnetIds"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "endpoint" in data:
+    if data.get("endpoint") is not None:
         import capo_redshift_serverless.types.endpoint
 
         out["endpoint"] = (
@@ -252,37 +252,33 @@ def deserialize_aws_json_1_1(data: dict) -> Workgroup:
                 data["endpoint"]
             )
         )
-    if "publiclyAccessible" in data:
+    if data.get("publiclyAccessible") is not None:
         out["publicly_accessible"] = data["publiclyAccessible"]
-    if "creationDate" in data:
-        import capo_redshift_serverless.types._prelude.timestamp
+    if data.get("creationDate") is not None:
+        import datetime
 
-        out["creation_date"] = (
-            capo_redshift_serverless.types._prelude.timestamp.deserialize_aws_json_1_1(
-                data["creationDate"]
-            )
+        out["creation_date"] = datetime.datetime.fromisoformat(
+            data["creationDate"].replace("Z", "+00:00")
         )
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
-    if "customDomainName" in data:
+    if data.get("customDomainName") is not None:
         out["custom_domain_name"] = data["customDomainName"]
-    if "customDomainCertificateArn" in data:
+    if data.get("customDomainCertificateArn") is not None:
         out["custom_domain_certificate_arn"] = data["customDomainCertificateArn"]
-    if "customDomainCertificateExpiryTime" in data:
-        import capo_redshift_serverless.types._prelude.timestamp
+    if data.get("customDomainCertificateExpiryTime") is not None:
+        import datetime
 
-        out["custom_domain_certificate_expiry_time"] = (
-            capo_redshift_serverless.types._prelude.timestamp.deserialize_aws_json_1_1(
-                data["customDomainCertificateExpiryTime"]
-            )
+        out["custom_domain_certificate_expiry_time"] = datetime.datetime.fromisoformat(
+            data["customDomainCertificateExpiryTime"].replace("Z", "+00:00")
         )
-    if "workgroupVersion" in data:
+    if data.get("workgroupVersion") is not None:
         out["workgroup_version"] = data["workgroupVersion"]
-    if "patchVersion" in data:
+    if data.get("patchVersion") is not None:
         out["patch_version"] = data["patchVersion"]
-    if "maxCapacity" in data:
+    if data.get("maxCapacity") is not None:
         out["max_capacity"] = data["maxCapacity"]
-    if "crossAccountVpcs" in data:
+    if data.get("crossAccountVpcs") is not None:
         import capo_redshift_serverless.types.vpc_ids
 
         out["cross_account_vpcs"] = (
@@ -290,9 +286,9 @@ def deserialize_aws_json_1_1(data: dict) -> Workgroup:
                 data["crossAccountVpcs"]
             )
         )
-    if "ipAddressType" in data:
+    if data.get("ipAddressType") is not None:
         out["ip_address_type"] = data["ipAddressType"]
-    if "pricePerformanceTarget" in data:
+    if data.get("pricePerformanceTarget") is not None:
         import capo_redshift_serverless.types.performance_target
 
         out["price_performance_target"] = (
@@ -300,11 +296,11 @@ def deserialize_aws_json_1_1(data: dict) -> Workgroup:
                 data["pricePerformanceTarget"]
             )
         )
-    if "trackName" in data:
+    if data.get("trackName") is not None:
         out["track_name"] = data["trackName"]
-    if "pendingTrackName" in data:
+    if data.get("pendingTrackName") is not None:
         out["pending_track_name"] = data["pendingTrackName"]
-    if "extraComputeForAutomaticOptimization" in data:
+    if data.get("extraComputeForAutomaticOptimization") is not None:
         out["extra_compute_for_automatic_optimization"] = data[
             "extraComputeForAutomaticOptimization"
         ]

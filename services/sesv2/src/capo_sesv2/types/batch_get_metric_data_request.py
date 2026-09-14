@@ -28,7 +28,7 @@ def serialize_json(value: BatchGetMetricDataRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetMetricDataRequest:
     out: BatchGetMetricDataRequest = {}  # type: ignore[typeddict-item]
-    if "Queries" in data:
+    if data.get("Queries") is not None:
         import capo_sesv2.types.batch_get_metric_data_queries
 
         out["queries"] = (

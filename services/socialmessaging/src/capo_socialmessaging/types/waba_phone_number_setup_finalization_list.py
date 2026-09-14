@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> WabaPhoneNumberSetupFinalizationList:
 
     out: WabaPhoneNumberSetupFinalizationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_socialmessaging.types.waba_phone_number_setup_finalization.deserialize_json(
                 item

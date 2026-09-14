@@ -63,25 +63,25 @@ def serialize_aws_json_1_0(value: ActivityTypeConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ActivityTypeConfiguration:
     out: ActivityTypeConfiguration = {}  # type: ignore[typeddict-item]
-    if "defaultTaskStartToCloseTimeout" in data:
+    if data.get("defaultTaskStartToCloseTimeout") is not None:
         out["default_task_start_to_close_timeout"] = data[
             "defaultTaskStartToCloseTimeout"
         ]
-    if "defaultTaskHeartbeatTimeout" in data:
+    if data.get("defaultTaskHeartbeatTimeout") is not None:
         out["default_task_heartbeat_timeout"] = data["defaultTaskHeartbeatTimeout"]
-    if "defaultTaskList" in data:
+    if data.get("defaultTaskList") is not None:
         import capo_swf.types.task_list
 
         out["default_task_list"] = capo_swf.types.task_list.deserialize_aws_json_1_0(
             data["defaultTaskList"]
         )
-    if "defaultTaskPriority" in data:
+    if data.get("defaultTaskPriority") is not None:
         out["default_task_priority"] = data["defaultTaskPriority"]
-    if "defaultTaskScheduleToStartTimeout" in data:
+    if data.get("defaultTaskScheduleToStartTimeout") is not None:
         out["default_task_schedule_to_start_timeout"] = data[
             "defaultTaskScheduleToStartTimeout"
         ]
-    if "defaultTaskScheduleToCloseTimeout" in data:
+    if data.get("defaultTaskScheduleToCloseTimeout") is not None:
         out["default_task_schedule_to_close_timeout"] = data[
             "defaultTaskScheduleToCloseTimeout"
         ]

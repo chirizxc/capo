@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SignInDistributionList:
 
     out: SignInDistributionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.sign_in_distribution.deserialize_json(item))
     return out

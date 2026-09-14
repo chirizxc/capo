@@ -120,9 +120,9 @@ def serialize_aws_json_1_1(value: CatalogInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CatalogInput:
     out: CatalogInput = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "FederatedCatalog" in data:
+    if data.get("FederatedCatalog") is not None:
         import capo_glue.types.federated_catalog
 
         out["federated_catalog"] = (
@@ -130,13 +130,13 @@ def deserialize_aws_json_1_1(data: dict) -> CatalogInput:
                 data["FederatedCatalog"]
             )
         )
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_glue.types.parameters_map
 
         out["parameters"] = capo_glue.types.parameters_map.deserialize_aws_json_1_1(
             data["Parameters"]
         )
-    if "TargetRedshiftCatalog" in data:
+    if data.get("TargetRedshiftCatalog") is not None:
         import capo_glue.types.target_redshift_catalog
 
         out["target_redshift_catalog"] = (
@@ -144,7 +144,7 @@ def deserialize_aws_json_1_1(data: dict) -> CatalogInput:
                 data["TargetRedshiftCatalog"]
             )
         )
-    if "CatalogProperties" in data:
+    if data.get("CatalogProperties") is not None:
         import capo_glue.types.catalog_properties
 
         out["catalog_properties"] = (
@@ -152,7 +152,7 @@ def deserialize_aws_json_1_1(data: dict) -> CatalogInput:
                 data["CatalogProperties"]
             )
         )
-    if "CreateTableDefaultPermissions" in data:
+    if data.get("CreateTableDefaultPermissions") is not None:
         import capo_glue.types.principal_permissions_list
 
         out["create_table_default_permissions"] = (
@@ -160,7 +160,7 @@ def deserialize_aws_json_1_1(data: dict) -> CatalogInput:
                 data["CreateTableDefaultPermissions"]
             )
         )
-    if "CreateDatabaseDefaultPermissions" in data:
+    if data.get("CreateDatabaseDefaultPermissions") is not None:
         import capo_glue.types.principal_permissions_list
 
         out["create_database_default_permissions"] = (
@@ -168,7 +168,7 @@ def deserialize_aws_json_1_1(data: dict) -> CatalogInput:
                 data["CreateDatabaseDefaultPermissions"]
             )
         )
-    if "AllowFullTableExternalDataAccess" in data:
+    if data.get("AllowFullTableExternalDataAccess") is not None:
         import capo_glue.types.allow_full_table_external_data_access_enum
 
         out["allow_full_table_external_data_access"] = (
@@ -176,7 +176,7 @@ def deserialize_aws_json_1_1(data: dict) -> CatalogInput:
                 data["AllowFullTableExternalDataAccess"]
             )
         )
-    if "OverwriteChildResourcePermissionsWithDefault" in data:
+    if data.get("OverwriteChildResourcePermissionsWithDefault") is not None:
         import capo_glue.types.overwrite_child_resource_permissions_with_default_enum
 
         out["overwrite_child_resource_permissions_with_default"] = (

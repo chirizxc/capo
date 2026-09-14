@@ -44,13 +44,13 @@ def serialize_aws_json_1_1(value: CreateUsageProfileRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateUsageProfileRequest:
     out: CreateUsageProfileRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateUsageProfileRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Configuration" in data:
+    if data.get("Configuration") is not None:
         import capo_glue.types.profile_configuration
 
         out["configuration"] = (
@@ -60,7 +60,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateUsageProfileRequest:
         )
     else:
         raise DeserializationError("CreateUsageProfileRequest.configuration required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_glue.types.tags_map
 
         out["tags"] = capo_glue.types.tags_map.deserialize_aws_json_1_1(data["Tags"])

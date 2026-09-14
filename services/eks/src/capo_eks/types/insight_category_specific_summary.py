@@ -42,7 +42,7 @@ def serialize_json(value: InsightCategorySpecificSummary) -> dict:
 
 def deserialize_json(data: dict) -> InsightCategorySpecificSummary:
     out: InsightCategorySpecificSummary = {}  # type: ignore[typeddict-item]
-    if "deprecationDetails" in data:
+    if data.get("deprecationDetails") is not None:
         import capo_eks.types.deprecation_details
 
         out["deprecation_details"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> InsightCategorySpecificSummary:
                 data["deprecationDetails"]
             )
         )
-    if "addonCompatibilityDetails" in data:
+    if data.get("addonCompatibilityDetails") is not None:
         import capo_eks.types.addon_compatibility_details
 
         out["addon_compatibility_details"] = (

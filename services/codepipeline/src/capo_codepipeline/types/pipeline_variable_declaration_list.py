@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> PipelineVariableDeclarationList:
 
     out: PipelineVariableDeclarationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codepipeline.types.pipeline_variable_declaration.deserialize_aws_json_1_1(
                 item

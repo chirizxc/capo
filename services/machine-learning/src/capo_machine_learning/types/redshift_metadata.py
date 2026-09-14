@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: RedshiftMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RedshiftMetadata:
     out: RedshiftMetadata = {}  # type: ignore[typeddict-item]
-    if "RedshiftDatabase" in data:
+    if data.get("RedshiftDatabase") is not None:
         import capo_machine_learning.types.redshift_database
 
         out["redshift_database"] = (
@@ -51,8 +51,8 @@ def deserialize_aws_json_1_1(data: dict) -> RedshiftMetadata:
                 data["RedshiftDatabase"]
             )
         )
-    if "DatabaseUserName" in data:
+    if data.get("DatabaseUserName") is not None:
         out["database_user_name"] = data["DatabaseUserName"]
-    if "SelectSqlQuery" in data:
+    if data.get("SelectSqlQuery") is not None:
         out["select_sql_query"] = data["SelectSqlQuery"]
     return out

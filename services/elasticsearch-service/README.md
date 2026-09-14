@@ -13,10 +13,25 @@ from capo_elasticsearch_service import AsyncElasticsearchServiceClient
 
 
 async def main():
-    async with AsyncElasticsearchServiceClient() as s3:
+    async with AsyncElasticsearchServiceClient() as elasticsearch_service:
         # Example: call the accept_inbound_cross_cluster_search_connection operation
-        response = await s3.accept_inbound_cross_cluster_search_connection()
+        response = await elasticsearch_service.accept_inbound_cross_cluster_search_connection()
         print(response["cross_cluster_search_connection"])
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_elasticsearch_service import AsyncElasticsearchServiceClient
+
+
+async def main():
+    async with AsyncElasticsearchServiceClient() as elasticsearch_service:
+        # Example: paginate over describe_domain_auto_tunes
+        async for item in elasticsearch_service.iter_describe_domain_auto_tunes():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_elasticsearch_service.error import DisabledOperationException
 
 
 async def main():
-    async with AsyncElasticsearchServiceClient() as s3:
+    async with AsyncElasticsearchServiceClient() as elasticsearch_service:
         try:
-            await s3.accept_inbound_cross_cluster_search_connection()
+            await elasticsearch_service.accept_inbound_cross_cluster_search_connection()
         except DisabledOperationException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_elasticsearch_service import AsyncElasticsearchServiceClient
 
 
 async def main():
-    async with AsyncElasticsearchServiceClient() as s3:
+    async with AsyncElasticsearchServiceClient() as elasticsearch_service:
         # Default: 3 attempts for every operation
-        response = await s3.accept_inbound_cross_cluster_search_connection()
+        response = await elasticsearch_service.accept_inbound_cross_cluster_search_connection()
 
         # Override per operation
-        response = await s3.accept_inbound_cross_cluster_search_connection(config_overrides={"retry_max_attempts": 5})
+        response = await elasticsearch_service.accept_inbound_cross_cluster_search_connection(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.accept_inbound_cross_cluster_search_connection(config_overrides={"retry_max_attempts": 1})
+        response = await elasticsearch_service.accept_inbound_cross_cluster_search_connection(config_overrides={"retry_max_attempts": 1})
 ```

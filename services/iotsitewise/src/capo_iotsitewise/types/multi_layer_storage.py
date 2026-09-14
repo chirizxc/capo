@@ -32,7 +32,7 @@ def serialize_json(value: MultiLayerStorage) -> dict:
 
 def deserialize_json(data: dict) -> MultiLayerStorage:
     out: MultiLayerStorage = {}  # type: ignore[typeddict-item]
-    if "customerManagedS3Storage" in data:
+    if data.get("customerManagedS3Storage") is not None:
         import capo_iotsitewise.types.customer_managed_s3_storage
 
         out["customer_managed_s3_storage"] = (

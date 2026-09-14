@@ -52,13 +52,21 @@ def serialize_json(value: UpgradeStepItem) -> dict:
             value["issues"]
         )
     if "progress_percent" in value:
-        out["ProgressPercent"] = value["progress_percent"]
+        out["ProgressPercent"] = (
+            "NaN"
+            if value["progress_percent"] != value["progress_percent"]
+            else "Infinity"
+            if value["progress_percent"] == float("inf")
+            else "-Infinity"
+            if value["progress_percent"] == float("-inf")
+            else value["progress_percent"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> UpgradeStepItem:
     out: UpgradeStepItem = {}  # type: ignore[typeddict-item]
-    if "UpgradeStep" in data:
+    if data.get("UpgradeStep") is not None:
         import capo_elasticsearch_service.types.upgrade_step
 
         out["upgrade_step"] = (
@@ -66,7 +74,7 @@ def deserialize_json(data: dict) -> UpgradeStepItem:
                 data["UpgradeStep"]
             )
         )
-    if "UpgradeStepStatus" in data:
+    if data.get("UpgradeStepStatus") is not None:
         import capo_elasticsearch_service.types.upgrade_status
 
         out["upgrade_step_status"] = (
@@ -74,12 +82,12 @@ def deserialize_json(data: dict) -> UpgradeStepItem:
                 data["UpgradeStepStatus"]
             )
         )
-    if "Issues" in data:
+    if data.get("Issues") is not None:
         import capo_elasticsearch_service.types.issues
 
         out["issues"] = capo_elasticsearch_service.types.issues.deserialize_json(
             data["Issues"]
         )
-    if "ProgressPercent" in data:
-        out["progress_percent"] = data["ProgressPercent"]
+    if data.get("ProgressPercent") is not None:
+        out["progress_percent"] = float(data["ProgressPercent"])
     return out

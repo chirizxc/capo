@@ -60,17 +60,17 @@ def serialize_json(value: SearchContactEvaluationsRequest) -> dict:
 
 def deserialize_json(data: dict) -> SearchContactEvaluationsRequest:
     out: SearchContactEvaluationsRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     else:
         raise DeserializationError(
             "SearchContactEvaluationsRequest.instance_id required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "SearchCriteria" in data:
+    if data.get("SearchCriteria") is not None:
         import capo_connect.types.evaluation_search_criteria
 
         out["search_criteria"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> SearchContactEvaluationsRequest:
                 data["SearchCriteria"]
             )
         )
-    if "SearchFilter" in data:
+    if data.get("SearchFilter") is not None:
         import capo_connect.types.evaluation_search_filter
 
         out["search_filter"] = (

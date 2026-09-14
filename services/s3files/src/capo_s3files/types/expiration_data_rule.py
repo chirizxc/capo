@@ -19,7 +19,7 @@ def serialize_json(value: ExpirationDataRule) -> dict:
 
 def deserialize_json(data: dict) -> ExpirationDataRule:
     out: ExpirationDataRule = {}  # type: ignore[typeddict-item]
-    if "daysAfterLastAccess" in data:
+    if data.get("daysAfterLastAccess") is not None:
         out["days_after_last_access"] = data["daysAfterLastAccess"]
     else:
         raise DeserializationError("ExpirationDataRule.days_after_last_access required")

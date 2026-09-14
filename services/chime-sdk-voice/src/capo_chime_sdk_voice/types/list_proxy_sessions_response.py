@@ -36,7 +36,7 @@ def serialize_json(value: ListProxySessionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListProxySessionsResponse:
     out: ListProxySessionsResponse = {}  # type: ignore[typeddict-item]
-    if "ProxySessions" in data:
+    if data.get("ProxySessions") is not None:
         import capo_chime_sdk_voice.types.proxy_sessions
 
         out["proxy_sessions"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListProxySessionsResponse:
                 data["ProxySessions"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

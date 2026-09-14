@@ -52,13 +52,13 @@ def serialize_json(value: GetEventLogConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetEventLogConfigurationResponse:
     out: GetEventLogConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
-    if "EventLogLevel" in data:
+    if data.get("EventLogLevel") is not None:
         import capo_iot_managed_integrations.types.log_level
 
         out["event_log_level"] = (

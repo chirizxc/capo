@@ -65,14 +65,14 @@ def serialize_json(value: GetReferenceMetadataResponse) -> dict:
         out["name"] = value["name"]
     if "description" in value:
         out["description"] = value["description"]
-    import capo_omics.types._prelude.timestamp
+    import capo_omics._protocol.serialize
 
-    out["creationTime"] = capo_omics.types._prelude.timestamp.serialize_json(
+    out["creationTime"] = capo_omics._protocol.serialize.fmt_date_time(
         value["creation_time"]
     )
-    import capo_omics.types._prelude.timestamp
+    import capo_omics._protocol.serialize
 
-    out["updateTime"] = capo_omics.types._prelude.timestamp.serialize_json(
+    out["updateTime"] = capo_omics._protocol.serialize.fmt_date_time(
         value["update_time"]
     )
     if "files" in value:
@@ -88,54 +88,54 @@ def serialize_json(value: GetReferenceMetadataResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetReferenceMetadataResponse:
     out: GetReferenceMetadataResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("GetReferenceMetadataResponse.id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("GetReferenceMetadataResponse.arn required")
-    if "referenceStoreId" in data:
+    if data.get("referenceStoreId") is not None:
         out["reference_store_id"] = data["referenceStoreId"]
     else:
         raise DeserializationError(
             "GetReferenceMetadataResponse.reference_store_id required"
         )
-    if "md5" in data:
+    if data.get("md5") is not None:
         out["md5"] = data["md5"]
     else:
         raise DeserializationError("GetReferenceMetadataResponse.md5 required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "creationTime" in data:
-        import capo_omics.types._prelude.timestamp
+    if data.get("creationTime") is not None:
+        import datetime
 
-        out["creation_time"] = capo_omics.types._prelude.timestamp.deserialize_json(
-            data["creationTime"]
+        out["creation_time"] = datetime.datetime.fromisoformat(
+            data["creationTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError(
             "GetReferenceMetadataResponse.creation_time required"
         )
-    if "updateTime" in data:
-        import capo_omics.types._prelude.timestamp
+    if data.get("updateTime") is not None:
+        import datetime
 
-        out["update_time"] = capo_omics.types._prelude.timestamp.deserialize_json(
-            data["updateTime"]
+        out["update_time"] = datetime.datetime.fromisoformat(
+            data["updateTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("GetReferenceMetadataResponse.update_time required")
-    if "files" in data:
+    if data.get("files") is not None:
         import capo_omics.types.reference_files
 
         out["files"] = capo_omics.types.reference_files.deserialize_json(data["files"])
-    if "creationType" in data:
+    if data.get("creationType") is not None:
         out["creation_type"] = data["creationType"]
-    if "creationJobId" in data:
+    if data.get("creationJobId") is not None:
         out["creation_job_id"] = data["creationJobId"]
     return out

@@ -28,10 +28,10 @@ def serialize_aws_json_1_0(value: FileInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> FileInput:
     out: FileInput = {}  # type: ignore[typeddict-item]
-    if "FileURI" in data:
+    if data.get("FileURI") is not None:
         out["file_uri"] = data["FileURI"]
     else:
         raise DeserializationError("FileInput.file_uri required")
-    if "BusinessUseCase" in data:
+    if data.get("BusinessUseCase") is not None:
         out["business_use_case"] = data["BusinessUseCase"]
     return out

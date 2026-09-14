@@ -50,7 +50,7 @@ def serialize_json(value: SourceConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> SourceConfiguration:
-    if "appIntegrations" in data:
+    if data.get("appIntegrations") is not None:
         import capo_qconnect.types.app_integrations_configuration
 
         return {
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> SourceConfiguration:
                 data["appIntegrations"]
             )
         }
-    elif "managedSourceConfiguration" in data:
+    elif data.get("managedSourceConfiguration") is not None:
         import capo_qconnect.types.managed_source_configuration
 
         return {

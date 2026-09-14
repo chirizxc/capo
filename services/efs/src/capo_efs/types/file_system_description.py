@@ -116,7 +116,16 @@ def serialize_json(value: FileSystemDescription) -> dict:
             value["throughput_mode"]
         )
     if "provisioned_throughput_in_mibps" in value:
-        out["ProvisionedThroughputInMibps"] = value["provisioned_throughput_in_mibps"]
+        out["ProvisionedThroughputInMibps"] = (
+            "NaN"
+            if value["provisioned_throughput_in_mibps"]
+            != value["provisioned_throughput_in_mibps"]
+            else "Infinity"
+            if value["provisioned_throughput_in_mibps"] == float("inf")
+            else "-Infinity"
+            if value["provisioned_throughput_in_mibps"] == float("-inf")
+            else value["provisioned_throughput_in_mibps"]
+        )
     if "availability_zone_name" in value:
         out["AvailabilityZoneName"] = value["availability_zone_name"]
     if "availability_zone_id" in value:
@@ -137,21 +146,21 @@ def serialize_json(value: FileSystemDescription) -> dict:
 
 def deserialize_json(data: dict) -> FileSystemDescription:
     out: FileSystemDescription = {}  # type: ignore[typeddict-item]
-    if "OwnerId" in data:
+    if data.get("OwnerId") is not None:
         out["owner_id"] = data["OwnerId"]
     else:
         raise DeserializationError("FileSystemDescription.owner_id required")
-    if "CreationToken" in data:
+    if data.get("CreationToken") is not None:
         out["creation_token"] = data["CreationToken"]
     else:
         raise DeserializationError("FileSystemDescription.creation_token required")
-    if "FileSystemId" in data:
+    if data.get("FileSystemId") is not None:
         out["file_system_id"] = data["FileSystemId"]
     else:
         raise DeserializationError("FileSystemDescription.file_system_id required")
-    if "FileSystemArn" in data:
+    if data.get("FileSystemArn") is not None:
         out["file_system_arn"] = data["FileSystemArn"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_efs.types.timestamp
 
         out["creation_time"] = capo_efs.types.timestamp.deserialize_json(
@@ -159,7 +168,7 @@ def deserialize_json(data: dict) -> FileSystemDescription:
         )
     else:
         raise DeserializationError("FileSystemDescription.creation_time required")
-    if "LifeCycleState" in data:
+    if data.get("LifeCycleState") is not None:
         import capo_efs.types.life_cycle_state
 
         out["life_cycle_state"] = capo_efs.types.life_cycle_state.deserialize_json(
@@ -167,13 +176,13 @@ def deserialize_json(data: dict) -> FileSystemDescription:
         )
     else:
         raise DeserializationError("FileSystemDescription.life_cycle_state required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "NumberOfMountTargets" in data:
+    if data.get("NumberOfMountTargets") is not None:
         out["number_of_mount_targets"] = data["NumberOfMountTargets"]
     else:
         out["number_of_mount_targets"] = 0
-    if "SizeInBytes" in data:
+    if data.get("SizeInBytes") is not None:
         import capo_efs.types.file_system_size
 
         out["size_in_bytes"] = capo_efs.types.file_system_size.deserialize_json(
@@ -181,7 +190,7 @@ def deserialize_json(data: dict) -> FileSystemDescription:
         )
     else:
         raise DeserializationError("FileSystemDescription.size_in_bytes required")
-    if "PerformanceMode" in data:
+    if data.get("PerformanceMode") is not None:
         import capo_efs.types.performance_mode
 
         out["performance_mode"] = capo_efs.types.performance_mode.deserialize_json(
@@ -189,29 +198,31 @@ def deserialize_json(data: dict) -> FileSystemDescription:
         )
     else:
         raise DeserializationError("FileSystemDescription.performance_mode required")
-    if "Encrypted" in data:
+    if data.get("Encrypted") is not None:
         out["encrypted"] = data["Encrypted"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "ThroughputMode" in data:
+    if data.get("ThroughputMode") is not None:
         import capo_efs.types.throughput_mode
 
         out["throughput_mode"] = capo_efs.types.throughput_mode.deserialize_json(
             data["ThroughputMode"]
         )
-    if "ProvisionedThroughputInMibps" in data:
-        out["provisioned_throughput_in_mibps"] = data["ProvisionedThroughputInMibps"]
-    if "AvailabilityZoneName" in data:
+    if data.get("ProvisionedThroughputInMibps") is not None:
+        out["provisioned_throughput_in_mibps"] = float(
+            data["ProvisionedThroughputInMibps"]
+        )
+    if data.get("AvailabilityZoneName") is not None:
         out["availability_zone_name"] = data["AvailabilityZoneName"]
-    if "AvailabilityZoneId" in data:
+    if data.get("AvailabilityZoneId") is not None:
         out["availability_zone_id"] = data["AvailabilityZoneId"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_efs.types.tags
 
         out["tags"] = capo_efs.types.tags.deserialize_json(data["Tags"])
     else:
         raise DeserializationError("FileSystemDescription.tags required")
-    if "FileSystemProtection" in data:
+    if data.get("FileSystemProtection") is not None:
         import capo_efs.types.file_system_protection_description
 
         out["file_system_protection"] = (

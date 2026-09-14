@@ -64,7 +64,7 @@ def serialize_json(value: Repository) -> dict:
 
 def deserialize_json(data: dict) -> Repository:
     out: Repository = {}  # type: ignore[typeddict-item]
-    if "CodeCommit" in data:
+    if data.get("CodeCommit") is not None:
         import capo_codeguru_reviewer.types.code_commit_repository
 
         out["code_commit"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> Repository:
                 data["CodeCommit"]
             )
         )
-    if "Bitbucket" in data:
+    if data.get("Bitbucket") is not None:
         import capo_codeguru_reviewer.types.third_party_source_repository
 
         out["bitbucket"] = (
@@ -80,7 +80,7 @@ def deserialize_json(data: dict) -> Repository:
                 data["Bitbucket"]
             )
         )
-    if "GitHubEnterpriseServer" in data:
+    if data.get("GitHubEnterpriseServer") is not None:
         import capo_codeguru_reviewer.types.third_party_source_repository
 
         out["git_hub_enterprise_server"] = (
@@ -88,7 +88,7 @@ def deserialize_json(data: dict) -> Repository:
                 data["GitHubEnterpriseServer"]
             )
         )
-    if "S3Bucket" in data:
+    if data.get("S3Bucket") is not None:
         import capo_codeguru_reviewer.types.s3_repository
 
         out["s3_bucket"] = capo_codeguru_reviewer.types.s3_repository.deserialize_json(

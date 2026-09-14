@@ -34,11 +34,11 @@ def serialize_aws_json_1_1(value: IcebergSortOrder) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IcebergSortOrder:
     out: IcebergSortOrder = {}  # type: ignore[typeddict-item]
-    if "OrderId" in data:
+    if data.get("OrderId") is not None:
         out["order_id"] = data["OrderId"]
     else:
         out["order_id"] = 0
-    if "Fields" in data:
+    if data.get("Fields") is not None:
         import capo_glue.types.iceberg_sort_order_field_list
 
         out["fields"] = (

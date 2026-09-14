@@ -51,11 +51,11 @@ def serialize_aws_json_1_1(value: DeleteScalingPolicyRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteScalingPolicyRequest:
     out: DeleteScalingPolicyRequest = {}  # type: ignore[typeddict-item]
-    if "PolicyName" in data:
+    if data.get("PolicyName") is not None:
         out["policy_name"] = data["PolicyName"]
     else:
         raise DeserializationError("DeleteScalingPolicyRequest.policy_name required")
-    if "ServiceNamespace" in data:
+    if data.get("ServiceNamespace") is not None:
         import capo_application_auto_scaling.types.service_namespace
 
         out["service_namespace"] = (
@@ -67,11 +67,11 @@ def deserialize_aws_json_1_1(data: dict) -> DeleteScalingPolicyRequest:
         raise DeserializationError(
             "DeleteScalingPolicyRequest.service_namespace required"
         )
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     else:
         raise DeserializationError("DeleteScalingPolicyRequest.resource_id required")
-    if "ScalableDimension" in data:
+    if data.get("ScalableDimension") is not None:
         import capo_application_auto_scaling.types.scalable_dimension
 
         out["scalable_dimension"] = (

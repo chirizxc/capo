@@ -64,30 +64,30 @@ def serialize_json(value: UpdateEncryption) -> dict:
 
 def deserialize_json(data: dict) -> UpdateEncryption:
     out: UpdateEncryption = {}  # type: ignore[typeddict-item]
-    if "algorithm" in data:
+    if data.get("algorithm") is not None:
         import capo_mediaconnect.types.algorithm
 
         out["algorithm"] = capo_mediaconnect.types.algorithm.deserialize_json(
             data["algorithm"]
         )
-    if "constantInitializationVector" in data:
+    if data.get("constantInitializationVector") is not None:
         out["constant_initialization_vector"] = data["constantInitializationVector"]
-    if "deviceId" in data:
+    if data.get("deviceId") is not None:
         out["device_id"] = data["deviceId"]
-    if "keyType" in data:
+    if data.get("keyType") is not None:
         import capo_mediaconnect.types.key_type
 
         out["key_type"] = capo_mediaconnect.types.key_type.deserialize_json(
             data["keyType"]
         )
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         out["resource_id"] = data["resourceId"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "secretArn" in data:
+    if data.get("secretArn") is not None:
         out["secret_arn"] = data["secretArn"]
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
     return out

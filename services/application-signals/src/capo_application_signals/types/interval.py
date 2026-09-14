@@ -47,7 +47,7 @@ def serialize_json(value: Interval) -> dict:
 
 
 def deserialize_json(data: dict) -> Interval:
-    if "RollingInterval" in data:
+    if data.get("RollingInterval") is not None:
         import capo_application_signals.types.rolling_interval
 
         return {
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> Interval:
                 data["RollingInterval"]
             )
         }
-    elif "CalendarInterval" in data:
+    elif data.get("CalendarInterval") is not None:
         import capo_application_signals.types.calendar_interval
 
         return {

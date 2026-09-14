@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> NotebookExecutionSummaryList:
 
     out: NotebookExecutionSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_emr.types.notebook_execution_summary.deserialize_aws_json_1_1(item)
         )

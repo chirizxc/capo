@@ -104,13 +104,13 @@ def serialize_json(value: DescribeDashboardSnapshotJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeDashboardSnapshotJobResponse:
     out: DescribeDashboardSnapshotJobResponse = {}  # type: ignore[typeddict-item]
-    if "AwsAccountId" in data:
+    if data.get("AwsAccountId") is not None:
         out["aws_account_id"] = data["AwsAccountId"]
-    if "DashboardId" in data:
+    if data.get("DashboardId") is not None:
         out["dashboard_id"] = data["DashboardId"]
-    if "SnapshotJobId" in data:
+    if data.get("SnapshotJobId") is not None:
         out["snapshot_job_id"] = data["SnapshotJobId"]
-    if "UserConfiguration" in data:
+    if data.get("UserConfiguration") is not None:
         import capo_quicksight.types.snapshot_user_configuration_redacted
 
         out["user_configuration"] = (
@@ -118,7 +118,7 @@ def deserialize_json(data: dict) -> DescribeDashboardSnapshotJobResponse:
                 data["UserConfiguration"]
             )
         )
-    if "SnapshotConfiguration" in data:
+    if data.get("SnapshotConfiguration") is not None:
         import capo_quicksight.types.snapshot_configuration
 
         out["snapshot_configuration"] = (
@@ -126,29 +126,29 @@ def deserialize_json(data: dict) -> DescribeDashboardSnapshotJobResponse:
                 data["SnapshotConfiguration"]
             )
         )
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "JobStatus" in data:
+    if data.get("JobStatus") is not None:
         import capo_quicksight.types.snapshot_job_status
 
         out["job_status"] = capo_quicksight.types.snapshot_job_status.deserialize_json(
             data["JobStatus"]
         )
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_quicksight.types.timestamp
 
         out["created_time"] = capo_quicksight.types.timestamp.deserialize_json(
             data["CreatedTime"]
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_quicksight.types.timestamp
 
         out["last_updated_time"] = capo_quicksight.types.timestamp.deserialize_json(
             data["LastUpdatedTime"]
         )
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     else:
         out["status"] = 0

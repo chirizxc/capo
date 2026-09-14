@@ -80,27 +80,27 @@ def serialize_json(value: UpdateAuthenticationProfileRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAuthenticationProfileRequest:
     out: UpdateAuthenticationProfileRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "AllowedIps" in data:
+    if data.get("AllowedIps") is not None:
         import capo_connect.types.ip_cidr_list
 
         out["allowed_ips"] = capo_connect.types.ip_cidr_list.deserialize_json(
             data["AllowedIps"]
         )
-    if "BlockedIps" in data:
+    if data.get("BlockedIps") is not None:
         import capo_connect.types.ip_cidr_list
 
         out["blocked_ips"] = capo_connect.types.ip_cidr_list.deserialize_json(
             data["BlockedIps"]
         )
-    if "PeriodicSessionDuration" in data:
+    if data.get("PeriodicSessionDuration") is not None:
         out["periodic_session_duration"] = data["PeriodicSessionDuration"]
-    if "SessionInactivityDuration" in data:
+    if data.get("SessionInactivityDuration") is not None:
         out["session_inactivity_duration"] = data["SessionInactivityDuration"]
-    if "SessionInactivityHandlingEnabled" in data:
+    if data.get("SessionInactivityHandlingEnabled") is not None:
         out["session_inactivity_handling_enabled"] = data[
             "SessionInactivityHandlingEnabled"
         ]

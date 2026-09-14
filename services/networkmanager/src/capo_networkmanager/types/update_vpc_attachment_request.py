@@ -53,7 +53,7 @@ def serialize_json(value: UpdateVpcAttachmentRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateVpcAttachmentRequest:
     out: UpdateVpcAttachmentRequest = {}  # type: ignore[typeddict-item]
-    if "AddSubnetArns" in data:
+    if data.get("AddSubnetArns") is not None:
         import capo_networkmanager.types.subnet_arn_list
 
         out["add_subnet_arns"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> UpdateVpcAttachmentRequest:
                 data["AddSubnetArns"]
             )
         )
-    if "RemoveSubnetArns" in data:
+    if data.get("RemoveSubnetArns") is not None:
         import capo_networkmanager.types.subnet_arn_list
 
         out["remove_subnet_arns"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> UpdateVpcAttachmentRequest:
                 data["RemoveSubnetArns"]
             )
         )
-    if "Options" in data:
+    if data.get("Options") is not None:
         import capo_networkmanager.types.vpc_options
 
         out["options"] = capo_networkmanager.types.vpc_options.deserialize_json(

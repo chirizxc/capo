@@ -144,13 +144,13 @@ def serialize_json(value: CreatePortalResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreatePortalResponse:
     out: CreatePortalResponse = {}  # type: ignore[typeddict-item]
-    if "authorization" in data:
+    if data.get("authorization") is not None:
         import capo_apigatewayv2.types.authorization
 
         out["authorization"] = capo_apigatewayv2.types.authorization.deserialize_json(
             data["authorization"]
         )
-    if "endpointConfiguration" in data:
+    if data.get("endpointConfiguration") is not None:
         import capo_apigatewayv2.types.endpoint_configuration_response
 
         out["endpoint_configuration"] = (
@@ -158,7 +158,7 @@ def deserialize_json(data: dict) -> CreatePortalResponse:
                 data["endpointConfiguration"]
             )
         )
-    if "includedPortalProductArns" in data:
+    if data.get("includedPortalProductArns") is not None:
         import capo_apigatewayv2.types.__list_of__string_min20_max2048
 
         out["included_portal_product_arns"] = (
@@ -166,7 +166,7 @@ def deserialize_json(data: dict) -> CreatePortalResponse:
                 data["includedPortalProductArns"]
             )
         )
-    if "lastModified" in data:
+    if data.get("lastModified") is not None:
         import capo_apigatewayv2.types.__timestamp_iso8601
 
         out["last_modified"] = (
@@ -174,7 +174,7 @@ def deserialize_json(data: dict) -> CreatePortalResponse:
                 data["lastModified"]
             )
         )
-    if "lastPublished" in data:
+    if data.get("lastPublished") is not None:
         import capo_apigatewayv2.types.__timestamp_iso8601
 
         out["last_published"] = (
@@ -182,27 +182,27 @@ def deserialize_json(data: dict) -> CreatePortalResponse:
                 data["lastPublished"]
             )
         )
-    if "lastPublishedDescription" in data:
+    if data.get("lastPublishedDescription") is not None:
         out["last_published_description"] = data["lastPublishedDescription"]
-    if "portalArn" in data:
+    if data.get("portalArn") is not None:
         out["portal_arn"] = data["portalArn"]
-    if "portalContent" in data:
+    if data.get("portalContent") is not None:
         import capo_apigatewayv2.types.portal_content
 
         out["portal_content"] = capo_apigatewayv2.types.portal_content.deserialize_json(
             data["portalContent"]
         )
-    if "portalId" in data:
+    if data.get("portalId") is not None:
         out["portal_id"] = data["portalId"]
-    if "publishStatus" in data:
+    if data.get("publishStatus") is not None:
         import capo_apigatewayv2.types.publish_status
 
         out["publish_status"] = capo_apigatewayv2.types.publish_status.deserialize_json(
             data["publishStatus"]
         )
-    if "rumAppMonitorName" in data:
+    if data.get("rumAppMonitorName") is not None:
         out["rum_app_monitor_name"] = data["rumAppMonitorName"]
-    if "statusException" in data:
+    if data.get("statusException") is not None:
         import capo_apigatewayv2.types.status_exception
 
         out["status_exception"] = (
@@ -210,7 +210,7 @@ def deserialize_json(data: dict) -> CreatePortalResponse:
                 data["statusException"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_apigatewayv2.types.tags
 
         out["tags"] = capo_apigatewayv2.types.tags.deserialize_json(data["tags"])

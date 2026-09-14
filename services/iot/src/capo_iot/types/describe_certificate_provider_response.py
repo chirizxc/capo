@@ -69,13 +69,13 @@ def serialize_json(value: DescribeCertificateProviderResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeCertificateProviderResponse:
     out: DescribeCertificateProviderResponse = {}  # type: ignore[typeddict-item]
-    if "certificateProviderName" in data:
+    if data.get("certificateProviderName") is not None:
         out["certificate_provider_name"] = data["certificateProviderName"]
-    if "certificateProviderArn" in data:
+    if data.get("certificateProviderArn") is not None:
         out["certificate_provider_arn"] = data["certificateProviderArn"]
-    if "lambdaFunctionArn" in data:
+    if data.get("lambdaFunctionArn") is not None:
         out["lambda_function_arn"] = data["lambdaFunctionArn"]
-    if "accountDefaultForOperations" in data:
+    if data.get("accountDefaultForOperations") is not None:
         import capo_iot.types.certificate_provider_account_default_for_operations
 
         out["account_default_for_operations"] = (
@@ -83,13 +83,13 @@ def deserialize_json(data: dict) -> DescribeCertificateProviderResponse:
                 data["accountDefaultForOperations"]
             )
         )
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_iot.types.date_type
 
         out["creation_date"] = capo_iot.types.date_type.deserialize_json(
             data["creationDate"]
         )
-    if "lastModifiedDate" in data:
+    if data.get("lastModifiedDate") is not None:
         import capo_iot.types.date_type
 
         out["last_modified_date"] = capo_iot.types.date_type.deserialize_json(

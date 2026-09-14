@@ -42,7 +42,7 @@ def serialize_json(value: DescribeAnomalyResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeAnomalyResponse:
     out: DescribeAnomalyResponse = {}  # type: ignore[typeddict-item]
-    if "ProactiveAnomaly" in data:
+    if data.get("ProactiveAnomaly") is not None:
         import capo_devops_guru.types.proactive_anomaly
 
         out["proactive_anomaly"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> DescribeAnomalyResponse:
                 data["ProactiveAnomaly"]
             )
         )
-    if "ReactiveAnomaly" in data:
+    if data.get("ReactiveAnomaly") is not None:
         import capo_devops_guru.types.reactive_anomaly
 
         out["reactive_anomaly"] = (

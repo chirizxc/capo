@@ -25,7 +25,7 @@ def serialize_json(value: StartProjectSessionRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartProjectSessionRequest:
     out: StartProjectSessionRequest = {}  # type: ignore[typeddict-item]
-    if "AssumeControl" in data:
+    if data.get("AssumeControl") is not None:
         out["assume_control"] = data["AssumeControl"]
     else:
         out["assume_control"] = False

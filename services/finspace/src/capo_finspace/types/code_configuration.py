@@ -35,10 +35,10 @@ def serialize_json(value: CodeConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> CodeConfiguration:
     out: CodeConfiguration = {}  # type: ignore[typeddict-item]
-    if "s3Bucket" in data:
+    if data.get("s3Bucket") is not None:
         out["s3_bucket"] = data["s3Bucket"]
-    if "s3Key" in data:
+    if data.get("s3Key") is not None:
         out["s3_key"] = data["s3Key"]
-    if "s3ObjectVersion" in data:
+    if data.get("s3ObjectVersion") is not None:
         out["s3_object_version"] = data["s3ObjectVersion"]
     return out

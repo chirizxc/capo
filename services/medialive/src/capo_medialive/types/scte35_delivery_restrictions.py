@@ -70,7 +70,7 @@ def serialize_json(value: Scte35DeliveryRestrictions) -> dict:
 
 def deserialize_json(data: dict) -> Scte35DeliveryRestrictions:
     out: Scte35DeliveryRestrictions = {}  # type: ignore[typeddict-item]
-    if "archiveAllowedFlag" in data:
+    if data.get("archiveAllowedFlag") is not None:
         import capo_medialive.types.scte35_archive_allowed_flag
 
         out["archive_allowed_flag"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> Scte35DeliveryRestrictions:
                 data["archiveAllowedFlag"]
             )
         )
-    if "deviceRestrictions" in data:
+    if data.get("deviceRestrictions") is not None:
         import capo_medialive.types.scte35_device_restrictions
 
         out["device_restrictions"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> Scte35DeliveryRestrictions:
                 data["deviceRestrictions"]
             )
         )
-    if "noRegionalBlackoutFlag" in data:
+    if data.get("noRegionalBlackoutFlag") is not None:
         import capo_medialive.types.scte35_no_regional_blackout_flag
 
         out["no_regional_blackout_flag"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> Scte35DeliveryRestrictions:
                 data["noRegionalBlackoutFlag"]
             )
         )
-    if "webDeliveryAllowedFlag" in data:
+    if data.get("webDeliveryAllowedFlag") is not None:
         import capo_medialive.types.scte35_web_delivery_allowed_flag
 
         out["web_delivery_allowed_flag"] = (

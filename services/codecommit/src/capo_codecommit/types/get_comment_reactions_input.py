@@ -39,14 +39,14 @@ def serialize_aws_json_1_1(value: GetCommentReactionsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetCommentReactionsInput:
     out: GetCommentReactionsInput = {}  # type: ignore[typeddict-item]
-    if "commentId" in data:
+    if data.get("commentId") is not None:
         out["comment_id"] = data["commentId"]
     else:
         raise DeserializationError("GetCommentReactionsInput.comment_id required")
-    if "reactionUserArn" in data:
+    if data.get("reactionUserArn") is not None:
         out["reaction_user_arn"] = data["reactionUserArn"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

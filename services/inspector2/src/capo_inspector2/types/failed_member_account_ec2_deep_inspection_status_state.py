@@ -34,14 +34,14 @@ def serialize_json(value: FailedMemberAccountEc2DeepInspectionStatusState) -> di
 
 def deserialize_json(data: dict) -> FailedMemberAccountEc2DeepInspectionStatusState:
     out: FailedMemberAccountEc2DeepInspectionStatusState = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
     else:
         raise DeserializationError(
             "FailedMemberAccountEc2DeepInspectionStatusState.account_id required"
         )
-    if "ec2ScanStatus" in data:
+    if data.get("ec2ScanStatus") is not None:
         out["ec2_scan_status"] = data["ec2ScanStatus"]
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     return out

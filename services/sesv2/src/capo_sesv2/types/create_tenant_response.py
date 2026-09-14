@@ -70,29 +70,29 @@ def serialize_json(value: CreateTenantResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateTenantResponse:
     out: CreateTenantResponse = {}  # type: ignore[typeddict-item]
-    if "TenantName" in data:
+    if data.get("TenantName") is not None:
         out["tenant_name"] = data["TenantName"]
-    if "TenantId" in data:
+    if data.get("TenantId") is not None:
         out["tenant_id"] = data["TenantId"]
-    if "TenantArn" in data:
+    if data.get("TenantArn") is not None:
         out["tenant_arn"] = data["TenantArn"]
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_sesv2.types.timestamp
 
         out["created_timestamp"] = capo_sesv2.types.timestamp.deserialize_json(
             data["CreatedTimestamp"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sesv2.types.tag_list
 
         out["tags"] = capo_sesv2.types.tag_list.deserialize_json(data["Tags"])
-    if "SendingStatus" in data:
+    if data.get("SendingStatus") is not None:
         import capo_sesv2.types.sending_status
 
         out["sending_status"] = capo_sesv2.types.sending_status.deserialize_json(
             data["SendingStatus"]
         )
-    if "SuppressionAttributes" in data:
+    if data.get("SuppressionAttributes") is not None:
         import capo_sesv2.types.tenant_suppression_attributes
 
         out["suppression_attributes"] = (

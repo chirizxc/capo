@@ -30,7 +30,7 @@ def serialize_json(value: PutConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutConfigurationRequest:
     out: PutConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_service_catalog_appregistry.types.app_registry_configuration
 
         out["configuration"] = (

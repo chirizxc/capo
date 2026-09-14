@@ -40,11 +40,11 @@ def serialize_json(value: GenerativeDataDetails) -> dict:
 
 def deserialize_json(data: dict) -> GenerativeDataDetails:
     out: GenerativeDataDetails = {}  # type: ignore[typeddict-item]
-    if "completion" in data:
+    if data.get("completion") is not None:
         out["completion"] = data["completion"]
     else:
         raise DeserializationError("GenerativeDataDetails.completion required")
-    if "references" in data:
+    if data.get("references") is not None:
         import capo_qconnect.types.data_summary_list
 
         out["references"] = capo_qconnect.types.data_summary_list.deserialize_json(
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> GenerativeDataDetails:
         )
     else:
         raise DeserializationError("GenerativeDataDetails.references required")
-    if "rankingData" in data:
+    if data.get("rankingData") is not None:
         import capo_qconnect.types.ranking_data
 
         out["ranking_data"] = capo_qconnect.types.ranking_data.deserialize_json(

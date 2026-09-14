@@ -27,7 +27,7 @@ def serialize_json(value: DonutCenterOptions) -> dict:
 
 def deserialize_json(data: dict) -> DonutCenterOptions:
     out: DonutCenterOptions = {}  # type: ignore[typeddict-item]
-    if "LabelVisibility" in data:
+    if data.get("LabelVisibility") is not None:
         import capo_quicksight.types.visibility
 
         out["label_visibility"] = capo_quicksight.types.visibility.deserialize_json(

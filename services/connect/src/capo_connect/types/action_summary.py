@@ -28,7 +28,7 @@ def serialize_json(value: ActionSummary) -> dict:
 
 def deserialize_json(data: dict) -> ActionSummary:
     out: ActionSummary = {}  # type: ignore[typeddict-item]
-    if "ActionType" in data:
+    if data.get("ActionType") is not None:
         import capo_connect.types.action_type
 
         out["action_type"] = capo_connect.types.action_type.deserialize_json(

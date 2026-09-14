@@ -35,11 +35,11 @@ def serialize_json(value: BotAliasLocaleSettings) -> dict:
 
 def deserialize_json(data: dict) -> BotAliasLocaleSettings:
     out: BotAliasLocaleSettings = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
     else:
         out["enabled"] = False
-    if "codeHookSpecification" in data:
+    if data.get("codeHookSpecification") is not None:
         import capo_lex_models_v2.types.code_hook_specification
 
         out["code_hook_specification"] = (

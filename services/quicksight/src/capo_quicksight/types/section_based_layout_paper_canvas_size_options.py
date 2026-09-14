@@ -49,13 +49,13 @@ def serialize_json(value: SectionBasedLayoutPaperCanvasSizeOptions) -> dict:
 
 def deserialize_json(data: dict) -> SectionBasedLayoutPaperCanvasSizeOptions:
     out: SectionBasedLayoutPaperCanvasSizeOptions = {}  # type: ignore[typeddict-item]
-    if "PaperSize" in data:
+    if data.get("PaperSize") is not None:
         import capo_quicksight.types.paper_size
 
         out["paper_size"] = capo_quicksight.types.paper_size.deserialize_json(
             data["PaperSize"]
         )
-    if "PaperOrientation" in data:
+    if data.get("PaperOrientation") is not None:
         import capo_quicksight.types.paper_orientation
 
         out["paper_orientation"] = (
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> SectionBasedLayoutPaperCanvasSizeOptions:
                 data["PaperOrientation"]
             )
         )
-    if "PaperMargin" in data:
+    if data.get("PaperMargin") is not None:
         import capo_quicksight.types.spacing
 
         out["paper_margin"] = capo_quicksight.types.spacing.deserialize_json(

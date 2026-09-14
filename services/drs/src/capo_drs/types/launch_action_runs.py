@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> LaunchActionRuns:
 
     out: LaunchActionRuns = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_drs.types.launch_action_run.deserialize_json(item))
     return out

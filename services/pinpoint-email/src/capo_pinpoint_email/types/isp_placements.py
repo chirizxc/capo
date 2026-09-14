@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> IspPlacements:
 
     out: IspPlacements = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_pinpoint_email.types.isp_placement.deserialize_json(item))
     return out

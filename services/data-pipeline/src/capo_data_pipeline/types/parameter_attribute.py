@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: ParameterAttribute) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ParameterAttribute:
     out: ParameterAttribute = {}  # type: ignore[typeddict-item]
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
     else:
         raise DeserializationError("ParameterAttribute.key required")
-    if "stringValue" in data:
+    if data.get("stringValue") is not None:
         out["string_value"] = data["stringValue"]
     else:
         raise DeserializationError("ParameterAttribute.string_value required")

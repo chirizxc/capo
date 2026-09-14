@@ -30,16 +30,16 @@ def serialize_json(value: NeptuneImportOptions) -> dict:
 
 def deserialize_json(data: dict) -> NeptuneImportOptions:
     out: NeptuneImportOptions = {}  # type: ignore[typeddict-item]
-    if "s3ExportPath" in data:
+    if data.get("s3ExportPath") is not None:
         out["s3_export_path"] = data["s3ExportPath"]
     else:
         raise DeserializationError("NeptuneImportOptions.s3_export_path required")
-    if "s3ExportKmsKeyId" in data:
+    if data.get("s3ExportKmsKeyId") is not None:
         out["s3_export_kms_key_id"] = data["s3ExportKmsKeyId"]
     else:
         raise DeserializationError("NeptuneImportOptions.s3_export_kms_key_id required")
-    if "preserveDefaultVertexLabels" in data:
+    if data.get("preserveDefaultVertexLabels") is not None:
         out["preserve_default_vertex_labels"] = data["preserveDefaultVertexLabels"]
-    if "preserveEdgeIds" in data:
+    if data.get("preserveEdgeIds") is not None:
         out["preserve_edge_ids"] = data["preserveEdgeIds"]
     return out

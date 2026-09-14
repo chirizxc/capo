@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: DebugSession) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DebugSession:
     out: DebugSession = {}  # type: ignore[typeddict-item]
-    if "sessionEnabled" in data:
+    if data.get("sessionEnabled") is not None:
         out["session_enabled"] = data["sessionEnabled"]
-    if "sessionTarget" in data:
+    if data.get("sessionTarget") is not None:
         out["session_target"] = data["sessionTarget"]
     return out

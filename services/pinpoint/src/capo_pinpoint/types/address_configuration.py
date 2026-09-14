@@ -62,23 +62,23 @@ def serialize_json(value: AddressConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AddressConfiguration:
     out: AddressConfiguration = {}  # type: ignore[typeddict-item]
-    if "BodyOverride" in data:
+    if data.get("BodyOverride") is not None:
         out["body_override"] = data["BodyOverride"]
-    if "ChannelType" in data:
+    if data.get("ChannelType") is not None:
         import capo_pinpoint.types.channel_type
 
         out["channel_type"] = capo_pinpoint.types.channel_type.deserialize_json(
             data["ChannelType"]
         )
-    if "Context" in data:
+    if data.get("Context") is not None:
         import capo_pinpoint.types.map_of__string
 
         out["context"] = capo_pinpoint.types.map_of__string.deserialize_json(
             data["Context"]
         )
-    if "RawContent" in data:
+    if data.get("RawContent") is not None:
         out["raw_content"] = data["RawContent"]
-    if "Substitutions" in data:
+    if data.get("Substitutions") is not None:
         import capo_pinpoint.types.map_of_list_of__string
 
         out["substitutions"] = (
@@ -86,6 +86,6 @@ def deserialize_json(data: dict) -> AddressConfiguration:
                 data["Substitutions"]
             )
         )
-    if "TitleOverride" in data:
+    if data.get("TitleOverride") is not None:
         out["title_override"] = data["TitleOverride"]
     return out

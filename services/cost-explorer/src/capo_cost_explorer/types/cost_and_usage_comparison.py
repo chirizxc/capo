@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: CostAndUsageComparison) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CostAndUsageComparison:
     out: CostAndUsageComparison = {}  # type: ignore[typeddict-item]
-    if "CostAndUsageSelector" in data:
+    if data.get("CostAndUsageSelector") is not None:
         import capo_cost_explorer.types.expression
 
         out["cost_and_usage_selector"] = (
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_1(data: dict) -> CostAndUsageComparison:
                 data["CostAndUsageSelector"]
             )
         )
-    if "Metrics" in data:
+    if data.get("Metrics") is not None:
         import capo_cost_explorer.types.comparison_metrics
 
         out["metrics"] = (

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DnssecLimitExceeded_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DnssecLimitExceeded_:
     out: DnssecLimitExceeded_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,18 @@ class DnssecLimitExceeded(ServiceError):
 
     code: str | None = "DnssecLimitExceeded"
 
-    def __init__(self, data: DnssecLimitExceeded_):
+    def __init__(self, data: DnssecLimitExceeded_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="DnssecLimitExceeded",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "DnssecLimitExceeded":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "DnssecLimitExceeded":
+        return cls(deserialize_aws_json_1_1(data), message)

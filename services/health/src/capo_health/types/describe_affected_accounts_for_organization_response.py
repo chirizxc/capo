@@ -51,7 +51,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribeAffectedAccountsForOrganizationResponse:
     out: DescribeAffectedAccountsForOrganizationResponse = {}  # type: ignore[typeddict-item]
-    if "affectedAccounts" in data:
+    if data.get("affectedAccounts") is not None:
         import capo_health.types.affected_accounts_list
 
         out["affected_accounts"] = (
@@ -59,7 +59,7 @@ def deserialize_aws_json_1_1(
                 data["affectedAccounts"]
             )
         )
-    if "eventScopeCode" in data:
+    if data.get("eventScopeCode") is not None:
         import capo_health.types.event_scope_code
 
         out["event_scope_code"] = (
@@ -67,6 +67,6 @@ def deserialize_aws_json_1_1(
                 data["eventScopeCode"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

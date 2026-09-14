@@ -42,7 +42,7 @@ def serialize_aws_json_1_0(value: EncryptionSettings) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> EncryptionSettings:
-    if "kmsEncryptionSettings" in data:
+    if data.get("kmsEncryptionSettings") is not None:
         import capo_verifiedpermissions.types.kms_encryption_settings
 
         return {
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_0(data: dict) -> EncryptionSettings:
                 data["kmsEncryptionSettings"]
             )
         }
-    elif "default" in data:
+    elif data.get("default") is not None:
         return {"default": None}
     else:
         raise DeserializationError("EncryptionSettings: no recognized variant key")

@@ -44,15 +44,15 @@ def serialize_json(value: UpdateDependencyRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDependencyRequest:
     out: UpdateDependencyRequest = {}  # type: ignore[typeddict-item]
-    if "serviceArn" in data:
+    if data.get("serviceArn") is not None:
         out["service_arn"] = data["serviceArn"]
     else:
         raise DeserializationError("UpdateDependencyRequest.service_arn required")
-    if "dependencyId" in data:
+    if data.get("dependencyId") is not None:
         out["dependency_id"] = data["dependencyId"]
     else:
         raise DeserializationError("UpdateDependencyRequest.dependency_id required")
-    if "criticality" in data:
+    if data.get("criticality") is not None:
         import capo_resiliencehubv2.types.dependency_criticality
 
         out["criticality"] = (
@@ -60,6 +60,6 @@ def deserialize_json(data: dict) -> UpdateDependencyRequest:
                 data["criticality"]
             )
         )
-    if "comment" in data:
+    if data.get("comment") is not None:
         out["comment"] = data["comment"]
     return out

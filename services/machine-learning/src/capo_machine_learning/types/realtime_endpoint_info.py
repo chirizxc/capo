@@ -51,11 +51,11 @@ def serialize_aws_json_1_1(value: RealtimeEndpointInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RealtimeEndpointInfo:
     out: RealtimeEndpointInfo = {}  # type: ignore[typeddict-item]
-    if "PeakRequestsPerSecond" in data:
+    if data.get("PeakRequestsPerSecond") is not None:
         out["peak_requests_per_second"] = data["PeakRequestsPerSecond"]
     else:
         out["peak_requests_per_second"] = 0
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_machine_learning.types.epoch_time
 
         out["created_at"] = (
@@ -63,9 +63,9 @@ def deserialize_aws_json_1_1(data: dict) -> RealtimeEndpointInfo:
                 data["CreatedAt"]
             )
         )
-    if "EndpointUrl" in data:
+    if data.get("EndpointUrl") is not None:
         out["endpoint_url"] = data["EndpointUrl"]
-    if "EndpointStatus" in data:
+    if data.get("EndpointStatus") is not None:
         import capo_machine_learning.types.realtime_endpoint_status
 
         out["endpoint_status"] = (

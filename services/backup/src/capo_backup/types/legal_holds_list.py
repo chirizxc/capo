@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> LegalHoldsList:
 
     out: LegalHoldsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_backup.types.legal_hold.deserialize_json(item))
     return out

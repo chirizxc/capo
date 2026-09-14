@@ -43,7 +43,7 @@ def serialize_json(value: CopyImageSetInformation) -> dict:
 
 def deserialize_json(data: dict) -> CopyImageSetInformation:
     out: CopyImageSetInformation = {}  # type: ignore[typeddict-item]
-    if "sourceImageSet" in data:
+    if data.get("sourceImageSet") is not None:
         import capo_medical_imaging.types.copy_source_image_set_information
 
         out["source_image_set"] = (
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> CopyImageSetInformation:
         )
     else:
         raise DeserializationError("CopyImageSetInformation.source_image_set required")
-    if "destinationImageSet" in data:
+    if data.get("destinationImageSet") is not None:
         import capo_medical_imaging.types.copy_destination_image_set
 
         out["destination_image_set"] = (

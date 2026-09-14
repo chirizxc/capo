@@ -54,17 +54,17 @@ def serialize_json(value: SelfServiceAIAgentConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SelfServiceAIAgentConfiguration:
     out: SelfServiceAIAgentConfiguration = {}  # type: ignore[typeddict-item]
-    if "selfServicePreProcessingAIPromptId" in data:
+    if data.get("selfServicePreProcessingAIPromptId") is not None:
         out["self_service_pre_processing_ai_prompt_id"] = data[
             "selfServicePreProcessingAIPromptId"
         ]
-    if "selfServiceAnswerGenerationAIPromptId" in data:
+    if data.get("selfServiceAnswerGenerationAIPromptId") is not None:
         out["self_service_answer_generation_ai_prompt_id"] = data[
             "selfServiceAnswerGenerationAIPromptId"
         ]
-    if "selfServiceAIGuardrailId" in data:
+    if data.get("selfServiceAIGuardrailId") is not None:
         out["self_service_ai_guardrail_id"] = data["selfServiceAIGuardrailId"]
-    if "associationConfigurations" in data:
+    if data.get("associationConfigurations") is not None:
         import capo_qconnect.types.association_configuration_list
 
         out["association_configurations"] = (

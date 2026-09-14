@@ -32,7 +32,7 @@ def serialize_json(value: CustomEntityConfig) -> dict:
 
 def deserialize_json(data: dict) -> CustomEntityConfig:
     out: CustomEntityConfig = {}  # type: ignore[typeddict-item]
-    if "customDataIdentifiers" in data:
+    if data.get("customDataIdentifiers") is not None:
         import capo_cleanroomsml.types.custom_data_identifier_list
 
         out["custom_data_identifiers"] = (

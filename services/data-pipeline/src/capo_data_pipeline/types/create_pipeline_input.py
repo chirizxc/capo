@@ -41,17 +41,17 @@ def serialize_aws_json_1_1(value: CreatePipelineInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreatePipelineInput:
     out: CreatePipelineInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreatePipelineInput.name required")
-    if "uniqueId" in data:
+    if data.get("uniqueId") is not None:
         out["unique_id"] = data["uniqueId"]
     else:
         raise DeserializationError("CreatePipelineInput.unique_id required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_data_pipeline.types.tag_list
 
         out["tags"] = capo_data_pipeline.types.tag_list.deserialize_aws_json_1_1(

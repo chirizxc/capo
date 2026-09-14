@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: PutProjectPolicyResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutProjectPolicyResponse:
     out: PutProjectPolicyResponse = {}  # type: ignore[typeddict-item]
-    if "PolicyRevisionId" in data:
+    if data.get("PolicyRevisionId") is not None:
         out["policy_revision_id"] = data["PolicyRevisionId"]
     return out

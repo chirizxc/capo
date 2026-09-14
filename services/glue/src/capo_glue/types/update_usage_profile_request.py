@@ -37,13 +37,13 @@ def serialize_aws_json_1_1(value: UpdateUsageProfileRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateUsageProfileRequest:
     out: UpdateUsageProfileRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateUsageProfileRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Configuration" in data:
+    if data.get("Configuration") is not None:
         import capo_glue.types.profile_configuration
 
         out["configuration"] = (

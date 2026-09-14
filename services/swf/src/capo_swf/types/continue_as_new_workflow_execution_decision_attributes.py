@@ -82,34 +82,34 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> ContinueAsNewWorkflowExecutionDecisionAttributes:
     out: ContinueAsNewWorkflowExecutionDecisionAttributes = {}  # type: ignore[typeddict-item]
-    if "input" in data:
+    if data.get("input") is not None:
         out["input"] = data["input"]
-    if "executionStartToCloseTimeout" in data:
+    if data.get("executionStartToCloseTimeout") is not None:
         out["execution_start_to_close_timeout"] = data["executionStartToCloseTimeout"]
-    if "taskList" in data:
+    if data.get("taskList") is not None:
         import capo_swf.types.task_list
 
         out["task_list"] = capo_swf.types.task_list.deserialize_aws_json_1_0(
             data["taskList"]
         )
-    if "taskPriority" in data:
+    if data.get("taskPriority") is not None:
         out["task_priority"] = data["taskPriority"]
-    if "taskStartToCloseTimeout" in data:
+    if data.get("taskStartToCloseTimeout") is not None:
         out["task_start_to_close_timeout"] = data["taskStartToCloseTimeout"]
-    if "childPolicy" in data:
+    if data.get("childPolicy") is not None:
         import capo_swf.types.child_policy
 
         out["child_policy"] = capo_swf.types.child_policy.deserialize_aws_json_1_0(
             data["childPolicy"]
         )
-    if "tagList" in data:
+    if data.get("tagList") is not None:
         import capo_swf.types.tag_list
 
         out["tag_list"] = capo_swf.types.tag_list.deserialize_aws_json_1_0(
             data["tagList"]
         )
-    if "workflowTypeVersion" in data:
+    if data.get("workflowTypeVersion") is not None:
         out["workflow_type_version"] = data["workflowTypeVersion"]
-    if "lambdaRole" in data:
+    if data.get("lambdaRole") is not None:
         out["lambda_role"] = data["lambdaRole"]
     return out

@@ -41,7 +41,7 @@ def serialize_json(value: CreateS3TableIntegrationInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateS3TableIntegrationInput:
     out: CreateS3TableIntegrationInput = {}  # type: ignore[typeddict-item]
-    if "Encryption" in data:
+    if data.get("Encryption") is not None:
         import capo_observabilityadmin.types.encryption
 
         out["encryption"] = capo_observabilityadmin.types.encryption.deserialize_json(
@@ -49,11 +49,11 @@ def deserialize_json(data: dict) -> CreateS3TableIntegrationInput:
         )
     else:
         raise DeserializationError("CreateS3TableIntegrationInput.encryption required")
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError("CreateS3TableIntegrationInput.role_arn required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_observabilityadmin.types.tag_map_input
 
         out["tags"] = capo_observabilityadmin.types.tag_map_input.deserialize_json(

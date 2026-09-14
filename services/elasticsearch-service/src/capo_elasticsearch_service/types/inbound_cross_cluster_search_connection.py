@@ -65,7 +65,7 @@ def serialize_json(value: InboundCrossClusterSearchConnection) -> dict:
 
 def deserialize_json(data: dict) -> InboundCrossClusterSearchConnection:
     out: InboundCrossClusterSearchConnection = {}  # type: ignore[typeddict-item]
-    if "SourceDomainInfo" in data:
+    if data.get("SourceDomainInfo") is not None:
         import capo_elasticsearch_service.types.domain_information
 
         out["source_domain_info"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> InboundCrossClusterSearchConnection:
                 data["SourceDomainInfo"]
             )
         )
-    if "DestinationDomainInfo" in data:
+    if data.get("DestinationDomainInfo") is not None:
         import capo_elasticsearch_service.types.domain_information
 
         out["destination_domain_info"] = (
@@ -81,11 +81,11 @@ def deserialize_json(data: dict) -> InboundCrossClusterSearchConnection:
                 data["DestinationDomainInfo"]
             )
         )
-    if "CrossClusterSearchConnectionId" in data:
+    if data.get("CrossClusterSearchConnectionId") is not None:
         out["cross_cluster_search_connection_id"] = data[
             "CrossClusterSearchConnectionId"
         ]
-    if "ConnectionStatus" in data:
+    if data.get("ConnectionStatus") is not None:
         import capo_elasticsearch_service.types.inbound_cross_cluster_search_connection_status
 
         out["connection_status"] = (

@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> VirtualInterfaceTestHistoryList:
 
     out: VirtualInterfaceTestHistoryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_direct_connect.types.virtual_interface_test_history.deserialize_aws_json_1_1(
                 item

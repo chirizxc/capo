@@ -38,10 +38,10 @@ def serialize_json(value: ListRulesOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListRulesOutput:
     out: ListRulesOutput = {}  # type: ignore[typeddict-item]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
-    if "ruleDescription" in data:
+    if data.get("ruleDescription") is not None:
         out["rule_description"] = data["ruleDescription"]
-    if "ruleId" in data:
+    if data.get("ruleId") is not None:
         out["rule_id"] = data["ruleId"]
     return out

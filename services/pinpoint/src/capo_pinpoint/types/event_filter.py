@@ -36,13 +36,13 @@ def serialize_json(value: EventFilter) -> dict:
 
 def deserialize_json(data: dict) -> EventFilter:
     out: EventFilter = {}  # type: ignore[typeddict-item]
-    if "Dimensions" in data:
+    if data.get("Dimensions") is not None:
         import capo_pinpoint.types.event_dimensions
 
         out["dimensions"] = capo_pinpoint.types.event_dimensions.deserialize_json(
             data["Dimensions"]
         )
-    if "FilterType" in data:
+    if data.get("FilterType") is not None:
         import capo_pinpoint.types.filter_type
 
         out["filter_type"] = capo_pinpoint.types.filter_type.deserialize_json(

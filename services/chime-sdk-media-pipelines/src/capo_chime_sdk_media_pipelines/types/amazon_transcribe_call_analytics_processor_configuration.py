@@ -146,7 +146,7 @@ def serialize_json(value: AmazonTranscribeCallAnalyticsProcessorConfiguration) -
 
 def deserialize_json(data: dict) -> AmazonTranscribeCallAnalyticsProcessorConfiguration:
     out: AmazonTranscribeCallAnalyticsProcessorConfiguration = {}  # type: ignore[typeddict-item]
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_chime_sdk_media_pipelines.types.call_analytics_language_code
 
         out["language_code"] = (
@@ -158,11 +158,11 @@ def deserialize_json(data: dict) -> AmazonTranscribeCallAnalyticsProcessorConfig
         raise DeserializationError(
             "AmazonTranscribeCallAnalyticsProcessorConfiguration.language_code required"
         )
-    if "VocabularyName" in data:
+    if data.get("VocabularyName") is not None:
         out["vocabulary_name"] = data["VocabularyName"]
-    if "VocabularyFilterName" in data:
+    if data.get("VocabularyFilterName") is not None:
         out["vocabulary_filter_name"] = data["VocabularyFilterName"]
-    if "VocabularyFilterMethod" in data:
+    if data.get("VocabularyFilterMethod") is not None:
         import capo_chime_sdk_media_pipelines.types.vocabulary_filter_method
 
         out["vocabulary_filter_method"] = (
@@ -170,15 +170,15 @@ def deserialize_json(data: dict) -> AmazonTranscribeCallAnalyticsProcessorConfig
                 data["VocabularyFilterMethod"]
             )
         )
-    if "LanguageModelName" in data:
+    if data.get("LanguageModelName") is not None:
         out["language_model_name"] = data["LanguageModelName"]
-    if "EnablePartialResultsStabilization" in data:
+    if data.get("EnablePartialResultsStabilization") is not None:
         out["enable_partial_results_stabilization"] = data[
             "EnablePartialResultsStabilization"
         ]
     else:
         out["enable_partial_results_stabilization"] = False
-    if "PartialResultsStability" in data:
+    if data.get("PartialResultsStability") is not None:
         import capo_chime_sdk_media_pipelines.types.partial_results_stability
 
         out["partial_results_stability"] = (
@@ -186,7 +186,7 @@ def deserialize_json(data: dict) -> AmazonTranscribeCallAnalyticsProcessorConfig
                 data["PartialResultsStability"]
             )
         )
-    if "ContentIdentificationType" in data:
+    if data.get("ContentIdentificationType") is not None:
         import capo_chime_sdk_media_pipelines.types.content_type
 
         out["content_identification_type"] = (
@@ -194,7 +194,7 @@ def deserialize_json(data: dict) -> AmazonTranscribeCallAnalyticsProcessorConfig
                 data["ContentIdentificationType"]
             )
         )
-    if "ContentRedactionType" in data:
+    if data.get("ContentRedactionType") is not None:
         import capo_chime_sdk_media_pipelines.types.content_type
 
         out["content_redaction_type"] = (
@@ -202,13 +202,13 @@ def deserialize_json(data: dict) -> AmazonTranscribeCallAnalyticsProcessorConfig
                 data["ContentRedactionType"]
             )
         )
-    if "PiiEntityTypes" in data:
+    if data.get("PiiEntityTypes") is not None:
         out["pii_entity_types"] = data["PiiEntityTypes"]
-    if "FilterPartialResults" in data:
+    if data.get("FilterPartialResults") is not None:
         out["filter_partial_results"] = data["FilterPartialResults"]
     else:
         out["filter_partial_results"] = False
-    if "PostCallAnalyticsSettings" in data:
+    if data.get("PostCallAnalyticsSettings") is not None:
         import capo_chime_sdk_media_pipelines.types.post_call_analytics_settings
 
         out["post_call_analytics_settings"] = (
@@ -216,7 +216,7 @@ def deserialize_json(data: dict) -> AmazonTranscribeCallAnalyticsProcessorConfig
                 data["PostCallAnalyticsSettings"]
             )
         )
-    if "CallAnalyticsStreamCategories" in data:
+    if data.get("CallAnalyticsStreamCategories") is not None:
         import capo_chime_sdk_media_pipelines.types.category_name_list
 
         out["call_analytics_stream_categories"] = (

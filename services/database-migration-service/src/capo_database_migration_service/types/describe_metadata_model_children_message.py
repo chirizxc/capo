@@ -49,19 +49,19 @@ def serialize_aws_json_1_1(value: DescribeMetadataModelChildrenMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeMetadataModelChildrenMessage:
     out: DescribeMetadataModelChildrenMessage = {}  # type: ignore[typeddict-item]
-    if "SelectionRules" in data:
+    if data.get("SelectionRules") is not None:
         out["selection_rules"] = data["SelectionRules"]
     else:
         raise DeserializationError(
             "DescribeMetadataModelChildrenMessage.selection_rules required"
         )
-    if "MigrationProjectIdentifier" in data:
+    if data.get("MigrationProjectIdentifier") is not None:
         out["migration_project_identifier"] = data["MigrationProjectIdentifier"]
     else:
         raise DeserializationError(
             "DescribeMetadataModelChildrenMessage.migration_project_identifier required"
         )
-    if "Origin" in data:
+    if data.get("Origin") is not None:
         import capo_database_migration_service.types.origin_type_value
 
         out["origin"] = (
@@ -73,8 +73,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeMetadataModelChildrenMessage
         raise DeserializationError(
             "DescribeMetadataModelChildrenMessage.origin required"
         )
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
-    if "MaxRecords" in data:
+    if data.get("MaxRecords") is not None:
         out["max_records"] = data["MaxRecords"]
     return out

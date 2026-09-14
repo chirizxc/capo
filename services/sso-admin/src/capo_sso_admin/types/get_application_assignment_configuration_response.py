@@ -26,7 +26,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> GetApplicationAssignmentConfigurationResponse:
     out: GetApplicationAssignmentConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "AssignmentRequired" in data:
+    if data.get("AssignmentRequired") is not None:
         out["assignment_required"] = data["AssignmentRequired"]
     else:
         out["assignment_required"] = True

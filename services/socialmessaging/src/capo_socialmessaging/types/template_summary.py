@@ -60,16 +60,16 @@ def serialize_json(value: TemplateSummary) -> dict:
 
 def deserialize_json(data: dict) -> TemplateSummary:
     out: TemplateSummary = {}  # type: ignore[typeddict-item]
-    if "templateName" in data:
+    if data.get("templateName") is not None:
         out["template_name"] = data["templateName"]
-    if "metaTemplateId" in data:
+    if data.get("metaTemplateId") is not None:
         out["meta_template_id"] = data["metaTemplateId"]
-    if "templateStatus" in data:
+    if data.get("templateStatus") is not None:
         out["template_status"] = data["templateStatus"]
-    if "templateQualityScore" in data:
+    if data.get("templateQualityScore") is not None:
         out["template_quality_score"] = data["templateQualityScore"]
-    if "templateLanguage" in data:
+    if data.get("templateLanguage") is not None:
         out["template_language"] = data["templateLanguage"]
-    if "templateCategory" in data:
+    if data.get("templateCategory") is not None:
         out["template_category"] = data["templateCategory"]
     return out

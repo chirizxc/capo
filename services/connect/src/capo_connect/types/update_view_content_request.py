@@ -40,13 +40,13 @@ def serialize_json(value: UpdateViewContentRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateViewContentRequest:
     out: UpdateViewContentRequest = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_connect.types.view_status
 
         out["status"] = capo_connect.types.view_status.deserialize_json(data["Status"])
     else:
         raise DeserializationError("UpdateViewContentRequest.status required")
-    if "Content" in data:
+    if data.get("Content") is not None:
         import capo_connect.types.view_input_content
 
         out["content"] = capo_connect.types.view_input_content.deserialize_json(

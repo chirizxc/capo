@@ -39,9 +39,9 @@ def serialize_aws_json_1_1(value: CancelReplayResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CancelReplayResponse:
     out: CancelReplayResponse = {}  # type: ignore[typeddict-item]
-    if "ReplayArn" in data:
+    if data.get("ReplayArn") is not None:
         out["replay_arn"] = data["ReplayArn"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_cloudwatch_events.types.replay_state
 
         out["state"] = (
@@ -49,6 +49,6 @@ def deserialize_aws_json_1_1(data: dict) -> CancelReplayResponse:
                 data["State"]
             )
         )
-    if "StateReason" in data:
+    if data.get("StateReason") is not None:
         out["state_reason"] = data["StateReason"]
     return out

@@ -113,21 +113,21 @@ def serialize_aws_json_1_1(value: FlywheelProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FlywheelProperties:
     out: FlywheelProperties = {}  # type: ignore[typeddict-item]
-    if "FlywheelArn" in data:
+    if data.get("FlywheelArn") is not None:
         out["flywheel_arn"] = data["FlywheelArn"]
-    if "ActiveModelArn" in data:
+    if data.get("ActiveModelArn") is not None:
         out["active_model_arn"] = data["ActiveModelArn"]
-    if "DataAccessRoleArn" in data:
+    if data.get("DataAccessRoleArn") is not None:
         out["data_access_role_arn"] = data["DataAccessRoleArn"]
-    if "TaskConfig" in data:
+    if data.get("TaskConfig") is not None:
         import capo_comprehend.types.task_config
 
         out["task_config"] = capo_comprehend.types.task_config.deserialize_aws_json_1_1(
             data["TaskConfig"]
         )
-    if "DataLakeS3Uri" in data:
+    if data.get("DataLakeS3Uri") is not None:
         out["data_lake_s3_uri"] = data["DataLakeS3Uri"]
-    if "DataSecurityConfig" in data:
+    if data.get("DataSecurityConfig") is not None:
         import capo_comprehend.types.data_security_config
 
         out["data_security_config"] = (
@@ -135,27 +135,27 @@ def deserialize_aws_json_1_1(data: dict) -> FlywheelProperties:
                 data["DataSecurityConfig"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_comprehend.types.flywheel_status
 
         out["status"] = capo_comprehend.types.flywheel_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "ModelType" in data:
+    if data.get("ModelType") is not None:
         import capo_comprehend.types.model_type
 
         out["model_type"] = capo_comprehend.types.model_type.deserialize_aws_json_1_1(
             data["ModelType"]
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_comprehend.types.timestamp
 
         out["creation_time"] = capo_comprehend.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_comprehend.types.timestamp
 
         out["last_modified_time"] = (
@@ -163,6 +163,6 @@ def deserialize_aws_json_1_1(data: dict) -> FlywheelProperties:
                 data["LastModifiedTime"]
             )
         )
-    if "LatestFlywheelIteration" in data:
+    if data.get("LatestFlywheelIteration") is not None:
         out["latest_flywheel_iteration"] = data["LatestFlywheelIteration"]
     return out

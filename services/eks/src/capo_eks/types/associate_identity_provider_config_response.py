@@ -31,11 +31,11 @@ def serialize_json(value: AssociateIdentityProviderConfigResponse) -> dict:
 
 def deserialize_json(data: dict) -> AssociateIdentityProviderConfigResponse:
     out: AssociateIdentityProviderConfigResponse = {}  # type: ignore[typeddict-item]
-    if "update" in data:
+    if data.get("update") is not None:
         import capo_eks.types.update
 
         out["update"] = capo_eks.types.update.deserialize_json(data["update"])
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_eks.types.tag_map
 
         out["tags"] = capo_eks.types.tag_map.deserialize_json(data["tags"])

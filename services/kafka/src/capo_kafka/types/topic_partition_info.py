@@ -42,17 +42,17 @@ def serialize_json(value: TopicPartitionInfo) -> dict:
 
 def deserialize_json(data: dict) -> TopicPartitionInfo:
     out: TopicPartitionInfo = {}  # type: ignore[typeddict-item]
-    if "partition" in data:
+    if data.get("partition") is not None:
         out["partition"] = data["partition"]
-    if "leader" in data:
+    if data.get("leader") is not None:
         out["leader"] = data["leader"]
-    if "replicas" in data:
+    if data.get("replicas") is not None:
         import capo_kafka.types.__list_of__integer
 
         out["replicas"] = capo_kafka.types.__list_of__integer.deserialize_json(
             data["replicas"]
         )
-    if "isr" in data:
+    if data.get("isr") is not None:
         import capo_kafka.types.__list_of__integer
 
         out["isr"] = capo_kafka.types.__list_of__integer.deserialize_json(data["isr"])

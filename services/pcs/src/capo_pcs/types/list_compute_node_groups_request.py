@@ -32,15 +32,15 @@ def serialize_aws_json_1_0(value: ListComputeNodeGroupsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListComputeNodeGroupsRequest:
     out: ListComputeNodeGroupsRequest = {}  # type: ignore[typeddict-item]
-    if "clusterIdentifier" in data:
+    if data.get("clusterIdentifier") is not None:
         out["cluster_identifier"] = data["clusterIdentifier"]
     else:
         raise DeserializationError(
             "ListComputeNodeGroupsRequest.cluster_identifier required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     else:
         out["max_results"] = 10

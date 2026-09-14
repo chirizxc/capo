@@ -28,6 +28,10 @@ class ListSnapshotsRequest(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: ListSnapshotsRequest) -> dict:
     out: dict = {}
+    if "next_token" in value:
+        out["nextToken"] = value["next_token"]
+    if "max_results" in value:
+        out["maxResults"] = value["max_results"]
     if "namespace_name" in value:
         out["namespaceName"] = value["namespace_name"]
     if "namespace_arn" in value:
@@ -55,13 +59,17 @@ def serialize_aws_json_1_1(value: ListSnapshotsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListSnapshotsRequest:
     out: ListSnapshotsRequest = {}  # type: ignore[typeddict-item]
-    if "namespaceName" in data:
+    if data.get("nextToken") is not None:
+        out["next_token"] = data["nextToken"]
+    if data.get("maxResults") is not None:
+        out["max_results"] = data["maxResults"]
+    if data.get("namespaceName") is not None:
         out["namespace_name"] = data["namespaceName"]
-    if "namespaceArn" in data:
+    if data.get("namespaceArn") is not None:
         out["namespace_arn"] = data["namespaceArn"]
-    if "ownerAccount" in data:
+    if data.get("ownerAccount") is not None:
         out["owner_account"] = data["ownerAccount"]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_redshift_serverless.types._prelude.timestamp
 
         out["start_time"] = (
@@ -69,7 +77,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListSnapshotsRequest:
                 data["startTime"]
             )
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_redshift_serverless.types._prelude.timestamp
 
         out["end_time"] = (

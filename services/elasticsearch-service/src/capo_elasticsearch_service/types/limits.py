@@ -56,7 +56,7 @@ def serialize_json(value: Limits) -> dict:
 
 def deserialize_json(data: dict) -> Limits:
     out: Limits = {}  # type: ignore[typeddict-item]
-    if "StorageTypes" in data:
+    if data.get("StorageTypes") is not None:
         import capo_elasticsearch_service.types.storage_type_list
 
         out["storage_types"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> Limits:
                 data["StorageTypes"]
             )
         )
-    if "InstanceLimits" in data:
+    if data.get("InstanceLimits") is not None:
         import capo_elasticsearch_service.types.instance_limits
 
         out["instance_limits"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> Limits:
                 data["InstanceLimits"]
             )
         )
-    if "AdditionalLimits" in data:
+    if data.get("AdditionalLimits") is not None:
         import capo_elasticsearch_service.types.additional_limit_list
 
         out["additional_limits"] = (

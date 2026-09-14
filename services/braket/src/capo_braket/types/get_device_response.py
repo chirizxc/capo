@@ -55,31 +55,31 @@ def serialize_json(value: GetDeviceResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetDeviceResponse:
     out: GetDeviceResponse = {}  # type: ignore[typeddict-item]
-    if "deviceArn" in data:
+    if data.get("deviceArn") is not None:
         out["device_arn"] = data["deviceArn"]
     else:
         raise DeserializationError("GetDeviceResponse.device_arn required")
-    if "deviceName" in data:
+    if data.get("deviceName") is not None:
         out["device_name"] = data["deviceName"]
     else:
         raise DeserializationError("GetDeviceResponse.device_name required")
-    if "providerName" in data:
+    if data.get("providerName") is not None:
         out["provider_name"] = data["providerName"]
     else:
         raise DeserializationError("GetDeviceResponse.provider_name required")
-    if "deviceType" in data:
+    if data.get("deviceType") is not None:
         out["device_type"] = data["deviceType"]
     else:
         raise DeserializationError("GetDeviceResponse.device_type required")
-    if "deviceStatus" in data:
+    if data.get("deviceStatus") is not None:
         out["device_status"] = data["deviceStatus"]
     else:
         raise DeserializationError("GetDeviceResponse.device_status required")
-    if "deviceCapabilities" in data:
+    if data.get("deviceCapabilities") is not None:
         out["device_capabilities"] = data["deviceCapabilities"]
     else:
         raise DeserializationError("GetDeviceResponse.device_capabilities required")
-    if "deviceQueueInfo" in data:
+    if data.get("deviceQueueInfo") is not None:
         import capo_braket.types.device_queue_info_list
 
         out["device_queue_info"] = (

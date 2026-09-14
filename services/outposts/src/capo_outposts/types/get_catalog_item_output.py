@@ -27,7 +27,7 @@ def serialize_json(value: GetCatalogItemOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetCatalogItemOutput:
     out: GetCatalogItemOutput = {}  # type: ignore[typeddict-item]
-    if "CatalogItem" in data:
+    if data.get("CatalogItem") is not None:
         import capo_outposts.types.catalog_item
 
         out["catalog_item"] = capo_outposts.types.catalog_item.deserialize_json(

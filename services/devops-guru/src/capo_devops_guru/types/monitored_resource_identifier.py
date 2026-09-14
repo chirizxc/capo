@@ -64,11 +64,11 @@ def serialize_json(value: MonitoredResourceIdentifier) -> dict:
 
 def deserialize_json(data: dict) -> MonitoredResourceIdentifier:
     out: MonitoredResourceIdentifier = {}  # type: ignore[typeddict-item]
-    if "MonitoredResourceName" in data:
+    if data.get("MonitoredResourceName") is not None:
         out["monitored_resource_name"] = data["MonitoredResourceName"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "ResourcePermission" in data:
+    if data.get("ResourcePermission") is not None:
         import capo_devops_guru.types.resource_permission
 
         out["resource_permission"] = (
@@ -76,13 +76,13 @@ def deserialize_json(data: dict) -> MonitoredResourceIdentifier:
                 data["ResourcePermission"]
             )
         )
-    if "LastUpdated" in data:
+    if data.get("LastUpdated") is not None:
         import capo_devops_guru.types.timestamp
 
         out["last_updated"] = capo_devops_guru.types.timestamp.deserialize_json(
             data["LastUpdated"]
         )
-    if "ResourceCollection" in data:
+    if data.get("ResourceCollection") is not None:
         import capo_devops_guru.types.resource_collection
 
         out["resource_collection"] = (

@@ -36,11 +36,11 @@ def serialize_json(value: RegisteredNewRelicDetails) -> dict:
 
 def deserialize_json(data: dict) -> RegisteredNewRelicDetails:
     out: RegisteredNewRelicDetails = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
     else:
         raise DeserializationError("RegisteredNewRelicDetails.account_id required")
-    if "region" in data:
+    if data.get("region") is not None:
         import capo_devops_agent.types.new_relic_region
 
         out["region"] = capo_devops_agent.types.new_relic_region.deserialize_json(
@@ -48,6 +48,6 @@ def deserialize_json(data: dict) -> RegisteredNewRelicDetails:
         )
     else:
         raise DeserializationError("RegisteredNewRelicDetails.region required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

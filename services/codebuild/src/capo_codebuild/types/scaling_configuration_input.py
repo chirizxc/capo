@@ -49,7 +49,7 @@ def serialize_aws_json_1_1(value: ScalingConfigurationInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ScalingConfigurationInput:
     out: ScalingConfigurationInput = {}  # type: ignore[typeddict-item]
-    if "scalingType" in data:
+    if data.get("scalingType") is not None:
         import capo_codebuild.types.fleet_scaling_type
 
         out["scaling_type"] = (
@@ -57,7 +57,7 @@ def deserialize_aws_json_1_1(data: dict) -> ScalingConfigurationInput:
                 data["scalingType"]
             )
         )
-    if "targetTrackingScalingConfigs" in data:
+    if data.get("targetTrackingScalingConfigs") is not None:
         import capo_codebuild.types.target_tracking_scaling_configurations
 
         out["target_tracking_scaling_configs"] = (
@@ -65,6 +65,6 @@ def deserialize_aws_json_1_1(data: dict) -> ScalingConfigurationInput:
                 data["targetTrackingScalingConfigs"]
             )
         )
-    if "maxCapacity" in data:
+    if data.get("maxCapacity") is not None:
         out["max_capacity"] = data["maxCapacity"]
     return out

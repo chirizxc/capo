@@ -36,7 +36,7 @@ def serialize_json(value: GetUpgradeHistoryResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetUpgradeHistoryResponse:
     out: GetUpgradeHistoryResponse = {}  # type: ignore[typeddict-item]
-    if "UpgradeHistories" in data:
+    if data.get("UpgradeHistories") is not None:
         import capo_elasticsearch_service.types.upgrade_history_list
 
         out["upgrade_histories"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> GetUpgradeHistoryResponse:
                 data["UpgradeHistories"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

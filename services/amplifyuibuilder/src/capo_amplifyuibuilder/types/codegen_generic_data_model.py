@@ -46,7 +46,7 @@ def serialize_json(value: CodegenGenericDataModel) -> dict:
 
 def deserialize_json(data: dict) -> CodegenGenericDataModel:
     out: CodegenGenericDataModel = {}  # type: ignore[typeddict-item]
-    if "fields" in data:
+    if data.get("fields") is not None:
         import capo_amplifyuibuilder.types.codegen_generic_data_fields
 
         out["fields"] = (
@@ -56,9 +56,9 @@ def deserialize_json(data: dict) -> CodegenGenericDataModel:
         )
     else:
         raise DeserializationError("CodegenGenericDataModel.fields required")
-    if "isJoinTable" in data:
+    if data.get("isJoinTable") is not None:
         out["is_join_table"] = data["isJoinTable"]
-    if "primaryKeys" in data:
+    if data.get("primaryKeys") is not None:
         import capo_amplifyuibuilder.types.codegen_primary_keys_list
 
         out["primary_keys"] = (

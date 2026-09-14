@@ -48,9 +48,9 @@ def serialize_json(value: EnvironmentConfigurationParametersDetails) -> dict:
 
 def deserialize_json(data: dict) -> EnvironmentConfigurationParametersDetails:
     out: EnvironmentConfigurationParametersDetails = {}  # type: ignore[typeddict-item]
-    if "ssmPath" in data:
+    if data.get("ssmPath") is not None:
         out["ssm_path"] = data["ssmPath"]
-    if "parameterOverrides" in data:
+    if data.get("parameterOverrides") is not None:
         import capo_datazone.types.environment_configuration_parameters_list
 
         out["parameter_overrides"] = (
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> EnvironmentConfigurationParametersDetails:
                 data["parameterOverrides"]
             )
         )
-    if "resolvedParameters" in data:
+    if data.get("resolvedParameters") is not None:
         import capo_datazone.types.environment_configuration_parameters_list
 
         out["resolved_parameters"] = (

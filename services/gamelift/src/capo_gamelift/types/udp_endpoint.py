@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: UDPEndpoint) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UDPEndpoint:
     out: UDPEndpoint = {}  # type: ignore[typeddict-item]
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         out["domain"] = data["Domain"]
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
     return out

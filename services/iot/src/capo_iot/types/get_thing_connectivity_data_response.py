@@ -94,15 +94,15 @@ def serialize_json(value: GetThingConnectivityDataResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetThingConnectivityDataResponse:
     out: GetThingConnectivityDataResponse = {}  # type: ignore[typeddict-item]
-    if "thingName" in data:
+    if data.get("thingName") is not None:
         out["thing_name"] = data["thingName"]
-    if "connected" in data:
+    if data.get("connected") is not None:
         out["connected"] = data["connected"]
-    if "timestamp" in data:
+    if data.get("timestamp") is not None:
         import capo_iot.types.timestamp
 
         out["timestamp"] = capo_iot.types.timestamp.deserialize_json(data["timestamp"])
-    if "disconnectReason" in data:
+    if data.get("disconnectReason") is not None:
         import capo_iot.types.disconnect_reason_value
 
         out["disconnect_reason"] = (
@@ -110,22 +110,22 @@ def deserialize_json(data: dict) -> GetThingConnectivityDataResponse:
                 data["disconnectReason"]
             )
         )
-    if "sourceIp" in data:
+    if data.get("sourceIp") is not None:
         out["source_ip"] = data["sourceIp"]
-    if "sourcePort" in data:
+    if data.get("sourcePort") is not None:
         out["source_port"] = data["sourcePort"]
-    if "targetIp" in data:
+    if data.get("targetIp") is not None:
         out["target_ip"] = data["targetIp"]
-    if "targetPort" in data:
+    if data.get("targetPort") is not None:
         out["target_port"] = data["targetPort"]
-    if "vpcEndpointId" in data:
+    if data.get("vpcEndpointId") is not None:
         out["vpc_endpoint_id"] = data["vpcEndpointId"]
-    if "keepAliveDuration" in data:
+    if data.get("keepAliveDuration") is not None:
         out["keep_alive_duration"] = data["keepAliveDuration"]
-    if "cleanSession" in data:
+    if data.get("cleanSession") is not None:
         out["clean_session"] = data["cleanSession"]
-    if "sessionExpiry" in data:
+    if data.get("sessionExpiry") is not None:
         out["session_expiry"] = data["sessionExpiry"]
-    if "clientId" in data:
+    if data.get("clientId") is not None:
         out["client_id"] = data["clientId"]
     return out

@@ -41,11 +41,11 @@ def serialize_json(value: CreateCredentialLockerRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateCredentialLockerRequest:
     out: CreateCredentialLockerRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_iot_managed_integrations.types.tags_map
 
         out["tags"] = capo_iot_managed_integrations.types.tags_map.deserialize_json(

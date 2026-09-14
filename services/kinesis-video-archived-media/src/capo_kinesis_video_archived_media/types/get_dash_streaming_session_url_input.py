@@ -96,11 +96,11 @@ def serialize_json(value: GetDASHStreamingSessionURLInput) -> dict:
 
 def deserialize_json(data: dict) -> GetDASHStreamingSessionURLInput:
     out: GetDASHStreamingSessionURLInput = {}  # type: ignore[typeddict-item]
-    if "StreamName" in data:
+    if data.get("StreamName") is not None:
         out["stream_name"] = data["StreamName"]
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
-    if "PlaybackMode" in data:
+    if data.get("PlaybackMode") is not None:
         import capo_kinesis_video_archived_media.types.dash_playback_mode
 
         out["playback_mode"] = (
@@ -108,7 +108,7 @@ def deserialize_json(data: dict) -> GetDASHStreamingSessionURLInput:
                 data["PlaybackMode"]
             )
         )
-    if "DisplayFragmentTimestamp" in data:
+    if data.get("DisplayFragmentTimestamp") is not None:
         import capo_kinesis_video_archived_media.types.dash_display_fragment_timestamp
 
         out["display_fragment_timestamp"] = (
@@ -116,7 +116,7 @@ def deserialize_json(data: dict) -> GetDASHStreamingSessionURLInput:
                 data["DisplayFragmentTimestamp"]
             )
         )
-    if "DisplayFragmentNumber" in data:
+    if data.get("DisplayFragmentNumber") is not None:
         import capo_kinesis_video_archived_media.types.dash_display_fragment_number
 
         out["display_fragment_number"] = (
@@ -124,7 +124,7 @@ def deserialize_json(data: dict) -> GetDASHStreamingSessionURLInput:
                 data["DisplayFragmentNumber"]
             )
         )
-    if "DASHFragmentSelector" in data:
+    if data.get("DASHFragmentSelector") is not None:
         import capo_kinesis_video_archived_media.types.dash_fragment_selector
 
         out["dash_fragment_selector"] = (
@@ -132,8 +132,8 @@ def deserialize_json(data: dict) -> GetDASHStreamingSessionURLInput:
                 data["DASHFragmentSelector"]
             )
         )
-    if "Expires" in data:
+    if data.get("Expires") is not None:
         out["expires"] = data["Expires"]
-    if "MaxManifestFragmentResults" in data:
+    if data.get("MaxManifestFragmentResults") is not None:
         out["max_manifest_fragment_results"] = data["MaxManifestFragmentResults"]
     return out

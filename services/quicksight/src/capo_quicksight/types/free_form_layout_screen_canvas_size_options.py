@@ -24,7 +24,7 @@ def serialize_json(value: FreeFormLayoutScreenCanvasSizeOptions) -> dict:
 
 def deserialize_json(data: dict) -> FreeFormLayoutScreenCanvasSizeOptions:
     out: FreeFormLayoutScreenCanvasSizeOptions = {}  # type: ignore[typeddict-item]
-    if "OptimizedViewPortWidth" in data:
+    if data.get("OptimizedViewPortWidth") is not None:
         out["optimized_view_port_width"] = data["OptimizedViewPortWidth"]
     else:
         raise DeserializationError(

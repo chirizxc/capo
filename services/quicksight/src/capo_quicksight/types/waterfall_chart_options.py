@@ -23,6 +23,6 @@ def serialize_json(value: WaterfallChartOptions) -> dict:
 
 def deserialize_json(data: dict) -> WaterfallChartOptions:
     out: WaterfallChartOptions = {}  # type: ignore[typeddict-item]
-    if "TotalBarLabel" in data:
+    if data.get("TotalBarLabel") is not None:
         out["total_bar_label"] = data["TotalBarLabel"]
     return out

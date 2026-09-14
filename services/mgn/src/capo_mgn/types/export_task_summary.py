@@ -28,15 +28,15 @@ def serialize_json(value: ExportTaskSummary) -> dict:
 
 def deserialize_json(data: dict) -> ExportTaskSummary:
     out: ExportTaskSummary = {}  # type: ignore[typeddict-item]
-    if "serversCount" in data:
+    if data.get("serversCount") is not None:
         out["servers_count"] = data["serversCount"]
     else:
         out["servers_count"] = 0
-    if "applicationsCount" in data:
+    if data.get("applicationsCount") is not None:
         out["applications_count"] = data["applicationsCount"]
     else:
         out["applications_count"] = 0
-    if "wavesCount" in data:
+    if data.get("wavesCount") is not None:
         out["waves_count"] = data["wavesCount"]
     else:
         out["waves_count"] = 0

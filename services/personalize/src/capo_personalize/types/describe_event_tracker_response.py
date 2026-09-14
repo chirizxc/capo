@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: DescribeEventTrackerResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeEventTrackerResponse:
     out: DescribeEventTrackerResponse = {}  # type: ignore[typeddict-item]
-    if "eventTracker" in data:
+    if data.get("eventTracker") is not None:
         import capo_personalize.types.event_tracker
 
         out["event_tracker"] = (

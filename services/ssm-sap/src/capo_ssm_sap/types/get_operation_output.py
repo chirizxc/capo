@@ -27,7 +27,7 @@ def serialize_json(value: GetOperationOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetOperationOutput:
     out: GetOperationOutput = {}  # type: ignore[typeddict-item]
-    if "Operation" in data:
+    if data.get("Operation") is not None:
         import capo_ssm_sap.types.operation
 
         out["operation"] = capo_ssm_sap.types.operation.deserialize_json(

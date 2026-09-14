@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: DeletePipelineRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeletePipelineRequest:
     out: DeletePipelineRequest = {}  # type: ignore[typeddict-item]
-    if "PipelineName" in data:
+    if data.get("PipelineName") is not None:
         out["pipeline_name"] = data["PipelineName"]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
     return out

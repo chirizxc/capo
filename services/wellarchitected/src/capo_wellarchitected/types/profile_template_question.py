@@ -61,13 +61,13 @@ def serialize_json(value: ProfileTemplateQuestion) -> dict:
 
 def deserialize_json(data: dict) -> ProfileTemplateQuestion:
     out: ProfileTemplateQuestion = {}  # type: ignore[typeddict-item]
-    if "QuestionId" in data:
+    if data.get("QuestionId") is not None:
         out["question_id"] = data["QuestionId"]
-    if "QuestionTitle" in data:
+    if data.get("QuestionTitle") is not None:
         out["question_title"] = data["QuestionTitle"]
-    if "QuestionDescription" in data:
+    if data.get("QuestionDescription") is not None:
         out["question_description"] = data["QuestionDescription"]
-    if "QuestionChoices" in data:
+    if data.get("QuestionChoices") is not None:
         import capo_wellarchitected.types.profile_template_question_choices
 
         out["question_choices"] = (
@@ -75,8 +75,8 @@ def deserialize_json(data: dict) -> ProfileTemplateQuestion:
                 data["QuestionChoices"]
             )
         )
-    if "MinSelectedChoices" in data:
+    if data.get("MinSelectedChoices") is not None:
         out["min_selected_choices"] = data["MinSelectedChoices"]
-    if "MaxSelectedChoices" in data:
+    if data.get("MaxSelectedChoices") is not None:
         out["max_selected_choices"] = data["MaxSelectedChoices"]
     return out

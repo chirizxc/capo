@@ -26,10 +26,10 @@ def serialize_json(value: CallingSettings) -> dict:
 
 def deserialize_json(data: dict) -> CallingSettings:
     out: CallingSettings = {}  # type: ignore[typeddict-item]
-    if "canStart11Call" in data:
+    if data.get("canStart11Call") is not None:
         out["can_start11_call"] = data["canStart11Call"]
-    if "canVideoCall" in data:
+    if data.get("canVideoCall") is not None:
         out["can_video_call"] = data["canVideoCall"]
-    if "forceTcpCall" in data:
+    if data.get("forceTcpCall") is not None:
         out["force_tcp_call"] = data["forceTcpCall"]
     return out

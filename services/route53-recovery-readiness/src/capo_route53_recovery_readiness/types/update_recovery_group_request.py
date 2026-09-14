@@ -34,7 +34,7 @@ def serialize_json(value: UpdateRecoveryGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRecoveryGroupRequest:
     out: UpdateRecoveryGroupRequest = {}  # type: ignore[typeddict-item]
-    if "cells" in data:
+    if data.get("cells") is not None:
         import capo_route53_recovery_readiness.types.__list_of__string
 
         out["cells"] = (

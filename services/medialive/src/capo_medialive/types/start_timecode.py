@@ -23,6 +23,6 @@ def serialize_json(value: StartTimecode) -> dict:
 
 def deserialize_json(data: dict) -> StartTimecode:
     out: StartTimecode = {}  # type: ignore[typeddict-item]
-    if "timecode" in data:
+    if data.get("timecode") is not None:
         out["timecode"] = data["timecode"]
     return out

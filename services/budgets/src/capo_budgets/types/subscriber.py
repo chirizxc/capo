@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: Subscriber) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Subscriber:
     out: Subscriber = {}  # type: ignore[typeddict-item]
-    if "SubscriptionType" in data:
+    if data.get("SubscriptionType") is not None:
         import capo_budgets.types.subscription_type
 
         out["subscription_type"] = (
@@ -44,7 +44,7 @@ def deserialize_aws_json_1_1(data: dict) -> Subscriber:
         )
     else:
         raise DeserializationError("Subscriber.subscription_type required")
-    if "Address" in data:
+    if data.get("Address") is not None:
         out["address"] = data["Address"]
     else:
         raise DeserializationError("Subscriber.address required")

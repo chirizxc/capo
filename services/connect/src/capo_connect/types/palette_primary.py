@@ -31,10 +31,10 @@ def serialize_json(value: PalettePrimary) -> dict:
 
 def deserialize_json(data: dict) -> PalettePrimary:
     out: PalettePrimary = {}  # type: ignore[typeddict-item]
-    if "Default" in data:
+    if data.get("Default") is not None:
         out["default"] = data["Default"]
-    if "Active" in data:
+    if data.get("Active") is not None:
         out["active"] = data["Active"]
-    if "ContrastText" in data:
+    if data.get("ContrastText") is not None:
         out["contrast_text"] = data["ContrastText"]
     return out

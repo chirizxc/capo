@@ -31,10 +31,10 @@ def serialize_aws_json_1_0(value: DataPartitionUploadOptions) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DataPartitionUploadOptions:
     out: DataPartitionUploadOptions = {}  # type: ignore[typeddict-item]
-    if "expression" in data:
+    if data.get("expression") is not None:
         out["expression"] = data["expression"]
     else:
         raise DeserializationError("DataPartitionUploadOptions.expression required")
-    if "conditionLanguageVersion" in data:
+    if data.get("conditionLanguageVersion") is not None:
         out["condition_language_version"] = data["conditionLanguageVersion"]
     return out

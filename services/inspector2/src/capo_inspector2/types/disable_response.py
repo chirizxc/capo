@@ -41,7 +41,7 @@ def serialize_json(value: DisableResponse) -> dict:
 
 def deserialize_json(data: dict) -> DisableResponse:
     out: DisableResponse = {}  # type: ignore[typeddict-item]
-    if "accounts" in data:
+    if data.get("accounts") is not None:
         import capo_inspector2.types.account_list
 
         out["accounts"] = capo_inspector2.types.account_list.deserialize_json(
@@ -49,7 +49,7 @@ def deserialize_json(data: dict) -> DisableResponse:
         )
     else:
         raise DeserializationError("DisableResponse.accounts required")
-    if "failedAccounts" in data:
+    if data.get("failedAccounts") is not None:
         import capo_inspector2.types.failed_account_list
 
         out["failed_accounts"] = (

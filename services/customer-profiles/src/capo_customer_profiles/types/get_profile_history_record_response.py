@@ -70,17 +70,17 @@ def serialize_json(value: GetProfileHistoryRecordResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetProfileHistoryRecordResponse:
     out: GetProfileHistoryRecordResponse = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("GetProfileHistoryRecordResponse.id required")
-    if "ObjectTypeName" in data:
+    if data.get("ObjectTypeName") is not None:
         out["object_type_name"] = data["ObjectTypeName"]
     else:
         raise DeserializationError(
             "GetProfileHistoryRecordResponse.object_type_name required"
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["created_at"] = capo_customer_profiles.types.timestamp.deserialize_json(
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> GetProfileHistoryRecordResponse:
         raise DeserializationError(
             "GetProfileHistoryRecordResponse.created_at required"
         )
-    if "LastUpdatedAt" in data:
+    if data.get("LastUpdatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["last_updated_at"] = (
@@ -98,7 +98,7 @@ def deserialize_json(data: dict) -> GetProfileHistoryRecordResponse:
                 data["LastUpdatedAt"]
             )
         )
-    if "ActionType" in data:
+    if data.get("ActionType") is not None:
         import capo_customer_profiles.types.action_type
 
         out["action_type"] = capo_customer_profiles.types.action_type.deserialize_json(
@@ -108,10 +108,10 @@ def deserialize_json(data: dict) -> GetProfileHistoryRecordResponse:
         raise DeserializationError(
             "GetProfileHistoryRecordResponse.action_type required"
         )
-    if "ProfileObjectUniqueKey" in data:
+    if data.get("ProfileObjectUniqueKey") is not None:
         out["profile_object_unique_key"] = data["ProfileObjectUniqueKey"]
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
-    if "PerformedBy" in data:
+    if data.get("PerformedBy") is not None:
         out["performed_by"] = data["PerformedBy"]
     return out

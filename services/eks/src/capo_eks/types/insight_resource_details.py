@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> InsightResourceDetails:
 
     out: InsightResourceDetails = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_eks.types.insight_resource_detail.deserialize_json(item))
     return out

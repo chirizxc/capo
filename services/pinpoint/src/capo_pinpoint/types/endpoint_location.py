@@ -32,9 +32,25 @@ def serialize_json(value: EndpointLocation) -> dict:
     if "country" in value:
         out["Country"] = value["country"]
     if "latitude" in value:
-        out["Latitude"] = value["latitude"]
+        out["Latitude"] = (
+            "NaN"
+            if value["latitude"] != value["latitude"]
+            else "Infinity"
+            if value["latitude"] == float("inf")
+            else "-Infinity"
+            if value["latitude"] == float("-inf")
+            else value["latitude"]
+        )
     if "longitude" in value:
-        out["Longitude"] = value["longitude"]
+        out["Longitude"] = (
+            "NaN"
+            if value["longitude"] != value["longitude"]
+            else "Infinity"
+            if value["longitude"] == float("inf")
+            else "-Infinity"
+            if value["longitude"] == float("-inf")
+            else value["longitude"]
+        )
     if "postal_code" in value:
         out["PostalCode"] = value["postal_code"]
     if "region" in value:
@@ -44,16 +60,16 @@ def serialize_json(value: EndpointLocation) -> dict:
 
 def deserialize_json(data: dict) -> EndpointLocation:
     out: EndpointLocation = {}  # type: ignore[typeddict-item]
-    if "City" in data:
+    if data.get("City") is not None:
         out["city"] = data["City"]
-    if "Country" in data:
+    if data.get("Country") is not None:
         out["country"] = data["Country"]
-    if "Latitude" in data:
-        out["latitude"] = data["Latitude"]
-    if "Longitude" in data:
-        out["longitude"] = data["Longitude"]
-    if "PostalCode" in data:
+    if data.get("Latitude") is not None:
+        out["latitude"] = float(data["Latitude"])
+    if data.get("Longitude") is not None:
+        out["longitude"] = float(data["Longitude"])
+    if data.get("PostalCode") is not None:
         out["postal_code"] = data["PostalCode"]
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
     return out

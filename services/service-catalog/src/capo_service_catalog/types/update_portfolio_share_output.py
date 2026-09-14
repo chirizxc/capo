@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: UpdatePortfolioShareOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdatePortfolioShareOutput:
     out: UpdatePortfolioShareOutput = {}  # type: ignore[typeddict-item]
-    if "PortfolioShareToken" in data:
+    if data.get("PortfolioShareToken") is not None:
         out["portfolio_share_token"] = data["PortfolioShareToken"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_service_catalog.types.share_status
 
         out["status"] = (

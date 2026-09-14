@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: ValidateMatchmakingRuleSetOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ValidateMatchmakingRuleSetOutput:
     out: ValidateMatchmakingRuleSetOutput = {}  # type: ignore[typeddict-item]
-    if "Valid" in data:
+    if data.get("Valid") is not None:
         out["valid"] = data["Valid"]
     return out

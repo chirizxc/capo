@@ -49,20 +49,20 @@ def serialize_json(value: EndpointMessageResult) -> dict:
 
 def deserialize_json(data: dict) -> EndpointMessageResult:
     out: EndpointMessageResult = {}  # type: ignore[typeddict-item]
-    if "Address" in data:
+    if data.get("Address") is not None:
         out["address"] = data["Address"]
-    if "DeliveryStatus" in data:
+    if data.get("DeliveryStatus") is not None:
         import capo_pinpoint.types.delivery_status
 
         out["delivery_status"] = capo_pinpoint.types.delivery_status.deserialize_json(
             data["DeliveryStatus"]
         )
-    if "MessageId" in data:
+    if data.get("MessageId") is not None:
         out["message_id"] = data["MessageId"]
-    if "StatusCode" in data:
+    if data.get("StatusCode") is not None:
         out["status_code"] = data["StatusCode"]
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "UpdatedToken" in data:
+    if data.get("UpdatedToken") is not None:
         out["updated_token"] = data["UpdatedToken"]
     return out

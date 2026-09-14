@@ -36,13 +36,13 @@ def serialize_json(value: InputDataConfig) -> dict:
 
 def deserialize_json(data: dict) -> InputDataConfig:
     out: InputDataConfig = {}  # type: ignore[typeddict-item]
-    if "fhirServer" in data:
+    if data.get("fhirServer") is not None:
         import capo_connecthealth.types.fhir_server
 
         out["fhir_server"] = capo_connecthealth.types.fhir_server.deserialize_json(
             data["fhirServer"]
         )
-    if "s3Sources" in data:
+    if data.get("s3Sources") is not None:
         import capo_connecthealth.types.s3_sources
 
         out["s3_sources"] = capo_connecthealth.types.s3_sources.deserialize_json(

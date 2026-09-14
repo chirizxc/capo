@@ -70,17 +70,17 @@ def serialize_aws_json_1_0(value: BillingViewListElement) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> BillingViewListElement:
     out: BillingViewListElement = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "ownerAccountId" in data:
+    if data.get("ownerAccountId") is not None:
         out["owner_account_id"] = data["ownerAccountId"]
-    if "sourceAccountId" in data:
+    if data.get("sourceAccountId") is not None:
         out["source_account_id"] = data["sourceAccountId"]
-    if "billingViewType" in data:
+    if data.get("billingViewType") is not None:
         import capo_billing.types.billing_view_type
 
         out["billing_view_type"] = (
@@ -88,7 +88,7 @@ def deserialize_aws_json_1_0(data: dict) -> BillingViewListElement:
                 data["billingViewType"]
             )
         )
-    if "healthStatus" in data:
+    if data.get("healthStatus") is not None:
         import capo_billing.types.billing_view_health_status
 
         out["health_status"] = (

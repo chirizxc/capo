@@ -38,9 +38,9 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribeMetadataModelExportsAsScriptResponse:
     out: DescribeMetadataModelExportsAsScriptResponse = {}  # type: ignore[typeddict-item]
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
-    if "Requests" in data:
+    if data.get("Requests") is not None:
         import capo_database_migration_service.types.schema_conversion_request_list
 
         out["requests"] = (

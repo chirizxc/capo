@@ -40,7 +40,7 @@ def serialize_aws_json_1_0(value: Endpoint) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Endpoint:
     out: Endpoint = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_pcs.types.endpoint_type
 
         out["type"] = capo_pcs.types.endpoint_type.deserialize_aws_json_1_0(
@@ -48,15 +48,15 @@ def deserialize_aws_json_1_0(data: dict) -> Endpoint:
         )
     else:
         raise DeserializationError("Endpoint.type required")
-    if "privateIpAddress" in data:
+    if data.get("privateIpAddress") is not None:
         out["private_ip_address"] = data["privateIpAddress"]
     else:
         raise DeserializationError("Endpoint.private_ip_address required")
-    if "publicIpAddress" in data:
+    if data.get("publicIpAddress") is not None:
         out["public_ip_address"] = data["publicIpAddress"]
-    if "ipv6Address" in data:
+    if data.get("ipv6Address") is not None:
         out["ipv6_address"] = data["ipv6Address"]
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
     else:
         raise DeserializationError("Endpoint.port required")

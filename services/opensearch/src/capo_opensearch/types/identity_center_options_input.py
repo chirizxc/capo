@@ -59,13 +59,13 @@ def serialize_json(value: IdentityCenterOptionsInput) -> dict:
 
 def deserialize_json(data: dict) -> IdentityCenterOptionsInput:
     out: IdentityCenterOptionsInput = {}  # type: ignore[typeddict-item]
-    if "EnabledAPIAccess" in data:
+    if data.get("EnabledAPIAccess") is not None:
         out["enabled_api_access"] = data["EnabledAPIAccess"]
-    if "IdentityCenterInstanceARN" in data:
+    if data.get("IdentityCenterInstanceARN") is not None:
         out["identity_center_instance_arn"] = data["IdentityCenterInstanceARN"]
-    if "IdentityCenterInstanceRegion" in data:
+    if data.get("IdentityCenterInstanceRegion") is not None:
         out["identity_center_instance_region"] = data["IdentityCenterInstanceRegion"]
-    if "SubjectKey" in data:
+    if data.get("SubjectKey") is not None:
         import capo_opensearch.types.subject_key_id_c_option
 
         out["subject_key"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> IdentityCenterOptionsInput:
                 data["SubjectKey"]
             )
         )
-    if "RolesKey" in data:
+    if data.get("RolesKey") is not None:
         import capo_opensearch.types.roles_key_id_c_option
 
         out["roles_key"] = capo_opensearch.types.roles_key_id_c_option.deserialize_json(

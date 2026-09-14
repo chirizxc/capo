@@ -35,18 +35,18 @@ def serialize_json(value: ToolUseResultData) -> dict:
 
 def deserialize_json(data: dict) -> ToolUseResultData:
     out: ToolUseResultData = {}  # type: ignore[typeddict-item]
-    if "toolUseId" in data:
+    if data.get("toolUseId") is not None:
         out["tool_use_id"] = data["toolUseId"]
     else:
         raise DeserializationError("ToolUseResultData.tool_use_id required")
-    if "toolName" in data:
+    if data.get("toolName") is not None:
         out["tool_name"] = data["toolName"]
     else:
         raise DeserializationError("ToolUseResultData.tool_name required")
-    if "toolResult" in data:
+    if data.get("toolResult") is not None:
         out["tool_result"] = data["toolResult"]
     else:
         raise DeserializationError("ToolUseResultData.tool_result required")
-    if "inputSchema" in data:
+    if data.get("inputSchema") is not None:
         out["input_schema"] = data["inputSchema"]
     return out

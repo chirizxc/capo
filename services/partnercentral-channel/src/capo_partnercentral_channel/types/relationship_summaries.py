@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> RelationshipSummaries:
 
     out: RelationshipSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_partnercentral_channel.types.relationship_summary.deserialize_aws_json_1_0(
                 item

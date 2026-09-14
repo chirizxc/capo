@@ -49,13 +49,13 @@ def serialize_json(value: Citation) -> dict:
 
 def deserialize_json(data: dict) -> Citation:
     out: Citation = {}  # type: ignore[typeddict-item]
-    if "contentId" in data:
+    if data.get("contentId") is not None:
         out["content_id"] = data["contentId"]
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
-    if "knowledgeBaseId" in data:
+    if data.get("knowledgeBaseId") is not None:
         out["knowledge_base_id"] = data["knowledgeBaseId"]
-    if "citationSpan" in data:
+    if data.get("citationSpan") is not None:
         import capo_qconnect.types.citation_span
 
         out["citation_span"] = capo_qconnect.types.citation_span.deserialize_json(
@@ -63,9 +63,9 @@ def deserialize_json(data: dict) -> Citation:
         )
     else:
         raise DeserializationError("Citation.citation_span required")
-    if "sourceURL" in data:
+    if data.get("sourceURL") is not None:
         out["source_url"] = data["sourceURL"]
-    if "referenceType" in data:
+    if data.get("referenceType") is not None:
         out["reference_type"] = data["referenceType"]
     else:
         raise DeserializationError("Citation.reference_type required")

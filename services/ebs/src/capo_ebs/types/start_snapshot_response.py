@@ -80,35 +80,35 @@ def serialize_json(value: StartSnapshotResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartSnapshotResponse:
     out: StartSnapshotResponse = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "SnapshotId" in data:
+    if data.get("SnapshotId") is not None:
         out["snapshot_id"] = data["SnapshotId"]
-    if "OwnerId" in data:
+    if data.get("OwnerId") is not None:
         out["owner_id"] = data["OwnerId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_ebs.types.status
 
         out["status"] = capo_ebs.types.status.deserialize_json(data["Status"])
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_ebs.types.time_stamp
 
         out["start_time"] = capo_ebs.types.time_stamp.deserialize_json(
             data["StartTime"]
         )
-    if "VolumeSize" in data:
+    if data.get("VolumeSize") is not None:
         out["volume_size"] = data["VolumeSize"]
-    if "BlockSize" in data:
+    if data.get("BlockSize") is not None:
         out["block_size"] = data["BlockSize"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_ebs.types.tags
 
         out["tags"] = capo_ebs.types.tags.deserialize_json(data["Tags"])
-    if "ParentSnapshotId" in data:
+    if data.get("ParentSnapshotId") is not None:
         out["parent_snapshot_id"] = data["ParentSnapshotId"]
-    if "KmsKeyArn" in data:
+    if data.get("KmsKeyArn") is not None:
         out["kms_key_arn"] = data["KmsKeyArn"]
-    if "SseType" in data:
+    if data.get("SseType") is not None:
         import capo_ebs.types.sse_type
 
         out["sse_type"] = capo_ebs.types.sse_type.deserialize_json(data["SseType"])

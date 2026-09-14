@@ -48,18 +48,18 @@ def serialize_aws_json_1_1(value: ViewRepresentationInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ViewRepresentationInput:
     out: ViewRepresentationInput = {}  # type: ignore[typeddict-item]
-    if "Dialect" in data:
+    if data.get("Dialect") is not None:
         import capo_glue.types.view_dialect
 
         out["dialect"] = capo_glue.types.view_dialect.deserialize_aws_json_1_1(
             data["Dialect"]
         )
-    if "DialectVersion" in data:
+    if data.get("DialectVersion") is not None:
         out["dialect_version"] = data["DialectVersion"]
-    if "ViewOriginalText" in data:
+    if data.get("ViewOriginalText") is not None:
         out["view_original_text"] = data["ViewOriginalText"]
-    if "ValidationConnection" in data:
+    if data.get("ValidationConnection") is not None:
         out["validation_connection"] = data["ValidationConnection"]
-    if "ViewExpandedText" in data:
+    if data.get("ViewExpandedText") is not None:
         out["view_expanded_text"] = data["ViewExpandedText"]
     return out

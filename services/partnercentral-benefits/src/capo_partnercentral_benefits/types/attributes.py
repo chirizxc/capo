@@ -16,5 +16,7 @@ def serialize_aws_json_1_0(input_to_serialize: Attributes) -> dict:
 def deserialize_aws_json_1_0(data: dict) -> Attributes:
     out: Attributes = {}
     for key, value in data.items():
+        if value is None:
+            continue
         out[key] = value
     return out

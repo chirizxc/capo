@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> FindingSourceList:
 
     out: FindingSourceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_accessanalyzer.types.finding_source.deserialize_json(item))
     return out

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: FinalizingOrganizationException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FinalizingOrganizationException_:
     out: FinalizingOrganizationException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,20 @@ class FinalizingOrganizationException(ServiceError):
 
     code: str | None = "FinalizingOrganizationException"
 
-    def __init__(self, data: FinalizingOrganizationException_):
+    def __init__(
+        self, data: FinalizingOrganizationException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="FinalizingOrganizationException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "FinalizingOrganizationException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "FinalizingOrganizationException":
+        return cls(deserialize_aws_json_1_1(data), message)

@@ -42,12 +42,12 @@ def serialize_json(value: FindingTypeAggregation) -> dict:
 
 def deserialize_json(data: dict) -> FindingTypeAggregation:
     out: FindingTypeAggregation = {}  # type: ignore[typeddict-item]
-    if "findingType" in data:
+    if data.get("findingType") is not None:
         out["finding_type"] = data["findingType"]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
-    if "sortOrder" in data:
+    if data.get("sortOrder") is not None:
         out["sort_order"] = data["sortOrder"]
-    if "sortBy" in data:
+    if data.get("sortBy") is not None:
         out["sort_by"] = data["sortBy"]
     return out

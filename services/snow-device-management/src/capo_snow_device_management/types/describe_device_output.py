@@ -114,7 +114,7 @@ def serialize_json(value: DescribeDeviceOutput) -> dict:
 
 def deserialize_json(data: dict) -> DescribeDeviceOutput:
     out: DescribeDeviceOutput = {}  # type: ignore[typeddict-item]
-    if "lastReachedOutAt" in data:
+    if data.get("lastReachedOutAt") is not None:
         import capo_snow_device_management.types._prelude.timestamp
 
         out["last_reached_out_at"] = (
@@ -122,7 +122,7 @@ def deserialize_json(data: dict) -> DescribeDeviceOutput:
                 data["lastReachedOutAt"]
             )
         )
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_snow_device_management.types._prelude.timestamp
 
         out["last_updated_at"] = (
@@ -130,23 +130,23 @@ def deserialize_json(data: dict) -> DescribeDeviceOutput:
                 data["lastUpdatedAt"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_snow_device_management.types.tag_map
 
         out["tags"] = capo_snow_device_management.types.tag_map.deserialize_json(
             data["tags"]
         )
-    if "managedDeviceId" in data:
+    if data.get("managedDeviceId") is not None:
         out["managed_device_id"] = data["managedDeviceId"]
-    if "managedDeviceArn" in data:
+    if data.get("managedDeviceArn") is not None:
         out["managed_device_arn"] = data["managedDeviceArn"]
-    if "deviceType" in data:
+    if data.get("deviceType") is not None:
         out["device_type"] = data["deviceType"]
-    if "associatedWithJob" in data:
+    if data.get("associatedWithJob") is not None:
         out["associated_with_job"] = data["associatedWithJob"]
-    if "deviceState" in data:
+    if data.get("deviceState") is not None:
         out["device_state"] = data["deviceState"]
-    if "physicalNetworkInterfaces" in data:
+    if data.get("physicalNetworkInterfaces") is not None:
         import capo_snow_device_management.types.physical_network_interface_list
 
         out["physical_network_interfaces"] = (
@@ -154,7 +154,7 @@ def deserialize_json(data: dict) -> DescribeDeviceOutput:
                 data["physicalNetworkInterfaces"]
             )
         )
-    if "deviceCapacities" in data:
+    if data.get("deviceCapacities") is not None:
         import capo_snow_device_management.types.capacity_list
 
         out["device_capacities"] = (
@@ -162,7 +162,7 @@ def deserialize_json(data: dict) -> DescribeDeviceOutput:
                 data["deviceCapacities"]
             )
         )
-    if "software" in data:
+    if data.get("software") is not None:
         import capo_snow_device_management.types.software_information
 
         out["software"] = (

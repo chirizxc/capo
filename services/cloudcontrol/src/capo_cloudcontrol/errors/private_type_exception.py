@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: PrivateTypeException_) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PrivateTypeException_:
     out: PrivateTypeException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class PrivateTypeException(ServiceError):
 
     code: str | None = "PrivateTypeException"
 
-    def __init__(self, data: PrivateTypeException_):
+    def __init__(self, data: PrivateTypeException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="PrivateTypeException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_0(cls, data: dict) -> "PrivateTypeException":
-        return cls(deserialize_aws_json_1_0(data))
+    def from_aws_json_1_0(
+        cls, data: dict, message: str | None = None
+    ) -> "PrivateTypeException":
+        return cls(deserialize_aws_json_1_0(data), message)

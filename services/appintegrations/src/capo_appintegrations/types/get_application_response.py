@@ -165,17 +165,17 @@ def serialize_json(value: GetApplicationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetApplicationResponse:
     out: GetApplicationResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Namespace" in data:
+    if data.get("Namespace") is not None:
         out["namespace"] = data["Namespace"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ApplicationSourceConfig" in data:
+    if data.get("ApplicationSourceConfig") is not None:
         import capo_appintegrations.types.application_source_config
 
         out["application_source_config"] = (
@@ -183,7 +183,7 @@ def deserialize_json(data: dict) -> GetApplicationResponse:
                 data["ApplicationSourceConfig"]
             )
         )
-    if "Subscriptions" in data:
+    if data.get("Subscriptions") is not None:
         import capo_appintegrations.types.subscription_list
 
         out["subscriptions"] = (
@@ -191,7 +191,7 @@ def deserialize_json(data: dict) -> GetApplicationResponse:
                 data["Subscriptions"]
             )
         )
-    if "Publications" in data:
+    if data.get("Publications") is not None:
         import capo_appintegrations.types.publication_list
 
         out["publications"] = (
@@ -199,13 +199,13 @@ def deserialize_json(data: dict) -> GetApplicationResponse:
                 data["Publications"]
             )
         )
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_appintegrations.types.timestamp
 
         out["created_time"] = capo_appintegrations.types.timestamp.deserialize_json(
             data["CreatedTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_appintegrations.types.timestamp
 
         out["last_modified_time"] = (
@@ -213,11 +213,11 @@ def deserialize_json(data: dict) -> GetApplicationResponse:
                 data["LastModifiedTime"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_appintegrations.types.tag_map
 
         out["tags"] = capo_appintegrations.types.tag_map.deserialize_json(data["Tags"])
-    if "Permissions" in data:
+    if data.get("Permissions") is not None:
         import capo_appintegrations.types.permission_list
 
         out["permissions"] = (
@@ -225,13 +225,13 @@ def deserialize_json(data: dict) -> GetApplicationResponse:
                 data["Permissions"]
             )
         )
-    if "IsService" in data:
+    if data.get("IsService") is not None:
         out["is_service"] = data["IsService"]
     else:
         out["is_service"] = False
-    if "InitializationTimeout" in data:
+    if data.get("InitializationTimeout") is not None:
         out["initialization_timeout"] = data["InitializationTimeout"]
-    if "ApplicationConfig" in data:
+    if data.get("ApplicationConfig") is not None:
         import capo_appintegrations.types.application_config
 
         out["application_config"] = (
@@ -239,7 +239,7 @@ def deserialize_json(data: dict) -> GetApplicationResponse:
                 data["ApplicationConfig"]
             )
         )
-    if "IframeConfig" in data:
+    if data.get("IframeConfig") is not None:
         import capo_appintegrations.types.iframe_config
 
         out["iframe_config"] = (
@@ -247,7 +247,7 @@ def deserialize_json(data: dict) -> GetApplicationResponse:
                 data["IframeConfig"]
             )
         )
-    if "ApplicationType" in data:
+    if data.get("ApplicationType") is not None:
         import capo_appintegrations.types.application_type
 
         out["application_type"] = (

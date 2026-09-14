@@ -77,17 +77,17 @@ def serialize_json(value: StartConfigurationPolicyAssociationResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartConfigurationPolicyAssociationResponse:
     out: StartConfigurationPolicyAssociationResponse = {}  # type: ignore[typeddict-item]
-    if "ConfigurationPolicyId" in data:
+    if data.get("ConfigurationPolicyId") is not None:
         out["configuration_policy_id"] = data["ConfigurationPolicyId"]
-    if "TargetId" in data:
+    if data.get("TargetId") is not None:
         out["target_id"] = data["TargetId"]
-    if "TargetType" in data:
+    if data.get("TargetType") is not None:
         import capo_securityhub.types.target_type
 
         out["target_type"] = capo_securityhub.types.target_type.deserialize_json(
             data["TargetType"]
         )
-    if "AssociationType" in data:
+    if data.get("AssociationType") is not None:
         import capo_securityhub.types.association_type
 
         out["association_type"] = (
@@ -95,13 +95,13 @@ def deserialize_json(data: dict) -> StartConfigurationPolicyAssociationResponse:
                 data["AssociationType"]
             )
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_securityhub.types.timestamp
 
         out["updated_at"] = capo_securityhub.types.timestamp.deserialize_json(
             data["UpdatedAt"]
         )
-    if "AssociationStatus" in data:
+    if data.get("AssociationStatus") is not None:
         import capo_securityhub.types.configuration_policy_association_status
 
         out["association_status"] = (
@@ -109,6 +109,6 @@ def deserialize_json(data: dict) -> StartConfigurationPolicyAssociationResponse:
                 data["AssociationStatus"]
             )
         )
-    if "AssociationStatusMessage" in data:
+    if data.get("AssociationStatusMessage") is not None:
         out["association_status_message"] = data["AssociationStatusMessage"]
     return out

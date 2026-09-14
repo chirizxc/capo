@@ -31,7 +31,7 @@ def serialize_json(value: CreateCustomLogSourceResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateCustomLogSourceResponse:
     out: CreateCustomLogSourceResponse = {}  # type: ignore[typeddict-item]
-    if "source" in data:
+    if data.get("source") is not None:
         import capo_securitylake.types.custom_log_source_resource
 
         out["source"] = (

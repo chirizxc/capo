@@ -58,13 +58,13 @@ def serialize_aws_json_1_0(value: ProtectConfigurationRuleSetNumberOverride) -> 
 
 def deserialize_aws_json_1_0(data: dict) -> ProtectConfigurationRuleSetNumberOverride:
     out: ProtectConfigurationRuleSetNumberOverride = {}  # type: ignore[typeddict-item]
-    if "DestinationPhoneNumber" in data:
+    if data.get("DestinationPhoneNumber") is not None:
         out["destination_phone_number"] = data["DestinationPhoneNumber"]
     else:
         raise DeserializationError(
             "ProtectConfigurationRuleSetNumberOverride.destination_phone_number required"
         )
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_pinpoint_sms_voice_v2.types._prelude.timestamp
 
         out["created_timestamp"] = (
@@ -76,15 +76,15 @@ def deserialize_aws_json_1_0(data: dict) -> ProtectConfigurationRuleSetNumberOve
         raise DeserializationError(
             "ProtectConfigurationRuleSetNumberOverride.created_timestamp required"
         )
-    if "Action" in data:
+    if data.get("Action") is not None:
         out["action"] = data["Action"]
     else:
         raise DeserializationError(
             "ProtectConfigurationRuleSetNumberOverride.action required"
         )
-    if "IsoCountryCode" in data:
+    if data.get("IsoCountryCode") is not None:
         out["iso_country_code"] = data["IsoCountryCode"]
-    if "ExpirationTimestamp" in data:
+    if data.get("ExpirationTimestamp") is not None:
         import capo_pinpoint_sms_voice_v2.types._prelude.timestamp
 
         out["expiration_timestamp"] = (

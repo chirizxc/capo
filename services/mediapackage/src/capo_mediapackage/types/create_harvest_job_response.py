@@ -62,27 +62,27 @@ def serialize_json(value: CreateHarvestJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateHarvestJobResponse:
     out: CreateHarvestJobResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "channelId" in data:
+    if data.get("channelId") is not None:
         out["channel_id"] = data["channelId"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         out["created_at"] = data["createdAt"]
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         out["end_time"] = data["endTime"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "originEndpointId" in data:
+    if data.get("originEndpointId") is not None:
         out["origin_endpoint_id"] = data["originEndpointId"]
-    if "s3Destination" in data:
+    if data.get("s3Destination") is not None:
         import capo_mediapackage.types.s3_destination
 
         out["s3_destination"] = capo_mediapackage.types.s3_destination.deserialize_json(
             data["s3Destination"]
         )
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         out["start_time"] = data["startTime"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_mediapackage.types.status
 
         out["status"] = capo_mediapackage.types.status.deserialize_json(data["status"])

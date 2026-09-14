@@ -32,8 +32,8 @@ def serialize_aws_json_1_1(value: ThemeFooterLink) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ThemeFooterLink:
     out: ThemeFooterLink = {}  # type: ignore[typeddict-item]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "FooterLinkURL" in data:
+    if data.get("FooterLinkURL") is not None:
         out["footer_link_url"] = data["FooterLinkURL"]
     return out

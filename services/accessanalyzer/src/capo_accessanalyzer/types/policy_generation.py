@@ -48,19 +48,19 @@ def serialize_json(value: PolicyGeneration) -> dict:
 
 def deserialize_json(data: dict) -> PolicyGeneration:
     out: PolicyGeneration = {}  # type: ignore[typeddict-item]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
     else:
         raise DeserializationError("PolicyGeneration.job_id required")
-    if "principalArn" in data:
+    if data.get("principalArn") is not None:
         out["principal_arn"] = data["principalArn"]
     else:
         raise DeserializationError("PolicyGeneration.principal_arn required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("PolicyGeneration.status required")
-    if "startedOn" in data:
+    if data.get("startedOn") is not None:
         import capo_accessanalyzer.types.timestamp
 
         out["started_on"] = capo_accessanalyzer.types.timestamp.deserialize_json(
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> PolicyGeneration:
         )
     else:
         raise DeserializationError("PolicyGeneration.started_on required")
-    if "completedOn" in data:
+    if data.get("completedOn") is not None:
         import capo_accessanalyzer.types.timestamp
 
         out["completed_on"] = capo_accessanalyzer.types.timestamp.deserialize_json(

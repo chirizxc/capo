@@ -47,24 +47,24 @@ def serialize_json(value: CreateTransitGatewayRouteTableAttachmentRequest) -> di
 
 def deserialize_json(data: dict) -> CreateTransitGatewayRouteTableAttachmentRequest:
     out: CreateTransitGatewayRouteTableAttachmentRequest = {}  # type: ignore[typeddict-item]
-    if "PeeringId" in data:
+    if data.get("PeeringId") is not None:
         out["peering_id"] = data["PeeringId"]
     else:
         raise DeserializationError(
             "CreateTransitGatewayRouteTableAttachmentRequest.peering_id required"
         )
-    if "TransitGatewayRouteTableArn" in data:
+    if data.get("TransitGatewayRouteTableArn") is not None:
         out["transit_gateway_route_table_arn"] = data["TransitGatewayRouteTableArn"]
     else:
         raise DeserializationError(
             "CreateTransitGatewayRouteTableAttachmentRequest.transit_gateway_route_table_arn required"
         )
-    if "RoutingPolicyLabel" in data:
+    if data.get("RoutingPolicyLabel") is not None:
         out["routing_policy_label"] = data["RoutingPolicyLabel"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_networkmanager.types.tag_list
 
         out["tags"] = capo_networkmanager.types.tag_list.deserialize_json(data["Tags"])
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

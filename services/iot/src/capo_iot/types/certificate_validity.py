@@ -31,11 +31,11 @@ def serialize_json(value: CertificateValidity) -> dict:
 
 def deserialize_json(data: dict) -> CertificateValidity:
     out: CertificateValidity = {}  # type: ignore[typeddict-item]
-    if "notBefore" in data:
+    if data.get("notBefore") is not None:
         import capo_iot.types.date_type
 
         out["not_before"] = capo_iot.types.date_type.deserialize_json(data["notBefore"])
-    if "notAfter" in data:
+    if data.get("notAfter") is not None:
         import capo_iot.types.date_type
 
         out["not_after"] = capo_iot.types.date_type.deserialize_json(data["notAfter"])

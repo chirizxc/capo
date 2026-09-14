@@ -37,7 +37,7 @@ def serialize_aws_json_1_1(value: ListResourceServersResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListResourceServersResponse:
     out: ListResourceServersResponse = {}  # type: ignore[typeddict-item]
-    if "ResourceServers" in data:
+    if data.get("ResourceServers") is not None:
         import capo_cognito_identity_provider.types.resource_servers_list_type
 
         out["resource_servers"] = (
@@ -49,6 +49,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListResourceServersResponse:
         raise DeserializationError(
             "ListResourceServersResponse.resource_servers required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

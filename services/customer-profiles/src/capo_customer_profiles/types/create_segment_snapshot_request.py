@@ -52,7 +52,7 @@ def serialize_json(value: CreateSegmentSnapshotRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateSegmentSnapshotRequest:
     out: CreateSegmentSnapshotRequest = {}  # type: ignore[typeddict-item]
-    if "DataFormat" in data:
+    if data.get("DataFormat") is not None:
         import capo_customer_profiles.types.data_format
 
         out["data_format"] = capo_customer_profiles.types.data_format.deserialize_json(
@@ -60,10 +60,10 @@ def deserialize_json(data: dict) -> CreateSegmentSnapshotRequest:
         )
     else:
         raise DeserializationError("CreateSegmentSnapshotRequest.data_format required")
-    if "EncryptionKey" in data:
+    if data.get("EncryptionKey") is not None:
         out["encryption_key"] = data["EncryptionKey"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "DestinationUri" in data:
+    if data.get("DestinationUri") is not None:
         out["destination_uri"] = data["DestinationUri"]
     return out

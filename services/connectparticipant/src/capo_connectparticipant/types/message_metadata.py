@@ -45,15 +45,15 @@ def serialize_json(value: MessageMetadata) -> dict:
 
 def deserialize_json(data: dict) -> MessageMetadata:
     out: MessageMetadata = {}  # type: ignore[typeddict-item]
-    if "MessageId" in data:
+    if data.get("MessageId") is not None:
         out["message_id"] = data["MessageId"]
-    if "Receipts" in data:
+    if data.get("Receipts") is not None:
         import capo_connectparticipant.types.receipts
 
         out["receipts"] = capo_connectparticipant.types.receipts.deserialize_json(
             data["Receipts"]
         )
-    if "MessageProcessingStatus" in data:
+    if data.get("MessageProcessingStatus") is not None:
         import capo_connectparticipant.types.message_processing_status
 
         out["message_processing_status"] = (

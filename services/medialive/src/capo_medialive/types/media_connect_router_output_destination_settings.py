@@ -36,7 +36,7 @@ def serialize_json(value: MediaConnectRouterOutputDestinationSettings) -> dict:
 
 def deserialize_json(data: dict) -> MediaConnectRouterOutputDestinationSettings:
     out: MediaConnectRouterOutputDestinationSettings = {}  # type: ignore[typeddict-item]
-    if "encryptionType" in data:
+    if data.get("encryptionType") is not None:
         import capo_medialive.types.media_connect_router_output_encryption_type
 
         out["encryption_type"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> MediaConnectRouterOutputDestinationSettings:
                 data["encryptionType"]
             )
         )
-    if "secretArn" in data:
+    if data.get("secretArn") is not None:
         out["secret_arn"] = data["secretArn"]
     return out

@@ -38,9 +38,9 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> GetRelationalDatabaseMasterUserPasswordResult:
     out: GetRelationalDatabaseMasterUserPasswordResult = {}  # type: ignore[typeddict-item]
-    if "masterUserPassword" in data:
+    if data.get("masterUserPassword") is not None:
         out["master_user_password"] = data["masterUserPassword"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_lightsail.types.iso_date
 
         out["created_at"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(

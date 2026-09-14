@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> BooleanFilterList:
 
     out: BooleanFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityhub.types.boolean_filter.deserialize_json(item))
     return out

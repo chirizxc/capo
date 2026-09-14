@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> RouteMatrixDestinationList:
 
     out: RouteMatrixDestinationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_geo_routes.types.route_matrix_destination.deserialize_json(item)
         )

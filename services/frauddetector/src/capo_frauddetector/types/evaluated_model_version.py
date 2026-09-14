@@ -44,13 +44,13 @@ def serialize_aws_json_1_1(value: EvaluatedModelVersion) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EvaluatedModelVersion:
     out: EvaluatedModelVersion = {}  # type: ignore[typeddict-item]
-    if "modelId" in data:
+    if data.get("modelId") is not None:
         out["model_id"] = data["modelId"]
-    if "modelVersion" in data:
+    if data.get("modelVersion") is not None:
         out["model_version"] = data["modelVersion"]
-    if "modelType" in data:
+    if data.get("modelType") is not None:
         out["model_type"] = data["modelType"]
-    if "evaluations" in data:
+    if data.get("evaluations") is not None:
         import capo_frauddetector.types.list_of_model_version_evaluations
 
         out["evaluations"] = (

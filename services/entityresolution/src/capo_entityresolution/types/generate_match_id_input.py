@@ -44,7 +44,7 @@ def serialize_json(value: GenerateMatchIdInput) -> dict:
 
 def deserialize_json(data: dict) -> GenerateMatchIdInput:
     out: GenerateMatchIdInput = {}  # type: ignore[typeddict-item]
-    if "records" in data:
+    if data.get("records") is not None:
         import capo_entityresolution.types.record_list
 
         out["records"] = capo_entityresolution.types.record_list.deserialize_json(
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> GenerateMatchIdInput:
         )
     else:
         raise DeserializationError("GenerateMatchIdInput.records required")
-    if "processingType" in data:
+    if data.get("processingType") is not None:
         import capo_entityresolution.types.processing_type
 
         out["processing_type"] = (

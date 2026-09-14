@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ConfigurationCheckDefinitionList:
 
     out: ConfigurationCheckDefinitionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_ssm_sap.types.configuration_check_definition.deserialize_json(item)
         )

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsRedshiftClusterDeferredMaintenanceWindows
 
     out: AwsRedshiftClusterDeferredMaintenanceWindows = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_redshift_cluster_deferred_maintenance_window.deserialize_json(
                 item

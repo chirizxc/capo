@@ -72,27 +72,27 @@ def serialize_aws_json_1_1(value: AppsListData) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AppsListData:
     out: AppsListData = {}  # type: ignore[typeddict-item]
-    if "ListId" in data:
+    if data.get("ListId") is not None:
         out["list_id"] = data["ListId"]
-    if "ListName" in data:
+    if data.get("ListName") is not None:
         out["list_name"] = data["ListName"]
     else:
         raise DeserializationError("AppsListData.list_name required")
-    if "ListUpdateToken" in data:
+    if data.get("ListUpdateToken") is not None:
         out["list_update_token"] = data["ListUpdateToken"]
-    if "CreateTime" in data:
+    if data.get("CreateTime") is not None:
         import capo_fms.types.time_stamp
 
         out["create_time"] = capo_fms.types.time_stamp.deserialize_aws_json_1_1(
             data["CreateTime"]
         )
-    if "LastUpdateTime" in data:
+    if data.get("LastUpdateTime") is not None:
         import capo_fms.types.time_stamp
 
         out["last_update_time"] = capo_fms.types.time_stamp.deserialize_aws_json_1_1(
             data["LastUpdateTime"]
         )
-    if "AppsList" in data:
+    if data.get("AppsList") is not None:
         import capo_fms.types.apps_list
 
         out["apps_list"] = capo_fms.types.apps_list.deserialize_aws_json_1_1(
@@ -100,7 +100,7 @@ def deserialize_aws_json_1_1(data: dict) -> AppsListData:
         )
     else:
         raise DeserializationError("AppsListData.apps_list required")
-    if "PreviousAppsList" in data:
+    if data.get("PreviousAppsList") is not None:
         import capo_fms.types.previous_apps_list
 
         out["previous_apps_list"] = (

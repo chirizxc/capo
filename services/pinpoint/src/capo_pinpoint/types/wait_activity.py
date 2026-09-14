@@ -32,9 +32,9 @@ def serialize_json(value: WaitActivity) -> dict:
 
 def deserialize_json(data: dict) -> WaitActivity:
     out: WaitActivity = {}  # type: ignore[typeddict-item]
-    if "NextActivity" in data:
+    if data.get("NextActivity") is not None:
         out["next_activity"] = data["NextActivity"]
-    if "WaitTime" in data:
+    if data.get("WaitTime") is not None:
         import capo_pinpoint.types.wait_time
 
         out["wait_time"] = capo_pinpoint.types.wait_time.deserialize_json(

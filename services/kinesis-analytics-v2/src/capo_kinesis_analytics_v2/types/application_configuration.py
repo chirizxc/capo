@@ -135,7 +135,7 @@ def serialize_aws_json_1_1(value: ApplicationConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ApplicationConfiguration:
     out: ApplicationConfiguration = {}  # type: ignore[typeddict-item]
-    if "SqlApplicationConfiguration" in data:
+    if data.get("SqlApplicationConfiguration") is not None:
         import capo_kinesis_analytics_v2.types.sql_application_configuration
 
         out["sql_application_configuration"] = (
@@ -143,7 +143,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationConfiguration:
                 data["SqlApplicationConfiguration"]
             )
         )
-    if "FlinkApplicationConfiguration" in data:
+    if data.get("FlinkApplicationConfiguration") is not None:
         import capo_kinesis_analytics_v2.types.flink_application_configuration
 
         out["flink_application_configuration"] = (
@@ -151,7 +151,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationConfiguration:
                 data["FlinkApplicationConfiguration"]
             )
         )
-    if "EnvironmentProperties" in data:
+    if data.get("EnvironmentProperties") is not None:
         import capo_kinesis_analytics_v2.types.environment_properties
 
         out["environment_properties"] = (
@@ -159,7 +159,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationConfiguration:
                 data["EnvironmentProperties"]
             )
         )
-    if "ApplicationCodeConfiguration" in data:
+    if data.get("ApplicationCodeConfiguration") is not None:
         import capo_kinesis_analytics_v2.types.application_code_configuration
 
         out["application_code_configuration"] = (
@@ -167,7 +167,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationConfiguration:
                 data["ApplicationCodeConfiguration"]
             )
         )
-    if "ApplicationSnapshotConfiguration" in data:
+    if data.get("ApplicationSnapshotConfiguration") is not None:
         import capo_kinesis_analytics_v2.types.application_snapshot_configuration
 
         out["application_snapshot_configuration"] = (
@@ -175,7 +175,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationConfiguration:
                 data["ApplicationSnapshotConfiguration"]
             )
         )
-    if "ApplicationSystemRollbackConfiguration" in data:
+    if data.get("ApplicationSystemRollbackConfiguration") is not None:
         import capo_kinesis_analytics_v2.types.application_system_rollback_configuration
 
         out["application_system_rollback_configuration"] = (
@@ -183,7 +183,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationConfiguration:
                 data["ApplicationSystemRollbackConfiguration"]
             )
         )
-    if "VpcConfigurations" in data:
+    if data.get("VpcConfigurations") is not None:
         import capo_kinesis_analytics_v2.types.vpc_configurations
 
         out["vpc_configurations"] = (
@@ -191,7 +191,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationConfiguration:
                 data["VpcConfigurations"]
             )
         )
-    if "ZeppelinApplicationConfiguration" in data:
+    if data.get("ZeppelinApplicationConfiguration") is not None:
         import capo_kinesis_analytics_v2.types.zeppelin_application_configuration
 
         out["zeppelin_application_configuration"] = (
@@ -199,7 +199,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationConfiguration:
                 data["ZeppelinApplicationConfiguration"]
             )
         )
-    if "ApplicationEncryptionConfiguration" in data:
+    if data.get("ApplicationEncryptionConfiguration") is not None:
         import capo_kinesis_analytics_v2.types.application_encryption_configuration
 
         out["application_encryption_configuration"] = (

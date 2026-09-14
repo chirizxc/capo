@@ -36,11 +36,11 @@ def serialize_json(value: PropertyNotification) -> dict:
 
 def deserialize_json(data: dict) -> PropertyNotification:
     out: PropertyNotification = {}  # type: ignore[typeddict-item]
-    if "topic" in data:
+    if data.get("topic") is not None:
         out["topic"] = data["topic"]
     else:
         raise DeserializationError("PropertyNotification.topic required")
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_iotsitewise.types.property_notification_state
 
         out["state"] = (

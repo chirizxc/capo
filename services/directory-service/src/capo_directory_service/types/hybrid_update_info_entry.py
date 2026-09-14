@@ -99,7 +99,7 @@ def serialize_aws_json_1_1(value: HybridUpdateInfoEntry) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HybridUpdateInfoEntry:
     out: HybridUpdateInfoEntry = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_directory_service.types.update_status
 
         out["status"] = (
@@ -107,11 +107,11 @@ def deserialize_aws_json_1_1(data: dict) -> HybridUpdateInfoEntry:
                 data["Status"]
             )
         )
-    if "StatusReason" in data:
+    if data.get("StatusReason") is not None:
         out["status_reason"] = data["StatusReason"]
-    if "InitiatedBy" in data:
+    if data.get("InitiatedBy") is not None:
         out["initiated_by"] = data["InitiatedBy"]
-    if "NewValue" in data:
+    if data.get("NewValue") is not None:
         import capo_directory_service.types.hybrid_update_value
 
         out["new_value"] = (
@@ -119,7 +119,7 @@ def deserialize_aws_json_1_1(data: dict) -> HybridUpdateInfoEntry:
                 data["NewValue"]
             )
         )
-    if "PreviousValue" in data:
+    if data.get("PreviousValue") is not None:
         import capo_directory_service.types.hybrid_update_value
 
         out["previous_value"] = (
@@ -127,7 +127,7 @@ def deserialize_aws_json_1_1(data: dict) -> HybridUpdateInfoEntry:
                 data["PreviousValue"]
             )
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_directory_service.types.start_date_time
 
         out["start_time"] = (
@@ -135,7 +135,7 @@ def deserialize_aws_json_1_1(data: dict) -> HybridUpdateInfoEntry:
                 data["StartTime"]
             )
         )
-    if "LastUpdatedDateTime" in data:
+    if data.get("LastUpdatedDateTime") is not None:
         import capo_directory_service.types.last_updated_date_time
 
         out["last_updated_date_time"] = (
@@ -143,6 +143,6 @@ def deserialize_aws_json_1_1(data: dict) -> HybridUpdateInfoEntry:
                 data["LastUpdatedDateTime"]
             )
         )
-    if "AssessmentId" in data:
+    if data.get("AssessmentId") is not None:
         out["assessment_id"] = data["AssessmentId"]
     return out

@@ -46,15 +46,15 @@ def serialize_json(value: RevokeVpcEndpointAccessRequest) -> dict:
 
 def deserialize_json(data: dict) -> RevokeVpcEndpointAccessRequest:
     out: RevokeVpcEndpointAccessRequest = {}  # type: ignore[typeddict-item]
-    if "Account" in data:
+    if data.get("Account") is not None:
         out["account"] = data["Account"]
-    if "Service" in data:
+    if data.get("Service") is not None:
         import capo_opensearch.types.aws_service_principal
 
         out["service"] = capo_opensearch.types.aws_service_principal.deserialize_json(
             data["Service"]
         )
-    if "ServiceOptions" in data:
+    if data.get("ServiceOptions") is not None:
         import capo_opensearch.types.service_options
 
         out["service_options"] = capo_opensearch.types.service_options.deserialize_json(

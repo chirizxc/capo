@@ -74,11 +74,11 @@ def serialize_json(value: InitiateDocumentVersionUploadRequest) -> dict:
 
 def deserialize_json(data: dict) -> InitiateDocumentVersionUploadRequest:
     out: InitiateDocumentVersionUploadRequest = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ContentCreatedTimestamp" in data:
+    if data.get("ContentCreatedTimestamp") is not None:
         import capo_workdocs.types.timestamp_type
 
         out["content_created_timestamp"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> InitiateDocumentVersionUploadRequest:
                 data["ContentCreatedTimestamp"]
             )
         )
-    if "ContentModifiedTimestamp" in data:
+    if data.get("ContentModifiedTimestamp") is not None:
         import capo_workdocs.types.timestamp_type
 
         out["content_modified_timestamp"] = (
@@ -94,10 +94,10 @@ def deserialize_json(data: dict) -> InitiateDocumentVersionUploadRequest:
                 data["ContentModifiedTimestamp"]
             )
         )
-    if "ContentType" in data:
+    if data.get("ContentType") is not None:
         out["content_type"] = data["ContentType"]
-    if "DocumentSizeInBytes" in data:
+    if data.get("DocumentSizeInBytes") is not None:
         out["document_size_in_bytes"] = data["DocumentSizeInBytes"]
-    if "ParentFolderId" in data:
+    if data.get("ParentFolderId") is not None:
         out["parent_folder_id"] = data["ParentFolderId"]
     return out

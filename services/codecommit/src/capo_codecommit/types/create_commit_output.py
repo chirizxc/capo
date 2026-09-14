@@ -56,11 +56,11 @@ def serialize_aws_json_1_1(value: CreateCommitOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateCommitOutput:
     out: CreateCommitOutput = {}  # type: ignore[typeddict-item]
-    if "commitId" in data:
+    if data.get("commitId") is not None:
         out["commit_id"] = data["commitId"]
-    if "treeId" in data:
+    if data.get("treeId") is not None:
         out["tree_id"] = data["treeId"]
-    if "filesAdded" in data:
+    if data.get("filesAdded") is not None:
         import capo_codecommit.types.files_metadata
 
         out["files_added"] = (
@@ -68,7 +68,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateCommitOutput:
                 data["filesAdded"]
             )
         )
-    if "filesUpdated" in data:
+    if data.get("filesUpdated") is not None:
         import capo_codecommit.types.files_metadata
 
         out["files_updated"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateCommitOutput:
                 data["filesUpdated"]
             )
         )
-    if "filesDeleted" in data:
+    if data.get("filesDeleted") is not None:
         import capo_codecommit.types.files_metadata
 
         out["files_deleted"] = (

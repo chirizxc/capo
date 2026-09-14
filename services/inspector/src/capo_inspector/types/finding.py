@@ -110,7 +110,15 @@ def serialize_aws_json_1_1(value: Finding) -> dict:
         out["severity"] = capo_inspector.types.severity.serialize_aws_json_1_1(
             value["severity"]
         )
-    out["numericSeverity"] = value.get("numeric_severity", 0)
+    out["numericSeverity"] = (
+        "NaN"
+        if value.get("numeric_severity", 0) != value.get("numeric_severity", 0)
+        else "Infinity"
+        if value.get("numeric_severity", 0) == float("inf")
+        else "-Infinity"
+        if value.get("numeric_severity", 0) == float("-inf")
+        else value.get("numeric_severity", 0)
+    )
     out["confidence"] = value.get("confidence", 0)
     if "indicator_of_compromise" in value:
         out["indicatorOfCompromise"] = value["indicator_of_compromise"]
@@ -141,17 +149,17 @@ def serialize_aws_json_1_1(value: Finding) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Finding:
     out: Finding = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("Finding.arn required")
-    if "schemaVersion" in data:
+    if data.get("schemaVersion") is not None:
         out["schema_version"] = data["schemaVersion"]
     else:
         out["schema_version"] = 0
-    if "service" in data:
+    if data.get("service") is not None:
         out["service"] = data["service"]
-    if "serviceAttributes" in data:
+    if data.get("serviceAttributes") is not None:
         import capo_inspector.types.inspector_service_attributes
 
         out["service_attributes"] = (
@@ -159,13 +167,13 @@ def deserialize_aws_json_1_1(data: dict) -> Finding:
                 data["serviceAttributes"]
             )
         )
-    if "assetType" in data:
+    if data.get("assetType") is not None:
         import capo_inspector.types.asset_type
 
         out["asset_type"] = capo_inspector.types.asset_type.deserialize_aws_json_1_1(
             data["assetType"]
         )
-    if "assetAttributes" in data:
+    if data.get("assetAttributes") is not None:
         import capo_inspector.types.asset_attributes
 
         out["asset_attributes"] = (
@@ -173,31 +181,31 @@ def deserialize_aws_json_1_1(data: dict) -> Finding:
                 data["assetAttributes"]
             )
         )
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "recommendation" in data:
+    if data.get("recommendation") is not None:
         out["recommendation"] = data["recommendation"]
-    if "severity" in data:
+    if data.get("severity") is not None:
         import capo_inspector.types.severity
 
         out["severity"] = capo_inspector.types.severity.deserialize_aws_json_1_1(
             data["severity"]
         )
-    if "numericSeverity" in data:
-        out["numeric_severity"] = data["numericSeverity"]
+    if data.get("numericSeverity") is not None:
+        out["numeric_severity"] = float(data["numericSeverity"])
     else:
         out["numeric_severity"] = 0
-    if "confidence" in data:
+    if data.get("confidence") is not None:
         out["confidence"] = data["confidence"]
     else:
         out["confidence"] = 0
-    if "indicatorOfCompromise" in data:
+    if data.get("indicatorOfCompromise") is not None:
         out["indicator_of_compromise"] = data["indicatorOfCompromise"]
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_inspector.types.attribute_list
 
         out["attributes"] = (
@@ -207,7 +215,7 @@ def deserialize_aws_json_1_1(data: dict) -> Finding:
         )
     else:
         raise DeserializationError("Finding.attributes required")
-    if "userAttributes" in data:
+    if data.get("userAttributes") is not None:
         import capo_inspector.types.user_attribute_list
 
         out["user_attributes"] = (
@@ -217,7 +225,7 @@ def deserialize_aws_json_1_1(data: dict) -> Finding:
         )
     else:
         raise DeserializationError("Finding.user_attributes required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_inspector.types.timestamp
 
         out["created_at"] = capo_inspector.types.timestamp.deserialize_aws_json_1_1(
@@ -225,7 +233,7 @@ def deserialize_aws_json_1_1(data: dict) -> Finding:
         )
     else:
         raise DeserializationError("Finding.created_at required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_inspector.types.timestamp
 
         out["updated_at"] = capo_inspector.types.timestamp.deserialize_aws_json_1_1(

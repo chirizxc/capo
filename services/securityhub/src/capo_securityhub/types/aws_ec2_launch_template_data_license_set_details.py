@@ -25,6 +25,6 @@ def serialize_json(value: AwsEc2LaunchTemplateDataLicenseSetDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataLicenseSetDetails:
     out: AwsEc2LaunchTemplateDataLicenseSetDetails = {}  # type: ignore[typeddict-item]
-    if "LicenseConfigurationArn" in data:
+    if data.get("LicenseConfigurationArn") is not None:
         out["license_configuration_arn"] = data["LicenseConfigurationArn"]
     return out

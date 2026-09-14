@@ -36,9 +36,9 @@ def serialize_json(value: ListGlobalResolversOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListGlobalResolversOutput:
     out: ListGlobalResolversOutput = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "globalResolvers" in data:
+    if data.get("globalResolvers") is not None:
         import capo_route53globalresolver.types.global_resolvers
 
         out["global_resolvers"] = (

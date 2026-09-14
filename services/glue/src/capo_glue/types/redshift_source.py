@@ -43,20 +43,20 @@ def serialize_aws_json_1_1(value: RedshiftSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RedshiftSource:
     out: RedshiftSource = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("RedshiftSource.name required")
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
     else:
         raise DeserializationError("RedshiftSource.database required")
-    if "Table" in data:
+    if data.get("Table") is not None:
         out["table"] = data["Table"]
     else:
         raise DeserializationError("RedshiftSource.table required")
-    if "RedshiftTmpDir" in data:
+    if data.get("RedshiftTmpDir") is not None:
         out["redshift_tmp_dir"] = data["RedshiftTmpDir"]
-    if "TmpDirIAMRole" in data:
+    if data.get("TmpDirIAMRole") is not None:
         out["tmp_dir_iam_role"] = data["TmpDirIAMRole"]
     return out

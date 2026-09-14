@@ -293,17 +293,17 @@ def serialize_aws_json_1_1(value: Run) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Run:
     out: Run = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_device_farm.types.test_type
 
         out["type"] = capo_device_farm.types.test_type.deserialize_aws_json_1_1(
             data["type"]
         )
-    if "platform" in data:
+    if data.get("platform") is not None:
         import capo_device_farm.types.device_platform
 
         out["platform"] = (
@@ -311,13 +311,13 @@ def deserialize_aws_json_1_1(data: dict) -> Run:
                 data["platform"]
             )
         )
-    if "created" in data:
+    if data.get("created") is not None:
         import capo_device_farm.types.date_time
 
         out["created"] = capo_device_farm.types.date_time.deserialize_aws_json_1_1(
             data["created"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_device_farm.types.execution_status
 
         out["status"] = (
@@ -325,7 +325,7 @@ def deserialize_aws_json_1_1(data: dict) -> Run:
                 data["status"]
             )
         )
-    if "result" in data:
+    if data.get("result") is not None:
         import capo_device_farm.types.execution_result
 
         out["result"] = (
@@ -333,31 +333,31 @@ def deserialize_aws_json_1_1(data: dict) -> Run:
                 data["result"]
             )
         )
-    if "started" in data:
+    if data.get("started") is not None:
         import capo_device_farm.types.date_time
 
         out["started"] = capo_device_farm.types.date_time.deserialize_aws_json_1_1(
             data["started"]
         )
-    if "stopped" in data:
+    if data.get("stopped") is not None:
         import capo_device_farm.types.date_time
 
         out["stopped"] = capo_device_farm.types.date_time.deserialize_aws_json_1_1(
             data["stopped"]
         )
-    if "counters" in data:
+    if data.get("counters") is not None:
         import capo_device_farm.types.counters
 
         out["counters"] = capo_device_farm.types.counters.deserialize_aws_json_1_1(
             data["counters"]
         )
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "totalJobs" in data:
+    if data.get("totalJobs") is not None:
         out["total_jobs"] = data["totalJobs"]
-    if "completedJobs" in data:
+    if data.get("completedJobs") is not None:
         out["completed_jobs"] = data["completedJobs"]
-    if "billingMethod" in data:
+    if data.get("billingMethod") is not None:
         import capo_device_farm.types.billing_method
 
         out["billing_method"] = (
@@ -365,7 +365,7 @@ def deserialize_aws_json_1_1(data: dict) -> Run:
                 data["billingMethod"]
             )
         )
-    if "deviceMinutes" in data:
+    if data.get("deviceMinutes") is not None:
         import capo_device_farm.types.device_minutes
 
         out["device_minutes"] = (
@@ -373,7 +373,7 @@ def deserialize_aws_json_1_1(data: dict) -> Run:
                 data["deviceMinutes"]
             )
         )
-    if "networkProfile" in data:
+    if data.get("networkProfile") is not None:
         import capo_device_farm.types.network_profile
 
         out["network_profile"] = (
@@ -381,7 +381,7 @@ def deserialize_aws_json_1_1(data: dict) -> Run:
                 data["networkProfile"]
             )
         )
-    if "deviceProxy" in data:
+    if data.get("deviceProxy") is not None:
         import capo_device_farm.types.device_proxy
 
         out["device_proxy"] = (
@@ -389,9 +389,9 @@ def deserialize_aws_json_1_1(data: dict) -> Run:
                 data["deviceProxy"]
             )
         )
-    if "parsingResultUrl" in data:
+    if data.get("parsingResultUrl") is not None:
         out["parsing_result_url"] = data["parsingResultUrl"]
-    if "resultCode" in data:
+    if data.get("resultCode") is not None:
         import capo_device_farm.types.execution_result_code
 
         out["result_code"] = (
@@ -399,31 +399,31 @@ def deserialize_aws_json_1_1(data: dict) -> Run:
                 data["resultCode"]
             )
         )
-    if "seed" in data:
+    if data.get("seed") is not None:
         out["seed"] = data["seed"]
-    if "appUpload" in data:
+    if data.get("appUpload") is not None:
         out["app_upload"] = data["appUpload"]
-    if "eventCount" in data:
+    if data.get("eventCount") is not None:
         out["event_count"] = data["eventCount"]
-    if "jobTimeoutMinutes" in data:
+    if data.get("jobTimeoutMinutes") is not None:
         out["job_timeout_minutes"] = data["jobTimeoutMinutes"]
-    if "devicePoolArn" in data:
+    if data.get("devicePoolArn") is not None:
         out["device_pool_arn"] = data["devicePoolArn"]
-    if "locale" in data:
+    if data.get("locale") is not None:
         out["locale"] = data["locale"]
-    if "radios" in data:
+    if data.get("radios") is not None:
         import capo_device_farm.types.radios
 
         out["radios"] = capo_device_farm.types.radios.deserialize_aws_json_1_1(
             data["radios"]
         )
-    if "location" in data:
+    if data.get("location") is not None:
         import capo_device_farm.types.location
 
         out["location"] = capo_device_farm.types.location.deserialize_aws_json_1_1(
             data["location"]
         )
-    if "customerArtifactPaths" in data:
+    if data.get("customerArtifactPaths") is not None:
         import capo_device_farm.types.customer_artifact_paths
 
         out["customer_artifact_paths"] = (
@@ -431,13 +431,13 @@ def deserialize_aws_json_1_1(data: dict) -> Run:
                 data["customerArtifactPaths"]
             )
         )
-    if "webUrl" in data:
+    if data.get("webUrl") is not None:
         out["web_url"] = data["webUrl"]
-    if "skipAppResign" in data:
+    if data.get("skipAppResign") is not None:
         out["skip_app_resign"] = data["skipAppResign"]
-    if "testSpecArn" in data:
+    if data.get("testSpecArn") is not None:
         out["test_spec_arn"] = data["testSpecArn"]
-    if "deviceSelectionResult" in data:
+    if data.get("deviceSelectionResult") is not None:
         import capo_device_farm.types.device_selection_result
 
         out["device_selection_result"] = (
@@ -445,15 +445,15 @@ def deserialize_aws_json_1_1(data: dict) -> Run:
                 data["deviceSelectionResult"]
             )
         )
-    if "vpcConfig" in data:
+    if data.get("vpcConfig") is not None:
         import capo_device_farm.types.vpc_config
 
         out["vpc_config"] = capo_device_farm.types.vpc_config.deserialize_aws_json_1_1(
             data["vpcConfig"]
         )
-    if "executionRoleArn" in data:
+    if data.get("executionRoleArn") is not None:
         out["execution_role_arn"] = data["executionRoleArn"]
-    if "environmentVariables" in data:
+    if data.get("environmentVariables") is not None:
         import capo_device_farm.types.environment_variables
 
         out["environment_variables"] = (

@@ -50,7 +50,7 @@ def serialize_aws_json_1_1(value: ListAvailableResourceMetricsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListAvailableResourceMetricsRequest:
     out: ListAvailableResourceMetricsRequest = {}  # type: ignore[typeddict-item]
-    if "ServiceType" in data:
+    if data.get("ServiceType") is not None:
         import capo_pi.types.service_type
 
         out["service_type"] = capo_pi.types.service_type.deserialize_aws_json_1_1(
@@ -60,13 +60,13 @@ def deserialize_aws_json_1_1(data: dict) -> ListAvailableResourceMetricsRequest:
         raise DeserializationError(
             "ListAvailableResourceMetricsRequest.service_type required"
         )
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
     else:
         raise DeserializationError(
             "ListAvailableResourceMetricsRequest.identifier required"
         )
-    if "MetricTypes" in data:
+    if data.get("MetricTypes") is not None:
         import capo_pi.types.metric_type_list
 
         out["metric_types"] = capo_pi.types.metric_type_list.deserialize_aws_json_1_1(
@@ -76,8 +76,8 @@ def deserialize_aws_json_1_1(data: dict) -> ListAvailableResourceMetricsRequest:
         raise DeserializationError(
             "ListAvailableResourceMetricsRequest.metric_types required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ObjectAttributeRangeList:
 
     out: ObjectAttributeRangeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_clouddirectory.types.object_attribute_range.deserialize_json(item)
         )

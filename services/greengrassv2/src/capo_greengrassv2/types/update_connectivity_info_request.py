@@ -35,7 +35,7 @@ def serialize_json(value: UpdateConnectivityInfoRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateConnectivityInfoRequest:
     out: UpdateConnectivityInfoRequest = {}  # type: ignore[typeddict-item]
-    if "ConnectivityInfo" in data:
+    if data.get("ConnectivityInfo") is not None:
         import capo_greengrassv2.types.connectivity_info_list
 
         out["connectivity_info"] = (

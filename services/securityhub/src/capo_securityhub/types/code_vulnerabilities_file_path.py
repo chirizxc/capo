@@ -36,12 +36,12 @@ def serialize_json(value: CodeVulnerabilitiesFilePath) -> dict:
 
 def deserialize_json(data: dict) -> CodeVulnerabilitiesFilePath:
     out: CodeVulnerabilitiesFilePath = {}  # type: ignore[typeddict-item]
-    if "EndLine" in data:
+    if data.get("EndLine") is not None:
         out["end_line"] = data["EndLine"]
-    if "FileName" in data:
+    if data.get("FileName") is not None:
         out["file_name"] = data["FileName"]
-    if "FilePath" in data:
+    if data.get("FilePath") is not None:
         out["file_path"] = data["FilePath"]
-    if "StartLine" in data:
+    if data.get("StartLine") is not None:
         out["start_line"] = data["StartLine"]
     return out

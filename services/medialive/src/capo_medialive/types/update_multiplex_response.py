@@ -27,7 +27,7 @@ def serialize_json(value: UpdateMultiplexResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateMultiplexResponse:
     out: UpdateMultiplexResponse = {}  # type: ignore[typeddict-item]
-    if "multiplex" in data:
+    if data.get("multiplex") is not None:
         import capo_medialive.types.multiplex
 
         out["multiplex"] = capo_medialive.types.multiplex.deserialize_json(

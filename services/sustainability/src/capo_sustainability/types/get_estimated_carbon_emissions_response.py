@@ -35,7 +35,7 @@ def serialize_json(value: GetEstimatedCarbonEmissionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetEstimatedCarbonEmissionsResponse:
     out: GetEstimatedCarbonEmissionsResponse = {}  # type: ignore[typeddict-item]
-    if "Results" in data:
+    if data.get("Results") is not None:
         import capo_sustainability.types.estimated_carbon_emissions_list
 
         out["results"] = (
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> GetEstimatedCarbonEmissionsResponse:
         raise DeserializationError(
             "GetEstimatedCarbonEmissionsResponse.results required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

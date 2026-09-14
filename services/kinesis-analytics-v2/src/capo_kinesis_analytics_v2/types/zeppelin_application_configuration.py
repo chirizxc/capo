@@ -70,7 +70,7 @@ def serialize_aws_json_1_1(value: ZeppelinApplicationConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ZeppelinApplicationConfiguration:
     out: ZeppelinApplicationConfiguration = {}  # type: ignore[typeddict-item]
-    if "MonitoringConfiguration" in data:
+    if data.get("MonitoringConfiguration") is not None:
         import capo_kinesis_analytics_v2.types.zeppelin_monitoring_configuration
 
         out["monitoring_configuration"] = (
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_1(data: dict) -> ZeppelinApplicationConfiguration:
                 data["MonitoringConfiguration"]
             )
         )
-    if "CatalogConfiguration" in data:
+    if data.get("CatalogConfiguration") is not None:
         import capo_kinesis_analytics_v2.types.catalog_configuration
 
         out["catalog_configuration"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_1(data: dict) -> ZeppelinApplicationConfiguration:
                 data["CatalogConfiguration"]
             )
         )
-    if "DeployAsApplicationConfiguration" in data:
+    if data.get("DeployAsApplicationConfiguration") is not None:
         import capo_kinesis_analytics_v2.types.deploy_as_application_configuration
 
         out["deploy_as_application_configuration"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_1(data: dict) -> ZeppelinApplicationConfiguration:
                 data["DeployAsApplicationConfiguration"]
             )
         )
-    if "CustomArtifactsConfiguration" in data:
+    if data.get("CustomArtifactsConfiguration") is not None:
         import capo_kinesis_analytics_v2.types.custom_artifacts_configuration_list
 
         out["custom_artifacts_configuration"] = (

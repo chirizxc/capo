@@ -52,7 +52,7 @@ def serialize_json(value: RecommendationDisruptionCompliance) -> dict:
 
 def deserialize_json(data: dict) -> RecommendationDisruptionCompliance:
     out: RecommendationDisruptionCompliance = {}  # type: ignore[typeddict-item]
-    if "expectedComplianceStatus" in data:
+    if data.get("expectedComplianceStatus") is not None:
         import capo_resiliencehub.types.compliance_status
 
         out["expected_compliance_status"] = (
@@ -64,16 +64,16 @@ def deserialize_json(data: dict) -> RecommendationDisruptionCompliance:
         raise DeserializationError(
             "RecommendationDisruptionCompliance.expected_compliance_status required"
         )
-    if "expectedRtoInSecs" in data:
+    if data.get("expectedRtoInSecs") is not None:
         out["expected_rto_in_secs"] = data["expectedRtoInSecs"]
     else:
         out["expected_rto_in_secs"] = 0
-    if "expectedRtoDescription" in data:
+    if data.get("expectedRtoDescription") is not None:
         out["expected_rto_description"] = data["expectedRtoDescription"]
-    if "expectedRpoInSecs" in data:
+    if data.get("expectedRpoInSecs") is not None:
         out["expected_rpo_in_secs"] = data["expectedRpoInSecs"]
     else:
         out["expected_rpo_in_secs"] = 0
-    if "expectedRpoDescription" in data:
+    if data.get("expectedRpoDescription") is not None:
         out["expected_rpo_description"] = data["expectedRpoDescription"]
     return out

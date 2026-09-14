@@ -84,38 +84,38 @@ def serialize_json(value: AgentStatus) -> dict:
 
 def deserialize_json(data: dict) -> AgentStatus:
     out: AgentStatus = {}  # type: ignore[typeddict-item]
-    if "AgentStatusARN" in data:
+    if data.get("AgentStatusARN") is not None:
         out["agent_status_arn"] = data["AgentStatusARN"]
-    if "AgentStatusId" in data:
+    if data.get("AgentStatusId") is not None:
         out["agent_status_id"] = data["AgentStatusId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_connect.types.agent_status_type
 
         out["type"] = capo_connect.types.agent_status_type.deserialize_json(
             data["Type"]
         )
-    if "DisplayOrder" in data:
+    if data.get("DisplayOrder") is not None:
         out["display_order"] = data["DisplayOrder"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_connect.types.agent_status_state
 
         out["state"] = capo_connect.types.agent_status_state.deserialize_json(
             data["State"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_connect.types.timestamp
 
         out["last_modified_time"] = capo_connect.types.timestamp.deserialize_json(
             data["LastModifiedTime"]
         )
-    if "LastModifiedRegion" in data:
+    if data.get("LastModifiedRegion") is not None:
         out["last_modified_region"] = data["LastModifiedRegion"]
     return out

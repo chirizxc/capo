@@ -100,15 +100,15 @@ def serialize_json(value: Evaluation) -> dict:
 
 def deserialize_json(data: dict) -> Evaluation:
     out: Evaluation = {}  # type: ignore[typeddict-item]
-    if "EvaluationId" in data:
+    if data.get("EvaluationId") is not None:
         out["evaluation_id"] = data["EvaluationId"]
     else:
         raise DeserializationError("Evaluation.evaluation_id required")
-    if "EvaluationArn" in data:
+    if data.get("EvaluationArn") is not None:
         out["evaluation_arn"] = data["EvaluationArn"]
     else:
         raise DeserializationError("Evaluation.evaluation_arn required")
-    if "Metadata" in data:
+    if data.get("Metadata") is not None:
         import capo_connect.types.evaluation_metadata
 
         out["metadata"] = capo_connect.types.evaluation_metadata.deserialize_json(
@@ -116,7 +116,7 @@ def deserialize_json(data: dict) -> Evaluation:
         )
     else:
         raise DeserializationError("Evaluation.metadata required")
-    if "Answers" in data:
+    if data.get("Answers") is not None:
         import capo_connect.types.evaluation_answers_output_map
 
         out["answers"] = (
@@ -126,7 +126,7 @@ def deserialize_json(data: dict) -> Evaluation:
         )
     else:
         raise DeserializationError("Evaluation.answers required")
-    if "Notes" in data:
+    if data.get("Notes") is not None:
         import capo_connect.types.evaluation_notes_map
 
         out["notes"] = capo_connect.types.evaluation_notes_map.deserialize_json(
@@ -134,7 +134,7 @@ def deserialize_json(data: dict) -> Evaluation:
         )
     else:
         raise DeserializationError("Evaluation.notes required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_connect.types.evaluation_status
 
         out["status"] = capo_connect.types.evaluation_status.deserialize_json(
@@ -142,13 +142,13 @@ def deserialize_json(data: dict) -> Evaluation:
         )
     else:
         raise DeserializationError("Evaluation.status required")
-    if "Scores" in data:
+    if data.get("Scores") is not None:
         import capo_connect.types.evaluation_scores_map
 
         out["scores"] = capo_connect.types.evaluation_scores_map.deserialize_json(
             data["Scores"]
         )
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_connect.types.timestamp
 
         out["created_time"] = capo_connect.types.timestamp.deserialize_json(
@@ -156,7 +156,7 @@ def deserialize_json(data: dict) -> Evaluation:
         )
     else:
         raise DeserializationError("Evaluation.created_time required")
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_connect.types.timestamp
 
         out["last_modified_time"] = capo_connect.types.timestamp.deserialize_json(
@@ -164,13 +164,13 @@ def deserialize_json(data: dict) -> Evaluation:
         )
     else:
         raise DeserializationError("Evaluation.last_modified_time required")
-    if "EvaluationType" in data:
+    if data.get("EvaluationType") is not None:
         import capo_connect.types.evaluation_type
 
         out["evaluation_type"] = capo_connect.types.evaluation_type.deserialize_json(
             data["EvaluationType"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])

@@ -66,21 +66,21 @@ def serialize_json(value: DeploymentDataSummary) -> dict:
 
 def deserialize_json(data: dict) -> DeploymentDataSummary:
     out: DeploymentDataSummary = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "workloadName" in data:
+    if data.get("workloadName") is not None:
         out["workload_name"] = data["workloadName"]
-    if "patternName" in data:
+    if data.get("patternName") is not None:
         out["pattern_name"] = data["patternName"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_launch_wizard.types.deployment_status
 
         out["status"] = capo_launch_wizard.types.deployment_status.deserialize_json(
             data["status"]
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_launch_wizard.types._prelude.timestamp
 
         out["created_at"] = (
@@ -88,7 +88,7 @@ def deserialize_json(data: dict) -> DeploymentDataSummary:
                 data["createdAt"]
             )
         )
-    if "modifiedAt" in data:
+    if data.get("modifiedAt") is not None:
         import capo_launch_wizard.types._prelude.timestamp
 
         out["modified_at"] = (

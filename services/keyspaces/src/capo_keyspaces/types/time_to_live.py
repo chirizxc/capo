@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: TimeToLive) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TimeToLive:
     out: TimeToLive = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("TimeToLive.status required")

@@ -35,13 +35,13 @@ def serialize_aws_json_1_1(value: TimestampFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TimestampFilter:
     out: TimestampFilter = {}  # type: ignore[typeddict-item]
-    if "RecordedBefore" in data:
+    if data.get("RecordedBefore") is not None:
         import capo_glue.types.timestamp
 
         out["recorded_before"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["RecordedBefore"]
         )
-    if "RecordedAfter" in data:
+    if data.get("RecordedAfter") is not None:
         import capo_glue.types.timestamp
 
         out["recorded_after"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(

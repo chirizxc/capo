@@ -31,7 +31,7 @@ def serialize_json(value: ManifestProcessingRules) -> dict:
 
 def deserialize_json(data: dict) -> ManifestProcessingRules:
     out: ManifestProcessingRules = {}  # type: ignore[typeddict-item]
-    if "AdMarkerPassthrough" in data:
+    if data.get("AdMarkerPassthrough") is not None:
         import capo_mediatailor.types.ad_marker_passthrough
 
         out["ad_marker_passthrough"] = (

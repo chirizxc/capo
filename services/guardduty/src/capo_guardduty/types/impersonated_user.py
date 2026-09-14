@@ -30,9 +30,9 @@ def serialize_json(value: ImpersonatedUser) -> dict:
 
 def deserialize_json(data: dict) -> ImpersonatedUser:
     out: ImpersonatedUser = {}  # type: ignore[typeddict-item]
-    if "username" in data:
+    if data.get("username") is not None:
         out["username"] = data["username"]
-    if "groups" in data:
+    if data.get("groups") is not None:
         import capo_guardduty.types.groups
 
         out["groups"] = capo_guardduty.types.groups.deserialize_json(data["groups"])

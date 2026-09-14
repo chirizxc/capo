@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: Child) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Child:
     out: Child = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_organizations.types.child_type
 
         out["type"] = capo_organizations.types.child_type.deserialize_aws_json_1_1(

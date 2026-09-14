@@ -40,11 +40,11 @@ def serialize_json(value: CreateWirelessGatewayTaskResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateWirelessGatewayTaskResponse:
     out: CreateWirelessGatewayTaskResponse = {}  # type: ignore[typeddict-item]
-    if "WirelessGatewayTaskDefinitionId" in data:
+    if data.get("WirelessGatewayTaskDefinitionId") is not None:
         out["wireless_gateway_task_definition_id"] = data[
             "WirelessGatewayTaskDefinitionId"
         ]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_iot_wireless.types.wireless_gateway_task_status
 
         out["status"] = (

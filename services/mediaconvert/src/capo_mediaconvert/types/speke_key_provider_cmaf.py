@@ -77,9 +77,9 @@ def serialize_json(value: SpekeKeyProviderCmaf) -> dict:
 
 def deserialize_json(data: dict) -> SpekeKeyProviderCmaf:
     out: SpekeKeyProviderCmaf = {}  # type: ignore[typeddict-item]
-    if "certificateArn" in data:
+    if data.get("certificateArn") is not None:
         out["certificate_arn"] = data["certificateArn"]
-    if "dashSignaledSystemIds" in data:
+    if data.get("dashSignaledSystemIds") is not None:
         import capo_mediaconvert.types.__list_of__string_min36_max36_pattern09a_faf809a_faf409a_faf409a_faf409a_faf12
 
         out["dash_signaled_system_ids"] = (
@@ -87,7 +87,7 @@ def deserialize_json(data: dict) -> SpekeKeyProviderCmaf:
                 data["dashSignaledSystemIds"]
             )
         )
-    if "encryptionContractConfiguration" in data:
+    if data.get("encryptionContractConfiguration") is not None:
         import capo_mediaconvert.types.encryption_contract_configuration
 
         out["encryption_contract_configuration"] = (
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> SpekeKeyProviderCmaf:
                 data["encryptionContractConfiguration"]
             )
         )
-    if "hlsSignaledSystemIds" in data:
+    if data.get("hlsSignaledSystemIds") is not None:
         import capo_mediaconvert.types.__list_of__string_min36_max36_pattern09a_faf809a_faf409a_faf409a_faf409a_faf12
 
         out["hls_signaled_system_ids"] = (
@@ -103,8 +103,8 @@ def deserialize_json(data: dict) -> SpekeKeyProviderCmaf:
                 data["hlsSignaledSystemIds"]
             )
         )
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         out["resource_id"] = data["resourceId"]
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
     return out

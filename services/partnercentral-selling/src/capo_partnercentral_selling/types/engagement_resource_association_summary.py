@@ -56,15 +56,15 @@ def serialize_aws_json_1_0(value: EngagementResourceAssociationSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EngagementResourceAssociationSummary:
     out: EngagementResourceAssociationSummary = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError(
             "EngagementResourceAssociationSummary.catalog required"
         )
-    if "EngagementId" in data:
+    if data.get("EngagementId") is not None:
         out["engagement_id"] = data["EngagementId"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_partnercentral_selling.types.resource_type
 
         out["resource_type"] = (
@@ -72,8 +72,8 @@ def deserialize_aws_json_1_0(data: dict) -> EngagementResourceAssociationSummary
                 data["ResourceType"]
             )
         )
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         out["created_by"] = data["CreatedBy"]
     return out

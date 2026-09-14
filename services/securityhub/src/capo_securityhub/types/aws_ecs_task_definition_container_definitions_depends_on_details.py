@@ -33,8 +33,8 @@ def deserialize_json(
     data: dict,
 ) -> AwsEcsTaskDefinitionContainerDefinitionsDependsOnDetails:
     out: AwsEcsTaskDefinitionContainerDefinitionsDependsOnDetails = {}  # type: ignore[typeddict-item]
-    if "Condition" in data:
+    if data.get("Condition") is not None:
         out["condition"] = data["Condition"]
-    if "ContainerName" in data:
+    if data.get("ContainerName") is not None:
         out["container_name"] = data["ContainerName"]
     return out

@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: StageConditionsExecution) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StageConditionsExecution:
     out: StageConditionsExecution = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_codepipeline.types.condition_execution_status
 
         out["status"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> StageConditionsExecution:
                 data["status"]
             )
         )
-    if "summary" in data:
+    if data.get("summary") is not None:
         out["summary"] = data["summary"]
     return out

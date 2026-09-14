@@ -44,7 +44,7 @@ def serialize_json(value: GeospatialLayerColorField) -> dict:
 
 def deserialize_json(data: dict) -> GeospatialLayerColorField:
     out: GeospatialLayerColorField = {}  # type: ignore[typeddict-item]
-    if "ColorDimensionsFields" in data:
+    if data.get("ColorDimensionsFields") is not None:
         import capo_quicksight.types.geospatial_layer_dimension_field_list
 
         out["color_dimensions_fields"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> GeospatialLayerColorField:
                 data["ColorDimensionsFields"]
             )
         )
-    if "ColorValuesFields" in data:
+    if data.get("ColorValuesFields") is not None:
         import capo_quicksight.types.geospatial_layer_measure_field_list
 
         out["color_values_fields"] = (

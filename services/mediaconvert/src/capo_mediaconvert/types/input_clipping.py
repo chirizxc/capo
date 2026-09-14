@@ -31,8 +31,8 @@ def serialize_json(value: InputClipping) -> dict:
 
 def deserialize_json(data: dict) -> InputClipping:
     out: InputClipping = {}  # type: ignore[typeddict-item]
-    if "endTimecode" in data:
+    if data.get("endTimecode") is not None:
         out["end_timecode"] = data["endTimecode"]
-    if "startTimecode" in data:
+    if data.get("startTimecode") is not None:
         out["start_timecode"] = data["startTimecode"]
     return out

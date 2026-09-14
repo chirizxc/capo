@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> StatusReasonsList:
 
     out: StatusReasonsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityhub.types.status_reason.deserialize_json(item))
     return out

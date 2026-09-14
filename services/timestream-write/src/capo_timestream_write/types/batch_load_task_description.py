@@ -141,11 +141,11 @@ def serialize_aws_json_1_0(value: BatchLoadTaskDescription) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> BatchLoadTaskDescription:
     out: BatchLoadTaskDescription = {}  # type: ignore[typeddict-item]
-    if "TaskId" in data:
+    if data.get("TaskId") is not None:
         out["task_id"] = data["TaskId"]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "DataSourceConfiguration" in data:
+    if data.get("DataSourceConfiguration") is not None:
         import capo_timestream_write.types.data_source_configuration
 
         out["data_source_configuration"] = (
@@ -153,7 +153,7 @@ def deserialize_aws_json_1_0(data: dict) -> BatchLoadTaskDescription:
                 data["DataSourceConfiguration"]
             )
         )
-    if "ProgressReport" in data:
+    if data.get("ProgressReport") is not None:
         import capo_timestream_write.types.batch_load_progress_report
 
         out["progress_report"] = (
@@ -161,7 +161,7 @@ def deserialize_aws_json_1_0(data: dict) -> BatchLoadTaskDescription:
                 data["ProgressReport"]
             )
         )
-    if "ReportConfiguration" in data:
+    if data.get("ReportConfiguration") is not None:
         import capo_timestream_write.types.report_configuration
 
         out["report_configuration"] = (
@@ -169,7 +169,7 @@ def deserialize_aws_json_1_0(data: dict) -> BatchLoadTaskDescription:
                 data["ReportConfiguration"]
             )
         )
-    if "DataModelConfiguration" in data:
+    if data.get("DataModelConfiguration") is not None:
         import capo_timestream_write.types.data_model_configuration
 
         out["data_model_configuration"] = (
@@ -177,11 +177,11 @@ def deserialize_aws_json_1_0(data: dict) -> BatchLoadTaskDescription:
                 data["DataModelConfiguration"]
             )
         )
-    if "TargetDatabaseName" in data:
+    if data.get("TargetDatabaseName") is not None:
         out["target_database_name"] = data["TargetDatabaseName"]
-    if "TargetTableName" in data:
+    if data.get("TargetTableName") is not None:
         out["target_table_name"] = data["TargetTableName"]
-    if "TaskStatus" in data:
+    if data.get("TaskStatus") is not None:
         import capo_timestream_write.types.batch_load_status
 
         out["task_status"] = (
@@ -189,11 +189,11 @@ def deserialize_aws_json_1_0(data: dict) -> BatchLoadTaskDescription:
                 data["TaskStatus"]
             )
         )
-    if "RecordVersion" in data:
+    if data.get("RecordVersion") is not None:
         out["record_version"] = data["RecordVersion"]
     else:
         out["record_version"] = 0
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_timestream_write.types.date
 
         out["creation_time"] = (
@@ -201,7 +201,7 @@ def deserialize_aws_json_1_0(data: dict) -> BatchLoadTaskDescription:
                 data["CreationTime"]
             )
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_timestream_write.types.date
 
         out["last_updated_time"] = (
@@ -209,7 +209,7 @@ def deserialize_aws_json_1_0(data: dict) -> BatchLoadTaskDescription:
                 data["LastUpdatedTime"]
             )
         )
-    if "ResumableUntil" in data:
+    if data.get("ResumableUntil") is not None:
         import capo_timestream_write.types.date
 
         out["resumable_until"] = (

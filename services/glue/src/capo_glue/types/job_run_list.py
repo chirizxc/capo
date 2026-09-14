@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> JobRunList:
 
     out: JobRunList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_glue.types.job_run.deserialize_aws_json_1_1(item))
     return out

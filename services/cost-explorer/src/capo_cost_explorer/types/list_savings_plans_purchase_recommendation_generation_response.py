@@ -42,7 +42,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> ListSavingsPlansPurchaseRecommendationGenerationResponse:
     out: ListSavingsPlansPurchaseRecommendationGenerationResponse = {}  # type: ignore[typeddict-item]
-    if "GenerationSummaryList" in data:
+    if data.get("GenerationSummaryList") is not None:
         import capo_cost_explorer.types.generation_summary_list
 
         out["generation_summary_list"] = (
@@ -50,6 +50,6 @@ def deserialize_aws_json_1_1(
                 data["GenerationSummaryList"]
             )
         )
-    if "NextPageToken" in data:
+    if data.get("NextPageToken") is not None:
         out["next_page_token"] = data["NextPageToken"]
     return out

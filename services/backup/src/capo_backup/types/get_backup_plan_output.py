@@ -96,39 +96,39 @@ def serialize_json(value: GetBackupPlanOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetBackupPlanOutput:
     out: GetBackupPlanOutput = {}  # type: ignore[typeddict-item]
-    if "BackupPlan" in data:
+    if data.get("BackupPlan") is not None:
         import capo_backup.types.backup_plan
 
         out["backup_plan"] = capo_backup.types.backup_plan.deserialize_json(
             data["BackupPlan"]
         )
-    if "BackupPlanId" in data:
+    if data.get("BackupPlanId") is not None:
         out["backup_plan_id"] = data["BackupPlanId"]
-    if "BackupPlanArn" in data:
+    if data.get("BackupPlanArn") is not None:
         out["backup_plan_arn"] = data["BackupPlanArn"]
-    if "VersionId" in data:
+    if data.get("VersionId") is not None:
         out["version_id"] = data["VersionId"]
-    if "CreatorRequestId" in data:
+    if data.get("CreatorRequestId") is not None:
         out["creator_request_id"] = data["CreatorRequestId"]
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_backup.types.timestamp
 
         out["creation_date"] = capo_backup.types.timestamp.deserialize_json(
             data["CreationDate"]
         )
-    if "DeletionDate" in data:
+    if data.get("DeletionDate") is not None:
         import capo_backup.types.timestamp
 
         out["deletion_date"] = capo_backup.types.timestamp.deserialize_json(
             data["DeletionDate"]
         )
-    if "LastExecutionDate" in data:
+    if data.get("LastExecutionDate") is not None:
         import capo_backup.types.timestamp
 
         out["last_execution_date"] = capo_backup.types.timestamp.deserialize_json(
             data["LastExecutionDate"]
         )
-    if "AdvancedBackupSettings" in data:
+    if data.get("AdvancedBackupSettings") is not None:
         import capo_backup.types.advanced_backup_settings
 
         out["advanced_backup_settings"] = (
@@ -136,7 +136,7 @@ def deserialize_json(data: dict) -> GetBackupPlanOutput:
                 data["AdvancedBackupSettings"]
             )
         )
-    if "ScheduledRunsPreview" in data:
+    if data.get("ScheduledRunsPreview") is not None:
         import capo_backup.types.scheduled_runs_preview
 
         out["scheduled_runs_preview"] = (

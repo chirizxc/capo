@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DescribeFeatureTransformationResponse) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeFeatureTransformationResponse:
     out: DescribeFeatureTransformationResponse = {}  # type: ignore[typeddict-item]
-    if "featureTransformation" in data:
+    if data.get("featureTransformation") is not None:
         import capo_personalize.types.feature_transformation
 
         out["feature_transformation"] = (

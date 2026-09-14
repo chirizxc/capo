@@ -38,11 +38,11 @@ def serialize_json(value: CreateUploadUrlResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateUploadUrlResponse:
     out: CreateUploadUrlResponse = {}  # type: ignore[typeddict-item]
-    if "s3Url" in data:
+    if data.get("s3Url") is not None:
         out["s3_url"] = data["s3Url"]
     else:
         raise DeserializationError("CreateUploadUrlResponse.s3_url required")
-    if "requestHeaders" in data:
+    if data.get("requestHeaders") is not None:
         import capo_codeguru_security.types.request_header_map
 
         out["request_headers"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> CreateUploadUrlResponse:
         )
     else:
         raise DeserializationError("CreateUploadUrlResponse.request_headers required")
-    if "codeArtifactId" in data:
+    if data.get("codeArtifactId") is not None:
         out["code_artifact_id"] = data["codeArtifactId"]
     else:
         raise DeserializationError("CreateUploadUrlResponse.code_artifact_id required")

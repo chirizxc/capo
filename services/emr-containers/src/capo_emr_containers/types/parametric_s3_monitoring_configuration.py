@@ -23,6 +23,6 @@ def serialize_json(value: ParametricS3MonitoringConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ParametricS3MonitoringConfiguration:
     out: ParametricS3MonitoringConfiguration = {}  # type: ignore[typeddict-item]
-    if "logUri" in data:
+    if data.get("logUri") is not None:
         out["log_uri"] = data["logUri"]
     return out

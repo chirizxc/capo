@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: GetTableMetadataOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetTableMetadataOutput:
     out: GetTableMetadataOutput = {}  # type: ignore[typeddict-item]
-    if "TableMetadata" in data:
+    if data.get("TableMetadata") is not None:
         import capo_athena.types.table_metadata
 
         out["table_metadata"] = (

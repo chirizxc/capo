@@ -78,7 +78,7 @@ def serialize_json(value: WriteTreatmentResource) -> dict:
 
 def deserialize_json(data: dict) -> WriteTreatmentResource:
     out: WriteTreatmentResource = {}  # type: ignore[typeddict-item]
-    if "CustomDeliveryConfiguration" in data:
+    if data.get("CustomDeliveryConfiguration") is not None:
         import capo_pinpoint.types.custom_delivery_configuration
 
         out["custom_delivery_configuration"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> WriteTreatmentResource:
                 data["CustomDeliveryConfiguration"]
             )
         )
-    if "MessageConfiguration" in data:
+    if data.get("MessageConfiguration") is not None:
         import capo_pinpoint.types.message_configuration
 
         out["message_configuration"] = (
@@ -94,15 +94,15 @@ def deserialize_json(data: dict) -> WriteTreatmentResource:
                 data["MessageConfiguration"]
             )
         )
-    if "Schedule" in data:
+    if data.get("Schedule") is not None:
         import capo_pinpoint.types.schedule
 
         out["schedule"] = capo_pinpoint.types.schedule.deserialize_json(
             data["Schedule"]
         )
-    if "SizePercent" in data:
+    if data.get("SizePercent") is not None:
         out["size_percent"] = data["SizePercent"]
-    if "TemplateConfiguration" in data:
+    if data.get("TemplateConfiguration") is not None:
         import capo_pinpoint.types.template_configuration
 
         out["template_configuration"] = (
@@ -110,8 +110,8 @@ def deserialize_json(data: dict) -> WriteTreatmentResource:
                 data["TemplateConfiguration"]
             )
         )
-    if "TreatmentDescription" in data:
+    if data.get("TreatmentDescription") is not None:
         out["treatment_description"] = data["TreatmentDescription"]
-    if "TreatmentName" in data:
+    if data.get("TreatmentName") is not None:
         out["treatment_name"] = data["TreatmentName"]
     return out

@@ -36,7 +36,7 @@ def serialize_json(value: EncryptionAlgorithmOptions) -> dict:
 
 def deserialize_json(data: dict) -> EncryptionAlgorithmOptions:
     out: EncryptionAlgorithmOptions = {}  # type: ignore[typeddict-item]
-    if "allowedValues" in data:
+    if data.get("allowedValues") is not None:
         import capo_signer.types.encryption_algorithms
 
         out["allowed_values"] = (
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> EncryptionAlgorithmOptions:
         )
     else:
         raise DeserializationError("EncryptionAlgorithmOptions.allowed_values required")
-    if "defaultValue" in data:
+    if data.get("defaultValue") is not None:
         import capo_signer.types.encryption_algorithm
 
         out["default_value"] = capo_signer.types.encryption_algorithm.deserialize_json(

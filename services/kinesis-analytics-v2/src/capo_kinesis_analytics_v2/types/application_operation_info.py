@@ -61,11 +61,11 @@ def serialize_aws_json_1_1(value: ApplicationOperationInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ApplicationOperationInfo:
     out: ApplicationOperationInfo = {}  # type: ignore[typeddict-item]
-    if "Operation" in data:
+    if data.get("Operation") is not None:
         out["operation"] = data["Operation"]
-    if "OperationId" in data:
+    if data.get("OperationId") is not None:
         out["operation_id"] = data["OperationId"]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_kinesis_analytics_v2.types.timestamp
 
         out["start_time"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationOperationInfo:
                 data["StartTime"]
             )
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_kinesis_analytics_v2.types.timestamp
 
         out["end_time"] = (
@@ -81,7 +81,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationOperationInfo:
                 data["EndTime"]
             )
         )
-    if "OperationStatus" in data:
+    if data.get("OperationStatus") is not None:
         import capo_kinesis_analytics_v2.types.operation_status
 
         out["operation_status"] = (

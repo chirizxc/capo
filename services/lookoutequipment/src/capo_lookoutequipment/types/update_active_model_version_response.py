@@ -54,16 +54,16 @@ def serialize_aws_json_1_0(value: UpdateActiveModelVersionResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateActiveModelVersionResponse:
     out: UpdateActiveModelVersionResponse = {}  # type: ignore[typeddict-item]
-    if "ModelName" in data:
+    if data.get("ModelName") is not None:
         out["model_name"] = data["ModelName"]
-    if "ModelArn" in data:
+    if data.get("ModelArn") is not None:
         out["model_arn"] = data["ModelArn"]
-    if "CurrentActiveVersion" in data:
+    if data.get("CurrentActiveVersion") is not None:
         out["current_active_version"] = data["CurrentActiveVersion"]
-    if "PreviousActiveVersion" in data:
+    if data.get("PreviousActiveVersion") is not None:
         out["previous_active_version"] = data["PreviousActiveVersion"]
-    if "CurrentActiveVersionArn" in data:
+    if data.get("CurrentActiveVersionArn") is not None:
         out["current_active_version_arn"] = data["CurrentActiveVersionArn"]
-    if "PreviousActiveVersionArn" in data:
+    if data.get("PreviousActiveVersionArn") is not None:
         out["previous_active_version_arn"] = data["PreviousActiveVersionArn"]
     return out

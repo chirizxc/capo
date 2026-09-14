@@ -55,13 +55,13 @@ def serialize_aws_json_1_0(value: UpdateCollectionRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateCollectionRequest:
     out: UpdateCollectionRequest = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("UpdateCollectionRequest.id required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "vectorOptions" in data:
+    if data.get("vectorOptions") is not None:
         import capo_opensearchserverless.types.vector_options
 
         out["vector_options"] = (
@@ -69,8 +69,8 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateCollectionRequest:
                 data["vectorOptions"]
             )
         )
-    if "deletionProtection" in data:
+    if data.get("deletionProtection") is not None:
         out["deletion_protection"] = data["deletionProtection"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

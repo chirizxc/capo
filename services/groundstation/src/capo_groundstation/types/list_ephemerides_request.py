@@ -71,9 +71,9 @@ def serialize_json(value: ListEphemeridesRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListEphemeridesRequest:
     out: ListEphemeridesRequest = {}  # type: ignore[typeddict-item]
-    if "satelliteId" in data:
+    if data.get("satelliteId") is not None:
         out["satellite_id"] = data["satelliteId"]
-    if "ephemerisType" in data:
+    if data.get("ephemerisType") is not None:
         import capo_groundstation.types.ephemeris_type
 
         out["ephemeris_type"] = (
@@ -81,7 +81,7 @@ def deserialize_json(data: dict) -> ListEphemeridesRequest:
                 data["ephemerisType"]
             )
         )
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_groundstation.types._prelude.timestamp
 
         out["start_time"] = (
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> ListEphemeridesRequest:
         )
     else:
         raise DeserializationError("ListEphemeridesRequest.start_time required")
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_groundstation.types._prelude.timestamp
 
         out["end_time"] = capo_groundstation.types._prelude.timestamp.deserialize_json(
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> ListEphemeridesRequest:
         )
     else:
         raise DeserializationError("ListEphemeridesRequest.end_time required")
-    if "statusList" in data:
+    if data.get("statusList") is not None:
         import capo_groundstation.types.ephemeris_status_list
 
         out["status_list"] = (

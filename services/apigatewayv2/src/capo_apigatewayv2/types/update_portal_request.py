@@ -79,13 +79,13 @@ def serialize_json(value: UpdatePortalRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePortalRequest:
     out: UpdatePortalRequest = {}  # type: ignore[typeddict-item]
-    if "authorization" in data:
+    if data.get("authorization") is not None:
         import capo_apigatewayv2.types.authorization
 
         out["authorization"] = capo_apigatewayv2.types.authorization.deserialize_json(
             data["authorization"]
         )
-    if "endpointConfiguration" in data:
+    if data.get("endpointConfiguration") is not None:
         import capo_apigatewayv2.types.endpoint_configuration_request
 
         out["endpoint_configuration"] = (
@@ -93,7 +93,7 @@ def deserialize_json(data: dict) -> UpdatePortalRequest:
                 data["endpointConfiguration"]
             )
         )
-    if "includedPortalProductArns" in data:
+    if data.get("includedPortalProductArns") is not None:
         import capo_apigatewayv2.types.__list_of__string_min20_max2048
 
         out["included_portal_product_arns"] = (
@@ -101,14 +101,14 @@ def deserialize_json(data: dict) -> UpdatePortalRequest:
                 data["includedPortalProductArns"]
             )
         )
-    if "logoUri" in data:
+    if data.get("logoUri") is not None:
         out["logo_uri"] = data["logoUri"]
-    if "portalContent" in data:
+    if data.get("portalContent") is not None:
         import capo_apigatewayv2.types.portal_content
 
         out["portal_content"] = capo_apigatewayv2.types.portal_content.deserialize_json(
             data["portalContent"]
         )
-    if "rumAppMonitorName" in data:
+    if data.get("rumAppMonitorName") is not None:
         out["rum_app_monitor_name"] = data["rumAppMonitorName"]
     return out

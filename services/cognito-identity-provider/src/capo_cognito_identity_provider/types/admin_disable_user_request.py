@@ -30,11 +30,11 @@ def serialize_aws_json_1_1(value: AdminDisableUserRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AdminDisableUserRequest:
     out: AdminDisableUserRequest = {}  # type: ignore[typeddict-item]
-    if "UserPoolId" in data:
+    if data.get("UserPoolId") is not None:
         out["user_pool_id"] = data["UserPoolId"]
     else:
         raise DeserializationError("AdminDisableUserRequest.user_pool_id required")
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
     else:
         raise DeserializationError("AdminDisableUserRequest.username required")

@@ -54,7 +54,7 @@ def serialize_json(value: IdNamespaceIdMappingWorkflowProperties) -> dict:
 
 def deserialize_json(data: dict) -> IdNamespaceIdMappingWorkflowProperties:
     out: IdNamespaceIdMappingWorkflowProperties = {}  # type: ignore[typeddict-item]
-    if "idMappingType" in data:
+    if data.get("idMappingType") is not None:
         import capo_entityresolution.types.id_mapping_type
 
         out["id_mapping_type"] = (
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> IdNamespaceIdMappingWorkflowProperties:
         raise DeserializationError(
             "IdNamespaceIdMappingWorkflowProperties.id_mapping_type required"
         )
-    if "ruleBasedProperties" in data:
+    if data.get("ruleBasedProperties") is not None:
         import capo_entityresolution.types.namespace_rule_based_properties
 
         out["rule_based_properties"] = (
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> IdNamespaceIdMappingWorkflowProperties:
                 data["ruleBasedProperties"]
             )
         )
-    if "providerProperties" in data:
+    if data.get("providerProperties") is not None:
         import capo_entityresolution.types.namespace_provider_properties
 
         out["provider_properties"] = (

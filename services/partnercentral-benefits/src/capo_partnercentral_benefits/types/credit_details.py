@@ -49,7 +49,7 @@ def serialize_aws_json_1_0(value: CreditDetails) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreditDetails:
     out: CreditDetails = {}  # type: ignore[typeddict-item]
-    if "AllocatedAmount" in data:
+    if data.get("AllocatedAmount") is not None:
         import capo_partnercentral_benefits.types.monetary_value
 
         out["allocated_amount"] = (
@@ -59,7 +59,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreditDetails:
         )
     else:
         raise DeserializationError("CreditDetails.allocated_amount required")
-    if "IssuedAmount" in data:
+    if data.get("IssuedAmount") is not None:
         import capo_partnercentral_benefits.types.monetary_value
 
         out["issued_amount"] = (
@@ -69,7 +69,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreditDetails:
         )
     else:
         raise DeserializationError("CreditDetails.issued_amount required")
-    if "Codes" in data:
+    if data.get("Codes") is not None:
         import capo_partnercentral_benefits.types.credit_codes
 
         out["codes"] = (

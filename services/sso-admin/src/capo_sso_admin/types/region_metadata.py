@@ -45,21 +45,21 @@ def serialize_aws_json_1_1(value: RegionMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RegionMetadata:
     out: RegionMetadata = {}  # type: ignore[typeddict-item]
-    if "RegionName" in data:
+    if data.get("RegionName") is not None:
         out["region_name"] = data["RegionName"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sso_admin.types.region_status
 
         out["status"] = capo_sso_admin.types.region_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "AddedDate" in data:
+    if data.get("AddedDate") is not None:
         import capo_sso_admin.types.date
 
         out["added_date"] = capo_sso_admin.types.date.deserialize_aws_json_1_1(
             data["AddedDate"]
         )
-    if "IsPrimaryRegion" in data:
+    if data.get("IsPrimaryRegion") is not None:
         out["is_primary_region"] = data["IsPrimaryRegion"]
     else:
         out["is_primary_region"] = False

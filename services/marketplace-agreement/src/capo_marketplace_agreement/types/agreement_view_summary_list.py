@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> AgreementViewSummaryList:
 
     out: AgreementViewSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_marketplace_agreement.types.agreement_view_summary.deserialize_aws_json_1_0(
                 item

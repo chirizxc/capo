@@ -217,15 +217,15 @@ def serialize_aws_json_1_1(value: SMBFileShareInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SMBFileShareInfo:
     out: SMBFileShareInfo = {}  # type: ignore[typeddict-item]
-    if "FileShareARN" in data:
+    if data.get("FileShareARN") is not None:
         out["file_share_arn"] = data["FileShareARN"]
-    if "FileShareId" in data:
+    if data.get("FileShareId") is not None:
         out["file_share_id"] = data["FileShareId"]
-    if "FileShareStatus" in data:
+    if data.get("FileShareStatus") is not None:
         out["file_share_status"] = data["FileShareStatus"]
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
-    if "EncryptionType" in data:
+    if data.get("EncryptionType") is not None:
         import capo_storage_gateway.types.encryption_type
 
         out["encryption_type"] = (
@@ -233,21 +233,21 @@ def deserialize_aws_json_1_1(data: dict) -> SMBFileShareInfo:
                 data["EncryptionType"]
             )
         )
-    if "KMSEncrypted" in data:
+    if data.get("KMSEncrypted") is not None:
         out["kms_encrypted"] = data["KMSEncrypted"]
     else:
         out["kms_encrypted"] = False
-    if "KMSKey" in data:
+    if data.get("KMSKey") is not None:
         out["kms_key"] = data["KMSKey"]
-    if "Path" in data:
+    if data.get("Path") is not None:
         out["path"] = data["Path"]
-    if "Role" in data:
+    if data.get("Role") is not None:
         out["role"] = data["Role"]
-    if "LocationARN" in data:
+    if data.get("LocationARN") is not None:
         out["location_arn"] = data["LocationARN"]
-    if "DefaultStorageClass" in data:
+    if data.get("DefaultStorageClass") is not None:
         out["default_storage_class"] = data["DefaultStorageClass"]
-    if "ObjectACL" in data:
+    if data.get("ObjectACL") is not None:
         import capo_storage_gateway.types.object_acl
 
         out["object_acl"] = (
@@ -255,17 +255,17 @@ def deserialize_aws_json_1_1(data: dict) -> SMBFileShareInfo:
                 data["ObjectACL"]
             )
         )
-    if "ReadOnly" in data:
+    if data.get("ReadOnly") is not None:
         out["read_only"] = data["ReadOnly"]
-    if "GuessMIMETypeEnabled" in data:
+    if data.get("GuessMIMETypeEnabled") is not None:
         out["guess_mime_type_enabled"] = data["GuessMIMETypeEnabled"]
-    if "RequesterPays" in data:
+    if data.get("RequesterPays") is not None:
         out["requester_pays"] = data["RequesterPays"]
-    if "SMBACLEnabled" in data:
+    if data.get("SMBACLEnabled") is not None:
         out["smbacl_enabled"] = data["SMBACLEnabled"]
-    if "AccessBasedEnumeration" in data:
+    if data.get("AccessBasedEnumeration") is not None:
         out["access_based_enumeration"] = data["AccessBasedEnumeration"]
-    if "AdminUserList" in data:
+    if data.get("AdminUserList") is not None:
         import capo_storage_gateway.types.user_list
 
         out["admin_user_list"] = (
@@ -273,7 +273,7 @@ def deserialize_aws_json_1_1(data: dict) -> SMBFileShareInfo:
                 data["AdminUserList"]
             )
         )
-    if "ValidUserList" in data:
+    if data.get("ValidUserList") is not None:
         import capo_storage_gateway.types.user_list
 
         out["valid_user_list"] = (
@@ -281,7 +281,7 @@ def deserialize_aws_json_1_1(data: dict) -> SMBFileShareInfo:
                 data["ValidUserList"]
             )
         )
-    if "InvalidUserList" in data:
+    if data.get("InvalidUserList") is not None:
         import capo_storage_gateway.types.user_list
 
         out["invalid_user_list"] = (
@@ -289,11 +289,11 @@ def deserialize_aws_json_1_1(data: dict) -> SMBFileShareInfo:
                 data["InvalidUserList"]
             )
         )
-    if "AuditDestinationARN" in data:
+    if data.get("AuditDestinationARN") is not None:
         out["audit_destination_arn"] = data["AuditDestinationARN"]
-    if "Authentication" in data:
+    if data.get("Authentication") is not None:
         out["authentication"] = data["Authentication"]
-    if "CaseSensitivity" in data:
+    if data.get("CaseSensitivity") is not None:
         import capo_storage_gateway.types.case_sensitivity
 
         out["case_sensitivity"] = (
@@ -301,15 +301,15 @@ def deserialize_aws_json_1_1(data: dict) -> SMBFileShareInfo:
                 data["CaseSensitivity"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_storage_gateway.types.tags
 
         out["tags"] = capo_storage_gateway.types.tags.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "FileShareName" in data:
+    if data.get("FileShareName") is not None:
         out["file_share_name"] = data["FileShareName"]
-    if "CacheAttributes" in data:
+    if data.get("CacheAttributes") is not None:
         import capo_storage_gateway.types.cache_attributes
 
         out["cache_attributes"] = (
@@ -317,12 +317,12 @@ def deserialize_aws_json_1_1(data: dict) -> SMBFileShareInfo:
                 data["CacheAttributes"]
             )
         )
-    if "NotificationPolicy" in data:
+    if data.get("NotificationPolicy") is not None:
         out["notification_policy"] = data["NotificationPolicy"]
-    if "VPCEndpointDNSName" in data:
+    if data.get("VPCEndpointDNSName") is not None:
         out["vpc_endpoint_dns_name"] = data["VPCEndpointDNSName"]
-    if "BucketRegion" in data:
+    if data.get("BucketRegion") is not None:
         out["bucket_region"] = data["BucketRegion"]
-    if "OplocksEnabled" in data:
+    if data.get("OplocksEnabled") is not None:
         out["oplocks_enabled"] = data["OplocksEnabled"]
     return out

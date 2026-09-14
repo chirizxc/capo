@@ -29,6 +29,9 @@ def deserialize_aws_json_1_1(data: dict) -> StatusDetailsMap:
     out: StatusDetailsMap = {}
     for key, value in data.items():
         import capo_sagemaker.types.scheduler_config_component
+
+        if value is None:
+            continue
         import capo_sagemaker.types.scheduler_resource_status
 
         out[

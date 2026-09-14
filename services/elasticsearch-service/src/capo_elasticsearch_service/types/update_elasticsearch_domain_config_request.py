@@ -207,7 +207,7 @@ def serialize_json(value: UpdateElasticsearchDomainConfigRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateElasticsearchDomainConfigRequest:
     out: UpdateElasticsearchDomainConfigRequest = {}  # type: ignore[typeddict-item]
-    if "ElasticsearchClusterConfig" in data:
+    if data.get("ElasticsearchClusterConfig") is not None:
         import capo_elasticsearch_service.types.elasticsearch_cluster_config
 
         out["elasticsearch_cluster_config"] = (
@@ -215,7 +215,7 @@ def deserialize_json(data: dict) -> UpdateElasticsearchDomainConfigRequest:
                 data["ElasticsearchClusterConfig"]
             )
         )
-    if "EBSOptions" in data:
+    if data.get("EBSOptions") is not None:
         import capo_elasticsearch_service.types.ebs_options
 
         out["ebs_options"] = (
@@ -223,7 +223,7 @@ def deserialize_json(data: dict) -> UpdateElasticsearchDomainConfigRequest:
                 data["EBSOptions"]
             )
         )
-    if "SnapshotOptions" in data:
+    if data.get("SnapshotOptions") is not None:
         import capo_elasticsearch_service.types.snapshot_options
 
         out["snapshot_options"] = (
@@ -231,7 +231,7 @@ def deserialize_json(data: dict) -> UpdateElasticsearchDomainConfigRequest:
                 data["SnapshotOptions"]
             )
         )
-    if "VPCOptions" in data:
+    if data.get("VPCOptions") is not None:
         import capo_elasticsearch_service.types.vpc_options
 
         out["vpc_options"] = (
@@ -239,7 +239,7 @@ def deserialize_json(data: dict) -> UpdateElasticsearchDomainConfigRequest:
                 data["VPCOptions"]
             )
         )
-    if "CognitoOptions" in data:
+    if data.get("CognitoOptions") is not None:
         import capo_elasticsearch_service.types.cognito_options
 
         out["cognito_options"] = (
@@ -247,7 +247,7 @@ def deserialize_json(data: dict) -> UpdateElasticsearchDomainConfigRequest:
                 data["CognitoOptions"]
             )
         )
-    if "AdvancedOptions" in data:
+    if data.get("AdvancedOptions") is not None:
         import capo_elasticsearch_service.types.advanced_options
 
         out["advanced_options"] = (
@@ -255,9 +255,9 @@ def deserialize_json(data: dict) -> UpdateElasticsearchDomainConfigRequest:
                 data["AdvancedOptions"]
             )
         )
-    if "AccessPolicies" in data:
+    if data.get("AccessPolicies") is not None:
         out["access_policies"] = data["AccessPolicies"]
-    if "LogPublishingOptions" in data:
+    if data.get("LogPublishingOptions") is not None:
         import capo_elasticsearch_service.types.log_publishing_options
 
         out["log_publishing_options"] = (
@@ -265,7 +265,7 @@ def deserialize_json(data: dict) -> UpdateElasticsearchDomainConfigRequest:
                 data["LogPublishingOptions"]
             )
         )
-    if "DomainEndpointOptions" in data:
+    if data.get("DomainEndpointOptions") is not None:
         import capo_elasticsearch_service.types.domain_endpoint_options
 
         out["domain_endpoint_options"] = (
@@ -273,7 +273,7 @@ def deserialize_json(data: dict) -> UpdateElasticsearchDomainConfigRequest:
                 data["DomainEndpointOptions"]
             )
         )
-    if "AdvancedSecurityOptions" in data:
+    if data.get("AdvancedSecurityOptions") is not None:
         import capo_elasticsearch_service.types.advanced_security_options_input
 
         out["advanced_security_options"] = (
@@ -281,7 +281,7 @@ def deserialize_json(data: dict) -> UpdateElasticsearchDomainConfigRequest:
                 data["AdvancedSecurityOptions"]
             )
         )
-    if "NodeToNodeEncryptionOptions" in data:
+    if data.get("NodeToNodeEncryptionOptions") is not None:
         import capo_elasticsearch_service.types.node_to_node_encryption_options
 
         out["node_to_node_encryption_options"] = (
@@ -289,7 +289,7 @@ def deserialize_json(data: dict) -> UpdateElasticsearchDomainConfigRequest:
                 data["NodeToNodeEncryptionOptions"]
             )
         )
-    if "EncryptionAtRestOptions" in data:
+    if data.get("EncryptionAtRestOptions") is not None:
         import capo_elasticsearch_service.types.encryption_at_rest_options
 
         out["encryption_at_rest_options"] = (
@@ -297,7 +297,7 @@ def deserialize_json(data: dict) -> UpdateElasticsearchDomainConfigRequest:
                 data["EncryptionAtRestOptions"]
             )
         )
-    if "AutoTuneOptions" in data:
+    if data.get("AutoTuneOptions") is not None:
         import capo_elasticsearch_service.types.auto_tune_options
 
         out["auto_tune_options"] = (
@@ -305,9 +305,9 @@ def deserialize_json(data: dict) -> UpdateElasticsearchDomainConfigRequest:
                 data["AutoTuneOptions"]
             )
         )
-    if "DryRun" in data:
+    if data.get("DryRun") is not None:
         out["dry_run"] = data["DryRun"]
-    if "DeploymentStrategyOptions" in data:
+    if data.get("DeploymentStrategyOptions") is not None:
         import capo_elasticsearch_service.types.deployment_strategy_options
 
         out["deployment_strategy_options"] = (
@@ -315,7 +315,7 @@ def deserialize_json(data: dict) -> UpdateElasticsearchDomainConfigRequest:
                 data["DeploymentStrategyOptions"]
             )
         )
-    if "AutomatedSnapshotPauseOptions" in data:
+    if data.get("AutomatedSnapshotPauseOptions") is not None:
         import capo_elasticsearch_service.types.automated_snapshot_pause_request_options
 
         out["automated_snapshot_pause_options"] = (

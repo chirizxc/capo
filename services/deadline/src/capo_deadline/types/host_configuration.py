@@ -28,11 +28,11 @@ def serialize_json(value: HostConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> HostConfiguration:
     out: HostConfiguration = {}  # type: ignore[typeddict-item]
-    if "scriptBody" in data:
+    if data.get("scriptBody") is not None:
         out["script_body"] = data["scriptBody"]
     else:
         raise DeserializationError("HostConfiguration.script_body required")
-    if "scriptTimeoutSeconds" in data:
+    if data.get("scriptTimeoutSeconds") is not None:
         out["script_timeout_seconds"] = data["scriptTimeoutSeconds"]
     else:
         out["script_timeout_seconds"] = 300

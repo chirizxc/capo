@@ -57,17 +57,17 @@ def serialize_aws_json_1_0(value: RepositoryLinkInfo) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RepositoryLinkInfo:
     out: RepositoryLinkInfo = {}  # type: ignore[typeddict-item]
-    if "ConnectionArn" in data:
+    if data.get("ConnectionArn") is not None:
         out["connection_arn"] = data["ConnectionArn"]
     else:
         raise DeserializationError("RepositoryLinkInfo.connection_arn required")
-    if "EncryptionKeyArn" in data:
+    if data.get("EncryptionKeyArn") is not None:
         out["encryption_key_arn"] = data["EncryptionKeyArn"]
-    if "OwnerId" in data:
+    if data.get("OwnerId") is not None:
         out["owner_id"] = data["OwnerId"]
     else:
         raise DeserializationError("RepositoryLinkInfo.owner_id required")
-    if "ProviderType" in data:
+    if data.get("ProviderType") is not None:
         import capo_codeconnections.types.provider_type
 
         out["provider_type"] = (
@@ -77,15 +77,15 @@ def deserialize_aws_json_1_0(data: dict) -> RepositoryLinkInfo:
         )
     else:
         raise DeserializationError("RepositoryLinkInfo.provider_type required")
-    if "RepositoryLinkArn" in data:
+    if data.get("RepositoryLinkArn") is not None:
         out["repository_link_arn"] = data["RepositoryLinkArn"]
     else:
         raise DeserializationError("RepositoryLinkInfo.repository_link_arn required")
-    if "RepositoryLinkId" in data:
+    if data.get("RepositoryLinkId") is not None:
         out["repository_link_id"] = data["RepositoryLinkId"]
     else:
         raise DeserializationError("RepositoryLinkInfo.repository_link_id required")
-    if "RepositoryName" in data:
+    if data.get("RepositoryName") is not None:
         out["repository_name"] = data["RepositoryName"]
     else:
         raise DeserializationError("RepositoryLinkInfo.repository_name required")

@@ -44,18 +44,18 @@ def serialize_json(value: CSVOutput) -> dict:
 
 def deserialize_json(data: dict) -> CSVOutput:
     out: CSVOutput = {}  # type: ignore[typeddict-item]
-    if "QuoteFields" in data:
+    if data.get("QuoteFields") is not None:
         import capo_glacier.types.quote_fields
 
         out["quote_fields"] = capo_glacier.types.quote_fields.deserialize_json(
             data["QuoteFields"]
         )
-    if "QuoteEscapeCharacter" in data:
+    if data.get("QuoteEscapeCharacter") is not None:
         out["quote_escape_character"] = data["QuoteEscapeCharacter"]
-    if "RecordDelimiter" in data:
+    if data.get("RecordDelimiter") is not None:
         out["record_delimiter"] = data["RecordDelimiter"]
-    if "FieldDelimiter" in data:
+    if data.get("FieldDelimiter") is not None:
         out["field_delimiter"] = data["FieldDelimiter"]
-    if "QuoteCharacter" in data:
+    if data.get("QuoteCharacter") is not None:
         out["quote_character"] = data["QuoteCharacter"]
     return out

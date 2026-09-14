@@ -40,15 +40,15 @@ def serialize_aws_json_1_0(value: AssignOpportunityRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AssignOpportunityRequest:
     out: AssignOpportunityRequest = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("AssignOpportunityRequest.catalog required")
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
     else:
         raise DeserializationError("AssignOpportunityRequest.identifier required")
-    if "Assignee" in data:
+    if data.get("Assignee") is not None:
         import capo_partnercentral_selling.types.assignee_contact
 
         out["assignee"] = (

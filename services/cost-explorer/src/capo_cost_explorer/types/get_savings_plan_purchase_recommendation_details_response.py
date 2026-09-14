@@ -42,9 +42,9 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> GetSavingsPlanPurchaseRecommendationDetailsResponse:
     out: GetSavingsPlanPurchaseRecommendationDetailsResponse = {}  # type: ignore[typeddict-item]
-    if "RecommendationDetailId" in data:
+    if data.get("RecommendationDetailId") is not None:
         out["recommendation_detail_id"] = data["RecommendationDetailId"]
-    if "RecommendationDetailData" in data:
+    if data.get("RecommendationDetailData") is not None:
         import capo_cost_explorer.types.recommendation_detail_data
 
         out["recommendation_detail_data"] = (

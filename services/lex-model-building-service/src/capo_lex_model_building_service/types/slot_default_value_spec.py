@@ -30,7 +30,7 @@ def serialize_json(value: SlotDefaultValueSpec) -> dict:
 
 def deserialize_json(data: dict) -> SlotDefaultValueSpec:
     out: SlotDefaultValueSpec = {}  # type: ignore[typeddict-item]
-    if "defaultValueList" in data:
+    if data.get("defaultValueList") is not None:
         import capo_lex_model_building_service.types.slot_default_value_list
 
         out["default_value_list"] = (

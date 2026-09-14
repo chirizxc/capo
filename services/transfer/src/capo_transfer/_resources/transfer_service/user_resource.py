@@ -108,7 +108,11 @@ class UserResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.create_user_request.CreateUserRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transfer.types.create_user_request.CreateUserRequest = {
+            "role": role,
+            "server_id": server_id,
+            "user_name": user_name,
+        }
         if home_directory is not None:
             input_["home_directory"] = home_directory
         if home_directory_type is not None:
@@ -119,19 +123,17 @@ class UserResource:
             input_["policy"] = policy
         if posix_profile is not None:
             input_["posix_profile"] = posix_profile
-        input_["role"] = role
-        input_["server_id"] = server_id
         if ssh_public_key_body is not None:
             input_["ssh_public_key_body"] = ssh_public_key_body
         if tags is not None:
             input_["tags"] = tags
-        input_["user_name"] = user_name
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -170,15 +172,17 @@ class UserResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.describe_user_request.DescribeUserRequest = {}  # type: ignore[typeddict-item]
-        input_["server_id"] = server_id
-        input_["user_name"] = user_name
+        input_: capo_transfer.types.describe_user_request.DescribeUserRequest = {
+            "server_id": server_id,
+            "user_name": user_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -238,7 +242,10 @@ class UserResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.update_user_request.UpdateUserRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transfer.types.update_user_request.UpdateUserRequest = {
+            "server_id": server_id,
+            "user_name": user_name,
+        }
         if home_directory is not None:
             input_["home_directory"] = home_directory
         if home_directory_type is not None:
@@ -251,14 +258,13 @@ class UserResource:
             input_["posix_profile"] = posix_profile
         if role is not None:
             input_["role"] = role
-        input_["server_id"] = server_id
-        input_["user_name"] = user_name
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -295,15 +301,17 @@ class UserResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.delete_user_request.DeleteUserRequest = {}  # type: ignore[typeddict-item]
-        input_["server_id"] = server_id
-        input_["user_name"] = user_name
+        input_: capo_transfer.types.delete_user_request.DeleteUserRequest = {
+            "server_id": server_id,
+            "user_name": user_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -345,18 +353,20 @@ class UserResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.list_users_request.ListUsersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transfer.types.list_users_request.ListUsersRequest = {
+            "server_id": server_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["server_id"] = server_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -428,7 +438,11 @@ class AsyncUserResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.create_user_request.CreateUserRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transfer.types.create_user_request.CreateUserRequest = {
+            "role": role,
+            "server_id": server_id,
+            "user_name": user_name,
+        }
         if home_directory is not None:
             input_["home_directory"] = home_directory
         if home_directory_type is not None:
@@ -439,19 +453,17 @@ class AsyncUserResource:
             input_["policy"] = policy
         if posix_profile is not None:
             input_["posix_profile"] = posix_profile
-        input_["role"] = role
-        input_["server_id"] = server_id
         if ssh_public_key_body is not None:
             input_["ssh_public_key_body"] = ssh_public_key_body
         if tags is not None:
             input_["tags"] = tags
-        input_["user_name"] = user_name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -491,15 +503,17 @@ class AsyncUserResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.describe_user_request.DescribeUserRequest = {}  # type: ignore[typeddict-item]
-        input_["server_id"] = server_id
-        input_["user_name"] = user_name
+        input_: capo_transfer.types.describe_user_request.DescribeUserRequest = {
+            "server_id": server_id,
+            "user_name": user_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -560,7 +574,10 @@ class AsyncUserResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.update_user_request.UpdateUserRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transfer.types.update_user_request.UpdateUserRequest = {
+            "server_id": server_id,
+            "user_name": user_name,
+        }
         if home_directory is not None:
             input_["home_directory"] = home_directory
         if home_directory_type is not None:
@@ -573,14 +590,13 @@ class AsyncUserResource:
             input_["posix_profile"] = posix_profile
         if role is not None:
             input_["role"] = role
-        input_["server_id"] = server_id
-        input_["user_name"] = user_name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -618,15 +634,17 @@ class AsyncUserResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.delete_user_request.DeleteUserRequest = {}  # type: ignore[typeddict-item]
-        input_["server_id"] = server_id
-        input_["user_name"] = user_name
+        input_: capo_transfer.types.delete_user_request.DeleteUserRequest = {
+            "server_id": server_id,
+            "user_name": user_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -669,16 +687,18 @@ class AsyncUserResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.list_users_request.ListUsersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transfer.types.list_users_request.ListUsersRequest = {
+            "server_id": server_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["server_id"] = server_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

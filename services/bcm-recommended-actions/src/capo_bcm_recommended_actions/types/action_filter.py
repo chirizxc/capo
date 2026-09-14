@@ -48,7 +48,7 @@ def serialize_aws_json_1_0(value: ActionFilter) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ActionFilter:
     out: ActionFilter = {}  # type: ignore[typeddict-item]
-    if "key" in data:
+    if data.get("key") is not None:
         import capo_bcm_recommended_actions.types.filter_name
 
         out["key"] = (
@@ -58,7 +58,7 @@ def deserialize_aws_json_1_0(data: dict) -> ActionFilter:
         )
     else:
         raise DeserializationError("ActionFilter.key required")
-    if "matchOption" in data:
+    if data.get("matchOption") is not None:
         import capo_bcm_recommended_actions.types.match_option
 
         out["match_option"] = (
@@ -68,7 +68,7 @@ def deserialize_aws_json_1_0(data: dict) -> ActionFilter:
         )
     else:
         raise DeserializationError("ActionFilter.match_option required")
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_bcm_recommended_actions.types.filter_values
 
         out["values"] = (

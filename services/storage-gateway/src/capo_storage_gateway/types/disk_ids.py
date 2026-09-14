@@ -14,4 +14,4 @@ def serialize_aws_json_1_1(value: DiskIds) -> list:
 
 
 def deserialize_aws_json_1_1(data: list) -> DiskIds:
-    return list(data)
+    return [item for item in data if item is not None]

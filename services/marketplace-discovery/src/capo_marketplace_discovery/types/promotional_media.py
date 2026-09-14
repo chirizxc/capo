@@ -47,7 +47,7 @@ def serialize_json(value: PromotionalMedia) -> dict:
 
 
 def deserialize_json(data: dict) -> PromotionalMedia:
-    if "embeddedImage" in data:
+    if data.get("embeddedImage") is not None:
         import capo_marketplace_discovery.types.promotional_embedded_image
 
         return {
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> PromotionalMedia:
                 data["embeddedImage"]
             )
         }
-    elif "embeddedVideo" in data:
+    elif data.get("embeddedVideo") is not None:
         import capo_marketplace_discovery.types.promotional_embedded_video
 
         return {

@@ -53,7 +53,7 @@ def serialize_json(value: SearchResourcesSimpleCriterion) -> dict:
 
 def deserialize_json(data: dict) -> SearchResourcesSimpleCriterion:
     out: SearchResourcesSimpleCriterion = {}  # type: ignore[typeddict-item]
-    if "comparator" in data:
+    if data.get("comparator") is not None:
         import capo_macie2.types.search_resources_comparator
 
         out["comparator"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> SearchResourcesSimpleCriterion:
                 data["comparator"]
             )
         )
-    if "key" in data:
+    if data.get("key") is not None:
         import capo_macie2.types.search_resources_simple_criterion_key
 
         out["key"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> SearchResourcesSimpleCriterion:
                 data["key"]
             )
         )
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_macie2.types.__list_of__string
 
         out["values"] = capo_macie2.types.__list_of__string.deserialize_json(

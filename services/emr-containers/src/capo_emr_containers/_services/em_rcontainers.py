@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.emrcontainers#AwsChicagoWebService``."""
 
+import uuid
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -240,15 +241,17 @@ class EMRcontainersClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr_containers.types.cancel_job_run_request.CancelJobRunRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["virtual_cluster_id"] = virtual_cluster_id
+        input_: capo_emr_containers.types.cancel_job_run_request.CancelJobRunRequest = {
+            "id": id,
+            "virtual_cluster_id": virtual_cluster_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_job_template(
@@ -292,10 +295,11 @@ class EMRcontainersClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr_containers.types.create_job_template_request.CreateJobTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["client_token"] = client_token
-        input_["job_template_data"] = job_template_data
+        input_: capo_emr_containers.types.create_job_template_request.CreateJobTemplateRequest = {
+            "name": name,
+            "client_token": client_token,
+            "job_template_data": job_template_data,
+        }
         if tags is not None:
             input_["tags"] = tags
         if kms_key_arn is not None:
@@ -306,6 +310,7 @@ class EMRcontainersClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_managed_endpoint(
@@ -361,17 +366,18 @@ class EMRcontainersClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr_containers.types.create_managed_endpoint_request.CreateManagedEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["virtual_cluster_id"] = virtual_cluster_id
-        input_["type"] = type
-        input_["release_label"] = release_label
-        input_["execution_role_arn"] = execution_role_arn
+        input_: capo_emr_containers.types.create_managed_endpoint_request.CreateManagedEndpointRequest = {
+            "name": name,
+            "virtual_cluster_id": virtual_cluster_id,
+            "type": type,
+            "release_label": release_label,
+            "execution_role_arn": execution_role_arn,
+            "client_token": client_token,
+        }
         if certificate_arn is not None:
             input_["certificate_arn"] = certificate_arn
         if configuration_overrides is not None:
             input_["configuration_overrides"] = configuration_overrides
-        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -380,6 +386,7 @@ class EMRcontainersClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_security_configuration(
@@ -424,12 +431,13 @@ class EMRcontainersClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr_containers.types.create_security_configuration_request.CreateSecurityConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["client_token"] = client_token
-        input_["name"] = name
+        input_: capo_emr_containers.types.create_security_configuration_request.CreateSecurityConfigurationRequest = {
+            "client_token": client_token,
+            "name": name,
+            "security_configuration_data": security_configuration_data,
+        }
         if container_provider is not None:
             input_["container_provider"] = container_provider
-        input_["security_configuration_data"] = security_configuration_data
         if tags is not None:
             input_["tags"] = tags
 
@@ -438,6 +446,7 @@ class EMRcontainersClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_virtual_cluster(
@@ -484,10 +493,11 @@ class EMRcontainersClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr_containers.types.create_virtual_cluster_request.CreateVirtualClusterRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["container_provider"] = container_provider
-        input_["client_token"] = client_token
+        input_: capo_emr_containers.types.create_virtual_cluster_request.CreateVirtualClusterRequest = {
+            "name": name,
+            "container_provider": container_provider,
+            "client_token": client_token,
+        }
         if tags is not None:
             input_["tags"] = tags
         if security_configuration_id is not None:
@@ -498,6 +508,7 @@ class EMRcontainersClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_job_template(
@@ -532,14 +543,16 @@ class EMRcontainersClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr_containers.types.delete_job_template_request.DeleteJobTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_emr_containers.types.delete_job_template_request.DeleteJobTemplateRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_managed_endpoint(
@@ -576,15 +589,17 @@ class EMRcontainersClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr_containers.types.delete_managed_endpoint_request.DeleteManagedEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["virtual_cluster_id"] = virtual_cluster_id
+        input_: capo_emr_containers.types.delete_managed_endpoint_request.DeleteManagedEndpointRequest = {
+            "id": id,
+            "virtual_cluster_id": virtual_cluster_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_virtual_cluster(
@@ -619,14 +634,16 @@ class EMRcontainersClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr_containers.types.delete_virtual_cluster_request.DeleteVirtualClusterRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_emr_containers.types.delete_virtual_cluster_request.DeleteVirtualClusterRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_job_run(
@@ -664,15 +681,17 @@ class EMRcontainersClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr_containers.types.describe_job_run_request.DescribeJobRunRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["virtual_cluster_id"] = virtual_cluster_id
+        input_: capo_emr_containers.types.describe_job_run_request.DescribeJobRunRequest = {
+            "id": id,
+            "virtual_cluster_id": virtual_cluster_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_job_template(
@@ -708,14 +727,16 @@ class EMRcontainersClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr_containers.types.describe_job_template_request.DescribeJobTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_emr_containers.types.describe_job_template_request.DescribeJobTemplateRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_managed_endpoint(
@@ -753,15 +774,17 @@ class EMRcontainersClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr_containers.types.describe_managed_endpoint_request.DescribeManagedEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["virtual_cluster_id"] = virtual_cluster_id
+        input_: capo_emr_containers.types.describe_managed_endpoint_request.DescribeManagedEndpointRequest = {
+            "id": id,
+            "virtual_cluster_id": virtual_cluster_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_security_configuration(
@@ -797,14 +820,16 @@ class EMRcontainersClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr_containers.types.describe_security_configuration_request.DescribeSecurityConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_emr_containers.types.describe_security_configuration_request.DescribeSecurityConfigurationRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_virtual_cluster(
@@ -840,14 +865,16 @@ class EMRcontainersClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr_containers.types.describe_virtual_cluster_request.DescribeVirtualClusterRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_emr_containers.types.describe_virtual_cluster_request.DescribeVirtualClusterRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_managed_endpoint_session_credentials(
@@ -902,23 +929,26 @@ class EMRcontainersClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr_containers.types.get_managed_endpoint_session_credentials_request.GetManagedEndpointSessionCredentialsRequest = {}  # type: ignore[typeddict-item]
-        input_["endpoint_identifier"] = endpoint_identifier
-        input_["virtual_cluster_identifier"] = virtual_cluster_identifier
-        input_["execution_role_arn"] = execution_role_arn
-        input_["credential_type"] = credential_type
+        input_: capo_emr_containers.types.get_managed_endpoint_session_credentials_request.GetManagedEndpointSessionCredentialsRequest = {
+            "endpoint_identifier": endpoint_identifier,
+            "virtual_cluster_identifier": virtual_cluster_identifier,
+            "execution_role_arn": execution_role_arn,
+            "credential_type": credential_type,
+        }
         if duration_in_seconds is not None:
             input_["duration_in_seconds"] = duration_in_seconds
         if log_context is not None:
             input_["log_context"] = log_context
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_job_runs(
@@ -971,8 +1001,9 @@ class EMRcontainersClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr_containers.types.list_job_runs_request.ListJobRunsRequest = {}  # type: ignore[typeddict-item]
-        input_["virtual_cluster_id"] = virtual_cluster_id
+        input_: capo_emr_containers.types.list_job_runs_request.ListJobRunsRequest = {
+            "virtual_cluster_id": virtual_cluster_id
+        }
         if created_before is not None:
             input_["created_before"] = created_before
         if created_after is not None:
@@ -991,6 +1022,7 @@ class EMRcontainersClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_job_runs(
@@ -1072,7 +1104,7 @@ class EMRcontainersClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr_containers.types.list_job_templates_request.ListJobTemplatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_emr_containers.types.list_job_templates_request.ListJobTemplatesRequest = {}
         if created_after is not None:
             input_["created_after"] = created_after
         if created_before is not None:
@@ -1087,6 +1119,7 @@ class EMRcontainersClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_job_templates(
@@ -1166,8 +1199,9 @@ class EMRcontainersClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr_containers.types.list_managed_endpoints_request.ListManagedEndpointsRequest = {}  # type: ignore[typeddict-item]
-        input_["virtual_cluster_id"] = virtual_cluster_id
+        input_: capo_emr_containers.types.list_managed_endpoints_request.ListManagedEndpointsRequest = {
+            "virtual_cluster_id": virtual_cluster_id
+        }
         if created_before is not None:
             input_["created_before"] = created_before
         if created_after is not None:
@@ -1186,6 +1220,7 @@ class EMRcontainersClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_managed_endpoints(
@@ -1265,7 +1300,7 @@ class EMRcontainersClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr_containers.types.list_security_configurations_request.ListSecurityConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_emr_containers.types.list_security_configurations_request.ListSecurityConfigurationsRequest = {}
         if created_after is not None:
             input_["created_after"] = created_after
         if created_before is not None:
@@ -1280,6 +1315,7 @@ class EMRcontainersClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_security_configurations(
@@ -1342,14 +1378,16 @@ class EMRcontainersClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr_containers.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_emr_containers.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_virtual_clusters(
@@ -1408,7 +1446,7 @@ class EMRcontainersClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr_containers.types.list_virtual_clusters_request.ListVirtualClustersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_emr_containers.types.list_virtual_clusters_request.ListVirtualClustersRequest = {}
         if container_provider_id is not None:
             input_["container_provider_id"] = container_provider_id
         if container_provider_type is not None:
@@ -1431,6 +1469,7 @@ class EMRcontainersClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_virtual_clusters(
@@ -1543,11 +1582,12 @@ class EMRcontainersClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr_containers.types.start_job_run_request.StartJobRunRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_emr_containers.types.start_job_run_request.StartJobRunRequest = {
+            "virtual_cluster_id": virtual_cluster_id,
+            "client_token": client_token,
+        }
         if name is not None:
             input_["name"] = name
-        input_["virtual_cluster_id"] = virtual_cluster_id
-        input_["client_token"] = client_token
         if execution_role_arn is not None:
             input_["execution_role_arn"] = execution_role_arn
         if release_label is not None:
@@ -1570,6 +1610,7 @@ class EMRcontainersClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -1607,15 +1648,17 @@ class EMRcontainersClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr_containers.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_emr_containers.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -1653,15 +1696,17 @@ class EMRcontainersClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr_containers.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_emr_containers.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

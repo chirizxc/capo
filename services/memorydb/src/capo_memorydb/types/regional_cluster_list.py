@@ -25,5 +25,7 @@ def deserialize_aws_json_1_1(data: list) -> RegionalClusterList:
 
     out: RegionalClusterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_memorydb.types.regional_cluster.deserialize_aws_json_1_1(item))
     return out

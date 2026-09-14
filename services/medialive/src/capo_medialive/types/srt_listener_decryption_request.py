@@ -32,12 +32,12 @@ def serialize_json(value: SrtListenerDecryptionRequest) -> dict:
 
 def deserialize_json(data: dict) -> SrtListenerDecryptionRequest:
     out: SrtListenerDecryptionRequest = {}  # type: ignore[typeddict-item]
-    if "algorithm" in data:
+    if data.get("algorithm") is not None:
         import capo_medialive.types.algorithm
 
         out["algorithm"] = capo_medialive.types.algorithm.deserialize_json(
             data["algorithm"]
         )
-    if "passphraseSecretArn" in data:
+    if data.get("passphraseSecretArn") is not None:
         out["passphrase_secret_arn"] = data["passphraseSecretArn"]
     return out

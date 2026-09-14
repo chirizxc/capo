@@ -33,7 +33,7 @@ def serialize_aws_json_1_0(value: ListRuleSetsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListRuleSetsResponse:
     out: ListRuleSetsResponse = {}  # type: ignore[typeddict-item]
-    if "RuleSets" in data:
+    if data.get("RuleSets") is not None:
         import capo_mailmanager.types.rule_sets
 
         out["rule_sets"] = capo_mailmanager.types.rule_sets.deserialize_aws_json_1_0(
@@ -41,6 +41,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListRuleSetsResponse:
         )
     else:
         raise DeserializationError("ListRuleSetsResponse.rule_sets required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

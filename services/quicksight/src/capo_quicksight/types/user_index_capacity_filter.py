@@ -52,7 +52,7 @@ def serialize_json(value: UserIndexCapacityFilter) -> dict:
 
 
 def deserialize_json(data: dict) -> UserIndexCapacityFilter:
-    if "userNameOrEmail" in data:
+    if data.get("userNameOrEmail") is not None:
         import capo_quicksight.types.user_name_or_email_filter
 
         return {
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> UserIndexCapacityFilter:
                 data["userNameOrEmail"]
             )
         }
-    elif "totalCapacityBytes" in data:
+    elif data.get("totalCapacityBytes") is not None:
         import capo_quicksight.types.capacity_bytes_range_filter
 
         return {

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: RestoreFromSnapshotRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RestoreFromSnapshotRequest:
     out: RestoreFromSnapshotRequest = {}  # type: ignore[typeddict-item]
-    if "SnapshotId" in data:
+    if data.get("SnapshotId") is not None:
         out["snapshot_id"] = data["SnapshotId"]
     else:
         raise DeserializationError("RestoreFromSnapshotRequest.snapshot_id required")

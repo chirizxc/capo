@@ -79,11 +79,11 @@ def serialize_json(value: IpAccessSettings) -> dict:
 
 def deserialize_json(data: dict) -> IpAccessSettings:
     out: IpAccessSettings = {}  # type: ignore[typeddict-item]
-    if "ipAccessSettingsArn" in data:
+    if data.get("ipAccessSettingsArn") is not None:
         out["ip_access_settings_arn"] = data["ipAccessSettingsArn"]
     else:
         raise DeserializationError("IpAccessSettings.ip_access_settings_arn required")
-    if "associatedPortalArns" in data:
+    if data.get("associatedPortalArns") is not None:
         import capo_workspaces_web.types.arn_list
 
         out["associated_portal_arns"] = (
@@ -91,25 +91,25 @@ def deserialize_json(data: dict) -> IpAccessSettings:
                 data["associatedPortalArns"]
             )
         )
-    if "ipRules" in data:
+    if data.get("ipRules") is not None:
         import capo_workspaces_web.types.ip_rule_list
 
         out["ip_rules"] = capo_workspaces_web.types.ip_rule_list.deserialize_json(
             data["ipRules"]
         )
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_workspaces_web.types.timestamp
 
         out["creation_date"] = capo_workspaces_web.types.timestamp.deserialize_json(
             data["creationDate"]
         )
-    if "customerManagedKey" in data:
+    if data.get("customerManagedKey") is not None:
         out["customer_managed_key"] = data["customerManagedKey"]
-    if "additionalEncryptionContext" in data:
+    if data.get("additionalEncryptionContext") is not None:
         import capo_workspaces_web.types.encryption_context_map
 
         out["additional_encryption_context"] = (

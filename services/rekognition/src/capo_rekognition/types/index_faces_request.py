@@ -64,11 +64,11 @@ def serialize_aws_json_1_1(value: IndexFacesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IndexFacesRequest:
     out: IndexFacesRequest = {}  # type: ignore[typeddict-item]
-    if "CollectionId" in data:
+    if data.get("CollectionId") is not None:
         out["collection_id"] = data["CollectionId"]
     else:
         raise DeserializationError("IndexFacesRequest.collection_id required")
-    if "Image" in data:
+    if data.get("Image") is not None:
         import capo_rekognition.types.image
 
         out["image"] = capo_rekognition.types.image.deserialize_aws_json_1_1(
@@ -76,9 +76,9 @@ def deserialize_aws_json_1_1(data: dict) -> IndexFacesRequest:
         )
     else:
         raise DeserializationError("IndexFacesRequest.image required")
-    if "ExternalImageId" in data:
+    if data.get("ExternalImageId") is not None:
         out["external_image_id"] = data["ExternalImageId"]
-    if "DetectionAttributes" in data:
+    if data.get("DetectionAttributes") is not None:
         import capo_rekognition.types.attributes
 
         out["detection_attributes"] = (
@@ -86,9 +86,9 @@ def deserialize_aws_json_1_1(data: dict) -> IndexFacesRequest:
                 data["DetectionAttributes"]
             )
         )
-    if "MaxFaces" in data:
+    if data.get("MaxFaces") is not None:
         out["max_faces"] = data["MaxFaces"]
-    if "QualityFilter" in data:
+    if data.get("QualityFilter") is not None:
         import capo_rekognition.types.quality_filter
 
         out["quality_filter"] = (

@@ -91,19 +91,19 @@ def serialize_aws_json_1_1(value: OrganizationConfigRule) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OrganizationConfigRule:
     out: OrganizationConfigRule = {}  # type: ignore[typeddict-item]
-    if "OrganizationConfigRuleName" in data:
+    if data.get("OrganizationConfigRuleName") is not None:
         out["organization_config_rule_name"] = data["OrganizationConfigRuleName"]
     else:
         raise DeserializationError(
             "OrganizationConfigRule.organization_config_rule_name required"
         )
-    if "OrganizationConfigRuleArn" in data:
+    if data.get("OrganizationConfigRuleArn") is not None:
         out["organization_config_rule_arn"] = data["OrganizationConfigRuleArn"]
     else:
         raise DeserializationError(
             "OrganizationConfigRule.organization_config_rule_arn required"
         )
-    if "OrganizationManagedRuleMetadata" in data:
+    if data.get("OrganizationManagedRuleMetadata") is not None:
         import capo_config_service.types.organization_managed_rule_metadata
 
         out["organization_managed_rule_metadata"] = (
@@ -111,7 +111,7 @@ def deserialize_aws_json_1_1(data: dict) -> OrganizationConfigRule:
                 data["OrganizationManagedRuleMetadata"]
             )
         )
-    if "OrganizationCustomRuleMetadata" in data:
+    if data.get("OrganizationCustomRuleMetadata") is not None:
         import capo_config_service.types.organization_custom_rule_metadata
 
         out["organization_custom_rule_metadata"] = (
@@ -119,7 +119,7 @@ def deserialize_aws_json_1_1(data: dict) -> OrganizationConfigRule:
                 data["OrganizationCustomRuleMetadata"]
             )
         )
-    if "ExcludedAccounts" in data:
+    if data.get("ExcludedAccounts") is not None:
         import capo_config_service.types.excluded_accounts
 
         out["excluded_accounts"] = (
@@ -127,7 +127,7 @@ def deserialize_aws_json_1_1(data: dict) -> OrganizationConfigRule:
                 data["ExcludedAccounts"]
             )
         )
-    if "LastUpdateTime" in data:
+    if data.get("LastUpdateTime") is not None:
         import capo_config_service.types.date
 
         out["last_update_time"] = (
@@ -135,7 +135,7 @@ def deserialize_aws_json_1_1(data: dict) -> OrganizationConfigRule:
                 data["LastUpdateTime"]
             )
         )
-    if "OrganizationCustomPolicyRuleMetadata" in data:
+    if data.get("OrganizationCustomPolicyRuleMetadata") is not None:
         import capo_config_service.types.organization_custom_policy_rule_metadata_no_policy
 
         out["organization_custom_policy_rule_metadata"] = (

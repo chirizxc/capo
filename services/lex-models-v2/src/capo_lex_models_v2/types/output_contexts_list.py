@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> OutputContextsList:
 
     out: OutputContextsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_lex_models_v2.types.output_context.deserialize_json(item))
     return out

@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: DeleteIngressPointRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteIngressPointRequest:
     out: DeleteIngressPointRequest = {}  # type: ignore[typeddict-item]
-    if "IngressPointId" in data:
+    if data.get("IngressPointId") is not None:
         out["ingress_point_id"] = data["IngressPointId"]
     else:
         raise DeserializationError(

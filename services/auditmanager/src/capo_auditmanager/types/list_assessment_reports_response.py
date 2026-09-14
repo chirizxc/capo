@@ -36,7 +36,7 @@ def serialize_json(value: ListAssessmentReportsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListAssessmentReportsResponse:
     out: ListAssessmentReportsResponse = {}  # type: ignore[typeddict-item]
-    if "assessmentReports" in data:
+    if data.get("assessmentReports") is not None:
         import capo_auditmanager.types.assessment_reports_metadata
 
         out["assessment_reports"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListAssessmentReportsResponse:
                 data["assessmentReports"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

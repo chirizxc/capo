@@ -39,10 +39,10 @@ def serialize_json(value: ListComponentsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListComponentsRequest:
     out: ListComponentsRequest = {}  # type: ignore[typeddict-item]
-    if "componentPath" in data:
+    if data.get("componentPath") is not None:
         out["component_path"] = data["componentPath"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

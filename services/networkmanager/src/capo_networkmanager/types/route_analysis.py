@@ -116,19 +116,19 @@ def serialize_json(value: RouteAnalysis) -> dict:
 
 def deserialize_json(data: dict) -> RouteAnalysis:
     out: RouteAnalysis = {}  # type: ignore[typeddict-item]
-    if "GlobalNetworkId" in data:
+    if data.get("GlobalNetworkId") is not None:
         out["global_network_id"] = data["GlobalNetworkId"]
-    if "OwnerAccountId" in data:
+    if data.get("OwnerAccountId") is not None:
         out["owner_account_id"] = data["OwnerAccountId"]
-    if "RouteAnalysisId" in data:
+    if data.get("RouteAnalysisId") is not None:
         out["route_analysis_id"] = data["RouteAnalysisId"]
-    if "StartTimestamp" in data:
+    if data.get("StartTimestamp") is not None:
         import capo_networkmanager.types.date_time
 
         out["start_timestamp"] = capo_networkmanager.types.date_time.deserialize_json(
             data["StartTimestamp"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_networkmanager.types.route_analysis_status
 
         out["status"] = (
@@ -136,7 +136,7 @@ def deserialize_json(data: dict) -> RouteAnalysis:
                 data["Status"]
             )
         )
-    if "Source" in data:
+    if data.get("Source") is not None:
         import capo_networkmanager.types.route_analysis_endpoint_options
 
         out["source"] = (
@@ -144,7 +144,7 @@ def deserialize_json(data: dict) -> RouteAnalysis:
                 data["Source"]
             )
         )
-    if "Destination" in data:
+    if data.get("Destination") is not None:
         import capo_networkmanager.types.route_analysis_endpoint_options
 
         out["destination"] = (
@@ -152,15 +152,15 @@ def deserialize_json(data: dict) -> RouteAnalysis:
                 data["Destination"]
             )
         )
-    if "IncludeReturnPath" in data:
+    if data.get("IncludeReturnPath") is not None:
         out["include_return_path"] = data["IncludeReturnPath"]
     else:
         out["include_return_path"] = False
-    if "UseMiddleboxes" in data:
+    if data.get("UseMiddleboxes") is not None:
         out["use_middleboxes"] = data["UseMiddleboxes"]
     else:
         out["use_middleboxes"] = False
-    if "ForwardPath" in data:
+    if data.get("ForwardPath") is not None:
         import capo_networkmanager.types.route_analysis_path
 
         out["forward_path"] = (
@@ -168,7 +168,7 @@ def deserialize_json(data: dict) -> RouteAnalysis:
                 data["ForwardPath"]
             )
         )
-    if "ReturnPath" in data:
+    if data.get("ReturnPath") is not None:
         import capo_networkmanager.types.route_analysis_path
 
         out["return_path"] = (

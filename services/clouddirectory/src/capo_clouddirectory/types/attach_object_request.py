@@ -42,7 +42,7 @@ def serialize_json(value: AttachObjectRequest) -> dict:
 
 def deserialize_json(data: dict) -> AttachObjectRequest:
     out: AttachObjectRequest = {}  # type: ignore[typeddict-item]
-    if "ParentReference" in data:
+    if data.get("ParentReference") is not None:
         import capo_clouddirectory.types.object_reference
 
         out["parent_reference"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> AttachObjectRequest:
         )
     else:
         raise DeserializationError("AttachObjectRequest.parent_reference required")
-    if "ChildReference" in data:
+    if data.get("ChildReference") is not None:
         import capo_clouddirectory.types.object_reference
 
         out["child_reference"] = (
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> AttachObjectRequest:
         )
     else:
         raise DeserializationError("AttachObjectRequest.child_reference required")
-    if "LinkName" in data:
+    if data.get("LinkName") is not None:
         out["link_name"] = data["LinkName"]
     else:
         raise DeserializationError("AttachObjectRequest.link_name required")

@@ -50,17 +50,17 @@ def serialize_json(value: ConfigurationCheckDefinition) -> dict:
 
 def deserialize_json(data: dict) -> ConfigurationCheckDefinition:
     out: ConfigurationCheckDefinition = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         import capo_ssm_sap.types.configuration_check_type
 
         out["id"] = capo_ssm_sap.types.configuration_check_type.deserialize_json(
             data["Id"]
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ApplicableApplicationTypes" in data:
+    if data.get("ApplicableApplicationTypes") is not None:
         import capo_ssm_sap.types.application_type_list
 
         out["applicable_application_types"] = (

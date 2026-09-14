@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: AttributeSuggestionsUpdateConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AttributeSuggestionsUpdateConfig:
     out: AttributeSuggestionsUpdateConfig = {}  # type: ignore[typeddict-item]
-    if "SuggestableConfigList" in data:
+    if data.get("SuggestableConfigList") is not None:
         import capo_kendra.types.suggestable_config_list
 
         out["suggestable_config_list"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> AttributeSuggestionsUpdateConfig:
                 data["SuggestableConfigList"]
             )
         )
-    if "AttributeSuggestionsMode" in data:
+    if data.get("AttributeSuggestionsMode") is not None:
         import capo_kendra.types.attribute_suggestions_mode
 
         out["attribute_suggestions_mode"] = (

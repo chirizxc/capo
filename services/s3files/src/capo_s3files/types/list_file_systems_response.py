@@ -32,9 +32,9 @@ def serialize_json(value: ListFileSystemsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListFileSystemsResponse:
     out: ListFileSystemsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "fileSystems" in data:
+    if data.get("fileSystems") is not None:
         import capo_s3files.types.file_systems
 
         out["file_systems"] = capo_s3files.types.file_systems.deserialize_json(

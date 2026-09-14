@@ -99,31 +99,31 @@ def serialize_aws_json_1_1(value: GetUnfilteredTableMetadataRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetUnfilteredTableMetadataRequest:
     out: GetUnfilteredTableMetadataRequest = {}  # type: ignore[typeddict-item]
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
     else:
         raise DeserializationError(
             "GetUnfilteredTableMetadataRequest.catalog_id required"
         )
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError(
             "GetUnfilteredTableMetadataRequest.database_name required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("GetUnfilteredTableMetadataRequest.name required")
-    if "AuditContext" in data:
+    if data.get("AuditContext") is not None:
         import capo_glue.types.audit_context
 
         out["audit_context"] = capo_glue.types.audit_context.deserialize_aws_json_1_1(
             data["AuditContext"]
         )
-    if "SupportedPermissionTypes" in data:
+    if data.get("SupportedPermissionTypes") is not None:
         import capo_glue.types.permission_type_list
 
         out["supported_permission_types"] = (
@@ -135,11 +135,11 @@ def deserialize_aws_json_1_1(data: dict) -> GetUnfilteredTableMetadataRequest:
         raise DeserializationError(
             "GetUnfilteredTableMetadataRequest.supported_permission_types required"
         )
-    if "ParentResourceArn" in data:
+    if data.get("ParentResourceArn") is not None:
         out["parent_resource_arn"] = data["ParentResourceArn"]
-    if "RootResourceArn" in data:
+    if data.get("RootResourceArn") is not None:
         out["root_resource_arn"] = data["RootResourceArn"]
-    if "SupportedDialect" in data:
+    if data.get("SupportedDialect") is not None:
         import capo_glue.types.supported_dialect
 
         out["supported_dialect"] = (
@@ -147,13 +147,13 @@ def deserialize_aws_json_1_1(data: dict) -> GetUnfilteredTableMetadataRequest:
                 data["SupportedDialect"]
             )
         )
-    if "Permissions" in data:
+    if data.get("Permissions") is not None:
         import capo_glue.types.permission_list
 
         out["permissions"] = capo_glue.types.permission_list.deserialize_aws_json_1_1(
             data["Permissions"]
         )
-    if "QuerySessionContext" in data:
+    if data.get("QuerySessionContext") is not None:
         import capo_glue.types.query_session_context
 
         out["query_session_context"] = (

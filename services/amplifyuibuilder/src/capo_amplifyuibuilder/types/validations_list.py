@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ValidationsList:
 
     out: ValidationsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_amplifyuibuilder.types.field_validation_configuration.deserialize_json(
                 item

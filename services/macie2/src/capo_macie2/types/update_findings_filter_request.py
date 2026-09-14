@@ -56,24 +56,24 @@ def serialize_json(value: UpdateFindingsFilterRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateFindingsFilterRequest:
     out: UpdateFindingsFilterRequest = {}  # type: ignore[typeddict-item]
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_macie2.types.findings_filter_action
 
         out["action"] = capo_macie2.types.findings_filter_action.deserialize_json(
             data["action"]
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "findingCriteria" in data:
+    if data.get("findingCriteria") is not None:
         import capo_macie2.types.finding_criteria
 
         out["finding_criteria"] = capo_macie2.types.finding_criteria.deserialize_json(
             data["findingCriteria"]
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "position" in data:
+    if data.get("position") is not None:
         out["position"] = data["position"]
     return out

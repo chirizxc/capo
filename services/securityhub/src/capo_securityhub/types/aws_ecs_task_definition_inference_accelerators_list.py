@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsEcsTaskDefinitionInferenceAcceleratorsLis
 
     out: AwsEcsTaskDefinitionInferenceAcceleratorsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_ecs_task_definition_inference_accelerators_details.deserialize_json(
                 item

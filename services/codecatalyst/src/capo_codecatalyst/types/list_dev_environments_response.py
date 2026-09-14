@@ -34,7 +34,7 @@ def serialize_json(value: ListDevEnvironmentsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListDevEnvironmentsResponse:
     out: ListDevEnvironmentsResponse = {}  # type: ignore[typeddict-item]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_codecatalyst.types.dev_environment_summary_list
 
         out["items"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListDevEnvironmentsResponse:
         )
     else:
         raise DeserializationError("ListDevEnvironmentsResponse.items required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

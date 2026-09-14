@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> EinvoiceDeliveryDocumentTypes:
 
     out: EinvoiceDeliveryDocumentTypes = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_invoicing.types.einvoice_delivery_document_type.deserialize_aws_json_1_0(
                 item

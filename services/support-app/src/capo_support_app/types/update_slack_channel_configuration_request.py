@@ -66,30 +66,30 @@ def serialize_json(value: UpdateSlackChannelConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSlackChannelConfigurationRequest:
     out: UpdateSlackChannelConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "teamId" in data:
+    if data.get("teamId") is not None:
         out["team_id"] = data["teamId"]
     else:
         raise DeserializationError(
             "UpdateSlackChannelConfigurationRequest.team_id required"
         )
-    if "channelId" in data:
+    if data.get("channelId") is not None:
         out["channel_id"] = data["channelId"]
     else:
         raise DeserializationError(
             "UpdateSlackChannelConfigurationRequest.channel_id required"
         )
-    if "channelName" in data:
+    if data.get("channelName") is not None:
         out["channel_name"] = data["channelName"]
-    if "notifyOnCreateOrReopenCase" in data:
+    if data.get("notifyOnCreateOrReopenCase") is not None:
         out["notify_on_create_or_reopen_case"] = data["notifyOnCreateOrReopenCase"]
-    if "notifyOnAddCorrespondenceToCase" in data:
+    if data.get("notifyOnAddCorrespondenceToCase") is not None:
         out["notify_on_add_correspondence_to_case"] = data[
             "notifyOnAddCorrespondenceToCase"
         ]
-    if "notifyOnResolveCase" in data:
+    if data.get("notifyOnResolveCase") is not None:
         out["notify_on_resolve_case"] = data["notifyOnResolveCase"]
-    if "notifyOnCaseSeverity" in data:
+    if data.get("notifyOnCaseSeverity") is not None:
         out["notify_on_case_severity"] = data["notifyOnCaseSeverity"]
-    if "channelRoleArn" in data:
+    if data.get("channelRoleArn") is not None:
         out["channel_role_arn"] = data["channelRoleArn"]
     return out

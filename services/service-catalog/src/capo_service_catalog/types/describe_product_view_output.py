@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: DescribeProductViewOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeProductViewOutput:
     out: DescribeProductViewOutput = {}  # type: ignore[typeddict-item]
-    if "ProductViewSummary" in data:
+    if data.get("ProductViewSummary") is not None:
         import capo_service_catalog.types.product_view_summary
 
         out["product_view_summary"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeProductViewOutput:
                 data["ProductViewSummary"]
             )
         )
-    if "ProvisioningArtifacts" in data:
+    if data.get("ProvisioningArtifacts") is not None:
         import capo_service_catalog.types.provisioning_artifacts
 
         out["provisioning_artifacts"] = (

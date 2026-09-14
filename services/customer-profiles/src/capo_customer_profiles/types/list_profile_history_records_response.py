@@ -36,7 +36,7 @@ def serialize_json(value: ListProfileHistoryRecordsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListProfileHistoryRecordsResponse:
     out: ListProfileHistoryRecordsResponse = {}  # type: ignore[typeddict-item]
-    if "ProfileHistoryRecords" in data:
+    if data.get("ProfileHistoryRecords") is not None:
         import capo_customer_profiles.types.profile_history_records
 
         out["profile_history_records"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListProfileHistoryRecordsResponse:
                 data["ProfileHistoryRecords"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

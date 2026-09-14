@@ -48,20 +48,20 @@ def serialize_json(value: CSVInput) -> dict:
 
 def deserialize_json(data: dict) -> CSVInput:
     out: CSVInput = {}  # type: ignore[typeddict-item]
-    if "FileHeaderInfo" in data:
+    if data.get("FileHeaderInfo") is not None:
         import capo_glacier.types.file_header_info
 
         out["file_header_info"] = capo_glacier.types.file_header_info.deserialize_json(
             data["FileHeaderInfo"]
         )
-    if "Comments" in data:
+    if data.get("Comments") is not None:
         out["comments"] = data["Comments"]
-    if "QuoteEscapeCharacter" in data:
+    if data.get("QuoteEscapeCharacter") is not None:
         out["quote_escape_character"] = data["QuoteEscapeCharacter"]
-    if "RecordDelimiter" in data:
+    if data.get("RecordDelimiter") is not None:
         out["record_delimiter"] = data["RecordDelimiter"]
-    if "FieldDelimiter" in data:
+    if data.get("FieldDelimiter") is not None:
         out["field_delimiter"] = data["FieldDelimiter"]
-    if "QuoteCharacter" in data:
+    if data.get("QuoteCharacter") is not None:
         out["quote_character"] = data["QuoteCharacter"]
     return out

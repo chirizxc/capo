@@ -30,15 +30,15 @@ def serialize_json(value: BatchGetRouterInputError) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetRouterInputError:
     out: BatchGetRouterInputError = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("BatchGetRouterInputError.arn required")
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
     else:
         raise DeserializationError("BatchGetRouterInputError.code required")
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("BatchGetRouterInputError.message required")

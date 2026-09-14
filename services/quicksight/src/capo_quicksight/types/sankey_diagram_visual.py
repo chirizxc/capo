@@ -81,11 +81,11 @@ def serialize_json(value: SankeyDiagramVisual) -> dict:
 
 def deserialize_json(data: dict) -> SankeyDiagramVisual:
     out: SankeyDiagramVisual = {}  # type: ignore[typeddict-item]
-    if "VisualId" in data:
+    if data.get("VisualId") is not None:
         out["visual_id"] = data["VisualId"]
     else:
         raise DeserializationError("SankeyDiagramVisual.visual_id required")
-    if "Title" in data:
+    if data.get("Title") is not None:
         import capo_quicksight.types.visual_title_label_options
 
         out["title"] = (
@@ -93,7 +93,7 @@ def deserialize_json(data: dict) -> SankeyDiagramVisual:
                 data["Title"]
             )
         )
-    if "Subtitle" in data:
+    if data.get("Subtitle") is not None:
         import capo_quicksight.types.visual_subtitle_label_options
 
         out["subtitle"] = (
@@ -101,7 +101,7 @@ def deserialize_json(data: dict) -> SankeyDiagramVisual:
                 data["Subtitle"]
             )
         )
-    if "ChartConfiguration" in data:
+    if data.get("ChartConfiguration") is not None:
         import capo_quicksight.types.sankey_diagram_chart_configuration
 
         out["chart_configuration"] = (
@@ -109,7 +109,7 @@ def deserialize_json(data: dict) -> SankeyDiagramVisual:
                 data["ChartConfiguration"]
             )
         )
-    if "Actions" in data:
+    if data.get("Actions") is not None:
         import capo_quicksight.types.visual_custom_action_list
 
         out["actions"] = (
@@ -117,6 +117,6 @@ def deserialize_json(data: dict) -> SankeyDiagramVisual:
                 data["Actions"]
             )
         )
-    if "VisualContentAltText" in data:
+    if data.get("VisualContentAltText") is not None:
         out["visual_content_alt_text"] = data["VisualContentAltText"]
     return out

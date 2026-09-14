@@ -133,7 +133,7 @@ def serialize_json(value: CreateCloudFormationChangeSetRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateCloudFormationChangeSetRequest:
     out: CreateCloudFormationChangeSetRequest = {}  # type: ignore[typeddict-item]
-    if "capabilities" in data:
+    if data.get("capabilities") is not None:
         import capo_serverlessapplicationrepository.types.__list_of__string
 
         out["capabilities"] = (
@@ -141,13 +141,13 @@ def deserialize_json(data: dict) -> CreateCloudFormationChangeSetRequest:
                 data["capabilities"]
             )
         )
-    if "changeSetName" in data:
+    if data.get("changeSetName") is not None:
         out["change_set_name"] = data["changeSetName"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "notificationArns" in data:
+    if data.get("notificationArns") is not None:
         import capo_serverlessapplicationrepository.types.__list_of__string
 
         out["notification_arns"] = (
@@ -155,7 +155,7 @@ def deserialize_json(data: dict) -> CreateCloudFormationChangeSetRequest:
                 data["notificationArns"]
             )
         )
-    if "parameterOverrides" in data:
+    if data.get("parameterOverrides") is not None:
         import capo_serverlessapplicationrepository.types.__list_of_parameter_value
 
         out["parameter_overrides"] = (
@@ -163,7 +163,7 @@ def deserialize_json(data: dict) -> CreateCloudFormationChangeSetRequest:
                 data["parameterOverrides"]
             )
         )
-    if "resourceTypes" in data:
+    if data.get("resourceTypes") is not None:
         import capo_serverlessapplicationrepository.types.__list_of__string
 
         out["resource_types"] = (
@@ -171,7 +171,7 @@ def deserialize_json(data: dict) -> CreateCloudFormationChangeSetRequest:
                 data["resourceTypes"]
             )
         )
-    if "rollbackConfiguration" in data:
+    if data.get("rollbackConfiguration") is not None:
         import capo_serverlessapplicationrepository.types.rollback_configuration
 
         out["rollback_configuration"] = (
@@ -179,11 +179,11 @@ def deserialize_json(data: dict) -> CreateCloudFormationChangeSetRequest:
                 data["rollbackConfiguration"]
             )
         )
-    if "semanticVersion" in data:
+    if data.get("semanticVersion") is not None:
         out["semantic_version"] = data["semanticVersion"]
-    if "stackName" in data:
+    if data.get("stackName") is not None:
         out["stack_name"] = data["stackName"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_serverlessapplicationrepository.types.__list_of_tag
 
         out["tags"] = (
@@ -191,6 +191,6 @@ def deserialize_json(data: dict) -> CreateCloudFormationChangeSetRequest:
                 data["tags"]
             )
         )
-    if "templateId" in data:
+    if data.get("templateId") is not None:
         out["template_id"] = data["templateId"]
     return out

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteFileEntry) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteFileEntry:
     out: DeleteFileEntry = {}  # type: ignore[typeddict-item]
-    if "filePath" in data:
+    if data.get("filePath") is not None:
         out["file_path"] = data["filePath"]
     else:
         raise DeserializationError("DeleteFileEntry.file_path required")

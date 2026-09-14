@@ -31,7 +31,7 @@ def serialize_json(value: SchemaStatusReason) -> dict:
 
 def deserialize_json(data: dict) -> SchemaStatusReason:
     out: SchemaStatusReason = {}  # type: ignore[typeddict-item]
-    if "code" in data:
+    if data.get("code") is not None:
         import capo_cleanrooms.types.schema_status_reason_code
 
         out["code"] = capo_cleanrooms.types.schema_status_reason_code.deserialize_json(
@@ -39,7 +39,7 @@ def deserialize_json(data: dict) -> SchemaStatusReason:
         )
     else:
         raise DeserializationError("SchemaStatusReason.code required")
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("SchemaStatusReason.message required")

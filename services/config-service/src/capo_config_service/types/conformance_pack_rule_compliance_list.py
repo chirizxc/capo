@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> ConformancePackRuleComplianceList:
 
     out: ConformancePackRuleComplianceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_config_service.types.conformance_pack_rule_compliance.deserialize_aws_json_1_1(
                 item

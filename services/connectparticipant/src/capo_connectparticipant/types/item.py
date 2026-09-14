@@ -107,25 +107,25 @@ def serialize_json(value: Item) -> dict:
 
 def deserialize_json(data: dict) -> Item:
     out: Item = {}  # type: ignore[typeddict-item]
-    if "AbsoluteTime" in data:
+    if data.get("AbsoluteTime") is not None:
         out["absolute_time"] = data["AbsoluteTime"]
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
-    if "ContentType" in data:
+    if data.get("ContentType") is not None:
         out["content_type"] = data["ContentType"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_connectparticipant.types.chat_item_type
 
         out["type"] = capo_connectparticipant.types.chat_item_type.deserialize_json(
             data["Type"]
         )
-    if "ParticipantId" in data:
+    if data.get("ParticipantId") is not None:
         out["participant_id"] = data["ParticipantId"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "ParticipantRole" in data:
+    if data.get("ParticipantRole") is not None:
         import capo_connectparticipant.types.participant_role
 
         out["participant_role"] = (
@@ -133,13 +133,13 @@ def deserialize_json(data: dict) -> Item:
                 data["ParticipantRole"]
             )
         )
-    if "Attachments" in data:
+    if data.get("Attachments") is not None:
         import capo_connectparticipant.types.attachments
 
         out["attachments"] = capo_connectparticipant.types.attachments.deserialize_json(
             data["Attachments"]
         )
-    if "MessageMetadata" in data:
+    if data.get("MessageMetadata") is not None:
         import capo_connectparticipant.types.message_metadata
 
         out["message_metadata"] = (
@@ -147,8 +147,8 @@ def deserialize_json(data: dict) -> Item:
                 data["MessageMetadata"]
             )
         )
-    if "RelatedContactId" in data:
+    if data.get("RelatedContactId") is not None:
         out["related_contact_id"] = data["RelatedContactId"]
-    if "ContactId" in data:
+    if data.get("ContactId") is not None:
         out["contact_id"] = data["ContactId"]
     return out

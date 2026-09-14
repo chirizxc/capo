@@ -51,15 +51,15 @@ def serialize_json(value: CreateIngestionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateIngestionRequest:
     out: CreateIngestionRequest = {}  # type: ignore[typeddict-item]
-    if "app" in data:
+    if data.get("app") is not None:
         out["app"] = data["app"]
     else:
         raise DeserializationError("CreateIngestionRequest.app required")
-    if "tenantId" in data:
+    if data.get("tenantId") is not None:
         out["tenant_id"] = data["tenantId"]
     else:
         raise DeserializationError("CreateIngestionRequest.tenant_id required")
-    if "ingestionType" in data:
+    if data.get("ingestionType") is not None:
         import capo_appfabric.types.ingestion_type
 
         out["ingestion_type"] = capo_appfabric.types.ingestion_type.deserialize_json(
@@ -67,9 +67,9 @@ def deserialize_json(data: dict) -> CreateIngestionRequest:
         )
     else:
         raise DeserializationError("CreateIngestionRequest.ingestion_type required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_appfabric.types.tag_list
 
         out["tags"] = capo_appfabric.types.tag_list.deserialize_json(data["tags"])

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> WeightedTargetGroupList:
 
     out: WeightedTargetGroupList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_vpc_lattice.types.weighted_target_group.deserialize_json(item))
     return out

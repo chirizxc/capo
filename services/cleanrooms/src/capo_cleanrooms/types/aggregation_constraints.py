@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AggregationConstraints:
 
     out: AggregationConstraints = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_cleanrooms.types.aggregation_constraint.deserialize_json(item))
     return out

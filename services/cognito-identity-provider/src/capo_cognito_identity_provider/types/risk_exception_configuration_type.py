@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: RiskExceptionConfigurationType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RiskExceptionConfigurationType:
     out: RiskExceptionConfigurationType = {}  # type: ignore[typeddict-item]
-    if "BlockedIPRangeList" in data:
+    if data.get("BlockedIPRangeList") is not None:
         import capo_cognito_identity_provider.types.blocked_ip_range_list_type
 
         out["blocked_ip_range_list"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> RiskExceptionConfigurationType:
                 data["BlockedIPRangeList"]
             )
         )
-    if "SkippedIPRangeList" in data:
+    if data.get("SkippedIPRangeList") is not None:
         import capo_cognito_identity_provider.types.skipped_ip_range_list_type
 
         out["skipped_ip_range_list"] = (

@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> EngineList:
 
     out: EngineList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_polly.types.engine.deserialize_json(item))
     return out

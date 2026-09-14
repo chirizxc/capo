@@ -25,9 +25,9 @@ def serialize_json(value: JobEventDetails) -> dict:
     if "event_type" in value:
         out["eventType"] = value["event_type"]
     if "time_of_event" in value:
-        import capo_braket.types._prelude.timestamp
+        import capo_braket._protocol.serialize
 
-        out["timeOfEvent"] = capo_braket.types._prelude.timestamp.serialize_json(
+        out["timeOfEvent"] = capo_braket._protocol.serialize.fmt_date_time(
             value["time_of_event"]
         )
     if "message" in value:
@@ -37,14 +37,14 @@ def serialize_json(value: JobEventDetails) -> dict:
 
 def deserialize_json(data: dict) -> JobEventDetails:
     out: JobEventDetails = {}  # type: ignore[typeddict-item]
-    if "eventType" in data:
+    if data.get("eventType") is not None:
         out["event_type"] = data["eventType"]
-    if "timeOfEvent" in data:
-        import capo_braket.types._prelude.timestamp
+    if data.get("timeOfEvent") is not None:
+        import datetime
 
-        out["time_of_event"] = capo_braket.types._prelude.timestamp.deserialize_json(
-            data["timeOfEvent"]
+        out["time_of_event"] = datetime.datetime.fromisoformat(
+            data["timeOfEvent"].replace("Z", "+00:00")
         )
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out

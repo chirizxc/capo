@@ -29,12 +29,12 @@ def serialize_json(value: CreateExperimentTemplateStopConditionInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateExperimentTemplateStopConditionInput:
     out: CreateExperimentTemplateStopConditionInput = {}  # type: ignore[typeddict-item]
-    if "source" in data:
+    if data.get("source") is not None:
         out["source"] = data["source"]
     else:
         raise DeserializationError(
             "CreateExperimentTemplateStopConditionInput.source required"
         )
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     return out

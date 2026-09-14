@@ -39,16 +39,16 @@ def serialize_json(value: CustomPattern) -> dict:
 
 def deserialize_json(data: dict) -> CustomPattern:
     out: CustomPattern = {}  # type: ignore[typeddict-item]
-    if "patternName" in data:
+    if data.get("patternName") is not None:
         out["pattern_name"] = data["patternName"]
     else:
         raise DeserializationError("CustomPattern.pattern_name required")
-    if "patternRegex" in data:
+    if data.get("patternRegex") is not None:
         out["pattern_regex"] = data["patternRegex"]
     else:
         raise DeserializationError("CustomPattern.pattern_regex required")
-    if "patternDescription" in data:
+    if data.get("patternDescription") is not None:
         out["pattern_description"] = data["patternDescription"]
-    if "keywordRegex" in data:
+    if data.get("keywordRegex") is not None:
         out["keyword_regex"] = data["keywordRegex"]
     return out

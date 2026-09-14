@@ -25,7 +25,7 @@ def serialize_json(value: ClientPolicy) -> dict:
 
 def deserialize_json(data: dict) -> ClientPolicy:
     out: ClientPolicy = {}  # type: ignore[typeddict-item]
-    if "tls" in data:
+    if data.get("tls") is not None:
         import capo_app_mesh.types.client_policy_tls
 
         out["tls"] = capo_app_mesh.types.client_policy_tls.deserialize_json(data["tls"])

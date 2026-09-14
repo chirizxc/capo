@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DescribeCrossAccountAttachmentRequest) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeCrossAccountAttachmentRequest:
     out: DescribeCrossAccountAttachmentRequest = {}  # type: ignore[typeddict-item]
-    if "AttachmentArn" in data:
+    if data.get("AttachmentArn") is not None:
         out["attachment_arn"] = data["AttachmentArn"]
     else:
         raise DeserializationError(

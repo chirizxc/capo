@@ -69,11 +69,11 @@ def serialize_json(value: AssetEntry) -> dict:
 
 def deserialize_json(data: dict) -> AssetEntry:
     out: AssetEntry = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("AssetEntry.arn required")
-    if "AssetDetails" in data:
+    if data.get("AssetDetails") is not None:
         import capo_dataexchange.types.asset_details
 
         out["asset_details"] = capo_dataexchange.types.asset_details.deserialize_json(
@@ -81,11 +81,11 @@ def deserialize_json(data: dict) -> AssetEntry:
         )
     else:
         raise DeserializationError("AssetEntry.asset_details required")
-    if "AssetType" in data:
+    if data.get("AssetType") is not None:
         out["asset_type"] = data["AssetType"]
     else:
         raise DeserializationError("AssetEntry.asset_type required")
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_dataexchange.types.timestamp
 
         out["created_at"] = capo_dataexchange.types.timestamp.deserialize_json(
@@ -93,25 +93,25 @@ def deserialize_json(data: dict) -> AssetEntry:
         )
     else:
         raise DeserializationError("AssetEntry.created_at required")
-    if "DataSetId" in data:
+    if data.get("DataSetId") is not None:
         out["data_set_id"] = data["DataSetId"]
     else:
         raise DeserializationError("AssetEntry.data_set_id required")
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("AssetEntry.id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("AssetEntry.name required")
-    if "RevisionId" in data:
+    if data.get("RevisionId") is not None:
         out["revision_id"] = data["RevisionId"]
     else:
         raise DeserializationError("AssetEntry.revision_id required")
-    if "SourceId" in data:
+    if data.get("SourceId") is not None:
         out["source_id"] = data["SourceId"]
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_dataexchange.types.timestamp
 
         out["updated_at"] = capo_dataexchange.types.timestamp.deserialize_json(

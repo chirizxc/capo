@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.marketplaceentitlementservice#AWSMPEntitlementService``."""
 
 import warnings
+from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +17,9 @@ from capo_marketplace_entitlement_service._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_marketplace_entitlement_service._auth._zapros_handler import AuthMiddleware
+from capo_marketplace_entitlement_service._pagination import (
+    resolve_path as _resolve_path,
+)
 from capo_marketplace_entitlement_service._services._aws_config import aws_config
 from capo_marketplace_entitlement_service._services._pipeline import (
     Interceptor,
@@ -174,8 +178,9 @@ class MarketplaceEntitlementServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_entitlement_service.types.get_entitlements_request.GetEntitlementsRequest = {}  # type: ignore[typeddict-item]
-        input_["product_code"] = product_code
+        input_: capo_marketplace_entitlement_service.types.get_entitlements_request.GetEntitlementsRequest = {
+            "product_code": product_code
+        }
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -188,7 +193,37 @@ class MarketplaceEntitlementServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_entitlements(
+        self,
+        product_code: "capo_marketplace_entitlement_service.types.product_code.ProductCode",
+        *,
+        config_overrides: Optional[MarketplaceEntitlementServiceClientConfig] = None,
+        filter: Optional[
+            "capo_marketplace_entitlement_service.types.get_entitlement_filters.GetEntitlementFilters"
+        ] = None,
+        next_token: Optional[
+            "capo_marketplace_entitlement_service.types.non_empty_string.NonEmptyString"
+        ] = None,
+        max_results: Optional[
+            "capo_marketplace_entitlement_service.types.page_size_integer.PageSizeInteger"
+        ] = None,
+    ) -> "Iterator[capo_marketplace_entitlement_service.types.get_entitlements_result.GetEntitlementsResult]":
+        _token = next_token
+        while True:
+            _response = self.get_entitlements(
+                product_code,
+                config_overrides=config_overrides,
+                filter=filter,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def __enter__(self) -> Self:
         return self

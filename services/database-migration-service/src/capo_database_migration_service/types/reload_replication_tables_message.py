@@ -49,13 +49,13 @@ def serialize_aws_json_1_1(value: ReloadReplicationTablesMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReloadReplicationTablesMessage:
     out: ReloadReplicationTablesMessage = {}  # type: ignore[typeddict-item]
-    if "ReplicationConfigArn" in data:
+    if data.get("ReplicationConfigArn") is not None:
         out["replication_config_arn"] = data["ReplicationConfigArn"]
     else:
         raise DeserializationError(
             "ReloadReplicationTablesMessage.replication_config_arn required"
         )
-    if "TablesToReload" in data:
+    if data.get("TablesToReload") is not None:
         import capo_database_migration_service.types.table_list_to_reload
 
         out["tables_to_reload"] = (
@@ -67,7 +67,7 @@ def deserialize_aws_json_1_1(data: dict) -> ReloadReplicationTablesMessage:
         raise DeserializationError(
             "ReloadReplicationTablesMessage.tables_to_reload required"
         )
-    if "ReloadOption" in data:
+    if data.get("ReloadOption") is not None:
         import capo_database_migration_service.types.reload_option_value
 
         out["reload_option"] = (

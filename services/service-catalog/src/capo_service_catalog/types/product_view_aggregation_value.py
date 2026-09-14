@@ -27,9 +27,9 @@ def serialize_aws_json_1_1(value: ProductViewAggregationValue) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProductViewAggregationValue:
     out: ProductViewAggregationValue = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
-    if "ApproximateCount" in data:
+    if data.get("ApproximateCount") is not None:
         out["approximate_count"] = data["ApproximateCount"]
     else:
         out["approximate_count"] = 0

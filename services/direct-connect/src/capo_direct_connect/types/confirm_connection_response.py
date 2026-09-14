@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: ConfirmConnectionResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConfirmConnectionResponse:
     out: ConfirmConnectionResponse = {}  # type: ignore[typeddict-item]
-    if "connectionState" in data:
+    if data.get("connectionState") is not None:
         import capo_direct_connect.types.connection_state
 
         out["connection_state"] = (

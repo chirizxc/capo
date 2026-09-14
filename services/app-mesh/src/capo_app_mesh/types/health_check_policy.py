@@ -54,27 +54,27 @@ def serialize_json(value: HealthCheckPolicy) -> dict:
 
 def deserialize_json(data: dict) -> HealthCheckPolicy:
     out: HealthCheckPolicy = {}  # type: ignore[typeddict-item]
-    if "timeoutMillis" in data:
+    if data.get("timeoutMillis") is not None:
         out["timeout_millis"] = data["timeoutMillis"]
     else:
         raise DeserializationError("HealthCheckPolicy.timeout_millis required")
-    if "intervalMillis" in data:
+    if data.get("intervalMillis") is not None:
         out["interval_millis"] = data["intervalMillis"]
     else:
         raise DeserializationError("HealthCheckPolicy.interval_millis required")
-    if "protocol" in data:
+    if data.get("protocol") is not None:
         out["protocol"] = data["protocol"]
     else:
         raise DeserializationError("HealthCheckPolicy.protocol required")
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
-    if "path" in data:
+    if data.get("path") is not None:
         out["path"] = data["path"]
-    if "healthyThreshold" in data:
+    if data.get("healthyThreshold") is not None:
         out["healthy_threshold"] = data["healthyThreshold"]
     else:
         raise DeserializationError("HealthCheckPolicy.healthy_threshold required")
-    if "unhealthyThreshold" in data:
+    if data.get("unhealthyThreshold") is not None:
         out["unhealthy_threshold"] = data["unhealthyThreshold"]
     else:
         raise DeserializationError("HealthCheckPolicy.unhealthy_threshold required")

@@ -37,14 +37,14 @@ def serialize_json(value: BulkEmailEntryResult) -> dict:
 
 def deserialize_json(data: dict) -> BulkEmailEntryResult:
     out: BulkEmailEntryResult = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sesv2.types.bulk_email_status
 
         out["status"] = capo_sesv2.types.bulk_email_status.deserialize_json(
             data["Status"]
         )
-    if "Error" in data:
+    if data.get("Error") is not None:
         out["error"] = data["Error"]
-    if "MessageId" in data:
+    if data.get("MessageId") is not None:
         out["message_id"] = data["MessageId"]
     return out

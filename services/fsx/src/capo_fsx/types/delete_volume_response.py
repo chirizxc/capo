@@ -45,15 +45,15 @@ def serialize_aws_json_1_1(value: DeleteVolumeResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteVolumeResponse:
     out: DeleteVolumeResponse = {}  # type: ignore[typeddict-item]
-    if "VolumeId" in data:
+    if data.get("VolumeId") is not None:
         out["volume_id"] = data["VolumeId"]
-    if "Lifecycle" in data:
+    if data.get("Lifecycle") is not None:
         import capo_fsx.types.volume_lifecycle
 
         out["lifecycle"] = capo_fsx.types.volume_lifecycle.deserialize_aws_json_1_1(
             data["Lifecycle"]
         )
-    if "OntapResponse" in data:
+    if data.get("OntapResponse") is not None:
         import capo_fsx.types.delete_volume_ontap_response
 
         out["ontap_response"] = (

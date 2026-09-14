@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> ApplicationOperationInfoList:
 
     out: ApplicationOperationInfoList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_kinesis_analytics_v2.types.application_operation_info.deserialize_aws_json_1_1(
                 item

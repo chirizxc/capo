@@ -109,7 +109,7 @@ def serialize_json(value: DefaultFilterControlOptions) -> dict:
 
 def deserialize_json(data: dict) -> DefaultFilterControlOptions:
     out: DefaultFilterControlOptions = {}  # type: ignore[typeddict-item]
-    if "DefaultDateTimePickerOptions" in data:
+    if data.get("DefaultDateTimePickerOptions") is not None:
         import capo_quicksight.types.default_date_time_picker_control_options
 
         out["default_date_time_picker_options"] = (
@@ -117,7 +117,7 @@ def deserialize_json(data: dict) -> DefaultFilterControlOptions:
                 data["DefaultDateTimePickerOptions"]
             )
         )
-    if "DefaultListOptions" in data:
+    if data.get("DefaultListOptions") is not None:
         import capo_quicksight.types.default_filter_list_control_options
 
         out["default_list_options"] = (
@@ -125,7 +125,7 @@ def deserialize_json(data: dict) -> DefaultFilterControlOptions:
                 data["DefaultListOptions"]
             )
         )
-    if "DefaultDropdownOptions" in data:
+    if data.get("DefaultDropdownOptions") is not None:
         import capo_quicksight.types.default_filter_drop_down_control_options
 
         out["default_dropdown_options"] = (
@@ -133,7 +133,7 @@ def deserialize_json(data: dict) -> DefaultFilterControlOptions:
                 data["DefaultDropdownOptions"]
             )
         )
-    if "DefaultTextFieldOptions" in data:
+    if data.get("DefaultTextFieldOptions") is not None:
         import capo_quicksight.types.default_text_field_control_options
 
         out["default_text_field_options"] = (
@@ -141,7 +141,7 @@ def deserialize_json(data: dict) -> DefaultFilterControlOptions:
                 data["DefaultTextFieldOptions"]
             )
         )
-    if "DefaultTextAreaOptions" in data:
+    if data.get("DefaultTextAreaOptions") is not None:
         import capo_quicksight.types.default_text_area_control_options
 
         out["default_text_area_options"] = (
@@ -149,7 +149,7 @@ def deserialize_json(data: dict) -> DefaultFilterControlOptions:
                 data["DefaultTextAreaOptions"]
             )
         )
-    if "DefaultSliderOptions" in data:
+    if data.get("DefaultSliderOptions") is not None:
         import capo_quicksight.types.default_slider_control_options
 
         out["default_slider_options"] = (
@@ -157,7 +157,7 @@ def deserialize_json(data: dict) -> DefaultFilterControlOptions:
                 data["DefaultSliderOptions"]
             )
         )
-    if "DefaultRelativeDateTimeOptions" in data:
+    if data.get("DefaultRelativeDateTimeOptions") is not None:
         import capo_quicksight.types.default_relative_date_time_control_options
 
         out["default_relative_date_time_options"] = (

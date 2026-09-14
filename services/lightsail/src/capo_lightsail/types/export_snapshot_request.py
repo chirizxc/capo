@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: ExportSnapshotRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExportSnapshotRequest:
     out: ExportSnapshotRequest = {}  # type: ignore[typeddict-item]
-    if "sourceSnapshotName" in data:
+    if data.get("sourceSnapshotName") is not None:
         out["source_snapshot_name"] = data["sourceSnapshotName"]
     else:
         raise DeserializationError(

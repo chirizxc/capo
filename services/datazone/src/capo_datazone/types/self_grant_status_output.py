@@ -50,7 +50,7 @@ def serialize_json(value: SelfGrantStatusOutput) -> dict:
 
 
 def deserialize_json(data: dict) -> SelfGrantStatusOutput:
-    if "glueSelfGrantStatus" in data:
+    if data.get("glueSelfGrantStatus") is not None:
         import capo_datazone.types.glue_self_grant_status_output
 
         return {
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> SelfGrantStatusOutput:
                 data["glueSelfGrantStatus"]
             )
         }
-    elif "redshiftSelfGrantStatus" in data:
+    elif data.get("redshiftSelfGrantStatus") is not None:
         import capo_datazone.types.redshift_self_grant_status_output
 
         return {

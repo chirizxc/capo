@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: SessionStatistics) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SessionStatistics:
     out: SessionStatistics = {}  # type: ignore[typeddict-item]
-    if "DpuExecutionInMillis" in data:
+    if data.get("DpuExecutionInMillis") is not None:
         out["dpu_execution_in_millis"] = data["DpuExecutionInMillis"]
     return out

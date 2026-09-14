@@ -35,10 +35,10 @@ def serialize_json(value: NetworkMigrationFailedResourceDetails) -> dict:
 
 def deserialize_json(data: dict) -> NetworkMigrationFailedResourceDetails:
     out: NetworkMigrationFailedResourceDetails = {}  # type: ignore[typeddict-item]
-    if "logicalID" in data:
+    if data.get("logicalID") is not None:
         out["logical_id"] = data["logicalID"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
     return out

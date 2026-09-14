@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> OrderedRemediationActions:
 
     out: OrderedRemediationActions = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_fms.types.remediation_action_with_order.deserialize_aws_json_1_1(item)
         )

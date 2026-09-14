@@ -55,19 +55,19 @@ def serialize_aws_json_1_0(value: CreatePoolRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreatePoolRequest:
     out: CreatePoolRequest = {}  # type: ignore[typeddict-item]
-    if "OriginationIdentity" in data:
+    if data.get("OriginationIdentity") is not None:
         out["origination_identity"] = data["OriginationIdentity"]
     else:
         raise DeserializationError("CreatePoolRequest.origination_identity required")
-    if "IsoCountryCode" in data:
+    if data.get("IsoCountryCode") is not None:
         out["iso_country_code"] = data["IsoCountryCode"]
-    if "MessageType" in data:
+    if data.get("MessageType") is not None:
         out["message_type"] = data["MessageType"]
     else:
         raise DeserializationError("CreatePoolRequest.message_type required")
-    if "DeletionProtectionEnabled" in data:
+    if data.get("DeletionProtectionEnabled") is not None:
         out["deletion_protection_enabled"] = data["DeletionProtectionEnabled"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_pinpoint_sms_voice_v2.types.tag_list
 
         out["tags"] = (
@@ -75,6 +75,6 @@ def deserialize_aws_json_1_0(data: dict) -> CreatePoolRequest:
                 data["Tags"]
             )
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

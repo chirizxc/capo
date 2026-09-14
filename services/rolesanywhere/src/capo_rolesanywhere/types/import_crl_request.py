@@ -46,11 +46,11 @@ def serialize_json(value: ImportCrlRequest) -> dict:
 
 def deserialize_json(data: dict) -> ImportCrlRequest:
     out: ImportCrlRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ImportCrlRequest.name required")
-    if "crlData" in data:
+    if data.get("crlData") is not None:
         import capo_rolesanywhere.types._prelude.blob
 
         out["crl_data"] = capo_rolesanywhere.types._prelude.blob.deserialize_json(
@@ -58,13 +58,13 @@ def deserialize_json(data: dict) -> ImportCrlRequest:
         )
     else:
         raise DeserializationError("ImportCrlRequest.crl_data required")
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_rolesanywhere.types.tag_list
 
         out["tags"] = capo_rolesanywhere.types.tag_list.deserialize_json(data["tags"])
-    if "trustAnchorArn" in data:
+    if data.get("trustAnchorArn") is not None:
         out["trust_anchor_arn"] = data["trustAnchorArn"]
     else:
         raise DeserializationError("ImportCrlRequest.trust_anchor_arn required")

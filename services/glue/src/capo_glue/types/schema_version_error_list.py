@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> SchemaVersionErrorList:
 
     out: SchemaVersionErrorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_glue.types.schema_version_error_item.deserialize_aws_json_1_1(item)
         )

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> StringSearches:
 
     out: StringSearches = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_billingconductor.types.string_search.deserialize_json(item))
     return out

@@ -99,11 +99,11 @@ def serialize_aws_json_1_1(value: AutoMLJobSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AutoMLJobSummary:
     out: AutoMLJobSummary = {}  # type: ignore[typeddict-item]
-    if "AutoMLJobName" in data:
+    if data.get("AutoMLJobName") is not None:
         out["auto_ml_job_name"] = data["AutoMLJobName"]
-    if "AutoMLJobArn" in data:
+    if data.get("AutoMLJobArn") is not None:
         out["auto_ml_job_arn"] = data["AutoMLJobArn"]
-    if "AutoMLJobStatus" in data:
+    if data.get("AutoMLJobStatus") is not None:
         import capo_sagemaker.types.auto_ml_job_status
 
         out["auto_ml_job_status"] = (
@@ -111,7 +111,7 @@ def deserialize_aws_json_1_1(data: dict) -> AutoMLJobSummary:
                 data["AutoMLJobStatus"]
             )
         )
-    if "AutoMLJobSecondaryStatus" in data:
+    if data.get("AutoMLJobSecondaryStatus") is not None:
         import capo_sagemaker.types.auto_ml_job_secondary_status
 
         out["auto_ml_job_secondary_status"] = (
@@ -119,19 +119,19 @@ def deserialize_aws_json_1_1(data: dict) -> AutoMLJobSummary:
                 data["AutoMLJobSecondaryStatus"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["end_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["EndTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (
@@ -139,9 +139,9 @@ def deserialize_aws_json_1_1(data: dict) -> AutoMLJobSummary:
                 data["LastModifiedTime"]
             )
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "PartialFailureReasons" in data:
+    if data.get("PartialFailureReasons") is not None:
         import capo_sagemaker.types.auto_ml_partial_failure_reasons
 
         out["partial_failure_reasons"] = (

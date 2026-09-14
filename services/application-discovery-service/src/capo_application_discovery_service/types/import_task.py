@@ -133,15 +133,15 @@ def serialize_aws_json_1_1(value: ImportTask) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ImportTask:
     out: ImportTask = {}  # type: ignore[typeddict-item]
-    if "importTaskId" in data:
+    if data.get("importTaskId") is not None:
         out["import_task_id"] = data["importTaskId"]
-    if "clientRequestToken" in data:
+    if data.get("clientRequestToken") is not None:
         out["client_request_token"] = data["clientRequestToken"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "importUrl" in data:
+    if data.get("importUrl") is not None:
         out["import_url"] = data["importUrl"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_application_discovery_service.types.import_status
 
         out["status"] = (
@@ -149,7 +149,7 @@ def deserialize_aws_json_1_1(data: dict) -> ImportTask:
                 data["status"]
             )
         )
-    if "importRequestTime" in data:
+    if data.get("importRequestTime") is not None:
         import capo_application_discovery_service.types.time_stamp
 
         out["import_request_time"] = (
@@ -157,7 +157,7 @@ def deserialize_aws_json_1_1(data: dict) -> ImportTask:
                 data["importRequestTime"]
             )
         )
-    if "importCompletionTime" in data:
+    if data.get("importCompletionTime") is not None:
         import capo_application_discovery_service.types.time_stamp
 
         out["import_completion_time"] = (
@@ -165,7 +165,7 @@ def deserialize_aws_json_1_1(data: dict) -> ImportTask:
                 data["importCompletionTime"]
             )
         )
-    if "importDeletedTime" in data:
+    if data.get("importDeletedTime") is not None:
         import capo_application_discovery_service.types.time_stamp
 
         out["import_deleted_time"] = (
@@ -173,7 +173,7 @@ def deserialize_aws_json_1_1(data: dict) -> ImportTask:
                 data["importDeletedTime"]
             )
         )
-    if "fileClassification" in data:
+    if data.get("fileClassification") is not None:
         import capo_application_discovery_service.types.file_classification
 
         out["file_classification"] = (
@@ -181,22 +181,22 @@ def deserialize_aws_json_1_1(data: dict) -> ImportTask:
                 data["fileClassification"]
             )
         )
-    if "serverImportSuccess" in data:
+    if data.get("serverImportSuccess") is not None:
         out["server_import_success"] = data["serverImportSuccess"]
     else:
         out["server_import_success"] = 0
-    if "serverImportFailure" in data:
+    if data.get("serverImportFailure") is not None:
         out["server_import_failure"] = data["serverImportFailure"]
     else:
         out["server_import_failure"] = 0
-    if "applicationImportSuccess" in data:
+    if data.get("applicationImportSuccess") is not None:
         out["application_import_success"] = data["applicationImportSuccess"]
     else:
         out["application_import_success"] = 0
-    if "applicationImportFailure" in data:
+    if data.get("applicationImportFailure") is not None:
         out["application_import_failure"] = data["applicationImportFailure"]
     else:
         out["application_import_failure"] = 0
-    if "errorsAndFailedEntriesZip" in data:
+    if data.get("errorsAndFailedEntriesZip") is not None:
         out["errors_and_failed_entries_zip"] = data["errorsAndFailedEntriesZip"]
     return out

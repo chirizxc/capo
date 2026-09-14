@@ -28,12 +28,12 @@ def serialize_json(value: ListedEntitlement) -> dict:
 
 def deserialize_json(data: dict) -> ListedEntitlement:
     out: ListedEntitlement = {}  # type: ignore[typeddict-item]
-    if "dataTransferSubscriberFeePercent" in data:
+    if data.get("dataTransferSubscriberFeePercent") is not None:
         out["data_transfer_subscriber_fee_percent"] = data[
             "dataTransferSubscriberFeePercent"
         ]
-    if "entitlementArn" in data:
+    if data.get("entitlementArn") is not None:
         out["entitlement_arn"] = data["entitlementArn"]
-    if "entitlementName" in data:
+    if data.get("entitlementName") is not None:
         out["entitlement_name"] = data["entitlementName"]
     return out

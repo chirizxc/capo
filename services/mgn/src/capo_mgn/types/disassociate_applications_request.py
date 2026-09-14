@@ -37,11 +37,11 @@ def serialize_json(value: DisassociateApplicationsRequest) -> dict:
 
 def deserialize_json(data: dict) -> DisassociateApplicationsRequest:
     out: DisassociateApplicationsRequest = {}  # type: ignore[typeddict-item]
-    if "waveID" in data:
+    if data.get("waveID") is not None:
         out["wave_id"] = data["waveID"]
     else:
         raise DeserializationError("DisassociateApplicationsRequest.wave_id required")
-    if "applicationIDs" in data:
+    if data.get("applicationIDs") is not None:
         import capo_mgn.types.application_i_ds
 
         out["application_i_ds"] = capo_mgn.types.application_i_ds.deserialize_json(
@@ -51,6 +51,6 @@ def deserialize_json(data: dict) -> DisassociateApplicationsRequest:
         raise DeserializationError(
             "DisassociateApplicationsRequest.application_i_ds required"
         )
-    if "accountID" in data:
+    if data.get("accountID") is not None:
         out["account_id"] = data["accountID"]
     return out

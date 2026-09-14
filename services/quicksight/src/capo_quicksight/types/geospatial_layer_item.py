@@ -106,11 +106,11 @@ def serialize_json(value: GeospatialLayerItem) -> dict:
 
 def deserialize_json(data: dict) -> GeospatialLayerItem:
     out: GeospatialLayerItem = {}  # type: ignore[typeddict-item]
-    if "LayerId" in data:
+    if data.get("LayerId") is not None:
         out["layer_id"] = data["LayerId"]
     else:
         raise DeserializationError("GeospatialLayerItem.layer_id required")
-    if "LayerType" in data:
+    if data.get("LayerType") is not None:
         import capo_quicksight.types.geospatial_layer_type
 
         out["layer_type"] = (
@@ -118,7 +118,7 @@ def deserialize_json(data: dict) -> GeospatialLayerItem:
                 data["LayerType"]
             )
         )
-    if "DataSource" in data:
+    if data.get("DataSource") is not None:
         import capo_quicksight.types.geospatial_data_source_item
 
         out["data_source"] = (
@@ -126,15 +126,15 @@ def deserialize_json(data: dict) -> GeospatialLayerItem:
                 data["DataSource"]
             )
         )
-    if "Label" in data:
+    if data.get("Label") is not None:
         out["label"] = data["Label"]
-    if "Visibility" in data:
+    if data.get("Visibility") is not None:
         import capo_quicksight.types.visibility
 
         out["visibility"] = capo_quicksight.types.visibility.deserialize_json(
             data["Visibility"]
         )
-    if "LayerDefinition" in data:
+    if data.get("LayerDefinition") is not None:
         import capo_quicksight.types.geospatial_layer_definition
 
         out["layer_definition"] = (
@@ -142,13 +142,13 @@ def deserialize_json(data: dict) -> GeospatialLayerItem:
                 data["LayerDefinition"]
             )
         )
-    if "Tooltip" in data:
+    if data.get("Tooltip") is not None:
         import capo_quicksight.types.tooltip_options
 
         out["tooltip"] = capo_quicksight.types.tooltip_options.deserialize_json(
             data["Tooltip"]
         )
-    if "JoinDefinition" in data:
+    if data.get("JoinDefinition") is not None:
         import capo_quicksight.types.geospatial_layer_join_definition
 
         out["join_definition"] = (
@@ -156,7 +156,7 @@ def deserialize_json(data: dict) -> GeospatialLayerItem:
                 data["JoinDefinition"]
             )
         )
-    if "Actions" in data:
+    if data.get("Actions") is not None:
         import capo_quicksight.types.layer_custom_action_list
 
         out["actions"] = (

@@ -31,7 +31,7 @@ def serialize_json(value: Span) -> dict:
 
 def deserialize_json(data: dict) -> Span:
     out: Span = {}  # type: ignore[typeddict-item]
-    if "start" in data:
+    if data.get("start") is not None:
         import capo_accessanalyzer.types.position
 
         out["start"] = capo_accessanalyzer.types.position.deserialize_json(
@@ -39,7 +39,7 @@ def deserialize_json(data: dict) -> Span:
         )
     else:
         raise DeserializationError("Span.start required")
-    if "end" in data:
+    if data.get("end") is not None:
         import capo_accessanalyzer.types.position
 
         out["end"] = capo_accessanalyzer.types.position.deserialize_json(data["end"])

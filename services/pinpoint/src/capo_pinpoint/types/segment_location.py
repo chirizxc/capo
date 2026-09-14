@@ -36,13 +36,13 @@ def serialize_json(value: SegmentLocation) -> dict:
 
 def deserialize_json(data: dict) -> SegmentLocation:
     out: SegmentLocation = {}  # type: ignore[typeddict-item]
-    if "Country" in data:
+    if data.get("Country") is not None:
         import capo_pinpoint.types.set_dimension
 
         out["country"] = capo_pinpoint.types.set_dimension.deserialize_json(
             data["Country"]
         )
-    if "GPSPoint" in data:
+    if data.get("GPSPoint") is not None:
         import capo_pinpoint.types.gps_point_dimension
 
         out["gps_point"] = capo_pinpoint.types.gps_point_dimension.deserialize_json(

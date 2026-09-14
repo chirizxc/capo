@@ -31,7 +31,7 @@ def serialize_json(value: ValueColumnConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ValueColumnConfiguration:
     out: ValueColumnConfiguration = {}  # type: ignore[typeddict-item]
-    if "AggregationFunction" in data:
+    if data.get("AggregationFunction") is not None:
         import capo_quicksight.types.data_prep_aggregation_function
 
         out["aggregation_function"] = (

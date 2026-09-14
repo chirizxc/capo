@@ -43,11 +43,11 @@ def serialize_aws_json_1_0(value: RegistrationConfig) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RegistrationConfig:
     out: RegistrationConfig = {}  # type: ignore[typeddict-item]
-    if "DuplicateRegistrationAction" in data:
+    if data.get("DuplicateRegistrationAction") is not None:
         out["duplicate_registration_action"] = data["DuplicateRegistrationAction"]
-    if "FraudsterSimilarityThreshold" in data:
+    if data.get("FraudsterSimilarityThreshold") is not None:
         out["fraudster_similarity_threshold"] = data["FraudsterSimilarityThreshold"]
-    if "WatchlistIds" in data:
+    if data.get("WatchlistIds") is not None:
         import capo_voice_id.types.registration_config_watchlist_ids
 
         out["watchlist_ids"] = (

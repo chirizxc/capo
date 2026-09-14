@@ -13,9 +13,9 @@ from capo_signer_data import AsyncSignerDataClient
 
 
 async def main():
-    async with AsyncSignerDataClient() as s3:
+    async with AsyncSignerDataClient() as signer_data:
         # Example: call the get_revocation_status operation
-        response = await s3.get_revocation_status()
+        response = await signer_data.get_revocation_status()
         print(response["revoked_entities"])
 ```
 
@@ -29,9 +29,9 @@ from capo_signer_data.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncSignerDataClient() as s3:
+    async with AsyncSignerDataClient() as signer_data:
         try:
-            await s3.get_revocation_status()
+            await signer_data.get_revocation_status()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_signer_data import AsyncSignerDataClient
 
 
 async def main():
-    async with AsyncSignerDataClient() as s3:
+    async with AsyncSignerDataClient() as signer_data:
         # Default: 3 attempts for every operation
-        response = await s3.get_revocation_status()
+        response = await signer_data.get_revocation_status()
 
         # Override per operation
-        response = await s3.get_revocation_status(config_overrides={"retry_max_attempts": 5})
+        response = await signer_data.get_revocation_status(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.get_revocation_status(config_overrides={"retry_max_attempts": 1})
+        response = await signer_data.get_revocation_status(config_overrides={"retry_max_attempts": 1})
 ```

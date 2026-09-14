@@ -63,9 +63,16 @@ def serialize_aws_json_1_1(value: WebCrawlerConfiguration) -> dict:
     if "max_links_per_page" in value:
         out["MaxLinksPerPage"] = value["max_links_per_page"]
     if "max_content_size_per_page_in_mega_bytes" in value:
-        out["MaxContentSizePerPageInMegaBytes"] = value[
-            "max_content_size_per_page_in_mega_bytes"
-        ]
+        out["MaxContentSizePerPageInMegaBytes"] = (
+            "NaN"
+            if value["max_content_size_per_page_in_mega_bytes"]
+            != value["max_content_size_per_page_in_mega_bytes"]
+            else "Infinity"
+            if value["max_content_size_per_page_in_mega_bytes"] == float("inf")
+            else "-Infinity"
+            if value["max_content_size_per_page_in_mega_bytes"] == float("-inf")
+            else value["max_content_size_per_page_in_mega_bytes"]
+        )
     if "max_urls_per_minute_crawl_rate" in value:
         out["MaxUrlsPerMinuteCrawlRate"] = value["max_urls_per_minute_crawl_rate"]
     if "url_inclusion_patterns" in value:
@@ -105,23 +112,23 @@ def serialize_aws_json_1_1(value: WebCrawlerConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WebCrawlerConfiguration:
     out: WebCrawlerConfiguration = {}  # type: ignore[typeddict-item]
-    if "Urls" in data:
+    if data.get("Urls") is not None:
         import capo_kendra.types.urls
 
         out["urls"] = capo_kendra.types.urls.deserialize_aws_json_1_1(data["Urls"])
     else:
         raise DeserializationError("WebCrawlerConfiguration.urls required")
-    if "CrawlDepth" in data:
+    if data.get("CrawlDepth") is not None:
         out["crawl_depth"] = data["CrawlDepth"]
-    if "MaxLinksPerPage" in data:
+    if data.get("MaxLinksPerPage") is not None:
         out["max_links_per_page"] = data["MaxLinksPerPage"]
-    if "MaxContentSizePerPageInMegaBytes" in data:
-        out["max_content_size_per_page_in_mega_bytes"] = data[
-            "MaxContentSizePerPageInMegaBytes"
-        ]
-    if "MaxUrlsPerMinuteCrawlRate" in data:
+    if data.get("MaxContentSizePerPageInMegaBytes") is not None:
+        out["max_content_size_per_page_in_mega_bytes"] = float(
+            data["MaxContentSizePerPageInMegaBytes"]
+        )
+    if data.get("MaxUrlsPerMinuteCrawlRate") is not None:
         out["max_urls_per_minute_crawl_rate"] = data["MaxUrlsPerMinuteCrawlRate"]
-    if "UrlInclusionPatterns" in data:
+    if data.get("UrlInclusionPatterns") is not None:
         import capo_kendra.types.data_source_inclusions_exclusions_strings
 
         out["url_inclusion_patterns"] = (
@@ -129,7 +136,7 @@ def deserialize_aws_json_1_1(data: dict) -> WebCrawlerConfiguration:
                 data["UrlInclusionPatterns"]
             )
         )
-    if "UrlExclusionPatterns" in data:
+    if data.get("UrlExclusionPatterns") is not None:
         import capo_kendra.types.data_source_inclusions_exclusions_strings
 
         out["url_exclusion_patterns"] = (
@@ -137,7 +144,7 @@ def deserialize_aws_json_1_1(data: dict) -> WebCrawlerConfiguration:
                 data["UrlExclusionPatterns"]
             )
         )
-    if "ProxyConfiguration" in data:
+    if data.get("ProxyConfiguration") is not None:
         import capo_kendra.types.proxy_configuration
 
         out["proxy_configuration"] = (
@@ -145,7 +152,7 @@ def deserialize_aws_json_1_1(data: dict) -> WebCrawlerConfiguration:
                 data["ProxyConfiguration"]
             )
         )
-    if "AuthenticationConfiguration" in data:
+    if data.get("AuthenticationConfiguration") is not None:
         import capo_kendra.types.authentication_configuration
 
         out["authentication_configuration"] = (

@@ -27,6 +27,8 @@ def deserialize_aws_json_1_0(data: list) -> AcceptedTermList:
 
     out: AcceptedTermList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_marketplace_agreement.types.accepted_term.deserialize_aws_json_1_0(
                 item

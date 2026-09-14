@@ -44,21 +44,21 @@ def serialize_json(value: UpdateTableStorageOptimizerRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTableStorageOptimizerRequest:
     out: UpdateTableStorageOptimizerRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError(
             "UpdateTableStorageOptimizerRequest.database_name required"
         )
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
     else:
         raise DeserializationError(
             "UpdateTableStorageOptimizerRequest.table_name required"
         )
-    if "StorageOptimizerConfig" in data:
+    if data.get("StorageOptimizerConfig") is not None:
         import capo_lakeformation.types.storage_optimizer_config_map
 
         out["storage_optimizer_config"] = (

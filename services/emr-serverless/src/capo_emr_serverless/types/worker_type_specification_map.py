@@ -27,6 +27,8 @@ def serialize_json(input_to_serialize: WorkerTypeSpecificationMap) -> dict:
 def deserialize_json(data: dict) -> WorkerTypeSpecificationMap:
     out: WorkerTypeSpecificationMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_emr_serverless.types.worker_type_specification
 
         out[key] = capo_emr_serverless.types.worker_type_specification.deserialize_json(

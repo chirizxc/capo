@@ -22,6 +22,6 @@ def serialize_aws_json_1_1(value: UpdateAutomaticTapeCreationPolicyOutput) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateAutomaticTapeCreationPolicyOutput:
     out: UpdateAutomaticTapeCreationPolicyOutput = {}  # type: ignore[typeddict-item]
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
     return out

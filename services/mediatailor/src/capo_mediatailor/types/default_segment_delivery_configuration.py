@@ -23,6 +23,6 @@ def serialize_json(value: DefaultSegmentDeliveryConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DefaultSegmentDeliveryConfiguration:
     out: DefaultSegmentDeliveryConfiguration = {}  # type: ignore[typeddict-item]
-    if "BaseUrl" in data:
+    if data.get("BaseUrl") is not None:
         out["base_url"] = data["BaseUrl"]
     return out

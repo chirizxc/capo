@@ -55,15 +55,15 @@ def serialize_aws_json_1_1(value: EndpointFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EndpointFilter:
     out: EndpointFilter = {}  # type: ignore[typeddict-item]
-    if "ModelArn" in data:
+    if data.get("ModelArn") is not None:
         out["model_arn"] = data["ModelArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_comprehend.types.endpoint_status
 
         out["status"] = capo_comprehend.types.endpoint_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "CreationTimeBefore" in data:
+    if data.get("CreationTimeBefore") is not None:
         import capo_comprehend.types.timestamp
 
         out["creation_time_before"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_1(data: dict) -> EndpointFilter:
                 data["CreationTimeBefore"]
             )
         )
-    if "CreationTimeAfter" in data:
+    if data.get("CreationTimeAfter") is not None:
         import capo_comprehend.types.timestamp
 
         out["creation_time_after"] = (

@@ -39,15 +39,20 @@ class LoadBalancerNotFoundException(ServiceError):
 
     code: str | None = "LoadBalancerNotFoundException"
 
-    def __init__(self, data: LoadBalancerNotFoundException_):
+    def __init__(
+        self, data: LoadBalancerNotFoundException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="LoadBalancerNotFoundException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "LoadBalancerNotFoundException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "LoadBalancerNotFoundException":
+        return cls(deserialize_query(el), message)

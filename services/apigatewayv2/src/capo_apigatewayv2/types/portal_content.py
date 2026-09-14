@@ -41,11 +41,11 @@ def serialize_json(value: PortalContent) -> dict:
 
 def deserialize_json(data: dict) -> PortalContent:
     out: PortalContent = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "theme" in data:
+    if data.get("theme") is not None:
         import capo_apigatewayv2.types.portal_theme
 
         out["theme"] = capo_apigatewayv2.types.portal_theme.deserialize_json(

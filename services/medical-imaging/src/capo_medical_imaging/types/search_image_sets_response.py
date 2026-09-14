@@ -42,7 +42,7 @@ def serialize_json(value: SearchImageSetsResponse) -> dict:
 
 def deserialize_json(data: dict) -> SearchImageSetsResponse:
     out: SearchImageSetsResponse = {}  # type: ignore[typeddict-item]
-    if "imageSetsMetadataSummaries" in data:
+    if data.get("imageSetsMetadataSummaries") is not None:
         import capo_medical_imaging.types.image_sets_metadata_summaries
 
         out["image_sets_metadata_summaries"] = (
@@ -54,10 +54,10 @@ def deserialize_json(data: dict) -> SearchImageSetsResponse:
         raise DeserializationError(
             "SearchImageSetsResponse.image_sets_metadata_summaries required"
         )
-    if "sort" in data:
+    if data.get("sort") is not None:
         import capo_medical_imaging.types.sort
 
         out["sort"] = capo_medical_imaging.types.sort.deserialize_json(data["sort"])
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

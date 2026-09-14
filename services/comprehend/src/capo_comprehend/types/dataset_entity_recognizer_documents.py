@@ -33,11 +33,11 @@ def serialize_aws_json_1_1(value: DatasetEntityRecognizerDocuments) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DatasetEntityRecognizerDocuments:
     out: DatasetEntityRecognizerDocuments = {}  # type: ignore[typeddict-item]
-    if "S3Uri" in data:
+    if data.get("S3Uri") is not None:
         out["s3_uri"] = data["S3Uri"]
     else:
         raise DeserializationError("DatasetEntityRecognizerDocuments.s3_uri required")
-    if "InputFormat" in data:
+    if data.get("InputFormat") is not None:
         import capo_comprehend.types.input_format
 
         out["input_format"] = (

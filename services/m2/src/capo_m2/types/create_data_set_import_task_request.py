@@ -36,7 +36,7 @@ def serialize_json(value: CreateDataSetImportTaskRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDataSetImportTaskRequest:
     out: CreateDataSetImportTaskRequest = {}  # type: ignore[typeddict-item]
-    if "importConfig" in data:
+    if data.get("importConfig") is not None:
         import capo_m2.types.data_set_import_config
 
         out["import_config"] = capo_m2.types.data_set_import_config.deserialize_json(
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> CreateDataSetImportTaskRequest:
         raise DeserializationError(
             "CreateDataSetImportTaskRequest.import_config required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

@@ -53,21 +53,21 @@ def serialize_json(value: AuthParameter) -> dict:
 
 def deserialize_json(data: dict) -> AuthParameter:
     out: AuthParameter = {}  # type: ignore[typeddict-item]
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
-    if "isRequired" in data:
+    if data.get("isRequired") is not None:
         out["is_required"] = data["isRequired"]
     else:
         out["is_required"] = False
-    if "label" in data:
+    if data.get("label") is not None:
         out["label"] = data["label"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "isSensitiveField" in data:
+    if data.get("isSensitiveField") is not None:
         out["is_sensitive_field"] = data["isSensitiveField"]
     else:
         out["is_sensitive_field"] = False
-    if "connectorSuppliedValues" in data:
+    if data.get("connectorSuppliedValues") is not None:
         import capo_appflow.types.connector_supplied_value_list
 
         out["connector_supplied_values"] = (

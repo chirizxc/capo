@@ -31,7 +31,7 @@ def serialize_json(value: GridLayoutCanvasSizeOptions) -> dict:
 
 def deserialize_json(data: dict) -> GridLayoutCanvasSizeOptions:
     out: GridLayoutCanvasSizeOptions = {}  # type: ignore[typeddict-item]
-    if "ScreenCanvasSizeOptions" in data:
+    if data.get("ScreenCanvasSizeOptions") is not None:
         import capo_quicksight.types.grid_layout_screen_canvas_size_options
 
         out["screen_canvas_size_options"] = (

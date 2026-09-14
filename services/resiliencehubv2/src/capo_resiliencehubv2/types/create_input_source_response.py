@@ -27,11 +27,11 @@ def serialize_json(value: CreateInputSourceResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateInputSourceResponse:
     out: CreateInputSourceResponse = {}  # type: ignore[typeddict-item]
-    if "serviceArn" in data:
+    if data.get("serviceArn") is not None:
         out["service_arn"] = data["serviceArn"]
     else:
         raise DeserializationError("CreateInputSourceResponse.service_arn required")
-    if "inputSourceId" in data:
+    if data.get("inputSourceId") is not None:
         out["input_source_id"] = data["inputSourceId"]
     else:
         raise DeserializationError("CreateInputSourceResponse.input_source_id required")

@@ -369,15 +369,15 @@ def serialize_json(value: AwsEcsTaskDefinitionContainerDefinitionsDetails) -> di
 
 def deserialize_json(data: dict) -> AwsEcsTaskDefinitionContainerDefinitionsDetails:
     out: AwsEcsTaskDefinitionContainerDefinitionsDetails = {}  # type: ignore[typeddict-item]
-    if "Command" in data:
+    if data.get("Command") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["command"] = capo_securityhub.types.non_empty_string_list.deserialize_json(
             data["Command"]
         )
-    if "Cpu" in data:
+    if data.get("Cpu") is not None:
         out["cpu"] = data["Cpu"]
-    if "DependsOn" in data:
+    if data.get("DependsOn") is not None:
         import capo_securityhub.types.aws_ecs_task_definition_container_definitions_depends_on_list
 
         out["depends_on"] = (
@@ -385,9 +385,9 @@ def deserialize_json(data: dict) -> AwsEcsTaskDefinitionContainerDefinitionsDeta
                 data["DependsOn"]
             )
         )
-    if "DisableNetworking" in data:
+    if data.get("DisableNetworking") is not None:
         out["disable_networking"] = data["DisableNetworking"]
-    if "DnsSearchDomains" in data:
+    if data.get("DnsSearchDomains") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["dns_search_domains"] = (
@@ -395,7 +395,7 @@ def deserialize_json(data: dict) -> AwsEcsTaskDefinitionContainerDefinitionsDeta
                 data["DnsSearchDomains"]
             )
         )
-    if "DnsServers" in data:
+    if data.get("DnsServers") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["dns_servers"] = (
@@ -403,13 +403,13 @@ def deserialize_json(data: dict) -> AwsEcsTaskDefinitionContainerDefinitionsDeta
                 data["DnsServers"]
             )
         )
-    if "DockerLabels" in data:
+    if data.get("DockerLabels") is not None:
         import capo_securityhub.types.field_map
 
         out["docker_labels"] = capo_securityhub.types.field_map.deserialize_json(
             data["DockerLabels"]
         )
-    if "DockerSecurityOptions" in data:
+    if data.get("DockerSecurityOptions") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["docker_security_options"] = (
@@ -417,7 +417,7 @@ def deserialize_json(data: dict) -> AwsEcsTaskDefinitionContainerDefinitionsDeta
                 data["DockerSecurityOptions"]
             )
         )
-    if "EntryPoint" in data:
+    if data.get("EntryPoint") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["entry_point"] = (
@@ -425,7 +425,7 @@ def deserialize_json(data: dict) -> AwsEcsTaskDefinitionContainerDefinitionsDeta
                 data["EntryPoint"]
             )
         )
-    if "Environment" in data:
+    if data.get("Environment") is not None:
         import capo_securityhub.types.aws_ecs_task_definition_container_definitions_environment_list
 
         out["environment"] = (
@@ -433,7 +433,7 @@ def deserialize_json(data: dict) -> AwsEcsTaskDefinitionContainerDefinitionsDeta
                 data["Environment"]
             )
         )
-    if "EnvironmentFiles" in data:
+    if data.get("EnvironmentFiles") is not None:
         import capo_securityhub.types.aws_ecs_task_definition_container_definitions_environment_files_list
 
         out["environment_files"] = (
@@ -441,9 +441,9 @@ def deserialize_json(data: dict) -> AwsEcsTaskDefinitionContainerDefinitionsDeta
                 data["EnvironmentFiles"]
             )
         )
-    if "Essential" in data:
+    if data.get("Essential") is not None:
         out["essential"] = data["Essential"]
-    if "ExtraHosts" in data:
+    if data.get("ExtraHosts") is not None:
         import capo_securityhub.types.aws_ecs_task_definition_container_definitions_extra_hosts_list
 
         out["extra_hosts"] = (
@@ -451,7 +451,7 @@ def deserialize_json(data: dict) -> AwsEcsTaskDefinitionContainerDefinitionsDeta
                 data["ExtraHosts"]
             )
         )
-    if "FirelensConfiguration" in data:
+    if data.get("FirelensConfiguration") is not None:
         import capo_securityhub.types.aws_ecs_task_definition_container_definitions_firelens_configuration_details
 
         out["firelens_configuration"] = (
@@ -459,7 +459,7 @@ def deserialize_json(data: dict) -> AwsEcsTaskDefinitionContainerDefinitionsDeta
                 data["FirelensConfiguration"]
             )
         )
-    if "HealthCheck" in data:
+    if data.get("HealthCheck") is not None:
         import capo_securityhub.types.aws_ecs_task_definition_container_definitions_health_check_details
 
         out["health_check"] = (
@@ -467,19 +467,19 @@ def deserialize_json(data: dict) -> AwsEcsTaskDefinitionContainerDefinitionsDeta
                 data["HealthCheck"]
             )
         )
-    if "Hostname" in data:
+    if data.get("Hostname") is not None:
         out["hostname"] = data["Hostname"]
-    if "Image" in data:
+    if data.get("Image") is not None:
         out["image"] = data["Image"]
-    if "Interactive" in data:
+    if data.get("Interactive") is not None:
         out["interactive"] = data["Interactive"]
-    if "Links" in data:
+    if data.get("Links") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["links"] = capo_securityhub.types.non_empty_string_list.deserialize_json(
             data["Links"]
         )
-    if "LinuxParameters" in data:
+    if data.get("LinuxParameters") is not None:
         import capo_securityhub.types.aws_ecs_task_definition_container_definitions_linux_parameters_details
 
         out["linux_parameters"] = (
@@ -487,7 +487,7 @@ def deserialize_json(data: dict) -> AwsEcsTaskDefinitionContainerDefinitionsDeta
                 data["LinuxParameters"]
             )
         )
-    if "LogConfiguration" in data:
+    if data.get("LogConfiguration") is not None:
         import capo_securityhub.types.aws_ecs_task_definition_container_definitions_log_configuration_details
 
         out["log_configuration"] = (
@@ -495,11 +495,11 @@ def deserialize_json(data: dict) -> AwsEcsTaskDefinitionContainerDefinitionsDeta
                 data["LogConfiguration"]
             )
         )
-    if "Memory" in data:
+    if data.get("Memory") is not None:
         out["memory"] = data["Memory"]
-    if "MemoryReservation" in data:
+    if data.get("MemoryReservation") is not None:
         out["memory_reservation"] = data["MemoryReservation"]
-    if "MountPoints" in data:
+    if data.get("MountPoints") is not None:
         import capo_securityhub.types.aws_ecs_task_definition_container_definitions_mount_points_list
 
         out["mount_points"] = (
@@ -507,9 +507,9 @@ def deserialize_json(data: dict) -> AwsEcsTaskDefinitionContainerDefinitionsDeta
                 data["MountPoints"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "PortMappings" in data:
+    if data.get("PortMappings") is not None:
         import capo_securityhub.types.aws_ecs_task_definition_container_definitions_port_mappings_list
 
         out["port_mappings"] = (
@@ -517,13 +517,13 @@ def deserialize_json(data: dict) -> AwsEcsTaskDefinitionContainerDefinitionsDeta
                 data["PortMappings"]
             )
         )
-    if "Privileged" in data:
+    if data.get("Privileged") is not None:
         out["privileged"] = data["Privileged"]
-    if "PseudoTerminal" in data:
+    if data.get("PseudoTerminal") is not None:
         out["pseudo_terminal"] = data["PseudoTerminal"]
-    if "ReadonlyRootFilesystem" in data:
+    if data.get("ReadonlyRootFilesystem") is not None:
         out["readonly_root_filesystem"] = data["ReadonlyRootFilesystem"]
-    if "RepositoryCredentials" in data:
+    if data.get("RepositoryCredentials") is not None:
         import capo_securityhub.types.aws_ecs_task_definition_container_definitions_repository_credentials_details
 
         out["repository_credentials"] = (
@@ -531,7 +531,7 @@ def deserialize_json(data: dict) -> AwsEcsTaskDefinitionContainerDefinitionsDeta
                 data["RepositoryCredentials"]
             )
         )
-    if "ResourceRequirements" in data:
+    if data.get("ResourceRequirements") is not None:
         import capo_securityhub.types.aws_ecs_task_definition_container_definitions_resource_requirements_list
 
         out["resource_requirements"] = (
@@ -539,7 +539,7 @@ def deserialize_json(data: dict) -> AwsEcsTaskDefinitionContainerDefinitionsDeta
                 data["ResourceRequirements"]
             )
         )
-    if "Secrets" in data:
+    if data.get("Secrets") is not None:
         import capo_securityhub.types.aws_ecs_task_definition_container_definitions_secrets_list
 
         out["secrets"] = (
@@ -547,11 +547,11 @@ def deserialize_json(data: dict) -> AwsEcsTaskDefinitionContainerDefinitionsDeta
                 data["Secrets"]
             )
         )
-    if "StartTimeout" in data:
+    if data.get("StartTimeout") is not None:
         out["start_timeout"] = data["StartTimeout"]
-    if "StopTimeout" in data:
+    if data.get("StopTimeout") is not None:
         out["stop_timeout"] = data["StopTimeout"]
-    if "SystemControls" in data:
+    if data.get("SystemControls") is not None:
         import capo_securityhub.types.aws_ecs_task_definition_container_definitions_system_controls_list
 
         out["system_controls"] = (
@@ -559,7 +559,7 @@ def deserialize_json(data: dict) -> AwsEcsTaskDefinitionContainerDefinitionsDeta
                 data["SystemControls"]
             )
         )
-    if "Ulimits" in data:
+    if data.get("Ulimits") is not None:
         import capo_securityhub.types.aws_ecs_task_definition_container_definitions_ulimits_list
 
         out["ulimits"] = (
@@ -567,9 +567,9 @@ def deserialize_json(data: dict) -> AwsEcsTaskDefinitionContainerDefinitionsDeta
                 data["Ulimits"]
             )
         )
-    if "User" in data:
+    if data.get("User") is not None:
         out["user"] = data["User"]
-    if "VolumesFrom" in data:
+    if data.get("VolumesFrom") is not None:
         import capo_securityhub.types.aws_ecs_task_definition_container_definitions_volumes_from_list
 
         out["volumes_from"] = (
@@ -577,6 +577,6 @@ def deserialize_json(data: dict) -> AwsEcsTaskDefinitionContainerDefinitionsDeta
                 data["VolumesFrom"]
             )
         )
-    if "WorkingDirectory" in data:
+    if data.get("WorkingDirectory") is not None:
         out["working_directory"] = data["WorkingDirectory"]
     return out

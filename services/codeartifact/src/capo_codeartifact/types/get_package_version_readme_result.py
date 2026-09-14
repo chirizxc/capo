@@ -54,20 +54,20 @@ def serialize_json(value: GetPackageVersionReadmeResult) -> dict:
 
 def deserialize_json(data: dict) -> GetPackageVersionReadmeResult:
     out: GetPackageVersionReadmeResult = {}  # type: ignore[typeddict-item]
-    if "format" in data:
+    if data.get("format") is not None:
         import capo_codeartifact.types.package_format
 
         out["format"] = capo_codeartifact.types.package_format.deserialize_json(
             data["format"]
         )
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         out["namespace"] = data["namespace"]
-    if "package" in data:
+    if data.get("package") is not None:
         out["package"] = data["package"]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
-    if "versionRevision" in data:
+    if data.get("versionRevision") is not None:
         out["version_revision"] = data["versionRevision"]
-    if "readme" in data:
+    if data.get("readme") is not None:
         out["readme"] = data["readme"]
     return out

@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: NotificationProperty) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NotificationProperty:
     out: NotificationProperty = {}  # type: ignore[typeddict-item]
-    if "NotifyDelayAfter" in data:
+    if data.get("NotifyDelayAfter") is not None:
         out["notify_delay_after"] = data["NotifyDelayAfter"]
     return out

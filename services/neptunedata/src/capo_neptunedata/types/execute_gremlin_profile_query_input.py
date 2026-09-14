@@ -35,18 +35,18 @@ def serialize_json(value: ExecuteGremlinProfileQueryInput) -> dict:
 
 def deserialize_json(data: dict) -> ExecuteGremlinProfileQueryInput:
     out: ExecuteGremlinProfileQueryInput = {}  # type: ignore[typeddict-item]
-    if "gremlin" in data:
+    if data.get("gremlin") is not None:
         out["gremlin_query"] = data["gremlin"]
     else:
         raise DeserializationError(
             "ExecuteGremlinProfileQueryInput.gremlin_query required"
         )
-    if "profile.results" in data:
+    if data.get("profile.results") is not None:
         out["results"] = data["profile.results"]
-    if "profile.chop" in data:
+    if data.get("profile.chop") is not None:
         out["chop"] = data["profile.chop"]
-    if "profile.serializer" in data:
+    if data.get("profile.serializer") is not None:
         out["serializer"] = data["profile.serializer"]
-    if "profile.indexOps" in data:
+    if data.get("profile.indexOps") is not None:
         out["index_ops"] = data["profile.indexOps"]
     return out

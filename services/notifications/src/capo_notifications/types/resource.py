@@ -39,13 +39,13 @@ def serialize_json(value: Resource) -> dict:
 
 def deserialize_json(data: dict) -> Resource:
     out: Resource = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "detailUrl" in data:
+    if data.get("detailUrl") is not None:
         out["detail_url"] = data["detailUrl"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_notifications.types.tags
 
         out["tags"] = capo_notifications.types.tags.deserialize_json(data["tags"])

@@ -37,9 +37,9 @@ def serialize_json(value: PutDataLakeSettingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutDataLakeSettingsRequest:
     out: PutDataLakeSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "DataLakeSettings" in data:
+    if data.get("DataLakeSettings") is not None:
         import capo_lakeformation.types.data_lake_settings
 
         out["data_lake_settings"] = (

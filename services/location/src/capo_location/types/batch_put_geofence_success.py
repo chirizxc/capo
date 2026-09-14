@@ -39,11 +39,11 @@ def serialize_json(value: BatchPutGeofenceSuccess) -> dict:
 
 def deserialize_json(data: dict) -> BatchPutGeofenceSuccess:
     out: BatchPutGeofenceSuccess = {}  # type: ignore[typeddict-item]
-    if "GeofenceId" in data:
+    if data.get("GeofenceId") is not None:
         out["geofence_id"] = data["GeofenceId"]
     else:
         raise DeserializationError("BatchPutGeofenceSuccess.geofence_id required")
-    if "CreateTime" in data:
+    if data.get("CreateTime") is not None:
         import capo_location.types.timestamp
 
         out["create_time"] = capo_location.types.timestamp.deserialize_json(
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> BatchPutGeofenceSuccess:
         )
     else:
         raise DeserializationError("BatchPutGeofenceSuccess.create_time required")
-    if "UpdateTime" in data:
+    if data.get("UpdateTime") is not None:
         import capo_location.types.timestamp
 
         out["update_time"] = capo_location.types.timestamp.deserialize_json(

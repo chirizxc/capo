@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: IngressAnalysis) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> IngressAnalysis:
     out: IngressAnalysis = {}  # type: ignore[typeddict-item]
-    if "Analyzer" in data:
+    if data.get("Analyzer") is not None:
         out["analyzer"] = data["Analyzer"]
     else:
         raise DeserializationError("IngressAnalysis.analyzer required")
-    if "ResultField" in data:
+    if data.get("ResultField") is not None:
         out["result_field"] = data["ResultField"]
     else:
         raise DeserializationError("IngressAnalysis.result_field required")

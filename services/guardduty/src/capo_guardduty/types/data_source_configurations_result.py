@@ -96,7 +96,7 @@ def serialize_json(value: DataSourceConfigurationsResult) -> dict:
 
 def deserialize_json(data: dict) -> DataSourceConfigurationsResult:
     out: DataSourceConfigurationsResult = {}  # type: ignore[typeddict-item]
-    if "cloudTrail" in data:
+    if data.get("cloudTrail") is not None:
         import capo_guardduty.types.cloud_trail_configuration_result
 
         out["cloud_trail"] = (
@@ -104,7 +104,7 @@ def deserialize_json(data: dict) -> DataSourceConfigurationsResult:
                 data["cloudTrail"]
             )
         )
-    if "dnsLogs" in data:
+    if data.get("dnsLogs") is not None:
         import capo_guardduty.types.dns_logs_configuration_result
 
         out["dns_logs"] = (
@@ -112,7 +112,7 @@ def deserialize_json(data: dict) -> DataSourceConfigurationsResult:
                 data["dnsLogs"]
             )
         )
-    if "flowLogs" in data:
+    if data.get("flowLogs") is not None:
         import capo_guardduty.types.flow_logs_configuration_result
 
         out["flow_logs"] = (
@@ -120,7 +120,7 @@ def deserialize_json(data: dict) -> DataSourceConfigurationsResult:
                 data["flowLogs"]
             )
         )
-    if "s3Logs" in data:
+    if data.get("s3Logs") is not None:
         import capo_guardduty.types.s3_logs_configuration_result
 
         out["s3_logs"] = (
@@ -128,7 +128,7 @@ def deserialize_json(data: dict) -> DataSourceConfigurationsResult:
                 data["s3Logs"]
             )
         )
-    if "kubernetes" in data:
+    if data.get("kubernetes") is not None:
         import capo_guardduty.types.kubernetes_configuration_result
 
         out["kubernetes"] = (
@@ -136,7 +136,7 @@ def deserialize_json(data: dict) -> DataSourceConfigurationsResult:
                 data["kubernetes"]
             )
         )
-    if "malwareProtection" in data:
+    if data.get("malwareProtection") is not None:
         import capo_guardduty.types.malware_protection_configuration_result
 
         out["malware_protection"] = (

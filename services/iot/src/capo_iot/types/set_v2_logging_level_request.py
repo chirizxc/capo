@@ -32,7 +32,7 @@ def serialize_json(value: SetV2LoggingLevelRequest) -> dict:
 
 def deserialize_json(data: dict) -> SetV2LoggingLevelRequest:
     out: SetV2LoggingLevelRequest = {}  # type: ignore[typeddict-item]
-    if "logTarget" in data:
+    if data.get("logTarget") is not None:
         import capo_iot.types.log_target
 
         out["log_target"] = capo_iot.types.log_target.deserialize_json(
@@ -40,7 +40,7 @@ def deserialize_json(data: dict) -> SetV2LoggingLevelRequest:
         )
     else:
         raise DeserializationError("SetV2LoggingLevelRequest.log_target required")
-    if "logLevel" in data:
+    if data.get("logLevel") is not None:
         import capo_iot.types.log_level
 
         out["log_level"] = capo_iot.types.log_level.deserialize_json(data["logLevel"])

@@ -46,7 +46,7 @@ def deserialize_json(
     data: dict,
 ) -> RuleGroupSourceStatelessRulesAndCustomActionsDetails:
     out: RuleGroupSourceStatelessRulesAndCustomActionsDetails = {}  # type: ignore[typeddict-item]
-    if "CustomActions" in data:
+    if data.get("CustomActions") is not None:
         import capo_securityhub.types.rule_group_source_custom_actions_list
 
         out["custom_actions"] = (
@@ -54,7 +54,7 @@ def deserialize_json(
                 data["CustomActions"]
             )
         )
-    if "StatelessRules" in data:
+    if data.get("StatelessRules") is not None:
         import capo_securityhub.types.rule_group_source_stateless_rules_list
 
         out["stateless_rules"] = (

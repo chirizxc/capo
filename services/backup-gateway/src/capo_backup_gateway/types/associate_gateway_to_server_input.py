@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: AssociateGatewayToServerInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AssociateGatewayToServerInput:
     out: AssociateGatewayToServerInput = {}  # type: ignore[typeddict-item]
-    if "GatewayArn" in data:
+    if data.get("GatewayArn") is not None:
         out["gateway_arn"] = data["GatewayArn"]
     else:
         raise DeserializationError("AssociateGatewayToServerInput.gateway_arn required")
-    if "ServerArn" in data:
+    if data.get("ServerArn") is not None:
         out["server_arn"] = data["ServerArn"]
     else:
         raise DeserializationError("AssociateGatewayToServerInput.server_arn required")

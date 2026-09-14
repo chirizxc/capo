@@ -32,25 +32,25 @@ def serialize_aws_json_1_0(value: OkvEncryptionKeyConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> OkvEncryptionKeyConfiguration:
     out: OkvEncryptionKeyConfiguration = {}  # type: ignore[typeddict-item]
-    if "certificateDirectoryName" in data:
+    if data.get("certificateDirectoryName") is not None:
         out["certificate_directory_name"] = data["certificateDirectoryName"]
     else:
         raise DeserializationError(
             "OkvEncryptionKeyConfiguration.certificate_directory_name required"
         )
-    if "certificateId" in data:
+    if data.get("certificateId") is not None:
         out["certificate_id"] = data["certificateId"]
-    if "directoryName" in data:
+    if data.get("directoryName") is not None:
         out["directory_name"] = data["directoryName"]
     else:
         raise DeserializationError(
             "OkvEncryptionKeyConfiguration.directory_name required"
         )
-    if "okvKmsKey" in data:
+    if data.get("okvKmsKey") is not None:
         out["okv_kms_key"] = data["okvKmsKey"]
     else:
         raise DeserializationError("OkvEncryptionKeyConfiguration.okv_kms_key required")
-    if "okvUri" in data:
+    if data.get("okvUri") is not None:
         out["okv_uri"] = data["okvUri"]
     else:
         raise DeserializationError("OkvEncryptionKeyConfiguration.okv_uri required")

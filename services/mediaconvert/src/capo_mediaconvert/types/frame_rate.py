@@ -27,8 +27,8 @@ def serialize_json(value: FrameRate) -> dict:
 
 def deserialize_json(data: dict) -> FrameRate:
     out: FrameRate = {}  # type: ignore[typeddict-item]
-    if "denominator" in data:
+    if data.get("denominator") is not None:
         out["denominator"] = data["denominator"]
-    if "numerator" in data:
+    if data.get("numerator") is not None:
         out["numerator"] = data["numerator"]
     return out

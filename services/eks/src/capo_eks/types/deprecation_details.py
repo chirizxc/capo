@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DeprecationDetails:
 
     out: DeprecationDetails = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_eks.types.deprecation_detail.deserialize_json(item))
     return out

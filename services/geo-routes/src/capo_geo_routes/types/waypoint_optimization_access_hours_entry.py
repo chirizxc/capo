@@ -32,7 +32,7 @@ def serialize_json(value: WaypointOptimizationAccessHoursEntry) -> dict:
 
 def deserialize_json(data: dict) -> WaypointOptimizationAccessHoursEntry:
     out: WaypointOptimizationAccessHoursEntry = {}  # type: ignore[typeddict-item]
-    if "DayOfWeek" in data:
+    if data.get("DayOfWeek") is not None:
         import capo_geo_routes.types.day_of_week
 
         out["day_of_week"] = capo_geo_routes.types.day_of_week.deserialize_json(
@@ -42,7 +42,7 @@ def deserialize_json(data: dict) -> WaypointOptimizationAccessHoursEntry:
         raise DeserializationError(
             "WaypointOptimizationAccessHoursEntry.day_of_week required"
         )
-    if "TimeOfDay" in data:
+    if data.get("TimeOfDay") is not None:
         out["time_of_day"] = data["TimeOfDay"]
     else:
         raise DeserializationError(

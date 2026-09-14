@@ -43,9 +43,9 @@ def serialize_aws_json_1_1(value: Status) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Status:
     out: Status = {}  # type: ignore[typeddict-item]
-    if "DocumentId" in data:
+    if data.get("DocumentId") is not None:
         out["document_id"] = data["DocumentId"]
-    if "DocumentStatus" in data:
+    if data.get("DocumentStatus") is not None:
         import capo_kendra.types.document_status
 
         out["document_status"] = (
@@ -53,8 +53,8 @@ def deserialize_aws_json_1_1(data: dict) -> Status:
                 data["DocumentStatus"]
             )
         )
-    if "FailureCode" in data:
+    if data.get("FailureCode") is not None:
         out["failure_code"] = data["FailureCode"]
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
     return out

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ReviewSourceSummaryList:
 
     out: ReviewSourceSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_marketplace_discovery.types.review_source_summary.deserialize_json(
                 item

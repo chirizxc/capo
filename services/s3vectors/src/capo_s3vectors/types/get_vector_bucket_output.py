@@ -28,7 +28,7 @@ def serialize_json(value: GetVectorBucketOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetVectorBucketOutput:
     out: GetVectorBucketOutput = {}  # type: ignore[typeddict-item]
-    if "vectorBucket" in data:
+    if data.get("vectorBucket") is not None:
         import capo_s3vectors.types.vector_bucket
 
         out["vector_bucket"] = capo_s3vectors.types.vector_bucket.deserialize_json(

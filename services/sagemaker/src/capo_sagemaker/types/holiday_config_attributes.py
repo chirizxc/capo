@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: HolidayConfigAttributes) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HolidayConfigAttributes:
     out: HolidayConfigAttributes = {}  # type: ignore[typeddict-item]
-    if "CountryCode" in data:
+    if data.get("CountryCode") is not None:
         out["country_code"] = data["CountryCode"]
     return out

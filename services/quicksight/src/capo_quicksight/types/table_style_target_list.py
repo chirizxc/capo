@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> TableStyleTargetList:
 
     out: TableStyleTargetList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.table_style_target.deserialize_json(item))
     return out

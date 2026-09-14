@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> PredicateList:
 
     out: PredicateList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_amplifyuibuilder.types.predicate.deserialize_json(item))
     return out

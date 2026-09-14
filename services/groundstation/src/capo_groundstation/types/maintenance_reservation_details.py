@@ -28,7 +28,7 @@ def serialize_json(value: MaintenanceReservationDetails) -> dict:
 
 def deserialize_json(data: dict) -> MaintenanceReservationDetails:
     out: MaintenanceReservationDetails = {}  # type: ignore[typeddict-item]
-    if "maintenanceType" in data:
+    if data.get("maintenanceType") is not None:
         import capo_groundstation.types.maintenance_type
 
         out["maintenance_type"] = (

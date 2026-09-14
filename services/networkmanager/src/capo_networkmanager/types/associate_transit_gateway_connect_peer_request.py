@@ -36,18 +36,18 @@ def serialize_json(value: AssociateTransitGatewayConnectPeerRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociateTransitGatewayConnectPeerRequest:
     out: AssociateTransitGatewayConnectPeerRequest = {}  # type: ignore[typeddict-item]
-    if "TransitGatewayConnectPeerArn" in data:
+    if data.get("TransitGatewayConnectPeerArn") is not None:
         out["transit_gateway_connect_peer_arn"] = data["TransitGatewayConnectPeerArn"]
     else:
         raise DeserializationError(
             "AssociateTransitGatewayConnectPeerRequest.transit_gateway_connect_peer_arn required"
         )
-    if "DeviceId" in data:
+    if data.get("DeviceId") is not None:
         out["device_id"] = data["DeviceId"]
     else:
         raise DeserializationError(
             "AssociateTransitGatewayConnectPeerRequest.device_id required"
         )
-    if "LinkId" in data:
+    if data.get("LinkId") is not None:
         out["link_id"] = data["LinkId"]
     return out

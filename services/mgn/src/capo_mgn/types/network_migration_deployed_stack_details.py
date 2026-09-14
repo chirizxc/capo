@@ -58,17 +58,17 @@ def serialize_json(value: NetworkMigrationDeployedStackDetails) -> dict:
 
 def deserialize_json(data: dict) -> NetworkMigrationDeployedStackDetails:
     out: NetworkMigrationDeployedStackDetails = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "stackPhysicalID" in data:
+    if data.get("stackPhysicalID") is not None:
         out["stack_physical_id"] = data["stackPhysicalID"]
-    if "stackLogicalID" in data:
+    if data.get("stackLogicalID") is not None:
         out["stack_logical_id"] = data["stackLogicalID"]
-    if "segmentID" in data:
+    if data.get("segmentID") is not None:
         out["segment_id"] = data["segmentID"]
-    if "targetAccount" in data:
+    if data.get("targetAccount") is not None:
         out["target_account"] = data["targetAccount"]
-    if "failedResources" in data:
+    if data.get("failedResources") is not None:
         import capo_mgn.types.network_migration_failed_resources_list
 
         out["failed_resources"] = (

@@ -54,23 +54,23 @@ def serialize_json(value: GeofenceGeometry) -> dict:
 
 def deserialize_json(data: dict) -> GeofenceGeometry:
     out: GeofenceGeometry = {}  # type: ignore[typeddict-item]
-    if "Polygon" in data:
+    if data.get("Polygon") is not None:
         import capo_location.types.linear_rings
 
         out["polygon"] = capo_location.types.linear_rings.deserialize_json(
             data["Polygon"]
         )
-    if "Circle" in data:
+    if data.get("Circle") is not None:
         import capo_location.types.circle
 
         out["circle"] = capo_location.types.circle.deserialize_json(data["Circle"])
-    if "Geobuf" in data:
+    if data.get("Geobuf") is not None:
         import capo_location.types.base64_encoded_geobuf
 
         out["geobuf"] = capo_location.types.base64_encoded_geobuf.deserialize_json(
             data["Geobuf"]
         )
-    if "MultiPolygon" in data:
+    if data.get("MultiPolygon") is not None:
         import capo_location.types.multi_linear_rings
 
         out["multi_polygon"] = capo_location.types.multi_linear_rings.deserialize_json(

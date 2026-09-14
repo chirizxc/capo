@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ResourcePropertyList:
 
     out: ResourcePropertyList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_resource_explorer_2.types.resource_property.deserialize_json(item)
         )

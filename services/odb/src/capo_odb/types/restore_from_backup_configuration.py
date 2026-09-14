@@ -41,13 +41,13 @@ def serialize_aws_json_1_0(value: RestoreFromBackupConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RestoreFromBackupConfiguration:
     out: RestoreFromBackupConfiguration = {}  # type: ignore[typeddict-item]
-    if "autonomousDatabaseBackupId" in data:
+    if data.get("autonomousDatabaseBackupId") is not None:
         out["autonomous_database_backup_id"] = data["autonomousDatabaseBackupId"]
     else:
         raise DeserializationError(
             "RestoreFromBackupConfiguration.autonomous_database_backup_id required"
         )
-    if "cloneType" in data:
+    if data.get("cloneType") is not None:
         import capo_odb.types.clone_type
 
         out["clone_type"] = capo_odb.types.clone_type.deserialize_aws_json_1_0(
@@ -55,7 +55,7 @@ def deserialize_aws_json_1_0(data: dict) -> RestoreFromBackupConfiguration:
         )
     else:
         raise DeserializationError("RestoreFromBackupConfiguration.clone_type required")
-    if "cloneTableSpaceList" in data:
+    if data.get("cloneTableSpaceList") is not None:
         import capo_odb.types.integer_list
 
         out["clone_table_space_list"] = (

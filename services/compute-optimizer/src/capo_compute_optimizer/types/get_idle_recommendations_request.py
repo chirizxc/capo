@@ -76,7 +76,7 @@ def serialize_aws_json_1_0(value: GetIdleRecommendationsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetIdleRecommendationsRequest:
     out: GetIdleRecommendationsRequest = {}  # type: ignore[typeddict-item]
-    if "resourceArns" in data:
+    if data.get("resourceArns") is not None:
         import capo_compute_optimizer.types.resource_arns
 
         out["resource_arns"] = (
@@ -84,11 +84,11 @@ def deserialize_aws_json_1_0(data: dict) -> GetIdleRecommendationsRequest:
                 data["resourceArns"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_compute_optimizer.types.idle_recommendation_filters
 
         out["filters"] = (
@@ -96,7 +96,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetIdleRecommendationsRequest:
                 data["filters"]
             )
         )
-    if "accountIds" in data:
+    if data.get("accountIds") is not None:
         import capo_compute_optimizer.types.account_ids
 
         out["account_ids"] = (
@@ -104,7 +104,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetIdleRecommendationsRequest:
                 data["accountIds"]
             )
         )
-    if "orderBy" in data:
+    if data.get("orderBy") is not None:
         import capo_compute_optimizer.types.order_by
 
         out["order_by"] = (

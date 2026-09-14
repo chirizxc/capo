@@ -54,13 +54,13 @@ def serialize_aws_json_1_1(value: OrganizationConfigRuleStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OrganizationConfigRuleStatus:
     out: OrganizationConfigRuleStatus = {}  # type: ignore[typeddict-item]
-    if "OrganizationConfigRuleName" in data:
+    if data.get("OrganizationConfigRuleName") is not None:
         out["organization_config_rule_name"] = data["OrganizationConfigRuleName"]
     else:
         raise DeserializationError(
             "OrganizationConfigRuleStatus.organization_config_rule_name required"
         )
-    if "OrganizationRuleStatus" in data:
+    if data.get("OrganizationRuleStatus") is not None:
         import capo_config_service.types.organization_rule_status
 
         out["organization_rule_status"] = (
@@ -72,11 +72,11 @@ def deserialize_aws_json_1_1(data: dict) -> OrganizationConfigRuleStatus:
         raise DeserializationError(
             "OrganizationConfigRuleStatus.organization_rule_status required"
         )
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "LastUpdateTime" in data:
+    if data.get("LastUpdateTime") is not None:
         import capo_config_service.types.date
 
         out["last_update_time"] = (

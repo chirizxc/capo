@@ -32,8 +32,8 @@ def serialize_json(value: GetInvestigationGroupPolicyResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetInvestigationGroupPolicyResponse:
     out: GetInvestigationGroupPolicyResponse = {}  # type: ignore[typeddict-item]
-    if "investigationGroupArn" in data:
+    if data.get("investigationGroupArn") is not None:
         out["investigation_group_arn"] = data["investigationGroupArn"]
-    if "policy" in data:
+    if data.get("policy") is not None:
         out["policy"] = data["policy"]
     return out

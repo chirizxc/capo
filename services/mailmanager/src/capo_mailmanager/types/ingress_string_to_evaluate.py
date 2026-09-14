@@ -47,7 +47,7 @@ def serialize_aws_json_1_0(value: IngressStringToEvaluate) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> IngressStringToEvaluate:
-    if "Attribute" in data:
+    if data.get("Attribute") is not None:
         import capo_mailmanager.types.ingress_string_email_attribute
 
         return {
@@ -55,7 +55,7 @@ def deserialize_aws_json_1_0(data: dict) -> IngressStringToEvaluate:
                 data["Attribute"]
             )
         }
-    elif "Analysis" in data:
+    elif data.get("Analysis") is not None:
         import capo_mailmanager.types.ingress_analysis
 
         return {

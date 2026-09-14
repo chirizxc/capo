@@ -66,15 +66,15 @@ def serialize_json(value: CreateCloudFormationTemplateResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateCloudFormationTemplateResponse:
     out: CreateCloudFormationTemplateResponse = {}  # type: ignore[typeddict-item]
-    if "applicationId" in data:
+    if data.get("applicationId") is not None:
         out["application_id"] = data["applicationId"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         out["creation_time"] = data["creationTime"]
-    if "expirationTime" in data:
+    if data.get("expirationTime") is not None:
         out["expiration_time"] = data["expirationTime"]
-    if "semanticVersion" in data:
+    if data.get("semanticVersion") is not None:
         out["semantic_version"] = data["semanticVersion"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_serverlessapplicationrepository.types.status
 
         out["status"] = (
@@ -82,8 +82,8 @@ def deserialize_json(data: dict) -> CreateCloudFormationTemplateResponse:
                 data["status"]
             )
         )
-    if "templateId" in data:
+    if data.get("templateId") is not None:
         out["template_id"] = data["templateId"]
-    if "templateUrl" in data:
+    if data.get("templateUrl") is not None:
         out["template_url"] = data["templateUrl"]
     return out

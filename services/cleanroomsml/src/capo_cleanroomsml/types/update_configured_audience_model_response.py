@@ -24,7 +24,7 @@ def serialize_json(value: UpdateConfiguredAudienceModelResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateConfiguredAudienceModelResponse:
     out: UpdateConfiguredAudienceModelResponse = {}  # type: ignore[typeddict-item]
-    if "configuredAudienceModelArn" in data:
+    if data.get("configuredAudienceModelArn") is not None:
         out["configured_audience_model_arn"] = data["configuredAudienceModelArn"]
     else:
         raise DeserializationError(

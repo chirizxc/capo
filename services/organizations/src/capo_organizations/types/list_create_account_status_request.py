@@ -41,7 +41,7 @@ def serialize_aws_json_1_1(value: ListCreateAccountStatusRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListCreateAccountStatusRequest:
     out: ListCreateAccountStatusRequest = {}  # type: ignore[typeddict-item]
-    if "States" in data:
+    if data.get("States") is not None:
         import capo_organizations.types.create_account_states
 
         out["states"] = (
@@ -49,8 +49,8 @@ def deserialize_aws_json_1_1(data: dict) -> ListCreateAccountStatusRequest:
                 data["States"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

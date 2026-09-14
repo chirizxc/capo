@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> AllowedOperationList:
 
     out: AllowedOperationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_license_manager.types.allowed_operation.deserialize_aws_json_1_1(item)
         )

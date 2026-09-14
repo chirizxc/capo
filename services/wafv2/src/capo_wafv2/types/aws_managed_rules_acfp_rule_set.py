@@ -57,17 +57,17 @@ def serialize_aws_json_1_1(value: AWSManagedRulesACFPRuleSet) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AWSManagedRulesACFPRuleSet:
     out: AWSManagedRulesACFPRuleSet = {}  # type: ignore[typeddict-item]
-    if "CreationPath" in data:
+    if data.get("CreationPath") is not None:
         out["creation_path"] = data["CreationPath"]
     else:
         raise DeserializationError("AWSManagedRulesACFPRuleSet.creation_path required")
-    if "RegistrationPagePath" in data:
+    if data.get("RegistrationPagePath") is not None:
         out["registration_page_path"] = data["RegistrationPagePath"]
     else:
         raise DeserializationError(
             "AWSManagedRulesACFPRuleSet.registration_page_path required"
         )
-    if "RequestInspection" in data:
+    if data.get("RequestInspection") is not None:
         import capo_wafv2.types.request_inspection_acfp
 
         out["request_inspection"] = (
@@ -79,7 +79,7 @@ def deserialize_aws_json_1_1(data: dict) -> AWSManagedRulesACFPRuleSet:
         raise DeserializationError(
             "AWSManagedRulesACFPRuleSet.request_inspection required"
         )
-    if "ResponseInspection" in data:
+    if data.get("ResponseInspection") is not None:
         import capo_wafv2.types.response_inspection
 
         out["response_inspection"] = (
@@ -87,7 +87,7 @@ def deserialize_aws_json_1_1(data: dict) -> AWSManagedRulesACFPRuleSet:
                 data["ResponseInspection"]
             )
         )
-    if "EnableRegexInPath" in data:
+    if data.get("EnableRegexInPath") is not None:
         out["enable_regex_in_path"] = data["EnableRegexInPath"]
     else:
         out["enable_regex_in_path"] = False

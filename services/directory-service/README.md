@@ -13,9 +13,9 @@ from capo_directory_service import AsyncDirectoryServiceClient
 
 
 async def main():
-    async with AsyncDirectoryServiceClient() as s3:
+    async with AsyncDirectoryServiceClient() as directory_service:
         # Example: call the accept_shared_directory operation
-        response = await s3.accept_shared_directory()
+        response = await directory_service.accept_shared_directory()
         print(response["shared_directory"])
 ```
 
@@ -28,9 +28,9 @@ from capo_directory_service import AsyncDirectoryServiceClient
 
 
 async def main():
-    async with AsyncDirectoryServiceClient() as s3:
+    async with AsyncDirectoryServiceClient() as directory_service:
         # Example: paginate over describe_client_authentication_settings
-        async for item in s3.iter_describe_client_authentication_settings():
+        async for item in directory_service.iter_describe_client_authentication_settings():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_directory_service.error import ClientException
 
 
 async def main():
-    async with AsyncDirectoryServiceClient() as s3:
+    async with AsyncDirectoryServiceClient() as directory_service:
         try:
-            await s3.accept_shared_directory()
+            await directory_service.accept_shared_directory()
         except ClientException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_directory_service import AsyncDirectoryServiceClient
 
 
 async def main():
-    async with AsyncDirectoryServiceClient() as s3:
+    async with AsyncDirectoryServiceClient() as directory_service:
         # Default: 3 attempts for every operation
-        response = await s3.accept_shared_directory()
+        response = await directory_service.accept_shared_directory()
 
         # Override per operation
-        response = await s3.accept_shared_directory(config_overrides={"retry_max_attempts": 5})
+        response = await directory_service.accept_shared_directory(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.accept_shared_directory(config_overrides={"retry_max_attempts": 1})
+        response = await directory_service.accept_shared_directory(config_overrides={"retry_max_attempts": 1})
 ```

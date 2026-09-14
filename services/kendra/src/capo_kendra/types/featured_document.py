@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: FeaturedDocument) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FeaturedDocument:
     out: FeaturedDocument = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     return out

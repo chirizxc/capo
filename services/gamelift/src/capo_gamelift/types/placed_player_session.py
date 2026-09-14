@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: PlacedPlayerSession) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PlacedPlayerSession:
     out: PlacedPlayerSession = {}  # type: ignore[typeddict-item]
-    if "PlayerId" in data:
+    if data.get("PlayerId") is not None:
         out["player_id"] = data["PlayerId"]
-    if "PlayerSessionId" in data:
+    if data.get("PlayerSessionId") is not None:
         out["player_session_id"] = data["PlayerSessionId"]
     return out

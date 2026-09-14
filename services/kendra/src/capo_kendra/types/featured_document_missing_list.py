@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> FeaturedDocumentMissingList:
 
     out: FeaturedDocumentMissingList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_kendra.types.featured_document_missing.deserialize_aws_json_1_1(item)
         )

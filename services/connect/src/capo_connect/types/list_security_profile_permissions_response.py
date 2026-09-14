@@ -46,20 +46,20 @@ def serialize_json(value: ListSecurityProfilePermissionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListSecurityProfilePermissionsResponse:
     out: ListSecurityProfilePermissionsResponse = {}  # type: ignore[typeddict-item]
-    if "Permissions" in data:
+    if data.get("Permissions") is not None:
         import capo_connect.types.permissions_list
 
         out["permissions"] = capo_connect.types.permissions_list.deserialize_json(
             data["Permissions"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_connect.types.timestamp
 
         out["last_modified_time"] = capo_connect.types.timestamp.deserialize_json(
             data["LastModifiedTime"]
         )
-    if "LastModifiedRegion" in data:
+    if data.get("LastModifiedRegion") is not None:
         out["last_modified_region"] = data["LastModifiedRegion"]
     return out

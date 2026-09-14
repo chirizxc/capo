@@ -28,7 +28,7 @@ def serialize_json(value: LockConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> LockConfiguration:
     out: LockConfiguration = {}  # type: ignore[typeddict-item]
-    if "UnlockDelay" in data:
+    if data.get("UnlockDelay") is not None:
         import capo_rbin.types.unlock_delay
 
         out["unlock_delay"] = capo_rbin.types.unlock_delay.deserialize_json(

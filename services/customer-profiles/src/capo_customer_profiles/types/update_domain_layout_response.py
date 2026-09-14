@@ -84,33 +84,33 @@ def serialize_json(value: UpdateDomainLayoutResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDomainLayoutResponse:
     out: UpdateDomainLayoutResponse = {}  # type: ignore[typeddict-item]
-    if "LayoutDefinitionName" in data:
+    if data.get("LayoutDefinitionName") is not None:
         out["layout_definition_name"] = data["LayoutDefinitionName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "IsDefault" in data:
+    if data.get("IsDefault") is not None:
         out["is_default"] = data["IsDefault"]
     else:
         out["is_default"] = False
-    if "LayoutType" in data:
+    if data.get("LayoutType") is not None:
         import capo_customer_profiles.types.layout_type
 
         out["layout_type"] = capo_customer_profiles.types.layout_type.deserialize_json(
             data["LayoutType"]
         )
-    if "Layout" in data:
+    if data.get("Layout") is not None:
         out["layout"] = data["Layout"]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["created_at"] = capo_customer_profiles.types.timestamp.deserialize_json(
             data["CreatedAt"]
         )
-    if "LastUpdatedAt" in data:
+    if data.get("LastUpdatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["last_updated_at"] = (
@@ -118,7 +118,7 @@ def deserialize_json(data: dict) -> UpdateDomainLayoutResponse:
                 data["LastUpdatedAt"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_customer_profiles.types.tag_map
 
         out["tags"] = capo_customer_profiles.types.tag_map.deserialize_json(

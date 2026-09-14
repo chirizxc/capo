@@ -39,15 +39,20 @@ class GlobalReplicationGroupNotFoundFault(ServiceError):
 
     code: str | None = "GlobalReplicationGroupNotFoundFault"
 
-    def __init__(self, data: GlobalReplicationGroupNotFoundFault_):
+    def __init__(
+        self, data: GlobalReplicationGroupNotFoundFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="GlobalReplicationGroupNotFoundFault",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "GlobalReplicationGroupNotFoundFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "GlobalReplicationGroupNotFoundFault":
+        return cls(deserialize_query(el), message)

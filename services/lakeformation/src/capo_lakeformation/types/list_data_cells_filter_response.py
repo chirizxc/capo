@@ -36,7 +36,7 @@ def serialize_json(value: ListDataCellsFilterResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListDataCellsFilterResponse:
     out: ListDataCellsFilterResponse = {}  # type: ignore[typeddict-item]
-    if "DataCellsFilters" in data:
+    if data.get("DataCellsFilters") is not None:
         import capo_lakeformation.types.data_cells_filter_list
 
         out["data_cells_filters"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListDataCellsFilterResponse:
                 data["DataCellsFilters"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

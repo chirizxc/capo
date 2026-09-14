@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: CloudWatchLoggingOption) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CloudWatchLoggingOption:
     out: CloudWatchLoggingOption = {}  # type: ignore[typeddict-item]
-    if "LogStreamARN" in data:
+    if data.get("LogStreamARN") is not None:
         out["log_stream_arn"] = data["LogStreamARN"]
     else:
         raise DeserializationError("CloudWatchLoggingOption.log_stream_arn required")

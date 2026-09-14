@@ -33,14 +33,14 @@ def serialize_aws_json_1_1(value: RegisterUsageRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RegisterUsageRequest:
     out: RegisterUsageRequest = {}  # type: ignore[typeddict-item]
-    if "ProductCode" in data:
+    if data.get("ProductCode") is not None:
         out["product_code"] = data["ProductCode"]
     else:
         raise DeserializationError("RegisterUsageRequest.product_code required")
-    if "PublicKeyVersion" in data:
+    if data.get("PublicKeyVersion") is not None:
         out["public_key_version"] = data["PublicKeyVersion"]
     else:
         raise DeserializationError("RegisterUsageRequest.public_key_version required")
-    if "Nonce" in data:
+    if data.get("Nonce") is not None:
         out["nonce"] = data["Nonce"]
     return out

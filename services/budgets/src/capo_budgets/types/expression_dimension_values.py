@@ -41,13 +41,13 @@ def serialize_aws_json_1_1(value: ExpressionDimensionValues) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExpressionDimensionValues:
     out: ExpressionDimensionValues = {}  # type: ignore[typeddict-item]
-    if "Key" in data:
+    if data.get("Key") is not None:
         import capo_budgets.types.dimension
 
         out["key"] = capo_budgets.types.dimension.deserialize_aws_json_1_1(data["Key"])
     else:
         raise DeserializationError("ExpressionDimensionValues.key required")
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_budgets.types.values
 
         out["values"] = capo_budgets.types.values.deserialize_aws_json_1_1(
@@ -55,7 +55,7 @@ def deserialize_aws_json_1_1(data: dict) -> ExpressionDimensionValues:
         )
     else:
         raise DeserializationError("ExpressionDimensionValues.values required")
-    if "MatchOptions" in data:
+    if data.get("MatchOptions") is not None:
         import capo_budgets.types.match_options
 
         out["match_options"] = (

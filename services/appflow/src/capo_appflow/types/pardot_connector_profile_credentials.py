@@ -47,11 +47,11 @@ def serialize_json(value: PardotConnectorProfileCredentials) -> dict:
 
 def deserialize_json(data: dict) -> PardotConnectorProfileCredentials:
     out: PardotConnectorProfileCredentials = {}  # type: ignore[typeddict-item]
-    if "accessToken" in data:
+    if data.get("accessToken") is not None:
         out["access_token"] = data["accessToken"]
-    if "refreshToken" in data:
+    if data.get("refreshToken") is not None:
         out["refresh_token"] = data["refreshToken"]
-    if "oAuthRequest" in data:
+    if data.get("oAuthRequest") is not None:
         import capo_appflow.types.connector_o_auth_request
 
         out["o_auth_request"] = (
@@ -59,6 +59,6 @@ def deserialize_json(data: dict) -> PardotConnectorProfileCredentials:
                 data["oAuthRequest"]
             )
         )
-    if "clientCredentialsArn" in data:
+    if data.get("clientCredentialsArn") is not None:
         out["client_credentials_arn"] = data["clientCredentialsArn"]
     return out

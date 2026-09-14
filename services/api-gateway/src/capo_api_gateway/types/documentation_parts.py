@@ -32,7 +32,7 @@ def serialize_json(value: DocumentationParts) -> dict:
 
 def deserialize_json(data: dict) -> DocumentationParts:
     out: DocumentationParts = {}  # type: ignore[typeddict-item]
-    if "item" in data:
+    if data.get("item") is not None:
         import capo_api_gateway.types.list_of_documentation_part
 
         out["items"] = (

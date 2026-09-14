@@ -56,20 +56,20 @@ def serialize_aws_json_1_1(value: ArtifactRevision) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ArtifactRevision:
     out: ArtifactRevision = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "revisionId" in data:
+    if data.get("revisionId") is not None:
         out["revision_id"] = data["revisionId"]
-    if "revisionChangeIdentifier" in data:
+    if data.get("revisionChangeIdentifier") is not None:
         out["revision_change_identifier"] = data["revisionChangeIdentifier"]
-    if "revisionSummary" in data:
+    if data.get("revisionSummary") is not None:
         out["revision_summary"] = data["revisionSummary"]
-    if "created" in data:
+    if data.get("created") is not None:
         import capo_codepipeline.types.timestamp
 
         out["created"] = capo_codepipeline.types.timestamp.deserialize_aws_json_1_1(
             data["created"]
         )
-    if "revisionUrl" in data:
+    if data.get("revisionUrl") is not None:
         out["revision_url"] = data["revisionUrl"]
     return out

@@ -36,7 +36,7 @@ def serialize_json(value: GetCisScanResultDetailsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetCisScanResultDetailsResponse:
     out: GetCisScanResultDetailsResponse = {}  # type: ignore[typeddict-item]
-    if "scanResultDetails" in data:
+    if data.get("scanResultDetails") is not None:
         import capo_inspector2.types.cis_scan_result_details_list
 
         out["scan_result_details"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> GetCisScanResultDetailsResponse:
                 data["scanResultDetails"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

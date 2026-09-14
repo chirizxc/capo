@@ -61,25 +61,25 @@ def serialize_aws_json_1_1(value: DeployActionExecutionTarget) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeployActionExecutionTarget:
     out: DeployActionExecutionTarget = {}  # type: ignore[typeddict-item]
-    if "targetId" in data:
+    if data.get("targetId") is not None:
         out["target_id"] = data["targetId"]
-    if "targetType" in data:
+    if data.get("targetType") is not None:
         out["target_type"] = data["targetType"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_codepipeline.types.timestamp
 
         out["start_time"] = capo_codepipeline.types.timestamp.deserialize_aws_json_1_1(
             data["startTime"]
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_codepipeline.types.timestamp
 
         out["end_time"] = capo_codepipeline.types.timestamp.deserialize_aws_json_1_1(
             data["endTime"]
         )
-    if "events" in data:
+    if data.get("events") is not None:
         import capo_codepipeline.types.deploy_target_event_list
 
         out["events"] = (

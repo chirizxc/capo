@@ -62,13 +62,13 @@ def serialize_json(value: UpdateReviewTemplateInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateReviewTemplateInput:
     out: UpdateReviewTemplateInput = {}  # type: ignore[typeddict-item]
-    if "TemplateName" in data:
+    if data.get("TemplateName") is not None:
         out["template_name"] = data["TemplateName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Notes" in data:
+    if data.get("Notes") is not None:
         out["notes"] = data["Notes"]
-    if "LensesToAssociate" in data:
+    if data.get("LensesToAssociate") is not None:
         import capo_wellarchitected.types.review_template_lens_aliases
 
         out["lenses_to_associate"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> UpdateReviewTemplateInput:
                 data["LensesToAssociate"]
             )
         )
-    if "LensesToDisassociate" in data:
+    if data.get("LensesToDisassociate") is not None:
         import capo_wellarchitected.types.review_template_lens_aliases
 
         out["lenses_to_disassociate"] = (

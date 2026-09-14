@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: ExtendedKeyUsage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExtendedKeyUsage:
     out: ExtendedKeyUsage = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         import capo_acm.types.extended_key_usage_name
 
         out["name"] = capo_acm.types.extended_key_usage_name.deserialize_aws_json_1_1(
             data["Name"]
         )
-    if "OID" in data:
+    if data.get("OID") is not None:
         out["oid"] = data["OID"]
     return out

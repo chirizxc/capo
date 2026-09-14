@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: StartMisconfiguredStateRecoveryResponse) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> StartMisconfiguredStateRecoveryResponse:
     out: StartMisconfiguredStateRecoveryResponse = {}  # type: ignore[typeddict-item]
-    if "FileSystem" in data:
+    if data.get("FileSystem") is not None:
         import capo_fsx.types.file_system
 
         out["file_system"] = capo_fsx.types.file_system.deserialize_aws_json_1_1(

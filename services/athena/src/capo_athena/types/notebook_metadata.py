@@ -59,25 +59,25 @@ def serialize_aws_json_1_1(value: NotebookMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NotebookMetadata:
     out: NotebookMetadata = {}  # type: ignore[typeddict-item]
-    if "NotebookId" in data:
+    if data.get("NotebookId") is not None:
         out["notebook_id"] = data["NotebookId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "WorkGroup" in data:
+    if data.get("WorkGroup") is not None:
         out["work_group"] = data["WorkGroup"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_athena.types.date
 
         out["creation_time"] = capo_athena.types.date.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_athena.types.notebook_type
 
         out["type"] = capo_athena.types.notebook_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_athena.types.date
 
         out["last_modified_time"] = capo_athena.types.date.deserialize_aws_json_1_1(

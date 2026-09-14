@@ -85,21 +85,21 @@ def serialize_json(value: CreateDomainOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateDomainOutput:
     out: CreateDomainOutput = {}  # type: ignore[typeddict-item]
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
     else:
         raise DeserializationError("CreateDomainOutput.domain_id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("CreateDomainOutput.arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateDomainOutput.name required")
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
-    if "encryptionContext" in data:
+    if data.get("encryptionContext") is not None:
         import capo_connecthealth.types.encryption_context
 
         out["encryption_context"] = (
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> CreateDomainOutput:
                 data["encryptionContext"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_connecthealth.types.domain_status
 
         out["status"] = capo_connecthealth.types.domain_status.deserialize_json(
@@ -115,9 +115,9 @@ def deserialize_json(data: dict) -> CreateDomainOutput:
         )
     else:
         raise DeserializationError("CreateDomainOutput.status required")
-    if "webAppUrl" in data:
+    if data.get("webAppUrl") is not None:
         out["web_app_url"] = data["webAppUrl"]
-    if "webAppConfiguration" in data:
+    if data.get("webAppConfiguration") is not None:
         import capo_connecthealth.types.web_app_configuration
 
         out["web_app_configuration"] = (
@@ -125,7 +125,7 @@ def deserialize_json(data: dict) -> CreateDomainOutput:
                 data["webAppConfiguration"]
             )
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_connecthealth.types._prelude.timestamp
 
         out["created_at"] = (

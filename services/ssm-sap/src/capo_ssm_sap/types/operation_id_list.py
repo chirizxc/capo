@@ -14,4 +14,4 @@ def serialize_json(value: OperationIdList) -> list:
 
 
 def deserialize_json(data: list) -> OperationIdList:
-    return list(data)
+    return [item for item in data if item is not None]

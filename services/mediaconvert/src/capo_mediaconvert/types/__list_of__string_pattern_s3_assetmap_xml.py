@@ -16,4 +16,4 @@ def serialize_json(value: __listOf__stringPatternS3ASSETMAPXml) -> list:
 
 
 def deserialize_json(data: list) -> __listOf__stringPatternS3ASSETMAPXml:
-    return list(data)
+    return [item for item in data if item is not None]

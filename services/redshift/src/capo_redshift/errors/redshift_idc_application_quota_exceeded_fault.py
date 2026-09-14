@@ -39,15 +39,22 @@ class RedshiftIdcApplicationQuotaExceededFault(ServiceError):
 
     code: str | None = "RedshiftIdcApplicationQuotaExceededFault"
 
-    def __init__(self, data: RedshiftIdcApplicationQuotaExceededFault_):
+    def __init__(
+        self,
+        data: RedshiftIdcApplicationQuotaExceededFault_,
+        message: str | None = None,
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="RedshiftIdcApplicationQuotaExceededFault",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "RedshiftIdcApplicationQuotaExceededFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "RedshiftIdcApplicationQuotaExceededFault":
+        return cls(deserialize_query(el), message)

@@ -175,11 +175,11 @@ def serialize_aws_json_1_0(value: GetOpportunityResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetOpportunityResponse:
     out: GetOpportunityResponse = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("GetOpportunityResponse.catalog required")
-    if "PrimaryNeedsFromAws" in data:
+    if data.get("PrimaryNeedsFromAws") is not None:
         import capo_partnercentral_selling.types.primary_needs_from_aws
 
         out["primary_needs_from_aws"] = (
@@ -187,7 +187,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetOpportunityResponse:
                 data["PrimaryNeedsFromAws"]
             )
         )
-    if "NationalSecurity" in data:
+    if data.get("NationalSecurity") is not None:
         import capo_partnercentral_selling.types.national_security
 
         out["national_security"] = (
@@ -195,9 +195,9 @@ def deserialize_aws_json_1_0(data: dict) -> GetOpportunityResponse:
                 data["NationalSecurity"]
             )
         )
-    if "PartnerOpportunityIdentifier" in data:
+    if data.get("PartnerOpportunityIdentifier") is not None:
         out["partner_opportunity_identifier"] = data["PartnerOpportunityIdentifier"]
-    if "Customer" in data:
+    if data.get("Customer") is not None:
         import capo_partnercentral_selling.types.customer
 
         out["customer"] = (
@@ -205,7 +205,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetOpportunityResponse:
                 data["Customer"]
             )
         )
-    if "Project" in data:
+    if data.get("Project") is not None:
         import capo_partnercentral_selling.types.project
 
         out["project"] = (
@@ -213,7 +213,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetOpportunityResponse:
                 data["Project"]
             )
         )
-    if "OpportunityType" in data:
+    if data.get("OpportunityType") is not None:
         import capo_partnercentral_selling.types.opportunity_type
 
         out["opportunity_type"] = (
@@ -221,7 +221,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetOpportunityResponse:
                 data["OpportunityType"]
             )
         )
-    if "Marketing" in data:
+    if data.get("Marketing") is not None:
         import capo_partnercentral_selling.types.marketing
 
         out["marketing"] = (
@@ -229,7 +229,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetOpportunityResponse:
                 data["Marketing"]
             )
         )
-    if "SoftwareRevenue" in data:
+    if data.get("SoftwareRevenue") is not None:
         import capo_partnercentral_selling.types.software_revenue
 
         out["software_revenue"] = (
@@ -237,13 +237,13 @@ def deserialize_aws_json_1_0(data: dict) -> GetOpportunityResponse:
                 data["SoftwareRevenue"]
             )
         )
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("GetOpportunityResponse.id required")
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "LastModifiedDate" in data:
+    if data.get("LastModifiedDate") is not None:
         import capo_partnercentral_selling.types.date_time
 
         out["last_modified_date"] = (
@@ -253,7 +253,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetOpportunityResponse:
         )
     else:
         raise DeserializationError("GetOpportunityResponse.last_modified_date required")
-    if "CreatedDate" in data:
+    if data.get("CreatedDate") is not None:
         import capo_partnercentral_selling.types.date_time
 
         out["created_date"] = (
@@ -263,7 +263,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetOpportunityResponse:
         )
     else:
         raise DeserializationError("GetOpportunityResponse.created_date required")
-    if "RelatedEntityIdentifiers" in data:
+    if data.get("RelatedEntityIdentifiers") is not None:
         import capo_partnercentral_selling.types.related_entity_identifiers
 
         out["related_entity_identifiers"] = (
@@ -275,7 +275,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetOpportunityResponse:
         raise DeserializationError(
             "GetOpportunityResponse.related_entity_identifiers required"
         )
-    if "LifeCycle" in data:
+    if data.get("LifeCycle") is not None:
         import capo_partnercentral_selling.types.life_cycle
 
         out["life_cycle"] = (
@@ -283,7 +283,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetOpportunityResponse:
                 data["LifeCycle"]
             )
         )
-    if "OpportunityTeam" in data:
+    if data.get("OpportunityTeam") is not None:
         import capo_partnercentral_selling.types.partner_opportunity_team_members_list
 
         out["opportunity_team"] = (

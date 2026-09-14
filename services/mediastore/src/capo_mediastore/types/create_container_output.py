@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: CreateContainerOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateContainerOutput:
     out: CreateContainerOutput = {}  # type: ignore[typeddict-item]
-    if "Container" in data:
+    if data.get("Container") is not None:
         import capo_mediastore.types.container
 
         out["container"] = capo_mediastore.types.container.deserialize_aws_json_1_1(

@@ -68,17 +68,17 @@ def serialize_json(value: CreateIpAccessSettingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateIpAccessSettingsRequest:
     out: CreateIpAccessSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_workspaces_web.types.tag_list
 
         out["tags"] = capo_workspaces_web.types.tag_list.deserialize_json(data["tags"])
-    if "customerManagedKey" in data:
+    if data.get("customerManagedKey") is not None:
         out["customer_managed_key"] = data["customerManagedKey"]
-    if "additionalEncryptionContext" in data:
+    if data.get("additionalEncryptionContext") is not None:
         import capo_workspaces_web.types.encryption_context_map
 
         out["additional_encryption_context"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> CreateIpAccessSettingsRequest:
                 data["additionalEncryptionContext"]
             )
         )
-    if "ipRules" in data:
+    if data.get("ipRules") is not None:
         import capo_workspaces_web.types.ip_rule_list
 
         out["ip_rules"] = capo_workspaces_web.types.ip_rule_list.deserialize_json(
@@ -94,6 +94,6 @@ def deserialize_json(data: dict) -> CreateIpAccessSettingsRequest:
         )
     else:
         raise DeserializationError("CreateIpAccessSettingsRequest.ip_rules required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

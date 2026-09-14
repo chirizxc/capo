@@ -39,10 +39,10 @@ def serialize_aws_json_1_0(value: X12Delimiters) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> X12Delimiters:
     out: X12Delimiters = {}  # type: ignore[typeddict-item]
-    if "componentSeparator" in data:
+    if data.get("componentSeparator") is not None:
         out["component_separator"] = data["componentSeparator"]
-    if "dataElementSeparator" in data:
+    if data.get("dataElementSeparator") is not None:
         out["data_element_separator"] = data["dataElementSeparator"]
-    if "segmentTerminator" in data:
+    if data.get("segmentTerminator") is not None:
         out["segment_terminator"] = data["segmentTerminator"]
     return out

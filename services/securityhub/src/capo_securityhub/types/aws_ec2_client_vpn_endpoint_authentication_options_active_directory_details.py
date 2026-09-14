@@ -29,6 +29,6 @@ def deserialize_json(
     data: dict,
 ) -> AwsEc2ClientVpnEndpointAuthenticationOptionsActiveDirectoryDetails:
     out: AwsEc2ClientVpnEndpointAuthenticationOptionsActiveDirectoryDetails = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
     return out

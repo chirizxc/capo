@@ -41,7 +41,7 @@ def serialize_json(value: WaypointOptimizationAccessHours) -> dict:
 
 def deserialize_json(data: dict) -> WaypointOptimizationAccessHours:
     out: WaypointOptimizationAccessHours = {}  # type: ignore[typeddict-item]
-    if "From" in data:
+    if data.get("From") is not None:
         import capo_geo_routes.types.waypoint_optimization_access_hours_entry
 
         out["from"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> WaypointOptimizationAccessHours:
         )
     else:
         raise DeserializationError("WaypointOptimizationAccessHours.from required")
-    if "To" in data:
+    if data.get("To") is not None:
         import capo_geo_routes.types.waypoint_optimization_access_hours_entry
 
         out["to"] = (

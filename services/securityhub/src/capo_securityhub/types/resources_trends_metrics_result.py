@@ -40,13 +40,13 @@ def serialize_json(value: ResourcesTrendsMetricsResult) -> dict:
 
 def deserialize_json(data: dict) -> ResourcesTrendsMetricsResult:
     out: ResourcesTrendsMetricsResult = {}  # type: ignore[typeddict-item]
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         import capo_securityhub.types.timestamp
 
         out["timestamp"] = capo_securityhub.types.timestamp.deserialize_json(
             data["Timestamp"]
         )
-    if "TrendsValues" in data:
+    if data.get("TrendsValues") is not None:
         import capo_securityhub.types.resources_trends_values
 
         out["trends_values"] = (

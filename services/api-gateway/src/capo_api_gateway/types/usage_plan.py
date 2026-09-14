@@ -73,33 +73,33 @@ def serialize_json(value: UsagePlan) -> dict:
 
 def deserialize_json(data: dict) -> UsagePlan:
     out: UsagePlan = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "apiStages" in data:
+    if data.get("apiStages") is not None:
         import capo_api_gateway.types.list_of_api_stage
 
         out["api_stages"] = capo_api_gateway.types.list_of_api_stage.deserialize_json(
             data["apiStages"]
         )
-    if "throttle" in data:
+    if data.get("throttle") is not None:
         import capo_api_gateway.types.throttle_settings
 
         out["throttle"] = capo_api_gateway.types.throttle_settings.deserialize_json(
             data["throttle"]
         )
-    if "quota" in data:
+    if data.get("quota") is not None:
         import capo_api_gateway.types.quota_settings
 
         out["quota"] = capo_api_gateway.types.quota_settings.deserialize_json(
             data["quota"]
         )
-    if "productCode" in data:
+    if data.get("productCode") is not None:
         out["product_code"] = data["productCode"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_api_gateway.types.map_of_string_to_string
 
         out["tags"] = capo_api_gateway.types.map_of_string_to_string.deserialize_json(

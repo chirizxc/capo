@@ -159,13 +159,13 @@ def serialize_aws_json_1_1(value: Options) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Options:
     out: Options = {}  # type: ignore[typeddict-item]
-    if "VerifyMode" in data:
+    if data.get("VerifyMode") is not None:
         import capo_datasync.types.verify_mode
 
         out["verify_mode"] = capo_datasync.types.verify_mode.deserialize_aws_json_1_1(
             data["VerifyMode"]
         )
-    if "OverwriteMode" in data:
+    if data.get("OverwriteMode") is not None:
         import capo_datasync.types.overwrite_mode
 
         out["overwrite_mode"] = (
@@ -173,23 +173,23 @@ def deserialize_aws_json_1_1(data: dict) -> Options:
                 data["OverwriteMode"]
             )
         )
-    if "Atime" in data:
+    if data.get("Atime") is not None:
         import capo_datasync.types.atime
 
         out["atime"] = capo_datasync.types.atime.deserialize_aws_json_1_1(data["Atime"])
-    if "Mtime" in data:
+    if data.get("Mtime") is not None:
         import capo_datasync.types.mtime
 
         out["mtime"] = capo_datasync.types.mtime.deserialize_aws_json_1_1(data["Mtime"])
-    if "Uid" in data:
+    if data.get("Uid") is not None:
         import capo_datasync.types.uid
 
         out["uid"] = capo_datasync.types.uid.deserialize_aws_json_1_1(data["Uid"])
-    if "Gid" in data:
+    if data.get("Gid") is not None:
         import capo_datasync.types.gid
 
         out["gid"] = capo_datasync.types.gid.deserialize_aws_json_1_1(data["Gid"])
-    if "PreserveDeletedFiles" in data:
+    if data.get("PreserveDeletedFiles") is not None:
         import capo_datasync.types.preserve_deleted_files
 
         out["preserve_deleted_files"] = (
@@ -197,7 +197,7 @@ def deserialize_aws_json_1_1(data: dict) -> Options:
                 data["PreserveDeletedFiles"]
             )
         )
-    if "PreserveDevices" in data:
+    if data.get("PreserveDevices") is not None:
         import capo_datasync.types.preserve_devices
 
         out["preserve_devices"] = (
@@ -205,7 +205,7 @@ def deserialize_aws_json_1_1(data: dict) -> Options:
                 data["PreserveDevices"]
             )
         )
-    if "PosixPermissions" in data:
+    if data.get("PosixPermissions") is not None:
         import capo_datasync.types.posix_permissions
 
         out["posix_permissions"] = (
@@ -213,9 +213,9 @@ def deserialize_aws_json_1_1(data: dict) -> Options:
                 data["PosixPermissions"]
             )
         )
-    if "BytesPerSecond" in data:
+    if data.get("BytesPerSecond") is not None:
         out["bytes_per_second"] = data["BytesPerSecond"]
-    if "TaskQueueing" in data:
+    if data.get("TaskQueueing") is not None:
         import capo_datasync.types.task_queueing
 
         out["task_queueing"] = (
@@ -223,13 +223,13 @@ def deserialize_aws_json_1_1(data: dict) -> Options:
                 data["TaskQueueing"]
             )
         )
-    if "LogLevel" in data:
+    if data.get("LogLevel") is not None:
         import capo_datasync.types.log_level
 
         out["log_level"] = capo_datasync.types.log_level.deserialize_aws_json_1_1(
             data["LogLevel"]
         )
-    if "TransferMode" in data:
+    if data.get("TransferMode") is not None:
         import capo_datasync.types.transfer_mode
 
         out["transfer_mode"] = (
@@ -237,7 +237,7 @@ def deserialize_aws_json_1_1(data: dict) -> Options:
                 data["TransferMode"]
             )
         )
-    if "SecurityDescriptorCopyFlags" in data:
+    if data.get("SecurityDescriptorCopyFlags") is not None:
         import capo_datasync.types.smb_security_descriptor_copy_flags
 
         out["security_descriptor_copy_flags"] = (
@@ -245,7 +245,7 @@ def deserialize_aws_json_1_1(data: dict) -> Options:
                 data["SecurityDescriptorCopyFlags"]
             )
         )
-    if "ObjectTags" in data:
+    if data.get("ObjectTags") is not None:
         import capo_datasync.types.object_tags
 
         out["object_tags"] = capo_datasync.types.object_tags.deserialize_aws_json_1_1(

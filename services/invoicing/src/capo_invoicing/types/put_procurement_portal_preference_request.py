@@ -98,7 +98,7 @@ def serialize_aws_json_1_0(value: PutProcurementPortalPreferenceRequest) -> dict
 
 def deserialize_aws_json_1_0(data: dict) -> PutProcurementPortalPreferenceRequest:
     out: PutProcurementPortalPreferenceRequest = {}  # type: ignore[typeddict-item]
-    if "ProcurementPortalPreferenceArn" in data:
+    if data.get("ProcurementPortalPreferenceArn") is not None:
         out["procurement_portal_preference_arn"] = data[
             "ProcurementPortalPreferenceArn"
         ]
@@ -106,7 +106,7 @@ def deserialize_aws_json_1_0(data: dict) -> PutProcurementPortalPreferenceReques
         raise DeserializationError(
             "PutProcurementPortalPreferenceRequest.procurement_portal_preference_arn required"
         )
-    if "Selector" in data:
+    if data.get("Selector") is not None:
         import capo_invoicing.types.procurement_portal_preference_selector
 
         out["selector"] = (
@@ -114,13 +114,13 @@ def deserialize_aws_json_1_0(data: dict) -> PutProcurementPortalPreferenceReques
                 data["Selector"]
             )
         )
-    if "ProcurementPortalSharedSecret" in data:
+    if data.get("ProcurementPortalSharedSecret") is not None:
         out["procurement_portal_shared_secret"] = data["ProcurementPortalSharedSecret"]
-    if "ProcurementPortalInstanceEndpoint" in data:
+    if data.get("ProcurementPortalInstanceEndpoint") is not None:
         out["procurement_portal_instance_endpoint"] = data[
             "ProcurementPortalInstanceEndpoint"
         ]
-    if "TestEnvPreference" in data:
+    if data.get("TestEnvPreference") is not None:
         import capo_invoicing.types.test_env_preference_input
 
         out["test_env_preference"] = (
@@ -128,13 +128,13 @@ def deserialize_aws_json_1_0(data: dict) -> PutProcurementPortalPreferenceReques
                 data["TestEnvPreference"]
             )
         )
-    if "EinvoiceDeliveryEnabled" in data:
+    if data.get("EinvoiceDeliveryEnabled") is not None:
         out["einvoice_delivery_enabled"] = data["EinvoiceDeliveryEnabled"]
     else:
         raise DeserializationError(
             "PutProcurementPortalPreferenceRequest.einvoice_delivery_enabled required"
         )
-    if "EinvoiceDeliveryPreference" in data:
+    if data.get("EinvoiceDeliveryPreference") is not None:
         import capo_invoicing.types.einvoice_delivery_preference
 
         out["einvoice_delivery_preference"] = (
@@ -142,13 +142,13 @@ def deserialize_aws_json_1_0(data: dict) -> PutProcurementPortalPreferenceReques
                 data["EinvoiceDeliveryPreference"]
             )
         )
-    if "PurchaseOrderRetrievalEnabled" in data:
+    if data.get("PurchaseOrderRetrievalEnabled") is not None:
         out["purchase_order_retrieval_enabled"] = data["PurchaseOrderRetrievalEnabled"]
     else:
         raise DeserializationError(
             "PutProcurementPortalPreferenceRequest.purchase_order_retrieval_enabled required"
         )
-    if "Contacts" in data:
+    if data.get("Contacts") is not None:
         import capo_invoicing.types.contacts
 
         out["contacts"] = capo_invoicing.types.contacts.deserialize_aws_json_1_0(
@@ -158,6 +158,6 @@ def deserialize_aws_json_1_0(data: dict) -> PutProcurementPortalPreferenceReques
         raise DeserializationError(
             "PutProcurementPortalPreferenceRequest.contacts required"
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

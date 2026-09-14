@@ -49,22 +49,22 @@ def serialize_json(value: GetDeploymentStatusResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetDeploymentStatusResponse:
     out: GetDeploymentStatusResponse = {}  # type: ignore[typeddict-item]
-    if "DeploymentStatus" in data:
+    if data.get("DeploymentStatus") is not None:
         out["deployment_status"] = data["DeploymentStatus"]
-    if "DeploymentType" in data:
+    if data.get("DeploymentType") is not None:
         import capo_greengrass.types.deployment_type
 
         out["deployment_type"] = capo_greengrass.types.deployment_type.deserialize_json(
             data["DeploymentType"]
         )
-    if "ErrorDetails" in data:
+    if data.get("ErrorDetails") is not None:
         import capo_greengrass.types.error_details
 
         out["error_details"] = capo_greengrass.types.error_details.deserialize_json(
             data["ErrorDetails"]
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         out["updated_at"] = data["UpdatedAt"]
     return out

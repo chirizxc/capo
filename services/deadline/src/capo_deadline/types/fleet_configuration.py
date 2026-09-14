@@ -47,7 +47,7 @@ def serialize_json(value: FleetConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> FleetConfiguration:
-    if "customerManaged" in data:
+    if data.get("customerManaged") is not None:
         import capo_deadline.types.customer_managed_fleet_configuration
 
         return {
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> FleetConfiguration:
                 data["customerManaged"]
             )
         }
-    elif "serviceManagedEc2" in data:
+    elif data.get("serviceManagedEc2") is not None:
         import capo_deadline.types.service_managed_ec2_fleet_configuration
 
         return {

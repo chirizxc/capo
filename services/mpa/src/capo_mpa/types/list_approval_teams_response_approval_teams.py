@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ListApprovalTeamsResponseApprovalTeams:
 
     out: ListApprovalTeamsResponseApprovalTeams = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mpa.types.list_approval_teams_response_approval_team.deserialize_json(
                 item

@@ -36,12 +36,12 @@ def serialize_json(value: GCMChannelRequest) -> dict:
 
 def deserialize_json(data: dict) -> GCMChannelRequest:
     out: GCMChannelRequest = {}  # type: ignore[typeddict-item]
-    if "ApiKey" in data:
+    if data.get("ApiKey") is not None:
         out["api_key"] = data["ApiKey"]
-    if "DefaultAuthenticationMethod" in data:
+    if data.get("DefaultAuthenticationMethod") is not None:
         out["default_authentication_method"] = data["DefaultAuthenticationMethod"]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "ServiceJson" in data:
+    if data.get("ServiceJson") is not None:
         out["service_json"] = data["ServiceJson"]
     return out

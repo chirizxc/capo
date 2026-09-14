@@ -58,11 +58,11 @@ def serialize_json(value: CreateFacetRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateFacetRequest:
     out: CreateFacetRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateFacetRequest.name required")
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_clouddirectory.types.facet_attribute_list
 
         out["attributes"] = (
@@ -70,13 +70,13 @@ def deserialize_json(data: dict) -> CreateFacetRequest:
                 data["Attributes"]
             )
         )
-    if "ObjectType" in data:
+    if data.get("ObjectType") is not None:
         import capo_clouddirectory.types.object_type
 
         out["object_type"] = capo_clouddirectory.types.object_type.deserialize_json(
             data["ObjectType"]
         )
-    if "FacetStyle" in data:
+    if data.get("FacetStyle") is not None:
         import capo_clouddirectory.types.facet_style
 
         out["facet_style"] = capo_clouddirectory.types.facet_style.deserialize_json(

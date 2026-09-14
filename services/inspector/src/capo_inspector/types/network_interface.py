@@ -82,17 +82,17 @@ def serialize_aws_json_1_1(value: NetworkInterface) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NetworkInterface:
     out: NetworkInterface = {}  # type: ignore[typeddict-item]
-    if "networkInterfaceId" in data:
+    if data.get("networkInterfaceId") is not None:
         out["network_interface_id"] = data["networkInterfaceId"]
-    if "subnetId" in data:
+    if data.get("subnetId") is not None:
         out["subnet_id"] = data["subnetId"]
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
-    if "privateDnsName" in data:
+    if data.get("privateDnsName") is not None:
         out["private_dns_name"] = data["privateDnsName"]
-    if "privateIpAddress" in data:
+    if data.get("privateIpAddress") is not None:
         out["private_ip_address"] = data["privateIpAddress"]
-    if "privateIpAddresses" in data:
+    if data.get("privateIpAddresses") is not None:
         import capo_inspector.types.private_ip_addresses
 
         out["private_ip_addresses"] = (
@@ -100,11 +100,11 @@ def deserialize_aws_json_1_1(data: dict) -> NetworkInterface:
                 data["privateIpAddresses"]
             )
         )
-    if "publicDnsName" in data:
+    if data.get("publicDnsName") is not None:
         out["public_dns_name"] = data["publicDnsName"]
-    if "publicIp" in data:
+    if data.get("publicIp") is not None:
         out["public_ip"] = data["publicIp"]
-    if "ipv6Addresses" in data:
+    if data.get("ipv6Addresses") is not None:
         import capo_inspector.types.ipv6_addresses
 
         out["ipv6_addresses"] = (
@@ -112,7 +112,7 @@ def deserialize_aws_json_1_1(data: dict) -> NetworkInterface:
                 data["ipv6Addresses"]
             )
         )
-    if "securityGroups" in data:
+    if data.get("securityGroups") is not None:
         import capo_inspector.types.security_groups
 
         out["security_groups"] = (

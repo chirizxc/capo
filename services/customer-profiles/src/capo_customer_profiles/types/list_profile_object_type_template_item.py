@@ -31,10 +31,10 @@ def serialize_json(value: ListProfileObjectTypeTemplateItem) -> dict:
 
 def deserialize_json(data: dict) -> ListProfileObjectTypeTemplateItem:
     out: ListProfileObjectTypeTemplateItem = {}  # type: ignore[typeddict-item]
-    if "TemplateId" in data:
+    if data.get("TemplateId") is not None:
         out["template_id"] = data["TemplateId"]
-    if "SourceName" in data:
+    if data.get("SourceName") is not None:
         out["source_name"] = data["SourceName"]
-    if "SourceObject" in data:
+    if data.get("SourceObject") is not None:
         out["source_object"] = data["SourceObject"]
     return out

@@ -39,11 +39,11 @@ def serialize_json(value: AwsRedshiftClusterClusterParameterStatus) -> dict:
 
 def deserialize_json(data: dict) -> AwsRedshiftClusterClusterParameterStatus:
     out: AwsRedshiftClusterClusterParameterStatus = {}  # type: ignore[typeddict-item]
-    if "ParameterName" in data:
+    if data.get("ParameterName") is not None:
         out["parameter_name"] = data["ParameterName"]
-    if "ParameterApplyStatus" in data:
+    if data.get("ParameterApplyStatus") is not None:
         out["parameter_apply_status"] = data["ParameterApplyStatus"]
-    if "ParameterApplyErrorDescription" in data:
+    if data.get("ParameterApplyErrorDescription") is not None:
         out["parameter_apply_error_description"] = data[
             "ParameterApplyErrorDescription"
         ]

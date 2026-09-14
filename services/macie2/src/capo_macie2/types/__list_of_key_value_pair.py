@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> __listOfKeyValuePair:
 
     out: __listOfKeyValuePair = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_macie2.types.key_value_pair.deserialize_json(item))
     return out

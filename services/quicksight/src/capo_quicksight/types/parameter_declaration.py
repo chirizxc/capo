@@ -70,7 +70,7 @@ def serialize_json(value: ParameterDeclaration) -> dict:
 
 def deserialize_json(data: dict) -> ParameterDeclaration:
     out: ParameterDeclaration = {}  # type: ignore[typeddict-item]
-    if "StringParameterDeclaration" in data:
+    if data.get("StringParameterDeclaration") is not None:
         import capo_quicksight.types.string_parameter_declaration
 
         out["string_parameter_declaration"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> ParameterDeclaration:
                 data["StringParameterDeclaration"]
             )
         )
-    if "DecimalParameterDeclaration" in data:
+    if data.get("DecimalParameterDeclaration") is not None:
         import capo_quicksight.types.decimal_parameter_declaration
 
         out["decimal_parameter_declaration"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> ParameterDeclaration:
                 data["DecimalParameterDeclaration"]
             )
         )
-    if "IntegerParameterDeclaration" in data:
+    if data.get("IntegerParameterDeclaration") is not None:
         import capo_quicksight.types.integer_parameter_declaration
 
         out["integer_parameter_declaration"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> ParameterDeclaration:
                 data["IntegerParameterDeclaration"]
             )
         )
-    if "DateTimeParameterDeclaration" in data:
+    if data.get("DateTimeParameterDeclaration") is not None:
         import capo_quicksight.types.date_time_parameter_declaration
 
         out["date_time_parameter_declaration"] = (

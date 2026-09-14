@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: GetCustomRulePolicyResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetCustomRulePolicyResponse:
     out: GetCustomRulePolicyResponse = {}  # type: ignore[typeddict-item]
-    if "PolicyText" in data:
+    if data.get("PolicyText") is not None:
         out["policy_text"] = data["PolicyText"]
     return out

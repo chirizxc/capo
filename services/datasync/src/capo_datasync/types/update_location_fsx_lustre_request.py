@@ -29,12 +29,12 @@ def serialize_aws_json_1_1(value: UpdateLocationFsxLustreRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateLocationFsxLustreRequest:
     out: UpdateLocationFsxLustreRequest = {}  # type: ignore[typeddict-item]
-    if "LocationArn" in data:
+    if data.get("LocationArn") is not None:
         out["location_arn"] = data["LocationArn"]
     else:
         raise DeserializationError(
             "UpdateLocationFsxLustreRequest.location_arn required"
         )
-    if "Subdirectory" in data:
+    if data.get("Subdirectory") is not None:
         out["subdirectory"] = data["Subdirectory"]
     return out

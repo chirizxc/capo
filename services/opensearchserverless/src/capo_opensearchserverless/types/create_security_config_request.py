@@ -81,17 +81,17 @@ def serialize_aws_json_1_0(value: CreateSecurityConfigRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateSecurityConfigRequest:
     out: CreateSecurityConfigRequest = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("CreateSecurityConfigRequest.type required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateSecurityConfigRequest.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "samlOptions" in data:
+    if data.get("samlOptions") is not None:
         import capo_opensearchserverless.types.saml_config_options
 
         out["saml_options"] = (
@@ -99,7 +99,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateSecurityConfigRequest:
                 data["samlOptions"]
             )
         )
-    if "iamIdentityCenterOptions" in data:
+    if data.get("iamIdentityCenterOptions") is not None:
         import capo_opensearchserverless.types.create_iam_identity_center_config_options
 
         out["iam_identity_center_options"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateSecurityConfigRequest:
                 data["iamIdentityCenterOptions"]
             )
         )
-    if "iamFederationOptions" in data:
+    if data.get("iamFederationOptions") is not None:
         import capo_opensearchserverless.types.iam_federation_config_options
 
         out["iam_federation_options"] = (
@@ -115,6 +115,6 @@ def deserialize_aws_json_1_0(data: dict) -> CreateSecurityConfigRequest:
                 data["iamFederationOptions"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

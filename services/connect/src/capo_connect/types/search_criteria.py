@@ -171,17 +171,17 @@ def serialize_json(value: SearchCriteria) -> dict:
 
 def deserialize_json(data: dict) -> SearchCriteria:
     out: SearchCriteria = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         import capo_connect.types.name_criteria
 
         out["name"] = capo_connect.types.name_criteria.deserialize_json(data["Name"])
-    if "AgentIds" in data:
+    if data.get("AgentIds") is not None:
         import capo_connect.types.agent_resource_id_list
 
         out["agent_ids"] = capo_connect.types.agent_resource_id_list.deserialize_json(
             data["AgentIds"]
         )
-    if "AgentHierarchyGroups" in data:
+    if data.get("AgentHierarchyGroups") is not None:
         import capo_connect.types.agent_hierarchy_groups
 
         out["agent_hierarchy_groups"] = (
@@ -189,19 +189,19 @@ def deserialize_json(data: dict) -> SearchCriteria:
                 data["AgentHierarchyGroups"]
             )
         )
-    if "Channels" in data:
+    if data.get("Channels") is not None:
         import capo_connect.types.channel_list
 
         out["channels"] = capo_connect.types.channel_list.deserialize_json(
             data["Channels"]
         )
-    if "ContactAnalysis" in data:
+    if data.get("ContactAnalysis") is not None:
         import capo_connect.types.contact_analysis
 
         out["contact_analysis"] = capo_connect.types.contact_analysis.deserialize_json(
             data["ContactAnalysis"]
         )
-    if "InitiationMethods" in data:
+    if data.get("InitiationMethods") is not None:
         import capo_connect.types.initiation_method_list
 
         out["initiation_methods"] = (
@@ -209,13 +209,13 @@ def deserialize_json(data: dict) -> SearchCriteria:
                 data["InitiationMethods"]
             )
         )
-    if "QueueIds" in data:
+    if data.get("QueueIds") is not None:
         import capo_connect.types.queue_id_list
 
         out["queue_ids"] = capo_connect.types.queue_id_list.deserialize_json(
             data["QueueIds"]
         )
-    if "RoutingCriteria" in data:
+    if data.get("RoutingCriteria") is not None:
         import capo_connect.types.searchable_routing_criteria
 
         out["routing_criteria"] = (
@@ -223,7 +223,7 @@ def deserialize_json(data: dict) -> SearchCriteria:
                 data["RoutingCriteria"]
             )
         )
-    if "AdditionalTimeRange" in data:
+    if data.get("AdditionalTimeRange") is not None:
         import capo_connect.types.search_contacts_additional_time_range
 
         out["additional_time_range"] = (
@@ -231,7 +231,7 @@ def deserialize_json(data: dict) -> SearchCriteria:
                 data["AdditionalTimeRange"]
             )
         )
-    if "SearchableContactAttributes" in data:
+    if data.get("SearchableContactAttributes") is not None:
         import capo_connect.types.searchable_contact_attributes
 
         out["searchable_contact_attributes"] = (
@@ -239,7 +239,7 @@ def deserialize_json(data: dict) -> SearchCriteria:
                 data["SearchableContactAttributes"]
             )
         )
-    if "SearchableSegmentAttributes" in data:
+    if data.get("SearchableSegmentAttributes") is not None:
         import capo_connect.types.searchable_segment_attributes
 
         out["searchable_segment_attributes"] = (
@@ -247,13 +247,13 @@ def deserialize_json(data: dict) -> SearchCriteria:
                 data["SearchableSegmentAttributes"]
             )
         )
-    if "ActiveRegions" in data:
+    if data.get("ActiveRegions") is not None:
         import capo_connect.types.active_region_list
 
         out["active_regions"] = capo_connect.types.active_region_list.deserialize_json(
             data["ActiveRegions"]
         )
-    if "ContactTags" in data:
+    if data.get("ContactTags") is not None:
         import capo_connect.types.control_plane_tag_filter
 
         out["contact_tags"] = (
@@ -261,7 +261,7 @@ def deserialize_json(data: dict) -> SearchCriteria:
                 data["ContactTags"]
             )
         )
-    if "AiAgents" in data:
+    if data.get("AiAgents") is not None:
         import capo_connect.types.ai_agents_criteria
 
         out["ai_agents"] = capo_connect.types.ai_agents_criteria.deserialize_json(

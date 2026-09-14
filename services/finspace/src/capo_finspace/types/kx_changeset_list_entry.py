@@ -57,27 +57,27 @@ def serialize_json(value: KxChangesetListEntry) -> dict:
 
 def deserialize_json(data: dict) -> KxChangesetListEntry:
     out: KxChangesetListEntry = {}  # type: ignore[typeddict-item]
-    if "changesetId" in data:
+    if data.get("changesetId") is not None:
         out["changeset_id"] = data["changesetId"]
-    if "createdTimestamp" in data:
+    if data.get("createdTimestamp") is not None:
         import capo_finspace.types.timestamp
 
         out["created_timestamp"] = capo_finspace.types.timestamp.deserialize_json(
             data["createdTimestamp"]
         )
-    if "activeFromTimestamp" in data:
+    if data.get("activeFromTimestamp") is not None:
         import capo_finspace.types.timestamp
 
         out["active_from_timestamp"] = capo_finspace.types.timestamp.deserialize_json(
             data["activeFromTimestamp"]
         )
-    if "lastModifiedTimestamp" in data:
+    if data.get("lastModifiedTimestamp") is not None:
         import capo_finspace.types.timestamp
 
         out["last_modified_timestamp"] = capo_finspace.types.timestamp.deserialize_json(
             data["lastModifiedTimestamp"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_finspace.types.changeset_status
 
         out["status"] = capo_finspace.types.changeset_status.deserialize_json(

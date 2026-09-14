@@ -27,11 +27,11 @@ def serialize_aws_json_1_1(value: GetEventRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetEventRequest:
     out: GetEventRequest = {}  # type: ignore[typeddict-item]
-    if "eventId" in data:
+    if data.get("eventId") is not None:
         out["event_id"] = data["eventId"]
     else:
         raise DeserializationError("GetEventRequest.event_id required")
-    if "eventTypeName" in data:
+    if data.get("eventTypeName") is not None:
         out["event_type_name"] = data["eventTypeName"]
     else:
         raise DeserializationError("GetEventRequest.event_type_name required")

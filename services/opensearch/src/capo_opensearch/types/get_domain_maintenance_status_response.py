@@ -65,29 +65,29 @@ def serialize_json(value: GetDomainMaintenanceStatusResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetDomainMaintenanceStatusResponse:
     out: GetDomainMaintenanceStatusResponse = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_opensearch.types.maintenance_status
 
         out["status"] = capo_opensearch.types.maintenance_status.deserialize_json(
             data["Status"]
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "NodeId" in data:
+    if data.get("NodeId") is not None:
         out["node_id"] = data["NodeId"]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_opensearch.types.maintenance_type
 
         out["action"] = capo_opensearch.types.maintenance_type.deserialize_json(
             data["Action"]
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_opensearch.types.update_timestamp
 
         out["created_at"] = capo_opensearch.types.update_timestamp.deserialize_json(
             data["CreatedAt"]
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_opensearch.types.update_timestamp
 
         out["updated_at"] = capo_opensearch.types.update_timestamp.deserialize_json(

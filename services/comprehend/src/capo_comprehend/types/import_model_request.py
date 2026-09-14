@@ -55,19 +55,19 @@ def serialize_aws_json_1_1(value: ImportModelRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ImportModelRequest:
     out: ImportModelRequest = {}  # type: ignore[typeddict-item]
-    if "SourceModelArn" in data:
+    if data.get("SourceModelArn") is not None:
         out["source_model_arn"] = data["SourceModelArn"]
     else:
         raise DeserializationError("ImportModelRequest.source_model_arn required")
-    if "ModelName" in data:
+    if data.get("ModelName") is not None:
         out["model_name"] = data["ModelName"]
-    if "VersionName" in data:
+    if data.get("VersionName") is not None:
         out["version_name"] = data["VersionName"]
-    if "ModelKmsKeyId" in data:
+    if data.get("ModelKmsKeyId") is not None:
         out["model_kms_key_id"] = data["ModelKmsKeyId"]
-    if "DataAccessRoleArn" in data:
+    if data.get("DataAccessRoleArn") is not None:
         out["data_access_role_arn"] = data["DataAccessRoleArn"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_comprehend.types.tag_list
 
         out["tags"] = capo_comprehend.types.tag_list.deserialize_aws_json_1_1(

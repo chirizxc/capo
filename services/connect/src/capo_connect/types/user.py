@@ -171,27 +171,27 @@ def serialize_json(value: User) -> dict:
 
 def deserialize_json(data: dict) -> User:
     out: User = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
-    if "IdentityInfo" in data:
+    if data.get("IdentityInfo") is not None:
         import capo_connect.types.user_identity_info
 
         out["identity_info"] = capo_connect.types.user_identity_info.deserialize_json(
             data["IdentityInfo"]
         )
-    if "PhoneConfig" in data:
+    if data.get("PhoneConfig") is not None:
         import capo_connect.types.user_phone_config
 
         out["phone_config"] = capo_connect.types.user_phone_config.deserialize_json(
             data["PhoneConfig"]
         )
-    if "DirectoryUserId" in data:
+    if data.get("DirectoryUserId") is not None:
         out["directory_user_id"] = data["DirectoryUserId"]
-    if "SecurityProfileIds" in data:
+    if data.get("SecurityProfileIds") is not None:
         import capo_connect.types.security_profile_ids
 
         out["security_profile_ids"] = (
@@ -199,15 +199,15 @@ def deserialize_json(data: dict) -> User:
                 data["SecurityProfileIds"]
             )
         )
-    if "RoutingProfileId" in data:
+    if data.get("RoutingProfileId") is not None:
         out["routing_profile_id"] = data["RoutingProfileId"]
-    if "HierarchyGroupId" in data:
+    if data.get("HierarchyGroupId") is not None:
         out["hierarchy_group_id"] = data["HierarchyGroupId"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])
-    if "AutoAcceptConfigs" in data:
+    if data.get("AutoAcceptConfigs") is not None:
         import capo_connect.types.auto_accept_configs
 
         out["auto_accept_configs"] = (
@@ -215,7 +215,7 @@ def deserialize_json(data: dict) -> User:
                 data["AutoAcceptConfigs"]
             )
         )
-    if "AfterContactWorkConfigs" in data:
+    if data.get("AfterContactWorkConfigs") is not None:
         import capo_connect.types.after_contact_work_configs
 
         out["after_contact_work_configs"] = (
@@ -223,7 +223,7 @@ def deserialize_json(data: dict) -> User:
                 data["AfterContactWorkConfigs"]
             )
         )
-    if "PhoneNumberConfigs" in data:
+    if data.get("PhoneNumberConfigs") is not None:
         import capo_connect.types.phone_number_configs
 
         out["phone_number_configs"] = (
@@ -231,7 +231,7 @@ def deserialize_json(data: dict) -> User:
                 data["PhoneNumberConfigs"]
             )
         )
-    if "PersistentConnectionConfigs" in data:
+    if data.get("PersistentConnectionConfigs") is not None:
         import capo_connect.types.persistent_connection_configs
 
         out["persistent_connection_configs"] = (
@@ -239,7 +239,7 @@ def deserialize_json(data: dict) -> User:
                 data["PersistentConnectionConfigs"]
             )
         )
-    if "VoiceEnhancementConfigs" in data:
+    if data.get("VoiceEnhancementConfigs") is not None:
         import capo_connect.types.voice_enhancement_configs
 
         out["voice_enhancement_configs"] = (
@@ -247,12 +247,12 @@ def deserialize_json(data: dict) -> User:
                 data["VoiceEnhancementConfigs"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_connect.types.timestamp
 
         out["last_modified_time"] = capo_connect.types.timestamp.deserialize_json(
             data["LastModifiedTime"]
         )
-    if "LastModifiedRegion" in data:
+    if data.get("LastModifiedRegion") is not None:
         out["last_modified_region"] = data["LastModifiedRegion"]
     return out

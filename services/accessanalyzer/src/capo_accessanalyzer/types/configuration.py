@@ -218,7 +218,7 @@ def serialize_json(value: Configuration) -> dict:
 
 
 def deserialize_json(data: dict) -> Configuration:
-    if "ebsSnapshot" in data:
+    if data.get("ebsSnapshot") is not None:
         import capo_accessanalyzer.types.ebs_snapshot_configuration
 
         return {
@@ -226,7 +226,7 @@ def deserialize_json(data: dict) -> Configuration:
                 data["ebsSnapshot"]
             )
         }
-    elif "ecrRepository" in data:
+    elif data.get("ecrRepository") is not None:
         import capo_accessanalyzer.types.ecr_repository_configuration
 
         return {
@@ -234,7 +234,7 @@ def deserialize_json(data: dict) -> Configuration:
                 data["ecrRepository"]
             )
         }
-    elif "iamRole" in data:
+    elif data.get("iamRole") is not None:
         import capo_accessanalyzer.types.iam_role_configuration
 
         return {
@@ -242,7 +242,7 @@ def deserialize_json(data: dict) -> Configuration:
                 data["iamRole"]
             )
         }
-    elif "efsFileSystem" in data:
+    elif data.get("efsFileSystem") is not None:
         import capo_accessanalyzer.types.efs_file_system_configuration
 
         return {
@@ -250,7 +250,7 @@ def deserialize_json(data: dict) -> Configuration:
                 data["efsFileSystem"]
             )
         }
-    elif "kmsKey" in data:
+    elif data.get("kmsKey") is not None:
         import capo_accessanalyzer.types.kms_key_configuration
 
         return {
@@ -258,7 +258,7 @@ def deserialize_json(data: dict) -> Configuration:
                 data["kmsKey"]
             )
         }
-    elif "rdsDbClusterSnapshot" in data:
+    elif data.get("rdsDbClusterSnapshot") is not None:
         import capo_accessanalyzer.types.rds_db_cluster_snapshot_configuration
 
         return {
@@ -266,7 +266,7 @@ def deserialize_json(data: dict) -> Configuration:
                 data["rdsDbClusterSnapshot"]
             )
         }
-    elif "rdsDbSnapshot" in data:
+    elif data.get("rdsDbSnapshot") is not None:
         import capo_accessanalyzer.types.rds_db_snapshot_configuration
 
         return {
@@ -274,7 +274,7 @@ def deserialize_json(data: dict) -> Configuration:
                 data["rdsDbSnapshot"]
             )
         }
-    elif "secretsManagerSecret" in data:
+    elif data.get("secretsManagerSecret") is not None:
         import capo_accessanalyzer.types.secrets_manager_secret_configuration
 
         return {
@@ -282,7 +282,7 @@ def deserialize_json(data: dict) -> Configuration:
                 data["secretsManagerSecret"]
             )
         }
-    elif "s3Bucket" in data:
+    elif data.get("s3Bucket") is not None:
         import capo_accessanalyzer.types.s3_bucket_configuration
 
         return {
@@ -290,7 +290,7 @@ def deserialize_json(data: dict) -> Configuration:
                 data["s3Bucket"]
             )
         }
-    elif "snsTopic" in data:
+    elif data.get("snsTopic") is not None:
         import capo_accessanalyzer.types.sns_topic_configuration
 
         return {
@@ -298,7 +298,7 @@ def deserialize_json(data: dict) -> Configuration:
                 data["snsTopic"]
             )
         }
-    elif "sqsQueue" in data:
+    elif data.get("sqsQueue") is not None:
         import capo_accessanalyzer.types.sqs_queue_configuration
 
         return {
@@ -306,7 +306,7 @@ def deserialize_json(data: dict) -> Configuration:
                 data["sqsQueue"]
             )
         }
-    elif "s3ExpressDirectoryBucket" in data:
+    elif data.get("s3ExpressDirectoryBucket") is not None:
         import capo_accessanalyzer.types.s3_express_directory_bucket_configuration
 
         return {
@@ -314,7 +314,7 @@ def deserialize_json(data: dict) -> Configuration:
                 data["s3ExpressDirectoryBucket"]
             )
         }
-    elif "dynamodbStream" in data:
+    elif data.get("dynamodbStream") is not None:
         import capo_accessanalyzer.types.dynamodb_stream_configuration
 
         return {
@@ -322,7 +322,7 @@ def deserialize_json(data: dict) -> Configuration:
                 data["dynamodbStream"]
             )
         }
-    elif "dynamodbTable" in data:
+    elif data.get("dynamodbTable") is not None:
         import capo_accessanalyzer.types.dynamodb_table_configuration
 
         return {

@@ -68,32 +68,32 @@ def serialize_json(value: DeploymentModel) -> dict:
 
 def deserialize_json(data: dict) -> DeploymentModel:
     out: DeploymentModel = {}  # type: ignore[typeddict-item]
-    if "ModelHandle" in data:
+    if data.get("ModelHandle") is not None:
         out["model_handle"] = data["ModelHandle"]
-    if "ModelName" in data:
+    if data.get("ModelName") is not None:
         out["model_name"] = data["ModelName"]
-    if "ModelVersion" in data:
+    if data.get("ModelVersion") is not None:
         out["model_version"] = data["ModelVersion"]
-    if "DesiredState" in data:
+    if data.get("DesiredState") is not None:
         import capo_sagemaker_edge.types.model_state
 
         out["desired_state"] = capo_sagemaker_edge.types.model_state.deserialize_json(
             data["DesiredState"]
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_sagemaker_edge.types.model_state
 
         out["state"] = capo_sagemaker_edge.types.model_state.deserialize_json(
             data["State"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker_edge.types.deployment_status
 
         out["status"] = capo_sagemaker_edge.types.deployment_status.deserialize_json(
             data["Status"]
         )
-    if "StatusReason" in data:
+    if data.get("StatusReason") is not None:
         out["status_reason"] = data["StatusReason"]
-    if "RollbackFailureReason" in data:
+    if data.get("RollbackFailureReason") is not None:
         out["rollback_failure_reason"] = data["RollbackFailureReason"]
     return out

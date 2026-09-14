@@ -43,15 +43,15 @@ def serialize_json(value: QuerySummary) -> dict:
 
 def deserialize_json(data: dict) -> QuerySummary:
     out: QuerySummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "queryString" in data:
+    if data.get("queryString") is not None:
         out["query_string"] = data["queryString"]
-    if "waited" in data:
+    if data.get("waited") is not None:
         out["waited"] = data["waited"]
-    if "elapsed" in data:
+    if data.get("elapsed") is not None:
         out["elapsed"] = data["elapsed"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_neptune_graph.types.query_state
 
         out["state"] = capo_neptune_graph.types.query_state.deserialize_json(

@@ -60,15 +60,15 @@ def serialize_aws_json_1_1(value: PutResourcePolicyRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutResourcePolicyRequest:
     out: PutResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-    if "PolicyInJson" in data:
+    if data.get("PolicyInJson") is not None:
         out["policy_in_json"] = data["PolicyInJson"]
     else:
         raise DeserializationError("PutResourcePolicyRequest.policy_in_json required")
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "PolicyHashCondition" in data:
+    if data.get("PolicyHashCondition") is not None:
         out["policy_hash_condition"] = data["PolicyHashCondition"]
-    if "PolicyExistsCondition" in data:
+    if data.get("PolicyExistsCondition") is not None:
         import capo_glue.types.exist_condition
 
         out["policy_exists_condition"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_1(data: dict) -> PutResourcePolicyRequest:
                 data["PolicyExistsCondition"]
             )
         )
-    if "EnableHybrid" in data:
+    if data.get("EnableHybrid") is not None:
         import capo_glue.types.enable_hybrid_values
 
         out["enable_hybrid"] = (

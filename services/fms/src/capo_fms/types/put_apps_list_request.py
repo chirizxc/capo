@@ -37,7 +37,7 @@ def serialize_aws_json_1_1(value: PutAppsListRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutAppsListRequest:
     out: PutAppsListRequest = {}  # type: ignore[typeddict-item]
-    if "AppsList" in data:
+    if data.get("AppsList") is not None:
         import capo_fms.types.apps_list_data
 
         out["apps_list"] = capo_fms.types.apps_list_data.deserialize_aws_json_1_1(
@@ -45,7 +45,7 @@ def deserialize_aws_json_1_1(data: dict) -> PutAppsListRequest:
         )
     else:
         raise DeserializationError("PutAppsListRequest.apps_list required")
-    if "TagList" in data:
+    if data.get("TagList") is not None:
         import capo_fms.types.tag_list
 
         out["tag_list"] = capo_fms.types.tag_list.deserialize_aws_json_1_1(

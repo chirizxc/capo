@@ -32,8 +32,8 @@ def serialize_json(value: GetPortalProductSharingPolicyResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetPortalProductSharingPolicyResponse:
     out: GetPortalProductSharingPolicyResponse = {}  # type: ignore[typeddict-item]
-    if "policyDocument" in data:
+    if data.get("policyDocument") is not None:
         out["policy_document"] = data["policyDocument"]
-    if "portalProductId" in data:
+    if data.get("portalProductId") is not None:
         out["portal_product_id"] = data["portalProductId"]
     return out

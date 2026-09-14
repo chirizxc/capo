@@ -36,7 +36,7 @@ def serialize_json(value: DescribeActionConnectorResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeActionConnectorResponse:
     out: DescribeActionConnectorResponse = {}  # type: ignore[typeddict-item]
-    if "ActionConnector" in data:
+    if data.get("ActionConnector") is not None:
         import capo_quicksight.types.action_connector
 
         out["action_connector"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> DescribeActionConnectorResponse:
                 data["ActionConnector"]
             )
         )
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

@@ -59,15 +59,15 @@ def serialize_aws_json_1_1(value: VTLDevice) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> VTLDevice:
     out: VTLDevice = {}  # type: ignore[typeddict-item]
-    if "VTLDeviceARN" in data:
+    if data.get("VTLDeviceARN") is not None:
         out["vtl_device_arn"] = data["VTLDeviceARN"]
-    if "VTLDeviceType" in data:
+    if data.get("VTLDeviceType") is not None:
         out["vtl_device_type"] = data["VTLDeviceType"]
-    if "VTLDeviceVendor" in data:
+    if data.get("VTLDeviceVendor") is not None:
         out["vtl_device_vendor"] = data["VTLDeviceVendor"]
-    if "VTLDeviceProductIdentifier" in data:
+    if data.get("VTLDeviceProductIdentifier") is not None:
         out["vtl_device_product_identifier"] = data["VTLDeviceProductIdentifier"]
-    if "DeviceiSCSIAttributes" in data:
+    if data.get("DeviceiSCSIAttributes") is not None:
         import capo_storage_gateway.types.devicei_scsi_attributes
 
         out["devicei_scsi_attributes"] = (

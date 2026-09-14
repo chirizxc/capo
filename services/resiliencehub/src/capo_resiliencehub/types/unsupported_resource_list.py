@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> UnsupportedResourceList:
 
     out: UnsupportedResourceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_resiliencehub.types.unsupported_resource.deserialize_json(item))
     return out

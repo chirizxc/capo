@@ -28,7 +28,7 @@ def serialize_json(value: TrackingConfig) -> dict:
 
 def deserialize_json(data: dict) -> TrackingConfig:
     out: TrackingConfig = {}  # type: ignore[typeddict-item]
-    if "autotrack" in data:
+    if data.get("autotrack") is not None:
         import capo_groundstation.types.criticality
 
         out["autotrack"] = capo_groundstation.types.criticality.deserialize_json(

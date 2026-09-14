@@ -39,15 +39,15 @@ def serialize_aws_json_1_1(value: GetSampledRequestsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetSampledRequestsRequest:
     out: GetSampledRequestsRequest = {}  # type: ignore[typeddict-item]
-    if "WebAclId" in data:
+    if data.get("WebAclId") is not None:
         out["web_acl_id"] = data["WebAclId"]
     else:
         raise DeserializationError("GetSampledRequestsRequest.web_acl_id required")
-    if "RuleId" in data:
+    if data.get("RuleId") is not None:
         out["rule_id"] = data["RuleId"]
     else:
         raise DeserializationError("GetSampledRequestsRequest.rule_id required")
-    if "TimeWindow" in data:
+    if data.get("TimeWindow") is not None:
         import capo_waf_regional.types.time_window
 
         out["time_window"] = (
@@ -57,7 +57,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetSampledRequestsRequest:
         )
     else:
         raise DeserializationError("GetSampledRequestsRequest.time_window required")
-    if "MaxItems" in data:
+    if data.get("MaxItems") is not None:
         out["max_items"] = data["MaxItems"]
     else:
         raise DeserializationError("GetSampledRequestsRequest.max_items required")

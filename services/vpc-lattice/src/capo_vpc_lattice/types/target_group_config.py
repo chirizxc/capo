@@ -65,17 +65,17 @@ def serialize_json(value: TargetGroupConfig) -> dict:
 
 def deserialize_json(data: dict) -> TargetGroupConfig:
     out: TargetGroupConfig = {}  # type: ignore[typeddict-item]
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
-    if "protocol" in data:
+    if data.get("protocol") is not None:
         out["protocol"] = data["protocol"]
-    if "protocolVersion" in data:
+    if data.get("protocolVersion") is not None:
         out["protocol_version"] = data["protocolVersion"]
-    if "ipAddressType" in data:
+    if data.get("ipAddressType") is not None:
         out["ip_address_type"] = data["ipAddressType"]
-    if "vpcIdentifier" in data:
+    if data.get("vpcIdentifier") is not None:
         out["vpc_identifier"] = data["vpcIdentifier"]
-    if "healthCheck" in data:
+    if data.get("healthCheck") is not None:
         import capo_vpc_lattice.types.health_check_config
 
         out["health_check"] = (
@@ -83,6 +83,6 @@ def deserialize_json(data: dict) -> TargetGroupConfig:
                 data["healthCheck"]
             )
         )
-    if "lambdaEventStructureVersion" in data:
+    if data.get("lambdaEventStructureVersion") is not None:
         out["lambda_event_structure_version"] = data["lambdaEventStructureVersion"]
     return out

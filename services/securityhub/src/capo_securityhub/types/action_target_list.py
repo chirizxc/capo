@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ActionTargetList:
 
     out: ActionTargetList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityhub.types.action_target.deserialize_json(item))
     return out

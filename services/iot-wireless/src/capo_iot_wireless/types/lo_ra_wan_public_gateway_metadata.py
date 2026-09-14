@@ -36,9 +36,25 @@ def serialize_json(value: LoRaWANPublicGatewayMetadata) -> dict:
     if "id" in value:
         out["Id"] = value["id"]
     if "rssi" in value:
-        out["Rssi"] = value["rssi"]
+        out["Rssi"] = (
+            "NaN"
+            if value["rssi"] != value["rssi"]
+            else "Infinity"
+            if value["rssi"] == float("inf")
+            else "-Infinity"
+            if value["rssi"] == float("-inf")
+            else value["rssi"]
+        )
     if "snr" in value:
-        out["Snr"] = value["snr"]
+        out["Snr"] = (
+            "NaN"
+            if value["snr"] != value["snr"]
+            else "Infinity"
+            if value["snr"] == float("inf")
+            else "-Infinity"
+            if value["snr"] == float("-inf")
+            else value["snr"]
+        )
     if "rf_region" in value:
         out["RfRegion"] = value["rf_region"]
     if "dl_allowed" in value:
@@ -48,16 +64,16 @@ def serialize_json(value: LoRaWANPublicGatewayMetadata) -> dict:
 
 def deserialize_json(data: dict) -> LoRaWANPublicGatewayMetadata:
     out: LoRaWANPublicGatewayMetadata = {}  # type: ignore[typeddict-item]
-    if "ProviderNetId" in data:
+    if data.get("ProviderNetId") is not None:
         out["provider_net_id"] = data["ProviderNetId"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Rssi" in data:
-        out["rssi"] = data["Rssi"]
-    if "Snr" in data:
-        out["snr"] = data["Snr"]
-    if "RfRegion" in data:
+    if data.get("Rssi") is not None:
+        out["rssi"] = float(data["Rssi"])
+    if data.get("Snr") is not None:
+        out["snr"] = float(data["Snr"])
+    if data.get("RfRegion") is not None:
         out["rf_region"] = data["RfRegion"]
-    if "DlAllowed" in data:
+    if data.get("DlAllowed") is not None:
         out["dl_allowed"] = data["DlAllowed"]
     return out

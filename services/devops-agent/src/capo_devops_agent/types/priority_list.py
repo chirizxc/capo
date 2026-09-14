@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> PriorityList:
 
     out: PriorityList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_devops_agent.types.priority.deserialize_json(item))
     return out

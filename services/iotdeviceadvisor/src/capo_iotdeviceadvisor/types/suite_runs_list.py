@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> SuiteRunsList:
 
     out: SuiteRunsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iotdeviceadvisor.types.suite_run_information.deserialize_json(item)
         )

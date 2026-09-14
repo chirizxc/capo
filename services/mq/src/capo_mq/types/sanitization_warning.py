@@ -38,11 +38,11 @@ def serialize_json(value: SanitizationWarning) -> dict:
 
 def deserialize_json(data: dict) -> SanitizationWarning:
     out: SanitizationWarning = {}  # type: ignore[typeddict-item]
-    if "attributeName" in data:
+    if data.get("attributeName") is not None:
         out["attribute_name"] = data["attributeName"]
-    if "elementName" in data:
+    if data.get("elementName") is not None:
         out["element_name"] = data["elementName"]
-    if "reason" in data:
+    if data.get("reason") is not None:
         import capo_mq.types.sanitization_warning_reason
 
         out["reason"] = capo_mq.types.sanitization_warning_reason.deserialize_json(

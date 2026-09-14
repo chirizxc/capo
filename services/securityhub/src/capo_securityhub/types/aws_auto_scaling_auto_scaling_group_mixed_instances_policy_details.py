@@ -48,7 +48,7 @@ def deserialize_json(
     data: dict,
 ) -> AwsAutoScalingAutoScalingGroupMixedInstancesPolicyDetails:
     out: AwsAutoScalingAutoScalingGroupMixedInstancesPolicyDetails = {}  # type: ignore[typeddict-item]
-    if "InstancesDistribution" in data:
+    if data.get("InstancesDistribution") is not None:
         import capo_securityhub.types.aws_auto_scaling_auto_scaling_group_mixed_instances_policy_instances_distribution_details
 
         out["instances_distribution"] = (
@@ -56,7 +56,7 @@ def deserialize_json(
                 data["InstancesDistribution"]
             )
         )
-    if "LaunchTemplate" in data:
+    if data.get("LaunchTemplate") is not None:
         import capo_securityhub.types.aws_auto_scaling_auto_scaling_group_mixed_instances_policy_launch_template_details
 
         out["launch_template"] = (

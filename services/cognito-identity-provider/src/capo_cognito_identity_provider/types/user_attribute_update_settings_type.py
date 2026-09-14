@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: UserAttributeUpdateSettingsType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UserAttributeUpdateSettingsType:
     out: UserAttributeUpdateSettingsType = {}  # type: ignore[typeddict-item]
-    if "AttributesRequireVerificationBeforeUpdate" in data:
+    if data.get("AttributesRequireVerificationBeforeUpdate") is not None:
         import capo_cognito_identity_provider.types.attributes_require_verification_before_update_type
 
         out["attributes_require_verification_before_update"] = (

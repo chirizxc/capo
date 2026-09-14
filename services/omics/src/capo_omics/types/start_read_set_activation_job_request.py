@@ -38,9 +38,9 @@ def serialize_json(value: StartReadSetActivationJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartReadSetActivationJobRequest:
     out: StartReadSetActivationJobRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "sources" in data:
+    if data.get("sources") is not None:
         import capo_omics.types.start_read_set_activation_job_source_list
 
         out["sources"] = (

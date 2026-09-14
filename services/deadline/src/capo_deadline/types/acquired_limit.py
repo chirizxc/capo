@@ -28,11 +28,11 @@ def serialize_json(value: AcquiredLimit) -> dict:
 
 def deserialize_json(data: dict) -> AcquiredLimit:
     out: AcquiredLimit = {}  # type: ignore[typeddict-item]
-    if "limitId" in data:
+    if data.get("limitId") is not None:
         out["limit_id"] = data["limitId"]
     else:
         raise DeserializationError("AcquiredLimit.limit_id required")
-    if "count" in data:
+    if data.get("count") is not None:
         out["count"] = data["count"]
     else:
         raise DeserializationError("AcquiredLimit.count required")

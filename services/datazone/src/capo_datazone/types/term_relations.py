@@ -33,11 +33,11 @@ def serialize_json(value: TermRelations) -> dict:
 
 def deserialize_json(data: dict) -> TermRelations:
     out: TermRelations = {}  # type: ignore[typeddict-item]
-    if "isA" in data:
+    if data.get("isA") is not None:
         import capo_datazone.types.glossary_terms
 
         out["is_a"] = capo_datazone.types.glossary_terms.deserialize_json(data["isA"])
-    if "classifies" in data:
+    if data.get("classifies") is not None:
         import capo_datazone.types.glossary_terms
 
         out["classifies"] = capo_datazone.types.glossary_terms.deserialize_json(

@@ -111,49 +111,49 @@ def serialize_json(value: GetBootstrapBrokersResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetBootstrapBrokersResponse:
     out: GetBootstrapBrokersResponse = {}  # type: ignore[typeddict-item]
-    if "bootstrapBrokerString" in data:
+    if data.get("bootstrapBrokerString") is not None:
         out["bootstrap_broker_string"] = data["bootstrapBrokerString"]
-    if "bootstrapBrokerStringTls" in data:
+    if data.get("bootstrapBrokerStringTls") is not None:
         out["bootstrap_broker_string_tls"] = data["bootstrapBrokerStringTls"]
-    if "bootstrapBrokerStringSaslScram" in data:
+    if data.get("bootstrapBrokerStringSaslScram") is not None:
         out["bootstrap_broker_string_sasl_scram"] = data[
             "bootstrapBrokerStringSaslScram"
         ]
-    if "bootstrapBrokerStringSaslIam" in data:
+    if data.get("bootstrapBrokerStringSaslIam") is not None:
         out["bootstrap_broker_string_sasl_iam"] = data["bootstrapBrokerStringSaslIam"]
-    if "bootstrapBrokerStringPublicTls" in data:
+    if data.get("bootstrapBrokerStringPublicTls") is not None:
         out["bootstrap_broker_string_public_tls"] = data[
             "bootstrapBrokerStringPublicTls"
         ]
-    if "bootstrapBrokerStringPublicSaslScram" in data:
+    if data.get("bootstrapBrokerStringPublicSaslScram") is not None:
         out["bootstrap_broker_string_public_sasl_scram"] = data[
             "bootstrapBrokerStringPublicSaslScram"
         ]
-    if "bootstrapBrokerStringPublicSaslIam" in data:
+    if data.get("bootstrapBrokerStringPublicSaslIam") is not None:
         out["bootstrap_broker_string_public_sasl_iam"] = data[
             "bootstrapBrokerStringPublicSaslIam"
         ]
-    if "bootstrapBrokerStringVpcConnectivityTls" in data:
+    if data.get("bootstrapBrokerStringVpcConnectivityTls") is not None:
         out["bootstrap_broker_string_vpc_connectivity_tls"] = data[
             "bootstrapBrokerStringVpcConnectivityTls"
         ]
-    if "bootstrapBrokerStringVpcConnectivitySaslScram" in data:
+    if data.get("bootstrapBrokerStringVpcConnectivitySaslScram") is not None:
         out["bootstrap_broker_string_vpc_connectivity_sasl_scram"] = data[
             "bootstrapBrokerStringVpcConnectivitySaslScram"
         ]
-    if "bootstrapBrokerStringVpcConnectivitySaslIam" in data:
+    if data.get("bootstrapBrokerStringVpcConnectivitySaslIam") is not None:
         out["bootstrap_broker_string_vpc_connectivity_sasl_iam"] = data[
             "bootstrapBrokerStringVpcConnectivitySaslIam"
         ]
-    if "bootstrapBrokerStringIpv6" in data:
+    if data.get("bootstrapBrokerStringIpv6") is not None:
         out["bootstrap_broker_string_ipv6"] = data["bootstrapBrokerStringIpv6"]
-    if "bootstrapBrokerStringTlsIpv6" in data:
+    if data.get("bootstrapBrokerStringTlsIpv6") is not None:
         out["bootstrap_broker_string_tls_ipv6"] = data["bootstrapBrokerStringTlsIpv6"]
-    if "bootstrapBrokerStringSaslScramIpv6" in data:
+    if data.get("bootstrapBrokerStringSaslScramIpv6") is not None:
         out["bootstrap_broker_string_sasl_scram_ipv6"] = data[
             "bootstrapBrokerStringSaslScramIpv6"
         ]
-    if "bootstrapBrokerStringSaslIamIpv6" in data:
+    if data.get("bootstrapBrokerStringSaslIamIpv6") is not None:
         out["bootstrap_broker_string_sasl_iam_ipv6"] = data[
             "bootstrapBrokerStringSaslIamIpv6"
         ]

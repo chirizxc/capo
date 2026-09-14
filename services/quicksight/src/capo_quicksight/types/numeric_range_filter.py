@@ -115,11 +115,11 @@ def serialize_json(value: NumericRangeFilter) -> dict:
 
 def deserialize_json(data: dict) -> NumericRangeFilter:
     out: NumericRangeFilter = {}  # type: ignore[typeddict-item]
-    if "FilterId" in data:
+    if data.get("FilterId") is not None:
         out["filter_id"] = data["FilterId"]
     else:
         raise DeserializationError("NumericRangeFilter.filter_id required")
-    if "Column" in data:
+    if data.get("Column") is not None:
         import capo_quicksight.types.column_identifier
 
         out["column"] = capo_quicksight.types.column_identifier.deserialize_json(
@@ -127,11 +127,11 @@ def deserialize_json(data: dict) -> NumericRangeFilter:
         )
     else:
         raise DeserializationError("NumericRangeFilter.column required")
-    if "IncludeMinimum" in data:
+    if data.get("IncludeMinimum") is not None:
         out["include_minimum"] = data["IncludeMinimum"]
-    if "IncludeMaximum" in data:
+    if data.get("IncludeMaximum") is not None:
         out["include_maximum"] = data["IncludeMaximum"]
-    if "RangeMinimum" in data:
+    if data.get("RangeMinimum") is not None:
         import capo_quicksight.types.numeric_range_filter_value
 
         out["range_minimum"] = (
@@ -139,7 +139,7 @@ def deserialize_json(data: dict) -> NumericRangeFilter:
                 data["RangeMinimum"]
             )
         )
-    if "RangeMaximum" in data:
+    if data.get("RangeMaximum") is not None:
         import capo_quicksight.types.numeric_range_filter_value
 
         out["range_maximum"] = (
@@ -147,7 +147,7 @@ def deserialize_json(data: dict) -> NumericRangeFilter:
                 data["RangeMaximum"]
             )
         )
-    if "SelectAllOptions" in data:
+    if data.get("SelectAllOptions") is not None:
         import capo_quicksight.types.numeric_filter_select_all_options
 
         out["select_all_options"] = (
@@ -155,7 +155,7 @@ def deserialize_json(data: dict) -> NumericRangeFilter:
                 data["SelectAllOptions"]
             )
         )
-    if "AggregationFunction" in data:
+    if data.get("AggregationFunction") is not None:
         import capo_quicksight.types.aggregation_function
 
         out["aggregation_function"] = (
@@ -163,7 +163,7 @@ def deserialize_json(data: dict) -> NumericRangeFilter:
                 data["AggregationFunction"]
             )
         )
-    if "NullOption" in data:
+    if data.get("NullOption") is not None:
         import capo_quicksight.types.filter_null_option
 
         out["null_option"] = capo_quicksight.types.filter_null_option.deserialize_json(
@@ -171,7 +171,7 @@ def deserialize_json(data: dict) -> NumericRangeFilter:
         )
     else:
         raise DeserializationError("NumericRangeFilter.null_option required")
-    if "DefaultFilterControlConfiguration" in data:
+    if data.get("DefaultFilterControlConfiguration") is not None:
         import capo_quicksight.types.default_filter_control_configuration
 
         out["default_filter_control_configuration"] = (

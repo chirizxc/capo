@@ -108,11 +108,11 @@ def serialize_aws_json_1_1(value: S3ParquetSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3ParquetSource:
     out: S3ParquetSource = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("S3ParquetSource.name required")
-    if "Paths" in data:
+    if data.get("Paths") is not None:
         import capo_glue.types.enclosed_in_string_properties
 
         out["paths"] = (
@@ -122,7 +122,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3ParquetSource:
         )
     else:
         raise DeserializationError("S3ParquetSource.paths required")
-    if "CompressionType" in data:
+    if data.get("CompressionType") is not None:
         import capo_glue.types.parquet_compression_type
 
         out["compression_type"] = (
@@ -130,7 +130,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3ParquetSource:
                 data["CompressionType"]
             )
         )
-    if "Exclusions" in data:
+    if data.get("Exclusions") is not None:
         import capo_glue.types.enclosed_in_string_properties
 
         out["exclusions"] = (
@@ -138,17 +138,17 @@ def deserialize_aws_json_1_1(data: dict) -> S3ParquetSource:
                 data["Exclusions"]
             )
         )
-    if "GroupSize" in data:
+    if data.get("GroupSize") is not None:
         out["group_size"] = data["GroupSize"]
-    if "GroupFiles" in data:
+    if data.get("GroupFiles") is not None:
         out["group_files"] = data["GroupFiles"]
-    if "Recurse" in data:
+    if data.get("Recurse") is not None:
         out["recurse"] = data["Recurse"]
-    if "MaxBand" in data:
+    if data.get("MaxBand") is not None:
         out["max_band"] = data["MaxBand"]
-    if "MaxFilesInBand" in data:
+    if data.get("MaxFilesInBand") is not None:
         out["max_files_in_band"] = data["MaxFilesInBand"]
-    if "AdditionalOptions" in data:
+    if data.get("AdditionalOptions") is not None:
         import capo_glue.types.s3_direct_source_additional_options
 
         out["additional_options"] = (
@@ -156,7 +156,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3ParquetSource:
                 data["AdditionalOptions"]
             )
         )
-    if "OutputSchemas" in data:
+    if data.get("OutputSchemas") is not None:
         import capo_glue.types.glue_schemas
 
         out["output_schemas"] = capo_glue.types.glue_schemas.deserialize_aws_json_1_1(

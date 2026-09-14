@@ -33,7 +33,7 @@ def serialize_aws_json_1_0(value: KmsEncryptionConfig) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> KmsEncryptionConfig:
     out: KmsEncryptionConfig = {}  # type: ignore[typeddict-item]
-    if "CmkType" in data:
+    if data.get("CmkType") is not None:
         import capo_healthlake.types.cmk_type
 
         out["cmk_type"] = capo_healthlake.types.cmk_type.deserialize_aws_json_1_0(
@@ -41,6 +41,6 @@ def deserialize_aws_json_1_0(data: dict) -> KmsEncryptionConfig:
         )
     else:
         raise DeserializationError("KmsEncryptionConfig.cmk_type required")
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
     return out

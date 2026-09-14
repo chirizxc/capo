@@ -55,13 +55,13 @@ def serialize_json(value: AttributeValue) -> dict:
 
 
 def deserialize_json(data: dict) -> AttributeValue:
-    if "S" in data:
+    if data.get("S") is not None:
         return {"S": data["S"]}
-    elif "N" in data:
+    elif data.get("N") is not None:
         return {"N": data["N"]}
-    elif "BOOL" in data:
+    elif data.get("BOOL") is not None:
         return {"BOOL": data["BOOL"]}
-    elif "SS" in data:
+    elif data.get("SS") is not None:
         import capo_directory_service_data.types.string_set_attribute_value
 
         return {

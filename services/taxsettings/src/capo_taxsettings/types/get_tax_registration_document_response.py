@@ -30,8 +30,8 @@ def serialize_json(value: GetTaxRegistrationDocumentResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetTaxRegistrationDocumentResponse:
     out: GetTaxRegistrationDocumentResponse = {}  # type: ignore[typeddict-item]
-    if "destinationFilePath" in data:
+    if data.get("destinationFilePath") is not None:
         out["destination_file_path"] = data["destinationFilePath"]
-    if "presignedS3Url" in data:
+    if data.get("presignedS3Url") is not None:
         out["presigned_s3_url"] = data["presignedS3Url"]
     return out

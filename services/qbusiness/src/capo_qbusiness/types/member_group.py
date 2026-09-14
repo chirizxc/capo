@@ -31,11 +31,11 @@ def serialize_json(value: MemberGroup) -> dict:
 
 def deserialize_json(data: dict) -> MemberGroup:
     out: MemberGroup = {}  # type: ignore[typeddict-item]
-    if "groupName" in data:
+    if data.get("groupName") is not None:
         out["group_name"] = data["groupName"]
     else:
         raise DeserializationError("MemberGroup.group_name required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_qbusiness.types.membership_type
 
         out["type"] = capo_qbusiness.types.membership_type.deserialize_json(

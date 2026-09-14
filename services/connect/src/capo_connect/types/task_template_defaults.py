@@ -31,7 +31,7 @@ def serialize_json(value: TaskTemplateDefaults) -> dict:
 
 def deserialize_json(data: dict) -> TaskTemplateDefaults:
     out: TaskTemplateDefaults = {}  # type: ignore[typeddict-item]
-    if "DefaultFieldValues" in data:
+    if data.get("DefaultFieldValues") is not None:
         import capo_connect.types.task_template_default_field_value_list
 
         out["default_field_values"] = (

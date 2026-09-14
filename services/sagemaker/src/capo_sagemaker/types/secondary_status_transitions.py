@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> SecondaryStatusTransitions:
 
     out: SecondaryStatusTransitions = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.secondary_status_transition.deserialize_aws_json_1_1(
                 item

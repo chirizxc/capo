@@ -24,7 +24,7 @@ def serialize_json(value: StopAssessmentRequest) -> dict:
 
 def deserialize_json(data: dict) -> StopAssessmentRequest:
     out: StopAssessmentRequest = {}  # type: ignore[typeddict-item]
-    if "assessmentId" in data:
+    if data.get("assessmentId") is not None:
         out["assessment_id"] = data["assessmentId"]
     else:
         raise DeserializationError("StopAssessmentRequest.assessment_id required")

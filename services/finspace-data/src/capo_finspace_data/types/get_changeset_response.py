@@ -108,41 +108,41 @@ def serialize_json(value: GetChangesetResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetChangesetResponse:
     out: GetChangesetResponse = {}  # type: ignore[typeddict-item]
-    if "changesetId" in data:
+    if data.get("changesetId") is not None:
         out["changeset_id"] = data["changesetId"]
-    if "changesetArn" in data:
+    if data.get("changesetArn") is not None:
         out["changeset_arn"] = data["changesetArn"]
-    if "datasetId" in data:
+    if data.get("datasetId") is not None:
         out["dataset_id"] = data["datasetId"]
-    if "changeType" in data:
+    if data.get("changeType") is not None:
         import capo_finspace_data.types.change_type
 
         out["change_type"] = capo_finspace_data.types.change_type.deserialize_json(
             data["changeType"]
         )
-    if "sourceParams" in data:
+    if data.get("sourceParams") is not None:
         import capo_finspace_data.types.source_params
 
         out["source_params"] = capo_finspace_data.types.source_params.deserialize_json(
             data["sourceParams"]
         )
-    if "formatParams" in data:
+    if data.get("formatParams") is not None:
         import capo_finspace_data.types.format_params
 
         out["format_params"] = capo_finspace_data.types.format_params.deserialize_json(
             data["formatParams"]
         )
-    if "createTime" in data:
+    if data.get("createTime") is not None:
         out["create_time"] = data["createTime"]
     else:
         out["create_time"] = 0
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_finspace_data.types.ingestion_status
 
         out["status"] = capo_finspace_data.types.ingestion_status.deserialize_json(
             data["status"]
         )
-    if "errorInfo" in data:
+    if data.get("errorInfo") is not None:
         import capo_finspace_data.types.changeset_error_info
 
         out["error_info"] = (
@@ -150,12 +150,12 @@ def deserialize_json(data: dict) -> GetChangesetResponse:
                 data["errorInfo"]
             )
         )
-    if "activeUntilTimestamp" in data:
+    if data.get("activeUntilTimestamp") is not None:
         out["active_until_timestamp"] = data["activeUntilTimestamp"]
-    if "activeFromTimestamp" in data:
+    if data.get("activeFromTimestamp") is not None:
         out["active_from_timestamp"] = data["activeFromTimestamp"]
-    if "updatesChangesetId" in data:
+    if data.get("updatesChangesetId") is not None:
         out["updates_changeset_id"] = data["updatesChangesetId"]
-    if "updatedByChangesetId" in data:
+    if data.get("updatedByChangesetId") is not None:
         out["updated_by_changeset_id"] = data["updatedByChangesetId"]
     return out

@@ -24,7 +24,7 @@ def serialize_json(value: UserNameOrEmailFilter) -> dict:
 
 def deserialize_json(data: dict) -> UserNameOrEmailFilter:
     out: UserNameOrEmailFilter = {}  # type: ignore[typeddict-item]
-    if "prefix" in data:
+    if data.get("prefix") is not None:
         out["prefix"] = data["prefix"]
     else:
         raise DeserializationError("UserNameOrEmailFilter.prefix required")

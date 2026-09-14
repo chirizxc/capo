@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: ColumnRowFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ColumnRowFilter:
     out: ColumnRowFilter = {}  # type: ignore[typeddict-item]
-    if "ColumnName" in data:
+    if data.get("ColumnName") is not None:
         out["column_name"] = data["ColumnName"]
-    if "RowFilterExpression" in data:
+    if data.get("RowFilterExpression") is not None:
         out["row_filter_expression"] = data["RowFilterExpression"]
     return out

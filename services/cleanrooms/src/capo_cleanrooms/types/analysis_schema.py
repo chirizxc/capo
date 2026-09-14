@@ -27,7 +27,7 @@ def serialize_json(value: AnalysisSchema) -> dict:
 
 def deserialize_json(data: dict) -> AnalysisSchema:
     out: AnalysisSchema = {}  # type: ignore[typeddict-item]
-    if "referencedTables" in data:
+    if data.get("referencedTables") is not None:
         import capo_cleanrooms.types.query_tables
 
         out["referenced_tables"] = capo_cleanrooms.types.query_tables.deserialize_json(

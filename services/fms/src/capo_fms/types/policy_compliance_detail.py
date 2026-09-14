@@ -63,29 +63,29 @@ def serialize_aws_json_1_1(value: PolicyComplianceDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PolicyComplianceDetail:
     out: PolicyComplianceDetail = {}  # type: ignore[typeddict-item]
-    if "PolicyOwner" in data:
+    if data.get("PolicyOwner") is not None:
         out["policy_owner"] = data["PolicyOwner"]
-    if "PolicyId" in data:
+    if data.get("PolicyId") is not None:
         out["policy_id"] = data["PolicyId"]
-    if "MemberAccount" in data:
+    if data.get("MemberAccount") is not None:
         out["member_account"] = data["MemberAccount"]
-    if "Violators" in data:
+    if data.get("Violators") is not None:
         import capo_fms.types.compliance_violators
 
         out["violators"] = capo_fms.types.compliance_violators.deserialize_aws_json_1_1(
             data["Violators"]
         )
-    if "EvaluationLimitExceeded" in data:
+    if data.get("EvaluationLimitExceeded") is not None:
         out["evaluation_limit_exceeded"] = data["EvaluationLimitExceeded"]
     else:
         out["evaluation_limit_exceeded"] = False
-    if "ExpiredAt" in data:
+    if data.get("ExpiredAt") is not None:
         import capo_fms.types.time_stamp
 
         out["expired_at"] = capo_fms.types.time_stamp.deserialize_aws_json_1_1(
             data["ExpiredAt"]
         )
-    if "IssueInfoMap" in data:
+    if data.get("IssueInfoMap") is not None:
         import capo_fms.types.issue_info_map
 
         out["issue_info_map"] = capo_fms.types.issue_info_map.deserialize_aws_json_1_1(

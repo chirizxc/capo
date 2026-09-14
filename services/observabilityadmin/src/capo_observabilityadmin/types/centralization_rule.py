@@ -40,7 +40,7 @@ def serialize_json(value: CentralizationRule) -> dict:
 
 def deserialize_json(data: dict) -> CentralizationRule:
     out: CentralizationRule = {}  # type: ignore[typeddict-item]
-    if "Source" in data:
+    if data.get("Source") is not None:
         import capo_observabilityadmin.types.centralization_rule_source
 
         out["source"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> CentralizationRule:
         )
     else:
         raise DeserializationError("CentralizationRule.source required")
-    if "Destination" in data:
+    if data.get("Destination") is not None:
         import capo_observabilityadmin.types.centralization_rule_destination
 
         out["destination"] = (

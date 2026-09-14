@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: SessionChainingConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SessionChainingConfig:
     out: SessionChainingConfig = {}  # type: ignore[typeddict-item]
-    if "EnableSessionTagChaining" in data:
+    if data.get("EnableSessionTagChaining") is not None:
         out["enable_session_tag_chaining"] = data["EnableSessionTagChaining"]
     return out

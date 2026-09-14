@@ -37,20 +37,20 @@ def serialize_json(value: OAuth2ClientCredentialConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> OAuth2ClientCredentialConfiguration:
     out: OAuth2ClientCredentialConfiguration = {}  # type: ignore[typeddict-item]
-    if "secretArn" in data:
+    if data.get("secretArn") is not None:
         out["secret_arn"] = data["secretArn"]
     else:
         raise DeserializationError(
             "OAuth2ClientCredentialConfiguration.secret_arn required"
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError(
             "OAuth2ClientCredentialConfiguration.role_arn required"
         )
-    if "authorizationUrl" in data:
+    if data.get("authorizationUrl") is not None:
         out["authorization_url"] = data["authorizationUrl"]
-    if "tokenUrl" in data:
+    if data.get("tokenUrl") is not None:
         out["token_url"] = data["tokenUrl"]
     return out

@@ -244,7 +244,7 @@ def serialize_json(value: AwsEc2LaunchTemplateDataInstanceRequirementsDetails) -
 
 def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataInstanceRequirementsDetails:
     out: AwsEc2LaunchTemplateDataInstanceRequirementsDetails = {}  # type: ignore[typeddict-item]
-    if "AcceleratorCount" in data:
+    if data.get("AcceleratorCount") is not None:
         import capo_securityhub.types.aws_ec2_launch_template_data_instance_requirements_accelerator_count_details
 
         out["accelerator_count"] = (
@@ -252,7 +252,7 @@ def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataInstanceRequirements
                 data["AcceleratorCount"]
             )
         )
-    if "AcceleratorManufacturers" in data:
+    if data.get("AcceleratorManufacturers") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["accelerator_manufacturers"] = (
@@ -260,7 +260,7 @@ def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataInstanceRequirements
                 data["AcceleratorManufacturers"]
             )
         )
-    if "AcceleratorNames" in data:
+    if data.get("AcceleratorNames") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["accelerator_names"] = (
@@ -268,7 +268,7 @@ def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataInstanceRequirements
                 data["AcceleratorNames"]
             )
         )
-    if "AcceleratorTotalMemoryMiB" in data:
+    if data.get("AcceleratorTotalMemoryMiB") is not None:
         import capo_securityhub.types.aws_ec2_launch_template_data_instance_requirements_accelerator_total_memory_mi_b_details
 
         out["accelerator_total_memory_mi_b"] = (
@@ -276,7 +276,7 @@ def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataInstanceRequirements
                 data["AcceleratorTotalMemoryMiB"]
             )
         )
-    if "AcceleratorTypes" in data:
+    if data.get("AcceleratorTypes") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["accelerator_types"] = (
@@ -284,9 +284,9 @@ def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataInstanceRequirements
                 data["AcceleratorTypes"]
             )
         )
-    if "BareMetal" in data:
+    if data.get("BareMetal") is not None:
         out["bare_metal"] = data["BareMetal"]
-    if "BaselineEbsBandwidthMbps" in data:
+    if data.get("BaselineEbsBandwidthMbps") is not None:
         import capo_securityhub.types.aws_ec2_launch_template_data_instance_requirements_baseline_ebs_bandwidth_mbps_details
 
         out["baseline_ebs_bandwidth_mbps"] = (
@@ -294,9 +294,9 @@ def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataInstanceRequirements
                 data["BaselineEbsBandwidthMbps"]
             )
         )
-    if "BurstablePerformance" in data:
+    if data.get("BurstablePerformance") is not None:
         out["burstable_performance"] = data["BurstablePerformance"]
-    if "CpuManufacturers" in data:
+    if data.get("CpuManufacturers") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["cpu_manufacturers"] = (
@@ -304,7 +304,7 @@ def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataInstanceRequirements
                 data["CpuManufacturers"]
             )
         )
-    if "ExcludedInstanceTypes" in data:
+    if data.get("ExcludedInstanceTypes") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["excluded_instance_types"] = (
@@ -312,7 +312,7 @@ def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataInstanceRequirements
                 data["ExcludedInstanceTypes"]
             )
         )
-    if "InstanceGenerations" in data:
+    if data.get("InstanceGenerations") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["instance_generations"] = (
@@ -320,9 +320,9 @@ def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataInstanceRequirements
                 data["InstanceGenerations"]
             )
         )
-    if "LocalStorage" in data:
+    if data.get("LocalStorage") is not None:
         out["local_storage"] = data["LocalStorage"]
-    if "LocalStorageTypes" in data:
+    if data.get("LocalStorageTypes") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["local_storage_types"] = (
@@ -330,7 +330,7 @@ def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataInstanceRequirements
                 data["LocalStorageTypes"]
             )
         )
-    if "MemoryGiBPerVCpu" in data:
+    if data.get("MemoryGiBPerVCpu") is not None:
         import capo_securityhub.types.aws_ec2_launch_template_data_instance_requirements_memory_gi_b_per_v_cpu_details
 
         out["memory_gi_b_per_v_cpu"] = (
@@ -338,7 +338,7 @@ def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataInstanceRequirements
                 data["MemoryGiBPerVCpu"]
             )
         )
-    if "MemoryMiB" in data:
+    if data.get("MemoryMiB") is not None:
         import capo_securityhub.types.aws_ec2_launch_template_data_instance_requirements_memory_mi_b_details
 
         out["memory_mi_b"] = (
@@ -346,7 +346,7 @@ def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataInstanceRequirements
                 data["MemoryMiB"]
             )
         )
-    if "NetworkInterfaceCount" in data:
+    if data.get("NetworkInterfaceCount") is not None:
         import capo_securityhub.types.aws_ec2_launch_template_data_instance_requirements_network_interface_count_details
 
         out["network_interface_count"] = (
@@ -354,17 +354,17 @@ def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataInstanceRequirements
                 data["NetworkInterfaceCount"]
             )
         )
-    if "OnDemandMaxPricePercentageOverLowestPrice" in data:
+    if data.get("OnDemandMaxPricePercentageOverLowestPrice") is not None:
         out["on_demand_max_price_percentage_over_lowest_price"] = data[
             "OnDemandMaxPricePercentageOverLowestPrice"
         ]
-    if "RequireHibernateSupport" in data:
+    if data.get("RequireHibernateSupport") is not None:
         out["require_hibernate_support"] = data["RequireHibernateSupport"]
-    if "SpotMaxPricePercentageOverLowestPrice" in data:
+    if data.get("SpotMaxPricePercentageOverLowestPrice") is not None:
         out["spot_max_price_percentage_over_lowest_price"] = data[
             "SpotMaxPricePercentageOverLowestPrice"
         ]
-    if "TotalLocalStorageGB" in data:
+    if data.get("TotalLocalStorageGB") is not None:
         import capo_securityhub.types.aws_ec2_launch_template_data_instance_requirements_total_local_storage_gb_details
 
         out["total_local_storage_gb"] = (
@@ -372,7 +372,7 @@ def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataInstanceRequirements
                 data["TotalLocalStorageGB"]
             )
         )
-    if "VCpuCount" in data:
+    if data.get("VCpuCount") is not None:
         import capo_securityhub.types.aws_ec2_launch_template_data_instance_requirements_v_cpu_count_details
 
         out["v_cpu_count"] = (

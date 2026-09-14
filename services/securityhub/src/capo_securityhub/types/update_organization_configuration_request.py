@@ -48,9 +48,9 @@ def serialize_json(value: UpdateOrganizationConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateOrganizationConfigurationRequest:
     out: UpdateOrganizationConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "AutoEnable" in data:
+    if data.get("AutoEnable") is not None:
         out["auto_enable"] = data["AutoEnable"]
-    if "AutoEnableStandards" in data:
+    if data.get("AutoEnableStandards") is not None:
         import capo_securityhub.types.auto_enable_standards
 
         out["auto_enable_standards"] = (
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> UpdateOrganizationConfigurationRequest:
                 data["AutoEnableStandards"]
             )
         )
-    if "OrganizationConfiguration" in data:
+    if data.get("OrganizationConfiguration") is not None:
         import capo_securityhub.types.organization_configuration
 
         out["organization_configuration"] = (

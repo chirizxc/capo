@@ -29,7 +29,7 @@ def serialize_json(value: UpdateGroupCertificateConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateGroupCertificateConfigurationRequest:
     out: UpdateGroupCertificateConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "CertificateExpiryInMilliseconds" in data:
+    if data.get("CertificateExpiryInMilliseconds") is not None:
         out["certificate_expiry_in_milliseconds"] = data[
             "CertificateExpiryInMilliseconds"
         ]

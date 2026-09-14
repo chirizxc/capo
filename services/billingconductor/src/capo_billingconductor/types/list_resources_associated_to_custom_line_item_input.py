@@ -56,19 +56,19 @@ def serialize_json(value: ListResourcesAssociatedToCustomLineItemInput) -> dict:
 
 def deserialize_json(data: dict) -> ListResourcesAssociatedToCustomLineItemInput:
     out: ListResourcesAssociatedToCustomLineItemInput = {}  # type: ignore[typeddict-item]
-    if "BillingPeriod" in data:
+    if data.get("BillingPeriod") is not None:
         out["billing_period"] = data["BillingPeriod"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError(
             "ListResourcesAssociatedToCustomLineItemInput.arn required"
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_billingconductor.types.list_resources_associated_to_custom_line_item_filter
 
         out["filters"] = (

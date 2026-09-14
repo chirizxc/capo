@@ -32,12 +32,12 @@ def serialize_json(value: S3EncryptionConfig) -> dict:
 
 def deserialize_json(data: dict) -> S3EncryptionConfig:
     out: S3EncryptionConfig = {}  # type: ignore[typeddict-item]
-    if "EncryptionMode" in data:
+    if data.get("EncryptionMode") is not None:
         import capo_synthetics.types.encryption_mode
 
         out["encryption_mode"] = capo_synthetics.types.encryption_mode.deserialize_json(
             data["EncryptionMode"]
         )
-    if "KmsKeyArn" in data:
+    if data.get("KmsKeyArn") is not None:
         out["kms_key_arn"] = data["KmsKeyArn"]
     return out

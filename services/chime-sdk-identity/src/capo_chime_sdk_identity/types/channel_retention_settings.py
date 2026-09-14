@@ -25,6 +25,6 @@ def serialize_json(value: ChannelRetentionSettings) -> dict:
 
 def deserialize_json(data: dict) -> ChannelRetentionSettings:
     out: ChannelRetentionSettings = {}  # type: ignore[typeddict-item]
-    if "RetentionDays" in data:
+    if data.get("RetentionDays") is not None:
         out["retention_days"] = data["RetentionDays"]
     return out

@@ -165,14 +165,16 @@ class AppConfigDataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfigdata.types.get_latest_configuration_request.GetLatestConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_token"] = configuration_token
+        input_: capo_appconfigdata.types.get_latest_configuration_request.GetLatestConfigurationRequest = {
+            "configuration_token": configuration_token
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> CreateMonitorProbeInputList:
 
     out: CreateMonitorProbeInputList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_networkmonitor.types.create_monitor_probe_input.deserialize_json(item)
         )

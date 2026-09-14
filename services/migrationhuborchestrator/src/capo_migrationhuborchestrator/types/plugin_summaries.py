@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> PluginSummaries:
 
     out: PluginSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_migrationhuborchestrator.types.plugin_summary.deserialize_json(item)
         )

@@ -105,7 +105,7 @@ def serialize_json(value: GetProductRestEndpointPageResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetProductRestEndpointPageResponse:
     out: GetProductRestEndpointPageResponse = {}  # type: ignore[typeddict-item]
-    if "displayContent" in data:
+    if data.get("displayContent") is not None:
         import capo_apigatewayv2.types.endpoint_display_content_response
 
         out["display_content"] = (
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> GetProductRestEndpointPageResponse:
                 data["displayContent"]
             )
         )
-    if "lastModified" in data:
+    if data.get("lastModified") is not None:
         import capo_apigatewayv2.types.__timestamp_iso8601
 
         out["last_modified"] = (
@@ -121,13 +121,13 @@ def deserialize_json(data: dict) -> GetProductRestEndpointPageResponse:
                 data["lastModified"]
             )
         )
-    if "productRestEndpointPageArn" in data:
+    if data.get("productRestEndpointPageArn") is not None:
         out["product_rest_endpoint_page_arn"] = data["productRestEndpointPageArn"]
-    if "productRestEndpointPageId" in data:
+    if data.get("productRestEndpointPageId") is not None:
         out["product_rest_endpoint_page_id"] = data["productRestEndpointPageId"]
-    if "rawDisplayContent" in data:
+    if data.get("rawDisplayContent") is not None:
         out["raw_display_content"] = data["rawDisplayContent"]
-    if "restEndpointIdentifier" in data:
+    if data.get("restEndpointIdentifier") is not None:
         import capo_apigatewayv2.types.rest_endpoint_identifier
 
         out["rest_endpoint_identifier"] = (
@@ -135,11 +135,11 @@ def deserialize_json(data: dict) -> GetProductRestEndpointPageResponse:
                 data["restEndpointIdentifier"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_apigatewayv2.types.status
 
         out["status"] = capo_apigatewayv2.types.status.deserialize_json(data["status"])
-    if "statusException" in data:
+    if data.get("statusException") is not None:
         import capo_apigatewayv2.types.status_exception
 
         out["status_exception"] = (
@@ -147,7 +147,7 @@ def deserialize_json(data: dict) -> GetProductRestEndpointPageResponse:
                 data["statusException"]
             )
         )
-    if "tryItState" in data:
+    if data.get("tryItState") is not None:
         import capo_apigatewayv2.types.try_it_state
 
         out["try_it_state"] = capo_apigatewayv2.types.try_it_state.deserialize_json(

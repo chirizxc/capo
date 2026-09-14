@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> TopicRuleList:
 
     out: TopicRuleList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot.types.topic_rule_list_item.deserialize_json(item))
     return out

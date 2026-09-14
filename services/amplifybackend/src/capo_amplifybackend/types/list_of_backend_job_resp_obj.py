@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ListOfBackendJobRespObj:
 
     out: ListOfBackendJobRespObj = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_amplifybackend.types.backend_job_resp_obj.deserialize_json(item)
         )

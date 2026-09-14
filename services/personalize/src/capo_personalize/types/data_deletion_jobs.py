@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> DataDeletionJobs:
 
     out: DataDeletionJobs = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_personalize.types.data_deletion_job_summary.deserialize_aws_json_1_1(
                 item

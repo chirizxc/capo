@@ -32,8 +32,8 @@ def serialize_json(value: ClusterEndpoint) -> dict:
 
 def deserialize_json(data: dict) -> ClusterEndpoint:
     out: ClusterEndpoint = {}  # type: ignore[typeddict-item]
-    if "Endpoint" in data:
+    if data.get("Endpoint") is not None:
         out["endpoint"] = data["Endpoint"]
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
     return out

@@ -36,13 +36,13 @@ def serialize_json(value: AttributeDimension) -> dict:
 
 def deserialize_json(data: dict) -> AttributeDimension:
     out: AttributeDimension = {}  # type: ignore[typeddict-item]
-    if "AttributeType" in data:
+    if data.get("AttributeType") is not None:
         import capo_pinpoint.types.attribute_type
 
         out["attribute_type"] = capo_pinpoint.types.attribute_type.deserialize_json(
             data["AttributeType"]
         )
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_pinpoint.types.list_of__string
 
         out["values"] = capo_pinpoint.types.list_of__string.deserialize_json(

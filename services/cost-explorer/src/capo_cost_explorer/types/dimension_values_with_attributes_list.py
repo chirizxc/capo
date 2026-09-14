@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> DimensionValuesWithAttributesList:
 
     out: DimensionValuesWithAttributesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cost_explorer.types.dimension_values_with_attributes.deserialize_aws_json_1_1(
                 item

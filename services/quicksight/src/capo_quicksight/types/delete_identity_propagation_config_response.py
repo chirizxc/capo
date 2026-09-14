@@ -26,6 +26,6 @@ def serialize_json(value: DeleteIdentityPropagationConfigResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteIdentityPropagationConfigResponse:
     out: DeleteIdentityPropagationConfigResponse = {}  # type: ignore[typeddict-item]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

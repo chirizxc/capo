@@ -25,15 +25,15 @@ def serialize_aws_json_1_0(value: ValidationExceptionField) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ValidationExceptionField:
     out: ValidationExceptionField = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("ValidationExceptionField.name required")
-    if "Reason" in data:
+    if data.get("Reason") is not None:
         out["reason"] = data["Reason"]
     else:
         raise DeserializationError("ValidationExceptionField.reason required")
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     else:
         raise DeserializationError("ValidationExceptionField.message required")

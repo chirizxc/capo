@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: DimensionGroupDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DimensionGroupDetail:
     out: DimensionGroupDetail = {}  # type: ignore[typeddict-item]
-    if "Group" in data:
+    if data.get("Group") is not None:
         out["group"] = data["Group"]
-    if "Dimensions" in data:
+    if data.get("Dimensions") is not None:
         import capo_pi.types.dimension_detail_list
 
         out["dimensions"] = (

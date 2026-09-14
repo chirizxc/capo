@@ -56,11 +56,11 @@ def serialize_aws_json_1_1(value: StepStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StepStatus:
     out: StepStatus = {}  # type: ignore[typeddict-item]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_emr.types.step_state
 
         out["state"] = capo_emr.types.step_state.deserialize_aws_json_1_1(data["State"])
-    if "StateChangeReason" in data:
+    if data.get("StateChangeReason") is not None:
         import capo_emr.types.step_state_change_reason
 
         out["state_change_reason"] = (
@@ -68,7 +68,7 @@ def deserialize_aws_json_1_1(data: dict) -> StepStatus:
                 data["StateChangeReason"]
             )
         )
-    if "FailureDetails" in data:
+    if data.get("FailureDetails") is not None:
         import capo_emr.types.failure_details
 
         out["failure_details"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_1(data: dict) -> StepStatus:
                 data["FailureDetails"]
             )
         )
-    if "Timeline" in data:
+    if data.get("Timeline") is not None:
         import capo_emr.types.step_timeline
 
         out["timeline"] = capo_emr.types.step_timeline.deserialize_aws_json_1_1(

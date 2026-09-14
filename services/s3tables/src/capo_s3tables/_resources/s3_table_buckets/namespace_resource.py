@@ -76,15 +76,17 @@ class NamespaceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.create_namespace_request.CreateNamespaceRequest = {}  # type: ignore[typeddict-item]
-        input_["table_bucket_arn"] = table_bucket_arn
-        input_["namespace"] = namespace
+        input_: capo_s3tables.types.create_namespace_request.CreateNamespaceRequest = {
+            "table_bucket_arn": table_bucket_arn,
+            "namespace": namespace,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_namespace(
@@ -123,15 +125,17 @@ class NamespaceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.delete_namespace_request.DeleteNamespaceRequest = {}  # type: ignore[typeddict-item]
-        input_["table_bucket_arn"] = table_bucket_arn
-        input_["namespace"] = namespace
+        input_: capo_s3tables.types.delete_namespace_request.DeleteNamespaceRequest = {
+            "table_bucket_arn": table_bucket_arn,
+            "namespace": namespace,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_namespace(
@@ -173,15 +177,17 @@ class NamespaceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.get_namespace_request.GetNamespaceRequest = {}  # type: ignore[typeddict-item]
-        input_["table_bucket_arn"] = table_bucket_arn
-        input_["namespace"] = namespace
+        input_: capo_s3tables.types.get_namespace_request.GetNamespaceRequest = {
+            "table_bucket_arn": table_bucket_arn,
+            "namespace": namespace,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_namespaces(
@@ -229,8 +235,9 @@ class NamespaceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.list_namespaces_request.ListNamespacesRequest = {}  # type: ignore[typeddict-item]
-        input_["table_bucket_arn"] = table_bucket_arn
+        input_: capo_s3tables.types.list_namespaces_request.ListNamespacesRequest = {
+            "table_bucket_arn": table_bucket_arn
+        }
         if prefix is not None:
             input_["prefix"] = prefix
         if continuation_token is not None:
@@ -243,6 +250,7 @@ class NamespaceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -289,15 +297,17 @@ class AsyncNamespaceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.create_namespace_request.CreateNamespaceRequest = {}  # type: ignore[typeddict-item]
-        input_["table_bucket_arn"] = table_bucket_arn
-        input_["namespace"] = namespace
+        input_: capo_s3tables.types.create_namespace_request.CreateNamespaceRequest = {
+            "table_bucket_arn": table_bucket_arn,
+            "namespace": namespace,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_namespace(
@@ -337,15 +347,17 @@ class AsyncNamespaceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.delete_namespace_request.DeleteNamespaceRequest = {}  # type: ignore[typeddict-item]
-        input_["table_bucket_arn"] = table_bucket_arn
-        input_["namespace"] = namespace
+        input_: capo_s3tables.types.delete_namespace_request.DeleteNamespaceRequest = {
+            "table_bucket_arn": table_bucket_arn,
+            "namespace": namespace,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_namespace(
@@ -388,15 +400,17 @@ class AsyncNamespaceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.get_namespace_request.GetNamespaceRequest = {}  # type: ignore[typeddict-item]
-        input_["table_bucket_arn"] = table_bucket_arn
-        input_["namespace"] = namespace
+        input_: capo_s3tables.types.get_namespace_request.GetNamespaceRequest = {
+            "table_bucket_arn": table_bucket_arn,
+            "namespace": namespace,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_namespaces(
@@ -445,8 +459,9 @@ class AsyncNamespaceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.list_namespaces_request.ListNamespacesRequest = {}  # type: ignore[typeddict-item]
-        input_["table_bucket_arn"] = table_bucket_arn
+        input_: capo_s3tables.types.list_namespaces_request.ListNamespacesRequest = {
+            "table_bucket_arn": table_bucket_arn
+        }
         if prefix is not None:
             input_["prefix"] = prefix
         if continuation_token is not None:
@@ -459,4 +474,5 @@ class AsyncNamespaceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

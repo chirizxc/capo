@@ -60,7 +60,7 @@ def serialize_json(value: DataIntegrationFlowSource) -> dict:
 
 def deserialize_json(data: dict) -> DataIntegrationFlowSource:
     out: DataIntegrationFlowSource = {}  # type: ignore[typeddict-item]
-    if "sourceType" in data:
+    if data.get("sourceType") is not None:
         import capo_supplychain.types.data_integration_flow_source_type
 
         out["source_type"] = (
@@ -70,11 +70,11 @@ def deserialize_json(data: dict) -> DataIntegrationFlowSource:
         )
     else:
         raise DeserializationError("DataIntegrationFlowSource.source_type required")
-    if "sourceName" in data:
+    if data.get("sourceName") is not None:
         out["source_name"] = data["sourceName"]
     else:
         raise DeserializationError("DataIntegrationFlowSource.source_name required")
-    if "s3Source" in data:
+    if data.get("s3Source") is not None:
         import capo_supplychain.types.data_integration_flow_s3_source_configuration
 
         out["s3_source"] = (
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> DataIntegrationFlowSource:
                 data["s3Source"]
             )
         )
-    if "datasetSource" in data:
+    if data.get("datasetSource") is not None:
         import capo_supplychain.types.data_integration_flow_dataset_source_configuration
 
         out["dataset_source"] = (

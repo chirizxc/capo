@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_datazone._auth._signers
@@ -90,20 +91,23 @@ class DomainUnit:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.create_domain_unit_input.CreateDomainUnitInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["name"] = name
-        input_["parent_domain_unit_identifier"] = parent_domain_unit_identifier
+        input_: capo_datazone.types.create_domain_unit_input.CreateDomainUnitInput = {
+            "domain_identifier": domain_identifier,
+            "name": name,
+            "parent_domain_unit_identifier": parent_domain_unit_identifier,
+        }
         if description is not None:
             input_["description"] = description
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -144,15 +148,17 @@ class DomainUnit:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.get_domain_unit_input.GetDomainUnitInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.get_domain_unit_input.GetDomainUnitInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -200,9 +206,10 @@ class DomainUnit:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.update_domain_unit_input.UpdateDomainUnitInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.update_domain_unit_input.UpdateDomainUnitInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if description is not None:
             input_["description"] = description
         if name is not None:
@@ -213,6 +220,7 @@ class DomainUnit:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -254,15 +262,17 @@ class DomainUnit:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.delete_domain_unit_input.DeleteDomainUnitInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.delete_domain_unit_input.DeleteDomainUnitInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -310,9 +320,10 @@ class DomainUnit:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.list_domain_units_for_parent_input.ListDomainUnitsForParentInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["parent_domain_unit_identifier"] = parent_domain_unit_identifier
+        input_: capo_datazone.types.list_domain_units_for_parent_input.ListDomainUnitsForParentInput = {
+            "domain_identifier": domain_identifier,
+            "parent_domain_unit_identifier": parent_domain_unit_identifier,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -323,6 +334,7 @@ class DomainUnit:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -378,20 +390,23 @@ class AsyncDomainUnit:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.create_domain_unit_input.CreateDomainUnitInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["name"] = name
-        input_["parent_domain_unit_identifier"] = parent_domain_unit_identifier
+        input_: capo_datazone.types.create_domain_unit_input.CreateDomainUnitInput = {
+            "domain_identifier": domain_identifier,
+            "name": name,
+            "parent_domain_unit_identifier": parent_domain_unit_identifier,
+        }
         if description is not None:
             input_["description"] = description
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -433,15 +448,17 @@ class AsyncDomainUnit:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.get_domain_unit_input.GetDomainUnitInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.get_domain_unit_input.GetDomainUnitInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -490,9 +507,10 @@ class AsyncDomainUnit:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.update_domain_unit_input.UpdateDomainUnitInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.update_domain_unit_input.UpdateDomainUnitInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if description is not None:
             input_["description"] = description
         if name is not None:
@@ -503,6 +521,7 @@ class AsyncDomainUnit:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -545,15 +564,17 @@ class AsyncDomainUnit:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.delete_domain_unit_input.DeleteDomainUnitInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.delete_domain_unit_input.DeleteDomainUnitInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -602,9 +623,10 @@ class AsyncDomainUnit:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.list_domain_units_for_parent_input.ListDomainUnitsForParentInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["parent_domain_unit_identifier"] = parent_domain_unit_identifier
+        input_: capo_datazone.types.list_domain_units_for_parent_input.ListDomainUnitsForParentInput = {
+            "domain_identifier": domain_identifier,
+            "parent_domain_unit_identifier": parent_domain_unit_identifier,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -615,4 +637,5 @@ class AsyncDomainUnit:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

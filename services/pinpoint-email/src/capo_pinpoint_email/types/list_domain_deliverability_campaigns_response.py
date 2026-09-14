@@ -35,7 +35,7 @@ def serialize_json(value: ListDomainDeliverabilityCampaignsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListDomainDeliverabilityCampaignsResponse:
     out: ListDomainDeliverabilityCampaignsResponse = {}  # type: ignore[typeddict-item]
-    if "DomainDeliverabilityCampaigns" in data:
+    if data.get("DomainDeliverabilityCampaigns") is not None:
         import capo_pinpoint_email.types.domain_deliverability_campaign_list
 
         out["domain_deliverability_campaigns"] = (
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> ListDomainDeliverabilityCampaignsResponse:
         raise DeserializationError(
             "ListDomainDeliverabilityCampaignsResponse.domain_deliverability_campaigns required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

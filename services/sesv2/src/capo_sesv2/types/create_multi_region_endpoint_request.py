@@ -37,19 +37,19 @@ def serialize_json(value: CreateMultiRegionEndpointRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateMultiRegionEndpointRequest:
     out: CreateMultiRegionEndpointRequest = {}  # type: ignore[typeddict-item]
-    if "EndpointName" in data:
+    if data.get("EndpointName") is not None:
         out["endpoint_name"] = data["EndpointName"]
     else:
         raise DeserializationError(
             "CreateMultiRegionEndpointRequest.endpoint_name required"
         )
-    if "Details" in data:
+    if data.get("Details") is not None:
         import capo_sesv2.types.details
 
         out["details"] = capo_sesv2.types.details.deserialize_json(data["Details"])
     else:
         raise DeserializationError("CreateMultiRegionEndpointRequest.details required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sesv2.types.tag_list
 
         out["tags"] = capo_sesv2.types.tag_list.deserialize_json(data["Tags"])

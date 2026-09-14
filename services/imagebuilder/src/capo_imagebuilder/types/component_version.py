@@ -98,21 +98,21 @@ def serialize_json(value: ComponentVersion) -> dict:
 
 def deserialize_json(data: dict) -> ComponentVersion:
     out: ComponentVersion = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "platform" in data:
+    if data.get("platform") is not None:
         import capo_imagebuilder.types.platform
 
         out["platform"] = capo_imagebuilder.types.platform.deserialize_json(
             data["platform"]
         )
-    if "supportedOsVersions" in data:
+    if data.get("supportedOsVersions") is not None:
         import capo_imagebuilder.types.os_version_list
 
         out["supported_os_versions"] = (
@@ -120,23 +120,23 @@ def deserialize_json(data: dict) -> ComponentVersion:
                 data["supportedOsVersions"]
             )
         )
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_imagebuilder.types.component_type
 
         out["type"] = capo_imagebuilder.types.component_type.deserialize_json(
             data["type"]
         )
-    if "owner" in data:
+    if data.get("owner") is not None:
         out["owner"] = data["owner"]
-    if "dateCreated" in data:
+    if data.get("dateCreated") is not None:
         out["date_created"] = data["dateCreated"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_imagebuilder.types.component_status
 
         out["status"] = capo_imagebuilder.types.component_status.deserialize_json(
             data["status"]
         )
-    if "productCodes" in data:
+    if data.get("productCodes") is not None:
         import capo_imagebuilder.types.product_code_list
 
         out["product_codes"] = (

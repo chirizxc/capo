@@ -31,10 +31,10 @@ def serialize_aws_json_1_1(value: LabelCountersForWorkteam) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LabelCountersForWorkteam:
     out: LabelCountersForWorkteam = {}  # type: ignore[typeddict-item]
-    if "HumanLabeled" in data:
+    if data.get("HumanLabeled") is not None:
         out["human_labeled"] = data["HumanLabeled"]
-    if "PendingHuman" in data:
+    if data.get("PendingHuman") is not None:
         out["pending_human"] = data["PendingHuman"]
-    if "Total" in data:
+    if data.get("Total") is not None:
         out["total"] = data["Total"]
     return out

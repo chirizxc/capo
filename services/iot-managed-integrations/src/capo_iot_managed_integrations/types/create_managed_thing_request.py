@@ -156,7 +156,7 @@ def serialize_json(value: CreateManagedThingRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateManagedThingRequest:
     out: CreateManagedThingRequest = {}  # type: ignore[typeddict-item]
-    if "Role" in data:
+    if data.get("Role") is not None:
         import capo_iot_managed_integrations.types.role
 
         out["role"] = capo_iot_managed_integrations.types.role.deserialize_json(
@@ -164,17 +164,17 @@ def deserialize_json(data: dict) -> CreateManagedThingRequest:
         )
     else:
         raise DeserializationError("CreateManagedThingRequest.role required")
-    if "Owner" in data:
+    if data.get("Owner") is not None:
         out["owner"] = data["Owner"]
-    if "CredentialLockerId" in data:
+    if data.get("CredentialLockerId") is not None:
         out["credential_locker_id"] = data["CredentialLockerId"]
-    if "AuthenticationMaterial" in data:
+    if data.get("AuthenticationMaterial") is not None:
         out["authentication_material"] = data["AuthenticationMaterial"]
     else:
         raise DeserializationError(
             "CreateManagedThingRequest.authentication_material required"
         )
-    if "AuthenticationMaterialType" in data:
+    if data.get("AuthenticationMaterialType") is not None:
         import capo_iot_managed_integrations.types.auth_material_type
 
         out["authentication_material_type"] = (
@@ -186,7 +186,7 @@ def deserialize_json(data: dict) -> CreateManagedThingRequest:
         raise DeserializationError(
             "CreateManagedThingRequest.authentication_material_type required"
         )
-    if "WiFiSimpleSetupConfiguration" in data:
+    if data.get("WiFiSimpleSetupConfiguration") is not None:
         import capo_iot_managed_integrations.types.wi_fi_simple_setup_configuration
 
         out["wi_fi_simple_setup_configuration"] = (
@@ -194,15 +194,15 @@ def deserialize_json(data: dict) -> CreateManagedThingRequest:
                 data["WiFiSimpleSetupConfiguration"]
             )
         )
-    if "SerialNumber" in data:
+    if data.get("SerialNumber") is not None:
         out["serial_number"] = data["SerialNumber"]
-    if "Brand" in data:
+    if data.get("Brand") is not None:
         out["brand"] = data["Brand"]
-    if "Model" in data:
+    if data.get("Model") is not None:
         out["model"] = data["Model"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "CapabilityReport" in data:
+    if data.get("CapabilityReport") is not None:
         import capo_iot_managed_integrations.types.capability_report
 
         out["capability_report"] = (
@@ -210,7 +210,7 @@ def deserialize_json(data: dict) -> CreateManagedThingRequest:
                 data["CapabilityReport"]
             )
         )
-    if "CapabilitySchemas" in data:
+    if data.get("CapabilitySchemas") is not None:
         import capo_iot_managed_integrations.types.capability_schemas
 
         out["capability_schemas"] = (
@@ -218,19 +218,19 @@ def deserialize_json(data: dict) -> CreateManagedThingRequest:
                 data["CapabilitySchemas"]
             )
         )
-    if "Capabilities" in data:
+    if data.get("Capabilities") is not None:
         out["capabilities"] = data["Capabilities"]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Classification" in data:
+    if data.get("Classification") is not None:
         out["classification"] = data["Classification"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_iot_managed_integrations.types.tags_map
 
         out["tags"] = capo_iot_managed_integrations.types.tags_map.deserialize_json(
             data["Tags"]
         )
-    if "MetaData" in data:
+    if data.get("MetaData") is not None:
         import capo_iot_managed_integrations.types.meta_data
 
         out["meta_data"] = (

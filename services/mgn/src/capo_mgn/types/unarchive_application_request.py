@@ -29,12 +29,12 @@ def serialize_json(value: UnarchiveApplicationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UnarchiveApplicationRequest:
     out: UnarchiveApplicationRequest = {}  # type: ignore[typeddict-item]
-    if "applicationID" in data:
+    if data.get("applicationID") is not None:
         out["application_id"] = data["applicationID"]
     else:
         raise DeserializationError(
             "UnarchiveApplicationRequest.application_id required"
         )
-    if "accountID" in data:
+    if data.get("accountID") is not None:
         out["account_id"] = data["accountID"]
     return out

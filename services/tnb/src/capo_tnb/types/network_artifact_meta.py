@@ -27,7 +27,7 @@ def serialize_json(value: NetworkArtifactMeta) -> dict:
 
 def deserialize_json(data: dict) -> NetworkArtifactMeta:
     out: NetworkArtifactMeta = {}  # type: ignore[typeddict-item]
-    if "overrides" in data:
+    if data.get("overrides") is not None:
         import capo_tnb.types.override_list
 
         out["overrides"] = capo_tnb.types.override_list.deserialize_json(

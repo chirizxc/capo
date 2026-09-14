@@ -36,11 +36,11 @@ def serialize_json(value: MarketoDestinationProperties) -> dict:
 
 def deserialize_json(data: dict) -> MarketoDestinationProperties:
     out: MarketoDestinationProperties = {}  # type: ignore[typeddict-item]
-    if "object" in data:
+    if data.get("object") is not None:
         out["object"] = data["object"]
     else:
         raise DeserializationError("MarketoDestinationProperties.object required")
-    if "errorHandlingConfig" in data:
+    if data.get("errorHandlingConfig") is not None:
         import capo_appflow.types.error_handling_config
 
         out["error_handling_config"] = (

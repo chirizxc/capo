@@ -36,13 +36,13 @@ def serialize_aws_json_1_1(value: Operator) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Operator:
     out: Operator = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_data_pipeline.types.operator_type
 
         out["type"] = capo_data_pipeline.types.operator_type.deserialize_aws_json_1_1(
             data["type"]
         )
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_data_pipeline.types.string_list
 
         out["values"] = capo_data_pipeline.types.string_list.deserialize_aws_json_1_1(

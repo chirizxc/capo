@@ -31,8 +31,8 @@ def serialize_json(value: AwsS3BucketWebsiteConfigurationRoutingRuleCondition) -
 
 def deserialize_json(data: dict) -> AwsS3BucketWebsiteConfigurationRoutingRuleCondition:
     out: AwsS3BucketWebsiteConfigurationRoutingRuleCondition = {}  # type: ignore[typeddict-item]
-    if "HttpErrorCodeReturnedEquals" in data:
+    if data.get("HttpErrorCodeReturnedEquals") is not None:
         out["http_error_code_returned_equals"] = data["HttpErrorCodeReturnedEquals"]
-    if "KeyPrefixEquals" in data:
+    if data.get("KeyPrefixEquals") is not None:
         out["key_prefix_equals"] = data["KeyPrefixEquals"]
     return out

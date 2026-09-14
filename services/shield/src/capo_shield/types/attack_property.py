@@ -62,13 +62,13 @@ def serialize_aws_json_1_1(value: AttackProperty) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AttackProperty:
     out: AttackProperty = {}  # type: ignore[typeddict-item]
-    if "AttackLayer" in data:
+    if data.get("AttackLayer") is not None:
         import capo_shield.types.attack_layer
 
         out["attack_layer"] = capo_shield.types.attack_layer.deserialize_aws_json_1_1(
             data["AttackLayer"]
         )
-    if "AttackPropertyIdentifier" in data:
+    if data.get("AttackPropertyIdentifier") is not None:
         import capo_shield.types.attack_property_identifier
 
         out["attack_property_identifier"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_1(data: dict) -> AttackProperty:
                 data["AttackPropertyIdentifier"]
             )
         )
-    if "TopContributors" in data:
+    if data.get("TopContributors") is not None:
         import capo_shield.types.top_contributors
 
         out["top_contributors"] = (
@@ -84,11 +84,11 @@ def deserialize_aws_json_1_1(data: dict) -> AttackProperty:
                 data["TopContributors"]
             )
         )
-    if "Unit" in data:
+    if data.get("Unit") is not None:
         import capo_shield.types.unit
 
         out["unit"] = capo_shield.types.unit.deserialize_aws_json_1_1(data["Unit"])
-    if "Total" in data:
+    if data.get("Total") is not None:
         out["total"] = data["Total"]
     else:
         out["total"] = 0

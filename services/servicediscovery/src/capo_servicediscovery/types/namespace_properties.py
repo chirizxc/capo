@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: NamespaceProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NamespaceProperties:
     out: NamespaceProperties = {}  # type: ignore[typeddict-item]
-    if "DnsProperties" in data:
+    if data.get("DnsProperties") is not None:
         import capo_servicediscovery.types.dns_properties
 
         out["dns_properties"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> NamespaceProperties:
                 data["DnsProperties"]
             )
         )
-    if "HttpProperties" in data:
+    if data.get("HttpProperties") is not None:
         import capo_servicediscovery.types.http_properties
 
         out["http_properties"] = (

@@ -33,19 +33,27 @@ def serialize_aws_json_1_1(value: DetectCustomLabelsRequest) -> dict:
     if "max_results" in value:
         out["MaxResults"] = value["max_results"]
     if "min_confidence" in value:
-        out["MinConfidence"] = value["min_confidence"]
+        out["MinConfidence"] = (
+            "NaN"
+            if value["min_confidence"] != value["min_confidence"]
+            else "Infinity"
+            if value["min_confidence"] == float("inf")
+            else "-Infinity"
+            if value["min_confidence"] == float("-inf")
+            else value["min_confidence"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> DetectCustomLabelsRequest:
     out: DetectCustomLabelsRequest = {}  # type: ignore[typeddict-item]
-    if "ProjectVersionArn" in data:
+    if data.get("ProjectVersionArn") is not None:
         out["project_version_arn"] = data["ProjectVersionArn"]
     else:
         raise DeserializationError(
             "DetectCustomLabelsRequest.project_version_arn required"
         )
-    if "Image" in data:
+    if data.get("Image") is not None:
         import capo_rekognition.types.image
 
         out["image"] = capo_rekognition.types.image.deserialize_aws_json_1_1(
@@ -53,8 +61,8 @@ def deserialize_aws_json_1_1(data: dict) -> DetectCustomLabelsRequest:
         )
     else:
         raise DeserializationError("DetectCustomLabelsRequest.image required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "MinConfidence" in data:
-        out["min_confidence"] = data["MinConfidence"]
+    if data.get("MinConfidence") is not None:
+        out["min_confidence"] = float(data["MinConfidence"])
     return out

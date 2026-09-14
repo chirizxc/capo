@@ -32,17 +32,17 @@ def serialize_json(value: EnrichmentSourceS3Configuration) -> dict:
 
 def deserialize_json(data: dict) -> EnrichmentSourceS3Configuration:
     out: EnrichmentSourceS3Configuration = {}  # type: ignore[typeddict-item]
-    if "s3Bucket" in data:
+    if data.get("s3Bucket") is not None:
         out["s3_bucket"] = data["s3Bucket"]
     else:
         raise DeserializationError("EnrichmentSourceS3Configuration.s3_bucket required")
-    if "s3BucketOwner" in data:
+    if data.get("s3BucketOwner") is not None:
         out["s3_bucket_owner"] = data["s3BucketOwner"]
     else:
         raise DeserializationError(
             "EnrichmentSourceS3Configuration.s3_bucket_owner required"
         )
-    if "s3Key" in data:
+    if data.get("s3Key") is not None:
         out["s3_key"] = data["s3Key"]
     else:
         raise DeserializationError("EnrichmentSourceS3Configuration.s3_key required")

@@ -83,9 +83,9 @@ def serialize_json(value: CreateSoftwareUpdateJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateSoftwareUpdateJobRequest:
     out: CreateSoftwareUpdateJobRequest = {}  # type: ignore[typeddict-item]
-    if "S3UrlSignerRole" in data:
+    if data.get("S3UrlSignerRole") is not None:
         out["s3_url_signer_role"] = data["S3UrlSignerRole"]
-    if "SoftwareToUpdate" in data:
+    if data.get("SoftwareToUpdate") is not None:
         import capo_greengrass.types.software_to_update
 
         out["software_to_update"] = (
@@ -93,7 +93,7 @@ def deserialize_json(data: dict) -> CreateSoftwareUpdateJobRequest:
                 data["SoftwareToUpdate"]
             )
         )
-    if "UpdateAgentLogLevel" in data:
+    if data.get("UpdateAgentLogLevel") is not None:
         import capo_greengrass.types.update_agent_log_level
 
         out["update_agent_log_level"] = (
@@ -101,13 +101,13 @@ def deserialize_json(data: dict) -> CreateSoftwareUpdateJobRequest:
                 data["UpdateAgentLogLevel"]
             )
         )
-    if "UpdateTargets" in data:
+    if data.get("UpdateTargets") is not None:
         import capo_greengrass.types.update_targets
 
         out["update_targets"] = capo_greengrass.types.update_targets.deserialize_json(
             data["UpdateTargets"]
         )
-    if "UpdateTargetsArchitecture" in data:
+    if data.get("UpdateTargetsArchitecture") is not None:
         import capo_greengrass.types.update_targets_architecture
 
         out["update_targets_architecture"] = (
@@ -115,7 +115,7 @@ def deserialize_json(data: dict) -> CreateSoftwareUpdateJobRequest:
                 data["UpdateTargetsArchitecture"]
             )
         )
-    if "UpdateTargetsOperatingSystem" in data:
+    if data.get("UpdateTargetsOperatingSystem") is not None:
         import capo_greengrass.types.update_targets_operating_system
 
         out["update_targets_operating_system"] = (

@@ -30,7 +30,7 @@ def serialize_json(value: VpcLinks) -> dict:
 
 def deserialize_json(data: dict) -> VpcLinks:
     out: VpcLinks = {}  # type: ignore[typeddict-item]
-    if "item" in data:
+    if data.get("item") is not None:
         import capo_api_gateway.types.list_of_vpc_link
 
         out["items"] = capo_api_gateway.types.list_of_vpc_link.deserialize_json(

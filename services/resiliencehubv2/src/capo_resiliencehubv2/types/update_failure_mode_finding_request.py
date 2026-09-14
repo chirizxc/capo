@@ -39,13 +39,13 @@ def serialize_json(value: UpdateFailureModeFindingRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateFailureModeFindingRequest:
     out: UpdateFailureModeFindingRequest = {}  # type: ignore[typeddict-item]
-    if "findingId" in data:
+    if data.get("findingId") is not None:
         out["finding_id"] = data["findingId"]
     else:
         raise DeserializationError(
             "UpdateFailureModeFindingRequest.finding_id required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_resiliencehubv2.types.finding_status
 
         out["status"] = capo_resiliencehubv2.types.finding_status.deserialize_json(
@@ -53,12 +53,12 @@ def deserialize_json(data: dict) -> UpdateFailureModeFindingRequest:
         )
     else:
         raise DeserializationError("UpdateFailureModeFindingRequest.status required")
-    if "serviceArn" in data:
+    if data.get("serviceArn") is not None:
         out["service_arn"] = data["serviceArn"]
     else:
         raise DeserializationError(
             "UpdateFailureModeFindingRequest.service_arn required"
         )
-    if "comment" in data:
+    if data.get("comment") is not None:
         out["comment"] = data["comment"]
     return out

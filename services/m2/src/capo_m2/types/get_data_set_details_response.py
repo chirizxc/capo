@@ -78,11 +78,11 @@ def serialize_json(value: GetDataSetDetailsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetDataSetDetailsResponse:
     out: GetDataSetDetailsResponse = {}  # type: ignore[typeddict-item]
-    if "dataSetName" in data:
+    if data.get("dataSetName") is not None:
         out["data_set_name"] = data["dataSetName"]
     else:
         raise DeserializationError("GetDataSetDetailsResponse.data_set_name required")
-    if "dataSetOrg" in data:
+    if data.get("dataSetOrg") is not None:
         import capo_m2.types.dataset_detail_org_attributes
 
         out["data_set_org"] = (
@@ -90,30 +90,30 @@ def deserialize_json(data: dict) -> GetDataSetDetailsResponse:
                 data["dataSetOrg"]
             )
         )
-    if "recordLength" in data:
+    if data.get("recordLength") is not None:
         out["record_length"] = data["recordLength"]
-    if "location" in data:
+    if data.get("location") is not None:
         out["location"] = data["location"]
-    if "blocksize" in data:
+    if data.get("blocksize") is not None:
         out["blocksize"] = data["blocksize"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_m2.types.timestamp
 
         out["creation_time"] = capo_m2.types.timestamp.deserialize_json(
             data["creationTime"]
         )
-    if "lastUpdatedTime" in data:
+    if data.get("lastUpdatedTime") is not None:
         import capo_m2.types.timestamp
 
         out["last_updated_time"] = capo_m2.types.timestamp.deserialize_json(
             data["lastUpdatedTime"]
         )
-    if "lastReferencedTime" in data:
+    if data.get("lastReferencedTime") is not None:
         import capo_m2.types.timestamp
 
         out["last_referenced_time"] = capo_m2.types.timestamp.deserialize_json(
             data["lastReferencedTime"]
         )
-    if "fileSize" in data:
+    if data.get("fileSize") is not None:
         out["file_size"] = data["fileSize"]
     return out

@@ -106,21 +106,21 @@ def serialize_aws_json_1_1(value: CreateIndexRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateIndexRequest:
     out: CreateIndexRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateIndexRequest.name required")
-    if "Edition" in data:
+    if data.get("Edition") is not None:
         import capo_kendra.types.index_edition
 
         out["edition"] = capo_kendra.types.index_edition.deserialize_aws_json_1_1(
             data["Edition"]
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError("CreateIndexRequest.role_arn required")
-    if "ServerSideEncryptionConfiguration" in data:
+    if data.get("ServerSideEncryptionConfiguration") is not None:
         import capo_kendra.types.server_side_encryption_configuration
 
         out["server_side_encryption_configuration"] = (
@@ -128,15 +128,15 @@ def deserialize_aws_json_1_1(data: dict) -> CreateIndexRequest:
                 data["ServerSideEncryptionConfiguration"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_kendra.types.tag_list
 
         out["tags"] = capo_kendra.types.tag_list.deserialize_aws_json_1_1(data["Tags"])
-    if "UserTokenConfigurations" in data:
+    if data.get("UserTokenConfigurations") is not None:
         import capo_kendra.types.user_token_configuration_list
 
         out["user_token_configurations"] = (
@@ -144,7 +144,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateIndexRequest:
                 data["UserTokenConfigurations"]
             )
         )
-    if "UserContextPolicy" in data:
+    if data.get("UserContextPolicy") is not None:
         import capo_kendra.types.user_context_policy
 
         out["user_context_policy"] = (
@@ -152,7 +152,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateIndexRequest:
                 data["UserContextPolicy"]
             )
         )
-    if "UserGroupResolutionConfiguration" in data:
+    if data.get("UserGroupResolutionConfiguration") is not None:
         import capo_kendra.types.user_group_resolution_configuration
 
         out["user_group_resolution_configuration"] = (

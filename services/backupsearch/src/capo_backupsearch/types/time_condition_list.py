@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> TimeConditionList:
 
     out: TimeConditionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_backupsearch.types.time_condition.deserialize_json(item))
     return out

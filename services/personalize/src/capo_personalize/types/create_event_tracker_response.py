@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: CreateEventTrackerResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateEventTrackerResponse:
     out: CreateEventTrackerResponse = {}  # type: ignore[typeddict-item]
-    if "eventTrackerArn" in data:
+    if data.get("eventTrackerArn") is not None:
         out["event_tracker_arn"] = data["eventTrackerArn"]
-    if "trackingId" in data:
+    if data.get("trackingId") is not None:
         out["tracking_id"] = data["trackingId"]
     return out

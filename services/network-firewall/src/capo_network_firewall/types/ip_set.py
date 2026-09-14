@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: IPSet) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> IPSet:
     out: IPSet = {}  # type: ignore[typeddict-item]
-    if "Definition" in data:
+    if data.get("Definition") is not None:
         import capo_network_firewall.types.variable_definition_list
 
         out["definition"] = (

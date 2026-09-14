@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> DomainObjectTypesList:
 
     out: DomainObjectTypesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_customer_profiles.types.domain_object_types_list_item.deserialize_json(
                 item

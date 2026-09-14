@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> TdscdmaNmrList:
 
     out: TdscdmaNmrList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot_wireless.types.tdscdma_nmr_obj.deserialize_json(item))
     return out

@@ -31,7 +31,7 @@ def serialize_json(value: Remediation) -> dict:
 
 def deserialize_json(data: dict) -> Remediation:
     out: Remediation = {}  # type: ignore[typeddict-item]
-    if "recommendation" in data:
+    if data.get("recommendation") is not None:
         import capo_imagebuilder.types.remediation_recommendation
 
         out["recommendation"] = (

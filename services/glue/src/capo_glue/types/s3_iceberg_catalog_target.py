@@ -87,11 +87,11 @@ def serialize_aws_json_1_1(value: S3IcebergCatalogTarget) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3IcebergCatalogTarget:
     out: S3IcebergCatalogTarget = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("S3IcebergCatalogTarget.name required")
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_glue.types.one_input
 
         out["inputs"] = capo_glue.types.one_input.deserialize_aws_json_1_1(
@@ -99,7 +99,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3IcebergCatalogTarget:
         )
     else:
         raise DeserializationError("S3IcebergCatalogTarget.inputs required")
-    if "PartitionKeys" in data:
+    if data.get("PartitionKeys") is not None:
         import capo_glue.types.glue_studio_path_list
 
         out["partition_keys"] = (
@@ -107,15 +107,15 @@ def deserialize_aws_json_1_1(data: dict) -> S3IcebergCatalogTarget:
                 data["PartitionKeys"]
             )
         )
-    if "Table" in data:
+    if data.get("Table") is not None:
         out["table"] = data["Table"]
     else:
         raise DeserializationError("S3IcebergCatalogTarget.table required")
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
     else:
         raise DeserializationError("S3IcebergCatalogTarget.database required")
-    if "AdditionalOptions" in data:
+    if data.get("AdditionalOptions") is not None:
         import capo_glue.types.additional_options
 
         out["additional_options"] = (
@@ -123,7 +123,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3IcebergCatalogTarget:
                 data["AdditionalOptions"]
             )
         )
-    if "SchemaChangePolicy" in data:
+    if data.get("SchemaChangePolicy") is not None:
         import capo_glue.types.catalog_schema_change_policy
 
         out["schema_change_policy"] = (
@@ -131,7 +131,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3IcebergCatalogTarget:
                 data["SchemaChangePolicy"]
             )
         )
-    if "AutoDataQuality" in data:
+    if data.get("AutoDataQuality") is not None:
         import capo_glue.types.auto_data_quality
 
         out["auto_data_quality"] = (

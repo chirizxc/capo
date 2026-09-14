@@ -34,7 +34,7 @@ def serialize_json(value: SearchResourcesCriteriaBlock) -> dict:
 
 def deserialize_json(data: dict) -> SearchResourcesCriteriaBlock:
     out: SearchResourcesCriteriaBlock = {}  # type: ignore[typeddict-item]
-    if "and" in data:
+    if data.get("and") is not None:
         import capo_macie2.types.__list_of_search_resources_criteria
 
         out["and"] = (

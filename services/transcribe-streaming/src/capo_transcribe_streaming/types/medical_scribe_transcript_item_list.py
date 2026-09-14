@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> MedicalScribeTranscriptItemList:
 
     out: MedicalScribeTranscriptItemList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_transcribe_streaming.types.medical_scribe_transcript_item.deserialize_json(
                 item

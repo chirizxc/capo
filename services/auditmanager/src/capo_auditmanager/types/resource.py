@@ -32,10 +32,10 @@ def serialize_json(value: Resource) -> dict:
 
 def deserialize_json(data: dict) -> Resource:
     out: Resource = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
-    if "complianceCheck" in data:
+    if data.get("complianceCheck") is not None:
         out["compliance_check"] = data["complianceCheck"]
     return out

@@ -36,7 +36,7 @@ def serialize_json(value: ListDocumentsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListDocumentsResponse:
     out: ListDocumentsResponse = {}  # type: ignore[typeddict-item]
-    if "documentDetailList" in data:
+    if data.get("documentDetailList") is not None:
         import capo_qbusiness.types.document_detail_list
 
         out["document_detail_list"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListDocumentsResponse:
                 data["documentDetailList"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

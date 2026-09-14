@@ -31,7 +31,7 @@ def serialize_json(value: ManagePropertygraphStatisticsInput) -> dict:
 
 def deserialize_json(data: dict) -> ManagePropertygraphStatisticsInput:
     out: ManagePropertygraphStatisticsInput = {}  # type: ignore[typeddict-item]
-    if "mode" in data:
+    if data.get("mode") is not None:
         import capo_neptunedata.types.statistics_auto_generation_mode
 
         out["mode"] = (

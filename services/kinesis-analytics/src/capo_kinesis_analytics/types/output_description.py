@@ -80,11 +80,11 @@ def serialize_aws_json_1_1(value: OutputDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OutputDescription:
     out: OutputDescription = {}  # type: ignore[typeddict-item]
-    if "OutputId" in data:
+    if data.get("OutputId") is not None:
         out["output_id"] = data["OutputId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "KinesisStreamsOutputDescription" in data:
+    if data.get("KinesisStreamsOutputDescription") is not None:
         import capo_kinesis_analytics.types.kinesis_streams_output_description
 
         out["kinesis_streams_output_description"] = (
@@ -92,7 +92,7 @@ def deserialize_aws_json_1_1(data: dict) -> OutputDescription:
                 data["KinesisStreamsOutputDescription"]
             )
         )
-    if "KinesisFirehoseOutputDescription" in data:
+    if data.get("KinesisFirehoseOutputDescription") is not None:
         import capo_kinesis_analytics.types.kinesis_firehose_output_description
 
         out["kinesis_firehose_output_description"] = (
@@ -100,7 +100,7 @@ def deserialize_aws_json_1_1(data: dict) -> OutputDescription:
                 data["KinesisFirehoseOutputDescription"]
             )
         )
-    if "LambdaOutputDescription" in data:
+    if data.get("LambdaOutputDescription") is not None:
         import capo_kinesis_analytics.types.lambda_output_description
 
         out["lambda_output_description"] = (
@@ -108,7 +108,7 @@ def deserialize_aws_json_1_1(data: dict) -> OutputDescription:
                 data["LambdaOutputDescription"]
             )
         )
-    if "DestinationSchema" in data:
+    if data.get("DestinationSchema") is not None:
         import capo_kinesis_analytics.types.destination_schema
 
         out["destination_schema"] = (

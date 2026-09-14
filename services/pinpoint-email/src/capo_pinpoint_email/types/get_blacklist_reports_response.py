@@ -28,7 +28,7 @@ def serialize_json(value: GetBlacklistReportsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetBlacklistReportsResponse:
     out: GetBlacklistReportsResponse = {}  # type: ignore[typeddict-item]
-    if "BlacklistReport" in data:
+    if data.get("BlacklistReport") is not None:
         import capo_pinpoint_email.types.blacklist_report
 
         out["blacklist_report"] = (

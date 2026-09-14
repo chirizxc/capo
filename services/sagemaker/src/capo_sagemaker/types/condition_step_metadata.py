@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: ConditionStepMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConditionStepMetadata:
     out: ConditionStepMetadata = {}  # type: ignore[typeddict-item]
-    if "Outcome" in data:
+    if data.get("Outcome") is not None:
         import capo_sagemaker.types.condition_outcome
 
         out["outcome"] = (

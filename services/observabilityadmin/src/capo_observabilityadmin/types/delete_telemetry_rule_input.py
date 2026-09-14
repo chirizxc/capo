@@ -24,7 +24,7 @@ def serialize_json(value: DeleteTelemetryRuleInput) -> dict:
 
 def deserialize_json(data: dict) -> DeleteTelemetryRuleInput:
     out: DeleteTelemetryRuleInput = {}  # type: ignore[typeddict-item]
-    if "RuleIdentifier" in data:
+    if data.get("RuleIdentifier") is not None:
         out["rule_identifier"] = data["RuleIdentifier"]
     else:
         raise DeserializationError("DeleteTelemetryRuleInput.rule_identifier required")

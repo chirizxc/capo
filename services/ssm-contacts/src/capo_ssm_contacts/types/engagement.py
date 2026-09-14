@@ -53,27 +53,27 @@ def serialize_aws_json_1_1(value: Engagement) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Engagement:
     out: Engagement = {}  # type: ignore[typeddict-item]
-    if "EngagementArn" in data:
+    if data.get("EngagementArn") is not None:
         out["engagement_arn"] = data["EngagementArn"]
     else:
         raise DeserializationError("Engagement.engagement_arn required")
-    if "ContactArn" in data:
+    if data.get("ContactArn") is not None:
         out["contact_arn"] = data["ContactArn"]
     else:
         raise DeserializationError("Engagement.contact_arn required")
-    if "Sender" in data:
+    if data.get("Sender") is not None:
         out["sender"] = data["Sender"]
     else:
         raise DeserializationError("Engagement.sender required")
-    if "IncidentId" in data:
+    if data.get("IncidentId") is not None:
         out["incident_id"] = data["IncidentId"]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_ssm_contacts.types.date_time
 
         out["start_time"] = capo_ssm_contacts.types.date_time.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "StopTime" in data:
+    if data.get("StopTime") is not None:
         import capo_ssm_contacts.types.date_time
 
         out["stop_time"] = capo_ssm_contacts.types.date_time.deserialize_aws_json_1_1(

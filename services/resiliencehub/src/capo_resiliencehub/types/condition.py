@@ -36,11 +36,11 @@ def serialize_json(value: Condition) -> dict:
 
 def deserialize_json(data: dict) -> Condition:
     out: Condition = {}  # type: ignore[typeddict-item]
-    if "field" in data:
+    if data.get("field") is not None:
         out["field"] = data["field"]
     else:
         raise DeserializationError("Condition.field required")
-    if "operator" in data:
+    if data.get("operator") is not None:
         import capo_resiliencehub.types.condition_operator_type
 
         out["operator"] = (
@@ -50,6 +50,6 @@ def deserialize_json(data: dict) -> Condition:
         )
     else:
         raise DeserializationError("Condition.operator required")
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     return out

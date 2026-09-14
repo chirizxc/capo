@@ -17,12 +17,20 @@ class GeospatialLineWidth(TypedDict, closed=True):
 def serialize_json(value: GeospatialLineWidth) -> dict:
     out: dict = {}
     if "line_width" in value:
-        out["LineWidth"] = value["line_width"]
+        out["LineWidth"] = (
+            "NaN"
+            if value["line_width"] != value["line_width"]
+            else "Infinity"
+            if value["line_width"] == float("inf")
+            else "-Infinity"
+            if value["line_width"] == float("-inf")
+            else value["line_width"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> GeospatialLineWidth:
     out: GeospatialLineWidth = {}  # type: ignore[typeddict-item]
-    if "LineWidth" in data:
-        out["line_width"] = data["LineWidth"]
+    if data.get("LineWidth") is not None:
+        out["line_width"] = float(data["LineWidth"])
     return out

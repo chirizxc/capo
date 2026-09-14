@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DisassociateThirdPartyFirewallResponse) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> DisassociateThirdPartyFirewallResponse:
     out: DisassociateThirdPartyFirewallResponse = {}  # type: ignore[typeddict-item]
-    if "ThirdPartyFirewallStatus" in data:
+    if data.get("ThirdPartyFirewallStatus") is not None:
         import capo_fms.types.third_party_firewall_association_status
 
         out["third_party_firewall_status"] = (

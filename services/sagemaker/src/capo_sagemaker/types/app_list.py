@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> AppList:
 
     out: AppList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_sagemaker.types.app_details.deserialize_aws_json_1_1(item))
     return out

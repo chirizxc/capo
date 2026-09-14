@@ -24,7 +24,7 @@ def serialize_json(value: BufferOptions) -> dict:
 
 def deserialize_json(data: dict) -> BufferOptions:
     out: BufferOptions = {}  # type: ignore[typeddict-item]
-    if "PersistentBufferEnabled" in data:
+    if data.get("PersistentBufferEnabled") is not None:
         out["persistent_buffer_enabled"] = data["PersistentBufferEnabled"]
     else:
         raise DeserializationError("BufferOptions.persistent_buffer_enabled required")

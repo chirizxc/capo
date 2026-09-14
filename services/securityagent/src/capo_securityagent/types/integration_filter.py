@@ -47,7 +47,7 @@ def serialize_json(value: IntegrationFilter) -> dict:
 
 
 def deserialize_json(data: dict) -> IntegrationFilter:
-    if "provider" in data:
+    if data.get("provider") is not None:
         import capo_securityagent.types.provider
 
         return {
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> IntegrationFilter:
                 data["provider"]
             )
         }
-    elif "providerType" in data:
+    elif data.get("providerType") is not None:
         import capo_securityagent.types.provider_type
 
         return {

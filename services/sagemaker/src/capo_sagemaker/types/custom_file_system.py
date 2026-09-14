@@ -64,7 +64,7 @@ def serialize_aws_json_1_1(value: CustomFileSystem) -> dict:
 
 
 def deserialize_aws_json_1_1(data: dict) -> CustomFileSystem:
-    if "EFSFileSystem" in data:
+    if data.get("EFSFileSystem") is not None:
         import capo_sagemaker.types.efs_file_system
 
         return {
@@ -72,7 +72,7 @@ def deserialize_aws_json_1_1(data: dict) -> CustomFileSystem:
                 data["EFSFileSystem"]
             )
         }
-    elif "FSxLustreFileSystem" in data:
+    elif data.get("FSxLustreFileSystem") is not None:
         import capo_sagemaker.types.f_sx_lustre_file_system
 
         return {
@@ -80,7 +80,7 @@ def deserialize_aws_json_1_1(data: dict) -> CustomFileSystem:
                 data["FSxLustreFileSystem"]
             )
         }
-    elif "S3FileSystem" in data:
+    elif data.get("S3FileSystem") is not None:
         import capo_sagemaker.types.s3_file_system
 
         return {

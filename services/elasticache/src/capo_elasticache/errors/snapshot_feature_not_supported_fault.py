@@ -37,15 +37,20 @@ class SnapshotFeatureNotSupportedFault(ServiceError):
 
     code: str | None = "SnapshotFeatureNotSupportedFault"
 
-    def __init__(self, data: SnapshotFeatureNotSupportedFault_):
+    def __init__(
+        self, data: SnapshotFeatureNotSupportedFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="SnapshotFeatureNotSupportedFault",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "SnapshotFeatureNotSupportedFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "SnapshotFeatureNotSupportedFault":
+        return cls(deserialize_query(el), message)

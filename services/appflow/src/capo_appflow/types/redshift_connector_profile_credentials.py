@@ -28,8 +28,8 @@ def serialize_json(value: RedshiftConnectorProfileCredentials) -> dict:
 
 def deserialize_json(data: dict) -> RedshiftConnectorProfileCredentials:
     out: RedshiftConnectorProfileCredentials = {}  # type: ignore[typeddict-item]
-    if "username" in data:
+    if data.get("username") is not None:
         out["username"] = data["username"]
-    if "password" in data:
+    if data.get("password") is not None:
         out["password"] = data["password"]
     return out

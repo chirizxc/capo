@@ -59,7 +59,7 @@ def serialize_aws_json_1_1(value: InferenceComponentRollingUpdatePolicy) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> InferenceComponentRollingUpdatePolicy:
     out: InferenceComponentRollingUpdatePolicy = {}  # type: ignore[typeddict-item]
-    if "MaximumBatchSize" in data:
+    if data.get("MaximumBatchSize") is not None:
         import capo_sagemaker.types.inference_component_capacity_size
 
         out["maximum_batch_size"] = (
@@ -67,13 +67,13 @@ def deserialize_aws_json_1_1(data: dict) -> InferenceComponentRollingUpdatePolic
                 data["MaximumBatchSize"]
             )
         )
-    if "WaitIntervalInSeconds" in data:
+    if data.get("WaitIntervalInSeconds") is not None:
         out["wait_interval_in_seconds"] = data["WaitIntervalInSeconds"]
-    if "MaximumExecutionTimeoutInSeconds" in data:
+    if data.get("MaximumExecutionTimeoutInSeconds") is not None:
         out["maximum_execution_timeout_in_seconds"] = data[
             "MaximumExecutionTimeoutInSeconds"
         ]
-    if "RollbackMaximumBatchSize" in data:
+    if data.get("RollbackMaximumBatchSize") is not None:
         import capo_sagemaker.types.inference_component_capacity_size
 
         out["rollback_maximum_batch_size"] = (

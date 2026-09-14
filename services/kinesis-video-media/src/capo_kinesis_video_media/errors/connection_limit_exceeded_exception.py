@@ -24,7 +24,7 @@ def serialize_json(value: ConnectionLimitExceededException_) -> dict:
 
 def deserialize_json(data: dict) -> ConnectionLimitExceededException_:
     out: ConnectionLimitExceededException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,20 @@ class ConnectionLimitExceededException(ServiceError):
 
     code: str | None = "ConnectionLimitExceededException"
 
-    def __init__(self, data: ConnectionLimitExceededException_):
+    def __init__(
+        self, data: ConnectionLimitExceededException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ConnectionLimitExceededException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ConnectionLimitExceededException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "ConnectionLimitExceededException":
+        return cls(deserialize_json(data), message)

@@ -28,7 +28,7 @@ def serialize_aws_json_1_0(value: X12SplitOptions) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> X12SplitOptions:
     out: X12SplitOptions = {}  # type: ignore[typeddict-item]
-    if "splitBy" in data:
+    if data.get("splitBy") is not None:
         import capo_b2bi.types.x12_split_by
 
         out["split_by"] = capo_b2bi.types.x12_split_by.deserialize_aws_json_1_0(

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: RequestFailedException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RequestFailedException_:
     out: RequestFailedException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,18 @@ class RequestFailedException(ServiceError):
 
     code: str | None = "RequestFailedException"
 
-    def __init__(self, data: RequestFailedException_):
+    def __init__(self, data: RequestFailedException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="RequestFailedException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "RequestFailedException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "RequestFailedException":
+        return cls(deserialize_aws_json_1_1(data), message)

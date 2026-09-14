@@ -44,11 +44,11 @@ def serialize_json(value: PaymentScheduleTerm) -> dict:
 
 def deserialize_json(data: dict) -> PaymentScheduleTerm:
     out: PaymentScheduleTerm = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("PaymentScheduleTerm.id required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_marketplace_discovery.types.term_type
 
         out["type"] = capo_marketplace_discovery.types.term_type.deserialize_json(
@@ -56,11 +56,11 @@ def deserialize_json(data: dict) -> PaymentScheduleTerm:
         )
     else:
         raise DeserializationError("PaymentScheduleTerm.type required")
-    if "currencyCode" in data:
+    if data.get("currencyCode") is not None:
         out["currency_code"] = data["currencyCode"]
     else:
         raise DeserializationError("PaymentScheduleTerm.currency_code required")
-    if "schedule" in data:
+    if data.get("schedule") is not None:
         import capo_marketplace_discovery.types.schedule_list
 
         out["schedule"] = (

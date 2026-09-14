@@ -46,17 +46,17 @@ def serialize_json(value: Milestone) -> dict:
 
 def deserialize_json(data: dict) -> Milestone:
     out: Milestone = {}  # type: ignore[typeddict-item]
-    if "MilestoneNumber" in data:
+    if data.get("MilestoneNumber") is not None:
         out["milestone_number"] = data["MilestoneNumber"]
-    if "MilestoneName" in data:
+    if data.get("MilestoneName") is not None:
         out["milestone_name"] = data["MilestoneName"]
-    if "RecordedAt" in data:
+    if data.get("RecordedAt") is not None:
         import capo_wellarchitected.types.timestamp
 
         out["recorded_at"] = capo_wellarchitected.types.timestamp.deserialize_json(
             data["RecordedAt"]
         )
-    if "Workload" in data:
+    if data.get("Workload") is not None:
         import capo_wellarchitected.types.workload
 
         out["workload"] = capo_wellarchitected.types.workload.deserialize_json(

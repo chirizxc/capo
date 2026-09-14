@@ -13,9 +13,9 @@ from capo_securitylake import AsyncSecurityLakeClient
 
 
 async def main():
-    async with AsyncSecurityLakeClient() as s3:
+    async with AsyncSecurityLakeClient() as security_lake:
         # Example: call the create_data_lake_exception_subscription operation
-        response = await s3.create_data_lake_exception_subscription()
+        response = await security_lake.create_data_lake_exception_subscription()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_securitylake import AsyncSecurityLakeClient
 
 
 async def main():
-    async with AsyncSecurityLakeClient() as s3:
+    async with AsyncSecurityLakeClient() as security_lake:
         # Example: paginate over list_data_lake_exceptions
-        async for item in s3.iter_list_data_lake_exceptions():
+        async for item in security_lake.iter_list_data_lake_exceptions():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_securitylake.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncSecurityLakeClient() as s3:
+    async with AsyncSecurityLakeClient() as security_lake:
         try:
-            await s3.create_data_lake_exception_subscription()
+            await security_lake.create_data_lake_exception_subscription()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_securitylake import AsyncSecurityLakeClient
 
 
 async def main():
-    async with AsyncSecurityLakeClient() as s3:
+    async with AsyncSecurityLakeClient() as security_lake:
         # Default: 3 attempts for every operation
-        response = await s3.create_data_lake_exception_subscription()
+        response = await security_lake.create_data_lake_exception_subscription()
 
         # Override per operation
-        response = await s3.create_data_lake_exception_subscription(config_overrides={"retry_max_attempts": 5})
+        response = await security_lake.create_data_lake_exception_subscription(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_data_lake_exception_subscription(config_overrides={"retry_max_attempts": 1})
+        response = await security_lake.create_data_lake_exception_subscription(config_overrides={"retry_max_attempts": 1})
 ```

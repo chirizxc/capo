@@ -32,8 +32,8 @@ def serialize_json(value: IdCConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> IdCConfiguration:
     out: IdCConfiguration = {}  # type: ignore[typeddict-item]
-    if "idcApplicationArn" in data:
+    if data.get("idcApplicationArn") is not None:
         out["idc_application_arn"] = data["idcApplicationArn"]
-    if "idcInstanceArn" in data:
+    if data.get("idcInstanceArn") is not None:
         out["idc_instance_arn"] = data["idcInstanceArn"]
     return out

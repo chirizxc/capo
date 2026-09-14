@@ -59,7 +59,15 @@ def serialize_json(value: Track) -> dict:
             value["data_properties"]
         )
     if "duration" in value:
-        out["duration"] = value["duration"]
+        out["duration"] = (
+            "NaN"
+            if value["duration"] != value["duration"]
+            else "Infinity"
+            if value["duration"] == float("inf")
+            else "-Infinity"
+            if value["duration"] == float("-inf")
+            else value["duration"]
+        )
     if "index" in value:
         out["index"] = value["index"]
     if "track_type" in value:
@@ -81,7 +89,7 @@ def serialize_json(value: Track) -> dict:
 
 def deserialize_json(data: dict) -> Track:
     out: Track = {}  # type: ignore[typeddict-item]
-    if "audioProperties" in data:
+    if data.get("audioProperties") is not None:
         import capo_mediaconvert.types.audio_properties
 
         out["audio_properties"] = (
@@ -89,11 +97,11 @@ def deserialize_json(data: dict) -> Track:
                 data["audioProperties"]
             )
         )
-    if "codec" in data:
+    if data.get("codec") is not None:
         import capo_mediaconvert.types.codec
 
         out["codec"] = capo_mediaconvert.types.codec.deserialize_json(data["codec"])
-    if "dataProperties" in data:
+    if data.get("dataProperties") is not None:
         import capo_mediaconvert.types.data_properties
 
         out["data_properties"] = (
@@ -101,17 +109,17 @@ def deserialize_json(data: dict) -> Track:
                 data["dataProperties"]
             )
         )
-    if "duration" in data:
-        out["duration"] = data["duration"]
-    if "index" in data:
+    if data.get("duration") is not None:
+        out["duration"] = float(data["duration"])
+    if data.get("index") is not None:
         out["index"] = data["index"]
-    if "trackType" in data:
+    if data.get("trackType") is not None:
         import capo_mediaconvert.types.track_type
 
         out["track_type"] = capo_mediaconvert.types.track_type.deserialize_json(
             data["trackType"]
         )
-    if "videoProperties" in data:
+    if data.get("videoProperties") is not None:
         import capo_mediaconvert.types.video_properties
 
         out["video_properties"] = (

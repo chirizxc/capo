@@ -34,11 +34,11 @@ def serialize_aws_json_1_1(value: ProvisionByoipCidrRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProvisionByoipCidrRequest:
     out: ProvisionByoipCidrRequest = {}  # type: ignore[typeddict-item]
-    if "Cidr" in data:
+    if data.get("Cidr") is not None:
         out["cidr"] = data["Cidr"]
     else:
         raise DeserializationError("ProvisionByoipCidrRequest.cidr required")
-    if "CidrAuthorizationContext" in data:
+    if data.get("CidrAuthorizationContext") is not None:
         import capo_global_accelerator.types.cidr_authorization_context
 
         out["cidr_authorization_context"] = (

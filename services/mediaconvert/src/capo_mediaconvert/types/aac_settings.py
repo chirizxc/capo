@@ -134,7 +134,7 @@ def serialize_json(value: AacSettings) -> dict:
 
 def deserialize_json(data: dict) -> AacSettings:
     out: AacSettings = {}  # type: ignore[typeddict-item]
-    if "audioDescriptionBroadcasterMix" in data:
+    if data.get("audioDescriptionBroadcasterMix") is not None:
         import capo_mediaconvert.types.aac_audio_description_broadcaster_mix
 
         out["audio_description_broadcaster_mix"] = (
@@ -142,9 +142,9 @@ def deserialize_json(data: dict) -> AacSettings:
                 data["audioDescriptionBroadcasterMix"]
             )
         )
-    if "bitrate" in data:
+    if data.get("bitrate") is not None:
         out["bitrate"] = data["bitrate"]
-    if "codecProfile" in data:
+    if data.get("codecProfile") is not None:
         import capo_mediaconvert.types.aac_codec_profile
 
         out["codec_profile"] = (
@@ -152,13 +152,13 @@ def deserialize_json(data: dict) -> AacSettings:
                 data["codecProfile"]
             )
         )
-    if "codingMode" in data:
+    if data.get("codingMode") is not None:
         import capo_mediaconvert.types.aac_coding_mode
 
         out["coding_mode"] = capo_mediaconvert.types.aac_coding_mode.deserialize_json(
             data["codingMode"]
         )
-    if "loudnessMeasurementMode" in data:
+    if data.get("loudnessMeasurementMode") is not None:
         import capo_mediaconvert.types.aac_loudness_measurement_mode
 
         out["loudness_measurement_mode"] = (
@@ -166,9 +166,9 @@ def deserialize_json(data: dict) -> AacSettings:
                 data["loudnessMeasurementMode"]
             )
         )
-    if "rapInterval" in data:
+    if data.get("rapInterval") is not None:
         out["rap_interval"] = data["rapInterval"]
-    if "rateControlMode" in data:
+    if data.get("rateControlMode") is not None:
         import capo_mediaconvert.types.aac_rate_control_mode
 
         out["rate_control_mode"] = (
@@ -176,15 +176,15 @@ def deserialize_json(data: dict) -> AacSettings:
                 data["rateControlMode"]
             )
         )
-    if "rawFormat" in data:
+    if data.get("rawFormat") is not None:
         import capo_mediaconvert.types.aac_raw_format
 
         out["raw_format"] = capo_mediaconvert.types.aac_raw_format.deserialize_json(
             data["rawFormat"]
         )
-    if "sampleRate" in data:
+    if data.get("sampleRate") is not None:
         out["sample_rate"] = data["sampleRate"]
-    if "specification" in data:
+    if data.get("specification") is not None:
         import capo_mediaconvert.types.aac_specification
 
         out["specification"] = (
@@ -192,9 +192,9 @@ def deserialize_json(data: dict) -> AacSettings:
                 data["specification"]
             )
         )
-    if "targetLoudnessRange" in data:
+    if data.get("targetLoudnessRange") is not None:
         out["target_loudness_range"] = data["targetLoudnessRange"]
-    if "vbrQuality" in data:
+    if data.get("vbrQuality") is not None:
         import capo_mediaconvert.types.aac_vbr_quality
 
         out["vbr_quality"] = capo_mediaconvert.types.aac_vbr_quality.deserialize_json(

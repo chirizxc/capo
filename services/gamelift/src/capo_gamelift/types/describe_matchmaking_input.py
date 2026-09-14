@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: DescribeMatchmakingInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeMatchmakingInput:
     out: DescribeMatchmakingInput = {}  # type: ignore[typeddict-item]
-    if "TicketIds" in data:
+    if data.get("TicketIds") is not None:
         import capo_gamelift.types.matchmaking_id_list
 
         out["ticket_ids"] = (

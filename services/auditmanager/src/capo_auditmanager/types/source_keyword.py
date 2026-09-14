@@ -36,7 +36,7 @@ def serialize_json(value: SourceKeyword) -> dict:
 
 def deserialize_json(data: dict) -> SourceKeyword:
     out: SourceKeyword = {}  # type: ignore[typeddict-item]
-    if "keywordInputType" in data:
+    if data.get("keywordInputType") is not None:
         import capo_auditmanager.types.keyword_input_type
 
         out["keyword_input_type"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> SourceKeyword:
                 data["keywordInputType"]
             )
         )
-    if "keywordValue" in data:
+    if data.get("keywordValue") is not None:
         out["keyword_value"] = data["keywordValue"]
     return out

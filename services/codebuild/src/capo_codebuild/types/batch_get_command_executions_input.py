@@ -36,11 +36,11 @@ def serialize_aws_json_1_1(value: BatchGetCommandExecutionsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetCommandExecutionsInput:
     out: BatchGetCommandExecutionsInput = {}  # type: ignore[typeddict-item]
-    if "sandboxId" in data:
+    if data.get("sandboxId") is not None:
         out["sandbox_id"] = data["sandboxId"]
     else:
         raise DeserializationError("BatchGetCommandExecutionsInput.sandbox_id required")
-    if "commandExecutionIds" in data:
+    if data.get("commandExecutionIds") is not None:
         import capo_codebuild.types.command_execution_ids
 
         out["command_execution_ids"] = (

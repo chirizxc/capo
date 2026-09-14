@@ -32,12 +32,12 @@ def serialize_json(value: StartTelemetryEvaluationForOrganizationInput) -> dict:
 
 def deserialize_json(data: dict) -> StartTelemetryEvaluationForOrganizationInput:
     out: StartTelemetryEvaluationForOrganizationInput = {}  # type: ignore[typeddict-item]
-    if "Regions" in data:
+    if data.get("Regions") is not None:
         import capo_observabilityadmin.types.regions
 
         out["regions"] = capo_observabilityadmin.types.regions.deserialize_json(
             data["Regions"]
         )
-    if "AllRegions" in data:
+    if data.get("AllRegions") is not None:
         out["all_regions"] = data["AllRegions"]
     return out

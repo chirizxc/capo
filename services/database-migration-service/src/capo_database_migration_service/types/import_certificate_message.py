@@ -59,15 +59,15 @@ def serialize_aws_json_1_1(value: ImportCertificateMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ImportCertificateMessage:
     out: ImportCertificateMessage = {}  # type: ignore[typeddict-item]
-    if "CertificateIdentifier" in data:
+    if data.get("CertificateIdentifier") is not None:
         out["certificate_identifier"] = data["CertificateIdentifier"]
     else:
         raise DeserializationError(
             "ImportCertificateMessage.certificate_identifier required"
         )
-    if "CertificatePem" in data:
+    if data.get("CertificatePem") is not None:
         out["certificate_pem"] = data["CertificatePem"]
-    if "CertificateWallet" in data:
+    if data.get("CertificateWallet") is not None:
         import capo_database_migration_service.types.certificate_wallet
 
         out["certificate_wallet"] = (
@@ -75,7 +75,7 @@ def deserialize_aws_json_1_1(data: dict) -> ImportCertificateMessage:
                 data["CertificateWallet"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_database_migration_service.types.tag_list
 
         out["tags"] = (
@@ -83,6 +83,6 @@ def deserialize_aws_json_1_1(data: dict) -> ImportCertificateMessage:
                 data["Tags"]
             )
         )
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
     return out

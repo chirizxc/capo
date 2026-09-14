@@ -103,9 +103,9 @@ def serialize_json(value: GlobalConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> GlobalConfiguration:
     out: GlobalConfiguration = {}  # type: ignore[typeddict-item]
-    if "initialAudioGain" in data:
+    if data.get("initialAudioGain") is not None:
         out["initial_audio_gain"] = data["initialAudioGain"]
-    if "inputEndAction" in data:
+    if data.get("inputEndAction") is not None:
         import capo_medialive.types.global_configuration_input_end_action
 
         out["input_end_action"] = (
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> GlobalConfiguration:
                 data["inputEndAction"]
             )
         )
-    if "inputLossBehavior" in data:
+    if data.get("inputLossBehavior") is not None:
         import capo_medialive.types.input_loss_behavior
 
         out["input_loss_behavior"] = (
@@ -121,7 +121,7 @@ def deserialize_json(data: dict) -> GlobalConfiguration:
                 data["inputLossBehavior"]
             )
         )
-    if "outputLockingMode" in data:
+    if data.get("outputLockingMode") is not None:
         import capo_medialive.types.global_configuration_output_locking_mode
 
         out["output_locking_mode"] = (
@@ -129,7 +129,7 @@ def deserialize_json(data: dict) -> GlobalConfiguration:
                 data["outputLockingMode"]
             )
         )
-    if "outputTimingSource" in data:
+    if data.get("outputTimingSource") is not None:
         import capo_medialive.types.global_configuration_output_timing_source
 
         out["output_timing_source"] = (
@@ -137,7 +137,7 @@ def deserialize_json(data: dict) -> GlobalConfiguration:
                 data["outputTimingSource"]
             )
         )
-    if "supportLowFramerateInputs" in data:
+    if data.get("supportLowFramerateInputs") is not None:
         import capo_medialive.types.global_configuration_low_framerate_inputs
 
         out["support_low_framerate_inputs"] = (
@@ -145,7 +145,7 @@ def deserialize_json(data: dict) -> GlobalConfiguration:
                 data["supportLowFramerateInputs"]
             )
         )
-    if "outputLockingSettings" in data:
+    if data.get("outputLockingSettings") is not None:
         import capo_medialive.types.output_locking_settings
 
         out["output_locking_settings"] = (

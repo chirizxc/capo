@@ -43,7 +43,7 @@ def serialize_json(value: EmailMessageTemplateContentBody) -> dict:
 
 def deserialize_json(data: dict) -> EmailMessageTemplateContentBody:
     out: EmailMessageTemplateContentBody = {}  # type: ignore[typeddict-item]
-    if "plainText" in data:
+    if data.get("plainText") is not None:
         import capo_qconnect.types.message_template_body_content_provider
 
         out["plain_text"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> EmailMessageTemplateContentBody:
                 data["plainText"]
             )
         )
-    if "html" in data:
+    if data.get("html") is not None:
         import capo_qconnect.types.message_template_body_content_provider
 
         out["html"] = (

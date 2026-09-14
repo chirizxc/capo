@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> QuotaUtilizationInfoList:
 
     out: QuotaUtilizationInfoList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_service_quotas.types.quota_utilization_info.deserialize_aws_json_1_1(
                 item

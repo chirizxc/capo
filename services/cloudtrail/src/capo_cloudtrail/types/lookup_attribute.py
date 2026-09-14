@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: LookupAttribute) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LookupAttribute:
     out: LookupAttribute = {}  # type: ignore[typeddict-item]
-    if "AttributeKey" in data:
+    if data.get("AttributeKey") is not None:
         import capo_cloudtrail.types.lookup_attribute_key
 
         out["attribute_key"] = (
@@ -44,7 +44,7 @@ def deserialize_aws_json_1_1(data: dict) -> LookupAttribute:
         )
     else:
         raise DeserializationError("LookupAttribute.attribute_key required")
-    if "AttributeValue" in data:
+    if data.get("AttributeValue") is not None:
         out["attribute_value"] = data["AttributeValue"]
     else:
         raise DeserializationError("LookupAttribute.attribute_value required")

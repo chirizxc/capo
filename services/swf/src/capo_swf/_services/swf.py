@@ -274,8 +274,9 @@ class SWFClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_swf.types.count_closed_workflow_executions_input.CountClosedWorkflowExecutionsInput = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_swf.types.count_closed_workflow_executions_input.CountClosedWorkflowExecutionsInput = {
+            "domain": domain
+        }
         if start_time_filter is not None:
             input_["start_time_filter"] = start_time_filter
         if close_time_filter is not None:
@@ -294,6 +295,7 @@ class SWFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def count_open_workflow_executions(
@@ -340,9 +342,10 @@ class SWFClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_swf.types.count_open_workflow_executions_input.CountOpenWorkflowExecutionsInput = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
-        input_["start_time_filter"] = start_time_filter
+        input_: capo_swf.types.count_open_workflow_executions_input.CountOpenWorkflowExecutionsInput = {
+            "domain": domain,
+            "start_time_filter": start_time_filter,
+        }
         if type_filter is not None:
             input_["type_filter"] = type_filter
         if tag_filter is not None:
@@ -355,6 +358,7 @@ class SWFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def count_pending_activity_tasks(
@@ -389,15 +393,17 @@ class SWFClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_swf.types.count_pending_activity_tasks_input.CountPendingActivityTasksInput = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
-        input_["task_list"] = task_list
+        input_: capo_swf.types.count_pending_activity_tasks_input.CountPendingActivityTasksInput = {
+            "domain": domain,
+            "task_list": task_list,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def count_pending_decision_tasks(
@@ -432,15 +438,17 @@ class SWFClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_swf.types.count_pending_decision_tasks_input.CountPendingDecisionTasksInput = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
-        input_["task_list"] = task_list
+        input_: capo_swf.types.count_pending_decision_tasks_input.CountPendingDecisionTasksInput = {
+            "domain": domain,
+            "task_list": task_list,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_activity_type(
@@ -476,15 +484,17 @@ class SWFClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_swf.types.delete_activity_type_input.DeleteActivityTypeInput = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
-        input_["activity_type"] = activity_type
+        input_: capo_swf.types.delete_activity_type_input.DeleteActivityTypeInput = {
+            "domain": domain,
+            "activity_type": activity_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_workflow_type(
@@ -520,15 +530,17 @@ class SWFClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_swf.types.delete_workflow_type_input.DeleteWorkflowTypeInput = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
-        input_["workflow_type"] = workflow_type
+        input_: capo_swf.types.delete_workflow_type_input.DeleteWorkflowTypeInput = {
+            "domain": domain,
+            "workflow_type": workflow_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def deprecate_activity_type(
@@ -564,15 +576,17 @@ class SWFClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_swf.types.deprecate_activity_type_input.DeprecateActivityTypeInput = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
-        input_["activity_type"] = activity_type
+        input_: capo_swf.types.deprecate_activity_type_input.DeprecateActivityTypeInput = {
+            "domain": domain,
+            "activity_type": activity_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def deprecate_domain(
@@ -606,14 +620,16 @@ class SWFClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_swf.types.deprecate_domain_input.DeprecateDomainInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_swf.types.deprecate_domain_input.DeprecateDomainInput = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def deprecate_workflow_type(
@@ -649,15 +665,17 @@ class SWFClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_swf.types.deprecate_workflow_type_input.DeprecateWorkflowTypeInput = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
-        input_["workflow_type"] = workflow_type
+        input_: capo_swf.types.deprecate_workflow_type_input.DeprecateWorkflowTypeInput = {
+            "domain": domain,
+            "workflow_type": workflow_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_activity_type(
@@ -694,15 +712,17 @@ class SWFClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_swf.types.describe_activity_type_input.DescribeActivityTypeInput = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
-        input_["activity_type"] = activity_type
+        input_: capo_swf.types.describe_activity_type_input.DescribeActivityTypeInput = {
+            "domain": domain,
+            "activity_type": activity_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_domain(
@@ -735,14 +755,16 @@ class SWFClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_swf.types.describe_domain_input.DescribeDomainInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_swf.types.describe_domain_input.DescribeDomainInput = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_workflow_execution(
@@ -779,15 +801,17 @@ class SWFClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_swf.types.describe_workflow_execution_input.DescribeWorkflowExecutionInput = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
-        input_["execution"] = execution
+        input_: capo_swf.types.describe_workflow_execution_input.DescribeWorkflowExecutionInput = {
+            "domain": domain,
+            "execution": execution,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_workflow_type(
@@ -824,15 +848,17 @@ class SWFClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_swf.types.describe_workflow_type_input.DescribeWorkflowTypeInput = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
-        input_["workflow_type"] = workflow_type
+        input_: capo_swf.types.describe_workflow_type_input.DescribeWorkflowTypeInput = {
+            "domain": domain,
+            "workflow_type": workflow_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_workflow_execution_history(
@@ -873,9 +899,10 @@ class SWFClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_swf.types.get_workflow_execution_history_input.GetWorkflowExecutionHistoryInput = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
-        input_["execution"] = execution
+        input_: capo_swf.types.get_workflow_execution_history_input.GetWorkflowExecutionHistoryInput = {
+            "domain": domain,
+            "execution": execution,
+        }
         if next_page_token is not None:
             input_["next_page_token"] = next_page_token
         if maximum_page_size is not None:
@@ -888,6 +915,7 @@ class SWFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_workflow_execution_history(
@@ -957,11 +985,12 @@ class SWFClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_swf.types.list_activity_types_input.ListActivityTypesInput = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_swf.types.list_activity_types_input.ListActivityTypesInput = {
+            "domain": domain,
+            "registration_status": registration_status,
+        }
         if name is not None:
             input_["name"] = name
-        input_["registration_status"] = registration_status
         if next_page_token is not None:
             input_["next_page_token"] = next_page_token
         if maximum_page_size is not None:
@@ -974,6 +1003,7 @@ class SWFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_activity_types(
@@ -1065,8 +1095,9 @@ class SWFClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_swf.types.list_closed_workflow_executions_input.ListClosedWorkflowExecutionsInput = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_swf.types.list_closed_workflow_executions_input.ListClosedWorkflowExecutionsInput = {
+            "domain": domain
+        }
         if start_time_filter is not None:
             input_["start_time_filter"] = start_time_filter
         if close_time_filter is not None:
@@ -1091,6 +1122,7 @@ class SWFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_closed_workflow_executions(
@@ -1175,10 +1207,11 @@ class SWFClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_swf.types.list_domains_input.ListDomainsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_swf.types.list_domains_input.ListDomainsInput = {
+            "registration_status": registration_status
+        }
         if next_page_token is not None:
             input_["next_page_token"] = next_page_token
-        input_["registration_status"] = registration_status
         if maximum_page_size is not None:
             input_["maximum_page_size"] = maximum_page_size
         if reverse_order is not None:
@@ -1189,6 +1222,7 @@ class SWFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_domains(
@@ -1266,9 +1300,10 @@ class SWFClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_swf.types.list_open_workflow_executions_input.ListOpenWorkflowExecutionsInput = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
-        input_["start_time_filter"] = start_time_filter
+        input_: capo_swf.types.list_open_workflow_executions_input.ListOpenWorkflowExecutionsInput = {
+            "domain": domain,
+            "start_time_filter": start_time_filter,
+        }
         if type_filter is not None:
             input_["type_filter"] = type_filter
         if tag_filter is not None:
@@ -1287,6 +1322,7 @@ class SWFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_open_workflow_executions(
@@ -1359,14 +1395,16 @@ class SWFClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_swf.types.list_tags_for_resource_input.ListTagsForResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_swf.types.list_tags_for_resource_input.ListTagsForResourceInput = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_workflow_types(
@@ -1409,11 +1447,12 @@ class SWFClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_swf.types.list_workflow_types_input.ListWorkflowTypesInput = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_swf.types.list_workflow_types_input.ListWorkflowTypesInput = {
+            "domain": domain,
+            "registration_status": registration_status,
+        }
         if name is not None:
             input_["name"] = name
-        input_["registration_status"] = registration_status
         if next_page_token is not None:
             input_["next_page_token"] = next_page_token
         if maximum_page_size is not None:
@@ -1426,6 +1465,7 @@ class SWFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_workflow_types(
@@ -1492,9 +1532,10 @@ class SWFClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_swf.types.poll_for_activity_task_input.PollForActivityTaskInput = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
-        input_["task_list"] = task_list
+        input_: capo_swf.types.poll_for_activity_task_input.PollForActivityTaskInput = {
+            "domain": domain,
+            "task_list": task_list,
+        }
         if identity is not None:
             input_["identity"] = identity
 
@@ -1503,6 +1544,7 @@ class SWFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def poll_for_decision_task(
@@ -1550,9 +1592,10 @@ class SWFClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_swf.types.poll_for_decision_task_input.PollForDecisionTaskInput = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
-        input_["task_list"] = task_list
+        input_: capo_swf.types.poll_for_decision_task_input.PollForDecisionTaskInput = {
+            "domain": domain,
+            "task_list": task_list,
+        }
         if identity is not None:
             input_["identity"] = identity
         if next_page_token is not None:
@@ -1569,6 +1612,7 @@ class SWFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_poll_for_decision_task(
@@ -1638,8 +1682,9 @@ class SWFClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_swf.types.record_activity_task_heartbeat_input.RecordActivityTaskHeartbeatInput = {}  # type: ignore[typeddict-item]
-        input_["task_token"] = task_token
+        input_: capo_swf.types.record_activity_task_heartbeat_input.RecordActivityTaskHeartbeatInput = {
+            "task_token": task_token
+        }
         if details is not None:
             input_["details"] = details
 
@@ -1648,6 +1693,7 @@ class SWFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def register_activity_type(
@@ -1710,10 +1756,11 @@ class SWFClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_swf.types.register_activity_type_input.RegisterActivityTypeInput = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
-        input_["name"] = name
-        input_["version"] = version
+        input_: capo_swf.types.register_activity_type_input.RegisterActivityTypeInput = {
+            "domain": domain,
+            "name": name,
+            "version": version,
+        }
         if description is not None:
             input_["description"] = description
         if default_task_start_to_close_timeout is not None:
@@ -1740,6 +1787,7 @@ class SWFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def register_domain(
@@ -1780,13 +1828,12 @@ class SWFClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_swf.types.register_domain_input.RegisterDomainInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_swf.types.register_domain_input.RegisterDomainInput = {
+            "name": name,
+            "workflow_execution_retention_period_in_days": workflow_execution_retention_period_in_days,
+        }
         if description is not None:
             input_["description"] = description
-        input_["workflow_execution_retention_period_in_days"] = (
-            workflow_execution_retention_period_in_days
-        )
         if tags is not None:
             input_["tags"] = tags
 
@@ -1795,6 +1842,7 @@ class SWFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def register_workflow_type(
@@ -1855,10 +1903,11 @@ class SWFClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_swf.types.register_workflow_type_input.RegisterWorkflowTypeInput = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
-        input_["name"] = name
-        input_["version"] = version
+        input_: capo_swf.types.register_workflow_type_input.RegisterWorkflowTypeInput = {
+            "domain": domain,
+            "name": name,
+            "version": version,
+        }
         if description is not None:
             input_["description"] = description
         if default_task_start_to_close_timeout is not None:
@@ -1883,6 +1932,7 @@ class SWFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def request_cancel_workflow_execution(
@@ -1921,9 +1971,10 @@ class SWFClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_swf.types.request_cancel_workflow_execution_input.RequestCancelWorkflowExecutionInput = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
-        input_["workflow_id"] = workflow_id
+        input_: capo_swf.types.request_cancel_workflow_execution_input.RequestCancelWorkflowExecutionInput = {
+            "domain": domain,
+            "workflow_id": workflow_id,
+        }
         if run_id is not None:
             input_["run_id"] = run_id
 
@@ -1932,6 +1983,7 @@ class SWFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def respond_activity_task_canceled(
@@ -1966,8 +2018,9 @@ class SWFClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_swf.types.respond_activity_task_canceled_input.RespondActivityTaskCanceledInput = {}  # type: ignore[typeddict-item]
-        input_["task_token"] = task_token
+        input_: capo_swf.types.respond_activity_task_canceled_input.RespondActivityTaskCanceledInput = {
+            "task_token": task_token
+        }
         if details is not None:
             input_["details"] = details
 
@@ -1976,6 +2029,7 @@ class SWFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def respond_activity_task_completed(
@@ -2010,8 +2064,9 @@ class SWFClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_swf.types.respond_activity_task_completed_input.RespondActivityTaskCompletedInput = {}  # type: ignore[typeddict-item]
-        input_["task_token"] = task_token
+        input_: capo_swf.types.respond_activity_task_completed_input.RespondActivityTaskCompletedInput = {
+            "task_token": task_token
+        }
         if result is not None:
             input_["result"] = result
 
@@ -2020,6 +2075,7 @@ class SWFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def respond_activity_task_failed(
@@ -2056,8 +2112,9 @@ class SWFClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_swf.types.respond_activity_task_failed_input.RespondActivityTaskFailedInput = {}  # type: ignore[typeddict-item]
-        input_["task_token"] = task_token
+        input_: capo_swf.types.respond_activity_task_failed_input.RespondActivityTaskFailedInput = {
+            "task_token": task_token
+        }
         if reason is not None:
             input_["reason"] = reason
         if details is not None:
@@ -2068,6 +2125,7 @@ class SWFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def respond_decision_task_completed(
@@ -2110,8 +2168,9 @@ class SWFClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_swf.types.respond_decision_task_completed_input.RespondDecisionTaskCompletedInput = {}  # type: ignore[typeddict-item]
-        input_["task_token"] = task_token
+        input_: capo_swf.types.respond_decision_task_completed_input.RespondDecisionTaskCompletedInput = {
+            "task_token": task_token
+        }
         if decisions is not None:
             input_["decisions"] = decisions
         if execution_context is not None:
@@ -2128,6 +2187,7 @@ class SWFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def signal_workflow_execution(
@@ -2170,12 +2230,13 @@ class SWFClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_swf.types.signal_workflow_execution_input.SignalWorkflowExecutionInput = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
-        input_["workflow_id"] = workflow_id
+        input_: capo_swf.types.signal_workflow_execution_input.SignalWorkflowExecutionInput = {
+            "domain": domain,
+            "workflow_id": workflow_id,
+            "signal_name": signal_name,
+        }
         if run_id is not None:
             input_["run_id"] = run_id
-        input_["signal_name"] = signal_name
         if input is not None:
             input_["input"] = input
 
@@ -2184,6 +2245,7 @@ class SWFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_workflow_execution(
@@ -2244,10 +2306,11 @@ class SWFClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_swf.types.start_workflow_execution_input.StartWorkflowExecutionInput = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
-        input_["workflow_id"] = workflow_id
-        input_["workflow_type"] = workflow_type
+        input_: capo_swf.types.start_workflow_execution_input.StartWorkflowExecutionInput = {
+            "domain": domain,
+            "workflow_id": workflow_id,
+            "workflow_type": workflow_type,
+        }
         if task_list is not None:
             input_["task_list"] = task_list
         if task_priority is not None:
@@ -2272,6 +2335,7 @@ class SWFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -2308,15 +2372,17 @@ class SWFClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_swf.types.tag_resource_input.TagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_swf.types.tag_resource_input.TagResourceInput = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def terminate_workflow_execution(
@@ -2361,9 +2427,10 @@ class SWFClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_swf.types.terminate_workflow_execution_input.TerminateWorkflowExecutionInput = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
-        input_["workflow_id"] = workflow_id
+        input_: capo_swf.types.terminate_workflow_execution_input.TerminateWorkflowExecutionInput = {
+            "domain": domain,
+            "workflow_id": workflow_id,
+        }
         if run_id is not None:
             input_["run_id"] = run_id
         if reason is not None:
@@ -2378,6 +2445,7 @@ class SWFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def undeprecate_activity_type(
@@ -2413,15 +2481,17 @@ class SWFClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_swf.types.undeprecate_activity_type_input.UndeprecateActivityTypeInput = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
-        input_["activity_type"] = activity_type
+        input_: capo_swf.types.undeprecate_activity_type_input.UndeprecateActivityTypeInput = {
+            "domain": domain,
+            "activity_type": activity_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def undeprecate_domain(
@@ -2455,14 +2525,16 @@ class SWFClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_swf.types.undeprecate_domain_input.UndeprecateDomainInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_swf.types.undeprecate_domain_input.UndeprecateDomainInput = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def undeprecate_workflow_type(
@@ -2498,15 +2570,17 @@ class SWFClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_swf.types.undeprecate_workflow_type_input.UndeprecateWorkflowTypeInput = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
-        input_["workflow_type"] = workflow_type
+        input_: capo_swf.types.undeprecate_workflow_type_input.UndeprecateWorkflowTypeInput = {
+            "domain": domain,
+            "workflow_type": workflow_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -2542,15 +2616,17 @@ class SWFClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_swf.types.untag_resource_input.UntagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_swf.types.untag_resource_input.UntagResourceInput = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

@@ -32,7 +32,7 @@ def serialize_json(value: UpdateComputationModelResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateComputationModelResponse:
     out: UpdateComputationModelResponse = {}  # type: ignore[typeddict-item]
-    if "computationModelStatus" in data:
+    if data.get("computationModelStatus") is not None:
         import capo_iotsitewise.types.computation_model_status
 
         out["computation_model_status"] = (

@@ -53,19 +53,19 @@ def serialize_aws_json_1_0(value: ActivityTask) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ActivityTask:
     out: ActivityTask = {}  # type: ignore[typeddict-item]
-    if "taskToken" in data:
+    if data.get("taskToken") is not None:
         out["task_token"] = data["taskToken"]
     else:
         raise DeserializationError("ActivityTask.task_token required")
-    if "activityId" in data:
+    if data.get("activityId") is not None:
         out["activity_id"] = data["activityId"]
     else:
         raise DeserializationError("ActivityTask.activity_id required")
-    if "startedEventId" in data:
+    if data.get("startedEventId") is not None:
         out["started_event_id"] = data["startedEventId"]
     else:
         out["started_event_id"] = 0
-    if "workflowExecution" in data:
+    if data.get("workflowExecution") is not None:
         import capo_swf.types.workflow_execution
 
         out["workflow_execution"] = (
@@ -75,7 +75,7 @@ def deserialize_aws_json_1_0(data: dict) -> ActivityTask:
         )
     else:
         raise DeserializationError("ActivityTask.workflow_execution required")
-    if "activityType" in data:
+    if data.get("activityType") is not None:
         import capo_swf.types.activity_type
 
         out["activity_type"] = capo_swf.types.activity_type.deserialize_aws_json_1_0(
@@ -83,6 +83,6 @@ def deserialize_aws_json_1_0(data: dict) -> ActivityTask:
         )
     else:
         raise DeserializationError("ActivityTask.activity_type required")
-    if "input" in data:
+    if data.get("input") is not None:
         out["input"] = data["input"]
     return out

@@ -50,7 +50,7 @@ def serialize_aws_json_1_1(value: IdleSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IdleSettings:
     out: IdleSettings = {}  # type: ignore[typeddict-item]
-    if "LifecycleManagement" in data:
+    if data.get("LifecycleManagement") is not None:
         import capo_sagemaker.types.lifecycle_management
 
         out["lifecycle_management"] = (
@@ -58,10 +58,10 @@ def deserialize_aws_json_1_1(data: dict) -> IdleSettings:
                 data["LifecycleManagement"]
             )
         )
-    if "IdleTimeoutInMinutes" in data:
+    if data.get("IdleTimeoutInMinutes") is not None:
         out["idle_timeout_in_minutes"] = data["IdleTimeoutInMinutes"]
-    if "MinIdleTimeoutInMinutes" in data:
+    if data.get("MinIdleTimeoutInMinutes") is not None:
         out["min_idle_timeout_in_minutes"] = data["MinIdleTimeoutInMinutes"]
-    if "MaxIdleTimeoutInMinutes" in data:
+    if data.get("MaxIdleTimeoutInMinutes") is not None:
         out["max_idle_timeout_in_minutes"] = data["MaxIdleTimeoutInMinutes"]
     return out

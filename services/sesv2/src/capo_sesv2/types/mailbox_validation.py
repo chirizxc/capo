@@ -42,7 +42,7 @@ def serialize_json(value: MailboxValidation) -> dict:
 
 def deserialize_json(data: dict) -> MailboxValidation:
     out: MailboxValidation = {}  # type: ignore[typeddict-item]
-    if "IsValid" in data:
+    if data.get("IsValid") is not None:
         import capo_sesv2.types.email_address_insights_verdict
 
         out["is_valid"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> MailboxValidation:
                 data["IsValid"]
             )
         )
-    if "Evaluations" in data:
+    if data.get("Evaluations") is not None:
         import capo_sesv2.types.email_address_insights_mailbox_evaluations
 
         out["evaluations"] = (

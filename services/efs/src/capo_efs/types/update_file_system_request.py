@@ -31,18 +31,29 @@ def serialize_json(value: UpdateFileSystemRequest) -> dict:
             value["throughput_mode"]
         )
     if "provisioned_throughput_in_mibps" in value:
-        out["ProvisionedThroughputInMibps"] = value["provisioned_throughput_in_mibps"]
+        out["ProvisionedThroughputInMibps"] = (
+            "NaN"
+            if value["provisioned_throughput_in_mibps"]
+            != value["provisioned_throughput_in_mibps"]
+            else "Infinity"
+            if value["provisioned_throughput_in_mibps"] == float("inf")
+            else "-Infinity"
+            if value["provisioned_throughput_in_mibps"] == float("-inf")
+            else value["provisioned_throughput_in_mibps"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> UpdateFileSystemRequest:
     out: UpdateFileSystemRequest = {}  # type: ignore[typeddict-item]
-    if "ThroughputMode" in data:
+    if data.get("ThroughputMode") is not None:
         import capo_efs.types.throughput_mode
 
         out["throughput_mode"] = capo_efs.types.throughput_mode.deserialize_json(
             data["ThroughputMode"]
         )
-    if "ProvisionedThroughputInMibps" in data:
-        out["provisioned_throughput_in_mibps"] = data["ProvisionedThroughputInMibps"]
+    if data.get("ProvisionedThroughputInMibps") is not None:
+        out["provisioned_throughput_in_mibps"] = float(
+            data["ProvisionedThroughputInMibps"]
+        )
     return out

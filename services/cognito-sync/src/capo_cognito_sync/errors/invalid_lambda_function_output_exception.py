@@ -24,7 +24,7 @@ def serialize_json(value: InvalidLambdaFunctionOutputException_) -> dict:
 
 def deserialize_json(data: dict) -> InvalidLambdaFunctionOutputException_:
     out: InvalidLambdaFunctionOutputException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError(
@@ -38,15 +38,20 @@ class InvalidLambdaFunctionOutputException(ServiceError):
 
     code: str | None = "InvalidLambdaFunctionOutputException"
 
-    def __init__(self, data: InvalidLambdaFunctionOutputException_):
+    def __init__(
+        self, data: InvalidLambdaFunctionOutputException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidLambdaFunctionOutputException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "InvalidLambdaFunctionOutputException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidLambdaFunctionOutputException":
+        return cls(deserialize_json(data), message)

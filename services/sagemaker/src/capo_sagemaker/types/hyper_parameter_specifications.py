@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> HyperParameterSpecifications:
 
     out: HyperParameterSpecifications = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.hyper_parameter_specification.deserialize_aws_json_1_1(
                 item

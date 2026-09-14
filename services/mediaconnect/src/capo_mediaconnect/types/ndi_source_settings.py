@@ -18,6 +18,6 @@ def serialize_json(value: NdiSourceSettings) -> dict:
 
 def deserialize_json(data: dict) -> NdiSourceSettings:
     out: NdiSourceSettings = {}  # type: ignore[typeddict-item]
-    if "sourceName" in data:
+    if data.get("sourceName") is not None:
         out["source_name"] = data["sourceName"]
     return out

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> NodeRangeProperties:
 
     out: NodeRangeProperties = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_batch.types.node_range_property.deserialize_json(item))
     return out

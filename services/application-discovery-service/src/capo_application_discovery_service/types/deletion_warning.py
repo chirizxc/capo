@@ -36,12 +36,12 @@ def serialize_aws_json_1_1(value: DeletionWarning) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeletionWarning:
     out: DeletionWarning = {}  # type: ignore[typeddict-item]
-    if "configurationId" in data:
+    if data.get("configurationId") is not None:
         out["configuration_id"] = data["configurationId"]
-    if "warningCode" in data:
+    if data.get("warningCode") is not None:
         out["warning_code"] = data["warningCode"]
     else:
         out["warning_code"] = 0
-    if "warningText" in data:
+    if data.get("warningText") is not None:
         out["warning_text"] = data["warningText"]
     return out

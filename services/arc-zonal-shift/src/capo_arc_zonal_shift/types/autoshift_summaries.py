@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AutoshiftSummaries:
 
     out: AutoshiftSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_arc_zonal_shift.types.autoshift_summary.deserialize_json(item))
     return out

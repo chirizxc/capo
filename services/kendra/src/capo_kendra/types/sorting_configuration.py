@@ -34,13 +34,13 @@ def serialize_aws_json_1_1(value: SortingConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SortingConfiguration:
     out: SortingConfiguration = {}  # type: ignore[typeddict-item]
-    if "DocumentAttributeKey" in data:
+    if data.get("DocumentAttributeKey") is not None:
         out["document_attribute_key"] = data["DocumentAttributeKey"]
     else:
         raise DeserializationError(
             "SortingConfiguration.document_attribute_key required"
         )
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         import capo_kendra.types.sort_order
 
         out["sort_order"] = capo_kendra.types.sort_order.deserialize_aws_json_1_1(

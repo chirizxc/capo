@@ -56,7 +56,7 @@ def serialize_aws_json_1_1(value: SalesforceKnowledgeArticleConfiguration) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> SalesforceKnowledgeArticleConfiguration:
     out: SalesforceKnowledgeArticleConfiguration = {}  # type: ignore[typeddict-item]
-    if "IncludedStates" in data:
+    if data.get("IncludedStates") is not None:
         import capo_kendra.types.salesforce_knowledge_article_state_list
 
         out["included_states"] = (
@@ -68,7 +68,7 @@ def deserialize_aws_json_1_1(data: dict) -> SalesforceKnowledgeArticleConfigurat
         raise DeserializationError(
             "SalesforceKnowledgeArticleConfiguration.included_states required"
         )
-    if "StandardKnowledgeArticleTypeConfiguration" in data:
+    if data.get("StandardKnowledgeArticleTypeConfiguration") is not None:
         import capo_kendra.types.salesforce_standard_knowledge_article_type_configuration
 
         out["standard_knowledge_article_type_configuration"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_1(data: dict) -> SalesforceKnowledgeArticleConfigurat
                 data["StandardKnowledgeArticleTypeConfiguration"]
             )
         )
-    if "CustomKnowledgeArticleTypeConfigurations" in data:
+    if data.get("CustomKnowledgeArticleTypeConfigurations") is not None:
         import capo_kendra.types.salesforce_custom_knowledge_article_type_configuration_list
 
         out["custom_knowledge_article_type_configurations"] = (

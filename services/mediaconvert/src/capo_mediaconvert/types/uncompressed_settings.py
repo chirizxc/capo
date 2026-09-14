@@ -116,13 +116,13 @@ def serialize_json(value: UncompressedSettings) -> dict:
 
 def deserialize_json(data: dict) -> UncompressedSettings:
     out: UncompressedSettings = {}  # type: ignore[typeddict-item]
-    if "fourcc" in data:
+    if data.get("fourcc") is not None:
         import capo_mediaconvert.types.uncompressed_fourcc
 
         out["fourcc"] = capo_mediaconvert.types.uncompressed_fourcc.deserialize_json(
             data["fourcc"]
         )
-    if "framerateControl" in data:
+    if data.get("framerateControl") is not None:
         import capo_mediaconvert.types.uncompressed_framerate_control
 
         out["framerate_control"] = (
@@ -130,7 +130,7 @@ def deserialize_json(data: dict) -> UncompressedSettings:
                 data["framerateControl"]
             )
         )
-    if "framerateConversionAlgorithm" in data:
+    if data.get("framerateConversionAlgorithm") is not None:
         import capo_mediaconvert.types.uncompressed_framerate_conversion_algorithm
 
         out["framerate_conversion_algorithm"] = (
@@ -138,11 +138,11 @@ def deserialize_json(data: dict) -> UncompressedSettings:
                 data["framerateConversionAlgorithm"]
             )
         )
-    if "framerateDenominator" in data:
+    if data.get("framerateDenominator") is not None:
         out["framerate_denominator"] = data["framerateDenominator"]
-    if "framerateNumerator" in data:
+    if data.get("framerateNumerator") is not None:
         out["framerate_numerator"] = data["framerateNumerator"]
-    if "interlaceMode" in data:
+    if data.get("interlaceMode") is not None:
         import capo_mediaconvert.types.uncompressed_interlace_mode
 
         out["interlace_mode"] = (
@@ -150,7 +150,7 @@ def deserialize_json(data: dict) -> UncompressedSettings:
                 data["interlaceMode"]
             )
         )
-    if "scanTypeConversionMode" in data:
+    if data.get("scanTypeConversionMode") is not None:
         import capo_mediaconvert.types.uncompressed_scan_type_conversion_mode
 
         out["scan_type_conversion_mode"] = (
@@ -158,7 +158,7 @@ def deserialize_json(data: dict) -> UncompressedSettings:
                 data["scanTypeConversionMode"]
             )
         )
-    if "slowPal" in data:
+    if data.get("slowPal") is not None:
         import capo_mediaconvert.types.uncompressed_slow_pal
 
         out["slow_pal"] = (
@@ -166,7 +166,7 @@ def deserialize_json(data: dict) -> UncompressedSettings:
                 data["slowPal"]
             )
         )
-    if "telecine" in data:
+    if data.get("telecine") is not None:
         import capo_mediaconvert.types.uncompressed_telecine
 
         out["telecine"] = (

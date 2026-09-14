@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: CreateMigrationProjectResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateMigrationProjectResponse:
     out: CreateMigrationProjectResponse = {}  # type: ignore[typeddict-item]
-    if "MigrationProject" in data:
+    if data.get("MigrationProject") is not None:
         import capo_database_migration_service.types.migration_project
 
         out["migration_project"] = (

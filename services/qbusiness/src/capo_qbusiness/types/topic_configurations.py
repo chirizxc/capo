@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> TopicConfigurations:
 
     out: TopicConfigurations = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_qbusiness.types.topic_configuration.deserialize_json(item))
     return out

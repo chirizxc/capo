@@ -101,11 +101,11 @@ def serialize_json(value: CreateRouterInputRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateRouterInputRequest:
     out: CreateRouterInputRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateRouterInputRequest.name required")
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_mediaconnect.types.router_input_configuration
 
         out["configuration"] = (
@@ -115,11 +115,11 @@ def deserialize_json(data: dict) -> CreateRouterInputRequest:
         )
     else:
         raise DeserializationError("CreateRouterInputRequest.configuration required")
-    if "maximumBitrate" in data:
+    if data.get("maximumBitrate") is not None:
         out["maximum_bitrate"] = data["maximumBitrate"]
     else:
         raise DeserializationError("CreateRouterInputRequest.maximum_bitrate required")
-    if "routingScope" in data:
+    if data.get("routingScope") is not None:
         import capo_mediaconnect.types.routing_scope
 
         out["routing_scope"] = capo_mediaconnect.types.routing_scope.deserialize_json(
@@ -127,7 +127,7 @@ def deserialize_json(data: dict) -> CreateRouterInputRequest:
         )
     else:
         raise DeserializationError("CreateRouterInputRequest.routing_scope required")
-    if "tier" in data:
+    if data.get("tier") is not None:
         import capo_mediaconnect.types.router_input_tier
 
         out["tier"] = capo_mediaconnect.types.router_input_tier.deserialize_json(
@@ -135,11 +135,11 @@ def deserialize_json(data: dict) -> CreateRouterInputRequest:
         )
     else:
         raise DeserializationError("CreateRouterInputRequest.tier required")
-    if "regionName" in data:
+    if data.get("regionName") is not None:
         out["region_name"] = data["regionName"]
-    if "availabilityZone" in data:
+    if data.get("availabilityZone") is not None:
         out["availability_zone"] = data["availabilityZone"]
-    if "transitEncryption" in data:
+    if data.get("transitEncryption") is not None:
         import capo_mediaconnect.types.router_input_transit_encryption
 
         out["transit_encryption"] = (
@@ -147,7 +147,7 @@ def deserialize_json(data: dict) -> CreateRouterInputRequest:
                 data["transitEncryption"]
             )
         )
-    if "maintenanceConfiguration" in data:
+    if data.get("maintenanceConfiguration") is not None:
         import capo_mediaconnect.types.maintenance_configuration
 
         out["maintenance_configuration"] = (
@@ -155,12 +155,12 @@ def deserialize_json(data: dict) -> CreateRouterInputRequest:
                 data["maintenanceConfiguration"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mediaconnect.types.__map_of_string
 
         out["tags"] = capo_mediaconnect.types.__map_of_string.deserialize_json(
             data["tags"]
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

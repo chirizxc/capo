@@ -36,7 +36,7 @@ def serialize_json(value: ListWhatsAppTemplateLibraryOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListWhatsAppTemplateLibraryOutput:
     out: ListWhatsAppTemplateLibraryOutput = {}  # type: ignore[typeddict-item]
-    if "metaLibraryTemplates" in data:
+    if data.get("metaLibraryTemplates") is not None:
         import capo_socialmessaging.types.meta_library_templates_list
 
         out["meta_library_templates"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListWhatsAppTemplateLibraryOutput:
                 data["metaLibraryTemplates"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

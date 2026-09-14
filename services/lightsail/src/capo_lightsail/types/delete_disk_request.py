@@ -29,10 +29,10 @@ def serialize_aws_json_1_1(value: DeleteDiskRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteDiskRequest:
     out: DeleteDiskRequest = {}  # type: ignore[typeddict-item]
-    if "diskName" in data:
+    if data.get("diskName") is not None:
         out["disk_name"] = data["diskName"]
     else:
         raise DeserializationError("DeleteDiskRequest.disk_name required")
-    if "forceDeleteAddOns" in data:
+    if data.get("forceDeleteAddOns") is not None:
         out["force_delete_add_ons"] = data["forceDeleteAddOns"]
     return out

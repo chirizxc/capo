@@ -33,11 +33,11 @@ def serialize_json(value: InboxPlacementTrackingOption) -> dict:
 
 def deserialize_json(data: dict) -> InboxPlacementTrackingOption:
     out: InboxPlacementTrackingOption = {}  # type: ignore[typeddict-item]
-    if "Global" in data:
+    if data.get("Global") is not None:
         out["global"] = data["Global"]
     else:
         out["global"] = False
-    if "TrackedIsps" in data:
+    if data.get("TrackedIsps") is not None:
         import capo_sesv2.types.isp_name_list
 
         out["tracked_isps"] = capo_sesv2.types.isp_name_list.deserialize_json(

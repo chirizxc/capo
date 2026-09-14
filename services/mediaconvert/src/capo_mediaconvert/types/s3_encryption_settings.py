@@ -45,7 +45,7 @@ def serialize_json(value: S3EncryptionSettings) -> dict:
 
 def deserialize_json(data: dict) -> S3EncryptionSettings:
     out: S3EncryptionSettings = {}  # type: ignore[typeddict-item]
-    if "encryptionType" in data:
+    if data.get("encryptionType") is not None:
         import capo_mediaconvert.types.s3_server_side_encryption_type
 
         out["encryption_type"] = (
@@ -53,8 +53,8 @@ def deserialize_json(data: dict) -> S3EncryptionSettings:
                 data["encryptionType"]
             )
         )
-    if "kmsEncryptionContext" in data:
+    if data.get("kmsEncryptionContext") is not None:
         out["kms_encryption_context"] = data["kmsEncryptionContext"]
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
     return out

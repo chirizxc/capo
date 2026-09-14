@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> KafkaHeaders:
 
     out: KafkaHeaders = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot.types.kafka_action_header.deserialize_json(item))
     return out

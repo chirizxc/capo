@@ -83,7 +83,7 @@ def serialize_json(value: SegmentDimensions) -> dict:
 
 def deserialize_json(data: dict) -> SegmentDimensions:
     out: SegmentDimensions = {}  # type: ignore[typeddict-item]
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_pinpoint.types.map_of_attribute_dimension
 
         out["attributes"] = (
@@ -91,31 +91,31 @@ def deserialize_json(data: dict) -> SegmentDimensions:
                 data["Attributes"]
             )
         )
-    if "Behavior" in data:
+    if data.get("Behavior") is not None:
         import capo_pinpoint.types.segment_behaviors
 
         out["behavior"] = capo_pinpoint.types.segment_behaviors.deserialize_json(
             data["Behavior"]
         )
-    if "Demographic" in data:
+    if data.get("Demographic") is not None:
         import capo_pinpoint.types.segment_demographics
 
         out["demographic"] = capo_pinpoint.types.segment_demographics.deserialize_json(
             data["Demographic"]
         )
-    if "Location" in data:
+    if data.get("Location") is not None:
         import capo_pinpoint.types.segment_location
 
         out["location"] = capo_pinpoint.types.segment_location.deserialize_json(
             data["Location"]
         )
-    if "Metrics" in data:
+    if data.get("Metrics") is not None:
         import capo_pinpoint.types.map_of_metric_dimension
 
         out["metrics"] = capo_pinpoint.types.map_of_metric_dimension.deserialize_json(
             data["Metrics"]
         )
-    if "UserAttributes" in data:
+    if data.get("UserAttributes") is not None:
         import capo_pinpoint.types.map_of_attribute_dimension
 
         out["user_attributes"] = (

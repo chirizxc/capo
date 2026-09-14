@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> RealTimeInferenceRecommendations:
 
     out: RealTimeInferenceRecommendations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.real_time_inference_recommendation.deserialize_aws_json_1_1(
                 item

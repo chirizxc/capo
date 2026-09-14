@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetRelationalDatabaseLogStreamsRequest) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> GetRelationalDatabaseLogStreamsRequest:
     out: GetRelationalDatabaseLogStreamsRequest = {}  # type: ignore[typeddict-item]
-    if "relationalDatabaseName" in data:
+    if data.get("relationalDatabaseName") is not None:
         out["relational_database_name"] = data["relationalDatabaseName"]
     else:
         raise DeserializationError(

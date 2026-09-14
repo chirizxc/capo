@@ -31,15 +31,15 @@ def serialize_json(value: SalesforceSourceProperties) -> dict:
 
 def deserialize_json(data: dict) -> SalesforceSourceProperties:
     out: SalesforceSourceProperties = {}  # type: ignore[typeddict-item]
-    if "Object" in data:
+    if data.get("Object") is not None:
         out["object"] = data["Object"]
     else:
         raise DeserializationError("SalesforceSourceProperties.object required")
-    if "EnableDynamicFieldUpdate" in data:
+    if data.get("EnableDynamicFieldUpdate") is not None:
         out["enable_dynamic_field_update"] = data["EnableDynamicFieldUpdate"]
     else:
         out["enable_dynamic_field_update"] = False
-    if "IncludeDeletedRecords" in data:
+    if data.get("IncludeDeletedRecords") is not None:
         out["include_deleted_records"] = data["IncludeDeletedRecords"]
     else:
         out["include_deleted_records"] = False

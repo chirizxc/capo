@@ -13,9 +13,9 @@ from capo_route53_recovery_readiness import AsyncRoute53RecoveryReadinessClient
 
 
 async def main():
-    async with AsyncRoute53RecoveryReadinessClient() as s3:
+    async with AsyncRoute53RecoveryReadinessClient() as route53_recovery_readiness:
         # Example: call the create_cell operation
-        response = await s3.create_cell()
+        response = await route53_recovery_readiness.create_cell()
         print(response["cell_arn"])
 ```
 
@@ -28,9 +28,9 @@ from capo_route53_recovery_readiness import AsyncRoute53RecoveryReadinessClient
 
 
 async def main():
-    async with AsyncRoute53RecoveryReadinessClient() as s3:
+    async with AsyncRoute53RecoveryReadinessClient() as route53_recovery_readiness:
         # Example: paginate over get_cell_readiness_summary
-        async for item in s3.iter_get_cell_readiness_summary():
+        async for item in route53_recovery_readiness.iter_get_cell_readiness_summary():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_route53_recovery_readiness.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncRoute53RecoveryReadinessClient() as s3:
+    async with AsyncRoute53RecoveryReadinessClient() as route53_recovery_readiness:
         try:
-            await s3.create_cell()
+            await route53_recovery_readiness.create_cell()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_route53_recovery_readiness import AsyncRoute53RecoveryReadinessClient
 
 
 async def main():
-    async with AsyncRoute53RecoveryReadinessClient() as s3:
+    async with AsyncRoute53RecoveryReadinessClient() as route53_recovery_readiness:
         # Default: 3 attempts for every operation
-        response = await s3.create_cell()
+        response = await route53_recovery_readiness.create_cell()
 
         # Override per operation
-        response = await s3.create_cell(config_overrides={"retry_max_attempts": 5})
+        response = await route53_recovery_readiness.create_cell(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_cell(config_overrides={"retry_max_attempts": 1})
+        response = await route53_recovery_readiness.create_cell(config_overrides={"retry_max_attempts": 1})
 ```

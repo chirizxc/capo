@@ -64,7 +64,7 @@ class CommercialToGovCloudGatewayResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_account.types.get_gov_cloud_account_information_request.GetGovCloudAccountInformationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_account.types.get_gov_cloud_account_information_request.GetGovCloudAccountInformationRequest = {}
         if standard_account_id is not None:
             input_["standard_account_id"] = standard_account_id
 
@@ -73,6 +73,7 @@ class CommercialToGovCloudGatewayResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -117,7 +118,7 @@ class AsyncCommercialToGovCloudGatewayResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_account.types.get_gov_cloud_account_information_request.GetGovCloudAccountInformationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_account.types.get_gov_cloud_account_information_request.GetGovCloudAccountInformationRequest = {}
         if standard_account_id is not None:
             input_["standard_account_id"] = standard_account_id
 
@@ -126,4 +127,5 @@ class AsyncCommercialToGovCloudGatewayResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

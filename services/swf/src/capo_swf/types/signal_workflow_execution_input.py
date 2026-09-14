@@ -42,20 +42,20 @@ def serialize_aws_json_1_0(value: SignalWorkflowExecutionInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SignalWorkflowExecutionInput:
     out: SignalWorkflowExecutionInput = {}  # type: ignore[typeddict-item]
-    if "domain" in data:
+    if data.get("domain") is not None:
         out["domain"] = data["domain"]
     else:
         raise DeserializationError("SignalWorkflowExecutionInput.domain required")
-    if "workflowId" in data:
+    if data.get("workflowId") is not None:
         out["workflow_id"] = data["workflowId"]
     else:
         raise DeserializationError("SignalWorkflowExecutionInput.workflow_id required")
-    if "runId" in data:
+    if data.get("runId") is not None:
         out["run_id"] = data["runId"]
-    if "signalName" in data:
+    if data.get("signalName") is not None:
         out["signal_name"] = data["signalName"]
     else:
         raise DeserializationError("SignalWorkflowExecutionInput.signal_name required")
-    if "input" in data:
+    if data.get("input") is not None:
         out["input"] = data["input"]
     return out

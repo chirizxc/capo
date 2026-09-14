@@ -27,7 +27,7 @@ def serialize_json(value: AssumeQueueRoleForWorkerResponse) -> dict:
 
 def deserialize_json(data: dict) -> AssumeQueueRoleForWorkerResponse:
     out: AssumeQueueRoleForWorkerResponse = {}  # type: ignore[typeddict-item]
-    if "credentials" in data:
+    if data.get("credentials") is not None:
         import capo_deadline.types.aws_credentials
 
         out["credentials"] = capo_deadline.types.aws_credentials.deserialize_json(

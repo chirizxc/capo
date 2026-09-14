@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: EventCategoryGroup) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EventCategoryGroup:
     out: EventCategoryGroup = {}  # type: ignore[typeddict-item]
-    if "SourceType" in data:
+    if data.get("SourceType") is not None:
         out["source_type"] = data["SourceType"]
-    if "EventCategories" in data:
+    if data.get("EventCategories") is not None:
         import capo_database_migration_service.types.event_categories_list
 
         out["event_categories"] = (

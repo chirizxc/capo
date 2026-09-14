@@ -38,13 +38,13 @@ def serialize_aws_json_1_1(value: CookieObject) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CookieObject:
     out: CookieObject = {}  # type: ignore[typeddict-item]
-    if "option" in data:
+    if data.get("option") is not None:
         import capo_lightsail.types.forward_values
 
         out["option"] = capo_lightsail.types.forward_values.deserialize_aws_json_1_1(
             data["option"]
         )
-    if "cookiesAllowList" in data:
+    if data.get("cookiesAllowList") is not None:
         import capo_lightsail.types.string_list
 
         out["cookies_allow_list"] = (

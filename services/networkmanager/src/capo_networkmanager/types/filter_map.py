@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: FilterMap) -> dict:
 def deserialize_json(data: dict) -> FilterMap:
     out: FilterMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_networkmanager.types.filter_values
 
         out[key] = capo_networkmanager.types.filter_values.deserialize_json(value)

@@ -57,17 +57,17 @@ def serialize_json(value: ContainerDetails) -> dict:
 
 def deserialize_json(data: dict) -> ContainerDetails:
     out: ContainerDetails = {}  # type: ignore[typeddict-item]
-    if "ContainerRuntime" in data:
+    if data.get("ContainerRuntime") is not None:
         out["container_runtime"] = data["ContainerRuntime"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ImageId" in data:
+    if data.get("ImageId") is not None:
         out["image_id"] = data["ImageId"]
-    if "ImageName" in data:
+    if data.get("ImageName") is not None:
         out["image_name"] = data["ImageName"]
-    if "LaunchedAt" in data:
+    if data.get("LaunchedAt") is not None:
         out["launched_at"] = data["LaunchedAt"]
-    if "VolumeMounts" in data:
+    if data.get("VolumeMounts") is not None:
         import capo_securityhub.types.volume_mount_list
 
         out["volume_mounts"] = (
@@ -75,6 +75,6 @@ def deserialize_json(data: dict) -> ContainerDetails:
                 data["VolumeMounts"]
             )
         )
-    if "Privileged" in data:
+    if data.get("Privileged") is not None:
         out["privileged"] = data["Privileged"]
     return out

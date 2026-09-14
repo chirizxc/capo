@@ -25,6 +25,6 @@ def serialize_json(value: AuditContext) -> dict:
 
 def deserialize_json(data: dict) -> AuditContext:
     out: AuditContext = {}  # type: ignore[typeddict-item]
-    if "AdditionalAuditContext" in data:
+    if data.get("AdditionalAuditContext") is not None:
         out["additional_audit_context"] = data["AdditionalAuditContext"]
     return out

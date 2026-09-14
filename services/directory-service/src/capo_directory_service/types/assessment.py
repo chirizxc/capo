@@ -151,13 +151,13 @@ def serialize_aws_json_1_1(value: Assessment) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Assessment:
     out: Assessment = {}  # type: ignore[typeddict-item]
-    if "AssessmentId" in data:
+    if data.get("AssessmentId") is not None:
         out["assessment_id"] = data["AssessmentId"]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
-    if "DnsName" in data:
+    if data.get("DnsName") is not None:
         out["dns_name"] = data["DnsName"]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_directory_service.types.assessment_start_time
 
         out["start_time"] = (
@@ -165,7 +165,7 @@ def deserialize_aws_json_1_1(data: dict) -> Assessment:
                 data["StartTime"]
             )
         )
-    if "LastUpdateDateTime" in data:
+    if data.get("LastUpdateDateTime") is not None:
         import capo_directory_service.types.last_update_date_time
 
         out["last_update_date_time"] = (
@@ -173,13 +173,13 @@ def deserialize_aws_json_1_1(data: dict) -> Assessment:
                 data["LastUpdateDateTime"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "StatusCode" in data:
+    if data.get("StatusCode") is not None:
         out["status_code"] = data["StatusCode"]
-    if "StatusReason" in data:
+    if data.get("StatusReason") is not None:
         out["status_reason"] = data["StatusReason"]
-    if "CustomerDnsIps" in data:
+    if data.get("CustomerDnsIps") is not None:
         import capo_directory_service.types.customer_dns_ips
 
         out["customer_dns_ips"] = (
@@ -187,9 +187,9 @@ def deserialize_aws_json_1_1(data: dict) -> Assessment:
                 data["CustomerDnsIps"]
             )
         )
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
-    if "SubnetIds" in data:
+    if data.get("SubnetIds") is not None:
         import capo_directory_service.types.subnet_ids
 
         out["subnet_ids"] = (
@@ -197,7 +197,7 @@ def deserialize_aws_json_1_1(data: dict) -> Assessment:
                 data["SubnetIds"]
             )
         )
-    if "SecurityGroupIds" in data:
+    if data.get("SecurityGroupIds") is not None:
         import capo_directory_service.types.security_group_ids
 
         out["security_group_ids"] = (
@@ -205,7 +205,7 @@ def deserialize_aws_json_1_1(data: dict) -> Assessment:
                 data["SecurityGroupIds"]
             )
         )
-    if "SelfManagedInstanceIds" in data:
+    if data.get("SelfManagedInstanceIds") is not None:
         import capo_directory_service.types.assessment_instance_ids
 
         out["self_managed_instance_ids"] = (
@@ -213,8 +213,8 @@ def deserialize_aws_json_1_1(data: dict) -> Assessment:
                 data["SelfManagedInstanceIds"]
             )
         )
-    if "ReportType" in data:
+    if data.get("ReportType") is not None:
         out["report_type"] = data["ReportType"]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
     return out

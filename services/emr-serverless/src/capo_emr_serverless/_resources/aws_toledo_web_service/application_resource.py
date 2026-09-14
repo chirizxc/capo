@@ -174,12 +174,13 @@ class ApplicationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_emr_serverless.types.create_application_request.CreateApplicationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_emr_serverless.types.create_application_request.CreateApplicationRequest = {
+            "release_label": release_label,
+            "type": type,
+            "client_token": client_token,
+        }
         if name is not None:
             input_["name"] = name
-        input_["release_label"] = release_label
-        input_["type"] = type
-        input_["client_token"] = client_token
         if initial_capacity is not None:
             input_["initial_capacity"] = initial_capacity
         if maximum_capacity is not None:
@@ -220,6 +221,7 @@ class ApplicationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -255,14 +257,16 @@ class ApplicationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_emr_serverless.types.get_application_request.GetApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_emr_serverless.types.get_application_request.GetApplicationRequest = {
+            "application_id": application_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -363,9 +367,10 @@ class ApplicationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_emr_serverless.types.update_application_request.UpdateApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["client_token"] = client_token
+        input_: capo_emr_serverless.types.update_application_request.UpdateApplicationRequest = {
+            "application_id": application_id,
+            "client_token": client_token,
+        }
         if initial_capacity is not None:
             input_["initial_capacity"] = initial_capacity
         if maximum_capacity is not None:
@@ -406,6 +411,7 @@ class ApplicationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -441,14 +447,16 @@ class ApplicationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_emr_serverless.types.delete_application_request.DeleteApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_emr_serverless.types.delete_application_request.DeleteApplicationRequest = {
+            "application_id": application_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -491,7 +499,7 @@ class ApplicationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_emr_serverless.types.list_applications_request.ListApplicationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_emr_serverless.types.list_applications_request.ListApplicationsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -504,6 +512,7 @@ class ApplicationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_resource_dashboard(
@@ -543,16 +552,18 @@ class ApplicationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_emr_serverless.types.get_resource_dashboard_request.GetResourceDashboardRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["resource_id"] = resource_id
-        input_["resource_type"] = resource_type
+        input_: capo_emr_serverless.types.get_resource_dashboard_request.GetResourceDashboardRequest = {
+            "application_id": application_id,
+            "resource_id": resource_id,
+            "resource_type": resource_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_application(
@@ -591,14 +602,16 @@ class ApplicationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_emr_serverless.types.start_application_request.StartApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_emr_serverless.types.start_application_request.StartApplicationRequest = {
+            "application_id": application_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_application(
@@ -634,14 +647,16 @@ class ApplicationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_emr_serverless.types.stop_application_request.StopApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_emr_serverless.types.stop_application_request.StopApplicationRequest = {
+            "application_id": application_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -754,12 +769,13 @@ class AsyncApplicationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_emr_serverless.types.create_application_request.CreateApplicationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_emr_serverless.types.create_application_request.CreateApplicationRequest = {
+            "release_label": release_label,
+            "type": type,
+            "client_token": client_token,
+        }
         if name is not None:
             input_["name"] = name
-        input_["release_label"] = release_label
-        input_["type"] = type
-        input_["client_token"] = client_token
         if initial_capacity is not None:
             input_["initial_capacity"] = initial_capacity
         if maximum_capacity is not None:
@@ -800,6 +816,7 @@ class AsyncApplicationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -836,14 +853,16 @@ class AsyncApplicationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_emr_serverless.types.get_application_request.GetApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_emr_serverless.types.get_application_request.GetApplicationRequest = {
+            "application_id": application_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -945,9 +964,10 @@ class AsyncApplicationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_emr_serverless.types.update_application_request.UpdateApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["client_token"] = client_token
+        input_: capo_emr_serverless.types.update_application_request.UpdateApplicationRequest = {
+            "application_id": application_id,
+            "client_token": client_token,
+        }
         if initial_capacity is not None:
             input_["initial_capacity"] = initial_capacity
         if maximum_capacity is not None:
@@ -988,6 +1008,7 @@ class AsyncApplicationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -1024,14 +1045,16 @@ class AsyncApplicationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_emr_serverless.types.delete_application_request.DeleteApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_emr_serverless.types.delete_application_request.DeleteApplicationRequest = {
+            "application_id": application_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -1075,7 +1098,7 @@ class AsyncApplicationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_emr_serverless.types.list_applications_request.ListApplicationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_emr_serverless.types.list_applications_request.ListApplicationsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1088,6 +1111,7 @@ class AsyncApplicationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_resource_dashboard(
@@ -1128,16 +1152,18 @@ class AsyncApplicationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_emr_serverless.types.get_resource_dashboard_request.GetResourceDashboardRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["resource_id"] = resource_id
-        input_["resource_type"] = resource_type
+        input_: capo_emr_serverless.types.get_resource_dashboard_request.GetResourceDashboardRequest = {
+            "application_id": application_id,
+            "resource_id": resource_id,
+            "resource_type": resource_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_application(
@@ -1177,14 +1203,16 @@ class AsyncApplicationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_emr_serverless.types.start_application_request.StartApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_emr_serverless.types.start_application_request.StartApplicationRequest = {
+            "application_id": application_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_application(
@@ -1221,12 +1249,14 @@ class AsyncApplicationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_emr_serverless.types.stop_application_request.StopApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_emr_serverless.types.stop_application_request.StopApplicationRequest = {
+            "application_id": application_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

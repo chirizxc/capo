@@ -31,10 +31,10 @@ def serialize_json(value: CommitDiffSourceCodeType) -> dict:
 
 def deserialize_json(data: dict) -> CommitDiffSourceCodeType:
     out: CommitDiffSourceCodeType = {}  # type: ignore[typeddict-item]
-    if "SourceCommit" in data:
+    if data.get("SourceCommit") is not None:
         out["source_commit"] = data["SourceCommit"]
-    if "DestinationCommit" in data:
+    if data.get("DestinationCommit") is not None:
         out["destination_commit"] = data["DestinationCommit"]
-    if "MergeBaseCommit" in data:
+    if data.get("MergeBaseCommit") is not None:
         out["merge_base_commit"] = data["MergeBaseCommit"]
     return out

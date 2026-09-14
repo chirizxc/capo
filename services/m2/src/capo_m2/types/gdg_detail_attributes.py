@@ -27,10 +27,10 @@ def serialize_json(value: GdgDetailAttributes) -> dict:
 
 def deserialize_json(data: dict) -> GdgDetailAttributes:
     out: GdgDetailAttributes = {}  # type: ignore[typeddict-item]
-    if "limit" in data:
+    if data.get("limit") is not None:
         out["limit"] = data["limit"]
     else:
         out["limit"] = 0
-    if "rollDisposition" in data:
+    if data.get("rollDisposition") is not None:
         out["roll_disposition"] = data["rollDisposition"]
     return out

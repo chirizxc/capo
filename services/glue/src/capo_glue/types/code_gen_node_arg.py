@@ -32,15 +32,15 @@ def serialize_aws_json_1_1(value: CodeGenNodeArg) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CodeGenNodeArg:
     out: CodeGenNodeArg = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CodeGenNodeArg.name required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("CodeGenNodeArg.value required")
-    if "Param" in data:
+    if data.get("Param") is not None:
         out["param"] = data["Param"]
     else:
         out["param"] = False

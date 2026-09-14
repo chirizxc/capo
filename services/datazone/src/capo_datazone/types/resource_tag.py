@@ -36,15 +36,15 @@ def serialize_json(value: ResourceTag) -> dict:
 
 def deserialize_json(data: dict) -> ResourceTag:
     out: ResourceTag = {}  # type: ignore[typeddict-item]
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
     else:
         raise DeserializationError("ResourceTag.key required")
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("ResourceTag.value required")
-    if "source" in data:
+    if data.get("source") is not None:
         import capo_datazone.types.resource_tag_source
 
         out["source"] = capo_datazone.types.resource_tag_source.deserialize_json(

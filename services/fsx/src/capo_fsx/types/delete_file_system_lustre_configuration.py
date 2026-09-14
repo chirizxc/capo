@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: DeleteFileSystemLustreConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteFileSystemLustreConfiguration:
     out: DeleteFileSystemLustreConfiguration = {}  # type: ignore[typeddict-item]
-    if "SkipFinalBackup" in data:
+    if data.get("SkipFinalBackup") is not None:
         out["skip_final_backup"] = data["SkipFinalBackup"]
-    if "FinalBackupTags" in data:
+    if data.get("FinalBackupTags") is not None:
         import capo_fsx.types.tags
 
         out["final_backup_tags"] = capo_fsx.types.tags.deserialize_aws_json_1_1(

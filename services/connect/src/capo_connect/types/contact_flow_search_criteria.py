@@ -82,7 +82,7 @@ def serialize_json(value: ContactFlowSearchCriteria) -> dict:
 
 def deserialize_json(data: dict) -> ContactFlowSearchCriteria:
     out: ContactFlowSearchCriteria = {}  # type: ignore[typeddict-item]
-    if "OrConditions" in data:
+    if data.get("OrConditions") is not None:
         import capo_connect.types.contact_flow_search_condition_list
 
         out["or_conditions"] = (
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> ContactFlowSearchCriteria:
                 data["OrConditions"]
             )
         )
-    if "AndConditions" in data:
+    if data.get("AndConditions") is not None:
         import capo_connect.types.contact_flow_search_condition_list
 
         out["and_conditions"] = (
@@ -98,25 +98,25 @@ def deserialize_json(data: dict) -> ContactFlowSearchCriteria:
                 data["AndConditions"]
             )
         )
-    if "StringCondition" in data:
+    if data.get("StringCondition") is not None:
         import capo_connect.types.string_condition
 
         out["string_condition"] = capo_connect.types.string_condition.deserialize_json(
             data["StringCondition"]
         )
-    if "TypeCondition" in data:
+    if data.get("TypeCondition") is not None:
         import capo_connect.types.contact_flow_type
 
         out["type_condition"] = capo_connect.types.contact_flow_type.deserialize_json(
             data["TypeCondition"]
         )
-    if "StateCondition" in data:
+    if data.get("StateCondition") is not None:
         import capo_connect.types.contact_flow_state
 
         out["state_condition"] = capo_connect.types.contact_flow_state.deserialize_json(
             data["StateCondition"]
         )
-    if "StatusCondition" in data:
+    if data.get("StatusCondition") is not None:
         import capo_connect.types.contact_flow_status
 
         out["status_condition"] = (

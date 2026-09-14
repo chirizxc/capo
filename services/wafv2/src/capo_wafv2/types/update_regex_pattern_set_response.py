@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: UpdateRegexPatternSetResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateRegexPatternSetResponse:
     out: UpdateRegexPatternSetResponse = {}  # type: ignore[typeddict-item]
-    if "NextLockToken" in data:
+    if data.get("NextLockToken") is not None:
         out["next_lock_token"] = data["NextLockToken"]
     return out

@@ -37,7 +37,7 @@ def serialize_json(value: TimeCondition) -> dict:
 
 def deserialize_json(data: dict) -> TimeCondition:
     out: TimeCondition = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
+    if data.get("Value") is not None:
         import capo_backupsearch.types._prelude.timestamp
 
         out["value"] = capo_backupsearch.types._prelude.timestamp.deserialize_json(
@@ -45,7 +45,7 @@ def deserialize_json(data: dict) -> TimeCondition:
         )
     else:
         raise DeserializationError("TimeCondition.value required")
-    if "Operator" in data:
+    if data.get("Operator") is not None:
         import capo_backupsearch.types.time_condition_operator
 
         out["operator"] = (

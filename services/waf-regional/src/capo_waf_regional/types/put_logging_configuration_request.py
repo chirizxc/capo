@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: PutLoggingConfigurationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutLoggingConfigurationRequest:
     out: PutLoggingConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "LoggingConfiguration" in data:
+    if data.get("LoggingConfiguration") is not None:
         import capo_waf_regional.types.logging_configuration
 
         out["logging_configuration"] = (

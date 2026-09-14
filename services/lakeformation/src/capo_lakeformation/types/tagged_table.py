@@ -57,13 +57,13 @@ def serialize_json(value: TaggedTable) -> dict:
 
 def deserialize_json(data: dict) -> TaggedTable:
     out: TaggedTable = {}  # type: ignore[typeddict-item]
-    if "Table" in data:
+    if data.get("Table") is not None:
         import capo_lakeformation.types.table_resource
 
         out["table"] = capo_lakeformation.types.table_resource.deserialize_json(
             data["Table"]
         )
-    if "LFTagOnDatabase" in data:
+    if data.get("LFTagOnDatabase") is not None:
         import capo_lakeformation.types.lf_tags_list
 
         out["lf_tag_on_database"] = (
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> TaggedTable:
                 data["LFTagOnDatabase"]
             )
         )
-    if "LFTagsOnTable" in data:
+    if data.get("LFTagsOnTable") is not None:
         import capo_lakeformation.types.lf_tags_list
 
         out["lf_tags_on_table"] = (
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> TaggedTable:
                 data["LFTagsOnTable"]
             )
         )
-    if "LFTagsOnColumns" in data:
+    if data.get("LFTagsOnColumns") is not None:
         import capo_lakeformation.types.column_lf_tags_list
 
         out["lf_tags_on_columns"] = (

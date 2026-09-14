@@ -45,7 +45,7 @@ def serialize_aws_json_1_1(value: IdentityProviderOAuthSetting) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IdentityProviderOAuthSetting:
     out: IdentityProviderOAuthSetting = {}  # type: ignore[typeddict-item]
-    if "DataSourceName" in data:
+    if data.get("DataSourceName") is not None:
         import capo_sagemaker.types.data_source_name
 
         out["data_source_name"] = (
@@ -53,12 +53,12 @@ def deserialize_aws_json_1_1(data: dict) -> IdentityProviderOAuthSetting:
                 data["DataSourceName"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.feature_status
 
         out["status"] = capo_sagemaker.types.feature_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "SecretArn" in data:
+    if data.get("SecretArn") is not None:
         out["secret_arn"] = data["SecretArn"]
     return out

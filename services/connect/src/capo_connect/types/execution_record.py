@@ -52,20 +52,20 @@ def serialize_json(value: ExecutionRecord) -> dict:
 
 def deserialize_json(data: dict) -> ExecutionRecord:
     out: ExecutionRecord = {}  # type: ignore[typeddict-item]
-    if "ObservationId" in data:
+    if data.get("ObservationId") is not None:
         out["observation_id"] = data["ObservationId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_connect.types.execution_record_status
 
         out["status"] = capo_connect.types.execution_record_status.deserialize_json(
             data["Status"]
         )
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         import capo_connect.types.timestamp
 
         out["timestamp"] = capo_connect.types.timestamp.deserialize_json(
             data["Timestamp"]
         )
-    if "Record" in data:
+    if data.get("Record") is not None:
         out["record"] = data["Record"]
     return out

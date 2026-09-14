@@ -27,7 +27,7 @@ def serialize_json(value: UpdateSchemaRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSchemaRequest:
     out: UpdateSchemaRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateSchemaRequest.name required")

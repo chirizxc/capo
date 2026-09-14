@@ -70,7 +70,7 @@ def serialize_aws_json_1_1(value: AssessmentConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssessmentConfiguration:
     out: AssessmentConfiguration = {}  # type: ignore[typeddict-item]
-    if "CustomerDnsIps" in data:
+    if data.get("CustomerDnsIps") is not None:
         import capo_directory_service.types.customer_dns_ips
 
         out["customer_dns_ips"] = (
@@ -80,11 +80,11 @@ def deserialize_aws_json_1_1(data: dict) -> AssessmentConfiguration:
         )
     else:
         raise DeserializationError("AssessmentConfiguration.customer_dns_ips required")
-    if "DnsName" in data:
+    if data.get("DnsName") is not None:
         out["dns_name"] = data["DnsName"]
     else:
         raise DeserializationError("AssessmentConfiguration.dns_name required")
-    if "VpcSettings" in data:
+    if data.get("VpcSettings") is not None:
         import capo_directory_service.types.directory_vpc_settings
 
         out["vpc_settings"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_1(data: dict) -> AssessmentConfiguration:
         )
     else:
         raise DeserializationError("AssessmentConfiguration.vpc_settings required")
-    if "InstanceIds" in data:
+    if data.get("InstanceIds") is not None:
         import capo_directory_service.types.assessment_instance_ids
 
         out["instance_ids"] = (
@@ -104,7 +104,7 @@ def deserialize_aws_json_1_1(data: dict) -> AssessmentConfiguration:
         )
     else:
         raise DeserializationError("AssessmentConfiguration.instance_ids required")
-    if "SecurityGroupIds" in data:
+    if data.get("SecurityGroupIds") is not None:
         import capo_directory_service.types.security_group_ids
 
         out["security_group_ids"] = (

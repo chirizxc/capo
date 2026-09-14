@@ -36,10 +36,10 @@ def serialize_json(value: AwsAppSyncGraphQlApiLogConfigDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsAppSyncGraphQlApiLogConfigDetails:
     out: AwsAppSyncGraphQlApiLogConfigDetails = {}  # type: ignore[typeddict-item]
-    if "CloudWatchLogsRoleArn" in data:
+    if data.get("CloudWatchLogsRoleArn") is not None:
         out["cloud_watch_logs_role_arn"] = data["CloudWatchLogsRoleArn"]
-    if "ExcludeVerboseContent" in data:
+    if data.get("ExcludeVerboseContent") is not None:
         out["exclude_verbose_content"] = data["ExcludeVerboseContent"]
-    if "FieldLogLevel" in data:
+    if data.get("FieldLogLevel") is not None:
         out["field_log_level"] = data["FieldLogLevel"]
     return out

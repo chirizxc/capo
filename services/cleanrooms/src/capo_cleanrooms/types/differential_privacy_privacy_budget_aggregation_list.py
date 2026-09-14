@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> DifferentialPrivacyPrivacyBudgetAggregationL
 
     out: DifferentialPrivacyPrivacyBudgetAggregationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanrooms.types.differential_privacy_privacy_budget_aggregation.deserialize_json(
                 item

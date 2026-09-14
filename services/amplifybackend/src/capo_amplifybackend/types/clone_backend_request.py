@@ -27,6 +27,6 @@ def serialize_json(value: CloneBackendRequest) -> dict:
 
 def deserialize_json(data: dict) -> CloneBackendRequest:
     out: CloneBackendRequest = {}  # type: ignore[typeddict-item]
-    if "targetEnvironmentName" in data:
+    if data.get("targetEnvironmentName") is not None:
         out["target_environment_name"] = data["targetEnvironmentName"]
     return out

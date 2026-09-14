@@ -10,6 +10,7 @@ from typing_extensions import Never
 
 import capo_neptunedata._auth._signers
 import capo_neptunedata._auth._sigv4
+import capo_neptunedata._protocol.eventstream
 import capo_neptunedata.errors.bad_request_exception
 import capo_neptunedata.errors.cancelled_by_user_exception
 import capo_neptunedata.errors.client_timeout_exception
@@ -45,83 +46,83 @@ def handle_error(response: zapros.Response) -> Never:
     match code:
         case "BadRequestException":
             raise capo_neptunedata.errors.bad_request_exception.BadRequestException.from_json(
-                data
+                data, message
             )
         case "CancelledByUserException":
             raise capo_neptunedata.errors.cancelled_by_user_exception.CancelledByUserException.from_json(
-                data
+                data, message
             )
         case "ClientTimeoutException":
             raise capo_neptunedata.errors.client_timeout_exception.ClientTimeoutException.from_json(
-                data
+                data, message
             )
         case "ConcurrentModificationException":
             raise capo_neptunedata.errors.concurrent_modification_exception.ConcurrentModificationException.from_json(
-                data
+                data, message
             )
         case "ConstraintViolationException":
             raise capo_neptunedata.errors.constraint_violation_exception.ConstraintViolationException.from_json(
-                data
+                data, message
             )
         case "FailureByQueryException":
             raise capo_neptunedata.errors.failure_by_query_exception.FailureByQueryException.from_json(
-                data
+                data, message
             )
         case "IllegalArgumentException":
             raise capo_neptunedata.errors.illegal_argument_exception.IllegalArgumentException.from_json(
-                data
+                data, message
             )
         case "InvalidArgumentException":
             raise capo_neptunedata.errors.invalid_argument_exception.InvalidArgumentException.from_json(
-                data
+                data, message
             )
         case "InvalidParameterException":
             raise capo_neptunedata.errors.invalid_parameter_exception.InvalidParameterException.from_json(
-                data
+                data, message
             )
         case "MalformedQueryException":
             raise capo_neptunedata.errors.malformed_query_exception.MalformedQueryException.from_json(
-                data
+                data, message
             )
         case "MemoryLimitExceededException":
             raise capo_neptunedata.errors.memory_limit_exceeded_exception.MemoryLimitExceededException.from_json(
-                data
+                data, message
             )
         case "MissingParameterException":
             raise capo_neptunedata.errors.missing_parameter_exception.MissingParameterException.from_json(
-                data
+                data, message
             )
         case "ParsingException":
             raise capo_neptunedata.errors.parsing_exception.ParsingException.from_json(
-                data
+                data, message
             )
         case "PreconditionsFailedException":
             raise capo_neptunedata.errors.preconditions_failed_exception.PreconditionsFailedException.from_json(
-                data
+                data, message
             )
         case "QueryLimitExceededException":
             raise capo_neptunedata.errors.query_limit_exceeded_exception.QueryLimitExceededException.from_json(
-                data
+                data, message
             )
         case "QueryLimitException":
             raise capo_neptunedata.errors.query_limit_exception.QueryLimitException.from_json(
-                data
+                data, message
             )
         case "QueryTooLargeException":
             raise capo_neptunedata.errors.query_too_large_exception.QueryTooLargeException.from_json(
-                data
+                data, message
             )
         case "TimeLimitExceededException":
             raise capo_neptunedata.errors.time_limit_exceeded_exception.TimeLimitExceededException.from_json(
-                data
+                data, message
             )
         case "TooManyRequestsException":
             raise capo_neptunedata.errors.too_many_requests_exception.TooManyRequestsException.from_json(
-                data
+                data, message
             )
         case "UnsupportedOperationException":
             raise capo_neptunedata.errors.unsupported_operation_exception.UnsupportedOperationException.from_json(
-                data
+                data, message
             )
         case _:
             raise UnknownServiceError(code=code, message=message, response=response)
@@ -131,9 +132,7 @@ def handle_response(
     response: zapros.Response,
 ) -> capo_neptunedata.types.execute_gremlin_explain_query_output.ExecuteGremlinExplainQueryOutput:
     out: capo_neptunedata.types.execute_gremlin_explain_query_output.ExecuteGremlinExplainQueryOutput = {
-        "output": capo_neptunedata.types.report_as_text.deserialize_json(
-            json.loads(response.read())
-        )
+        "output": b"".join(response.iter_raw())
     }  # type: ignore[typeddict-item]
     return out
 
@@ -142,9 +141,7 @@ async def async_handle_response(
     response: zapros.Response,
 ) -> capo_neptunedata.types.execute_gremlin_explain_query_output.ExecuteGremlinExplainQueryOutput:
     out: capo_neptunedata.types.execute_gremlin_explain_query_output.ExecuteGremlinExplainQueryOutput = {
-        "output": capo_neptunedata.types.report_as_text.deserialize_json(
-            json.loads(await response.aread())
-        )
+        "output": b"".join([chunk async for chunk in response.async_iter_raw()])
     }  # type: ignore[typeddict-item]
     return out
 
@@ -154,19 +151,26 @@ def get_signer(
     auth_schemes: list[dict[str, Any]] | None = None,
 ) -> capo_neptunedata._auth._signers.Signer | None:
     name_to_schema = {s["name"]: s for s in (auth_schemes or [])}  # noqa: F841
-    if options.credentials_provider is not None:
-        sigv4_config = (
-            name_to_schema.get("sigv4")
-            or name_to_schema.get("sigv4a")
-            or name_to_schema.get("sigv4-s3express")
-            or capo_neptunedata._auth._sigv4.build_sigv4_auth_scheme(
-                "neptune-db", options.region
-            )
+    if (
+        options.credentials_provider is not None
+        and name_to_schema
+        and not name_to_schema.keys() & {"sigv4", "sigv4-s3express"}
+    ):
+        raise RuntimeError(
+            "Endpoint requires an unsupported auth scheme: " + ", ".join(name_to_schema)
         )
-        if sigv4_config is not None:
-            return capo_neptunedata._auth._signers.SigV4Signer(
-                options.credentials_provider, auth_scheme=sigv4_config
+    if options.credentials_provider is not None:
+        endpoint_scheme = name_to_schema.get("sigv4") or name_to_schema.get(
+            "sigv4-s3express"
+        )
+        if endpoint_scheme is not None or not name_to_schema:
+            sigv4_config = capo_neptunedata._auth._sigv4.build_sigv4_auth_scheme(
+                "neptune-db", options.region, endpoint_scheme
             )
+            if sigv4_config is not None:
+                return capo_neptunedata._auth._signers.SigV4Signer(
+                    options.credentials_provider, auth_scheme=sigv4_config
+                )
     raise RuntimeError("Auth was not resolved")
 
 
@@ -183,17 +187,19 @@ def build_request(
         )
     )  # noqa: F841
     url = endpoint.url.rstrip("/") + "/gremlin/explain"
-    params: dict[str, str] = {}
+    params: list[tuple[str, str]] = []
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     body: bytes | None = json.dumps(
         capo_neptunedata.types.execute_gremlin_explain_query_input.serialize_json(
             input_
-        )
+        ),
+        allow_nan=False,
     ).encode()
     headers["content-type"] = "application/json"
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))
     normalized_url = zapros.URL(url)
-    normalized_url.search_params.update(params)
+    for k, v in params:
+        normalized_url.search_params.append(k, v)
     return zapros.Request(
         normalized_url, "POST", headers=headers, body=body, context={"signer": signer}
     )
@@ -208,7 +214,7 @@ def execute_gremlin_explain_query(
 ]:
     response = options.client.handler.handle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             response.read()
             handle_error(response)
         return handle_response(response), response
@@ -226,7 +232,7 @@ async def async_execute_gremlin_explain_query(
 ]:
     response = await options.client.handler.ahandle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             await response.aread()
             handle_error(response)
         return await async_handle_response(response), response

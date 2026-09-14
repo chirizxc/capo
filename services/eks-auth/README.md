@@ -13,9 +13,9 @@ from capo_eks_auth import AsyncEKSAuthClient
 
 
 async def main():
-    async with AsyncEKSAuthClient() as s3:
+    async with AsyncEKSAuthClient() as eks_auth:
         # Example: call the assume_role_for_pod_identity operation
-        response = await s3.assume_role_for_pod_identity()
+        response = await eks_auth.assume_role_for_pod_identity()
         print(response["subject"])
 ```
 
@@ -29,9 +29,9 @@ from capo_eks_auth.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncEKSAuthClient() as s3:
+    async with AsyncEKSAuthClient() as eks_auth:
         try:
-            await s3.assume_role_for_pod_identity()
+            await eks_auth.assume_role_for_pod_identity()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_eks_auth import AsyncEKSAuthClient
 
 
 async def main():
-    async with AsyncEKSAuthClient() as s3:
+    async with AsyncEKSAuthClient() as eks_auth:
         # Default: 3 attempts for every operation
-        response = await s3.assume_role_for_pod_identity()
+        response = await eks_auth.assume_role_for_pod_identity()
 
         # Override per operation
-        response = await s3.assume_role_for_pod_identity(config_overrides={"retry_max_attempts": 5})
+        response = await eks_auth.assume_role_for_pod_identity(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.assume_role_for_pod_identity(config_overrides={"retry_max_attempts": 1})
+        response = await eks_auth.assume_role_for_pod_identity(config_overrides={"retry_max_attempts": 1})
 ```

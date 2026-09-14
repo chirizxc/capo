@@ -23,6 +23,6 @@ def serialize_json(value: GetGovCloudAccountInformationRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetGovCloudAccountInformationRequest:
     out: GetGovCloudAccountInformationRequest = {}  # type: ignore[typeddict-item]
-    if "StandardAccountId" in data:
+    if data.get("StandardAccountId") is not None:
         out["standard_account_id"] = data["StandardAccountId"]
     return out

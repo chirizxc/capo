@@ -160,19 +160,19 @@ def serialize_aws_json_1_0(value: ScheduledQueryDescription) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ScheduledQueryDescription:
     out: ScheduledQueryDescription = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("ScheduledQueryDescription.arn required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("ScheduledQueryDescription.name required")
-    if "QueryString" in data:
+    if data.get("QueryString") is not None:
         out["query_string"] = data["QueryString"]
     else:
         raise DeserializationError("ScheduledQueryDescription.query_string required")
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_timestream_query.types.time
 
         out["creation_time"] = (
@@ -180,7 +180,7 @@ def deserialize_aws_json_1_0(data: dict) -> ScheduledQueryDescription:
                 data["CreationTime"]
             )
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_timestream_query.types.scheduled_query_state
 
         out["state"] = (
@@ -190,7 +190,7 @@ def deserialize_aws_json_1_0(data: dict) -> ScheduledQueryDescription:
         )
     else:
         raise DeserializationError("ScheduledQueryDescription.state required")
-    if "PreviousInvocationTime" in data:
+    if data.get("PreviousInvocationTime") is not None:
         import capo_timestream_query.types.time
 
         out["previous_invocation_time"] = (
@@ -198,7 +198,7 @@ def deserialize_aws_json_1_0(data: dict) -> ScheduledQueryDescription:
                 data["PreviousInvocationTime"]
             )
         )
-    if "NextInvocationTime" in data:
+    if data.get("NextInvocationTime") is not None:
         import capo_timestream_query.types.time
 
         out["next_invocation_time"] = (
@@ -206,7 +206,7 @@ def deserialize_aws_json_1_0(data: dict) -> ScheduledQueryDescription:
                 data["NextInvocationTime"]
             )
         )
-    if "ScheduleConfiguration" in data:
+    if data.get("ScheduleConfiguration") is not None:
         import capo_timestream_query.types.schedule_configuration
 
         out["schedule_configuration"] = (
@@ -218,7 +218,7 @@ def deserialize_aws_json_1_0(data: dict) -> ScheduledQueryDescription:
         raise DeserializationError(
             "ScheduledQueryDescription.schedule_configuration required"
         )
-    if "NotificationConfiguration" in data:
+    if data.get("NotificationConfiguration") is not None:
         import capo_timestream_query.types.notification_configuration
 
         out["notification_configuration"] = (
@@ -230,7 +230,7 @@ def deserialize_aws_json_1_0(data: dict) -> ScheduledQueryDescription:
         raise DeserializationError(
             "ScheduledQueryDescription.notification_configuration required"
         )
-    if "TargetConfiguration" in data:
+    if data.get("TargetConfiguration") is not None:
         import capo_timestream_query.types.target_configuration
 
         out["target_configuration"] = (
@@ -238,13 +238,13 @@ def deserialize_aws_json_1_0(data: dict) -> ScheduledQueryDescription:
                 data["TargetConfiguration"]
             )
         )
-    if "ScheduledQueryExecutionRoleArn" in data:
+    if data.get("ScheduledQueryExecutionRoleArn") is not None:
         out["scheduled_query_execution_role_arn"] = data[
             "ScheduledQueryExecutionRoleArn"
         ]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "ErrorReportConfiguration" in data:
+    if data.get("ErrorReportConfiguration") is not None:
         import capo_timestream_query.types.error_report_configuration
 
         out["error_report_configuration"] = (
@@ -252,7 +252,7 @@ def deserialize_aws_json_1_0(data: dict) -> ScheduledQueryDescription:
                 data["ErrorReportConfiguration"]
             )
         )
-    if "LastRunSummary" in data:
+    if data.get("LastRunSummary") is not None:
         import capo_timestream_query.types.scheduled_query_run_summary
 
         out["last_run_summary"] = (
@@ -260,7 +260,7 @@ def deserialize_aws_json_1_0(data: dict) -> ScheduledQueryDescription:
                 data["LastRunSummary"]
             )
         )
-    if "RecentlyFailedRuns" in data:
+    if data.get("RecentlyFailedRuns") is not None:
         import capo_timestream_query.types.scheduled_query_run_summary_list
 
         out["recently_failed_runs"] = (

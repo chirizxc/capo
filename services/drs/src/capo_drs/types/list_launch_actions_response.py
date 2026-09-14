@@ -30,10 +30,10 @@ def serialize_json(value: ListLaunchActionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListLaunchActionsResponse:
     out: ListLaunchActionsResponse = {}  # type: ignore[typeddict-item]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_drs.types.launch_actions
 
         out["items"] = capo_drs.types.launch_actions.deserialize_json(data["items"])
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

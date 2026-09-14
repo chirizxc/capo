@@ -80,13 +80,13 @@ def serialize_aws_json_1_0(value: MatchAttributes) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> MatchAttributes:
     out: MatchAttributes = {}  # type: ignore[typeddict-item]
-    if "Sources" in data:
+    if data.get("Sources") is not None:
         import capo_network_firewall.types.addresses
 
         out["sources"] = capo_network_firewall.types.addresses.deserialize_aws_json_1_0(
             data["Sources"]
         )
-    if "Destinations" in data:
+    if data.get("Destinations") is not None:
         import capo_network_firewall.types.addresses
 
         out["destinations"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_0(data: dict) -> MatchAttributes:
                 data["Destinations"]
             )
         )
-    if "SourcePorts" in data:
+    if data.get("SourcePorts") is not None:
         import capo_network_firewall.types.port_ranges
 
         out["source_ports"] = (
@@ -102,7 +102,7 @@ def deserialize_aws_json_1_0(data: dict) -> MatchAttributes:
                 data["SourcePorts"]
             )
         )
-    if "DestinationPorts" in data:
+    if data.get("DestinationPorts") is not None:
         import capo_network_firewall.types.port_ranges
 
         out["destination_ports"] = (
@@ -110,7 +110,7 @@ def deserialize_aws_json_1_0(data: dict) -> MatchAttributes:
                 data["DestinationPorts"]
             )
         )
-    if "Protocols" in data:
+    if data.get("Protocols") is not None:
         import capo_network_firewall.types.protocol_numbers
 
         out["protocols"] = (
@@ -118,7 +118,7 @@ def deserialize_aws_json_1_0(data: dict) -> MatchAttributes:
                 data["Protocols"]
             )
         )
-    if "TCPFlags" in data:
+    if data.get("TCPFlags") is not None:
         import capo_network_firewall.types.tcp_flags
 
         out["tcp_flags"] = (

@@ -30,7 +30,7 @@ def serialize_json(value: SyntheticDataEvaluationScores) -> dict:
 
 def deserialize_json(data: dict) -> SyntheticDataEvaluationScores:
     out: SyntheticDataEvaluationScores = {}  # type: ignore[typeddict-item]
-    if "dataPrivacyScores" in data:
+    if data.get("dataPrivacyScores") is not None:
         import capo_cleanroomsml.types.data_privacy_scores
 
         out["data_privacy_scores"] = (

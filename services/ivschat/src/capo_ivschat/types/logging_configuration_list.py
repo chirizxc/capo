@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> LoggingConfigurationList:
 
     out: LoggingConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_ivschat.types.logging_configuration_summary.deserialize_json(item)
         )

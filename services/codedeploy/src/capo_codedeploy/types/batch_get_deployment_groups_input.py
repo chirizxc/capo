@@ -36,13 +36,13 @@ def serialize_aws_json_1_1(value: BatchGetDeploymentGroupsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetDeploymentGroupsInput:
     out: BatchGetDeploymentGroupsInput = {}  # type: ignore[typeddict-item]
-    if "applicationName" in data:
+    if data.get("applicationName") is not None:
         out["application_name"] = data["applicationName"]
     else:
         raise DeserializationError(
             "BatchGetDeploymentGroupsInput.application_name required"
         )
-    if "deploymentGroupNames" in data:
+    if data.get("deploymentGroupNames") is not None:
         import capo_codedeploy.types.deployment_groups_list
 
         out["deployment_group_names"] = (

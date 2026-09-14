@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> AssociatedResources:
 
     out: AssociatedResources = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_partnercentral_benefits.types.associated_resource.deserialize_aws_json_1_0(
                 item

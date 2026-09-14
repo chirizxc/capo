@@ -88,7 +88,7 @@ def serialize_json(value: WordCloudOptions) -> dict:
 
 def deserialize_json(data: dict) -> WordCloudOptions:
     out: WordCloudOptions = {}  # type: ignore[typeddict-item]
-    if "WordOrientation" in data:
+    if data.get("WordOrientation") is not None:
         import capo_quicksight.types.word_cloud_word_orientation
 
         out["word_orientation"] = (
@@ -96,7 +96,7 @@ def deserialize_json(data: dict) -> WordCloudOptions:
                 data["WordOrientation"]
             )
         )
-    if "WordScaling" in data:
+    if data.get("WordScaling") is not None:
         import capo_quicksight.types.word_cloud_word_scaling
 
         out["word_scaling"] = (
@@ -104,7 +104,7 @@ def deserialize_json(data: dict) -> WordCloudOptions:
                 data["WordScaling"]
             )
         )
-    if "CloudLayout" in data:
+    if data.get("CloudLayout") is not None:
         import capo_quicksight.types.word_cloud_cloud_layout
 
         out["cloud_layout"] = (
@@ -112,7 +112,7 @@ def deserialize_json(data: dict) -> WordCloudOptions:
                 data["CloudLayout"]
             )
         )
-    if "WordCasing" in data:
+    if data.get("WordCasing") is not None:
         import capo_quicksight.types.word_cloud_word_casing
 
         out["word_casing"] = (
@@ -120,7 +120,7 @@ def deserialize_json(data: dict) -> WordCloudOptions:
                 data["WordCasing"]
             )
         )
-    if "WordPadding" in data:
+    if data.get("WordPadding") is not None:
         import capo_quicksight.types.word_cloud_word_padding
 
         out["word_padding"] = (
@@ -128,6 +128,6 @@ def deserialize_json(data: dict) -> WordCloudOptions:
                 data["WordPadding"]
             )
         )
-    if "MaximumStringLength" in data:
+    if data.get("MaximumStringLength") is not None:
         out["maximum_string_length"] = data["MaximumStringLength"]
     return out

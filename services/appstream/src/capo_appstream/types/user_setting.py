@@ -41,18 +41,18 @@ def serialize_aws_json_1_1(value: UserSetting) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UserSetting:
     out: UserSetting = {}  # type: ignore[typeddict-item]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_appstream.types.action
 
         out["action"] = capo_appstream.types.action.deserialize_aws_json_1_1(
             data["Action"]
         )
-    if "Permission" in data:
+    if data.get("Permission") is not None:
         import capo_appstream.types.permission
 
         out["permission"] = capo_appstream.types.permission.deserialize_aws_json_1_1(
             data["Permission"]
         )
-    if "MaximumLength" in data:
+    if data.get("MaximumLength") is not None:
         out["maximum_length"] = data["MaximumLength"]
     return out

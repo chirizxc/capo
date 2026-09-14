@@ -14,4 +14,4 @@ def serialize_json(value: DeployableRegions) -> list:
 
 
 def deserialize_json(data: list) -> DeployableRegions:
-    return list(data)
+    return [item for item in data if item is not None]

@@ -41,16 +41,16 @@ def serialize_json(value: PluginTypeMetadataSummary) -> dict:
 
 def deserialize_json(data: dict) -> PluginTypeMetadataSummary:
     out: PluginTypeMetadataSummary = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_qbusiness.types.plugin_type
 
         out["type"] = capo_qbusiness.types.plugin_type.deserialize_json(data["type"])
-    if "category" in data:
+    if data.get("category") is not None:
         import capo_qbusiness.types.plugin_type_category
 
         out["category"] = capo_qbusiness.types.plugin_type_category.deserialize_json(
             data["category"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

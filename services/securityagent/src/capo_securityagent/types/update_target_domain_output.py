@@ -58,15 +58,15 @@ def serialize_json(value: UpdateTargetDomainOutput) -> dict:
             )
         )
     if "created_at" in value:
-        import capo_securityagent.types._prelude.timestamp
+        import capo_securityagent._protocol.serialize
 
-        out["createdAt"] = capo_securityagent.types._prelude.timestamp.serialize_json(
+        out["createdAt"] = capo_securityagent._protocol.serialize.fmt_date_time(
             value["created_at"]
         )
     if "verified_at" in value:
-        import capo_securityagent.types._prelude.timestamp
+        import capo_securityagent._protocol.serialize
 
-        out["verifiedAt"] = capo_securityagent.types._prelude.timestamp.serialize_json(
+        out["verifiedAt"] = capo_securityagent._protocol.serialize.fmt_date_time(
             value["verified_at"]
         )
     return out
@@ -74,15 +74,15 @@ def serialize_json(value: UpdateTargetDomainOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTargetDomainOutput:
     out: UpdateTargetDomainOutput = {}  # type: ignore[typeddict-item]
-    if "targetDomainId" in data:
+    if data.get("targetDomainId") is not None:
         out["target_domain_id"] = data["targetDomainId"]
     else:
         raise DeserializationError("UpdateTargetDomainOutput.target_domain_id required")
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
     else:
         raise DeserializationError("UpdateTargetDomainOutput.domain_name required")
-    if "verificationStatus" in data:
+    if data.get("verificationStatus") is not None:
         import capo_securityagent.types.target_domain_status
 
         out["verification_status"] = (
@@ -94,9 +94,9 @@ def deserialize_json(data: dict) -> UpdateTargetDomainOutput:
         raise DeserializationError(
             "UpdateTargetDomainOutput.verification_status required"
         )
-    if "verificationStatusReason" in data:
+    if data.get("verificationStatusReason") is not None:
         out["verification_status_reason"] = data["verificationStatusReason"]
-    if "verificationDetails" in data:
+    if data.get("verificationDetails") is not None:
         import capo_securityagent.types.verification_details
 
         out["verification_details"] = (
@@ -104,20 +104,16 @@ def deserialize_json(data: dict) -> UpdateTargetDomainOutput:
                 data["verificationDetails"]
             )
         )
-    if "createdAt" in data:
-        import capo_securityagent.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = (
-            capo_securityagent.types._prelude.timestamp.deserialize_json(
-                data["createdAt"]
-            )
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
-    if "verifiedAt" in data:
-        import capo_securityagent.types._prelude.timestamp
+    if data.get("verifiedAt") is not None:
+        import datetime
 
-        out["verified_at"] = (
-            capo_securityagent.types._prelude.timestamp.deserialize_json(
-                data["verifiedAt"]
-            )
+        out["verified_at"] = datetime.datetime.fromisoformat(
+            data["verifiedAt"].replace("Z", "+00:00")
         )
     return out

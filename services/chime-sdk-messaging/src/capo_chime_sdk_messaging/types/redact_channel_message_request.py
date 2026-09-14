@@ -33,6 +33,6 @@ def serialize_json(value: RedactChannelMessageRequest) -> dict:
 
 def deserialize_json(data: dict) -> RedactChannelMessageRequest:
     out: RedactChannelMessageRequest = {}  # type: ignore[typeddict-item]
-    if "SubChannelId" in data:
+    if data.get("SubChannelId") is not None:
         out["sub_channel_id"] = data["SubChannelId"]
     return out

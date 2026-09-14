@@ -30,13 +30,13 @@ def serialize_aws_json_1_1(value: DeletePersonalAccessTokenRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeletePersonalAccessTokenRequest:
     out: DeletePersonalAccessTokenRequest = {}  # type: ignore[typeddict-item]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
     else:
         raise DeserializationError(
             "DeletePersonalAccessTokenRequest.organization_id required"
         )
-    if "PersonalAccessTokenId" in data:
+    if data.get("PersonalAccessTokenId") is not None:
         out["personal_access_token_id"] = data["PersonalAccessTokenId"]
     else:
         raise DeserializationError(

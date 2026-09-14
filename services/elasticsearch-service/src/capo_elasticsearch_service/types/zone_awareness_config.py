@@ -25,6 +25,6 @@ def serialize_json(value: ZoneAwarenessConfig) -> dict:
 
 def deserialize_json(data: dict) -> ZoneAwarenessConfig:
     out: ZoneAwarenessConfig = {}  # type: ignore[typeddict-item]
-    if "AvailabilityZoneCount" in data:
+    if data.get("AvailabilityZoneCount") is not None:
         out["availability_zone_count"] = data["AvailabilityZoneCount"]
     return out

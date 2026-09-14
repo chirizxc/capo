@@ -101,23 +101,23 @@ def serialize_json(value: GetSceneResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetSceneResponse:
     out: GetSceneResponse = {}  # type: ignore[typeddict-item]
-    if "workspaceId" in data:
+    if data.get("workspaceId") is not None:
         out["workspace_id"] = data["workspaceId"]
     else:
         raise DeserializationError("GetSceneResponse.workspace_id required")
-    if "sceneId" in data:
+    if data.get("sceneId") is not None:
         out["scene_id"] = data["sceneId"]
     else:
         raise DeserializationError("GetSceneResponse.scene_id required")
-    if "contentLocation" in data:
+    if data.get("contentLocation") is not None:
         out["content_location"] = data["contentLocation"]
     else:
         raise DeserializationError("GetSceneResponse.content_location required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("GetSceneResponse.arn required")
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_iottwinmaker.types.timestamp
 
         out["creation_date_time"] = capo_iottwinmaker.types.timestamp.deserialize_json(
@@ -125,7 +125,7 @@ def deserialize_json(data: dict) -> GetSceneResponse:
         )
     else:
         raise DeserializationError("GetSceneResponse.creation_date_time required")
-    if "updateDateTime" in data:
+    if data.get("updateDateTime") is not None:
         import capo_iottwinmaker.types.timestamp
 
         out["update_date_time"] = capo_iottwinmaker.types.timestamp.deserialize_json(
@@ -133,9 +133,9 @@ def deserialize_json(data: dict) -> GetSceneResponse:
         )
     else:
         raise DeserializationError("GetSceneResponse.update_date_time required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "capabilities" in data:
+    if data.get("capabilities") is not None:
         import capo_iottwinmaker.types.scene_capabilities
 
         out["capabilities"] = (
@@ -143,7 +143,7 @@ def deserialize_json(data: dict) -> GetSceneResponse:
                 data["capabilities"]
             )
         )
-    if "sceneMetadata" in data:
+    if data.get("sceneMetadata") is not None:
         import capo_iottwinmaker.types.scene_metadata_map
 
         out["scene_metadata"] = (
@@ -151,7 +151,7 @@ def deserialize_json(data: dict) -> GetSceneResponse:
                 data["sceneMetadata"]
             )
         )
-    if "generatedSceneMetadata" in data:
+    if data.get("generatedSceneMetadata") is not None:
         import capo_iottwinmaker.types.generated_scene_metadata_map
 
         out["generated_scene_metadata"] = (
@@ -159,7 +159,7 @@ def deserialize_json(data: dict) -> GetSceneResponse:
                 data["generatedSceneMetadata"]
             )
         )
-    if "error" in data:
+    if data.get("error") is not None:
         import capo_iottwinmaker.types.scene_error
 
         out["error"] = capo_iottwinmaker.types.scene_error.deserialize_json(

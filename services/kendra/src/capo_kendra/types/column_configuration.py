@@ -56,21 +56,21 @@ def serialize_aws_json_1_1(value: ColumnConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ColumnConfiguration:
     out: ColumnConfiguration = {}  # type: ignore[typeddict-item]
-    if "DocumentIdColumnName" in data:
+    if data.get("DocumentIdColumnName") is not None:
         out["document_id_column_name"] = data["DocumentIdColumnName"]
     else:
         raise DeserializationError(
             "ColumnConfiguration.document_id_column_name required"
         )
-    if "DocumentDataColumnName" in data:
+    if data.get("DocumentDataColumnName") is not None:
         out["document_data_column_name"] = data["DocumentDataColumnName"]
     else:
         raise DeserializationError(
             "ColumnConfiguration.document_data_column_name required"
         )
-    if "DocumentTitleColumnName" in data:
+    if data.get("DocumentTitleColumnName") is not None:
         out["document_title_column_name"] = data["DocumentTitleColumnName"]
-    if "FieldMappings" in data:
+    if data.get("FieldMappings") is not None:
         import capo_kendra.types.data_source_to_index_field_mapping_list
 
         out["field_mappings"] = (
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_1(data: dict) -> ColumnConfiguration:
                 data["FieldMappings"]
             )
         )
-    if "ChangeDetectingColumns" in data:
+    if data.get("ChangeDetectingColumns") is not None:
         import capo_kendra.types.change_detecting_columns
 
         out["change_detecting_columns"] = (

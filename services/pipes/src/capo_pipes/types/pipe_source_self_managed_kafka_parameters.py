@@ -96,15 +96,15 @@ def serialize_json(value: PipeSourceSelfManagedKafkaParameters) -> dict:
 
 def deserialize_json(data: dict) -> PipeSourceSelfManagedKafkaParameters:
     out: PipeSourceSelfManagedKafkaParameters = {}  # type: ignore[typeddict-item]
-    if "TopicName" in data:
+    if data.get("TopicName") is not None:
         out["topic_name"] = data["TopicName"]
     else:
         raise DeserializationError(
             "PipeSourceSelfManagedKafkaParameters.topic_name required"
         )
-    if "StartingPosition" in data:
+    if data.get("StartingPosition") is not None:
         out["starting_position"] = data["StartingPosition"]
-    if "AdditionalBootstrapServers" in data:
+    if data.get("AdditionalBootstrapServers") is not None:
         import capo_pipes.types.kafka_bootstrap_servers
 
         out["additional_bootstrap_servers"] = (
@@ -112,15 +112,15 @@ def deserialize_json(data: dict) -> PipeSourceSelfManagedKafkaParameters:
                 data["AdditionalBootstrapServers"]
             )
         )
-    if "BatchSize" in data:
+    if data.get("BatchSize") is not None:
         out["batch_size"] = data["BatchSize"]
-    if "MaximumBatchingWindowInSeconds" in data:
+    if data.get("MaximumBatchingWindowInSeconds") is not None:
         out["maximum_batching_window_in_seconds"] = data[
             "MaximumBatchingWindowInSeconds"
         ]
-    if "ConsumerGroupID" in data:
+    if data.get("ConsumerGroupID") is not None:
         out["consumer_group_id"] = data["ConsumerGroupID"]
-    if "Credentials" in data:
+    if data.get("Credentials") is not None:
         import capo_pipes.types.self_managed_kafka_access_configuration_credentials
 
         out["credentials"] = (
@@ -128,9 +128,9 @@ def deserialize_json(data: dict) -> PipeSourceSelfManagedKafkaParameters:
                 data["Credentials"]
             )
         )
-    if "ServerRootCaCertificate" in data:
+    if data.get("ServerRootCaCertificate") is not None:
         out["server_root_ca_certificate"] = data["ServerRootCaCertificate"]
-    if "Vpc" in data:
+    if data.get("Vpc") is not None:
         import capo_pipes.types.self_managed_kafka_access_configuration_vpc
 
         out["vpc"] = (

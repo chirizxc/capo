@@ -24,14 +24,22 @@ def serialize_aws_json_1_1(value: ColumnImportance) -> dict:
     if "column_name" in value:
         out["ColumnName"] = value["column_name"]
     if "importance" in value:
-        out["Importance"] = value["importance"]
+        out["Importance"] = (
+            "NaN"
+            if value["importance"] != value["importance"]
+            else "Infinity"
+            if value["importance"] == float("inf")
+            else "-Infinity"
+            if value["importance"] == float("-inf")
+            else value["importance"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> ColumnImportance:
     out: ColumnImportance = {}  # type: ignore[typeddict-item]
-    if "ColumnName" in data:
+    if data.get("ColumnName") is not None:
         out["column_name"] = data["ColumnName"]
-    if "Importance" in data:
-        out["importance"] = data["Importance"]
+    if data.get("Importance") is not None:
+        out["importance"] = float(data["Importance"])
     return out

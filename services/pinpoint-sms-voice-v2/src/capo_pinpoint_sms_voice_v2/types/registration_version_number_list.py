@@ -16,4 +16,4 @@ def serialize_aws_json_1_0(value: RegistrationVersionNumberList) -> list:
 
 
 def deserialize_aws_json_1_0(data: list) -> RegistrationVersionNumberList:
-    return list(data)
+    return [item for item in data if item is not None]

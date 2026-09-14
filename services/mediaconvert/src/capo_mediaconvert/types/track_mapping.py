@@ -55,7 +55,7 @@ def serialize_json(value: TrackMapping) -> dict:
 
 def deserialize_json(data: dict) -> TrackMapping:
     out: TrackMapping = {}  # type: ignore[typeddict-item]
-    if "audioTrackIndexes" in data:
+    if data.get("audioTrackIndexes") is not None:
         import capo_mediaconvert.types.__list_of__integer
 
         out["audio_track_indexes"] = (
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> TrackMapping:
                 data["audioTrackIndexes"]
             )
         )
-    if "dataTrackIndexes" in data:
+    if data.get("dataTrackIndexes") is not None:
         import capo_mediaconvert.types.__list_of__integer
 
         out["data_track_indexes"] = (
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> TrackMapping:
                 data["dataTrackIndexes"]
             )
         )
-    if "videoTrackIndexes" in data:
+    if data.get("videoTrackIndexes") is not None:
         import capo_mediaconvert.types.__list_of__integer
 
         out["video_track_indexes"] = (

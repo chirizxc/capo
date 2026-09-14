@@ -51,13 +51,13 @@ def serialize_aws_json_1_1(value: SpaceSettingsSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SpaceSettingsSummary:
     out: SpaceSettingsSummary = {}  # type: ignore[typeddict-item]
-    if "AppType" in data:
+    if data.get("AppType") is not None:
         import capo_sagemaker.types.app_type
 
         out["app_type"] = capo_sagemaker.types.app_type.deserialize_aws_json_1_1(
             data["AppType"]
         )
-    if "RemoteAccess" in data:
+    if data.get("RemoteAccess") is not None:
         import capo_sagemaker.types.feature_status
 
         out["remote_access"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> SpaceSettingsSummary:
                 data["RemoteAccess"]
             )
         )
-    if "SpaceStorageSettings" in data:
+    if data.get("SpaceStorageSettings") is not None:
         import capo_sagemaker.types.space_storage_settings
 
         out["space_storage_settings"] = (

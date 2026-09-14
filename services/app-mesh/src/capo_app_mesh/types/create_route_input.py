@@ -48,20 +48,20 @@ def serialize_json(value: CreateRouteInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateRouteInput:
     out: CreateRouteInput = {}  # type: ignore[typeddict-item]
-    if "routeName" in data:
+    if data.get("routeName") is not None:
         out["route_name"] = data["routeName"]
     else:
         raise DeserializationError("CreateRouteInput.route_name required")
-    if "spec" in data:
+    if data.get("spec") is not None:
         import capo_app_mesh.types.route_spec
 
         out["spec"] = capo_app_mesh.types.route_spec.deserialize_json(data["spec"])
     else:
         raise DeserializationError("CreateRouteInput.spec required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_app_mesh.types.tag_list
 
         out["tags"] = capo_app_mesh.types.tag_list.deserialize_json(data["tags"])
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

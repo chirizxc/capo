@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> MergeOptions:
 
     out: MergeOptions = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codecommit.types.merge_option_type_enum.deserialize_aws_json_1_1(item)
         )

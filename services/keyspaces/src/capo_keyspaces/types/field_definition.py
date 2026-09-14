@@ -27,11 +27,11 @@ def serialize_aws_json_1_0(value: FieldDefinition) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> FieldDefinition:
     out: FieldDefinition = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("FieldDefinition.name required")
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("FieldDefinition.type required")

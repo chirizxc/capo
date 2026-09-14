@@ -94,19 +94,19 @@ def serialize_json(value: BatchUpdateJobItem) -> dict:
 
 def deserialize_json(data: dict) -> BatchUpdateJobItem:
     out: BatchUpdateJobItem = {}  # type: ignore[typeddict-item]
-    if "farmId" in data:
+    if data.get("farmId") is not None:
         out["farm_id"] = data["farmId"]
     else:
         raise DeserializationError("BatchUpdateJobItem.farm_id required")
-    if "queueId" in data:
+    if data.get("queueId") is not None:
         out["queue_id"] = data["queueId"]
     else:
         raise DeserializationError("BatchUpdateJobItem.queue_id required")
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
     else:
         raise DeserializationError("BatchUpdateJobItem.job_id required")
-    if "targetTaskRunStatus" in data:
+    if data.get("targetTaskRunStatus") is not None:
         import capo_deadline.types.job_target_task_run_status
 
         out["target_task_run_status"] = (
@@ -114,13 +114,13 @@ def deserialize_json(data: dict) -> BatchUpdateJobItem:
                 data["targetTaskRunStatus"]
             )
         )
-    if "priority" in data:
+    if data.get("priority") is not None:
         out["priority"] = data["priority"]
-    if "maxFailedTasksCount" in data:
+    if data.get("maxFailedTasksCount") is not None:
         out["max_failed_tasks_count"] = data["maxFailedTasksCount"]
-    if "maxRetriesPerTask" in data:
+    if data.get("maxRetriesPerTask") is not None:
         out["max_retries_per_task"] = data["maxRetriesPerTask"]
-    if "lifecycleStatus" in data:
+    if data.get("lifecycleStatus") is not None:
         import capo_deadline.types.update_job_lifecycle_status
 
         out["lifecycle_status"] = (
@@ -128,10 +128,10 @@ def deserialize_json(data: dict) -> BatchUpdateJobItem:
                 data["lifecycleStatus"]
             )
         )
-    if "maxWorkerCount" in data:
+    if data.get("maxWorkerCount") is not None:
         out["max_worker_count"] = data["maxWorkerCount"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

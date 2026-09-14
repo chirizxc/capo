@@ -42,7 +42,7 @@ def serialize_json(value: CreateBackupPlanInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateBackupPlanInput:
     out: CreateBackupPlanInput = {}  # type: ignore[typeddict-item]
-    if "BackupPlan" in data:
+    if data.get("BackupPlan") is not None:
         import capo_backup.types.backup_plan_input
 
         out["backup_plan"] = capo_backup.types.backup_plan_input.deserialize_json(
@@ -50,12 +50,12 @@ def deserialize_json(data: dict) -> CreateBackupPlanInput:
         )
     else:
         raise DeserializationError("CreateBackupPlanInput.backup_plan required")
-    if "BackupPlanTags" in data:
+    if data.get("BackupPlanTags") is not None:
         import capo_backup.types.tags
 
         out["backup_plan_tags"] = capo_backup.types.tags.deserialize_json(
             data["BackupPlanTags"]
         )
-    if "CreatorRequestId" in data:
+    if data.get("CreatorRequestId") is not None:
         out["creator_request_id"] = data["CreatorRequestId"]
     return out

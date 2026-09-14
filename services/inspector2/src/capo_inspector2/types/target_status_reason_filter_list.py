@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> TargetStatusReasonFilterList:
 
     out: TargetStatusReasonFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_inspector2.types.cis_target_status_reason_filter.deserialize_json(item)
         )

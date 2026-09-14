@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: InputFormatConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InputFormatConfiguration:
     out: InputFormatConfiguration = {}  # type: ignore[typeddict-item]
-    if "Deserializer" in data:
+    if data.get("Deserializer") is not None:
         import capo_firehose.types.deserializer
 
         out["deserializer"] = capo_firehose.types.deserializer.deserialize_aws_json_1_1(

@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: StartMlflowTrackingServerRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartMlflowTrackingServerRequest:
     out: StartMlflowTrackingServerRequest = {}  # type: ignore[typeddict-item]
-    if "TrackingServerName" in data:
+    if data.get("TrackingServerName") is not None:
         out["tracking_server_name"] = data["TrackingServerName"]
     return out

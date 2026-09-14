@@ -32,7 +32,7 @@ def serialize_json(value: BatchUpdateDetectorRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchUpdateDetectorRequest:
     out: BatchUpdateDetectorRequest = {}  # type: ignore[typeddict-item]
-    if "detectors" in data:
+    if data.get("detectors") is not None:
         import capo_iot_events_data.types.update_detector_requests
 
         out["detectors"] = (

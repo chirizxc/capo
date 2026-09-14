@@ -48,13 +48,13 @@ def serialize_json(value: DeleteCustomVocabularyResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteCustomVocabularyResponse:
     out: DeleteCustomVocabularyResponse = {}  # type: ignore[typeddict-item]
-    if "botId" in data:
+    if data.get("botId") is not None:
         out["bot_id"] = data["botId"]
-    if "botVersion" in data:
+    if data.get("botVersion") is not None:
         out["bot_version"] = data["botVersion"]
-    if "localeId" in data:
+    if data.get("localeId") is not None:
         out["locale_id"] = data["localeId"]
-    if "customVocabularyStatus" in data:
+    if data.get("customVocabularyStatus") is not None:
         import capo_lex_models_v2.types.custom_vocabulary_status
 
         out["custom_vocabulary_status"] = (

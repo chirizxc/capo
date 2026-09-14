@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: ListWebhooksOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListWebhooksOutput:
     out: ListWebhooksOutput = {}  # type: ignore[typeddict-item]
-    if "webhooks" in data:
+    if data.get("webhooks") is not None:
         import capo_codepipeline.types.webhook_list
 
         out["webhooks"] = capo_codepipeline.types.webhook_list.deserialize_aws_json_1_1(
             data["webhooks"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -181,7 +181,7 @@ def serialize_json(value: DescribeAssetBundleImportJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeAssetBundleImportJobResponse:
     out: DescribeAssetBundleImportJobResponse = {}  # type: ignore[typeddict-item]
-    if "JobStatus" in data:
+    if data.get("JobStatus") is not None:
         import capo_quicksight.types.asset_bundle_import_job_status
 
         out["job_status"] = (
@@ -189,7 +189,7 @@ def deserialize_json(data: dict) -> DescribeAssetBundleImportJobResponse:
                 data["JobStatus"]
             )
         )
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_quicksight.types.asset_bundle_import_job_error_list
 
         out["errors"] = (
@@ -197,7 +197,7 @@ def deserialize_json(data: dict) -> DescribeAssetBundleImportJobResponse:
                 data["Errors"]
             )
         )
-    if "RollbackErrors" in data:
+    if data.get("RollbackErrors") is not None:
         import capo_quicksight.types.asset_bundle_import_job_error_list
 
         out["rollback_errors"] = (
@@ -205,19 +205,19 @@ def deserialize_json(data: dict) -> DescribeAssetBundleImportJobResponse:
                 data["RollbackErrors"]
             )
         )
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_quicksight.types.timestamp
 
         out["created_time"] = capo_quicksight.types.timestamp.deserialize_json(
             data["CreatedTime"]
         )
-    if "AssetBundleImportJobId" in data:
+    if data.get("AssetBundleImportJobId") is not None:
         out["asset_bundle_import_job_id"] = data["AssetBundleImportJobId"]
-    if "AwsAccountId" in data:
+    if data.get("AwsAccountId") is not None:
         out["aws_account_id"] = data["AwsAccountId"]
-    if "AssetBundleImportSource" in data:
+    if data.get("AssetBundleImportSource") is not None:
         import capo_quicksight.types.asset_bundle_import_source_description
 
         out["asset_bundle_import_source"] = (
@@ -225,7 +225,7 @@ def deserialize_json(data: dict) -> DescribeAssetBundleImportJobResponse:
                 data["AssetBundleImportSource"]
             )
         )
-    if "OverrideParameters" in data:
+    if data.get("OverrideParameters") is not None:
         import capo_quicksight.types.asset_bundle_import_job_override_parameters
 
         out["override_parameters"] = (
@@ -233,7 +233,7 @@ def deserialize_json(data: dict) -> DescribeAssetBundleImportJobResponse:
                 data["OverrideParameters"]
             )
         )
-    if "FailureAction" in data:
+    if data.get("FailureAction") is not None:
         import capo_quicksight.types.asset_bundle_import_failure_action
 
         out["failure_action"] = (
@@ -241,9 +241,9 @@ def deserialize_json(data: dict) -> DescribeAssetBundleImportJobResponse:
                 data["FailureAction"]
             )
         )
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
-    if "OverridePermissions" in data:
+    if data.get("OverridePermissions") is not None:
         import capo_quicksight.types.asset_bundle_import_job_override_permissions
 
         out["override_permissions"] = (
@@ -251,7 +251,7 @@ def deserialize_json(data: dict) -> DescribeAssetBundleImportJobResponse:
                 data["OverridePermissions"]
             )
         )
-    if "OverrideTags" in data:
+    if data.get("OverrideTags") is not None:
         import capo_quicksight.types.asset_bundle_import_job_override_tags
 
         out["override_tags"] = (
@@ -259,7 +259,7 @@ def deserialize_json(data: dict) -> DescribeAssetBundleImportJobResponse:
                 data["OverrideTags"]
             )
         )
-    if "OverrideValidationStrategy" in data:
+    if data.get("OverrideValidationStrategy") is not None:
         import capo_quicksight.types.asset_bundle_import_job_override_validation_strategy
 
         out["override_validation_strategy"] = (
@@ -267,7 +267,7 @@ def deserialize_json(data: dict) -> DescribeAssetBundleImportJobResponse:
                 data["OverrideValidationStrategy"]
             )
         )
-    if "Warnings" in data:
+    if data.get("Warnings") is not None:
         import capo_quicksight.types.asset_bundle_import_job_warning_list
 
         out["warnings"] = (

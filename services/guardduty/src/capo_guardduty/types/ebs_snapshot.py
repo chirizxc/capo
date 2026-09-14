@@ -23,6 +23,6 @@ def serialize_json(value: EbsSnapshot) -> dict:
 
 def deserialize_json(data: dict) -> EbsSnapshot:
     out: EbsSnapshot = {}  # type: ignore[typeddict-item]
-    if "deviceName" in data:
+    if data.get("deviceName") is not None:
         out["device_name"] = data["deviceName"]
     return out

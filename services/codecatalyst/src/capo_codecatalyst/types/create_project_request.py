@@ -34,10 +34,10 @@ def serialize_json(value: CreateProjectRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateProjectRequest:
     out: CreateProjectRequest = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError("CreateProjectRequest.display_name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

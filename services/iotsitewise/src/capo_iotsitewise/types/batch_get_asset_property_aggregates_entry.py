@@ -83,19 +83,19 @@ def serialize_json(value: BatchGetAssetPropertyAggregatesEntry) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetAssetPropertyAggregatesEntry:
     out: BatchGetAssetPropertyAggregatesEntry = {}  # type: ignore[typeddict-item]
-    if "entryId" in data:
+    if data.get("entryId") is not None:
         out["entry_id"] = data["entryId"]
     else:
         raise DeserializationError(
             "BatchGetAssetPropertyAggregatesEntry.entry_id required"
         )
-    if "assetId" in data:
+    if data.get("assetId") is not None:
         out["asset_id"] = data["assetId"]
-    if "propertyId" in data:
+    if data.get("propertyId") is not None:
         out["property_id"] = data["propertyId"]
-    if "propertyAlias" in data:
+    if data.get("propertyAlias") is not None:
         out["property_alias"] = data["propertyAlias"]
-    if "aggregateTypes" in data:
+    if data.get("aggregateTypes") is not None:
         import capo_iotsitewise.types.aggregate_types
 
         out["aggregate_types"] = (
@@ -107,13 +107,13 @@ def deserialize_json(data: dict) -> BatchGetAssetPropertyAggregatesEntry:
         raise DeserializationError(
             "BatchGetAssetPropertyAggregatesEntry.aggregate_types required"
         )
-    if "resolution" in data:
+    if data.get("resolution") is not None:
         out["resolution"] = data["resolution"]
     else:
         raise DeserializationError(
             "BatchGetAssetPropertyAggregatesEntry.resolution required"
         )
-    if "startDate" in data:
+    if data.get("startDate") is not None:
         import capo_iotsitewise.types.timestamp
 
         out["start_date"] = capo_iotsitewise.types.timestamp.deserialize_json(
@@ -123,7 +123,7 @@ def deserialize_json(data: dict) -> BatchGetAssetPropertyAggregatesEntry:
         raise DeserializationError(
             "BatchGetAssetPropertyAggregatesEntry.start_date required"
         )
-    if "endDate" in data:
+    if data.get("endDate") is not None:
         import capo_iotsitewise.types.timestamp
 
         out["end_date"] = capo_iotsitewise.types.timestamp.deserialize_json(
@@ -133,13 +133,13 @@ def deserialize_json(data: dict) -> BatchGetAssetPropertyAggregatesEntry:
         raise DeserializationError(
             "BatchGetAssetPropertyAggregatesEntry.end_date required"
         )
-    if "qualities" in data:
+    if data.get("qualities") is not None:
         import capo_iotsitewise.types.qualities
 
         out["qualities"] = capo_iotsitewise.types.qualities.deserialize_json(
             data["qualities"]
         )
-    if "timeOrdering" in data:
+    if data.get("timeOrdering") is not None:
         import capo_iotsitewise.types.time_ordering
 
         out["time_ordering"] = capo_iotsitewise.types.time_ordering.deserialize_json(

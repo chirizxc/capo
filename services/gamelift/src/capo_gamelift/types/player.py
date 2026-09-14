@@ -50,9 +50,9 @@ def serialize_aws_json_1_1(value: Player) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Player:
     out: Player = {}  # type: ignore[typeddict-item]
-    if "PlayerId" in data:
+    if data.get("PlayerId") is not None:
         out["player_id"] = data["PlayerId"]
-    if "PlayerAttributes" in data:
+    if data.get("PlayerAttributes") is not None:
         import capo_gamelift.types.player_attribute_map
 
         out["player_attributes"] = (
@@ -60,9 +60,9 @@ def deserialize_aws_json_1_1(data: dict) -> Player:
                 data["PlayerAttributes"]
             )
         )
-    if "Team" in data:
+    if data.get("Team") is not None:
         out["team"] = data["Team"]
-    if "LatencyInMs" in data:
+    if data.get("LatencyInMs") is not None:
         import capo_gamelift.types.latency_map
 
         out["latency_in_ms"] = capo_gamelift.types.latency_map.deserialize_aws_json_1_1(

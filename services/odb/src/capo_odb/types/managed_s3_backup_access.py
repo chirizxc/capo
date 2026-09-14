@@ -36,13 +36,13 @@ def serialize_aws_json_1_0(value: ManagedS3BackupAccess) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ManagedS3BackupAccess:
     out: ManagedS3BackupAccess = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_odb.types.managed_resource_status
 
         out["status"] = capo_odb.types.managed_resource_status.deserialize_aws_json_1_0(
             data["status"]
         )
-    if "ipv4Addresses" in data:
+    if data.get("ipv4Addresses") is not None:
         import capo_odb.types.string_list
 
         out["ipv4_addresses"] = capo_odb.types.string_list.deserialize_aws_json_1_0(

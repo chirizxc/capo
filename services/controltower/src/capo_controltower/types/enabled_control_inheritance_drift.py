@@ -27,7 +27,7 @@ def serialize_json(value: EnabledControlInheritanceDrift) -> dict:
 
 def deserialize_json(data: dict) -> EnabledControlInheritanceDrift:
     out: EnabledControlInheritanceDrift = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_controltower.types.drift_status
 
         out["status"] = capo_controltower.types.drift_status.deserialize_json(

@@ -76,7 +76,7 @@ def serialize_aws_json_1_0(value: ExportTr34KeyBlock) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ExportTr34KeyBlock:
     out: ExportTr34KeyBlock = {}  # type: ignore[typeddict-item]
-    if "CertificateAuthorityPublicKeyIdentifier" in data:
+    if data.get("CertificateAuthorityPublicKeyIdentifier") is not None:
         out["certificate_authority_public_key_identifier"] = data[
             "CertificateAuthorityPublicKeyIdentifier"
         ]
@@ -84,27 +84,27 @@ def deserialize_aws_json_1_0(data: dict) -> ExportTr34KeyBlock:
         raise DeserializationError(
             "ExportTr34KeyBlock.certificate_authority_public_key_identifier required"
         )
-    if "WrappingKeyCertificate" in data:
+    if data.get("WrappingKeyCertificate") is not None:
         out["wrapping_key_certificate"] = data["WrappingKeyCertificate"]
     else:
         raise DeserializationError(
             "ExportTr34KeyBlock.wrapping_key_certificate required"
         )
-    if "ExportToken" in data:
+    if data.get("ExportToken") is not None:
         out["export_token"] = data["ExportToken"]
     else:
         out["export_token"] = ""
-    if "SigningKeyIdentifier" in data:
+    if data.get("SigningKeyIdentifier") is not None:
         out["signing_key_identifier"] = data["SigningKeyIdentifier"]
-    if "SigningKeyCertificate" in data:
+    if data.get("SigningKeyCertificate") is not None:
         out["signing_key_certificate"] = data["SigningKeyCertificate"]
-    if "KeyBlockFormat" in data:
+    if data.get("KeyBlockFormat") is not None:
         out["key_block_format"] = data["KeyBlockFormat"]
     else:
         raise DeserializationError("ExportTr34KeyBlock.key_block_format required")
-    if "RandomNonce" in data:
+    if data.get("RandomNonce") is not None:
         out["random_nonce"] = data["RandomNonce"]
-    if "KeyBlockHeaders" in data:
+    if data.get("KeyBlockHeaders") is not None:
         import capo_payment_cryptography.types.key_block_headers
 
         out["key_block_headers"] = (

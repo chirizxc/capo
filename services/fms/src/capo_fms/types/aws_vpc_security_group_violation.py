@@ -52,11 +52,11 @@ def serialize_aws_json_1_1(value: AwsVPCSecurityGroupViolation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AwsVPCSecurityGroupViolation:
     out: AwsVPCSecurityGroupViolation = {}  # type: ignore[typeddict-item]
-    if "ViolationTarget" in data:
+    if data.get("ViolationTarget") is not None:
         out["violation_target"] = data["ViolationTarget"]
-    if "ViolationTargetDescription" in data:
+    if data.get("ViolationTargetDescription") is not None:
         out["violation_target_description"] = data["ViolationTargetDescription"]
-    if "PartialMatches" in data:
+    if data.get("PartialMatches") is not None:
         import capo_fms.types.partial_matches
 
         out["partial_matches"] = (
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_1(data: dict) -> AwsVPCSecurityGroupViolation:
                 data["PartialMatches"]
             )
         )
-    if "PossibleSecurityGroupRemediationActions" in data:
+    if data.get("PossibleSecurityGroupRemediationActions") is not None:
         import capo_fms.types.security_group_remediation_actions
 
         out["possible_security_group_remediation_actions"] = (

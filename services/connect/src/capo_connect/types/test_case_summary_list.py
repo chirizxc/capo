@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> TestCaseSummaryList:
 
     out: TestCaseSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.test_case_summary.deserialize_json(item))
     return out

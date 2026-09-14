@@ -52,11 +52,11 @@ def serialize_json(value: CreateOtaTaskConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateOtaTaskConfigurationRequest:
     out: CreateOtaTaskConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "PushConfig" in data:
+    if data.get("PushConfig") is not None:
         import capo_iot_managed_integrations.types.push_config
 
         out["push_config"] = (
@@ -64,6 +64,6 @@ def deserialize_json(data: dict) -> CreateOtaTaskConfigurationRequest:
                 data["PushConfig"]
             )
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

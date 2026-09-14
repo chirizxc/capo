@@ -48,16 +48,16 @@ def serialize_json(value: DakCertificateMetadata) -> dict:
 
 def deserialize_json(data: dict) -> DakCertificateMetadata:
     out: DakCertificateMetadata = {}  # type: ignore[typeddict-item]
-    if "CertificateId" in data:
+    if data.get("CertificateId") is not None:
         out["certificate_id"] = data["CertificateId"]
     else:
         raise DeserializationError("DakCertificateMetadata.certificate_id required")
-    if "MaxAllowedSignature" in data:
+    if data.get("MaxAllowedSignature") is not None:
         out["max_allowed_signature"] = data["MaxAllowedSignature"]
-    if "FactorySupport" in data:
+    if data.get("FactorySupport") is not None:
         out["factory_support"] = data["FactorySupport"]
-    if "ApId" in data:
+    if data.get("ApId") is not None:
         out["ap_id"] = data["ApId"]
-    if "DeviceTypeId" in data:
+    if data.get("DeviceTypeId") is not None:
         out["device_type_id"] = data["DeviceTypeId"]
     return out

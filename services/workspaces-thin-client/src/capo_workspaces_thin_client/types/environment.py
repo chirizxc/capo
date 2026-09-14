@@ -174,15 +174,15 @@ def serialize_json(value: Environment) -> dict:
 
 def deserialize_json(data: dict) -> Environment:
     out: Environment = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "desktopArn" in data:
+    if data.get("desktopArn") is not None:
         out["desktop_arn"] = data["desktopArn"]
-    if "desktopEndpoint" in data:
+    if data.get("desktopEndpoint") is not None:
         out["desktop_endpoint"] = data["desktopEndpoint"]
-    if "desktopType" in data:
+    if data.get("desktopType") is not None:
         import capo_workspaces_thin_client.types.desktop_type
 
         out["desktop_type"] = (
@@ -190,11 +190,11 @@ def deserialize_json(data: dict) -> Environment:
                 data["desktopType"]
             )
         )
-    if "activationCode" in data:
+    if data.get("activationCode") is not None:
         out["activation_code"] = data["activationCode"]
-    if "registeredDevicesCount" in data:
+    if data.get("registeredDevicesCount") is not None:
         out["registered_devices_count"] = data["registeredDevicesCount"]
-    if "softwareSetUpdateSchedule" in data:
+    if data.get("softwareSetUpdateSchedule") is not None:
         import capo_workspaces_thin_client.types.software_set_update_schedule
 
         out["software_set_update_schedule"] = (
@@ -202,7 +202,7 @@ def deserialize_json(data: dict) -> Environment:
                 data["softwareSetUpdateSchedule"]
             )
         )
-    if "maintenanceWindow" in data:
+    if data.get("maintenanceWindow") is not None:
         import capo_workspaces_thin_client.types.maintenance_window
 
         out["maintenance_window"] = (
@@ -210,7 +210,7 @@ def deserialize_json(data: dict) -> Environment:
                 data["maintenanceWindow"]
             )
         )
-    if "softwareSetUpdateMode" in data:
+    if data.get("softwareSetUpdateMode") is not None:
         import capo_workspaces_thin_client.types.software_set_update_mode
 
         out["software_set_update_mode"] = (
@@ -218,13 +218,13 @@ def deserialize_json(data: dict) -> Environment:
                 data["softwareSetUpdateMode"]
             )
         )
-    if "desiredSoftwareSetId" in data:
+    if data.get("desiredSoftwareSetId") is not None:
         out["desired_software_set_id"] = data["desiredSoftwareSetId"]
-    if "pendingSoftwareSetId" in data:
+    if data.get("pendingSoftwareSetId") is not None:
         out["pending_software_set_id"] = data["pendingSoftwareSetId"]
-    if "pendingSoftwareSetVersion" in data:
+    if data.get("pendingSoftwareSetVersion") is not None:
         out["pending_software_set_version"] = data["pendingSoftwareSetVersion"]
-    if "softwareSetComplianceStatus" in data:
+    if data.get("softwareSetComplianceStatus") is not None:
         import capo_workspaces_thin_client.types.environment_software_set_compliance_status
 
         out["software_set_compliance_status"] = (
@@ -232,7 +232,7 @@ def deserialize_json(data: dict) -> Environment:
                 data["softwareSetComplianceStatus"]
             )
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_workspaces_thin_client.types.timestamp
 
         out["created_at"] = (
@@ -240,7 +240,7 @@ def deserialize_json(data: dict) -> Environment:
                 data["createdAt"]
             )
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_workspaces_thin_client.types.timestamp
 
         out["updated_at"] = (
@@ -248,11 +248,11 @@ def deserialize_json(data: dict) -> Environment:
                 data["updatedAt"]
             )
         )
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
-    if "deviceCreationTags" in data:
+    if data.get("deviceCreationTags") is not None:
         import capo_workspaces_thin_client.types.device_creation_tags_map
 
         out["device_creation_tags"] = (

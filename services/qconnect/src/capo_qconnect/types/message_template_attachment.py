@@ -35,15 +35,15 @@ def serialize_json(value: MessageTemplateAttachment) -> dict:
     out: dict = {}
     out["contentDisposition"] = value["content_disposition"]
     out["name"] = value["name"]
-    import capo_qconnect.types._prelude.timestamp
+    import capo_qconnect._protocol.serialize
 
-    out["uploadedTime"] = capo_qconnect.types._prelude.timestamp.serialize_json(
+    out["uploadedTime"] = capo_qconnect._protocol.serialize.fmt_date_time(
         value["uploaded_time"]
     )
     out["url"] = value["url"]
-    import capo_qconnect.types._prelude.timestamp
+    import capo_qconnect._protocol.serialize
 
-    out["urlExpiry"] = capo_qconnect.types._prelude.timestamp.serialize_json(
+    out["urlExpiry"] = capo_qconnect._protocol.serialize.fmt_date_time(
         value["url_expiry"]
     )
     out["attachmentId"] = value["attachment_id"]
@@ -52,37 +52,37 @@ def serialize_json(value: MessageTemplateAttachment) -> dict:
 
 def deserialize_json(data: dict) -> MessageTemplateAttachment:
     out: MessageTemplateAttachment = {}  # type: ignore[typeddict-item]
-    if "contentDisposition" in data:
+    if data.get("contentDisposition") is not None:
         out["content_disposition"] = data["contentDisposition"]
     else:
         raise DeserializationError(
             "MessageTemplateAttachment.content_disposition required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("MessageTemplateAttachment.name required")
-    if "uploadedTime" in data:
-        import capo_qconnect.types._prelude.timestamp
+    if data.get("uploadedTime") is not None:
+        import datetime
 
-        out["uploaded_time"] = capo_qconnect.types._prelude.timestamp.deserialize_json(
-            data["uploadedTime"]
+        out["uploaded_time"] = datetime.datetime.fromisoformat(
+            data["uploadedTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("MessageTemplateAttachment.uploaded_time required")
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
     else:
         raise DeserializationError("MessageTemplateAttachment.url required")
-    if "urlExpiry" in data:
-        import capo_qconnect.types._prelude.timestamp
+    if data.get("urlExpiry") is not None:
+        import datetime
 
-        out["url_expiry"] = capo_qconnect.types._prelude.timestamp.deserialize_json(
-            data["urlExpiry"]
+        out["url_expiry"] = datetime.datetime.fromisoformat(
+            data["urlExpiry"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("MessageTemplateAttachment.url_expiry required")
-    if "attachmentId" in data:
+    if data.get("attachmentId") is not None:
         out["attachment_id"] = data["attachmentId"]
     else:
         raise DeserializationError("MessageTemplateAttachment.attachment_id required")

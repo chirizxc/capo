@@ -36,11 +36,11 @@ def serialize_json(value: ContactDetails) -> dict:
 
 def deserialize_json(data: dict) -> ContactDetails:
     out: ContactDetails = {}  # type: ignore[typeddict-item]
-    if "Label" in data:
+    if data.get("Label") is not None:
         out["label"] = data["Label"]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
-    if "Categories" in data:
+    if data.get("Categories") is not None:
         import capo_geo_places.types.category_list
 
         out["categories"] = capo_geo_places.types.category_list.deserialize_json(

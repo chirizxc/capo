@@ -35,18 +35,18 @@ def serialize_json(value: CreateDevEnvironmentResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateDevEnvironmentResponse:
     out: CreateDevEnvironmentResponse = {}  # type: ignore[typeddict-item]
-    if "spaceName" in data:
+    if data.get("spaceName") is not None:
         out["space_name"] = data["spaceName"]
     else:
         raise DeserializationError("CreateDevEnvironmentResponse.space_name required")
-    if "projectName" in data:
+    if data.get("projectName") is not None:
         out["project_name"] = data["projectName"]
     else:
         raise DeserializationError("CreateDevEnvironmentResponse.project_name required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("CreateDevEnvironmentResponse.id required")
-    if "vpcConnectionName" in data:
+    if data.get("vpcConnectionName") is not None:
         out["vpc_connection_name"] = data["vpcConnectionName"]
     return out

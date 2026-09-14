@@ -230,10 +230,11 @@ class MedicalImagingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medical_imaging.types.copy_image_set_request.CopyImageSetRequest = {}  # type: ignore[typeddict-item]
-        input_["datastore_id"] = datastore_id
-        input_["source_image_set_id"] = source_image_set_id
-        input_["copy_image_set_information"] = copy_image_set_information
+        input_: capo_medical_imaging.types.copy_image_set_request.CopyImageSetRequest = {
+            "datastore_id": datastore_id,
+            "source_image_set_id": source_image_set_id,
+            "copy_image_set_information": copy_image_set_information,
+        }
         if force is not None:
             input_["force"] = force
         if promote_to_primary is not None:
@@ -244,6 +245,7 @@ class MedicalImagingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_image_set(
@@ -284,15 +286,17 @@ class MedicalImagingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medical_imaging.types.delete_image_set_request.DeleteImageSetRequest = {}  # type: ignore[typeddict-item]
-        input_["datastore_id"] = datastore_id
-        input_["image_set_id"] = image_set_id
+        input_: capo_medical_imaging.types.delete_image_set_request.DeleteImageSetRequest = {
+            "datastore_id": datastore_id,
+            "image_set_id": image_set_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_dicom_import_job(
@@ -333,15 +337,17 @@ class MedicalImagingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medical_imaging.types.get_dicom_import_job_request.GetDICOMImportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["datastore_id"] = datastore_id
-        input_["job_id"] = job_id
+        input_: capo_medical_imaging.types.get_dicom_import_job_request.GetDICOMImportJobRequest = {
+            "datastore_id": datastore_id,
+            "job_id": job_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     @contextmanager
@@ -387,17 +393,21 @@ class MedicalImagingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medical_imaging.types.get_image_frame_request.GetImageFrameRequest = {}  # type: ignore[typeddict-item]
-        input_["datastore_id"] = datastore_id
-        input_["image_set_id"] = image_set_id
-        input_["image_frame_information"] = image_frame_information
+        input_: capo_medical_imaging.types.get_image_frame_request.GetImageFrameRequest = {
+            "datastore_id": datastore_id,
+            "image_set_id": image_set_id,
+            "image_frame_information": image_frame_information,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
-        yield response.output
+        try:
+            yield response.output
+        finally:
+            response.response.close()
 
     def get_image_set(
         self,
@@ -441,9 +451,10 @@ class MedicalImagingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medical_imaging.types.get_image_set_request.GetImageSetRequest = {}  # type: ignore[typeddict-item]
-        input_["datastore_id"] = datastore_id
-        input_["image_set_id"] = image_set_id
+        input_: capo_medical_imaging.types.get_image_set_request.GetImageSetRequest = {
+            "datastore_id": datastore_id,
+            "image_set_id": image_set_id,
+        }
         if version_id is not None:
             input_["version_id"] = version_id
 
@@ -452,6 +463,7 @@ class MedicalImagingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     @contextmanager
@@ -497,9 +509,10 @@ class MedicalImagingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medical_imaging.types.get_image_set_metadata_request.GetImageSetMetadataRequest = {}  # type: ignore[typeddict-item]
-        input_["datastore_id"] = datastore_id
-        input_["image_set_id"] = image_set_id
+        input_: capo_medical_imaging.types.get_image_set_metadata_request.GetImageSetMetadataRequest = {
+            "datastore_id": datastore_id,
+            "image_set_id": image_set_id,
+        }
         if version_id is not None:
             input_["version_id"] = version_id
 
@@ -508,7 +521,10 @@ class MedicalImagingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
-        yield response.output
+        try:
+            yield response.output
+        finally:
+            response.response.close()
 
     def list_dicom_import_jobs(
         self,
@@ -552,8 +568,9 @@ class MedicalImagingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medical_imaging.types.list_dicom_import_jobs_request.ListDICOMImportJobsRequest = {}  # type: ignore[typeddict-item]
-        input_["datastore_id"] = datastore_id
+        input_: capo_medical_imaging.types.list_dicom_import_jobs_request.ListDICOMImportJobsRequest = {
+            "datastore_id": datastore_id
+        }
         if job_status is not None:
             input_["job_status"] = job_status
         if next_token is not None:
@@ -566,6 +583,7 @@ class MedicalImagingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_dicom_import_jobs(
@@ -635,9 +653,10 @@ class MedicalImagingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medical_imaging.types.list_image_set_versions_request.ListImageSetVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["datastore_id"] = datastore_id
-        input_["image_set_id"] = image_set_id
+        input_: capo_medical_imaging.types.list_image_set_versions_request.ListImageSetVersionsRequest = {
+            "datastore_id": datastore_id,
+            "image_set_id": image_set_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -648,6 +667,7 @@ class MedicalImagingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_image_set_versions(
@@ -710,14 +730,16 @@ class MedicalImagingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medical_imaging.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_medical_imaging.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def search_image_sets(
@@ -766,8 +788,9 @@ class MedicalImagingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medical_imaging.types.search_image_sets_request.SearchImageSetsRequest = {}  # type: ignore[typeddict-item]
-        input_["datastore_id"] = datastore_id
+        input_: capo_medical_imaging.types.search_image_sets_request.SearchImageSetsRequest = {
+            "datastore_id": datastore_id
+        }
         if search_criteria is not None:
             input_["search_criteria"] = search_criteria
         if max_results is not None:
@@ -780,6 +803,7 @@ class MedicalImagingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_search_image_sets(
@@ -864,14 +888,15 @@ class MedicalImagingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medical_imaging.types.start_dicom_import_job_request.StartDICOMImportJobRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medical_imaging.types.start_dicom_import_job_request.StartDICOMImportJobRequest = {
+            "data_access_role_arn": data_access_role_arn,
+            "client_token": client_token,
+            "datastore_id": datastore_id,
+            "input_s3_uri": input_s3_uri,
+            "output_s3_uri": output_s3_uri,
+        }
         if job_name is not None:
             input_["job_name"] = job_name
-        input_["data_access_role_arn"] = data_access_role_arn
-        input_["client_token"] = client_token
-        input_["datastore_id"] = datastore_id
-        input_["input_s3_uri"] = input_s3_uri
-        input_["output_s3_uri"] = output_s3_uri
         if input_owner_account_id is not None:
             input_["input_owner_account_id"] = input_owner_account_id
         if import_configuration is not None:
@@ -882,6 +907,7 @@ class MedicalImagingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -921,15 +947,17 @@ class MedicalImagingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medical_imaging.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_medical_imaging.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -969,15 +997,17 @@ class MedicalImagingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medical_imaging.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_medical_imaging.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_image_set_metadata(
@@ -1027,21 +1057,23 @@ class MedicalImagingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medical_imaging.types.update_image_set_metadata_request.UpdateImageSetMetadataRequest = {}  # type: ignore[typeddict-item]
-        input_["datastore_id"] = datastore_id
-        input_["image_set_id"] = image_set_id
-        input_["latest_version_id"] = latest_version_id
+        input_: capo_medical_imaging.types.update_image_set_metadata_request.UpdateImageSetMetadataRequest = {
+            "datastore_id": datastore_id,
+            "image_set_id": image_set_id,
+            "latest_version_id": latest_version_id,
+            "update_image_set_metadata_updates": update_image_set_metadata_updates,
+        }
         if force is not None:
             input_["force"] = force
         if include_study_image_sets is not None:
             input_["include_study_image_sets"] = include_study_image_sets
-        input_["update_image_set_metadata_updates"] = update_image_set_metadata_updates
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

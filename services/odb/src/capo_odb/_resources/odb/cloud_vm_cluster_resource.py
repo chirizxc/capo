@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 from capo_odb._services._pipeline import (
@@ -120,14 +121,15 @@ class CloudVmClusterResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.create_cloud_vm_cluster_input.CreateCloudVmClusterInput = {}  # type: ignore[typeddict-item]
-        input_["cloud_exadata_infrastructure_id"] = cloud_exadata_infrastructure_id
-        input_["cpu_core_count"] = cpu_core_count
-        input_["display_name"] = display_name
-        input_["gi_version"] = gi_version
-        input_["hostname"] = hostname
-        input_["ssh_public_keys"] = ssh_public_keys
-        input_["odb_network_id"] = odb_network_id
+        input_: capo_odb.types.create_cloud_vm_cluster_input.CreateCloudVmClusterInput = {
+            "cloud_exadata_infrastructure_id": cloud_exadata_infrastructure_id,
+            "cpu_core_count": cpu_core_count,
+            "display_name": display_name,
+            "gi_version": gi_version,
+            "hostname": hostname,
+            "ssh_public_keys": ssh_public_keys,
+            "odb_network_id": odb_network_id,
+        }
         if cluster_name is not None:
             input_["cluster_name"] = cluster_name
         if data_collection_options is not None:
@@ -152,8 +154,9 @@ class CloudVmClusterResource:
             input_["system_version"] = system_version
         if time_zone is not None:
             input_["time_zone"] = time_zone
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if scan_listener_port_tcp is not None:
             input_["scan_listener_port_tcp"] = scan_listener_port_tcp
 
@@ -162,6 +165,7 @@ class CloudVmClusterResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -199,14 +203,16 @@ class CloudVmClusterResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.get_cloud_vm_cluster_input.GetCloudVmClusterInput = {}  # type: ignore[typeddict-item]
-        input_["cloud_vm_cluster_id"] = cloud_vm_cluster_id
+        input_: capo_odb.types.get_cloud_vm_cluster_input.GetCloudVmClusterInput = {
+            "cloud_vm_cluster_id": cloud_vm_cluster_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -244,14 +250,16 @@ class CloudVmClusterResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.delete_cloud_vm_cluster_input.DeleteCloudVmClusterInput = {}  # type: ignore[typeddict-item]
-        input_["cloud_vm_cluster_id"] = cloud_vm_cluster_id
+        input_: capo_odb.types.delete_cloud_vm_cluster_input.DeleteCloudVmClusterInput = {
+            "cloud_vm_cluster_id": cloud_vm_cluster_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -295,7 +303,7 @@ class CloudVmClusterResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.list_cloud_vm_clusters_input.ListCloudVmClustersInput = {}  # type: ignore[typeddict-item]
+        input_: capo_odb.types.list_cloud_vm_clusters_input.ListCloudVmClustersInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -308,6 +316,7 @@ class CloudVmClusterResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -397,14 +406,15 @@ class AsyncCloudVmClusterResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.create_cloud_vm_cluster_input.CreateCloudVmClusterInput = {}  # type: ignore[typeddict-item]
-        input_["cloud_exadata_infrastructure_id"] = cloud_exadata_infrastructure_id
-        input_["cpu_core_count"] = cpu_core_count
-        input_["display_name"] = display_name
-        input_["gi_version"] = gi_version
-        input_["hostname"] = hostname
-        input_["ssh_public_keys"] = ssh_public_keys
-        input_["odb_network_id"] = odb_network_id
+        input_: capo_odb.types.create_cloud_vm_cluster_input.CreateCloudVmClusterInput = {
+            "cloud_exadata_infrastructure_id": cloud_exadata_infrastructure_id,
+            "cpu_core_count": cpu_core_count,
+            "display_name": display_name,
+            "gi_version": gi_version,
+            "hostname": hostname,
+            "ssh_public_keys": ssh_public_keys,
+            "odb_network_id": odb_network_id,
+        }
         if cluster_name is not None:
             input_["cluster_name"] = cluster_name
         if data_collection_options is not None:
@@ -429,8 +439,9 @@ class AsyncCloudVmClusterResource:
             input_["system_version"] = system_version
         if time_zone is not None:
             input_["time_zone"] = time_zone
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if scan_listener_port_tcp is not None:
             input_["scan_listener_port_tcp"] = scan_listener_port_tcp
 
@@ -439,6 +450,7 @@ class AsyncCloudVmClusterResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -477,14 +489,16 @@ class AsyncCloudVmClusterResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.get_cloud_vm_cluster_input.GetCloudVmClusterInput = {}  # type: ignore[typeddict-item]
-        input_["cloud_vm_cluster_id"] = cloud_vm_cluster_id
+        input_: capo_odb.types.get_cloud_vm_cluster_input.GetCloudVmClusterInput = {
+            "cloud_vm_cluster_id": cloud_vm_cluster_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -523,14 +537,16 @@ class AsyncCloudVmClusterResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.delete_cloud_vm_cluster_input.DeleteCloudVmClusterInput = {}  # type: ignore[typeddict-item]
-        input_["cloud_vm_cluster_id"] = cloud_vm_cluster_id
+        input_: capo_odb.types.delete_cloud_vm_cluster_input.DeleteCloudVmClusterInput = {
+            "cloud_vm_cluster_id": cloud_vm_cluster_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -575,7 +591,7 @@ class AsyncCloudVmClusterResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.list_cloud_vm_clusters_input.ListCloudVmClustersInput = {}  # type: ignore[typeddict-item]
+        input_: capo_odb.types.list_cloud_vm_clusters_input.ListCloudVmClustersInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -588,4 +604,5 @@ class AsyncCloudVmClusterResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

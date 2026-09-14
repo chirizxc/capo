@@ -125,15 +125,15 @@ def serialize_aws_json_1_1(value: DescribeLocationObjectStorageResponse) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeLocationObjectStorageResponse:
     out: DescribeLocationObjectStorageResponse = {}  # type: ignore[typeddict-item]
-    if "LocationArn" in data:
+    if data.get("LocationArn") is not None:
         out["location_arn"] = data["LocationArn"]
-    if "LocationUri" in data:
+    if data.get("LocationUri") is not None:
         out["location_uri"] = data["LocationUri"]
-    if "AccessKey" in data:
+    if data.get("AccessKey") is not None:
         out["access_key"] = data["AccessKey"]
-    if "ServerPort" in data:
+    if data.get("ServerPort") is not None:
         out["server_port"] = data["ServerPort"]
-    if "ServerProtocol" in data:
+    if data.get("ServerProtocol") is not None:
         import capo_datasync.types.object_storage_server_protocol
 
         out["server_protocol"] = (
@@ -141,19 +141,19 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeLocationObjectStorageRespons
                 data["ServerProtocol"]
             )
         )
-    if "AgentArns" in data:
+    if data.get("AgentArns") is not None:
         import capo_datasync.types.agent_arn_list
 
         out["agent_arns"] = capo_datasync.types.agent_arn_list.deserialize_aws_json_1_1(
             data["AgentArns"]
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_datasync.types.time
 
         out["creation_time"] = capo_datasync.types.time.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "ServerCertificate" in data:
+    if data.get("ServerCertificate") is not None:
         import capo_datasync.types.object_storage_certificate
 
         out["server_certificate"] = (
@@ -161,7 +161,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeLocationObjectStorageRespons
                 data["ServerCertificate"]
             )
         )
-    if "ManagedSecretConfig" in data:
+    if data.get("ManagedSecretConfig") is not None:
         import capo_datasync.types.managed_secret_config
 
         out["managed_secret_config"] = (
@@ -169,7 +169,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeLocationObjectStorageRespons
                 data["ManagedSecretConfig"]
             )
         )
-    if "CmkSecretConfig" in data:
+    if data.get("CmkSecretConfig") is not None:
         import capo_datasync.types.cmk_secret_config
 
         out["cmk_secret_config"] = (
@@ -177,7 +177,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeLocationObjectStorageRespons
                 data["CmkSecretConfig"]
             )
         )
-    if "CustomSecretConfig" in data:
+    if data.get("CustomSecretConfig") is not None:
         import capo_datasync.types.custom_secret_config
 
         out["custom_secret_config"] = (

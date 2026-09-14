@@ -50,13 +50,13 @@ def serialize_json(value: NexGuardFileMarkerSettings) -> dict:
 
 def deserialize_json(data: dict) -> NexGuardFileMarkerSettings:
     out: NexGuardFileMarkerSettings = {}  # type: ignore[typeddict-item]
-    if "license" in data:
+    if data.get("license") is not None:
         out["license"] = data["license"]
-    if "payload" in data:
+    if data.get("payload") is not None:
         out["payload"] = data["payload"]
-    if "preset" in data:
+    if data.get("preset") is not None:
         out["preset"] = data["preset"]
-    if "strength" in data:
+    if data.get("strength") is not None:
         import capo_mediaconvert.types.watermarking_strength
 
         out["strength"] = (

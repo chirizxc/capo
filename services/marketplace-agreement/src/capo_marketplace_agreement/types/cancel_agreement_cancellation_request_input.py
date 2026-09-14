@@ -32,13 +32,13 @@ def serialize_aws_json_1_0(value: CancelAgreementCancellationRequestInput) -> di
 
 def deserialize_aws_json_1_0(data: dict) -> CancelAgreementCancellationRequestInput:
     out: CancelAgreementCancellationRequestInput = {}  # type: ignore[typeddict-item]
-    if "agreementId" in data:
+    if data.get("agreementId") is not None:
         out["agreement_id"] = data["agreementId"]
     else:
         raise DeserializationError(
             "CancelAgreementCancellationRequestInput.agreement_id required"
         )
-    if "agreementCancellationRequestId" in data:
+    if data.get("agreementCancellationRequestId") is not None:
         out["agreement_cancellation_request_id"] = data[
             "agreementCancellationRequestId"
         ]
@@ -46,7 +46,7 @@ def deserialize_aws_json_1_0(data: dict) -> CancelAgreementCancellationRequestIn
         raise DeserializationError(
             "CancelAgreementCancellationRequestInput.agreement_cancellation_request_id required"
         )
-    if "cancellationReason" in data:
+    if data.get("cancellationReason") is not None:
         out["cancellation_reason"] = data["cancellationReason"]
     else:
         raise DeserializationError(

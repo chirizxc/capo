@@ -59,13 +59,13 @@ def serialize_aws_json_1_1(value: CopySnapshotAndUpdateVolumeRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CopySnapshotAndUpdateVolumeRequest:
     out: CopySnapshotAndUpdateVolumeRequest = {}  # type: ignore[typeddict-item]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "VolumeId" in data:
+    if data.get("VolumeId") is not None:
         out["volume_id"] = data["VolumeId"]
-    if "SourceSnapshotARN" in data:
+    if data.get("SourceSnapshotARN") is not None:
         out["source_snapshot_arn"] = data["SourceSnapshotARN"]
-    if "CopyStrategy" in data:
+    if data.get("CopyStrategy") is not None:
         import capo_fsx.types.open_zfs_copy_strategy
 
         out["copy_strategy"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> CopySnapshotAndUpdateVolumeRequest:
                 data["CopyStrategy"]
             )
         )
-    if "Options" in data:
+    if data.get("Options") is not None:
         import capo_fsx.types.update_open_zfs_volume_options
 
         out["options"] = (

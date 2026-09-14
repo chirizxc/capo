@@ -29,9 +29,9 @@ def serialize_json(value: BadRequestException_) -> dict:
 
 def deserialize_json(data: dict) -> BadRequestException_:
     out: BadRequestException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     return out
 
@@ -41,15 +41,16 @@ class BadRequestException(ServiceError):
 
     code: str | None = "BadRequestException"
 
-    def __init__(self, data: BadRequestException_):
+    def __init__(self, data: BadRequestException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="BadRequestException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "BadRequestException":
-        return cls(deserialize_json(data))
+    def from_json(cls, data: dict, message: str | None = None) -> "BadRequestException":
+        return cls(deserialize_json(data), message)

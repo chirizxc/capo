@@ -36,11 +36,11 @@ def serialize_aws_json_1_0(value: GetResourceSyncStatusInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetResourceSyncStatusInput:
     out: GetResourceSyncStatusInput = {}  # type: ignore[typeddict-item]
-    if "ResourceName" in data:
+    if data.get("ResourceName") is not None:
         out["resource_name"] = data["ResourceName"]
     else:
         raise DeserializationError("GetResourceSyncStatusInput.resource_name required")
-    if "SyncType" in data:
+    if data.get("SyncType") is not None:
         import capo_codeconnections.types.sync_configuration_type
 
         out["sync_type"] = (

@@ -31,7 +31,7 @@ def serialize_json(value: SaaSProductVisibilityFilter) -> dict:
 
 def deserialize_json(data: dict) -> SaaSProductVisibilityFilter:
     out: SaaSProductVisibilityFilter = {}  # type: ignore[typeddict-item]
-    if "ValueList" in data:
+    if data.get("ValueList") is not None:
         import capo_marketplace_catalog.types.saa_s_product_visibility_filter_value_list
 
         out["value_list"] = (

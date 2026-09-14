@@ -68,9 +68,9 @@ def serialize_aws_json_1_1(value: GetVocabularyResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetVocabularyResponse:
     out: GetVocabularyResponse = {}  # type: ignore[typeddict-item]
-    if "VocabularyName" in data:
+    if data.get("VocabularyName") is not None:
         out["vocabulary_name"] = data["VocabularyName"]
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_transcribe.types.language_code
 
         out["language_code"] = (
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetVocabularyResponse:
                 data["LanguageCode"]
             )
         )
-    if "VocabularyState" in data:
+    if data.get("VocabularyState") is not None:
         import capo_transcribe.types.vocabulary_state
 
         out["vocabulary_state"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetVocabularyResponse:
                 data["VocabularyState"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_transcribe.types.date_time
 
         out["last_modified_time"] = (
@@ -94,8 +94,8 @@ def deserialize_aws_json_1_1(data: dict) -> GetVocabularyResponse:
                 data["LastModifiedTime"]
             )
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "DownloadUri" in data:
+    if data.get("DownloadUri") is not None:
         out["download_uri"] = data["DownloadUri"]
     return out

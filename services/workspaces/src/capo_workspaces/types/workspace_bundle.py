@@ -109,17 +109,17 @@ def serialize_aws_json_1_1(value: WorkspaceBundle) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WorkspaceBundle:
     out: WorkspaceBundle = {}  # type: ignore[typeddict-item]
-    if "BundleId" in data:
+    if data.get("BundleId") is not None:
         out["bundle_id"] = data["BundleId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Owner" in data:
+    if data.get("Owner") is not None:
         out["owner"] = data["Owner"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ImageId" in data:
+    if data.get("ImageId") is not None:
         out["image_id"] = data["ImageId"]
-    if "RootStorage" in data:
+    if data.get("RootStorage") is not None:
         import capo_workspaces.types.root_storage
 
         out["root_storage"] = (
@@ -127,7 +127,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspaceBundle:
                 data["RootStorage"]
             )
         )
-    if "UserStorage" in data:
+    if data.get("UserStorage") is not None:
         import capo_workspaces.types.user_storage
 
         out["user_storage"] = (
@@ -135,7 +135,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspaceBundle:
                 data["UserStorage"]
             )
         )
-    if "ComputeType" in data:
+    if data.get("ComputeType") is not None:
         import capo_workspaces.types.compute_type
 
         out["compute_type"] = (
@@ -143,7 +143,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspaceBundle:
                 data["ComputeType"]
             )
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_workspaces.types.timestamp
 
         out["last_updated_time"] = (
@@ -151,13 +151,13 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspaceBundle:
                 data["LastUpdatedTime"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_workspaces.types.timestamp
 
         out["creation_time"] = capo_workspaces.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_workspaces.types.workspace_bundle_state
 
         out["state"] = (
@@ -165,7 +165,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspaceBundle:
                 data["State"]
             )
         )
-    if "BundleType" in data:
+    if data.get("BundleType") is not None:
         import capo_workspaces.types.bundle_type
 
         out["bundle_type"] = capo_workspaces.types.bundle_type.deserialize_aws_json_1_1(

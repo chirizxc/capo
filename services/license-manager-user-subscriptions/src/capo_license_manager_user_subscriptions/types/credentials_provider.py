@@ -35,7 +35,7 @@ def serialize_json(value: CredentialsProvider) -> dict:
 
 
 def deserialize_json(data: dict) -> CredentialsProvider:
-    if "SecretsManagerCredentialsProvider" in data:
+    if data.get("SecretsManagerCredentialsProvider") is not None:
         import capo_license_manager_user_subscriptions.types.secrets_manager_credentials_provider
 
         return {

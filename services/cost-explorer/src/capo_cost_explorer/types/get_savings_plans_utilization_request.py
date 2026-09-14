@@ -57,7 +57,7 @@ def serialize_aws_json_1_1(value: GetSavingsPlansUtilizationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetSavingsPlansUtilizationRequest:
     out: GetSavingsPlansUtilizationRequest = {}  # type: ignore[typeddict-item]
-    if "TimePeriod" in data:
+    if data.get("TimePeriod") is not None:
         import capo_cost_explorer.types.date_interval
 
         out["time_period"] = (
@@ -69,7 +69,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetSavingsPlansUtilizationRequest:
         raise DeserializationError(
             "GetSavingsPlansUtilizationRequest.time_period required"
         )
-    if "Granularity" in data:
+    if data.get("Granularity") is not None:
         import capo_cost_explorer.types.granularity
 
         out["granularity"] = (
@@ -77,13 +77,13 @@ def deserialize_aws_json_1_1(data: dict) -> GetSavingsPlansUtilizationRequest:
                 data["Granularity"]
             )
         )
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_cost_explorer.types.expression
 
         out["filter"] = capo_cost_explorer.types.expression.deserialize_aws_json_1_1(
             data["Filter"]
         )
-    if "SortBy" in data:
+    if data.get("SortBy") is not None:
         import capo_cost_explorer.types.sort_definition
 
         out["sort_by"] = (

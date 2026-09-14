@@ -28,12 +28,12 @@ def serialize_aws_json_1_0(value: GetServiceSyncBlockerSummaryInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetServiceSyncBlockerSummaryInput:
     out: GetServiceSyncBlockerSummaryInput = {}  # type: ignore[typeddict-item]
-    if "serviceName" in data:
+    if data.get("serviceName") is not None:
         out["service_name"] = data["serviceName"]
     else:
         raise DeserializationError(
             "GetServiceSyncBlockerSummaryInput.service_name required"
         )
-    if "serviceInstanceName" in data:
+    if data.get("serviceInstanceName") is not None:
         out["service_instance_name"] = data["serviceInstanceName"]
     return out

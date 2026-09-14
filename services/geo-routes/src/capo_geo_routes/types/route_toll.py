@@ -51,9 +51,9 @@ def serialize_json(value: RouteToll) -> dict:
 
 def deserialize_json(data: dict) -> RouteToll:
     out: RouteToll = {}  # type: ignore[typeddict-item]
-    if "Country" in data:
+    if data.get("Country") is not None:
         out["country"] = data["Country"]
-    if "PaymentSites" in data:
+    if data.get("PaymentSites") is not None:
         import capo_geo_routes.types.route_toll_payment_site_list
 
         out["payment_sites"] = (
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> RouteToll:
         )
     else:
         raise DeserializationError("RouteToll.payment_sites required")
-    if "Rates" in data:
+    if data.get("Rates") is not None:
         import capo_geo_routes.types.route_toll_rate_list
 
         out["rates"] = capo_geo_routes.types.route_toll_rate_list.deserialize_json(
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> RouteToll:
         )
     else:
         raise DeserializationError("RouteToll.rates required")
-    if "Systems" in data:
+    if data.get("Systems") is not None:
         import capo_geo_routes.types.index_list
 
         out["systems"] = capo_geo_routes.types.index_list.deserialize_json(

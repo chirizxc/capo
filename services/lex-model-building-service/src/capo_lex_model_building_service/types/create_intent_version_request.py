@@ -26,6 +26,6 @@ def serialize_json(value: CreateIntentVersionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateIntentVersionRequest:
     out: CreateIntentVersionRequest = {}  # type: ignore[typeddict-item]
-    if "checksum" in data:
+    if data.get("checksum") is not None:
         out["checksum"] = data["checksum"]
     return out

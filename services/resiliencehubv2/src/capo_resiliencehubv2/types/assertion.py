@@ -57,19 +57,19 @@ def serialize_json(value: Assertion) -> dict:
 
 def deserialize_json(data: dict) -> Assertion:
     out: Assertion = {}  # type: ignore[typeddict-item]
-    if "serviceArn" in data:
+    if data.get("serviceArn") is not None:
         out["service_arn"] = data["serviceArn"]
     else:
         raise DeserializationError("Assertion.service_arn required")
-    if "assertionId" in data:
+    if data.get("assertionId") is not None:
         out["assertion_id"] = data["assertionId"]
     else:
         raise DeserializationError("Assertion.assertion_id required")
-    if "text" in data:
+    if data.get("text") is not None:
         out["text"] = data["text"]
     else:
         raise DeserializationError("Assertion.text required")
-    if "source" in data:
+    if data.get("source") is not None:
         import capo_resiliencehubv2.types.assertion_source
 
         out["source"] = capo_resiliencehubv2.types.assertion_source.deserialize_json(
@@ -77,7 +77,7 @@ def deserialize_json(data: dict) -> Assertion:
         )
     else:
         raise DeserializationError("Assertion.source required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_resiliencehubv2.types._prelude.timestamp
 
         out["created_at"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> Assertion:
                 data["createdAt"]
             )
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_resiliencehubv2.types._prelude.timestamp
 
         out["updated_at"] = (

@@ -46,16 +46,16 @@ def serialize_aws_json_1_1(value: DeleteBGPPeerRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteBGPPeerRequest:
     out: DeleteBGPPeerRequest = {}  # type: ignore[typeddict-item]
-    if "virtualInterfaceId" in data:
+    if data.get("virtualInterfaceId") is not None:
         out["virtual_interface_id"] = data["virtualInterfaceId"]
-    if "asn" in data:
+    if data.get("asn") is not None:
         out["asn"] = data["asn"]
     else:
         out["asn"] = 0
-    if "asnLong" in data:
+    if data.get("asnLong") is not None:
         out["asn_long"] = data["asnLong"]
-    if "customerAddress" in data:
+    if data.get("customerAddress") is not None:
         out["customer_address"] = data["customerAddress"]
-    if "bgpPeerId" in data:
+    if data.get("bgpPeerId") is not None:
         out["bgp_peer_id"] = data["bgpPeerId"]
     return out

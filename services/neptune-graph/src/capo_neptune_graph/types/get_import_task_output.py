@@ -90,31 +90,31 @@ def serialize_json(value: GetImportTaskOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetImportTaskOutput:
     out: GetImportTaskOutput = {}  # type: ignore[typeddict-item]
-    if "graphId" in data:
+    if data.get("graphId") is not None:
         out["graph_id"] = data["graphId"]
-    if "taskId" in data:
+    if data.get("taskId") is not None:
         out["task_id"] = data["taskId"]
     else:
         raise DeserializationError("GetImportTaskOutput.task_id required")
-    if "source" in data:
+    if data.get("source") is not None:
         out["source"] = data["source"]
     else:
         raise DeserializationError("GetImportTaskOutput.source required")
-    if "format" in data:
+    if data.get("format") is not None:
         import capo_neptune_graph.types.format
 
         out["format"] = capo_neptune_graph.types.format.deserialize_json(data["format"])
-    if "parquetType" in data:
+    if data.get("parquetType") is not None:
         import capo_neptune_graph.types.parquet_type
 
         out["parquet_type"] = capo_neptune_graph.types.parquet_type.deserialize_json(
             data["parquetType"]
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("GetImportTaskOutput.role_arn required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_neptune_graph.types.import_task_status
 
         out["status"] = capo_neptune_graph.types.import_task_status.deserialize_json(
@@ -122,7 +122,7 @@ def deserialize_json(data: dict) -> GetImportTaskOutput:
         )
     else:
         raise DeserializationError("GetImportTaskOutput.status required")
-    if "importOptions" in data:
+    if data.get("importOptions") is not None:
         import capo_neptune_graph.types.import_options
 
         out["import_options"] = (
@@ -130,7 +130,7 @@ def deserialize_json(data: dict) -> GetImportTaskOutput:
                 data["importOptions"]
             )
         )
-    if "importTaskDetails" in data:
+    if data.get("importTaskDetails") is not None:
         import capo_neptune_graph.types.import_task_details
 
         out["import_task_details"] = (
@@ -138,8 +138,8 @@ def deserialize_json(data: dict) -> GetImportTaskOutput:
                 data["importTaskDetails"]
             )
         )
-    if "attemptNumber" in data:
+    if data.get("attemptNumber") is not None:
         out["attempt_number"] = data["attemptNumber"]
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
     return out

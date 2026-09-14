@@ -13,9 +13,9 @@ from capo_uxc import AsyncuxcClient
 
 
 async def main():
-    async with AsyncuxcClient() as s3:
+    async with AsyncuxcClient() as uxc:
         # Example: call the get_account_customizations operation
-        response = await s3.get_account_customizations()
+        response = await uxc.get_account_customizations()
         print(response["account_color"])
 ```
 
@@ -28,9 +28,9 @@ from capo_uxc import AsyncuxcClient
 
 
 async def main():
-    async with AsyncuxcClient() as s3:
+    async with AsyncuxcClient() as uxc:
         # Example: paginate over list_services
-        async for item in s3.iter_list_services():
+        async for item in uxc.iter_list_services():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_uxc.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncuxcClient() as s3:
+    async with AsyncuxcClient() as uxc:
         try:
-            await s3.get_account_customizations()
+            await uxc.get_account_customizations()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_uxc import AsyncuxcClient
 
 
 async def main():
-    async with AsyncuxcClient() as s3:
+    async with AsyncuxcClient() as uxc:
         # Default: 3 attempts for every operation
-        response = await s3.get_account_customizations()
+        response = await uxc.get_account_customizations()
 
         # Override per operation
-        response = await s3.get_account_customizations(config_overrides={"retry_max_attempts": 5})
+        response = await uxc.get_account_customizations(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.get_account_customizations(config_overrides={"retry_max_attempts": 1})
+        response = await uxc.get_account_customizations(config_overrides={"retry_max_attempts": 1})
 ```

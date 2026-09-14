@@ -99,35 +99,35 @@ def serialize_aws_json_1_1(value: ASN1Subject) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ASN1Subject:
     out: ASN1Subject = {}  # type: ignore[typeddict-item]
-    if "Country" in data:
+    if data.get("Country") is not None:
         out["country"] = data["Country"]
-    if "Organization" in data:
+    if data.get("Organization") is not None:
         out["organization"] = data["Organization"]
-    if "OrganizationalUnit" in data:
+    if data.get("OrganizationalUnit") is not None:
         out["organizational_unit"] = data["OrganizationalUnit"]
-    if "DistinguishedNameQualifier" in data:
+    if data.get("DistinguishedNameQualifier") is not None:
         out["distinguished_name_qualifier"] = data["DistinguishedNameQualifier"]
-    if "State" in data:
+    if data.get("State") is not None:
         out["state"] = data["State"]
-    if "CommonName" in data:
+    if data.get("CommonName") is not None:
         out["common_name"] = data["CommonName"]
-    if "SerialNumber" in data:
+    if data.get("SerialNumber") is not None:
         out["serial_number"] = data["SerialNumber"]
-    if "Locality" in data:
+    if data.get("Locality") is not None:
         out["locality"] = data["Locality"]
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
-    if "Surname" in data:
+    if data.get("Surname") is not None:
         out["surname"] = data["Surname"]
-    if "GivenName" in data:
+    if data.get("GivenName") is not None:
         out["given_name"] = data["GivenName"]
-    if "Initials" in data:
+    if data.get("Initials") is not None:
         out["initials"] = data["Initials"]
-    if "Pseudonym" in data:
+    if data.get("Pseudonym") is not None:
         out["pseudonym"] = data["Pseudonym"]
-    if "GenerationQualifier" in data:
+    if data.get("GenerationQualifier") is not None:
         out["generation_qualifier"] = data["GenerationQualifier"]
-    if "CustomAttributes" in data:
+    if data.get("CustomAttributes") is not None:
         import capo_acm_pca.types.custom_attribute_list
 
         out["custom_attributes"] = (

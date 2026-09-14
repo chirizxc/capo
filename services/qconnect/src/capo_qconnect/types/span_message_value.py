@@ -74,13 +74,13 @@ def serialize_json(value: SpanMessageValue) -> dict:
 
 
 def deserialize_json(data: dict) -> SpanMessageValue:
-    if "text" in data:
+    if data.get("text") is not None:
         import capo_qconnect.types.span_text_value
 
         return {
             "text": capo_qconnect.types.span_text_value.deserialize_json(data["text"])
         }
-    elif "toolUse" in data:
+    elif data.get("toolUse") is not None:
         import capo_qconnect.types.span_tool_use_value
 
         return {
@@ -88,7 +88,7 @@ def deserialize_json(data: dict) -> SpanMessageValue:
                 data["toolUse"]
             )
         }
-    elif "toolResult" in data:
+    elif data.get("toolResult") is not None:
         import capo_qconnect.types.span_tool_result_value
 
         return {
@@ -96,7 +96,7 @@ def deserialize_json(data: dict) -> SpanMessageValue:
                 data["toolResult"]
             )
         }
-    elif "reasoning" in data:
+    elif data.get("reasoning") is not None:
         import capo_qconnect.types.span_reasoning_value
 
         return {

@@ -35,9 +35,9 @@ def serialize_aws_json_1_0(value: GetResourceOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetResourceOutput:
     out: GetResourceOutput = {}  # type: ignore[typeddict-item]
-    if "TypeName" in data:
+    if data.get("TypeName") is not None:
         out["type_name"] = data["TypeName"]
-    if "ResourceDescription" in data:
+    if data.get("ResourceDescription") is not None:
         import capo_cloudcontrol.types.resource_description
 
         out["resource_description"] = (

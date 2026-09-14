@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: ReservedNodesOfferingNotFoundFault_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReservedNodesOfferingNotFoundFault_:
     out: ReservedNodesOfferingNotFoundFault_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,20 @@ class ReservedNodesOfferingNotFoundFault(ServiceError):
 
     code: str | None = "ReservedNodesOfferingNotFoundFault"
 
-    def __init__(self, data: ReservedNodesOfferingNotFoundFault_):
+    def __init__(
+        self, data: ReservedNodesOfferingNotFoundFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ReservedNodesOfferingNotFoundFault",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "ReservedNodesOfferingNotFoundFault":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "ReservedNodesOfferingNotFoundFault":
+        return cls(deserialize_aws_json_1_1(data), message)

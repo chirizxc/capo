@@ -77,25 +77,25 @@ def serialize_aws_json_1_0(value: Expression) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Expression:
     out: Expression = {}  # type: ignore[typeddict-item]
-    if "or" in data:
+    if data.get("or") is not None:
         import capo_bcm_dashboards.types.expressions
 
         out["or"] = capo_bcm_dashboards.types.expressions.deserialize_aws_json_1_0(
             data["or"]
         )
-    if "and" in data:
+    if data.get("and") is not None:
         import capo_bcm_dashboards.types.expressions
 
         out["and"] = capo_bcm_dashboards.types.expressions.deserialize_aws_json_1_0(
             data["and"]
         )
-    if "not" in data:
+    if data.get("not") is not None:
         import capo_bcm_dashboards.types.expression
 
         out["not"] = capo_bcm_dashboards.types.expression.deserialize_aws_json_1_0(
             data["not"]
         )
-    if "dimensions" in data:
+    if data.get("dimensions") is not None:
         import capo_bcm_dashboards.types.dimension_values
 
         out["dimensions"] = (
@@ -103,13 +103,13 @@ def deserialize_aws_json_1_0(data: dict) -> Expression:
                 data["dimensions"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_bcm_dashboards.types.tag_values
 
         out["tags"] = capo_bcm_dashboards.types.tag_values.deserialize_aws_json_1_0(
             data["tags"]
         )
-    if "costCategories" in data:
+    if data.get("costCategories") is not None:
         import capo_bcm_dashboards.types.cost_category_values
 
         out["cost_categories"] = (

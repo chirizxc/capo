@@ -33,11 +33,11 @@ def serialize_aws_json_1_1(value: RecipeAction) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RecipeAction:
     out: RecipeAction = {}  # type: ignore[typeddict-item]
-    if "Operation" in data:
+    if data.get("Operation") is not None:
         out["operation"] = data["Operation"]
     else:
         raise DeserializationError("RecipeAction.operation required")
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_glue.types.parameter_map
 
         out["parameters"] = capo_glue.types.parameter_map.deserialize_aws_json_1_1(

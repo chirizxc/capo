@@ -31,10 +31,10 @@ def serialize_json(value: AwsRdsDbInstanceAssociatedRole) -> dict:
 
 def deserialize_json(data: dict) -> AwsRdsDbInstanceAssociatedRole:
     out: AwsRdsDbInstanceAssociatedRole = {}  # type: ignore[typeddict-item]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "FeatureName" in data:
+    if data.get("FeatureName") is not None:
         out["feature_name"] = data["FeatureName"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     return out

@@ -44,11 +44,11 @@ def serialize_aws_json_1_0(value: PutResourcePolicyResult) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PutResourcePolicyResult:
     out: PutResourcePolicyResult = {}  # type: ignore[typeddict-item]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "Policy" in data:
+    if data.get("Policy") is not None:
         out["policy"] = data["Policy"]
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_pinpoint_sms_voice_v2.types._prelude.timestamp
 
         out["created_timestamp"] = (

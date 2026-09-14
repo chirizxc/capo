@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: InferenceComponentSchedulingConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InferenceComponentSchedulingConfig:
     out: InferenceComponentSchedulingConfig = {}  # type: ignore[typeddict-item]
-    if "PlacementStrategy" in data:
+    if data.get("PlacementStrategy") is not None:
         import capo_sagemaker.types.inference_component_placement_strategy
 
         out["placement_strategy"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> InferenceComponentSchedulingConfig:
                 data["PlacementStrategy"]
             )
         )
-    if "AvailabilityZoneBalance" in data:
+    if data.get("AvailabilityZoneBalance") is not None:
         import capo_sagemaker.types.inference_component_availability_zone_balance
 
         out["availability_zone_balance"] = (

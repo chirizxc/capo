@@ -26,7 +26,7 @@ def serialize_json(value: S3TableOutputOptions) -> dict:
 
 def deserialize_json(data: dict) -> S3TableOutputOptions:
     out: S3TableOutputOptions = {}  # type: ignore[typeddict-item]
-    if "Location" in data:
+    if data.get("Location") is not None:
         import capo_databrew.types.s3_location
 
         out["location"] = capo_databrew.types.s3_location.deserialize_json(

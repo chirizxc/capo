@@ -120,21 +120,21 @@ def serialize_aws_json_1_1(value: Session) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Session:
     out: Session = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
-    if "StackName" in data:
+    if data.get("StackName") is not None:
         out["stack_name"] = data["StackName"]
-    if "FleetName" in data:
+    if data.get("FleetName") is not None:
         out["fleet_name"] = data["FleetName"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_appstream.types.session_state
 
         out["state"] = capo_appstream.types.session_state.deserialize_aws_json_1_1(
             data["State"]
         )
-    if "ConnectionState" in data:
+    if data.get("ConnectionState") is not None:
         import capo_appstream.types.session_connection_state
 
         out["connection_state"] = (
@@ -142,13 +142,13 @@ def deserialize_aws_json_1_1(data: dict) -> Session:
                 data["ConnectionState"]
             )
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_appstream.types.timestamp
 
         out["start_time"] = capo_appstream.types.timestamp.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "MaxExpirationTime" in data:
+    if data.get("MaxExpirationTime") is not None:
         import capo_appstream.types.timestamp
 
         out["max_expiration_time"] = (
@@ -156,7 +156,7 @@ def deserialize_aws_json_1_1(data: dict) -> Session:
                 data["MaxExpirationTime"]
             )
         )
-    if "AuthenticationType" in data:
+    if data.get("AuthenticationType") is not None:
         import capo_appstream.types.authentication_type
 
         out["authentication_type"] = (
@@ -164,7 +164,7 @@ def deserialize_aws_json_1_1(data: dict) -> Session:
                 data["AuthenticationType"]
             )
         )
-    if "NetworkAccessConfiguration" in data:
+    if data.get("NetworkAccessConfiguration") is not None:
         import capo_appstream.types.network_access_configuration
 
         out["network_access_configuration"] = (
@@ -172,9 +172,9 @@ def deserialize_aws_json_1_1(data: dict) -> Session:
                 data["NetworkAccessConfiguration"]
             )
         )
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
-    if "InstanceDrainStatus" in data:
+    if data.get("InstanceDrainStatus") is not None:
         import capo_appstream.types.instance_drain_status
 
         out["instance_drain_status"] = (

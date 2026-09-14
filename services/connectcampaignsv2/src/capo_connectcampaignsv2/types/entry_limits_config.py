@@ -27,11 +27,11 @@ def serialize_json(value: EntryLimitsConfig) -> dict:
 
 def deserialize_json(data: dict) -> EntryLimitsConfig:
     out: EntryLimitsConfig = {}  # type: ignore[typeddict-item]
-    if "maxEntryCount" in data:
+    if data.get("maxEntryCount") is not None:
         out["max_entry_count"] = data["maxEntryCount"]
     else:
         raise DeserializationError("EntryLimitsConfig.max_entry_count required")
-    if "minEntryInterval" in data:
+    if data.get("minEntryInterval") is not None:
         out["min_entry_interval"] = data["minEntryInterval"]
     else:
         raise DeserializationError("EntryLimitsConfig.min_entry_interval required")

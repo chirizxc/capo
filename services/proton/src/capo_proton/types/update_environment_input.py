@@ -87,29 +87,29 @@ def serialize_aws_json_1_0(value: UpdateEnvironmentInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateEnvironmentInput:
     out: UpdateEnvironmentInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("UpdateEnvironmentInput.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "spec" in data:
+    if data.get("spec") is not None:
         out["spec"] = data["spec"]
-    if "templateMajorVersion" in data:
+    if data.get("templateMajorVersion") is not None:
         out["template_major_version"] = data["templateMajorVersion"]
-    if "templateMinorVersion" in data:
+    if data.get("templateMinorVersion") is not None:
         out["template_minor_version"] = data["templateMinorVersion"]
-    if "protonServiceRoleArn" in data:
+    if data.get("protonServiceRoleArn") is not None:
         out["proton_service_role_arn"] = data["protonServiceRoleArn"]
-    if "deploymentType" in data:
+    if data.get("deploymentType") is not None:
         out["deployment_type"] = data["deploymentType"]
     else:
         raise DeserializationError("UpdateEnvironmentInput.deployment_type required")
-    if "environmentAccountConnectionId" in data:
+    if data.get("environmentAccountConnectionId") is not None:
         out["environment_account_connection_id"] = data[
             "environmentAccountConnectionId"
         ]
-    if "provisioningRepository" in data:
+    if data.get("provisioningRepository") is not None:
         import capo_proton.types.repository_branch_input
 
         out["provisioning_repository"] = (
@@ -117,8 +117,8 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateEnvironmentInput:
                 data["provisioningRepository"]
             )
         )
-    if "componentRoleArn" in data:
+    if data.get("componentRoleArn") is not None:
         out["component_role_arn"] = data["componentRoleArn"]
-    if "codebuildRoleArn" in data:
+    if data.get("codebuildRoleArn") is not None:
         out["codebuild_role_arn"] = data["codebuildRoleArn"]
     return out

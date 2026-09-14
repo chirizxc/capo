@@ -36,7 +36,7 @@ def serialize_json(value: ParticipatingResource) -> dict:
 
 def deserialize_json(data: dict) -> ParticipatingResource:
     out: ParticipatingResource = {}  # type: ignore[typeddict-item]
-    if "participatingResourceID" in data:
+    if data.get("participatingResourceID") is not None:
         import capo_drs.types.participating_resource_id
 
         out["participating_resource_id"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ParticipatingResource:
                 data["participatingResourceID"]
             )
         )
-    if "launchStatus" in data:
+    if data.get("launchStatus") is not None:
         out["launch_status"] = data["launchStatus"]
     return out

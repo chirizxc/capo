@@ -64,23 +64,23 @@ def serialize_json(value: HlsManifest) -> dict:
 
 def deserialize_json(data: dict) -> HlsManifest:
     out: HlsManifest = {}  # type: ignore[typeddict-item]
-    if "adMarkers" in data:
+    if data.get("adMarkers") is not None:
         import capo_mediapackage_vod.types.ad_markers
 
         out["ad_markers"] = capo_mediapackage_vod.types.ad_markers.deserialize_json(
             data["adMarkers"]
         )
-    if "includeIframeOnlyStream" in data:
+    if data.get("includeIframeOnlyStream") is not None:
         out["include_iframe_only_stream"] = data["includeIframeOnlyStream"]
-    if "manifestName" in data:
+    if data.get("manifestName") is not None:
         out["manifest_name"] = data["manifestName"]
-    if "programDateTimeIntervalSeconds" in data:
+    if data.get("programDateTimeIntervalSeconds") is not None:
         out["program_date_time_interval_seconds"] = data[
             "programDateTimeIntervalSeconds"
         ]
-    if "repeatExtXKey" in data:
+    if data.get("repeatExtXKey") is not None:
         out["repeat_ext_x_key"] = data["repeatExtXKey"]
-    if "streamSelection" in data:
+    if data.get("streamSelection") is not None:
         import capo_mediapackage_vod.types.stream_selection
 
         out["stream_selection"] = (

@@ -31,8 +31,8 @@ def serialize_aws_json_1_1(value: DeleteStorageVirtualMachineRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteStorageVirtualMachineRequest:
     out: DeleteStorageVirtualMachineRequest = {}  # type: ignore[typeddict-item]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "StorageVirtualMachineId" in data:
+    if data.get("StorageVirtualMachineId") is not None:
         out["storage_virtual_machine_id"] = data["StorageVirtualMachineId"]
     return out

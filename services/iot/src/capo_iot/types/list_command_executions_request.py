@@ -78,38 +78,38 @@ def serialize_json(value: ListCommandExecutionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListCommandExecutionsRequest:
     out: ListCommandExecutionsRequest = {}  # type: ignore[typeddict-item]
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         import capo_iot.types.command_namespace
 
         out["namespace"] = capo_iot.types.command_namespace.deserialize_json(
             data["namespace"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iot.types.command_execution_status
 
         out["status"] = capo_iot.types.command_execution_status.deserialize_json(
             data["status"]
         )
-    if "sortOrder" in data:
+    if data.get("sortOrder") is not None:
         import capo_iot.types.sort_order
 
         out["sort_order"] = capo_iot.types.sort_order.deserialize_json(
             data["sortOrder"]
         )
-    if "startedTimeFilter" in data:
+    if data.get("startedTimeFilter") is not None:
         import capo_iot.types.time_filter
 
         out["started_time_filter"] = capo_iot.types.time_filter.deserialize_json(
             data["startedTimeFilter"]
         )
-    if "completedTimeFilter" in data:
+    if data.get("completedTimeFilter") is not None:
         import capo_iot.types.time_filter
 
         out["completed_time_filter"] = capo_iot.types.time_filter.deserialize_json(
             data["completedTimeFilter"]
         )
-    if "targetArn" in data:
+    if data.get("targetArn") is not None:
         out["target_arn"] = data["targetArn"]
-    if "commandArn" in data:
+    if data.get("commandArn") is not None:
         out["command_arn"] = data["commandArn"]
     return out

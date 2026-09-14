@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: CreateDashboardResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateDashboardResponse:
     out: CreateDashboardResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("CreateDashboardResponse.arn required")

@@ -23,6 +23,6 @@ def serialize_json(value: EphemeralStorage) -> dict:
 
 def deserialize_json(data: dict) -> EphemeralStorage:
     out: EphemeralStorage = {}  # type: ignore[typeddict-item]
-    if "sizeInGiB" in data:
+    if data.get("sizeInGiB") is not None:
         out["size_in_gi_b"] = data["sizeInGiB"]
     return out

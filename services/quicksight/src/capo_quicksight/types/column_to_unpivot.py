@@ -28,8 +28,8 @@ def serialize_json(value: ColumnToUnpivot) -> dict:
 
 def deserialize_json(data: dict) -> ColumnToUnpivot:
     out: ColumnToUnpivot = {}  # type: ignore[typeddict-item]
-    if "ColumnName" in data:
+    if data.get("ColumnName") is not None:
         out["column_name"] = data["ColumnName"]
-    if "NewValue" in data:
+    if data.get("NewValue") is not None:
         out["new_value"] = data["NewValue"]
     return out

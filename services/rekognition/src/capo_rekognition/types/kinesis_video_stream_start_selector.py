@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: KinesisVideoStreamStartSelector) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> KinesisVideoStreamStartSelector:
     out: KinesisVideoStreamStartSelector = {}  # type: ignore[typeddict-item]
-    if "ProducerTimestamp" in data:
+    if data.get("ProducerTimestamp") is not None:
         out["producer_timestamp"] = data["ProducerTimestamp"]
-    if "FragmentNumber" in data:
+    if data.get("FragmentNumber") is not None:
         out["fragment_number"] = data["FragmentNumber"]
     return out

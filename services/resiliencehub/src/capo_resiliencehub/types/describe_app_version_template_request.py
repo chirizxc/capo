@@ -28,11 +28,11 @@ def serialize_json(value: DescribeAppVersionTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> DescribeAppVersionTemplateRequest:
     out: DescribeAppVersionTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "appArn" in data:
+    if data.get("appArn") is not None:
         out["app_arn"] = data["appArn"]
     else:
         raise DeserializationError("DescribeAppVersionTemplateRequest.app_arn required")
-    if "appVersion" in data:
+    if data.get("appVersion") is not None:
         out["app_version"] = data["appVersion"]
     else:
         raise DeserializationError(

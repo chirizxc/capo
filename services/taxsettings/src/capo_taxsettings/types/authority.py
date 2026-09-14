@@ -29,10 +29,10 @@ def serialize_json(value: Authority) -> dict:
 
 def deserialize_json(data: dict) -> Authority:
     out: Authority = {}  # type: ignore[typeddict-item]
-    if "country" in data:
+    if data.get("country") is not None:
         out["country"] = data["country"]
     else:
         raise DeserializationError("Authority.country required")
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
     return out

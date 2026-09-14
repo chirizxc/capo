@@ -195,25 +195,25 @@ def serialize_json(value: GetNotebookRunOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetNotebookRunOutput:
     out: GetNotebookRunOutput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("GetNotebookRunOutput.id required")
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
     else:
         raise DeserializationError("GetNotebookRunOutput.domain_id required")
-    if "owningProjectId" in data:
+    if data.get("owningProjectId") is not None:
         out["owning_project_id"] = data["owningProjectId"]
     else:
         raise DeserializationError("GetNotebookRunOutput.owning_project_id required")
-    if "notebookId" in data:
+    if data.get("notebookId") is not None:
         out["notebook_id"] = data["notebookId"]
     else:
         raise DeserializationError("GetNotebookRunOutput.notebook_id required")
-    if "scheduleId" in data:
+    if data.get("scheduleId") is not None:
         out["schedule_id"] = data["scheduleId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.notebook_run_status
 
         out["status"] = capo_datazone.types.notebook_run_status.deserialize_json(
@@ -221,25 +221,25 @@ def deserialize_json(data: dict) -> GetNotebookRunOutput:
         )
     else:
         raise DeserializationError("GetNotebookRunOutput.status required")
-    if "cellOrder" in data:
+    if data.get("cellOrder") is not None:
         import capo_datazone.types.cell_order
 
         out["cell_order"] = capo_datazone.types.cell_order.deserialize_json(
             data["cellOrder"]
         )
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         import capo_datazone.types.metadata
 
         out["metadata"] = capo_datazone.types.metadata.deserialize_json(
             data["metadata"]
         )
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_datazone.types.parameters
 
         out["parameters"] = capo_datazone.types.parameters.deserialize_json(
             data["parameters"]
         )
-    if "computeConfiguration" in data:
+    if data.get("computeConfiguration") is not None:
         import capo_datazone.types.compute_config
 
         out["compute_configuration"] = (
@@ -247,7 +247,7 @@ def deserialize_json(data: dict) -> GetNotebookRunOutput:
                 data["computeConfiguration"]
             )
         )
-    if "networkConfiguration" in data:
+    if data.get("networkConfiguration") is not None:
         import capo_datazone.types.network_config
 
         out["network_configuration"] = (
@@ -255,7 +255,7 @@ def deserialize_json(data: dict) -> GetNotebookRunOutput:
                 data["networkConfiguration"]
             )
         )
-    if "timeoutConfiguration" in data:
+    if data.get("timeoutConfiguration") is not None:
         import capo_datazone.types.timeout_config
 
         out["timeout_configuration"] = (
@@ -263,7 +263,7 @@ def deserialize_json(data: dict) -> GetNotebookRunOutput:
                 data["timeoutConfiguration"]
             )
         )
-    if "environmentConfiguration" in data:
+    if data.get("environmentConfiguration") is not None:
         import capo_datazone.types.environment_config
 
         out["environment_configuration"] = (
@@ -271,7 +271,7 @@ def deserialize_json(data: dict) -> GetNotebookRunOutput:
                 data["environmentConfiguration"]
             )
         )
-    if "storageConfiguration" in data:
+    if data.get("storageConfiguration") is not None:
         import capo_datazone.types.storage_config
 
         out["storage_configuration"] = (
@@ -279,41 +279,41 @@ def deserialize_json(data: dict) -> GetNotebookRunOutput:
                 data["storageConfiguration"]
             )
         )
-    if "triggerSource" in data:
+    if data.get("triggerSource") is not None:
         import capo_datazone.types.trigger_source
 
         out["trigger_source"] = capo_datazone.types.trigger_source.deserialize_json(
             data["triggerSource"]
         )
-    if "error" in data:
+    if data.get("error") is not None:
         import capo_datazone.types.notebook_run_error
 
         out["error"] = capo_datazone.types.notebook_run_error.deserialize_json(
             data["error"]
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_datazone.types.created_at
 
         out["created_at"] = capo_datazone.types.created_at.deserialize_json(
             data["createdAt"]
         )
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_datazone.types.updated_at
 
         out["updated_at"] = capo_datazone.types.updated_at.deserialize_json(
             data["updatedAt"]
         )
-    if "updatedBy" in data:
+    if data.get("updatedBy") is not None:
         out["updated_by"] = data["updatedBy"]
-    if "startedAt" in data:
+    if data.get("startedAt") is not None:
         import capo_datazone.types._prelude.timestamp
 
         out["started_at"] = capo_datazone.types._prelude.timestamp.deserialize_json(
             data["startedAt"]
         )
-    if "completedAt" in data:
+    if data.get("completedAt") is not None:
         import capo_datazone.types._prelude.timestamp
 
         out["completed_at"] = capo_datazone.types._prelude.timestamp.deserialize_json(

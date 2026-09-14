@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: StatelessRuleGroupReference) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StatelessRuleGroupReference:
     out: StatelessRuleGroupReference = {}  # type: ignore[typeddict-item]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     else:
         raise DeserializationError("StatelessRuleGroupReference.resource_arn required")
-    if "Priority" in data:
+    if data.get("Priority") is not None:
         out["priority"] = data["Priority"]
     else:
         raise DeserializationError("StatelessRuleGroupReference.priority required")

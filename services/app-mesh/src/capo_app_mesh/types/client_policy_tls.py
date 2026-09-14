@@ -50,13 +50,13 @@ def serialize_json(value: ClientPolicyTls) -> dict:
 
 def deserialize_json(data: dict) -> ClientPolicyTls:
     out: ClientPolicyTls = {}  # type: ignore[typeddict-item]
-    if "enforce" in data:
+    if data.get("enforce") is not None:
         out["enforce"] = data["enforce"]
-    if "ports" in data:
+    if data.get("ports") is not None:
         import capo_app_mesh.types.port_set
 
         out["ports"] = capo_app_mesh.types.port_set.deserialize_json(data["ports"])
-    if "certificate" in data:
+    if data.get("certificate") is not None:
         import capo_app_mesh.types.client_tls_certificate
 
         out["certificate"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> ClientPolicyTls:
                 data["certificate"]
             )
         )
-    if "validation" in data:
+    if data.get("validation") is not None:
         import capo_app_mesh.types.tls_validation_context
 
         out["validation"] = capo_app_mesh.types.tls_validation_context.deserialize_json(

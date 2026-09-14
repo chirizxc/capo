@@ -39,15 +39,20 @@ class InsufficientCapacityException(ServiceError):
 
     code: str | None = "InsufficientCapacityException"
 
-    def __init__(self, data: InsufficientCapacityException_):
+    def __init__(
+        self, data: InsufficientCapacityException_, message: str | None = None
+    ):
         super().__init__(
             "server",
             is_throttling_error=False,
             is_retryable=False,
             code="InsufficientCapacityException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "InsufficientCapacityException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "InsufficientCapacityException":
+        return cls(deserialize_query(el), message)

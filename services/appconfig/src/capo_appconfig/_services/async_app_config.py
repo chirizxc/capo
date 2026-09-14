@@ -271,8 +271,9 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.create_application_request.CreateApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_appconfig.types.create_application_request.CreateApplicationRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if tags is not None:
@@ -283,6 +284,7 @@ class AsyncAppConfigClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_configuration_profile(
@@ -348,12 +350,13 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.create_configuration_profile_request.CreateConfigurationProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["name"] = name
+        input_: capo_appconfig.types.create_configuration_profile_request.CreateConfigurationProfileRequest = {
+            "application_id": application_id,
+            "name": name,
+            "location_uri": location_uri,
+        }
         if description is not None:
             input_["description"] = description
-        input_["location_uri"] = location_uri
         if retrieval_role_arn is not None:
             input_["retrieval_role_arn"] = retrieval_role_arn
         if validators is not None:
@@ -370,6 +373,7 @@ class AsyncAppConfigClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_deployment_strategy(
@@ -428,14 +432,15 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.create_deployment_strategy_request.CreateDeploymentStrategyRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_appconfig.types.create_deployment_strategy_request.CreateDeploymentStrategyRequest = {
+            "name": name,
+            "deployment_duration_in_minutes": deployment_duration_in_minutes,
+            "growth_factor": growth_factor,
+        }
         if description is not None:
             input_["description"] = description
-        input_["deployment_duration_in_minutes"] = deployment_duration_in_minutes
         if final_bake_time_in_minutes is not None:
             input_["final_bake_time_in_minutes"] = final_bake_time_in_minutes
-        input_["growth_factor"] = growth_factor
         if growth_type is not None:
             input_["growth_type"] = growth_type
         if replicate_to is not None:
@@ -448,6 +453,7 @@ class AsyncAppConfigClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_environment(
@@ -497,9 +503,10 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.create_environment_request.CreateEnvironmentRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["name"] = name
+        input_: capo_appconfig.types.create_environment_request.CreateEnvironmentRequest = {
+            "application_id": application_id,
+            "name": name,
+        }
         if description is not None:
             input_["description"] = description
         if monitors is not None:
@@ -512,6 +519,7 @@ class AsyncAppConfigClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_extension(
@@ -557,11 +565,12 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.create_extension_request.CreateExtensionRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_appconfig.types.create_extension_request.CreateExtensionRequest = {
+            "name": name,
+            "actions": actions,
+        }
         if description is not None:
             input_["description"] = description
-        input_["actions"] = actions
         if parameters is not None:
             input_["parameters"] = parameters
         if tags is not None:
@@ -574,6 +583,7 @@ class AsyncAppConfigClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_extension_association(
@@ -623,11 +633,12 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.create_extension_association_request.CreateExtensionAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["extension_identifier"] = extension_identifier
+        input_: capo_appconfig.types.create_extension_association_request.CreateExtensionAssociationRequest = {
+            "extension_identifier": extension_identifier,
+            "resource_identifier": resource_identifier,
+        }
         if extension_version_number is not None:
             input_["extension_version_number"] = extension_version_number
-        input_["resource_identifier"] = resource_identifier
         if parameters is not None:
             input_["parameters"] = parameters
         if tags is not None:
@@ -638,6 +649,7 @@ class AsyncAppConfigClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_hosted_configuration_version(
@@ -697,13 +709,14 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.create_hosted_configuration_version_request.CreateHostedConfigurationVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["configuration_profile_id"] = configuration_profile_id
+        input_: capo_appconfig.types.create_hosted_configuration_version_request.CreateHostedConfigurationVersionRequest = {
+            "application_id": application_id,
+            "configuration_profile_id": configuration_profile_id,
+            "content": content,
+            "content_type": content_type,
+        }
         if description is not None:
             input_["description"] = description
-        input_["content"] = content
-        input_["content_type"] = content_type
         if latest_version_number is not None:
             input_["latest_version_number"] = latest_version_number
         if version_label is not None:
@@ -714,6 +727,7 @@ class AsyncAppConfigClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_application(
@@ -755,14 +769,16 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.delete_application_request.DeleteApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_appconfig.types.delete_application_request.DeleteApplicationRequest = {
+            "application_id": application_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_configuration_profile(
@@ -810,9 +826,10 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.delete_configuration_profile_request.DeleteConfigurationProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["configuration_profile_id"] = configuration_profile_id
+        input_: capo_appconfig.types.delete_configuration_profile_request.DeleteConfigurationProfileRequest = {
+            "application_id": application_id,
+            "configuration_profile_id": configuration_profile_id,
+        }
         if deletion_protection_check is not None:
             input_["deletion_protection_check"] = deletion_protection_check
 
@@ -821,6 +838,7 @@ class AsyncAppConfigClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_deployment_strategy(
@@ -861,14 +879,16 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.delete_deployment_strategy_request.DeleteDeploymentStrategyRequest = {}  # type: ignore[typeddict-item]
-        input_["deployment_strategy_id"] = deployment_strategy_id
+        input_: capo_appconfig.types.delete_deployment_strategy_request.DeleteDeploymentStrategyRequest = {
+            "deployment_strategy_id": deployment_strategy_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_environment(
@@ -916,9 +936,10 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.delete_environment_request.DeleteEnvironmentRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
-        input_["application_id"] = application_id
+        input_: capo_appconfig.types.delete_environment_request.DeleteEnvironmentRequest = {
+            "environment_id": environment_id,
+            "application_id": application_id,
+        }
         if deletion_protection_check is not None:
             input_["deletion_protection_check"] = deletion_protection_check
 
@@ -927,6 +948,7 @@ class AsyncAppConfigClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_extension(
@@ -963,8 +985,9 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.delete_extension_request.DeleteExtensionRequest = {}  # type: ignore[typeddict-item]
-        input_["extension_identifier"] = extension_identifier
+        input_: capo_appconfig.types.delete_extension_request.DeleteExtensionRequest = {
+            "extension_identifier": extension_identifier
+        }
         if version_number is not None:
             input_["version_number"] = version_number
 
@@ -973,6 +996,7 @@ class AsyncAppConfigClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_extension_association(
@@ -1007,14 +1031,16 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.delete_extension_association_request.DeleteExtensionAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["extension_association_id"] = extension_association_id
+        input_: capo_appconfig.types.delete_extension_association_request.DeleteExtensionAssociationRequest = {
+            "extension_association_id": extension_association_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_hosted_configuration_version(
@@ -1059,16 +1085,18 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.delete_hosted_configuration_version_request.DeleteHostedConfigurationVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["configuration_profile_id"] = configuration_profile_id
-        input_["version_number"] = version_number
+        input_: capo_appconfig.types.delete_hosted_configuration_version_request.DeleteHostedConfigurationVersionRequest = {
+            "application_id": application_id,
+            "configuration_profile_id": configuration_profile_id,
+            "version_number": version_number,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_account_settings(
@@ -1104,6 +1132,7 @@ class AsyncAppConfigClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_application(
@@ -1144,14 +1173,16 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.get_application_request.GetApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_appconfig.types.get_application_request.GetApplicationRequest = {
+            "application_id": application_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_configuration(
@@ -1202,11 +1233,12 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.get_configuration_request.GetConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["application"] = application
-        input_["environment"] = environment
-        input_["configuration"] = configuration
-        input_["client_id"] = client_id
+        input_: capo_appconfig.types.get_configuration_request.GetConfigurationRequest = {
+            "application": application,
+            "environment": environment,
+            "configuration": configuration,
+            "client_id": client_id,
+        }
         if client_configuration_version is not None:
             input_["client_configuration_version"] = client_configuration_version
 
@@ -1215,6 +1247,7 @@ class AsyncAppConfigClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_configuration_profile(
@@ -1259,15 +1292,17 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.get_configuration_profile_request.GetConfigurationProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["configuration_profile_id"] = configuration_profile_id
+        input_: capo_appconfig.types.get_configuration_profile_request.GetConfigurationProfileRequest = {
+            "application_id": application_id,
+            "configuration_profile_id": configuration_profile_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_deployment(
@@ -1306,16 +1341,18 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.get_deployment_request.GetDeploymentRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["environment_id"] = environment_id
-        input_["deployment_number"] = deployment_number
+        input_: capo_appconfig.types.get_deployment_request.GetDeploymentRequest = {
+            "application_id": application_id,
+            "environment_id": environment_id,
+            "deployment_number": deployment_number,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_deployment_strategy(
@@ -1358,14 +1395,16 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.get_deployment_strategy_request.GetDeploymentStrategyRequest = {}  # type: ignore[typeddict-item]
-        input_["deployment_strategy_id"] = deployment_strategy_id
+        input_: capo_appconfig.types.get_deployment_strategy_request.GetDeploymentStrategyRequest = {
+            "deployment_strategy_id": deployment_strategy_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_environment(
@@ -1408,15 +1447,17 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.get_environment_request.GetEnvironmentRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["environment_id"] = environment_id
+        input_: capo_appconfig.types.get_environment_request.GetEnvironmentRequest = {
+            "application_id": application_id,
+            "environment_id": environment_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_extension(
@@ -1453,8 +1494,9 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.get_extension_request.GetExtensionRequest = {}  # type: ignore[typeddict-item]
-        input_["extension_identifier"] = extension_identifier
+        input_: capo_appconfig.types.get_extension_request.GetExtensionRequest = {
+            "extension_identifier": extension_identifier
+        }
         if version_number is not None:
             input_["version_number"] = version_number
 
@@ -1463,6 +1505,7 @@ class AsyncAppConfigClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_extension_association(
@@ -1499,14 +1542,16 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.get_extension_association_request.GetExtensionAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["extension_association_id"] = extension_association_id
+        input_: capo_appconfig.types.get_extension_association_request.GetExtensionAssociationRequest = {
+            "extension_association_id": extension_association_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_hosted_configuration_version(
@@ -1553,16 +1598,18 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.get_hosted_configuration_version_request.GetHostedConfigurationVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["configuration_profile_id"] = configuration_profile_id
-        input_["version_number"] = version_number
+        input_: capo_appconfig.types.get_hosted_configuration_version_request.GetHostedConfigurationVersionRequest = {
+            "application_id": application_id,
+            "configuration_profile_id": configuration_profile_id,
+            "version_number": version_number,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_applications(
@@ -1604,7 +1651,7 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.list_applications_request.ListApplicationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appconfig.types.list_applications_request.ListApplicationsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1615,6 +1662,7 @@ class AsyncAppConfigClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_applications(
@@ -1686,8 +1734,9 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.list_configuration_profiles_request.ListConfigurationProfilesRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_appconfig.types.list_configuration_profiles_request.ListConfigurationProfilesRequest = {
+            "application_id": application_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1700,6 +1749,7 @@ class AsyncAppConfigClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_configuration_profiles(
@@ -1767,9 +1817,10 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.list_deployments_request.ListDeploymentsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["environment_id"] = environment_id
+        input_: capo_appconfig.types.list_deployments_request.ListDeploymentsRequest = {
+            "application_id": application_id,
+            "environment_id": environment_id,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1780,6 +1831,7 @@ class AsyncAppConfigClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_deployments(
@@ -1848,7 +1900,7 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.list_deployment_strategies_request.ListDeploymentStrategiesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appconfig.types.list_deployment_strategies_request.ListDeploymentStrategiesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1859,6 +1911,7 @@ class AsyncAppConfigClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_deployment_strategies(
@@ -1924,8 +1977,9 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.list_environments_request.ListEnvironmentsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_appconfig.types.list_environments_request.ListEnvironmentsRequest = {
+            "application_id": application_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1936,6 +1990,7 @@ class AsyncAppConfigClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_environments(
@@ -2006,7 +2061,7 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.list_extension_associations_request.ListExtensionAssociationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appconfig.types.list_extension_associations_request.ListExtensionAssociationsRequest = {}
         if resource_identifier is not None:
             input_["resource_identifier"] = resource_identifier
         if extension_identifier is not None:
@@ -2023,6 +2078,7 @@ class AsyncAppConfigClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_extension_associations(
@@ -2091,7 +2147,7 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.list_extensions_request.ListExtensionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appconfig.types.list_extensions_request.ListExtensionsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2104,6 +2160,7 @@ class AsyncAppConfigClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_extensions(
@@ -2179,9 +2236,10 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.list_hosted_configuration_versions_request.ListHostedConfigurationVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["configuration_profile_id"] = configuration_profile_id
+        input_: capo_appconfig.types.list_hosted_configuration_versions_request.ListHostedConfigurationVersionsRequest = {
+            "application_id": application_id,
+            "configuration_profile_id": configuration_profile_id,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2194,6 +2252,7 @@ class AsyncAppConfigClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_hosted_configuration_versions(
@@ -2261,14 +2320,16 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_appconfig.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_deployment(
@@ -2324,12 +2385,13 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.start_deployment_request.StartDeploymentRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["environment_id"] = environment_id
-        input_["deployment_strategy_id"] = deployment_strategy_id
-        input_["configuration_profile_id"] = configuration_profile_id
-        input_["configuration_version"] = configuration_version
+        input_: capo_appconfig.types.start_deployment_request.StartDeploymentRequest = {
+            "application_id": application_id,
+            "environment_id": environment_id,
+            "deployment_strategy_id": deployment_strategy_id,
+            "configuration_profile_id": configuration_profile_id,
+            "configuration_version": configuration_version,
+        }
         if description is not None:
             input_["description"] = description
         if tags is not None:
@@ -2344,6 +2406,7 @@ class AsyncAppConfigClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_deployment(
@@ -2390,10 +2453,11 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.stop_deployment_request.StopDeploymentRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["environment_id"] = environment_id
-        input_["deployment_number"] = deployment_number
+        input_: capo_appconfig.types.stop_deployment_request.StopDeploymentRequest = {
+            "application_id": application_id,
+            "environment_id": environment_id,
+            "deployment_number": deployment_number,
+        }
         if allow_revert is not None:
             input_["allow_revert"] = allow_revert
 
@@ -2402,6 +2466,7 @@ class AsyncAppConfigClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -2444,15 +2509,17 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_appconfig.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -2495,15 +2562,17 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_appconfig.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_account_settings(
@@ -2541,7 +2610,7 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.update_account_settings_request.UpdateAccountSettingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appconfig.types.update_account_settings_request.UpdateAccountSettingsRequest = {}
         if deletion_protection is not None:
             input_["deletion_protection"] = deletion_protection
 
@@ -2550,6 +2619,7 @@ class AsyncAppConfigClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_application(
@@ -2594,8 +2664,9 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.update_application_request.UpdateApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_appconfig.types.update_application_request.UpdateApplicationRequest = {
+            "application_id": application_id
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -2606,6 +2677,7 @@ class AsyncAppConfigClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_configuration_profile(
@@ -2664,9 +2736,10 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.update_configuration_profile_request.UpdateConfigurationProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["configuration_profile_id"] = configuration_profile_id
+        input_: capo_appconfig.types.update_configuration_profile_request.UpdateConfigurationProfileRequest = {
+            "application_id": application_id,
+            "configuration_profile_id": configuration_profile_id,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -2683,6 +2756,7 @@ class AsyncAppConfigClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_deployment_strategy(
@@ -2742,8 +2816,9 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.update_deployment_strategy_request.UpdateDeploymentStrategyRequest = {}  # type: ignore[typeddict-item]
-        input_["deployment_strategy_id"] = deployment_strategy_id
+        input_: capo_appconfig.types.update_deployment_strategy_request.UpdateDeploymentStrategyRequest = {
+            "deployment_strategy_id": deployment_strategy_id
+        }
         if description is not None:
             input_["description"] = description
         if deployment_duration_in_minutes is not None:
@@ -2760,6 +2835,7 @@ class AsyncAppConfigClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_environment(
@@ -2808,9 +2884,10 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.update_environment_request.UpdateEnvironmentRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["environment_id"] = environment_id
+        input_: capo_appconfig.types.update_environment_request.UpdateEnvironmentRequest = {
+            "application_id": application_id,
+            "environment_id": environment_id,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -2823,6 +2900,7 @@ class AsyncAppConfigClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_extension(
@@ -2866,8 +2944,9 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.update_extension_request.UpdateExtensionRequest = {}  # type: ignore[typeddict-item]
-        input_["extension_identifier"] = extension_identifier
+        input_: capo_appconfig.types.update_extension_request.UpdateExtensionRequest = {
+            "extension_identifier": extension_identifier
+        }
         if description is not None:
             input_["description"] = description
         if actions is not None:
@@ -2882,6 +2961,7 @@ class AsyncAppConfigClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_extension_association(
@@ -2922,8 +3002,9 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.update_extension_association_request.UpdateExtensionAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["extension_association_id"] = extension_association_id
+        input_: capo_appconfig.types.update_extension_association_request.UpdateExtensionAssociationRequest = {
+            "extension_association_id": extension_association_id
+        }
         if parameters is not None:
             input_["parameters"] = parameters
 
@@ -2932,6 +3013,7 @@ class AsyncAppConfigClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def validate_configuration(
@@ -2976,16 +3058,18 @@ class AsyncAppConfigClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appconfig.types.validate_configuration_request.ValidateConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["configuration_profile_id"] = configuration_profile_id
-        input_["configuration_version"] = configuration_version
+        input_: capo_appconfig.types.validate_configuration_request.ValidateConfigurationRequest = {
+            "application_id": application_id,
+            "configuration_profile_id": configuration_profile_id,
+            "configuration_version": configuration_version,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

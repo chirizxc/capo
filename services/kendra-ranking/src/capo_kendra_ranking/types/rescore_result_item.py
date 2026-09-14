@@ -22,14 +22,22 @@ def serialize_aws_json_1_0(value: RescoreResultItem) -> dict:
     if "document_id" in value:
         out["DocumentId"] = value["document_id"]
     if "score" in value:
-        out["Score"] = value["score"]
+        out["Score"] = (
+            "NaN"
+            if value["score"] != value["score"]
+            else "Infinity"
+            if value["score"] == float("inf")
+            else "-Infinity"
+            if value["score"] == float("-inf")
+            else value["score"]
+        )
     return out
 
 
 def deserialize_aws_json_1_0(data: dict) -> RescoreResultItem:
     out: RescoreResultItem = {}  # type: ignore[typeddict-item]
-    if "DocumentId" in data:
+    if data.get("DocumentId") is not None:
         out["document_id"] = data["DocumentId"]
-    if "Score" in data:
-        out["score"] = data["Score"]
+    if data.get("Score") is not None:
+        out["score"] = float(data["Score"])
     return out

@@ -13,9 +13,9 @@ from capo_qbusiness import AsyncQBusinessClient
 
 
 async def main():
-    async with AsyncQBusinessClient() as s3:
+    async with AsyncQBusinessClient() as q_business:
         # Example: call the associate_permission operation
-        response = await s3.associate_permission()
+        response = await q_business.associate_permission()
         print(response["statement"])
 ```
 
@@ -28,9 +28,9 @@ from capo_qbusiness import AsyncQBusinessClient
 
 
 async def main():
-    async with AsyncQBusinessClient() as s3:
+    async with AsyncQBusinessClient() as q_business:
         # Example: paginate over get_chat_controls_configuration
-        async for item in s3.iter_get_chat_controls_configuration():
+        async for item in q_business.iter_get_chat_controls_configuration():
             print(item)
 ```
 
@@ -43,16 +43,16 @@ from capo_qbusiness import AsyncQBusinessClient
 
 
 async def main():
-    async with AsyncQBusinessClient() as s3:
+    async with AsyncQBusinessClient() as q_business:
         # Example: call chat with a streaming request body
         async def chunks():
             yield b'Hello, World!'
 
-        response = await s3.chat(input_stream=chunks())
+        response = await q_business.chat(input_stream=chunks())
         print(response)
 
         # Or pass the whole body as bytes
-        response = await s3.chat(input_stream=b'Hello, World!')
+        response = await q_business.chat(input_stream=b'Hello, World!')
         print(response)
 ```
 
@@ -66,9 +66,9 @@ from capo_qbusiness.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncQBusinessClient() as s3:
+    async with AsyncQBusinessClient() as q_business:
         try:
-            await s3.associate_permission()
+            await q_business.associate_permission()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -85,13 +85,13 @@ from capo_qbusiness import AsyncQBusinessClient
 
 
 async def main():
-    async with AsyncQBusinessClient() as s3:
+    async with AsyncQBusinessClient() as q_business:
         # Default: 3 attempts for every operation
-        response = await s3.associate_permission()
+        response = await q_business.associate_permission()
 
         # Override per operation
-        response = await s3.associate_permission(config_overrides={"retry_max_attempts": 5})
+        response = await q_business.associate_permission(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.associate_permission(config_overrides={"retry_max_attempts": 1})
+        response = await q_business.associate_permission(config_overrides={"retry_max_attempts": 1})
 ```

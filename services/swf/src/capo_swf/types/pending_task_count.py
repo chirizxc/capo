@@ -26,11 +26,11 @@ def serialize_aws_json_1_0(value: PendingTaskCount) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PendingTaskCount:
     out: PendingTaskCount = {}  # type: ignore[typeddict-item]
-    if "count" in data:
+    if data.get("count") is not None:
         out["count"] = data["count"]
     else:
         out["count"] = 0
-    if "truncated" in data:
+    if data.get("truncated") is not None:
         out["truncated"] = data["truncated"]
     else:
         out["truncated"] = False

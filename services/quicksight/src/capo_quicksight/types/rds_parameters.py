@@ -28,11 +28,11 @@ def serialize_json(value: RdsParameters) -> dict:
 
 def deserialize_json(data: dict) -> RdsParameters:
     out: RdsParameters = {}  # type: ignore[typeddict-item]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     else:
         raise DeserializationError("RdsParameters.instance_id required")
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
     else:
         raise DeserializationError("RdsParameters.database required")

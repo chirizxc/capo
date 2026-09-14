@@ -37,9 +37,9 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> ApplicationEncryptionConfigurationDescription:
     out: ApplicationEncryptionConfigurationDescription = {}  # type: ignore[typeddict-item]
-    if "KeyId" in data:
+    if data.get("KeyId") is not None:
         out["key_id"] = data["KeyId"]
-    if "KeyType" in data:
+    if data.get("KeyType") is not None:
         import capo_kinesis_analytics_v2.types.key_type
 
         out["key_type"] = (

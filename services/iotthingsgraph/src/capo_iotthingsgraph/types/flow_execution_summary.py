@@ -64,9 +64,9 @@ def serialize_aws_json_1_1(value: FlowExecutionSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FlowExecutionSummary:
     out: FlowExecutionSummary = {}  # type: ignore[typeddict-item]
-    if "flowExecutionId" in data:
+    if data.get("flowExecutionId") is not None:
         out["flow_execution_id"] = data["flowExecutionId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iotthingsgraph.types.flow_execution_status
 
         out["status"] = (
@@ -74,11 +74,11 @@ def deserialize_aws_json_1_1(data: dict) -> FlowExecutionSummary:
                 data["status"]
             )
         )
-    if "systemInstanceId" in data:
+    if data.get("systemInstanceId") is not None:
         out["system_instance_id"] = data["systemInstanceId"]
-    if "flowTemplateId" in data:
+    if data.get("flowTemplateId") is not None:
         out["flow_template_id"] = data["flowTemplateId"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_iotthingsgraph.types.timestamp
 
         out["created_at"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_1(data: dict) -> FlowExecutionSummary:
                 data["createdAt"]
             )
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_iotthingsgraph.types.timestamp
 
         out["updated_at"] = (

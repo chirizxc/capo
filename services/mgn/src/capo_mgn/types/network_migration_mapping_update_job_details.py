@@ -69,26 +69,26 @@ def serialize_json(value: NetworkMigrationMappingUpdateJobDetails) -> dict:
 
 def deserialize_json(data: dict) -> NetworkMigrationMappingUpdateJobDetails:
     out: NetworkMigrationMappingUpdateJobDetails = {}  # type: ignore[typeddict-item]
-    if "jobID" in data:
+    if data.get("jobID") is not None:
         out["job_id"] = data["jobID"]
-    if "networkMigrationExecutionID" in data:
+    if data.get("networkMigrationExecutionID") is not None:
         out["network_migration_execution_id"] = data["networkMigrationExecutionID"]
-    if "networkMigrationDefinitionID" in data:
+    if data.get("networkMigrationDefinitionID") is not None:
         out["network_migration_definition_id"] = data["networkMigrationDefinitionID"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_mgn.types._prelude.timestamp
 
         out["created_at"] = capo_mgn.types._prelude.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "endedAt" in data:
+    if data.get("endedAt") is not None:
         import capo_mgn.types._prelude.timestamp
 
         out["ended_at"] = capo_mgn.types._prelude.timestamp.deserialize_json(
             data["endedAt"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "statusDetails" in data:
+    if data.get("statusDetails") is not None:
         out["status_details"] = data["statusDetails"]
     return out

@@ -30,7 +30,7 @@ def serialize_aws_json_1_0(value: UpgradeAccountPlanRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpgradeAccountPlanRequest:
     out: UpgradeAccountPlanRequest = {}  # type: ignore[typeddict-item]
-    if "accountPlanType" in data:
+    if data.get("accountPlanType") is not None:
         import capo_freetier.types.account_plan_type
 
         out["account_plan_type"] = (

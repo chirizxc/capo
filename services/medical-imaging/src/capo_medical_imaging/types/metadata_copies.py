@@ -26,7 +26,7 @@ def serialize_json(value: MetadataCopies) -> dict:
 
 def deserialize_json(data: dict) -> MetadataCopies:
     out: MetadataCopies = {}  # type: ignore[typeddict-item]
-    if "copiableAttributes" in data:
+    if data.get("copiableAttributes") is not None:
         out["copiable_attributes"] = data["copiableAttributes"]
     else:
         raise DeserializationError("MetadataCopies.copiable_attributes required")

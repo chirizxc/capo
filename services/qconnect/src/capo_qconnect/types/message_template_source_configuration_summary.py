@@ -36,7 +36,7 @@ def serialize_json(value: MessageTemplateSourceConfigurationSummary) -> dict:
 
 
 def deserialize_json(data: dict) -> MessageTemplateSourceConfigurationSummary:
-    if "whatsApp" in data:
+    if data.get("whatsApp") is not None:
         import capo_qconnect.types.whats_app_message_template_source_configuration_summary
 
         return {

@@ -30,7 +30,7 @@ def serialize_aws_json_1_0(value: OutboundEdiOptions) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> OutboundEdiOptions:
-    if "x12" in data:
+    if data.get("x12") is not None:
         import capo_b2bi.types.x12_envelope
 
         return {

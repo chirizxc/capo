@@ -87,9 +87,9 @@ def serialize_json(value: InAppTemplateResponse) -> dict:
 
 def deserialize_json(data: dict) -> InAppTemplateResponse:
     out: InAppTemplateResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Content" in data:
+    if data.get("Content") is not None:
         import capo_pinpoint.types.list_of_in_app_message_content
 
         out["content"] = (
@@ -97,34 +97,34 @@ def deserialize_json(data: dict) -> InAppTemplateResponse:
                 data["Content"]
             )
         )
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         out["creation_date"] = data["CreationDate"]
-    if "CustomConfig" in data:
+    if data.get("CustomConfig") is not None:
         import capo_pinpoint.types.map_of__string
 
         out["custom_config"] = capo_pinpoint.types.map_of__string.deserialize_json(
             data["CustomConfig"]
         )
-    if "LastModifiedDate" in data:
+    if data.get("LastModifiedDate") is not None:
         out["last_modified_date"] = data["LastModifiedDate"]
-    if "Layout" in data:
+    if data.get("Layout") is not None:
         import capo_pinpoint.types.layout
 
         out["layout"] = capo_pinpoint.types.layout.deserialize_json(data["Layout"])
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_pinpoint.types.map_of__string
 
         out["tags"] = capo_pinpoint.types.map_of__string.deserialize_json(data["tags"])
-    if "TemplateDescription" in data:
+    if data.get("TemplateDescription") is not None:
         out["template_description"] = data["TemplateDescription"]
-    if "TemplateName" in data:
+    if data.get("TemplateName") is not None:
         out["template_name"] = data["TemplateName"]
-    if "TemplateType" in data:
+    if data.get("TemplateType") is not None:
         import capo_pinpoint.types.template_type
 
         out["template_type"] = capo_pinpoint.types.template_type.deserialize_json(
             data["TemplateType"]
         )
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
     return out

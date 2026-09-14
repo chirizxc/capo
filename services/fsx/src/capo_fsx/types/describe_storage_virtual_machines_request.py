@@ -52,7 +52,7 @@ def serialize_aws_json_1_1(value: DescribeStorageVirtualMachinesRequest) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeStorageVirtualMachinesRequest:
     out: DescribeStorageVirtualMachinesRequest = {}  # type: ignore[typeddict-item]
-    if "StorageVirtualMachineIds" in data:
+    if data.get("StorageVirtualMachineIds") is not None:
         import capo_fsx.types.storage_virtual_machine_ids
 
         out["storage_virtual_machine_ids"] = (
@@ -60,7 +60,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeStorageVirtualMachinesReques
                 data["StorageVirtualMachineIds"]
             )
         )
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_fsx.types.storage_virtual_machine_filters
 
         out["filters"] = (
@@ -68,8 +68,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeStorageVirtualMachinesReques
                 data["Filters"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

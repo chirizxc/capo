@@ -35,15 +35,15 @@ def serialize_aws_json_1_1(value: PutRecordsRequestEntry) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutRecordsRequestEntry:
     out: PutRecordsRequestEntry = {}  # type: ignore[typeddict-item]
-    if "Data" in data:
+    if data.get("Data") is not None:
         import capo_kinesis.types.data
 
         out["data"] = capo_kinesis.types.data.deserialize_aws_json_1_1(data["Data"])
     else:
         raise DeserializationError("PutRecordsRequestEntry.data required")
-    if "ExplicitHashKey" in data:
+    if data.get("ExplicitHashKey") is not None:
         out["explicit_hash_key"] = data["ExplicitHashKey"]
-    if "PartitionKey" in data:
+    if data.get("PartitionKey") is not None:
         out["partition_key"] = data["PartitionKey"]
     else:
         raise DeserializationError("PutRecordsRequestEntry.partition_key required")

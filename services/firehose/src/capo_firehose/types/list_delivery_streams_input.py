@@ -47,9 +47,9 @@ def serialize_aws_json_1_1(value: ListDeliveryStreamsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListDeliveryStreamsInput:
     out: ListDeliveryStreamsInput = {}  # type: ignore[typeddict-item]
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
-    if "DeliveryStreamType" in data:
+    if data.get("DeliveryStreamType") is not None:
         import capo_firehose.types.delivery_stream_type
 
         out["delivery_stream_type"] = (
@@ -57,7 +57,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListDeliveryStreamsInput:
                 data["DeliveryStreamType"]
             )
         )
-    if "ExclusiveStartDeliveryStreamName" in data:
+    if data.get("ExclusiveStartDeliveryStreamName") is not None:
         out["exclusive_start_delivery_stream_name"] = data[
             "ExclusiveStartDeliveryStreamName"
         ]

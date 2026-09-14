@@ -45,17 +45,17 @@ def serialize_aws_json_1_0(value: DisassociateOpportunityRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DisassociateOpportunityRequest:
     out: DisassociateOpportunityRequest = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("DisassociateOpportunityRequest.catalog required")
-    if "OpportunityIdentifier" in data:
+    if data.get("OpportunityIdentifier") is not None:
         out["opportunity_identifier"] = data["OpportunityIdentifier"]
     else:
         raise DeserializationError(
             "DisassociateOpportunityRequest.opportunity_identifier required"
         )
-    if "RelatedEntityType" in data:
+    if data.get("RelatedEntityType") is not None:
         import capo_partnercentral_selling.types.related_entity_type
 
         out["related_entity_type"] = (
@@ -67,7 +67,7 @@ def deserialize_aws_json_1_0(data: dict) -> DisassociateOpportunityRequest:
         raise DeserializationError(
             "DisassociateOpportunityRequest.related_entity_type required"
         )
-    if "RelatedEntityIdentifier" in data:
+    if data.get("RelatedEntityIdentifier") is not None:
         out["related_entity_identifier"] = data["RelatedEntityIdentifier"]
     else:
         raise DeserializationError(

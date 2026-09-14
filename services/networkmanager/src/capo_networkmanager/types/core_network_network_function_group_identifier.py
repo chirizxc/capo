@@ -39,10 +39,10 @@ def serialize_json(value: CoreNetworkNetworkFunctionGroupIdentifier) -> dict:
 
 def deserialize_json(data: dict) -> CoreNetworkNetworkFunctionGroupIdentifier:
     out: CoreNetworkNetworkFunctionGroupIdentifier = {}  # type: ignore[typeddict-item]
-    if "CoreNetworkId" in data:
+    if data.get("CoreNetworkId") is not None:
         out["core_network_id"] = data["CoreNetworkId"]
-    if "NetworkFunctionGroupName" in data:
+    if data.get("NetworkFunctionGroupName") is not None:
         out["network_function_group_name"] = data["NetworkFunctionGroupName"]
-    if "EdgeLocation" in data:
+    if data.get("EdgeLocation") is not None:
         out["edge_location"] = data["EdgeLocation"]
     return out

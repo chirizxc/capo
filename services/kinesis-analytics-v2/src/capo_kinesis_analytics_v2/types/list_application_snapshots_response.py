@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListApplicationSnapshotsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListApplicationSnapshotsResponse:
     out: ListApplicationSnapshotsResponse = {}  # type: ignore[typeddict-item]
-    if "SnapshotSummaries" in data:
+    if data.get("SnapshotSummaries") is not None:
         import capo_kinesis_analytics_v2.types.snapshot_summaries
 
         out["snapshot_summaries"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListApplicationSnapshotsResponse:
                 data["SnapshotSummaries"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

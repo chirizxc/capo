@@ -40,7 +40,7 @@ def serialize_json(value: PutAssetModelInterfaceRelationshipRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutAssetModelInterfaceRelationshipRequest:
     out: PutAssetModelInterfaceRelationshipRequest = {}  # type: ignore[typeddict-item]
-    if "propertyMappingConfiguration" in data:
+    if data.get("propertyMappingConfiguration") is not None:
         import capo_iotsitewise.types.property_mapping_configuration
 
         out["property_mapping_configuration"] = (
@@ -52,6 +52,6 @@ def deserialize_json(data: dict) -> PutAssetModelInterfaceRelationshipRequest:
         raise DeserializationError(
             "PutAssetModelInterfaceRelationshipRequest.property_mapping_configuration required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

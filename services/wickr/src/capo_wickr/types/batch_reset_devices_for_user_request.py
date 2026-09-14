@@ -35,7 +35,7 @@ def serialize_json(value: BatchResetDevicesForUserRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchResetDevicesForUserRequest:
     out: BatchResetDevicesForUserRequest = {}  # type: ignore[typeddict-item]
-    if "appIds" in data:
+    if data.get("appIds") is not None:
         import capo_wickr.types.app_ids
 
         out["app_ids"] = capo_wickr.types.app_ids.deserialize_json(data["appIds"])

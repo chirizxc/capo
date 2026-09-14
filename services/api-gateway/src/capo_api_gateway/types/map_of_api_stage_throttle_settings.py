@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: MapOfApiStageThrottleSettings) -> dict:
 def deserialize_json(data: dict) -> MapOfApiStageThrottleSettings:
     out: MapOfApiStageThrottleSettings = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_api_gateway.types.throttle_settings
 
         out[key] = capo_api_gateway.types.throttle_settings.deserialize_json(value)

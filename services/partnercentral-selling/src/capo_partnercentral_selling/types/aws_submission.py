@@ -43,7 +43,7 @@ def serialize_aws_json_1_0(value: AwsSubmission) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AwsSubmission:
     out: AwsSubmission = {}  # type: ignore[typeddict-item]
-    if "InvolvementType" in data:
+    if data.get("InvolvementType") is not None:
         import capo_partnercentral_selling.types.sales_involvement_type
 
         out["involvement_type"] = (
@@ -53,7 +53,7 @@ def deserialize_aws_json_1_0(data: dict) -> AwsSubmission:
         )
     else:
         raise DeserializationError("AwsSubmission.involvement_type required")
-    if "Visibility" in data:
+    if data.get("Visibility") is not None:
         import capo_partnercentral_selling.types.visibility
 
         out["visibility"] = (

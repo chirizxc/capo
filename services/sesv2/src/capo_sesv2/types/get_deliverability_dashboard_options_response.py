@@ -69,17 +69,17 @@ def serialize_json(value: GetDeliverabilityDashboardOptionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetDeliverabilityDashboardOptionsResponse:
     out: GetDeliverabilityDashboardOptionsResponse = {}  # type: ignore[typeddict-item]
-    if "DashboardEnabled" in data:
+    if data.get("DashboardEnabled") is not None:
         out["dashboard_enabled"] = data["DashboardEnabled"]
     else:
         out["dashboard_enabled"] = False
-    if "SubscriptionExpiryDate" in data:
+    if data.get("SubscriptionExpiryDate") is not None:
         import capo_sesv2.types.timestamp
 
         out["subscription_expiry_date"] = capo_sesv2.types.timestamp.deserialize_json(
             data["SubscriptionExpiryDate"]
         )
-    if "AccountStatus" in data:
+    if data.get("AccountStatus") is not None:
         import capo_sesv2.types.deliverability_dashboard_account_status
 
         out["account_status"] = (
@@ -87,7 +87,7 @@ def deserialize_json(data: dict) -> GetDeliverabilityDashboardOptionsResponse:
                 data["AccountStatus"]
             )
         )
-    if "ActiveSubscribedDomains" in data:
+    if data.get("ActiveSubscribedDomains") is not None:
         import capo_sesv2.types.domain_deliverability_tracking_options
 
         out["active_subscribed_domains"] = (
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> GetDeliverabilityDashboardOptionsResponse:
                 data["ActiveSubscribedDomains"]
             )
         )
-    if "PendingExpirationSubscribedDomains" in data:
+    if data.get("PendingExpirationSubscribedDomains") is not None:
         import capo_sesv2.types.domain_deliverability_tracking_options
 
         out["pending_expiration_subscribed_domains"] = (

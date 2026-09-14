@@ -29,10 +29,10 @@ def serialize_json(value: UpdateCaseCommentResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateCaseCommentResponse:
     out: UpdateCaseCommentResponse = {}  # type: ignore[typeddict-item]
-    if "commentId" in data:
+    if data.get("commentId") is not None:
         out["comment_id"] = data["commentId"]
     else:
         raise DeserializationError("UpdateCaseCommentResponse.comment_id required")
-    if "body" in data:
+    if data.get("body") is not None:
         out["body"] = data["body"]
     return out

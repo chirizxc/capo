@@ -25,6 +25,6 @@ def serialize_json(value: AncillarySourceSettings) -> dict:
 
 def deserialize_json(data: dict) -> AncillarySourceSettings:
     out: AncillarySourceSettings = {}  # type: ignore[typeddict-item]
-    if "sourceAncillaryChannelNumber" in data:
+    if data.get("sourceAncillaryChannelNumber") is not None:
         out["source_ancillary_channel_number"] = data["sourceAncillaryChannelNumber"]
     return out

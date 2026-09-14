@@ -39,17 +39,17 @@ def serialize_json(value: RevokeSigningProfileRequest) -> dict:
 
 def deserialize_json(data: dict) -> RevokeSigningProfileRequest:
     out: RevokeSigningProfileRequest = {}  # type: ignore[typeddict-item]
-    if "profileVersion" in data:
+    if data.get("profileVersion") is not None:
         out["profile_version"] = data["profileVersion"]
     else:
         raise DeserializationError(
             "RevokeSigningProfileRequest.profile_version required"
         )
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
     else:
         raise DeserializationError("RevokeSigningProfileRequest.reason required")
-    if "effectiveTime" in data:
+    if data.get("effectiveTime") is not None:
         import capo_signer.types.timestamp
 
         out["effective_time"] = capo_signer.types.timestamp.deserialize_json(

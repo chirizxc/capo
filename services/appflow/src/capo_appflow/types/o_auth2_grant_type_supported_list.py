@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> OAuth2GrantTypeSupportedList:
 
     out: OAuth2GrantTypeSupportedList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_appflow.types.o_auth2_grant_type.deserialize_json(item))
     return out

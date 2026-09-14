@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AudienceExportJobList:
 
     out: AudienceExportJobList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanroomsml.types.audience_export_job_summary.deserialize_json(item)
         )

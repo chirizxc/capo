@@ -49,11 +49,11 @@ def serialize_json(value: AwsKinesisStreamDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsKinesisStreamDetails:
     out: AwsKinesisStreamDetails = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "StreamEncryption" in data:
+    if data.get("StreamEncryption") is not None:
         import capo_securityhub.types.aws_kinesis_stream_stream_encryption_details
 
         out["stream_encryption"] = (
@@ -61,8 +61,8 @@ def deserialize_json(data: dict) -> AwsKinesisStreamDetails:
                 data["StreamEncryption"]
             )
         )
-    if "ShardCount" in data:
+    if data.get("ShardCount") is not None:
         out["shard_count"] = data["ShardCount"]
-    if "RetentionPeriodHours" in data:
+    if data.get("RetentionPeriodHours") is not None:
         out["retention_period_hours"] = data["RetentionPeriodHours"]
     return out

@@ -57,7 +57,7 @@ def serialize_json(value: DeploymentIoTJobConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DeploymentIoTJobConfiguration:
     out: DeploymentIoTJobConfiguration = {}  # type: ignore[typeddict-item]
-    if "jobExecutionsRolloutConfig" in data:
+    if data.get("jobExecutionsRolloutConfig") is not None:
         import capo_greengrassv2.types.io_t_job_executions_rollout_config
 
         out["job_executions_rollout_config"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> DeploymentIoTJobConfiguration:
                 data["jobExecutionsRolloutConfig"]
             )
         )
-    if "abortConfig" in data:
+    if data.get("abortConfig") is not None:
         import capo_greengrassv2.types.io_t_job_abort_config
 
         out["abort_config"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> DeploymentIoTJobConfiguration:
                 data["abortConfig"]
             )
         )
-    if "timeoutConfig" in data:
+    if data.get("timeoutConfig") is not None:
         import capo_greengrassv2.types.io_t_job_timeout_config
 
         out["timeout_config"] = (

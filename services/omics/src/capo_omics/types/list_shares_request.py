@@ -35,11 +35,11 @@ def serialize_json(value: ListSharesRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListSharesRequest:
     out: ListSharesRequest = {}  # type: ignore[typeddict-item]
-    if "resourceOwner" in data:
+    if data.get("resourceOwner") is not None:
         out["resource_owner"] = data["resourceOwner"]
     else:
         raise DeserializationError("ListSharesRequest.resource_owner required")
-    if "filter" in data:
+    if data.get("filter") is not None:
         import capo_omics.types.filter
 
         out["filter"] = capo_omics.types.filter.deserialize_json(data["filter"])

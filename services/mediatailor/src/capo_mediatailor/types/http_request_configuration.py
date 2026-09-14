@@ -65,7 +65,7 @@ def serialize_json(value: HttpRequestConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> HttpRequestConfiguration:
     out: HttpRequestConfiguration = {}  # type: ignore[typeddict-item]
-    if "Runtime" in data:
+    if data.get("Runtime") is not None:
         import capo_mediatailor.types.runtime_type
 
         out["runtime"] = capo_mediatailor.types.runtime_type.deserialize_json(
@@ -73,13 +73,13 @@ def deserialize_json(data: dict) -> HttpRequestConfiguration:
         )
     else:
         raise DeserializationError("HttpRequestConfiguration.runtime required")
-    if "Output" in data:
+    if data.get("Output") is not None:
         import capo_mediatailor.types.__map_of__string
 
         out["output"] = capo_mediatailor.types.__map_of__string.deserialize_json(
             data["Output"]
         )
-    if "MethodType" in data:
+    if data.get("MethodType") is not None:
         import capo_mediatailor.types.method_type
 
         out["method_type"] = capo_mediatailor.types.method_type.deserialize_json(
@@ -87,19 +87,19 @@ def deserialize_json(data: dict) -> HttpRequestConfiguration:
         )
     else:
         raise DeserializationError("HttpRequestConfiguration.method_type required")
-    if "RequestTimeoutMilliseconds" in data:
+    if data.get("RequestTimeoutMilliseconds") is not None:
         out["request_timeout_milliseconds"] = data["RequestTimeoutMilliseconds"]
     else:
         raise DeserializationError(
             "HttpRequestConfiguration.request_timeout_milliseconds required"
         )
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
     else:
         raise DeserializationError("HttpRequestConfiguration.url required")
-    if "Body" in data:
+    if data.get("Body") is not None:
         out["body"] = data["Body"]
-    if "Headers" in data:
+    if data.get("Headers") is not None:
         import capo_mediatailor.types.__map_of__string
 
         out["headers"] = capo_mediatailor.types.__map_of__string.deserialize_json(

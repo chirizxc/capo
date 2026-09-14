@@ -24,7 +24,7 @@ def serialize_json(value: DeletePublicKeyRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeletePublicKeyRequest:
     out: DeletePublicKeyRequest = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("DeletePublicKeyRequest.arn required")

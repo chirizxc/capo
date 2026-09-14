@@ -37,13 +37,13 @@ def serialize_json(value: ImageConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ImageConfiguration:
     out: ImageConfiguration = {}  # type: ignore[typeddict-item]
-    if "imageUri" in data:
+    if data.get("imageUri") is not None:
         out["image_uri"] = data["imageUri"]
     else:
         raise DeserializationError("ImageConfiguration.image_uri required")
-    if "resolvedImageDigest" in data:
+    if data.get("resolvedImageDigest") is not None:
         out["resolved_image_digest"] = data["resolvedImageDigest"]
-    if "applicationLevelDigestResolution" in data:
+    if data.get("applicationLevelDigestResolution") is not None:
         out["application_level_digest_resolution"] = data[
             "applicationLevelDigestResolution"
         ]

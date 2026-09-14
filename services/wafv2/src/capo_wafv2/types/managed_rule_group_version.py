@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: ManagedRuleGroupVersion) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ManagedRuleGroupVersion:
     out: ManagedRuleGroupVersion = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "LastUpdateTimestamp" in data:
+    if data.get("LastUpdateTimestamp") is not None:
         import capo_wafv2.types.timestamp
 
         out["last_update_timestamp"] = (

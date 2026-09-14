@@ -57,7 +57,7 @@ def serialize_aws_json_1_1(value: BatchDescribeMergeConflictsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchDescribeMergeConflictsOutput:
     out: BatchDescribeMergeConflictsOutput = {}  # type: ignore[typeddict-item]
-    if "conflicts" in data:
+    if data.get("conflicts") is not None:
         import capo_codecommit.types.conflicts
 
         out["conflicts"] = capo_codecommit.types.conflicts.deserialize_aws_json_1_1(
@@ -67,9 +67,9 @@ def deserialize_aws_json_1_1(data: dict) -> BatchDescribeMergeConflictsOutput:
         raise DeserializationError(
             "BatchDescribeMergeConflictsOutput.conflicts required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_codecommit.types.batch_describe_merge_conflicts_errors
 
         out["errors"] = (
@@ -77,18 +77,18 @@ def deserialize_aws_json_1_1(data: dict) -> BatchDescribeMergeConflictsOutput:
                 data["errors"]
             )
         )
-    if "destinationCommitId" in data:
+    if data.get("destinationCommitId") is not None:
         out["destination_commit_id"] = data["destinationCommitId"]
     else:
         raise DeserializationError(
             "BatchDescribeMergeConflictsOutput.destination_commit_id required"
         )
-    if "sourceCommitId" in data:
+    if data.get("sourceCommitId") is not None:
         out["source_commit_id"] = data["sourceCommitId"]
     else:
         raise DeserializationError(
             "BatchDescribeMergeConflictsOutput.source_commit_id required"
         )
-    if "baseCommitId" in data:
+    if data.get("baseCommitId") is not None:
         out["base_commit_id"] = data["baseCommitId"]
     return out

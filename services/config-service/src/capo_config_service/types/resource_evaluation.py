@@ -49,9 +49,9 @@ def serialize_aws_json_1_1(value: ResourceEvaluation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourceEvaluation:
     out: ResourceEvaluation = {}  # type: ignore[typeddict-item]
-    if "ResourceEvaluationId" in data:
+    if data.get("ResourceEvaluationId") is not None:
         out["resource_evaluation_id"] = data["ResourceEvaluationId"]
-    if "EvaluationMode" in data:
+    if data.get("EvaluationMode") is not None:
         import capo_config_service.types.evaluation_mode
 
         out["evaluation_mode"] = (
@@ -59,7 +59,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceEvaluation:
                 data["EvaluationMode"]
             )
         )
-    if "EvaluationStartTimestamp" in data:
+    if data.get("EvaluationStartTimestamp") is not None:
         import capo_config_service.types.date
 
         out["evaluation_start_timestamp"] = (

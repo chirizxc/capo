@@ -46,11 +46,11 @@ def serialize_json(value: Insight) -> dict:
 
 def deserialize_json(data: dict) -> Insight:
     out: Insight = {}  # type: ignore[typeddict-item]
-    if "InsightArn" in data:
+    if data.get("InsightArn") is not None:
         out["insight_arn"] = data["InsightArn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_securityhub.types.aws_security_finding_filters
 
         out["filters"] = (
@@ -58,6 +58,6 @@ def deserialize_json(data: dict) -> Insight:
                 data["Filters"]
             )
         )
-    if "GroupByAttribute" in data:
+    if data.get("GroupByAttribute") is not None:
         out["group_by_attribute"] = data["GroupByAttribute"]
     return out

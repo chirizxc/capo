@@ -40,13 +40,13 @@ def serialize_json(value: SemanticModelConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SemanticModelConfiguration:
     out: SemanticModelConfiguration = {}  # type: ignore[typeddict-item]
-    if "TableMap" in data:
+    if data.get("TableMap") is not None:
         import capo_quicksight.types.semantic_table_map
 
         out["table_map"] = capo_quicksight.types.semantic_table_map.deserialize_json(
             data["TableMap"]
         )
-    if "SemanticMetadata" in data:
+    if data.get("SemanticMetadata") is not None:
         import capo_quicksight.types.data_set_semantic_metadata_list
 
         out["semantic_metadata"] = (

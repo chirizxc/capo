@@ -27,13 +27,13 @@ def serialize_aws_json_1_1(value: UpdateSMBFileShareVisibilityInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateSMBFileShareVisibilityInput:
     out: UpdateSMBFileShareVisibilityInput = {}  # type: ignore[typeddict-item]
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
     else:
         raise DeserializationError(
             "UpdateSMBFileShareVisibilityInput.gateway_arn required"
         )
-    if "FileSharesVisible" in data:
+    if data.get("FileSharesVisible") is not None:
         out["file_shares_visible"] = data["FileSharesVisible"]
     else:
         raise DeserializationError(

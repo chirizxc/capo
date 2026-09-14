@@ -33,7 +33,7 @@ def serialize_json(value: PutConnectInstanceIntegrationRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutConnectInstanceIntegrationRequest:
     out: PutConnectInstanceIntegrationRequest = {}  # type: ignore[typeddict-item]
-    if "integrationConfig" in data:
+    if data.get("integrationConfig") is not None:
         import capo_connectcampaignsv2.types.integration_config
 
         out["integration_config"] = (

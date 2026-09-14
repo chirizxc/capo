@@ -62,7 +62,7 @@ def serialize_aws_json_1_1(value: TranslateDocumentResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TranslateDocumentResponse:
     out: TranslateDocumentResponse = {}  # type: ignore[typeddict-item]
-    if "TranslatedDocument" in data:
+    if data.get("TranslatedDocument") is not None:
         import capo_translate.types.translated_document
 
         out["translated_document"] = (
@@ -74,19 +74,19 @@ def deserialize_aws_json_1_1(data: dict) -> TranslateDocumentResponse:
         raise DeserializationError(
             "TranslateDocumentResponse.translated_document required"
         )
-    if "SourceLanguageCode" in data:
+    if data.get("SourceLanguageCode") is not None:
         out["source_language_code"] = data["SourceLanguageCode"]
     else:
         raise DeserializationError(
             "TranslateDocumentResponse.source_language_code required"
         )
-    if "TargetLanguageCode" in data:
+    if data.get("TargetLanguageCode") is not None:
         out["target_language_code"] = data["TargetLanguageCode"]
     else:
         raise DeserializationError(
             "TranslateDocumentResponse.target_language_code required"
         )
-    if "AppliedTerminologies" in data:
+    if data.get("AppliedTerminologies") is not None:
         import capo_translate.types.applied_terminology_list
 
         out["applied_terminologies"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_1(data: dict) -> TranslateDocumentResponse:
                 data["AppliedTerminologies"]
             )
         )
-    if "AppliedSettings" in data:
+    if data.get("AppliedSettings") is not None:
         import capo_translate.types.translation_settings
 
         out["applied_settings"] = (

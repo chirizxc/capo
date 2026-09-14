@@ -28,7 +28,7 @@ def serialize_json(value: StartAppAssessmentResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartAppAssessmentResponse:
     out: StartAppAssessmentResponse = {}  # type: ignore[typeddict-item]
-    if "assessment" in data:
+    if data.get("assessment") is not None:
         import capo_resiliencehub.types.app_assessment
 
         out["assessment"] = capo_resiliencehub.types.app_assessment.deserialize_json(

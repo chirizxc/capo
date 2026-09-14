@@ -72,17 +72,17 @@ def serialize_json(value: CreateFolderRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateFolderRequest:
     out: CreateFolderRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "FolderType" in data:
+    if data.get("FolderType") is not None:
         import capo_quicksight.types.folder_type
 
         out["folder_type"] = capo_quicksight.types.folder_type.deserialize_json(
             data["FolderType"]
         )
-    if "ParentFolderArn" in data:
+    if data.get("ParentFolderArn") is not None:
         out["parent_folder_arn"] = data["ParentFolderArn"]
-    if "Permissions" in data:
+    if data.get("Permissions") is not None:
         import capo_quicksight.types.resource_permission_list
 
         out["permissions"] = (
@@ -90,11 +90,11 @@ def deserialize_json(data: dict) -> CreateFolderRequest:
                 data["Permissions"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_quicksight.types.tag_list
 
         out["tags"] = capo_quicksight.types.tag_list.deserialize_json(data["Tags"])
-    if "SharingModel" in data:
+    if data.get("SharingModel") is not None:
         import capo_quicksight.types.sharing_model
 
         out["sharing_model"] = capo_quicksight.types.sharing_model.deserialize_json(

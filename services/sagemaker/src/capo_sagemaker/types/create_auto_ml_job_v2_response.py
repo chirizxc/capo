@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: CreateAutoMLJobV2Response) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateAutoMLJobV2Response:
     out: CreateAutoMLJobV2Response = {}  # type: ignore[typeddict-item]
-    if "AutoMLJobArn" in data:
+    if data.get("AutoMLJobArn") is not None:
         out["auto_ml_job_arn"] = data["AutoMLJobArn"]
     return out

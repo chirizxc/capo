@@ -40,17 +40,17 @@ def serialize_aws_json_1_1(value: EntryDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EntryDescription:
     out: EntryDescription = {}  # type: ignore[typeddict-item]
-    if "EntryDetail" in data:
+    if data.get("EntryDetail") is not None:
         import capo_fms.types.network_acl_entry
 
         out["entry_detail"] = capo_fms.types.network_acl_entry.deserialize_aws_json_1_1(
             data["EntryDetail"]
         )
-    if "EntryRuleNumber" in data:
+    if data.get("EntryRuleNumber") is not None:
         out["entry_rule_number"] = data["EntryRuleNumber"]
     else:
         out["entry_rule_number"] = 0
-    if "EntryType" in data:
+    if data.get("EntryType") is not None:
         import capo_fms.types.entry_type
 
         out["entry_type"] = capo_fms.types.entry_type.deserialize_aws_json_1_1(

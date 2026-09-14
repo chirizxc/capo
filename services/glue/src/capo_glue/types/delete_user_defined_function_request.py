@@ -32,15 +32,15 @@ def serialize_aws_json_1_1(value: DeleteUserDefinedFunctionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteUserDefinedFunctionRequest:
     out: DeleteUserDefinedFunctionRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError(
             "DeleteUserDefinedFunctionRequest.database_name required"
         )
-    if "FunctionName" in data:
+    if data.get("FunctionName") is not None:
         out["function_name"] = data["FunctionName"]
     else:
         raise DeserializationError(

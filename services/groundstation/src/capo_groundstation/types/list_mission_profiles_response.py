@@ -36,9 +36,9 @@ def serialize_json(value: ListMissionProfilesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListMissionProfilesResponse:
     out: ListMissionProfilesResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "missionProfileList" in data:
+    if data.get("missionProfileList") is not None:
         import capo_groundstation.types.mission_profile_list
 
         out["mission_profile_list"] = (

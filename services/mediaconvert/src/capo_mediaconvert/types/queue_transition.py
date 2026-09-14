@@ -36,11 +36,11 @@ def serialize_json(value: QueueTransition) -> dict:
 
 def deserialize_json(data: dict) -> QueueTransition:
     out: QueueTransition = {}  # type: ignore[typeddict-item]
-    if "destinationQueue" in data:
+    if data.get("destinationQueue") is not None:
         out["destination_queue"] = data["destinationQueue"]
-    if "sourceQueue" in data:
+    if data.get("sourceQueue") is not None:
         out["source_queue"] = data["sourceQueue"]
-    if "timestamp" in data:
+    if data.get("timestamp") is not None:
         import capo_mediaconvert.types.__timestamp_unix
 
         out["timestamp"] = capo_mediaconvert.types.__timestamp_unix.deserialize_json(

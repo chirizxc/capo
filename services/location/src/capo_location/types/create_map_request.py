@@ -51,11 +51,11 @@ def serialize_json(value: CreateMapRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateMapRequest:
     out: CreateMapRequest = {}  # type: ignore[typeddict-item]
-    if "MapName" in data:
+    if data.get("MapName") is not None:
         out["map_name"] = data["MapName"]
     else:
         raise DeserializationError("CreateMapRequest.map_name required")
-    if "Configuration" in data:
+    if data.get("Configuration") is not None:
         import capo_location.types.map_configuration
 
         out["configuration"] = capo_location.types.map_configuration.deserialize_json(
@@ -63,11 +63,11 @@ def deserialize_json(data: dict) -> CreateMapRequest:
         )
     else:
         raise DeserializationError("CreateMapRequest.configuration required")
-    if "PricingPlan" in data:
+    if data.get("PricingPlan") is not None:
         out["pricing_plan"] = data["PricingPlan"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_location.types.tag_map
 
         out["tags"] = capo_location.types.tag_map.deserialize_json(data["Tags"])

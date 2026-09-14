@@ -107,37 +107,37 @@ def serialize_json(value: GetSolNetworkOperationOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetSolNetworkOperationOutput:
     out: GetSolNetworkOperationOutput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("GetSolNetworkOperationOutput.arn required")
-    if "operationState" in data:
+    if data.get("operationState") is not None:
         import capo_tnb.types.ns_lcm_operation_state
 
         out["operation_state"] = capo_tnb.types.ns_lcm_operation_state.deserialize_json(
             data["operationState"]
         )
-    if "nsInstanceId" in data:
+    if data.get("nsInstanceId") is not None:
         out["ns_instance_id"] = data["nsInstanceId"]
-    if "lcmOperationType" in data:
+    if data.get("lcmOperationType") is not None:
         import capo_tnb.types.lcm_operation_type
 
         out["lcm_operation_type"] = capo_tnb.types.lcm_operation_type.deserialize_json(
             data["lcmOperationType"]
         )
-    if "updateType" in data:
+    if data.get("updateType") is not None:
         import capo_tnb.types.update_sol_network_type
 
         out["update_type"] = capo_tnb.types.update_sol_network_type.deserialize_json(
             data["updateType"]
         )
-    if "error" in data:
+    if data.get("error") is not None:
         import capo_tnb.types.problem_details
 
         out["error"] = capo_tnb.types.problem_details.deserialize_json(data["error"])
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         import capo_tnb.types.get_sol_network_operation_metadata
 
         out["metadata"] = (
@@ -145,7 +145,7 @@ def deserialize_json(data: dict) -> GetSolNetworkOperationOutput:
                 data["metadata"]
             )
         )
-    if "tasks" in data:
+    if data.get("tasks") is not None:
         import capo_tnb.types.get_sol_network_operation_tasks_list
 
         out["tasks"] = (
@@ -153,7 +153,7 @@ def deserialize_json(data: dict) -> GetSolNetworkOperationOutput:
                 data["tasks"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_tnb.types.tag_map
 
         out["tags"] = capo_tnb.types.tag_map.deserialize_json(data["tags"])

@@ -47,7 +47,7 @@ def serialize_json(value: CustomPromptInput) -> dict:
 
 
 def deserialize_json(data: dict) -> CustomPromptInput:
-    if "ExistingPrompt" in data:
+    if data.get("ExistingPrompt") is not None:
         import capo_quicksight.types.custom_prompt_profile
 
         return {
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> CustomPromptInput:
                 data["ExistingPrompt"]
             )
         }
-    elif "NewPrompt" in data:
+    elif data.get("NewPrompt") is not None:
         import capo_quicksight.types.custom_prompt_input_parameters
 
         return {

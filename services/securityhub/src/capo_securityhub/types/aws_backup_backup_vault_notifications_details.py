@@ -36,7 +36,7 @@ def serialize_json(value: AwsBackupBackupVaultNotificationsDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsBackupBackupVaultNotificationsDetails:
     out: AwsBackupBackupVaultNotificationsDetails = {}  # type: ignore[typeddict-item]
-    if "BackupVaultEvents" in data:
+    if data.get("BackupVaultEvents") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["backup_vault_events"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> AwsBackupBackupVaultNotificationsDetails:
                 data["BackupVaultEvents"]
             )
         )
-    if "SnsTopicArn" in data:
+    if data.get("SnsTopicArn") is not None:
         out["sns_topic_arn"] = data["SnsTopicArn"]
     return out

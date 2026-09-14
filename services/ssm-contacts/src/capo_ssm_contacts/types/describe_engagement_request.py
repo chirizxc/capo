@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DescribeEngagementRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeEngagementRequest:
     out: DescribeEngagementRequest = {}  # type: ignore[typeddict-item]
-    if "EngagementId" in data:
+    if data.get("EngagementId") is not None:
         out["engagement_id"] = data["EngagementId"]
     else:
         raise DeserializationError("DescribeEngagementRequest.engagement_id required")

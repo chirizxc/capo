@@ -30,13 +30,13 @@ def serialize_json(value: LifecyclePolicyResourceSelectionRecipe) -> dict:
 
 def deserialize_json(data: dict) -> LifecyclePolicyResourceSelectionRecipe:
     out: LifecyclePolicyResourceSelectionRecipe = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError(
             "LifecyclePolicyResourceSelectionRecipe.name required"
         )
-    if "semanticVersion" in data:
+    if data.get("semanticVersion") is not None:
         out["semantic_version"] = data["semanticVersion"]
     else:
         raise DeserializationError(

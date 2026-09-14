@@ -48,13 +48,13 @@ def serialize_json(value: LinkAssociation) -> dict:
 
 def deserialize_json(data: dict) -> LinkAssociation:
     out: LinkAssociation = {}  # type: ignore[typeddict-item]
-    if "GlobalNetworkId" in data:
+    if data.get("GlobalNetworkId") is not None:
         out["global_network_id"] = data["GlobalNetworkId"]
-    if "DeviceId" in data:
+    if data.get("DeviceId") is not None:
         out["device_id"] = data["DeviceId"]
-    if "LinkId" in data:
+    if data.get("LinkId") is not None:
         out["link_id"] = data["LinkId"]
-    if "LinkAssociationState" in data:
+    if data.get("LinkAssociationState") is not None:
         import capo_networkmanager.types.link_association_state
 
         out["link_association_state"] = (

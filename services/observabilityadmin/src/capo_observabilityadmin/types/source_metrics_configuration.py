@@ -25,6 +25,6 @@ def serialize_json(value: SourceMetricsConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SourceMetricsConfiguration:
     out: SourceMetricsConfiguration = {}  # type: ignore[typeddict-item]
-    if "MetricsSelectionCriteria" in data:
+    if data.get("MetricsSelectionCriteria") is not None:
         out["metrics_selection_criteria"] = data["MetricsSelectionCriteria"]
     return out

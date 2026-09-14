@@ -31,7 +31,7 @@ def serialize_json(value: DeleteTargetAccountConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteTargetAccountConfigurationResponse:
     out: DeleteTargetAccountConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "targetAccountConfiguration" in data:
+    if data.get("targetAccountConfiguration") is not None:
         import capo_fis.types.target_account_configuration
 
         out["target_account_configuration"] = (

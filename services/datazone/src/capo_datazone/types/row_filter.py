@@ -22,8 +22,6 @@ _RowFilter_and = TypedDict(
     },
     closed=True,
 )
-
-
 _RowFilter_or = TypedDict(
     "_RowFilter_or",
     {
@@ -58,7 +56,7 @@ def serialize_json(value: RowFilter) -> dict:
 
 
 def deserialize_json(data: dict) -> RowFilter:
-    if "expression" in data:
+    if data.get("expression") is not None:
         import capo_datazone.types.row_filter_expression
 
         return {
@@ -66,13 +64,13 @@ def deserialize_json(data: dict) -> RowFilter:
                 data["expression"]
             )
         }
-    elif "and" in data:
+    elif data.get("and") is not None:
         import capo_datazone.types.row_filter_list
 
         return {
             "and": capo_datazone.types.row_filter_list.deserialize_json(data["and"])
         }
-    elif "or" in data:
+    elif data.get("or") is not None:
         import capo_datazone.types.row_filter_list
 
         return {"or": capo_datazone.types.row_filter_list.deserialize_json(data["or"])}

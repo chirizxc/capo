@@ -34,19 +34,19 @@ def serialize_aws_json_1_0(value: AllianceLeadContact) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AllianceLeadContact:
     out: AllianceLeadContact = {}  # type: ignore[typeddict-item]
-    if "FirstName" in data:
+    if data.get("FirstName") is not None:
         out["first_name"] = data["FirstName"]
     else:
         raise DeserializationError("AllianceLeadContact.first_name required")
-    if "LastName" in data:
+    if data.get("LastName") is not None:
         out["last_name"] = data["LastName"]
     else:
         raise DeserializationError("AllianceLeadContact.last_name required")
-    if "Email" in data:
+    if data.get("Email") is not None:
         out["email"] = data["Email"]
     else:
         raise DeserializationError("AllianceLeadContact.email required")
-    if "BusinessTitle" in data:
+    if data.get("BusinessTitle") is not None:
         out["business_title"] = data["BusinessTitle"]
     else:
         raise DeserializationError("AllianceLeadContact.business_title required")

@@ -69,13 +69,13 @@ def serialize_aws_json_1_1(value: GetLoadBalancerMetricDataRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetLoadBalancerMetricDataRequest:
     out: GetLoadBalancerMetricDataRequest = {}  # type: ignore[typeddict-item]
-    if "loadBalancerName" in data:
+    if data.get("loadBalancerName") is not None:
         out["load_balancer_name"] = data["loadBalancerName"]
     else:
         raise DeserializationError(
             "GetLoadBalancerMetricDataRequest.load_balancer_name required"
         )
-    if "metricName" in data:
+    if data.get("metricName") is not None:
         import capo_lightsail.types.load_balancer_metric_name
 
         out["metric_name"] = (
@@ -87,11 +87,11 @@ def deserialize_aws_json_1_1(data: dict) -> GetLoadBalancerMetricDataRequest:
         raise DeserializationError(
             "GetLoadBalancerMetricDataRequest.metric_name required"
         )
-    if "period" in data:
+    if data.get("period") is not None:
         out["period"] = data["period"]
     else:
         raise DeserializationError("GetLoadBalancerMetricDataRequest.period required")
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_lightsail.types.timestamp
 
         out["start_time"] = capo_lightsail.types.timestamp.deserialize_aws_json_1_1(
@@ -101,7 +101,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetLoadBalancerMetricDataRequest:
         raise DeserializationError(
             "GetLoadBalancerMetricDataRequest.start_time required"
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_lightsail.types.timestamp
 
         out["end_time"] = capo_lightsail.types.timestamp.deserialize_aws_json_1_1(
@@ -109,7 +109,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetLoadBalancerMetricDataRequest:
         )
     else:
         raise DeserializationError("GetLoadBalancerMetricDataRequest.end_time required")
-    if "unit" in data:
+    if data.get("unit") is not None:
         import capo_lightsail.types.metric_unit
 
         out["unit"] = capo_lightsail.types.metric_unit.deserialize_aws_json_1_1(
@@ -117,7 +117,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetLoadBalancerMetricDataRequest:
         )
     else:
         raise DeserializationError("GetLoadBalancerMetricDataRequest.unit required")
-    if "statistics" in data:
+    if data.get("statistics") is not None:
         import capo_lightsail.types.metric_statistic_list
 
         out["statistics"] = (

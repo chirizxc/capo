@@ -23,6 +23,6 @@ def serialize_json(value: GenerateAccessLogsResult) -> dict:
 
 def deserialize_json(data: dict) -> GenerateAccessLogsResult:
     out: GenerateAccessLogsResult = {}  # type: ignore[typeddict-item]
-    if "logUrl" in data:
+    if data.get("logUrl") is not None:
         out["log_url"] = data["logUrl"]
     return out

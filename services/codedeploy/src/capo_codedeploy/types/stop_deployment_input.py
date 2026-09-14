@@ -31,10 +31,10 @@ def serialize_aws_json_1_1(value: StopDeploymentInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StopDeploymentInput:
     out: StopDeploymentInput = {}  # type: ignore[typeddict-item]
-    if "deploymentId" in data:
+    if data.get("deploymentId") is not None:
         out["deployment_id"] = data["deploymentId"]
     else:
         raise DeserializationError("StopDeploymentInput.deployment_id required")
-    if "autoRollbackEnabled" in data:
+    if data.get("autoRollbackEnabled") is not None:
         out["auto_rollback_enabled"] = data["autoRollbackEnabled"]
     return out

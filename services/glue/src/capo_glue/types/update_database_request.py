@@ -37,13 +37,13 @@ def serialize_aws_json_1_1(value: UpdateDatabaseRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateDatabaseRequest:
     out: UpdateDatabaseRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateDatabaseRequest.name required")
-    if "DatabaseInput" in data:
+    if data.get("DatabaseInput") is not None:
         import capo_glue.types.database_input
 
         out["database_input"] = capo_glue.types.database_input.deserialize_aws_json_1_1(

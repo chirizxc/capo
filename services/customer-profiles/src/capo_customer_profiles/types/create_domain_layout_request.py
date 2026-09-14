@@ -56,19 +56,19 @@ def serialize_json(value: CreateDomainLayoutRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDomainLayoutRequest:
     out: CreateDomainLayoutRequest = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     else:
         raise DeserializationError("CreateDomainLayoutRequest.description required")
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
     else:
         raise DeserializationError("CreateDomainLayoutRequest.display_name required")
-    if "IsDefault" in data:
+    if data.get("IsDefault") is not None:
         out["is_default"] = data["IsDefault"]
     else:
         out["is_default"] = False
-    if "LayoutType" in data:
+    if data.get("LayoutType") is not None:
         import capo_customer_profiles.types.layout_type
 
         out["layout_type"] = capo_customer_profiles.types.layout_type.deserialize_json(
@@ -76,11 +76,11 @@ def deserialize_json(data: dict) -> CreateDomainLayoutRequest:
         )
     else:
         raise DeserializationError("CreateDomainLayoutRequest.layout_type required")
-    if "Layout" in data:
+    if data.get("Layout") is not None:
         out["layout"] = data["Layout"]
     else:
         raise DeserializationError("CreateDomainLayoutRequest.layout required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_customer_profiles.types.tag_map
 
         out["tags"] = capo_customer_profiles.types.tag_map.deserialize_json(

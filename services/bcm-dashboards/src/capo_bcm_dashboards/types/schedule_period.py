@@ -43,7 +43,7 @@ def serialize_aws_json_1_0(value: SchedulePeriod) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SchedulePeriod:
     out: SchedulePeriod = {}  # type: ignore[typeddict-item]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_bcm_dashboards.types.generic_time_stamp
 
         out["start_time"] = (
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_0(data: dict) -> SchedulePeriod:
                 data["startTime"]
             )
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_bcm_dashboards.types.generic_time_stamp
 
         out["end_time"] = (

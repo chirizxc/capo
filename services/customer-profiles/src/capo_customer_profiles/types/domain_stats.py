@@ -31,19 +31,19 @@ def serialize_json(value: DomainStats) -> dict:
 
 def deserialize_json(data: dict) -> DomainStats:
     out: DomainStats = {}  # type: ignore[typeddict-item]
-    if "ProfileCount" in data:
+    if data.get("ProfileCount") is not None:
         out["profile_count"] = data["ProfileCount"]
     else:
         out["profile_count"] = 0
-    if "MeteringProfileCount" in data:
+    if data.get("MeteringProfileCount") is not None:
         out["metering_profile_count"] = data["MeteringProfileCount"]
     else:
         out["metering_profile_count"] = 0
-    if "ObjectCount" in data:
+    if data.get("ObjectCount") is not None:
         out["object_count"] = data["ObjectCount"]
     else:
         out["object_count"] = 0
-    if "TotalSize" in data:
+    if data.get("TotalSize") is not None:
         out["total_size"] = data["TotalSize"]
     else:
         out["total_size"] = 0

@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: DescribeStudioOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeStudioOutput:
     out: DescribeStudioOutput = {}  # type: ignore[typeddict-item]
-    if "Studio" in data:
+    if data.get("Studio") is not None:
         import capo_emr.types.studio
 
         out["studio"] = capo_emr.types.studio.deserialize_aws_json_1_1(data["Studio"])

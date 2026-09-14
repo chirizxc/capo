@@ -29,8 +29,25 @@ def serialize_json(value: Usage) -> dict:
     out: dict = {}
     if "type" in value:
         out["type"] = value["type"]
-    out["total"] = value.get("total", 0)
-    out["estimatedMonthlyCost"] = value.get("estimated_monthly_cost", 0)
+    out["total"] = (
+        "NaN"
+        if value.get("total", 0) != value.get("total", 0)
+        else "Infinity"
+        if value.get("total", 0) == float("inf")
+        else "-Infinity"
+        if value.get("total", 0) == float("-inf")
+        else value.get("total", 0)
+    )
+    out["estimatedMonthlyCost"] = (
+        "NaN"
+        if value.get("estimated_monthly_cost", 0)
+        != value.get("estimated_monthly_cost", 0)
+        else "Infinity"
+        if value.get("estimated_monthly_cost", 0) == float("inf")
+        else "-Infinity"
+        if value.get("estimated_monthly_cost", 0) == float("-inf")
+        else value.get("estimated_monthly_cost", 0)
+    )
     if "currency" in value:
         out["currency"] = value["currency"]
     return out
@@ -38,16 +55,16 @@ def serialize_json(value: Usage) -> dict:
 
 def deserialize_json(data: dict) -> Usage:
     out: Usage = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "total" in data:
-        out["total"] = data["total"]
+    if data.get("total") is not None:
+        out["total"] = float(data["total"])
     else:
         out["total"] = 0
-    if "estimatedMonthlyCost" in data:
-        out["estimated_monthly_cost"] = data["estimatedMonthlyCost"]
+    if data.get("estimatedMonthlyCost") is not None:
+        out["estimated_monthly_cost"] = float(data["estimatedMonthlyCost"])
     else:
         out["estimated_monthly_cost"] = 0
-    if "currency" in data:
+    if data.get("currency") is not None:
         out["currency"] = data["currency"]
     return out

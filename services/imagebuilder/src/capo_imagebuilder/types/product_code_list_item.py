@@ -32,11 +32,11 @@ def serialize_json(value: ProductCodeListItem) -> dict:
 
 def deserialize_json(data: dict) -> ProductCodeListItem:
     out: ProductCodeListItem = {}  # type: ignore[typeddict-item]
-    if "productCodeId" in data:
+    if data.get("productCodeId") is not None:
         out["product_code_id"] = data["productCodeId"]
     else:
         raise DeserializationError("ProductCodeListItem.product_code_id required")
-    if "productCodeType" in data:
+    if data.get("productCodeType") is not None:
         import capo_imagebuilder.types.product_code_type
 
         out["product_code_type"] = (

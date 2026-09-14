@@ -32,12 +32,12 @@ def serialize_json(value: ListResourceProfileDetectionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListResourceProfileDetectionsResponse:
     out: ListResourceProfileDetectionsResponse = {}  # type: ignore[typeddict-item]
-    if "detections" in data:
+    if data.get("detections") is not None:
         import capo_macie2.types.__list_of_detection
 
         out["detections"] = capo_macie2.types.__list_of_detection.deserialize_json(
             data["detections"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

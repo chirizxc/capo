@@ -15,7 +15,15 @@ class StartTag(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: StartTag) -> dict:
     out: dict = {}
-    out["TimeOffset"] = value["time_offset"]
+    out["TimeOffset"] = (
+        "NaN"
+        if value["time_offset"] != value["time_offset"]
+        else "Infinity"
+        if value["time_offset"] == float("inf")
+        else "-Infinity"
+        if value["time_offset"] == float("-inf")
+        else value["time_offset"]
+    )
     if "precise" in value:
         out["Precise"] = value["precise"]
     return out
@@ -23,10 +31,10 @@ def serialize_json(value: StartTag) -> dict:
 
 def deserialize_json(data: dict) -> StartTag:
     out: StartTag = {}  # type: ignore[typeddict-item]
-    if "TimeOffset" in data:
-        out["time_offset"] = data["TimeOffset"]
+    if data.get("TimeOffset") is not None:
+        out["time_offset"] = float(data["TimeOffset"])
     else:
         raise DeserializationError("StartTag.time_offset required")
-    if "Precise" in data:
+    if data.get("Precise") is not None:
         out["precise"] = data["Precise"]
     return out

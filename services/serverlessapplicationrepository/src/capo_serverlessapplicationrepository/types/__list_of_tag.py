@@ -23,6 +23,8 @@ def deserialize_json(data: list) -> __listOfTag:
 
     out: __listOfTag = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_serverlessapplicationrepository.types.tag.deserialize_json(item)
         )

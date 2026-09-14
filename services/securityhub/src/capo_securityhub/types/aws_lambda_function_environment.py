@@ -40,13 +40,13 @@ def serialize_json(value: AwsLambdaFunctionEnvironment) -> dict:
 
 def deserialize_json(data: dict) -> AwsLambdaFunctionEnvironment:
     out: AwsLambdaFunctionEnvironment = {}  # type: ignore[typeddict-item]
-    if "Variables" in data:
+    if data.get("Variables") is not None:
         import capo_securityhub.types.field_map
 
         out["variables"] = capo_securityhub.types.field_map.deserialize_json(
             data["Variables"]
         )
-    if "Error" in data:
+    if data.get("Error") is not None:
         import capo_securityhub.types.aws_lambda_function_environment_error
 
         out["error"] = (

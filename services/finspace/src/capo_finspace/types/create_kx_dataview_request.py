@@ -84,21 +84,21 @@ def serialize_json(value: CreateKxDataviewRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateKxDataviewRequest:
     out: CreateKxDataviewRequest = {}  # type: ignore[typeddict-item]
-    if "dataviewName" in data:
+    if data.get("dataviewName") is not None:
         out["dataview_name"] = data["dataviewName"]
     else:
         raise DeserializationError("CreateKxDataviewRequest.dataview_name required")
-    if "azMode" in data:
+    if data.get("azMode") is not None:
         import capo_finspace.types.kx_az_mode
 
         out["az_mode"] = capo_finspace.types.kx_az_mode.deserialize_json(data["azMode"])
     else:
         raise DeserializationError("CreateKxDataviewRequest.az_mode required")
-    if "availabilityZoneId" in data:
+    if data.get("availabilityZoneId") is not None:
         out["availability_zone_id"] = data["availabilityZoneId"]
-    if "changesetId" in data:
+    if data.get("changesetId") is not None:
         out["changeset_id"] = data["changesetId"]
-    if "segmentConfigurations" in data:
+    if data.get("segmentConfigurations") is not None:
         import capo_finspace.types.kx_dataview_segment_configuration_list
 
         out["segment_configurations"] = (
@@ -106,21 +106,21 @@ def deserialize_json(data: dict) -> CreateKxDataviewRequest:
                 data["segmentConfigurations"]
             )
         )
-    if "autoUpdate" in data:
+    if data.get("autoUpdate") is not None:
         out["auto_update"] = data["autoUpdate"]
     else:
         out["auto_update"] = False
-    if "readWrite" in data:
+    if data.get("readWrite") is not None:
         out["read_write"] = data["readWrite"]
     else:
         out["read_write"] = False
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_finspace.types.tag_map
 
         out["tags"] = capo_finspace.types.tag_map.deserialize_json(data["tags"])
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("CreateKxDataviewRequest.client_token required")

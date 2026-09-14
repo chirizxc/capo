@@ -43,9 +43,9 @@ def serialize_json(value: AddLFTagsToResourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> AddLFTagsToResourceRequest:
     out: AddLFTagsToResourceRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "Resource" in data:
+    if data.get("Resource") is not None:
         import capo_lakeformation.types.resource
 
         out["resource"] = capo_lakeformation.types.resource.deserialize_json(
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> AddLFTagsToResourceRequest:
         )
     else:
         raise DeserializationError("AddLFTagsToResourceRequest.resource required")
-    if "LFTags" in data:
+    if data.get("LFTags") is not None:
         import capo_lakeformation.types.lf_tags_list
 
         out["lf_tags"] = capo_lakeformation.types.lf_tags_list.deserialize_json(

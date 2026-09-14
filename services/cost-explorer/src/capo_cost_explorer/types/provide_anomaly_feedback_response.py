@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: ProvideAnomalyFeedbackResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProvideAnomalyFeedbackResponse:
     out: ProvideAnomalyFeedbackResponse = {}  # type: ignore[typeddict-item]
-    if "AnomalyId" in data:
+    if data.get("AnomalyId") is not None:
         out["anomaly_id"] = data["AnomalyId"]
     else:
         raise DeserializationError("ProvideAnomalyFeedbackResponse.anomaly_id required")

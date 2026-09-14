@@ -29,7 +29,7 @@ def serialize_json(value: AcceptInboundConnectionResponse) -> dict:
 
 def deserialize_json(data: dict) -> AcceptInboundConnectionResponse:
     out: AcceptInboundConnectionResponse = {}  # type: ignore[typeddict-item]
-    if "Connection" in data:
+    if data.get("Connection") is not None:
         import capo_opensearch.types.inbound_connection
 
         out["connection"] = capo_opensearch.types.inbound_connection.deserialize_json(

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> SheetElementRenderingRuleList:
 
     out: SheetElementRenderingRuleList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.sheet_element_rendering_rule.deserialize_json(item)
         )

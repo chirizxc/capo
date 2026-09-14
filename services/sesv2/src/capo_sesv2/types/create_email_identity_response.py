@@ -40,17 +40,17 @@ def serialize_json(value: CreateEmailIdentityResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateEmailIdentityResponse:
     out: CreateEmailIdentityResponse = {}  # type: ignore[typeddict-item]
-    if "IdentityType" in data:
+    if data.get("IdentityType") is not None:
         import capo_sesv2.types.identity_type
 
         out["identity_type"] = capo_sesv2.types.identity_type.deserialize_json(
             data["IdentityType"]
         )
-    if "VerifiedForSendingStatus" in data:
+    if data.get("VerifiedForSendingStatus") is not None:
         out["verified_for_sending_status"] = data["VerifiedForSendingStatus"]
     else:
         out["verified_for_sending_status"] = False
-    if "DkimAttributes" in data:
+    if data.get("DkimAttributes") is not None:
         import capo_sesv2.types.dkim_attributes
 
         out["dkim_attributes"] = capo_sesv2.types.dkim_attributes.deserialize_json(

@@ -45,9 +45,9 @@ def serialize_json(value: VpcConfig) -> dict:
 
 def deserialize_json(data: dict) -> VpcConfig:
     out: VpcConfig = {}  # type: ignore[typeddict-item]
-    if "vpcArn" in data:
+    if data.get("vpcArn") is not None:
         out["vpc_arn"] = data["vpcArn"]
-    if "securityGroupArns" in data:
+    if data.get("securityGroupArns") is not None:
         import capo_securityagent.types.security_group_arns
 
         out["security_group_arns"] = (
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> VpcConfig:
                 data["securityGroupArns"]
             )
         )
-    if "subnetArns" in data:
+    if data.get("subnetArns") is not None:
         import capo_securityagent.types.subnet_arns
 
         out["subnet_arns"] = capo_securityagent.types.subnet_arns.deserialize_json(

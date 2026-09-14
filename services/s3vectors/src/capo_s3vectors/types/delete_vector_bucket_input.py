@@ -32,8 +32,8 @@ def serialize_json(value: DeleteVectorBucketInput) -> dict:
 
 def deserialize_json(data: dict) -> DeleteVectorBucketInput:
     out: DeleteVectorBucketInput = {}  # type: ignore[typeddict-item]
-    if "vectorBucketName" in data:
+    if data.get("vectorBucketName") is not None:
         out["vector_bucket_name"] = data["vectorBucketName"]
-    if "vectorBucketArn" in data:
+    if data.get("vectorBucketArn") is not None:
         out["vector_bucket_arn"] = data["vectorBucketArn"]
     return out

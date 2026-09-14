@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: CreateByteMatchSetResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateByteMatchSetResponse:
     out: CreateByteMatchSetResponse = {}  # type: ignore[typeddict-item]
-    if "ByteMatchSet" in data:
+    if data.get("ByteMatchSet") is not None:
         import capo_waf_regional.types.byte_match_set
 
         out["byte_match_set"] = (
@@ -42,6 +42,6 @@ def deserialize_aws_json_1_1(data: dict) -> CreateByteMatchSetResponse:
                 data["ByteMatchSet"]
             )
         )
-    if "ChangeToken" in data:
+    if data.get("ChangeToken") is not None:
         out["change_token"] = data["ChangeToken"]
     return out

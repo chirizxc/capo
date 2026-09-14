@@ -79,23 +79,23 @@ def serialize_json(value: DataLakeDataset) -> dict:
 
 def deserialize_json(data: dict) -> DataLakeDataset:
     out: DataLakeDataset = {}  # type: ignore[typeddict-item]
-    if "instanceId" in data:
+    if data.get("instanceId") is not None:
         out["instance_id"] = data["instanceId"]
     else:
         raise DeserializationError("DataLakeDataset.instance_id required")
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         out["namespace"] = data["namespace"]
     else:
         raise DeserializationError("DataLakeDataset.namespace required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("DataLakeDataset.name required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("DataLakeDataset.arn required")
-    if "schema" in data:
+    if data.get("schema") is not None:
         import capo_supplychain.types.data_lake_dataset_schema
 
         out["schema"] = (
@@ -105,9 +105,9 @@ def deserialize_json(data: dict) -> DataLakeDataset:
         )
     else:
         raise DeserializationError("DataLakeDataset.schema required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "partitionSpec" in data:
+    if data.get("partitionSpec") is not None:
         import capo_supplychain.types.data_lake_dataset_partition_spec
 
         out["partition_spec"] = (
@@ -115,7 +115,7 @@ def deserialize_json(data: dict) -> DataLakeDataset:
                 data["partitionSpec"]
             )
         )
-    if "createdTime" in data:
+    if data.get("createdTime") is not None:
         import capo_supplychain.types._prelude.timestamp
 
         out["created_time"] = (
@@ -125,7 +125,7 @@ def deserialize_json(data: dict) -> DataLakeDataset:
         )
     else:
         raise DeserializationError("DataLakeDataset.created_time required")
-    if "lastModifiedTime" in data:
+    if data.get("lastModifiedTime") is not None:
         import capo_supplychain.types._prelude.timestamp
 
         out["last_modified_time"] = (

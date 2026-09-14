@@ -27,9 +27,9 @@ def serialize_json(value: RegisteredCustomerManagedKey) -> dict:
 
 def deserialize_json(data: dict) -> RegisteredCustomerManagedKey:
     out: RegisteredCustomerManagedKey = {}  # type: ignore[typeddict-item]
-    if "KeyArn" in data:
+    if data.get("KeyArn") is not None:
         out["key_arn"] = data["KeyArn"]
-    if "DefaultKey" in data:
+    if data.get("DefaultKey") is not None:
         out["default_key"] = data["DefaultKey"]
     else:
         out["default_key"] = False

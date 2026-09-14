@@ -30,7 +30,7 @@ def serialize_json(value: CreateProvisioningTemplateVersionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateProvisioningTemplateVersionRequest:
     out: CreateProvisioningTemplateVersionRequest = {}  # type: ignore[typeddict-item]
-    if "templateBody" in data:
+    if data.get("templateBody") is not None:
         out["template_body"] = data["templateBody"]
     else:
         raise DeserializationError(

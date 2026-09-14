@@ -23,5 +23,7 @@ def serialize_json(input_to_serialize: PillarNotes) -> dict:
 def deserialize_json(data: dict) -> PillarNotes:
     out: PillarNotes = {}
     for key, value in data.items():
+        if value is None:
+            continue
         out[key] = value
     return out

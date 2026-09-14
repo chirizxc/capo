@@ -56,19 +56,19 @@ def serialize_json(value: QuerySessionContext) -> dict:
 
 def deserialize_json(data: dict) -> QuerySessionContext:
     out: QuerySessionContext = {}  # type: ignore[typeddict-item]
-    if "QueryId" in data:
+    if data.get("QueryId") is not None:
         out["query_id"] = data["QueryId"]
-    if "QueryStartTime" in data:
+    if data.get("QueryStartTime") is not None:
         import capo_lakeformation.types.timestamp
 
         out["query_start_time"] = capo_lakeformation.types.timestamp.deserialize_json(
             data["QueryStartTime"]
         )
-    if "ClusterId" in data:
+    if data.get("ClusterId") is not None:
         out["cluster_id"] = data["ClusterId"]
-    if "QueryAuthorizationId" in data:
+    if data.get("QueryAuthorizationId") is not None:
         out["query_authorization_id"] = data["QueryAuthorizationId"]
-    if "AdditionalContext" in data:
+    if data.get("AdditionalContext") is not None:
         import capo_lakeformation.types.additional_context_map
 
         out["additional_context"] = (

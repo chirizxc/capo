@@ -31,7 +31,7 @@ def serialize_json(value: SearchableRoutingCriteria) -> dict:
 
 def deserialize_json(data: dict) -> SearchableRoutingCriteria:
     out: SearchableRoutingCriteria = {}  # type: ignore[typeddict-item]
-    if "Steps" in data:
+    if data.get("Steps") is not None:
         import capo_connect.types.searchable_routing_criteria_step_list
 
         out["steps"] = (

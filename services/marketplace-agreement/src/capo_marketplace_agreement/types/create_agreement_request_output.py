@@ -38,9 +38,9 @@ def serialize_aws_json_1_0(value: CreateAgreementRequestOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateAgreementRequestOutput:
     out: CreateAgreementRequestOutput = {}  # type: ignore[typeddict-item]
-    if "agreementRequestId" in data:
+    if data.get("agreementRequestId") is not None:
         out["agreement_request_id"] = data["agreementRequestId"]
-    if "chargeSummary" in data:
+    if data.get("chargeSummary") is not None:
         import capo_marketplace_agreement.types.charge_summary
 
         out["charge_summary"] = (

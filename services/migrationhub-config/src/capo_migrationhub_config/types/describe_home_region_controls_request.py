@@ -49,18 +49,18 @@ def serialize_aws_json_1_1(value: DescribeHomeRegionControlsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeHomeRegionControlsRequest:
     out: DescribeHomeRegionControlsRequest = {}  # type: ignore[typeddict-item]
-    if "ControlId" in data:
+    if data.get("ControlId") is not None:
         out["control_id"] = data["ControlId"]
-    if "HomeRegion" in data:
+    if data.get("HomeRegion") is not None:
         out["home_region"] = data["HomeRegion"]
-    if "Target" in data:
+    if data.get("Target") is not None:
         import capo_migrationhub_config.types.target
 
         out["target"] = capo_migrationhub_config.types.target.deserialize_aws_json_1_1(
             data["Target"]
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

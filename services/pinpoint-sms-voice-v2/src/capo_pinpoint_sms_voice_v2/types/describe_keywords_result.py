@@ -44,11 +44,11 @@ def serialize_aws_json_1_0(value: DescribeKeywordsResult) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeKeywordsResult:
     out: DescribeKeywordsResult = {}  # type: ignore[typeddict-item]
-    if "OriginationIdentityArn" in data:
+    if data.get("OriginationIdentityArn") is not None:
         out["origination_identity_arn"] = data["OriginationIdentityArn"]
-    if "OriginationIdentity" in data:
+    if data.get("OriginationIdentity") is not None:
         out["origination_identity"] = data["OriginationIdentity"]
-    if "Keywords" in data:
+    if data.get("Keywords") is not None:
         import capo_pinpoint_sms_voice_v2.types.keyword_information_list
 
         out["keywords"] = (
@@ -56,6 +56,6 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeKeywordsResult:
                 data["Keywords"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

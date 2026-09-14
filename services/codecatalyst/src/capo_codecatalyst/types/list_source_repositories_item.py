@@ -50,17 +50,17 @@ def serialize_json(value: ListSourceRepositoriesItem) -> dict:
 
 def deserialize_json(data: dict) -> ListSourceRepositoriesItem:
     out: ListSourceRepositoriesItem = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("ListSourceRepositoriesItem.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ListSourceRepositoriesItem.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "lastUpdatedTime" in data:
+    if data.get("lastUpdatedTime") is not None:
         import capo_codecatalyst.types.timestamp
 
         out["last_updated_time"] = capo_codecatalyst.types.timestamp.deserialize_json(
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> ListSourceRepositoriesItem:
         raise DeserializationError(
             "ListSourceRepositoriesItem.last_updated_time required"
         )
-    if "createdTime" in data:
+    if data.get("createdTime") is not None:
         import capo_codecatalyst.types.timestamp
 
         out["created_time"] = capo_codecatalyst.types.timestamp.deserialize_json(

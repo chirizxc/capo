@@ -49,15 +49,15 @@ def serialize_json(value: PhysicalConnectionRequirements) -> dict:
 
 def deserialize_json(data: dict) -> PhysicalConnectionRequirements:
     out: PhysicalConnectionRequirements = {}  # type: ignore[typeddict-item]
-    if "subnetId" in data:
+    if data.get("subnetId") is not None:
         out["subnet_id"] = data["subnetId"]
-    if "subnetIdList" in data:
+    if data.get("subnetIdList") is not None:
         import capo_datazone.types.subnet_id_list
 
         out["subnet_id_list"] = capo_datazone.types.subnet_id_list.deserialize_json(
             data["subnetIdList"]
         )
-    if "securityGroupIdList" in data:
+    if data.get("securityGroupIdList") is not None:
         import capo_datazone.types.security_group_id_list
 
         out["security_group_id_list"] = (
@@ -65,6 +65,6 @@ def deserialize_json(data: dict) -> PhysicalConnectionRequirements:
                 data["securityGroupIdList"]
             )
         )
-    if "availabilityZone" in data:
+    if data.get("availabilityZone") is not None:
         out["availability_zone"] = data["availabilityZone"]
     return out

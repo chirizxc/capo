@@ -80,11 +80,11 @@ def serialize_json(value: CreateApplicationInstanceRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateApplicationInstanceRequest:
     out: CreateApplicationInstanceRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ManifestPayload" in data:
+    if data.get("ManifestPayload") is not None:
         import capo_panorama.types.manifest_payload
 
         out["manifest_payload"] = capo_panorama.types.manifest_payload.deserialize_json(
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> CreateApplicationInstanceRequest:
         raise DeserializationError(
             "CreateApplicationInstanceRequest.manifest_payload required"
         )
-    if "ManifestOverridesPayload" in data:
+    if data.get("ManifestOverridesPayload") is not None:
         import capo_panorama.types.manifest_overrides_payload
 
         out["manifest_overrides_payload"] = (
@@ -102,19 +102,19 @@ def deserialize_json(data: dict) -> CreateApplicationInstanceRequest:
                 data["ManifestOverridesPayload"]
             )
         )
-    if "ApplicationInstanceIdToReplace" in data:
+    if data.get("ApplicationInstanceIdToReplace") is not None:
         out["application_instance_id_to_replace"] = data[
             "ApplicationInstanceIdToReplace"
         ]
-    if "RuntimeRoleArn" in data:
+    if data.get("RuntimeRoleArn") is not None:
         out["runtime_role_arn"] = data["RuntimeRoleArn"]
-    if "DefaultRuntimeContextDevice" in data:
+    if data.get("DefaultRuntimeContextDevice") is not None:
         out["default_runtime_context_device"] = data["DefaultRuntimeContextDevice"]
     else:
         raise DeserializationError(
             "CreateApplicationInstanceRequest.default_runtime_context_device required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_panorama.types.tag_map
 
         out["tags"] = capo_panorama.types.tag_map.deserialize_json(data["Tags"])

@@ -33,7 +33,7 @@ def serialize_json(value: ListBackendEnvironmentsResult) -> dict:
 
 def deserialize_json(data: dict) -> ListBackendEnvironmentsResult:
     out: ListBackendEnvironmentsResult = {}  # type: ignore[typeddict-item]
-    if "backendEnvironments" in data:
+    if data.get("backendEnvironments") is not None:
         import capo_amplify.types.backend_environments
 
         out["backend_environments"] = (
@@ -45,6 +45,6 @@ def deserialize_json(data: dict) -> ListBackendEnvironmentsResult:
         raise DeserializationError(
             "ListBackendEnvironmentsResult.backend_environments required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

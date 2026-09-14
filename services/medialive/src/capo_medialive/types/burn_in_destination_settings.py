@@ -160,13 +160,13 @@ def serialize_json(value: BurnInDestinationSettings) -> dict:
 
 def deserialize_json(data: dict) -> BurnInDestinationSettings:
     out: BurnInDestinationSettings = {}  # type: ignore[typeddict-item]
-    if "alignment" in data:
+    if data.get("alignment") is not None:
         import capo_medialive.types.burn_in_alignment
 
         out["alignment"] = capo_medialive.types.burn_in_alignment.deserialize_json(
             data["alignment"]
         )
-    if "backgroundColor" in data:
+    if data.get("backgroundColor") is not None:
         import capo_medialive.types.burn_in_background_color
 
         out["background_color"] = (
@@ -174,25 +174,25 @@ def deserialize_json(data: dict) -> BurnInDestinationSettings:
                 data["backgroundColor"]
             )
         )
-    if "backgroundOpacity" in data:
+    if data.get("backgroundOpacity") is not None:
         out["background_opacity"] = data["backgroundOpacity"]
-    if "font" in data:
+    if data.get("font") is not None:
         import capo_medialive.types.input_location
 
         out["font"] = capo_medialive.types.input_location.deserialize_json(data["font"])
-    if "fontColor" in data:
+    if data.get("fontColor") is not None:
         import capo_medialive.types.burn_in_font_color
 
         out["font_color"] = capo_medialive.types.burn_in_font_color.deserialize_json(
             data["fontColor"]
         )
-    if "fontOpacity" in data:
+    if data.get("fontOpacity") is not None:
         out["font_opacity"] = data["fontOpacity"]
-    if "fontResolution" in data:
+    if data.get("fontResolution") is not None:
         out["font_resolution"] = data["fontResolution"]
-    if "fontSize" in data:
+    if data.get("fontSize") is not None:
         out["font_size"] = data["fontSize"]
-    if "outlineColor" in data:
+    if data.get("outlineColor") is not None:
         import capo_medialive.types.burn_in_outline_color
 
         out["outline_color"] = (
@@ -200,9 +200,9 @@ def deserialize_json(data: dict) -> BurnInDestinationSettings:
                 data["outlineColor"]
             )
         )
-    if "outlineSize" in data:
+    if data.get("outlineSize") is not None:
         out["outline_size"] = data["outlineSize"]
-    if "shadowColor" in data:
+    if data.get("shadowColor") is not None:
         import capo_medialive.types.burn_in_shadow_color
 
         out["shadow_color"] = (
@@ -210,13 +210,13 @@ def deserialize_json(data: dict) -> BurnInDestinationSettings:
                 data["shadowColor"]
             )
         )
-    if "shadowOpacity" in data:
+    if data.get("shadowOpacity") is not None:
         out["shadow_opacity"] = data["shadowOpacity"]
-    if "shadowXOffset" in data:
+    if data.get("shadowXOffset") is not None:
         out["shadow_x_offset"] = data["shadowXOffset"]
-    if "shadowYOffset" in data:
+    if data.get("shadowYOffset") is not None:
         out["shadow_y_offset"] = data["shadowYOffset"]
-    if "teletextGridControl" in data:
+    if data.get("teletextGridControl") is not None:
         import capo_medialive.types.burn_in_teletext_grid_control
 
         out["teletext_grid_control"] = (
@@ -224,11 +224,11 @@ def deserialize_json(data: dict) -> BurnInDestinationSettings:
                 data["teletextGridControl"]
             )
         )
-    if "xPosition" in data:
+    if data.get("xPosition") is not None:
         out["x_position"] = data["xPosition"]
-    if "yPosition" in data:
+    if data.get("yPosition") is not None:
         out["y_position"] = data["yPosition"]
-    if "subtitleRows" in data:
+    if data.get("subtitleRows") is not None:
         import capo_medialive.types.burn_in_destination_subtitle_rows
 
         out["subtitle_rows"] = (

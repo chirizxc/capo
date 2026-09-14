@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: DnsProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DnsProperties:
     out: DnsProperties = {}  # type: ignore[typeddict-item]
-    if "HostedZoneId" in data:
+    if data.get("HostedZoneId") is not None:
         out["hosted_zone_id"] = data["HostedZoneId"]
-    if "SOA" in data:
+    if data.get("SOA") is not None:
         import capo_servicediscovery.types.soa
 
         out["soa"] = capo_servicediscovery.types.soa.deserialize_aws_json_1_1(

@@ -36,11 +36,11 @@ def serialize_json(value: UpdateTargetDomainInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTargetDomainInput:
     out: UpdateTargetDomainInput = {}  # type: ignore[typeddict-item]
-    if "targetDomainId" in data:
+    if data.get("targetDomainId") is not None:
         out["target_domain_id"] = data["targetDomainId"]
     else:
         raise DeserializationError("UpdateTargetDomainInput.target_domain_id required")
-    if "verificationMethod" in data:
+    if data.get("verificationMethod") is not None:
         import capo_securityagent.types.domain_verification_method
 
         out["verification_method"] = (

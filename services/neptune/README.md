@@ -13,9 +13,9 @@ from capo_neptune import AsyncNeptuneClient
 
 
 async def main():
-    async with AsyncNeptuneClient() as s3:
+    async with AsyncNeptuneClient() as neptune:
         # Example: call the add_role_to_db_cluster operation
-        response = await s3.add_role_to_db_cluster()
+        response = await neptune.add_role_to_db_cluster()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_neptune import AsyncNeptuneClient
 
 
 async def main():
-    async with AsyncNeptuneClient() as s3:
+    async with AsyncNeptuneClient() as neptune:
         # Example: paginate over describe_db_cluster_endpoints
-        async for item in s3.iter_describe_db_cluster_endpoints():
+        async for item in neptune.iter_describe_db_cluster_endpoints():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_neptune.error import DBClusterNotFoundFault
 
 
 async def main():
-    async with AsyncNeptuneClient() as s3:
+    async with AsyncNeptuneClient() as neptune:
         try:
-            await s3.add_role_to_db_cluster()
+            await neptune.add_role_to_db_cluster()
         except DBClusterNotFoundFault as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_neptune import AsyncNeptuneClient
 
 
 async def main():
-    async with AsyncNeptuneClient() as s3:
+    async with AsyncNeptuneClient() as neptune:
         # Default: 3 attempts for every operation
-        response = await s3.add_role_to_db_cluster()
+        response = await neptune.add_role_to_db_cluster()
 
         # Override per operation
-        response = await s3.add_role_to_db_cluster(config_overrides={"retry_max_attempts": 5})
+        response = await neptune.add_role_to_db_cluster(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.add_role_to_db_cluster(config_overrides={"retry_max_attempts": 1})
+        response = await neptune.add_role_to_db_cluster(config_overrides={"retry_max_attempts": 1})
 ```

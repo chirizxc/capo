@@ -35,13 +35,13 @@ def serialize_json(value: StartTimeRange) -> dict:
 
 def deserialize_json(data: dict) -> StartTimeRange:
     out: StartTimeRange = {}  # type: ignore[typeddict-item]
-    if "FromTime" in data:
+    if data.get("FromTime") is not None:
         import capo_devops_guru.types.timestamp
 
         out["from_time"] = capo_devops_guru.types.timestamp.deserialize_json(
             data["FromTime"]
         )
-    if "ToTime" in data:
+    if data.get("ToTime") is not None:
         import capo_devops_guru.types.timestamp
 
         out["to_time"] = capo_devops_guru.types.timestamp.deserialize_json(

@@ -50,7 +50,7 @@ def serialize_aws_json_1_0(value: InstanceConfigurationFilter) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InstanceConfigurationFilter:
     out: InstanceConfigurationFilter = {}  # type: ignore[typeddict-item]
-    if "BillingMode" in data:
+    if data.get("BillingMode") is not None:
         import capo_workspaces_instances.types.billing_mode
 
         out["billing_mode"] = (
@@ -60,7 +60,7 @@ def deserialize_aws_json_1_0(data: dict) -> InstanceConfigurationFilter:
         )
     else:
         raise DeserializationError("InstanceConfigurationFilter.billing_mode required")
-    if "PlatformType" in data:
+    if data.get("PlatformType") is not None:
         import capo_workspaces_instances.types.platform_type_enum
 
         out["platform_type"] = (
@@ -70,7 +70,7 @@ def deserialize_aws_json_1_0(data: dict) -> InstanceConfigurationFilter:
         )
     else:
         raise DeserializationError("InstanceConfigurationFilter.platform_type required")
-    if "Tenancy" in data:
+    if data.get("Tenancy") is not None:
         import capo_workspaces_instances.types.instance_configuration_tenancy_enum
 
         out["tenancy"] = (

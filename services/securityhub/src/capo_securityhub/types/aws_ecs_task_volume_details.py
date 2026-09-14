@@ -36,9 +36,9 @@ def serialize_json(value: AwsEcsTaskVolumeDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEcsTaskVolumeDetails:
     out: AwsEcsTaskVolumeDetails = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Host" in data:
+    if data.get("Host") is not None:
         import capo_securityhub.types.aws_ecs_task_volume_host_details
 
         out["host"] = (

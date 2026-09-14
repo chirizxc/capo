@@ -67,11 +67,11 @@ def serialize_aws_json_1_1(value: MSKSourceDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MSKSourceDescription:
     out: MSKSourceDescription = {}  # type: ignore[typeddict-item]
-    if "MSKClusterARN" in data:
+    if data.get("MSKClusterARN") is not None:
         out["msk_cluster_arn"] = data["MSKClusterARN"]
-    if "TopicName" in data:
+    if data.get("TopicName") is not None:
         out["topic_name"] = data["TopicName"]
-    if "AuthenticationConfiguration" in data:
+    if data.get("AuthenticationConfiguration") is not None:
         import capo_firehose.types.authentication_configuration
 
         out["authentication_configuration"] = (
@@ -79,7 +79,7 @@ def deserialize_aws_json_1_1(data: dict) -> MSKSourceDescription:
                 data["AuthenticationConfiguration"]
             )
         )
-    if "DeliveryStartTimestamp" in data:
+    if data.get("DeliveryStartTimestamp") is not None:
         import capo_firehose.types.delivery_start_timestamp
 
         out["delivery_start_timestamp"] = (
@@ -87,7 +87,7 @@ def deserialize_aws_json_1_1(data: dict) -> MSKSourceDescription:
                 data["DeliveryStartTimestamp"]
             )
         )
-    if "ReadFromTimestamp" in data:
+    if data.get("ReadFromTimestamp") is not None:
         import capo_firehose.types.read_from_timestamp
 
         out["read_from_timestamp"] = (

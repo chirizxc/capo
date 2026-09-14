@@ -31,7 +31,7 @@ def serialize_json(value: ValidateAddressActionOptions) -> dict:
 
 def deserialize_json(data: dict) -> ValidateAddressActionOptions:
     out: ValidateAddressActionOptions = {}  # type: ignore[typeddict-item]
-    if "AdditionalFeatures" in data:
+    if data.get("AdditionalFeatures") is not None:
         import capo_location.types.validate_address_additional_feature_list
 
         out["additional_features"] = (

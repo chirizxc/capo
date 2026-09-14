@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: GetKeyPairsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetKeyPairsRequest:
     out: GetKeyPairsRequest = {}  # type: ignore[typeddict-item]
-    if "pageToken" in data:
+    if data.get("pageToken") is not None:
         out["page_token"] = data["pageToken"]
-    if "includeDefaultKeyPair" in data:
+    if data.get("includeDefaultKeyPair") is not None:
         out["include_default_key_pair"] = data["includeDefaultKeyPair"]
     return out

@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: DeregisterDevicesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeregisterDevicesRequest:
     out: DeregisterDevicesRequest = {}  # type: ignore[typeddict-item]
-    if "DeviceFleetName" in data:
+    if data.get("DeviceFleetName") is not None:
         out["device_fleet_name"] = data["DeviceFleetName"]
-    if "DeviceNames" in data:
+    if data.get("DeviceNames") is not None:
         import capo_sagemaker.types.device_names
 
         out["device_names"] = (

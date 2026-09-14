@@ -39,15 +39,20 @@ class IdempotentParameterMismatchError(ServiceError):
 
     code: str | None = "IdempotentParameterMismatchError"
 
-    def __init__(self, data: IdempotentParameterMismatchError_):
+    def __init__(
+        self, data: IdempotentParameterMismatchError_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="IdempotentParameterMismatchError",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "IdempotentParameterMismatchError":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "IdempotentParameterMismatchError":
+        return cls(deserialize_query(el), message)

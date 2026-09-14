@@ -13,9 +13,9 @@ from capo_textract import AsyncTextractClient
 
 
 async def main():
-    async with AsyncTextractClient() as s3:
+    async with AsyncTextractClient() as textract:
         # Example: call the analyze_document operation
-        response = await s3.analyze_document()
+        response = await textract.analyze_document()
         print(response["document_metadata"])
 ```
 
@@ -28,9 +28,9 @@ from capo_textract import AsyncTextractClient
 
 
 async def main():
-    async with AsyncTextractClient() as s3:
+    async with AsyncTextractClient() as textract:
         # Example: paginate over list_adapters
-        async for item in s3.iter_list_adapters():
+        async for item in textract.iter_list_adapters():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_textract.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncTextractClient() as s3:
+    async with AsyncTextractClient() as textract:
         try:
-            await s3.analyze_document()
+            await textract.analyze_document()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_textract import AsyncTextractClient
 
 
 async def main():
-    async with AsyncTextractClient() as s3:
+    async with AsyncTextractClient() as textract:
         # Default: 3 attempts for every operation
-        response = await s3.analyze_document()
+        response = await textract.analyze_document()
 
         # Override per operation
-        response = await s3.analyze_document(config_overrides={"retry_max_attempts": 5})
+        response = await textract.analyze_document(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.analyze_document(config_overrides={"retry_max_attempts": 1})
+        response = await textract.analyze_document(config_overrides={"retry_max_attempts": 1})
 ```

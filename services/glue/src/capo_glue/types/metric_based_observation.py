@@ -50,11 +50,11 @@ def serialize_aws_json_1_1(value: MetricBasedObservation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MetricBasedObservation:
     out: MetricBasedObservation = {}  # type: ignore[typeddict-item]
-    if "MetricName" in data:
+    if data.get("MetricName") is not None:
         out["metric_name"] = data["MetricName"]
-    if "StatisticId" in data:
+    if data.get("StatisticId") is not None:
         out["statistic_id"] = data["StatisticId"]
-    if "MetricValues" in data:
+    if data.get("MetricValues") is not None:
         import capo_glue.types.data_quality_metric_values
 
         out["metric_values"] = (
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_1(data: dict) -> MetricBasedObservation:
                 data["MetricValues"]
             )
         )
-    if "NewRules" in data:
+    if data.get("NewRules") is not None:
         import capo_glue.types.new_rules
 
         out["new_rules"] = capo_glue.types.new_rules.deserialize_aws_json_1_1(

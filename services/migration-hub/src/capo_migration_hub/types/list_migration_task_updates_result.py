@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: ListMigrationTaskUpdatesResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListMigrationTaskUpdatesResult:
     out: ListMigrationTaskUpdatesResult = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MigrationTaskUpdateList" in data:
+    if data.get("MigrationTaskUpdateList") is not None:
         import capo_migration_hub.types.migration_task_update_list
 
         out["migration_task_update_list"] = (

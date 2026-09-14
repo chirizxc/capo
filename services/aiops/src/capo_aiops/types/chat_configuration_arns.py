@@ -16,4 +16,4 @@ def serialize_json(value: ChatConfigurationArns) -> list:
 
 
 def deserialize_json(data: list) -> ChatConfigurationArns:
-    return list(data)
+    return [item for item in data if item is not None]

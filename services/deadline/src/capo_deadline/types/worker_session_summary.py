@@ -72,19 +72,19 @@ def serialize_json(value: WorkerSessionSummary) -> dict:
 
 def deserialize_json(data: dict) -> WorkerSessionSummary:
     out: WorkerSessionSummary = {}  # type: ignore[typeddict-item]
-    if "sessionId" in data:
+    if data.get("sessionId") is not None:
         out["session_id"] = data["sessionId"]
     else:
         raise DeserializationError("WorkerSessionSummary.session_id required")
-    if "queueId" in data:
+    if data.get("queueId") is not None:
         out["queue_id"] = data["queueId"]
     else:
         raise DeserializationError("WorkerSessionSummary.queue_id required")
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
     else:
         raise DeserializationError("WorkerSessionSummary.job_id required")
-    if "startedAt" in data:
+    if data.get("startedAt") is not None:
         import capo_deadline.types.started_at
 
         out["started_at"] = capo_deadline.types.started_at.deserialize_json(
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> WorkerSessionSummary:
         )
     else:
         raise DeserializationError("WorkerSessionSummary.started_at required")
-    if "lifecycleStatus" in data:
+    if data.get("lifecycleStatus") is not None:
         import capo_deadline.types.session_lifecycle_status
 
         out["lifecycle_status"] = (
@@ -102,11 +102,11 @@ def deserialize_json(data: dict) -> WorkerSessionSummary:
         )
     else:
         raise DeserializationError("WorkerSessionSummary.lifecycle_status required")
-    if "endedAt" in data:
+    if data.get("endedAt") is not None:
         import capo_deadline.types.ended_at
 
         out["ended_at"] = capo_deadline.types.ended_at.deserialize_json(data["endedAt"])
-    if "targetLifecycleStatus" in data:
+    if data.get("targetLifecycleStatus") is not None:
         import capo_deadline.types.session_lifecycle_target_status
 
         out["target_lifecycle_status"] = (

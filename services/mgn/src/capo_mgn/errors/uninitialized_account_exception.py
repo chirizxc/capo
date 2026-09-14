@@ -27,9 +27,9 @@ def serialize_json(value: UninitializedAccountException_) -> dict:
 
 def deserialize_json(data: dict) -> UninitializedAccountException_:
     out: UninitializedAccountException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
     return out
 
@@ -39,15 +39,20 @@ class UninitializedAccountException(ServiceError):
 
     code: str | None = "UninitializedAccountException"
 
-    def __init__(self, data: UninitializedAccountException_):
+    def __init__(
+        self, data: UninitializedAccountException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="UninitializedAccountException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "UninitializedAccountException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "UninitializedAccountException":
+        return cls(deserialize_json(data), message)

@@ -25,5 +25,7 @@ def deserialize_aws_json_1_1(data: list) -> XssMatchSetSummaries:
 
     out: XssMatchSetSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_waf.types.xss_match_set_summary.deserialize_aws_json_1_1(item))
     return out

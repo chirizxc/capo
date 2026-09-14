@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> OutgoingCertificates:
 
     out: OutgoingCertificates = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot.types.outgoing_certificate.deserialize_json(item))
     return out

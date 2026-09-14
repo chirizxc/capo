@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> KeyValueList:
 
     out: KeyValueList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_emr.types.key_value.deserialize_aws_json_1_1(item))
     return out

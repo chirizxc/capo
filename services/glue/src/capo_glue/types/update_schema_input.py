@@ -55,7 +55,7 @@ def serialize_aws_json_1_1(value: UpdateSchemaInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateSchemaInput:
     out: UpdateSchemaInput = {}  # type: ignore[typeddict-item]
-    if "SchemaId" in data:
+    if data.get("SchemaId") is not None:
         import capo_glue.types.schema_id
 
         out["schema_id"] = capo_glue.types.schema_id.deserialize_aws_json_1_1(
@@ -63,7 +63,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateSchemaInput:
         )
     else:
         raise DeserializationError("UpdateSchemaInput.schema_id required")
-    if "SchemaVersionNumber" in data:
+    if data.get("SchemaVersionNumber") is not None:
         import capo_glue.types.schema_version_number
 
         out["schema_version_number"] = (
@@ -71,12 +71,12 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateSchemaInput:
                 data["SchemaVersionNumber"]
             )
         )
-    if "Compatibility" in data:
+    if data.get("Compatibility") is not None:
         import capo_glue.types.compatibility
 
         out["compatibility"] = capo_glue.types.compatibility.deserialize_aws_json_1_1(
             data["Compatibility"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

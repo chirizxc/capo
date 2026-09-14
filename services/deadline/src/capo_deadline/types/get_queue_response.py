@@ -158,19 +158,19 @@ def serialize_json(value: GetQueueResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetQueueResponse:
     out: GetQueueResponse = {}  # type: ignore[typeddict-item]
-    if "farmId" in data:
+    if data.get("farmId") is not None:
         out["farm_id"] = data["farmId"]
     else:
         raise DeserializationError("GetQueueResponse.farm_id required")
-    if "queueId" in data:
+    if data.get("queueId") is not None:
         out["queue_id"] = data["queueId"]
     else:
         raise DeserializationError("GetQueueResponse.queue_id required")
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError("GetQueueResponse.display_name required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_deadline.types.queue_status
 
         out["status"] = capo_deadline.types.queue_status.deserialize_json(
@@ -178,7 +178,7 @@ def deserialize_json(data: dict) -> GetQueueResponse:
         )
     else:
         raise DeserializationError("GetQueueResponse.status required")
-    if "defaultBudgetAction" in data:
+    if data.get("defaultBudgetAction") is not None:
         import capo_deadline.types.default_queue_budget_action
 
         out["default_budget_action"] = (
@@ -188,7 +188,7 @@ def deserialize_json(data: dict) -> GetQueueResponse:
         )
     else:
         raise DeserializationError("GetQueueResponse.default_budget_action required")
-    if "blockedReason" in data:
+    if data.get("blockedReason") is not None:
         import capo_deadline.types.queue_blocked_reason
 
         out["blocked_reason"] = (
@@ -196,7 +196,7 @@ def deserialize_json(data: dict) -> GetQueueResponse:
                 data["blockedReason"]
             )
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_deadline.types.created_at
 
         out["created_at"] = capo_deadline.types.created_at.deserialize_json(
@@ -204,21 +204,21 @@ def deserialize_json(data: dict) -> GetQueueResponse:
         )
     else:
         raise DeserializationError("GetQueueResponse.created_at required")
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
     else:
         raise DeserializationError("GetQueueResponse.created_by required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_deadline.types.updated_at
 
         out["updated_at"] = capo_deadline.types.updated_at.deserialize_json(
             data["updatedAt"]
         )
-    if "updatedBy" in data:
+    if data.get("updatedBy") is not None:
         out["updated_by"] = data["updatedBy"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "jobAttachmentSettings" in data:
+    if data.get("jobAttachmentSettings") is not None:
         import capo_deadline.types.job_attachment_settings
 
         out["job_attachment_settings"] = (
@@ -226,9 +226,9 @@ def deserialize_json(data: dict) -> GetQueueResponse:
                 data["jobAttachmentSettings"]
             )
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "requiredFileSystemLocationNames" in data:
+    if data.get("requiredFileSystemLocationNames") is not None:
         import capo_deadline.types.required_file_system_location_names
 
         out["required_file_system_location_names"] = (
@@ -236,7 +236,7 @@ def deserialize_json(data: dict) -> GetQueueResponse:
                 data["requiredFileSystemLocationNames"]
             )
         )
-    if "allowedStorageProfileIds" in data:
+    if data.get("allowedStorageProfileIds") is not None:
         import capo_deadline.types.allowed_storage_profile_ids
 
         out["allowed_storage_profile_ids"] = (
@@ -244,13 +244,13 @@ def deserialize_json(data: dict) -> GetQueueResponse:
                 data["allowedStorageProfileIds"]
             )
         )
-    if "jobRunAsUser" in data:
+    if data.get("jobRunAsUser") is not None:
         import capo_deadline.types.job_run_as_user
 
         out["job_run_as_user"] = capo_deadline.types.job_run_as_user.deserialize_json(
             data["jobRunAsUser"]
         )
-    if "schedulingConfiguration" in data:
+    if data.get("schedulingConfiguration") is not None:
         import capo_deadline.types.scheduling_configuration
 
         out["scheduling_configuration"] = (

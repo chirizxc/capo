@@ -64,30 +64,30 @@ def serialize_aws_json_1_1(value: GetTableRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetTableRequest:
     out: GetTableRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError("GetTableRequest.database_name required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("GetTableRequest.name required")
-    if "TransactionId" in data:
+    if data.get("TransactionId") is not None:
         out["transaction_id"] = data["TransactionId"]
-    if "QueryAsOfTime" in data:
+    if data.get("QueryAsOfTime") is not None:
         import capo_glue.types.timestamp
 
         out["query_as_of_time"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["QueryAsOfTime"]
         )
-    if "AuditContext" in data:
+    if data.get("AuditContext") is not None:
         import capo_glue.types.audit_context
 
         out["audit_context"] = capo_glue.types.audit_context.deserialize_aws_json_1_1(
             data["AuditContext"]
         )
-    if "IncludeStatusDetails" in data:
+    if data.get("IncludeStatusDetails") is not None:
         out["include_status_details"] = data["IncludeStatusDetails"]
     return out

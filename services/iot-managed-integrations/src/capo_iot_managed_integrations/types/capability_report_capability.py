@@ -62,19 +62,19 @@ def serialize_json(value: CapabilityReportCapability) -> dict:
 
 def deserialize_json(data: dict) -> CapabilityReportCapability:
     out: CapabilityReportCapability = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("CapabilityReportCapability.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CapabilityReportCapability.name required")
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     else:
         raise DeserializationError("CapabilityReportCapability.version required")
-    if "properties" in data:
+    if data.get("properties") is not None:
         import capo_iot_managed_integrations.types.capability_report_properties
 
         out["properties"] = (
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> CapabilityReportCapability:
         )
     else:
         raise DeserializationError("CapabilityReportCapability.properties required")
-    if "actions" in data:
+    if data.get("actions") is not None:
         import capo_iot_managed_integrations.types.capability_report_actions
 
         out["actions"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> CapabilityReportCapability:
         )
     else:
         raise DeserializationError("CapabilityReportCapability.actions required")
-    if "events" in data:
+    if data.get("events") is not None:
         import capo_iot_managed_integrations.types.capability_report_events
 
         out["events"] = (

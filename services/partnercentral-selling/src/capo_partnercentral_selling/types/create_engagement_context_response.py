@@ -52,11 +52,11 @@ def serialize_aws_json_1_0(value: CreateEngagementContextResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateEngagementContextResponse:
     out: CreateEngagementContextResponse = {}  # type: ignore[typeddict-item]
-    if "EngagementId" in data:
+    if data.get("EngagementId") is not None:
         out["engagement_id"] = data["EngagementId"]
-    if "EngagementArn" in data:
+    if data.get("EngagementArn") is not None:
         out["engagement_arn"] = data["EngagementArn"]
-    if "EngagementLastModifiedAt" in data:
+    if data.get("EngagementLastModifiedAt") is not None:
         import capo_partnercentral_selling.types.date_time
 
         out["engagement_last_modified_at"] = (
@@ -64,6 +64,6 @@ def deserialize_aws_json_1_0(data: dict) -> CreateEngagementContextResponse:
                 data["EngagementLastModifiedAt"]
             )
         )
-    if "ContextId" in data:
+    if data.get("ContextId") is not None:
         out["context_id"] = data["ContextId"]
     return out

@@ -31,7 +31,7 @@ def serialize_json(value: VirtualGatewayLogging) -> dict:
 
 def deserialize_json(data: dict) -> VirtualGatewayLogging:
     out: VirtualGatewayLogging = {}  # type: ignore[typeddict-item]
-    if "accessLog" in data:
+    if data.get("accessLog") is not None:
         import capo_app_mesh.types.virtual_gateway_access_log
 
         out["access_log"] = (

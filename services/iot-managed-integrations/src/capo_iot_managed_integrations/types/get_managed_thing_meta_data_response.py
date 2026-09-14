@@ -34,9 +34,9 @@ def serialize_json(value: GetManagedThingMetaDataResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetManagedThingMetaDataResponse:
     out: GetManagedThingMetaDataResponse = {}  # type: ignore[typeddict-item]
-    if "ManagedThingId" in data:
+    if data.get("ManagedThingId") is not None:
         out["managed_thing_id"] = data["ManagedThingId"]
-    if "MetaData" in data:
+    if data.get("MetaData") is not None:
         import capo_iot_managed_integrations.types.meta_data
 
         out["meta_data"] = (

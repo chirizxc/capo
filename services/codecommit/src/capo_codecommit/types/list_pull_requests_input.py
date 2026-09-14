@@ -52,13 +52,13 @@ def serialize_aws_json_1_1(value: ListPullRequestsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListPullRequestsInput:
     out: ListPullRequestsInput = {}  # type: ignore[typeddict-item]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
     else:
         raise DeserializationError("ListPullRequestsInput.repository_name required")
-    if "authorArn" in data:
+    if data.get("authorArn") is not None:
         out["author_arn"] = data["authorArn"]
-    if "pullRequestStatus" in data:
+    if data.get("pullRequestStatus") is not None:
         import capo_codecommit.types.pull_request_status_enum
 
         out["pull_request_status"] = (
@@ -66,8 +66,8 @@ def deserialize_aws_json_1_1(data: dict) -> ListPullRequestsInput:
                 data["pullRequestStatus"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

@@ -80,41 +80,41 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> BatchCreateBillScenarioUsageModificationEntry:
     out: BatchCreateBillScenarioUsageModificationEntry = {}  # type: ignore[typeddict-item]
-    if "serviceCode" in data:
+    if data.get("serviceCode") is not None:
         out["service_code"] = data["serviceCode"]
     else:
         raise DeserializationError(
             "BatchCreateBillScenarioUsageModificationEntry.service_code required"
         )
-    if "usageType" in data:
+    if data.get("usageType") is not None:
         out["usage_type"] = data["usageType"]
     else:
         raise DeserializationError(
             "BatchCreateBillScenarioUsageModificationEntry.usage_type required"
         )
-    if "operation" in data:
+    if data.get("operation") is not None:
         out["operation"] = data["operation"]
     else:
         raise DeserializationError(
             "BatchCreateBillScenarioUsageModificationEntry.operation required"
         )
-    if "availabilityZone" in data:
+    if data.get("availabilityZone") is not None:
         out["availability_zone"] = data["availabilityZone"]
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
     else:
         raise DeserializationError(
             "BatchCreateBillScenarioUsageModificationEntry.key required"
         )
-    if "group" in data:
+    if data.get("group") is not None:
         out["group"] = data["group"]
-    if "usageAccountId" in data:
+    if data.get("usageAccountId") is not None:
         out["usage_account_id"] = data["usageAccountId"]
     else:
         raise DeserializationError(
             "BatchCreateBillScenarioUsageModificationEntry.usage_account_id required"
         )
-    if "amounts" in data:
+    if data.get("amounts") is not None:
         import capo_bcm_pricing_calculator.types.usage_amounts
 
         out["amounts"] = (
@@ -122,7 +122,7 @@ def deserialize_aws_json_1_0(
                 data["amounts"]
             )
         )
-    if "historicalUsage" in data:
+    if data.get("historicalUsage") is not None:
         import capo_bcm_pricing_calculator.types.historical_usage_entity
 
         out["historical_usage"] = (

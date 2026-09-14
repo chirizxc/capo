@@ -57,7 +57,7 @@ def serialize_json(value: TrainedModelsConfigurationPolicy) -> dict:
 
 def deserialize_json(data: dict) -> TrainedModelsConfigurationPolicy:
     out: TrainedModelsConfigurationPolicy = {}  # type: ignore[typeddict-item]
-    if "containerLogs" in data:
+    if data.get("containerLogs") is not None:
         import capo_cleanroomsml.types.logs_configuration_policy_list
 
         out["container_logs"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> TrainedModelsConfigurationPolicy:
                 data["containerLogs"]
             )
         )
-    if "containerMetrics" in data:
+    if data.get("containerMetrics") is not None:
         import capo_cleanroomsml.types.metrics_configuration_policy
 
         out["container_metrics"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> TrainedModelsConfigurationPolicy:
                 data["containerMetrics"]
             )
         )
-    if "maxArtifactSize" in data:
+    if data.get("maxArtifactSize") is not None:
         import capo_cleanroomsml.types.trained_model_artifact_max_size
 
         out["max_artifact_size"] = (

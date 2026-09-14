@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> EvaluationAutomationRuleCategoryList:
 
     out: EvaluationAutomationRuleCategoryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.evaluation_automation_rule_category.deserialize_json(
                 item

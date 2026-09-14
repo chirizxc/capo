@@ -83,23 +83,23 @@ def serialize_aws_json_1_1(value: UpdateDashboardResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateDashboardResponse:
     out: UpdateDashboardResponse = {}  # type: ignore[typeddict-item]
-    if "DashboardArn" in data:
+    if data.get("DashboardArn") is not None:
         out["dashboard_arn"] = data["DashboardArn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_cloudtrail.types.dashboard_type
 
         out["type"] = capo_cloudtrail.types.dashboard_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "Widgets" in data:
+    if data.get("Widgets") is not None:
         import capo_cloudtrail.types.widget_list
 
         out["widgets"] = capo_cloudtrail.types.widget_list.deserialize_aws_json_1_1(
             data["Widgets"]
         )
-    if "RefreshSchedule" in data:
+    if data.get("RefreshSchedule") is not None:
         import capo_cloudtrail.types.refresh_schedule
 
         out["refresh_schedule"] = (
@@ -107,15 +107,15 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateDashboardResponse:
                 data["RefreshSchedule"]
             )
         )
-    if "TerminationProtectionEnabled" in data:
+    if data.get("TerminationProtectionEnabled") is not None:
         out["termination_protection_enabled"] = data["TerminationProtectionEnabled"]
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_cloudtrail.types.date
 
         out["created_timestamp"] = capo_cloudtrail.types.date.deserialize_aws_json_1_1(
             data["CreatedTimestamp"]
         )
-    if "UpdatedTimestamp" in data:
+    if data.get("UpdatedTimestamp") is not None:
         import capo_cloudtrail.types.date
 
         out["updated_timestamp"] = capo_cloudtrail.types.date.deserialize_aws_json_1_1(

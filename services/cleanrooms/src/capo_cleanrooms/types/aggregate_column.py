@@ -34,7 +34,7 @@ def serialize_json(value: AggregateColumn) -> dict:
 
 def deserialize_json(data: dict) -> AggregateColumn:
     out: AggregateColumn = {}  # type: ignore[typeddict-item]
-    if "columnNames" in data:
+    if data.get("columnNames") is not None:
         import capo_cleanrooms.types.analysis_rule_column_name_list
 
         out["column_names"] = (
@@ -44,7 +44,7 @@ def deserialize_json(data: dict) -> AggregateColumn:
         )
     else:
         raise DeserializationError("AggregateColumn.column_names required")
-    if "function" in data:
+    if data.get("function") is not None:
         out["function"] = data["function"]
     else:
         raise DeserializationError("AggregateColumn.function required")

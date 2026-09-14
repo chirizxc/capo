@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: StartWorkspacesResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartWorkspacesResult:
     out: StartWorkspacesResult = {}  # type: ignore[typeddict-item]
-    if "FailedRequests" in data:
+    if data.get("FailedRequests") is not None:
         import capo_workspaces.types.failed_start_workspace_requests
 
         out["failed_requests"] = (

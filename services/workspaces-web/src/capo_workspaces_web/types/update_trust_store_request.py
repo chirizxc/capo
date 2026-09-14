@@ -52,7 +52,7 @@ def serialize_json(value: UpdateTrustStoreRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTrustStoreRequest:
     out: UpdateTrustStoreRequest = {}  # type: ignore[typeddict-item]
-    if "certificatesToAdd" in data:
+    if data.get("certificatesToAdd") is not None:
         import capo_workspaces_web.types.certificate_list
 
         out["certificates_to_add"] = (
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> UpdateTrustStoreRequest:
                 data["certificatesToAdd"]
             )
         )
-    if "certificatesToDelete" in data:
+    if data.get("certificatesToDelete") is not None:
         import capo_workspaces_web.types.certificate_thumbprint_list
 
         out["certificates_to_delete"] = (
@@ -68,6 +68,6 @@ def deserialize_json(data: dict) -> UpdateTrustStoreRequest:
                 data["certificatesToDelete"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

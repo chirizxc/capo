@@ -27,7 +27,7 @@ def serialize_json(value: UpdateGlobalSettingsInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateGlobalSettingsInput:
     out: UpdateGlobalSettingsInput = {}  # type: ignore[typeddict-item]
-    if "GlobalSettings" in data:
+    if data.get("GlobalSettings") is not None:
         import capo_backup.types.global_settings
 
         out["global_settings"] = capo_backup.types.global_settings.deserialize_json(

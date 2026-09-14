@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> RepositoryAssociationStates:
 
     out: RepositoryAssociationStates = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codeguru_reviewer.types.repository_association_state.deserialize_json(
                 item

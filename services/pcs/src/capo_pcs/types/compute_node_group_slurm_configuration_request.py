@@ -35,9 +35,9 @@ def serialize_aws_json_1_0(value: ComputeNodeGroupSlurmConfigurationRequest) -> 
 
 def deserialize_aws_json_1_0(data: dict) -> ComputeNodeGroupSlurmConfigurationRequest:
     out: ComputeNodeGroupSlurmConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "scaleDownIdleTimeInSeconds" in data:
+    if data.get("scaleDownIdleTimeInSeconds") is not None:
         out["scale_down_idle_time_in_seconds"] = data["scaleDownIdleTimeInSeconds"]
-    if "slurmCustomSettings" in data:
+    if data.get("slurmCustomSettings") is not None:
         import capo_pcs.types.slurm_custom_settings
 
         out["slurm_custom_settings"] = (

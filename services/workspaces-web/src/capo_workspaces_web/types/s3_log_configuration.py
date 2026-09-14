@@ -50,15 +50,15 @@ def serialize_json(value: S3LogConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> S3LogConfiguration:
     out: S3LogConfiguration = {}  # type: ignore[typeddict-item]
-    if "bucket" in data:
+    if data.get("bucket") is not None:
         out["bucket"] = data["bucket"]
     else:
         raise DeserializationError("S3LogConfiguration.bucket required")
-    if "keyPrefix" in data:
+    if data.get("keyPrefix") is not None:
         out["key_prefix"] = data["keyPrefix"]
-    if "bucketOwner" in data:
+    if data.get("bucketOwner") is not None:
         out["bucket_owner"] = data["bucketOwner"]
-    if "logFileFormat" in data:
+    if data.get("logFileFormat") is not None:
         import capo_workspaces_web.types.log_file_format
 
         out["log_file_format"] = (
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> S3LogConfiguration:
         )
     else:
         raise DeserializationError("S3LogConfiguration.log_file_format required")
-    if "folderStructure" in data:
+    if data.get("folderStructure") is not None:
         import capo_workspaces_web.types.folder_structure
 
         out["folder_structure"] = (

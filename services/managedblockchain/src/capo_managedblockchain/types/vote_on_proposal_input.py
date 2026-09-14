@@ -34,11 +34,11 @@ def serialize_json(value: VoteOnProposalInput) -> dict:
 
 def deserialize_json(data: dict) -> VoteOnProposalInput:
     out: VoteOnProposalInput = {}  # type: ignore[typeddict-item]
-    if "VoterMemberId" in data:
+    if data.get("VoterMemberId") is not None:
         out["voter_member_id"] = data["VoterMemberId"]
     else:
         raise DeserializationError("VoteOnProposalInput.voter_member_id required")
-    if "Vote" in data:
+    if data.get("Vote") is not None:
         import capo_managedblockchain.types.vote_value
 
         out["vote"] = capo_managedblockchain.types.vote_value.deserialize_json(

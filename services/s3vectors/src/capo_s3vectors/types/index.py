@@ -85,19 +85,19 @@ def serialize_json(value: Index) -> dict:
 
 def deserialize_json(data: dict) -> Index:
     out: Index = {}  # type: ignore[typeddict-item]
-    if "vectorBucketName" in data:
+    if data.get("vectorBucketName") is not None:
         out["vector_bucket_name"] = data["vectorBucketName"]
     else:
         raise DeserializationError("Index.vector_bucket_name required")
-    if "indexName" in data:
+    if data.get("indexName") is not None:
         out["index_name"] = data["indexName"]
     else:
         raise DeserializationError("Index.index_name required")
-    if "indexArn" in data:
+    if data.get("indexArn") is not None:
         out["index_arn"] = data["indexArn"]
     else:
         raise DeserializationError("Index.index_arn required")
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_s3vectors.types._prelude.timestamp
 
         out["creation_time"] = capo_s3vectors.types._prelude.timestamp.deserialize_json(
@@ -105,7 +105,7 @@ def deserialize_json(data: dict) -> Index:
         )
     else:
         raise DeserializationError("Index.creation_time required")
-    if "dataType" in data:
+    if data.get("dataType") is not None:
         import capo_s3vectors.types.data_type
 
         out["data_type"] = capo_s3vectors.types.data_type.deserialize_json(
@@ -113,11 +113,11 @@ def deserialize_json(data: dict) -> Index:
         )
     else:
         raise DeserializationError("Index.data_type required")
-    if "dimension" in data:
+    if data.get("dimension") is not None:
         out["dimension"] = data["dimension"]
     else:
         raise DeserializationError("Index.dimension required")
-    if "distanceMetric" in data:
+    if data.get("distanceMetric") is not None:
         import capo_s3vectors.types.distance_metric
 
         out["distance_metric"] = capo_s3vectors.types.distance_metric.deserialize_json(
@@ -125,7 +125,7 @@ def deserialize_json(data: dict) -> Index:
         )
     else:
         raise DeserializationError("Index.distance_metric required")
-    if "metadataConfiguration" in data:
+    if data.get("metadataConfiguration") is not None:
         import capo_s3vectors.types.metadata_configuration
 
         out["metadata_configuration"] = (
@@ -133,7 +133,7 @@ def deserialize_json(data: dict) -> Index:
                 data["metadataConfiguration"]
             )
         )
-    if "encryptionConfiguration" in data:
+    if data.get("encryptionConfiguration") is not None:
         import capo_s3vectors.types.encryption_configuration
 
         out["encryption_configuration"] = (

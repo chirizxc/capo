@@ -25,6 +25,6 @@ def serialize_json(value: AcceptPrimaryEmailUpdateResponse) -> dict:
 
 def deserialize_json(data: dict) -> AcceptPrimaryEmailUpdateResponse:
     out: AcceptPrimaryEmailUpdateResponse = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     return out

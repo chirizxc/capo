@@ -58,18 +58,18 @@ def serialize_aws_json_1_1(value: DescribeGameSessionsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeGameSessionsInput:
     out: DescribeGameSessionsInput = {}  # type: ignore[typeddict-item]
-    if "FleetId" in data:
+    if data.get("FleetId") is not None:
         out["fleet_id"] = data["FleetId"]
-    if "GameSessionId" in data:
+    if data.get("GameSessionId") is not None:
         out["game_session_id"] = data["GameSessionId"]
-    if "AliasId" in data:
+    if data.get("AliasId") is not None:
         out["alias_id"] = data["AliasId"]
-    if "Location" in data:
+    if data.get("Location") is not None:
         out["location"] = data["Location"]
-    if "StatusFilter" in data:
+    if data.get("StatusFilter") is not None:
         out["status_filter"] = data["StatusFilter"]
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

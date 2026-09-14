@@ -34,12 +34,12 @@ def serialize_aws_json_1_0(value: EgressConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EgressConfiguration:
     out: EgressConfiguration = {}  # type: ignore[typeddict-item]
-    if "EgressType" in data:
+    if data.get("EgressType") is not None:
         import capo_apprunner.types.egress_type
 
         out["egress_type"] = capo_apprunner.types.egress_type.deserialize_aws_json_1_0(
             data["EgressType"]
         )
-    if "VpcConnectorArn" in data:
+    if data.get("VpcConnectorArn") is not None:
         out["vpc_connector_arn"] = data["VpcConnectorArn"]
     return out

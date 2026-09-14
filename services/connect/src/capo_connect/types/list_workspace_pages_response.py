@@ -33,9 +33,9 @@ def serialize_json(value: ListWorkspacePagesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListWorkspacePagesResponse:
     out: ListWorkspacePagesResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "WorkspacePageList" in data:
+    if data.get("WorkspacePageList") is not None:
         import capo_connect.types.workspace_page_list
 
         out["workspace_page_list"] = (

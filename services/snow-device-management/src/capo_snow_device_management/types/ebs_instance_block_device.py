@@ -45,7 +45,7 @@ def serialize_json(value: EbsInstanceBlockDevice) -> dict:
 
 def deserialize_json(data: dict) -> EbsInstanceBlockDevice:
     out: EbsInstanceBlockDevice = {}  # type: ignore[typeddict-item]
-    if "attachTime" in data:
+    if data.get("attachTime") is not None:
         import capo_snow_device_management.types._prelude.timestamp
 
         out["attach_time"] = (
@@ -53,10 +53,10 @@ def deserialize_json(data: dict) -> EbsInstanceBlockDevice:
                 data["attachTime"]
             )
         )
-    if "deleteOnTermination" in data:
+    if data.get("deleteOnTermination") is not None:
         out["delete_on_termination"] = data["deleteOnTermination"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "volumeId" in data:
+    if data.get("volumeId") is not None:
         out["volume_id"] = data["volumeId"]
     return out

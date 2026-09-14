@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> CreateAssessmentFrameworkControlSets:
 
     out: CreateAssessmentFrameworkControlSets = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_auditmanager.types.create_assessment_framework_control_set.deserialize_json(
                 item

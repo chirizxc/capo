@@ -31,7 +31,7 @@ def serialize_json(value: GaugeChartConditionalFormatting) -> dict:
 
 def deserialize_json(data: dict) -> GaugeChartConditionalFormatting:
     out: GaugeChartConditionalFormatting = {}  # type: ignore[typeddict-item]
-    if "ConditionalFormattingOptions" in data:
+    if data.get("ConditionalFormattingOptions") is not None:
         import capo_quicksight.types.gauge_chart_conditional_formatting_option_list
 
         out["conditional_formatting_options"] = (

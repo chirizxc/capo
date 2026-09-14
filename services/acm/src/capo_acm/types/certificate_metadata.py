@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: CertificateMetadata) -> dict:
 
 
 def deserialize_aws_json_1_1(data: dict) -> CertificateMetadata:
-    if "AcmCertificateMetadata" in data:
+    if data.get("AcmCertificateMetadata") is not None:
         import capo_acm.types.acm_certificate_metadata
 
         return {

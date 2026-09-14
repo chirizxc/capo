@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> OrganizationFeatureStatisticsResults:
 
     out: OrganizationFeatureStatisticsResults = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_guardduty.types.organization_feature_statistics.deserialize_json(item)
         )

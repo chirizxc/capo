@@ -271,45 +271,45 @@ def serialize_json(value: AwsRdsDbClusterDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsRdsDbClusterDetails:
     out: AwsRdsDbClusterDetails = {}  # type: ignore[typeddict-item]
-    if "AllocatedStorage" in data:
+    if data.get("AllocatedStorage") is not None:
         out["allocated_storage"] = data["AllocatedStorage"]
-    if "AvailabilityZones" in data:
+    if data.get("AvailabilityZones") is not None:
         import capo_securityhub.types.string_list
 
         out["availability_zones"] = capo_securityhub.types.string_list.deserialize_json(
             data["AvailabilityZones"]
         )
-    if "BackupRetentionPeriod" in data:
+    if data.get("BackupRetentionPeriod") is not None:
         out["backup_retention_period"] = data["BackupRetentionPeriod"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "Endpoint" in data:
+    if data.get("Endpoint") is not None:
         out["endpoint"] = data["Endpoint"]
-    if "ReaderEndpoint" in data:
+    if data.get("ReaderEndpoint") is not None:
         out["reader_endpoint"] = data["ReaderEndpoint"]
-    if "CustomEndpoints" in data:
+    if data.get("CustomEndpoints") is not None:
         import capo_securityhub.types.string_list
 
         out["custom_endpoints"] = capo_securityhub.types.string_list.deserialize_json(
             data["CustomEndpoints"]
         )
-    if "MultiAz" in data:
+    if data.get("MultiAz") is not None:
         out["multi_az"] = data["MultiAz"]
-    if "Engine" in data:
+    if data.get("Engine") is not None:
         out["engine"] = data["Engine"]
-    if "EngineVersion" in data:
+    if data.get("EngineVersion") is not None:
         out["engine_version"] = data["EngineVersion"]
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
-    if "MasterUsername" in data:
+    if data.get("MasterUsername") is not None:
         out["master_username"] = data["MasterUsername"]
-    if "PreferredBackupWindow" in data:
+    if data.get("PreferredBackupWindow") is not None:
         out["preferred_backup_window"] = data["PreferredBackupWindow"]
-    if "PreferredMaintenanceWindow" in data:
+    if data.get("PreferredMaintenanceWindow") is not None:
         out["preferred_maintenance_window"] = data["PreferredMaintenanceWindow"]
-    if "ReadReplicaIdentifiers" in data:
+    if data.get("ReadReplicaIdentifiers") is not None:
         import capo_securityhub.types.string_list
 
         out["read_replica_identifiers"] = (
@@ -317,7 +317,7 @@ def deserialize_json(data: dict) -> AwsRdsDbClusterDetails:
                 data["ReadReplicaIdentifiers"]
             )
         )
-    if "VpcSecurityGroups" in data:
+    if data.get("VpcSecurityGroups") is not None:
         import capo_securityhub.types.aws_rds_db_instance_vpc_security_groups
 
         out["vpc_security_groups"] = (
@@ -325,15 +325,15 @@ def deserialize_json(data: dict) -> AwsRdsDbClusterDetails:
                 data["VpcSecurityGroups"]
             )
         )
-    if "HostedZoneId" in data:
+    if data.get("HostedZoneId") is not None:
         out["hosted_zone_id"] = data["HostedZoneId"]
-    if "StorageEncrypted" in data:
+    if data.get("StorageEncrypted") is not None:
         out["storage_encrypted"] = data["StorageEncrypted"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "DbClusterResourceId" in data:
+    if data.get("DbClusterResourceId") is not None:
         out["db_cluster_resource_id"] = data["DbClusterResourceId"]
-    if "AssociatedRoles" in data:
+    if data.get("AssociatedRoles") is not None:
         import capo_securityhub.types.aws_rds_db_cluster_associated_roles
 
         out["associated_roles"] = (
@@ -341,9 +341,9 @@ def deserialize_json(data: dict) -> AwsRdsDbClusterDetails:
                 data["AssociatedRoles"]
             )
         )
-    if "ClusterCreateTime" in data:
+    if data.get("ClusterCreateTime") is not None:
         out["cluster_create_time"] = data["ClusterCreateTime"]
-    if "EnabledCloudWatchLogsExports" in data:
+    if data.get("EnabledCloudWatchLogsExports") is not None:
         import capo_securityhub.types.string_list
 
         out["enabled_cloud_watch_logs_exports"] = (
@@ -351,19 +351,19 @@ def deserialize_json(data: dict) -> AwsRdsDbClusterDetails:
                 data["EnabledCloudWatchLogsExports"]
             )
         )
-    if "EngineMode" in data:
+    if data.get("EngineMode") is not None:
         out["engine_mode"] = data["EngineMode"]
-    if "DeletionProtection" in data:
+    if data.get("DeletionProtection") is not None:
         out["deletion_protection"] = data["DeletionProtection"]
-    if "HttpEndpointEnabled" in data:
+    if data.get("HttpEndpointEnabled") is not None:
         out["http_endpoint_enabled"] = data["HttpEndpointEnabled"]
-    if "ActivityStreamStatus" in data:
+    if data.get("ActivityStreamStatus") is not None:
         out["activity_stream_status"] = data["ActivityStreamStatus"]
-    if "CopyTagsToSnapshot" in data:
+    if data.get("CopyTagsToSnapshot") is not None:
         out["copy_tags_to_snapshot"] = data["CopyTagsToSnapshot"]
-    if "CrossAccountClone" in data:
+    if data.get("CrossAccountClone") is not None:
         out["cross_account_clone"] = data["CrossAccountClone"]
-    if "DomainMemberships" in data:
+    if data.get("DomainMemberships") is not None:
         import capo_securityhub.types.aws_rds_db_domain_memberships
 
         out["domain_memberships"] = (
@@ -371,11 +371,11 @@ def deserialize_json(data: dict) -> AwsRdsDbClusterDetails:
                 data["DomainMemberships"]
             )
         )
-    if "DbClusterParameterGroup" in data:
+    if data.get("DbClusterParameterGroup") is not None:
         out["db_cluster_parameter_group"] = data["DbClusterParameterGroup"]
-    if "DbSubnetGroup" in data:
+    if data.get("DbSubnetGroup") is not None:
         out["db_subnet_group"] = data["DbSubnetGroup"]
-    if "DbClusterOptionGroupMemberships" in data:
+    if data.get("DbClusterOptionGroupMemberships") is not None:
         import capo_securityhub.types.aws_rds_db_cluster_option_group_memberships
 
         out["db_cluster_option_group_memberships"] = (
@@ -383,9 +383,9 @@ def deserialize_json(data: dict) -> AwsRdsDbClusterDetails:
                 data["DbClusterOptionGroupMemberships"]
             )
         )
-    if "DbClusterIdentifier" in data:
+    if data.get("DbClusterIdentifier") is not None:
         out["db_cluster_identifier"] = data["DbClusterIdentifier"]
-    if "DbClusterMembers" in data:
+    if data.get("DbClusterMembers") is not None:
         import capo_securityhub.types.aws_rds_db_cluster_members
 
         out["db_cluster_members"] = (
@@ -393,10 +393,10 @@ def deserialize_json(data: dict) -> AwsRdsDbClusterDetails:
                 data["DbClusterMembers"]
             )
         )
-    if "IamDatabaseAuthenticationEnabled" in data:
+    if data.get("IamDatabaseAuthenticationEnabled") is not None:
         out["iam_database_authentication_enabled"] = data[
             "IamDatabaseAuthenticationEnabled"
         ]
-    if "AutoMinorVersionUpgrade" in data:
+    if data.get("AutoMinorVersionUpgrade") is not None:
         out["auto_minor_version_upgrade"] = data["AutoMinorVersionUpgrade"]
     return out

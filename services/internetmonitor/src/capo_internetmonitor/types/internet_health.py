@@ -44,7 +44,7 @@ def serialize_json(value: InternetHealth) -> dict:
 
 def deserialize_json(data: dict) -> InternetHealth:
     out: InternetHealth = {}  # type: ignore[typeddict-item]
-    if "Availability" in data:
+    if data.get("Availability") is not None:
         import capo_internetmonitor.types.availability_measurement
 
         out["availability"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> InternetHealth:
                 data["Availability"]
             )
         )
-    if "Performance" in data:
+    if data.get("Performance") is not None:
         import capo_internetmonitor.types.performance_measurement
 
         out["performance"] = (

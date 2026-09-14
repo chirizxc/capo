@@ -23,6 +23,6 @@ def serialize_json(value: FixedModeScheduleActionStartSettings) -> dict:
 
 def deserialize_json(data: dict) -> FixedModeScheduleActionStartSettings:
     out: FixedModeScheduleActionStartSettings = {}  # type: ignore[typeddict-item]
-    if "time" in data:
+    if data.get("time") is not None:
         out["time"] = data["time"]
     return out

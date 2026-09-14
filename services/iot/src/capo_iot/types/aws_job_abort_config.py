@@ -32,7 +32,7 @@ def serialize_json(value: AwsJobAbortConfig) -> dict:
 
 def deserialize_json(data: dict) -> AwsJobAbortConfig:
     out: AwsJobAbortConfig = {}  # type: ignore[typeddict-item]
-    if "abortCriteriaList" in data:
+    if data.get("abortCriteriaList") is not None:
         import capo_iot.types.aws_job_abort_criteria_list
 
         out["abort_criteria_list"] = (

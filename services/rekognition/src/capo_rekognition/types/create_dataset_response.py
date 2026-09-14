@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: CreateDatasetResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDatasetResponse:
     out: CreateDatasetResponse = {}  # type: ignore[typeddict-item]
-    if "DatasetArn" in data:
+    if data.get("DatasetArn") is not None:
         out["dataset_arn"] = data["DatasetArn"]
     return out

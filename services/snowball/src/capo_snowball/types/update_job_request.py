@@ -108,25 +108,25 @@ def serialize_aws_json_1_1(value: UpdateJobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateJobRequest:
     out: UpdateJobRequest = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
     else:
         raise DeserializationError("UpdateJobRequest.job_id required")
-    if "RoleARN" in data:
+    if data.get("RoleARN") is not None:
         out["role_arn"] = data["RoleARN"]
-    if "Notification" in data:
+    if data.get("Notification") is not None:
         import capo_snowball.types.notification
 
         out["notification"] = capo_snowball.types.notification.deserialize_aws_json_1_1(
             data["Notification"]
         )
-    if "Resources" in data:
+    if data.get("Resources") is not None:
         import capo_snowball.types.job_resource
 
         out["resources"] = capo_snowball.types.job_resource.deserialize_aws_json_1_1(
             data["Resources"]
         )
-    if "OnDeviceServiceConfiguration" in data:
+    if data.get("OnDeviceServiceConfiguration") is not None:
         import capo_snowball.types.on_device_service_configuration
 
         out["on_device_service_configuration"] = (
@@ -134,9 +134,9 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateJobRequest:
                 data["OnDeviceServiceConfiguration"]
             )
         )
-    if "AddressId" in data:
+    if data.get("AddressId") is not None:
         out["address_id"] = data["AddressId"]
-    if "ShippingOption" in data:
+    if data.get("ShippingOption") is not None:
         import capo_snowball.types.shipping_option
 
         out["shipping_option"] = (
@@ -144,9 +144,9 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateJobRequest:
                 data["ShippingOption"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "SnowballCapacityPreference" in data:
+    if data.get("SnowballCapacityPreference") is not None:
         import capo_snowball.types.snowball_capacity
 
         out["snowball_capacity_preference"] = (
@@ -154,9 +154,9 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateJobRequest:
                 data["SnowballCapacityPreference"]
             )
         )
-    if "ForwardingAddressId" in data:
+    if data.get("ForwardingAddressId") is not None:
         out["forwarding_address_id"] = data["ForwardingAddressId"]
-    if "PickupDetails" in data:
+    if data.get("PickupDetails") is not None:
         import capo_snowball.types.pickup_details
 
         out["pickup_details"] = (

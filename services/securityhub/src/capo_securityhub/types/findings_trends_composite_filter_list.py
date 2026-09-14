@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> FindingsTrendsCompositeFilterList:
 
     out: FindingsTrendsCompositeFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.findings_trends_composite_filter.deserialize_json(
                 item

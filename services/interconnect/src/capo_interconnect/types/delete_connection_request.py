@@ -28,10 +28,10 @@ def serialize_aws_json_1_0(value: DeleteConnectionRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteConnectionRequest:
     out: DeleteConnectionRequest = {}  # type: ignore[typeddict-item]
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
     else:
         raise DeserializationError("DeleteConnectionRequest.identifier required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

@@ -30,8 +30,8 @@ def serialize_json(value: TablePathElement) -> dict:
 
 def deserialize_json(data: dict) -> TablePathElement:
     out: TablePathElement = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     return out

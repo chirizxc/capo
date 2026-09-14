@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> __listOfColorConversion3DLUTSetting:
 
     out: __listOfColorConversion3DLUTSetting = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediaconvert.types.color_conversion3_dlut_setting.deserialize_json(
                 item

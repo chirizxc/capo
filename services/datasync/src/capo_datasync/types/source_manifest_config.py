@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: SourceManifestConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SourceManifestConfig:
     out: SourceManifestConfig = {}  # type: ignore[typeddict-item]
-    if "S3" in data:
+    if data.get("S3") is not None:
         import capo_datasync.types.s3_manifest_config
 
         out["s3"] = capo_datasync.types.s3_manifest_config.deserialize_aws_json_1_1(

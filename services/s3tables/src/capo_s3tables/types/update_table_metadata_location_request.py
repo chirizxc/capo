@@ -37,13 +37,13 @@ def serialize_json(value: UpdateTableMetadataLocationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTableMetadataLocationRequest:
     out: UpdateTableMetadataLocationRequest = {}  # type: ignore[typeddict-item]
-    if "versionToken" in data:
+    if data.get("versionToken") is not None:
         out["version_token"] = data["versionToken"]
     else:
         raise DeserializationError(
             "UpdateTableMetadataLocationRequest.version_token required"
         )
-    if "metadataLocation" in data:
+    if data.get("metadataLocation") is not None:
         out["metadata_location"] = data["metadataLocation"]
     else:
         raise DeserializationError(

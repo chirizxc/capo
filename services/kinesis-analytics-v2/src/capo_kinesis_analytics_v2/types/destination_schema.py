@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: DestinationSchema) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DestinationSchema:
     out: DestinationSchema = {}  # type: ignore[typeddict-item]
-    if "RecordFormatType" in data:
+    if data.get("RecordFormatType") is not None:
         import capo_kinesis_analytics_v2.types.record_format_type
 
         out["record_format_type"] = (

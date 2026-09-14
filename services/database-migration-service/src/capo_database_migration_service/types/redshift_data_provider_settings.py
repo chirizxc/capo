@@ -44,14 +44,14 @@ def serialize_aws_json_1_1(value: RedshiftDataProviderSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RedshiftDataProviderSettings:
     out: RedshiftDataProviderSettings = {}  # type: ignore[typeddict-item]
-    if "ServerName" in data:
+    if data.get("ServerName") is not None:
         out["server_name"] = data["ServerName"]
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
-    if "S3Path" in data:
+    if data.get("S3Path") is not None:
         out["s3_path"] = data["S3Path"]
-    if "S3AccessRoleArn" in data:
+    if data.get("S3AccessRoleArn") is not None:
         out["s3_access_role_arn"] = data["S3AccessRoleArn"]
     return out

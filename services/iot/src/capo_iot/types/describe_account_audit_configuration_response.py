@@ -49,9 +49,9 @@ def serialize_json(value: DescribeAccountAuditConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeAccountAuditConfigurationResponse:
     out: DescribeAccountAuditConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "auditNotificationTargetConfigurations" in data:
+    if data.get("auditNotificationTargetConfigurations") is not None:
         import capo_iot.types.audit_notification_target_configurations
 
         out["audit_notification_target_configurations"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> DescribeAccountAuditConfigurationResponse:
                 data["auditNotificationTargetConfigurations"]
             )
         )
-    if "auditCheckConfigurations" in data:
+    if data.get("auditCheckConfigurations") is not None:
         import capo_iot.types.audit_check_configurations
 
         out["audit_check_configurations"] = (

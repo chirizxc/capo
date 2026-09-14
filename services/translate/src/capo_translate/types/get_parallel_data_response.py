@@ -68,7 +68,7 @@ def serialize_aws_json_1_1(value: GetParallelDataResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetParallelDataResponse:
     out: GetParallelDataResponse = {}  # type: ignore[typeddict-item]
-    if "ParallelDataProperties" in data:
+    if data.get("ParallelDataProperties") is not None:
         import capo_translate.types.parallel_data_properties
 
         out["parallel_data_properties"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetParallelDataResponse:
                 data["ParallelDataProperties"]
             )
         )
-    if "DataLocation" in data:
+    if data.get("DataLocation") is not None:
         import capo_translate.types.parallel_data_data_location
 
         out["data_location"] = (
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetParallelDataResponse:
                 data["DataLocation"]
             )
         )
-    if "AuxiliaryDataLocation" in data:
+    if data.get("AuxiliaryDataLocation") is not None:
         import capo_translate.types.parallel_data_data_location
 
         out["auxiliary_data_location"] = (
@@ -92,7 +92,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetParallelDataResponse:
                 data["AuxiliaryDataLocation"]
             )
         )
-    if "LatestUpdateAttemptAuxiliaryDataLocation" in data:
+    if data.get("LatestUpdateAttemptAuxiliaryDataLocation") is not None:
         import capo_translate.types.parallel_data_data_location
 
         out["latest_update_attempt_auxiliary_data_location"] = (

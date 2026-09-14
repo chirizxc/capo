@@ -34,17 +34,17 @@ def serialize_aws_json_1_0(value: AssociateVolumeRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AssociateVolumeRequest:
     out: AssociateVolumeRequest = {}  # type: ignore[typeddict-item]
-    if "WorkspaceInstanceId" in data:
+    if data.get("WorkspaceInstanceId") is not None:
         out["workspace_instance_id"] = data["WorkspaceInstanceId"]
     else:
         raise DeserializationError(
             "AssociateVolumeRequest.workspace_instance_id required"
         )
-    if "VolumeId" in data:
+    if data.get("VolumeId") is not None:
         out["volume_id"] = data["VolumeId"]
     else:
         raise DeserializationError("AssociateVolumeRequest.volume_id required")
-    if "Device" in data:
+    if data.get("Device") is not None:
         out["device"] = data["Device"]
     else:
         raise DeserializationError("AssociateVolumeRequest.device required")

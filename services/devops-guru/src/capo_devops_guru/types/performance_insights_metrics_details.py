@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> PerformanceInsightsMetricsDetails:
 
     out: PerformanceInsightsMetricsDetails = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_devops_guru.types.performance_insights_metrics_detail.deserialize_json(
                 item

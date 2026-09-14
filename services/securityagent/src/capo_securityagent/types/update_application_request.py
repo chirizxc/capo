@@ -36,12 +36,12 @@ def serialize_json(value: UpdateApplicationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateApplicationRequest:
     out: UpdateApplicationRequest = {}  # type: ignore[typeddict-item]
-    if "applicationId" in data:
+    if data.get("applicationId") is not None:
         out["application_id"] = data["applicationId"]
     else:
         raise DeserializationError("UpdateApplicationRequest.application_id required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "defaultKmsKeyId" in data:
+    if data.get("defaultKmsKeyId") is not None:
         out["default_kms_key_id"] = data["defaultKmsKeyId"]
     return out

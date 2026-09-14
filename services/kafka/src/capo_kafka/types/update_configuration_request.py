@@ -34,9 +34,9 @@ def serialize_json(value: UpdateConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateConfigurationRequest:
     out: UpdateConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "serverProperties" in data:
+    if data.get("serverProperties") is not None:
         import capo_kafka.types.__blob
 
         out["server_properties"] = capo_kafka.types.__blob.deserialize_json(

@@ -29,7 +29,7 @@ def serialize_json(value: ActionFilterConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ActionFilterConfiguration:
     out: ActionFilterConfiguration = {}  # type: ignore[typeddict-item]
-    if "documentAttributeFilter" in data:
+    if data.get("documentAttributeFilter") is not None:
         import capo_qbusiness.types.attribute_filter
 
         out["document_attribute_filter"] = (

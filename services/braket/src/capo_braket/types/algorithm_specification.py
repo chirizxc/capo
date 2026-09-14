@@ -38,7 +38,7 @@ def serialize_json(value: AlgorithmSpecification) -> dict:
 
 def deserialize_json(data: dict) -> AlgorithmSpecification:
     out: AlgorithmSpecification = {}  # type: ignore[typeddict-item]
-    if "scriptModeConfig" in data:
+    if data.get("scriptModeConfig") is not None:
         import capo_braket.types.script_mode_config
 
         out["script_mode_config"] = (
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> AlgorithmSpecification:
                 data["scriptModeConfig"]
             )
         )
-    if "containerImage" in data:
+    if data.get("containerImage") is not None:
         import capo_braket.types.container_image
 
         out["container_image"] = capo_braket.types.container_image.deserialize_json(

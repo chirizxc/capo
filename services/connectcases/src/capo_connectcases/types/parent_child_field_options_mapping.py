@@ -34,13 +34,13 @@ def serialize_json(value: ParentChildFieldOptionsMapping) -> dict:
 
 def deserialize_json(data: dict) -> ParentChildFieldOptionsMapping:
     out: ParentChildFieldOptionsMapping = {}  # type: ignore[typeddict-item]
-    if "parentFieldOptionValue" in data:
+    if data.get("parentFieldOptionValue") is not None:
         out["parent_field_option_value"] = data["parentFieldOptionValue"]
     else:
         raise DeserializationError(
             "ParentChildFieldOptionsMapping.parent_field_option_value required"
         )
-    if "childFieldOptionValues" in data:
+    if data.get("childFieldOptionValues") is not None:
         import capo_connectcases.types.parent_child_field_option_value_list
 
         out["child_field_option_values"] = (

@@ -134,17 +134,17 @@ def serialize_json(value: Finding) -> dict:
 
 def deserialize_json(data: dict) -> Finding:
     out: Finding = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "archived" in data:
+    if data.get("archived") is not None:
         out["archived"] = data["archived"]
-    if "category" in data:
+    if data.get("category") is not None:
         import capo_macie2.types.finding_category
 
         out["category"] = capo_macie2.types.finding_category.deserialize_json(
             data["category"]
         )
-    if "classificationDetails" in data:
+    if data.get("classificationDetails") is not None:
         import capo_macie2.types.classification_details
 
         out["classification_details"] = (
@@ -152,29 +152,29 @@ def deserialize_json(data: dict) -> Finding:
                 data["classificationDetails"]
             )
         )
-    if "count" in data:
+    if data.get("count") is not None:
         out["count"] = data["count"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_macie2.types.__timestamp_iso8601
 
         out["created_at"] = capo_macie2.types.__timestamp_iso8601.deserialize_json(
             data["createdAt"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "partition" in data:
+    if data.get("partition") is not None:
         out["partition"] = data["partition"]
-    if "policyDetails" in data:
+    if data.get("policyDetails") is not None:
         import capo_macie2.types.policy_details
 
         out["policy_details"] = capo_macie2.types.policy_details.deserialize_json(
             data["policyDetails"]
         )
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
-    if "resourcesAffected" in data:
+    if data.get("resourcesAffected") is not None:
         import capo_macie2.types.resources_affected
 
         out["resources_affected"] = (
@@ -182,21 +182,21 @@ def deserialize_json(data: dict) -> Finding:
                 data["resourcesAffected"]
             )
         )
-    if "sample" in data:
+    if data.get("sample") is not None:
         out["sample"] = data["sample"]
-    if "schemaVersion" in data:
+    if data.get("schemaVersion") is not None:
         out["schema_version"] = data["schemaVersion"]
-    if "severity" in data:
+    if data.get("severity") is not None:
         import capo_macie2.types.severity
 
         out["severity"] = capo_macie2.types.severity.deserialize_json(data["severity"])
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_macie2.types.finding_type
 
         out["type"] = capo_macie2.types.finding_type.deserialize_json(data["type"])
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_macie2.types.__timestamp_iso8601
 
         out["updated_at"] = capo_macie2.types.__timestamp_iso8601.deserialize_json(

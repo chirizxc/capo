@@ -42,7 +42,7 @@ def serialize_json(value: DeregisterIdentityProviderRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeregisterIdentityProviderRequest:
     out: DeregisterIdentityProviderRequest = {}  # type: ignore[typeddict-item]
-    if "IdentityProvider" in data:
+    if data.get("IdentityProvider") is not None:
         import capo_license_manager_user_subscriptions.types.identity_provider
 
         out["identity_provider"] = (
@@ -50,8 +50,8 @@ def deserialize_json(data: dict) -> DeregisterIdentityProviderRequest:
                 data["IdentityProvider"]
             )
         )
-    if "Product" in data:
+    if data.get("Product") is not None:
         out["product"] = data["Product"]
-    if "IdentityProviderArn" in data:
+    if data.get("IdentityProviderArn") is not None:
         out["identity_provider_arn"] = data["IdentityProviderArn"]
     return out

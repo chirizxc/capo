@@ -23,6 +23,6 @@ def serialize_json(value: StartApprovalTeamBaselineResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartApprovalTeamBaselineResponse:
     out: StartApprovalTeamBaselineResponse = {}  # type: ignore[typeddict-item]
-    if "BaselineSessionArn" in data:
+    if data.get("BaselineSessionArn") is not None:
         out["baseline_session_arn"] = data["BaselineSessionArn"]
     return out

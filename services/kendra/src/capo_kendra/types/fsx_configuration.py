@@ -89,11 +89,11 @@ def serialize_aws_json_1_1(value: FsxConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FsxConfiguration:
     out: FsxConfiguration = {}  # type: ignore[typeddict-item]
-    if "FileSystemId" in data:
+    if data.get("FileSystemId") is not None:
         out["file_system_id"] = data["FileSystemId"]
     else:
         raise DeserializationError("FsxConfiguration.file_system_id required")
-    if "FileSystemType" in data:
+    if data.get("FileSystemType") is not None:
         import capo_kendra.types.fsx_file_system_type
 
         out["file_system_type"] = (
@@ -103,7 +103,7 @@ def deserialize_aws_json_1_1(data: dict) -> FsxConfiguration:
         )
     else:
         raise DeserializationError("FsxConfiguration.file_system_type required")
-    if "VpcConfiguration" in data:
+    if data.get("VpcConfiguration") is not None:
         import capo_kendra.types.data_source_vpc_configuration
 
         out["vpc_configuration"] = (
@@ -113,9 +113,9 @@ def deserialize_aws_json_1_1(data: dict) -> FsxConfiguration:
         )
     else:
         raise DeserializationError("FsxConfiguration.vpc_configuration required")
-    if "SecretArn" in data:
+    if data.get("SecretArn") is not None:
         out["secret_arn"] = data["SecretArn"]
-    if "InclusionPatterns" in data:
+    if data.get("InclusionPatterns") is not None:
         import capo_kendra.types.data_source_inclusions_exclusions_strings
 
         out["inclusion_patterns"] = (
@@ -123,7 +123,7 @@ def deserialize_aws_json_1_1(data: dict) -> FsxConfiguration:
                 data["InclusionPatterns"]
             )
         )
-    if "ExclusionPatterns" in data:
+    if data.get("ExclusionPatterns") is not None:
         import capo_kendra.types.data_source_inclusions_exclusions_strings
 
         out["exclusion_patterns"] = (
@@ -131,7 +131,7 @@ def deserialize_aws_json_1_1(data: dict) -> FsxConfiguration:
                 data["ExclusionPatterns"]
             )
         )
-    if "FieldMappings" in data:
+    if data.get("FieldMappings") is not None:
         import capo_kendra.types.data_source_to_index_field_mapping_list
 
         out["field_mappings"] = (

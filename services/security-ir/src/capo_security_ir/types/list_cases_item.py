@@ -100,11 +100,11 @@ def serialize_json(value: ListCasesItem) -> dict:
 
 def deserialize_json(data: dict) -> ListCasesItem:
     out: ListCasesItem = {}  # type: ignore[typeddict-item]
-    if "caseId" in data:
+    if data.get("caseId") is not None:
         out["case_id"] = data["caseId"]
     else:
         raise DeserializationError("ListCasesItem.case_id required")
-    if "lastUpdatedDate" in data:
+    if data.get("lastUpdatedDate") is not None:
         import capo_security_ir.types._prelude.timestamp
 
         out["last_updated_date"] = (
@@ -112,11 +112,11 @@ def deserialize_json(data: dict) -> ListCasesItem:
                 data["lastUpdatedDate"]
             )
         )
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
-    if "caseArn" in data:
+    if data.get("caseArn") is not None:
         out["case_arn"] = data["caseArn"]
-    if "engagementType" in data:
+    if data.get("engagementType") is not None:
         import capo_security_ir.types.engagement_type
 
         out["engagement_type"] = (
@@ -124,13 +124,13 @@ def deserialize_json(data: dict) -> ListCasesItem:
                 data["engagementType"]
             )
         )
-    if "caseStatus" in data:
+    if data.get("caseStatus") is not None:
         import capo_security_ir.types.case_status
 
         out["case_status"] = capo_security_ir.types.case_status.deserialize_json(
             data["caseStatus"]
         )
-    if "createdDate" in data:
+    if data.get("createdDate") is not None:
         import capo_security_ir.types._prelude.timestamp
 
         out["created_date"] = (
@@ -138,19 +138,19 @@ def deserialize_json(data: dict) -> ListCasesItem:
                 data["createdDate"]
             )
         )
-    if "closedDate" in data:
+    if data.get("closedDate") is not None:
         import capo_security_ir.types._prelude.timestamp
 
         out["closed_date"] = capo_security_ir.types._prelude.timestamp.deserialize_json(
             data["closedDate"]
         )
-    if "resolverType" in data:
+    if data.get("resolverType") is not None:
         import capo_security_ir.types.resolver_type
 
         out["resolver_type"] = capo_security_ir.types.resolver_type.deserialize_json(
             data["resolverType"]
         )
-    if "pendingAction" in data:
+    if data.get("pendingAction") is not None:
         import capo_security_ir.types.pending_action
 
         out["pending_action"] = capo_security_ir.types.pending_action.deserialize_json(

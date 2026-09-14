@@ -28,11 +28,11 @@ def serialize_json(value: Sort) -> dict:
 
 def deserialize_json(data: dict) -> Sort:
     out: Sort = {}  # type: ignore[typeddict-item]
-    if "fieldId" in data:
+    if data.get("fieldId") is not None:
         out["field_id"] = data["fieldId"]
     else:
         raise DeserializationError("Sort.field_id required")
-    if "sortOrder" in data:
+    if data.get("sortOrder") is not None:
         out["sort_order"] = data["sortOrder"]
     else:
         raise DeserializationError("Sort.sort_order required")

@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ConflictExceptionErrors:
 
     out: ConflictExceptionErrors = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mgn.types.error_details.deserialize_json(item))
     return out

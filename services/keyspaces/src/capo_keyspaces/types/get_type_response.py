@@ -87,15 +87,15 @@ def serialize_aws_json_1_0(value: GetTypeResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetTypeResponse:
     out: GetTypeResponse = {}  # type: ignore[typeddict-item]
-    if "keyspaceName" in data:
+    if data.get("keyspaceName") is not None:
         out["keyspace_name"] = data["keyspaceName"]
     else:
         raise DeserializationError("GetTypeResponse.keyspace_name required")
-    if "typeName" in data:
+    if data.get("typeName") is not None:
         out["type_name"] = data["typeName"]
     else:
         raise DeserializationError("GetTypeResponse.type_name required")
-    if "fieldDefinitions" in data:
+    if data.get("fieldDefinitions") is not None:
         import capo_keyspaces.types.field_list
 
         out["field_definitions"] = (
@@ -103,7 +103,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetTypeResponse:
                 data["fieldDefinitions"]
             )
         )
-    if "lastModifiedTimestamp" in data:
+    if data.get("lastModifiedTimestamp") is not None:
         import capo_keyspaces.types.timestamp
 
         out["last_modified_timestamp"] = (
@@ -111,9 +111,9 @@ def deserialize_aws_json_1_0(data: dict) -> GetTypeResponse:
                 data["lastModifiedTimestamp"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "directReferringTables" in data:
+    if data.get("directReferringTables") is not None:
         import capo_keyspaces.types.table_name_list
 
         out["direct_referring_tables"] = (
@@ -121,7 +121,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetTypeResponse:
                 data["directReferringTables"]
             )
         )
-    if "directParentTypes" in data:
+    if data.get("directParentTypes") is not None:
         import capo_keyspaces.types.type_name_list
 
         out["direct_parent_types"] = (
@@ -129,11 +129,11 @@ def deserialize_aws_json_1_0(data: dict) -> GetTypeResponse:
                 data["directParentTypes"]
             )
         )
-    if "maxNestingDepth" in data:
+    if data.get("maxNestingDepth") is not None:
         out["max_nesting_depth"] = data["maxNestingDepth"]
     else:
         out["max_nesting_depth"] = 0
-    if "keyspaceArn" in data:
+    if data.get("keyspaceArn") is not None:
         out["keyspace_arn"] = data["keyspaceArn"]
     else:
         raise DeserializationError("GetTypeResponse.keyspace_arn required")

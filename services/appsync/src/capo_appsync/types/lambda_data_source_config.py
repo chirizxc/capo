@@ -24,7 +24,7 @@ def serialize_json(value: LambdaDataSourceConfig) -> dict:
 
 def deserialize_json(data: dict) -> LambdaDataSourceConfig:
     out: LambdaDataSourceConfig = {}  # type: ignore[typeddict-item]
-    if "lambdaFunctionArn" in data:
+    if data.get("lambdaFunctionArn") is not None:
         out["lambda_function_arn"] = data["lambdaFunctionArn"]
     else:
         raise DeserializationError(

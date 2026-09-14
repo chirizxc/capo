@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: MissingFileCacheConfiguration_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MissingFileCacheConfiguration_:
     out: MissingFileCacheConfiguration_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,20 @@ class MissingFileCacheConfiguration(ServiceError):
 
     code: str | None = "MissingFileCacheConfiguration"
 
-    def __init__(self, data: MissingFileCacheConfiguration_):
+    def __init__(
+        self, data: MissingFileCacheConfiguration_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="MissingFileCacheConfiguration",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "MissingFileCacheConfiguration":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "MissingFileCacheConfiguration":
+        return cls(deserialize_aws_json_1_1(data), message)

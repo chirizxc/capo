@@ -50,7 +50,7 @@ def serialize_json(value: UpdateReplicationSetAction) -> dict:
 
 
 def deserialize_json(data: dict) -> UpdateReplicationSetAction:
-    if "addRegionAction" in data:
+    if data.get("addRegionAction") is not None:
         import capo_ssm_incidents.types.add_region_action
 
         return {
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> UpdateReplicationSetAction:
                 data["addRegionAction"]
             )
         }
-    elif "deleteRegionAction" in data:
+    elif data.get("deleteRegionAction") is not None:
         import capo_ssm_incidents.types.delete_region_action
 
         return {

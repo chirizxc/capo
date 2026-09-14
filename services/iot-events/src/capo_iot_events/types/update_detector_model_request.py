@@ -59,7 +59,7 @@ def serialize_json(value: UpdateDetectorModelRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDetectorModelRequest:
     out: UpdateDetectorModelRequest = {}  # type: ignore[typeddict-item]
-    if "detectorModelDefinition" in data:
+    if data.get("detectorModelDefinition") is not None:
         import capo_iot_events.types.detector_model_definition
 
         out["detector_model_definition"] = (
@@ -71,13 +71,13 @@ def deserialize_json(data: dict) -> UpdateDetectorModelRequest:
         raise DeserializationError(
             "UpdateDetectorModelRequest.detector_model_definition required"
         )
-    if "detectorModelDescription" in data:
+    if data.get("detectorModelDescription") is not None:
         out["detector_model_description"] = data["detectorModelDescription"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("UpdateDetectorModelRequest.role_arn required")
-    if "evaluationMethod" in data:
+    if data.get("evaluationMethod") is not None:
         import capo_iot_events.types.evaluation_method
 
         out["evaluation_method"] = (

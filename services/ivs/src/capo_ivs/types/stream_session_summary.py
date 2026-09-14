@@ -40,17 +40,17 @@ def serialize_json(value: StreamSessionSummary) -> dict:
 
 def deserialize_json(data: dict) -> StreamSessionSummary:
     out: StreamSessionSummary = {}  # type: ignore[typeddict-item]
-    if "streamId" in data:
+    if data.get("streamId") is not None:
         out["stream_id"] = data["streamId"]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_ivs.types.time
 
         out["start_time"] = capo_ivs.types.time.deserialize_json(data["startTime"])
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_ivs.types.time
 
         out["end_time"] = capo_ivs.types.time.deserialize_json(data["endTime"])
-    if "hasErrorEvent" in data:
+    if data.get("hasErrorEvent") is not None:
         out["has_error_event"] = data["hasErrorEvent"]
     else:
         out["has_error_event"] = False

@@ -34,11 +34,11 @@ def serialize_json(value: ExportQAppSessionDataOutput) -> dict:
 
 def deserialize_json(data: dict) -> ExportQAppSessionDataOutput:
     out: ExportQAppSessionDataOutput = {}  # type: ignore[typeddict-item]
-    if "csvFileLink" in data:
+    if data.get("csvFileLink") is not None:
         out["csv_file_link"] = data["csvFileLink"]
     else:
         raise DeserializationError("ExportQAppSessionDataOutput.csv_file_link required")
-    if "expiresAt" in data:
+    if data.get("expiresAt") is not None:
         import capo_qapps.types.q_apps_timestamp
 
         out["expires_at"] = capo_qapps.types.q_apps_timestamp.deserialize_json(
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> ExportQAppSessionDataOutput:
         )
     else:
         raise DeserializationError("ExportQAppSessionDataOutput.expires_at required")
-    if "sessionArn" in data:
+    if data.get("sessionArn") is not None:
         out["session_arn"] = data["sessionArn"]
     else:
         raise DeserializationError("ExportQAppSessionDataOutput.session_arn required")

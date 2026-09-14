@@ -51,9 +51,9 @@ def deserialize_json(
     data: dict,
 ) -> AwsAutoScalingLaunchConfigurationBlockDeviceMappingsDetails:
     out: AwsAutoScalingLaunchConfigurationBlockDeviceMappingsDetails = {}  # type: ignore[typeddict-item]
-    if "DeviceName" in data:
+    if data.get("DeviceName") is not None:
         out["device_name"] = data["DeviceName"]
-    if "Ebs" in data:
+    if data.get("Ebs") is not None:
         import capo_securityhub.types.aws_auto_scaling_launch_configuration_block_device_mappings_ebs_details
 
         out["ebs"] = (
@@ -61,8 +61,8 @@ def deserialize_json(
                 data["Ebs"]
             )
         )
-    if "NoDevice" in data:
+    if data.get("NoDevice") is not None:
         out["no_device"] = data["NoDevice"]
-    if "VirtualName" in data:
+    if data.get("VirtualName") is not None:
         out["virtual_name"] = data["VirtualName"]
     return out

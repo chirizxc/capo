@@ -24,6 +24,8 @@ def serialize_aws_json_1_1(input_to_serialize: PlannedBudgetLimits) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> PlannedBudgetLimits:
     out: PlannedBudgetLimits = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_budgets.types.spend
 
         out[key] = capo_budgets.types.spend.deserialize_aws_json_1_1(value)

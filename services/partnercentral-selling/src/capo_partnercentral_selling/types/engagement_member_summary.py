@@ -29,8 +29,8 @@ def serialize_aws_json_1_0(value: EngagementMemberSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EngagementMemberSummary:
     out: EngagementMemberSummary = {}  # type: ignore[typeddict-item]
-    if "CompanyName" in data:
+    if data.get("CompanyName") is not None:
         out["company_name"] = data["CompanyName"]
-    if "WebsiteUrl" in data:
+    if data.get("WebsiteUrl") is not None:
         out["website_url"] = data["WebsiteUrl"]
     return out

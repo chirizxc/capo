@@ -62,7 +62,7 @@ def serialize_aws_json_1_1(value: StartTextDetectionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartTextDetectionRequest:
     out: StartTextDetectionRequest = {}  # type: ignore[typeddict-item]
-    if "Video" in data:
+    if data.get("Video") is not None:
         import capo_rekognition.types.video
 
         out["video"] = capo_rekognition.types.video.deserialize_aws_json_1_1(
@@ -70,9 +70,9 @@ def deserialize_aws_json_1_1(data: dict) -> StartTextDetectionRequest:
         )
     else:
         raise DeserializationError("StartTextDetectionRequest.video required")
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "NotificationChannel" in data:
+    if data.get("NotificationChannel") is not None:
         import capo_rekognition.types.notification_channel
 
         out["notification_channel"] = (
@@ -80,9 +80,9 @@ def deserialize_aws_json_1_1(data: dict) -> StartTextDetectionRequest:
                 data["NotificationChannel"]
             )
         )
-    if "JobTag" in data:
+    if data.get("JobTag") is not None:
         out["job_tag"] = data["JobTag"]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_rekognition.types.start_text_detection_filters
 
         out["filters"] = (

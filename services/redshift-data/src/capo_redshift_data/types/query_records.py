@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: QueryRecords) -> dict:
 
 
 def deserialize_aws_json_1_1(data: dict) -> QueryRecords:
-    if "CSVRecords" in data:
+    if data.get("CSVRecords") is not None:
         return {"CSVRecords": data["CSVRecords"]}
     else:
         raise DeserializationError("QueryRecords: no recognized variant key")

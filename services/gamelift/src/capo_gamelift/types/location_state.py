@@ -47,15 +47,15 @@ def serialize_aws_json_1_1(value: LocationState) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LocationState:
     out: LocationState = {}  # type: ignore[typeddict-item]
-    if "Location" in data:
+    if data.get("Location") is not None:
         out["location"] = data["Location"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_gamelift.types.fleet_status
 
         out["status"] = capo_gamelift.types.fleet_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "PlayerGatewayStatus" in data:
+    if data.get("PlayerGatewayStatus") is not None:
         import capo_gamelift.types.player_gateway_status
 
         out["player_gateway_status"] = (

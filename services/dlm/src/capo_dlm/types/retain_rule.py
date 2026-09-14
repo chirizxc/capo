@@ -45,11 +45,11 @@ def serialize_json(value: RetainRule) -> dict:
 
 def deserialize_json(data: dict) -> RetainRule:
     out: RetainRule = {}  # type: ignore[typeddict-item]
-    if "Count" in data:
+    if data.get("Count") is not None:
         out["count"] = data["Count"]
-    if "Interval" in data:
+    if data.get("Interval") is not None:
         out["interval"] = data["Interval"]
-    if "IntervalUnit" in data:
+    if data.get("IntervalUnit") is not None:
         import capo_dlm.types.retention_interval_unit_values
 
         out["interval_unit"] = (

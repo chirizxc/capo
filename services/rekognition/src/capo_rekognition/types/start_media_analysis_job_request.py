@@ -69,11 +69,11 @@ def serialize_aws_json_1_1(value: StartMediaAnalysisJobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartMediaAnalysisJobRequest:
     out: StartMediaAnalysisJobRequest = {}  # type: ignore[typeddict-item]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "JobName" in data:
+    if data.get("JobName") is not None:
         out["job_name"] = data["JobName"]
-    if "OperationsConfig" in data:
+    if data.get("OperationsConfig") is not None:
         import capo_rekognition.types.media_analysis_operations_config
 
         out["operations_config"] = (
@@ -85,7 +85,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartMediaAnalysisJobRequest:
         raise DeserializationError(
             "StartMediaAnalysisJobRequest.operations_config required"
         )
-    if "Input" in data:
+    if data.get("Input") is not None:
         import capo_rekognition.types.media_analysis_input
 
         out["input"] = (
@@ -95,7 +95,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartMediaAnalysisJobRequest:
         )
     else:
         raise DeserializationError("StartMediaAnalysisJobRequest.input required")
-    if "OutputConfig" in data:
+    if data.get("OutputConfig") is not None:
         import capo_rekognition.types.media_analysis_output_config
 
         out["output_config"] = (
@@ -107,6 +107,6 @@ def deserialize_aws_json_1_1(data: dict) -> StartMediaAnalysisJobRequest:
         raise DeserializationError(
             "StartMediaAnalysisJobRequest.output_config required"
         )
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
     return out

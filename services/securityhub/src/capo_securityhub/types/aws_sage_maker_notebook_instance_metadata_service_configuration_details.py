@@ -33,7 +33,7 @@ def deserialize_json(
     data: dict,
 ) -> AwsSageMakerNotebookInstanceMetadataServiceConfigurationDetails:
     out: AwsSageMakerNotebookInstanceMetadataServiceConfigurationDetails = {}  # type: ignore[typeddict-item]
-    if "MinimumInstanceMetadataServiceVersion" in data:
+    if data.get("MinimumInstanceMetadataServiceVersion") is not None:
         out["minimum_instance_metadata_service_version"] = data[
             "MinimumInstanceMetadataServiceVersion"
         ]

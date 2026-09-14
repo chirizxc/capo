@@ -42,13 +42,13 @@ def serialize_json(value: FleetCapabilities) -> dict:
 
 def deserialize_json(data: dict) -> FleetCapabilities:
     out: FleetCapabilities = {}  # type: ignore[typeddict-item]
-    if "amounts" in data:
+    if data.get("amounts") is not None:
         import capo_deadline.types.fleet_amount_capabilities
 
         out["amounts"] = capo_deadline.types.fleet_amount_capabilities.deserialize_json(
             data["amounts"]
         )
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_deadline.types.fleet_attribute_capabilities
 
         out["attributes"] = (

@@ -27,7 +27,7 @@ def serialize_json(value: ExportQAppSessionDataInput) -> dict:
 
 def deserialize_json(data: dict) -> ExportQAppSessionDataInput:
     out: ExportQAppSessionDataInput = {}  # type: ignore[typeddict-item]
-    if "sessionId" in data:
+    if data.get("sessionId") is not None:
         out["session_id"] = data["sessionId"]
     else:
         raise DeserializationError("ExportQAppSessionDataInput.session_id required")

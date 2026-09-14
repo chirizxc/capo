@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ListOfProtocols:
 
     out: ListOfProtocols = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_kinesis_video.types.channel_protocol.deserialize_json(item))
     return out

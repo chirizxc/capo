@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.frauddetector#AWSHawksNestServiceFacade``."""
 
 import warnings
+from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +17,7 @@ from capo_frauddetector._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_frauddetector._auth._zapros_handler import AuthMiddleware
+from capo_frauddetector._pagination import resolve_path as _resolve_path
 from capo_frauddetector._services._aws_config import aws_config
 from capo_frauddetector._services._pipeline import (
     Interceptor,
@@ -370,8 +372,9 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.batch_create_variable_request.BatchCreateVariableRequest = {}  # type: ignore[typeddict-item]
-        input_["variable_entries"] = variable_entries
+        input_: capo_frauddetector.types.batch_create_variable_request.BatchCreateVariableRequest = {
+            "variable_entries": variable_entries
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -380,6 +383,7 @@ class FraudDetectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_get_variable(
@@ -416,14 +420,16 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.batch_get_variable_request.BatchGetVariableRequest = {}  # type: ignore[typeddict-item]
-        input_["names"] = names
+        input_: capo_frauddetector.types.batch_get_variable_request.BatchGetVariableRequest = {
+            "names": names
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_batch_import_job(
@@ -461,14 +467,16 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.cancel_batch_import_job_request.CancelBatchImportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_frauddetector.types.cancel_batch_import_job_request.CancelBatchImportJobRequest = {
+            "job_id": job_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_batch_prediction_job(
@@ -506,14 +514,16 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.cancel_batch_prediction_job_request.CancelBatchPredictionJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_frauddetector.types.cancel_batch_prediction_job_request.CancelBatchPredictionJobRequest = {
+            "job_id": job_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_batch_import_job(
@@ -561,12 +571,13 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.create_batch_import_job_request.CreateBatchImportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
-        input_["input_path"] = input_path
-        input_["output_path"] = output_path
-        input_["event_type_name"] = event_type_name
-        input_["iam_role_arn"] = iam_role_arn
+        input_: capo_frauddetector.types.create_batch_import_job_request.CreateBatchImportJobRequest = {
+            "job_id": job_id,
+            "input_path": input_path,
+            "output_path": output_path,
+            "event_type_name": event_type_name,
+            "iam_role_arn": iam_role_arn,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -575,6 +586,7 @@ class FraudDetectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_batch_prediction_job(
@@ -628,15 +640,16 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.create_batch_prediction_job_request.CreateBatchPredictionJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
-        input_["input_path"] = input_path
-        input_["output_path"] = output_path
-        input_["event_type_name"] = event_type_name
-        input_["detector_name"] = detector_name
+        input_: capo_frauddetector.types.create_batch_prediction_job_request.CreateBatchPredictionJobRequest = {
+            "job_id": job_id,
+            "input_path": input_path,
+            "output_path": output_path,
+            "event_type_name": event_type_name,
+            "detector_name": detector_name,
+            "iam_role_arn": iam_role_arn,
+        }
         if detector_version is not None:
             input_["detector_version"] = detector_version
-        input_["iam_role_arn"] = iam_role_arn
         if tags is not None:
             input_["tags"] = tags
 
@@ -645,6 +658,7 @@ class FraudDetectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_detector_version(
@@ -702,13 +716,14 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.create_detector_version_request.CreateDetectorVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_frauddetector.types.create_detector_version_request.CreateDetectorVersionRequest = {
+            "detector_id": detector_id,
+            "rules": rules,
+        }
         if description is not None:
             input_["description"] = description
         if external_model_endpoints is not None:
             input_["external_model_endpoints"] = external_model_endpoints
-        input_["rules"] = rules
         if model_versions is not None:
             input_["model_versions"] = model_versions
         if rule_execution_mode is not None:
@@ -721,6 +736,7 @@ class FraudDetectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_list(
@@ -771,8 +787,9 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.create_list_request.CreateListRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_frauddetector.types.create_list_request.CreateListRequest = {
+            "name": name
+        }
         if elements is not None:
             input_["elements"] = elements
         if variable_type is not None:
@@ -787,6 +804,7 @@ class FraudDetectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_model(
@@ -833,12 +851,13 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.create_model_request.CreateModelRequest = {}  # type: ignore[typeddict-item]
-        input_["model_id"] = model_id
-        input_["model_type"] = model_type
+        input_: capo_frauddetector.types.create_model_request.CreateModelRequest = {
+            "model_id": model_id,
+            "model_type": model_type,
+            "event_type_name": event_type_name,
+        }
         if description is not None:
             input_["description"] = description
-        input_["event_type_name"] = event_type_name
         if tags is not None:
             input_["tags"] = tags
 
@@ -847,6 +866,7 @@ class FraudDetectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_model_version(
@@ -902,11 +922,12 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.create_model_version_request.CreateModelVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["model_id"] = model_id
-        input_["model_type"] = model_type
-        input_["training_data_source"] = training_data_source
-        input_["training_data_schema"] = training_data_schema
+        input_: capo_frauddetector.types.create_model_version_request.CreateModelVersionRequest = {
+            "model_id": model_id,
+            "model_type": model_type,
+            "training_data_source": training_data_source,
+            "training_data_schema": training_data_schema,
+        }
         if external_events_detail is not None:
             input_["external_events_detail"] = external_events_detail
         if ingested_events_detail is not None:
@@ -919,6 +940,7 @@ class FraudDetectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_rule(
@@ -969,14 +991,15 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.create_rule_request.CreateRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["rule_id"] = rule_id
-        input_["detector_id"] = detector_id
+        input_: capo_frauddetector.types.create_rule_request.CreateRuleRequest = {
+            "rule_id": rule_id,
+            "detector_id": detector_id,
+            "expression": expression,
+            "language": language,
+            "outcomes": outcomes,
+        }
         if description is not None:
             input_["description"] = description
-        input_["expression"] = expression
-        input_["language"] = language
-        input_["outcomes"] = outcomes
         if tags is not None:
             input_["tags"] = tags
 
@@ -985,6 +1008,7 @@ class FraudDetectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_variable(
@@ -1033,11 +1057,12 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.create_variable_request.CreateVariableRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["data_type"] = data_type
-        input_["data_source"] = data_source
-        input_["default_value"] = default_value
+        input_: capo_frauddetector.types.create_variable_request.CreateVariableRequest = {
+            "name": name,
+            "data_type": data_type,
+            "data_source": data_source,
+            "default_value": default_value,
+        }
         if description is not None:
             input_["description"] = description
         if variable_type is not None:
@@ -1050,6 +1075,7 @@ class FraudDetectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_batch_import_job(
@@ -1086,14 +1112,16 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.delete_batch_import_job_request.DeleteBatchImportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_frauddetector.types.delete_batch_import_job_request.DeleteBatchImportJobRequest = {
+            "job_id": job_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_batch_prediction_job(
@@ -1130,14 +1158,16 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.delete_batch_prediction_job_request.DeleteBatchPredictionJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_frauddetector.types.delete_batch_prediction_job_request.DeleteBatchPredictionJobRequest = {
+            "job_id": job_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_detector(
@@ -1175,14 +1205,16 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.delete_detector_request.DeleteDetectorRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_frauddetector.types.delete_detector_request.DeleteDetectorRequest = {
+            "detector_id": detector_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_detector_version(
@@ -1223,15 +1255,17 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.delete_detector_version_request.DeleteDetectorVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
-        input_["detector_version_id"] = detector_version_id
+        input_: capo_frauddetector.types.delete_detector_version_request.DeleteDetectorVersionRequest = {
+            "detector_id": detector_id,
+            "detector_version_id": detector_version_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_entity_type(
@@ -1269,14 +1303,16 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.delete_entity_type_request.DeleteEntityTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_frauddetector.types.delete_entity_type_request.DeleteEntityTypeRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_event(
@@ -1319,9 +1355,10 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.delete_event_request.DeleteEventRequest = {}  # type: ignore[typeddict-item]
-        input_["event_id"] = event_id
-        input_["event_type_name"] = event_type_name
+        input_: capo_frauddetector.types.delete_event_request.DeleteEventRequest = {
+            "event_id": event_id,
+            "event_type_name": event_type_name,
+        }
         if delete_audit_history is not None:
             input_["delete_audit_history"] = delete_audit_history
 
@@ -1330,6 +1367,7 @@ class FraudDetectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_events_by_event_type(
@@ -1368,14 +1406,16 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.delete_events_by_event_type_request.DeleteEventsByEventTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["event_type_name"] = event_type_name
+        input_: capo_frauddetector.types.delete_events_by_event_type_request.DeleteEventsByEventTypeRequest = {
+            "event_type_name": event_type_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_event_type(
@@ -1413,14 +1453,16 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.delete_event_type_request.DeleteEventTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_frauddetector.types.delete_event_type_request.DeleteEventTypeRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_external_model(
@@ -1458,14 +1500,16 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.delete_external_model_request.DeleteExternalModelRequest = {}  # type: ignore[typeddict-item]
-        input_["model_endpoint"] = model_endpoint
+        input_: capo_frauddetector.types.delete_external_model_request.DeleteExternalModelRequest = {
+            "model_endpoint": model_endpoint
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_label(
@@ -1502,14 +1546,16 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.delete_label_request.DeleteLabelRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_frauddetector.types.delete_label_request.DeleteLabelRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_list(
@@ -1547,14 +1593,16 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.delete_list_request.DeleteListRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_frauddetector.types.delete_list_request.DeleteListRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_model(
@@ -1594,15 +1642,17 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.delete_model_request.DeleteModelRequest = {}  # type: ignore[typeddict-item]
-        input_["model_id"] = model_id
-        input_["model_type"] = model_type
+        input_: capo_frauddetector.types.delete_model_request.DeleteModelRequest = {
+            "model_id": model_id,
+            "model_type": model_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_model_version(
@@ -1646,16 +1696,18 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.delete_model_version_request.DeleteModelVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["model_id"] = model_id
-        input_["model_type"] = model_type
-        input_["model_version_number"] = model_version_number
+        input_: capo_frauddetector.types.delete_model_version_request.DeleteModelVersionRequest = {
+            "model_id": model_id,
+            "model_type": model_type,
+            "model_version_number": model_version_number,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_outcome(
@@ -1693,14 +1745,16 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.delete_outcome_request.DeleteOutcomeRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_frauddetector.types.delete_outcome_request.DeleteOutcomeRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_rule(
@@ -1735,14 +1789,16 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.delete_rule_request.DeleteRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["rule"] = rule
+        input_: capo_frauddetector.types.delete_rule_request.DeleteRuleRequest = {
+            "rule": rule
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_variable(
@@ -1780,14 +1836,16 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.delete_variable_request.DeleteVariableRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_frauddetector.types.delete_variable_request.DeleteVariableRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_detector(
@@ -1831,8 +1889,9 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.describe_detector_request.DescribeDetectorRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_frauddetector.types.describe_detector_request.DescribeDetectorRequest = {
+            "detector_id": detector_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1843,6 +1902,7 @@ class FraudDetectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_model_versions(
@@ -1896,7 +1956,7 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.describe_model_versions_request.DescribeModelVersionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_frauddetector.types.describe_model_versions_request.DescribeModelVersionsRequest = {}
         if model_id is not None:
             input_["model_id"] = model_id
         if model_version_number is not None:
@@ -1913,7 +1973,41 @@ class FraudDetectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_describe_model_versions(
+        self,
+        *,
+        config_overrides: Optional[FraudDetectorClientConfig] = None,
+        model_id: Optional[
+            "capo_frauddetector.types.model_identifier.modelIdentifier"
+        ] = None,
+        model_version_number: Optional[
+            "capo_frauddetector.types.float_version_string.floatVersionString"
+        ] = None,
+        model_type: Optional[
+            "capo_frauddetector.types.model_type_enum.ModelTypeEnum"
+        ] = None,
+        next_token: Optional["capo_frauddetector.types.string.string"] = None,
+        max_results: Optional[
+            "capo_frauddetector.types.models_max_page_size.modelsMaxPageSize"
+        ] = None,
+    ) -> "Iterator[capo_frauddetector.types.describe_model_versions_result.DescribeModelVersionsResult]":
+        _token = next_token
+        while True:
+            _response = self.describe_model_versions(
+                config_overrides=config_overrides,
+                model_id=model_id,
+                model_version_number=model_version_number,
+                model_type=model_type,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_batch_import_jobs(
         self,
@@ -1958,7 +2052,7 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.get_batch_import_jobs_request.GetBatchImportJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_frauddetector.types.get_batch_import_jobs_request.GetBatchImportJobsRequest = {}
         if job_id is not None:
             input_["job_id"] = job_id
         if max_results is not None:
@@ -1971,7 +2065,31 @@ class FraudDetectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_batch_import_jobs(
+        self,
+        *,
+        config_overrides: Optional[FraudDetectorClientConfig] = None,
+        job_id: Optional["capo_frauddetector.types.identifier.identifier"] = None,
+        max_results: Optional[
+            "capo_frauddetector.types.batch_imports_max_page_size.batchImportsMaxPageSize"
+        ] = None,
+        next_token: Optional["capo_frauddetector.types.string.string"] = None,
+    ) -> "Iterator[capo_frauddetector.types.get_batch_import_jobs_result.GetBatchImportJobsResult]":
+        _token = next_token
+        while True:
+            _response = self.get_batch_import_jobs(
+                config_overrides=config_overrides,
+                job_id=job_id,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_batch_prediction_jobs(
         self,
@@ -2014,7 +2132,7 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.get_batch_prediction_jobs_request.GetBatchPredictionJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_frauddetector.types.get_batch_prediction_jobs_request.GetBatchPredictionJobsRequest = {}
         if job_id is not None:
             input_["job_id"] = job_id
         if max_results is not None:
@@ -2027,7 +2145,31 @@ class FraudDetectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_batch_prediction_jobs(
+        self,
+        *,
+        config_overrides: Optional[FraudDetectorClientConfig] = None,
+        job_id: Optional["capo_frauddetector.types.identifier.identifier"] = None,
+        max_results: Optional[
+            "capo_frauddetector.types.batch_predictions_max_page_size.batchPredictionsMaxPageSize"
+        ] = None,
+        next_token: Optional["capo_frauddetector.types.string.string"] = None,
+    ) -> "Iterator[capo_frauddetector.types.get_batch_prediction_jobs_result.GetBatchPredictionJobsResult]":
+        _token = next_token
+        while True:
+            _response = self.get_batch_prediction_jobs(
+                config_overrides=config_overrides,
+                job_id=job_id,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_delete_events_by_event_type_status(
         self,
@@ -2064,14 +2206,16 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.get_delete_events_by_event_type_status_request.GetDeleteEventsByEventTypeStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["event_type_name"] = event_type_name
+        input_: capo_frauddetector.types.get_delete_events_by_event_type_status_request.GetDeleteEventsByEventTypeStatusRequest = {
+            "event_type_name": event_type_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_detectors(
@@ -2115,7 +2259,7 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.get_detectors_request.GetDetectorsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_frauddetector.types.get_detectors_request.GetDetectorsRequest = {}
         if detector_id is not None:
             input_["detector_id"] = detector_id
         if next_token is not None:
@@ -2128,7 +2272,31 @@ class FraudDetectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_detectors(
+        self,
+        *,
+        config_overrides: Optional[FraudDetectorClientConfig] = None,
+        detector_id: Optional["capo_frauddetector.types.identifier.identifier"] = None,
+        next_token: Optional["capo_frauddetector.types.string.string"] = None,
+        max_results: Optional[
+            "capo_frauddetector.types.detectors_max_results.DetectorsMaxResults"
+        ] = None,
+    ) -> "Iterator[capo_frauddetector.types.get_detectors_result.GetDetectorsResult]":
+        _token = next_token
+        while True:
+            _response = self.get_detectors(
+                config_overrides=config_overrides,
+                detector_id=detector_id,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_detector_version(
         self,
@@ -2169,15 +2337,17 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.get_detector_version_request.GetDetectorVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
-        input_["detector_version_id"] = detector_version_id
+        input_: capo_frauddetector.types.get_detector_version_request.GetDetectorVersionRequest = {
+            "detector_id": detector_id,
+            "detector_version_id": detector_version_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_entity_types(
@@ -2221,7 +2391,7 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.get_entity_types_request.GetEntityTypesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_frauddetector.types.get_entity_types_request.GetEntityTypesRequest = {}
         if name is not None:
             input_["name"] = name
         if next_token is not None:
@@ -2234,7 +2404,31 @@ class FraudDetectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_entity_types(
+        self,
+        *,
+        config_overrides: Optional[FraudDetectorClientConfig] = None,
+        name: Optional["capo_frauddetector.types.identifier.identifier"] = None,
+        next_token: Optional["capo_frauddetector.types.string.string"] = None,
+        max_results: Optional[
+            "capo_frauddetector.types.entity_types_max_results.entityTypesMaxResults"
+        ] = None,
+    ) -> "Iterator[capo_frauddetector.types.get_entity_types_result.GetEntityTypesResult]":
+        _token = next_token
+        while True:
+            _response = self.get_entity_types(
+                config_overrides=config_overrides,
+                name=name,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_event(
         self,
@@ -2273,15 +2467,17 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.get_event_request.GetEventRequest = {}  # type: ignore[typeddict-item]
-        input_["event_id"] = event_id
-        input_["event_type_name"] = event_type_name
+        input_: capo_frauddetector.types.get_event_request.GetEventRequest = {
+            "event_id": event_id,
+            "event_type_name": event_type_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_event_prediction(
@@ -2341,15 +2537,16 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.get_event_prediction_request.GetEventPredictionRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_frauddetector.types.get_event_prediction_request.GetEventPredictionRequest = {
+            "detector_id": detector_id,
+            "event_id": event_id,
+            "event_type_name": event_type_name,
+            "entities": entities,
+            "event_timestamp": event_timestamp,
+            "event_variables": event_variables,
+        }
         if detector_version_id is not None:
             input_["detector_version_id"] = detector_version_id
-        input_["event_id"] = event_id
-        input_["event_type_name"] = event_type_name
-        input_["entities"] = entities
-        input_["event_timestamp"] = event_timestamp
-        input_["event_variables"] = event_variables
         if external_model_endpoint_data_blobs is not None:
             input_["external_model_endpoint_data_blobs"] = (
                 external_model_endpoint_data_blobs
@@ -2360,6 +2557,7 @@ class FraudDetectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_event_prediction_metadata(
@@ -2405,18 +2603,20 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.get_event_prediction_metadata_request.GetEventPredictionMetadataRequest = {}  # type: ignore[typeddict-item]
-        input_["event_id"] = event_id
-        input_["event_type_name"] = event_type_name
-        input_["detector_id"] = detector_id
-        input_["detector_version_id"] = detector_version_id
-        input_["prediction_timestamp"] = prediction_timestamp
+        input_: capo_frauddetector.types.get_event_prediction_metadata_request.GetEventPredictionMetadataRequest = {
+            "event_id": event_id,
+            "event_type_name": event_type_name,
+            "detector_id": detector_id,
+            "detector_version_id": detector_version_id,
+            "prediction_timestamp": prediction_timestamp,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_event_types(
@@ -2460,7 +2660,7 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.get_event_types_request.GetEventTypesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_frauddetector.types.get_event_types_request.GetEventTypesRequest = {}
         if name is not None:
             input_["name"] = name
         if next_token is not None:
@@ -2473,7 +2673,33 @@ class FraudDetectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_event_types(
+        self,
+        *,
+        config_overrides: Optional[FraudDetectorClientConfig] = None,
+        name: Optional["capo_frauddetector.types.identifier.identifier"] = None,
+        next_token: Optional["capo_frauddetector.types.string.string"] = None,
+        max_results: Optional[
+            "capo_frauddetector.types.event_types_max_results.eventTypesMaxResults"
+        ] = None,
+    ) -> (
+        "Iterator[capo_frauddetector.types.get_event_types_result.GetEventTypesResult]"
+    ):
+        _token = next_token
+        while True:
+            _response = self.get_event_types(
+                config_overrides=config_overrides,
+                name=name,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_external_models(
         self,
@@ -2516,7 +2742,7 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.get_external_models_request.GetExternalModelsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_frauddetector.types.get_external_models_request.GetExternalModelsRequest = {}
         if model_endpoint is not None:
             input_["model_endpoint"] = model_endpoint
         if next_token is not None:
@@ -2529,7 +2755,31 @@ class FraudDetectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_external_models(
+        self,
+        *,
+        config_overrides: Optional[FraudDetectorClientConfig] = None,
+        model_endpoint: Optional["capo_frauddetector.types.string.string"] = None,
+        next_token: Optional["capo_frauddetector.types.string.string"] = None,
+        max_results: Optional[
+            "capo_frauddetector.types.external_models_max_results.ExternalModelsMaxResults"
+        ] = None,
+    ) -> "Iterator[capo_frauddetector.types.get_external_models_result.GetExternalModelsResult]":
+        _token = next_token
+        while True:
+            _response = self.get_external_models(
+                config_overrides=config_overrides,
+                model_endpoint=model_endpoint,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_kms_encryption_key(
         self, *, config_overrides: Optional[FraudDetectorClientConfig] = None
@@ -2565,6 +2815,7 @@ class FraudDetectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_labels(
@@ -2608,7 +2859,7 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.get_labels_request.GetLabelsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_frauddetector.types.get_labels_request.GetLabelsRequest = {}
         if name is not None:
             input_["name"] = name
         if next_token is not None:
@@ -2621,7 +2872,31 @@ class FraudDetectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_labels(
+        self,
+        *,
+        config_overrides: Optional[FraudDetectorClientConfig] = None,
+        name: Optional["capo_frauddetector.types.identifier.identifier"] = None,
+        next_token: Optional["capo_frauddetector.types.string.string"] = None,
+        max_results: Optional[
+            "capo_frauddetector.types.labels_max_results.labelsMaxResults"
+        ] = None,
+    ) -> "Iterator[capo_frauddetector.types.get_labels_result.GetLabelsResult]":
+        _token = next_token
+        while True:
+            _response = self.get_labels(
+                config_overrides=config_overrides,
+                name=name,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_list_elements(
         self,
@@ -2664,8 +2939,9 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.get_list_elements_request.GetListElementsRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_frauddetector.types.get_list_elements_request.GetListElementsRequest = {
+            "name": name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2676,7 +2952,31 @@ class FraudDetectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_list_elements(
+        self,
+        name: "capo_frauddetector.types.no_dash_identifier.noDashIdentifier",
+        *,
+        config_overrides: Optional[FraudDetectorClientConfig] = None,
+        next_token: Optional["capo_frauddetector.types.next_token.nextToken"] = None,
+        max_results: Optional[
+            "capo_frauddetector.types.lists_elements_max_results.ListsElementsMaxResults"
+        ] = None,
+    ) -> "Iterator[capo_frauddetector.types.get_list_elements_result.GetListElementsResult]":
+        _token = next_token
+        while True:
+            _response = self.get_list_elements(
+                name,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_lists_metadata(
         self,
@@ -2721,7 +3021,7 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.get_lists_metadata_request.GetListsMetadataRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_frauddetector.types.get_lists_metadata_request.GetListsMetadataRequest = {}
         if name is not None:
             input_["name"] = name
         if next_token is not None:
@@ -2734,7 +3034,33 @@ class FraudDetectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_lists_metadata(
+        self,
+        *,
+        config_overrides: Optional[FraudDetectorClientConfig] = None,
+        name: Optional[
+            "capo_frauddetector.types.no_dash_identifier.noDashIdentifier"
+        ] = None,
+        next_token: Optional["capo_frauddetector.types.next_token.nextToken"] = None,
+        max_results: Optional[
+            "capo_frauddetector.types.lists_metadata_max_results.ListsMetadataMaxResults"
+        ] = None,
+    ) -> "Iterator[capo_frauddetector.types.get_lists_metadata_result.GetListsMetadataResult]":
+        _token = next_token
+        while True:
+            _response = self.get_lists_metadata(
+                config_overrides=config_overrides,
+                name=name,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_models(
         self,
@@ -2783,7 +3109,7 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.get_models_request.GetModelsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_frauddetector.types.get_models_request.GetModelsRequest = {}
         if model_id is not None:
             input_["model_id"] = model_id
         if model_type is not None:
@@ -2798,7 +3124,37 @@ class FraudDetectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_models(
+        self,
+        *,
+        config_overrides: Optional[FraudDetectorClientConfig] = None,
+        model_id: Optional[
+            "capo_frauddetector.types.model_identifier.modelIdentifier"
+        ] = None,
+        model_type: Optional[
+            "capo_frauddetector.types.model_type_enum.ModelTypeEnum"
+        ] = None,
+        next_token: Optional["capo_frauddetector.types.string.string"] = None,
+        max_results: Optional[
+            "capo_frauddetector.types.models_max_page_size.modelsMaxPageSize"
+        ] = None,
+    ) -> "Iterator[capo_frauddetector.types.get_models_result.GetModelsResult]":
+        _token = next_token
+        while True:
+            _response = self.get_models(
+                config_overrides=config_overrides,
+                model_id=model_id,
+                model_type=model_type,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_model_version(
         self,
@@ -2839,16 +3195,18 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.get_model_version_request.GetModelVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["model_id"] = model_id
-        input_["model_type"] = model_type
-        input_["model_version_number"] = model_version_number
+        input_: capo_frauddetector.types.get_model_version_request.GetModelVersionRequest = {
+            "model_id": model_id,
+            "model_type": model_type,
+            "model_version_number": model_version_number,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_outcomes(
@@ -2892,7 +3250,7 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.get_outcomes_request.GetOutcomesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_frauddetector.types.get_outcomes_request.GetOutcomesRequest = {}
         if name is not None:
             input_["name"] = name
         if next_token is not None:
@@ -2905,7 +3263,31 @@ class FraudDetectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_outcomes(
+        self,
+        *,
+        config_overrides: Optional[FraudDetectorClientConfig] = None,
+        name: Optional["capo_frauddetector.types.identifier.identifier"] = None,
+        next_token: Optional["capo_frauddetector.types.string.string"] = None,
+        max_results: Optional[
+            "capo_frauddetector.types.outcomes_max_results.OutcomesMaxResults"
+        ] = None,
+    ) -> "Iterator[capo_frauddetector.types.get_outcomes_result.GetOutcomesResult]":
+        _token = next_token
+        while True:
+            _response = self.get_outcomes(
+                config_overrides=config_overrides,
+                name=name,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_rules(
         self,
@@ -2954,10 +3336,11 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.get_rules_request.GetRulesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_frauddetector.types.get_rules_request.GetRulesRequest = {
+            "detector_id": detector_id
+        }
         if rule_id is not None:
             input_["rule_id"] = rule_id
-        input_["detector_id"] = detector_id
         if rule_version is not None:
             input_["rule_version"] = rule_version
         if next_token is not None:
@@ -2970,7 +3353,37 @@ class FraudDetectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_rules(
+        self,
+        detector_id: "capo_frauddetector.types.identifier.identifier",
+        *,
+        config_overrides: Optional[FraudDetectorClientConfig] = None,
+        rule_id: Optional["capo_frauddetector.types.identifier.identifier"] = None,
+        rule_version: Optional[
+            "capo_frauddetector.types.whole_number_version_string.wholeNumberVersionString"
+        ] = None,
+        next_token: Optional["capo_frauddetector.types.string.string"] = None,
+        max_results: Optional[
+            "capo_frauddetector.types.rules_max_results.RulesMaxResults"
+        ] = None,
+    ) -> "Iterator[capo_frauddetector.types.get_rules_result.GetRulesResult]":
+        _token = next_token
+        while True:
+            _response = self.get_rules(
+                detector_id,
+                config_overrides=config_overrides,
+                rule_id=rule_id,
+                rule_version=rule_version,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_variables(
         self,
@@ -3013,7 +3426,7 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.get_variables_request.GetVariablesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_frauddetector.types.get_variables_request.GetVariablesRequest = {}
         if name is not None:
             input_["name"] = name
         if next_token is not None:
@@ -3026,7 +3439,31 @@ class FraudDetectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_variables(
+        self,
+        *,
+        config_overrides: Optional[FraudDetectorClientConfig] = None,
+        name: Optional["capo_frauddetector.types.string.string"] = None,
+        next_token: Optional["capo_frauddetector.types.string.string"] = None,
+        max_results: Optional[
+            "capo_frauddetector.types.variables_max_results.VariablesMaxResults"
+        ] = None,
+    ) -> "Iterator[capo_frauddetector.types.get_variables_result.GetVariablesResult]":
+        _token = next_token
+        while True:
+            _response = self.get_variables(
+                config_overrides=config_overrides,
+                name=name,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_event_predictions(
         self,
@@ -3086,7 +3523,7 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.list_event_predictions_request.ListEventPredictionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_frauddetector.types.list_event_predictions_request.ListEventPredictionsRequest = {}
         if event_id is not None:
             input_["event_id"] = event_id
         if event_type is not None:
@@ -3107,7 +3544,49 @@ class FraudDetectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_event_predictions(
+        self,
+        *,
+        config_overrides: Optional[FraudDetectorClientConfig] = None,
+        event_id: Optional[
+            "capo_frauddetector.types.filter_condition.FilterCondition"
+        ] = None,
+        event_type: Optional[
+            "capo_frauddetector.types.filter_condition.FilterCondition"
+        ] = None,
+        detector_id: Optional[
+            "capo_frauddetector.types.filter_condition.FilterCondition"
+        ] = None,
+        detector_version_id: Optional[
+            "capo_frauddetector.types.filter_condition.FilterCondition"
+        ] = None,
+        prediction_time_range: Optional[
+            "capo_frauddetector.types.prediction_time_range.PredictionTimeRange"
+        ] = None,
+        next_token: Optional["capo_frauddetector.types.string.string"] = None,
+        max_results: Optional[
+            "capo_frauddetector.types.event_predictions_max_results.EventPredictionsMaxResults"
+        ] = None,
+    ) -> "Iterator[capo_frauddetector.types.list_event_predictions_result.ListEventPredictionsResult]":
+        _token = next_token
+        while True:
+            _response = self.list_event_predictions(
+                config_overrides=config_overrides,
+                event_id=event_id,
+                event_type=event_type,
+                detector_id=detector_id,
+                detector_version_id=detector_version_id,
+                prediction_time_range=prediction_time_range,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_tags_for_resource(
         self,
@@ -3149,8 +3628,9 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_frauddetector.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3161,7 +3641,31 @@ class FraudDetectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_tags_for_resource(
+        self,
+        resource_arn: "capo_frauddetector.types.fraud_detector_arn.fraudDetectorArn",
+        *,
+        config_overrides: Optional[FraudDetectorClientConfig] = None,
+        next_token: Optional["capo_frauddetector.types.string.string"] = None,
+        max_results: Optional[
+            "capo_frauddetector.types.tags_max_results.TagsMaxResults"
+        ] = None,
+    ) -> "Iterator[capo_frauddetector.types.list_tags_for_resource_result.ListTagsForResourceResult]":
+        _token = next_token
+        while True:
+            _response = self.list_tags_for_resource(
+                resource_arn,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def put_detector(
         self,
@@ -3206,11 +3710,12 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.put_detector_request.PutDetectorRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_frauddetector.types.put_detector_request.PutDetectorRequest = {
+            "detector_id": detector_id,
+            "event_type_name": event_type_name,
+        }
         if description is not None:
             input_["description"] = description
-        input_["event_type_name"] = event_type_name
         if tags is not None:
             input_["tags"] = tags
 
@@ -3219,6 +3724,7 @@ class FraudDetectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_entity_type(
@@ -3262,8 +3768,9 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.put_entity_type_request.PutEntityTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_frauddetector.types.put_entity_type_request.PutEntityTypeRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if tags is not None:
@@ -3274,6 +3781,7 @@ class FraudDetectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_event_type(
@@ -3333,14 +3841,15 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.put_event_type_request.PutEventTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_frauddetector.types.put_event_type_request.PutEventTypeRequest = {
+            "name": name,
+            "event_variables": event_variables,
+            "entity_types": entity_types,
+        }
         if description is not None:
             input_["description"] = description
-        input_["event_variables"] = event_variables
         if labels is not None:
             input_["labels"] = labels
-        input_["entity_types"] = entity_types
         if event_ingestion is not None:
             input_["event_ingestion"] = event_ingestion
         if tags is not None:
@@ -3353,6 +3862,7 @@ class FraudDetectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_external_model(
@@ -3402,13 +3912,14 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.put_external_model_request.PutExternalModelRequest = {}  # type: ignore[typeddict-item]
-        input_["model_endpoint"] = model_endpoint
-        input_["model_source"] = model_source
-        input_["invoke_model_endpoint_role_arn"] = invoke_model_endpoint_role_arn
-        input_["input_configuration"] = input_configuration
-        input_["output_configuration"] = output_configuration
-        input_["model_endpoint_status"] = model_endpoint_status
+        input_: capo_frauddetector.types.put_external_model_request.PutExternalModelRequest = {
+            "model_endpoint": model_endpoint,
+            "model_source": model_source,
+            "invoke_model_endpoint_role_arn": invoke_model_endpoint_role_arn,
+            "input_configuration": input_configuration,
+            "output_configuration": output_configuration,
+            "model_endpoint_status": model_endpoint_status,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -3417,6 +3928,7 @@ class FraudDetectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_kms_encryption_key(
@@ -3455,14 +3967,16 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.put_kms_encryption_key_request.PutKMSEncryptionKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["kms_encryption_key_arn"] = kms_encryption_key_arn
+        input_: capo_frauddetector.types.put_kms_encryption_key_request.PutKMSEncryptionKeyRequest = {
+            "kms_encryption_key_arn": kms_encryption_key_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_label(
@@ -3506,8 +4020,9 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.put_label_request.PutLabelRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_frauddetector.types.put_label_request.PutLabelRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if tags is not None:
@@ -3518,6 +4033,7 @@ class FraudDetectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_outcome(
@@ -3561,8 +4077,9 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.put_outcome_request.PutOutcomeRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_frauddetector.types.put_outcome_request.PutOutcomeRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if tags is not None:
@@ -3573,6 +4090,7 @@ class FraudDetectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def send_event(
@@ -3627,22 +4145,24 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.send_event_request.SendEventRequest = {}  # type: ignore[typeddict-item]
-        input_["event_id"] = event_id
-        input_["event_type_name"] = event_type_name
-        input_["event_timestamp"] = event_timestamp
-        input_["event_variables"] = event_variables
+        input_: capo_frauddetector.types.send_event_request.SendEventRequest = {
+            "event_id": event_id,
+            "event_type_name": event_type_name,
+            "event_timestamp": event_timestamp,
+            "event_variables": event_variables,
+            "entities": entities,
+        }
         if assigned_label is not None:
             input_["assigned_label"] = assigned_label
         if label_timestamp is not None:
             input_["label_timestamp"] = label_timestamp
-        input_["entities"] = entities
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -3681,15 +4201,17 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_frauddetector.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -3728,15 +4250,17 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_frauddetector.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_detector_version(
@@ -3793,11 +4317,12 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.update_detector_version_request.UpdateDetectorVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
-        input_["detector_version_id"] = detector_version_id
-        input_["external_model_endpoints"] = external_model_endpoints
-        input_["rules"] = rules
+        input_: capo_frauddetector.types.update_detector_version_request.UpdateDetectorVersionRequest = {
+            "detector_id": detector_id,
+            "detector_version_id": detector_version_id,
+            "external_model_endpoints": external_model_endpoints,
+            "rules": rules,
+        }
         if description is not None:
             input_["description"] = description
         if model_versions is not None:
@@ -3810,6 +4335,7 @@ class FraudDetectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_detector_version_metadata(
@@ -3851,16 +4377,18 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.update_detector_version_metadata_request.UpdateDetectorVersionMetadataRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
-        input_["detector_version_id"] = detector_version_id
-        input_["description"] = description
+        input_: capo_frauddetector.types.update_detector_version_metadata_request.UpdateDetectorVersionMetadataRequest = {
+            "detector_id": detector_id,
+            "detector_version_id": detector_version_id,
+            "description": description,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_detector_version_status(
@@ -3903,16 +4431,18 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.update_detector_version_status_request.UpdateDetectorVersionStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
-        input_["detector_version_id"] = detector_version_id
-        input_["status"] = status
+        input_: capo_frauddetector.types.update_detector_version_status_request.UpdateDetectorVersionStatusRequest = {
+            "detector_id": detector_id,
+            "detector_version_id": detector_version_id,
+            "status": status,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_event_label(
@@ -3957,17 +4487,19 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.update_event_label_request.UpdateEventLabelRequest = {}  # type: ignore[typeddict-item]
-        input_["event_id"] = event_id
-        input_["event_type_name"] = event_type_name
-        input_["assigned_label"] = assigned_label
-        input_["label_timestamp"] = label_timestamp
+        input_: capo_frauddetector.types.update_event_label_request.UpdateEventLabelRequest = {
+            "event_id": event_id,
+            "event_type_name": event_type_name,
+            "assigned_label": assigned_label,
+            "label_timestamp": label_timestamp,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_list(
@@ -4022,8 +4554,9 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.update_list_request.UpdateListRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_frauddetector.types.update_list_request.UpdateListRequest = {
+            "name": name
+        }
         if elements is not None:
             input_["elements"] = elements
         if description is not None:
@@ -4038,6 +4571,7 @@ class FraudDetectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_model(
@@ -4082,9 +4616,10 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.update_model_request.UpdateModelRequest = {}  # type: ignore[typeddict-item]
-        input_["model_id"] = model_id
-        input_["model_type"] = model_type
+        input_: capo_frauddetector.types.update_model_request.UpdateModelRequest = {
+            "model_id": model_id,
+            "model_type": model_type,
+        }
         if description is not None:
             input_["description"] = description
 
@@ -4093,6 +4628,7 @@ class FraudDetectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_model_version(
@@ -4147,10 +4683,11 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.update_model_version_request.UpdateModelVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["model_id"] = model_id
-        input_["model_type"] = model_type
-        input_["major_version_number"] = major_version_number
+        input_: capo_frauddetector.types.update_model_version_request.UpdateModelVersionRequest = {
+            "model_id": model_id,
+            "model_type": model_type,
+            "major_version_number": major_version_number,
+        }
         if external_events_detail is not None:
             input_["external_events_detail"] = external_events_detail
         if ingested_events_detail is not None:
@@ -4163,6 +4700,7 @@ class FraudDetectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_model_version_status(
@@ -4207,17 +4745,19 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.update_model_version_status_request.UpdateModelVersionStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["model_id"] = model_id
-        input_["model_type"] = model_type
-        input_["model_version_number"] = model_version_number
-        input_["status"] = status
+        input_: capo_frauddetector.types.update_model_version_status_request.UpdateModelVersionStatusRequest = {
+            "model_id": model_id,
+            "model_type": model_type,
+            "model_version_number": model_version_number,
+            "status": status,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_rule_metadata(
@@ -4260,15 +4800,17 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.update_rule_metadata_request.UpdateRuleMetadataRequest = {}  # type: ignore[typeddict-item]
-        input_["rule"] = rule
-        input_["description"] = description
+        input_: capo_frauddetector.types.update_rule_metadata_request.UpdateRuleMetadataRequest = {
+            "rule": rule,
+            "description": description,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_rule_version(
@@ -4319,13 +4861,14 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.update_rule_version_request.UpdateRuleVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["rule"] = rule
+        input_: capo_frauddetector.types.update_rule_version_request.UpdateRuleVersionRequest = {
+            "rule": rule,
+            "expression": expression,
+            "language": language,
+            "outcomes": outcomes,
+        }
         if description is not None:
             input_["description"] = description
-        input_["expression"] = expression
-        input_["language"] = language
-        input_["outcomes"] = outcomes
         if tags is not None:
             input_["tags"] = tags
 
@@ -4334,6 +4877,7 @@ class FraudDetectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_variable(
@@ -4378,8 +4922,9 @@ class FraudDetectorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_frauddetector.types.update_variable_request.UpdateVariableRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_frauddetector.types.update_variable_request.UpdateVariableRequest = {
+            "name": name
+        }
         if default_value is not None:
             input_["default_value"] = default_value
         if description is not None:
@@ -4392,6 +4937,7 @@ class FraudDetectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

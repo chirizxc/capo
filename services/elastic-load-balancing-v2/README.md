@@ -13,9 +13,9 @@ from capo_elastic_load_balancing_v2 import AsyncElasticLoadBalancingv2Client
 
 
 async def main():
-    async with AsyncElasticLoadBalancingv2Client() as s3:
+    async with AsyncElasticLoadBalancingv2Client() as elastic_load_balancingv2:
         # Example: call the add_listener_certificates operation
-        response = await s3.add_listener_certificates()
+        response = await elastic_load_balancingv2.add_listener_certificates()
         print(response["certificates"])
 ```
 
@@ -28,9 +28,9 @@ from capo_elastic_load_balancing_v2 import AsyncElasticLoadBalancingv2Client
 
 
 async def main():
-    async with AsyncElasticLoadBalancingv2Client() as s3:
+    async with AsyncElasticLoadBalancingv2Client() as elastic_load_balancingv2:
         # Example: paginate over describe_account_limits
-        async for item in s3.iter_describe_account_limits():
+        async for item in elastic_load_balancingv2.iter_describe_account_limits():
             print(item)
 ```
 
@@ -43,9 +43,9 @@ from capo_elastic_load_balancing_v2 import AsyncElasticLoadBalancingv2Client
 
 
 async def main():
-    async with AsyncElasticLoadBalancingv2Client() as s3:
+    async with AsyncElasticLoadBalancingv2Client() as elastic_load_balancingv2:
         # Example: wait for load_balancer_exists
-        await s3.wait_until_load_balancer_exists(max_wait_time=300)
+        await elastic_load_balancingv2.wait_until_load_balancer_exists(max_wait_time=300)
 ```
 
 ## Error Handling
@@ -58,9 +58,9 @@ from capo_elastic_load_balancing_v2.error import CertificateNotFoundException
 
 
 async def main():
-    async with AsyncElasticLoadBalancingv2Client() as s3:
+    async with AsyncElasticLoadBalancingv2Client() as elastic_load_balancingv2:
         try:
-            await s3.add_listener_certificates()
+            await elastic_load_balancingv2.add_listener_certificates()
         except CertificateNotFoundException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -77,13 +77,13 @@ from capo_elastic_load_balancing_v2 import AsyncElasticLoadBalancingv2Client
 
 
 async def main():
-    async with AsyncElasticLoadBalancingv2Client() as s3:
+    async with AsyncElasticLoadBalancingv2Client() as elastic_load_balancingv2:
         # Default: 3 attempts for every operation
-        response = await s3.add_listener_certificates()
+        response = await elastic_load_balancingv2.add_listener_certificates()
 
         # Override per operation
-        response = await s3.add_listener_certificates(config_overrides={"retry_max_attempts": 5})
+        response = await elastic_load_balancingv2.add_listener_certificates(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.add_listener_certificates(config_overrides={"retry_max_attempts": 1})
+        response = await elastic_load_balancingv2.add_listener_certificates(config_overrides={"retry_max_attempts": 1})
 ```

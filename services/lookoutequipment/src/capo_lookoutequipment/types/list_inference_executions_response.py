@@ -36,9 +36,9 @@ def serialize_aws_json_1_0(value: ListInferenceExecutionsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListInferenceExecutionsResponse:
     out: ListInferenceExecutionsResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "InferenceExecutionSummaries" in data:
+    if data.get("InferenceExecutionSummaries") is not None:
         import capo_lookoutequipment.types.inference_execution_summaries
 
         out["inference_execution_summaries"] = (

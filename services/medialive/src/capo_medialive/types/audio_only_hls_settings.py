@@ -58,15 +58,15 @@ def serialize_json(value: AudioOnlyHlsSettings) -> dict:
 
 def deserialize_json(data: dict) -> AudioOnlyHlsSettings:
     out: AudioOnlyHlsSettings = {}  # type: ignore[typeddict-item]
-    if "audioGroupId" in data:
+    if data.get("audioGroupId") is not None:
         out["audio_group_id"] = data["audioGroupId"]
-    if "audioOnlyImage" in data:
+    if data.get("audioOnlyImage") is not None:
         import capo_medialive.types.input_location
 
         out["audio_only_image"] = capo_medialive.types.input_location.deserialize_json(
             data["audioOnlyImage"]
         )
-    if "audioTrackType" in data:
+    if data.get("audioTrackType") is not None:
         import capo_medialive.types.audio_only_hls_track_type
 
         out["audio_track_type"] = (
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> AudioOnlyHlsSettings:
                 data["audioTrackType"]
             )
         )
-    if "segmentType" in data:
+    if data.get("segmentType") is not None:
         import capo_medialive.types.audio_only_hls_segment_type
 
         out["segment_type"] = (

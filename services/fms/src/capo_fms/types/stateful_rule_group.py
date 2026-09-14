@@ -48,13 +48,13 @@ def serialize_aws_json_1_1(value: StatefulRuleGroup) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StatefulRuleGroup:
     out: StatefulRuleGroup = {}  # type: ignore[typeddict-item]
-    if "RuleGroupName" in data:
+    if data.get("RuleGroupName") is not None:
         out["rule_group_name"] = data["RuleGroupName"]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
-    if "Priority" in data:
+    if data.get("Priority") is not None:
         out["priority"] = data["Priority"]
-    if "Override" in data:
+    if data.get("Override") is not None:
         import capo_fms.types.network_firewall_stateful_rule_group_override
 
         out["override"] = (

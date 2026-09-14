@@ -35,7 +35,7 @@ def serialize_json(value: BatchWriteRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchWriteRequest:
     out: BatchWriteRequest = {}  # type: ignore[typeddict-item]
-    if "Operations" in data:
+    if data.get("Operations") is not None:
         import capo_clouddirectory.types.batch_write_operation_list
 
         out["operations"] = (

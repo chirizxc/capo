@@ -30,8 +30,8 @@ def serialize_json(value: ChannelFlowCallbackResponse) -> dict:
 
 def deserialize_json(data: dict) -> ChannelFlowCallbackResponse:
     out: ChannelFlowCallbackResponse = {}  # type: ignore[typeddict-item]
-    if "ChannelArn" in data:
+    if data.get("ChannelArn") is not None:
         out["channel_arn"] = data["ChannelArn"]
-    if "CallbackId" in data:
+    if data.get("CallbackId") is not None:
         out["callback_id"] = data["CallbackId"]
     return out

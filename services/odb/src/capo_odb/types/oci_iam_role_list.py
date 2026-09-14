@@ -23,5 +23,7 @@ def deserialize_aws_json_1_0(data: list) -> OciIamRoleList:
 
     out: OciIamRoleList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_odb.types.oci_iam_role.deserialize_aws_json_1_0(item))
     return out

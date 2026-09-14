@@ -42,13 +42,13 @@ def serialize_json(value: UnsupportedAvailabilityZoneException_) -> dict:
 
 def deserialize_json(data: dict) -> UnsupportedAvailabilityZoneException_:
     out: UnsupportedAvailabilityZoneException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "clusterName" in data:
+    if data.get("clusterName") is not None:
         out["cluster_name"] = data["clusterName"]
-    if "nodegroupName" in data:
+    if data.get("nodegroupName") is not None:
         out["nodegroup_name"] = data["nodegroupName"]
-    if "validZones" in data:
+    if data.get("validZones") is not None:
         import capo_eks.types.string_list
 
         out["valid_zones"] = capo_eks.types.string_list.deserialize_json(
@@ -62,15 +62,20 @@ class UnsupportedAvailabilityZoneException(ServiceError):
 
     code: str | None = "UnsupportedAvailabilityZoneException"
 
-    def __init__(self, data: UnsupportedAvailabilityZoneException_):
+    def __init__(
+        self, data: UnsupportedAvailabilityZoneException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="UnsupportedAvailabilityZoneException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "UnsupportedAvailabilityZoneException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "UnsupportedAvailabilityZoneException":
+        return cls(deserialize_json(data), message)

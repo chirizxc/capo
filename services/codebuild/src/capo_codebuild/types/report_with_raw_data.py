@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: ReportWithRawData) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReportWithRawData:
     out: ReportWithRawData = {}  # type: ignore[typeddict-item]
-    if "reportArn" in data:
+    if data.get("reportArn") is not None:
         out["report_arn"] = data["reportArn"]
-    if "data" in data:
+    if data.get("data") is not None:
         out["data"] = data["data"]
     return out

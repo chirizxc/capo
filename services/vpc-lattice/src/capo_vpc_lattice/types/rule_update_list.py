@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> RuleUpdateList:
 
     out: RuleUpdateList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_vpc_lattice.types.rule_update.deserialize_json(item))
     return out

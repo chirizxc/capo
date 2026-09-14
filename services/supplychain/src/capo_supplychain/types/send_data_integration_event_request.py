@@ -51,13 +51,7 @@ def serialize_json(value: SendDataIntegrationEventRequest) -> dict:
     out["data"] = value["data"]
     out["eventGroupId"] = value["event_group_id"]
     if "event_timestamp" in value:
-        import capo_supplychain.types._prelude.timestamp
-
-        out["eventTimestamp"] = (
-            capo_supplychain.types._prelude.timestamp.serialize_json(
-                value["event_timestamp"]
-            )
-        )
+        out["eventTimestamp"] = value["event_timestamp"].timestamp()
     if "client_token" in value:
         out["clientToken"] = value["client_token"]
     if "dataset_target" in value:
@@ -73,7 +67,7 @@ def serialize_json(value: SendDataIntegrationEventRequest) -> dict:
 
 def deserialize_json(data: dict) -> SendDataIntegrationEventRequest:
     out: SendDataIntegrationEventRequest = {}  # type: ignore[typeddict-item]
-    if "eventType" in data:
+    if data.get("eventType") is not None:
         import capo_supplychain.types.data_integration_event_type
 
         out["event_type"] = (
@@ -85,27 +79,25 @@ def deserialize_json(data: dict) -> SendDataIntegrationEventRequest:
         raise DeserializationError(
             "SendDataIntegrationEventRequest.event_type required"
         )
-    if "data" in data:
+    if data.get("data") is not None:
         out["data"] = data["data"]
     else:
         raise DeserializationError("SendDataIntegrationEventRequest.data required")
-    if "eventGroupId" in data:
+    if data.get("eventGroupId") is not None:
         out["event_group_id"] = data["eventGroupId"]
     else:
         raise DeserializationError(
             "SendDataIntegrationEventRequest.event_group_id required"
         )
-    if "eventTimestamp" in data:
-        import capo_supplychain.types._prelude.timestamp
+    if data.get("eventTimestamp") is not None:
+        import datetime
 
-        out["event_timestamp"] = (
-            capo_supplychain.types._prelude.timestamp.deserialize_json(
-                data["eventTimestamp"]
-            )
+        out["event_timestamp"] = datetime.datetime.fromtimestamp(
+            float(data["eventTimestamp"]), tz=datetime.timezone.utc
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "datasetTarget" in data:
+    if data.get("datasetTarget") is not None:
         import capo_supplychain.types.data_integration_event_dataset_target_configuration
 
         out["dataset_target"] = (

@@ -34,11 +34,11 @@ def serialize_json(value: SlotResolutionTestResultItem) -> dict:
 
 def deserialize_json(data: dict) -> SlotResolutionTestResultItem:
     out: SlotResolutionTestResultItem = {}  # type: ignore[typeddict-item]
-    if "slotName" in data:
+    if data.get("slotName") is not None:
         out["slot_name"] = data["slotName"]
     else:
         raise DeserializationError("SlotResolutionTestResultItem.slot_name required")
-    if "resultCounts" in data:
+    if data.get("resultCounts") is not None:
         import capo_lex_models_v2.types.slot_resolution_test_result_item_counts
 
         out["result_counts"] = (

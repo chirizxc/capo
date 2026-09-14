@@ -50,7 +50,7 @@ def serialize_aws_json_1_1(value: ListSharedProjectsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListSharedProjectsInput:
     out: ListSharedProjectsInput = {}  # type: ignore[typeddict-item]
-    if "sortBy" in data:
+    if data.get("sortBy") is not None:
         import capo_codebuild.types.shared_resource_sort_by_type
 
         out["sort_by"] = (
@@ -58,7 +58,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListSharedProjectsInput:
                 data["sortBy"]
             )
         )
-    if "sortOrder" in data:
+    if data.get("sortOrder") is not None:
         import capo_codebuild.types.sort_order_type
 
         out["sort_order"] = (
@@ -66,8 +66,8 @@ def deserialize_aws_json_1_1(data: dict) -> ListSharedProjectsInput:
                 data["sortOrder"]
             )
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

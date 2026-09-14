@@ -62,27 +62,27 @@ def serialize_json(value: DisruptionCompliance) -> dict:
 
 def deserialize_json(data: dict) -> DisruptionCompliance:
     out: DisruptionCompliance = {}  # type: ignore[typeddict-item]
-    if "achievableRtoInSecs" in data:
+    if data.get("achievableRtoInSecs") is not None:
         out["achievable_rto_in_secs"] = data["achievableRtoInSecs"]
     else:
         out["achievable_rto_in_secs"] = 0
-    if "currentRtoInSecs" in data:
+    if data.get("currentRtoInSecs") is not None:
         out["current_rto_in_secs"] = data["currentRtoInSecs"]
     else:
         out["current_rto_in_secs"] = 0
-    if "rtoReferenceId" in data:
+    if data.get("rtoReferenceId") is not None:
         out["rto_reference_id"] = data["rtoReferenceId"]
-    if "rtoDescription" in data:
+    if data.get("rtoDescription") is not None:
         out["rto_description"] = data["rtoDescription"]
-    if "currentRpoInSecs" in data:
+    if data.get("currentRpoInSecs") is not None:
         out["current_rpo_in_secs"] = data["currentRpoInSecs"]
     else:
         out["current_rpo_in_secs"] = 0
-    if "rpoReferenceId" in data:
+    if data.get("rpoReferenceId") is not None:
         out["rpo_reference_id"] = data["rpoReferenceId"]
-    if "rpoDescription" in data:
+    if data.get("rpoDescription") is not None:
         out["rpo_description"] = data["rpoDescription"]
-    if "complianceStatus" in data:
+    if data.get("complianceStatus") is not None:
         import capo_resiliencehub.types.compliance_status
 
         out["compliance_status"] = (
@@ -92,10 +92,10 @@ def deserialize_json(data: dict) -> DisruptionCompliance:
         )
     else:
         raise DeserializationError("DisruptionCompliance.compliance_status required")
-    if "achievableRpoInSecs" in data:
+    if data.get("achievableRpoInSecs") is not None:
         out["achievable_rpo_in_secs"] = data["achievableRpoInSecs"]
     else:
         out["achievable_rpo_in_secs"] = 0
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out

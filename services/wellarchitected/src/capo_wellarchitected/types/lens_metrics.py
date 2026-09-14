@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> LensMetrics:
 
     out: LensMetrics = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_wellarchitected.types.lens_metric.deserialize_json(item))
     return out

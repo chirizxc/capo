@@ -30,7 +30,7 @@ def serialize_aws_json_1_0(value: DescribeBatchLoadTaskResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeBatchLoadTaskResponse:
     out: DescribeBatchLoadTaskResponse = {}  # type: ignore[typeddict-item]
-    if "BatchLoadTaskDescription" in data:
+    if data.get("BatchLoadTaskDescription") is not None:
         import capo_timestream_write.types.batch_load_task_description
 
         out["batch_load_task_description"] = (

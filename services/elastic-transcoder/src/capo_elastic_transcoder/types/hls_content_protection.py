@@ -59,16 +59,16 @@ def serialize_json(value: HlsContentProtection) -> dict:
 
 def deserialize_json(data: dict) -> HlsContentProtection:
     out: HlsContentProtection = {}  # type: ignore[typeddict-item]
-    if "Method" in data:
+    if data.get("Method") is not None:
         out["method"] = data["Method"]
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
-    if "KeyMd5" in data:
+    if data.get("KeyMd5") is not None:
         out["key_md5"] = data["KeyMd5"]
-    if "InitializationVector" in data:
+    if data.get("InitializationVector") is not None:
         out["initialization_vector"] = data["InitializationVector"]
-    if "LicenseAcquisitionUrl" in data:
+    if data.get("LicenseAcquisitionUrl") is not None:
         out["license_acquisition_url"] = data["LicenseAcquisitionUrl"]
-    if "KeyStoragePolicy" in data:
+    if data.get("KeyStoragePolicy") is not None:
         out["key_storage_policy"] = data["KeyStoragePolicy"]
     return out

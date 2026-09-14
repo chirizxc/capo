@@ -27,9 +27,9 @@ def serialize_json(value: CustomPluginDescription) -> dict:
 
 def deserialize_json(data: dict) -> CustomPluginDescription:
     out: CustomPluginDescription = {}  # type: ignore[typeddict-item]
-    if "customPluginArn" in data:
+    if data.get("customPluginArn") is not None:
         out["custom_plugin_arn"] = data["customPluginArn"]
-    if "revision" in data:
+    if data.get("revision") is not None:
         out["revision"] = data["revision"]
     else:
         out["revision"] = 0

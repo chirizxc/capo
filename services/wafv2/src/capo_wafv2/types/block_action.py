@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: BlockAction) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BlockAction:
     out: BlockAction = {}  # type: ignore[typeddict-item]
-    if "CustomResponse" in data:
+    if data.get("CustomResponse") is not None:
         import capo_wafv2.types.custom_response
 
         out["custom_response"] = (

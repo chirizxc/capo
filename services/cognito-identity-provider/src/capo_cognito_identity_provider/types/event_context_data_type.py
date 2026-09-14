@@ -43,14 +43,14 @@ def serialize_aws_json_1_1(value: EventContextDataType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EventContextDataType:
     out: EventContextDataType = {}  # type: ignore[typeddict-item]
-    if "IpAddress" in data:
+    if data.get("IpAddress") is not None:
         out["ip_address"] = data["IpAddress"]
-    if "DeviceName" in data:
+    if data.get("DeviceName") is not None:
         out["device_name"] = data["DeviceName"]
-    if "Timezone" in data:
+    if data.get("Timezone") is not None:
         out["timezone"] = data["Timezone"]
-    if "City" in data:
+    if data.get("City") is not None:
         out["city"] = data["City"]
-    if "Country" in data:
+    if data.get("Country") is not None:
         out["country"] = data["Country"]
     return out

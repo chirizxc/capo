@@ -41,12 +41,12 @@ def serialize_aws_json_1_1(value: GetCredentialsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetCredentialsRequest:
     out: GetCredentialsRequest = {}  # type: ignore[typeddict-item]
-    if "dbName" in data:
+    if data.get("dbName") is not None:
         out["db_name"] = data["dbName"]
-    if "durationSeconds" in data:
+    if data.get("durationSeconds") is not None:
         out["duration_seconds"] = data["durationSeconds"]
-    if "workgroupName" in data:
+    if data.get("workgroupName") is not None:
         out["workgroup_name"] = data["workgroupName"]
-    if "customDomainName" in data:
+    if data.get("customDomainName") is not None:
         out["custom_domain_name"] = data["customDomainName"]
     return out

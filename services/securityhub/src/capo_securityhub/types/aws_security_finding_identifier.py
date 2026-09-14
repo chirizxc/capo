@@ -27,8 +27,8 @@ def serialize_json(value: AwsSecurityFindingIdentifier) -> dict:
 
 def deserialize_json(data: dict) -> AwsSecurityFindingIdentifier:
     out: AwsSecurityFindingIdentifier = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "ProductArn" in data:
+    if data.get("ProductArn") is not None:
         out["product_arn"] = data["ProductArn"]
     return out

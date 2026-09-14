@@ -74,7 +74,7 @@ def serialize_aws_json_1_0(value: GetPoliciesStatsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetPoliciesStatsResponse:
     out: GetPoliciesStatsResponse = {}  # type: ignore[typeddict-item]
-    if "AccessPolicyStats" in data:
+    if data.get("AccessPolicyStats") is not None:
         import capo_opensearchserverless.types.access_policy_stats
 
         out["access_policy_stats"] = (
@@ -82,7 +82,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetPoliciesStatsResponse:
                 data["AccessPolicyStats"]
             )
         )
-    if "SecurityPolicyStats" in data:
+    if data.get("SecurityPolicyStats") is not None:
         import capo_opensearchserverless.types.security_policy_stats
 
         out["security_policy_stats"] = (
@@ -90,7 +90,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetPoliciesStatsResponse:
                 data["SecurityPolicyStats"]
             )
         )
-    if "SecurityConfigStats" in data:
+    if data.get("SecurityConfigStats") is not None:
         import capo_opensearchserverless.types.security_config_stats
 
         out["security_config_stats"] = (
@@ -98,7 +98,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetPoliciesStatsResponse:
                 data["SecurityConfigStats"]
             )
         )
-    if "LifecyclePolicyStats" in data:
+    if data.get("LifecyclePolicyStats") is not None:
         import capo_opensearchserverless.types.lifecycle_policy_stats
 
         out["lifecycle_policy_stats"] = (
@@ -106,6 +106,6 @@ def deserialize_aws_json_1_0(data: dict) -> GetPoliciesStatsResponse:
                 data["LifecyclePolicyStats"]
             )
         )
-    if "TotalPolicyCount" in data:
+    if data.get("TotalPolicyCount") is not None:
         out["total_policy_count"] = data["TotalPolicyCount"]
     return out

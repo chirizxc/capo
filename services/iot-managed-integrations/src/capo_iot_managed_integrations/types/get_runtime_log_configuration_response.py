@@ -38,9 +38,9 @@ def serialize_json(value: GetRuntimeLogConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetRuntimeLogConfigurationResponse:
     out: GetRuntimeLogConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "ManagedThingId" in data:
+    if data.get("ManagedThingId") is not None:
         out["managed_thing_id"] = data["ManagedThingId"]
-    if "RuntimeLogConfigurations" in data:
+    if data.get("RuntimeLogConfigurations") is not None:
         import capo_iot_managed_integrations.types.runtime_log_configurations
 
         out["runtime_log_configurations"] = (

@@ -148,9 +148,9 @@ def serialize_aws_json_1_1(value: UpdateModelPackageInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateModelPackageInput:
     out: UpdateModelPackageInput = {}  # type: ignore[typeddict-item]
-    if "ModelPackageArn" in data:
+    if data.get("ModelPackageArn") is not None:
         out["model_package_arn"] = data["ModelPackageArn"]
-    if "ModelApprovalStatus" in data:
+    if data.get("ModelApprovalStatus") is not None:
         import capo_sagemaker.types.model_approval_status
 
         out["model_approval_status"] = (
@@ -158,7 +158,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateModelPackageInput:
                 data["ModelApprovalStatus"]
             )
         )
-    if "ModelPackageRegistrationType" in data:
+    if data.get("ModelPackageRegistrationType") is not None:
         import capo_sagemaker.types.model_package_registration_type
 
         out["model_package_registration_type"] = (
@@ -166,9 +166,9 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateModelPackageInput:
                 data["ModelPackageRegistrationType"]
             )
         )
-    if "ApprovalDescription" in data:
+    if data.get("ApprovalDescription") is not None:
         out["approval_description"] = data["ApprovalDescription"]
-    if "CustomerMetadataProperties" in data:
+    if data.get("CustomerMetadataProperties") is not None:
         import capo_sagemaker.types.customer_metadata_map
 
         out["customer_metadata_properties"] = (
@@ -176,7 +176,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateModelPackageInput:
                 data["CustomerMetadataProperties"]
             )
         )
-    if "CustomerMetadataPropertiesToRemove" in data:
+    if data.get("CustomerMetadataPropertiesToRemove") is not None:
         import capo_sagemaker.types.customer_metadata_key_list
 
         out["customer_metadata_properties_to_remove"] = (
@@ -184,7 +184,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateModelPackageInput:
                 data["CustomerMetadataPropertiesToRemove"]
             )
         )
-    if "AdditionalInferenceSpecificationsToAdd" in data:
+    if data.get("AdditionalInferenceSpecificationsToAdd") is not None:
         import capo_sagemaker.types.additional_inference_specifications
 
         out["additional_inference_specifications_to_add"] = (
@@ -192,7 +192,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateModelPackageInput:
                 data["AdditionalInferenceSpecificationsToAdd"]
             )
         )
-    if "InferenceSpecification" in data:
+    if data.get("InferenceSpecification") is not None:
         import capo_sagemaker.types.inference_specification
 
         out["inference_specification"] = (
@@ -200,9 +200,9 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateModelPackageInput:
                 data["InferenceSpecification"]
             )
         )
-    if "SourceUri" in data:
+    if data.get("SourceUri") is not None:
         out["source_uri"] = data["SourceUri"]
-    if "ModelCard" in data:
+    if data.get("ModelCard") is not None:
         import capo_sagemaker.types.model_package_model_card
 
         out["model_card"] = (
@@ -210,7 +210,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateModelPackageInput:
                 data["ModelCard"]
             )
         )
-    if "ModelLifeCycle" in data:
+    if data.get("ModelLifeCycle") is not None:
         import capo_sagemaker.types.model_life_cycle
 
         out["model_life_cycle"] = (
@@ -218,6 +218,6 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateModelPackageInput:
                 data["ModelLifeCycle"]
             )
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

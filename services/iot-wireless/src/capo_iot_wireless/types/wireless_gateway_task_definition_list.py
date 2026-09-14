@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> WirelessGatewayTaskDefinitionList:
 
     out: WirelessGatewayTaskDefinitionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot_wireless.types.update_wireless_gateway_task_entry.deserialize_json(
                 item

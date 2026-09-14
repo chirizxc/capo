@@ -60,11 +60,11 @@ def serialize_json(value: NetworkSettings) -> dict:
 
 def deserialize_json(data: dict) -> NetworkSettings:
     out: NetworkSettings = {}  # type: ignore[typeddict-item]
-    if "networkSettingsArn" in data:
+    if data.get("networkSettingsArn") is not None:
         out["network_settings_arn"] = data["networkSettingsArn"]
     else:
         raise DeserializationError("NetworkSettings.network_settings_arn required")
-    if "associatedPortalArns" in data:
+    if data.get("associatedPortalArns") is not None:
         import capo_workspaces_web.types.arn_list
 
         out["associated_portal_arns"] = (
@@ -72,15 +72,15 @@ def deserialize_json(data: dict) -> NetworkSettings:
                 data["associatedPortalArns"]
             )
         )
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_workspaces_web.types.subnet_id_list
 
         out["subnet_ids"] = capo_workspaces_web.types.subnet_id_list.deserialize_json(
             data["subnetIds"]
         )
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_workspaces_web.types.security_group_id_list
 
         out["security_group_ids"] = (

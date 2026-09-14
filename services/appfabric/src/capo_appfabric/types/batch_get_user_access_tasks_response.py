@@ -31,7 +31,7 @@ def serialize_json(value: BatchGetUserAccessTasksResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetUserAccessTasksResponse:
     out: BatchGetUserAccessTasksResponse = {}  # type: ignore[typeddict-item]
-    if "userAccessResultsList" in data:
+    if data.get("userAccessResultsList") is not None:
         import capo_appfabric.types.user_access_results_list
 
         out["user_access_results_list"] = (

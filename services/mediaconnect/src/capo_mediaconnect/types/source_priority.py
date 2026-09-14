@@ -18,6 +18,6 @@ def serialize_json(value: SourcePriority) -> dict:
 
 def deserialize_json(data: dict) -> SourcePriority:
     out: SourcePriority = {}  # type: ignore[typeddict-item]
-    if "primarySource" in data:
+    if data.get("primarySource") is not None:
         out["primary_source"] = data["primarySource"]
     return out

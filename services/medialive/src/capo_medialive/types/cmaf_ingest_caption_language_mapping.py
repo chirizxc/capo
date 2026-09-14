@@ -32,8 +32,8 @@ def serialize_json(value: CmafIngestCaptionLanguageMapping) -> dict:
 
 def deserialize_json(data: dict) -> CmafIngestCaptionLanguageMapping:
     out: CmafIngestCaptionLanguageMapping = {}  # type: ignore[typeddict-item]
-    if "captionChannel" in data:
+    if data.get("captionChannel") is not None:
         out["caption_channel"] = data["captionChannel"]
-    if "languageCode" in data:
+    if data.get("languageCode") is not None:
         out["language_code"] = data["languageCode"]
     return out

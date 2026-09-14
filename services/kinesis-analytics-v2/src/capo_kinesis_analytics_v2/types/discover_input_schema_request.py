@@ -70,15 +70,15 @@ def serialize_aws_json_1_1(value: DiscoverInputSchemaRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DiscoverInputSchemaRequest:
     out: DiscoverInputSchemaRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceARN" in data:
+    if data.get("ResourceARN") is not None:
         out["resource_arn"] = data["ResourceARN"]
-    if "ServiceExecutionRole" in data:
+    if data.get("ServiceExecutionRole") is not None:
         out["service_execution_role"] = data["ServiceExecutionRole"]
     else:
         raise DeserializationError(
             "DiscoverInputSchemaRequest.service_execution_role required"
         )
-    if "InputStartingPositionConfiguration" in data:
+    if data.get("InputStartingPositionConfiguration") is not None:
         import capo_kinesis_analytics_v2.types.input_starting_position_configuration
 
         out["input_starting_position_configuration"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_1(data: dict) -> DiscoverInputSchemaRequest:
                 data["InputStartingPositionConfiguration"]
             )
         )
-    if "S3Configuration" in data:
+    if data.get("S3Configuration") is not None:
         import capo_kinesis_analytics_v2.types.s3_configuration
 
         out["s3_configuration"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_1(data: dict) -> DiscoverInputSchemaRequest:
                 data["S3Configuration"]
             )
         )
-    if "InputProcessingConfiguration" in data:
+    if data.get("InputProcessingConfiguration") is not None:
         import capo_kinesis_analytics_v2.types.input_processing_configuration
 
         out["input_processing_configuration"] = (

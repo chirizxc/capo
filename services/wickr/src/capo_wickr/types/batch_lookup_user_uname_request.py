@@ -32,7 +32,7 @@ def serialize_json(value: BatchLookupUserUnameRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchLookupUserUnameRequest:
     out: BatchLookupUserUnameRequest = {}  # type: ignore[typeddict-item]
-    if "unames" in data:
+    if data.get("unames") is not None:
         import capo_wickr.types.unames
 
         out["unames"] = capo_wickr.types.unames.deserialize_json(data["unames"])

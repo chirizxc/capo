@@ -44,7 +44,7 @@ def serialize_json(value: EdgeAgentStatus) -> dict:
 
 def deserialize_json(data: dict) -> EdgeAgentStatus:
     out: EdgeAgentStatus = {}  # type: ignore[typeddict-item]
-    if "LastRecorderStatus" in data:
+    if data.get("LastRecorderStatus") is not None:
         import capo_kinesis_video.types.last_recorder_status
 
         out["last_recorder_status"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> EdgeAgentStatus:
                 data["LastRecorderStatus"]
             )
         )
-    if "LastUploaderStatus" in data:
+    if data.get("LastUploaderStatus") is not None:
         import capo_kinesis_video.types.last_uploader_status
 
         out["last_uploader_status"] = (

@@ -40,7 +40,7 @@ def serialize_json(value: UserTurnSpecification) -> dict:
 
 def deserialize_json(data: dict) -> UserTurnSpecification:
     out: UserTurnSpecification = {}  # type: ignore[typeddict-item]
-    if "input" in data:
+    if data.get("input") is not None:
         import capo_lex_models_v2.types.user_turn_input_specification
 
         out["input"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> UserTurnSpecification:
         )
     else:
         raise DeserializationError("UserTurnSpecification.input required")
-    if "expected" in data:
+    if data.get("expected") is not None:
         import capo_lex_models_v2.types.user_turn_output_specification
 
         out["expected"] = (

@@ -31,6 +31,9 @@ def deserialize_aws_json_1_1(data: dict) -> UniqueProblemsByExecutionResultMap:
     out: UniqueProblemsByExecutionResultMap = {}
     for key, value in data.items():
         import capo_device_farm.types.execution_result
+
+        if value is None:
+            continue
         import capo_device_farm.types.unique_problems
 
         out[capo_device_farm.types.execution_result.deserialize_aws_json_1_1(key)] = (

@@ -76,13 +76,13 @@ def serialize_aws_json_1_1(value: PutOrganizationConfigRuleRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutOrganizationConfigRuleRequest:
     out: PutOrganizationConfigRuleRequest = {}  # type: ignore[typeddict-item]
-    if "OrganizationConfigRuleName" in data:
+    if data.get("OrganizationConfigRuleName") is not None:
         out["organization_config_rule_name"] = data["OrganizationConfigRuleName"]
     else:
         raise DeserializationError(
             "PutOrganizationConfigRuleRequest.organization_config_rule_name required"
         )
-    if "OrganizationManagedRuleMetadata" in data:
+    if data.get("OrganizationManagedRuleMetadata") is not None:
         import capo_config_service.types.organization_managed_rule_metadata
 
         out["organization_managed_rule_metadata"] = (
@@ -90,7 +90,7 @@ def deserialize_aws_json_1_1(data: dict) -> PutOrganizationConfigRuleRequest:
                 data["OrganizationManagedRuleMetadata"]
             )
         )
-    if "OrganizationCustomRuleMetadata" in data:
+    if data.get("OrganizationCustomRuleMetadata") is not None:
         import capo_config_service.types.organization_custom_rule_metadata
 
         out["organization_custom_rule_metadata"] = (
@@ -98,7 +98,7 @@ def deserialize_aws_json_1_1(data: dict) -> PutOrganizationConfigRuleRequest:
                 data["OrganizationCustomRuleMetadata"]
             )
         )
-    if "ExcludedAccounts" in data:
+    if data.get("ExcludedAccounts") is not None:
         import capo_config_service.types.excluded_accounts
 
         out["excluded_accounts"] = (
@@ -106,7 +106,7 @@ def deserialize_aws_json_1_1(data: dict) -> PutOrganizationConfigRuleRequest:
                 data["ExcludedAccounts"]
             )
         )
-    if "OrganizationCustomPolicyRuleMetadata" in data:
+    if data.get("OrganizationCustomPolicyRuleMetadata") is not None:
         import capo_config_service.types.organization_custom_policy_rule_metadata
 
         out["organization_custom_policy_rule_metadata"] = (

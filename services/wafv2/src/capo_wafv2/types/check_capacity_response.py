@@ -22,7 +22,7 @@ def serialize_aws_json_1_1(value: CheckCapacityResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CheckCapacityResponse:
     out: CheckCapacityResponse = {}  # type: ignore[typeddict-item]
-    if "Capacity" in data:
+    if data.get("Capacity") is not None:
         out["capacity"] = data["Capacity"]
     else:
         out["capacity"] = 0

@@ -35,12 +35,12 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> PredictiveScalingPredefinedScalingMetricSpecification:
     out: PredictiveScalingPredefinedScalingMetricSpecification = {}  # type: ignore[typeddict-item]
-    if "PredefinedMetricType" in data:
+    if data.get("PredefinedMetricType") is not None:
         out["predefined_metric_type"] = data["PredefinedMetricType"]
     else:
         raise DeserializationError(
             "PredictiveScalingPredefinedScalingMetricSpecification.predefined_metric_type required"
         )
-    if "ResourceLabel" in data:
+    if data.get("ResourceLabel") is not None:
         out["resource_label"] = data["ResourceLabel"]
     return out

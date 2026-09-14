@@ -37,14 +37,14 @@ def serialize_json(value: AmiAggregation) -> dict:
 
 def deserialize_json(data: dict) -> AmiAggregation:
     out: AmiAggregation = {}  # type: ignore[typeddict-item]
-    if "amis" in data:
+    if data.get("amis") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["amis"] = capo_inspector2.types.string_filter_list.deserialize_json(
             data["amis"]
         )
-    if "sortOrder" in data:
+    if data.get("sortOrder") is not None:
         out["sort_order"] = data["sortOrder"]
-    if "sortBy" in data:
+    if data.get("sortBy") is not None:
         out["sort_by"] = data["sortBy"]
     return out

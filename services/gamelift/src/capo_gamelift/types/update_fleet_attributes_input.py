@@ -84,13 +84,13 @@ def serialize_aws_json_1_1(value: UpdateFleetAttributesInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateFleetAttributesInput:
     out: UpdateFleetAttributesInput = {}  # type: ignore[typeddict-item]
-    if "FleetId" in data:
+    if data.get("FleetId") is not None:
         out["fleet_id"] = data["FleetId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "NewGameSessionProtectionPolicy" in data:
+    if data.get("NewGameSessionProtectionPolicy") is not None:
         import capo_gamelift.types.protection_policy
 
         out["new_game_session_protection_policy"] = (
@@ -98,7 +98,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateFleetAttributesInput:
                 data["NewGameSessionProtectionPolicy"]
             )
         )
-    if "ResourceCreationLimitPolicy" in data:
+    if data.get("ResourceCreationLimitPolicy") is not None:
         import capo_gamelift.types.resource_creation_limit_policy
 
         out["resource_creation_limit_policy"] = (
@@ -106,7 +106,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateFleetAttributesInput:
                 data["ResourceCreationLimitPolicy"]
             )
         )
-    if "MetricGroups" in data:
+    if data.get("MetricGroups") is not None:
         import capo_gamelift.types.metric_group_list
 
         out["metric_groups"] = (
@@ -114,7 +114,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateFleetAttributesInput:
                 data["MetricGroups"]
             )
         )
-    if "AnywhereConfiguration" in data:
+    if data.get("AnywhereConfiguration") is not None:
         import capo_gamelift.types.anywhere_configuration
 
         out["anywhere_configuration"] = (

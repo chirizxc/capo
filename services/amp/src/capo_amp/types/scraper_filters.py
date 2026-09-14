@@ -24,6 +24,8 @@ def serialize_json(input_to_serialize: ScraperFilters) -> dict:
 def deserialize_json(data: dict) -> ScraperFilters:
     out: ScraperFilters = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_amp.types.filter_values
 
         out[key] = capo_amp.types.filter_values.deserialize_json(value)

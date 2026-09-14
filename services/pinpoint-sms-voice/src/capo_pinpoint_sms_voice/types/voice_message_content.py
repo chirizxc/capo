@@ -54,7 +54,7 @@ def serialize_json(value: VoiceMessageContent) -> dict:
 
 def deserialize_json(data: dict) -> VoiceMessageContent:
     out: VoiceMessageContent = {}  # type: ignore[typeddict-item]
-    if "CallInstructionsMessage" in data:
+    if data.get("CallInstructionsMessage") is not None:
         import capo_pinpoint_sms_voice.types.call_instructions_message_type
 
         out["call_instructions_message"] = (
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> VoiceMessageContent:
                 data["CallInstructionsMessage"]
             )
         )
-    if "PlainTextMessage" in data:
+    if data.get("PlainTextMessage") is not None:
         import capo_pinpoint_sms_voice.types.plain_text_message_type
 
         out["plain_text_message"] = (
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> VoiceMessageContent:
                 data["PlainTextMessage"]
             )
         )
-    if "SSMLMessage" in data:
+    if data.get("SSMLMessage") is not None:
         import capo_pinpoint_sms_voice.types.ssml_message_type
 
         out["ssml_message"] = (

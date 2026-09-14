@@ -23,6 +23,6 @@ def serialize_json(value: OrganizationEbsVolumesResult) -> dict:
 
 def deserialize_json(data: dict) -> OrganizationEbsVolumesResult:
     out: OrganizationEbsVolumesResult = {}  # type: ignore[typeddict-item]
-    if "autoEnable" in data:
+    if data.get("autoEnable") is not None:
         out["auto_enable"] = data["autoEnable"]
     return out

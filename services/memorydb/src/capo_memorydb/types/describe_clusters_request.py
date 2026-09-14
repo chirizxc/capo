@@ -39,12 +39,12 @@ def serialize_aws_json_1_1(value: DescribeClustersRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeClustersRequest:
     out: DescribeClustersRequest = {}  # type: ignore[typeddict-item]
-    if "ClusterName" in data:
+    if data.get("ClusterName") is not None:
         out["cluster_name"] = data["ClusterName"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "ShowShardDetails" in data:
+    if data.get("ShowShardDetails") is not None:
         out["show_shard_details"] = data["ShowShardDetails"]
     return out

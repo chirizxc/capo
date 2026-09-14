@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DescribeDatasetImportJobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeDatasetImportJobRequest:
     out: DescribeDatasetImportJobRequest = {}  # type: ignore[typeddict-item]
-    if "DatasetImportJobArn" in data:
+    if data.get("DatasetImportJobArn") is not None:
         out["dataset_import_job_arn"] = data["DatasetImportJobArn"]
     else:
         raise DeserializationError(

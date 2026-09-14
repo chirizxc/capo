@@ -59,11 +59,11 @@ def serialize_aws_json_1_1(value: DirectoryConnectSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DirectoryConnectSettings:
     out: DirectoryConnectSettings = {}  # type: ignore[typeddict-item]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
     else:
         raise DeserializationError("DirectoryConnectSettings.vpc_id required")
-    if "SubnetIds" in data:
+    if data.get("SubnetIds") is not None:
         import capo_directory_service.types.subnet_ids
 
         out["subnet_ids"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> DirectoryConnectSettings:
         )
     else:
         raise DeserializationError("DirectoryConnectSettings.subnet_ids required")
-    if "CustomerDnsIps" in data:
+    if data.get("CustomerDnsIps") is not None:
         import capo_directory_service.types.dns_ip_addrs
 
         out["customer_dns_ips"] = (
@@ -83,7 +83,7 @@ def deserialize_aws_json_1_1(data: dict) -> DirectoryConnectSettings:
         )
     else:
         out["customer_dns_ips"] = []
-    if "CustomerDnsIpsV6" in data:
+    if data.get("CustomerDnsIpsV6") is not None:
         import capo_directory_service.types.dns_ipv6_addrs
 
         out["customer_dns_ips_v6"] = (
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_1(data: dict) -> DirectoryConnectSettings:
                 data["CustomerDnsIpsV6"]
             )
         )
-    if "CustomerUserName" in data:
+    if data.get("CustomerUserName") is not None:
         out["customer_user_name"] = data["CustomerUserName"]
     else:
         raise DeserializationError(

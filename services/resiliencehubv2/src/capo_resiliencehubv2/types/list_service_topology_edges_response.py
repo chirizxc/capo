@@ -35,7 +35,7 @@ def serialize_json(value: ListServiceTopologyEdgesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListServiceTopologyEdgesResponse:
     out: ListServiceTopologyEdgesResponse = {}  # type: ignore[typeddict-item]
-    if "serviceTopologyEdgeSummaries" in data:
+    if data.get("serviceTopologyEdgeSummaries") is not None:
         import capo_resiliencehubv2.types.service_topology_edge_summary_list
 
         out["service_topology_edge_summaries"] = (
@@ -43,6 +43,6 @@ def deserialize_json(data: dict) -> ListServiceTopologyEdgesResponse:
                 data["serviceTopologyEdgeSummaries"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

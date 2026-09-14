@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: EbsVolume) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EbsVolume:
     out: EbsVolume = {}  # type: ignore[typeddict-item]
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_compute_optimizer_automation.types.ebs_volume_configuration
 
         out["configuration"] = (

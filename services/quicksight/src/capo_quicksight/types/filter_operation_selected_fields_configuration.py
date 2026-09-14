@@ -57,7 +57,7 @@ def serialize_json(value: FilterOperationSelectedFieldsConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> FilterOperationSelectedFieldsConfiguration:
     out: FilterOperationSelectedFieldsConfiguration = {}  # type: ignore[typeddict-item]
-    if "SelectedFields" in data:
+    if data.get("SelectedFields") is not None:
         import capo_quicksight.types.selected_field_list
 
         out["selected_fields"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> FilterOperationSelectedFieldsConfiguration:
                 data["SelectedFields"]
             )
         )
-    if "SelectedFieldOptions" in data:
+    if data.get("SelectedFieldOptions") is not None:
         import capo_quicksight.types.selected_field_options
 
         out["selected_field_options"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> FilterOperationSelectedFieldsConfiguration:
                 data["SelectedFieldOptions"]
             )
         )
-    if "SelectedColumns" in data:
+    if data.get("SelectedColumns") is not None:
         import capo_quicksight.types.custom_action_column_list
 
         out["selected_columns"] = (

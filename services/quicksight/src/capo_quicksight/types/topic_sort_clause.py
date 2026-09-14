@@ -40,13 +40,13 @@ def serialize_json(value: TopicSortClause) -> dict:
 
 def deserialize_json(data: dict) -> TopicSortClause:
     out: TopicSortClause = {}  # type: ignore[typeddict-item]
-    if "Operand" in data:
+    if data.get("Operand") is not None:
         import capo_quicksight.types.identifier
 
         out["operand"] = capo_quicksight.types.identifier.deserialize_json(
             data["Operand"]
         )
-    if "SortDirection" in data:
+    if data.get("SortDirection") is not None:
         import capo_quicksight.types.topic_sort_direction
 
         out["sort_direction"] = (

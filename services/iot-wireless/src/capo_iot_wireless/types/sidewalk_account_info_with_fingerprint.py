@@ -33,10 +33,10 @@ def serialize_json(value: SidewalkAccountInfoWithFingerprint) -> dict:
 
 def deserialize_json(data: dict) -> SidewalkAccountInfoWithFingerprint:
     out: SidewalkAccountInfoWithFingerprint = {}  # type: ignore[typeddict-item]
-    if "AmazonId" in data:
+    if data.get("AmazonId") is not None:
         out["amazon_id"] = data["AmazonId"]
-    if "Fingerprint" in data:
+    if data.get("Fingerprint") is not None:
         out["fingerprint"] = data["Fingerprint"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     return out

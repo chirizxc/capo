@@ -47,9 +47,9 @@ def serialize_aws_json_1_1(value: IpSet) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IpSet:
     out: IpSet = {}  # type: ignore[typeddict-item]
-    if "IpFamily" in data:
+    if data.get("IpFamily") is not None:
         out["ip_family"] = data["IpFamily"]
-    if "IpAddresses" in data:
+    if data.get("IpAddresses") is not None:
         import capo_global_accelerator.types.ip_addresses
 
         out["ip_addresses"] = (
@@ -57,7 +57,7 @@ def deserialize_aws_json_1_1(data: dict) -> IpSet:
                 data["IpAddresses"]
             )
         )
-    if "IpAddressFamily" in data:
+    if data.get("IpAddressFamily") is not None:
         import capo_global_accelerator.types.ip_address_family
 
         out["ip_address_family"] = (

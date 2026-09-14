@@ -13,10 +13,25 @@ from capo_lookoutequipment import AsyncLookoutEquipmentClient
 
 
 async def main():
-    async with AsyncLookoutEquipmentClient() as s3:
+    async with AsyncLookoutEquipmentClient() as lookout_equipment:
         # Example: call the create_dataset operation
-        response = await s3.create_dataset()
+        response = await lookout_equipment.create_dataset()
         print(response["dataset_name"])
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_lookoutequipment import AsyncLookoutEquipmentClient
+
+
+async def main():
+    async with AsyncLookoutEquipmentClient() as lookout_equipment:
+        # Example: paginate over list_data_ingestion_jobs
+        async for item in lookout_equipment.iter_list_data_ingestion_jobs():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_lookoutequipment.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncLookoutEquipmentClient() as s3:
+    async with AsyncLookoutEquipmentClient() as lookout_equipment:
         try:
-            await s3.create_dataset()
+            await lookout_equipment.create_dataset()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_lookoutequipment import AsyncLookoutEquipmentClient
 
 
 async def main():
-    async with AsyncLookoutEquipmentClient() as s3:
+    async with AsyncLookoutEquipmentClient() as lookout_equipment:
         # Default: 3 attempts for every operation
-        response = await s3.create_dataset()
+        response = await lookout_equipment.create_dataset()
 
         # Override per operation
-        response = await s3.create_dataset(config_overrides={"retry_max_attempts": 5})
+        response = await lookout_equipment.create_dataset(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_dataset(config_overrides={"retry_max_attempts": 1})
+        response = await lookout_equipment.create_dataset(config_overrides={"retry_max_attempts": 1})
 ```

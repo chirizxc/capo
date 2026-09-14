@@ -55,11 +55,11 @@ def serialize_aws_json_1_0(value: UpdateWorkflowResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateWorkflowResponse:
     out: UpdateWorkflowResponse = {}  # type: ignore[typeddict-item]
-    if "WorkflowArn" in data:
+    if data.get("WorkflowArn") is not None:
         out["workflow_arn"] = data["WorkflowArn"]
     else:
         raise DeserializationError("UpdateWorkflowResponse.workflow_arn required")
-    if "ModifiedAt" in data:
+    if data.get("ModifiedAt") is not None:
         import capo_mwaa_serverless.types.timestamp_value
 
         out["modified_at"] = (
@@ -67,9 +67,9 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateWorkflowResponse:
                 data["ModifiedAt"]
             )
         )
-    if "WorkflowVersion" in data:
+    if data.get("WorkflowVersion") is not None:
         out["workflow_version"] = data["WorkflowVersion"]
-    if "Warnings" in data:
+    if data.get("Warnings") is not None:
         import capo_mwaa_serverless.types.warning_messages
 
         out["warnings"] = (

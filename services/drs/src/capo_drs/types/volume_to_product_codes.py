@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: VolumeToProductCodes) -> dict:
 def deserialize_json(data: dict) -> VolumeToProductCodes:
     out: VolumeToProductCodes = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_drs.types.product_codes
 
         out[key] = capo_drs.types.product_codes.deserialize_json(value)

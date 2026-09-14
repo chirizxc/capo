@@ -36,11 +36,11 @@ def serialize_aws_json_1_1(value: SetUserSettingsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SetUserSettingsRequest:
     out: SetUserSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "AccessToken" in data:
+    if data.get("AccessToken") is not None:
         out["access_token"] = data["AccessToken"]
     else:
         raise DeserializationError("SetUserSettingsRequest.access_token required")
-    if "MFAOptions" in data:
+    if data.get("MFAOptions") is not None:
         import capo_cognito_identity_provider.types.mfa_option_list_type
 
         out["mfa_options"] = (

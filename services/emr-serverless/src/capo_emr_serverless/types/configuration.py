@@ -50,11 +50,11 @@ def serialize_json(value: Configuration) -> dict:
 
 def deserialize_json(data: dict) -> Configuration:
     out: Configuration = {}  # type: ignore[typeddict-item]
-    if "classification" in data:
+    if data.get("classification") is not None:
         out["classification"] = data["classification"]
     else:
         raise DeserializationError("Configuration.classification required")
-    if "properties" in data:
+    if data.get("properties") is not None:
         import capo_emr_serverless.types.sensitive_properties_map
 
         out["properties"] = (
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> Configuration:
                 data["properties"]
             )
         )
-    if "configurations" in data:
+    if data.get("configurations") is not None:
         import capo_emr_serverless.types.configuration_list
 
         out["configurations"] = (

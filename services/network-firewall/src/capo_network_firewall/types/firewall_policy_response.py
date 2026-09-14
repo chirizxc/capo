@@ -113,25 +113,25 @@ def serialize_aws_json_1_0(value: FirewallPolicyResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> FirewallPolicyResponse:
     out: FirewallPolicyResponse = {}  # type: ignore[typeddict-item]
-    if "FirewallPolicyName" in data:
+    if data.get("FirewallPolicyName") is not None:
         out["firewall_policy_name"] = data["FirewallPolicyName"]
     else:
         raise DeserializationError(
             "FirewallPolicyResponse.firewall_policy_name required"
         )
-    if "FirewallPolicyArn" in data:
+    if data.get("FirewallPolicyArn") is not None:
         out["firewall_policy_arn"] = data["FirewallPolicyArn"]
     else:
         raise DeserializationError(
             "FirewallPolicyResponse.firewall_policy_arn required"
         )
-    if "FirewallPolicyId" in data:
+    if data.get("FirewallPolicyId") is not None:
         out["firewall_policy_id"] = data["FirewallPolicyId"]
     else:
         raise DeserializationError("FirewallPolicyResponse.firewall_policy_id required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "FirewallPolicyStatus" in data:
+    if data.get("FirewallPolicyStatus") is not None:
         import capo_network_firewall.types.resource_status
 
         out["firewall_policy_status"] = (
@@ -139,23 +139,23 @@ def deserialize_aws_json_1_0(data: dict) -> FirewallPolicyResponse:
                 data["FirewallPolicyStatus"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_network_firewall.types.tag_list
 
         out["tags"] = capo_network_firewall.types.tag_list.deserialize_aws_json_1_0(
             data["Tags"]
         )
-    if "ConsumedStatelessRuleCapacity" in data:
+    if data.get("ConsumedStatelessRuleCapacity") is not None:
         out["consumed_stateless_rule_capacity"] = data["ConsumedStatelessRuleCapacity"]
-    if "ConsumedStatefulRuleCapacity" in data:
+    if data.get("ConsumedStatefulRuleCapacity") is not None:
         out["consumed_stateful_rule_capacity"] = data["ConsumedStatefulRuleCapacity"]
-    if "ConsumedStatefulDomainCapacity" in data:
+    if data.get("ConsumedStatefulDomainCapacity") is not None:
         out["consumed_stateful_domain_capacity"] = data[
             "ConsumedStatefulDomainCapacity"
         ]
-    if "NumberOfAssociations" in data:
+    if data.get("NumberOfAssociations") is not None:
         out["number_of_associations"] = data["NumberOfAssociations"]
-    if "EncryptionConfiguration" in data:
+    if data.get("EncryptionConfiguration") is not None:
         import capo_network_firewall.types.encryption_configuration
 
         out["encryption_configuration"] = (
@@ -163,7 +163,7 @@ def deserialize_aws_json_1_0(data: dict) -> FirewallPolicyResponse:
                 data["EncryptionConfiguration"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_network_firewall.types.last_update_time
 
         out["last_modified_time"] = (

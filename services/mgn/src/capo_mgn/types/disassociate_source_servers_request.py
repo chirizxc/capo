@@ -39,13 +39,13 @@ def serialize_json(value: DisassociateSourceServersRequest) -> dict:
 
 def deserialize_json(data: dict) -> DisassociateSourceServersRequest:
     out: DisassociateSourceServersRequest = {}  # type: ignore[typeddict-item]
-    if "applicationID" in data:
+    if data.get("applicationID") is not None:
         out["application_id"] = data["applicationID"]
     else:
         raise DeserializationError(
             "DisassociateSourceServersRequest.application_id required"
         )
-    if "sourceServerIDs" in data:
+    if data.get("sourceServerIDs") is not None:
         import capo_mgn.types.disassociate_source_servers_request_source_server_i_ds
 
         out["source_server_i_ds"] = (
@@ -57,6 +57,6 @@ def deserialize_json(data: dict) -> DisassociateSourceServersRequest:
         raise DeserializationError(
             "DisassociateSourceServersRequest.source_server_i_ds required"
         )
-    if "accountID" in data:
+    if data.get("accountID") is not None:
         out["account_id"] = data["accountID"]
     return out

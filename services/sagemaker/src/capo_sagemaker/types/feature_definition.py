@@ -56,9 +56,9 @@ def serialize_aws_json_1_1(value: FeatureDefinition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FeatureDefinition:
     out: FeatureDefinition = {}  # type: ignore[typeddict-item]
-    if "FeatureName" in data:
+    if data.get("FeatureName") is not None:
         out["feature_name"] = data["FeatureName"]
-    if "FeatureType" in data:
+    if data.get("FeatureType") is not None:
         import capo_sagemaker.types.feature_type
 
         out["feature_type"] = (
@@ -66,7 +66,7 @@ def deserialize_aws_json_1_1(data: dict) -> FeatureDefinition:
                 data["FeatureType"]
             )
         )
-    if "CollectionType" in data:
+    if data.get("CollectionType") is not None:
         import capo_sagemaker.types.collection_type
 
         out["collection_type"] = (
@@ -74,7 +74,7 @@ def deserialize_aws_json_1_1(data: dict) -> FeatureDefinition:
                 data["CollectionType"]
             )
         )
-    if "CollectionConfig" in data:
+    if data.get("CollectionConfig") is not None:
         import capo_sagemaker.types.collection_config
 
         out["collection_config"] = (

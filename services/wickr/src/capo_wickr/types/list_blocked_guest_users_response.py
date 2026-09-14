@@ -33,9 +33,9 @@ def serialize_json(value: ListBlockedGuestUsersResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListBlockedGuestUsersResponse:
     out: ListBlockedGuestUsersResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "blocklist" in data:
+    if data.get("blocklist") is not None:
         import capo_wickr.types.blocked_guest_user_list
 
         out["blocklist"] = capo_wickr.types.blocked_guest_user_list.deserialize_json(

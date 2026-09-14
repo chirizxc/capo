@@ -129,21 +129,21 @@ def serialize_json(value: SecurityProfile) -> dict:
 
 def deserialize_json(data: dict) -> SecurityProfile:
     out: SecurityProfile = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "OrganizationResourceId" in data:
+    if data.get("OrganizationResourceId") is not None:
         out["organization_resource_id"] = data["OrganizationResourceId"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "SecurityProfileName" in data:
+    if data.get("SecurityProfileName") is not None:
         out["security_profile_name"] = data["SecurityProfileName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])
-    if "AllowedAccessControlTags" in data:
+    if data.get("AllowedAccessControlTags") is not None:
         import capo_connect.types.allowed_access_control_tags
 
         out["allowed_access_control_tags"] = (
@@ -151,7 +151,7 @@ def deserialize_json(data: dict) -> SecurityProfile:
                 data["AllowedAccessControlTags"]
             )
         )
-    if "TagRestrictedResources" in data:
+    if data.get("TagRestrictedResources") is not None:
         import capo_connect.types.tag_restricted_resource_list
 
         out["tag_restricted_resources"] = (
@@ -159,15 +159,15 @@ def deserialize_json(data: dict) -> SecurityProfile:
                 data["TagRestrictedResources"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_connect.types.timestamp
 
         out["last_modified_time"] = capo_connect.types.timestamp.deserialize_json(
             data["LastModifiedTime"]
         )
-    if "LastModifiedRegion" in data:
+    if data.get("LastModifiedRegion") is not None:
         out["last_modified_region"] = data["LastModifiedRegion"]
-    if "HierarchyRestrictedResources" in data:
+    if data.get("HierarchyRestrictedResources") is not None:
         import capo_connect.types.hierarchy_restricted_resource_list
 
         out["hierarchy_restricted_resources"] = (
@@ -175,11 +175,11 @@ def deserialize_json(data: dict) -> SecurityProfile:
                 data["HierarchyRestrictedResources"]
             )
         )
-    if "AllowedAccessControlHierarchyGroupId" in data:
+    if data.get("AllowedAccessControlHierarchyGroupId") is not None:
         out["allowed_access_control_hierarchy_group_id"] = data[
             "AllowedAccessControlHierarchyGroupId"
         ]
-    if "GranularAccessControlConfiguration" in data:
+    if data.get("GranularAccessControlConfiguration") is not None:
         import capo_connect.types.granular_access_control_configuration
 
         out["granular_access_control_configuration"] = (

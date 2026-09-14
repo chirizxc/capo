@@ -44,7 +44,7 @@ def serialize_json(value: BodySectionRepeatDimensionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> BodySectionRepeatDimensionConfiguration:
     out: BodySectionRepeatDimensionConfiguration = {}  # type: ignore[typeddict-item]
-    if "DynamicCategoryDimensionConfiguration" in data:
+    if data.get("DynamicCategoryDimensionConfiguration") is not None:
         import capo_quicksight.types.body_section_dynamic_category_dimension_configuration
 
         out["dynamic_category_dimension_configuration"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> BodySectionRepeatDimensionConfiguration:
                 data["DynamicCategoryDimensionConfiguration"]
             )
         )
-    if "DynamicNumericDimensionConfiguration" in data:
+    if data.get("DynamicNumericDimensionConfiguration") is not None:
         import capo_quicksight.types.body_section_dynamic_numeric_dimension_configuration
 
         out["dynamic_numeric_dimension_configuration"] = (

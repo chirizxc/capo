@@ -23,6 +23,6 @@ def serialize_json(value: CmafIngestOutputSettings) -> dict:
 
 def deserialize_json(data: dict) -> CmafIngestOutputSettings:
     out: CmafIngestOutputSettings = {}  # type: ignore[typeddict-item]
-    if "nameModifier" in data:
+    if data.get("nameModifier") is not None:
         out["name_modifier"] = data["nameModifier"]
     return out

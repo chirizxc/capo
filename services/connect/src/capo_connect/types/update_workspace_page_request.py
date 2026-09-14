@@ -46,12 +46,12 @@ def serialize_json(value: UpdateWorkspacePageRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateWorkspacePageRequest:
     out: UpdateWorkspacePageRequest = {}  # type: ignore[typeddict-item]
-    if "NewPage" in data:
+    if data.get("NewPage") is not None:
         out["new_page"] = data["NewPage"]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "Slug" in data:
+    if data.get("Slug") is not None:
         out["slug"] = data["Slug"]
-    if "InputData" in data:
+    if data.get("InputData") is not None:
         out["input_data"] = data["InputData"]
     return out

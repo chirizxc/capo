@@ -28,8 +28,8 @@ def serialize_json(value: ContainerFindingResource) -> dict:
 
 def deserialize_json(data: dict) -> ContainerFindingResource:
     out: ContainerFindingResource = {}  # type: ignore[typeddict-item]
-    if "image" in data:
+    if data.get("image") is not None:
         out["image"] = data["image"]
-    if "imageUid" in data:
+    if data.get("imageUid") is not None:
         out["image_uid"] = data["imageUid"]
     return out

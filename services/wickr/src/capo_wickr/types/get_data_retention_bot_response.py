@@ -45,16 +45,16 @@ def serialize_json(value: GetDataRetentionBotResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetDataRetentionBotResponse:
     out: GetDataRetentionBotResponse = {}  # type: ignore[typeddict-item]
-    if "botName" in data:
+    if data.get("botName") is not None:
         out["bot_name"] = data["botName"]
-    if "botExists" in data:
+    if data.get("botExists") is not None:
         out["bot_exists"] = data["botExists"]
-    if "isBotActive" in data:
+    if data.get("isBotActive") is not None:
         out["is_bot_active"] = data["isBotActive"]
-    if "isDataRetentionBotRegistered" in data:
+    if data.get("isDataRetentionBotRegistered") is not None:
         out["is_data_retention_bot_registered"] = data["isDataRetentionBotRegistered"]
-    if "isDataRetentionServiceEnabled" in data:
+    if data.get("isDataRetentionServiceEnabled") is not None:
         out["is_data_retention_service_enabled"] = data["isDataRetentionServiceEnabled"]
-    if "isPubkeyMsgAcked" in data:
+    if data.get("isPubkeyMsgAcked") is not None:
         out["is_pubkey_msg_acked"] = data["isPubkeyMsgAcked"]
     return out

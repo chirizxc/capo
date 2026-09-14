@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ListOfKmsKeysToGrant:
 
     out: ListOfKmsKeysToGrant = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_dataexchange.types.kms_key_to_grant.deserialize_json(item))
     return out

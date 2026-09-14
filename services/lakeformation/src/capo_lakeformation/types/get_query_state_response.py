@@ -35,9 +35,9 @@ def serialize_json(value: GetQueryStateResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetQueryStateResponse:
     out: GetQueryStateResponse = {}  # type: ignore[typeddict-item]
-    if "Error" in data:
+    if data.get("Error") is not None:
         out["error"] = data["Error"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_lakeformation.types.query_state_string
 
         out["state"] = capo_lakeformation.types.query_state_string.deserialize_json(

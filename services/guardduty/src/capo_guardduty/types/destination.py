@@ -43,9 +43,9 @@ def serialize_json(value: Destination) -> dict:
 
 def deserialize_json(data: dict) -> Destination:
     out: Destination = {}  # type: ignore[typeddict-item]
-    if "destinationId" in data:
+    if data.get("destinationId") is not None:
         out["destination_id"] = data["destinationId"]
-    if "destinationType" in data:
+    if data.get("destinationType") is not None:
         import capo_guardduty.types.destination_type
 
         out["destination_type"] = (
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> Destination:
                 data["destinationType"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_guardduty.types.publishing_status
 
         out["status"] = capo_guardduty.types.publishing_status.deserialize_json(

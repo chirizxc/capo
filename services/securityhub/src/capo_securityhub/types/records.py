@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Records:
 
     out: Records = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityhub.types.record.deserialize_json(item))
     return out

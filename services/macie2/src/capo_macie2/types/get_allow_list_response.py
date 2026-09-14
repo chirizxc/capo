@@ -88,37 +88,37 @@ def serialize_json(value: GetAllowListResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetAllowListResponse:
     out: GetAllowListResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_macie2.types.__timestamp_iso8601
 
         out["created_at"] = capo_macie2.types.__timestamp_iso8601.deserialize_json(
             data["createdAt"]
         )
-    if "criteria" in data:
+    if data.get("criteria") is not None:
         import capo_macie2.types.allow_list_criteria
 
         out["criteria"] = capo_macie2.types.allow_list_criteria.deserialize_json(
             data["criteria"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_macie2.types.allow_list_status
 
         out["status"] = capo_macie2.types.allow_list_status.deserialize_json(
             data["status"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_macie2.types.tag_map
 
         out["tags"] = capo_macie2.types.tag_map.deserialize_json(data["tags"])
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_macie2.types.__timestamp_iso8601
 
         out["updated_at"] = capo_macie2.types.__timestamp_iso8601.deserialize_json(

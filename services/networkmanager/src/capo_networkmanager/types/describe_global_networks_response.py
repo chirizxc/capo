@@ -36,7 +36,7 @@ def serialize_json(value: DescribeGlobalNetworksResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeGlobalNetworksResponse:
     out: DescribeGlobalNetworksResponse = {}  # type: ignore[typeddict-item]
-    if "GlobalNetworks" in data:
+    if data.get("GlobalNetworks") is not None:
         import capo_networkmanager.types.global_network_list
 
         out["global_networks"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> DescribeGlobalNetworksResponse:
                 data["GlobalNetworks"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> AppAuthorizationSummaryList:
 
     out: AppAuthorizationSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_appfabric.types.app_authorization_summary.deserialize_json(item)
         )

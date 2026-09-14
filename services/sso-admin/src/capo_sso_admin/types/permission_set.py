@@ -56,20 +56,20 @@ def serialize_aws_json_1_1(value: PermissionSet) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PermissionSet:
     out: PermissionSet = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "PermissionSetArn" in data:
+    if data.get("PermissionSetArn") is not None:
         out["permission_set_arn"] = data["PermissionSetArn"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "CreatedDate" in data:
+    if data.get("CreatedDate") is not None:
         import capo_sso_admin.types.date
 
         out["created_date"] = capo_sso_admin.types.date.deserialize_aws_json_1_1(
             data["CreatedDate"]
         )
-    if "SessionDuration" in data:
+    if data.get("SessionDuration") is not None:
         out["session_duration"] = data["SessionDuration"]
-    if "RelayState" in data:
+    if data.get("RelayState") is not None:
         out["relay_state"] = data["RelayState"]
     return out

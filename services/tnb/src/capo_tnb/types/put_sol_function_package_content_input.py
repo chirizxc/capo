@@ -32,7 +32,7 @@ def serialize_json(value: PutSolFunctionPackageContentInput) -> dict:
 
 def deserialize_json(data: dict) -> PutSolFunctionPackageContentInput:
     out: PutSolFunctionPackageContentInput = {}  # type: ignore[typeddict-item]
-    if "file" in data:
+    if data.get("file") is not None:
         import capo_tnb.types.sensitive_blob
 
         out["file"] = capo_tnb.types.sensitive_blob.deserialize_json(data["file"])

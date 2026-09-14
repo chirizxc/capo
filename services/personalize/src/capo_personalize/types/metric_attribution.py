@@ -72,13 +72,13 @@ def serialize_aws_json_1_1(value: MetricAttribution) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MetricAttribution:
     out: MetricAttribution = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "metricAttributionArn" in data:
+    if data.get("metricAttributionArn") is not None:
         out["metric_attribution_arn"] = data["metricAttributionArn"]
-    if "datasetGroupArn" in data:
+    if data.get("datasetGroupArn") is not None:
         out["dataset_group_arn"] = data["datasetGroupArn"]
-    if "metricsOutputConfig" in data:
+    if data.get("metricsOutputConfig") is not None:
         import capo_personalize.types.metric_attribution_output
 
         out["metrics_output_config"] = (
@@ -86,9 +86,9 @@ def deserialize_aws_json_1_1(data: dict) -> MetricAttribution:
                 data["metricsOutputConfig"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_personalize.types.date
 
         out["creation_date_time"] = (
@@ -96,7 +96,7 @@ def deserialize_aws_json_1_1(data: dict) -> MetricAttribution:
                 data["creationDateTime"]
             )
         )
-    if "lastUpdatedDateTime" in data:
+    if data.get("lastUpdatedDateTime") is not None:
         import capo_personalize.types.date
 
         out["last_updated_date_time"] = (
@@ -104,6 +104,6 @@ def deserialize_aws_json_1_1(data: dict) -> MetricAttribution:
                 data["lastUpdatedDateTime"]
             )
         )
-    if "failureReason" in data:
+    if data.get("failureReason") is not None:
         out["failure_reason"] = data["failureReason"]
     return out

@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: GetSnapshotResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetSnapshotResponse:
     out: GetSnapshotResponse = {}  # type: ignore[typeddict-item]
-    if "snapshot" in data:
+    if data.get("snapshot") is not None:
         import capo_redshift_serverless.types.snapshot
 
         out["snapshot"] = (

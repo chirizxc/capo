@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> LakeFormationOptInsInfoList:
 
     out: LakeFormationOptInsInfoList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lakeformation.types.lake_formation_opt_ins_info.deserialize_json(item)
         )

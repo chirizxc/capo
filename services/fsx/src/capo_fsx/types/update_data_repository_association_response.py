@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: UpdateDataRepositoryAssociationResponse) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateDataRepositoryAssociationResponse:
     out: UpdateDataRepositoryAssociationResponse = {}  # type: ignore[typeddict-item]
-    if "Association" in data:
+    if data.get("Association") is not None:
         import capo_fsx.types.data_repository_association
 
         out["association"] = (

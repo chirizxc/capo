@@ -32,15 +32,15 @@ def serialize_json(value: BatchGetWorkerIdentifier) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetWorkerIdentifier:
     out: BatchGetWorkerIdentifier = {}  # type: ignore[typeddict-item]
-    if "farmId" in data:
+    if data.get("farmId") is not None:
         out["farm_id"] = data["farmId"]
     else:
         raise DeserializationError("BatchGetWorkerIdentifier.farm_id required")
-    if "fleetId" in data:
+    if data.get("fleetId") is not None:
         out["fleet_id"] = data["fleetId"]
     else:
         raise DeserializationError("BatchGetWorkerIdentifier.fleet_id required")
-    if "workerId" in data:
+    if data.get("workerId") is not None:
         out["worker_id"] = data["workerId"]
     else:
         raise DeserializationError("BatchGetWorkerIdentifier.worker_id required")

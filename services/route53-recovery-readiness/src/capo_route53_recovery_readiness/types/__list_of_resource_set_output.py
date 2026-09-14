@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> __listOfResourceSetOutput:
 
     out: __listOfResourceSetOutput = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_route53_recovery_readiness.types.resource_set_output.deserialize_json(
                 item

@@ -46,18 +46,18 @@ def serialize_json(value: CreateBotResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateBotResponse:
     out: CreateBotResponse = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "botId" in data:
+    if data.get("botId") is not None:
         out["bot_id"] = data["botId"]
     else:
         raise DeserializationError("CreateBotResponse.bot_id required")
-    if "networkId" in data:
+    if data.get("networkId") is not None:
         out["network_id"] = data["networkId"]
-    if "username" in data:
+    if data.get("username") is not None:
         out["username"] = data["username"]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "groupId" in data:
+    if data.get("groupId") is not None:
         out["group_id"] = data["groupId"]
     return out

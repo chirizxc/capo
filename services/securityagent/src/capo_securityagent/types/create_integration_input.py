@@ -51,7 +51,7 @@ def serialize_json(value: CreateIntegrationInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateIntegrationInput:
     out: CreateIntegrationInput = {}  # type: ignore[typeddict-item]
-    if "provider" in data:
+    if data.get("provider") is not None:
         import capo_securityagent.types.provider
 
         out["provider"] = capo_securityagent.types.provider.deserialize_json(
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> CreateIntegrationInput:
         )
     else:
         raise DeserializationError("CreateIntegrationInput.provider required")
-    if "input" in data:
+    if data.get("input") is not None:
         import capo_securityagent.types.provider_input
 
         out["input"] = capo_securityagent.types.provider_input.deserialize_json(
@@ -67,15 +67,15 @@ def deserialize_json(data: dict) -> CreateIntegrationInput:
         )
     else:
         raise DeserializationError("CreateIntegrationInput.input required")
-    if "integrationDisplayName" in data:
+    if data.get("integrationDisplayName") is not None:
         out["integration_display_name"] = data["integrationDisplayName"]
     else:
         raise DeserializationError(
             "CreateIntegrationInput.integration_display_name required"
         )
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_securityagent.types.tag_map
 
         out["tags"] = capo_securityagent.types.tag_map.deserialize_json(data["tags"])

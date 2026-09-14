@@ -38,7 +38,7 @@ def serialize_json(value: AnalysisRuleCriteria) -> dict:
 
 def deserialize_json(data: dict) -> AnalysisRuleCriteria:
     out: AnalysisRuleCriteria = {}  # type: ignore[typeddict-item]
-    if "accountIds" in data:
+    if data.get("accountIds") is not None:
         import capo_accessanalyzer.types.account_ids_list
 
         out["account_ids"] = (
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> AnalysisRuleCriteria:
                 data["accountIds"]
             )
         )
-    if "resourceTags" in data:
+    if data.get("resourceTags") is not None:
         import capo_accessanalyzer.types.tags_list
 
         out["resource_tags"] = capo_accessanalyzer.types.tags_list.deserialize_json(

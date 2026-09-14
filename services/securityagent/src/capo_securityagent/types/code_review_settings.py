@@ -22,11 +22,11 @@ def serialize_json(value: CodeReviewSettings) -> dict:
 
 def deserialize_json(data: dict) -> CodeReviewSettings:
     out: CodeReviewSettings = {}  # type: ignore[typeddict-item]
-    if "controlsScanning" in data:
+    if data.get("controlsScanning") is not None:
         out["controls_scanning"] = data["controlsScanning"]
     else:
         raise DeserializationError("CodeReviewSettings.controls_scanning required")
-    if "generalPurposeScanning" in data:
+    if data.get("generalPurposeScanning") is not None:
         out["general_purpose_scanning"] = data["generalPurposeScanning"]
     else:
         raise DeserializationError(

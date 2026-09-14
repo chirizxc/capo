@@ -37,7 +37,7 @@ def serialize_json(value: ListPackageImportJobsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListPackageImportJobsResponse:
     out: ListPackageImportJobsResponse = {}  # type: ignore[typeddict-item]
-    if "PackageImportJobs" in data:
+    if data.get("PackageImportJobs") is not None:
         import capo_panorama.types.package_import_job_list
 
         out["package_import_jobs"] = (
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> ListPackageImportJobsResponse:
         raise DeserializationError(
             "ListPackageImportJobsResponse.package_import_jobs required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

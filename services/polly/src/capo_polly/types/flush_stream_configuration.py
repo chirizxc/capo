@@ -22,7 +22,7 @@ def serialize_json(value: FlushStreamConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> FlushStreamConfiguration:
     out: FlushStreamConfiguration = {}  # type: ignore[typeddict-item]
-    if "Force" in data:
+    if data.get("Force") is not None:
         out["force"] = data["Force"]
     else:
         out["force"] = False

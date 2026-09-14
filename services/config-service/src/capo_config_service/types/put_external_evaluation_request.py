@@ -36,13 +36,13 @@ def serialize_aws_json_1_1(value: PutExternalEvaluationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutExternalEvaluationRequest:
     out: PutExternalEvaluationRequest = {}  # type: ignore[typeddict-item]
-    if "ConfigRuleName" in data:
+    if data.get("ConfigRuleName") is not None:
         out["config_rule_name"] = data["ConfigRuleName"]
     else:
         raise DeserializationError(
             "PutExternalEvaluationRequest.config_rule_name required"
         )
-    if "ExternalEvaluation" in data:
+    if data.get("ExternalEvaluation") is not None:
         import capo_config_service.types.external_evaluation
 
         out["external_evaluation"] = (

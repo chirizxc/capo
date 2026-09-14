@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: GetMappingResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetMappingResponse:
     out: GetMappingResponse = {}  # type: ignore[typeddict-item]
-    if "Mapping" in data:
+    if data.get("Mapping") is not None:
         import capo_glue.types.mapping_list
 
         out["mapping"] = capo_glue.types.mapping_list.deserialize_aws_json_1_1(

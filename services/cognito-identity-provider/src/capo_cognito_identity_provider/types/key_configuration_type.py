@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: KeyConfigurationType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> KeyConfigurationType:
     out: KeyConfigurationType = {}  # type: ignore[typeddict-item]
-    if "KeyType" in data:
+    if data.get("KeyType") is not None:
         import capo_cognito_identity_provider.types.encryption_key_type
 
         out["key_type"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(data: dict) -> KeyConfigurationType:
                 data["KeyType"]
             )
         )
-    if "KmsKeyArn" in data:
+    if data.get("KmsKeyArn") is not None:
         out["kms_key_arn"] = data["KmsKeyArn"]
     return out

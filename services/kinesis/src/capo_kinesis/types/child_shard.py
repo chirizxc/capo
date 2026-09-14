@@ -39,11 +39,11 @@ def serialize_aws_json_1_1(value: ChildShard) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ChildShard:
     out: ChildShard = {}  # type: ignore[typeddict-item]
-    if "ShardId" in data:
+    if data.get("ShardId") is not None:
         out["shard_id"] = data["ShardId"]
     else:
         raise DeserializationError("ChildShard.shard_id required")
-    if "ParentShards" in data:
+    if data.get("ParentShards") is not None:
         import capo_kinesis.types.shard_id_list
 
         out["parent_shards"] = (
@@ -53,7 +53,7 @@ def deserialize_aws_json_1_1(data: dict) -> ChildShard:
         )
     else:
         raise DeserializationError("ChildShard.parent_shards required")
-    if "HashKeyRange" in data:
+    if data.get("HashKeyRange") is not None:
         import capo_kinesis.types.hash_key_range
 
         out["hash_key_range"] = (

@@ -38,12 +38,12 @@ def serialize_json(value: UpdateKxUserResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateKxUserResponse:
     out: UpdateKxUserResponse = {}  # type: ignore[typeddict-item]
-    if "userName" in data:
+    if data.get("userName") is not None:
         out["user_name"] = data["userName"]
-    if "userArn" in data:
+    if data.get("userArn") is not None:
         out["user_arn"] = data["userArn"]
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
-    if "iamRole" in data:
+    if data.get("iamRole") is not None:
         out["iam_role"] = data["iamRole"]
     return out

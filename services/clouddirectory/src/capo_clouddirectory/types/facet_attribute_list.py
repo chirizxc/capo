@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> FacetAttributeList:
 
     out: FacetAttributeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_clouddirectory.types.facet_attribute.deserialize_json(item))
     return out

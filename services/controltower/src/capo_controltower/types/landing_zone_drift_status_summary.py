@@ -31,7 +31,7 @@ def serialize_json(value: LandingZoneDriftStatusSummary) -> dict:
 
 def deserialize_json(data: dict) -> LandingZoneDriftStatusSummary:
     out: LandingZoneDriftStatusSummary = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_controltower.types.landing_zone_drift_status
 
         out["status"] = (

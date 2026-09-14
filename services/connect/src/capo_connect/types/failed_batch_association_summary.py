@@ -37,10 +37,10 @@ def serialize_json(value: FailedBatchAssociationSummary) -> dict:
 
 def deserialize_json(data: dict) -> FailedBatchAssociationSummary:
     out: FailedBatchAssociationSummary = {}  # type: ignore[typeddict-item]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     return out

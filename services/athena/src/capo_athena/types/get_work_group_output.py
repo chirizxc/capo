@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: GetWorkGroupOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetWorkGroupOutput:
     out: GetWorkGroupOutput = {}  # type: ignore[typeddict-item]
-    if "WorkGroup" in data:
+    if data.get("WorkGroup") is not None:
         import capo_athena.types.work_group
 
         out["work_group"] = capo_athena.types.work_group.deserialize_aws_json_1_1(

@@ -23,6 +23,6 @@ def serialize_json(value: PutClusterPolicyResponse) -> dict:
 
 def deserialize_json(data: dict) -> PutClusterPolicyResponse:
     out: PutClusterPolicyResponse = {}  # type: ignore[typeddict-item]
-    if "currentVersion" in data:
+    if data.get("currentVersion") is not None:
         out["current_version"] = data["currentVersion"]
     return out

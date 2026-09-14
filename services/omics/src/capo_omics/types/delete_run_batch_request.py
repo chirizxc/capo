@@ -24,7 +24,7 @@ def serialize_json(value: DeleteRunBatchRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteRunBatchRequest:
     out: DeleteRunBatchRequest = {}  # type: ignore[typeddict-item]
-    if "batchId" in data:
+    if data.get("batchId") is not None:
         out["batch_id"] = data["batchId"]
     else:
         raise DeserializationError("DeleteRunBatchRequest.batch_id required")

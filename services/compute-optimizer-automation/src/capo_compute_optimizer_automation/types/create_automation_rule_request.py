@@ -117,13 +117,13 @@ def serialize_aws_json_1_0(value: CreateAutomationRuleRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateAutomationRuleRequest:
     out: CreateAutomationRuleRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateAutomationRuleRequest.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "ruleType" in data:
+    if data.get("ruleType") is not None:
         import capo_compute_optimizer_automation.types.rule_type
 
         out["rule_type"] = (
@@ -133,7 +133,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateAutomationRuleRequest:
         )
     else:
         raise DeserializationError("CreateAutomationRuleRequest.rule_type required")
-    if "organizationConfiguration" in data:
+    if data.get("organizationConfiguration") is not None:
         import capo_compute_optimizer_automation.types.organization_configuration
 
         out["organization_configuration"] = (
@@ -141,9 +141,9 @@ def deserialize_aws_json_1_0(data: dict) -> CreateAutomationRuleRequest:
                 data["organizationConfiguration"]
             )
         )
-    if "priority" in data:
+    if data.get("priority") is not None:
         out["priority"] = data["priority"]
-    if "recommendedActionTypes" in data:
+    if data.get("recommendedActionTypes") is not None:
         import capo_compute_optimizer_automation.types.recommended_action_type_list
 
         out["recommended_action_types"] = (
@@ -155,7 +155,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateAutomationRuleRequest:
         raise DeserializationError(
             "CreateAutomationRuleRequest.recommended_action_types required"
         )
-    if "criteria" in data:
+    if data.get("criteria") is not None:
         import capo_compute_optimizer_automation.types.criteria
 
         out["criteria"] = (
@@ -163,7 +163,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateAutomationRuleRequest:
                 data["criteria"]
             )
         )
-    if "schedule" in data:
+    if data.get("schedule") is not None:
         import capo_compute_optimizer_automation.types.schedule
 
         out["schedule"] = (
@@ -173,7 +173,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateAutomationRuleRequest:
         )
     else:
         raise DeserializationError("CreateAutomationRuleRequest.schedule required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_compute_optimizer_automation.types.rule_status
 
         out["status"] = (
@@ -183,7 +183,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateAutomationRuleRequest:
         )
     else:
         raise DeserializationError("CreateAutomationRuleRequest.status required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_compute_optimizer_automation.types.tag_list
 
         out["tags"] = (
@@ -191,6 +191,6 @@ def deserialize_aws_json_1_0(data: dict) -> CreateAutomationRuleRequest:
                 data["tags"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

@@ -28,8 +28,8 @@ def serialize_json(value: Principal) -> dict:
 
 def deserialize_json(data: dict) -> Principal:
     out: Principal = {}  # type: ignore[typeddict-item]
-    if "service" in data:
+    if data.get("service") is not None:
         out["service"] = data["service"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     return out

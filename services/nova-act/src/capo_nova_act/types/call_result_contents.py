@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> CallResultContents:
 
     out: CallResultContents = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_nova_act.types.call_result_content.deserialize_json(item))
     return out

@@ -24,7 +24,7 @@ def serialize_json(value: DynatraceSourceProperties) -> dict:
 
 def deserialize_json(data: dict) -> DynatraceSourceProperties:
     out: DynatraceSourceProperties = {}  # type: ignore[typeddict-item]
-    if "object" in data:
+    if data.get("object") is not None:
         out["object"] = data["object"]
     else:
         raise DeserializationError("DynatraceSourceProperties.object required")

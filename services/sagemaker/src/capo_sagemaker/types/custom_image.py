@@ -37,10 +37,10 @@ def serialize_aws_json_1_1(value: CustomImage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CustomImage:
     out: CustomImage = {}  # type: ignore[typeddict-item]
-    if "ImageName" in data:
+    if data.get("ImageName") is not None:
         out["image_name"] = data["ImageName"]
-    if "ImageVersionNumber" in data:
+    if data.get("ImageVersionNumber") is not None:
         out["image_version_number"] = data["ImageVersionNumber"]
-    if "AppImageConfigName" in data:
+    if data.get("AppImageConfigName") is not None:
         out["app_image_config_name"] = data["AppImageConfigName"]
     return out

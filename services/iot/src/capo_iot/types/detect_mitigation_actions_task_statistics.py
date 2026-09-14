@@ -31,10 +31,10 @@ def serialize_json(value: DetectMitigationActionsTaskStatistics) -> dict:
 
 def deserialize_json(data: dict) -> DetectMitigationActionsTaskStatistics:
     out: DetectMitigationActionsTaskStatistics = {}  # type: ignore[typeddict-item]
-    if "actionsExecuted" in data:
+    if data.get("actionsExecuted") is not None:
         out["actions_executed"] = data["actionsExecuted"]
-    if "actionsSkipped" in data:
+    if data.get("actionsSkipped") is not None:
         out["actions_skipped"] = data["actionsSkipped"]
-    if "actionsFailed" in data:
+    if data.get("actionsFailed") is not None:
         out["actions_failed"] = data["actionsFailed"]
     return out

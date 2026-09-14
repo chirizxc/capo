@@ -51,7 +51,7 @@ def serialize_json(value: ControlScope) -> dict:
 
 def deserialize_json(data: dict) -> ControlScope:
     out: ControlScope = {}  # type: ignore[typeddict-item]
-    if "ComplianceResourceIds" in data:
+    if data.get("ComplianceResourceIds") is not None:
         import capo_backup.types.compliance_resource_id_list
 
         out["compliance_resource_ids"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> ControlScope:
                 data["ComplianceResourceIds"]
             )
         )
-    if "ComplianceResourceTypes" in data:
+    if data.get("ComplianceResourceTypes") is not None:
         import capo_backup.types.resource_type_list
 
         out["compliance_resource_types"] = (
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> ControlScope:
                 data["ComplianceResourceTypes"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_backup.types.string_map
 
         out["tags"] = capo_backup.types.string_map.deserialize_json(data["Tags"])

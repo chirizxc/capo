@@ -23,6 +23,6 @@ def serialize_json(value: ManagedAccount) -> dict:
 
 def deserialize_json(data: dict) -> ManagedAccount:
     out: ManagedAccount = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
     return out

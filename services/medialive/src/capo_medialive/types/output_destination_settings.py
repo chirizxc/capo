@@ -35,12 +35,12 @@ def serialize_json(value: OutputDestinationSettings) -> dict:
 
 def deserialize_json(data: dict) -> OutputDestinationSettings:
     out: OutputDestinationSettings = {}  # type: ignore[typeddict-item]
-    if "passwordParam" in data:
+    if data.get("passwordParam") is not None:
         out["password_param"] = data["passwordParam"]
-    if "streamName" in data:
+    if data.get("streamName") is not None:
         out["stream_name"] = data["streamName"]
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
-    if "username" in data:
+    if data.get("username") is not None:
         out["username"] = data["username"]
     return out

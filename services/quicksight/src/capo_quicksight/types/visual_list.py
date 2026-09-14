@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> VisualList:
 
     out: VisualList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.visual.deserialize_json(item))
     return out

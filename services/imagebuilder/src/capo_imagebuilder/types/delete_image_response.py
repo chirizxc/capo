@@ -30,8 +30,8 @@ def serialize_json(value: DeleteImageResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteImageResponse:
     out: DeleteImageResponse = {}  # type: ignore[typeddict-item]
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
-    if "imageBuildVersionArn" in data:
+    if data.get("imageBuildVersionArn") is not None:
         out["image_build_version_arn"] = data["imageBuildVersionArn"]
     return out

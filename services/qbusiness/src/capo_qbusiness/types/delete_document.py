@@ -24,7 +24,7 @@ def serialize_json(value: DeleteDocument) -> dict:
 
 def deserialize_json(data: dict) -> DeleteDocument:
     out: DeleteDocument = {}  # type: ignore[typeddict-item]
-    if "documentId" in data:
+    if data.get("documentId") is not None:
         out["document_id"] = data["documentId"]
     else:
         raise DeserializationError("DeleteDocument.document_id required")

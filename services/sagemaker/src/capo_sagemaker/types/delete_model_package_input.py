@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: DeleteModelPackageInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteModelPackageInput:
     out: DeleteModelPackageInput = {}  # type: ignore[typeddict-item]
-    if "ModelPackageName" in data:
+    if data.get("ModelPackageName") is not None:
         out["model_package_name"] = data["ModelPackageName"]
     return out

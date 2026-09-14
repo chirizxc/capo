@@ -34,9 +34,9 @@ def serialize_json(value: AllowListCriteria) -> dict:
 
 def deserialize_json(data: dict) -> AllowListCriteria:
     out: AllowListCriteria = {}  # type: ignore[typeddict-item]
-    if "regex" in data:
+    if data.get("regex") is not None:
         out["regex"] = data["regex"]
-    if "s3WordsList" in data:
+    if data.get("s3WordsList") is not None:
         import capo_macie2.types.s3_words_list
 
         out["s3_words_list"] = capo_macie2.types.s3_words_list.deserialize_json(

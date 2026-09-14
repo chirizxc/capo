@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> MemberIndexList:
 
     out: MemberIndexList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_resource_explorer_2.types.member_index.deserialize_json(item))
     return out

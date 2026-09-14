@@ -27,7 +27,7 @@ def serialize_json(value: GetConnectorResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetConnectorResponse:
     out: GetConnectorResponse = {}  # type: ignore[typeddict-item]
-    if "Connector" in data:
+    if data.get("Connector") is not None:
         import capo_pca_connector_ad.types.connector
 
         out["connector"] = capo_pca_connector_ad.types.connector.deserialize_json(

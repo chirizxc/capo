@@ -31,10 +31,10 @@ def serialize_aws_json_1_0(value: DeleteSecurityConfigRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteSecurityConfigRequest:
     out: DeleteSecurityConfigRequest = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("DeleteSecurityConfigRequest.id required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

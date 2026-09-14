@@ -91,21 +91,21 @@ def serialize_json(value: CreateAppRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateAppRequest:
     out: CreateAppRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateAppRequest.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "policyArn" in data:
+    if data.get("policyArn") is not None:
         out["policy_arn"] = data["policyArn"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_resiliencehub.types.tag_map
 
         out["tags"] = capo_resiliencehub.types.tag_map.deserialize_json(data["tags"])
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "assessmentSchedule" in data:
+    if data.get("assessmentSchedule") is not None:
         import capo_resiliencehub.types.app_assessment_schedule_type
 
         out["assessment_schedule"] = (
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> CreateAppRequest:
                 data["assessmentSchedule"]
             )
         )
-    if "permissionModel" in data:
+    if data.get("permissionModel") is not None:
         import capo_resiliencehub.types.permission_model
 
         out["permission_model"] = (
@@ -121,7 +121,7 @@ def deserialize_json(data: dict) -> CreateAppRequest:
                 data["permissionModel"]
             )
         )
-    if "eventSubscriptions" in data:
+    if data.get("eventSubscriptions") is not None:
         import capo_resiliencehub.types.event_subscription_list
 
         out["event_subscriptions"] = (
@@ -129,6 +129,6 @@ def deserialize_json(data: dict) -> CreateAppRequest:
                 data["eventSubscriptions"]
             )
         )
-    if "awsApplicationArn" in data:
+    if data.get("awsApplicationArn") is not None:
         out["aws_application_arn"] = data["awsApplicationArn"]
     return out

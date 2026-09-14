@@ -28,11 +28,11 @@ def serialize_json(value: ModuleLoggingConfigurationInput) -> dict:
 
 def deserialize_json(data: dict) -> ModuleLoggingConfigurationInput:
     out: ModuleLoggingConfigurationInput = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
     else:
         raise DeserializationError("ModuleLoggingConfigurationInput.enabled required")
-    if "LogLevel" in data:
+    if data.get("LogLevel") is not None:
         out["log_level"] = data["LogLevel"]
     else:
         raise DeserializationError("ModuleLoggingConfigurationInput.log_level required")

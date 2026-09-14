@@ -55,17 +55,17 @@ def serialize_json(value: TransactionOutputItem) -> dict:
 
 def deserialize_json(data: dict) -> TransactionOutputItem:
     out: TransactionOutputItem = {}  # type: ignore[typeddict-item]
-    if "transactionHash" in data:
+    if data.get("transactionHash") is not None:
         out["transaction_hash"] = data["transactionHash"]
     else:
         raise DeserializationError("TransactionOutputItem.transaction_hash required")
-    if "transactionId" in data:
+    if data.get("transactionId") is not None:
         out["transaction_id"] = data["transactionId"]
-    if "network" in data:
+    if data.get("network") is not None:
         out["network"] = data["network"]
     else:
         raise DeserializationError("TransactionOutputItem.network required")
-    if "transactionTimestamp" in data:
+    if data.get("transactionTimestamp") is not None:
         import capo_managedblockchain_query.types._prelude.timestamp
 
         out["transaction_timestamp"] = (
@@ -77,6 +77,6 @@ def deserialize_json(data: dict) -> TransactionOutputItem:
         raise DeserializationError(
             "TransactionOutputItem.transaction_timestamp required"
         )
-    if "confirmationStatus" in data:
+    if data.get("confirmationStatus") is not None:
         out["confirmation_status"] = data["confirmationStatus"]
     return out

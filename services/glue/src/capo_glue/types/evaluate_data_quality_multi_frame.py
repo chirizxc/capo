@@ -84,11 +84,11 @@ def serialize_aws_json_1_1(value: EvaluateDataQualityMultiFrame) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EvaluateDataQualityMultiFrame:
     out: EvaluateDataQualityMultiFrame = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("EvaluateDataQualityMultiFrame.name required")
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_glue.types.many_inputs
 
         out["inputs"] = capo_glue.types.many_inputs.deserialize_aws_json_1_1(
@@ -96,7 +96,7 @@ def deserialize_aws_json_1_1(data: dict) -> EvaluateDataQualityMultiFrame:
         )
     else:
         raise DeserializationError("EvaluateDataQualityMultiFrame.inputs required")
-    if "AdditionalDataSources" in data:
+    if data.get("AdditionalDataSources") is not None:
         import capo_glue.types.dqdl_aliases
 
         out["additional_data_sources"] = (
@@ -104,11 +104,11 @@ def deserialize_aws_json_1_1(data: dict) -> EvaluateDataQualityMultiFrame:
                 data["AdditionalDataSources"]
             )
         )
-    if "Ruleset" in data:
+    if data.get("Ruleset") is not None:
         out["ruleset"] = data["Ruleset"]
     else:
         raise DeserializationError("EvaluateDataQualityMultiFrame.ruleset required")
-    if "PublishingOptions" in data:
+    if data.get("PublishingOptions") is not None:
         import capo_glue.types.dq_results_publishing_options
 
         out["publishing_options"] = (
@@ -116,7 +116,7 @@ def deserialize_aws_json_1_1(data: dict) -> EvaluateDataQualityMultiFrame:
                 data["PublishingOptions"]
             )
         )
-    if "AdditionalOptions" in data:
+    if data.get("AdditionalOptions") is not None:
         import capo_glue.types.dq_additional_options
 
         out["additional_options"] = (
@@ -124,7 +124,7 @@ def deserialize_aws_json_1_1(data: dict) -> EvaluateDataQualityMultiFrame:
                 data["AdditionalOptions"]
             )
         )
-    if "StopJobOnFailureOptions" in data:
+    if data.get("StopJobOnFailureOptions") is not None:
         import capo_glue.types.dq_stop_job_on_failure_options
 
         out["stop_job_on_failure_options"] = (

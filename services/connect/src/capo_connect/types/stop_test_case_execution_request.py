@@ -34,6 +34,6 @@ def serialize_json(value: StopTestCaseExecutionRequest) -> dict:
 
 def deserialize_json(data: dict) -> StopTestCaseExecutionRequest:
     out: StopTestCaseExecutionRequest = {}  # type: ignore[typeddict-item]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

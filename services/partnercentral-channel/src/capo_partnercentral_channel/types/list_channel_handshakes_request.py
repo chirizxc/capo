@@ -106,7 +106,7 @@ def serialize_aws_json_1_0(value: ListChannelHandshakesRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListChannelHandshakesRequest:
     out: ListChannelHandshakesRequest = {}  # type: ignore[typeddict-item]
-    if "handshakeType" in data:
+    if data.get("handshakeType") is not None:
         import capo_partnercentral_channel.types.handshake_type
 
         out["handshake_type"] = (
@@ -118,11 +118,11 @@ def deserialize_aws_json_1_0(data: dict) -> ListChannelHandshakesRequest:
         raise DeserializationError(
             "ListChannelHandshakesRequest.handshake_type required"
         )
-    if "catalog" in data:
+    if data.get("catalog") is not None:
         out["catalog"] = data["catalog"]
     else:
         raise DeserializationError("ListChannelHandshakesRequest.catalog required")
-    if "participantType" in data:
+    if data.get("participantType") is not None:
         import capo_partnercentral_channel.types.participant_type
 
         out["participant_type"] = (
@@ -134,11 +134,11 @@ def deserialize_aws_json_1_0(data: dict) -> ListChannelHandshakesRequest:
         raise DeserializationError(
             "ListChannelHandshakesRequest.participant_type required"
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     else:
         out["max_results"] = 20
-    if "statuses" in data:
+    if data.get("statuses") is not None:
         import capo_partnercentral_channel.types.handshake_status_list
 
         out["statuses"] = (
@@ -146,7 +146,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListChannelHandshakesRequest:
                 data["statuses"]
             )
         )
-    if "associatedResourceIdentifiers" in data:
+    if data.get("associatedResourceIdentifiers") is not None:
         import capo_partnercentral_channel.types.associated_resource_identifier_list
 
         out["associated_resource_identifiers"] = (
@@ -154,7 +154,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListChannelHandshakesRequest:
                 data["associatedResourceIdentifiers"]
             )
         )
-    if "handshakeTypeFilters" in data:
+    if data.get("handshakeTypeFilters") is not None:
         import capo_partnercentral_channel.types.list_channel_handshakes_type_filters
 
         out["handshake_type_filters"] = (
@@ -162,7 +162,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListChannelHandshakesRequest:
                 data["handshakeTypeFilters"]
             )
         )
-    if "handshakeTypeSort" in data:
+    if data.get("handshakeTypeSort") is not None:
         import capo_partnercentral_channel.types.list_channel_handshakes_type_sort
 
         out["handshake_type_sort"] = (
@@ -170,6 +170,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListChannelHandshakesRequest:
                 data["handshakeTypeSort"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

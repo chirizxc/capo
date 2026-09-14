@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> VariableEntryList:
 
     out: VariableEntryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_frauddetector.types.variable_entry.deserialize_aws_json_1_1(item)
         )

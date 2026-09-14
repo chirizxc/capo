@@ -70,7 +70,7 @@ def serialize_aws_json_1_0(value: Ec2AutoScalingGroupConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Ec2AutoScalingGroupConfiguration:
     out: Ec2AutoScalingGroupConfiguration = {}  # type: ignore[typeddict-item]
-    if "instance" in data:
+    if data.get("instance") is not None:
         import capo_cost_optimization_hub.types.instance_configuration
 
         out["instance"] = (
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_0(data: dict) -> Ec2AutoScalingGroupConfiguration:
                 data["instance"]
             )
         )
-    if "mixedInstances" in data:
+    if data.get("mixedInstances") is not None:
         import capo_cost_optimization_hub.types.mixed_instance_configuration_list
 
         out["mixed_instances"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_0(data: dict) -> Ec2AutoScalingGroupConfiguration:
                 data["mixedInstances"]
             )
         )
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_cost_optimization_hub.types.ec2_auto_scaling_group_type
 
         out["type"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_0(data: dict) -> Ec2AutoScalingGroupConfiguration:
                 data["type"]
             )
         )
-    if "allocationStrategy" in data:
+    if data.get("allocationStrategy") is not None:
         import capo_cost_optimization_hub.types.allocation_strategy
 
         out["allocation_strategy"] = (

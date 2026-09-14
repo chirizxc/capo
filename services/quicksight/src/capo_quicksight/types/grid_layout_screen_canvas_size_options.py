@@ -35,7 +35,7 @@ def serialize_json(value: GridLayoutScreenCanvasSizeOptions) -> dict:
 
 def deserialize_json(data: dict) -> GridLayoutScreenCanvasSizeOptions:
     out: GridLayoutScreenCanvasSizeOptions = {}  # type: ignore[typeddict-item]
-    if "ResizeOption" in data:
+    if data.get("ResizeOption") is not None:
         import capo_quicksight.types.resize_option
 
         out["resize_option"] = capo_quicksight.types.resize_option.deserialize_json(
@@ -45,6 +45,6 @@ def deserialize_json(data: dict) -> GridLayoutScreenCanvasSizeOptions:
         raise DeserializationError(
             "GridLayoutScreenCanvasSizeOptions.resize_option required"
         )
-    if "OptimizedViewPortWidth" in data:
+    if data.get("OptimizedViewPortWidth") is not None:
         out["optimized_view_port_width"] = data["OptimizedViewPortWidth"]
     return out

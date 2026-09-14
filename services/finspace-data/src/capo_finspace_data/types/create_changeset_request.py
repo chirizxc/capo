@@ -52,9 +52,9 @@ def serialize_json(value: CreateChangesetRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateChangesetRequest:
     out: CreateChangesetRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "changeType" in data:
+    if data.get("changeType") is not None:
         import capo_finspace_data.types.change_type
 
         out["change_type"] = capo_finspace_data.types.change_type.deserialize_json(
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> CreateChangesetRequest:
         )
     else:
         raise DeserializationError("CreateChangesetRequest.change_type required")
-    if "sourceParams" in data:
+    if data.get("sourceParams") is not None:
         import capo_finspace_data.types.source_params
 
         out["source_params"] = capo_finspace_data.types.source_params.deserialize_json(
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> CreateChangesetRequest:
         )
     else:
         raise DeserializationError("CreateChangesetRequest.source_params required")
-    if "formatParams" in data:
+    if data.get("formatParams") is not None:
         import capo_finspace_data.types.format_params
 
         out["format_params"] = capo_finspace_data.types.format_params.deserialize_json(

@@ -33,17 +33,17 @@ def serialize_aws_json_1_1(value: TableCell) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TableCell:
     out: TableCell = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
-    if "TopAnswer" in data:
+    if data.get("TopAnswer") is not None:
         out["top_answer"] = data["TopAnswer"]
     else:
         out["top_answer"] = False
-    if "Highlighted" in data:
+    if data.get("Highlighted") is not None:
         out["highlighted"] = data["Highlighted"]
     else:
         out["highlighted"] = False
-    if "Header" in data:
+    if data.get("Header") is not None:
         out["header"] = data["Header"]
     else:
         out["header"] = False

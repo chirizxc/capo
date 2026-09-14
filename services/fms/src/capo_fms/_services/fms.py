@@ -260,14 +260,16 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.associate_admin_account_request.AssociateAdminAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["admin_account"] = admin_account
+        input_: capo_fms.types.associate_admin_account_request.AssociateAdminAccountRequest = {
+            "admin_account": admin_account
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_third_party_firewall(
@@ -304,14 +306,16 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.associate_third_party_firewall_request.AssociateThirdPartyFirewallRequest = {}  # type: ignore[typeddict-item]
-        input_["third_party_firewall"] = third_party_firewall
+        input_: capo_fms.types.associate_third_party_firewall_request.AssociateThirdPartyFirewallRequest = {
+            "third_party_firewall": third_party_firewall
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_associate_resource(
@@ -351,15 +355,17 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.batch_associate_resource_request.BatchAssociateResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_set_identifier"] = resource_set_identifier
-        input_["items"] = items
+        input_: capo_fms.types.batch_associate_resource_request.BatchAssociateResourceRequest = {
+            "resource_set_identifier": resource_set_identifier,
+            "items": items,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_disassociate_resource(
@@ -398,15 +404,17 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.batch_disassociate_resource_request.BatchDisassociateResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_set_identifier"] = resource_set_identifier
-        input_["items"] = items
+        input_: capo_fms.types.batch_disassociate_resource_request.BatchDisassociateResourceRequest = {
+            "resource_set_identifier": resource_set_identifier,
+            "items": items,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_apps_list(
@@ -440,14 +448,16 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.delete_apps_list_request.DeleteAppsListRequest = {}  # type: ignore[typeddict-item]
-        input_["list_id"] = list_id
+        input_: capo_fms.types.delete_apps_list_request.DeleteAppsListRequest = {
+            "list_id": list_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_notification_channel(
@@ -475,13 +485,14 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.delete_notification_channel_request.DeleteNotificationChannelRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fms.types.delete_notification_channel_request.DeleteNotificationChannelRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_policy(
@@ -519,8 +530,9 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.delete_policy_request.DeletePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_id"] = policy_id
+        input_: capo_fms.types.delete_policy_request.DeletePolicyRequest = {
+            "policy_id": policy_id
+        }
         if delete_all_policy_resources is not None:
             input_["delete_all_policy_resources"] = delete_all_policy_resources
 
@@ -529,6 +541,7 @@ class FMSClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_protocols_list(
@@ -562,14 +575,16 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.delete_protocols_list_request.DeleteProtocolsListRequest = {}  # type: ignore[typeddict-item]
-        input_["list_id"] = list_id
+        input_: capo_fms.types.delete_protocols_list_request.DeleteProtocolsListRequest = {
+            "list_id": list_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_resource_set(
@@ -604,14 +619,16 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.delete_resource_set_request.DeleteResourceSetRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_fms.types.delete_resource_set_request.DeleteResourceSetRequest = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_admin_account(
@@ -639,13 +656,14 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.disassociate_admin_account_request.DisassociateAdminAccountRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fms.types.disassociate_admin_account_request.DisassociateAdminAccountRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_third_party_firewall(
@@ -682,14 +700,16 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.disassociate_third_party_firewall_request.DisassociateThirdPartyFirewallRequest = {}  # type: ignore[typeddict-item]
-        input_["third_party_firewall"] = third_party_firewall
+        input_: capo_fms.types.disassociate_third_party_firewall_request.DisassociateThirdPartyFirewallRequest = {
+            "third_party_firewall": third_party_firewall
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_admin_account(
@@ -719,13 +739,14 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.get_admin_account_request.GetAdminAccountRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fms.types.get_admin_account_request.GetAdminAccountRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_admin_scope(
@@ -763,14 +784,16 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.get_admin_scope_request.GetAdminScopeRequest = {}  # type: ignore[typeddict-item]
-        input_["admin_account"] = admin_account
+        input_: capo_fms.types.get_admin_scope_request.GetAdminScopeRequest = {
+            "admin_account": admin_account
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_apps_list(
@@ -808,8 +831,9 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.get_apps_list_request.GetAppsListRequest = {}  # type: ignore[typeddict-item]
-        input_["list_id"] = list_id
+        input_: capo_fms.types.get_apps_list_request.GetAppsListRequest = {
+            "list_id": list_id
+        }
         if default_list is not None:
             input_["default_list"] = default_list
 
@@ -818,6 +842,7 @@ class FMSClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_compliance_detail(
@@ -856,15 +881,17 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.get_compliance_detail_request.GetComplianceDetailRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_id"] = policy_id
-        input_["member_account"] = member_account
+        input_: capo_fms.types.get_compliance_detail_request.GetComplianceDetailRequest = {
+            "policy_id": policy_id,
+            "member_account": member_account,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_notification_channel(
@@ -894,13 +921,14 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.get_notification_channel_request.GetNotificationChannelRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fms.types.get_notification_channel_request.GetNotificationChannelRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_policy(
@@ -935,14 +963,16 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.get_policy_request.GetPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_id"] = policy_id
+        input_: capo_fms.types.get_policy_request.GetPolicyRequest = {
+            "policy_id": policy_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_protection_status(
@@ -992,8 +1022,9 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.get_protection_status_request.GetProtectionStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_id"] = policy_id
+        input_: capo_fms.types.get_protection_status_request.GetProtectionStatusRequest = {
+            "policy_id": policy_id
+        }
         if member_account_id is not None:
             input_["member_account_id"] = member_account_id
         if start_time is not None:
@@ -1010,6 +1041,7 @@ class FMSClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_protocols_list(
@@ -1047,8 +1079,9 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.get_protocols_list_request.GetProtocolsListRequest = {}  # type: ignore[typeddict-item]
-        input_["list_id"] = list_id
+        input_: capo_fms.types.get_protocols_list_request.GetProtocolsListRequest = {
+            "list_id": list_id
+        }
         if default_list is not None:
             input_["default_list"] = default_list
 
@@ -1057,6 +1090,7 @@ class FMSClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_resource_set(
@@ -1093,14 +1127,16 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.get_resource_set_request.GetResourceSetRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_fms.types.get_resource_set_request.GetResourceSetRequest = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_third_party_firewall_association_status(
@@ -1137,14 +1173,16 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.get_third_party_firewall_association_status_request.GetThirdPartyFirewallAssociationStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["third_party_firewall"] = third_party_firewall
+        input_: capo_fms.types.get_third_party_firewall_association_status_request.GetThirdPartyFirewallAssociationStatusRequest = {
+            "third_party_firewall": third_party_firewall
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_violation_details(
@@ -1186,17 +1224,19 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.get_violation_details_request.GetViolationDetailsRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_id"] = policy_id
-        input_["member_account"] = member_account
-        input_["resource_id"] = resource_id
-        input_["resource_type"] = resource_type
+        input_: capo_fms.types.get_violation_details_request.GetViolationDetailsRequest = {
+            "policy_id": policy_id,
+            "member_account": member_account,
+            "resource_id": resource_id,
+            "resource_type": resource_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_admin_accounts_for_organization(
@@ -1237,7 +1277,7 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.list_admin_accounts_for_organization_request.ListAdminAccountsForOrganizationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fms.types.list_admin_accounts_for_organization_request.ListAdminAccountsForOrganizationRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1248,6 +1288,7 @@ class FMSClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_admin_accounts_for_organization(
@@ -1310,7 +1351,7 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.list_admins_managing_account_request.ListAdminsManagingAccountRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fms.types.list_admins_managing_account_request.ListAdminsManagingAccountRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1321,6 +1362,7 @@ class FMSClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_admins_managing_account(
@@ -1384,18 +1426,20 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.list_apps_lists_request.ListAppsListsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fms.types.list_apps_lists_request.ListAppsListsRequest = {
+            "max_results": max_results
+        }
         if default_lists is not None:
             input_["default_lists"] = default_lists
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["max_results"] = max_results
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_apps_lists(
@@ -1459,8 +1503,9 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.list_compliance_status_request.ListComplianceStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_id"] = policy_id
+        input_: capo_fms.types.list_compliance_status_request.ListComplianceStatusRequest = {
+            "policy_id": policy_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1471,6 +1516,7 @@ class FMSClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_compliance_status(
@@ -1539,9 +1585,10 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.list_discovered_resources_request.ListDiscoveredResourcesRequest = {}  # type: ignore[typeddict-item]
-        input_["member_account_ids"] = member_account_ids
-        input_["resource_type"] = resource_type
+        input_: capo_fms.types.list_discovered_resources_request.ListDiscoveredResourcesRequest = {
+            "member_account_ids": member_account_ids,
+            "resource_type": resource_type,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1552,6 +1599,7 @@ class FMSClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_member_accounts(
@@ -1590,7 +1638,7 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.list_member_accounts_request.ListMemberAccountsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fms.types.list_member_accounts_request.ListMemberAccountsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1601,6 +1649,7 @@ class FMSClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_member_accounts(
@@ -1664,7 +1713,7 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.list_policies_request.ListPoliciesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fms.types.list_policies_request.ListPoliciesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1675,6 +1724,7 @@ class FMSClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_policies(
@@ -1737,18 +1787,20 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.list_protocols_lists_request.ListProtocolsListsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fms.types.list_protocols_lists_request.ListProtocolsListsRequest = {
+            "max_results": max_results
+        }
         if default_lists is not None:
             input_["default_lists"] = default_lists
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["max_results"] = max_results
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_protocols_lists(
@@ -1816,8 +1868,9 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.list_resource_set_resources_request.ListResourceSetResourcesRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_fms.types.list_resource_set_resources_request.ListResourceSetResourcesRequest = {
+            "identifier": identifier
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1828,6 +1881,7 @@ class FMSClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_resource_sets(
@@ -1867,7 +1921,7 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.list_resource_sets_request.ListResourceSetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fms.types.list_resource_sets_request.ListResourceSetsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1878,6 +1932,7 @@ class FMSClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_tags_for_resource(
@@ -1914,14 +1969,16 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_fms.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_third_party_firewall_firewall_policies(
@@ -1962,17 +2019,19 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.list_third_party_firewall_firewall_policies_request.ListThirdPartyFirewallFirewallPoliciesRequest = {}  # type: ignore[typeddict-item]
-        input_["third_party_firewall"] = third_party_firewall
+        input_: capo_fms.types.list_third_party_firewall_firewall_policies_request.ListThirdPartyFirewallFirewallPoliciesRequest = {
+            "third_party_firewall": third_party_firewall,
+            "max_results": max_results,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["max_results"] = max_results
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_third_party_firewall_firewall_policies(
@@ -2034,8 +2093,9 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.put_admin_account_request.PutAdminAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["admin_account"] = admin_account
+        input_: capo_fms.types.put_admin_account_request.PutAdminAccountRequest = {
+            "admin_account": admin_account
+        }
         if admin_scope is not None:
             input_["admin_scope"] = admin_scope
 
@@ -2044,6 +2104,7 @@ class FMSClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_apps_list(
@@ -2083,8 +2144,9 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.put_apps_list_request.PutAppsListRequest = {}  # type: ignore[typeddict-item]
-        input_["apps_list"] = apps_list
+        input_: capo_fms.types.put_apps_list_request.PutAppsListRequest = {
+            "apps_list": apps_list
+        }
         if tag_list is not None:
             input_["tag_list"] = tag_list
 
@@ -2093,6 +2155,7 @@ class FMSClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_notification_channel(
@@ -2128,15 +2191,17 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.put_notification_channel_request.PutNotificationChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["sns_topic_arn"] = sns_topic_arn
-        input_["sns_role_name"] = sns_role_name
+        input_: capo_fms.types.put_notification_channel_request.PutNotificationChannelRequest = {
+            "sns_topic_arn": sns_topic_arn,
+            "sns_role_name": sns_role_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_policy(
@@ -2175,8 +2240,7 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.put_policy_request.PutPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["policy"] = policy
+        input_: capo_fms.types.put_policy_request.PutPolicyRequest = {"policy": policy}
         if tag_list is not None:
             input_["tag_list"] = tag_list
 
@@ -2185,6 +2249,7 @@ class FMSClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_protocols_list(
@@ -2224,8 +2289,9 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.put_protocols_list_request.PutProtocolsListRequest = {}  # type: ignore[typeddict-item]
-        input_["protocols_list"] = protocols_list
+        input_: capo_fms.types.put_protocols_list_request.PutProtocolsListRequest = {
+            "protocols_list": protocols_list
+        }
         if tag_list is not None:
             input_["tag_list"] = tag_list
 
@@ -2234,6 +2300,7 @@ class FMSClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_resource_set(
@@ -2272,8 +2339,9 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.put_resource_set_request.PutResourceSetRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_set"] = resource_set
+        input_: capo_fms.types.put_resource_set_request.PutResourceSetRequest = {
+            "resource_set": resource_set
+        }
         if tag_list is not None:
             input_["tag_list"] = tag_list
 
@@ -2282,6 +2350,7 @@ class FMSClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -2321,15 +2390,17 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_list"] = tag_list
+        input_: capo_fms.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_list": tag_list,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -2368,15 +2439,17 @@ class FMSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fms.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_fms.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

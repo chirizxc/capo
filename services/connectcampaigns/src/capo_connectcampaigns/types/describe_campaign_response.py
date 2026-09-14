@@ -26,7 +26,7 @@ def serialize_json(value: DescribeCampaignResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeCampaignResponse:
     out: DescribeCampaignResponse = {}  # type: ignore[typeddict-item]
-    if "campaign" in data:
+    if data.get("campaign") is not None:
         import capo_connectcampaigns.types.campaign
 
         out["campaign"] = capo_connectcampaigns.types.campaign.deserialize_json(

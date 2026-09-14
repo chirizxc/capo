@@ -140,35 +140,35 @@ def serialize_aws_json_1_1(value: Catalog) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Catalog:
     out: Catalog = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("Catalog.name required")
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_glue.types.parameters_map
 
         out["parameters"] = capo_glue.types.parameters_map.deserialize_aws_json_1_1(
             data["Parameters"]
         )
-    if "CreateTime" in data:
+    if data.get("CreateTime") is not None:
         import capo_glue.types.timestamp
 
         out["create_time"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["CreateTime"]
         )
-    if "UpdateTime" in data:
+    if data.get("UpdateTime") is not None:
         import capo_glue.types.timestamp
 
         out["update_time"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["UpdateTime"]
         )
-    if "TargetRedshiftCatalog" in data:
+    if data.get("TargetRedshiftCatalog") is not None:
         import capo_glue.types.target_redshift_catalog
 
         out["target_redshift_catalog"] = (
@@ -176,7 +176,7 @@ def deserialize_aws_json_1_1(data: dict) -> Catalog:
                 data["TargetRedshiftCatalog"]
             )
         )
-    if "FederatedCatalog" in data:
+    if data.get("FederatedCatalog") is not None:
         import capo_glue.types.federated_catalog
 
         out["federated_catalog"] = (
@@ -184,7 +184,7 @@ def deserialize_aws_json_1_1(data: dict) -> Catalog:
                 data["FederatedCatalog"]
             )
         )
-    if "CatalogProperties" in data:
+    if data.get("CatalogProperties") is not None:
         import capo_glue.types.catalog_properties_output
 
         out["catalog_properties"] = (
@@ -192,7 +192,7 @@ def deserialize_aws_json_1_1(data: dict) -> Catalog:
                 data["CatalogProperties"]
             )
         )
-    if "CreateTableDefaultPermissions" in data:
+    if data.get("CreateTableDefaultPermissions") is not None:
         import capo_glue.types.principal_permissions_list
 
         out["create_table_default_permissions"] = (
@@ -200,7 +200,7 @@ def deserialize_aws_json_1_1(data: dict) -> Catalog:
                 data["CreateTableDefaultPermissions"]
             )
         )
-    if "CreateDatabaseDefaultPermissions" in data:
+    if data.get("CreateDatabaseDefaultPermissions") is not None:
         import capo_glue.types.principal_permissions_list
 
         out["create_database_default_permissions"] = (
@@ -208,7 +208,7 @@ def deserialize_aws_json_1_1(data: dict) -> Catalog:
                 data["CreateDatabaseDefaultPermissions"]
             )
         )
-    if "AllowFullTableExternalDataAccess" in data:
+    if data.get("AllowFullTableExternalDataAccess") is not None:
         import capo_glue.types.allow_full_table_external_data_access_enum
 
         out["allow_full_table_external_data_access"] = (

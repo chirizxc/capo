@@ -32,9 +32,9 @@ def serialize_json(value: Volume) -> dict:
 
 def deserialize_json(data: dict) -> Volume:
     out: Volume = {}  # type: ignore[typeddict-item]
-    if "volumeName" in data:
+    if data.get("volumeName") is not None:
         out["volume_name"] = data["volumeName"]
-    if "volumeType" in data:
+    if data.get("volumeType") is not None:
         import capo_finspace.types.volume_type
 
         out["volume_type"] = capo_finspace.types.volume_type.deserialize_json(

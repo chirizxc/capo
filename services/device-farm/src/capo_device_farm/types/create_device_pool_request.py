@@ -44,17 +44,17 @@ def serialize_aws_json_1_1(value: CreateDevicePoolRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDevicePoolRequest:
     out: CreateDevicePoolRequest = {}  # type: ignore[typeddict-item]
-    if "projectArn" in data:
+    if data.get("projectArn") is not None:
         out["project_arn"] = data["projectArn"]
     else:
         raise DeserializationError("CreateDevicePoolRequest.project_arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateDevicePoolRequest.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "rules" in data:
+    if data.get("rules") is not None:
         import capo_device_farm.types.rules
 
         out["rules"] = capo_device_farm.types.rules.deserialize_aws_json_1_1(
@@ -62,6 +62,6 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDevicePoolRequest:
         )
     else:
         raise DeserializationError("CreateDevicePoolRequest.rules required")
-    if "maxDevices" in data:
+    if data.get("maxDevices") is not None:
         out["max_devices"] = data["maxDevices"]
     return out

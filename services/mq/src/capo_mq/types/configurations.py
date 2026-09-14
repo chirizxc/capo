@@ -42,19 +42,19 @@ def serialize_json(value: Configurations) -> dict:
 
 def deserialize_json(data: dict) -> Configurations:
     out: Configurations = {}  # type: ignore[typeddict-item]
-    if "current" in data:
+    if data.get("current") is not None:
         import capo_mq.types.configuration_id
 
         out["current"] = capo_mq.types.configuration_id.deserialize_json(
             data["current"]
         )
-    if "history" in data:
+    if data.get("history") is not None:
         import capo_mq.types.__list_of_configuration_id
 
         out["history"] = capo_mq.types.__list_of_configuration_id.deserialize_json(
             data["history"]
         )
-    if "pending" in data:
+    if data.get("pending") is not None:
         import capo_mq.types.configuration_id
 
         out["pending"] = capo_mq.types.configuration_id.deserialize_json(

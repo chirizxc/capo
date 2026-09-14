@@ -50,7 +50,7 @@ def serialize_json(value: InputDecryptionSettings) -> dict:
 
 def deserialize_json(data: dict) -> InputDecryptionSettings:
     out: InputDecryptionSettings = {}  # type: ignore[typeddict-item]
-    if "decryptionMode" in data:
+    if data.get("decryptionMode") is not None:
         import capo_mediaconvert.types.decryption_mode
 
         out["decryption_mode"] = (
@@ -58,10 +58,10 @@ def deserialize_json(data: dict) -> InputDecryptionSettings:
                 data["decryptionMode"]
             )
         )
-    if "encryptedDecryptionKey" in data:
+    if data.get("encryptedDecryptionKey") is not None:
         out["encrypted_decryption_key"] = data["encryptedDecryptionKey"]
-    if "initializationVector" in data:
+    if data.get("initializationVector") is not None:
         out["initialization_vector"] = data["initializationVector"]
-    if "kmsKeyRegion" in data:
+    if data.get("kmsKeyRegion") is not None:
         out["kms_key_region"] = data["kmsKeyRegion"]
     return out

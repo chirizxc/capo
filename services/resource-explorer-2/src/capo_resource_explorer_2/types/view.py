@@ -41,10 +41,10 @@ def serialize_json(value: View) -> dict:
     if "owner" in value:
         out["Owner"] = value["owner"]
     if "last_updated_at" in value:
-        import capo_resource_explorer_2.types._prelude.timestamp
+        import capo_resource_explorer_2._protocol.serialize
 
         out["LastUpdatedAt"] = (
-            capo_resource_explorer_2.types._prelude.timestamp.serialize_json(
+            capo_resource_explorer_2._protocol.serialize.fmt_date_time(
                 value["last_updated_at"]
             )
         )
@@ -69,23 +69,21 @@ def serialize_json(value: View) -> dict:
 
 def deserialize_json(data: dict) -> View:
     out: View = {}  # type: ignore[typeddict-item]
-    if "ViewArn" in data:
+    if data.get("ViewArn") is not None:
         out["view_arn"] = data["ViewArn"]
-    if "ViewName" in data:
+    if data.get("ViewName") is not None:
         out["view_name"] = data["ViewName"]
-    if "Owner" in data:
+    if data.get("Owner") is not None:
         out["owner"] = data["Owner"]
-    if "LastUpdatedAt" in data:
-        import capo_resource_explorer_2.types._prelude.timestamp
+    if data.get("LastUpdatedAt") is not None:
+        import datetime
 
-        out["last_updated_at"] = (
-            capo_resource_explorer_2.types._prelude.timestamp.deserialize_json(
-                data["LastUpdatedAt"]
-            )
+        out["last_updated_at"] = datetime.datetime.fromisoformat(
+            data["LastUpdatedAt"].replace("Z", "+00:00")
         )
-    if "Scope" in data:
+    if data.get("Scope") is not None:
         out["scope"] = data["Scope"]
-    if "IncludedProperties" in data:
+    if data.get("IncludedProperties") is not None:
         import capo_resource_explorer_2.types.included_property_list
 
         out["included_properties"] = (
@@ -93,7 +91,7 @@ def deserialize_json(data: dict) -> View:
                 data["IncludedProperties"]
             )
         )
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_resource_explorer_2.types.search_filter
 
         out["filters"] = capo_resource_explorer_2.types.search_filter.deserialize_json(

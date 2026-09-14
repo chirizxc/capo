@@ -25,6 +25,6 @@ def serialize_json(value: TeletextSourceSettings) -> dict:
 
 def deserialize_json(data: dict) -> TeletextSourceSettings:
     out: TeletextSourceSettings = {}  # type: ignore[typeddict-item]
-    if "pageNumber" in data:
+    if data.get("pageNumber") is not None:
         out["page_number"] = data["pageNumber"]
     return out

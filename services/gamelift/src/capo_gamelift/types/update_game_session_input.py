@@ -74,13 +74,13 @@ def serialize_aws_json_1_1(value: UpdateGameSessionInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateGameSessionInput:
     out: UpdateGameSessionInput = {}  # type: ignore[typeddict-item]
-    if "GameSessionId" in data:
+    if data.get("GameSessionId") is not None:
         out["game_session_id"] = data["GameSessionId"]
-    if "MaximumPlayerSessionCount" in data:
+    if data.get("MaximumPlayerSessionCount") is not None:
         out["maximum_player_session_count"] = data["MaximumPlayerSessionCount"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "PlayerSessionCreationPolicy" in data:
+    if data.get("PlayerSessionCreationPolicy") is not None:
         import capo_gamelift.types.player_session_creation_policy
 
         out["player_session_creation_policy"] = (
@@ -88,7 +88,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateGameSessionInput:
                 data["PlayerSessionCreationPolicy"]
             )
         )
-    if "ProtectionPolicy" in data:
+    if data.get("ProtectionPolicy") is not None:
         import capo_gamelift.types.protection_policy
 
         out["protection_policy"] = (
@@ -96,7 +96,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateGameSessionInput:
                 data["ProtectionPolicy"]
             )
         )
-    if "GameProperties" in data:
+    if data.get("GameProperties") is not None:
         import capo_gamelift.types.game_property_list
 
         out["game_properties"] = (

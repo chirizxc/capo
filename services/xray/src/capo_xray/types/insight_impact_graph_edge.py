@@ -23,6 +23,6 @@ def serialize_json(value: InsightImpactGraphEdge) -> dict:
 
 def deserialize_json(data: dict) -> InsightImpactGraphEdge:
     out: InsightImpactGraphEdge = {}  # type: ignore[typeddict-item]
-    if "ReferenceId" in data:
+    if data.get("ReferenceId") is not None:
         out["reference_id"] = data["ReferenceId"]
     return out

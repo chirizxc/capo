@@ -43,16 +43,16 @@ def serialize_json(value: BasicDeviceObject) -> dict:
 
 def deserialize_json(data: dict) -> BasicDeviceObject:
     out: BasicDeviceObject = {}  # type: ignore[typeddict-item]
-    if "appId" in data:
+    if data.get("appId") is not None:
         out["app_id"] = data["appId"]
-    if "created" in data:
+    if data.get("created") is not None:
         out["created"] = data["created"]
-    if "lastLogin" in data:
+    if data.get("lastLogin") is not None:
         out["last_login"] = data["lastLogin"]
-    if "statusText" in data:
+    if data.get("statusText") is not None:
         out["status_text"] = data["statusText"]
-    if "suspend" in data:
+    if data.get("suspend") is not None:
         out["suspend"] = data["suspend"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     return out

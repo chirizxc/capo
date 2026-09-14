@@ -28,7 +28,7 @@ def serialize_json(value: DescribePackageResult) -> dict:
 
 def deserialize_json(data: dict) -> DescribePackageResult:
     out: DescribePackageResult = {}  # type: ignore[typeddict-item]
-    if "package" in data:
+    if data.get("package") is not None:
         import capo_codeartifact.types.package_description
 
         out["package"] = capo_codeartifact.types.package_description.deserialize_json(

@@ -24,7 +24,7 @@ def serialize_json(value: DeleteNotificationRuleRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteNotificationRuleRequest:
     out: DeleteNotificationRuleRequest = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("DeleteNotificationRuleRequest.arn required")

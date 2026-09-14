@@ -34,7 +34,7 @@ def serialize_json(value: DataIntegrationEventDatasetLoadExecutionDetails) -> di
 
 def deserialize_json(data: dict) -> DataIntegrationEventDatasetLoadExecutionDetails:
     out: DataIntegrationEventDatasetLoadExecutionDetails = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_supplychain.types.data_integration_event_dataset_load_status
 
         out["status"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> DataIntegrationEventDatasetLoadExecutionDeta
         raise DeserializationError(
             "DataIntegrationEventDatasetLoadExecutionDetails.status required"
         )
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out

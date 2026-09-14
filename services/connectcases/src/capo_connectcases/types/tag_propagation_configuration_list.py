@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> TagPropagationConfigurationList:
 
     out: TagPropagationConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connectcases.types.tag_propagation_configuration.deserialize_json(item)
         )

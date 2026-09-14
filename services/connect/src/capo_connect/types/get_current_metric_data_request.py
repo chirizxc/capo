@@ -69,19 +69,19 @@ def serialize_json(value: GetCurrentMetricDataRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetCurrentMetricDataRequest:
     out: GetCurrentMetricDataRequest = {}  # type: ignore[typeddict-item]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_connect.types.filters
 
         out["filters"] = capo_connect.types.filters.deserialize_json(data["Filters"])
     else:
         raise DeserializationError("GetCurrentMetricDataRequest.filters required")
-    if "Groupings" in data:
+    if data.get("Groupings") is not None:
         import capo_connect.types.groupings
 
         out["groupings"] = capo_connect.types.groupings.deserialize_json(
             data["Groupings"]
         )
-    if "CurrentMetrics" in data:
+    if data.get("CurrentMetrics") is not None:
         import capo_connect.types.current_metrics
 
         out["current_metrics"] = capo_connect.types.current_metrics.deserialize_json(
@@ -91,11 +91,11 @@ def deserialize_json(data: dict) -> GetCurrentMetricDataRequest:
         raise DeserializationError(
             "GetCurrentMetricDataRequest.current_metrics required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "SortCriteria" in data:
+    if data.get("SortCriteria") is not None:
         import capo_connect.types.current_metric_sort_criteria_max_one
 
         out["sort_criteria"] = (

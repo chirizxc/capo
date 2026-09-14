@@ -44,7 +44,7 @@ def serialize_json(value: GetAssociatedPackageGroupResult) -> dict:
 
 def deserialize_json(data: dict) -> GetAssociatedPackageGroupResult:
     out: GetAssociatedPackageGroupResult = {}  # type: ignore[typeddict-item]
-    if "packageGroup" in data:
+    if data.get("packageGroup") is not None:
         import capo_codeartifact.types.package_group_description
 
         out["package_group"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> GetAssociatedPackageGroupResult:
                 data["packageGroup"]
             )
         )
-    if "associationType" in data:
+    if data.get("associationType") is not None:
         import capo_codeartifact.types.package_group_association_type
 
         out["association_type"] = (

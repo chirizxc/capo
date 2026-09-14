@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetCelebrityInfoRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetCelebrityInfoRequest:
     out: GetCelebrityInfoRequest = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("GetCelebrityInfoRequest.id required")

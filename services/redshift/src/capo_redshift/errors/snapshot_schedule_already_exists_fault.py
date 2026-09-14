@@ -39,15 +39,20 @@ class SnapshotScheduleAlreadyExistsFault(ServiceError):
 
     code: str | None = "SnapshotScheduleAlreadyExistsFault"
 
-    def __init__(self, data: SnapshotScheduleAlreadyExistsFault_):
+    def __init__(
+        self, data: SnapshotScheduleAlreadyExistsFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="SnapshotScheduleAlreadyExistsFault",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "SnapshotScheduleAlreadyExistsFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "SnapshotScheduleAlreadyExistsFault":
+        return cls(deserialize_query(el), message)

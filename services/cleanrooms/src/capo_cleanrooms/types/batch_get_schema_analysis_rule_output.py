@@ -42,7 +42,7 @@ def serialize_json(value: BatchGetSchemaAnalysisRuleOutput) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetSchemaAnalysisRuleOutput:
     out: BatchGetSchemaAnalysisRuleOutput = {}  # type: ignore[typeddict-item]
-    if "analysisRules" in data:
+    if data.get("analysisRules") is not None:
         import capo_cleanrooms.types.schema_analysis_rule_list
 
         out["analysis_rules"] = (
@@ -54,7 +54,7 @@ def deserialize_json(data: dict) -> BatchGetSchemaAnalysisRuleOutput:
         raise DeserializationError(
             "BatchGetSchemaAnalysisRuleOutput.analysis_rules required"
         )
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_cleanrooms.types.batch_get_schema_analysis_rule_error_list
 
         out["errors"] = (

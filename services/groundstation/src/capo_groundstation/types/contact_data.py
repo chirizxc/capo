@@ -152,13 +152,13 @@ def serialize_json(value: ContactData) -> dict:
 
 def deserialize_json(data: dict) -> ContactData:
     out: ContactData = {}  # type: ignore[typeddict-item]
-    if "contactId" in data:
+    if data.get("contactId") is not None:
         out["contact_id"] = data["contactId"]
-    if "missionProfileArn" in data:
+    if data.get("missionProfileArn") is not None:
         out["mission_profile_arn"] = data["missionProfileArn"]
-    if "satelliteArn" in data:
+    if data.get("satelliteArn") is not None:
         out["satellite_arn"] = data["satelliteArn"]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_groundstation.types._prelude.timestamp
 
         out["start_time"] = (
@@ -166,13 +166,13 @@ def deserialize_json(data: dict) -> ContactData:
                 data["startTime"]
             )
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_groundstation.types._prelude.timestamp
 
         out["end_time"] = capo_groundstation.types._prelude.timestamp.deserialize_json(
             data["endTime"]
         )
-    if "prePassStartTime" in data:
+    if data.get("prePassStartTime") is not None:
         import capo_groundstation.types._prelude.timestamp
 
         out["pre_pass_start_time"] = (
@@ -180,7 +180,7 @@ def deserialize_json(data: dict) -> ContactData:
                 data["prePassStartTime"]
             )
         )
-    if "postPassEndTime" in data:
+    if data.get("postPassEndTime") is not None:
         import capo_groundstation.types._prelude.timestamp
 
         out["post_pass_end_time"] = (
@@ -188,9 +188,9 @@ def deserialize_json(data: dict) -> ContactData:
                 data["postPassEndTime"]
             )
         )
-    if "groundStation" in data:
+    if data.get("groundStation") is not None:
         out["ground_station"] = data["groundStation"]
-    if "contactStatus" in data:
+    if data.get("contactStatus") is not None:
         import capo_groundstation.types.contact_status
 
         out["contact_status"] = (
@@ -198,21 +198,21 @@ def deserialize_json(data: dict) -> ContactData:
                 data["contactStatus"]
             )
         )
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
-    if "maximumElevation" in data:
+    if data.get("maximumElevation") is not None:
         import capo_groundstation.types.elevation
 
         out["maximum_elevation"] = capo_groundstation.types.elevation.deserialize_json(
             data["maximumElevation"]
         )
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_groundstation.types.tags_map
 
         out["tags"] = capo_groundstation.types.tags_map.deserialize_json(data["tags"])
-    if "visibilityStartTime" in data:
+    if data.get("visibilityStartTime") is not None:
         import capo_groundstation.types._prelude.timestamp
 
         out["visibility_start_time"] = (
@@ -220,7 +220,7 @@ def deserialize_json(data: dict) -> ContactData:
                 data["visibilityStartTime"]
             )
         )
-    if "visibilityEndTime" in data:
+    if data.get("visibilityEndTime") is not None:
         import capo_groundstation.types._prelude.timestamp
 
         out["visibility_end_time"] = (
@@ -228,7 +228,7 @@ def deserialize_json(data: dict) -> ContactData:
                 data["visibilityEndTime"]
             )
         )
-    if "ephemeris" in data:
+    if data.get("ephemeris") is not None:
         import capo_groundstation.types.ephemeris_response_data
 
         out["ephemeris"] = (
@@ -236,7 +236,7 @@ def deserialize_json(data: dict) -> ContactData:
                 data["ephemeris"]
             )
         )
-    if "version" in data:
+    if data.get("version") is not None:
         import capo_groundstation.types.contact_version
 
         out["version"] = capo_groundstation.types.contact_version.deserialize_json(

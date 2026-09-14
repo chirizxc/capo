@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: CustomerSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CustomerSummary:
     out: CustomerSummary = {}  # type: ignore[typeddict-item]
-    if "Account" in data:
+    if data.get("Account") is not None:
         import capo_partnercentral_selling.types.account_summary
 
         out["account"] = (

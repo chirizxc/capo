@@ -85,13 +85,13 @@ def serialize_json(value: CreateConfigurationSetRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateConfigurationSetRequest:
     out: CreateConfigurationSetRequest = {}  # type: ignore[typeddict-item]
-    if "ConfigurationSetName" in data:
+    if data.get("ConfigurationSetName") is not None:
         out["configuration_set_name"] = data["ConfigurationSetName"]
     else:
         raise DeserializationError(
             "CreateConfigurationSetRequest.configuration_set_name required"
         )
-    if "TrackingOptions" in data:
+    if data.get("TrackingOptions") is not None:
         import capo_pinpoint_email.types.tracking_options
 
         out["tracking_options"] = (
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> CreateConfigurationSetRequest:
                 data["TrackingOptions"]
             )
         )
-    if "DeliveryOptions" in data:
+    if data.get("DeliveryOptions") is not None:
         import capo_pinpoint_email.types.delivery_options
 
         out["delivery_options"] = (
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> CreateConfigurationSetRequest:
                 data["DeliveryOptions"]
             )
         )
-    if "ReputationOptions" in data:
+    if data.get("ReputationOptions") is not None:
         import capo_pinpoint_email.types.reputation_options
 
         out["reputation_options"] = (
@@ -115,7 +115,7 @@ def deserialize_json(data: dict) -> CreateConfigurationSetRequest:
                 data["ReputationOptions"]
             )
         )
-    if "SendingOptions" in data:
+    if data.get("SendingOptions") is not None:
         import capo_pinpoint_email.types.sending_options
 
         out["sending_options"] = (
@@ -123,7 +123,7 @@ def deserialize_json(data: dict) -> CreateConfigurationSetRequest:
                 data["SendingOptions"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_pinpoint_email.types.tag_list
 
         out["tags"] = capo_pinpoint_email.types.tag_list.deserialize_json(data["Tags"])

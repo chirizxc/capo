@@ -33,7 +33,7 @@ def serialize_aws_json_1_0(value: ListAccountActivitiesResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListAccountActivitiesResponse:
     out: ListAccountActivitiesResponse = {}  # type: ignore[typeddict-item]
-    if "activities" in data:
+    if data.get("activities") is not None:
         import capo_freetier.types.activities
 
         out["activities"] = capo_freetier.types.activities.deserialize_aws_json_1_0(
@@ -41,6 +41,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListAccountActivitiesResponse:
         )
     else:
         raise DeserializationError("ListAccountActivitiesResponse.activities required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

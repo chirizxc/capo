@@ -113,23 +113,23 @@ def serialize_aws_json_1_1(value: ClarifyInferenceConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClarifyInferenceConfig:
     out: ClarifyInferenceConfig = {}  # type: ignore[typeddict-item]
-    if "FeaturesAttribute" in data:
+    if data.get("FeaturesAttribute") is not None:
         out["features_attribute"] = data["FeaturesAttribute"]
-    if "ContentTemplate" in data:
+    if data.get("ContentTemplate") is not None:
         out["content_template"] = data["ContentTemplate"]
-    if "MaxRecordCount" in data:
+    if data.get("MaxRecordCount") is not None:
         out["max_record_count"] = data["MaxRecordCount"]
-    if "MaxPayloadInMB" in data:
+    if data.get("MaxPayloadInMB") is not None:
         out["max_payload_in_mb"] = data["MaxPayloadInMB"]
-    if "ProbabilityIndex" in data:
+    if data.get("ProbabilityIndex") is not None:
         out["probability_index"] = data["ProbabilityIndex"]
-    if "LabelIndex" in data:
+    if data.get("LabelIndex") is not None:
         out["label_index"] = data["LabelIndex"]
-    if "ProbabilityAttribute" in data:
+    if data.get("ProbabilityAttribute") is not None:
         out["probability_attribute"] = data["ProbabilityAttribute"]
-    if "LabelAttribute" in data:
+    if data.get("LabelAttribute") is not None:
         out["label_attribute"] = data["LabelAttribute"]
-    if "LabelHeaders" in data:
+    if data.get("LabelHeaders") is not None:
         import capo_sagemaker.types.clarify_label_headers
 
         out["label_headers"] = (
@@ -137,7 +137,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClarifyInferenceConfig:
                 data["LabelHeaders"]
             )
         )
-    if "FeatureHeaders" in data:
+    if data.get("FeatureHeaders") is not None:
         import capo_sagemaker.types.clarify_feature_headers
 
         out["feature_headers"] = (
@@ -145,7 +145,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClarifyInferenceConfig:
                 data["FeatureHeaders"]
             )
         )
-    if "FeatureTypes" in data:
+    if data.get("FeatureTypes") is not None:
         import capo_sagemaker.types.clarify_feature_types
 
         out["feature_types"] = (

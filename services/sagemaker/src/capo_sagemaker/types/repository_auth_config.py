@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: RepositoryAuthConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RepositoryAuthConfig:
     out: RepositoryAuthConfig = {}  # type: ignore[typeddict-item]
-    if "RepositoryCredentialsProviderArn" in data:
+    if data.get("RepositoryCredentialsProviderArn") is not None:
         out["repository_credentials_provider_arn"] = data[
             "RepositoryCredentialsProviderArn"
         ]

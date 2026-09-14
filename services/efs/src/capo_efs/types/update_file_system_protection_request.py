@@ -34,7 +34,7 @@ def serialize_json(value: UpdateFileSystemProtectionRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateFileSystemProtectionRequest:
     out: UpdateFileSystemProtectionRequest = {}  # type: ignore[typeddict-item]
-    if "ReplicationOverwriteProtection" in data:
+    if data.get("ReplicationOverwriteProtection") is not None:
         import capo_efs.types.replication_overwrite_protection
 
         out["replication_overwrite_protection"] = (

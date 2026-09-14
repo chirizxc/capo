@@ -38,12 +38,12 @@ def serialize_json(value: ListRealtimeContactAnalysisSegmentsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListRealtimeContactAnalysisSegmentsRequest:
     out: ListRealtimeContactAnalysisSegmentsRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
-    if "ContactId" in data:
+    if data.get("ContactId") is not None:
         out["contact_id"] = data["ContactId"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

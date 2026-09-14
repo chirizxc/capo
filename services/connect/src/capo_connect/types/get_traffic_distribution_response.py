@@ -59,23 +59,23 @@ def serialize_json(value: GetTrafficDistributionResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetTrafficDistributionResponse:
     out: GetTrafficDistributionResponse = {}  # type: ignore[typeddict-item]
-    if "TelephonyConfig" in data:
+    if data.get("TelephonyConfig") is not None:
         import capo_connect.types.telephony_config
 
         out["telephony_config"] = capo_connect.types.telephony_config.deserialize_json(
             data["TelephonyConfig"]
         )
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "SignInConfig" in data:
+    if data.get("SignInConfig") is not None:
         import capo_connect.types.sign_in_config
 
         out["sign_in_config"] = capo_connect.types.sign_in_config.deserialize_json(
             data["SignInConfig"]
         )
-    if "AgentConfig" in data:
+    if data.get("AgentConfig") is not None:
         import capo_connect.types.agent_config
 
         out["agent_config"] = capo_connect.types.agent_config.deserialize_json(

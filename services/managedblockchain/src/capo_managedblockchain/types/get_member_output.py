@@ -27,7 +27,7 @@ def serialize_json(value: GetMemberOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetMemberOutput:
     out: GetMemberOutput = {}  # type: ignore[typeddict-item]
-    if "Member" in data:
+    if data.get("Member") is not None:
         import capo_managedblockchain.types.member
 
         out["member"] = capo_managedblockchain.types.member.deserialize_json(

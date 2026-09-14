@@ -29,8 +29,8 @@ def serialize_json(value: AwsAmazonMqBrokerUsersDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsAmazonMqBrokerUsersDetails:
     out: AwsAmazonMqBrokerUsersDetails = {}  # type: ignore[typeddict-item]
-    if "PendingChange" in data:
+    if data.get("PendingChange") is not None:
         out["pending_change"] = data["PendingChange"]
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
     return out

@@ -70,13 +70,13 @@ def serialize_json(value: Choice) -> dict:
 
 def deserialize_json(data: dict) -> Choice:
     out: Choice = {}  # type: ignore[typeddict-item]
-    if "ChoiceId" in data:
+    if data.get("ChoiceId") is not None:
         out["choice_id"] = data["ChoiceId"]
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "HelpfulResource" in data:
+    if data.get("HelpfulResource") is not None:
         import capo_wellarchitected.types.choice_content
 
         out["helpful_resource"] = (
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> Choice:
                 data["HelpfulResource"]
             )
         )
-    if "ImprovementPlan" in data:
+    if data.get("ImprovementPlan") is not None:
         import capo_wellarchitected.types.choice_content
 
         out["improvement_plan"] = (
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> Choice:
                 data["ImprovementPlan"]
             )
         )
-    if "AdditionalResources" in data:
+    if data.get("AdditionalResources") is not None:
         import capo_wellarchitected.types.additional_resources_list
 
         out["additional_resources"] = (

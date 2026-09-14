@@ -53,17 +53,17 @@ def serialize_aws_json_1_0(value: ListInferenceEventsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListInferenceEventsRequest:
     out: ListInferenceEventsRequest = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "InferenceSchedulerName" in data:
+    if data.get("InferenceSchedulerName") is not None:
         out["inference_scheduler_name"] = data["InferenceSchedulerName"]
     else:
         raise DeserializationError(
             "ListInferenceEventsRequest.inference_scheduler_name required"
         )
-    if "IntervalStartTime" in data:
+    if data.get("IntervalStartTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["interval_start_time"] = (
@@ -75,7 +75,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListInferenceEventsRequest:
         raise DeserializationError(
             "ListInferenceEventsRequest.interval_start_time required"
         )
-    if "IntervalEndTime" in data:
+    if data.get("IntervalEndTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["interval_end_time"] = (

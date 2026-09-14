@@ -121,11 +121,11 @@ def serialize_aws_json_1_1(value: InputDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InputDescription:
     out: InputDescription = {}  # type: ignore[typeddict-item]
-    if "InputId" in data:
+    if data.get("InputId") is not None:
         out["input_id"] = data["InputId"]
-    if "NamePrefix" in data:
+    if data.get("NamePrefix") is not None:
         out["name_prefix"] = data["NamePrefix"]
-    if "InAppStreamNames" in data:
+    if data.get("InAppStreamNames") is not None:
         import capo_kinesis_analytics_v2.types.in_app_stream_names
 
         out["in_app_stream_names"] = (
@@ -133,7 +133,7 @@ def deserialize_aws_json_1_1(data: dict) -> InputDescription:
                 data["InAppStreamNames"]
             )
         )
-    if "InputProcessingConfigurationDescription" in data:
+    if data.get("InputProcessingConfigurationDescription") is not None:
         import capo_kinesis_analytics_v2.types.input_processing_configuration_description
 
         out["input_processing_configuration_description"] = (
@@ -141,7 +141,7 @@ def deserialize_aws_json_1_1(data: dict) -> InputDescription:
                 data["InputProcessingConfigurationDescription"]
             )
         )
-    if "KinesisStreamsInputDescription" in data:
+    if data.get("KinesisStreamsInputDescription") is not None:
         import capo_kinesis_analytics_v2.types.kinesis_streams_input_description
 
         out["kinesis_streams_input_description"] = (
@@ -149,7 +149,7 @@ def deserialize_aws_json_1_1(data: dict) -> InputDescription:
                 data["KinesisStreamsInputDescription"]
             )
         )
-    if "KinesisFirehoseInputDescription" in data:
+    if data.get("KinesisFirehoseInputDescription") is not None:
         import capo_kinesis_analytics_v2.types.kinesis_firehose_input_description
 
         out["kinesis_firehose_input_description"] = (
@@ -157,7 +157,7 @@ def deserialize_aws_json_1_1(data: dict) -> InputDescription:
                 data["KinesisFirehoseInputDescription"]
             )
         )
-    if "InputSchema" in data:
+    if data.get("InputSchema") is not None:
         import capo_kinesis_analytics_v2.types.source_schema
 
         out["input_schema"] = (
@@ -165,7 +165,7 @@ def deserialize_aws_json_1_1(data: dict) -> InputDescription:
                 data["InputSchema"]
             )
         )
-    if "InputParallelism" in data:
+    if data.get("InputParallelism") is not None:
         import capo_kinesis_analytics_v2.types.input_parallelism
 
         out["input_parallelism"] = (
@@ -173,7 +173,7 @@ def deserialize_aws_json_1_1(data: dict) -> InputDescription:
                 data["InputParallelism"]
             )
         )
-    if "InputStartingPositionConfiguration" in data:
+    if data.get("InputStartingPositionConfiguration") is not None:
         import capo_kinesis_analytics_v2.types.input_starting_position_configuration
 
         out["input_starting_position_configuration"] = (

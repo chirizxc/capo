@@ -65,28 +65,28 @@ def serialize_json(value: StreamInfo) -> dict:
 
 def deserialize_json(data: dict) -> StreamInfo:
     out: StreamInfo = {}  # type: ignore[typeddict-item]
-    if "streamId" in data:
+    if data.get("streamId") is not None:
         out["stream_id"] = data["streamId"]
-    if "streamArn" in data:
+    if data.get("streamArn") is not None:
         out["stream_arn"] = data["streamArn"]
-    if "streamVersion" in data:
+    if data.get("streamVersion") is not None:
         out["stream_version"] = data["streamVersion"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "files" in data:
+    if data.get("files") is not None:
         import capo_iot.types.stream_files
 
         out["files"] = capo_iot.types.stream_files.deserialize_json(data["files"])
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_iot.types.date_type
 
         out["created_at"] = capo_iot.types.date_type.deserialize_json(data["createdAt"])
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_iot.types.date_type
 
         out["last_updated_at"] = capo_iot.types.date_type.deserialize_json(
             data["lastUpdatedAt"]
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     return out

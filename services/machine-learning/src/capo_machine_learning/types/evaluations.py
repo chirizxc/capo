@@ -23,6 +23,8 @@ def deserialize_aws_json_1_1(data: list) -> Evaluations:
 
     out: Evaluations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_machine_learning.types.evaluation.deserialize_aws_json_1_1(item)
         )

@@ -18,7 +18,7 @@ def serialize_json(value: RangeNotSatisfiableException_) -> dict:
 
 def deserialize_json(data: dict) -> RangeNotSatisfiableException_:
     out: RangeNotSatisfiableException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("RangeNotSatisfiableException_.message required")
@@ -30,15 +30,18 @@ class RangeNotSatisfiableException(ServiceError):
 
     code: str | None = "RangeNotSatisfiableException"
 
-    def __init__(self, data: RangeNotSatisfiableException_):
+    def __init__(self, data: RangeNotSatisfiableException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=True,
             code="RangeNotSatisfiableException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "RangeNotSatisfiableException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "RangeNotSatisfiableException":
+        return cls(deserialize_json(data), message)

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> BatchGetIncidentFindingsErrorList:
 
     out: BatchGetIncidentFindingsErrorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_ssm_incidents.types.batch_get_incident_findings_error.deserialize_json(
                 item

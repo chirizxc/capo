@@ -18,6 +18,6 @@ def serialize_aws_json_1_1(value: CancelStatementResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CancelStatementResponse:
     out: CancelStatementResponse = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     return out

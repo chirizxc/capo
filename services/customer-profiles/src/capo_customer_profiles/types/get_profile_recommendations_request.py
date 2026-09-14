@@ -99,13 +99,13 @@ def serialize_json(value: GetProfileRecommendationsRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetProfileRecommendationsRequest:
     out: GetProfileRecommendationsRequest = {}  # type: ignore[typeddict-item]
-    if "RecommenderName" in data:
+    if data.get("RecommenderName") is not None:
         out["recommender_name"] = data["RecommenderName"]
     else:
         raise DeserializationError(
             "GetProfileRecommendationsRequest.recommender_name required"
         )
-    if "Context" in data:
+    if data.get("Context") is not None:
         import capo_customer_profiles.types.recommender_context
 
         out["context"] = (
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> GetProfileRecommendationsRequest:
                 data["Context"]
             )
         )
-    if "RecommenderFilters" in data:
+    if data.get("RecommenderFilters") is not None:
         import capo_customer_profiles.types.recommender_filters
 
         out["recommender_filters"] = (
@@ -121,7 +121,7 @@ def deserialize_json(data: dict) -> GetProfileRecommendationsRequest:
                 data["RecommenderFilters"]
             )
         )
-    if "RecommenderPromotionalFilters" in data:
+    if data.get("RecommenderPromotionalFilters") is not None:
         import capo_customer_profiles.types.recommender_promotional_filters
 
         out["recommender_promotional_filters"] = (
@@ -129,7 +129,7 @@ def deserialize_json(data: dict) -> GetProfileRecommendationsRequest:
                 data["RecommenderPromotionalFilters"]
             )
         )
-    if "CandidateIds" in data:
+    if data.get("CandidateIds") is not None:
         import capo_customer_profiles.types.candidate_id_list
 
         out["candidate_ids"] = (
@@ -137,9 +137,9 @@ def deserialize_json(data: dict) -> GetProfileRecommendationsRequest:
                 data["CandidateIds"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "MetadataConfig" in data:
+    if data.get("MetadataConfig") is not None:
         import capo_customer_profiles.types.metadata_config
 
         out["metadata_config"] = (

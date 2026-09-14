@@ -138,25 +138,25 @@ def serialize_json(value: Source) -> dict:
 
 def deserialize_json(data: dict) -> Source:
     out: Source = {}  # type: ignore[typeddict-item]
-    if "dataTransferSubscriberFeePercent" in data:
+    if data.get("dataTransferSubscriberFeePercent") is not None:
         out["data_transfer_subscriber_fee_percent"] = data[
             "dataTransferSubscriberFeePercent"
         ]
-    if "decryption" in data:
+    if data.get("decryption") is not None:
         import capo_mediaconnect.types.encryption
 
         out["decryption"] = capo_mediaconnect.types.encryption.deserialize_json(
             data["decryption"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "entitlementArn" in data:
+    if data.get("entitlementArn") is not None:
         out["entitlement_arn"] = data["entitlementArn"]
-    if "ingestIp" in data:
+    if data.get("ingestIp") is not None:
         out["ingest_ip"] = data["ingestIp"]
-    if "ingestPort" in data:
+    if data.get("ingestPort") is not None:
         out["ingest_port"] = data["ingestPort"]
-    if "mediaStreamSourceConfigurations" in data:
+    if data.get("mediaStreamSourceConfigurations") is not None:
         import capo_mediaconnect.types.__list_of_media_stream_source_configuration
 
         out["media_stream_source_configurations"] = (
@@ -164,25 +164,25 @@ def deserialize_json(data: dict) -> Source:
                 data["mediaStreamSourceConfigurations"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "senderControlPort" in data:
+    if data.get("senderControlPort") is not None:
         out["sender_control_port"] = data["senderControlPort"]
-    if "senderIpAddress" in data:
+    if data.get("senderIpAddress") is not None:
         out["sender_ip_address"] = data["senderIpAddress"]
-    if "sourceArn" in data:
+    if data.get("sourceArn") is not None:
         out["source_arn"] = data["sourceArn"]
-    if "transport" in data:
+    if data.get("transport") is not None:
         import capo_mediaconnect.types.transport
 
         out["transport"] = capo_mediaconnect.types.transport.deserialize_json(
             data["transport"]
         )
-    if "vpcInterfaceName" in data:
+    if data.get("vpcInterfaceName") is not None:
         out["vpc_interface_name"] = data["vpcInterfaceName"]
-    if "whitelistCidr" in data:
+    if data.get("whitelistCidr") is not None:
         out["whitelist_cidr"] = data["whitelistCidr"]
-    if "gatewayBridgeSource" in data:
+    if data.get("gatewayBridgeSource") is not None:
         import capo_mediaconnect.types.gateway_bridge_source
 
         out["gateway_bridge_source"] = (
@@ -190,9 +190,9 @@ def deserialize_json(data: dict) -> Source:
                 data["gatewayBridgeSource"]
             )
         )
-    if "peerIpAddress" in data:
+    if data.get("peerIpAddress") is not None:
         out["peer_ip_address"] = data["peerIpAddress"]
-    if "routerIntegrationState" in data:
+    if data.get("routerIntegrationState") is not None:
         import capo_mediaconnect.types.state
 
         out["router_integration_state"] = (
@@ -200,7 +200,7 @@ def deserialize_json(data: dict) -> Source:
                 data["routerIntegrationState"]
             )
         )
-    if "routerIntegrationTransitDecryption" in data:
+    if data.get("routerIntegrationTransitDecryption") is not None:
         import capo_mediaconnect.types.flow_transit_encryption
 
         out["router_integration_transit_decryption"] = (
@@ -208,6 +208,6 @@ def deserialize_json(data: dict) -> Source:
                 data["routerIntegrationTransitDecryption"]
             )
         )
-    if "connectedRouterOutputArn" in data:
+    if data.get("connectedRouterOutputArn") is not None:
         out["connected_router_output_arn"] = data["connectedRouterOutputArn"]
     return out

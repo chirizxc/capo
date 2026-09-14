@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> RegionStatusList:
 
     out: RegionStatusList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_resource_explorer_2.types.region_status.deserialize_json(item))
     return out

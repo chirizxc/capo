@@ -46,7 +46,7 @@ def serialize_json(value: AuthenticationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AuthenticationConfiguration:
     out: AuthenticationConfiguration = {}  # type: ignore[typeddict-item]
-    if "authenticationType" in data:
+    if data.get("authenticationType") is not None:
         import capo_datazone.types.authentication_type
 
         out["authentication_type"] = (
@@ -54,9 +54,9 @@ def deserialize_json(data: dict) -> AuthenticationConfiguration:
                 data["authenticationType"]
             )
         )
-    if "secretArn" in data:
+    if data.get("secretArn") is not None:
         out["secret_arn"] = data["secretArn"]
-    if "oAuth2Properties" in data:
+    if data.get("oAuth2Properties") is not None:
         import capo_datazone.types.o_auth2_properties
 
         out["o_auth2_properties"] = (

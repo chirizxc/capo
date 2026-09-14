@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> Alarms:
 
     out: Alarms = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_application_auto_scaling.types.alarm.deserialize_aws_json_1_1(item)
         )

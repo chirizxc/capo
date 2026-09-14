@@ -24,7 +24,7 @@ def serialize_json(value: UnsupportedPlsAlphabetException_) -> dict:
 
 def deserialize_json(data: dict) -> UnsupportedPlsAlphabetException_:
     out: UnsupportedPlsAlphabetException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,20 @@ class UnsupportedPlsAlphabetException(ServiceError):
 
     code: str | None = "UnsupportedPlsAlphabetException"
 
-    def __init__(self, data: UnsupportedPlsAlphabetException_):
+    def __init__(
+        self, data: UnsupportedPlsAlphabetException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="UnsupportedPlsAlphabetException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "UnsupportedPlsAlphabetException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "UnsupportedPlsAlphabetException":
+        return cls(deserialize_json(data), message)

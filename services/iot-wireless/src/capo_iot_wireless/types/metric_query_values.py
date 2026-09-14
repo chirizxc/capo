@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> MetricQueryValues:
 
     out: MetricQueryValues = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot_wireless.types.metric_query_value.deserialize_json(item))
     return out

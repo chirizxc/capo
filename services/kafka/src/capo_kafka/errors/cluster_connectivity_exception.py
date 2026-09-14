@@ -29,9 +29,9 @@ def serialize_json(value: ClusterConnectivityException_) -> dict:
 
 def deserialize_json(data: dict) -> ClusterConnectivityException_:
     out: ClusterConnectivityException_ = {}  # type: ignore[typeddict-item]
-    if "invalidParameter" in data:
+    if data.get("invalidParameter") is not None:
         out["invalid_parameter"] = data["invalidParameter"]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -41,15 +41,18 @@ class ClusterConnectivityException(ServiceError):
 
     code: str | None = "ClusterConnectivityException"
 
-    def __init__(self, data: ClusterConnectivityException_):
+    def __init__(self, data: ClusterConnectivityException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ClusterConnectivityException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ClusterConnectivityException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "ClusterConnectivityException":
+        return cls(deserialize_json(data), message)

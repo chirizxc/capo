@@ -65,7 +65,7 @@ def serialize_json(value: AssetBundleImportJobSummary) -> dict:
 
 def deserialize_json(data: dict) -> AssetBundleImportJobSummary:
     out: AssetBundleImportJobSummary = {}  # type: ignore[typeddict-item]
-    if "JobStatus" in data:
+    if data.get("JobStatus") is not None:
         import capo_quicksight.types.asset_bundle_import_job_status
 
         out["job_status"] = (
@@ -73,17 +73,17 @@ def deserialize_json(data: dict) -> AssetBundleImportJobSummary:
                 data["JobStatus"]
             )
         )
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_quicksight.types.timestamp
 
         out["created_time"] = capo_quicksight.types.timestamp.deserialize_json(
             data["CreatedTime"]
         )
-    if "AssetBundleImportJobId" in data:
+    if data.get("AssetBundleImportJobId") is not None:
         out["asset_bundle_import_job_id"] = data["AssetBundleImportJobId"]
-    if "FailureAction" in data:
+    if data.get("FailureAction") is not None:
         import capo_quicksight.types.asset_bundle_import_failure_action
 
         out["failure_action"] = (

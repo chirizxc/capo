@@ -34,11 +34,11 @@ def serialize_aws_json_1_0(value: TagResourceRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TagResourceRequest:
     out: TagResourceRequest = {}  # type: ignore[typeddict-item]
-    if "WorkspaceInstanceId" in data:
+    if data.get("WorkspaceInstanceId") is not None:
         out["workspace_instance_id"] = data["WorkspaceInstanceId"]
     else:
         raise DeserializationError("TagResourceRequest.workspace_instance_id required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_workspaces_instances.types.tag_list
 
         out["tags"] = capo_workspaces_instances.types.tag_list.deserialize_aws_json_1_0(

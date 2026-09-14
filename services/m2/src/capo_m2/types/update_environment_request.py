@@ -49,19 +49,19 @@ def serialize_json(value: UpdateEnvironmentRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateEnvironmentRequest:
     out: UpdateEnvironmentRequest = {}  # type: ignore[typeddict-item]
-    if "desiredCapacity" in data:
+    if data.get("desiredCapacity") is not None:
         out["desired_capacity"] = data["desiredCapacity"]
-    if "instanceType" in data:
+    if data.get("instanceType") is not None:
         out["instance_type"] = data["instanceType"]
-    if "engineVersion" in data:
+    if data.get("engineVersion") is not None:
         out["engine_version"] = data["engineVersion"]
-    if "preferredMaintenanceWindow" in data:
+    if data.get("preferredMaintenanceWindow") is not None:
         out["preferred_maintenance_window"] = data["preferredMaintenanceWindow"]
-    if "applyDuringMaintenanceWindow" in data:
+    if data.get("applyDuringMaintenanceWindow") is not None:
         out["apply_during_maintenance_window"] = data["applyDuringMaintenanceWindow"]
     else:
         out["apply_during_maintenance_window"] = False
-    if "forceUpdate" in data:
+    if data.get("forceUpdate") is not None:
         out["force_update"] = data["forceUpdate"]
     else:
         out["force_update"] = False

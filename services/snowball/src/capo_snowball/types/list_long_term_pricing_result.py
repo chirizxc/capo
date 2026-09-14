@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListLongTermPricingResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListLongTermPricingResult:
     out: ListLongTermPricingResult = {}  # type: ignore[typeddict-item]
-    if "LongTermPricingEntries" in data:
+    if data.get("LongTermPricingEntries") is not None:
         import capo_snowball.types.long_term_pricing_entry_list
 
         out["long_term_pricing_entries"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListLongTermPricingResult:
                 data["LongTermPricingEntries"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -25,7 +25,7 @@ def serialize_json(value: UpdateClusterVersionResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateClusterVersionResponse:
     out: UpdateClusterVersionResponse = {}  # type: ignore[typeddict-item]
-    if "update" in data:
+    if data.get("update") is not None:
         import capo_eks.types.update
 
         out["update"] = capo_eks.types.update.deserialize_json(data["update"])

@@ -34,9 +34,9 @@ def serialize_json(value: IntentOverride) -> dict:
 
 def deserialize_json(data: dict) -> IntentOverride:
     out: IntentOverride = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "slots" in data:
+    if data.get("slots") is not None:
         import capo_lex_models_v2.types.slot_value_override_map
 
         out["slots"] = (

@@ -66,28 +66,28 @@ def serialize_aws_json_1_1(value: RDSInstanceDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RDSInstanceDetails:
     out: RDSInstanceDetails = {}  # type: ignore[typeddict-item]
-    if "Family" in data:
+    if data.get("Family") is not None:
         out["family"] = data["Family"]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         out["instance_type"] = data["InstanceType"]
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
-    if "DatabaseEngine" in data:
+    if data.get("DatabaseEngine") is not None:
         out["database_engine"] = data["DatabaseEngine"]
-    if "DatabaseEdition" in data:
+    if data.get("DatabaseEdition") is not None:
         out["database_edition"] = data["DatabaseEdition"]
-    if "DeploymentOption" in data:
+    if data.get("DeploymentOption") is not None:
         out["deployment_option"] = data["DeploymentOption"]
-    if "LicenseModel" in data:
+    if data.get("LicenseModel") is not None:
         out["license_model"] = data["LicenseModel"]
-    if "CurrentGeneration" in data:
+    if data.get("CurrentGeneration") is not None:
         out["current_generation"] = data["CurrentGeneration"]
     else:
         out["current_generation"] = False
-    if "SizeFlexEligible" in data:
+    if data.get("SizeFlexEligible") is not None:
         out["size_flex_eligible"] = data["SizeFlexEligible"]
     else:
         out["size_flex_eligible"] = False
-    if "DeploymentModel" in data:
+    if data.get("DeploymentModel") is not None:
         out["deployment_model"] = data["DeploymentModel"]
     return out

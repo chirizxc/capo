@@ -44,13 +44,13 @@ def serialize_json(value: ListRegionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListRegionsRequest:
     out: ListRegionsRequest = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "RegionOptStatusContains" in data:
+    if data.get("RegionOptStatusContains") is not None:
         import capo_account.types.region_opt_status_list
 
         out["region_opt_status_contains"] = (

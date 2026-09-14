@@ -41,7 +41,7 @@ def serialize_json(value: SuppressionConditionThreshold) -> dict:
 
 def deserialize_json(data: dict) -> SuppressionConditionThreshold:
     out: SuppressionConditionThreshold = {}  # type: ignore[typeddict-item]
-    if "ConditionThresholdEnabled" in data:
+    if data.get("ConditionThresholdEnabled") is not None:
         import capo_sesv2.types.feature_status
 
         out["condition_threshold_enabled"] = (
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> SuppressionConditionThreshold:
         raise DeserializationError(
             "SuppressionConditionThreshold.condition_threshold_enabled required"
         )
-    if "OverallConfidenceThreshold" in data:
+    if data.get("OverallConfidenceThreshold") is not None:
         import capo_sesv2.types.suppression_confidence_threshold
 
         out["overall_confidence_threshold"] = (

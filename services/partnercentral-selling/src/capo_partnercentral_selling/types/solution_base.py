@@ -59,21 +59,21 @@ def serialize_aws_json_1_0(value: SolutionBase) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SolutionBase:
     out: SolutionBase = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("SolutionBase.catalog required")
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("SolutionBase.id required")
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("SolutionBase.name required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_partnercentral_selling.types.solution_status
 
         out["status"] = (
@@ -83,11 +83,11 @@ def deserialize_aws_json_1_0(data: dict) -> SolutionBase:
         )
     else:
         raise DeserializationError("SolutionBase.status required")
-    if "Category" in data:
+    if data.get("Category") is not None:
         out["category"] = data["Category"]
     else:
         raise DeserializationError("SolutionBase.category required")
-    if "CreatedDate" in data:
+    if data.get("CreatedDate") is not None:
         import capo_partnercentral_selling.types.date_time
 
         out["created_date"] = (

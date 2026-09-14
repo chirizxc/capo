@@ -37,13 +37,13 @@ def serialize_json(value: CurrentMetricSortCriteria) -> dict:
 
 def deserialize_json(data: dict) -> CurrentMetricSortCriteria:
     out: CurrentMetricSortCriteria = {}  # type: ignore[typeddict-item]
-    if "SortByMetric" in data:
+    if data.get("SortByMetric") is not None:
         import capo_connect.types.current_metric_name
 
         out["sort_by_metric"] = capo_connect.types.current_metric_name.deserialize_json(
             data["SortByMetric"]
         )
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         import capo_connect.types.sort_order
 
         out["sort_order"] = capo_connect.types.sort_order.deserialize_json(

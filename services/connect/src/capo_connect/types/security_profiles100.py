@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SecurityProfiles100:
 
     out: SecurityProfiles100 = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.security_profile_item.deserialize_json(item))
     return out

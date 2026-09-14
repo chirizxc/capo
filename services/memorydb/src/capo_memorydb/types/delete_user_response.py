@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: DeleteUserResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteUserResponse:
     out: DeleteUserResponse = {}  # type: ignore[typeddict-item]
-    if "User" in data:
+    if data.get("User") is not None:
         import capo_memorydb.types.user
 
         out["user"] = capo_memorydb.types.user.deserialize_aws_json_1_1(data["User"])

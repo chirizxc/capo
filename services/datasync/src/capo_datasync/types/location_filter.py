@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: LocationFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LocationFilter:
     out: LocationFilter = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         import capo_datasync.types.location_filter_name
 
         out["name"] = capo_datasync.types.location_filter_name.deserialize_aws_json_1_1(
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> LocationFilter:
         )
     else:
         raise DeserializationError("LocationFilter.name required")
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_datasync.types.filter_values
 
         out["values"] = capo_datasync.types.filter_values.deserialize_aws_json_1_1(
@@ -60,7 +60,7 @@ def deserialize_aws_json_1_1(data: dict) -> LocationFilter:
         )
     else:
         raise DeserializationError("LocationFilter.values required")
-    if "Operator" in data:
+    if data.get("Operator") is not None:
         import capo_datasync.types.operator
 
         out["operator"] = capo_datasync.types.operator.deserialize_aws_json_1_1(

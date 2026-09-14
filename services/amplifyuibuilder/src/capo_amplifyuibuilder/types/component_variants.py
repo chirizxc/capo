@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ComponentVariants:
 
     out: ComponentVariants = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_amplifyuibuilder.types.component_variant.deserialize_json(item))
     return out

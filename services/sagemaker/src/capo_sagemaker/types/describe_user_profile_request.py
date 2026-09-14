@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: DescribeUserProfileRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeUserProfileRequest:
     out: DescribeUserProfileRequest = {}  # type: ignore[typeddict-item]
-    if "DomainId" in data:
+    if data.get("DomainId") is not None:
         out["domain_id"] = data["DomainId"]
-    if "UserProfileName" in data:
+    if data.get("UserProfileName") is not None:
         out["user_profile_name"] = data["UserProfileName"]
     return out

@@ -28,10 +28,10 @@ def serialize_json(value: UrlEndpointInput) -> dict:
 
 def deserialize_json(data: dict) -> UrlEndpointInput:
     out: UrlEndpointInput = {}  # type: ignore[typeddict-item]
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
     else:
         raise DeserializationError("UrlEndpointInput.url required")
-    if "HealthUrl" in data:
+    if data.get("HealthUrl") is not None:
         out["health_url"] = data["HealthUrl"]
     return out

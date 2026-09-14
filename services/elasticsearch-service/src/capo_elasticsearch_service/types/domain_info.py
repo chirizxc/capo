@@ -32,9 +32,9 @@ def serialize_json(value: DomainInfo) -> dict:
 
 def deserialize_json(data: dict) -> DomainInfo:
     out: DomainInfo = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
-    if "EngineType" in data:
+    if data.get("EngineType") is not None:
         import capo_elasticsearch_service.types.engine_type
 
         out["engine_type"] = (

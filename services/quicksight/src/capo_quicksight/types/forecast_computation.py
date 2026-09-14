@@ -77,9 +77,25 @@ def serialize_json(value: ForecastComputation) -> dict:
     if "periods_backward" in value:
         out["PeriodsBackward"] = value["periods_backward"]
     if "upper_boundary" in value:
-        out["UpperBoundary"] = value["upper_boundary"]
+        out["UpperBoundary"] = (
+            "NaN"
+            if value["upper_boundary"] != value["upper_boundary"]
+            else "Infinity"
+            if value["upper_boundary"] == float("inf")
+            else "-Infinity"
+            if value["upper_boundary"] == float("-inf")
+            else value["upper_boundary"]
+        )
     if "lower_boundary" in value:
-        out["LowerBoundary"] = value["lower_boundary"]
+        out["LowerBoundary"] = (
+            "NaN"
+            if value["lower_boundary"] != value["lower_boundary"]
+            else "Infinity"
+            if value["lower_boundary"] == float("inf")
+            else "-Infinity"
+            if value["lower_boundary"] == float("-inf")
+            else value["lower_boundary"]
+        )
     if "prediction_interval" in value:
         out["PredictionInterval"] = value["prediction_interval"]
     if "seasonality" in value:
@@ -97,35 +113,35 @@ def serialize_json(value: ForecastComputation) -> dict:
 
 def deserialize_json(data: dict) -> ForecastComputation:
     out: ForecastComputation = {}  # type: ignore[typeddict-item]
-    if "ComputationId" in data:
+    if data.get("ComputationId") is not None:
         out["computation_id"] = data["ComputationId"]
     else:
         raise DeserializationError("ForecastComputation.computation_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Time" in data:
+    if data.get("Time") is not None:
         import capo_quicksight.types.dimension_field
 
         out["time"] = capo_quicksight.types.dimension_field.deserialize_json(
             data["Time"]
         )
-    if "Value" in data:
+    if data.get("Value") is not None:
         import capo_quicksight.types.measure_field
 
         out["value"] = capo_quicksight.types.measure_field.deserialize_json(
             data["Value"]
         )
-    if "PeriodsForward" in data:
+    if data.get("PeriodsForward") is not None:
         out["periods_forward"] = data["PeriodsForward"]
-    if "PeriodsBackward" in data:
+    if data.get("PeriodsBackward") is not None:
         out["periods_backward"] = data["PeriodsBackward"]
-    if "UpperBoundary" in data:
-        out["upper_boundary"] = data["UpperBoundary"]
-    if "LowerBoundary" in data:
-        out["lower_boundary"] = data["LowerBoundary"]
-    if "PredictionInterval" in data:
+    if data.get("UpperBoundary") is not None:
+        out["upper_boundary"] = float(data["UpperBoundary"])
+    if data.get("LowerBoundary") is not None:
+        out["lower_boundary"] = float(data["LowerBoundary"])
+    if data.get("PredictionInterval") is not None:
         out["prediction_interval"] = data["PredictionInterval"]
-    if "Seasonality" in data:
+    if data.get("Seasonality") is not None:
         import capo_quicksight.types.forecast_computation_seasonality
 
         out["seasonality"] = (
@@ -133,6 +149,6 @@ def deserialize_json(data: dict) -> ForecastComputation:
                 data["Seasonality"]
             )
         )
-    if "CustomSeasonalityValue" in data:
+    if data.get("CustomSeasonalityValue") is not None:
         out["custom_seasonality_value"] = data["CustomSeasonalityValue"]
     return out

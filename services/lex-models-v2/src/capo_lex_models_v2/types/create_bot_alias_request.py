@@ -84,15 +84,15 @@ def serialize_json(value: CreateBotAliasRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateBotAliasRequest:
     out: CreateBotAliasRequest = {}  # type: ignore[typeddict-item]
-    if "botAliasName" in data:
+    if data.get("botAliasName") is not None:
         out["bot_alias_name"] = data["botAliasName"]
     else:
         raise DeserializationError("CreateBotAliasRequest.bot_alias_name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "botVersion" in data:
+    if data.get("botVersion") is not None:
         out["bot_version"] = data["botVersion"]
-    if "botAliasLocaleSettings" in data:
+    if data.get("botAliasLocaleSettings") is not None:
         import capo_lex_models_v2.types.bot_alias_locale_settings_map
 
         out["bot_alias_locale_settings"] = (
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> CreateBotAliasRequest:
                 data["botAliasLocaleSettings"]
             )
         )
-    if "conversationLogSettings" in data:
+    if data.get("conversationLogSettings") is not None:
         import capo_lex_models_v2.types.conversation_log_settings
 
         out["conversation_log_settings"] = (
@@ -108,7 +108,7 @@ def deserialize_json(data: dict) -> CreateBotAliasRequest:
                 data["conversationLogSettings"]
             )
         )
-    if "sentimentAnalysisSettings" in data:
+    if data.get("sentimentAnalysisSettings") is not None:
         import capo_lex_models_v2.types.sentiment_analysis_settings
 
         out["sentiment_analysis_settings"] = (
@@ -116,7 +116,7 @@ def deserialize_json(data: dict) -> CreateBotAliasRequest:
                 data["sentimentAnalysisSettings"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_lex_models_v2.types.tag_map
 
         out["tags"] = capo_lex_models_v2.types.tag_map.deserialize_json(data["tags"])

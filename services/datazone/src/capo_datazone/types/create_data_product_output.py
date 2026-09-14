@@ -108,27 +108,27 @@ def serialize_json(value: CreateDataProductOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateDataProductOutput:
     out: CreateDataProductOutput = {}  # type: ignore[typeddict-item]
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
     else:
         raise DeserializationError("CreateDataProductOutput.domain_id required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("CreateDataProductOutput.id required")
-    if "revision" in data:
+    if data.get("revision") is not None:
         out["revision"] = data["revision"]
     else:
         raise DeserializationError("CreateDataProductOutput.revision required")
-    if "owningProjectId" in data:
+    if data.get("owningProjectId") is not None:
         out["owning_project_id"] = data["owningProjectId"]
     else:
         raise DeserializationError("CreateDataProductOutput.owning_project_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateDataProductOutput.name required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.data_product_status
 
         out["status"] = capo_datazone.types.data_product_status.deserialize_json(
@@ -136,35 +136,35 @@ def deserialize_json(data: dict) -> CreateDataProductOutput:
         )
     else:
         out["status"] = "CREATED"
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "glossaryTerms" in data:
+    if data.get("glossaryTerms") is not None:
         import capo_datazone.types.glossary_terms
 
         out["glossary_terms"] = capo_datazone.types.glossary_terms.deserialize_json(
             data["glossaryTerms"]
         )
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_datazone.types.data_product_items
 
         out["items"] = capo_datazone.types.data_product_items.deserialize_json(
             data["items"]
         )
-    if "formsOutput" in data:
+    if data.get("formsOutput") is not None:
         import capo_datazone.types.form_output_list
 
         out["forms_output"] = capo_datazone.types.form_output_list.deserialize_json(
             data["formsOutput"]
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_datazone.types.created_at
 
         out["created_at"] = capo_datazone.types.created_at.deserialize_json(
             data["createdAt"]
         )
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
-    if "firstRevisionCreatedAt" in data:
+    if data.get("firstRevisionCreatedAt") is not None:
         import capo_datazone.types.created_at
 
         out["first_revision_created_at"] = (
@@ -172,6 +172,6 @@ def deserialize_json(data: dict) -> CreateDataProductOutput:
                 data["firstRevisionCreatedAt"]
             )
         )
-    if "firstRevisionCreatedBy" in data:
+    if data.get("firstRevisionCreatedBy") is not None:
         out["first_revision_created_by"] = data["firstRevisionCreatedBy"]
     return out

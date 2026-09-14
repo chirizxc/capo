@@ -27,7 +27,7 @@ def serialize_json(value: DescribeUserHierarchyGroupResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeUserHierarchyGroupResponse:
     out: DescribeUserHierarchyGroupResponse = {}  # type: ignore[typeddict-item]
-    if "HierarchyGroup" in data:
+    if data.get("HierarchyGroup") is not None:
         import capo_connect.types.hierarchy_group
 
         out["hierarchy_group"] = capo_connect.types.hierarchy_group.deserialize_json(

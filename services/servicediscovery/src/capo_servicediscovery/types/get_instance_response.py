@@ -34,9 +34,9 @@ def serialize_aws_json_1_1(value: GetInstanceResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetInstanceResponse:
     out: GetInstanceResponse = {}  # type: ignore[typeddict-item]
-    if "ResourceOwner" in data:
+    if data.get("ResourceOwner") is not None:
         out["resource_owner"] = data["ResourceOwner"]
-    if "Instance" in data:
+    if data.get("Instance") is not None:
         import capo_servicediscovery.types.instance
 
         out["instance"] = capo_servicediscovery.types.instance.deserialize_aws_json_1_1(

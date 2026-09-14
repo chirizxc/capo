@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ImpactedLocationsList:
 
     out: ImpactedLocationsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_internetmonitor.types.impacted_location.deserialize_json(item))
     return out

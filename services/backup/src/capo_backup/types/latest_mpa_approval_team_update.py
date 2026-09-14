@@ -54,23 +54,23 @@ def serialize_json(value: LatestMpaApprovalTeamUpdate) -> dict:
 
 def deserialize_json(data: dict) -> LatestMpaApprovalTeamUpdate:
     out: LatestMpaApprovalTeamUpdate = {}  # type: ignore[typeddict-item]
-    if "MpaSessionArn" in data:
+    if data.get("MpaSessionArn") is not None:
         out["mpa_session_arn"] = data["MpaSessionArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_backup.types.mpa_session_status
 
         out["status"] = capo_backup.types.mpa_session_status.deserialize_json(
             data["Status"]
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "InitiationDate" in data:
+    if data.get("InitiationDate") is not None:
         import capo_backup.types.timestamp
 
         out["initiation_date"] = capo_backup.types.timestamp.deserialize_json(
             data["InitiationDate"]
         )
-    if "ExpiryDate" in data:
+    if data.get("ExpiryDate") is not None:
         import capo_backup.types.timestamp
 
         out["expiry_date"] = capo_backup.types.timestamp.deserialize_json(

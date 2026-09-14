@@ -41,17 +41,17 @@ def serialize_json(value: Filter) -> dict:
 
 def deserialize_json(data: dict) -> Filter:
     out: Filter = {}  # type: ignore[typeddict-item]
-    if "resourceArns" in data:
+    if data.get("resourceArns") is not None:
         import capo_omics.types.arn_list
 
         out["resource_arns"] = capo_omics.types.arn_list.deserialize_json(
             data["resourceArns"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_omics.types.status_list
 
         out["status"] = capo_omics.types.status_list.deserialize_json(data["status"])
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_omics.types.type_list
 
         out["type"] = capo_omics.types.type_list.deserialize_json(data["type"])

@@ -77,9 +77,9 @@ def serialize_aws_json_1_1(value: PersistentAppUI) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PersistentAppUI:
     out: PersistentAppUI = {}  # type: ignore[typeddict-item]
-    if "PersistentAppUIId" in data:
+    if data.get("PersistentAppUIId") is not None:
         out["persistent_app_ui_id"] = data["PersistentAppUIId"]
-    if "PersistentAppUITypeList" in data:
+    if data.get("PersistentAppUITypeList") is not None:
         import capo_emr.types.persistent_app_ui_type_list
 
         out["persistent_app_ui_type_list"] = (
@@ -87,25 +87,25 @@ def deserialize_aws_json_1_1(data: dict) -> PersistentAppUI:
                 data["PersistentAppUITypeList"]
             )
         )
-    if "PersistentAppUIStatus" in data:
+    if data.get("PersistentAppUIStatus") is not None:
         out["persistent_app_ui_status"] = data["PersistentAppUIStatus"]
-    if "AuthorId" in data:
+    if data.get("AuthorId") is not None:
         out["author_id"] = data["AuthorId"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_emr.types.date
 
         out["creation_time"] = capo_emr.types.date.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_emr.types.date
 
         out["last_modified_time"] = capo_emr.types.date.deserialize_aws_json_1_1(
             data["LastModifiedTime"]
         )
-    if "LastStateChangeReason" in data:
+    if data.get("LastStateChangeReason") is not None:
         out["last_state_change_reason"] = data["LastStateChangeReason"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_emr.types.tag_list
 
         out["tags"] = capo_emr.types.tag_list.deserialize_aws_json_1_1(data["Tags"])

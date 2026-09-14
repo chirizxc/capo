@@ -36,11 +36,11 @@ def serialize_json(value: CreateSyncJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateSyncJobResponse:
     out: CreateSyncJobResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("CreateSyncJobResponse.arn required")
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_iottwinmaker.types.timestamp
 
         out["creation_date_time"] = capo_iottwinmaker.types.timestamp.deserialize_json(
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> CreateSyncJobResponse:
         )
     else:
         raise DeserializationError("CreateSyncJobResponse.creation_date_time required")
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
     else:
         raise DeserializationError("CreateSyncJobResponse.state required")

@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: DescribePartnerAppRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribePartnerAppRequest:
     out: DescribePartnerAppRequest = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "IncludeAvailableUpgrade" in data:
+    if data.get("IncludeAvailableUpgrade") is not None:
         out["include_available_upgrade"] = data["IncludeAvailableUpgrade"]
     return out

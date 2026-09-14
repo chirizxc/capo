@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ObjectAttributeUpdateList:
 
     out: ObjectAttributeUpdateList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_clouddirectory.types.object_attribute_update.deserialize_json(item)
         )

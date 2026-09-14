@@ -68,11 +68,11 @@ def serialize_aws_json_1_1(value: CheckoutBorrowLicenseRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CheckoutBorrowLicenseRequest:
     out: CheckoutBorrowLicenseRequest = {}  # type: ignore[typeddict-item]
-    if "LicenseArn" in data:
+    if data.get("LicenseArn") is not None:
         out["license_arn"] = data["LicenseArn"]
     else:
         raise DeserializationError("CheckoutBorrowLicenseRequest.license_arn required")
-    if "Entitlements" in data:
+    if data.get("Entitlements") is not None:
         import capo_license_manager.types.entitlement_data_list
 
         out["entitlements"] = (
@@ -82,7 +82,7 @@ def deserialize_aws_json_1_1(data: dict) -> CheckoutBorrowLicenseRequest:
         )
     else:
         raise DeserializationError("CheckoutBorrowLicenseRequest.entitlements required")
-    if "DigitalSignatureMethod" in data:
+    if data.get("DigitalSignatureMethod") is not None:
         import capo_license_manager.types.digital_signature_method
 
         out["digital_signature_method"] = (
@@ -94,9 +94,9 @@ def deserialize_aws_json_1_1(data: dict) -> CheckoutBorrowLicenseRequest:
         raise DeserializationError(
             "CheckoutBorrowLicenseRequest.digital_signature_method required"
         )
-    if "NodeId" in data:
+    if data.get("NodeId") is not None:
         out["node_id"] = data["NodeId"]
-    if "CheckoutMetadata" in data:
+    if data.get("CheckoutMetadata") is not None:
         import capo_license_manager.types.metadata_list
 
         out["checkout_metadata"] = (
@@ -104,7 +104,7 @@ def deserialize_aws_json_1_1(data: dict) -> CheckoutBorrowLicenseRequest:
                 data["CheckoutMetadata"]
             )
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     else:
         raise DeserializationError("CheckoutBorrowLicenseRequest.client_token required")

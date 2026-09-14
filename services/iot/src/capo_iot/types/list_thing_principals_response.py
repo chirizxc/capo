@@ -32,12 +32,12 @@ def serialize_json(value: ListThingPrincipalsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListThingPrincipalsResponse:
     out: ListThingPrincipalsResponse = {}  # type: ignore[typeddict-item]
-    if "principals" in data:
+    if data.get("principals") is not None:
         import capo_iot.types.principals
 
         out["principals"] = capo_iot.types.principals.deserialize_json(
             data["principals"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

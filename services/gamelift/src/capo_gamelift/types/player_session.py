@@ -95,23 +95,23 @@ def serialize_aws_json_1_1(value: PlayerSession) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PlayerSession:
     out: PlayerSession = {}  # type: ignore[typeddict-item]
-    if "PlayerSessionId" in data:
+    if data.get("PlayerSessionId") is not None:
         out["player_session_id"] = data["PlayerSessionId"]
-    if "PlayerId" in data:
+    if data.get("PlayerId") is not None:
         out["player_id"] = data["PlayerId"]
-    if "GameSessionId" in data:
+    if data.get("GameSessionId") is not None:
         out["game_session_id"] = data["GameSessionId"]
-    if "FleetId" in data:
+    if data.get("FleetId") is not None:
         out["fleet_id"] = data["FleetId"]
-    if "FleetArn" in data:
+    if data.get("FleetArn") is not None:
         out["fleet_arn"] = data["FleetArn"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_gamelift.types.timestamp
 
         out["creation_time"] = capo_gamelift.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "TerminationTime" in data:
+    if data.get("TerminationTime") is not None:
         import capo_gamelift.types.timestamp
 
         out["termination_time"] = (
@@ -119,7 +119,7 @@ def deserialize_aws_json_1_1(data: dict) -> PlayerSession:
                 data["TerminationTime"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_gamelift.types.player_session_status
 
         out["status"] = (
@@ -127,12 +127,12 @@ def deserialize_aws_json_1_1(data: dict) -> PlayerSession:
                 data["Status"]
             )
         )
-    if "IpAddress" in data:
+    if data.get("IpAddress") is not None:
         out["ip_address"] = data["IpAddress"]
-    if "DnsName" in data:
+    if data.get("DnsName") is not None:
         out["dns_name"] = data["DnsName"]
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
-    if "PlayerData" in data:
+    if data.get("PlayerData") is not None:
         out["player_data"] = data["PlayerData"]
     return out

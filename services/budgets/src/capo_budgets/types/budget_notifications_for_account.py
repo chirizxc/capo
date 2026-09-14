@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: BudgetNotificationsForAccount) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BudgetNotificationsForAccount:
     out: BudgetNotificationsForAccount = {}  # type: ignore[typeddict-item]
-    if "Notifications" in data:
+    if data.get("Notifications") is not None:
         import capo_budgets.types.notifications
 
         out["notifications"] = (
@@ -38,6 +38,6 @@ def deserialize_aws_json_1_1(data: dict) -> BudgetNotificationsForAccount:
                 data["Notifications"]
             )
         )
-    if "BudgetName" in data:
+    if data.get("BudgetName") is not None:
         out["budget_name"] = data["BudgetName"]
     return out

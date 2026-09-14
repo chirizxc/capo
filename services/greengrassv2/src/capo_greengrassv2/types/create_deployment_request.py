@@ -91,13 +91,13 @@ def serialize_json(value: CreateDeploymentRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDeploymentRequest:
     out: CreateDeploymentRequest = {}  # type: ignore[typeddict-item]
-    if "targetArn" in data:
+    if data.get("targetArn") is not None:
         out["target_arn"] = data["targetArn"]
     else:
         raise DeserializationError("CreateDeploymentRequest.target_arn required")
-    if "deploymentName" in data:
+    if data.get("deploymentName") is not None:
         out["deployment_name"] = data["deploymentName"]
-    if "components" in data:
+    if data.get("components") is not None:
         import capo_greengrassv2.types.component_deployment_specifications
 
         out["components"] = (
@@ -105,7 +105,7 @@ def deserialize_json(data: dict) -> CreateDeploymentRequest:
                 data["components"]
             )
         )
-    if "iotJobConfiguration" in data:
+    if data.get("iotJobConfiguration") is not None:
         import capo_greengrassv2.types.deployment_io_t_job_configuration
 
         out["iot_job_configuration"] = (
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> CreateDeploymentRequest:
                 data["iotJobConfiguration"]
             )
         )
-    if "deploymentPolicies" in data:
+    if data.get("deploymentPolicies") is not None:
         import capo_greengrassv2.types.deployment_policies
 
         out["deployment_policies"] = (
@@ -121,12 +121,12 @@ def deserialize_json(data: dict) -> CreateDeploymentRequest:
                 data["deploymentPolicies"]
             )
         )
-    if "parentTargetArn" in data:
+    if data.get("parentTargetArn") is not None:
         out["parent_target_arn"] = data["parentTargetArn"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_greengrassv2.types.tag_map
 
         out["tags"] = capo_greengrassv2.types.tag_map.deserialize_json(data["tags"])
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

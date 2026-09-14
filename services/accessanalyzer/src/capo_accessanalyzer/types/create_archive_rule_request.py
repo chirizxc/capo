@@ -39,11 +39,11 @@ def serialize_json(value: CreateArchiveRuleRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateArchiveRuleRequest:
     out: CreateArchiveRuleRequest = {}  # type: ignore[typeddict-item]
-    if "ruleName" in data:
+    if data.get("ruleName") is not None:
         out["rule_name"] = data["ruleName"]
     else:
         raise DeserializationError("CreateArchiveRuleRequest.rule_name required")
-    if "filter" in data:
+    if data.get("filter") is not None:
         import capo_accessanalyzer.types.filter_criteria_map
 
         out["filter"] = capo_accessanalyzer.types.filter_criteria_map.deserialize_json(
@@ -51,6 +51,6 @@ def deserialize_json(data: dict) -> CreateArchiveRuleRequest:
         )
     else:
         raise DeserializationError("CreateArchiveRuleRequest.filter required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

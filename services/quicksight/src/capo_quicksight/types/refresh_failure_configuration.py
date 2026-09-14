@@ -31,7 +31,7 @@ def serialize_json(value: RefreshFailureConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> RefreshFailureConfiguration:
     out: RefreshFailureConfiguration = {}  # type: ignore[typeddict-item]
-    if "EmailAlert" in data:
+    if data.get("EmailAlert") is not None:
         import capo_quicksight.types.refresh_failure_email_alert
 
         out["email_alert"] = (

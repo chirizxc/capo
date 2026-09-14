@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> IntegrationResourcePropertyList:
 
     out: IntegrationResourcePropertyList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_glue.types.integration_resource_property.deserialize_aws_json_1_1(item)
         )

@@ -128,44 +128,44 @@ def serialize_json(value: DICOMTags) -> dict:
 
 def deserialize_json(data: dict) -> DICOMTags:
     out: DICOMTags = {}  # type: ignore[typeddict-item]
-    if "DICOMPatientId" in data:
+    if data.get("DICOMPatientId") is not None:
         out["dicom_patient_id"] = data["DICOMPatientId"]
-    if "DICOMPatientName" in data:
+    if data.get("DICOMPatientName") is not None:
         out["dicom_patient_name"] = data["DICOMPatientName"]
-    if "DICOMPatientBirthDate" in data:
+    if data.get("DICOMPatientBirthDate") is not None:
         out["dicom_patient_birth_date"] = data["DICOMPatientBirthDate"]
-    if "DICOMPatientSex" in data:
+    if data.get("DICOMPatientSex") is not None:
         out["dicom_patient_sex"] = data["DICOMPatientSex"]
-    if "DICOMStudyInstanceUID" in data:
+    if data.get("DICOMStudyInstanceUID") is not None:
         out["dicom_study_instance_uid"] = data["DICOMStudyInstanceUID"]
-    if "DICOMStudyId" in data:
+    if data.get("DICOMStudyId") is not None:
         out["dicom_study_id"] = data["DICOMStudyId"]
-    if "DICOMStudyDescription" in data:
+    if data.get("DICOMStudyDescription") is not None:
         out["dicom_study_description"] = data["DICOMStudyDescription"]
-    if "DICOMNumberOfStudyRelatedSeries" in data:
+    if data.get("DICOMNumberOfStudyRelatedSeries") is not None:
         out["dicom_number_of_study_related_series"] = data[
             "DICOMNumberOfStudyRelatedSeries"
         ]
     else:
         out["dicom_number_of_study_related_series"] = 0
-    if "DICOMNumberOfStudyRelatedInstances" in data:
+    if data.get("DICOMNumberOfStudyRelatedInstances") is not None:
         out["dicom_number_of_study_related_instances"] = data[
             "DICOMNumberOfStudyRelatedInstances"
         ]
     else:
         out["dicom_number_of_study_related_instances"] = 0
-    if "DICOMAccessionNumber" in data:
+    if data.get("DICOMAccessionNumber") is not None:
         out["dicom_accession_number"] = data["DICOMAccessionNumber"]
-    if "DICOMSeriesInstanceUID" in data:
+    if data.get("DICOMSeriesInstanceUID") is not None:
         out["dicom_series_instance_uid"] = data["DICOMSeriesInstanceUID"]
-    if "DICOMSeriesModality" in data:
+    if data.get("DICOMSeriesModality") is not None:
         out["dicom_series_modality"] = data["DICOMSeriesModality"]
-    if "DICOMSeriesBodyPart" in data:
+    if data.get("DICOMSeriesBodyPart") is not None:
         out["dicom_series_body_part"] = data["DICOMSeriesBodyPart"]
-    if "DICOMSeriesNumber" in data:
+    if data.get("DICOMSeriesNumber") is not None:
         out["dicom_series_number"] = data["DICOMSeriesNumber"]
-    if "DICOMStudyDate" in data:
+    if data.get("DICOMStudyDate") is not None:
         out["dicom_study_date"] = data["DICOMStudyDate"]
-    if "DICOMStudyTime" in data:
+    if data.get("DICOMStudyTime") is not None:
         out["dicom_study_time"] = data["DICOMStudyTime"]
     return out

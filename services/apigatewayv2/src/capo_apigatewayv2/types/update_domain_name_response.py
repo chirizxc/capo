@@ -79,13 +79,13 @@ def serialize_json(value: UpdateDomainNameResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDomainNameResponse:
     out: UpdateDomainNameResponse = {}  # type: ignore[typeddict-item]
-    if "apiMappingSelectionExpression" in data:
+    if data.get("apiMappingSelectionExpression") is not None:
         out["api_mapping_selection_expression"] = data["apiMappingSelectionExpression"]
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
-    if "domainNameArn" in data:
+    if data.get("domainNameArn") is not None:
         out["domain_name_arn"] = data["domainNameArn"]
-    if "domainNameConfigurations" in data:
+    if data.get("domainNameConfigurations") is not None:
         import capo_apigatewayv2.types.domain_name_configurations
 
         out["domain_name_configurations"] = (
@@ -93,7 +93,7 @@ def deserialize_json(data: dict) -> UpdateDomainNameResponse:
                 data["domainNameConfigurations"]
             )
         )
-    if "mutualTlsAuthentication" in data:
+    if data.get("mutualTlsAuthentication") is not None:
         import capo_apigatewayv2.types.mutual_tls_authentication
 
         out["mutual_tls_authentication"] = (
@@ -101,13 +101,13 @@ def deserialize_json(data: dict) -> UpdateDomainNameResponse:
                 data["mutualTlsAuthentication"]
             )
         )
-    if "routingMode" in data:
+    if data.get("routingMode") is not None:
         import capo_apigatewayv2.types.routing_mode
 
         out["routing_mode"] = capo_apigatewayv2.types.routing_mode.deserialize_json(
             data["routingMode"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_apigatewayv2.types.tags
 
         out["tags"] = capo_apigatewayv2.types.tags.deserialize_json(data["tags"])

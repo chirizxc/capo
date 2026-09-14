@@ -107,15 +107,15 @@ def serialize_aws_json_1_1(value: CreateDataSourceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDataSourceRequest:
     out: CreateDataSourceRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateDataSourceRequest.name required")
-    if "IndexId" in data:
+    if data.get("IndexId") is not None:
         out["index_id"] = data["IndexId"]
     else:
         raise DeserializationError("CreateDataSourceRequest.index_id required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_kendra.types.data_source_type
 
         out["type"] = capo_kendra.types.data_source_type.deserialize_aws_json_1_1(
@@ -123,7 +123,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDataSourceRequest:
         )
     else:
         raise DeserializationError("CreateDataSourceRequest.type required")
-    if "Configuration" in data:
+    if data.get("Configuration") is not None:
         import capo_kendra.types.data_source_configuration
 
         out["configuration"] = (
@@ -131,7 +131,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDataSourceRequest:
                 data["Configuration"]
             )
         )
-    if "VpcConfiguration" in data:
+    if data.get("VpcConfiguration") is not None:
         import capo_kendra.types.data_source_vpc_configuration
 
         out["vpc_configuration"] = (
@@ -139,21 +139,21 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDataSourceRequest:
                 data["VpcConfiguration"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Schedule" in data:
+    if data.get("Schedule") is not None:
         out["schedule"] = data["Schedule"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_kendra.types.tag_list
 
         out["tags"] = capo_kendra.types.tag_list.deserialize_aws_json_1_1(data["Tags"])
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         out["language_code"] = data["LanguageCode"]
-    if "CustomDocumentEnrichmentConfiguration" in data:
+    if data.get("CustomDocumentEnrichmentConfiguration") is not None:
         import capo_kendra.types.custom_document_enrichment_configuration
 
         out["custom_document_enrichment_configuration"] = (

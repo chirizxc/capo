@@ -24,7 +24,7 @@ def serialize_json(value: ConnectorAuthenticationException_) -> dict:
 
 def deserialize_json(data: dict) -> ConnectorAuthenticationException_:
     out: ConnectorAuthenticationException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,20 @@ class ConnectorAuthenticationException(ServiceError):
 
     code: str | None = "ConnectorAuthenticationException"
 
-    def __init__(self, data: ConnectorAuthenticationException_):
+    def __init__(
+        self, data: ConnectorAuthenticationException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ConnectorAuthenticationException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ConnectorAuthenticationException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "ConnectorAuthenticationException":
+        return cls(deserialize_json(data), message)

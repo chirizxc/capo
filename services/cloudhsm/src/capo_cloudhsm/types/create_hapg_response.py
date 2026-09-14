@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: CreateHapgResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateHapgResponse:
     out: CreateHapgResponse = {}  # type: ignore[typeddict-item]
-    if "HapgArn" in data:
+    if data.get("HapgArn") is not None:
         out["hapg_arn"] = data["HapgArn"]
     return out

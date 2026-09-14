@@ -86,11 +86,11 @@ def serialize_aws_json_1_1(value: S3DataSourceConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3DataSourceConfiguration:
     out: S3DataSourceConfiguration = {}  # type: ignore[typeddict-item]
-    if "BucketName" in data:
+    if data.get("BucketName") is not None:
         out["bucket_name"] = data["BucketName"]
     else:
         raise DeserializationError("S3DataSourceConfiguration.bucket_name required")
-    if "InclusionPrefixes" in data:
+    if data.get("InclusionPrefixes") is not None:
         import capo_kendra.types.data_source_inclusions_exclusions_strings
 
         out["inclusion_prefixes"] = (
@@ -98,7 +98,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3DataSourceConfiguration:
                 data["InclusionPrefixes"]
             )
         )
-    if "InclusionPatterns" in data:
+    if data.get("InclusionPatterns") is not None:
         import capo_kendra.types.data_source_inclusions_exclusions_strings
 
         out["inclusion_patterns"] = (
@@ -106,7 +106,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3DataSourceConfiguration:
                 data["InclusionPatterns"]
             )
         )
-    if "ExclusionPatterns" in data:
+    if data.get("ExclusionPatterns") is not None:
         import capo_kendra.types.data_source_inclusions_exclusions_strings
 
         out["exclusion_patterns"] = (
@@ -114,7 +114,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3DataSourceConfiguration:
                 data["ExclusionPatterns"]
             )
         )
-    if "DocumentsMetadataConfiguration" in data:
+    if data.get("DocumentsMetadataConfiguration") is not None:
         import capo_kendra.types.documents_metadata_configuration
 
         out["documents_metadata_configuration"] = (
@@ -122,7 +122,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3DataSourceConfiguration:
                 data["DocumentsMetadataConfiguration"]
             )
         )
-    if "AccessControlListConfiguration" in data:
+    if data.get("AccessControlListConfiguration") is not None:
         import capo_kendra.types.access_control_list_configuration
 
         out["access_control_list_configuration"] = (

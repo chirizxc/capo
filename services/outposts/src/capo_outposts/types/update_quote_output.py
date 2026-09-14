@@ -25,7 +25,7 @@ def serialize_json(value: UpdateQuoteOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateQuoteOutput:
     out: UpdateQuoteOutput = {}  # type: ignore[typeddict-item]
-    if "Quote" in data:
+    if data.get("Quote") is not None:
         import capo_outposts.types.quote
 
         out["quote"] = capo_outposts.types.quote.deserialize_json(data["Quote"])

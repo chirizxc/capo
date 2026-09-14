@@ -31,12 +31,12 @@ def serialize_json(value: ListServiceIndexesOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListServiceIndexesOutput:
     out: ListServiceIndexesOutput = {}  # type: ignore[typeddict-item]
-    if "Indexes" in data:
+    if data.get("Indexes") is not None:
         import capo_resource_explorer_2.types.index_list
 
         out["indexes"] = capo_resource_explorer_2.types.index_list.deserialize_json(
             data["Indexes"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -31,7 +31,7 @@ def serialize_json(value: GetTransitGatewayRouteTableAttachmentResponse) -> dict
 
 def deserialize_json(data: dict) -> GetTransitGatewayRouteTableAttachmentResponse:
     out: GetTransitGatewayRouteTableAttachmentResponse = {}  # type: ignore[typeddict-item]
-    if "TransitGatewayRouteTableAttachment" in data:
+    if data.get("TransitGatewayRouteTableAttachment") is not None:
         import capo_networkmanager.types.transit_gateway_route_table_attachment
 
         out["transit_gateway_route_table_attachment"] = (

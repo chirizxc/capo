@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: GetKeyPairResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetKeyPairResult:
     out: GetKeyPairResult = {}  # type: ignore[typeddict-item]
-    if "keyPair" in data:
+    if data.get("keyPair") is not None:
         import capo_lightsail.types.key_pair
 
         out["key_pair"] = capo_lightsail.types.key_pair.deserialize_aws_json_1_1(

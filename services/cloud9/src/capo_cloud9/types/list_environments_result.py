@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: ListEnvironmentsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListEnvironmentsResult:
     out: ListEnvironmentsResult = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "environmentIds" in data:
+    if data.get("environmentIds") is not None:
         import capo_cloud9.types.environment_id_list
 
         out["environment_ids"] = (

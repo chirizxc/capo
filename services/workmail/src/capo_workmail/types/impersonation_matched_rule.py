@@ -32,8 +32,8 @@ def serialize_aws_json_1_1(value: ImpersonationMatchedRule) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ImpersonationMatchedRule:
     out: ImpersonationMatchedRule = {}  # type: ignore[typeddict-item]
-    if "ImpersonationRuleId" in data:
+    if data.get("ImpersonationRuleId") is not None:
         out["impersonation_rule_id"] = data["ImpersonationRuleId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     return out

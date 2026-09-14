@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: HandshakeConstraintViolationException_) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> HandshakeConstraintViolationException_:
     out: HandshakeConstraintViolationException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "Reason" in data:
+    if data.get("Reason") is not None:
         import capo_organizations.types.handshake_constraint_violation_exception_reason
 
         out["reason"] = (
@@ -54,15 +54,20 @@ class HandshakeConstraintViolationException(ServiceError):
 
     code: str | None = "HandshakeConstraintViolationException"
 
-    def __init__(self, data: HandshakeConstraintViolationException_):
+    def __init__(
+        self, data: HandshakeConstraintViolationException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="HandshakeConstraintViolationException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "HandshakeConstraintViolationException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "HandshakeConstraintViolationException":
+        return cls(deserialize_aws_json_1_1(data), message)

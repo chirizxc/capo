@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> SchemaInputAttributes:
 
     out: SchemaInputAttributes = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_entityresolution.types.schema_input_attribute.deserialize_json(item)
         )

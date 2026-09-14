@@ -172,29 +172,29 @@ def serialize_json(value: DescribeJobRunResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeJobRunResponse:
     out: DescribeJobRunResponse = {}  # type: ignore[typeddict-item]
-    if "Attempt" in data:
+    if data.get("Attempt") is not None:
         out["attempt"] = data["Attempt"]
     else:
         out["attempt"] = 0
-    if "CompletedOn" in data:
+    if data.get("CompletedOn") is not None:
         import capo_databrew.types.date
 
         out["completed_on"] = capo_databrew.types.date.deserialize_json(
             data["CompletedOn"]
         )
-    if "DatasetName" in data:
+    if data.get("DatasetName") is not None:
         out["dataset_name"] = data["DatasetName"]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "ExecutionTime" in data:
+    if data.get("ExecutionTime") is not None:
         out["execution_time"] = data["ExecutionTime"]
     else:
         out["execution_time"] = 0
-    if "JobName" in data:
+    if data.get("JobName") is not None:
         out["job_name"] = data["JobName"]
     else:
         raise DeserializationError("DescribeJobRunResponse.job_name required")
-    if "ProfileConfiguration" in data:
+    if data.get("ProfileConfiguration") is not None:
         import capo_databrew.types.profile_configuration
 
         out["profile_configuration"] = (
@@ -202,7 +202,7 @@ def deserialize_json(data: dict) -> DescribeJobRunResponse:
                 data["ProfileConfiguration"]
             )
         )
-    if "ValidationConfigurations" in data:
+    if data.get("ValidationConfigurations") is not None:
         import capo_databrew.types.validation_configuration_list
 
         out["validation_configurations"] = (
@@ -210,27 +210,27 @@ def deserialize_json(data: dict) -> DescribeJobRunResponse:
                 data["ValidationConfigurations"]
             )
         )
-    if "RunId" in data:
+    if data.get("RunId") is not None:
         out["run_id"] = data["RunId"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_databrew.types.job_run_state
 
         out["state"] = capo_databrew.types.job_run_state.deserialize_json(data["State"])
-    if "LogSubscription" in data:
+    if data.get("LogSubscription") is not None:
         import capo_databrew.types.log_subscription
 
         out["log_subscription"] = capo_databrew.types.log_subscription.deserialize_json(
             data["LogSubscription"]
         )
-    if "LogGroupName" in data:
+    if data.get("LogGroupName") is not None:
         out["log_group_name"] = data["LogGroupName"]
-    if "Outputs" in data:
+    if data.get("Outputs") is not None:
         import capo_databrew.types.output_list
 
         out["outputs"] = capo_databrew.types.output_list.deserialize_json(
             data["Outputs"]
         )
-    if "DataCatalogOutputs" in data:
+    if data.get("DataCatalogOutputs") is not None:
         import capo_databrew.types.data_catalog_output_list
 
         out["data_catalog_outputs"] = (
@@ -238,7 +238,7 @@ def deserialize_json(data: dict) -> DescribeJobRunResponse:
                 data["DataCatalogOutputs"]
             )
         )
-    if "DatabaseOutputs" in data:
+    if data.get("DatabaseOutputs") is not None:
         import capo_databrew.types.database_output_list
 
         out["database_outputs"] = (
@@ -246,19 +246,19 @@ def deserialize_json(data: dict) -> DescribeJobRunResponse:
                 data["DatabaseOutputs"]
             )
         )
-    if "RecipeReference" in data:
+    if data.get("RecipeReference") is not None:
         import capo_databrew.types.recipe_reference
 
         out["recipe_reference"] = capo_databrew.types.recipe_reference.deserialize_json(
             data["RecipeReference"]
         )
-    if "StartedBy" in data:
+    if data.get("StartedBy") is not None:
         out["started_by"] = data["StartedBy"]
-    if "StartedOn" in data:
+    if data.get("StartedOn") is not None:
         import capo_databrew.types.date
 
         out["started_on"] = capo_databrew.types.date.deserialize_json(data["StartedOn"])
-    if "JobSample" in data:
+    if data.get("JobSample") is not None:
         import capo_databrew.types.job_sample
 
         out["job_sample"] = capo_databrew.types.job_sample.deserialize_json(

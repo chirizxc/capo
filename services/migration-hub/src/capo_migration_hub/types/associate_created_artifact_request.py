@@ -46,19 +46,19 @@ def serialize_aws_json_1_1(value: AssociateCreatedArtifactRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssociateCreatedArtifactRequest:
     out: AssociateCreatedArtifactRequest = {}  # type: ignore[typeddict-item]
-    if "ProgressUpdateStream" in data:
+    if data.get("ProgressUpdateStream") is not None:
         out["progress_update_stream"] = data["ProgressUpdateStream"]
     else:
         raise DeserializationError(
             "AssociateCreatedArtifactRequest.progress_update_stream required"
         )
-    if "MigrationTaskName" in data:
+    if data.get("MigrationTaskName") is not None:
         out["migration_task_name"] = data["MigrationTaskName"]
     else:
         raise DeserializationError(
             "AssociateCreatedArtifactRequest.migration_task_name required"
         )
-    if "CreatedArtifact" in data:
+    if data.get("CreatedArtifact") is not None:
         import capo_migration_hub.types.created_artifact
 
         out["created_artifact"] = (
@@ -70,7 +70,7 @@ def deserialize_aws_json_1_1(data: dict) -> AssociateCreatedArtifactRequest:
         raise DeserializationError(
             "AssociateCreatedArtifactRequest.created_artifact required"
         )
-    if "DryRun" in data:
+    if data.get("DryRun") is not None:
         out["dry_run"] = data["DryRun"]
     else:
         out["dry_run"] = False

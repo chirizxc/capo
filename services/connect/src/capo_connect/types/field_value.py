@@ -30,11 +30,11 @@ def serialize_json(value: FieldValue) -> dict:
 
 def deserialize_json(data: dict) -> FieldValue:
     out: FieldValue = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("FieldValue.id required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         import capo_connect.types.field_value_union
 
         out["value"] = capo_connect.types.field_value_union.deserialize_json(

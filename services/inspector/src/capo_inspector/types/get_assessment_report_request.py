@@ -42,13 +42,13 @@ def serialize_aws_json_1_1(value: GetAssessmentReportRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetAssessmentReportRequest:
     out: GetAssessmentReportRequest = {}  # type: ignore[typeddict-item]
-    if "assessmentRunArn" in data:
+    if data.get("assessmentRunArn") is not None:
         out["assessment_run_arn"] = data["assessmentRunArn"]
     else:
         raise DeserializationError(
             "GetAssessmentReportRequest.assessment_run_arn required"
         )
-    if "reportFileFormat" in data:
+    if data.get("reportFileFormat") is not None:
         import capo_inspector.types.report_file_format
 
         out["report_file_format"] = (
@@ -60,7 +60,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetAssessmentReportRequest:
         raise DeserializationError(
             "GetAssessmentReportRequest.report_file_format required"
         )
-    if "reportType" in data:
+    if data.get("reportType") is not None:
         import capo_inspector.types.report_type
 
         out["report_type"] = capo_inspector.types.report_type.deserialize_aws_json_1_1(

@@ -45,20 +45,20 @@ def serialize_json(value: ConditionalSplitActivity) -> dict:
 
 def deserialize_json(data: dict) -> ConditionalSplitActivity:
     out: ConditionalSplitActivity = {}  # type: ignore[typeddict-item]
-    if "Condition" in data:
+    if data.get("Condition") is not None:
         import capo_pinpoint.types.condition
 
         out["condition"] = capo_pinpoint.types.condition.deserialize_json(
             data["Condition"]
         )
-    if "EvaluationWaitTime" in data:
+    if data.get("EvaluationWaitTime") is not None:
         import capo_pinpoint.types.wait_time
 
         out["evaluation_wait_time"] = capo_pinpoint.types.wait_time.deserialize_json(
             data["EvaluationWaitTime"]
         )
-    if "FalseActivity" in data:
+    if data.get("FalseActivity") is not None:
         out["false_activity"] = data["FalseActivity"]
-    if "TrueActivity" in data:
+    if data.get("TrueActivity") is not None:
         out["true_activity"] = data["TrueActivity"]
     return out

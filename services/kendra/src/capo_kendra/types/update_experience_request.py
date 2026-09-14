@@ -56,19 +56,19 @@ def serialize_aws_json_1_1(value: UpdateExperienceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateExperienceRequest:
     out: UpdateExperienceRequest = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("UpdateExperienceRequest.id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "IndexId" in data:
+    if data.get("IndexId") is not None:
         out["index_id"] = data["IndexId"]
     else:
         raise DeserializationError("UpdateExperienceRequest.index_id required")
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "Configuration" in data:
+    if data.get("Configuration") is not None:
         import capo_kendra.types.experience_configuration
 
         out["configuration"] = (
@@ -76,6 +76,6 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateExperienceRequest:
                 data["Configuration"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

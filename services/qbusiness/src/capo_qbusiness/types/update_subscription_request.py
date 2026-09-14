@@ -32,7 +32,7 @@ def serialize_json(value: UpdateSubscriptionRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSubscriptionRequest:
     out: UpdateSubscriptionRequest = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_qbusiness.types.subscription_type
 
         out["type"] = capo_qbusiness.types.subscription_type.deserialize_json(

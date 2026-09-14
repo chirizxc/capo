@@ -53,7 +53,7 @@ def serialize_json(value: AwsS3BucketNotificationConfigurationDetail) -> dict:
 
 def deserialize_json(data: dict) -> AwsS3BucketNotificationConfigurationDetail:
     out: AwsS3BucketNotificationConfigurationDetail = {}  # type: ignore[typeddict-item]
-    if "Events" in data:
+    if data.get("Events") is not None:
         import capo_securityhub.types.aws_s3_bucket_notification_configuration_events
 
         out["events"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> AwsS3BucketNotificationConfigurationDetail:
                 data["Events"]
             )
         )
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_securityhub.types.aws_s3_bucket_notification_configuration_filter
 
         out["filter"] = (
@@ -69,8 +69,8 @@ def deserialize_json(data: dict) -> AwsS3BucketNotificationConfigurationDetail:
                 data["Filter"]
             )
         )
-    if "Destination" in data:
+    if data.get("Destination") is not None:
         out["destination"] = data["Destination"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     return out

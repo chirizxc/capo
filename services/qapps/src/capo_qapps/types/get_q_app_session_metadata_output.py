@@ -48,17 +48,17 @@ def serialize_json(value: GetQAppSessionMetadataOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetQAppSessionMetadataOutput:
     out: GetQAppSessionMetadataOutput = {}  # type: ignore[typeddict-item]
-    if "sessionId" in data:
+    if data.get("sessionId") is not None:
         out["session_id"] = data["sessionId"]
     else:
         raise DeserializationError("GetQAppSessionMetadataOutput.session_id required")
-    if "sessionArn" in data:
+    if data.get("sessionArn") is not None:
         out["session_arn"] = data["sessionArn"]
     else:
         raise DeserializationError("GetQAppSessionMetadataOutput.session_arn required")
-    if "sessionName" in data:
+    if data.get("sessionName") is not None:
         out["session_name"] = data["sessionName"]
-    if "sharingConfiguration" in data:
+    if data.get("sharingConfiguration") is not None:
         import capo_qapps.types.session_sharing_configuration
 
         out["sharing_configuration"] = (
@@ -70,6 +70,6 @@ def deserialize_json(data: dict) -> GetQAppSessionMetadataOutput:
         raise DeserializationError(
             "GetQAppSessionMetadataOutput.sharing_configuration required"
         )
-    if "sessionOwner" in data:
+    if data.get("sessionOwner") is not None:
         out["session_owner"] = data["sessionOwner"]
     return out

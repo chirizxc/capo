@@ -49,7 +49,7 @@ def serialize_json(value: DescribeDryRunProgressResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeDryRunProgressResponse:
     out: DescribeDryRunProgressResponse = {}  # type: ignore[typeddict-item]
-    if "DryRunProgressStatus" in data:
+    if data.get("DryRunProgressStatus") is not None:
         import capo_opensearch.types.dry_run_progress_status
 
         out["dry_run_progress_status"] = (
@@ -57,13 +57,13 @@ def deserialize_json(data: dict) -> DescribeDryRunProgressResponse:
                 data["DryRunProgressStatus"]
             )
         )
-    if "DryRunConfig" in data:
+    if data.get("DryRunConfig") is not None:
         import capo_opensearch.types.domain_status
 
         out["dry_run_config"] = capo_opensearch.types.domain_status.deserialize_json(
             data["DryRunConfig"]
         )
-    if "DryRunResults" in data:
+    if data.get("DryRunResults") is not None:
         import capo_opensearch.types.dry_run_results
 
         out["dry_run_results"] = capo_opensearch.types.dry_run_results.deserialize_json(

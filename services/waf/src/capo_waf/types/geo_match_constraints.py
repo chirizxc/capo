@@ -25,5 +25,7 @@ def deserialize_aws_json_1_1(data: list) -> GeoMatchConstraints:
 
     out: GeoMatchConstraints = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_waf.types.geo_match_constraint.deserialize_aws_json_1_1(item))
     return out

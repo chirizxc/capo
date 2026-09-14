@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> BatchDeleteDelegationByAssessmentErrors:
 
     out: BatchDeleteDelegationByAssessmentErrors = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_auditmanager.types.batch_delete_delegation_by_assessment_error.deserialize_json(
                 item

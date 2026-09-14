@@ -78,15 +78,15 @@ def serialize_json(value: ResponseItem) -> dict:
 
 def deserialize_json(data: dict) -> ResponseItem:
     out: ResponseItem = {}  # type: ignore[typeddict-item]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_workdocs.types.response_item_type
 
         out["resource_type"] = capo_workdocs.types.response_item_type.deserialize_json(
             data["ResourceType"]
         )
-    if "WebUrl" in data:
+    if data.get("WebUrl") is not None:
         out["web_url"] = data["WebUrl"]
-    if "DocumentMetadata" in data:
+    if data.get("DocumentMetadata") is not None:
         import capo_workdocs.types.document_metadata
 
         out["document_metadata"] = (
@@ -94,19 +94,19 @@ def deserialize_json(data: dict) -> ResponseItem:
                 data["DocumentMetadata"]
             )
         )
-    if "FolderMetadata" in data:
+    if data.get("FolderMetadata") is not None:
         import capo_workdocs.types.folder_metadata
 
         out["folder_metadata"] = capo_workdocs.types.folder_metadata.deserialize_json(
             data["FolderMetadata"]
         )
-    if "CommentMetadata" in data:
+    if data.get("CommentMetadata") is not None:
         import capo_workdocs.types.comment_metadata
 
         out["comment_metadata"] = capo_workdocs.types.comment_metadata.deserialize_json(
             data["CommentMetadata"]
         )
-    if "DocumentVersionMetadata" in data:
+    if data.get("DocumentVersionMetadata") is not None:
         import capo_workdocs.types.document_version_metadata
 
         out["document_version_metadata"] = (

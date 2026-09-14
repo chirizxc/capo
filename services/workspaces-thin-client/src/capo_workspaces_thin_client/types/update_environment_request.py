@@ -99,13 +99,13 @@ def serialize_json(value: UpdateEnvironmentRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateEnvironmentRequest:
     out: UpdateEnvironmentRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "desktopArn" in data:
+    if data.get("desktopArn") is not None:
         out["desktop_arn"] = data["desktopArn"]
-    if "desktopEndpoint" in data:
+    if data.get("desktopEndpoint") is not None:
         out["desktop_endpoint"] = data["desktopEndpoint"]
-    if "softwareSetUpdateSchedule" in data:
+    if data.get("softwareSetUpdateSchedule") is not None:
         import capo_workspaces_thin_client.types.software_set_update_schedule
 
         out["software_set_update_schedule"] = (
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> UpdateEnvironmentRequest:
                 data["softwareSetUpdateSchedule"]
             )
         )
-    if "maintenanceWindow" in data:
+    if data.get("maintenanceWindow") is not None:
         import capo_workspaces_thin_client.types.maintenance_window
 
         out["maintenance_window"] = (
@@ -121,7 +121,7 @@ def deserialize_json(data: dict) -> UpdateEnvironmentRequest:
                 data["maintenanceWindow"]
             )
         )
-    if "softwareSetUpdateMode" in data:
+    if data.get("softwareSetUpdateMode") is not None:
         import capo_workspaces_thin_client.types.software_set_update_mode
 
         out["software_set_update_mode"] = (
@@ -129,9 +129,9 @@ def deserialize_json(data: dict) -> UpdateEnvironmentRequest:
                 data["softwareSetUpdateMode"]
             )
         )
-    if "desiredSoftwareSetId" in data:
+    if data.get("desiredSoftwareSetId") is not None:
         out["desired_software_set_id"] = data["desiredSoftwareSetId"]
-    if "deviceCreationTags" in data:
+    if data.get("deviceCreationTags") is not None:
         import capo_workspaces_thin_client.types.device_creation_tags_map
 
         out["device_creation_tags"] = (

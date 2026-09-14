@@ -82,23 +82,23 @@ def serialize_aws_json_1_0(value: PartnerProfile) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PartnerProfile:
     out: PartnerProfile = {}  # type: ignore[typeddict-item]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
     else:
         raise DeserializationError("PartnerProfile.display_name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     else:
         raise DeserializationError("PartnerProfile.description required")
-    if "WebsiteUrl" in data:
+    if data.get("WebsiteUrl") is not None:
         out["website_url"] = data["WebsiteUrl"]
     else:
         raise DeserializationError("PartnerProfile.website_url required")
-    if "LogoUrl" in data:
+    if data.get("LogoUrl") is not None:
         out["logo_url"] = data["LogoUrl"]
     else:
         raise DeserializationError("PartnerProfile.logo_url required")
-    if "PrimarySolutionType" in data:
+    if data.get("PrimarySolutionType") is not None:
         import capo_partnercentral_account.types.primary_solution_type
 
         out["primary_solution_type"] = (
@@ -108,7 +108,7 @@ def deserialize_aws_json_1_0(data: dict) -> PartnerProfile:
         )
     else:
         raise DeserializationError("PartnerProfile.primary_solution_type required")
-    if "IndustrySegments" in data:
+    if data.get("IndustrySegments") is not None:
         import capo_partnercentral_account.types.industry_segment_list
 
         out["industry_segments"] = (
@@ -118,11 +118,11 @@ def deserialize_aws_json_1_0(data: dict) -> PartnerProfile:
         )
     else:
         raise DeserializationError("PartnerProfile.industry_segments required")
-    if "TranslationSourceLocale" in data:
+    if data.get("TranslationSourceLocale") is not None:
         out["translation_source_locale"] = data["TranslationSourceLocale"]
     else:
         raise DeserializationError("PartnerProfile.translation_source_locale required")
-    if "LocalizedContents" in data:
+    if data.get("LocalizedContents") is not None:
         import capo_partnercentral_account.types.localized_content_list
 
         out["localized_contents"] = (
@@ -130,6 +130,6 @@ def deserialize_aws_json_1_0(data: dict) -> PartnerProfile:
                 data["LocalizedContents"]
             )
         )
-    if "ProfileId" in data:
+    if data.get("ProfileId") is not None:
         out["profile_id"] = data["ProfileId"]
     return out

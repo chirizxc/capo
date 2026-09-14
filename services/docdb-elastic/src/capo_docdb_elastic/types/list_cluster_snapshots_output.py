@@ -36,7 +36,7 @@ def serialize_json(value: ListClusterSnapshotsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListClusterSnapshotsOutput:
     out: ListClusterSnapshotsOutput = {}  # type: ignore[typeddict-item]
-    if "snapshots" in data:
+    if data.get("snapshots") is not None:
         import capo_docdb_elastic.types.cluster_snapshot_list
 
         out["snapshots"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListClusterSnapshotsOutput:
                 data["snapshots"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

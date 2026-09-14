@@ -36,9 +36,9 @@ def serialize_aws_json_1_0(value: ListDataIngestionJobsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListDataIngestionJobsResponse:
     out: ListDataIngestionJobsResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "DataIngestionJobSummaries" in data:
+    if data.get("DataIngestionJobSummaries") is not None:
         import capo_lookoutequipment.types.data_ingestion_job_summaries
 
         out["data_ingestion_job_summaries"] = (

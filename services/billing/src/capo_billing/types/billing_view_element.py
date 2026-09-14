@@ -117,13 +117,13 @@ def serialize_aws_json_1_0(value: BillingViewElement) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> BillingViewElement:
     out: BillingViewElement = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "billingViewType" in data:
+    if data.get("billingViewType") is not None:
         import capo_billing.types.billing_view_type
 
         out["billing_view_type"] = (
@@ -131,11 +131,11 @@ def deserialize_aws_json_1_0(data: dict) -> BillingViewElement:
                 data["billingViewType"]
             )
         )
-    if "ownerAccountId" in data:
+    if data.get("ownerAccountId") is not None:
         out["owner_account_id"] = data["ownerAccountId"]
-    if "sourceAccountId" in data:
+    if data.get("sourceAccountId") is not None:
         out["source_account_id"] = data["sourceAccountId"]
-    if "dataFilterExpression" in data:
+    if data.get("dataFilterExpression") is not None:
         import capo_billing.types.expression
 
         out["data_filter_expression"] = (
@@ -143,7 +143,7 @@ def deserialize_aws_json_1_0(data: dict) -> BillingViewElement:
                 data["dataFilterExpression"]
             )
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_billing.types._prelude.timestamp
 
         out["created_at"] = (
@@ -151,7 +151,7 @@ def deserialize_aws_json_1_0(data: dict) -> BillingViewElement:
                 data["createdAt"]
             )
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_billing.types._prelude.timestamp
 
         out["updated_at"] = (
@@ -159,11 +159,11 @@ def deserialize_aws_json_1_0(data: dict) -> BillingViewElement:
                 data["updatedAt"]
             )
         )
-    if "derivedViewCount" in data:
+    if data.get("derivedViewCount") is not None:
         out["derived_view_count"] = data["derivedViewCount"]
-    if "sourceViewCount" in data:
+    if data.get("sourceViewCount") is not None:
         out["source_view_count"] = data["sourceViewCount"]
-    if "viewDefinitionLastUpdatedAt" in data:
+    if data.get("viewDefinitionLastUpdatedAt") is not None:
         import capo_billing.types._prelude.timestamp
 
         out["view_definition_last_updated_at"] = (
@@ -171,7 +171,7 @@ def deserialize_aws_json_1_0(data: dict) -> BillingViewElement:
                 data["viewDefinitionLastUpdatedAt"]
             )
         )
-    if "healthStatus" in data:
+    if data.get("healthStatus") is not None:
         import capo_billing.types.billing_view_health_status
 
         out["health_status"] = (

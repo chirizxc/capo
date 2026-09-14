@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: CreateFlowTemplateResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateFlowTemplateResponse:
     out: CreateFlowTemplateResponse = {}  # type: ignore[typeddict-item]
-    if "summary" in data:
+    if data.get("summary") is not None:
         import capo_iotthingsgraph.types.flow_template_summary
 
         out["summary"] = (

@@ -37,17 +37,17 @@ def serialize_json(value: ImpalaParameters) -> dict:
 
 def deserialize_json(data: dict) -> ImpalaParameters:
     out: ImpalaParameters = {}  # type: ignore[typeddict-item]
-    if "Host" in data:
+    if data.get("Host") is not None:
         out["host"] = data["Host"]
     else:
         raise DeserializationError("ImpalaParameters.host required")
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
     else:
         raise DeserializationError("ImpalaParameters.port required")
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
-    if "SqlEndpointPath" in data:
+    if data.get("SqlEndpointPath") is not None:
         out["sql_endpoint_path"] = data["SqlEndpointPath"]
     else:
         raise DeserializationError("ImpalaParameters.sql_endpoint_path required")

@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DescribeSupportedLanguagesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeSupportedLanguagesResponse:
     out: DescribeSupportedLanguagesResponse = {}  # type: ignore[typeddict-item]
-    if "supportedLanguages" in data:
+    if data.get("supportedLanguages") is not None:
         import capo_support.types.supported_languages_list
 
         out["supported_languages"] = (

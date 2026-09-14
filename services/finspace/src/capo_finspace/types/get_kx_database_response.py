@@ -74,37 +74,37 @@ def serialize_json(value: GetKxDatabaseResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetKxDatabaseResponse:
     out: GetKxDatabaseResponse = {}  # type: ignore[typeddict-item]
-    if "databaseName" in data:
+    if data.get("databaseName") is not None:
         out["database_name"] = data["databaseName"]
-    if "databaseArn" in data:
+    if data.get("databaseArn") is not None:
         out["database_arn"] = data["databaseArn"]
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "createdTimestamp" in data:
+    if data.get("createdTimestamp") is not None:
         import capo_finspace.types.timestamp
 
         out["created_timestamp"] = capo_finspace.types.timestamp.deserialize_json(
             data["createdTimestamp"]
         )
-    if "lastModifiedTimestamp" in data:
+    if data.get("lastModifiedTimestamp") is not None:
         import capo_finspace.types.timestamp
 
         out["last_modified_timestamp"] = capo_finspace.types.timestamp.deserialize_json(
             data["lastModifiedTimestamp"]
         )
-    if "lastCompletedChangesetId" in data:
+    if data.get("lastCompletedChangesetId") is not None:
         out["last_completed_changeset_id"] = data["lastCompletedChangesetId"]
-    if "numBytes" in data:
+    if data.get("numBytes") is not None:
         out["num_bytes"] = data["numBytes"]
     else:
         out["num_bytes"] = 0
-    if "numChangesets" in data:
+    if data.get("numChangesets") is not None:
         out["num_changesets"] = data["numChangesets"]
     else:
         out["num_changesets"] = 0
-    if "numFiles" in data:
+    if data.get("numFiles") is not None:
         out["num_files"] = data["numFiles"]
     else:
         out["num_files"] = 0

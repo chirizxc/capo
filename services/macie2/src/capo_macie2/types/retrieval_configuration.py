@@ -39,14 +39,14 @@ def serialize_json(value: RetrievalConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> RetrievalConfiguration:
     out: RetrievalConfiguration = {}  # type: ignore[typeddict-item]
-    if "externalId" in data:
+    if data.get("externalId") is not None:
         out["external_id"] = data["externalId"]
-    if "retrievalMode" in data:
+    if data.get("retrievalMode") is not None:
         import capo_macie2.types.retrieval_mode
 
         out["retrieval_mode"] = capo_macie2.types.retrieval_mode.deserialize_json(
             data["retrievalMode"]
         )
-    if "roleName" in data:
+    if data.get("roleName") is not None:
         out["role_name"] = data["roleName"]
     return out

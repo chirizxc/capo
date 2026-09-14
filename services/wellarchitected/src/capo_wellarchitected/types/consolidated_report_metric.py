@@ -71,36 +71,36 @@ def serialize_json(value: ConsolidatedReportMetric) -> dict:
 
 def deserialize_json(data: dict) -> ConsolidatedReportMetric:
     out: ConsolidatedReportMetric = {}  # type: ignore[typeddict-item]
-    if "MetricType" in data:
+    if data.get("MetricType") is not None:
         import capo_wellarchitected.types.metric_type
 
         out["metric_type"] = capo_wellarchitected.types.metric_type.deserialize_json(
             data["MetricType"]
         )
-    if "RiskCounts" in data:
+    if data.get("RiskCounts") is not None:
         import capo_wellarchitected.types.risk_counts
 
         out["risk_counts"] = capo_wellarchitected.types.risk_counts.deserialize_json(
             data["RiskCounts"]
         )
-    if "WorkloadId" in data:
+    if data.get("WorkloadId") is not None:
         out["workload_id"] = data["WorkloadId"]
-    if "WorkloadName" in data:
+    if data.get("WorkloadName") is not None:
         out["workload_name"] = data["WorkloadName"]
-    if "WorkloadArn" in data:
+    if data.get("WorkloadArn") is not None:
         out["workload_arn"] = data["WorkloadArn"]
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_wellarchitected.types.timestamp
 
         out["updated_at"] = capo_wellarchitected.types.timestamp.deserialize_json(
             data["UpdatedAt"]
         )
-    if "Lenses" in data:
+    if data.get("Lenses") is not None:
         import capo_wellarchitected.types.lens_metrics
 
         out["lenses"] = capo_wellarchitected.types.lens_metrics.deserialize_json(
             data["Lenses"]
         )
-    if "LensesAppliedCount" in data:
+    if data.get("LensesAppliedCount") is not None:
         out["lenses_applied_count"] = data["LensesAppliedCount"]
     return out

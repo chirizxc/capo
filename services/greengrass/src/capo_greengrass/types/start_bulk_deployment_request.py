@@ -36,11 +36,11 @@ def serialize_json(value: StartBulkDeploymentRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartBulkDeploymentRequest:
     out: StartBulkDeploymentRequest = {}  # type: ignore[typeddict-item]
-    if "ExecutionRoleArn" in data:
+    if data.get("ExecutionRoleArn") is not None:
         out["execution_role_arn"] = data["ExecutionRoleArn"]
-    if "InputFileUri" in data:
+    if data.get("InputFileUri") is not None:
         out["input_file_uri"] = data["InputFileUri"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_greengrass.types.tags
 
         out["tags"] = capo_greengrass.types.tags.deserialize_json(data["tags"])

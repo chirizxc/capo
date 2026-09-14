@@ -129,19 +129,19 @@ def serialize_aws_json_1_0(value: Deployment) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Deployment:
     out: Deployment = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("Deployment.id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("Deployment.arn required")
-    if "targetArn" in data:
+    if data.get("targetArn") is not None:
         out["target_arn"] = data["targetArn"]
     else:
         raise DeserializationError("Deployment.target_arn required")
-    if "targetResourceCreatedAt" in data:
+    if data.get("targetResourceCreatedAt") is not None:
         import capo_proton.types._prelude.timestamp
 
         out["target_resource_created_at"] = (
@@ -151,27 +151,27 @@ def deserialize_aws_json_1_0(data: dict) -> Deployment:
         )
     else:
         raise DeserializationError("Deployment.target_resource_created_at required")
-    if "targetResourceType" in data:
+    if data.get("targetResourceType") is not None:
         out["target_resource_type"] = data["targetResourceType"]
     else:
         raise DeserializationError("Deployment.target_resource_type required")
-    if "environmentName" in data:
+    if data.get("environmentName") is not None:
         out["environment_name"] = data["environmentName"]
     else:
         raise DeserializationError("Deployment.environment_name required")
-    if "serviceName" in data:
+    if data.get("serviceName") is not None:
         out["service_name"] = data["serviceName"]
-    if "serviceInstanceName" in data:
+    if data.get("serviceInstanceName") is not None:
         out["service_instance_name"] = data["serviceInstanceName"]
-    if "componentName" in data:
+    if data.get("componentName") is not None:
         out["component_name"] = data["componentName"]
-    if "deploymentStatus" in data:
+    if data.get("deploymentStatus") is not None:
         out["deployment_status"] = data["deploymentStatus"]
     else:
         raise DeserializationError("Deployment.deployment_status required")
-    if "deploymentStatusMessage" in data:
+    if data.get("deploymentStatusMessage") is not None:
         out["deployment_status_message"] = data["deploymentStatusMessage"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_proton.types._prelude.timestamp
 
         out["created_at"] = (
@@ -181,7 +181,7 @@ def deserialize_aws_json_1_0(data: dict) -> Deployment:
         )
     else:
         raise DeserializationError("Deployment.created_at required")
-    if "lastModifiedAt" in data:
+    if data.get("lastModifiedAt") is not None:
         import capo_proton.types._prelude.timestamp
 
         out["last_modified_at"] = (
@@ -191,7 +191,7 @@ def deserialize_aws_json_1_0(data: dict) -> Deployment:
         )
     else:
         raise DeserializationError("Deployment.last_modified_at required")
-    if "completedAt" in data:
+    if data.get("completedAt") is not None:
         import capo_proton.types._prelude.timestamp
 
         out["completed_at"] = (
@@ -199,11 +199,11 @@ def deserialize_aws_json_1_0(data: dict) -> Deployment:
                 data["completedAt"]
             )
         )
-    if "lastAttemptedDeploymentId" in data:
+    if data.get("lastAttemptedDeploymentId") is not None:
         out["last_attempted_deployment_id"] = data["lastAttemptedDeploymentId"]
-    if "lastSucceededDeploymentId" in data:
+    if data.get("lastSucceededDeploymentId") is not None:
         out["last_succeeded_deployment_id"] = data["lastSucceededDeploymentId"]
-    if "initialState" in data:
+    if data.get("initialState") is not None:
         import capo_proton.types.deployment_state
 
         out["initial_state"] = (
@@ -211,7 +211,7 @@ def deserialize_aws_json_1_0(data: dict) -> Deployment:
                 data["initialState"]
             )
         )
-    if "targetState" in data:
+    if data.get("targetState") is not None:
         import capo_proton.types.deployment_state
 
         out["target_state"] = (

@@ -31,7 +31,7 @@ def serialize_json(value: WorkerTypeSpecificationInput) -> dict:
 
 def deserialize_json(data: dict) -> WorkerTypeSpecificationInput:
     out: WorkerTypeSpecificationInput = {}  # type: ignore[typeddict-item]
-    if "imageConfiguration" in data:
+    if data.get("imageConfiguration") is not None:
         import capo_emr_serverless.types.image_configuration_input
 
         out["image_configuration"] = (

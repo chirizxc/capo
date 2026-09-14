@@ -68,7 +68,7 @@ def serialize_json(value: DataBindingValueFilter) -> dict:
 
 def deserialize_json(data: dict) -> DataBindingValueFilter:
     out: DataBindingValueFilter = {}  # type: ignore[typeddict-item]
-    if "asset" in data:
+    if data.get("asset") is not None:
         import capo_iotsitewise.types.asset_binding_value_filter
 
         out["asset"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> DataBindingValueFilter:
                 data["asset"]
             )
         )
-    if "assetModel" in data:
+    if data.get("assetModel") is not None:
         import capo_iotsitewise.types.asset_model_binding_value_filter
 
         out["asset_model"] = (
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> DataBindingValueFilter:
                 data["assetModel"]
             )
         )
-    if "assetProperty" in data:
+    if data.get("assetProperty") is not None:
         import capo_iotsitewise.types.asset_property_binding_value_filter
 
         out["asset_property"] = (
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> DataBindingValueFilter:
                 data["assetProperty"]
             )
         )
-    if "assetModelProperty" in data:
+    if data.get("assetModelProperty") is not None:
         import capo_iotsitewise.types.asset_model_property_binding_value_filter
 
         out["asset_model_property"] = (

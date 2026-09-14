@@ -32,8 +32,8 @@ def serialize_json(value: ExportStatistics) -> dict:
 
 def deserialize_json(data: dict) -> ExportStatistics:
     out: ExportStatistics = {}  # type: ignore[typeddict-item]
-    if "ProcessedRecordsCount" in data:
+    if data.get("ProcessedRecordsCount") is not None:
         out["processed_records_count"] = data["ProcessedRecordsCount"]
-    if "ExportedRecordsCount" in data:
+    if data.get("ExportedRecordsCount") is not None:
         out["exported_records_count"] = data["ExportedRecordsCount"]
     return out

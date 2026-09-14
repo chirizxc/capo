@@ -67,8 +67,9 @@ class ComponentProvisionedResourceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.list_component_provisioned_resources_input.ListComponentProvisionedResourcesInput = {}  # type: ignore[typeddict-item]
-        input_["component_name"] = component_name
+        input_: capo_proton.types.list_component_provisioned_resources_input.ListComponentProvisionedResourcesInput = {
+            "component_name": component_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -77,6 +78,7 @@ class ComponentProvisionedResourceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -124,8 +126,9 @@ class AsyncComponentProvisionedResourceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.list_component_provisioned_resources_input.ListComponentProvisionedResourcesInput = {}  # type: ignore[typeddict-item]
-        input_["component_name"] = component_name
+        input_: capo_proton.types.list_component_provisioned_resources_input.ListComponentProvisionedResourcesInput = {
+            "component_name": component_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -134,4 +137,5 @@ class AsyncComponentProvisionedResourceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

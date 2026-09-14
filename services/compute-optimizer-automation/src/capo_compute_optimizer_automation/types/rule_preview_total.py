@@ -32,11 +32,11 @@ def serialize_aws_json_1_0(value: RulePreviewTotal) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RulePreviewTotal:
     out: RulePreviewTotal = {}  # type: ignore[typeddict-item]
-    if "recommendedActionCount" in data:
+    if data.get("recommendedActionCount") is not None:
         out["recommended_action_count"] = data["recommendedActionCount"]
     else:
         raise DeserializationError("RulePreviewTotal.recommended_action_count required")
-    if "estimatedMonthlySavings" in data:
+    if data.get("estimatedMonthlySavings") is not None:
         import capo_compute_optimizer_automation.types.estimated_monthly_savings
 
         out["estimated_monthly_savings"] = (

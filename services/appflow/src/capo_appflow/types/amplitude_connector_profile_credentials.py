@@ -28,13 +28,13 @@ def serialize_json(value: AmplitudeConnectorProfileCredentials) -> dict:
 
 def deserialize_json(data: dict) -> AmplitudeConnectorProfileCredentials:
     out: AmplitudeConnectorProfileCredentials = {}  # type: ignore[typeddict-item]
-    if "apiKey" in data:
+    if data.get("apiKey") is not None:
         out["api_key"] = data["apiKey"]
     else:
         raise DeserializationError(
             "AmplitudeConnectorProfileCredentials.api_key required"
         )
-    if "secretKey" in data:
+    if data.get("secretKey") is not None:
         out["secret_key"] = data["secretKey"]
     else:
         raise DeserializationError(

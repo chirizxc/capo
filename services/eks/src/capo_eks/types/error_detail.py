@@ -39,15 +39,15 @@ def serialize_json(value: ErrorDetail) -> dict:
 
 def deserialize_json(data: dict) -> ErrorDetail:
     out: ErrorDetail = {}  # type: ignore[typeddict-item]
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         import capo_eks.types.error_code
 
         out["error_code"] = capo_eks.types.error_code.deserialize_json(
             data["errorCode"]
         )
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
-    if "resourceIds" in data:
+    if data.get("resourceIds") is not None:
         import capo_eks.types.string_list
 
         out["resource_ids"] = capo_eks.types.string_list.deserialize_json(

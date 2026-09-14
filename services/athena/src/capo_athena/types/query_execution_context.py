@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: QueryExecutionContext) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> QueryExecutionContext:
     out: QueryExecutionContext = {}  # type: ignore[typeddict-item]
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     return out

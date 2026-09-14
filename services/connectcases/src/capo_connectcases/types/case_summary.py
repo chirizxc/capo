@@ -28,11 +28,11 @@ def serialize_json(value: CaseSummary) -> dict:
 
 def deserialize_json(data: dict) -> CaseSummary:
     out: CaseSummary = {}  # type: ignore[typeddict-item]
-    if "caseId" in data:
+    if data.get("caseId") is not None:
         out["case_id"] = data["caseId"]
     else:
         raise DeserializationError("CaseSummary.case_id required")
-    if "templateId" in data:
+    if data.get("templateId") is not None:
         out["template_id"] = data["templateId"]
     else:
         raise DeserializationError("CaseSummary.template_id required")

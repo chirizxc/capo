@@ -39,7 +39,7 @@ def serialize_aws_json_1_1(value: FailureDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FailureDetails:
     out: FailureDetails = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_codepipeline.types.failure_type
 
         out["type"] = capo_codepipeline.types.failure_type.deserialize_aws_json_1_1(
@@ -47,10 +47,10 @@ def deserialize_aws_json_1_1(data: dict) -> FailureDetails:
         )
     else:
         raise DeserializationError("FailureDetails.type required")
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("FailureDetails.message required")
-    if "externalExecutionId" in data:
+    if data.get("externalExecutionId") is not None:
         out["external_execution_id"] = data["externalExecutionId"]
     return out

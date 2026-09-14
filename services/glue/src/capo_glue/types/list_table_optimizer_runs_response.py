@@ -52,15 +52,15 @@ def serialize_aws_json_1_1(value: ListTableOptimizerRunsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListTableOptimizerRunsResponse:
     out: ListTableOptimizerRunsResponse = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "TableOptimizerRuns" in data:
+    if data.get("TableOptimizerRuns") is not None:
         import capo_glue.types.table_optimizer_runs
 
         out["table_optimizer_runs"] = (

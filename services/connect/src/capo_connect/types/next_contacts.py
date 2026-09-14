@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> NextContacts:
 
     out: NextContacts = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.next_contact_entry.deserialize_json(item))
     return out

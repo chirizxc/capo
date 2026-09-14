@@ -52,20 +52,20 @@ def serialize_json(value: UpdateTargetGroupResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTargetGroupResponse:
     out: UpdateTargetGroupResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "config" in data:
+    if data.get("config") is not None:
         import capo_vpc_lattice.types.target_group_config
 
         out["config"] = capo_vpc_lattice.types.target_group_config.deserialize_json(
             data["config"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     return out

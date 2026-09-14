@@ -74,14 +74,16 @@ class ControlOperationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.get_control_operation_input.GetControlOperationInput = {}  # type: ignore[typeddict-item]
-        input_["operation_identifier"] = operation_identifier
+        input_: capo_controltower.types.get_control_operation_input.GetControlOperationInput = {
+            "operation_identifier": operation_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -128,7 +130,7 @@ class ControlOperationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.list_control_operations_input.ListControlOperationsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_controltower.types.list_control_operations_input.ListControlOperationsInput = {}
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -141,6 +143,7 @@ class ControlOperationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -186,14 +189,16 @@ class AsyncControlOperationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.get_control_operation_input.GetControlOperationInput = {}  # type: ignore[typeddict-item]
-        input_["operation_identifier"] = operation_identifier
+        input_: capo_controltower.types.get_control_operation_input.GetControlOperationInput = {
+            "operation_identifier": operation_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -241,7 +246,7 @@ class AsyncControlOperationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.list_control_operations_input.ListControlOperationsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_controltower.types.list_control_operations_input.ListControlOperationsInput = {}
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -254,4 +259,5 @@ class AsyncControlOperationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

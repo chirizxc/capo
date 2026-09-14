@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: LabelMatchStatement) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LabelMatchStatement:
     out: LabelMatchStatement = {}  # type: ignore[typeddict-item]
-    if "Scope" in data:
+    if data.get("Scope") is not None:
         import capo_wafv2.types.label_match_scope
 
         out["scope"] = capo_wafv2.types.label_match_scope.deserialize_aws_json_1_1(
@@ -40,7 +40,7 @@ def deserialize_aws_json_1_1(data: dict) -> LabelMatchStatement:
         )
     else:
         raise DeserializationError("LabelMatchStatement.scope required")
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
     else:
         raise DeserializationError("LabelMatchStatement.key required")

@@ -30,8 +30,8 @@ def serialize_json(value: ApplicationComponentStatusSummary) -> dict:
 
 def deserialize_json(data: dict) -> ApplicationComponentStatusSummary:
     out: ApplicationComponentStatusSummary = {}  # type: ignore[typeddict-item]
-    if "srcCodeOrDbAnalysisStatus" in data:
+    if data.get("srcCodeOrDbAnalysisStatus") is not None:
         out["src_code_or_db_analysis_status"] = data["srcCodeOrDbAnalysisStatus"]
-    if "count" in data:
+    if data.get("count") is not None:
         out["count"] = data["count"]
     return out

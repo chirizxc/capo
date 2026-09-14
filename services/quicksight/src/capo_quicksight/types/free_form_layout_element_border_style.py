@@ -39,14 +39,14 @@ def serialize_json(value: FreeFormLayoutElementBorderStyle) -> dict:
 
 def deserialize_json(data: dict) -> FreeFormLayoutElementBorderStyle:
     out: FreeFormLayoutElementBorderStyle = {}  # type: ignore[typeddict-item]
-    if "Visibility" in data:
+    if data.get("Visibility") is not None:
         import capo_quicksight.types.visibility
 
         out["visibility"] = capo_quicksight.types.visibility.deserialize_json(
             data["Visibility"]
         )
-    if "Color" in data:
+    if data.get("Color") is not None:
         out["color"] = data["Color"]
-    if "Width" in data:
+    if data.get("Width") is not None:
         out["width"] = data["Width"]
     return out

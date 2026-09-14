@@ -32,9 +32,9 @@ def serialize_json(value: UploadMetadata) -> dict:
 
 def deserialize_json(data: dict) -> UploadMetadata:
     out: UploadMetadata = {}  # type: ignore[typeddict-item]
-    if "UploadUrl" in data:
+    if data.get("UploadUrl") is not None:
         out["upload_url"] = data["UploadUrl"]
-    if "SignedHeaders" in data:
+    if data.get("SignedHeaders") is not None:
         import capo_workdocs.types.signed_header_map
 
         out["signed_headers"] = capo_workdocs.types.signed_header_map.deserialize_json(

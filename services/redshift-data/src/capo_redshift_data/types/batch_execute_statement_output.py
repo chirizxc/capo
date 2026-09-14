@@ -76,9 +76,9 @@ def serialize_aws_json_1_1(value: BatchExecuteStatementOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchExecuteStatementOutput:
     out: BatchExecuteStatementOutput = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_redshift_data.types._prelude.timestamp
 
         out["created_at"] = (
@@ -86,11 +86,11 @@ def deserialize_aws_json_1_1(data: dict) -> BatchExecuteStatementOutput:
                 data["CreatedAt"]
             )
         )
-    if "ClusterIdentifier" in data:
+    if data.get("ClusterIdentifier") is not None:
         out["cluster_identifier"] = data["ClusterIdentifier"]
-    if "DbUser" in data:
+    if data.get("DbUser") is not None:
         out["db_user"] = data["DbUser"]
-    if "DbGroups" in data:
+    if data.get("DbGroups") is not None:
         import capo_redshift_data.types.db_group_list
 
         out["db_groups"] = (
@@ -98,12 +98,12 @@ def deserialize_aws_json_1_1(data: dict) -> BatchExecuteStatementOutput:
                 data["DbGroups"]
             )
         )
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
-    if "SecretArn" in data:
+    if data.get("SecretArn") is not None:
         out["secret_arn"] = data["SecretArn"]
-    if "WorkgroupName" in data:
+    if data.get("WorkgroupName") is not None:
         out["workgroup_name"] = data["WorkgroupName"]
-    if "SessionId" in data:
+    if data.get("SessionId") is not None:
         out["session_id"] = data["SessionId"]
     return out

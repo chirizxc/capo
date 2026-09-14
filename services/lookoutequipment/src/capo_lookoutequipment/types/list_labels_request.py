@@ -65,11 +65,11 @@ def serialize_aws_json_1_0(value: ListLabelsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListLabelsRequest:
     out: ListLabelsRequest = {}  # type: ignore[typeddict-item]
-    if "LabelGroupName" in data:
+    if data.get("LabelGroupName") is not None:
         out["label_group_name"] = data["LabelGroupName"]
     else:
         raise DeserializationError("ListLabelsRequest.label_group_name required")
-    if "IntervalStartTime" in data:
+    if data.get("IntervalStartTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["interval_start_time"] = (
@@ -77,7 +77,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListLabelsRequest:
                 data["IntervalStartTime"]
             )
         )
-    if "IntervalEndTime" in data:
+    if data.get("IntervalEndTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["interval_end_time"] = (
@@ -85,12 +85,12 @@ def deserialize_aws_json_1_0(data: dict) -> ListLabelsRequest:
                 data["IntervalEndTime"]
             )
         )
-    if "FaultCode" in data:
+    if data.get("FaultCode") is not None:
         out["fault_code"] = data["FaultCode"]
-    if "Equipment" in data:
+    if data.get("Equipment") is not None:
         out["equipment"] = data["Equipment"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

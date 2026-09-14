@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> BatchGetSchemaErrorList:
 
     out: BatchGetSchemaErrorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_cleanrooms.types.batch_get_schema_error.deserialize_json(item))
     return out

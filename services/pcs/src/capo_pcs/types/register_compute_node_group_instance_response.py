@@ -35,19 +35,19 @@ def serialize_aws_json_1_0(value: RegisterComputeNodeGroupInstanceResponse) -> d
 
 def deserialize_aws_json_1_0(data: dict) -> RegisterComputeNodeGroupInstanceResponse:
     out: RegisterComputeNodeGroupInstanceResponse = {}  # type: ignore[typeddict-item]
-    if "nodeID" in data:
+    if data.get("nodeID") is not None:
         out["node_id"] = data["nodeID"]
     else:
         raise DeserializationError(
             "RegisterComputeNodeGroupInstanceResponse.node_id required"
         )
-    if "sharedSecret" in data:
+    if data.get("sharedSecret") is not None:
         out["shared_secret"] = data["sharedSecret"]
     else:
         raise DeserializationError(
             "RegisterComputeNodeGroupInstanceResponse.shared_secret required"
         )
-    if "endpoints" in data:
+    if data.get("endpoints") is not None:
         import capo_pcs.types.endpoints
 
         out["endpoints"] = capo_pcs.types.endpoints.deserialize_aws_json_1_0(

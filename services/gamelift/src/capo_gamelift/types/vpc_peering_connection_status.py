@@ -29,8 +29,8 @@ def serialize_aws_json_1_1(value: VpcPeeringConnectionStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> VpcPeeringConnectionStatus:
     out: VpcPeeringConnectionStatus = {}  # type: ignore[typeddict-item]
-    if "Code" in data:
+    if data.get("Code") is not None:
         out["code"] = data["Code"]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

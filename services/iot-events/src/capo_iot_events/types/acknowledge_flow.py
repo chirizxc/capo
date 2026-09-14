@@ -24,7 +24,7 @@ def serialize_json(value: AcknowledgeFlow) -> dict:
 
 def deserialize_json(data: dict) -> AcknowledgeFlow:
     out: AcknowledgeFlow = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
     else:
         raise DeserializationError("AcknowledgeFlow.enabled required")

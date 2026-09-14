@@ -25,6 +25,6 @@ def serialize_json(value: SqsQueueConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SqsQueueConfiguration:
     out: SqsQueueConfiguration = {}  # type: ignore[typeddict-item]
-    if "queuePolicy" in data:
+    if data.get("queuePolicy") is not None:
         out["queue_policy"] = data["queuePolicy"]
     return out

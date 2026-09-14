@@ -83,7 +83,7 @@ def serialize_json(value: UpdateBackendAuthUserPoolConfig) -> dict:
 
 def deserialize_json(data: dict) -> UpdateBackendAuthUserPoolConfig:
     out: UpdateBackendAuthUserPoolConfig = {}  # type: ignore[typeddict-item]
-    if "forgotPassword" in data:
+    if data.get("forgotPassword") is not None:
         import capo_amplifybackend.types.update_backend_auth_forgot_password_config
 
         out["forgot_password"] = (
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> UpdateBackendAuthUserPoolConfig:
                 data["forgotPassword"]
             )
         )
-    if "mfa" in data:
+    if data.get("mfa") is not None:
         import capo_amplifybackend.types.update_backend_auth_mfa_config
 
         out["mfa"] = (
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> UpdateBackendAuthUserPoolConfig:
                 data["mfa"]
             )
         )
-    if "oAuth" in data:
+    if data.get("oAuth") is not None:
         import capo_amplifybackend.types.update_backend_auth_o_auth_config
 
         out["o_auth"] = (
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> UpdateBackendAuthUserPoolConfig:
                 data["oAuth"]
             )
         )
-    if "passwordPolicy" in data:
+    if data.get("passwordPolicy") is not None:
         import capo_amplifybackend.types.update_backend_auth_password_policy_config
 
         out["password_policy"] = (
@@ -115,7 +115,7 @@ def deserialize_json(data: dict) -> UpdateBackendAuthUserPoolConfig:
                 data["passwordPolicy"]
             )
         )
-    if "verificationMessage" in data:
+    if data.get("verificationMessage") is not None:
         import capo_amplifybackend.types.update_backend_auth_verification_message_config
 
         out["verification_message"] = (

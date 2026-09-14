@@ -132,19 +132,19 @@ def serialize_aws_json_1_1(value: ScheduleRunConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ScheduleRunConfiguration:
     out: ScheduleRunConfiguration = {}  # type: ignore[typeddict-item]
-    if "extraDataPackageArn" in data:
+    if data.get("extraDataPackageArn") is not None:
         out["extra_data_package_arn"] = data["extraDataPackageArn"]
-    if "networkProfileArn" in data:
+    if data.get("networkProfileArn") is not None:
         out["network_profile_arn"] = data["networkProfileArn"]
-    if "locale" in data:
+    if data.get("locale") is not None:
         out["locale"] = data["locale"]
-    if "location" in data:
+    if data.get("location") is not None:
         import capo_device_farm.types.location
 
         out["location"] = capo_device_farm.types.location.deserialize_aws_json_1_1(
             data["location"]
         )
-    if "vpceConfigurationArns" in data:
+    if data.get("vpceConfigurationArns") is not None:
         import capo_device_farm.types.amazon_resource_names
 
         out["vpce_configuration_arns"] = (
@@ -152,7 +152,7 @@ def deserialize_aws_json_1_1(data: dict) -> ScheduleRunConfiguration:
                 data["vpceConfigurationArns"]
             )
         )
-    if "deviceProxy" in data:
+    if data.get("deviceProxy") is not None:
         import capo_device_farm.types.device_proxy
 
         out["device_proxy"] = (
@@ -160,7 +160,7 @@ def deserialize_aws_json_1_1(data: dict) -> ScheduleRunConfiguration:
                 data["deviceProxy"]
             )
         )
-    if "customerArtifactPaths" in data:
+    if data.get("customerArtifactPaths") is not None:
         import capo_device_farm.types.customer_artifact_paths
 
         out["customer_artifact_paths"] = (
@@ -168,13 +168,13 @@ def deserialize_aws_json_1_1(data: dict) -> ScheduleRunConfiguration:
                 data["customerArtifactPaths"]
             )
         )
-    if "radios" in data:
+    if data.get("radios") is not None:
         import capo_device_farm.types.radios
 
         out["radios"] = capo_device_farm.types.radios.deserialize_aws_json_1_1(
             data["radios"]
         )
-    if "auxiliaryApps" in data:
+    if data.get("auxiliaryApps") is not None:
         import capo_device_farm.types.amazon_resource_names
 
         out["auxiliary_apps"] = (
@@ -182,7 +182,7 @@ def deserialize_aws_json_1_1(data: dict) -> ScheduleRunConfiguration:
                 data["auxiliaryApps"]
             )
         )
-    if "billingMethod" in data:
+    if data.get("billingMethod") is not None:
         import capo_device_farm.types.billing_method
 
         out["billing_method"] = (
@@ -190,7 +190,7 @@ def deserialize_aws_json_1_1(data: dict) -> ScheduleRunConfiguration:
                 data["billingMethod"]
             )
         )
-    if "environmentVariables" in data:
+    if data.get("environmentVariables") is not None:
         import capo_device_farm.types.environment_variables
 
         out["environment_variables"] = (
@@ -198,6 +198,6 @@ def deserialize_aws_json_1_1(data: dict) -> ScheduleRunConfiguration:
                 data["environmentVariables"]
             )
         )
-    if "executionRoleArn" in data:
+    if data.get("executionRoleArn") is not None:
         out["execution_role_arn"] = data["executionRoleArn"]
     return out

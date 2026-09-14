@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ExclusionWindows:
 
     out: ExclusionWindows = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_application_signals.types.exclusion_window.deserialize_json(item)
         )

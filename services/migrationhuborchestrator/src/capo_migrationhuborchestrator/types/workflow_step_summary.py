@@ -86,15 +86,15 @@ def serialize_json(value: WorkflowStepSummary) -> dict:
 
 def deserialize_json(data: dict) -> WorkflowStepSummary:
     out: WorkflowStepSummary = {}  # type: ignore[typeddict-item]
-    if "stepId" in data:
+    if data.get("stepId") is not None:
         out["step_id"] = data["stepId"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "stepActionType" in data:
+    if data.get("stepActionType") is not None:
         out["step_action_type"] = data["stepActionType"]
-    if "owner" in data:
+    if data.get("owner") is not None:
         out["owner"] = data["owner"]
-    if "previous" in data:
+    if data.get("previous") is not None:
         import capo_migrationhuborchestrator.types.string_list
 
         out["previous"] = (
@@ -102,24 +102,24 @@ def deserialize_json(data: dict) -> WorkflowStepSummary:
                 data["previous"]
             )
         )
-    if "next" in data:
+    if data.get("next") is not None:
         import capo_migrationhuborchestrator.types.string_list
 
         out["next"] = capo_migrationhuborchestrator.types.string_list.deserialize_json(
             data["next"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
-    if "noOfSrvCompleted" in data:
+    if data.get("noOfSrvCompleted") is not None:
         out["no_of_srv_completed"] = data["noOfSrvCompleted"]
-    if "noOfSrvFailed" in data:
+    if data.get("noOfSrvFailed") is not None:
         out["no_of_srv_failed"] = data["noOfSrvFailed"]
-    if "totalNoOfSrv" in data:
+    if data.get("totalNoOfSrv") is not None:
         out["total_no_of_srv"] = data["totalNoOfSrv"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "scriptLocation" in data:
+    if data.get("scriptLocation") is not None:
         out["script_location"] = data["scriptLocation"]
     return out

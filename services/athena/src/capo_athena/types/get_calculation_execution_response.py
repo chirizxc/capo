@@ -71,21 +71,21 @@ def serialize_aws_json_1_1(value: GetCalculationExecutionResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetCalculationExecutionResponse:
     out: GetCalculationExecutionResponse = {}  # type: ignore[typeddict-item]
-    if "CalculationExecutionId" in data:
+    if data.get("CalculationExecutionId") is not None:
         out["calculation_execution_id"] = data["CalculationExecutionId"]
-    if "SessionId" in data:
+    if data.get("SessionId") is not None:
         out["session_id"] = data["SessionId"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "WorkingDirectory" in data:
+    if data.get("WorkingDirectory") is not None:
         out["working_directory"] = data["WorkingDirectory"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_athena.types.calculation_status
 
         out["status"] = capo_athena.types.calculation_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "Statistics" in data:
+    if data.get("Statistics") is not None:
         import capo_athena.types.calculation_statistics
 
         out["statistics"] = (
@@ -93,7 +93,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetCalculationExecutionResponse:
                 data["Statistics"]
             )
         )
-    if "Result" in data:
+    if data.get("Result") is not None:
         import capo_athena.types.calculation_result
 
         out["result"] = capo_athena.types.calculation_result.deserialize_aws_json_1_1(

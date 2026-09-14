@@ -31,7 +31,7 @@ def serialize_json(value: PutEventsConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> PutEventsConfigurationResponse:
     out: PutEventsConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "EventsConfiguration" in data:
+    if data.get("EventsConfiguration") is not None:
         import capo_chime.types.events_configuration
 
         out["events_configuration"] = (

@@ -49,13 +49,13 @@ def serialize_json(value: AssetPropertyValue) -> dict:
 
 def deserialize_json(data: dict) -> AssetPropertyValue:
     out: AssetPropertyValue = {}  # type: ignore[typeddict-item]
-    if "value" in data:
+    if data.get("value") is not None:
         import capo_iot_events.types.asset_property_variant
 
         out["value"] = capo_iot_events.types.asset_property_variant.deserialize_json(
             data["value"]
         )
-    if "timestamp" in data:
+    if data.get("timestamp") is not None:
         import capo_iot_events.types.asset_property_timestamp
 
         out["timestamp"] = (
@@ -63,6 +63,6 @@ def deserialize_json(data: dict) -> AssetPropertyValue:
                 data["timestamp"]
             )
         )
-    if "quality" in data:
+    if data.get("quality") is not None:
         out["quality"] = data["quality"]
     return out

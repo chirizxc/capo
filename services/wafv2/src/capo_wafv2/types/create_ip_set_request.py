@@ -60,19 +60,19 @@ def serialize_aws_json_1_1(value: CreateIPSetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateIPSetRequest:
     out: CreateIPSetRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateIPSetRequest.name required")
-    if "Scope" in data:
+    if data.get("Scope") is not None:
         import capo_wafv2.types.scope
 
         out["scope"] = capo_wafv2.types.scope.deserialize_aws_json_1_1(data["Scope"])
     else:
         raise DeserializationError("CreateIPSetRequest.scope required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "IPAddressVersion" in data:
+    if data.get("IPAddressVersion") is not None:
         import capo_wafv2.types.ip_address_version
 
         out["ip_address_version"] = (
@@ -82,7 +82,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateIPSetRequest:
         )
     else:
         raise DeserializationError("CreateIPSetRequest.ip_address_version required")
-    if "Addresses" in data:
+    if data.get("Addresses") is not None:
         import capo_wafv2.types.ip_addresses
 
         out["addresses"] = capo_wafv2.types.ip_addresses.deserialize_aws_json_1_1(
@@ -90,7 +90,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateIPSetRequest:
         )
     else:
         raise DeserializationError("CreateIPSetRequest.addresses required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_wafv2.types.tag_list
 
         out["tags"] = capo_wafv2.types.tag_list.deserialize_aws_json_1_1(data["Tags"])

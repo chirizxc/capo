@@ -296,7 +296,7 @@ def serialize_json(value: ServiceEventMetadata) -> dict:
 
 
 def deserialize_json(data: dict) -> ServiceEventMetadata:
-    if "serviceCreated" in data:
+    if data.get("serviceCreated") is not None:
         import capo_resiliencehubv2.types.service_created_metadata
 
         return {
@@ -304,7 +304,7 @@ def deserialize_json(data: dict) -> ServiceEventMetadata:
                 data["serviceCreated"]
             )
         }
-    elif "serviceDeleted" in data:
+    elif data.get("serviceDeleted") is not None:
         import capo_resiliencehubv2.types.service_deleted_metadata
 
         return {
@@ -312,7 +312,7 @@ def deserialize_json(data: dict) -> ServiceEventMetadata:
                 data["serviceDeleted"]
             )
         }
-    elif "serviceSystemAssociated" in data:
+    elif data.get("serviceSystemAssociated") is not None:
         import capo_resiliencehubv2.types.service_system_associated_metadata
 
         return {
@@ -320,7 +320,7 @@ def deserialize_json(data: dict) -> ServiceEventMetadata:
                 data["serviceSystemAssociated"]
             )
         }
-    elif "serviceSystemDisassociated" in data:
+    elif data.get("serviceSystemDisassociated") is not None:
         import capo_resiliencehubv2.types.service_system_disassociated_metadata
 
         return {
@@ -328,7 +328,7 @@ def deserialize_json(data: dict) -> ServiceEventMetadata:
                 data["serviceSystemDisassociated"]
             )
         }
-    elif "serviceResourcesAssociated" in data:
+    elif data.get("serviceResourcesAssociated") is not None:
         import capo_resiliencehubv2.types.service_resources_associated_metadata
 
         return {
@@ -336,7 +336,7 @@ def deserialize_json(data: dict) -> ServiceEventMetadata:
                 data["serviceResourcesAssociated"]
             )
         }
-    elif "serviceResourcesDisassociated" in data:
+    elif data.get("serviceResourcesDisassociated") is not None:
         import capo_resiliencehubv2.types.service_resources_disassociated_metadata
 
         return {
@@ -344,7 +344,7 @@ def deserialize_json(data: dict) -> ServiceEventMetadata:
                 data["serviceResourcesDisassociated"]
             )
         }
-    elif "serviceWorkflowUpdated" in data:
+    elif data.get("serviceWorkflowUpdated") is not None:
         import capo_resiliencehubv2.types.service_workflow_updated_metadata
 
         return {
@@ -352,7 +352,7 @@ def deserialize_json(data: dict) -> ServiceEventMetadata:
                 data["serviceWorkflowUpdated"]
             )
         }
-    elif "serviceInputSourcesUpdated" in data:
+    elif data.get("serviceInputSourcesUpdated") is not None:
         import capo_resiliencehubv2.types.service_input_sources_updated_metadata
 
         return {
@@ -360,7 +360,7 @@ def deserialize_json(data: dict) -> ServiceEventMetadata:
                 data["serviceInputSourcesUpdated"]
             )
         }
-    elif "servicePolicyAssociated" in data:
+    elif data.get("servicePolicyAssociated") is not None:
         import capo_resiliencehubv2.types.service_policy_associated_metadata
 
         return {
@@ -368,7 +368,7 @@ def deserialize_json(data: dict) -> ServiceEventMetadata:
                 data["servicePolicyAssociated"]
             )
         }
-    elif "servicePolicyDisassociated" in data:
+    elif data.get("servicePolicyDisassociated") is not None:
         import capo_resiliencehubv2.types.service_policy_disassociated_metadata
 
         return {
@@ -376,7 +376,7 @@ def deserialize_json(data: dict) -> ServiceEventMetadata:
                 data["servicePolicyDisassociated"]
             )
         }
-    elif "serviceFunctionCreated" in data:
+    elif data.get("serviceFunctionCreated") is not None:
         import capo_resiliencehubv2.types.service_function_created_metadata
 
         return {
@@ -384,7 +384,7 @@ def deserialize_json(data: dict) -> ServiceEventMetadata:
                 data["serviceFunctionCreated"]
             )
         }
-    elif "serviceFunctionUpdated" in data:
+    elif data.get("serviceFunctionUpdated") is not None:
         import capo_resiliencehubv2.types.service_function_updated_metadata
 
         return {
@@ -392,7 +392,7 @@ def deserialize_json(data: dict) -> ServiceEventMetadata:
                 data["serviceFunctionUpdated"]
             )
         }
-    elif "serviceFunctionDeleted" in data:
+    elif data.get("serviceFunctionDeleted") is not None:
         import capo_resiliencehubv2.types.service_function_deleted_metadata
 
         return {
@@ -400,7 +400,7 @@ def deserialize_json(data: dict) -> ServiceEventMetadata:
                 data["serviceFunctionDeleted"]
             )
         }
-    elif "serviceFunctionResourcesAdded" in data:
+    elif data.get("serviceFunctionResourcesAdded") is not None:
         import capo_resiliencehubv2.types.service_function_resources_added_metadata
 
         return {
@@ -408,7 +408,7 @@ def deserialize_json(data: dict) -> ServiceEventMetadata:
                 data["serviceFunctionResourcesAdded"]
             )
         }
-    elif "serviceFunctionResourcesRemoved" in data:
+    elif data.get("serviceFunctionResourcesRemoved") is not None:
         import capo_resiliencehubv2.types.service_function_resources_removed_metadata
 
         return {
@@ -416,7 +416,7 @@ def deserialize_json(data: dict) -> ServiceEventMetadata:
                 data["serviceFunctionResourcesRemoved"]
             )
         }
-    elif "serviceAchievabilityUpdated" in data:
+    elif data.get("serviceAchievabilityUpdated") is not None:
         import capo_resiliencehubv2.types.service_achievability_updated_metadata
 
         return {
@@ -424,7 +424,7 @@ def deserialize_json(data: dict) -> ServiceEventMetadata:
                 data["serviceAchievabilityUpdated"]
             )
         }
-    elif "assertionCreated" in data:
+    elif data.get("assertionCreated") is not None:
         import capo_resiliencehubv2.types.assertion_created_metadata
 
         return {
@@ -432,7 +432,7 @@ def deserialize_json(data: dict) -> ServiceEventMetadata:
                 data["assertionCreated"]
             )
         }
-    elif "assertionUpdated" in data:
+    elif data.get("assertionUpdated") is not None:
         import capo_resiliencehubv2.types.assertion_updated_metadata
 
         return {
@@ -440,7 +440,7 @@ def deserialize_json(data: dict) -> ServiceEventMetadata:
                 data["assertionUpdated"]
             )
         }
-    elif "assertionDeleted" in data:
+    elif data.get("assertionDeleted") is not None:
         import capo_resiliencehubv2.types.assertion_deleted_metadata
 
         return {

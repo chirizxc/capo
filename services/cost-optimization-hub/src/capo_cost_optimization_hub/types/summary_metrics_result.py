@@ -18,6 +18,6 @@ def serialize_aws_json_1_0(value: SummaryMetricsResult) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SummaryMetricsResult:
     out: SummaryMetricsResult = {}  # type: ignore[typeddict-item]
-    if "savingsPercentage" in data:
+    if data.get("savingsPercentage") is not None:
         out["savings_percentage"] = data["savingsPercentage"]
     return out

@@ -50,17 +50,25 @@ def serialize_json(value: UpdateWirelessGatewayRequest) -> dict:
             value["net_id_filters"]
         )
     if "max_eirp" in value:
-        out["MaxEirp"] = value["max_eirp"]
+        out["MaxEirp"] = (
+            "NaN"
+            if value["max_eirp"] != value["max_eirp"]
+            else "Infinity"
+            if value["max_eirp"] == float("inf")
+            else "-Infinity"
+            if value["max_eirp"] == float("-inf")
+            else value["max_eirp"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> UpdateWirelessGatewayRequest:
     out: UpdateWirelessGatewayRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "JoinEuiFilters" in data:
+    if data.get("JoinEuiFilters") is not None:
         import capo_iot_wireless.types.join_eui_filters
 
         out["join_eui_filters"] = (
@@ -68,12 +76,12 @@ def deserialize_json(data: dict) -> UpdateWirelessGatewayRequest:
                 data["JoinEuiFilters"]
             )
         )
-    if "NetIdFilters" in data:
+    if data.get("NetIdFilters") is not None:
         import capo_iot_wireless.types.net_id_filters
 
         out["net_id_filters"] = capo_iot_wireless.types.net_id_filters.deserialize_json(
             data["NetIdFilters"]
         )
-    if "MaxEirp" in data:
-        out["max_eirp"] = data["MaxEirp"]
+    if data.get("MaxEirp") is not None:
+        out["max_eirp"] = float(data["MaxEirp"])
     return out

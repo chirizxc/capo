@@ -58,28 +58,28 @@ def serialize_json(value: HealthCheckConfig) -> dict:
 
 def deserialize_json(data: dict) -> HealthCheckConfig:
     out: HealthCheckConfig = {}  # type: ignore[typeddict-item]
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
     else:
         raise DeserializationError("HealthCheckConfig.port required")
-    if "path" in data:
+    if data.get("path") is not None:
         out["path"] = data["path"]
     else:
         raise DeserializationError("HealthCheckConfig.path required")
-    if "protocol" in data:
+    if data.get("protocol") is not None:
         import capo_rtbfabric.types.protocol
 
         out["protocol"] = capo_rtbfabric.types.protocol.deserialize_json(
             data["protocol"]
         )
-    if "timeoutMs" in data:
+    if data.get("timeoutMs") is not None:
         out["timeout_ms"] = data["timeoutMs"]
-    if "intervalSeconds" in data:
+    if data.get("intervalSeconds") is not None:
         out["interval_seconds"] = data["intervalSeconds"]
-    if "statusCodeMatcher" in data:
+    if data.get("statusCodeMatcher") is not None:
         out["status_code_matcher"] = data["statusCodeMatcher"]
-    if "healthyThresholdCount" in data:
+    if data.get("healthyThresholdCount") is not None:
         out["healthy_threshold_count"] = data["healthyThresholdCount"]
-    if "unhealthyThresholdCount" in data:
+    if data.get("unhealthyThresholdCount") is not None:
         out["unhealthy_threshold_count"] = data["unhealthyThresholdCount"]
     return out

@@ -39,7 +39,7 @@ def serialize_json(value: BatchCreateCustomVocabularyItemRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchCreateCustomVocabularyItemRequest:
     out: BatchCreateCustomVocabularyItemRequest = {}  # type: ignore[typeddict-item]
-    if "customVocabularyItemList" in data:
+    if data.get("customVocabularyItemList") is not None:
         import capo_lex_models_v2.types.create_custom_vocabulary_items_list
 
         out["custom_vocabulary_item_list"] = (

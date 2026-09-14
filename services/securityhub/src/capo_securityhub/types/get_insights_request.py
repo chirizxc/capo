@@ -37,14 +37,14 @@ def serialize_json(value: GetInsightsRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetInsightsRequest:
     out: GetInsightsRequest = {}  # type: ignore[typeddict-item]
-    if "InsightArns" in data:
+    if data.get("InsightArns") is not None:
         import capo_securityhub.types.arn_list
 
         out["insight_arns"] = capo_securityhub.types.arn_list.deserialize_json(
             data["InsightArns"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

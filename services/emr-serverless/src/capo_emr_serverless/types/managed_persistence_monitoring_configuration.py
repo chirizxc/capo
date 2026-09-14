@@ -29,8 +29,8 @@ def serialize_json(value: ManagedPersistenceMonitoringConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ManagedPersistenceMonitoringConfiguration:
     out: ManagedPersistenceMonitoringConfiguration = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
-    if "encryptionKeyArn" in data:
+    if data.get("encryptionKeyArn") is not None:
         out["encryption_key_arn"] = data["encryptionKeyArn"]
     return out

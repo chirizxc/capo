@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: FirewallAdvancedThreatCategoryConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FirewallAdvancedThreatCategoryConfig:
     out: FirewallAdvancedThreatCategoryConfig = {}  # type: ignore[typeddict-item]
-    if "Category" in data:
+    if data.get("Category") is not None:
         out["category"] = data["Category"]
     else:
         raise DeserializationError(

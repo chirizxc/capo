@@ -27,7 +27,7 @@ def serialize_json(value: PutLexiconInput) -> dict:
 
 def deserialize_json(data: dict) -> PutLexiconInput:
     out: PutLexiconInput = {}  # type: ignore[typeddict-item]
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
     else:
         raise DeserializationError("PutLexiconInput.content required")

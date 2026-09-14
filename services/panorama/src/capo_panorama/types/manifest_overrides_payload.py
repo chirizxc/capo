@@ -26,7 +26,7 @@ def serialize_json(value: ManifestOverridesPayload) -> dict:
 
 
 def deserialize_json(data: dict) -> ManifestOverridesPayload:
-    if "PayloadData" in data:
+    if data.get("PayloadData") is not None:
         return {"PayloadData": data["PayloadData"]}
     else:
         raise DeserializationError(

@@ -36,7 +36,7 @@ def serialize_json(value: ListInternetEventsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListInternetEventsOutput:
     out: ListInternetEventsOutput = {}  # type: ignore[typeddict-item]
-    if "InternetEvents" in data:
+    if data.get("InternetEvents") is not None:
         import capo_internetmonitor.types.internet_events_list
 
         out["internet_events"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> ListInternetEventsOutput:
         )
     else:
         raise DeserializationError("ListInternetEventsOutput.internet_events required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

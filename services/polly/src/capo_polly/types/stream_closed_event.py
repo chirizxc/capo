@@ -24,7 +24,7 @@ def serialize_json(value: StreamClosedEvent) -> dict:
 
 def deserialize_json(data: dict) -> StreamClosedEvent:
     out: StreamClosedEvent = {}  # type: ignore[typeddict-item]
-    if "RequestCharacters" in data:
+    if data.get("RequestCharacters") is not None:
         out["request_characters"] = data["RequestCharacters"]
     else:
         out["request_characters"] = 0

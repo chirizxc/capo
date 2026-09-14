@@ -71,13 +71,13 @@ def serialize_json(value: GetTranscriptRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetTranscriptRequest:
     out: GetTranscriptRequest = {}  # type: ignore[typeddict-item]
-    if "ContactId" in data:
+    if data.get("ContactId") is not None:
         out["contact_id"] = data["ContactId"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "ScanDirection" in data:
+    if data.get("ScanDirection") is not None:
         import capo_connectparticipant.types.scan_direction
 
         out["scan_direction"] = (
@@ -85,13 +85,13 @@ def deserialize_json(data: dict) -> GetTranscriptRequest:
                 data["ScanDirection"]
             )
         )
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         import capo_connectparticipant.types.sort_key
 
         out["sort_order"] = capo_connectparticipant.types.sort_key.deserialize_json(
             data["SortOrder"]
         )
-    if "StartPosition" in data:
+    if data.get("StartPosition") is not None:
         import capo_connectparticipant.types.start_position
 
         out["start_position"] = (

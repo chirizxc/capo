@@ -64,7 +64,7 @@ def serialize_json(value: MessageTemplateAttributes) -> dict:
 
 def deserialize_json(data: dict) -> MessageTemplateAttributes:
     out: MessageTemplateAttributes = {}  # type: ignore[typeddict-item]
-    if "systemAttributes" in data:
+    if data.get("systemAttributes") is not None:
         import capo_qconnect.types.system_attributes
 
         out["system_attributes"] = (
@@ -72,13 +72,13 @@ def deserialize_json(data: dict) -> MessageTemplateAttributes:
                 data["systemAttributes"]
             )
         )
-    if "agentAttributes" in data:
+    if data.get("agentAttributes") is not None:
         import capo_qconnect.types.agent_attributes
 
         out["agent_attributes"] = capo_qconnect.types.agent_attributes.deserialize_json(
             data["agentAttributes"]
         )
-    if "customerProfileAttributes" in data:
+    if data.get("customerProfileAttributes") is not None:
         import capo_qconnect.types.customer_profile_attributes
 
         out["customer_profile_attributes"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> MessageTemplateAttributes:
                 data["customerProfileAttributes"]
             )
         )
-    if "customAttributes" in data:
+    if data.get("customAttributes") is not None:
         import capo_qconnect.types.custom_attributes
 
         out["custom_attributes"] = (

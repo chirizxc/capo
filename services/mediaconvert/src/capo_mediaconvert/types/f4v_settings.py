@@ -31,7 +31,7 @@ def serialize_json(value: F4vSettings) -> dict:
 
 def deserialize_json(data: dict) -> F4vSettings:
     out: F4vSettings = {}  # type: ignore[typeddict-item]
-    if "moovPlacement" in data:
+    if data.get("moovPlacement") is not None:
         import capo_mediaconvert.types.f4v_moov_placement
 
         out["moov_placement"] = (

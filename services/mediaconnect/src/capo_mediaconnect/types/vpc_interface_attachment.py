@@ -18,6 +18,6 @@ def serialize_json(value: VpcInterfaceAttachment) -> dict:
 
 def deserialize_json(data: dict) -> VpcInterfaceAttachment:
     out: VpcInterfaceAttachment = {}  # type: ignore[typeddict-item]
-    if "vpcInterfaceName" in data:
+    if data.get("vpcInterfaceName") is not None:
         out["vpc_interface_name"] = data["vpcInterfaceName"]
     return out

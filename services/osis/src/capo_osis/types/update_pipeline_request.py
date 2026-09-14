@@ -77,13 +77,13 @@ def serialize_json(value: UpdatePipelineRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePipelineRequest:
     out: UpdatePipelineRequest = {}  # type: ignore[typeddict-item]
-    if "MinUnits" in data:
+    if data.get("MinUnits") is not None:
         out["min_units"] = data["MinUnits"]
-    if "MaxUnits" in data:
+    if data.get("MaxUnits") is not None:
         out["max_units"] = data["MaxUnits"]
-    if "PipelineConfigurationBody" in data:
+    if data.get("PipelineConfigurationBody") is not None:
         out["pipeline_configuration_body"] = data["PipelineConfigurationBody"]
-    if "LogPublishingOptions" in data:
+    if data.get("LogPublishingOptions") is not None:
         import capo_osis.types.log_publishing_options
 
         out["log_publishing_options"] = (
@@ -91,13 +91,13 @@ def deserialize_json(data: dict) -> UpdatePipelineRequest:
                 data["LogPublishingOptions"]
             )
         )
-    if "BufferOptions" in data:
+    if data.get("BufferOptions") is not None:
         import capo_osis.types.buffer_options
 
         out["buffer_options"] = capo_osis.types.buffer_options.deserialize_json(
             data["BufferOptions"]
         )
-    if "EncryptionAtRestOptions" in data:
+    if data.get("EncryptionAtRestOptions") is not None:
         import capo_osis.types.encryption_at_rest_options
 
         out["encryption_at_rest_options"] = (
@@ -105,6 +105,6 @@ def deserialize_json(data: dict) -> UpdatePipelineRequest:
                 data["EncryptionAtRestOptions"]
             )
         )
-    if "PipelineRoleArn" in data:
+    if data.get("PipelineRoleArn") is not None:
         out["pipeline_role_arn"] = data["PipelineRoleArn"]
     return out

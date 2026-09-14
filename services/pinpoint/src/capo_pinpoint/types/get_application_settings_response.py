@@ -30,7 +30,7 @@ def serialize_json(value: GetApplicationSettingsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetApplicationSettingsResponse:
     out: GetApplicationSettingsResponse = {}  # type: ignore[typeddict-item]
-    if "ApplicationSettingsResource" in data:
+    if data.get("ApplicationSettingsResource") is not None:
         import capo_pinpoint.types.application_settings_resource
 
         out["application_settings_resource"] = (

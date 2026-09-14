@@ -41,22 +41,22 @@ def serialize_json(value: PromotionalEmbeddedVideo) -> dict:
 
 def deserialize_json(data: dict) -> PromotionalEmbeddedVideo:
     out: PromotionalEmbeddedVideo = {}  # type: ignore[typeddict-item]
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
     else:
         raise DeserializationError("PromotionalEmbeddedVideo.title required")
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
     else:
         raise DeserializationError("PromotionalEmbeddedVideo.url required")
-    if "preview" in data:
+    if data.get("preview") is not None:
         out["preview"] = data["preview"]
     else:
         raise DeserializationError("PromotionalEmbeddedVideo.preview required")
-    if "thumbnail" in data:
+    if data.get("thumbnail") is not None:
         out["thumbnail"] = data["thumbnail"]
     else:
         raise DeserializationError("PromotionalEmbeddedVideo.thumbnail required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

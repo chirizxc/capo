@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.ivsrealtime#AmazonInteractiveVideoServiceRealTime``."""
 
+import uuid
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -301,7 +302,7 @@ class IVSRealTimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivs_realtime.types.create_encoder_configuration_request.CreateEncoderConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ivs_realtime.types.create_encoder_configuration_request.CreateEncoderConfigurationRequest = {}
         if name is not None:
             input_["name"] = name
         if video is not None:
@@ -314,6 +315,7 @@ class IVSRealTimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_ingest_configuration(
@@ -374,7 +376,9 @@ class IVSRealTimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivs_realtime.types.create_ingest_configuration_request.CreateIngestConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ivs_realtime.types.create_ingest_configuration_request.CreateIngestConfigurationRequest = {
+            "ingest_protocol": ingest_protocol
+        }
         if name is not None:
             input_["name"] = name
         if stage_arn is not None:
@@ -383,7 +387,6 @@ class IVSRealTimeClient:
             input_["user_id"] = user_id
         if attributes is not None:
             input_["attributes"] = attributes
-        input_["ingest_protocol"] = ingest_protocol
         if insecure_ingest is not None:
             input_["insecure_ingest"] = insecure_ingest
         if redundant_ingest is not None:
@@ -396,6 +399,7 @@ class IVSRealTimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_participant_token(
@@ -449,8 +453,9 @@ class IVSRealTimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivs_realtime.types.create_participant_token_request.CreateParticipantTokenRequest = {}  # type: ignore[typeddict-item]
-        input_["stage_arn"] = stage_arn
+        input_: capo_ivs_realtime.types.create_participant_token_request.CreateParticipantTokenRequest = {
+            "stage_arn": stage_arn
+        }
         if duration is not None:
             input_["duration"] = duration
         if user_id is not None:
@@ -465,6 +470,7 @@ class IVSRealTimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_stage(
@@ -511,7 +517,7 @@ class IVSRealTimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivs_realtime.types.create_stage_request.CreateStageRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ivs_realtime.types.create_stage_request.CreateStageRequest = {}
         if name is not None:
             input_["name"] = name
         if participant_token_configurations is not None:
@@ -530,6 +536,7 @@ class IVSRealTimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_storage_configuration(
@@ -575,10 +582,11 @@ class IVSRealTimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivs_realtime.types.create_storage_configuration_request.CreateStorageConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ivs_realtime.types.create_storage_configuration_request.CreateStorageConfigurationRequest = {
+            "s3": s3
+        }
         if name is not None:
             input_["name"] = name
-        input_["s3"] = s3
         if tags is not None:
             input_["tags"] = tags
 
@@ -587,6 +595,7 @@ class IVSRealTimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_encoder_configuration(
@@ -625,14 +634,16 @@ class IVSRealTimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivs_realtime.types.delete_encoder_configuration_request.DeleteEncoderConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_ivs_realtime.types.delete_encoder_configuration_request.DeleteEncoderConfigurationRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_ingest_configuration(
@@ -672,8 +683,9 @@ class IVSRealTimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivs_realtime.types.delete_ingest_configuration_request.DeleteIngestConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_ivs_realtime.types.delete_ingest_configuration_request.DeleteIngestConfigurationRequest = {
+            "arn": arn
+        }
         if force is not None:
             input_["force"] = force
 
@@ -682,6 +694,7 @@ class IVSRealTimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_public_key(
@@ -719,14 +732,16 @@ class IVSRealTimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivs_realtime.types.delete_public_key_request.DeletePublicKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_ivs_realtime.types.delete_public_key_request.DeletePublicKeyRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_stage(
@@ -764,14 +779,16 @@ class IVSRealTimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivs_realtime.types.delete_stage_request.DeleteStageRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_ivs_realtime.types.delete_stage_request.DeleteStageRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_storage_configuration(
@@ -810,14 +827,16 @@ class IVSRealTimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivs_realtime.types.delete_storage_configuration_request.DeleteStorageConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_ivs_realtime.types.delete_storage_configuration_request.DeleteStorageConfigurationRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disconnect_participant(
@@ -860,9 +879,10 @@ class IVSRealTimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivs_realtime.types.disconnect_participant_request.DisconnectParticipantRequest = {}  # type: ignore[typeddict-item]
-        input_["stage_arn"] = stage_arn
-        input_["participant_id"] = participant_id
+        input_: capo_ivs_realtime.types.disconnect_participant_request.DisconnectParticipantRequest = {
+            "stage_arn": stage_arn,
+            "participant_id": participant_id,
+        }
         if reason is not None:
             input_["reason"] = reason
 
@@ -871,6 +891,7 @@ class IVSRealTimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_composition(
@@ -909,14 +930,16 @@ class IVSRealTimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivs_realtime.types.get_composition_request.GetCompositionRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_ivs_realtime.types.get_composition_request.GetCompositionRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_encoder_configuration(
@@ -955,14 +978,16 @@ class IVSRealTimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivs_realtime.types.get_encoder_configuration_request.GetEncoderConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_ivs_realtime.types.get_encoder_configuration_request.GetEncoderConfigurationRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_ingest_configuration(
@@ -998,14 +1023,16 @@ class IVSRealTimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivs_realtime.types.get_ingest_configuration_request.GetIngestConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_ivs_realtime.types.get_ingest_configuration_request.GetIngestConfigurationRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_participant(
@@ -1045,16 +1072,18 @@ class IVSRealTimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivs_realtime.types.get_participant_request.GetParticipantRequest = {}  # type: ignore[typeddict-item]
-        input_["stage_arn"] = stage_arn
-        input_["session_id"] = session_id
-        input_["participant_id"] = participant_id
+        input_: capo_ivs_realtime.types.get_participant_request.GetParticipantRequest = {
+            "stage_arn": stage_arn,
+            "session_id": session_id,
+            "participant_id": participant_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_public_key(
@@ -1090,14 +1119,16 @@ class IVSRealTimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivs_realtime.types.get_public_key_request.GetPublicKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_ivs_realtime.types.get_public_key_request.GetPublicKeyRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_stage(
@@ -1133,14 +1164,14 @@ class IVSRealTimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivs_realtime.types.get_stage_request.GetStageRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_ivs_realtime.types.get_stage_request.GetStageRequest = {"arn": arn}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_stage_session(
@@ -1178,15 +1209,17 @@ class IVSRealTimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivs_realtime.types.get_stage_session_request.GetStageSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["stage_arn"] = stage_arn
-        input_["session_id"] = session_id
+        input_: capo_ivs_realtime.types.get_stage_session_request.GetStageSessionRequest = {
+            "stage_arn": stage_arn,
+            "session_id": session_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_storage_configuration(
@@ -1225,14 +1258,16 @@ class IVSRealTimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivs_realtime.types.get_storage_configuration_request.GetStorageConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_ivs_realtime.types.get_storage_configuration_request.GetStorageConfigurationRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def import_public_key(
@@ -1274,8 +1309,9 @@ class IVSRealTimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivs_realtime.types.import_public_key_request.ImportPublicKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["public_key_material"] = public_key_material
+        input_: capo_ivs_realtime.types.import_public_key_request.ImportPublicKeyRequest = {
+            "public_key_material": public_key_material
+        }
         if name is not None:
             input_["name"] = name
         if tags is not None:
@@ -1286,6 +1322,7 @@ class IVSRealTimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_compositions(
@@ -1337,7 +1374,7 @@ class IVSRealTimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivs_realtime.types.list_compositions_request.ListCompositionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ivs_realtime.types.list_compositions_request.ListCompositionsRequest = {}
         if filter_by_stage_arn is not None:
             input_["filter_by_stage_arn"] = filter_by_stage_arn
         if filter_by_encoder_configuration_arn is not None:
@@ -1354,7 +1391,39 @@ class IVSRealTimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_compositions(
+        self,
+        *,
+        config_overrides: Optional[IVSRealTimeClientConfig] = None,
+        filter_by_stage_arn: Optional[
+            "capo_ivs_realtime.types.stage_arn.StageArn"
+        ] = None,
+        filter_by_encoder_configuration_arn: Optional[
+            "capo_ivs_realtime.types.encoder_configuration_arn.EncoderConfigurationArn"
+        ] = None,
+        next_token: Optional[
+            "capo_ivs_realtime.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional[
+            "capo_ivs_realtime.types.max_composition_results.MaxCompositionResults"
+        ] = None,
+    ) -> "Iterator[capo_ivs_realtime.types.list_compositions_response.ListCompositionsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_compositions(
+                config_overrides=config_overrides,
+                filter_by_stage_arn=filter_by_stage_arn,
+                filter_by_encoder_configuration_arn=filter_by_encoder_configuration_arn,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_encoder_configurations(
         self,
@@ -1397,7 +1466,7 @@ class IVSRealTimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivs_realtime.types.list_encoder_configurations_request.ListEncoderConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ivs_realtime.types.list_encoder_configurations_request.ListEncoderConfigurationsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1408,7 +1477,31 @@ class IVSRealTimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_encoder_configurations(
+        self,
+        *,
+        config_overrides: Optional[IVSRealTimeClientConfig] = None,
+        next_token: Optional[
+            "capo_ivs_realtime.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional[
+            "capo_ivs_realtime.types.max_encoder_configuration_results.MaxEncoderConfigurationResults"
+        ] = None,
+    ) -> "Iterator[capo_ivs_realtime.types.list_encoder_configurations_response.ListEncoderConfigurationsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_encoder_configurations(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_ingest_configurations(
         self,
@@ -1456,7 +1549,7 @@ class IVSRealTimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivs_realtime.types.list_ingest_configurations_request.ListIngestConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ivs_realtime.types.list_ingest_configurations_request.ListIngestConfigurationsRequest = {}
         if filter_by_stage_arn is not None:
             input_["filter_by_stage_arn"] = filter_by_stage_arn
         if filter_by_state is not None:
@@ -1471,6 +1564,7 @@ class IVSRealTimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_ingest_configurations(
@@ -1550,10 +1644,11 @@ class IVSRealTimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivs_realtime.types.list_participant_events_request.ListParticipantEventsRequest = {}  # type: ignore[typeddict-item]
-        input_["stage_arn"] = stage_arn
-        input_["session_id"] = session_id
-        input_["participant_id"] = participant_id
+        input_: capo_ivs_realtime.types.list_participant_events_request.ListParticipantEventsRequest = {
+            "stage_arn": stage_arn,
+            "session_id": session_id,
+            "participant_id": participant_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1564,7 +1659,37 @@ class IVSRealTimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_participant_events(
+        self,
+        stage_arn: "capo_ivs_realtime.types.stage_arn.StageArn",
+        session_id: "capo_ivs_realtime.types.stage_session_id.StageSessionId",
+        participant_id: "capo_ivs_realtime.types.participant_id.ParticipantId",
+        *,
+        config_overrides: Optional[IVSRealTimeClientConfig] = None,
+        next_token: Optional[
+            "capo_ivs_realtime.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional[
+            "capo_ivs_realtime.types.max_participant_event_results.MaxParticipantEventResults"
+        ] = None,
+    ) -> "Iterator[capo_ivs_realtime.types.list_participant_events_response.ListParticipantEventsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_participant_events(
+                stage_arn,
+                session_id,
+                participant_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_participant_replicas(
         self,
@@ -1608,9 +1733,10 @@ class IVSRealTimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivs_realtime.types.list_participant_replicas_request.ListParticipantReplicasRequest = {}  # type: ignore[typeddict-item]
-        input_["source_stage_arn"] = source_stage_arn
-        input_["participant_id"] = participant_id
+        input_: capo_ivs_realtime.types.list_participant_replicas_request.ListParticipantReplicasRequest = {
+            "source_stage_arn": source_stage_arn,
+            "participant_id": participant_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1621,6 +1747,7 @@ class IVSRealTimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_participant_replicas(
@@ -1708,9 +1835,10 @@ class IVSRealTimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivs_realtime.types.list_participants_request.ListParticipantsRequest = {}  # type: ignore[typeddict-item]
-        input_["stage_arn"] = stage_arn
-        input_["session_id"] = session_id
+        input_: capo_ivs_realtime.types.list_participants_request.ListParticipantsRequest = {
+            "stage_arn": stage_arn,
+            "session_id": session_id,
+        }
         if filter_by_user_id is not None:
             input_["filter_by_user_id"] = filter_by_user_id
         if filter_by_published is not None:
@@ -1729,7 +1857,49 @@ class IVSRealTimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_participants(
+        self,
+        stage_arn: "capo_ivs_realtime.types.stage_arn.StageArn",
+        session_id: "capo_ivs_realtime.types.stage_session_id.StageSessionId",
+        *,
+        config_overrides: Optional[IVSRealTimeClientConfig] = None,
+        filter_by_user_id: Optional["capo_ivs_realtime.types.user_id.UserId"] = None,
+        filter_by_published: Optional[
+            "capo_ivs_realtime.types.published.Published"
+        ] = None,
+        filter_by_state: Optional[
+            "capo_ivs_realtime.types.participant_state.ParticipantState"
+        ] = None,
+        next_token: Optional[
+            "capo_ivs_realtime.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional[
+            "capo_ivs_realtime.types.max_participant_results.MaxParticipantResults"
+        ] = None,
+        filter_by_recording_state: Optional[
+            "capo_ivs_realtime.types.participant_recording_filter_by_recording_state.ParticipantRecordingFilterByRecordingState"
+        ] = None,
+    ) -> "Iterator[capo_ivs_realtime.types.list_participants_response.ListParticipantsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_participants(
+                stage_arn,
+                session_id,
+                config_overrides=config_overrides,
+                filter_by_user_id=filter_by_user_id,
+                filter_by_published=filter_by_published,
+                filter_by_state=filter_by_state,
+                next_token=_token,
+                max_results=max_results,
+                filter_by_recording_state=filter_by_recording_state,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_public_keys(
         self,
@@ -1769,7 +1939,7 @@ class IVSRealTimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivs_realtime.types.list_public_keys_request.ListPublicKeysRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ivs_realtime.types.list_public_keys_request.ListPublicKeysRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1780,6 +1950,7 @@ class IVSRealTimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_public_keys(
@@ -1846,7 +2017,7 @@ class IVSRealTimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivs_realtime.types.list_stages_request.ListStagesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ivs_realtime.types.list_stages_request.ListStagesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1857,7 +2028,31 @@ class IVSRealTimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_stages(
+        self,
+        *,
+        config_overrides: Optional[IVSRealTimeClientConfig] = None,
+        next_token: Optional[
+            "capo_ivs_realtime.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional[
+            "capo_ivs_realtime.types.max_stage_results.MaxStageResults"
+        ] = None,
+    ) -> "Iterator[capo_ivs_realtime.types.list_stages_response.ListStagesResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_stages(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_stage_sessions(
         self,
@@ -1901,8 +2096,9 @@ class IVSRealTimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivs_realtime.types.list_stage_sessions_request.ListStageSessionsRequest = {}  # type: ignore[typeddict-item]
-        input_["stage_arn"] = stage_arn
+        input_: capo_ivs_realtime.types.list_stage_sessions_request.ListStageSessionsRequest = {
+            "stage_arn": stage_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1913,7 +2109,33 @@ class IVSRealTimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_stage_sessions(
+        self,
+        stage_arn: "capo_ivs_realtime.types.stage_arn.StageArn",
+        *,
+        config_overrides: Optional[IVSRealTimeClientConfig] = None,
+        next_token: Optional[
+            "capo_ivs_realtime.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional[
+            "capo_ivs_realtime.types.max_stage_session_results.MaxStageSessionResults"
+        ] = None,
+    ) -> "Iterator[capo_ivs_realtime.types.list_stage_sessions_response.ListStageSessionsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_stage_sessions(
+                stage_arn,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_storage_configurations(
         self,
@@ -1956,7 +2178,7 @@ class IVSRealTimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivs_realtime.types.list_storage_configurations_request.ListStorageConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ivs_realtime.types.list_storage_configurations_request.ListStorageConfigurationsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1967,7 +2189,31 @@ class IVSRealTimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_storage_configurations(
+        self,
+        *,
+        config_overrides: Optional[IVSRealTimeClientConfig] = None,
+        next_token: Optional[
+            "capo_ivs_realtime.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional[
+            "capo_ivs_realtime.types.max_storage_configuration_results.MaxStorageConfigurationResults"
+        ] = None,
+    ) -> "Iterator[capo_ivs_realtime.types.list_storage_configurations_response.ListStorageConfigurationsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_storage_configurations(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_tags_for_resource(
         self,
@@ -2002,14 +2248,16 @@ class IVSRealTimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivs_realtime.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_ivs_realtime.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_composition(
@@ -2061,13 +2309,15 @@ class IVSRealTimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivs_realtime.types.start_composition_request.StartCompositionRequest = {}  # type: ignore[typeddict-item]
-        input_["stage_arn"] = stage_arn
-        if idempotency_token is not None:
-            input_["idempotency_token"] = idempotency_token
+        input_: capo_ivs_realtime.types.start_composition_request.StartCompositionRequest = {
+            "stage_arn": stage_arn,
+            "destinations": destinations,
+        }
+        if idempotency_token is None:
+            idempotency_token = str(uuid.uuid4())
+        input_["idempotency_token"] = idempotency_token
         if layout is not None:
             input_["layout"] = layout
-        input_["destinations"] = destinations
         if tags is not None:
             input_["tags"] = tags
 
@@ -2076,6 +2326,7 @@ class IVSRealTimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_participant_replication(
@@ -2127,10 +2378,11 @@ class IVSRealTimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivs_realtime.types.start_participant_replication_request.StartParticipantReplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_stage_arn"] = source_stage_arn
-        input_["destination_stage_arn"] = destination_stage_arn
-        input_["participant_id"] = participant_id
+        input_: capo_ivs_realtime.types.start_participant_replication_request.StartParticipantReplicationRequest = {
+            "source_stage_arn": source_stage_arn,
+            "destination_stage_arn": destination_stage_arn,
+            "participant_id": participant_id,
+        }
         if reconnect_window_seconds is not None:
             input_["reconnect_window_seconds"] = reconnect_window_seconds
         if attributes is not None:
@@ -2141,6 +2393,7 @@ class IVSRealTimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_composition(
@@ -2179,14 +2432,16 @@ class IVSRealTimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivs_realtime.types.stop_composition_request.StopCompositionRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_ivs_realtime.types.stop_composition_request.StopCompositionRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_participant_replication(
@@ -2227,16 +2482,18 @@ class IVSRealTimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivs_realtime.types.stop_participant_replication_request.StopParticipantReplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_stage_arn"] = source_stage_arn
-        input_["destination_stage_arn"] = destination_stage_arn
-        input_["participant_id"] = participant_id
+        input_: capo_ivs_realtime.types.stop_participant_replication_request.StopParticipantReplicationRequest = {
+            "source_stage_arn": source_stage_arn,
+            "destination_stage_arn": destination_stage_arn,
+            "participant_id": participant_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -2274,15 +2531,17 @@ class IVSRealTimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivs_realtime.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_ivs_realtime.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -2320,15 +2579,17 @@ class IVSRealTimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivs_realtime.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_ivs_realtime.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_ingest_configuration(
@@ -2374,8 +2635,9 @@ class IVSRealTimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivs_realtime.types.update_ingest_configuration_request.UpdateIngestConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_ivs_realtime.types.update_ingest_configuration_request.UpdateIngestConfigurationRequest = {
+            "arn": arn
+        }
         if stage_arn is not None:
             input_["stage_arn"] = stage_arn
         if redundant_ingest is not None:
@@ -2386,6 +2648,7 @@ class IVSRealTimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_stage(
@@ -2430,8 +2693,9 @@ class IVSRealTimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ivs_realtime.types.update_stage_request.UpdateStageRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_ivs_realtime.types.update_stage_request.UpdateStageRequest = {
+            "arn": arn
+        }
         if name is not None:
             input_["name"] = name
         if auto_participant_recording_configuration is not None:
@@ -2444,6 +2708,7 @@ class IVSRealTimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

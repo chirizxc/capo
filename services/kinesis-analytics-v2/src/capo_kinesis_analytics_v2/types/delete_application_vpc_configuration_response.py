@@ -39,10 +39,10 @@ def serialize_aws_json_1_1(value: DeleteApplicationVpcConfigurationResponse) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteApplicationVpcConfigurationResponse:
     out: DeleteApplicationVpcConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "ApplicationARN" in data:
+    if data.get("ApplicationARN") is not None:
         out["application_arn"] = data["ApplicationARN"]
-    if "ApplicationVersionId" in data:
+    if data.get("ApplicationVersionId") is not None:
         out["application_version_id"] = data["ApplicationVersionId"]
-    if "OperationId" in data:
+    if data.get("OperationId") is not None:
         out["operation_id"] = data["OperationId"]
     return out

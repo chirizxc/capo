@@ -46,19 +46,19 @@ def serialize_json(value: DomainSummary) -> dict:
 
 def deserialize_json(data: dict) -> DomainSummary:
     out: DomainSummary = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("DomainSummary.arn required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("DomainSummary.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     else:
         raise DeserializationError("DomainSummary.description required")
-    if "CreateTime" in data:
+    if data.get("CreateTime") is not None:
         import capo_controlcatalog.types._prelude.timestamp
 
         out["create_time"] = (
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> DomainSummary:
         )
     else:
         raise DeserializationError("DomainSummary.create_time required")
-    if "LastUpdateTime" in data:
+    if data.get("LastUpdateTime") is not None:
         import capo_controlcatalog.types._prelude.timestamp
 
         out["last_update_time"] = (

@@ -13,9 +13,9 @@ from capo_wafv2 import AsyncWAFV2Client
 
 
 async def main():
-    async with AsyncWAFV2Client() as s3:
+    async with AsyncWAFV2Client() as wafv2:
         # Example: call the associate_web_acl operation
-        response = await s3.associate_web_acl()
+        response = await wafv2.associate_web_acl()
         print(response)
 ```
 
@@ -29,9 +29,9 @@ from capo_wafv2.error import WAFFeatureNotIncludedInPricingPlanException
 
 
 async def main():
-    async with AsyncWAFV2Client() as s3:
+    async with AsyncWAFV2Client() as wafv2:
         try:
-            await s3.associate_web_acl()
+            await wafv2.associate_web_acl()
         except WAFFeatureNotIncludedInPricingPlanException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_wafv2 import AsyncWAFV2Client
 
 
 async def main():
-    async with AsyncWAFV2Client() as s3:
+    async with AsyncWAFV2Client() as wafv2:
         # Default: 3 attempts for every operation
-        response = await s3.associate_web_acl()
+        response = await wafv2.associate_web_acl()
 
         # Override per operation
-        response = await s3.associate_web_acl(config_overrides={"retry_max_attempts": 5})
+        response = await wafv2.associate_web_acl(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.associate_web_acl(config_overrides={"retry_max_attempts": 1})
+        response = await wafv2.associate_web_acl(config_overrides={"retry_max_attempts": 1})
 ```

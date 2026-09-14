@@ -55,23 +55,23 @@ def serialize_json(value: GetUserProfileOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetUserProfileOutput:
     out: GetUserProfileOutput = {}  # type: ignore[typeddict-item]
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_datazone.types.user_profile_type
 
         out["type"] = capo_datazone.types.user_profile_type.deserialize_json(
             data["type"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.user_profile_status
 
         out["status"] = capo_datazone.types.user_profile_status.deserialize_json(
             data["status"]
         )
-    if "details" in data:
+    if data.get("details") is not None:
         import capo_datazone.types.user_profile_details
 
         out["details"] = capo_datazone.types.user_profile_details.deserialize_json(

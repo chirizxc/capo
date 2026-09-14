@@ -39,7 +39,16 @@ def serialize_query(
         pairs.append(
             (
                 f"{key_prefix}EstimatedDiskUtilizationPercent",
-                str(value["estimated_disk_utilization_percent"]),
+                (
+                    "NaN"
+                    if value["estimated_disk_utilization_percent"]
+                    != value["estimated_disk_utilization_percent"]
+                    else "Infinity"
+                    if value["estimated_disk_utilization_percent"] == float("inf")
+                    else "-Infinity"
+                    if value["estimated_disk_utilization_percent"] == float("-inf")
+                    else str(value["estimated_disk_utilization_percent"])
+                ),
             )
         )
     if "mode" in value:

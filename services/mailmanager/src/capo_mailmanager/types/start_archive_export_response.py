@@ -23,6 +23,6 @@ def serialize_aws_json_1_0(value: StartArchiveExportResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StartArchiveExportResponse:
     out: StartArchiveExportResponse = {}  # type: ignore[typeddict-item]
-    if "ExportId" in data:
+    if data.get("ExportId") is not None:
         out["export_id"] = data["ExportId"]
     return out

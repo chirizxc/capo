@@ -48,11 +48,11 @@ def serialize_json(value: UpdateLinkInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateLinkInput:
     out: UpdateLinkInput = {}  # type: ignore[typeddict-item]
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
     else:
         raise DeserializationError("UpdateLinkInput.identifier required")
-    if "ResourceTypes" in data:
+    if data.get("ResourceTypes") is not None:
         import capo_oam.types.resource_types_input
 
         out["resource_types"] = capo_oam.types.resource_types_input.deserialize_json(
@@ -60,12 +60,12 @@ def deserialize_json(data: dict) -> UpdateLinkInput:
         )
     else:
         raise DeserializationError("UpdateLinkInput.resource_types required")
-    if "LinkConfiguration" in data:
+    if data.get("LinkConfiguration") is not None:
         import capo_oam.types.link_configuration
 
         out["link_configuration"] = capo_oam.types.link_configuration.deserialize_json(
             data["LinkConfiguration"]
         )
-    if "IncludeTags" in data:
+    if data.get("IncludeTags") is not None:
         out["include_tags"] = data["IncludeTags"]
     return out

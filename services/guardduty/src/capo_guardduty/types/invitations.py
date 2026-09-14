@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Invitations:
 
     out: Invitations = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_guardduty.types.invitation.deserialize_json(item))
     return out

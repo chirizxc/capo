@@ -31,10 +31,10 @@ def serialize_aws_json_1_1(value: PlayerLatencyPolicy) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PlayerLatencyPolicy:
     out: PlayerLatencyPolicy = {}  # type: ignore[typeddict-item]
-    if "MaximumIndividualPlayerLatencyMilliseconds" in data:
+    if data.get("MaximumIndividualPlayerLatencyMilliseconds") is not None:
         out["maximum_individual_player_latency_milliseconds"] = data[
             "MaximumIndividualPlayerLatencyMilliseconds"
         ]
-    if "PolicyDurationSeconds" in data:
+    if data.get("PolicyDurationSeconds") is not None:
         out["policy_duration_seconds"] = data["PolicyDurationSeconds"]
     return out

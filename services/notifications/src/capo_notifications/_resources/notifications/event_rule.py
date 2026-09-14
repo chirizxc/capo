@@ -93,19 +93,21 @@ class EventRule:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notifications.types.create_event_rule_request.CreateEventRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["notification_configuration_arn"] = notification_configuration_arn
-        input_["source"] = source
-        input_["event_type"] = event_type
+        input_: capo_notifications.types.create_event_rule_request.CreateEventRuleRequest = {
+            "notification_configuration_arn": notification_configuration_arn,
+            "source": source,
+            "event_type": event_type,
+            "regions": regions,
+        }
         if event_pattern is not None:
             input_["event_pattern"] = event_pattern
-        input_["regions"] = regions
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put(
@@ -150,8 +152,9 @@ class EventRule:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notifications.types.update_event_rule_request.UpdateEventRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_notifications.types.update_event_rule_request.UpdateEventRuleRequest = {
+            "arn": arn
+        }
         if event_pattern is not None:
             input_["event_pattern"] = event_pattern
         if regions is not None:
@@ -162,6 +165,7 @@ class EventRule:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -199,14 +203,16 @@ class EventRule:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notifications.types.get_event_rule_request.GetEventRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_notifications.types.get_event_rule_request.GetEventRuleRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -245,14 +251,16 @@ class EventRule:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notifications.types.delete_event_rule_request.DeleteEventRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_notifications.types.delete_event_rule_request.DeleteEventRuleRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -294,8 +302,9 @@ class EventRule:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notifications.types.list_event_rules_request.ListEventRulesRequest = {}  # type: ignore[typeddict-item]
-        input_["notification_configuration_arn"] = notification_configuration_arn
+        input_: capo_notifications.types.list_event_rules_request.ListEventRulesRequest = {
+            "notification_configuration_arn": notification_configuration_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -306,6 +315,7 @@ class EventRule:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -361,19 +371,21 @@ class AsyncEventRule:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notifications.types.create_event_rule_request.CreateEventRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["notification_configuration_arn"] = notification_configuration_arn
-        input_["source"] = source
-        input_["event_type"] = event_type
+        input_: capo_notifications.types.create_event_rule_request.CreateEventRuleRequest = {
+            "notification_configuration_arn": notification_configuration_arn,
+            "source": source,
+            "event_type": event_type,
+            "regions": regions,
+        }
         if event_pattern is not None:
             input_["event_pattern"] = event_pattern
-        input_["regions"] = regions
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put(
@@ -419,8 +431,9 @@ class AsyncEventRule:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notifications.types.update_event_rule_request.UpdateEventRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_notifications.types.update_event_rule_request.UpdateEventRuleRequest = {
+            "arn": arn
+        }
         if event_pattern is not None:
             input_["event_pattern"] = event_pattern
         if regions is not None:
@@ -431,6 +444,7 @@ class AsyncEventRule:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -469,14 +483,16 @@ class AsyncEventRule:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notifications.types.get_event_rule_request.GetEventRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_notifications.types.get_event_rule_request.GetEventRuleRequest = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -516,14 +532,16 @@ class AsyncEventRule:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notifications.types.delete_event_rule_request.DeleteEventRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_notifications.types.delete_event_rule_request.DeleteEventRuleRequest = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -566,8 +584,9 @@ class AsyncEventRule:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notifications.types.list_event_rules_request.ListEventRulesRequest = {}  # type: ignore[typeddict-item]
-        input_["notification_configuration_arn"] = notification_configuration_arn
+        input_: capo_notifications.types.list_event_rules_request.ListEventRulesRequest = {
+            "notification_configuration_arn": notification_configuration_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -578,4 +597,5 @@ class AsyncEventRule:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

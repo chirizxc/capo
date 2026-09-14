@@ -43,18 +43,18 @@ def serialize_aws_json_1_1(value: SplitShardInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SplitShardInput:
     out: SplitShardInput = {}  # type: ignore[typeddict-item]
-    if "StreamName" in data:
+    if data.get("StreamName") is not None:
         out["stream_name"] = data["StreamName"]
-    if "ShardToSplit" in data:
+    if data.get("ShardToSplit") is not None:
         out["shard_to_split"] = data["ShardToSplit"]
     else:
         raise DeserializationError("SplitShardInput.shard_to_split required")
-    if "NewStartingHashKey" in data:
+    if data.get("NewStartingHashKey") is not None:
         out["new_starting_hash_key"] = data["NewStartingHashKey"]
     else:
         raise DeserializationError("SplitShardInput.new_starting_hash_key required")
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
-    if "StreamId" in data:
+    if data.get("StreamId") is not None:
         out["stream_id"] = data["StreamId"]
     return out

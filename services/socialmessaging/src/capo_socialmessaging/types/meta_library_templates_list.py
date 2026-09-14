@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> MetaLibraryTemplatesList:
 
     out: MetaLibraryTemplatesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_socialmessaging.types.meta_library_template_definition.deserialize_json(
                 item

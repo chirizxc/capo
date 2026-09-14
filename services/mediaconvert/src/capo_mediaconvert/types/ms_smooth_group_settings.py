@@ -110,7 +110,7 @@ def serialize_json(value: MsSmoothGroupSettings) -> dict:
 
 def deserialize_json(data: dict) -> MsSmoothGroupSettings:
     out: MsSmoothGroupSettings = {}  # type: ignore[typeddict-item]
-    if "additionalManifests" in data:
+    if data.get("additionalManifests") is not None:
         import capo_mediaconvert.types.__list_of_ms_smooth_additional_manifest
 
         out["additional_manifests"] = (
@@ -118,7 +118,7 @@ def deserialize_json(data: dict) -> MsSmoothGroupSettings:
                 data["additionalManifests"]
             )
         )
-    if "audioDeduplication" in data:
+    if data.get("audioDeduplication") is not None:
         import capo_mediaconvert.types.ms_smooth_audio_deduplication
 
         out["audio_deduplication"] = (
@@ -126,9 +126,9 @@ def deserialize_json(data: dict) -> MsSmoothGroupSettings:
                 data["audioDeduplication"]
             )
         )
-    if "destination" in data:
+    if data.get("destination") is not None:
         out["destination"] = data["destination"]
-    if "destinationSettings" in data:
+    if data.get("destinationSettings") is not None:
         import capo_mediaconvert.types.destination_settings
 
         out["destination_settings"] = (
@@ -136,7 +136,7 @@ def deserialize_json(data: dict) -> MsSmoothGroupSettings:
                 data["destinationSettings"]
             )
         )
-    if "encryption" in data:
+    if data.get("encryption") is not None:
         import capo_mediaconvert.types.ms_smooth_encryption_settings
 
         out["encryption"] = (
@@ -144,9 +144,9 @@ def deserialize_json(data: dict) -> MsSmoothGroupSettings:
                 data["encryption"]
             )
         )
-    if "fragmentLength" in data:
+    if data.get("fragmentLength") is not None:
         out["fragment_length"] = data["fragmentLength"]
-    if "fragmentLengthControl" in data:
+    if data.get("fragmentLengthControl") is not None:
         import capo_mediaconvert.types.ms_smooth_fragment_length_control
 
         out["fragment_length_control"] = (
@@ -154,7 +154,7 @@ def deserialize_json(data: dict) -> MsSmoothGroupSettings:
                 data["fragmentLengthControl"]
             )
         )
-    if "manifestEncoding" in data:
+    if data.get("manifestEncoding") is not None:
         import capo_mediaconvert.types.ms_smooth_manifest_encoding
 
         out["manifest_encoding"] = (

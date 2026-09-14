@@ -51,23 +51,23 @@ def serialize_aws_json_1_1(value: Exclusion) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Exclusion:
     out: Exclusion = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("Exclusion.arn required")
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
     else:
         raise DeserializationError("Exclusion.title required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     else:
         raise DeserializationError("Exclusion.description required")
-    if "recommendation" in data:
+    if data.get("recommendation") is not None:
         out["recommendation"] = data["recommendation"]
     else:
         raise DeserializationError("Exclusion.recommendation required")
-    if "scopes" in data:
+    if data.get("scopes") is not None:
         import capo_inspector.types.scope_list
 
         out["scopes"] = capo_inspector.types.scope_list.deserialize_aws_json_1_1(
@@ -75,7 +75,7 @@ def deserialize_aws_json_1_1(data: dict) -> Exclusion:
         )
     else:
         raise DeserializationError("Exclusion.scopes required")
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_inspector.types.attribute_list
 
         out["attributes"] = (

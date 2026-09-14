@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: AssociateHealthCheckRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssociateHealthCheckRequest:
     out: AssociateHealthCheckRequest = {}  # type: ignore[typeddict-item]
-    if "ProtectionId" in data:
+    if data.get("ProtectionId") is not None:
         out["protection_id"] = data["ProtectionId"]
     else:
         raise DeserializationError("AssociateHealthCheckRequest.protection_id required")
-    if "HealthCheckArn" in data:
+    if data.get("HealthCheckArn") is not None:
         out["health_check_arn"] = data["HealthCheckArn"]
     else:
         raise DeserializationError(

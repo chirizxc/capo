@@ -45,19 +45,19 @@ def serialize_json(value: GroupStatusDetail) -> dict:
 
 def deserialize_json(data: dict) -> GroupStatusDetail:
     out: GroupStatusDetail = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_qbusiness.types.group_status
 
         out["status"] = capo_qbusiness.types.group_status.deserialize_json(
             data["status"]
         )
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_qbusiness.types.timestamp
 
         out["last_updated_at"] = capo_qbusiness.types.timestamp.deserialize_json(
             data["lastUpdatedAt"]
         )
-    if "errorDetail" in data:
+    if data.get("errorDetail") is not None:
         import capo_qbusiness.types.error_detail
 
         out["error_detail"] = capo_qbusiness.types.error_detail.deserialize_json(

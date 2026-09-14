@@ -31,19 +31,19 @@ def serialize_aws_json_1_0(value: DeleteServiceTemplateVersionInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteServiceTemplateVersionInput:
     out: DeleteServiceTemplateVersionInput = {}  # type: ignore[typeddict-item]
-    if "templateName" in data:
+    if data.get("templateName") is not None:
         out["template_name"] = data["templateName"]
     else:
         raise DeserializationError(
             "DeleteServiceTemplateVersionInput.template_name required"
         )
-    if "majorVersion" in data:
+    if data.get("majorVersion") is not None:
         out["major_version"] = data["majorVersion"]
     else:
         raise DeserializationError(
             "DeleteServiceTemplateVersionInput.major_version required"
         )
-    if "minorVersion" in data:
+    if data.get("minorVersion") is not None:
         out["minor_version"] = data["minorVersion"]
     else:
         raise DeserializationError(

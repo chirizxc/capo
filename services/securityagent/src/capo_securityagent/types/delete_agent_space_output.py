@@ -23,6 +23,6 @@ def serialize_json(value: DeleteAgentSpaceOutput) -> dict:
 
 def deserialize_json(data: dict) -> DeleteAgentSpaceOutput:
     out: DeleteAgentSpaceOutput = {}  # type: ignore[typeddict-item]
-    if "agentSpaceId" in data:
+    if data.get("agentSpaceId") is not None:
         out["agent_space_id"] = data["agentSpaceId"]
     return out

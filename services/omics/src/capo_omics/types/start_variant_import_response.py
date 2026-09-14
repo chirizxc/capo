@@ -24,7 +24,7 @@ def serialize_json(value: StartVariantImportResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartVariantImportResponse:
     out: StartVariantImportResponse = {}  # type: ignore[typeddict-item]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
     else:
         raise DeserializationError("StartVariantImportResponse.job_id required")

@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: DefinitionDocument) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DefinitionDocument:
     out: DefinitionDocument = {}  # type: ignore[typeddict-item]
-    if "language" in data:
+    if data.get("language") is not None:
         import capo_iotthingsgraph.types.definition_language
 
         out["language"] = (
@@ -44,7 +44,7 @@ def deserialize_aws_json_1_1(data: dict) -> DefinitionDocument:
         )
     else:
         raise DeserializationError("DefinitionDocument.language required")
-    if "text" in data:
+    if data.get("text") is not None:
         out["text"] = data["text"]
     else:
         raise DeserializationError("DefinitionDocument.text required")

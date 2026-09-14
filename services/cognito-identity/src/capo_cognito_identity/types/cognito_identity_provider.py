@@ -39,10 +39,10 @@ def serialize_aws_json_1_1(value: CognitoIdentityProvider) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CognitoIdentityProvider:
     out: CognitoIdentityProvider = {}  # type: ignore[typeddict-item]
-    if "ProviderName" in data:
+    if data.get("ProviderName") is not None:
         out["provider_name"] = data["ProviderName"]
-    if "ClientId" in data:
+    if data.get("ClientId") is not None:
         out["client_id"] = data["ClientId"]
-    if "ServerSideTokenCheck" in data:
+    if data.get("ServerSideTokenCheck") is not None:
         out["server_side_token_check"] = data["ServerSideTokenCheck"]
     return out

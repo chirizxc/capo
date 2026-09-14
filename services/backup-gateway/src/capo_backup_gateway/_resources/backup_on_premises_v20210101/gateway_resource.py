@@ -100,10 +100,11 @@ class GatewayResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backup_gateway.types.create_gateway_input.CreateGatewayInput = {}  # type: ignore[typeddict-item]
-        input_["activation_key"] = activation_key
-        input_["gateway_display_name"] = gateway_display_name
-        input_["gateway_type"] = gateway_type
+        input_: capo_backup_gateway.types.create_gateway_input.CreateGatewayInput = {
+            "activation_key": activation_key,
+            "gateway_display_name": gateway_display_name,
+            "gateway_type": gateway_type,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -112,6 +113,7 @@ class GatewayResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -148,14 +150,16 @@ class GatewayResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backup_gateway.types.get_gateway_input.GetGatewayInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_backup_gateway.types.get_gateway_input.GetGatewayInput = {
+            "gateway_arn": gateway_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -195,8 +199,9 @@ class GatewayResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backup_gateway.types.update_gateway_information_input.UpdateGatewayInformationInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_backup_gateway.types.update_gateway_information_input.UpdateGatewayInformationInput = {
+            "gateway_arn": gateway_arn
+        }
         if gateway_display_name is not None:
             input_["gateway_display_name"] = gateway_display_name
 
@@ -205,6 +210,7 @@ class GatewayResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -241,14 +247,16 @@ class GatewayResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backup_gateway.types.delete_gateway_input.DeleteGatewayInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_backup_gateway.types.delete_gateway_input.DeleteGatewayInput = {
+            "gateway_arn": gateway_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -288,7 +296,7 @@ class GatewayResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backup_gateway.types.list_gateways_input.ListGatewaysInput = {}  # type: ignore[typeddict-item]
+        input_: capo_backup_gateway.types.list_gateways_input.ListGatewaysInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -299,6 +307,7 @@ class GatewayResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_gateway_to_server(
@@ -337,15 +346,17 @@ class GatewayResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backup_gateway.types.associate_gateway_to_server_input.AssociateGatewayToServerInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
-        input_["server_arn"] = server_arn
+        input_: capo_backup_gateway.types.associate_gateway_to_server_input.AssociateGatewayToServerInput = {
+            "gateway_arn": gateway_arn,
+            "server_arn": server_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_gateway_from_server(
@@ -383,14 +394,16 @@ class GatewayResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backup_gateway.types.disassociate_gateway_from_server_input.DisassociateGatewayFromServerInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_backup_gateway.types.disassociate_gateway_from_server_input.DisassociateGatewayFromServerInput = {
+            "gateway_arn": gateway_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_maintenance_start_time(
@@ -438,10 +451,11 @@ class GatewayResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backup_gateway.types.put_maintenance_start_time_input.PutMaintenanceStartTimeInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
-        input_["hour_of_day"] = hour_of_day
-        input_["minute_of_hour"] = minute_of_hour
+        input_: capo_backup_gateway.types.put_maintenance_start_time_input.PutMaintenanceStartTimeInput = {
+            "gateway_arn": gateway_arn,
+            "hour_of_day": hour_of_day,
+            "minute_of_hour": minute_of_hour,
+        }
         if day_of_week is not None:
             input_["day_of_week"] = day_of_week
         if day_of_month is not None:
@@ -452,6 +466,7 @@ class GatewayResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def test_hypervisor_configuration(
@@ -495,9 +510,10 @@ class GatewayResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backup_gateway.types.test_hypervisor_configuration_input.TestHypervisorConfigurationInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
-        input_["host"] = host
+        input_: capo_backup_gateway.types.test_hypervisor_configuration_input.TestHypervisorConfigurationInput = {
+            "gateway_arn": gateway_arn,
+            "host": host,
+        }
         if username is not None:
             input_["username"] = username
         if password is not None:
@@ -508,6 +524,7 @@ class GatewayResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_gateway_software_now(
@@ -544,14 +561,16 @@ class GatewayResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backup_gateway.types.update_gateway_software_now_input.UpdateGatewaySoftwareNowInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_backup_gateway.types.update_gateway_software_now_input.UpdateGatewaySoftwareNowInput = {
+            "gateway_arn": gateway_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -599,10 +618,11 @@ class AsyncGatewayResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backup_gateway.types.create_gateway_input.CreateGatewayInput = {}  # type: ignore[typeddict-item]
-        input_["activation_key"] = activation_key
-        input_["gateway_display_name"] = gateway_display_name
-        input_["gateway_type"] = gateway_type
+        input_: capo_backup_gateway.types.create_gateway_input.CreateGatewayInput = {
+            "activation_key": activation_key,
+            "gateway_display_name": gateway_display_name,
+            "gateway_type": gateway_type,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -611,6 +631,7 @@ class AsyncGatewayResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -648,14 +669,16 @@ class AsyncGatewayResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backup_gateway.types.get_gateway_input.GetGatewayInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_backup_gateway.types.get_gateway_input.GetGatewayInput = {
+            "gateway_arn": gateway_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -696,8 +719,9 @@ class AsyncGatewayResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backup_gateway.types.update_gateway_information_input.UpdateGatewayInformationInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_backup_gateway.types.update_gateway_information_input.UpdateGatewayInformationInput = {
+            "gateway_arn": gateway_arn
+        }
         if gateway_display_name is not None:
             input_["gateway_display_name"] = gateway_display_name
 
@@ -706,6 +730,7 @@ class AsyncGatewayResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -743,14 +768,16 @@ class AsyncGatewayResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backup_gateway.types.delete_gateway_input.DeleteGatewayInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_backup_gateway.types.delete_gateway_input.DeleteGatewayInput = {
+            "gateway_arn": gateway_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -791,7 +818,7 @@ class AsyncGatewayResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backup_gateway.types.list_gateways_input.ListGatewaysInput = {}  # type: ignore[typeddict-item]
+        input_: capo_backup_gateway.types.list_gateways_input.ListGatewaysInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -802,6 +829,7 @@ class AsyncGatewayResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_gateway_to_server(
@@ -841,15 +869,17 @@ class AsyncGatewayResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backup_gateway.types.associate_gateway_to_server_input.AssociateGatewayToServerInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
-        input_["server_arn"] = server_arn
+        input_: capo_backup_gateway.types.associate_gateway_to_server_input.AssociateGatewayToServerInput = {
+            "gateway_arn": gateway_arn,
+            "server_arn": server_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_gateway_from_server(
@@ -888,14 +918,16 @@ class AsyncGatewayResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backup_gateway.types.disassociate_gateway_from_server_input.DisassociateGatewayFromServerInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_backup_gateway.types.disassociate_gateway_from_server_input.DisassociateGatewayFromServerInput = {
+            "gateway_arn": gateway_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_maintenance_start_time(
@@ -944,10 +976,11 @@ class AsyncGatewayResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backup_gateway.types.put_maintenance_start_time_input.PutMaintenanceStartTimeInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
-        input_["hour_of_day"] = hour_of_day
-        input_["minute_of_hour"] = minute_of_hour
+        input_: capo_backup_gateway.types.put_maintenance_start_time_input.PutMaintenanceStartTimeInput = {
+            "gateway_arn": gateway_arn,
+            "hour_of_day": hour_of_day,
+            "minute_of_hour": minute_of_hour,
+        }
         if day_of_week is not None:
             input_["day_of_week"] = day_of_week
         if day_of_month is not None:
@@ -958,6 +991,7 @@ class AsyncGatewayResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def test_hypervisor_configuration(
@@ -1002,9 +1036,10 @@ class AsyncGatewayResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backup_gateway.types.test_hypervisor_configuration_input.TestHypervisorConfigurationInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
-        input_["host"] = host
+        input_: capo_backup_gateway.types.test_hypervisor_configuration_input.TestHypervisorConfigurationInput = {
+            "gateway_arn": gateway_arn,
+            "host": host,
+        }
         if username is not None:
             input_["username"] = username
         if password is not None:
@@ -1015,6 +1050,7 @@ class AsyncGatewayResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_gateway_software_now(
@@ -1052,12 +1088,14 @@ class AsyncGatewayResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backup_gateway.types.update_gateway_software_now_input.UpdateGatewaySoftwareNowInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_backup_gateway.types.update_gateway_software_now_input.UpdateGatewaySoftwareNowInput = {
+            "gateway_arn": gateway_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -69,13 +69,13 @@ def serialize_aws_json_1_1(value: GetDistributionMetricDataRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDistributionMetricDataRequest:
     out: GetDistributionMetricDataRequest = {}  # type: ignore[typeddict-item]
-    if "distributionName" in data:
+    if data.get("distributionName") is not None:
         out["distribution_name"] = data["distributionName"]
     else:
         raise DeserializationError(
             "GetDistributionMetricDataRequest.distribution_name required"
         )
-    if "metricName" in data:
+    if data.get("metricName") is not None:
         import capo_lightsail.types.distribution_metric_name
 
         out["metric_name"] = (
@@ -87,7 +87,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetDistributionMetricDataRequest:
         raise DeserializationError(
             "GetDistributionMetricDataRequest.metric_name required"
         )
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_lightsail.types.timestamp
 
         out["start_time"] = capo_lightsail.types.timestamp.deserialize_aws_json_1_1(
@@ -97,7 +97,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetDistributionMetricDataRequest:
         raise DeserializationError(
             "GetDistributionMetricDataRequest.start_time required"
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_lightsail.types.timestamp
 
         out["end_time"] = capo_lightsail.types.timestamp.deserialize_aws_json_1_1(
@@ -105,11 +105,11 @@ def deserialize_aws_json_1_1(data: dict) -> GetDistributionMetricDataRequest:
         )
     else:
         raise DeserializationError("GetDistributionMetricDataRequest.end_time required")
-    if "period" in data:
+    if data.get("period") is not None:
         out["period"] = data["period"]
     else:
         raise DeserializationError("GetDistributionMetricDataRequest.period required")
-    if "unit" in data:
+    if data.get("unit") is not None:
         import capo_lightsail.types.metric_unit
 
         out["unit"] = capo_lightsail.types.metric_unit.deserialize_aws_json_1_1(
@@ -117,7 +117,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetDistributionMetricDataRequest:
         )
     else:
         raise DeserializationError("GetDistributionMetricDataRequest.unit required")
-    if "statistics" in data:
+    if data.get("statistics") is not None:
         import capo_lightsail.types.metric_statistic_list
 
         out["statistics"] = (

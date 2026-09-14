@@ -31,7 +31,7 @@ def serialize_json(value: EnabledBaselineDriftTypes) -> dict:
 
 def deserialize_json(data: dict) -> EnabledBaselineDriftTypes:
     out: EnabledBaselineDriftTypes = {}  # type: ignore[typeddict-item]
-    if "inheritance" in data:
+    if data.get("inheritance") is not None:
         import capo_controltower.types.enabled_baseline_inheritance_drift
 
         out["inheritance"] = (

@@ -59,7 +59,7 @@ def serialize_aws_json_1_0(value: FlowFilter) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> FlowFilter:
     out: FlowFilter = {}  # type: ignore[typeddict-item]
-    if "SourceAddress" in data:
+    if data.get("SourceAddress") is not None:
         import capo_network_firewall.types.address
 
         out["source_address"] = (
@@ -67,7 +67,7 @@ def deserialize_aws_json_1_0(data: dict) -> FlowFilter:
                 data["SourceAddress"]
             )
         )
-    if "DestinationAddress" in data:
+    if data.get("DestinationAddress") is not None:
         import capo_network_firewall.types.address
 
         out["destination_address"] = (
@@ -75,11 +75,11 @@ def deserialize_aws_json_1_0(data: dict) -> FlowFilter:
                 data["DestinationAddress"]
             )
         )
-    if "SourcePort" in data:
+    if data.get("SourcePort") is not None:
         out["source_port"] = data["SourcePort"]
-    if "DestinationPort" in data:
+    if data.get("DestinationPort") is not None:
         out["destination_port"] = data["DestinationPort"]
-    if "Protocols" in data:
+    if data.get("Protocols") is not None:
         import capo_network_firewall.types.protocol_strings
 
         out["protocols"] = (

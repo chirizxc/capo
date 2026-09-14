@@ -18,6 +18,6 @@ def serialize_aws_json_1_0(value: AccessPolicyStats) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AccessPolicyStats:
     out: AccessPolicyStats = {}  # type: ignore[typeddict-item]
-    if "DataPolicyCount" in data:
+    if data.get("DataPolicyCount") is not None:
         out["data_policy_count"] = data["DataPolicyCount"]
     return out

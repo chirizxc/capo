@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: Versions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Versions:
     out: Versions = {}  # type: ignore[typeddict-item]
-    if "Minimum" in data:
+    if data.get("Minimum") is not None:
         out["minimum"] = data["Minimum"]
-    if "Maximum" in data:
+    if data.get("Maximum") is not None:
         out["maximum"] = data["Maximum"]
     return out

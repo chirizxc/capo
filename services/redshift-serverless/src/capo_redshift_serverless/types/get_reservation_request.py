@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetReservationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetReservationRequest:
     out: GetReservationRequest = {}  # type: ignore[typeddict-item]
-    if "reservationId" in data:
+    if data.get("reservationId") is not None:
         out["reservation_id"] = data["reservationId"]
     else:
         raise DeserializationError("GetReservationRequest.reservation_id required")

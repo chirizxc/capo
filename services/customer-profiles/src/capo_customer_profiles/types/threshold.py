@@ -32,11 +32,11 @@ def serialize_json(value: Threshold) -> dict:
 
 def deserialize_json(data: dict) -> Threshold:
     out: Threshold = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("Threshold.value required")
-    if "Operator" in data:
+    if data.get("Operator") is not None:
         import capo_customer_profiles.types.operator
 
         out["operator"] = capo_customer_profiles.types.operator.deserialize_json(

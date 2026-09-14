@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> CategoricalParameterRanges:
 
     out: CategoricalParameterRanges = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_forecast.types.categorical_parameter_range.deserialize_aws_json_1_1(
                 item

@@ -27,8 +27,8 @@ def serialize_json(value: CreateAutomationRuleV2Response) -> dict:
 
 def deserialize_json(data: dict) -> CreateAutomationRuleV2Response:
     out: CreateAutomationRuleV2Response = {}  # type: ignore[typeddict-item]
-    if "RuleArn" in data:
+    if data.get("RuleArn") is not None:
         out["rule_arn"] = data["RuleArn"]
-    if "RuleId" in data:
+    if data.get("RuleId") is not None:
         out["rule_id"] = data["RuleId"]
     return out

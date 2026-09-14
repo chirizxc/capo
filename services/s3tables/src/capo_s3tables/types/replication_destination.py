@@ -24,7 +24,7 @@ def serialize_json(value: ReplicationDestination) -> dict:
 
 def deserialize_json(data: dict) -> ReplicationDestination:
     out: ReplicationDestination = {}  # type: ignore[typeddict-item]
-    if "destinationTableBucketARN" in data:
+    if data.get("destinationTableBucketARN") is not None:
         out["destination_table_bucket_arn"] = data["destinationTableBucketARN"]
     else:
         raise DeserializationError(

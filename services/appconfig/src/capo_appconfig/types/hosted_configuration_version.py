@@ -47,7 +47,7 @@ def serialize_json(value: HostedConfigurationVersion) -> dict:
 
 def deserialize_json(data: dict) -> HostedConfigurationVersion:
     out: HostedConfigurationVersion = {}  # type: ignore[typeddict-item]
-    if "Content" in data:
+    if data.get("Content") is not None:
         import capo_appconfig.types.blob
 
         out["content"] = capo_appconfig.types.blob.deserialize_json(data["Content"])

@@ -60,29 +60,29 @@ def serialize_json(value: CreatePresetRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreatePresetRequest:
     out: CreatePresetRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreatePresetRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Container" in data:
+    if data.get("Container") is not None:
         out["container"] = data["Container"]
     else:
         raise DeserializationError("CreatePresetRequest.container required")
-    if "Video" in data:
+    if data.get("Video") is not None:
         import capo_elastic_transcoder.types.video_parameters
 
         out["video"] = capo_elastic_transcoder.types.video_parameters.deserialize_json(
             data["Video"]
         )
-    if "Audio" in data:
+    if data.get("Audio") is not None:
         import capo_elastic_transcoder.types.audio_parameters
 
         out["audio"] = capo_elastic_transcoder.types.audio_parameters.deserialize_json(
             data["Audio"]
         )
-    if "Thumbnails" in data:
+    if data.get("Thumbnails") is not None:
         import capo_elastic_transcoder.types.thumbnails
 
         out["thumbnails"] = capo_elastic_transcoder.types.thumbnails.deserialize_json(

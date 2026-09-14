@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: CreateLocationInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateLocationInput:
     out: CreateLocationInput = {}  # type: ignore[typeddict-item]
-    if "LocationName" in data:
+    if data.get("LocationName") is not None:
         out["location_name"] = data["LocationName"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_gamelift.types.tag_list
 
         out["tags"] = capo_gamelift.types.tag_list.deserialize_aws_json_1_1(

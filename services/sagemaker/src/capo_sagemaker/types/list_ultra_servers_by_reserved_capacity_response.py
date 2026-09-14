@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: ListUltraServersByReservedCapacityResponse) ->
 
 def deserialize_aws_json_1_1(data: dict) -> ListUltraServersByReservedCapacityResponse:
     out: ListUltraServersByReservedCapacityResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "UltraServers" in data:
+    if data.get("UltraServers") is not None:
         import capo_sagemaker.types.ultra_servers
 
         out["ultra_servers"] = (

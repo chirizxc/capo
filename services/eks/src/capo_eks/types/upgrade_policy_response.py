@@ -27,7 +27,7 @@ def serialize_json(value: UpgradePolicyResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpgradePolicyResponse:
     out: UpgradePolicyResponse = {}  # type: ignore[typeddict-item]
-    if "supportType" in data:
+    if data.get("supportType") is not None:
         import capo_eks.types.support_type
 
         out["support_type"] = capo_eks.types.support_type.deserialize_json(

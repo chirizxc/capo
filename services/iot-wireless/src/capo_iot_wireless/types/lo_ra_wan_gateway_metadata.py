@@ -24,18 +24,34 @@ def serialize_json(value: LoRaWANGatewayMetadata) -> dict:
     if "gateway_eui" in value:
         out["GatewayEui"] = value["gateway_eui"]
     if "snr" in value:
-        out["Snr"] = value["snr"]
+        out["Snr"] = (
+            "NaN"
+            if value["snr"] != value["snr"]
+            else "Infinity"
+            if value["snr"] == float("inf")
+            else "-Infinity"
+            if value["snr"] == float("-inf")
+            else value["snr"]
+        )
     if "rssi" in value:
-        out["Rssi"] = value["rssi"]
+        out["Rssi"] = (
+            "NaN"
+            if value["rssi"] != value["rssi"]
+            else "Infinity"
+            if value["rssi"] == float("inf")
+            else "-Infinity"
+            if value["rssi"] == float("-inf")
+            else value["rssi"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> LoRaWANGatewayMetadata:
     out: LoRaWANGatewayMetadata = {}  # type: ignore[typeddict-item]
-    if "GatewayEui" in data:
+    if data.get("GatewayEui") is not None:
         out["gateway_eui"] = data["GatewayEui"]
-    if "Snr" in data:
-        out["snr"] = data["Snr"]
-    if "Rssi" in data:
-        out["rssi"] = data["Rssi"]
+    if data.get("Snr") is not None:
+        out["snr"] = float(data["Snr"])
+    if data.get("Rssi") is not None:
+        out["rssi"] = float(data["Rssi"])
     return out

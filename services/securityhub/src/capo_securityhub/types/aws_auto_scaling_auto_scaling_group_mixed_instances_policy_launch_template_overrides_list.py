@@ -33,6 +33,8 @@ def deserialize_json(
 
     out: AwsAutoScalingAutoScalingGroupMixedInstancesPolicyLaunchTemplateOverridesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_auto_scaling_auto_scaling_group_mixed_instances_policy_launch_template_overrides_list_details.deserialize_json(
                 item

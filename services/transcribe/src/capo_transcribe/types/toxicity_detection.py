@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> ToxicityDetection:
 
     out: ToxicityDetection = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_transcribe.types.toxicity_detection_settings.deserialize_aws_json_1_1(
                 item

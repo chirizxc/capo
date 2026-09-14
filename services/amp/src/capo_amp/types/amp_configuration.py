@@ -24,7 +24,7 @@ def serialize_json(value: AmpConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AmpConfiguration:
     out: AmpConfiguration = {}  # type: ignore[typeddict-item]
-    if "workspaceArn" in data:
+    if data.get("workspaceArn") is not None:
         out["workspace_arn"] = data["workspaceArn"]
     else:
         raise DeserializationError("AmpConfiguration.workspace_arn required")

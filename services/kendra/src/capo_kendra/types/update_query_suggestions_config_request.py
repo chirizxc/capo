@@ -74,27 +74,27 @@ def serialize_aws_json_1_1(value: UpdateQuerySuggestionsConfigRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateQuerySuggestionsConfigRequest:
     out: UpdateQuerySuggestionsConfigRequest = {}  # type: ignore[typeddict-item]
-    if "IndexId" in data:
+    if data.get("IndexId") is not None:
         out["index_id"] = data["IndexId"]
     else:
         raise DeserializationError(
             "UpdateQuerySuggestionsConfigRequest.index_id required"
         )
-    if "Mode" in data:
+    if data.get("Mode") is not None:
         import capo_kendra.types.mode
 
         out["mode"] = capo_kendra.types.mode.deserialize_aws_json_1_1(data["Mode"])
-    if "QueryLogLookBackWindowInDays" in data:
+    if data.get("QueryLogLookBackWindowInDays") is not None:
         out["query_log_look_back_window_in_days"] = data["QueryLogLookBackWindowInDays"]
-    if "IncludeQueriesWithoutUserInformation" in data:
+    if data.get("IncludeQueriesWithoutUserInformation") is not None:
         out["include_queries_without_user_information"] = data[
             "IncludeQueriesWithoutUserInformation"
         ]
-    if "MinimumNumberOfQueryingUsers" in data:
+    if data.get("MinimumNumberOfQueryingUsers") is not None:
         out["minimum_number_of_querying_users"] = data["MinimumNumberOfQueryingUsers"]
-    if "MinimumQueryCount" in data:
+    if data.get("MinimumQueryCount") is not None:
         out["minimum_query_count"] = data["MinimumQueryCount"]
-    if "AttributeSuggestionsConfig" in data:
+    if data.get("AttributeSuggestionsConfig") is not None:
         import capo_kendra.types.attribute_suggestions_update_config
 
         out["attribute_suggestions_config"] = (

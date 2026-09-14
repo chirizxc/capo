@@ -46,7 +46,7 @@ def serialize_json(value: SearchGroupProfilesInput) -> dict:
 
 def deserialize_json(data: dict) -> SearchGroupProfilesInput:
     out: SearchGroupProfilesInput = {}  # type: ignore[typeddict-item]
-    if "groupType" in data:
+    if data.get("groupType") is not None:
         import capo_datazone.types.group_search_type
 
         out["group_type"] = capo_datazone.types.group_search_type.deserialize_json(
@@ -54,10 +54,10 @@ def deserialize_json(data: dict) -> SearchGroupProfilesInput:
         )
     else:
         raise DeserializationError("SearchGroupProfilesInput.group_type required")
-    if "searchText" in data:
+    if data.get("searchText") is not None:
         out["search_text"] = data["searchText"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

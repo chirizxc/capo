@@ -160,27 +160,27 @@ def serialize_json(value: UpdateOriginEndpointResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateOriginEndpointResponse:
     out: UpdateOriginEndpointResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("UpdateOriginEndpointResponse.arn required")
-    if "ChannelGroupName" in data:
+    if data.get("ChannelGroupName") is not None:
         out["channel_group_name"] = data["ChannelGroupName"]
     else:
         raise DeserializationError(
             "UpdateOriginEndpointResponse.channel_group_name required"
         )
-    if "ChannelName" in data:
+    if data.get("ChannelName") is not None:
         out["channel_name"] = data["ChannelName"]
     else:
         raise DeserializationError("UpdateOriginEndpointResponse.channel_name required")
-    if "OriginEndpointName" in data:
+    if data.get("OriginEndpointName") is not None:
         out["origin_endpoint_name"] = data["OriginEndpointName"]
     else:
         raise DeserializationError(
             "UpdateOriginEndpointResponse.origin_endpoint_name required"
         )
-    if "ContainerType" in data:
+    if data.get("ContainerType") is not None:
         import capo_mediapackagev2.types.container_type
 
         out["container_type"] = (
@@ -192,7 +192,7 @@ def deserialize_json(data: dict) -> UpdateOriginEndpointResponse:
         raise DeserializationError(
             "UpdateOriginEndpointResponse.container_type required"
         )
-    if "Segment" in data:
+    if data.get("Segment") is not None:
         import capo_mediapackagev2.types.segment
 
         out["segment"] = capo_mediapackagev2.types.segment.deserialize_json(
@@ -200,7 +200,7 @@ def deserialize_json(data: dict) -> UpdateOriginEndpointResponse:
         )
     else:
         raise DeserializationError("UpdateOriginEndpointResponse.segment required")
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_mediapackagev2.types._prelude.timestamp
 
         out["created_at"] = (
@@ -210,7 +210,7 @@ def deserialize_json(data: dict) -> UpdateOriginEndpointResponse:
         )
     else:
         raise DeserializationError("UpdateOriginEndpointResponse.created_at required")
-    if "ModifiedAt" in data:
+    if data.get("ModifiedAt") is not None:
         import capo_mediapackagev2.types._prelude.timestamp
 
         out["modified_at"] = (
@@ -220,11 +220,11 @@ def deserialize_json(data: dict) -> UpdateOriginEndpointResponse:
         )
     else:
         raise DeserializationError("UpdateOriginEndpointResponse.modified_at required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "StartoverWindowSeconds" in data:
+    if data.get("StartoverWindowSeconds") is not None:
         out["startover_window_seconds"] = data["StartoverWindowSeconds"]
-    if "HlsManifests" in data:
+    if data.get("HlsManifests") is not None:
         import capo_mediapackagev2.types.get_hls_manifests
 
         out["hls_manifests"] = (
@@ -232,7 +232,7 @@ def deserialize_json(data: dict) -> UpdateOriginEndpointResponse:
                 data["HlsManifests"]
             )
         )
-    if "LowLatencyHlsManifests" in data:
+    if data.get("LowLatencyHlsManifests") is not None:
         import capo_mediapackagev2.types.get_low_latency_hls_manifests
 
         out["low_latency_hls_manifests"] = (
@@ -240,7 +240,7 @@ def deserialize_json(data: dict) -> UpdateOriginEndpointResponse:
                 data["LowLatencyHlsManifests"]
             )
         )
-    if "MssManifests" in data:
+    if data.get("MssManifests") is not None:
         import capo_mediapackagev2.types.get_mss_manifests
 
         out["mss_manifests"] = (
@@ -248,7 +248,7 @@ def deserialize_json(data: dict) -> UpdateOriginEndpointResponse:
                 data["MssManifests"]
             )
         )
-    if "ForceEndpointErrorConfiguration" in data:
+    if data.get("ForceEndpointErrorConfiguration") is not None:
         import capo_mediapackagev2.types.force_endpoint_error_configuration
 
         out["force_endpoint_error_configuration"] = (
@@ -256,19 +256,19 @@ def deserialize_json(data: dict) -> UpdateOriginEndpointResponse:
                 data["ForceEndpointErrorConfiguration"]
             )
         )
-    if "UriSeparator" in data:
+    if data.get("UriSeparator") is not None:
         import capo_mediapackagev2.types.uri_separator
 
         out["uri_separator"] = capo_mediapackagev2.types.uri_separator.deserialize_json(
             data["UriSeparator"]
         )
-    if "ETag" in data:
+    if data.get("ETag") is not None:
         out["e_tag"] = data["ETag"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mediapackagev2.types.tag_map
 
         out["tags"] = capo_mediapackagev2.types.tag_map.deserialize_json(data["tags"])
-    if "DashManifests" in data:
+    if data.get("DashManifests") is not None:
         import capo_mediapackagev2.types.get_dash_manifests
 
         out["dash_manifests"] = (

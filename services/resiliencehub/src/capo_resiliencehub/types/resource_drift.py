@@ -55,13 +55,13 @@ def serialize_json(value: ResourceDrift) -> dict:
 
 def deserialize_json(data: dict) -> ResourceDrift:
     out: ResourceDrift = {}  # type: ignore[typeddict-item]
-    if "appArn" in data:
+    if data.get("appArn") is not None:
         out["app_arn"] = data["appArn"]
-    if "appVersion" in data:
+    if data.get("appVersion") is not None:
         out["app_version"] = data["appVersion"]
-    if "referenceId" in data:
+    if data.get("referenceId") is not None:
         out["reference_id"] = data["referenceId"]
-    if "resourceIdentifier" in data:
+    if data.get("resourceIdentifier") is not None:
         import capo_resiliencehub.types.resource_identifier
 
         out["resource_identifier"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> ResourceDrift:
                 data["resourceIdentifier"]
             )
         )
-    if "diffType" in data:
+    if data.get("diffType") is not None:
         import capo_resiliencehub.types.difference_type
 
         out["diff_type"] = capo_resiliencehub.types.difference_type.deserialize_json(

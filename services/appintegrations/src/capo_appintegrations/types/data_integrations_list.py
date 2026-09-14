@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> DataIntegrationsList:
 
     out: DataIntegrationsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_appintegrations.types.data_integration_summary.deserialize_json(item)
         )

@@ -13,9 +13,9 @@ from capo_acm import AsyncACMClient
 
 
 async def main():
-    async with AsyncACMClient() as s3:
+    async with AsyncACMClient() as acm:
         # Example: call the add_tags_to_certificate operation
-        response = await s3.add_tags_to_certificate()
+        response = await acm.add_tags_to_certificate()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_acm import AsyncACMClient
 
 
 async def main():
-    async with AsyncACMClient() as s3:
+    async with AsyncACMClient() as acm:
         # Example: paginate over list_certificates
-        async for item in s3.iter_list_certificates():
+        async for item in acm.iter_list_certificates():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_acm.error import InvalidArnException
 
 
 async def main():
-    async with AsyncACMClient() as s3:
+    async with AsyncACMClient() as acm:
         try:
-            await s3.add_tags_to_certificate()
+            await acm.add_tags_to_certificate()
         except InvalidArnException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_acm import AsyncACMClient
 
 
 async def main():
-    async with AsyncACMClient() as s3:
+    async with AsyncACMClient() as acm:
         # Default: 3 attempts for every operation
-        response = await s3.add_tags_to_certificate()
+        response = await acm.add_tags_to_certificate()
 
         # Override per operation
-        response = await s3.add_tags_to_certificate(config_overrides={"retry_max_attempts": 5})
+        response = await acm.add_tags_to_certificate(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.add_tags_to_certificate(config_overrides={"retry_max_attempts": 1})
+        response = await acm.add_tags_to_certificate(config_overrides={"retry_max_attempts": 1})
 ```

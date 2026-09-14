@@ -27,11 +27,11 @@ def serialize_json(value: AssociateUserSettingsResponse) -> dict:
 
 def deserialize_json(data: dict) -> AssociateUserSettingsResponse:
     out: AssociateUserSettingsResponse = {}  # type: ignore[typeddict-item]
-    if "portalArn" in data:
+    if data.get("portalArn") is not None:
         out["portal_arn"] = data["portalArn"]
     else:
         raise DeserializationError("AssociateUserSettingsResponse.portal_arn required")
-    if "userSettingsArn" in data:
+    if data.get("userSettingsArn") is not None:
         out["user_settings_arn"] = data["userSettingsArn"]
     else:
         raise DeserializationError(

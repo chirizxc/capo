@@ -44,12 +44,12 @@ def serialize_aws_json_1_1(value: ResolveCustomerResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResolveCustomerResult:
     out: ResolveCustomerResult = {}  # type: ignore[typeddict-item]
-    if "CustomerIdentifier" in data:
+    if data.get("CustomerIdentifier") is not None:
         out["customer_identifier"] = data["CustomerIdentifier"]
-    if "ProductCode" in data:
+    if data.get("ProductCode") is not None:
         out["product_code"] = data["ProductCode"]
-    if "CustomerAWSAccountId" in data:
+    if data.get("CustomerAWSAccountId") is not None:
         out["customer_aws_account_id"] = data["CustomerAWSAccountId"]
-    if "LicenseArn" in data:
+    if data.get("LicenseArn") is not None:
         out["license_arn"] = data["LicenseArn"]
     return out

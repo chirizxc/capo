@@ -233,13 +233,13 @@ def serialize_aws_json_1_1(value: ClusterNodeDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClusterNodeDetails:
     out: ClusterNodeDetails = {}  # type: ignore[typeddict-item]
-    if "InstanceGroupName" in data:
+    if data.get("InstanceGroupName") is not None:
         out["instance_group_name"] = data["InstanceGroupName"]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
-    if "NodeLogicalId" in data:
+    if data.get("NodeLogicalId") is not None:
         out["node_logical_id"] = data["NodeLogicalId"]
-    if "InstanceStatus" in data:
+    if data.get("InstanceStatus") is not None:
         import capo_sagemaker.types.cluster_instance_status_details
 
         out["instance_status"] = (
@@ -247,7 +247,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterNodeDetails:
                 data["InstanceStatus"]
             )
         )
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         import capo_sagemaker.types.cluster_instance_type
 
         out["instance_type"] = (
@@ -255,13 +255,13 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterNodeDetails:
                 data["InstanceType"]
             )
         )
-    if "LaunchTime" in data:
+    if data.get("LaunchTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["launch_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["LaunchTime"]
         )
-    if "LastSoftwareUpdateTime" in data:
+    if data.get("LastSoftwareUpdateTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_software_update_time"] = (
@@ -269,7 +269,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterNodeDetails:
                 data["LastSoftwareUpdateTime"]
             )
         )
-    if "LifeCycleConfig" in data:
+    if data.get("LifeCycleConfig") is not None:
         import capo_sagemaker.types.cluster_life_cycle_config
 
         out["life_cycle_config"] = (
@@ -277,7 +277,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterNodeDetails:
                 data["LifeCycleConfig"]
             )
         )
-    if "OverrideVpcConfig" in data:
+    if data.get("OverrideVpcConfig") is not None:
         import capo_sagemaker.types.vpc_config
 
         out["override_vpc_config"] = (
@@ -285,9 +285,9 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterNodeDetails:
                 data["OverrideVpcConfig"]
             )
         )
-    if "ThreadsPerCore" in data:
+    if data.get("ThreadsPerCore") is not None:
         out["threads_per_core"] = data["ThreadsPerCore"]
-    if "InstanceStorageConfigs" in data:
+    if data.get("InstanceStorageConfigs") is not None:
         import capo_sagemaker.types.cluster_instance_storage_configs
 
         out["instance_storage_configs"] = (
@@ -295,13 +295,13 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterNodeDetails:
                 data["InstanceStorageConfigs"]
             )
         )
-    if "PrivatePrimaryIp" in data:
+    if data.get("PrivatePrimaryIp") is not None:
         out["private_primary_ip"] = data["PrivatePrimaryIp"]
-    if "PrivatePrimaryIpv6" in data:
+    if data.get("PrivatePrimaryIpv6") is not None:
         out["private_primary_ipv6"] = data["PrivatePrimaryIpv6"]
-    if "PrivateDnsHostname" in data:
+    if data.get("PrivateDnsHostname") is not None:
         out["private_dns_hostname"] = data["PrivateDnsHostname"]
-    if "Placement" in data:
+    if data.get("Placement") is not None:
         import capo_sagemaker.types.cluster_instance_placement
 
         out["placement"] = (
@@ -309,11 +309,11 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterNodeDetails:
                 data["Placement"]
             )
         )
-    if "CurrentImageId" in data:
+    if data.get("CurrentImageId") is not None:
         out["current_image_id"] = data["CurrentImageId"]
-    if "DesiredImageId" in data:
+    if data.get("DesiredImageId") is not None:
         out["desired_image_id"] = data["DesiredImageId"]
-    if "ImageVersionStatus" in data:
+    if data.get("ImageVersionStatus") is not None:
         import capo_sagemaker.types.cluster_image_version_status
 
         out["image_version_status"] = (
@@ -321,7 +321,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterNodeDetails:
                 data["ImageVersionStatus"]
             )
         )
-    if "UltraServerInfo" in data:
+    if data.get("UltraServerInfo") is not None:
         import capo_sagemaker.types.ultra_server_info
 
         out["ultra_server_info"] = (
@@ -329,7 +329,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterNodeDetails:
                 data["UltraServerInfo"]
             )
         )
-    if "KubernetesConfig" in data:
+    if data.get("KubernetesConfig") is not None:
         import capo_sagemaker.types.cluster_kubernetes_config_node_details
 
         out["kubernetes_config"] = (
@@ -337,7 +337,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterNodeDetails:
                 data["KubernetesConfig"]
             )
         )
-    if "CapacityType" in data:
+    if data.get("CapacityType") is not None:
         import capo_sagemaker.types.cluster_capacity_type
 
         out["capacity_type"] = (
@@ -345,7 +345,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterNodeDetails:
                 data["CapacityType"]
             )
         )
-    if "NetworkInterface" in data:
+    if data.get("NetworkInterface") is not None:
         import capo_sagemaker.types.cluster_network_interface_details
 
         out["network_interface"] = (

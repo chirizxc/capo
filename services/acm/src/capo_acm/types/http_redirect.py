@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: HttpRedirect) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HttpRedirect:
     out: HttpRedirect = {}  # type: ignore[typeddict-item]
-    if "RedirectFrom" in data:
+    if data.get("RedirectFrom") is not None:
         out["redirect_from"] = data["RedirectFrom"]
-    if "RedirectTo" in data:
+    if data.get("RedirectTo") is not None:
         out["redirect_to"] = data["RedirectTo"]
     return out

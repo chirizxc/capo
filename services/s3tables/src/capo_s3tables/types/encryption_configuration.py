@@ -32,7 +32,7 @@ def serialize_json(value: EncryptionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> EncryptionConfiguration:
     out: EncryptionConfiguration = {}  # type: ignore[typeddict-item]
-    if "sseAlgorithm" in data:
+    if data.get("sseAlgorithm") is not None:
         import capo_s3tables.types.sse_algorithm
 
         out["sse_algorithm"] = capo_s3tables.types.sse_algorithm.deserialize_json(
@@ -40,6 +40,6 @@ def deserialize_json(data: dict) -> EncryptionConfiguration:
         )
     else:
         raise DeserializationError("EncryptionConfiguration.sse_algorithm required")
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
     return out

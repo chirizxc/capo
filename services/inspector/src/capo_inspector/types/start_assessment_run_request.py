@@ -31,12 +31,12 @@ def serialize_aws_json_1_1(value: StartAssessmentRunRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartAssessmentRunRequest:
     out: StartAssessmentRunRequest = {}  # type: ignore[typeddict-item]
-    if "assessmentTemplateArn" in data:
+    if data.get("assessmentTemplateArn") is not None:
         out["assessment_template_arn"] = data["assessmentTemplateArn"]
     else:
         raise DeserializationError(
             "StartAssessmentRunRequest.assessment_template_arn required"
         )
-    if "assessmentRunName" in data:
+    if data.get("assessmentRunName") is not None:
         out["assessment_run_name"] = data["assessmentRunName"]
     return out

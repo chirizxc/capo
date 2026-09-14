@@ -17,12 +17,20 @@ class AxisLogarithmicScale(TypedDict, closed=True):
 def serialize_json(value: AxisLogarithmicScale) -> dict:
     out: dict = {}
     if "base" in value:
-        out["Base"] = value["base"]
+        out["Base"] = (
+            "NaN"
+            if value["base"] != value["base"]
+            else "Infinity"
+            if value["base"] == float("inf")
+            else "-Infinity"
+            if value["base"] == float("-inf")
+            else value["base"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> AxisLogarithmicScale:
     out: AxisLogarithmicScale = {}  # type: ignore[typeddict-item]
-    if "Base" in data:
-        out["base"] = data["Base"]
+    if data.get("Base") is not None:
+        out["base"] = float(data["Base"])
     return out

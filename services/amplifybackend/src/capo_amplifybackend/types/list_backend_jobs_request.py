@@ -46,14 +46,14 @@ def serialize_json(value: ListBackendJobsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListBackendJobsRequest:
     out: ListBackendJobsRequest = {}  # type: ignore[typeddict-item]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "operation" in data:
+    if data.get("operation") is not None:
         out["operation"] = data["operation"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     return out

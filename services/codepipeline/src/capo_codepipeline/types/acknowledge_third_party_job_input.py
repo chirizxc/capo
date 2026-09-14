@@ -32,15 +32,15 @@ def serialize_aws_json_1_1(value: AcknowledgeThirdPartyJobInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AcknowledgeThirdPartyJobInput:
     out: AcknowledgeThirdPartyJobInput = {}  # type: ignore[typeddict-item]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
     else:
         raise DeserializationError("AcknowledgeThirdPartyJobInput.job_id required")
-    if "nonce" in data:
+    if data.get("nonce") is not None:
         out["nonce"] = data["nonce"]
     else:
         raise DeserializationError("AcknowledgeThirdPartyJobInput.nonce required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError(

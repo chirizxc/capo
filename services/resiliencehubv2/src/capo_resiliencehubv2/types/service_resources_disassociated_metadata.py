@@ -35,9 +35,9 @@ def serialize_json(value: ServiceResourcesDisassociatedMetadata) -> dict:
 
 def deserialize_json(data: dict) -> ServiceResourcesDisassociatedMetadata:
     out: ServiceResourcesDisassociatedMetadata = {}  # type: ignore[typeddict-item]
-    if "resourceCount" in data:
+    if data.get("resourceCount") is not None:
         out["resource_count"] = data["resourceCount"]
-    if "resourceTypes" in data:
+    if data.get("resourceTypes") is not None:
         import capo_resiliencehubv2.types.resource_type_list
 
         out["resource_types"] = (

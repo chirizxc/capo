@@ -49,9 +49,9 @@ def serialize_aws_json_1_1(value: DirectSchemaChangePolicy) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DirectSchemaChangePolicy:
     out: DirectSchemaChangePolicy = {}  # type: ignore[typeddict-item]
-    if "EnableUpdateCatalog" in data:
+    if data.get("EnableUpdateCatalog") is not None:
         out["enable_update_catalog"] = data["EnableUpdateCatalog"]
-    if "UpdateBehavior" in data:
+    if data.get("UpdateBehavior") is not None:
         import capo_glue.types.update_catalog_behavior
 
         out["update_behavior"] = (
@@ -59,8 +59,8 @@ def deserialize_aws_json_1_1(data: dict) -> DirectSchemaChangePolicy:
                 data["UpdateBehavior"]
             )
         )
-    if "Table" in data:
+    if data.get("Table") is not None:
         out["table"] = data["Table"]
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
     return out

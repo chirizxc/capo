@@ -22,11 +22,11 @@ def serialize_aws_json_1_0(value: KubernetesResourceType) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> KubernetesResourceType:
     out: KubernetesResourceType = {}  # type: ignore[typeddict-item]
-    if "apiVersion" in data:
+    if data.get("apiVersion") is not None:
         out["api_version"] = data["apiVersion"]
     else:
         raise DeserializationError("KubernetesResourceType.api_version required")
-    if "kind" in data:
+    if data.get("kind") is not None:
         out["kind"] = data["kind"]
     else:
         raise DeserializationError("KubernetesResourceType.kind required")

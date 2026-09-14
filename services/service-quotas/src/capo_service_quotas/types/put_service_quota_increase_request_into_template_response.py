@@ -35,7 +35,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> PutServiceQuotaIncreaseRequestIntoTemplateResponse:
     out: PutServiceQuotaIncreaseRequestIntoTemplateResponse = {}  # type: ignore[typeddict-item]
-    if "ServiceQuotaIncreaseRequestInTemplate" in data:
+    if data.get("ServiceQuotaIncreaseRequestInTemplate") is not None:
         import capo_service_quotas.types.service_quota_increase_request_in_template
 
         out["service_quota_increase_request_in_template"] = (

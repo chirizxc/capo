@@ -126,19 +126,19 @@ def serialize_json(value: ProtectedJob) -> dict:
 
 def deserialize_json(data: dict) -> ProtectedJob:
     out: ProtectedJob = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("ProtectedJob.id required")
-    if "membershipId" in data:
+    if data.get("membershipId") is not None:
         out["membership_id"] = data["membershipId"]
     else:
         raise DeserializationError("ProtectedJob.membership_id required")
-    if "membershipArn" in data:
+    if data.get("membershipArn") is not None:
         out["membership_arn"] = data["membershipArn"]
     else:
         raise DeserializationError("ProtectedJob.membership_arn required")
-    if "createTime" in data:
+    if data.get("createTime") is not None:
         import capo_cleanrooms.types._prelude.timestamp
 
         out["create_time"] = capo_cleanrooms.types._prelude.timestamp.deserialize_json(
@@ -146,7 +146,7 @@ def deserialize_json(data: dict) -> ProtectedJob:
         )
     else:
         raise DeserializationError("ProtectedJob.create_time required")
-    if "jobParameters" in data:
+    if data.get("jobParameters") is not None:
         import capo_cleanrooms.types.protected_job_parameters
 
         out["job_parameters"] = (
@@ -154,7 +154,7 @@ def deserialize_json(data: dict) -> ProtectedJob:
                 data["jobParameters"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_cleanrooms.types.protected_job_status
 
         out["status"] = capo_cleanrooms.types.protected_job_status.deserialize_json(
@@ -162,7 +162,7 @@ def deserialize_json(data: dict) -> ProtectedJob:
         )
     else:
         raise DeserializationError("ProtectedJob.status required")
-    if "resultConfiguration" in data:
+    if data.get("resultConfiguration") is not None:
         import capo_cleanrooms.types.protected_job_result_configuration_output
 
         out["result_configuration"] = (
@@ -170,7 +170,7 @@ def deserialize_json(data: dict) -> ProtectedJob:
                 data["resultConfiguration"]
             )
         )
-    if "statistics" in data:
+    if data.get("statistics") is not None:
         import capo_cleanrooms.types.protected_job_statistics
 
         out["statistics"] = (
@@ -178,19 +178,19 @@ def deserialize_json(data: dict) -> ProtectedJob:
                 data["statistics"]
             )
         )
-    if "result" in data:
+    if data.get("result") is not None:
         import capo_cleanrooms.types.protected_job_result
 
         out["result"] = capo_cleanrooms.types.protected_job_result.deserialize_json(
             data["result"]
         )
-    if "error" in data:
+    if data.get("error") is not None:
         import capo_cleanrooms.types.protected_job_error
 
         out["error"] = capo_cleanrooms.types.protected_job_error.deserialize_json(
             data["error"]
         )
-    if "computeConfiguration" in data:
+    if data.get("computeConfiguration") is not None:
         import capo_cleanrooms.types.protected_job_compute_configuration
 
         out["compute_configuration"] = (
@@ -198,6 +198,6 @@ def deserialize_json(data: dict) -> ProtectedJob:
                 data["computeConfiguration"]
             )
         )
-    if "jobComputePayerAccountId" in data:
+    if data.get("jobComputePayerAccountId") is not None:
         out["job_compute_payer_account_id"] = data["jobComputePayerAccountId"]
     return out

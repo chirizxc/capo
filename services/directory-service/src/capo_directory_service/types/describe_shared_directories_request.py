@@ -47,13 +47,13 @@ def serialize_aws_json_1_1(value: DescribeSharedDirectoriesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeSharedDirectoriesRequest:
     out: DescribeSharedDirectoriesRequest = {}  # type: ignore[typeddict-item]
-    if "OwnerDirectoryId" in data:
+    if data.get("OwnerDirectoryId") is not None:
         out["owner_directory_id"] = data["OwnerDirectoryId"]
     else:
         raise DeserializationError(
             "DescribeSharedDirectoriesRequest.owner_directory_id required"
         )
-    if "SharedDirectoryIds" in data:
+    if data.get("SharedDirectoryIds") is not None:
         import capo_directory_service.types.directory_ids
 
         out["shared_directory_ids"] = (
@@ -61,8 +61,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeSharedDirectoriesRequest:
                 data["SharedDirectoryIds"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
     return out

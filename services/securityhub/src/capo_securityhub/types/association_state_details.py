@@ -29,8 +29,8 @@ def serialize_json(value: AssociationStateDetails) -> dict:
 
 def deserialize_json(data: dict) -> AssociationStateDetails:
     out: AssociationStateDetails = {}  # type: ignore[typeddict-item]
-    if "State" in data:
+    if data.get("State") is not None:
         out["state"] = data["State"]
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
     return out

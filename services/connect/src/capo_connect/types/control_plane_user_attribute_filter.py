@@ -62,7 +62,7 @@ def serialize_json(value: ControlPlaneUserAttributeFilter) -> dict:
 
 def deserialize_json(data: dict) -> ControlPlaneUserAttributeFilter:
     out: ControlPlaneUserAttributeFilter = {}  # type: ignore[typeddict-item]
-    if "OrConditions" in data:
+    if data.get("OrConditions") is not None:
         import capo_connect.types.attribute_or_condition_list
 
         out["or_conditions"] = (
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> ControlPlaneUserAttributeFilter:
                 data["OrConditions"]
             )
         )
-    if "AndCondition" in data:
+    if data.get("AndCondition") is not None:
         import capo_connect.types.attribute_and_condition
 
         out["and_condition"] = (
@@ -78,13 +78,13 @@ def deserialize_json(data: dict) -> ControlPlaneUserAttributeFilter:
                 data["AndCondition"]
             )
         )
-    if "TagCondition" in data:
+    if data.get("TagCondition") is not None:
         import capo_connect.types.tag_condition
 
         out["tag_condition"] = capo_connect.types.tag_condition.deserialize_json(
             data["TagCondition"]
         )
-    if "HierarchyGroupCondition" in data:
+    if data.get("HierarchyGroupCondition") is not None:
         import capo_connect.types.hierarchy_group_condition
 
         out["hierarchy_group_condition"] = (

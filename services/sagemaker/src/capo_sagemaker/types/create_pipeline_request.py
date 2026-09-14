@@ -90,13 +90,13 @@ def serialize_aws_json_1_1(value: CreatePipelineRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreatePipelineRequest:
     out: CreatePipelineRequest = {}  # type: ignore[typeddict-item]
-    if "PipelineName" in data:
+    if data.get("PipelineName") is not None:
         out["pipeline_name"] = data["PipelineName"]
-    if "PipelineDisplayName" in data:
+    if data.get("PipelineDisplayName") is not None:
         out["pipeline_display_name"] = data["PipelineDisplayName"]
-    if "PipelineDefinition" in data:
+    if data.get("PipelineDefinition") is not None:
         out["pipeline_definition"] = data["PipelineDefinition"]
-    if "PipelineDefinitionS3Location" in data:
+    if data.get("PipelineDefinitionS3Location") is not None:
         import capo_sagemaker.types.pipeline_definition_s3_location
 
         out["pipeline_definition_s3_location"] = (
@@ -104,19 +104,19 @@ def deserialize_aws_json_1_1(data: dict) -> CreatePipelineRequest:
                 data["PipelineDefinitionS3Location"]
             )
         )
-    if "PipelineDescription" in data:
+    if data.get("PipelineDescription") is not None:
         out["pipeline_description"] = data["PipelineDescription"]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "ParallelismConfiguration" in data:
+    if data.get("ParallelismConfiguration") is not None:
         import capo_sagemaker.types.parallelism_configuration
 
         out["parallelism_configuration"] = (

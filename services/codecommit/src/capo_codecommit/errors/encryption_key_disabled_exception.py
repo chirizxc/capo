@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: EncryptionKeyDisabledException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EncryptionKeyDisabledException_:
     out: EncryptionKeyDisabledException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,20 @@ class EncryptionKeyDisabledException(ServiceError):
 
     code: str | None = "EncryptionKeyDisabledException"
 
-    def __init__(self, data: EncryptionKeyDisabledException_):
+    def __init__(
+        self, data: EncryptionKeyDisabledException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="EncryptionKeyDisabledException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "EncryptionKeyDisabledException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "EncryptionKeyDisabledException":
+        return cls(deserialize_aws_json_1_1(data), message)

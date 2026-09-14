@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: InferenceComponentDataCacheConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InferenceComponentDataCacheConfig:
     out: InferenceComponentDataCacheConfig = {}  # type: ignore[typeddict-item]
-    if "EnableCaching" in data:
+    if data.get("EnableCaching") is not None:
         out["enable_caching"] = data["EnableCaching"]
     return out

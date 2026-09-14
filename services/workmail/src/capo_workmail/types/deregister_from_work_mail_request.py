@@ -28,13 +28,13 @@ def serialize_aws_json_1_1(value: DeregisterFromWorkMailRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeregisterFromWorkMailRequest:
     out: DeregisterFromWorkMailRequest = {}  # type: ignore[typeddict-item]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
     else:
         raise DeserializationError(
             "DeregisterFromWorkMailRequest.organization_id required"
         )
-    if "EntityId" in data:
+    if data.get("EntityId") is not None:
         out["entity_id"] = data["EntityId"]
     else:
         raise DeserializationError("DeregisterFromWorkMailRequest.entity_id required")

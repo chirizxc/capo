@@ -23,7 +23,7 @@ def serialize_json(value: AttachmentUploadException_) -> dict:
 
 def deserialize_json(data: dict) -> AttachmentUploadException_:
     out: AttachmentUploadException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("AttachmentUploadException_.message required")
@@ -35,15 +35,18 @@ class AttachmentUploadException(ServiceError):
 
     code: str | None = "AttachmentUploadException"
 
-    def __init__(self, data: AttachmentUploadException_):
+    def __init__(self, data: AttachmentUploadException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="AttachmentUploadException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "AttachmentUploadException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "AttachmentUploadException":
+        return cls(deserialize_json(data), message)

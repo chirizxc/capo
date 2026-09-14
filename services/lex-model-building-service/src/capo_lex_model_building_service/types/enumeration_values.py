@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> EnumerationValues:
 
     out: EnumerationValues = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lex_model_building_service.types.enumeration_value.deserialize_json(
                 item

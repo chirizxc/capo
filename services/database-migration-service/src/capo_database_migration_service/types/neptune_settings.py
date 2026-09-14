@@ -59,22 +59,22 @@ def serialize_aws_json_1_1(value: NeptuneSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NeptuneSettings:
     out: NeptuneSettings = {}  # type: ignore[typeddict-item]
-    if "ServiceAccessRoleArn" in data:
+    if data.get("ServiceAccessRoleArn") is not None:
         out["service_access_role_arn"] = data["ServiceAccessRoleArn"]
-    if "S3BucketName" in data:
+    if data.get("S3BucketName") is not None:
         out["s3_bucket_name"] = data["S3BucketName"]
     else:
         raise DeserializationError("NeptuneSettings.s3_bucket_name required")
-    if "S3BucketFolder" in data:
+    if data.get("S3BucketFolder") is not None:
         out["s3_bucket_folder"] = data["S3BucketFolder"]
     else:
         raise DeserializationError("NeptuneSettings.s3_bucket_folder required")
-    if "ErrorRetryDuration" in data:
+    if data.get("ErrorRetryDuration") is not None:
         out["error_retry_duration"] = data["ErrorRetryDuration"]
-    if "MaxFileSize" in data:
+    if data.get("MaxFileSize") is not None:
         out["max_file_size"] = data["MaxFileSize"]
-    if "MaxRetryCount" in data:
+    if data.get("MaxRetryCount") is not None:
         out["max_retry_count"] = data["MaxRetryCount"]
-    if "IamAuthEnabled" in data:
+    if data.get("IamAuthEnabled") is not None:
         out["iam_auth_enabled"] = data["IamAuthEnabled"]
     return out

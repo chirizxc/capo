@@ -35,13 +35,13 @@ def serialize_aws_json_1_1(value: PostCommentReplyInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PostCommentReplyInput:
     out: PostCommentReplyInput = {}  # type: ignore[typeddict-item]
-    if "inReplyTo" in data:
+    if data.get("inReplyTo") is not None:
         out["in_reply_to"] = data["inReplyTo"]
     else:
         raise DeserializationError("PostCommentReplyInput.in_reply_to required")
-    if "clientRequestToken" in data:
+    if data.get("clientRequestToken") is not None:
         out["client_request_token"] = data["clientRequestToken"]
-    if "content" in data:
+    if data.get("content") is not None:
         out["content"] = data["content"]
     else:
         raise DeserializationError("PostCommentReplyInput.content required")

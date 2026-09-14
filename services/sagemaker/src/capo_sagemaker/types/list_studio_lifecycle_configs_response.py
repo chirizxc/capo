@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: ListStudioLifecycleConfigsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListStudioLifecycleConfigsResponse:
     out: ListStudioLifecycleConfigsResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "StudioLifecycleConfigs" in data:
+    if data.get("StudioLifecycleConfigs") is not None:
         import capo_sagemaker.types.studio_lifecycle_configs_list
 
         out["studio_lifecycle_configs"] = (

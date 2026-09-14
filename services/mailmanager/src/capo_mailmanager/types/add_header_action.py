@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: AddHeaderAction) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AddHeaderAction:
     out: AddHeaderAction = {}  # type: ignore[typeddict-item]
-    if "HeaderName" in data:
+    if data.get("HeaderName") is not None:
         out["header_name"] = data["HeaderName"]
     else:
         raise DeserializationError("AddHeaderAction.header_name required")
-    if "HeaderValue" in data:
+    if data.get("HeaderValue") is not None:
         out["header_value"] = data["HeaderValue"]
     else:
         raise DeserializationError("AddHeaderAction.header_value required")

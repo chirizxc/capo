@@ -36,15 +36,23 @@ def serialize_aws_json_1_1(value: RecoveryPoint) -> dict:
     if "recovery_point_id" in value:
         out["recoveryPointId"] = value["recovery_point_id"]
     if "recovery_point_create_time" in value:
-        import capo_redshift_serverless.types._prelude.timestamp
+        import capo_redshift_serverless._protocol.serialize
 
         out["recoveryPointCreateTime"] = (
-            capo_redshift_serverless.types._prelude.timestamp.serialize_aws_json_1_1(
+            capo_redshift_serverless._protocol.serialize.fmt_date_time(
                 value["recovery_point_create_time"]
             )
         )
     if "total_size_in_mega_bytes" in value:
-        out["totalSizeInMegaBytes"] = value["total_size_in_mega_bytes"]
+        out["totalSizeInMegaBytes"] = (
+            "NaN"
+            if value["total_size_in_mega_bytes"] != value["total_size_in_mega_bytes"]
+            else "Infinity"
+            if value["total_size_in_mega_bytes"] == float("inf")
+            else "-Infinity"
+            if value["total_size_in_mega_bytes"] == float("-inf")
+            else value["total_size_in_mega_bytes"]
+        )
     if "namespace_name" in value:
         out["namespaceName"] = value["namespace_name"]
     if "workgroup_name" in value:
@@ -56,22 +64,20 @@ def serialize_aws_json_1_1(value: RecoveryPoint) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RecoveryPoint:
     out: RecoveryPoint = {}  # type: ignore[typeddict-item]
-    if "recoveryPointId" in data:
+    if data.get("recoveryPointId") is not None:
         out["recovery_point_id"] = data["recoveryPointId"]
-    if "recoveryPointCreateTime" in data:
-        import capo_redshift_serverless.types._prelude.timestamp
+    if data.get("recoveryPointCreateTime") is not None:
+        import datetime
 
-        out["recovery_point_create_time"] = (
-            capo_redshift_serverless.types._prelude.timestamp.deserialize_aws_json_1_1(
-                data["recoveryPointCreateTime"]
-            )
+        out["recovery_point_create_time"] = datetime.datetime.fromisoformat(
+            data["recoveryPointCreateTime"].replace("Z", "+00:00")
         )
-    if "totalSizeInMegaBytes" in data:
-        out["total_size_in_mega_bytes"] = data["totalSizeInMegaBytes"]
-    if "namespaceName" in data:
+    if data.get("totalSizeInMegaBytes") is not None:
+        out["total_size_in_mega_bytes"] = float(data["totalSizeInMegaBytes"])
+    if data.get("namespaceName") is not None:
         out["namespace_name"] = data["namespaceName"]
-    if "workgroupName" in data:
+    if data.get("workgroupName") is not None:
         out["workgroup_name"] = data["workgroupName"]
-    if "namespaceArn" in data:
+    if data.get("namespaceArn") is not None:
         out["namespace_arn"] = data["namespaceArn"]
     return out

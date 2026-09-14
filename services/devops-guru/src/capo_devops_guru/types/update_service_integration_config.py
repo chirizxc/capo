@@ -56,7 +56,7 @@ def serialize_json(value: UpdateServiceIntegrationConfig) -> dict:
 
 def deserialize_json(data: dict) -> UpdateServiceIntegrationConfig:
     out: UpdateServiceIntegrationConfig = {}  # type: ignore[typeddict-item]
-    if "OpsCenter" in data:
+    if data.get("OpsCenter") is not None:
         import capo_devops_guru.types.ops_center_integration_config
 
         out["ops_center"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> UpdateServiceIntegrationConfig:
                 data["OpsCenter"]
             )
         )
-    if "LogsAnomalyDetection" in data:
+    if data.get("LogsAnomalyDetection") is not None:
         import capo_devops_guru.types.logs_anomaly_detection_integration_config
 
         out["logs_anomaly_detection"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> UpdateServiceIntegrationConfig:
                 data["LogsAnomalyDetection"]
             )
         )
-    if "KMSServerSideEncryption" in data:
+    if data.get("KMSServerSideEncryption") is not None:
         import capo_devops_guru.types.kms_server_side_encryption_integration_config
 
         out["kms_server_side_encryption"] = (

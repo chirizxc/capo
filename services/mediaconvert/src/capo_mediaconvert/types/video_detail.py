@@ -27,8 +27,8 @@ def serialize_json(value: VideoDetail) -> dict:
 
 def deserialize_json(data: dict) -> VideoDetail:
     out: VideoDetail = {}  # type: ignore[typeddict-item]
-    if "heightInPx" in data:
+    if data.get("heightInPx") is not None:
         out["height_in_px"] = data["heightInPx"]
-    if "widthInPx" in data:
+    if data.get("widthInPx") is not None:
         out["width_in_px"] = data["widthInPx"]
     return out

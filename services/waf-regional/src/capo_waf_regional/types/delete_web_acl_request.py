@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: DeleteWebACLRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteWebACLRequest:
     out: DeleteWebACLRequest = {}  # type: ignore[typeddict-item]
-    if "WebACLId" in data:
+    if data.get("WebACLId") is not None:
         out["web_acl_id"] = data["WebACLId"]
     else:
         raise DeserializationError("DeleteWebACLRequest.web_acl_id required")
-    if "ChangeToken" in data:
+    if data.get("ChangeToken") is not None:
         out["change_token"] = data["ChangeToken"]
     else:
         raise DeserializationError("DeleteWebACLRequest.change_token required")

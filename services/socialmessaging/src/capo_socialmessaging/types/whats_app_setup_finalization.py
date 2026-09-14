@@ -52,13 +52,13 @@ def serialize_json(value: WhatsAppSetupFinalization) -> dict:
 
 def deserialize_json(data: dict) -> WhatsAppSetupFinalization:
     out: WhatsAppSetupFinalization = {}  # type: ignore[typeddict-item]
-    if "associateInProgressToken" in data:
+    if data.get("associateInProgressToken") is not None:
         out["associate_in_progress_token"] = data["associateInProgressToken"]
     else:
         raise DeserializationError(
             "WhatsAppSetupFinalization.associate_in_progress_token required"
         )
-    if "phoneNumbers" in data:
+    if data.get("phoneNumbers") is not None:
         import capo_socialmessaging.types.waba_phone_number_setup_finalization_list
 
         out["phone_numbers"] = (
@@ -68,9 +68,9 @@ def deserialize_json(data: dict) -> WhatsAppSetupFinalization:
         )
     else:
         raise DeserializationError("WhatsAppSetupFinalization.phone_numbers required")
-    if "phoneNumberParent" in data:
+    if data.get("phoneNumberParent") is not None:
         out["phone_number_parent"] = data["phoneNumberParent"]
-    if "waba" in data:
+    if data.get("waba") is not None:
         import capo_socialmessaging.types.waba_setup_finalization
 
         out["waba"] = (

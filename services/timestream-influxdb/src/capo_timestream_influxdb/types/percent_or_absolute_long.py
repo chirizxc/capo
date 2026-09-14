@@ -31,9 +31,9 @@ def serialize_aws_json_1_0(value: PercentOrAbsoluteLong) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> PercentOrAbsoluteLong:
-    if "percent" in data:
+    if data.get("percent") is not None:
         return {"percent": data["percent"]}
-    elif "absolute" in data:
+    elif data.get("absolute") is not None:
         return {"absolute": data["absolute"]}
     else:
         raise DeserializationError("PercentOrAbsoluteLong: no recognized variant key")

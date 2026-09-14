@@ -39,14 +39,14 @@ def serialize_json(value: ListConfigurationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListConfigurationsResponse:
     out: ListConfigurationsResponse = {}  # type: ignore[typeddict-item]
-    if "configurations" in data:
+    if data.get("configurations") is not None:
         import capo_mq.types.__list_of_configuration
 
         out["configurations"] = capo_mq.types.__list_of_configuration.deserialize_json(
             data["configurations"]
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

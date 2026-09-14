@@ -64,7 +64,7 @@ def serialize_json(value: BatchListIncomingTypedLinks) -> dict:
 
 def deserialize_json(data: dict) -> BatchListIncomingTypedLinks:
     out: BatchListIncomingTypedLinks = {}  # type: ignore[typeddict-item]
-    if "ObjectReference" in data:
+    if data.get("ObjectReference") is not None:
         import capo_clouddirectory.types.object_reference
 
         out["object_reference"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> BatchListIncomingTypedLinks:
         raise DeserializationError(
             "BatchListIncomingTypedLinks.object_reference required"
         )
-    if "FilterAttributeRanges" in data:
+    if data.get("FilterAttributeRanges") is not None:
         import capo_clouddirectory.types.typed_link_attribute_range_list
 
         out["filter_attribute_ranges"] = (
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> BatchListIncomingTypedLinks:
                 data["FilterAttributeRanges"]
             )
         )
-    if "FilterTypedLink" in data:
+    if data.get("FilterTypedLink") is not None:
         import capo_clouddirectory.types.typed_link_schema_and_facet_name
 
         out["filter_typed_link"] = (
@@ -92,8 +92,8 @@ def deserialize_json(data: dict) -> BatchListIncomingTypedLinks:
                 data["FilterTypedLink"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

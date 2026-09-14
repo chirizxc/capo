@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> RecommendationRelatedAnomalyResources:
 
     out: RecommendationRelatedAnomalyResources = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_devops_guru.types.recommendation_related_anomaly_resource.deserialize_json(
                 item

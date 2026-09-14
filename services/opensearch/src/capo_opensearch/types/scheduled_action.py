@@ -73,17 +73,17 @@ def serialize_json(value: ScheduledAction) -> dict:
 
 def deserialize_json(data: dict) -> ScheduledAction:
     out: ScheduledAction = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("ScheduledAction.id required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_opensearch.types.action_type
 
         out["type"] = capo_opensearch.types.action_type.deserialize_json(data["Type"])
     else:
         raise DeserializationError("ScheduledAction.type required")
-    if "Severity" in data:
+    if data.get("Severity") is not None:
         import capo_opensearch.types.action_severity
 
         out["severity"] = capo_opensearch.types.action_severity.deserialize_json(
@@ -91,26 +91,26 @@ def deserialize_json(data: dict) -> ScheduledAction:
         )
     else:
         raise DeserializationError("ScheduledAction.severity required")
-    if "ScheduledTime" in data:
+    if data.get("ScheduledTime") is not None:
         out["scheduled_time"] = data["ScheduledTime"]
     else:
         raise DeserializationError("ScheduledAction.scheduled_time required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ScheduledBy" in data:
+    if data.get("ScheduledBy") is not None:
         import capo_opensearch.types.scheduled_by
 
         out["scheduled_by"] = capo_opensearch.types.scheduled_by.deserialize_json(
             data["ScheduledBy"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_opensearch.types.action_status
 
         out["status"] = capo_opensearch.types.action_status.deserialize_json(
             data["Status"]
         )
-    if "Mandatory" in data:
+    if data.get("Mandatory") is not None:
         out["mandatory"] = data["Mandatory"]
-    if "Cancellable" in data:
+    if data.get("Cancellable") is not None:
         out["cancellable"] = data["Cancellable"]
     return out

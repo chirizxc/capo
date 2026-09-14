@@ -53,9 +53,9 @@ def serialize_aws_json_1_1(value: RelationalDatabaseBlueprint) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RelationalDatabaseBlueprint:
     out: RelationalDatabaseBlueprint = {}  # type: ignore[typeddict-item]
-    if "blueprintId" in data:
+    if data.get("blueprintId") is not None:
         out["blueprint_id"] = data["blueprintId"]
-    if "engine" in data:
+    if data.get("engine") is not None:
         import capo_lightsail.types.relational_database_engine
 
         out["engine"] = (
@@ -63,12 +63,12 @@ def deserialize_aws_json_1_1(data: dict) -> RelationalDatabaseBlueprint:
                 data["engine"]
             )
         )
-    if "engineVersion" in data:
+    if data.get("engineVersion") is not None:
         out["engine_version"] = data["engineVersion"]
-    if "engineDescription" in data:
+    if data.get("engineDescription") is not None:
         out["engine_description"] = data["engineDescription"]
-    if "engineVersionDescription" in data:
+    if data.get("engineVersionDescription") is not None:
         out["engine_version_description"] = data["engineVersionDescription"]
-    if "isEngineDefault" in data:
+    if data.get("isEngineDefault") is not None:
         out["is_engine_default"] = data["isEngineDefault"]
     return out

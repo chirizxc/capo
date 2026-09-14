@@ -56,20 +56,20 @@ def serialize_json(value: ListConnectorEntitiesRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListConnectorEntitiesRequest:
     out: ListConnectorEntitiesRequest = {}  # type: ignore[typeddict-item]
-    if "connectorProfileName" in data:
+    if data.get("connectorProfileName") is not None:
         out["connector_profile_name"] = data["connectorProfileName"]
-    if "connectorType" in data:
+    if data.get("connectorType") is not None:
         import capo_appflow.types.connector_type
 
         out["connector_type"] = capo_appflow.types.connector_type.deserialize_json(
             data["connectorType"]
         )
-    if "entitiesPath" in data:
+    if data.get("entitiesPath") is not None:
         out["entities_path"] = data["entitiesPath"]
-    if "apiVersion" in data:
+    if data.get("apiVersion") is not None:
         out["api_version"] = data["apiVersion"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

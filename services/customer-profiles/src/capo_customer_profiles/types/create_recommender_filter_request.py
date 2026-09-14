@@ -50,17 +50,17 @@ def serialize_json(value: CreateRecommenderFilterRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateRecommenderFilterRequest:
     out: CreateRecommenderFilterRequest = {}  # type: ignore[typeddict-item]
-    if "RecommenderFilterExpression" in data:
+    if data.get("RecommenderFilterExpression") is not None:
         out["recommender_filter_expression"] = data["RecommenderFilterExpression"]
     else:
         raise DeserializationError(
             "CreateRecommenderFilterRequest.recommender_filter_expression required"
         )
-    if "RecommenderSchemaName" in data:
+    if data.get("RecommenderSchemaName") is not None:
         out["recommender_schema_name"] = data["RecommenderSchemaName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_customer_profiles.types.tag_map
 
         out["tags"] = capo_customer_profiles.types.tag_map.deserialize_json(

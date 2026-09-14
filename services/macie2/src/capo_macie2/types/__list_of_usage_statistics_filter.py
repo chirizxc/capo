@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfUsageStatisticsFilter:
 
     out: __listOfUsageStatisticsFilter = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_macie2.types.usage_statistics_filter.deserialize_json(item))
     return out

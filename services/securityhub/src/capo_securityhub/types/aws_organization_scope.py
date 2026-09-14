@@ -31,8 +31,8 @@ def serialize_json(value: AwsOrganizationScope) -> dict:
 
 def deserialize_json(data: dict) -> AwsOrganizationScope:
     out: AwsOrganizationScope = {}  # type: ignore[typeddict-item]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
-    if "OrganizationalUnitId" in data:
+    if data.get("OrganizationalUnitId") is not None:
         out["organizational_unit_id"] = data["OrganizationalUnitId"]
     return out

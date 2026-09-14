@@ -65,15 +65,15 @@ def serialize_aws_json_1_1(value: ProjectPolicy) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProjectPolicy:
     out: ProjectPolicy = {}  # type: ignore[typeddict-item]
-    if "ProjectArn" in data:
+    if data.get("ProjectArn") is not None:
         out["project_arn"] = data["ProjectArn"]
-    if "PolicyName" in data:
+    if data.get("PolicyName") is not None:
         out["policy_name"] = data["PolicyName"]
-    if "PolicyRevisionId" in data:
+    if data.get("PolicyRevisionId") is not None:
         out["policy_revision_id"] = data["PolicyRevisionId"]
-    if "PolicyDocument" in data:
+    if data.get("PolicyDocument") is not None:
         out["policy_document"] = data["PolicyDocument"]
-    if "CreationTimestamp" in data:
+    if data.get("CreationTimestamp") is not None:
         import capo_rekognition.types.date_time
 
         out["creation_timestamp"] = (
@@ -81,7 +81,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProjectPolicy:
                 data["CreationTimestamp"]
             )
         )
-    if "LastUpdatedTimestamp" in data:
+    if data.get("LastUpdatedTimestamp") is not None:
         import capo_rekognition.types.date_time
 
         out["last_updated_timestamp"] = (

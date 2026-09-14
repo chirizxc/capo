@@ -83,11 +83,11 @@ def serialize_json(value: PerformanceInsightsMetricsDetail) -> dict:
 
 def deserialize_json(data: dict) -> PerformanceInsightsMetricsDetail:
     out: PerformanceInsightsMetricsDetail = {}  # type: ignore[typeddict-item]
-    if "MetricDisplayName" in data:
+    if data.get("MetricDisplayName") is not None:
         out["metric_display_name"] = data["MetricDisplayName"]
-    if "Unit" in data:
+    if data.get("Unit") is not None:
         out["unit"] = data["Unit"]
-    if "MetricQuery" in data:
+    if data.get("MetricQuery") is not None:
         import capo_devops_guru.types.performance_insights_metric_query
 
         out["metric_query"] = (
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> PerformanceInsightsMetricsDetail:
                 data["MetricQuery"]
             )
         )
-    if "ReferenceData" in data:
+    if data.get("ReferenceData") is not None:
         import capo_devops_guru.types.performance_insights_reference_data_list
 
         out["reference_data"] = (
@@ -103,7 +103,7 @@ def deserialize_json(data: dict) -> PerformanceInsightsMetricsDetail:
                 data["ReferenceData"]
             )
         )
-    if "StatsAtAnomaly" in data:
+    if data.get("StatsAtAnomaly") is not None:
         import capo_devops_guru.types.performance_insights_stats
 
         out["stats_at_anomaly"] = (
@@ -111,7 +111,7 @@ def deserialize_json(data: dict) -> PerformanceInsightsMetricsDetail:
                 data["StatsAtAnomaly"]
             )
         )
-    if "StatsAtBaseline" in data:
+    if data.get("StatsAtBaseline") is not None:
         import capo_devops_guru.types.performance_insights_stats
 
         out["stats_at_baseline"] = (

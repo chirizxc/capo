@@ -55,15 +55,15 @@ def serialize_json(value: ListSlotsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListSlotsResponse:
     out: ListSlotsResponse = {}  # type: ignore[typeddict-item]
-    if "botId" in data:
+    if data.get("botId") is not None:
         out["bot_id"] = data["botId"]
-    if "botVersion" in data:
+    if data.get("botVersion") is not None:
         out["bot_version"] = data["botVersion"]
-    if "localeId" in data:
+    if data.get("localeId") is not None:
         out["locale_id"] = data["localeId"]
-    if "intentId" in data:
+    if data.get("intentId") is not None:
         out["intent_id"] = data["intentId"]
-    if "slotSummaries" in data:
+    if data.get("slotSummaries") is not None:
         import capo_lex_models_v2.types.slot_summary_list
 
         out["slot_summaries"] = (
@@ -71,6 +71,6 @@ def deserialize_json(data: dict) -> ListSlotsResponse:
                 data["slotSummaries"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

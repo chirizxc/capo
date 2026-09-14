@@ -25,7 +25,7 @@ def serialize_json(value: StartOutpostDecommissionInput) -> dict:
 
 def deserialize_json(data: dict) -> StartOutpostDecommissionInput:
     out: StartOutpostDecommissionInput = {}  # type: ignore[typeddict-item]
-    if "ValidateOnly" in data:
+    if data.get("ValidateOnly") is not None:
         out["validate_only"] = data["ValidateOnly"]
     else:
         out["validate_only"] = False

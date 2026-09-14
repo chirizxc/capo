@@ -29,13 +29,13 @@ def serialize_aws_json_1_0(value: GetPublicKeyCertificateOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetPublicKeyCertificateOutput:
     out: GetPublicKeyCertificateOutput = {}  # type: ignore[typeddict-item]
-    if "KeyCertificate" in data:
+    if data.get("KeyCertificate") is not None:
         out["key_certificate"] = data["KeyCertificate"]
     else:
         raise DeserializationError(
             "GetPublicKeyCertificateOutput.key_certificate required"
         )
-    if "KeyCertificateChain" in data:
+    if data.get("KeyCertificateChain") is not None:
         out["key_certificate_chain"] = data["KeyCertificateChain"]
     else:
         raise DeserializationError(

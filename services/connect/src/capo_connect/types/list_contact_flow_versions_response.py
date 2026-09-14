@@ -36,7 +36,7 @@ def serialize_json(value: ListContactFlowVersionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListContactFlowVersionsResponse:
     out: ListContactFlowVersionsResponse = {}  # type: ignore[typeddict-item]
-    if "ContactFlowVersionSummaryList" in data:
+    if data.get("ContactFlowVersionSummaryList") is not None:
         import capo_connect.types.contact_flow_version_summary_list
 
         out["contact_flow_version_summary_list"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListContactFlowVersionsResponse:
                 data["ContactFlowVersionSummaryList"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

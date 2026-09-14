@@ -23,7 +23,7 @@ def serialize_json(value: InvalidResourcePolicyException_) -> dict:
 
 def deserialize_json(data: dict) -> InvalidResourcePolicyException_:
     out: InvalidResourcePolicyException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     else:
         raise DeserializationError("InvalidResourcePolicyException_.message required")
@@ -35,15 +35,20 @@ class InvalidResourcePolicyException(ServiceError):
 
     code: str | None = "InvalidResourcePolicyException"
 
-    def __init__(self, data: InvalidResourcePolicyException_):
+    def __init__(
+        self, data: InvalidResourcePolicyException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidResourcePolicyException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "InvalidResourcePolicyException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidResourcePolicyException":
+        return cls(deserialize_json(data), message)

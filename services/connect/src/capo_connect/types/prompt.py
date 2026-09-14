@@ -59,24 +59,24 @@ def serialize_json(value: Prompt) -> dict:
 
 def deserialize_json(data: dict) -> Prompt:
     out: Prompt = {}  # type: ignore[typeddict-item]
-    if "PromptARN" in data:
+    if data.get("PromptARN") is not None:
         out["prompt_arn"] = data["PromptARN"]
-    if "PromptId" in data:
+    if data.get("PromptId") is not None:
         out["prompt_id"] = data["PromptId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_connect.types.timestamp
 
         out["last_modified_time"] = capo_connect.types.timestamp.deserialize_json(
             data["LastModifiedTime"]
         )
-    if "LastModifiedRegion" in data:
+    if data.get("LastModifiedRegion") is not None:
         out["last_modified_region"] = data["LastModifiedRegion"]
     return out

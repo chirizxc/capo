@@ -17,16 +17,24 @@ def serialize_aws_json_1_0(value: GenerateMappingResponse) -> dict:
     out: dict = {}
     out["mappingTemplate"] = value["mapping_template"]
     if "mapping_accuracy" in value:
-        out["mappingAccuracy"] = value["mapping_accuracy"]
+        out["mappingAccuracy"] = (
+            "NaN"
+            if value["mapping_accuracy"] != value["mapping_accuracy"]
+            else "Infinity"
+            if value["mapping_accuracy"] == float("inf")
+            else "-Infinity"
+            if value["mapping_accuracy"] == float("-inf")
+            else value["mapping_accuracy"]
+        )
     return out
 
 
 def deserialize_aws_json_1_0(data: dict) -> GenerateMappingResponse:
     out: GenerateMappingResponse = {}  # type: ignore[typeddict-item]
-    if "mappingTemplate" in data:
+    if data.get("mappingTemplate") is not None:
         out["mapping_template"] = data["mappingTemplate"]
     else:
         raise DeserializationError("GenerateMappingResponse.mapping_template required")
-    if "mappingAccuracy" in data:
-        out["mapping_accuracy"] = data["mappingAccuracy"]
+    if data.get("mappingAccuracy") is not None:
+        out["mapping_accuracy"] = float(data["mappingAccuracy"])
     return out

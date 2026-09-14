@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: Task) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Task:
     out: Task = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_migration_hub.types.status
 
         out["status"] = capo_migration_hub.types.status.deserialize_aws_json_1_1(
@@ -48,8 +48,8 @@ def deserialize_aws_json_1_1(data: dict) -> Task:
         )
     else:
         raise DeserializationError("Task.status required")
-    if "StatusDetail" in data:
+    if data.get("StatusDetail") is not None:
         out["status_detail"] = data["StatusDetail"]
-    if "ProgressPercent" in data:
+    if data.get("ProgressPercent") is not None:
         out["progress_percent"] = data["ProgressPercent"]
     return out

@@ -36,9 +36,9 @@ def serialize_json(value: LifecycleExecutionSnapshotResource) -> dict:
 
 def deserialize_json(data: dict) -> LifecycleExecutionSnapshotResource:
     out: LifecycleExecutionSnapshotResource = {}  # type: ignore[typeddict-item]
-    if "snapshotId" in data:
+    if data.get("snapshotId") is not None:
         out["snapshot_id"] = data["snapshotId"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_imagebuilder.types.lifecycle_execution_resource_state
 
         out["state"] = (

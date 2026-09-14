@@ -67,7 +67,7 @@ def serialize_aws_json_1_1(value: GeneralLabelsSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GeneralLabelsSettings:
     out: GeneralLabelsSettings = {}  # type: ignore[typeddict-item]
-    if "LabelInclusionFilters" in data:
+    if data.get("LabelInclusionFilters") is not None:
         import capo_rekognition.types.general_labels_filter_list
 
         out["label_inclusion_filters"] = (
@@ -75,7 +75,7 @@ def deserialize_aws_json_1_1(data: dict) -> GeneralLabelsSettings:
                 data["LabelInclusionFilters"]
             )
         )
-    if "LabelExclusionFilters" in data:
+    if data.get("LabelExclusionFilters") is not None:
         import capo_rekognition.types.general_labels_filter_list
 
         out["label_exclusion_filters"] = (
@@ -83,7 +83,7 @@ def deserialize_aws_json_1_1(data: dict) -> GeneralLabelsSettings:
                 data["LabelExclusionFilters"]
             )
         )
-    if "LabelCategoryInclusionFilters" in data:
+    if data.get("LabelCategoryInclusionFilters") is not None:
         import capo_rekognition.types.general_labels_filter_list
 
         out["label_category_inclusion_filters"] = (
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_1(data: dict) -> GeneralLabelsSettings:
                 data["LabelCategoryInclusionFilters"]
             )
         )
-    if "LabelCategoryExclusionFilters" in data:
+    if data.get("LabelCategoryExclusionFilters") is not None:
         import capo_rekognition.types.general_labels_filter_list
 
         out["label_category_exclusion_filters"] = (

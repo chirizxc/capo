@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> FailedProfileOutboundRequestList:
 
     out: FailedProfileOutboundRequestList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connectcampaignsv2.types.failed_profile_outbound_request.deserialize_json(
                 item

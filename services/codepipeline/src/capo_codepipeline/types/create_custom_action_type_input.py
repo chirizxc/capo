@@ -90,7 +90,7 @@ def serialize_aws_json_1_1(value: CreateCustomActionTypeInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateCustomActionTypeInput:
     out: CreateCustomActionTypeInput = {}  # type: ignore[typeddict-item]
-    if "category" in data:
+    if data.get("category") is not None:
         import capo_codepipeline.types.action_category
 
         out["category"] = (
@@ -100,15 +100,15 @@ def deserialize_aws_json_1_1(data: dict) -> CreateCustomActionTypeInput:
         )
     else:
         raise DeserializationError("CreateCustomActionTypeInput.category required")
-    if "provider" in data:
+    if data.get("provider") is not None:
         out["provider"] = data["provider"]
     else:
         raise DeserializationError("CreateCustomActionTypeInput.provider required")
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     else:
         raise DeserializationError("CreateCustomActionTypeInput.version required")
-    if "settings" in data:
+    if data.get("settings") is not None:
         import capo_codepipeline.types.action_type_settings
 
         out["settings"] = (
@@ -116,7 +116,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateCustomActionTypeInput:
                 data["settings"]
             )
         )
-    if "configurationProperties" in data:
+    if data.get("configurationProperties") is not None:
         import capo_codepipeline.types.action_configuration_property_list
 
         out["configuration_properties"] = (
@@ -124,7 +124,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateCustomActionTypeInput:
                 data["configurationProperties"]
             )
         )
-    if "inputArtifactDetails" in data:
+    if data.get("inputArtifactDetails") is not None:
         import capo_codepipeline.types.artifact_details
 
         out["input_artifact_details"] = (
@@ -136,7 +136,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateCustomActionTypeInput:
         raise DeserializationError(
             "CreateCustomActionTypeInput.input_artifact_details required"
         )
-    if "outputArtifactDetails" in data:
+    if data.get("outputArtifactDetails") is not None:
         import capo_codepipeline.types.artifact_details
 
         out["output_artifact_details"] = (
@@ -148,7 +148,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateCustomActionTypeInput:
         raise DeserializationError(
             "CreateCustomActionTypeInput.output_artifact_details required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_codepipeline.types.tag_list
 
         out["tags"] = capo_codepipeline.types.tag_list.deserialize_aws_json_1_1(

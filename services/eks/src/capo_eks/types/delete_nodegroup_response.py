@@ -25,7 +25,7 @@ def serialize_json(value: DeleteNodegroupResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteNodegroupResponse:
     out: DeleteNodegroupResponse = {}  # type: ignore[typeddict-item]
-    if "nodegroup" in data:
+    if data.get("nodegroup") is not None:
         import capo_eks.types.nodegroup
 
         out["nodegroup"] = capo_eks.types.nodegroup.deserialize_json(data["nodegroup"])

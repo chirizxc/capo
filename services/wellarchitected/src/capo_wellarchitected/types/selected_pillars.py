@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SelectedPillars:
 
     out: SelectedPillars = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_wellarchitected.types.selected_pillar.deserialize_json(item))
     return out

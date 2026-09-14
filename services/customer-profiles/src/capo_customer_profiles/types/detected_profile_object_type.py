@@ -43,17 +43,17 @@ def serialize_json(value: DetectedProfileObjectType) -> dict:
 
 def deserialize_json(data: dict) -> DetectedProfileObjectType:
     out: DetectedProfileObjectType = {}  # type: ignore[typeddict-item]
-    if "SourceLastUpdatedTimestampFormat" in data:
+    if data.get("SourceLastUpdatedTimestampFormat") is not None:
         out["source_last_updated_timestamp_format"] = data[
             "SourceLastUpdatedTimestampFormat"
         ]
-    if "Fields" in data:
+    if data.get("Fields") is not None:
         import capo_customer_profiles.types.field_map
 
         out["fields"] = capo_customer_profiles.types.field_map.deserialize_json(
             data["Fields"]
         )
-    if "Keys" in data:
+    if data.get("Keys") is not None:
         import capo_customer_profiles.types.key_map
 
         out["keys"] = capo_customer_profiles.types.key_map.deserialize_json(

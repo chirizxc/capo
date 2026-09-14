@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> SubscriptionList:
 
     out: SubscriptionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot_data_plane.types.subscription_summary.deserialize_json(item)
         )

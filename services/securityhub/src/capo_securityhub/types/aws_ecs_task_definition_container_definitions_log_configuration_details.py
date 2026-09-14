@@ -51,15 +51,15 @@ def deserialize_json(
     data: dict,
 ) -> AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationDetails:
     out: AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationDetails = {}  # type: ignore[typeddict-item]
-    if "LogDriver" in data:
+    if data.get("LogDriver") is not None:
         out["log_driver"] = data["LogDriver"]
-    if "Options" in data:
+    if data.get("Options") is not None:
         import capo_securityhub.types.field_map
 
         out["options"] = capo_securityhub.types.field_map.deserialize_json(
             data["Options"]
         )
-    if "SecretOptions" in data:
+    if data.get("SecretOptions") is not None:
         import capo_securityhub.types.aws_ecs_task_definition_container_definitions_log_configuration_secret_options_list
 
         out["secret_options"] = (

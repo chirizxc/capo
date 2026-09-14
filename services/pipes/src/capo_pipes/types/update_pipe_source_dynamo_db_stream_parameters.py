@@ -69,9 +69,9 @@ def serialize_json(value: UpdatePipeSourceDynamoDBStreamParameters) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePipeSourceDynamoDBStreamParameters:
     out: UpdatePipeSourceDynamoDBStreamParameters = {}  # type: ignore[typeddict-item]
-    if "BatchSize" in data:
+    if data.get("BatchSize") is not None:
         out["batch_size"] = data["BatchSize"]
-    if "DeadLetterConfig" in data:
+    if data.get("DeadLetterConfig") is not None:
         import capo_pipes.types.dead_letter_config
 
         out["dead_letter_config"] = (
@@ -79,16 +79,16 @@ def deserialize_json(data: dict) -> UpdatePipeSourceDynamoDBStreamParameters:
                 data["DeadLetterConfig"]
             )
         )
-    if "OnPartialBatchItemFailure" in data:
+    if data.get("OnPartialBatchItemFailure") is not None:
         out["on_partial_batch_item_failure"] = data["OnPartialBatchItemFailure"]
-    if "MaximumBatchingWindowInSeconds" in data:
+    if data.get("MaximumBatchingWindowInSeconds") is not None:
         out["maximum_batching_window_in_seconds"] = data[
             "MaximumBatchingWindowInSeconds"
         ]
-    if "MaximumRecordAgeInSeconds" in data:
+    if data.get("MaximumRecordAgeInSeconds") is not None:
         out["maximum_record_age_in_seconds"] = data["MaximumRecordAgeInSeconds"]
-    if "MaximumRetryAttempts" in data:
+    if data.get("MaximumRetryAttempts") is not None:
         out["maximum_retry_attempts"] = data["MaximumRetryAttempts"]
-    if "ParallelizationFactor" in data:
+    if data.get("ParallelizationFactor") is not None:
         out["parallelization_factor"] = data["ParallelizationFactor"]
     return out

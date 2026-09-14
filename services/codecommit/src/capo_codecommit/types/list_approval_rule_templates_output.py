@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListApprovalRuleTemplatesOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListApprovalRuleTemplatesOutput:
     out: ListApprovalRuleTemplatesOutput = {}  # type: ignore[typeddict-item]
-    if "approvalRuleTemplateNames" in data:
+    if data.get("approvalRuleTemplateNames") is not None:
         import capo_codecommit.types.approval_rule_template_name_list
 
         out["approval_rule_template_names"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListApprovalRuleTemplatesOutput:
                 data["approvalRuleTemplateNames"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

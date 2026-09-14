@@ -30,10 +30,10 @@ def serialize_json(value: UpdateParam) -> dict:
 
 def deserialize_json(data: dict) -> UpdateParam:
     out: UpdateParam = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_eks.types.update_param_type
 
         out["type"] = capo_eks.types.update_param_type.deserialize_json(data["type"])
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     return out

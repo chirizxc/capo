@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> FairshareCapacityUtilizationList:
 
     out: FairshareCapacityUtilizationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_batch.types.fairshare_capacity_utilization.deserialize_json(item)
         )

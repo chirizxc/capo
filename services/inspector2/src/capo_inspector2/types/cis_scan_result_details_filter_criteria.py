@@ -81,7 +81,7 @@ def serialize_json(value: CisScanResultDetailsFilterCriteria) -> dict:
 
 def deserialize_json(data: dict) -> CisScanResultDetailsFilterCriteria:
     out: CisScanResultDetailsFilterCriteria = {}  # type: ignore[typeddict-item]
-    if "findingStatusFilters" in data:
+    if data.get("findingStatusFilters") is not None:
         import capo_inspector2.types.cis_finding_status_filter_list
 
         out["finding_status_filters"] = (
@@ -89,7 +89,7 @@ def deserialize_json(data: dict) -> CisScanResultDetailsFilterCriteria:
                 data["findingStatusFilters"]
             )
         )
-    if "checkIdFilters" in data:
+    if data.get("checkIdFilters") is not None:
         import capo_inspector2.types.check_id_filter_list
 
         out["check_id_filters"] = (
@@ -97,13 +97,13 @@ def deserialize_json(data: dict) -> CisScanResultDetailsFilterCriteria:
                 data["checkIdFilters"]
             )
         )
-    if "titleFilters" in data:
+    if data.get("titleFilters") is not None:
         import capo_inspector2.types.title_filter_list
 
         out["title_filters"] = capo_inspector2.types.title_filter_list.deserialize_json(
             data["titleFilters"]
         )
-    if "securityLevelFilters" in data:
+    if data.get("securityLevelFilters") is not None:
         import capo_inspector2.types.cis_security_level_filter_list
 
         out["security_level_filters"] = (
@@ -111,7 +111,7 @@ def deserialize_json(data: dict) -> CisScanResultDetailsFilterCriteria:
                 data["securityLevelFilters"]
             )
         )
-    if "findingArnFilters" in data:
+    if data.get("findingArnFilters") is not None:
         import capo_inspector2.types.cis_finding_arn_filter_list
 
         out["finding_arn_filters"] = (

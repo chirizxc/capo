@@ -54,7 +54,7 @@ def serialize_aws_json_1_0(value: SearchStatus) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SearchStatus:
     out: SearchStatus = {}  # type: ignore[typeddict-item]
-    if "SubmissionTimestamp" in data:
+    if data.get("SubmissionTimestamp") is not None:
         import capo_mailmanager.types._prelude.timestamp
 
         out["submission_timestamp"] = (
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_0(data: dict) -> SearchStatus:
                 data["SubmissionTimestamp"]
             )
         )
-    if "CompletionTimestamp" in data:
+    if data.get("CompletionTimestamp") is not None:
         import capo_mailmanager.types._prelude.timestamp
 
         out["completion_timestamp"] = (
@@ -70,12 +70,12 @@ def deserialize_aws_json_1_0(data: dict) -> SearchStatus:
                 data["CompletionTimestamp"]
             )
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_mailmanager.types.search_state
 
         out["state"] = capo_mailmanager.types.search_state.deserialize_aws_json_1_0(
             data["State"]
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     return out

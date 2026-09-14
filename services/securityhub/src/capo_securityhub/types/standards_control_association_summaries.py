@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> StandardsControlAssociationSummaries:
 
     out: StandardsControlAssociationSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.standards_control_association_summary.deserialize_json(
                 item

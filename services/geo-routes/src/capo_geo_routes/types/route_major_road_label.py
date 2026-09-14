@@ -36,13 +36,13 @@ def serialize_json(value: RouteMajorRoadLabel) -> dict:
 
 def deserialize_json(data: dict) -> RouteMajorRoadLabel:
     out: RouteMajorRoadLabel = {}  # type: ignore[typeddict-item]
-    if "RoadName" in data:
+    if data.get("RoadName") is not None:
         import capo_geo_routes.types.localized_string
 
         out["road_name"] = capo_geo_routes.types.localized_string.deserialize_json(
             data["RoadName"]
         )
-    if "RouteNumber" in data:
+    if data.get("RouteNumber") is not None:
         import capo_geo_routes.types.route_number
 
         out["route_number"] = capo_geo_routes.types.route_number.deserialize_json(

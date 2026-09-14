@@ -33,10 +33,10 @@ def serialize_aws_json_1_1(value: ListOutpostResolversRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListOutpostResolversRequest:
     out: ListOutpostResolversRequest = {}  # type: ignore[typeddict-item]
-    if "OutpostArn" in data:
+    if data.get("OutpostArn") is not None:
         out["outpost_arn"] = data["OutpostArn"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

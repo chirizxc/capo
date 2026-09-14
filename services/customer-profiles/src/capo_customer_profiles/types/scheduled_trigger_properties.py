@@ -76,13 +76,13 @@ def serialize_json(value: ScheduledTriggerProperties) -> dict:
 
 def deserialize_json(data: dict) -> ScheduledTriggerProperties:
     out: ScheduledTriggerProperties = {}  # type: ignore[typeddict-item]
-    if "ScheduleExpression" in data:
+    if data.get("ScheduleExpression") is not None:
         out["schedule_expression"] = data["ScheduleExpression"]
     else:
         raise DeserializationError(
             "ScheduledTriggerProperties.schedule_expression required"
         )
-    if "DataPullMode" in data:
+    if data.get("DataPullMode") is not None:
         import capo_customer_profiles.types.data_pull_mode
 
         out["data_pull_mode"] = (
@@ -90,23 +90,23 @@ def deserialize_json(data: dict) -> ScheduledTriggerProperties:
                 data["DataPullMode"]
             )
         )
-    if "ScheduleStartTime" in data:
+    if data.get("ScheduleStartTime") is not None:
         import capo_customer_profiles.types.date
 
         out["schedule_start_time"] = capo_customer_profiles.types.date.deserialize_json(
             data["ScheduleStartTime"]
         )
-    if "ScheduleEndTime" in data:
+    if data.get("ScheduleEndTime") is not None:
         import capo_customer_profiles.types.date
 
         out["schedule_end_time"] = capo_customer_profiles.types.date.deserialize_json(
             data["ScheduleEndTime"]
         )
-    if "Timezone" in data:
+    if data.get("Timezone") is not None:
         out["timezone"] = data["Timezone"]
-    if "ScheduleOffset" in data:
+    if data.get("ScheduleOffset") is not None:
         out["schedule_offset"] = data["ScheduleOffset"]
-    if "FirstExecutionFrom" in data:
+    if data.get("FirstExecutionFrom") is not None:
         import capo_customer_profiles.types.date
 
         out["first_execution_from"] = (

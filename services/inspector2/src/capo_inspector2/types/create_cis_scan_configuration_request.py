@@ -53,13 +53,13 @@ def serialize_json(value: CreateCisScanConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateCisScanConfigurationRequest:
     out: CreateCisScanConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "scanName" in data:
+    if data.get("scanName") is not None:
         out["scan_name"] = data["scanName"]
     else:
         raise DeserializationError(
             "CreateCisScanConfigurationRequest.scan_name required"
         )
-    if "securityLevel" in data:
+    if data.get("securityLevel") is not None:
         import capo_inspector2.types.cis_security_level
 
         out["security_level"] = (
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> CreateCisScanConfigurationRequest:
         raise DeserializationError(
             "CreateCisScanConfigurationRequest.security_level required"
         )
-    if "schedule" in data:
+    if data.get("schedule") is not None:
         import capo_inspector2.types.schedule
 
         out["schedule"] = capo_inspector2.types.schedule.deserialize_json(
@@ -81,7 +81,7 @@ def deserialize_json(data: dict) -> CreateCisScanConfigurationRequest:
         raise DeserializationError(
             "CreateCisScanConfigurationRequest.schedule required"
         )
-    if "targets" in data:
+    if data.get("targets") is not None:
         import capo_inspector2.types.create_cis_targets
 
         out["targets"] = capo_inspector2.types.create_cis_targets.deserialize_json(
@@ -89,7 +89,7 @@ def deserialize_json(data: dict) -> CreateCisScanConfigurationRequest:
         )
     else:
         raise DeserializationError("CreateCisScanConfigurationRequest.targets required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_inspector2.types.cis_tag_map
 
         out["tags"] = capo_inspector2.types.cis_tag_map.deserialize_json(data["tags"])

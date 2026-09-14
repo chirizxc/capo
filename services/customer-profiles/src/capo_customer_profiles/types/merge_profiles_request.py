@@ -50,11 +50,11 @@ def serialize_json(value: MergeProfilesRequest) -> dict:
 
 def deserialize_json(data: dict) -> MergeProfilesRequest:
     out: MergeProfilesRequest = {}  # type: ignore[typeddict-item]
-    if "MainProfileId" in data:
+    if data.get("MainProfileId") is not None:
         out["main_profile_id"] = data["MainProfileId"]
     else:
         raise DeserializationError("MergeProfilesRequest.main_profile_id required")
-    if "ProfileIdsToBeMerged" in data:
+    if data.get("ProfileIdsToBeMerged") is not None:
         import capo_customer_profiles.types.profile_id_to_be_merged_list
 
         out["profile_ids_to_be_merged"] = (
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> MergeProfilesRequest:
         raise DeserializationError(
             "MergeProfilesRequest.profile_ids_to_be_merged required"
         )
-    if "FieldSourceProfileIds" in data:
+    if data.get("FieldSourceProfileIds") is not None:
         import capo_customer_profiles.types.field_source_profile_ids
 
         out["field_source_profile_ids"] = (

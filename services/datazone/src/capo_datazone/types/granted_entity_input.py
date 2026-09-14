@@ -32,7 +32,7 @@ def serialize_json(value: GrantedEntityInput) -> dict:
 
 
 def deserialize_json(data: dict) -> GrantedEntityInput:
-    if "listing" in data:
+    if data.get("listing") is not None:
         import capo_datazone.types.listing_revision_input
 
         return {

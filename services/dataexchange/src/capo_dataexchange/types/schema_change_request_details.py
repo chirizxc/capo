@@ -41,7 +41,7 @@ def serialize_json(value: SchemaChangeRequestDetails) -> dict:
 
 def deserialize_json(data: dict) -> SchemaChangeRequestDetails:
     out: SchemaChangeRequestDetails = {}  # type: ignore[typeddict-item]
-    if "Changes" in data:
+    if data.get("Changes") is not None:
         import capo_dataexchange.types.list_of_schema_change_details
 
         out["changes"] = (
@@ -49,7 +49,7 @@ def deserialize_json(data: dict) -> SchemaChangeRequestDetails:
                 data["Changes"]
             )
         )
-    if "SchemaChangeAt" in data:
+    if data.get("SchemaChangeAt") is not None:
         import capo_dataexchange.types.timestamp
 
         out["schema_change_at"] = capo_dataexchange.types.timestamp.deserialize_json(

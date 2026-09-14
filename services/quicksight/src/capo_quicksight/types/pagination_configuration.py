@@ -28,11 +28,11 @@ def serialize_json(value: PaginationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> PaginationConfiguration:
     out: PaginationConfiguration = {}  # type: ignore[typeddict-item]
-    if "PageSize" in data:
+    if data.get("PageSize") is not None:
         out["page_size"] = data["PageSize"]
     else:
         raise DeserializationError("PaginationConfiguration.page_size required")
-    if "PageNumber" in data:
+    if data.get("PageNumber") is not None:
         out["page_number"] = data["PageNumber"]
     else:
         raise DeserializationError("PaginationConfiguration.page_number required")

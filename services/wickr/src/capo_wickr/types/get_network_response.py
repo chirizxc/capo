@@ -58,15 +58,15 @@ def serialize_json(value: GetNetworkResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetNetworkResponse:
     out: GetNetworkResponse = {}  # type: ignore[typeddict-item]
-    if "networkId" in data:
+    if data.get("networkId") is not None:
         out["network_id"] = data["networkId"]
     else:
         raise DeserializationError("GetNetworkResponse.network_id required")
-    if "networkName" in data:
+    if data.get("networkName") is not None:
         out["network_name"] = data["networkName"]
     else:
         raise DeserializationError("GetNetworkResponse.network_name required")
-    if "accessLevel" in data:
+    if data.get("accessLevel") is not None:
         import capo_wickr.types.access_level
 
         out["access_level"] = capo_wickr.types.access_level.deserialize_json(
@@ -74,20 +74,20 @@ def deserialize_json(data: dict) -> GetNetworkResponse:
         )
     else:
         raise DeserializationError("GetNetworkResponse.access_level required")
-    if "awsAccountId" in data:
+    if data.get("awsAccountId") is not None:
         out["aws_account_id"] = data["awsAccountId"]
     else:
         raise DeserializationError("GetNetworkResponse.aws_account_id required")
-    if "networkArn" in data:
+    if data.get("networkArn") is not None:
         out["network_arn"] = data["networkArn"]
     else:
         raise DeserializationError("GetNetworkResponse.network_arn required")
-    if "standing" in data:
+    if data.get("standing") is not None:
         out["standing"] = data["standing"]
-    if "freeTrialExpiration" in data:
+    if data.get("freeTrialExpiration") is not None:
         out["free_trial_expiration"] = data["freeTrialExpiration"]
-    if "migrationState" in data:
+    if data.get("migrationState") is not None:
         out["migration_state"] = data["migrationState"]
-    if "encryptionKeyArn" in data:
+    if data.get("encryptionKeyArn") is not None:
         out["encryption_key_arn"] = data["encryptionKeyArn"]
     return out

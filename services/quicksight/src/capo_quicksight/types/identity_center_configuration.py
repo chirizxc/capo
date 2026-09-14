@@ -23,6 +23,6 @@ def serialize_json(value: IdentityCenterConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> IdentityCenterConfiguration:
     out: IdentityCenterConfiguration = {}  # type: ignore[typeddict-item]
-    if "EnableIdentityPropagation" in data:
+    if data.get("EnableIdentityPropagation") is not None:
         out["enable_identity_propagation"] = data["EnableIdentityPropagation"]
     return out

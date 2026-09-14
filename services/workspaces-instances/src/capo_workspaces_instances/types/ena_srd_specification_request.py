@@ -35,9 +35,9 @@ def serialize_aws_json_1_0(value: EnaSrdSpecificationRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EnaSrdSpecificationRequest:
     out: EnaSrdSpecificationRequest = {}  # type: ignore[typeddict-item]
-    if "EnaSrdEnabled" in data:
+    if data.get("EnaSrdEnabled") is not None:
         out["ena_srd_enabled"] = data["EnaSrdEnabled"]
-    if "EnaSrdUdpSpecification" in data:
+    if data.get("EnaSrdUdpSpecification") is not None:
         import capo_workspaces_instances.types.ena_srd_udp_specification_request
 
         out["ena_srd_udp_specification"] = (

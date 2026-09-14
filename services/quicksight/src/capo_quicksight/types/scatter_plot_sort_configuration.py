@@ -30,7 +30,7 @@ def serialize_json(value: ScatterPlotSortConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ScatterPlotSortConfiguration:
     out: ScatterPlotSortConfiguration = {}  # type: ignore[typeddict-item]
-    if "ScatterPlotLimitConfiguration" in data:
+    if data.get("ScatterPlotLimitConfiguration") is not None:
         import capo_quicksight.types.items_limit_configuration
 
         out["scatter_plot_limit_configuration"] = (

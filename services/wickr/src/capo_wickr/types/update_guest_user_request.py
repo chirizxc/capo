@@ -29,7 +29,7 @@ def serialize_json(value: UpdateGuestUserRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateGuestUserRequest:
     out: UpdateGuestUserRequest = {}  # type: ignore[typeddict-item]
-    if "block" in data:
+    if data.get("block") is not None:
         out["block"] = data["block"]
     else:
         raise DeserializationError("UpdateGuestUserRequest.block required")

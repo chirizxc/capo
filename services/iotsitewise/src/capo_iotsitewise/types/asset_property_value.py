@@ -41,13 +41,13 @@ def serialize_json(value: AssetPropertyValue) -> dict:
 
 def deserialize_json(data: dict) -> AssetPropertyValue:
     out: AssetPropertyValue = {}  # type: ignore[typeddict-item]
-    if "value" in data:
+    if data.get("value") is not None:
         import capo_iotsitewise.types.variant
 
         out["value"] = capo_iotsitewise.types.variant.deserialize_json(data["value"])
     else:
         raise DeserializationError("AssetPropertyValue.value required")
-    if "timestamp" in data:
+    if data.get("timestamp") is not None:
         import capo_iotsitewise.types.time_in_nanos
 
         out["timestamp"] = capo_iotsitewise.types.time_in_nanos.deserialize_json(
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> AssetPropertyValue:
         )
     else:
         raise DeserializationError("AssetPropertyValue.timestamp required")
-    if "quality" in data:
+    if data.get("quality") is not None:
         import capo_iotsitewise.types.quality
 
         out["quality"] = capo_iotsitewise.types.quality.deserialize_json(

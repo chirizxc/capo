@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ContactDataRequestList:
 
     out: ContactDataRequestList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.contact_data_request.deserialize_json(item))
     return out

@@ -86,42 +86,42 @@ def serialize_json(value: RuleSummary) -> dict:
 
 def deserialize_json(data: dict) -> RuleSummary:
     out: RuleSummary = {}  # type: ignore[typeddict-item]
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
-    if "revision" in data:
+    if data.get("revision") is not None:
         out["revision"] = data["revision"]
-    if "ruleType" in data:
+    if data.get("ruleType") is not None:
         import capo_datazone.types.rule_type
 
         out["rule_type"] = capo_datazone.types.rule_type.deserialize_json(
             data["ruleType"]
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "targetType" in data:
+    if data.get("targetType") is not None:
         import capo_datazone.types.rule_target_type
 
         out["target_type"] = capo_datazone.types.rule_target_type.deserialize_json(
             data["targetType"]
         )
-    if "target" in data:
+    if data.get("target") is not None:
         import capo_datazone.types.rule_target
 
         out["target"] = capo_datazone.types.rule_target.deserialize_json(data["target"])
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_datazone.types.rule_action
 
         out["action"] = capo_datazone.types.rule_action.deserialize_json(data["action"])
-    if "scope" in data:
+    if data.get("scope") is not None:
         import capo_datazone.types.rule_scope
 
         out["scope"] = capo_datazone.types.rule_scope.deserialize_json(data["scope"])
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_datazone.types.updated_at
 
         out["updated_at"] = capo_datazone.types.updated_at.deserialize_json(
             data["updatedAt"]
         )
-    if "lastUpdatedBy" in data:
+    if data.get("lastUpdatedBy") is not None:
         out["last_updated_by"] = data["lastUpdatedBy"]
     return out

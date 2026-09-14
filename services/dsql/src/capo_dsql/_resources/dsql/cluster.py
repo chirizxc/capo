@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_dsql._auth._signers
@@ -113,15 +114,16 @@ class Cluster:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_dsql.types.create_cluster_input.CreateClusterInput = {}  # type: ignore[typeddict-item]
+        input_: capo_dsql.types.create_cluster_input.CreateClusterInput = {}
         if deletion_protection_enabled is not None:
             input_["deletion_protection_enabled"] = deletion_protection_enabled
         if kms_encryption_key is not None:
             input_["kms_encryption_key"] = kms_encryption_key
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if multi_region_properties is not None:
             input_["multi_region_properties"] = multi_region_properties
         if policy is not None:
@@ -136,6 +138,7 @@ class Cluster:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -174,14 +177,16 @@ class Cluster:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_dsql.types.get_cluster_input.GetClusterInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_dsql.types.get_cluster_input.GetClusterInput = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -239,14 +244,16 @@ class Cluster:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_dsql.types.update_cluster_input.UpdateClusterInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_dsql.types.update_cluster_input.UpdateClusterInput = {
+            "identifier": identifier
+        }
         if deletion_protection_enabled is not None:
             input_["deletion_protection_enabled"] = deletion_protection_enabled
         if kms_encryption_key is not None:
             input_["kms_encryption_key"] = kms_encryption_key
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if multi_region_properties is not None:
             input_["multi_region_properties"] = multi_region_properties
 
@@ -255,6 +262,7 @@ class Cluster:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -300,16 +308,19 @@ class Cluster:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_dsql.types.delete_cluster_input.DeleteClusterInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_dsql.types.delete_cluster_input.DeleteClusterInput = {
+            "identifier": identifier
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -354,7 +365,7 @@ class Cluster:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_dsql.types.list_clusters_input.ListClustersInput = {}  # type: ignore[typeddict-item]
+        input_: capo_dsql.types.list_clusters_input.ListClustersInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -365,6 +376,7 @@ class Cluster:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_cluster_policy(
@@ -407,18 +419,21 @@ class Cluster:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_dsql.types.delete_cluster_policy_input.DeleteClusterPolicyInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_dsql.types.delete_cluster_policy_input.DeleteClusterPolicyInput = {
+            "identifier": identifier
+        }
         if expected_policy_version is not None:
             input_["expected_policy_version"] = expected_policy_version
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_cluster_policy(
@@ -456,14 +471,16 @@ class Cluster:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_dsql.types.get_cluster_policy_input.GetClusterPolicyInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_dsql.types.get_cluster_policy_input.GetClusterPolicyInput = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_vpc_endpoint_service_name(
@@ -506,14 +523,16 @@ class Cluster:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_dsql.types.get_vpc_endpoint_service_name_input.GetVpcEndpointServiceNameInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_dsql.types.get_vpc_endpoint_service_name_input.GetVpcEndpointServiceNameInput = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_cluster_policy(
@@ -562,23 +581,26 @@ class Cluster:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_dsql.types.put_cluster_policy_input.PutClusterPolicyInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
-        input_["policy"] = policy
+        input_: capo_dsql.types.put_cluster_policy_input.PutClusterPolicyInput = {
+            "identifier": identifier,
+            "policy": policy,
+        }
         if bypass_policy_lockout_safety_check is not None:
             input_["bypass_policy_lockout_safety_check"] = (
                 bypass_policy_lockout_safety_check
             )
         if expected_policy_version is not None:
             input_["expected_policy_version"] = expected_policy_version
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -648,15 +670,16 @@ class AsyncCluster:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_dsql.types.create_cluster_input.CreateClusterInput = {}  # type: ignore[typeddict-item]
+        input_: capo_dsql.types.create_cluster_input.CreateClusterInput = {}
         if deletion_protection_enabled is not None:
             input_["deletion_protection_enabled"] = deletion_protection_enabled
         if kms_encryption_key is not None:
             input_["kms_encryption_key"] = kms_encryption_key
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if multi_region_properties is not None:
             input_["multi_region_properties"] = multi_region_properties
         if policy is not None:
@@ -671,6 +694,7 @@ class AsyncCluster:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -714,14 +738,16 @@ class AsyncCluster:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_dsql.types.get_cluster_input.GetClusterInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_dsql.types.get_cluster_input.GetClusterInput = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -780,14 +806,16 @@ class AsyncCluster:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_dsql.types.update_cluster_input.UpdateClusterInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_dsql.types.update_cluster_input.UpdateClusterInput = {
+            "identifier": identifier
+        }
         if deletion_protection_enabled is not None:
             input_["deletion_protection_enabled"] = deletion_protection_enabled
         if kms_encryption_key is not None:
             input_["kms_encryption_key"] = kms_encryption_key
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if multi_region_properties is not None:
             input_["multi_region_properties"] = multi_region_properties
 
@@ -796,6 +824,7 @@ class AsyncCluster:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -842,16 +871,19 @@ class AsyncCluster:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_dsql.types.delete_cluster_input.DeleteClusterInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_dsql.types.delete_cluster_input.DeleteClusterInput = {
+            "identifier": identifier
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -897,7 +929,7 @@ class AsyncCluster:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_dsql.types.list_clusters_input.ListClustersInput = {}  # type: ignore[typeddict-item]
+        input_: capo_dsql.types.list_clusters_input.ListClustersInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -908,6 +940,7 @@ class AsyncCluster:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_cluster_policy(
@@ -951,18 +984,21 @@ class AsyncCluster:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_dsql.types.delete_cluster_policy_input.DeleteClusterPolicyInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_dsql.types.delete_cluster_policy_input.DeleteClusterPolicyInput = {
+            "identifier": identifier
+        }
         if expected_policy_version is not None:
             input_["expected_policy_version"] = expected_policy_version
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_cluster_policy(
@@ -1001,14 +1037,16 @@ class AsyncCluster:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_dsql.types.get_cluster_policy_input.GetClusterPolicyInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_dsql.types.get_cluster_policy_input.GetClusterPolicyInput = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_vpc_endpoint_service_name(
@@ -1052,14 +1090,16 @@ class AsyncCluster:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_dsql.types.get_vpc_endpoint_service_name_input.GetVpcEndpointServiceNameInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_dsql.types.get_vpc_endpoint_service_name_input.GetVpcEndpointServiceNameInput = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_cluster_policy(
@@ -1109,21 +1149,24 @@ class AsyncCluster:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_dsql.types.put_cluster_policy_input.PutClusterPolicyInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
-        input_["policy"] = policy
+        input_: capo_dsql.types.put_cluster_policy_input.PutClusterPolicyInput = {
+            "identifier": identifier,
+            "policy": policy,
+        }
         if bypass_policy_lockout_safety_check is not None:
             input_["bypass_policy_lockout_safety_check"] = (
                 bypass_policy_lockout_safety_check
             )
         if expected_policy_version is not None:
             input_["expected_policy_version"] = expected_policy_version
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

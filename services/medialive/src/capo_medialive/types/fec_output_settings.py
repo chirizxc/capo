@@ -43,9 +43,9 @@ def serialize_json(value: FecOutputSettings) -> dict:
 
 def deserialize_json(data: dict) -> FecOutputSettings:
     out: FecOutputSettings = {}  # type: ignore[typeddict-item]
-    if "columnDepth" in data:
+    if data.get("columnDepth") is not None:
         out["column_depth"] = data["columnDepth"]
-    if "includeFec" in data:
+    if data.get("includeFec") is not None:
         import capo_medialive.types.fec_output_include_fec
 
         out["include_fec"] = (
@@ -53,6 +53,6 @@ def deserialize_json(data: dict) -> FecOutputSettings:
                 data["includeFec"]
             )
         )
-    if "rowLength" in data:
+    if data.get("rowLength") is not None:
         out["row_length"] = data["rowLength"]
     return out

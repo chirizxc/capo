@@ -174,7 +174,7 @@ def serialize_json(value: CaptionDestinationSettings) -> dict:
 
 def deserialize_json(data: dict) -> CaptionDestinationSettings:
     out: CaptionDestinationSettings = {}  # type: ignore[typeddict-item]
-    if "aribDestinationSettings" in data:
+    if data.get("aribDestinationSettings") is not None:
         import capo_medialive.types.arib_destination_settings
 
         out["arib_destination_settings"] = (
@@ -182,7 +182,7 @@ def deserialize_json(data: dict) -> CaptionDestinationSettings:
                 data["aribDestinationSettings"]
             )
         )
-    if "burnInDestinationSettings" in data:
+    if data.get("burnInDestinationSettings") is not None:
         import capo_medialive.types.burn_in_destination_settings
 
         out["burn_in_destination_settings"] = (
@@ -190,7 +190,7 @@ def deserialize_json(data: dict) -> CaptionDestinationSettings:
                 data["burnInDestinationSettings"]
             )
         )
-    if "dvbSubDestinationSettings" in data:
+    if data.get("dvbSubDestinationSettings") is not None:
         import capo_medialive.types.dvb_sub_destination_settings
 
         out["dvb_sub_destination_settings"] = (
@@ -198,7 +198,7 @@ def deserialize_json(data: dict) -> CaptionDestinationSettings:
                 data["dvbSubDestinationSettings"]
             )
         )
-    if "ebuTtDDestinationSettings" in data:
+    if data.get("ebuTtDDestinationSettings") is not None:
         import capo_medialive.types.ebu_tt_d_destination_settings
 
         out["ebu_tt_d_destination_settings"] = (
@@ -206,7 +206,7 @@ def deserialize_json(data: dict) -> CaptionDestinationSettings:
                 data["ebuTtDDestinationSettings"]
             )
         )
-    if "embeddedDestinationSettings" in data:
+    if data.get("embeddedDestinationSettings") is not None:
         import capo_medialive.types.embedded_destination_settings
 
         out["embedded_destination_settings"] = (
@@ -214,7 +214,7 @@ def deserialize_json(data: dict) -> CaptionDestinationSettings:
                 data["embeddedDestinationSettings"]
             )
         )
-    if "embeddedPlusScte20DestinationSettings" in data:
+    if data.get("embeddedPlusScte20DestinationSettings") is not None:
         import capo_medialive.types.embedded_plus_scte20_destination_settings
 
         out["embedded_plus_scte20_destination_settings"] = (
@@ -222,7 +222,7 @@ def deserialize_json(data: dict) -> CaptionDestinationSettings:
                 data["embeddedPlusScte20DestinationSettings"]
             )
         )
-    if "rtmpCaptionInfoDestinationSettings" in data:
+    if data.get("rtmpCaptionInfoDestinationSettings") is not None:
         import capo_medialive.types.rtmp_caption_info_destination_settings
 
         out["rtmp_caption_info_destination_settings"] = (
@@ -230,7 +230,7 @@ def deserialize_json(data: dict) -> CaptionDestinationSettings:
                 data["rtmpCaptionInfoDestinationSettings"]
             )
         )
-    if "scte20PlusEmbeddedDestinationSettings" in data:
+    if data.get("scte20PlusEmbeddedDestinationSettings") is not None:
         import capo_medialive.types.scte20_plus_embedded_destination_settings
 
         out["scte20_plus_embedded_destination_settings"] = (
@@ -238,7 +238,7 @@ def deserialize_json(data: dict) -> CaptionDestinationSettings:
                 data["scte20PlusEmbeddedDestinationSettings"]
             )
         )
-    if "scte27DestinationSettings" in data:
+    if data.get("scte27DestinationSettings") is not None:
         import capo_medialive.types.scte27_destination_settings
 
         out["scte27_destination_settings"] = (
@@ -246,7 +246,7 @@ def deserialize_json(data: dict) -> CaptionDestinationSettings:
                 data["scte27DestinationSettings"]
             )
         )
-    if "smpteTtDestinationSettings" in data:
+    if data.get("smpteTtDestinationSettings") is not None:
         import capo_medialive.types.smpte_tt_destination_settings
 
         out["smpte_tt_destination_settings"] = (
@@ -254,7 +254,7 @@ def deserialize_json(data: dict) -> CaptionDestinationSettings:
                 data["smpteTtDestinationSettings"]
             )
         )
-    if "teletextDestinationSettings" in data:
+    if data.get("teletextDestinationSettings") is not None:
         import capo_medialive.types.teletext_destination_settings
 
         out["teletext_destination_settings"] = (
@@ -262,7 +262,7 @@ def deserialize_json(data: dict) -> CaptionDestinationSettings:
                 data["teletextDestinationSettings"]
             )
         )
-    if "ttmlDestinationSettings" in data:
+    if data.get("ttmlDestinationSettings") is not None:
         import capo_medialive.types.ttml_destination_settings
 
         out["ttml_destination_settings"] = (
@@ -270,7 +270,7 @@ def deserialize_json(data: dict) -> CaptionDestinationSettings:
                 data["ttmlDestinationSettings"]
             )
         )
-    if "webvttDestinationSettings" in data:
+    if data.get("webvttDestinationSettings") is not None:
         import capo_medialive.types.webvtt_destination_settings
 
         out["webvtt_destination_settings"] = (

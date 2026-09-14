@@ -40,13 +40,13 @@ def serialize_json(value: AssociateFeedRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociateFeedRequest:
     out: AssociateFeedRequest = {}  # type: ignore[typeddict-item]
-    if "associatedResourceName" in data:
+    if data.get("associatedResourceName") is not None:
         out["associated_resource_name"] = data["associatedResourceName"]
     else:
         raise DeserializationError(
             "AssociateFeedRequest.associated_resource_name required"
         )
-    if "outputs" in data:
+    if data.get("outputs") is not None:
         import capo_elementalinference.types.create_output_list
 
         out["outputs"] = (
@@ -56,7 +56,7 @@ def deserialize_json(data: dict) -> AssociateFeedRequest:
         )
     else:
         raise DeserializationError("AssociateFeedRequest.outputs required")
-    if "dryRun" in data:
+    if data.get("dryRun") is not None:
         out["dry_run"] = data["dryRun"]
     else:
         out["dry_run"] = False

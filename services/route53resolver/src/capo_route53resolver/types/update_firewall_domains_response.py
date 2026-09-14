@@ -48,11 +48,11 @@ def serialize_aws_json_1_1(value: UpdateFirewallDomainsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateFirewallDomainsResponse:
     out: UpdateFirewallDomainsResponse = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_route53resolver.types.firewall_domain_list_status
 
         out["status"] = (
@@ -60,6 +60,6 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateFirewallDomainsResponse:
                 data["Status"]
             )
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
     return out

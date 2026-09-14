@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> AggregateComplianceCountList:
 
     out: AggregateComplianceCountList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_config_service.types.aggregate_compliance_count.deserialize_aws_json_1_1(
                 item

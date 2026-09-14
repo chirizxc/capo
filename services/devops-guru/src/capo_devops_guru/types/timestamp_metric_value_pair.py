@@ -26,18 +26,26 @@ def serialize_json(value: TimestampMetricValuePair) -> dict:
             value["timestamp"]
         )
     if "metric_value" in value:
-        out["MetricValue"] = value["metric_value"]
+        out["MetricValue"] = (
+            "NaN"
+            if value["metric_value"] != value["metric_value"]
+            else "Infinity"
+            if value["metric_value"] == float("inf")
+            else "-Infinity"
+            if value["metric_value"] == float("-inf")
+            else value["metric_value"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> TimestampMetricValuePair:
     out: TimestampMetricValuePair = {}  # type: ignore[typeddict-item]
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         import capo_devops_guru.types.timestamp
 
         out["timestamp"] = capo_devops_guru.types.timestamp.deserialize_json(
             data["Timestamp"]
         )
-    if "MetricValue" in data:
-        out["metric_value"] = data["MetricValue"]
+    if data.get("MetricValue") is not None:
+        out["metric_value"] = float(data["MetricValue"])
     return out

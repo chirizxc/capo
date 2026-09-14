@@ -47,9 +47,9 @@ def serialize_aws_json_1_1(value: RealTimeInferenceRecommendation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RealTimeInferenceRecommendation:
     out: RealTimeInferenceRecommendation = {}  # type: ignore[typeddict-item]
-    if "RecommendationId" in data:
+    if data.get("RecommendationId") is not None:
         out["recommendation_id"] = data["RecommendationId"]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         import capo_sagemaker.types.production_variant_instance_type
 
         out["instance_type"] = (
@@ -57,7 +57,7 @@ def deserialize_aws_json_1_1(data: dict) -> RealTimeInferenceRecommendation:
                 data["InstanceType"]
             )
         )
-    if "Environment" in data:
+    if data.get("Environment") is not None:
         import capo_sagemaker.types.environment_map
 
         out["environment"] = (

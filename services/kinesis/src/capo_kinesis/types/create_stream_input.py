@@ -65,13 +65,13 @@ def serialize_aws_json_1_1(value: CreateStreamInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateStreamInput:
     out: CreateStreamInput = {}  # type: ignore[typeddict-item]
-    if "StreamName" in data:
+    if data.get("StreamName") is not None:
         out["stream_name"] = data["StreamName"]
     else:
         raise DeserializationError("CreateStreamInput.stream_name required")
-    if "ShardCount" in data:
+    if data.get("ShardCount") is not None:
         out["shard_count"] = data["ShardCount"]
-    if "StreamModeDetails" in data:
+    if data.get("StreamModeDetails") is not None:
         import capo_kinesis.types.stream_mode_details
 
         out["stream_mode_details"] = (
@@ -79,12 +79,12 @@ def deserialize_aws_json_1_1(data: dict) -> CreateStreamInput:
                 data["StreamModeDetails"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_kinesis.types.tag_map
 
         out["tags"] = capo_kinesis.types.tag_map.deserialize_aws_json_1_1(data["Tags"])
-    if "WarmThroughputMiBps" in data:
+    if data.get("WarmThroughputMiBps") is not None:
         out["warm_throughput_mi_bps"] = data["WarmThroughputMiBps"]
-    if "MaxRecordSizeInKiB" in data:
+    if data.get("MaxRecordSizeInKiB") is not None:
         out["max_record_size_in_ki_b"] = data["MaxRecordSizeInKiB"]
     return out

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: InferSNOMEDCTRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InferSNOMEDCTRequest:
     out: InferSNOMEDCTRequest = {}  # type: ignore[typeddict-item]
-    if "Text" in data:
+    if data.get("Text") is not None:
         out["text"] = data["Text"]
     else:
         raise DeserializationError("InferSNOMEDCTRequest.text required")

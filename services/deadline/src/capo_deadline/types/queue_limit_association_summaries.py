@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> QueueLimitAssociationSummaries:
 
     out: QueueLimitAssociationSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_deadline.types.queue_limit_association_summary.deserialize_json(item)
         )

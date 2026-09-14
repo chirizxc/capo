@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: ExecutorConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExecutorConfiguration:
     out: ExecutorConfiguration = {}  # type: ignore[typeddict-item]
-    if "lambdaExecutorConfiguration" in data:
+    if data.get("lambdaExecutorConfiguration") is not None:
         import capo_codepipeline.types.lambda_executor_configuration
 
         out["lambda_executor_configuration"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> ExecutorConfiguration:
                 data["lambdaExecutorConfiguration"]
             )
         )
-    if "jobWorkerExecutorConfiguration" in data:
+    if data.get("jobWorkerExecutorConfiguration") is not None:
         import capo_codepipeline.types.job_worker_executor_configuration
 
         out["job_worker_executor_configuration"] = (

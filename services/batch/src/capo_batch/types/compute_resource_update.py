@@ -144,23 +144,23 @@ def serialize_json(value: ComputeResourceUpdate) -> dict:
 
 def deserialize_json(data: dict) -> ComputeResourceUpdate:
     out: ComputeResourceUpdate = {}  # type: ignore[typeddict-item]
-    if "minvCpus" in data:
+    if data.get("minvCpus") is not None:
         out["minv_cpus"] = data["minvCpus"]
-    if "maxvCpus" in data:
+    if data.get("maxvCpus") is not None:
         out["maxv_cpus"] = data["maxvCpus"]
-    if "desiredvCpus" in data:
+    if data.get("desiredvCpus") is not None:
         out["desiredv_cpus"] = data["desiredvCpus"]
-    if "subnets" in data:
+    if data.get("subnets") is not None:
         import capo_batch.types.string_list
 
         out["subnets"] = capo_batch.types.string_list.deserialize_json(data["subnets"])
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_batch.types.string_list
 
         out["security_group_ids"] = capo_batch.types.string_list.deserialize_json(
             data["securityGroupIds"]
         )
-    if "allocationStrategy" in data:
+    if data.get("allocationStrategy") is not None:
         import capo_batch.types.cr_update_allocation_strategy
 
         out["allocation_strategy"] = (
@@ -168,25 +168,25 @@ def deserialize_json(data: dict) -> ComputeResourceUpdate:
                 data["allocationStrategy"]
             )
         )
-    if "instanceTypes" in data:
+    if data.get("instanceTypes") is not None:
         import capo_batch.types.string_list
 
         out["instance_types"] = capo_batch.types.string_list.deserialize_json(
             data["instanceTypes"]
         )
-    if "ec2KeyPair" in data:
+    if data.get("ec2KeyPair") is not None:
         out["ec2_key_pair"] = data["ec2KeyPair"]
-    if "instanceRole" in data:
+    if data.get("instanceRole") is not None:
         out["instance_role"] = data["instanceRole"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_batch.types.tags_map
 
         out["tags"] = capo_batch.types.tags_map.deserialize_json(data["tags"])
-    if "placementGroup" in data:
+    if data.get("placementGroup") is not None:
         out["placement_group"] = data["placementGroup"]
-    if "bidPercentage" in data:
+    if data.get("bidPercentage") is not None:
         out["bid_percentage"] = data["bidPercentage"]
-    if "launchTemplate" in data:
+    if data.get("launchTemplate") is not None:
         import capo_batch.types.launch_template_specification
 
         out["launch_template"] = (
@@ -194,7 +194,7 @@ def deserialize_json(data: dict) -> ComputeResourceUpdate:
                 data["launchTemplate"]
             )
         )
-    if "ec2Configuration" in data:
+    if data.get("ec2Configuration") is not None:
         import capo_batch.types.ec2_configuration_list
 
         out["ec2_configuration"] = (
@@ -202,15 +202,15 @@ def deserialize_json(data: dict) -> ComputeResourceUpdate:
                 data["ec2Configuration"]
             )
         )
-    if "updateToLatestImageVersion" in data:
+    if data.get("updateToLatestImageVersion") is not None:
         out["update_to_latest_image_version"] = data["updateToLatestImageVersion"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_batch.types.cr_type
 
         out["type"] = capo_batch.types.cr_type.deserialize_json(data["type"])
-    if "imageId" in data:
+    if data.get("imageId") is not None:
         out["image_id"] = data["imageId"]
-    if "scalingPolicy" in data:
+    if data.get("scalingPolicy") is not None:
         import capo_batch.types.compute_scaling_policy
 
         out["scaling_policy"] = (

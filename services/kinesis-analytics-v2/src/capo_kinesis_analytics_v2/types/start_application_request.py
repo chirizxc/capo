@@ -37,11 +37,11 @@ def serialize_aws_json_1_1(value: StartApplicationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartApplicationRequest:
     out: StartApplicationRequest = {}  # type: ignore[typeddict-item]
-    if "ApplicationName" in data:
+    if data.get("ApplicationName") is not None:
         out["application_name"] = data["ApplicationName"]
     else:
         raise DeserializationError("StartApplicationRequest.application_name required")
-    if "RunConfiguration" in data:
+    if data.get("RunConfiguration") is not None:
         import capo_kinesis_analytics_v2.types.run_configuration
 
         out["run_configuration"] = (

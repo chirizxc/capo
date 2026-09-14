@@ -36,7 +36,7 @@ def serialize_json(value: BatchRemoveRoleOutput) -> dict:
 
 def deserialize_json(data: dict) -> BatchRemoveRoleOutput:
     out: BatchRemoveRoleOutput = {}  # type: ignore[typeddict-item]
-    if "removedAccessorIds" in data:
+    if data.get("removedAccessorIds") is not None:
         import capo_repostspace.types.accessor_id_list
 
         out["removed_accessor_ids"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> BatchRemoveRoleOutput:
         raise DeserializationError(
             "BatchRemoveRoleOutput.removed_accessor_ids required"
         )
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_repostspace.types.batch_error_list
 
         out["errors"] = capo_repostspace.types.batch_error_list.deserialize_json(

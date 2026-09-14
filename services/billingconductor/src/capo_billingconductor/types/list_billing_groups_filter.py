@@ -101,7 +101,7 @@ def serialize_json(value: ListBillingGroupsFilter) -> dict:
 
 def deserialize_json(data: dict) -> ListBillingGroupsFilter:
     out: ListBillingGroupsFilter = {}  # type: ignore[typeddict-item]
-    if "Arns" in data:
+    if data.get("Arns") is not None:
         import capo_billingconductor.types.billing_group_arn_list
 
         out["arns"] = (
@@ -109,9 +109,9 @@ def deserialize_json(data: dict) -> ListBillingGroupsFilter:
                 data["Arns"]
             )
         )
-    if "PricingPlan" in data:
+    if data.get("PricingPlan") is not None:
         out["pricing_plan"] = data["PricingPlan"]
-    if "Statuses" in data:
+    if data.get("Statuses") is not None:
         import capo_billingconductor.types.billing_group_status_list
 
         out["statuses"] = (
@@ -119,9 +119,9 @@ def deserialize_json(data: dict) -> ListBillingGroupsFilter:
                 data["Statuses"]
             )
         )
-    if "AutoAssociate" in data:
+    if data.get("AutoAssociate") is not None:
         out["auto_associate"] = data["AutoAssociate"]
-    if "PrimaryAccountIds" in data:
+    if data.get("PrimaryAccountIds") is not None:
         import capo_billingconductor.types.primary_account_id_list
 
         out["primary_account_ids"] = (
@@ -129,7 +129,7 @@ def deserialize_json(data: dict) -> ListBillingGroupsFilter:
                 data["PrimaryAccountIds"]
             )
         )
-    if "BillingGroupTypes" in data:
+    if data.get("BillingGroupTypes") is not None:
         import capo_billingconductor.types.billing_group_type_list
 
         out["billing_group_types"] = (
@@ -137,13 +137,13 @@ def deserialize_json(data: dict) -> ListBillingGroupsFilter:
                 data["BillingGroupTypes"]
             )
         )
-    if "Names" in data:
+    if data.get("Names") is not None:
         import capo_billingconductor.types.string_searches
 
         out["names"] = capo_billingconductor.types.string_searches.deserialize_json(
             data["Names"]
         )
-    if "ResponsibilityTransferArns" in data:
+    if data.get("ResponsibilityTransferArns") is not None:
         import capo_billingconductor.types.responsibility_transfer_arns_list
 
         out["responsibility_transfer_arns"] = (

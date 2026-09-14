@@ -50,9 +50,9 @@ def serialize_aws_json_1_1(value: LaunchPathSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LaunchPathSummary:
     out: LaunchPathSummary = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "ConstraintSummaries" in data:
+    if data.get("ConstraintSummaries") is not None:
         import capo_service_catalog.types.constraint_summaries
 
         out["constraint_summaries"] = (
@@ -60,12 +60,12 @@ def deserialize_aws_json_1_1(data: dict) -> LaunchPathSummary:
                 data["ConstraintSummaries"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_service_catalog.types.tags
 
         out["tags"] = capo_service_catalog.types.tags.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     return out

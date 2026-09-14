@@ -28,7 +28,7 @@ def serialize_json(value: SubjectAlternativeNames) -> dict:
 
 def deserialize_json(data: dict) -> SubjectAlternativeNames:
     out: SubjectAlternativeNames = {}  # type: ignore[typeddict-item]
-    if "match" in data:
+    if data.get("match") is not None:
         import capo_app_mesh.types.subject_alternative_name_matchers
 
         out["match"] = (

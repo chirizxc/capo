@@ -48,13 +48,13 @@ def serialize_aws_json_1_1(value: PutApplicationAuthenticationMethodRequest) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> PutApplicationAuthenticationMethodRequest:
     out: PutApplicationAuthenticationMethodRequest = {}  # type: ignore[typeddict-item]
-    if "ApplicationArn" in data:
+    if data.get("ApplicationArn") is not None:
         out["application_arn"] = data["ApplicationArn"]
     else:
         raise DeserializationError(
             "PutApplicationAuthenticationMethodRequest.application_arn required"
         )
-    if "AuthenticationMethodType" in data:
+    if data.get("AuthenticationMethodType") is not None:
         import capo_sso_admin.types.authentication_method_type
 
         out["authentication_method_type"] = (
@@ -66,7 +66,7 @@ def deserialize_aws_json_1_1(data: dict) -> PutApplicationAuthenticationMethodRe
         raise DeserializationError(
             "PutApplicationAuthenticationMethodRequest.authentication_method_type required"
         )
-    if "AuthenticationMethod" in data:
+    if data.get("AuthenticationMethod") is not None:
         import capo_sso_admin.types.authentication_method
 
         out["authentication_method"] = (

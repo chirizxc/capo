@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> __listOfBatchFailedResultModel:
 
     out: __listOfBatchFailedResultModel = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_medialive.types.batch_failed_result_model.deserialize_json(item)
         )

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> TestRecommendationList:
 
     out: TestRecommendationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_resiliencehub.types.test_recommendation.deserialize_json(item))
     return out

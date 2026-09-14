@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: BlacklistReport) -> dict:
 def deserialize_json(data: dict) -> BlacklistReport:
     out: BlacklistReport = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_pinpoint_email.types.blacklist_entries
 
         out[key] = capo_pinpoint_email.types.blacklist_entries.deserialize_json(value)

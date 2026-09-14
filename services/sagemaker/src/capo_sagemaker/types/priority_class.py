@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: PriorityClass) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PriorityClass:
     out: PriorityClass = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Weight" in data:
+    if data.get("Weight") is not None:
         out["weight"] = data["Weight"]
     return out

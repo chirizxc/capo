@@ -27,8 +27,8 @@ def serialize_json(value: EpochLockingSettings) -> dict:
 
 def deserialize_json(data: dict) -> EpochLockingSettings:
     out: EpochLockingSettings = {}  # type: ignore[typeddict-item]
-    if "customEpoch" in data:
+    if data.get("customEpoch") is not None:
         out["custom_epoch"] = data["customEpoch"]
-    if "jamSyncTime" in data:
+    if data.get("jamSyncTime") is not None:
         out["jam_sync_time"] = data["jamSyncTime"]
     return out

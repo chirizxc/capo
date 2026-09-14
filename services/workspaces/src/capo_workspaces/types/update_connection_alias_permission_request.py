@@ -36,13 +36,13 @@ def serialize_aws_json_1_1(value: UpdateConnectionAliasPermissionRequest) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateConnectionAliasPermissionRequest:
     out: UpdateConnectionAliasPermissionRequest = {}  # type: ignore[typeddict-item]
-    if "AliasId" in data:
+    if data.get("AliasId") is not None:
         out["alias_id"] = data["AliasId"]
     else:
         raise DeserializationError(
             "UpdateConnectionAliasPermissionRequest.alias_id required"
         )
-    if "ConnectionAliasPermission" in data:
+    if data.get("ConnectionAliasPermission") is not None:
         import capo_workspaces.types.connection_alias_permission
 
         out["connection_alias_permission"] = (

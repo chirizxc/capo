@@ -59,21 +59,21 @@ def serialize_json(value: ImageCustomAction) -> dict:
 
 def deserialize_json(data: dict) -> ImageCustomAction:
     out: ImageCustomAction = {}  # type: ignore[typeddict-item]
-    if "CustomActionId" in data:
+    if data.get("CustomActionId") is not None:
         out["custom_action_id"] = data["CustomActionId"]
     else:
         raise DeserializationError("ImageCustomAction.custom_action_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("ImageCustomAction.name required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_quicksight.types.widget_status
 
         out["status"] = capo_quicksight.types.widget_status.deserialize_json(
             data["Status"]
         )
-    if "Trigger" in data:
+    if data.get("Trigger") is not None:
         import capo_quicksight.types.image_custom_action_trigger
 
         out["trigger"] = (
@@ -83,7 +83,7 @@ def deserialize_json(data: dict) -> ImageCustomAction:
         )
     else:
         raise DeserializationError("ImageCustomAction.trigger required")
-    if "ActionOperations" in data:
+    if data.get("ActionOperations") is not None:
         import capo_quicksight.types.image_custom_action_operation_list
 
         out["action_operations"] = (

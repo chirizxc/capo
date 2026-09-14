@@ -35,7 +35,7 @@ def serialize_aws_json_1_0(value: ListCollectionsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListCollectionsResponse:
     out: ListCollectionsResponse = {}  # type: ignore[typeddict-item]
-    if "collectionSummaries" in data:
+    if data.get("collectionSummaries") is not None:
         import capo_opensearchserverless.types.collection_summaries
 
         out["collection_summaries"] = (
@@ -43,6 +43,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListCollectionsResponse:
                 data["collectionSummaries"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

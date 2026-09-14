@@ -50,13 +50,13 @@ def serialize_aws_json_1_1(value: EventTrackerSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EventTrackerSummary:
     out: EventTrackerSummary = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "eventTrackerArn" in data:
+    if data.get("eventTrackerArn") is not None:
         out["event_tracker_arn"] = data["eventTrackerArn"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_personalize.types.date
 
         out["creation_date_time"] = (
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_1(data: dict) -> EventTrackerSummary:
                 data["creationDateTime"]
             )
         )
-    if "lastUpdatedDateTime" in data:
+    if data.get("lastUpdatedDateTime") is not None:
         import capo_personalize.types.date
 
         out["last_updated_date_time"] = (

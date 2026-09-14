@@ -59,13 +59,13 @@ def serialize_aws_json_1_1(value: ListedUser) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListedUser:
     out: ListedUser = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("ListedUser.arn required")
-    if "HomeDirectory" in data:
+    if data.get("HomeDirectory") is not None:
         out["home_directory"] = data["HomeDirectory"]
-    if "HomeDirectoryType" in data:
+    if data.get("HomeDirectoryType") is not None:
         import capo_transfer.types.home_directory_type
 
         out["home_directory_type"] = (
@@ -73,10 +73,10 @@ def deserialize_aws_json_1_1(data: dict) -> ListedUser:
                 data["HomeDirectoryType"]
             )
         )
-    if "Role" in data:
+    if data.get("Role") is not None:
         out["role"] = data["Role"]
-    if "SshPublicKeyCount" in data:
+    if data.get("SshPublicKeyCount") is not None:
         out["ssh_public_key_count"] = data["SshPublicKeyCount"]
-    if "UserName" in data:
+    if data.get("UserName") is not None:
         out["user_name"] = data["UserName"]
     return out

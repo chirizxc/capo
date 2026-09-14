@@ -32,7 +32,7 @@ def serialize_json(value: UpdateSafetyLeverStateInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSafetyLeverStateInput:
     out: UpdateSafetyLeverStateInput = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_fis.types.safety_lever_status_input
 
         out["status"] = capo_fis.types.safety_lever_status_input.deserialize_json(
@@ -40,7 +40,7 @@ def deserialize_json(data: dict) -> UpdateSafetyLeverStateInput:
         )
     else:
         raise DeserializationError("UpdateSafetyLeverStateInput.status required")
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
     else:
         raise DeserializationError("UpdateSafetyLeverStateInput.reason required")

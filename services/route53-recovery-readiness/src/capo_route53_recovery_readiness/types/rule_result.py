@@ -60,7 +60,7 @@ def serialize_json(value: RuleResult) -> dict:
 
 def deserialize_json(data: dict) -> RuleResult:
     out: RuleResult = {}  # type: ignore[typeddict-item]
-    if "lastCheckedTimestamp" in data:
+    if data.get("lastCheckedTimestamp") is not None:
         import capo_route53_recovery_readiness.types.readiness_check_timestamp
 
         out["last_checked_timestamp"] = (
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> RuleResult:
                 data["lastCheckedTimestamp"]
             )
         )
-    if "messages" in data:
+    if data.get("messages") is not None:
         import capo_route53_recovery_readiness.types.__list_of_message
 
         out["messages"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> RuleResult:
                 data["messages"]
             )
         )
-    if "readiness" in data:
+    if data.get("readiness") is not None:
         import capo_route53_recovery_readiness.types.readiness
 
         out["readiness"] = (
@@ -84,6 +84,6 @@ def deserialize_json(data: dict) -> RuleResult:
                 data["readiness"]
             )
         )
-    if "ruleId" in data:
+    if data.get("ruleId") is not None:
         out["rule_id"] = data["ruleId"]
     return out

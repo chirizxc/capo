@@ -50,7 +50,7 @@ def serialize_json(value: VirtualGatewayListenerTlsValidationContextTrust) -> di
 
 
 def deserialize_json(data: dict) -> VirtualGatewayListenerTlsValidationContextTrust:
-    if "file" in data:
+    if data.get("file") is not None:
         import capo_app_mesh.types.virtual_gateway_tls_validation_context_file_trust
 
         return {
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> VirtualGatewayListenerTlsValidationContextTr
                 data["file"]
             )
         }
-    elif "sds" in data:
+    elif data.get("sds") is not None:
         import capo_app_mesh.types.virtual_gateway_tls_validation_context_sds_trust
 
         return {

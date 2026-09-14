@@ -44,7 +44,7 @@ def serialize_json(value: BatchGetMembershipDatasourcesResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetMembershipDatasourcesResponse:
     out: BatchGetMembershipDatasourcesResponse = {}  # type: ignore[typeddict-item]
-    if "MembershipDatasources" in data:
+    if data.get("MembershipDatasources") is not None:
         import capo_detective.types.membership_datasources_list
 
         out["membership_datasources"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> BatchGetMembershipDatasourcesResponse:
                 data["MembershipDatasources"]
             )
         )
-    if "UnprocessedGraphs" in data:
+    if data.get("UnprocessedGraphs") is not None:
         import capo_detective.types.unprocessed_graph_list
 
         out["unprocessed_graphs"] = (

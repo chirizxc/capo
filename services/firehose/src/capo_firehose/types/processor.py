@@ -41,7 +41,7 @@ def serialize_aws_json_1_1(value: Processor) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Processor:
     out: Processor = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_firehose.types.processor_type
 
         out["type"] = capo_firehose.types.processor_type.deserialize_aws_json_1_1(
@@ -49,7 +49,7 @@ def deserialize_aws_json_1_1(data: dict) -> Processor:
         )
     else:
         raise DeserializationError("Processor.type required")
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_firehose.types.processor_parameter_list
 
         out["parameters"] = (

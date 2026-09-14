@@ -44,7 +44,7 @@ def serialize_json(value: BatchGetRecordRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetRecordRequest:
     out: BatchGetRecordRequest = {}  # type: ignore[typeddict-item]
-    if "Identifiers" in data:
+    if data.get("Identifiers") is not None:
         import capo_sagemaker_featurestore_runtime.types.batch_get_record_identifiers
 
         out["identifiers"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> BatchGetRecordRequest:
                 data["Identifiers"]
             )
         )
-    if "ExpirationTimeResponse" in data:
+    if data.get("ExpirationTimeResponse") is not None:
         import capo_sagemaker_featurestore_runtime.types.expiration_time_response
 
         out["expiration_time_response"] = (

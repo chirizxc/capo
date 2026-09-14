@@ -51,20 +51,20 @@ def serialize_json(value: InstructionCollection) -> dict:
 
 def deserialize_json(data: dict) -> InstructionCollection:
     out: InstructionCollection = {}  # type: ignore[typeddict-item]
-    if "responseLength" in data:
+    if data.get("responseLength") is not None:
         out["response_length"] = data["responseLength"]
-    if "targetAudience" in data:
+    if data.get("targetAudience") is not None:
         out["target_audience"] = data["targetAudience"]
-    if "perspective" in data:
+    if data.get("perspective") is not None:
         out["perspective"] = data["perspective"]
-    if "outputStyle" in data:
+    if data.get("outputStyle") is not None:
         out["output_style"] = data["outputStyle"]
-    if "identity" in data:
+    if data.get("identity") is not None:
         out["identity"] = data["identity"]
-    if "tone" in data:
+    if data.get("tone") is not None:
         out["tone"] = data["tone"]
-    if "customInstructions" in data:
+    if data.get("customInstructions") is not None:
         out["custom_instructions"] = data["customInstructions"]
-    if "examples" in data:
+    if data.get("examples") is not None:
         out["examples"] = data["examples"]
     return out

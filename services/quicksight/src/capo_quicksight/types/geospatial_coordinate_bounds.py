@@ -25,29 +25,61 @@ class GeospatialCoordinateBounds(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: GeospatialCoordinateBounds) -> dict:
     out: dict = {}
-    out["North"] = value["north"]
-    out["South"] = value["south"]
-    out["West"] = value["west"]
-    out["East"] = value["east"]
+    out["North"] = (
+        "NaN"
+        if value["north"] != value["north"]
+        else "Infinity"
+        if value["north"] == float("inf")
+        else "-Infinity"
+        if value["north"] == float("-inf")
+        else value["north"]
+    )
+    out["South"] = (
+        "NaN"
+        if value["south"] != value["south"]
+        else "Infinity"
+        if value["south"] == float("inf")
+        else "-Infinity"
+        if value["south"] == float("-inf")
+        else value["south"]
+    )
+    out["West"] = (
+        "NaN"
+        if value["west"] != value["west"]
+        else "Infinity"
+        if value["west"] == float("inf")
+        else "-Infinity"
+        if value["west"] == float("-inf")
+        else value["west"]
+    )
+    out["East"] = (
+        "NaN"
+        if value["east"] != value["east"]
+        else "Infinity"
+        if value["east"] == float("inf")
+        else "-Infinity"
+        if value["east"] == float("-inf")
+        else value["east"]
+    )
     return out
 
 
 def deserialize_json(data: dict) -> GeospatialCoordinateBounds:
     out: GeospatialCoordinateBounds = {}  # type: ignore[typeddict-item]
-    if "North" in data:
-        out["north"] = data["North"]
+    if data.get("North") is not None:
+        out["north"] = float(data["North"])
     else:
         raise DeserializationError("GeospatialCoordinateBounds.north required")
-    if "South" in data:
-        out["south"] = data["South"]
+    if data.get("South") is not None:
+        out["south"] = float(data["South"])
     else:
         raise DeserializationError("GeospatialCoordinateBounds.south required")
-    if "West" in data:
-        out["west"] = data["West"]
+    if data.get("West") is not None:
+        out["west"] = float(data["West"])
     else:
         raise DeserializationError("GeospatialCoordinateBounds.west required")
-    if "East" in data:
-        out["east"] = data["East"]
+    if data.get("East") is not None:
+        out["east"] = float(data["East"])
     else:
         raise DeserializationError("GeospatialCoordinateBounds.east required")
     return out

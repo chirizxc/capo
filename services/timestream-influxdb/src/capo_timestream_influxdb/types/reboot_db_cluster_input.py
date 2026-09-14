@@ -37,11 +37,11 @@ def serialize_aws_json_1_0(value: RebootDbClusterInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RebootDbClusterInput:
     out: RebootDbClusterInput = {}  # type: ignore[typeddict-item]
-    if "dbClusterId" in data:
+    if data.get("dbClusterId") is not None:
         out["db_cluster_id"] = data["dbClusterId"]
     else:
         raise DeserializationError("RebootDbClusterInput.db_cluster_id required")
-    if "instanceIds" in data:
+    if data.get("instanceIds") is not None:
         import capo_timestream_influxdb.types.db_instance_id_list
 
         out["instance_ids"] = (

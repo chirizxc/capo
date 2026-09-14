@@ -105,11 +105,11 @@ def serialize_json(value: Instance) -> dict:
 
 def deserialize_json(data: dict) -> Instance:
     out: Instance = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "IdentityManagementType" in data:
+    if data.get("IdentityManagementType") is not None:
         import capo_connect.types.directory_type
 
         out["identity_management_type"] = (
@@ -117,23 +117,23 @@ def deserialize_json(data: dict) -> Instance:
                 data["IdentityManagementType"]
             )
         )
-    if "InstanceAlias" in data:
+    if data.get("InstanceAlias") is not None:
         out["instance_alias"] = data["InstanceAlias"]
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_connect.types.timestamp
 
         out["created_time"] = capo_connect.types.timestamp.deserialize_json(
             data["CreatedTime"]
         )
-    if "ServiceRole" in data:
+    if data.get("ServiceRole") is not None:
         out["service_role"] = data["ServiceRole"]
-    if "InstanceStatus" in data:
+    if data.get("InstanceStatus") is not None:
         import capo_connect.types.instance_status
 
         out["instance_status"] = capo_connect.types.instance_status.deserialize_json(
             data["InstanceStatus"]
         )
-    if "StatusReason" in data:
+    if data.get("StatusReason") is not None:
         import capo_connect.types.instance_status_reason
 
         out["status_reason"] = (
@@ -141,13 +141,13 @@ def deserialize_json(data: dict) -> Instance:
                 data["StatusReason"]
             )
         )
-    if "InboundCallsEnabled" in data:
+    if data.get("InboundCallsEnabled") is not None:
         out["inbound_calls_enabled"] = data["InboundCallsEnabled"]
-    if "OutboundCallsEnabled" in data:
+    if data.get("OutboundCallsEnabled") is not None:
         out["outbound_calls_enabled"] = data["OutboundCallsEnabled"]
-    if "InstanceAccessUrl" in data:
+    if data.get("InstanceAccessUrl") is not None:
         out["instance_access_url"] = data["InstanceAccessUrl"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])

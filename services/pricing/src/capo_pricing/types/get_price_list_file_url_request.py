@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: GetPriceListFileUrlRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetPriceListFileUrlRequest:
     out: GetPriceListFileUrlRequest = {}  # type: ignore[typeddict-item]
-    if "PriceListArn" in data:
+    if data.get("PriceListArn") is not None:
         out["price_list_arn"] = data["PriceListArn"]
     else:
         raise DeserializationError("GetPriceListFileUrlRequest.price_list_arn required")
-    if "FileFormat" in data:
+    if data.get("FileFormat") is not None:
         out["file_format"] = data["FileFormat"]
     else:
         raise DeserializationError("GetPriceListFileUrlRequest.file_format required")

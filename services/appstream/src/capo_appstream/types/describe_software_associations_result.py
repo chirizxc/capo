@@ -41,9 +41,9 @@ def serialize_aws_json_1_1(value: DescribeSoftwareAssociationsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeSoftwareAssociationsResult:
     out: DescribeSoftwareAssociationsResult = {}  # type: ignore[typeddict-item]
-    if "AssociatedResource" in data:
+    if data.get("AssociatedResource") is not None:
         out["associated_resource"] = data["AssociatedResource"]
-    if "SoftwareAssociations" in data:
+    if data.get("SoftwareAssociations") is not None:
         import capo_appstream.types.software_associations_list
 
         out["software_associations"] = (
@@ -51,6 +51,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeSoftwareAssociationsResult:
                 data["SoftwareAssociations"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

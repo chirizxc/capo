@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: ImageTagAlreadyExistsException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ImageTagAlreadyExistsException_:
     out: ImageTagAlreadyExistsException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,20 @@ class ImageTagAlreadyExistsException(ServiceError):
 
     code: str | None = "ImageTagAlreadyExistsException"
 
-    def __init__(self, data: ImageTagAlreadyExistsException_):
+    def __init__(
+        self, data: ImageTagAlreadyExistsException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ImageTagAlreadyExistsException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "ImageTagAlreadyExistsException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "ImageTagAlreadyExistsException":
+        return cls(deserialize_aws_json_1_1(data), message)

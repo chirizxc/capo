@@ -28,13 +28,13 @@ def serialize_aws_json_1_1(value: DeleteEnvironmentMembershipRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteEnvironmentMembershipRequest:
     out: DeleteEnvironmentMembershipRequest = {}  # type: ignore[typeddict-item]
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
     else:
         raise DeserializationError(
             "DeleteEnvironmentMembershipRequest.environment_id required"
         )
-    if "userArn" in data:
+    if data.get("userArn") is not None:
         out["user_arn"] = data["userArn"]
     else:
         raise DeserializationError(

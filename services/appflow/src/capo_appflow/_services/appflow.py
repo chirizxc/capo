@@ -1,6 +1,8 @@
 """Generated from Smithy shape ``com.amazonaws.appflow#SandstoneConfigurationServiceLambda``."""
 
+import uuid
 import warnings
+from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +18,7 @@ from capo_appflow._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_appflow._auth._zapros_handler import AuthMiddleware
+from capo_appflow._pagination import resolve_path as _resolve_path
 from capo_appflow._services._aws_config import aws_config
 from capo_appflow._services._pipeline import (
     Interceptor,
@@ -239,8 +242,9 @@ class AppflowClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appflow.types.cancel_flow_executions_request.CancelFlowExecutionsRequest = {}  # type: ignore[typeddict-item]
-        input_["flow_name"] = flow_name
+        input_: capo_appflow.types.cancel_flow_executions_request.CancelFlowExecutionsRequest = {
+            "flow_name": flow_name
+        }
         if execution_ids is not None:
             input_["execution_ids"] = execution_ids
 
@@ -249,6 +253,7 @@ class AppflowClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_connector_profile(
@@ -300,23 +305,26 @@ class AppflowClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appflow.types.create_connector_profile_request.CreateConnectorProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["connector_profile_name"] = connector_profile_name
+        input_: capo_appflow.types.create_connector_profile_request.CreateConnectorProfileRequest = {
+            "connector_profile_name": connector_profile_name,
+            "connector_type": connector_type,
+            "connection_mode": connection_mode,
+            "connector_profile_config": connector_profile_config,
+        }
         if kms_arn is not None:
             input_["kms_arn"] = kms_arn
-        input_["connector_type"] = connector_type
         if connector_label is not None:
             input_["connector_label"] = connector_label
-        input_["connection_mode"] = connection_mode
-        input_["connector_profile_config"] = connector_profile_config
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_flow(
@@ -379,28 +387,31 @@ class AppflowClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appflow.types.create_flow_request.CreateFlowRequest = {}  # type: ignore[typeddict-item]
-        input_["flow_name"] = flow_name
+        input_: capo_appflow.types.create_flow_request.CreateFlowRequest = {
+            "flow_name": flow_name,
+            "trigger_config": trigger_config,
+            "source_flow_config": source_flow_config,
+            "destination_flow_config_list": destination_flow_config_list,
+            "tasks": tasks,
+        }
         if description is not None:
             input_["description"] = description
         if kms_arn is not None:
             input_["kms_arn"] = kms_arn
-        input_["trigger_config"] = trigger_config
-        input_["source_flow_config"] = source_flow_config
-        input_["destination_flow_config_list"] = destination_flow_config_list
-        input_["tasks"] = tasks
         if tags is not None:
             input_["tags"] = tags
         if metadata_catalog_config is not None:
             input_["metadata_catalog_config"] = metadata_catalog_config
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_connector_profile(
@@ -438,8 +449,9 @@ class AppflowClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appflow.types.delete_connector_profile_request.DeleteConnectorProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["connector_profile_name"] = connector_profile_name
+        input_: capo_appflow.types.delete_connector_profile_request.DeleteConnectorProfileRequest = {
+            "connector_profile_name": connector_profile_name
+        }
         if force_delete is not None:
             input_["force_delete"] = force_delete
 
@@ -448,6 +460,7 @@ class AppflowClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_flow(
@@ -485,8 +498,9 @@ class AppflowClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appflow.types.delete_flow_request.DeleteFlowRequest = {}  # type: ignore[typeddict-item]
-        input_["flow_name"] = flow_name
+        input_: capo_appflow.types.delete_flow_request.DeleteFlowRequest = {
+            "flow_name": flow_name
+        }
         if force_delete is not None:
             input_["force_delete"] = force_delete
 
@@ -495,6 +509,7 @@ class AppflowClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_connector(
@@ -534,8 +549,9 @@ class AppflowClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appflow.types.describe_connector_request.DescribeConnectorRequest = {}  # type: ignore[typeddict-item]
-        input_["connector_type"] = connector_type
+        input_: capo_appflow.types.describe_connector_request.DescribeConnectorRequest = {
+            "connector_type": connector_type
+        }
         if connector_label is not None:
             input_["connector_label"] = connector_label
 
@@ -544,6 +560,7 @@ class AppflowClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_connector_entity(
@@ -591,8 +608,9 @@ class AppflowClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appflow.types.describe_connector_entity_request.DescribeConnectorEntityRequest = {}  # type: ignore[typeddict-item]
-        input_["connector_entity_name"] = connector_entity_name
+        input_: capo_appflow.types.describe_connector_entity_request.DescribeConnectorEntityRequest = {
+            "connector_entity_name": connector_entity_name
+        }
         if connector_type is not None:
             input_["connector_type"] = connector_type
         if connector_profile_name is not None:
@@ -605,6 +623,7 @@ class AppflowClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_connector_profiles(
@@ -653,7 +672,7 @@ class AppflowClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appflow.types.describe_connector_profiles_request.DescribeConnectorProfilesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appflow.types.describe_connector_profiles_request.DescribeConnectorProfilesRequest = {}
         if connector_profile_names is not None:
             input_["connector_profile_names"] = connector_profile_names
         if connector_type is not None:
@@ -670,7 +689,39 @@ class AppflowClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_describe_connector_profiles(
+        self,
+        *,
+        config_overrides: Optional[AppflowClientConfig] = None,
+        connector_profile_names: Optional[
+            "capo_appflow.types.connector_profile_name_list.ConnectorProfileNameList"
+        ] = None,
+        connector_type: Optional[
+            "capo_appflow.types.connector_type.ConnectorType"
+        ] = None,
+        connector_label: Optional[
+            "capo_appflow.types.connector_label.ConnectorLabel"
+        ] = None,
+        max_results: Optional["capo_appflow.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_appflow.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_appflow.types.describe_connector_profiles_response.DescribeConnectorProfilesResponse]":
+        _token = next_token
+        while True:
+            _response = self.describe_connector_profiles(
+                config_overrides=config_overrides,
+                connector_profile_names=connector_profile_names,
+                connector_type=connector_type,
+                connector_label=connector_label,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def describe_connectors(
         self,
@@ -710,7 +761,7 @@ class AppflowClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appflow.types.describe_connectors_request.DescribeConnectorsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appflow.types.describe_connectors_request.DescribeConnectorsRequest = {}
         if connector_types is not None:
             input_["connector_types"] = connector_types
         if max_results is not None:
@@ -723,7 +774,31 @@ class AppflowClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_describe_connectors(
+        self,
+        *,
+        config_overrides: Optional[AppflowClientConfig] = None,
+        connector_types: Optional[
+            "capo_appflow.types.connector_type_list.ConnectorTypeList"
+        ] = None,
+        max_results: Optional["capo_appflow.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_appflow.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_appflow.types.describe_connectors_response.DescribeConnectorsResponse]":
+        _token = next_token
+        while True:
+            _response = self.describe_connectors(
+                config_overrides=config_overrides,
+                connector_types=connector_types,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def describe_flow(
         self,
@@ -757,14 +832,16 @@ class AppflowClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appflow.types.describe_flow_request.DescribeFlowRequest = {}  # type: ignore[typeddict-item]
-        input_["flow_name"] = flow_name
+        input_: capo_appflow.types.describe_flow_request.DescribeFlowRequest = {
+            "flow_name": flow_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_flow_execution_records(
@@ -804,8 +881,9 @@ class AppflowClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appflow.types.describe_flow_execution_records_request.DescribeFlowExecutionRecordsRequest = {}  # type: ignore[typeddict-item]
-        input_["flow_name"] = flow_name
+        input_: capo_appflow.types.describe_flow_execution_records_request.DescribeFlowExecutionRecordsRequest = {
+            "flow_name": flow_name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -816,7 +894,29 @@ class AppflowClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_describe_flow_execution_records(
+        self,
+        flow_name: "capo_appflow.types.flow_name.FlowName",
+        *,
+        config_overrides: Optional[AppflowClientConfig] = None,
+        max_results: Optional["capo_appflow.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_appflow.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_appflow.types.describe_flow_execution_records_response.DescribeFlowExecutionRecordsResponse]":
+        _token = next_token
+        while True:
+            _response = self.describe_flow_execution_records(
+                flow_name,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_connector_entities(
         self,
@@ -869,7 +969,7 @@ class AppflowClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appflow.types.list_connector_entities_request.ListConnectorEntitiesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appflow.types.list_connector_entities_request.ListConnectorEntitiesRequest = {}
         if connector_profile_name is not None:
             input_["connector_profile_name"] = connector_profile_name
         if connector_type is not None:
@@ -888,6 +988,7 @@ class AppflowClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_connectors(
@@ -924,7 +1025,7 @@ class AppflowClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appflow.types.list_connectors_request.ListConnectorsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appflow.types.list_connectors_request.ListConnectorsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -935,7 +1036,27 @@ class AppflowClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_connectors(
+        self,
+        *,
+        config_overrides: Optional[AppflowClientConfig] = None,
+        max_results: Optional["capo_appflow.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_appflow.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_appflow.types.list_connectors_response.ListConnectorsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_connectors(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_flows(
         self,
@@ -971,7 +1092,7 @@ class AppflowClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appflow.types.list_flows_request.ListFlowsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appflow.types.list_flows_request.ListFlowsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -982,7 +1103,27 @@ class AppflowClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_flows(
+        self,
+        *,
+        config_overrides: Optional[AppflowClientConfig] = None,
+        max_results: Optional["capo_appflow.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_appflow.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_appflow.types.list_flows_response.ListFlowsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_flows(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_tags_for_resource(
         self,
@@ -1019,14 +1160,16 @@ class AppflowClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appflow.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_appflow.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def register_connector(
@@ -1082,7 +1225,7 @@ class AppflowClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appflow.types.register_connector_request.RegisterConnectorRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appflow.types.register_connector_request.RegisterConnectorRequest = {}
         if connector_label is not None:
             input_["connector_label"] = connector_label
         if description is not None:
@@ -1091,14 +1234,16 @@ class AppflowClient:
             input_["connector_provisioning_type"] = connector_provisioning_type
         if connector_provisioning_config is not None:
             input_["connector_provisioning_config"] = connector_provisioning_config
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def reset_connector_metadata_cache(
@@ -1149,7 +1294,7 @@ class AppflowClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appflow.types.reset_connector_metadata_cache_request.ResetConnectorMetadataCacheRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appflow.types.reset_connector_metadata_cache_request.ResetConnectorMetadataCacheRequest = {}
         if connector_profile_name is not None:
             input_["connector_profile_name"] = connector_profile_name
         if connector_type is not None:
@@ -1166,6 +1311,7 @@ class AppflowClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_flow(
@@ -1204,16 +1350,19 @@ class AppflowClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appflow.types.start_flow_request.StartFlowRequest = {}  # type: ignore[typeddict-item]
-        input_["flow_name"] = flow_name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_appflow.types.start_flow_request.StartFlowRequest = {
+            "flow_name": flow_name
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_flow(
@@ -1250,14 +1399,16 @@ class AppflowClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appflow.types.stop_flow_request.StopFlowRequest = {}  # type: ignore[typeddict-item]
-        input_["flow_name"] = flow_name
+        input_: capo_appflow.types.stop_flow_request.StopFlowRequest = {
+            "flow_name": flow_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -1295,15 +1446,17 @@ class AppflowClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appflow.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_appflow.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def unregister_connector(
@@ -1341,8 +1494,9 @@ class AppflowClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appflow.types.unregister_connector_request.UnregisterConnectorRequest = {}  # type: ignore[typeddict-item]
-        input_["connector_label"] = connector_label
+        input_: capo_appflow.types.unregister_connector_request.UnregisterConnectorRequest = {
+            "connector_label": connector_label
+        }
         if force_delete is not None:
             input_["force_delete"] = force_delete
 
@@ -1351,6 +1505,7 @@ class AppflowClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -1388,15 +1543,17 @@ class AppflowClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appflow.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_appflow.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_connector_profile(
@@ -1440,18 +1597,21 @@ class AppflowClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appflow.types.update_connector_profile_request.UpdateConnectorProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["connector_profile_name"] = connector_profile_name
-        input_["connection_mode"] = connection_mode
-        input_["connector_profile_config"] = connector_profile_config
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_appflow.types.update_connector_profile_request.UpdateConnectorProfileRequest = {
+            "connector_profile_name": connector_profile_name,
+            "connection_mode": connection_mode,
+            "connector_profile_config": connector_profile_config,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_connector_registration(
@@ -1500,20 +1660,23 @@ class AppflowClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appflow.types.update_connector_registration_request.UpdateConnectorRegistrationRequest = {}  # type: ignore[typeddict-item]
-        input_["connector_label"] = connector_label
+        input_: capo_appflow.types.update_connector_registration_request.UpdateConnectorRegistrationRequest = {
+            "connector_label": connector_label
+        }
         if description is not None:
             input_["description"] = description
         if connector_provisioning_config is not None:
             input_["connector_provisioning_config"] = connector_provisioning_config
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_flow(
@@ -1571,24 +1734,27 @@ class AppflowClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appflow.types.update_flow_request.UpdateFlowRequest = {}  # type: ignore[typeddict-item]
-        input_["flow_name"] = flow_name
+        input_: capo_appflow.types.update_flow_request.UpdateFlowRequest = {
+            "flow_name": flow_name,
+            "trigger_config": trigger_config,
+            "source_flow_config": source_flow_config,
+            "destination_flow_config_list": destination_flow_config_list,
+            "tasks": tasks,
+        }
         if description is not None:
             input_["description"] = description
-        input_["trigger_config"] = trigger_config
-        input_["source_flow_config"] = source_flow_config
-        input_["destination_flow_config_list"] = destination_flow_config_list
-        input_["tasks"] = tasks
         if metadata_catalog_config is not None:
             input_["metadata_catalog_config"] = metadata_catalog_config
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

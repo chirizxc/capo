@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.s3files#S3Files``."""
 
+import uuid
 import warnings
 from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -224,12 +225,14 @@ class AsyncS3FilesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3files.types.create_access_point_request.CreateAccessPointRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_s3files.types.create_access_point_request.CreateAccessPointRequest = {
+            "file_system_id": file_system_id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
-        input_["file_system_id"] = file_system_id
         if posix_user is not None:
             input_["posix_user"] = posix_user
         if root_directory is not None:
@@ -240,6 +243,7 @@ class AsyncS3FilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_file_system(
@@ -293,15 +297,17 @@ class AsyncS3FilesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3files.types.create_file_system_request.CreateFileSystemRequest = {}  # type: ignore[typeddict-item]
-        input_["bucket"] = bucket
+        input_: capo_s3files.types.create_file_system_request.CreateFileSystemRequest = {
+            "bucket": bucket,
+            "role_arn": role_arn,
+        }
         if prefix is not None:
             input_["prefix"] = prefix
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if kms_key_id is not None:
             input_["kms_key_id"] = kms_key_id
-        input_["role_arn"] = role_arn
         if tags is not None:
             input_["tags"] = tags
         if accept_bucket_warning is not None:
@@ -312,6 +318,7 @@ class AsyncS3FilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_mount_target(
@@ -365,9 +372,10 @@ class AsyncS3FilesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3files.types.create_mount_target_request.CreateMountTargetRequest = {}  # type: ignore[typeddict-item]
-        input_["file_system_id"] = file_system_id
-        input_["subnet_id"] = subnet_id
+        input_: capo_s3files.types.create_mount_target_request.CreateMountTargetRequest = {
+            "file_system_id": file_system_id,
+            "subnet_id": subnet_id,
+        }
         if ipv4_address is not None:
             input_["ipv4_address"] = ipv4_address
         if ipv6_address is not None:
@@ -382,6 +390,7 @@ class AsyncS3FilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_access_point(
@@ -418,14 +427,16 @@ class AsyncS3FilesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3files.types.delete_access_point_request.DeleteAccessPointRequest = {}  # type: ignore[typeddict-item]
-        input_["access_point_id"] = access_point_id
+        input_: capo_s3files.types.delete_access_point_request.DeleteAccessPointRequest = {
+            "access_point_id": access_point_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_file_system(
@@ -464,8 +475,9 @@ class AsyncS3FilesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3files.types.delete_file_system_request.DeleteFileSystemRequest = {}  # type: ignore[typeddict-item]
-        input_["file_system_id"] = file_system_id
+        input_: capo_s3files.types.delete_file_system_request.DeleteFileSystemRequest = {
+            "file_system_id": file_system_id
+        }
         if force_delete is not None:
             input_["force_delete"] = force_delete
 
@@ -474,6 +486,7 @@ class AsyncS3FilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_file_system_policy(
@@ -509,14 +522,16 @@ class AsyncS3FilesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3files.types.delete_file_system_policy_request.DeleteFileSystemPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["file_system_id"] = file_system_id
+        input_: capo_s3files.types.delete_file_system_policy_request.DeleteFileSystemPolicyRequest = {
+            "file_system_id": file_system_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_mount_target(
@@ -553,14 +568,16 @@ class AsyncS3FilesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3files.types.delete_mount_target_request.DeleteMountTargetRequest = {}  # type: ignore[typeddict-item]
-        input_["mount_target_id"] = mount_target_id
+        input_: capo_s3files.types.delete_mount_target_request.DeleteMountTargetRequest = {
+            "mount_target_id": mount_target_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_access_point(
@@ -598,14 +615,16 @@ class AsyncS3FilesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3files.types.get_access_point_request.GetAccessPointRequest = {}  # type: ignore[typeddict-item]
-        input_["access_point_id"] = access_point_id
+        input_: capo_s3files.types.get_access_point_request.GetAccessPointRequest = {
+            "access_point_id": access_point_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_file_system(
@@ -643,14 +662,16 @@ class AsyncS3FilesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3files.types.get_file_system_request.GetFileSystemRequest = {}  # type: ignore[typeddict-item]
-        input_["file_system_id"] = file_system_id
+        input_: capo_s3files.types.get_file_system_request.GetFileSystemRequest = {
+            "file_system_id": file_system_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_file_system_policy(
@@ -690,14 +711,16 @@ class AsyncS3FilesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3files.types.get_file_system_policy_request.GetFileSystemPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["file_system_id"] = file_system_id
+        input_: capo_s3files.types.get_file_system_policy_request.GetFileSystemPolicyRequest = {
+            "file_system_id": file_system_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_mount_target(
@@ -735,14 +758,16 @@ class AsyncS3FilesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3files.types.get_mount_target_request.GetMountTargetRequest = {}  # type: ignore[typeddict-item]
-        input_["mount_target_id"] = mount_target_id
+        input_: capo_s3files.types.get_mount_target_request.GetMountTargetRequest = {
+            "mount_target_id": mount_target_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_synchronization_configuration(
@@ -780,14 +805,16 @@ class AsyncS3FilesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3files.types.get_synchronization_configuration_request.GetSynchronizationConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["file_system_id"] = file_system_id
+        input_: capo_s3files.types.get_synchronization_configuration_request.GetSynchronizationConfigurationRequest = {
+            "file_system_id": file_system_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_access_points(
@@ -829,8 +856,9 @@ class AsyncS3FilesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3files.types.list_access_points_request.ListAccessPointsRequest = {}  # type: ignore[typeddict-item]
-        input_["file_system_id"] = file_system_id
+        input_: capo_s3files.types.list_access_points_request.ListAccessPointsRequest = {
+            "file_system_id": file_system_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -841,6 +869,7 @@ class AsyncS3FilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_access_points(
@@ -904,7 +933,7 @@ class AsyncS3FilesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3files.types.list_file_systems_request.ListFileSystemsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_s3files.types.list_file_systems_request.ListFileSystemsRequest = {}
         if bucket is not None:
             input_["bucket"] = bucket
         if max_results is not None:
@@ -917,6 +946,7 @@ class AsyncS3FilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_file_systems(
@@ -987,7 +1017,7 @@ class AsyncS3FilesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3files.types.list_mount_targets_request.ListMountTargetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_s3files.types.list_mount_targets_request.ListMountTargetsRequest = {}
         if file_system_id is not None:
             input_["file_system_id"] = file_system_id
         if access_point_id is not None:
@@ -1002,6 +1032,7 @@ class AsyncS3FilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_mount_targets(
@@ -1074,8 +1105,9 @@ class AsyncS3FilesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3files.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
+        input_: capo_s3files.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_id": resource_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1086,6 +1118,7 @@ class AsyncS3FilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_tags_for_resource(
@@ -1150,15 +1183,17 @@ class AsyncS3FilesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3files.types.put_file_system_policy_request.PutFileSystemPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["file_system_id"] = file_system_id
-        input_["policy"] = policy
+        input_: capo_s3files.types.put_file_system_policy_request.PutFileSystemPolicyRequest = {
+            "file_system_id": file_system_id,
+            "policy": policy,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_synchronization_configuration(
@@ -1203,18 +1238,20 @@ class AsyncS3FilesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3files.types.put_synchronization_configuration_request.PutSynchronizationConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["file_system_id"] = file_system_id
+        input_: capo_s3files.types.put_synchronization_configuration_request.PutSynchronizationConfigurationRequest = {
+            "file_system_id": file_system_id,
+            "import_data_rules": import_data_rules,
+            "expiration_data_rules": expiration_data_rules,
+        }
         if latest_version_number is not None:
             input_["latest_version_number"] = latest_version_number
-        input_["import_data_rules"] = import_data_rules
-        input_["expiration_data_rules"] = expiration_data_rules
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -1252,15 +1289,17 @@ class AsyncS3FilesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3files.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
-        input_["tags"] = tags
+        input_: capo_s3files.types.tag_resource_request.TagResourceRequest = {
+            "resource_id": resource_id,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -1298,15 +1337,17 @@ class AsyncS3FilesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3files.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
-        input_["tag_keys"] = tag_keys
+        input_: capo_s3files.types.untag_resource_request.UntagResourceRequest = {
+            "resource_id": resource_id,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_mount_target(
@@ -1346,15 +1387,17 @@ class AsyncS3FilesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3files.types.update_mount_target_request.UpdateMountTargetRequest = {}  # type: ignore[typeddict-item]
-        input_["mount_target_id"] = mount_target_id
-        input_["security_groups"] = security_groups
+        input_: capo_s3files.types.update_mount_target_request.UpdateMountTargetRequest = {
+            "mount_target_id": mount_target_id,
+            "security_groups": security_groups,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

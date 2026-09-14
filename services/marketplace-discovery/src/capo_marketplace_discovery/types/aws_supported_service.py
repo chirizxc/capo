@@ -25,17 +25,17 @@ def serialize_json(value: AwsSupportedService) -> dict:
 
 def deserialize_json(data: dict) -> AwsSupportedService:
     out: AwsSupportedService = {}  # type: ignore[typeddict-item]
-    if "supportedServiceType" in data:
+    if data.get("supportedServiceType") is not None:
         out["supported_service_type"] = data["supportedServiceType"]
     else:
         raise DeserializationError(
             "AwsSupportedService.supported_service_type required"
         )
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError("AwsSupportedService.display_name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     else:
         raise DeserializationError("AwsSupportedService.description required")

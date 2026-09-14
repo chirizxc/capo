@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: TestRepositoryTriggersOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TestRepositoryTriggersOutput:
     out: TestRepositoryTriggersOutput = {}  # type: ignore[typeddict-item]
-    if "successfulExecutions" in data:
+    if data.get("successfulExecutions") is not None:
         import capo_codecommit.types.repository_trigger_name_list
 
         out["successful_executions"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> TestRepositoryTriggersOutput:
                 data["successfulExecutions"]
             )
         )
-    if "failedExecutions" in data:
+    if data.get("failedExecutions") is not None:
         import capo_codecommit.types.repository_trigger_execution_failure_list
 
         out["failed_executions"] = (

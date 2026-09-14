@@ -56,13 +56,13 @@ def serialize_json(value: AggFunction) -> dict:
 
 def deserialize_json(data: dict) -> AggFunction:
     out: AggFunction = {}  # type: ignore[typeddict-item]
-    if "Aggregation" in data:
+    if data.get("Aggregation") is not None:
         import capo_quicksight.types.agg_type
 
         out["aggregation"] = capo_quicksight.types.agg_type.deserialize_json(
             data["Aggregation"]
         )
-    if "AggregationFunctionParameters" in data:
+    if data.get("AggregationFunctionParameters") is not None:
         import capo_quicksight.types.agg_function_param_map
 
         out["aggregation_function_parameters"] = (
@@ -70,12 +70,12 @@ def deserialize_json(data: dict) -> AggFunction:
                 data["AggregationFunctionParameters"]
             )
         )
-    if "Period" in data:
+    if data.get("Period") is not None:
         import capo_quicksight.types.topic_time_granularity
 
         out["period"] = capo_quicksight.types.topic_time_granularity.deserialize_json(
             data["Period"]
         )
-    if "PeriodField" in data:
+    if data.get("PeriodField") is not None:
         out["period_field"] = data["PeriodField"]
     return out

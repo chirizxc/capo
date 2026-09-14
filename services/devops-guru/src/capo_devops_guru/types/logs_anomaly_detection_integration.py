@@ -27,7 +27,7 @@ def serialize_json(value: LogsAnomalyDetectionIntegration) -> dict:
 
 def deserialize_json(data: dict) -> LogsAnomalyDetectionIntegration:
     out: LogsAnomalyDetectionIntegration = {}  # type: ignore[typeddict-item]
-    if "OptInStatus" in data:
+    if data.get("OptInStatus") is not None:
         import capo_devops_guru.types.opt_in_status
 
         out["opt_in_status"] = capo_devops_guru.types.opt_in_status.deserialize_json(

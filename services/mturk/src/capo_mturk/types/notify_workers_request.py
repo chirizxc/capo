@@ -35,15 +35,15 @@ def serialize_aws_json_1_1(value: NotifyWorkersRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NotifyWorkersRequest:
     out: NotifyWorkersRequest = {}  # type: ignore[typeddict-item]
-    if "Subject" in data:
+    if data.get("Subject") is not None:
         out["subject"] = data["Subject"]
     else:
         raise DeserializationError("NotifyWorkersRequest.subject required")
-    if "MessageText" in data:
+    if data.get("MessageText") is not None:
         out["message_text"] = data["MessageText"]
     else:
         raise DeserializationError("NotifyWorkersRequest.message_text required")
-    if "WorkerIds" in data:
+    if data.get("WorkerIds") is not None:
         import capo_mturk.types.customer_id_list
 
         out["worker_ids"] = capo_mturk.types.customer_id_list.deserialize_aws_json_1_1(

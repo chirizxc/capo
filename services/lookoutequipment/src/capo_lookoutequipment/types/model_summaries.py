@@ -27,6 +27,8 @@ def deserialize_aws_json_1_0(data: list) -> ModelSummaries:
 
     out: ModelSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lookoutequipment.types.model_summary.deserialize_aws_json_1_0(item)
         )

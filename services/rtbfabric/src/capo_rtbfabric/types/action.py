@@ -43,13 +43,13 @@ def serialize_json(value: Action) -> dict:
 
 
 def deserialize_json(data: dict) -> Action:
-    if "noBid" in data:
+    if data.get("noBid") is not None:
         import capo_rtbfabric.types.no_bid_action
 
         return {
             "noBid": capo_rtbfabric.types.no_bid_action.deserialize_json(data["noBid"])
         }
-    elif "headerTag" in data:
+    elif data.get("headerTag") is not None:
         import capo_rtbfabric.types.header_tag_action
 
         return {

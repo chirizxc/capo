@@ -32,11 +32,11 @@ def serialize_json(value: FieldSort) -> dict:
 
 def deserialize_json(data: dict) -> FieldSort:
     out: FieldSort = {}  # type: ignore[typeddict-item]
-    if "FieldId" in data:
+    if data.get("FieldId") is not None:
         out["field_id"] = data["FieldId"]
     else:
         raise DeserializationError("FieldSort.field_id required")
-    if "Direction" in data:
+    if data.get("Direction") is not None:
         import capo_quicksight.types.sort_direction
 
         out["direction"] = capo_quicksight.types.sort_direction.deserialize_json(

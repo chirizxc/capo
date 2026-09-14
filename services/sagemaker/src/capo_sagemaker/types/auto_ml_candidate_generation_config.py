@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: AutoMLCandidateGenerationConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AutoMLCandidateGenerationConfig:
     out: AutoMLCandidateGenerationConfig = {}  # type: ignore[typeddict-item]
-    if "FeatureSpecificationS3Uri" in data:
+    if data.get("FeatureSpecificationS3Uri") is not None:
         out["feature_specification_s3_uri"] = data["FeatureSpecificationS3Uri"]
-    if "AlgorithmsConfig" in data:
+    if data.get("AlgorithmsConfig") is not None:
         import capo_sagemaker.types.auto_ml_algorithms_config
 
         out["algorithms_config"] = (

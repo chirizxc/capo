@@ -30,10 +30,10 @@ def serialize_json(value: ListJobsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListJobsOutput:
     out: ListJobsOutput = {}  # type: ignore[typeddict-item]
-    if "JobList" in data:
+    if data.get("JobList") is not None:
         import capo_glacier.types.job_list
 
         out["job_list"] = capo_glacier.types.job_list.deserialize_json(data["JobList"])
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

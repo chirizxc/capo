@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AwsWafv2InsertHeadersList:
 
     out: AwsWafv2InsertHeadersList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_wafv2_custom_http_header.deserialize_json(item)
         )

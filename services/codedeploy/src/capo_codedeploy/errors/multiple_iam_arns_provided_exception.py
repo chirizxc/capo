@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: MultipleIamArnsProvidedException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MultipleIamArnsProvidedException_:
     out: MultipleIamArnsProvidedException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,20 @@ class MultipleIamArnsProvidedException(ServiceError):
 
     code: str | None = "MultipleIamArnsProvidedException"
 
-    def __init__(self, data: MultipleIamArnsProvidedException_):
+    def __init__(
+        self, data: MultipleIamArnsProvidedException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="MultipleIamArnsProvidedException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "MultipleIamArnsProvidedException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "MultipleIamArnsProvidedException":
+        return cls(deserialize_aws_json_1_1(data), message)

@@ -34,15 +34,15 @@ def serialize_aws_json_1_1(value: AdminGetDeviceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AdminGetDeviceRequest:
     out: AdminGetDeviceRequest = {}  # type: ignore[typeddict-item]
-    if "DeviceKey" in data:
+    if data.get("DeviceKey") is not None:
         out["device_key"] = data["DeviceKey"]
     else:
         raise DeserializationError("AdminGetDeviceRequest.device_key required")
-    if "UserPoolId" in data:
+    if data.get("UserPoolId") is not None:
         out["user_pool_id"] = data["UserPoolId"]
     else:
         raise DeserializationError("AdminGetDeviceRequest.user_pool_id required")
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
     else:
         raise DeserializationError("AdminGetDeviceRequest.username required")

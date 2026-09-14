@@ -36,7 +36,7 @@ def serialize_aws_json_1_0(value: TestConversionRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TestConversionRequest:
     out: TestConversionRequest = {}  # type: ignore[typeddict-item]
-    if "source" in data:
+    if data.get("source") is not None:
         import capo_b2bi.types.conversion_source
 
         out["source"] = capo_b2bi.types.conversion_source.deserialize_aws_json_1_0(
@@ -44,7 +44,7 @@ def deserialize_aws_json_1_0(data: dict) -> TestConversionRequest:
         )
     else:
         raise DeserializationError("TestConversionRequest.source required")
-    if "target" in data:
+    if data.get("target") is not None:
         import capo_b2bi.types.conversion_target
 
         out["target"] = capo_b2bi.types.conversion_target.deserialize_aws_json_1_0(

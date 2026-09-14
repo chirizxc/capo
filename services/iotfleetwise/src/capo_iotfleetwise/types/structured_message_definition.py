@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> StructuredMessageDefinition:
 
     out: StructuredMessageDefinition = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iotfleetwise.types.structured_message_field_name_and_data_type_pair.deserialize_aws_json_1_0(
                 item

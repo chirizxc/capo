@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> SnapshotFileSheetSelectionList:
 
     out: SnapshotFileSheetSelectionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.snapshot_file_sheet_selection.deserialize_json(item)
         )

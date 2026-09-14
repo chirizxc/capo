@@ -142,7 +142,15 @@ def serialize_json(value: Mpeg2Settings) -> dict:
     if "gop_num_b_frames" in value:
         out["gopNumBFrames"] = value["gop_num_b_frames"]
     if "gop_size" in value:
-        out["gopSize"] = value["gop_size"]
+        out["gopSize"] = (
+            "NaN"
+            if value["gop_size"] != value["gop_size"]
+            else "Infinity"
+            if value["gop_size"] == float("inf")
+            else "-Infinity"
+            if value["gop_size"] == float("-inf")
+            else value["gop_size"]
+        )
     if "gop_size_units" in value:
         import capo_medialive.types.mpeg2_gop_size_units
 
@@ -182,7 +190,7 @@ def serialize_json(value: Mpeg2Settings) -> dict:
 
 def deserialize_json(data: dict) -> Mpeg2Settings:
     out: Mpeg2Settings = {}  # type: ignore[typeddict-item]
-    if "adaptiveQuantization" in data:
+    if data.get("adaptiveQuantization") is not None:
         import capo_medialive.types.mpeg2_adaptive_quantization
 
         out["adaptive_quantization"] = (
@@ -190,13 +198,13 @@ def deserialize_json(data: dict) -> Mpeg2Settings:
                 data["adaptiveQuantization"]
             )
         )
-    if "afdSignaling" in data:
+    if data.get("afdSignaling") is not None:
         import capo_medialive.types.afd_signaling
 
         out["afd_signaling"] = capo_medialive.types.afd_signaling.deserialize_json(
             data["afdSignaling"]
         )
-    if "colorMetadata" in data:
+    if data.get("colorMetadata") is not None:
         import capo_medialive.types.mpeg2_color_metadata
 
         out["color_metadata"] = (
@@ -204,13 +212,13 @@ def deserialize_json(data: dict) -> Mpeg2Settings:
                 data["colorMetadata"]
             )
         )
-    if "colorSpace" in data:
+    if data.get("colorSpace") is not None:
         import capo_medialive.types.mpeg2_color_space
 
         out["color_space"] = capo_medialive.types.mpeg2_color_space.deserialize_json(
             data["colorSpace"]
         )
-    if "displayAspectRatio" in data:
+    if data.get("displayAspectRatio") is not None:
         import capo_medialive.types.mpeg2_display_ratio
 
         out["display_aspect_ratio"] = (
@@ -218,7 +226,7 @@ def deserialize_json(data: dict) -> Mpeg2Settings:
                 data["displayAspectRatio"]
             )
         )
-    if "filterSettings" in data:
+    if data.get("filterSettings") is not None:
         import capo_medialive.types.mpeg2_filter_settings
 
         out["filter_settings"] = (
@@ -226,23 +234,23 @@ def deserialize_json(data: dict) -> Mpeg2Settings:
                 data["filterSettings"]
             )
         )
-    if "fixedAfd" in data:
+    if data.get("fixedAfd") is not None:
         import capo_medialive.types.fixed_afd
 
         out["fixed_afd"] = capo_medialive.types.fixed_afd.deserialize_json(
             data["fixedAfd"]
         )
-    if "framerateDenominator" in data:
+    if data.get("framerateDenominator") is not None:
         out["framerate_denominator"] = data["framerateDenominator"]
-    if "framerateNumerator" in data:
+    if data.get("framerateNumerator") is not None:
         out["framerate_numerator"] = data["framerateNumerator"]
-    if "gopClosedCadence" in data:
+    if data.get("gopClosedCadence") is not None:
         out["gop_closed_cadence"] = data["gopClosedCadence"]
-    if "gopNumBFrames" in data:
+    if data.get("gopNumBFrames") is not None:
         out["gop_num_b_frames"] = data["gopNumBFrames"]
-    if "gopSize" in data:
-        out["gop_size"] = data["gopSize"]
-    if "gopSizeUnits" in data:
+    if data.get("gopSize") is not None:
+        out["gop_size"] = float(data["gopSize"])
+    if data.get("gopSizeUnits") is not None:
         import capo_medialive.types.mpeg2_gop_size_units
 
         out["gop_size_units"] = (
@@ -250,13 +258,13 @@ def deserialize_json(data: dict) -> Mpeg2Settings:
                 data["gopSizeUnits"]
             )
         )
-    if "scanType" in data:
+    if data.get("scanType") is not None:
         import capo_medialive.types.mpeg2_scan_type
 
         out["scan_type"] = capo_medialive.types.mpeg2_scan_type.deserialize_json(
             data["scanType"]
         )
-    if "subgopLength" in data:
+    if data.get("subgopLength") is not None:
         import capo_medialive.types.mpeg2_sub_gop_length
 
         out["subgop_length"] = (
@@ -264,7 +272,7 @@ def deserialize_json(data: dict) -> Mpeg2Settings:
                 data["subgopLength"]
             )
         )
-    if "timecodeInsertion" in data:
+    if data.get("timecodeInsertion") is not None:
         import capo_medialive.types.mpeg2_timecode_insertion_behavior
 
         out["timecode_insertion"] = (
@@ -272,7 +280,7 @@ def deserialize_json(data: dict) -> Mpeg2Settings:
                 data["timecodeInsertion"]
             )
         )
-    if "timecodeBurninSettings" in data:
+    if data.get("timecodeBurninSettings") is not None:
         import capo_medialive.types.timecode_burnin_settings
 
         out["timecode_burnin_settings"] = (

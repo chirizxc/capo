@@ -26,7 +26,7 @@ def serialize_json(value: MetricAttribution) -> dict:
 
 def deserialize_json(data: dict) -> MetricAttribution:
     out: MetricAttribution = {}  # type: ignore[typeddict-item]
-    if "eventAttributionSource" in data:
+    if data.get("eventAttributionSource") is not None:
         out["event_attribution_source"] = data["eventAttributionSource"]
     else:
         raise DeserializationError(

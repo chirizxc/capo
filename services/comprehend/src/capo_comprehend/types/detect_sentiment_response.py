@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: DetectSentimentResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DetectSentimentResponse:
     out: DetectSentimentResponse = {}  # type: ignore[typeddict-item]
-    if "Sentiment" in data:
+    if data.get("Sentiment") is not None:
         import capo_comprehend.types.sentiment_type
 
         out["sentiment"] = (
@@ -46,7 +46,7 @@ def deserialize_aws_json_1_1(data: dict) -> DetectSentimentResponse:
                 data["Sentiment"]
             )
         )
-    if "SentimentScore" in data:
+    if data.get("SentimentScore") is not None:
         import capo_comprehend.types.sentiment_score
 
         out["sentiment_score"] = (

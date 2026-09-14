@@ -25,6 +25,6 @@ def serialize_json(value: S3TablesParameters) -> dict:
 
 def deserialize_json(data: dict) -> S3TablesParameters:
     out: S3TablesParameters = {}  # type: ignore[typeddict-item]
-    if "TableBucketArn" in data:
+    if data.get("TableBucketArn") is not None:
         out["table_bucket_arn"] = data["TableBucketArn"]
     return out

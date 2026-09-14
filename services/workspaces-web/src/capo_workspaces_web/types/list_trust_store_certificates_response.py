@@ -44,7 +44,7 @@ def serialize_json(value: ListTrustStoreCertificatesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListTrustStoreCertificatesResponse:
     out: ListTrustStoreCertificatesResponse = {}  # type: ignore[typeddict-item]
-    if "certificateList" in data:
+    if data.get("certificateList") is not None:
         import capo_workspaces_web.types.certificate_summary_list
 
         out["certificate_list"] = (
@@ -52,12 +52,12 @@ def deserialize_json(data: dict) -> ListTrustStoreCertificatesResponse:
                 data["certificateList"]
             )
         )
-    if "trustStoreArn" in data:
+    if data.get("trustStoreArn") is not None:
         out["trust_store_arn"] = data["trustStoreArn"]
     else:
         raise DeserializationError(
             "ListTrustStoreCertificatesResponse.trust_store_arn required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

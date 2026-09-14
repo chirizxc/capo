@@ -62,7 +62,7 @@ def serialize_json(value: TlsValidationContextTrust) -> dict:
 
 
 def deserialize_json(data: dict) -> TlsValidationContextTrust:
-    if "acm" in data:
+    if data.get("acm") is not None:
         import capo_app_mesh.types.tls_validation_context_acm_trust
 
         return {
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> TlsValidationContextTrust:
                 data["acm"]
             )
         }
-    elif "file" in data:
+    elif data.get("file") is not None:
         import capo_app_mesh.types.tls_validation_context_file_trust
 
         return {
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> TlsValidationContextTrust:
                 data["file"]
             )
         }
-    elif "sds" in data:
+    elif data.get("sds") is not None:
         import capo_app_mesh.types.tls_validation_context_sds_trust
 
         return {

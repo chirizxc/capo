@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> BatchRebootClusterNodeLogicalIdsErro
 
     out: BatchRebootClusterNodeLogicalIdsErrors = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.batch_reboot_cluster_node_logical_ids_error.deserialize_aws_json_1_1(
                 item

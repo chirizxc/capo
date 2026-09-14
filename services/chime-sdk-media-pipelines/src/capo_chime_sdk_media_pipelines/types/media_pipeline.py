@@ -83,7 +83,7 @@ def serialize_json(value: MediaPipeline) -> dict:
 
 def deserialize_json(data: dict) -> MediaPipeline:
     out: MediaPipeline = {}  # type: ignore[typeddict-item]
-    if "MediaCapturePipeline" in data:
+    if data.get("MediaCapturePipeline") is not None:
         import capo_chime_sdk_media_pipelines.types.media_capture_pipeline
 
         out["media_capture_pipeline"] = (
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> MediaPipeline:
                 data["MediaCapturePipeline"]
             )
         )
-    if "MediaLiveConnectorPipeline" in data:
+    if data.get("MediaLiveConnectorPipeline") is not None:
         import capo_chime_sdk_media_pipelines.types.media_live_connector_pipeline
 
         out["media_live_connector_pipeline"] = (
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> MediaPipeline:
                 data["MediaLiveConnectorPipeline"]
             )
         )
-    if "MediaConcatenationPipeline" in data:
+    if data.get("MediaConcatenationPipeline") is not None:
         import capo_chime_sdk_media_pipelines.types.media_concatenation_pipeline
 
         out["media_concatenation_pipeline"] = (
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> MediaPipeline:
                 data["MediaConcatenationPipeline"]
             )
         )
-    if "MediaInsightsPipeline" in data:
+    if data.get("MediaInsightsPipeline") is not None:
         import capo_chime_sdk_media_pipelines.types.media_insights_pipeline
 
         out["media_insights_pipeline"] = (
@@ -115,7 +115,7 @@ def deserialize_json(data: dict) -> MediaPipeline:
                 data["MediaInsightsPipeline"]
             )
         )
-    if "MediaStreamPipeline" in data:
+    if data.get("MediaStreamPipeline") is not None:
         import capo_chime_sdk_media_pipelines.types.media_stream_pipeline
 
         out["media_stream_pipeline"] = (

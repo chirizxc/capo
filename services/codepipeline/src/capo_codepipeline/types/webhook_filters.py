@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> WebhookFilters:
 
     out: WebhookFilters = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codepipeline.types.webhook_filter_rule.deserialize_aws_json_1_1(item)
         )

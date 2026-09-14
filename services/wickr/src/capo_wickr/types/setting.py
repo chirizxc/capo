@@ -30,15 +30,15 @@ def serialize_json(value: Setting) -> dict:
 
 def deserialize_json(data: dict) -> Setting:
     out: Setting = {}  # type: ignore[typeddict-item]
-    if "optionName" in data:
+    if data.get("optionName") is not None:
         out["option_name"] = data["optionName"]
     else:
         raise DeserializationError("Setting.option_name required")
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("Setting.value required")
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("Setting.type required")

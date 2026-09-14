@@ -30,9 +30,9 @@ def serialize_json(value: Field) -> dict:
 
 def deserialize_json(data: dict) -> Field:
     out: Field = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_iot.types.field_type
 
         out["type"] = capo_iot.types.field_type.deserialize_json(data["type"])

@@ -41,15 +41,15 @@ def serialize_json(value: GetManagedEndpointSessionCredentialsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetManagedEndpointSessionCredentialsResponse:
     out: GetManagedEndpointSessionCredentialsResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "credentials" in data:
+    if data.get("credentials") is not None:
         import capo_emr_containers.types.credentials
 
         out["credentials"] = capo_emr_containers.types.credentials.deserialize_json(
             data["credentials"]
         )
-    if "expiresAt" in data:
+    if data.get("expiresAt") is not None:
         import capo_emr_containers.types.date
 
         out["expires_at"] = capo_emr_containers.types.date.deserialize_json(

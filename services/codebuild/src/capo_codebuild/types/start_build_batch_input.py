@@ -298,11 +298,11 @@ def serialize_aws_json_1_1(value: StartBuildBatchInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartBuildBatchInput:
     out: StartBuildBatchInput = {}  # type: ignore[typeddict-item]
-    if "projectName" in data:
+    if data.get("projectName") is not None:
         out["project_name"] = data["projectName"]
     else:
         raise DeserializationError("StartBuildBatchInput.project_name required")
-    if "secondarySourcesOverride" in data:
+    if data.get("secondarySourcesOverride") is not None:
         import capo_codebuild.types.project_sources
 
         out["secondary_sources_override"] = (
@@ -310,7 +310,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartBuildBatchInput:
                 data["secondarySourcesOverride"]
             )
         )
-    if "secondarySourcesVersionOverride" in data:
+    if data.get("secondarySourcesVersionOverride") is not None:
         import capo_codebuild.types.project_secondary_source_versions
 
         out["secondary_sources_version_override"] = (
@@ -318,9 +318,9 @@ def deserialize_aws_json_1_1(data: dict) -> StartBuildBatchInput:
                 data["secondarySourcesVersionOverride"]
             )
         )
-    if "sourceVersion" in data:
+    if data.get("sourceVersion") is not None:
         out["source_version"] = data["sourceVersion"]
-    if "artifactsOverride" in data:
+    if data.get("artifactsOverride") is not None:
         import capo_codebuild.types.project_artifacts
 
         out["artifacts_override"] = (
@@ -328,7 +328,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartBuildBatchInput:
                 data["artifactsOverride"]
             )
         )
-    if "secondaryArtifactsOverride" in data:
+    if data.get("secondaryArtifactsOverride") is not None:
         import capo_codebuild.types.project_artifacts_list
 
         out["secondary_artifacts_override"] = (
@@ -336,7 +336,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartBuildBatchInput:
                 data["secondaryArtifactsOverride"]
             )
         )
-    if "environmentVariablesOverride" in data:
+    if data.get("environmentVariablesOverride") is not None:
         import capo_codebuild.types.environment_variables
 
         out["environment_variables_override"] = (
@@ -344,7 +344,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartBuildBatchInput:
                 data["environmentVariablesOverride"]
             )
         )
-    if "sourceTypeOverride" in data:
+    if data.get("sourceTypeOverride") is not None:
         import capo_codebuild.types.source_type
 
         out["source_type_override"] = (
@@ -352,9 +352,9 @@ def deserialize_aws_json_1_1(data: dict) -> StartBuildBatchInput:
                 data["sourceTypeOverride"]
             )
         )
-    if "sourceLocationOverride" in data:
+    if data.get("sourceLocationOverride") is not None:
         out["source_location_override"] = data["sourceLocationOverride"]
-    if "sourceAuthOverride" in data:
+    if data.get("sourceAuthOverride") is not None:
         import capo_codebuild.types.source_auth
 
         out["source_auth_override"] = (
@@ -362,9 +362,9 @@ def deserialize_aws_json_1_1(data: dict) -> StartBuildBatchInput:
                 data["sourceAuthOverride"]
             )
         )
-    if "gitCloneDepthOverride" in data:
+    if data.get("gitCloneDepthOverride") is not None:
         out["git_clone_depth_override"] = data["gitCloneDepthOverride"]
-    if "gitSubmodulesConfigOverride" in data:
+    if data.get("gitSubmodulesConfigOverride") is not None:
         import capo_codebuild.types.git_submodules_config
 
         out["git_submodules_config_override"] = (
@@ -372,15 +372,15 @@ def deserialize_aws_json_1_1(data: dict) -> StartBuildBatchInput:
                 data["gitSubmodulesConfigOverride"]
             )
         )
-    if "buildspecOverride" in data:
+    if data.get("buildspecOverride") is not None:
         out["buildspec_override"] = data["buildspecOverride"]
-    if "insecureSslOverride" in data:
+    if data.get("insecureSslOverride") is not None:
         out["insecure_ssl_override"] = data["insecureSslOverride"]
-    if "reportBuildBatchStatusOverride" in data:
+    if data.get("reportBuildBatchStatusOverride") is not None:
         out["report_build_batch_status_override"] = data[
             "reportBuildBatchStatusOverride"
         ]
-    if "environmentTypeOverride" in data:
+    if data.get("environmentTypeOverride") is not None:
         import capo_codebuild.types.environment_type
 
         out["environment_type_override"] = (
@@ -388,9 +388,9 @@ def deserialize_aws_json_1_1(data: dict) -> StartBuildBatchInput:
                 data["environmentTypeOverride"]
             )
         )
-    if "imageOverride" in data:
+    if data.get("imageOverride") is not None:
         out["image_override"] = data["imageOverride"]
-    if "computeTypeOverride" in data:
+    if data.get("computeTypeOverride") is not None:
         import capo_codebuild.types.compute_type
 
         out["compute_type_override"] = (
@@ -398,9 +398,9 @@ def deserialize_aws_json_1_1(data: dict) -> StartBuildBatchInput:
                 data["computeTypeOverride"]
             )
         )
-    if "certificateOverride" in data:
+    if data.get("certificateOverride") is not None:
         out["certificate_override"] = data["certificateOverride"]
-    if "cacheOverride" in data:
+    if data.get("cacheOverride") is not None:
         import capo_codebuild.types.project_cache
 
         out["cache_override"] = (
@@ -408,21 +408,21 @@ def deserialize_aws_json_1_1(data: dict) -> StartBuildBatchInput:
                 data["cacheOverride"]
             )
         )
-    if "serviceRoleOverride" in data:
+    if data.get("serviceRoleOverride") is not None:
         out["service_role_override"] = data["serviceRoleOverride"]
-    if "privilegedModeOverride" in data:
+    if data.get("privilegedModeOverride") is not None:
         out["privileged_mode_override"] = data["privilegedModeOverride"]
-    if "buildTimeoutInMinutesOverride" in data:
+    if data.get("buildTimeoutInMinutesOverride") is not None:
         out["build_timeout_in_minutes_override"] = data["buildTimeoutInMinutesOverride"]
-    if "queuedTimeoutInMinutesOverride" in data:
+    if data.get("queuedTimeoutInMinutesOverride") is not None:
         out["queued_timeout_in_minutes_override"] = data[
             "queuedTimeoutInMinutesOverride"
         ]
-    if "encryptionKeyOverride" in data:
+    if data.get("encryptionKeyOverride") is not None:
         out["encryption_key_override"] = data["encryptionKeyOverride"]
-    if "idempotencyToken" in data:
+    if data.get("idempotencyToken") is not None:
         out["idempotency_token"] = data["idempotencyToken"]
-    if "logsConfigOverride" in data:
+    if data.get("logsConfigOverride") is not None:
         import capo_codebuild.types.logs_config
 
         out["logs_config_override"] = (
@@ -430,7 +430,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartBuildBatchInput:
                 data["logsConfigOverride"]
             )
         )
-    if "registryCredentialOverride" in data:
+    if data.get("registryCredentialOverride") is not None:
         import capo_codebuild.types.registry_credential
 
         out["registry_credential_override"] = (
@@ -438,7 +438,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartBuildBatchInput:
                 data["registryCredentialOverride"]
             )
         )
-    if "imagePullCredentialsTypeOverride" in data:
+    if data.get("imagePullCredentialsTypeOverride") is not None:
         import capo_codebuild.types.image_pull_credentials_type
 
         out["image_pull_credentials_type_override"] = (
@@ -446,7 +446,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartBuildBatchInput:
                 data["imagePullCredentialsTypeOverride"]
             )
         )
-    if "buildBatchConfigOverride" in data:
+    if data.get("buildBatchConfigOverride") is not None:
         import capo_codebuild.types.project_build_batch_config
 
         out["build_batch_config_override"] = (
@@ -454,6 +454,6 @@ def deserialize_aws_json_1_1(data: dict) -> StartBuildBatchInput:
                 data["buildBatchConfigOverride"]
             )
         )
-    if "debugSessionEnabled" in data:
+    if data.get("debugSessionEnabled") is not None:
         out["debug_session_enabled"] = data["debugSessionEnabled"]
     return out

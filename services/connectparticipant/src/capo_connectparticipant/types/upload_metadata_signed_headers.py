@@ -23,5 +23,7 @@ def serialize_json(input_to_serialize: UploadMetadataSignedHeaders) -> dict:
 def deserialize_json(data: dict) -> UploadMetadataSignedHeaders:
     out: UploadMetadataSignedHeaders = {}
     for key, value in data.items():
+        if value is None:
+            continue
         out[key] = value
     return out

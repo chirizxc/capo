@@ -33,15 +33,15 @@ def serialize_json(value: GetContactMetricsRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetContactMetricsRequest:
     out: GetContactMetricsRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     else:
         raise DeserializationError("GetContactMetricsRequest.instance_id required")
-    if "ContactId" in data:
+    if data.get("ContactId") is not None:
         out["contact_id"] = data["ContactId"]
     else:
         raise DeserializationError("GetContactMetricsRequest.contact_id required")
-    if "Metrics" in data:
+    if data.get("Metrics") is not None:
         import capo_connect.types.contact_metrics
 
         out["metrics"] = capo_connect.types.contact_metrics.deserialize_json(

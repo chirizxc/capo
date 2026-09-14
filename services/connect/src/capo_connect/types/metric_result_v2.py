@@ -49,19 +49,19 @@ def serialize_json(value: MetricResultV2) -> dict:
 
 def deserialize_json(data: dict) -> MetricResultV2:
     out: MetricResultV2 = {}  # type: ignore[typeddict-item]
-    if "Dimensions" in data:
+    if data.get("Dimensions") is not None:
         import capo_connect.types.dimensions_v2_map
 
         out["dimensions"] = capo_connect.types.dimensions_v2_map.deserialize_json(
             data["Dimensions"]
         )
-    if "MetricInterval" in data:
+    if data.get("MetricInterval") is not None:
         import capo_connect.types.metric_interval
 
         out["metric_interval"] = capo_connect.types.metric_interval.deserialize_json(
             data["MetricInterval"]
         )
-    if "Collections" in data:
+    if data.get("Collections") is not None:
         import capo_connect.types.metric_data_collections_v2
 
         out["collections"] = (

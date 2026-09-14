@@ -36,7 +36,7 @@ def serialize_json(value: ListQuotesOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListQuotesOutput:
     out: ListQuotesOutput = {}  # type: ignore[typeddict-item]
-    if "Quotes" in data:
+    if data.get("Quotes") is not None:
         import capo_outposts.types.quote_summary_list_definition
 
         out["quotes"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListQuotesOutput:
                 data["Quotes"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -31,7 +31,7 @@ def serialize_json(value: PutGraphqlApiEnvironmentVariablesResponse) -> dict:
 
 def deserialize_json(data: dict) -> PutGraphqlApiEnvironmentVariablesResponse:
     out: PutGraphqlApiEnvironmentVariablesResponse = {}  # type: ignore[typeddict-item]
-    if "environmentVariables" in data:
+    if data.get("environmentVariables") is not None:
         import capo_appsync.types.environment_variable_map
 
         out["environment_variables"] = (

@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ListOfS3DataAccesses:
 
     out: ListOfS3DataAccesses = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_dataexchange.types.s3_data_access_details.deserialize_json(item)
         )

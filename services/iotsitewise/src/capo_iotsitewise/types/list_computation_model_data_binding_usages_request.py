@@ -42,7 +42,7 @@ def serialize_json(value: ListComputationModelDataBindingUsagesRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListComputationModelDataBindingUsagesRequest:
     out: ListComputationModelDataBindingUsagesRequest = {}  # type: ignore[typeddict-item]
-    if "dataBindingValueFilter" in data:
+    if data.get("dataBindingValueFilter") is not None:
         import capo_iotsitewise.types.data_binding_value_filter
 
         out["data_binding_value_filter"] = (
@@ -54,8 +54,8 @@ def deserialize_json(data: dict) -> ListComputationModelDataBindingUsagesRequest
         raise DeserializationError(
             "ListComputationModelDataBindingUsagesRequest.data_binding_value_filter required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

@@ -31,7 +31,7 @@ def serialize_json(value: CustomActionNavigationOperation) -> dict:
 
 def deserialize_json(data: dict) -> CustomActionNavigationOperation:
     out: CustomActionNavigationOperation = {}  # type: ignore[typeddict-item]
-    if "LocalNavigationConfiguration" in data:
+    if data.get("LocalNavigationConfiguration") is not None:
         import capo_quicksight.types.local_navigation_configuration
 
         out["local_navigation_configuration"] = (

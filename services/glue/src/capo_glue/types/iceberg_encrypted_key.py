@@ -45,19 +45,19 @@ def serialize_aws_json_1_1(value: IcebergEncryptedKey) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IcebergEncryptedKey:
     out: IcebergEncryptedKey = {}  # type: ignore[typeddict-item]
-    if "KeyId" in data:
+    if data.get("KeyId") is not None:
         out["key_id"] = data["KeyId"]
     else:
         raise DeserializationError("IcebergEncryptedKey.key_id required")
-    if "EncryptedKeyMetadata" in data:
+    if data.get("EncryptedKeyMetadata") is not None:
         out["encrypted_key_metadata"] = data["EncryptedKeyMetadata"]
     else:
         raise DeserializationError(
             "IcebergEncryptedKey.encrypted_key_metadata required"
         )
-    if "EncryptedById" in data:
+    if data.get("EncryptedById") is not None:
         out["encrypted_by_id"] = data["EncryptedById"]
-    if "Properties" in data:
+    if data.get("Properties") is not None:
         import capo_glue.types.string_to_string_map
 
         out["properties"] = (

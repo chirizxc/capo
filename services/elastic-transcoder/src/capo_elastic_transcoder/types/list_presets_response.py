@@ -32,12 +32,12 @@ def serialize_json(value: ListPresetsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListPresetsResponse:
     out: ListPresetsResponse = {}  # type: ignore[typeddict-item]
-    if "Presets" in data:
+    if data.get("Presets") is not None:
         import capo_elastic_transcoder.types.presets
 
         out["presets"] = capo_elastic_transcoder.types.presets.deserialize_json(
             data["Presets"]
         )
-    if "NextPageToken" in data:
+    if data.get("NextPageToken") is not None:
         out["next_page_token"] = data["NextPageToken"]
     return out

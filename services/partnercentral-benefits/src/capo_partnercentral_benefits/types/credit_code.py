@@ -65,11 +65,11 @@ def serialize_aws_json_1_0(value: CreditCode) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreditCode:
     out: CreditCode = {}  # type: ignore[typeddict-item]
-    if "AwsAccountId" in data:
+    if data.get("AwsAccountId") is not None:
         out["aws_account_id"] = data["AwsAccountId"]
     else:
         raise DeserializationError("CreditCode.aws_account_id required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         import capo_partnercentral_benefits.types.monetary_value
 
         out["value"] = (
@@ -79,11 +79,11 @@ def deserialize_aws_json_1_0(data: dict) -> CreditCode:
         )
     else:
         raise DeserializationError("CreditCode.value required")
-    if "AwsCreditCode" in data:
+    if data.get("AwsCreditCode") is not None:
         out["aws_credit_code"] = data["AwsCreditCode"]
     else:
         raise DeserializationError("CreditCode.aws_credit_code required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_partnercentral_benefits.types.benefit_allocation_status
 
         out["status"] = (
@@ -93,7 +93,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreditCode:
         )
     else:
         raise DeserializationError("CreditCode.status required")
-    if "IssuedAt" in data:
+    if data.get("IssuedAt") is not None:
         import capo_partnercentral_benefits.types.timestamp
 
         out["issued_at"] = (
@@ -103,7 +103,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreditCode:
         )
     else:
         raise DeserializationError("CreditCode.issued_at required")
-    if "ExpiresAt" in data:
+    if data.get("ExpiresAt") is not None:
         import capo_partnercentral_benefits.types.timestamp
 
         out["expires_at"] = (

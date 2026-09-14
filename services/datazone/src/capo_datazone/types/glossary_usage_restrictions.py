@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> GlossaryUsageRestrictions:
 
     out: GlossaryUsageRestrictions = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_datazone.types.glossary_usage_restriction.deserialize_json(item)
         )

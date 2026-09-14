@@ -136,19 +136,19 @@ def serialize_aws_json_1_1(value: CreateCrawlerRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateCrawlerRequest:
     out: CreateCrawlerRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateCrawlerRequest.name required")
-    if "Role" in data:
+    if data.get("Role") is not None:
         out["role"] = data["Role"]
     else:
         raise DeserializationError("CreateCrawlerRequest.role required")
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Targets" in data:
+    if data.get("Targets") is not None:
         import capo_glue.types.crawler_targets
 
         out["targets"] = capo_glue.types.crawler_targets.deserialize_aws_json_1_1(
@@ -156,9 +156,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateCrawlerRequest:
         )
     else:
         raise DeserializationError("CreateCrawlerRequest.targets required")
-    if "Schedule" in data:
+    if data.get("Schedule") is not None:
         out["schedule"] = data["Schedule"]
-    if "Classifiers" in data:
+    if data.get("Classifiers") is not None:
         import capo_glue.types.classifier_name_list
 
         out["classifiers"] = (
@@ -166,9 +166,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateCrawlerRequest:
                 data["Classifiers"]
             )
         )
-    if "TablePrefix" in data:
+    if data.get("TablePrefix") is not None:
         out["table_prefix"] = data["TablePrefix"]
-    if "SchemaChangePolicy" in data:
+    if data.get("SchemaChangePolicy") is not None:
         import capo_glue.types.schema_change_policy
 
         out["schema_change_policy"] = (
@@ -176,13 +176,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateCrawlerRequest:
                 data["SchemaChangePolicy"]
             )
         )
-    if "RecrawlPolicy" in data:
+    if data.get("RecrawlPolicy") is not None:
         import capo_glue.types.recrawl_policy
 
         out["recrawl_policy"] = capo_glue.types.recrawl_policy.deserialize_aws_json_1_1(
             data["RecrawlPolicy"]
         )
-    if "LineageConfiguration" in data:
+    if data.get("LineageConfiguration") is not None:
         import capo_glue.types.lineage_configuration
 
         out["lineage_configuration"] = (
@@ -190,7 +190,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateCrawlerRequest:
                 data["LineageConfiguration"]
             )
         )
-    if "LakeFormationConfiguration" in data:
+    if data.get("LakeFormationConfiguration") is not None:
         import capo_glue.types.lake_formation_configuration
 
         out["lake_formation_configuration"] = (
@@ -198,11 +198,11 @@ def deserialize_aws_json_1_1(data: dict) -> CreateCrawlerRequest:
                 data["LakeFormationConfiguration"]
             )
         )
-    if "Configuration" in data:
+    if data.get("Configuration") is not None:
         out["configuration"] = data["Configuration"]
-    if "CrawlerSecurityConfiguration" in data:
+    if data.get("CrawlerSecurityConfiguration") is not None:
         out["crawler_security_configuration"] = data["CrawlerSecurityConfiguration"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_glue.types.tags_map
 
         out["tags"] = capo_glue.types.tags_map.deserialize_aws_json_1_1(data["Tags"])

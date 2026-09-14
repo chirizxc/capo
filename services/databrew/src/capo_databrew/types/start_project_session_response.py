@@ -31,10 +31,10 @@ def serialize_json(value: StartProjectSessionResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartProjectSessionResponse:
     out: StartProjectSessionResponse = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("StartProjectSessionResponse.name required")
-    if "ClientSessionId" in data:
+    if data.get("ClientSessionId") is not None:
         out["client_session_id"] = data["ClientSessionId"]
     return out

@@ -121,37 +121,37 @@ def serialize_json(value: Queue) -> dict:
 
 def deserialize_json(data: dict) -> Queue:
     out: Queue = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "concurrentJobs" in data:
+    if data.get("concurrentJobs") is not None:
         out["concurrent_jobs"] = data["concurrentJobs"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_mediaconvert.types.__timestamp_unix
 
         out["created_at"] = capo_mediaconvert.types.__timestamp_unix.deserialize_json(
             data["createdAt"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "lastUpdated" in data:
+    if data.get("lastUpdated") is not None:
         import capo_mediaconvert.types.__timestamp_unix
 
         out["last_updated"] = capo_mediaconvert.types.__timestamp_unix.deserialize_json(
             data["lastUpdated"]
         )
-    if "maximumConcurrentFeeds" in data:
+    if data.get("maximumConcurrentFeeds") is not None:
         out["maximum_concurrent_feeds"] = data["maximumConcurrentFeeds"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "pricingPlan" in data:
+    if data.get("pricingPlan") is not None:
         import capo_mediaconvert.types.pricing_plan
 
         out["pricing_plan"] = capo_mediaconvert.types.pricing_plan.deserialize_json(
             data["pricingPlan"]
         )
-    if "progressingJobsCount" in data:
+    if data.get("progressingJobsCount") is not None:
         out["progressing_jobs_count"] = data["progressingJobsCount"]
-    if "reservationPlan" in data:
+    if data.get("reservationPlan") is not None:
         import capo_mediaconvert.types.reservation_plan
 
         out["reservation_plan"] = (
@@ -159,7 +159,7 @@ def deserialize_json(data: dict) -> Queue:
                 data["reservationPlan"]
             )
         )
-    if "serviceOverrides" in data:
+    if data.get("serviceOverrides") is not None:
         import capo_mediaconvert.types.__list_of_service_override
 
         out["service_overrides"] = (
@@ -167,15 +167,15 @@ def deserialize_json(data: dict) -> Queue:
                 data["serviceOverrides"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_mediaconvert.types.queue_status
 
         out["status"] = capo_mediaconvert.types.queue_status.deserialize_json(
             data["status"]
         )
-    if "submittedJobsCount" in data:
+    if data.get("submittedJobsCount") is not None:
         out["submitted_jobs_count"] = data["submittedJobsCount"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_mediaconvert.types.type
 
         out["type"] = capo_mediaconvert.types.type.deserialize_json(data["type"])

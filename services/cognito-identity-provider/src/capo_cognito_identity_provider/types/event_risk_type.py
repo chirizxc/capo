@@ -53,7 +53,7 @@ def serialize_aws_json_1_1(value: EventRiskType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EventRiskType:
     out: EventRiskType = {}  # type: ignore[typeddict-item]
-    if "RiskDecision" in data:
+    if data.get("RiskDecision") is not None:
         import capo_cognito_identity_provider.types.risk_decision_type
 
         out["risk_decision"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_1(data: dict) -> EventRiskType:
                 data["RiskDecision"]
             )
         )
-    if "RiskLevel" in data:
+    if data.get("RiskLevel") is not None:
         import capo_cognito_identity_provider.types.risk_level_type
 
         out["risk_level"] = (
@@ -69,6 +69,6 @@ def deserialize_aws_json_1_1(data: dict) -> EventRiskType:
                 data["RiskLevel"]
             )
         )
-    if "CompromisedCredentialsDetected" in data:
+    if data.get("CompromisedCredentialsDetected") is not None:
         out["compromised_credentials_detected"] = data["CompromisedCredentialsDetected"]
     return out

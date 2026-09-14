@@ -13,9 +13,9 @@ from capo_wickr import AsyncWickrClient
 
 
 async def main():
-    async with AsyncWickrClient() as s3:
+    async with AsyncWickrClient() as wickr:
         # Example: call the batch_create_user operation
-        response = await s3.batch_create_user()
+        response = await wickr.batch_create_user()
         print(response["message"])
 ```
 
@@ -28,9 +28,9 @@ from capo_wickr import AsyncWickrClient
 
 
 async def main():
-    async with AsyncWickrClient() as s3:
+    async with AsyncWickrClient() as wickr:
         # Example: paginate over list_blocked_guest_users
-        async for item in s3.iter_list_blocked_guest_users():
+        async for item in wickr.iter_list_blocked_guest_users():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_wickr.error import BadRequestError
 
 
 async def main():
-    async with AsyncWickrClient() as s3:
+    async with AsyncWickrClient() as wickr:
         try:
-            await s3.batch_create_user()
+            await wickr.batch_create_user()
         except BadRequestError as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_wickr import AsyncWickrClient
 
 
 async def main():
-    async with AsyncWickrClient() as s3:
+    async with AsyncWickrClient() as wickr:
         # Default: 3 attempts for every operation
-        response = await s3.batch_create_user()
+        response = await wickr.batch_create_user()
 
         # Override per operation
-        response = await s3.batch_create_user(config_overrides={"retry_max_attempts": 5})
+        response = await wickr.batch_create_user(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.batch_create_user(config_overrides={"retry_max_attempts": 1})
+        response = await wickr.batch_create_user(config_overrides={"retry_max_attempts": 1})
 ```

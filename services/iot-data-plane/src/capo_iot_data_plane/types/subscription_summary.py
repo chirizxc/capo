@@ -28,11 +28,11 @@ def serialize_json(value: SubscriptionSummary) -> dict:
 
 def deserialize_json(data: dict) -> SubscriptionSummary:
     out: SubscriptionSummary = {}  # type: ignore[typeddict-item]
-    if "topicFilter" in data:
+    if data.get("topicFilter") is not None:
         out["topic_filter"] = data["topicFilter"]
     else:
         raise DeserializationError("SubscriptionSummary.topic_filter required")
-    if "qos" in data:
+    if data.get("qos") is not None:
         out["qos"] = data["qos"]
     else:
         out["qos"] = 0

@@ -64,7 +64,7 @@ def serialize_json(value: DataSourceConfigurationOutput) -> dict:
 
 
 def deserialize_json(data: dict) -> DataSourceConfigurationOutput:
-    if "glueRunConfiguration" in data:
+    if data.get("glueRunConfiguration") is not None:
         import capo_datazone.types.glue_run_configuration_output
 
         return {
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> DataSourceConfigurationOutput:
                 data["glueRunConfiguration"]
             )
         }
-    elif "redshiftRunConfiguration" in data:
+    elif data.get("redshiftRunConfiguration") is not None:
         import capo_datazone.types.redshift_run_configuration_output
 
         return {
@@ -80,7 +80,7 @@ def deserialize_json(data: dict) -> DataSourceConfigurationOutput:
                 data["redshiftRunConfiguration"]
             )
         }
-    elif "sageMakerRunConfiguration" in data:
+    elif data.get("sageMakerRunConfiguration") is not None:
         import capo_datazone.types.sage_maker_run_configuration_output
 
         return {

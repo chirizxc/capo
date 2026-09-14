@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> NetworkMigrationMapperSegmentsList:
 
     out: NetworkMigrationMapperSegmentsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mgn.types.network_migration_mapper_segment.deserialize_json(item)
         )

@@ -24,7 +24,7 @@ def serialize_json(value: UpdateTeamsChannelConfigurationException_) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTeamsChannelConfigurationException_:
     out: UpdateTeamsChannelConfigurationException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,22 @@ class UpdateTeamsChannelConfigurationException(ServiceError):
 
     code: str | None = "UpdateTeamsChannelConfigurationException"
 
-    def __init__(self, data: UpdateTeamsChannelConfigurationException_):
+    def __init__(
+        self,
+        data: UpdateTeamsChannelConfigurationException_,
+        message: str | None = None,
+    ):
         super().__init__(
             "server",
             is_throttling_error=False,
             is_retryable=False,
             code="UpdateTeamsChannelConfigurationException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "UpdateTeamsChannelConfigurationException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "UpdateTeamsChannelConfigurationException":
+        return cls(deserialize_json(data), message)

@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: UpdateDistributionBundleRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateDistributionBundleRequest:
     out: UpdateDistributionBundleRequest = {}  # type: ignore[typeddict-item]
-    if "distributionName" in data:
+    if data.get("distributionName") is not None:
         out["distribution_name"] = data["distributionName"]
-    if "bundleId" in data:
+    if data.get("bundleId") is not None:
         out["bundle_id"] = data["bundleId"]
     return out

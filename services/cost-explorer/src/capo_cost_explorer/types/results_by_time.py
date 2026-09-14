@@ -23,6 +23,8 @@ def deserialize_aws_json_1_1(data: list) -> ResultsByTime:
 
     out: ResultsByTime = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cost_explorer.types.result_by_time.deserialize_aws_json_1_1(item)
         )

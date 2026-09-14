@@ -37,15 +37,18 @@ class Ipv6CidrBlockNotFoundFault(ServiceError):
 
     code: str | None = "Ipv6CidrBlockNotFoundFault"
 
-    def __init__(self, data: Ipv6CidrBlockNotFoundFault_):
+    def __init__(self, data: Ipv6CidrBlockNotFoundFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="Ipv6CidrBlockNotFoundFault",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "Ipv6CidrBlockNotFoundFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "Ipv6CidrBlockNotFoundFault":
+        return cls(deserialize_query(el), message)

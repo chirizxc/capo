@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ListSolFunctionPackageResources:
 
     out: ListSolFunctionPackageResources = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_tnb.types.list_sol_function_package_info.deserialize_json(item))
     return out

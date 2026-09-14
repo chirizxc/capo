@@ -25,7 +25,7 @@ def serialize_json(value: RequestEntityTooLargeException_) -> dict:
 
 def deserialize_json(data: dict) -> RequestEntityTooLargeException_:
     out: RequestEntityTooLargeException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,20 @@ class RequestEntityTooLargeException(ServiceError):
 
     code: str | None = "RequestEntityTooLargeException"
 
-    def __init__(self, data: RequestEntityTooLargeException_):
+    def __init__(
+        self, data: RequestEntityTooLargeException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="RequestEntityTooLargeException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "RequestEntityTooLargeException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "RequestEntityTooLargeException":
+        return cls(deserialize_json(data), message)

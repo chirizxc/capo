@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Dependencies:
 
     out: Dependencies = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_synthetics.types.dependency.deserialize_json(item))
     return out

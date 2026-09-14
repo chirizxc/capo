@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: UnsupportedProviderTypeException_) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UnsupportedProviderTypeException_:
     out: UnsupportedProviderTypeException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,20 @@ class UnsupportedProviderTypeException(ServiceError):
 
     code: str | None = "UnsupportedProviderTypeException"
 
-    def __init__(self, data: UnsupportedProviderTypeException_):
+    def __init__(
+        self, data: UnsupportedProviderTypeException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="UnsupportedProviderTypeException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_0(cls, data: dict) -> "UnsupportedProviderTypeException":
-        return cls(deserialize_aws_json_1_0(data))
+    def from_aws_json_1_0(
+        cls, data: dict, message: str | None = None
+    ) -> "UnsupportedProviderTypeException":
+        return cls(deserialize_aws_json_1_0(data), message)

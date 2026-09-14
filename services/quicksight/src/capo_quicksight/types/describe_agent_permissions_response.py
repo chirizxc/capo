@@ -39,15 +39,15 @@ def serialize_json(value: DescribeAgentPermissionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeAgentPermissionsResponse:
     out: DescribeAgentPermissionsResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("DescribeAgentPermissionsResponse.arn required")
-    if "AgentId" in data:
+    if data.get("AgentId") is not None:
         out["agent_id"] = data["AgentId"]
     else:
         raise DeserializationError("DescribeAgentPermissionsResponse.agent_id required")
-    if "Permissions" in data:
+    if data.get("Permissions") is not None:
         import capo_quicksight.types.resource_permission_list
 
         out["permissions"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> DescribeAgentPermissionsResponse:
         raise DeserializationError(
             "DescribeAgentPermissionsResponse.permissions required"
         )
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     else:
         raise DeserializationError(

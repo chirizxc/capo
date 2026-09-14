@@ -34,11 +34,11 @@ def serialize_aws_json_1_1(value: TagFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TagFilter:
     out: TagFilter = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("TagFilter.name required")
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_application_discovery_service.types.filter_values
 
         out["values"] = (

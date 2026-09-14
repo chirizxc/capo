@@ -19,7 +19,7 @@ def serialize_json(value: PutMetadataFlagBody) -> dict:
 
 def deserialize_json(data: dict) -> PutMetadataFlagBody:
     out: PutMetadataFlagBody = {}  # type: ignore[typeddict-item]
-    if "newValue" in data:
+    if data.get("newValue") is not None:
         out["new_value"] = data["newValue"]
     else:
         raise DeserializationError("PutMetadataFlagBody.new_value required")

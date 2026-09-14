@@ -241,11 +241,11 @@ def serialize_aws_json_1_0(value: KeyspacesCellValue) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> KeyspacesCellValue:
-    if "asciiT" in data:
+    if data.get("asciiT") is not None:
         return {"asciiT": data["asciiT"]}
-    elif "bigintT" in data:
+    elif data.get("bigintT") is not None:
         return {"bigintT": data["bigintT"]}
-    elif "blobT" in data:
+    elif data.get("blobT") is not None:
         import capo_keyspacesstreams.types._prelude.blob
 
         return {
@@ -253,25 +253,25 @@ def deserialize_aws_json_1_0(data: dict) -> KeyspacesCellValue:
                 data["blobT"]
             )
         }
-    elif "boolT" in data:
+    elif data.get("boolT") is not None:
         return {"boolT": data["boolT"]}
-    elif "counterT" in data:
+    elif data.get("counterT") is not None:
         return {"counterT": data["counterT"]}
-    elif "dateT" in data:
+    elif data.get("dateT") is not None:
         return {"dateT": data["dateT"]}
-    elif "decimalT" in data:
+    elif data.get("decimalT") is not None:
         return {"decimalT": data["decimalT"]}
-    elif "doubleT" in data:
+    elif data.get("doubleT") is not None:
         return {"doubleT": data["doubleT"]}
-    elif "durationT" in data:
+    elif data.get("durationT") is not None:
         return {"durationT": data["durationT"]}
-    elif "floatT" in data:
+    elif data.get("floatT") is not None:
         return {"floatT": data["floatT"]}
-    elif "inetT" in data:
+    elif data.get("inetT") is not None:
         return {"inetT": data["inetT"]}
-    elif "intT" in data:
+    elif data.get("intT") is not None:
         return {"intT": data["intT"]}
-    elif "listT" in data:
+    elif data.get("listT") is not None:
         import capo_keyspacesstreams.types.keyspaces_cell_list
 
         return {
@@ -279,7 +279,7 @@ def deserialize_aws_json_1_0(data: dict) -> KeyspacesCellValue:
                 data["listT"]
             )
         }
-    elif "mapT" in data:
+    elif data.get("mapT") is not None:
         import capo_keyspacesstreams.types.keyspaces_cell_map
 
         return {
@@ -287,7 +287,7 @@ def deserialize_aws_json_1_0(data: dict) -> KeyspacesCellValue:
                 data["mapT"]
             )
         }
-    elif "setT" in data:
+    elif data.get("setT") is not None:
         import capo_keyspacesstreams.types.keyspaces_cell_list
 
         return {
@@ -295,19 +295,19 @@ def deserialize_aws_json_1_0(data: dict) -> KeyspacesCellValue:
                 data["setT"]
             )
         }
-    elif "smallintT" in data:
+    elif data.get("smallintT") is not None:
         return {"smallintT": data["smallintT"]}
-    elif "textT" in data:
+    elif data.get("textT") is not None:
         return {"textT": data["textT"]}
-    elif "timeT" in data:
+    elif data.get("timeT") is not None:
         return {"timeT": data["timeT"]}
-    elif "timestampT" in data:
+    elif data.get("timestampT") is not None:
         return {"timestampT": data["timestampT"]}
-    elif "timeuuidT" in data:
+    elif data.get("timeuuidT") is not None:
         return {"timeuuidT": data["timeuuidT"]}
-    elif "tinyintT" in data:
+    elif data.get("tinyintT") is not None:
         return {"tinyintT": data["tinyintT"]}
-    elif "tupleT" in data:
+    elif data.get("tupleT") is not None:
         import capo_keyspacesstreams.types.keyspaces_cell_list
 
         return {
@@ -315,13 +315,13 @@ def deserialize_aws_json_1_0(data: dict) -> KeyspacesCellValue:
                 data["tupleT"]
             )
         }
-    elif "uuidT" in data:
+    elif data.get("uuidT") is not None:
         return {"uuidT": data["uuidT"]}
-    elif "varcharT" in data:
+    elif data.get("varcharT") is not None:
         return {"varcharT": data["varcharT"]}
-    elif "varintT" in data:
+    elif data.get("varintT") is not None:
         return {"varintT": data["varintT"]}
-    elif "udtT" in data:
+    elif data.get("udtT") is not None:
         import capo_keyspacesstreams.types.keyspaces_udt_map
 
         return {

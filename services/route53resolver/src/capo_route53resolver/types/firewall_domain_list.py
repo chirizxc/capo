@@ -103,15 +103,15 @@ def serialize_aws_json_1_1(value: FirewallDomainList) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FirewallDomainList:
     out: FirewallDomainList = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "DomainCount" in data:
+    if data.get("DomainCount") is not None:
         out["domain_count"] = data["DomainCount"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_route53resolver.types.firewall_domain_list_status
 
         out["status"] = (
@@ -119,19 +119,19 @@ def deserialize_aws_json_1_1(data: dict) -> FirewallDomainList:
                 data["Status"]
             )
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "ManagedOwnerName" in data:
+    if data.get("ManagedOwnerName") is not None:
         out["managed_owner_name"] = data["ManagedOwnerName"]
-    if "CreatorRequestId" in data:
+    if data.get("CreatorRequestId") is not None:
         out["creator_request_id"] = data["CreatorRequestId"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         out["creation_time"] = data["CreationTime"]
-    if "ModificationTime" in data:
+    if data.get("ModificationTime") is not None:
         out["modification_time"] = data["ModificationTime"]
-    if "Category" in data:
+    if data.get("Category") is not None:
         out["category"] = data["Category"]
-    if "ManagedListType" in data:
+    if data.get("ManagedListType") is not None:
         import capo_route53resolver.types.domain_list_type
 
         out["managed_list_type"] = (

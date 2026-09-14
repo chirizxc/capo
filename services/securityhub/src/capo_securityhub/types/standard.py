@@ -49,15 +49,15 @@ def serialize_json(value: Standard) -> dict:
 
 def deserialize_json(data: dict) -> Standard:
     out: Standard = {}  # type: ignore[typeddict-item]
-    if "StandardsArn" in data:
+    if data.get("StandardsArn") is not None:
         out["standards_arn"] = data["StandardsArn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "EnabledByDefault" in data:
+    if data.get("EnabledByDefault") is not None:
         out["enabled_by_default"] = data["EnabledByDefault"]
-    if "StandardsManagedBy" in data:
+    if data.get("StandardsManagedBy") is not None:
         import capo_securityhub.types.standards_managed_by
 
         out["standards_managed_by"] = (

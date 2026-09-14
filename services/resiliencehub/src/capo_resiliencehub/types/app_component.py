@@ -45,17 +45,17 @@ def serialize_json(value: AppComponent) -> dict:
 
 def deserialize_json(data: dict) -> AppComponent:
     out: AppComponent = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("AppComponent.name required")
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("AppComponent.type required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "additionalInfo" in data:
+    if data.get("additionalInfo") is not None:
         import capo_resiliencehub.types.additional_info_map
 
         out["additional_info"] = (

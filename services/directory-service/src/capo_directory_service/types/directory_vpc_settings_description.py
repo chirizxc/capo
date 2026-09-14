@@ -54,9 +54,9 @@ def serialize_aws_json_1_1(value: DirectoryVpcSettingsDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DirectoryVpcSettingsDescription:
     out: DirectoryVpcSettingsDescription = {}  # type: ignore[typeddict-item]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
-    if "SubnetIds" in data:
+    if data.get("SubnetIds") is not None:
         import capo_directory_service.types.subnet_ids
 
         out["subnet_ids"] = (
@@ -64,9 +64,9 @@ def deserialize_aws_json_1_1(data: dict) -> DirectoryVpcSettingsDescription:
                 data["SubnetIds"]
             )
         )
-    if "SecurityGroupId" in data:
+    if data.get("SecurityGroupId") is not None:
         out["security_group_id"] = data["SecurityGroupId"]
-    if "AvailabilityZones" in data:
+    if data.get("AvailabilityZones") is not None:
         import capo_directory_service.types.availability_zones
 
         out["availability_zones"] = (

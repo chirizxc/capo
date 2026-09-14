@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: PublicDnsPropertiesMutable) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PublicDnsPropertiesMutable:
     out: PublicDnsPropertiesMutable = {}  # type: ignore[typeddict-item]
-    if "SOA" in data:
+    if data.get("SOA") is not None:
         import capo_servicediscovery.types.soa
 
         out["soa"] = capo_servicediscovery.types.soa.deserialize_aws_json_1_1(

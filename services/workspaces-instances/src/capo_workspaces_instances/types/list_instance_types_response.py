@@ -35,7 +35,7 @@ def serialize_aws_json_1_0(value: ListInstanceTypesResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListInstanceTypesResponse:
     out: ListInstanceTypesResponse = {}  # type: ignore[typeddict-item]
-    if "InstanceTypes" in data:
+    if data.get("InstanceTypes") is not None:
         import capo_workspaces_instances.types.instance_types
 
         out["instance_types"] = (
@@ -45,6 +45,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListInstanceTypesResponse:
         )
     else:
         raise DeserializationError("ListInstanceTypesResponse.instance_types required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

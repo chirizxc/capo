@@ -41,11 +41,11 @@ def serialize_json(value: CustomPluginConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> CustomPluginConfiguration:
     out: CustomPluginConfiguration = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     else:
         raise DeserializationError("CustomPluginConfiguration.description required")
-    if "apiSchemaType" in data:
+    if data.get("apiSchemaType") is not None:
         import capo_qbusiness.types.api_schema_type
 
         out["api_schema_type"] = capo_qbusiness.types.api_schema_type.deserialize_json(
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> CustomPluginConfiguration:
         )
     else:
         raise DeserializationError("CustomPluginConfiguration.api_schema_type required")
-    if "apiSchema" in data:
+    if data.get("apiSchema") is not None:
         import capo_qbusiness.types.api_schema
 
         out["api_schema"] = capo_qbusiness.types.api_schema.deserialize_json(

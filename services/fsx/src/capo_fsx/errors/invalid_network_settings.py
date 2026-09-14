@@ -42,13 +42,13 @@ def serialize_aws_json_1_1(value: InvalidNetworkSettings_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidNetworkSettings_:
     out: InvalidNetworkSettings_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "InvalidSubnetId" in data:
+    if data.get("InvalidSubnetId") is not None:
         out["invalid_subnet_id"] = data["InvalidSubnetId"]
-    if "InvalidSecurityGroupId" in data:
+    if data.get("InvalidSecurityGroupId") is not None:
         out["invalid_security_group_id"] = data["InvalidSecurityGroupId"]
-    if "InvalidRouteTableId" in data:
+    if data.get("InvalidRouteTableId") is not None:
         out["invalid_route_table_id"] = data["InvalidRouteTableId"]
     return out
 
@@ -58,15 +58,18 @@ class InvalidNetworkSettings(ServiceError):
 
     code: str | None = "InvalidNetworkSettings"
 
-    def __init__(self, data: InvalidNetworkSettings_):
+    def __init__(self, data: InvalidNetworkSettings_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidNetworkSettings",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidNetworkSettings":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidNetworkSettings":
+        return cls(deserialize_aws_json_1_1(data), message)

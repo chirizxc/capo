@@ -190,11 +190,11 @@ def serialize_json(value: UpdateCaseRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateCaseRequest:
     out: UpdateCaseRequest = {}  # type: ignore[typeddict-item]
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "reportedIncidentStartDate" in data:
+    if data.get("reportedIncidentStartDate") is not None:
         import capo_security_ir.types._prelude.timestamp
 
         out["reported_incident_start_date"] = (
@@ -202,7 +202,7 @@ def deserialize_json(data: dict) -> UpdateCaseRequest:
                 data["reportedIncidentStartDate"]
             )
         )
-    if "actualIncidentStartDate" in data:
+    if data.get("actualIncidentStartDate") is not None:
         import capo_security_ir.types._prelude.timestamp
 
         out["actual_incident_start_date"] = (
@@ -210,7 +210,7 @@ def deserialize_json(data: dict) -> UpdateCaseRequest:
                 data["actualIncidentStartDate"]
             )
         )
-    if "engagementType" in data:
+    if data.get("engagementType") is not None:
         import capo_security_ir.types.engagement_type
 
         out["engagement_type"] = (
@@ -218,19 +218,19 @@ def deserialize_json(data: dict) -> UpdateCaseRequest:
                 data["engagementType"]
             )
         )
-    if "watchersToAdd" in data:
+    if data.get("watchersToAdd") is not None:
         import capo_security_ir.types.watchers
 
         out["watchers_to_add"] = capo_security_ir.types.watchers.deserialize_json(
             data["watchersToAdd"]
         )
-    if "watchersToDelete" in data:
+    if data.get("watchersToDelete") is not None:
         import capo_security_ir.types.watchers
 
         out["watchers_to_delete"] = capo_security_ir.types.watchers.deserialize_json(
             data["watchersToDelete"]
         )
-    if "threatActorIpAddressesToAdd" in data:
+    if data.get("threatActorIpAddressesToAdd") is not None:
         import capo_security_ir.types.threat_actor_ip_list
 
         out["threat_actor_ip_addresses_to_add"] = (
@@ -238,7 +238,7 @@ def deserialize_json(data: dict) -> UpdateCaseRequest:
                 data["threatActorIpAddressesToAdd"]
             )
         )
-    if "threatActorIpAddressesToDelete" in data:
+    if data.get("threatActorIpAddressesToDelete") is not None:
         import capo_security_ir.types.threat_actor_ip_list
 
         out["threat_actor_ip_addresses_to_delete"] = (
@@ -246,7 +246,7 @@ def deserialize_json(data: dict) -> UpdateCaseRequest:
                 data["threatActorIpAddressesToDelete"]
             )
         )
-    if "impactedServicesToAdd" in data:
+    if data.get("impactedServicesToAdd") is not None:
         import capo_security_ir.types.impacted_services_list
 
         out["impacted_services_to_add"] = (
@@ -254,7 +254,7 @@ def deserialize_json(data: dict) -> UpdateCaseRequest:
                 data["impactedServicesToAdd"]
             )
         )
-    if "impactedServicesToDelete" in data:
+    if data.get("impactedServicesToDelete") is not None:
         import capo_security_ir.types.impacted_services_list
 
         out["impacted_services_to_delete"] = (
@@ -262,7 +262,7 @@ def deserialize_json(data: dict) -> UpdateCaseRequest:
                 data["impactedServicesToDelete"]
             )
         )
-    if "impactedAwsRegionsToAdd" in data:
+    if data.get("impactedAwsRegionsToAdd") is not None:
         import capo_security_ir.types.impacted_aws_region_list
 
         out["impacted_aws_regions_to_add"] = (
@@ -270,7 +270,7 @@ def deserialize_json(data: dict) -> UpdateCaseRequest:
                 data["impactedAwsRegionsToAdd"]
             )
         )
-    if "impactedAwsRegionsToDelete" in data:
+    if data.get("impactedAwsRegionsToDelete") is not None:
         import capo_security_ir.types.impacted_aws_region_list
 
         out["impacted_aws_regions_to_delete"] = (
@@ -278,7 +278,7 @@ def deserialize_json(data: dict) -> UpdateCaseRequest:
                 data["impactedAwsRegionsToDelete"]
             )
         )
-    if "impactedAccountsToAdd" in data:
+    if data.get("impactedAccountsToAdd") is not None:
         import capo_security_ir.types.impacted_accounts
 
         out["impacted_accounts_to_add"] = (
@@ -286,7 +286,7 @@ def deserialize_json(data: dict) -> UpdateCaseRequest:
                 data["impactedAccountsToAdd"]
             )
         )
-    if "impactedAccountsToDelete" in data:
+    if data.get("impactedAccountsToDelete") is not None:
         import capo_security_ir.types.impacted_accounts
 
         out["impacted_accounts_to_delete"] = (
@@ -294,7 +294,7 @@ def deserialize_json(data: dict) -> UpdateCaseRequest:
                 data["impactedAccountsToDelete"]
             )
         )
-    if "caseMetadata" in data:
+    if data.get("caseMetadata") is not None:
         import capo_security_ir.types.case_metadata
 
         out["case_metadata"] = capo_security_ir.types.case_metadata.deserialize_json(

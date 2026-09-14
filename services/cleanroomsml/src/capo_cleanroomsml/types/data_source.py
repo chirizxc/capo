@@ -28,7 +28,7 @@ def serialize_json(value: DataSource) -> dict:
 
 def deserialize_json(data: dict) -> DataSource:
     out: DataSource = {}  # type: ignore[typeddict-item]
-    if "glueDataSource" in data:
+    if data.get("glueDataSource") is not None:
         import capo_cleanroomsml.types.glue_data_source
 
         out["glue_data_source"] = (

@@ -175,13 +175,14 @@ class AsyncforecastqueryClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecastquery.types.query_forecast_request.QueryForecastRequest = {}  # type: ignore[typeddict-item]
-        input_["forecast_arn"] = forecast_arn
+        input_: capo_forecastquery.types.query_forecast_request.QueryForecastRequest = {
+            "forecast_arn": forecast_arn,
+            "filters": filters,
+        }
         if start_date is not None:
             input_["start_date"] = start_date
         if end_date is not None:
             input_["end_date"] = end_date
-        input_["filters"] = filters
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -190,6 +191,7 @@ class AsyncforecastqueryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def query_what_if_forecast(
@@ -236,13 +238,14 @@ class AsyncforecastqueryClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecastquery.types.query_what_if_forecast_request.QueryWhatIfForecastRequest = {}  # type: ignore[typeddict-item]
-        input_["what_if_forecast_arn"] = what_if_forecast_arn
+        input_: capo_forecastquery.types.query_what_if_forecast_request.QueryWhatIfForecastRequest = {
+            "what_if_forecast_arn": what_if_forecast_arn,
+            "filters": filters,
+        }
         if start_date is not None:
             input_["start_date"] = start_date
         if end_date is not None:
             input_["end_date"] = end_date
-        input_["filters"] = filters
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -251,6 +254,7 @@ class AsyncforecastqueryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

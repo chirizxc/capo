@@ -43,9 +43,9 @@ def serialize_json(value: InAppCampaignSchedule) -> dict:
 
 def deserialize_json(data: dict) -> InAppCampaignSchedule:
     out: InAppCampaignSchedule = {}  # type: ignore[typeddict-item]
-    if "EndDate" in data:
+    if data.get("EndDate") is not None:
         out["end_date"] = data["EndDate"]
-    if "EventFilter" in data:
+    if data.get("EventFilter") is not None:
         import capo_pinpoint.types.campaign_event_filter
 
         out["event_filter"] = (
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> InAppCampaignSchedule:
                 data["EventFilter"]
             )
         )
-    if "QuietTime" in data:
+    if data.get("QuietTime") is not None:
         import capo_pinpoint.types.quiet_time
 
         out["quiet_time"] = capo_pinpoint.types.quiet_time.deserialize_json(

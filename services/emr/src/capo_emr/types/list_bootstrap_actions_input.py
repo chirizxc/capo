@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: ListBootstrapActionsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListBootstrapActionsInput:
     out: ListBootstrapActionsInput = {}  # type: ignore[typeddict-item]
-    if "ClusterId" in data:
+    if data.get("ClusterId") is not None:
         out["cluster_id"] = data["ClusterId"]
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

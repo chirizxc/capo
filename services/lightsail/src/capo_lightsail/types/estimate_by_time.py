@@ -28,7 +28,15 @@ class EstimateByTime(TypedDict, closed=True):
 def serialize_aws_json_1_1(value: EstimateByTime) -> dict:
     out: dict = {}
     if "usage_cost" in value:
-        out["usageCost"] = value["usage_cost"]
+        out["usageCost"] = (
+            "NaN"
+            if value["usage_cost"] != value["usage_cost"]
+            else "Infinity"
+            if value["usage_cost"] == float("inf")
+            else "-Infinity"
+            if value["usage_cost"] == float("-inf")
+            else value["usage_cost"]
+        )
     if "pricing_unit" in value:
         import capo_lightsail.types.pricing_unit
 
@@ -36,7 +44,15 @@ def serialize_aws_json_1_1(value: EstimateByTime) -> dict:
             value["pricing_unit"]
         )
     if "unit" in value:
-        out["unit"] = value["unit"]
+        out["unit"] = (
+            "NaN"
+            if value["unit"] != value["unit"]
+            else "Infinity"
+            if value["unit"] == float("inf")
+            else "-Infinity"
+            if value["unit"] == float("-inf")
+            else value["unit"]
+        )
     if "currency" in value:
         import capo_lightsail.types.currency
 
@@ -54,9 +70,9 @@ def serialize_aws_json_1_1(value: EstimateByTime) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EstimateByTime:
     out: EstimateByTime = {}  # type: ignore[typeddict-item]
-    if "usageCost" in data:
-        out["usage_cost"] = data["usageCost"]
-    if "pricingUnit" in data:
+    if data.get("usageCost") is not None:
+        out["usage_cost"] = float(data["usageCost"])
+    if data.get("pricingUnit") is not None:
         import capo_lightsail.types.pricing_unit
 
         out["pricing_unit"] = (
@@ -64,15 +80,15 @@ def deserialize_aws_json_1_1(data: dict) -> EstimateByTime:
                 data["pricingUnit"]
             )
         )
-    if "unit" in data:
-        out["unit"] = data["unit"]
-    if "currency" in data:
+    if data.get("unit") is not None:
+        out["unit"] = float(data["unit"])
+    if data.get("currency") is not None:
         import capo_lightsail.types.currency
 
         out["currency"] = capo_lightsail.types.currency.deserialize_aws_json_1_1(
             data["currency"]
         )
-    if "timePeriod" in data:
+    if data.get("timePeriod") is not None:
         import capo_lightsail.types.time_period
 
         out["time_period"] = capo_lightsail.types.time_period.deserialize_aws_json_1_1(

@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: ProxyConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProxyConfiguration:
     out: ProxyConfiguration = {}  # type: ignore[typeddict-item]
-    if "defaultBehavior" in data:
+    if data.get("defaultBehavior") is not None:
         import capo_codebuild.types.fleet_proxy_rule_behavior
 
         out["default_behavior"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProxyConfiguration:
                 data["defaultBehavior"]
             )
         )
-    if "orderedProxyRules" in data:
+    if data.get("orderedProxyRules") is not None:
         import capo_codebuild.types.fleet_proxy_rules
 
         out["ordered_proxy_rules"] = (

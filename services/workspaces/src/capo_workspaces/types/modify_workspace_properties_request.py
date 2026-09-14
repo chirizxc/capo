@@ -50,13 +50,13 @@ def serialize_aws_json_1_1(value: ModifyWorkspacePropertiesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModifyWorkspacePropertiesRequest:
     out: ModifyWorkspacePropertiesRequest = {}  # type: ignore[typeddict-item]
-    if "WorkspaceId" in data:
+    if data.get("WorkspaceId") is not None:
         out["workspace_id"] = data["WorkspaceId"]
     else:
         raise DeserializationError(
             "ModifyWorkspacePropertiesRequest.workspace_id required"
         )
-    if "WorkspaceProperties" in data:
+    if data.get("WorkspaceProperties") is not None:
         import capo_workspaces.types.workspace_properties
 
         out["workspace_properties"] = (
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_1(data: dict) -> ModifyWorkspacePropertiesRequest:
                 data["WorkspaceProperties"]
             )
         )
-    if "DataReplication" in data:
+    if data.get("DataReplication") is not None:
         import capo_workspaces.types.data_replication
 
         out["data_replication"] = (

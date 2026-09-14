@@ -78,21 +78,21 @@ def serialize_json(value: DescribeEmailAddressResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeEmailAddressResponse:
     out: DescribeEmailAddressResponse = {}  # type: ignore[typeddict-item]
-    if "EmailAddressId" in data:
+    if data.get("EmailAddressId") is not None:
         out["email_address_id"] = data["EmailAddressId"]
-    if "EmailAddressArn" in data:
+    if data.get("EmailAddressArn") is not None:
         out["email_address_arn"] = data["EmailAddressArn"]
-    if "EmailAddress" in data:
+    if data.get("EmailAddress") is not None:
         out["email_address"] = data["EmailAddress"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "CreateTimestamp" in data:
+    if data.get("CreateTimestamp") is not None:
         out["create_timestamp"] = data["CreateTimestamp"]
-    if "ModifiedTimestamp" in data:
+    if data.get("ModifiedTimestamp") is not None:
         out["modified_timestamp"] = data["ModifiedTimestamp"]
-    if "AliasConfigurations" in data:
+    if data.get("AliasConfigurations") is not None:
         import capo_connect.types.alias_configuration_list
 
         out["alias_configurations"] = (
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> DescribeEmailAddressResponse:
                 data["AliasConfigurations"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])

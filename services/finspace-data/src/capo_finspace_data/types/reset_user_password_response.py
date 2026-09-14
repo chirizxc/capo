@@ -28,8 +28,8 @@ def serialize_json(value: ResetUserPasswordResponse) -> dict:
 
 def deserialize_json(data: dict) -> ResetUserPasswordResponse:
     out: ResetUserPasswordResponse = {}  # type: ignore[typeddict-item]
-    if "userId" in data:
+    if data.get("userId") is not None:
         out["user_id"] = data["userId"]
-    if "temporaryPassword" in data:
+    if data.get("temporaryPassword") is not None:
         out["temporary_password"] = data["temporaryPassword"]
     return out

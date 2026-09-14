@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: CreateFlowDefinitionResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateFlowDefinitionResponse:
     out: CreateFlowDefinitionResponse = {}  # type: ignore[typeddict-item]
-    if "FlowDefinitionArn" in data:
+    if data.get("FlowDefinitionArn") is not None:
         out["flow_definition_arn"] = data["FlowDefinitionArn"]
     return out

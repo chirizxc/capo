@@ -50,21 +50,21 @@ def serialize_json(value: WriteSegmentRequest) -> dict:
 
 def deserialize_json(data: dict) -> WriteSegmentRequest:
     out: WriteSegmentRequest = {}  # type: ignore[typeddict-item]
-    if "Dimensions" in data:
+    if data.get("Dimensions") is not None:
         import capo_pinpoint.types.segment_dimensions
 
         out["dimensions"] = capo_pinpoint.types.segment_dimensions.deserialize_json(
             data["Dimensions"]
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "SegmentGroups" in data:
+    if data.get("SegmentGroups") is not None:
         import capo_pinpoint.types.segment_group_list
 
         out["segment_groups"] = capo_pinpoint.types.segment_group_list.deserialize_json(
             data["SegmentGroups"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_pinpoint.types.map_of__string
 
         out["tags"] = capo_pinpoint.types.map_of__string.deserialize_json(data["tags"])

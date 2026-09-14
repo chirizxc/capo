@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: EntityRecognitionConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EntityRecognitionConfig:
     out: EntityRecognitionConfig = {}  # type: ignore[typeddict-item]
-    if "EntityTypes" in data:
+    if data.get("EntityTypes") is not None:
         import capo_comprehend.types.entity_types_list
 
         out["entity_types"] = (

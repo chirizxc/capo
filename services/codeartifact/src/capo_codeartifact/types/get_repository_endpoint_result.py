@@ -23,6 +23,6 @@ def serialize_json(value: GetRepositoryEndpointResult) -> dict:
 
 def deserialize_json(data: dict) -> GetRepositoryEndpointResult:
     out: GetRepositoryEndpointResult = {}  # type: ignore[typeddict-item]
-    if "repositoryEndpoint" in data:
+    if data.get("repositoryEndpoint") is not None:
         out["repository_endpoint"] = data["repositoryEndpoint"]
     return out

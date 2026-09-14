@@ -41,11 +41,11 @@ def serialize_aws_json_1_1(value: ListResolverEndpointIpAddressesResponse) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> ListResolverEndpointIpAddressesResponse:
     out: ListResolverEndpointIpAddressesResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "IpAddresses" in data:
+    if data.get("IpAddresses") is not None:
         import capo_route53resolver.types.ip_addresses_response
 
         out["ip_addresses"] = (

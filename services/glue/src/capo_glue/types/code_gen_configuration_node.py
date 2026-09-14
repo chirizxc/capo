@@ -910,7 +910,7 @@ def serialize_aws_json_1_1(value: CodeGenConfigurationNode) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
     out: CodeGenConfigurationNode = {}  # type: ignore[typeddict-item]
-    if "AthenaConnectorSource" in data:
+    if data.get("AthenaConnectorSource") is not None:
         import capo_glue.types.athena_connector_source
 
         out["athena_connector_source"] = (
@@ -918,7 +918,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["AthenaConnectorSource"]
             )
         )
-    if "JDBCConnectorSource" in data:
+    if data.get("JDBCConnectorSource") is not None:
         import capo_glue.types.jdbc_connector_source
 
         out["jdbc_connector_source"] = (
@@ -926,7 +926,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["JDBCConnectorSource"]
             )
         )
-    if "SparkConnectorSource" in data:
+    if data.get("SparkConnectorSource") is not None:
         import capo_glue.types.spark_connector_source
 
         out["spark_connector_source"] = (
@@ -934,13 +934,13 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["SparkConnectorSource"]
             )
         )
-    if "CatalogSource" in data:
+    if data.get("CatalogSource") is not None:
         import capo_glue.types.catalog_source
 
         out["catalog_source"] = capo_glue.types.catalog_source.deserialize_aws_json_1_1(
             data["CatalogSource"]
         )
-    if "RedshiftSource" in data:
+    if data.get("RedshiftSource") is not None:
         import capo_glue.types.redshift_source
 
         out["redshift_source"] = (
@@ -948,7 +948,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["RedshiftSource"]
             )
         )
-    if "S3CatalogSource" in data:
+    if data.get("S3CatalogSource") is not None:
         import capo_glue.types.s3_catalog_source
 
         out["s3_catalog_source"] = (
@@ -956,19 +956,19 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["S3CatalogSource"]
             )
         )
-    if "S3CsvSource" in data:
+    if data.get("S3CsvSource") is not None:
         import capo_glue.types.s3_csv_source
 
         out["s3_csv_source"] = capo_glue.types.s3_csv_source.deserialize_aws_json_1_1(
             data["S3CsvSource"]
         )
-    if "S3JsonSource" in data:
+    if data.get("S3JsonSource") is not None:
         import capo_glue.types.s3_json_source
 
         out["s3_json_source"] = capo_glue.types.s3_json_source.deserialize_aws_json_1_1(
             data["S3JsonSource"]
         )
-    if "S3ParquetSource" in data:
+    if data.get("S3ParquetSource") is not None:
         import capo_glue.types.s3_parquet_source
 
         out["s3_parquet_source"] = (
@@ -976,7 +976,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["S3ParquetSource"]
             )
         )
-    if "RelationalCatalogSource" in data:
+    if data.get("RelationalCatalogSource") is not None:
         import capo_glue.types.relational_catalog_source
 
         out["relational_catalog_source"] = (
@@ -984,7 +984,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["RelationalCatalogSource"]
             )
         )
-    if "DynamoDBCatalogSource" in data:
+    if data.get("DynamoDBCatalogSource") is not None:
         import capo_glue.types.dynamo_db_catalog_source
 
         out["dynamo_db_catalog_source"] = (
@@ -992,7 +992,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["DynamoDBCatalogSource"]
             )
         )
-    if "JDBCConnectorTarget" in data:
+    if data.get("JDBCConnectorTarget") is not None:
         import capo_glue.types.jdbc_connector_target
 
         out["jdbc_connector_target"] = (
@@ -1000,7 +1000,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["JDBCConnectorTarget"]
             )
         )
-    if "SparkConnectorTarget" in data:
+    if data.get("SparkConnectorTarget") is not None:
         import capo_glue.types.spark_connector_target
 
         out["spark_connector_target"] = (
@@ -1008,7 +1008,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["SparkConnectorTarget"]
             )
         )
-    if "CatalogTarget" in data:
+    if data.get("CatalogTarget") is not None:
         import capo_glue.types.basic_catalog_target
 
         out["catalog_target"] = (
@@ -1016,7 +1016,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["CatalogTarget"]
             )
         )
-    if "RedshiftTarget" in data:
+    if data.get("RedshiftTarget") is not None:
         import capo_glue.types.redshift_target
 
         out["redshift_target"] = (
@@ -1024,7 +1024,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["RedshiftTarget"]
             )
         )
-    if "S3CatalogTarget" in data:
+    if data.get("S3CatalogTarget") is not None:
         import capo_glue.types.s3_catalog_target
 
         out["s3_catalog_target"] = (
@@ -1032,7 +1032,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["S3CatalogTarget"]
             )
         )
-    if "S3GlueParquetTarget" in data:
+    if data.get("S3GlueParquetTarget") is not None:
         import capo_glue.types.s3_glue_parquet_target
 
         out["s3_glue_parquet_target"] = (
@@ -1040,7 +1040,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["S3GlueParquetTarget"]
             )
         )
-    if "S3DirectTarget" in data:
+    if data.get("S3DirectTarget") is not None:
         import capo_glue.types.s3_direct_target
 
         out["s3_direct_target"] = (
@@ -1048,45 +1048,45 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["S3DirectTarget"]
             )
         )
-    if "ApplyMapping" in data:
+    if data.get("ApplyMapping") is not None:
         import capo_glue.types.apply_mapping
 
         out["apply_mapping"] = capo_glue.types.apply_mapping.deserialize_aws_json_1_1(
             data["ApplyMapping"]
         )
-    if "SelectFields" in data:
+    if data.get("SelectFields") is not None:
         import capo_glue.types.select_fields
 
         out["select_fields"] = capo_glue.types.select_fields.deserialize_aws_json_1_1(
             data["SelectFields"]
         )
-    if "DropFields" in data:
+    if data.get("DropFields") is not None:
         import capo_glue.types.drop_fields
 
         out["drop_fields"] = capo_glue.types.drop_fields.deserialize_aws_json_1_1(
             data["DropFields"]
         )
-    if "RenameField" in data:
+    if data.get("RenameField") is not None:
         import capo_glue.types.rename_field
 
         out["rename_field"] = capo_glue.types.rename_field.deserialize_aws_json_1_1(
             data["RenameField"]
         )
-    if "Spigot" in data:
+    if data.get("Spigot") is not None:
         import capo_glue.types.spigot
 
         out["spigot"] = capo_glue.types.spigot.deserialize_aws_json_1_1(data["Spigot"])
-    if "Join" in data:
+    if data.get("Join") is not None:
         import capo_glue.types.join
 
         out["join"] = capo_glue.types.join.deserialize_aws_json_1_1(data["Join"])
-    if "SplitFields" in data:
+    if data.get("SplitFields") is not None:
         import capo_glue.types.split_fields
 
         out["split_fields"] = capo_glue.types.split_fields.deserialize_aws_json_1_1(
             data["SplitFields"]
         )
-    if "SelectFromCollection" in data:
+    if data.get("SelectFromCollection") is not None:
         import capo_glue.types.select_from_collection
 
         out["select_from_collection"] = (
@@ -1094,7 +1094,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["SelectFromCollection"]
             )
         )
-    if "FillMissingValues" in data:
+    if data.get("FillMissingValues") is not None:
         import capo_glue.types.fill_missing_values
 
         out["fill_missing_values"] = (
@@ -1102,23 +1102,23 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["FillMissingValues"]
             )
         )
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_glue.types.filter
 
         out["filter"] = capo_glue.types.filter.deserialize_aws_json_1_1(data["Filter"])
-    if "CustomCode" in data:
+    if data.get("CustomCode") is not None:
         import capo_glue.types.custom_code
 
         out["custom_code"] = capo_glue.types.custom_code.deserialize_aws_json_1_1(
             data["CustomCode"]
         )
-    if "SparkSQL" in data:
+    if data.get("SparkSQL") is not None:
         import capo_glue.types.spark_sql
 
         out["spark_sql"] = capo_glue.types.spark_sql.deserialize_aws_json_1_1(
             data["SparkSQL"]
         )
-    if "DirectKinesisSource" in data:
+    if data.get("DirectKinesisSource") is not None:
         import capo_glue.types.direct_kinesis_source
 
         out["direct_kinesis_source"] = (
@@ -1126,7 +1126,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["DirectKinesisSource"]
             )
         )
-    if "DirectKafkaSource" in data:
+    if data.get("DirectKafkaSource") is not None:
         import capo_glue.types.direct_kafka_source
 
         out["direct_kafka_source"] = (
@@ -1134,7 +1134,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["DirectKafkaSource"]
             )
         )
-    if "CatalogKinesisSource" in data:
+    if data.get("CatalogKinesisSource") is not None:
         import capo_glue.types.catalog_kinesis_source
 
         out["catalog_kinesis_source"] = (
@@ -1142,7 +1142,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["CatalogKinesisSource"]
             )
         )
-    if "CatalogKafkaSource" in data:
+    if data.get("CatalogKafkaSource") is not None:
         import capo_glue.types.catalog_kafka_source
 
         out["catalog_kafka_source"] = (
@@ -1150,7 +1150,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["CatalogKafkaSource"]
             )
         )
-    if "DropNullFields" in data:
+    if data.get("DropNullFields") is not None:
         import capo_glue.types.drop_null_fields
 
         out["drop_null_fields"] = (
@@ -1158,27 +1158,27 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["DropNullFields"]
             )
         )
-    if "Merge" in data:
+    if data.get("Merge") is not None:
         import capo_glue.types.merge
 
         out["merge"] = capo_glue.types.merge.deserialize_aws_json_1_1(data["Merge"])
-    if "Union" in data:
+    if data.get("Union") is not None:
         import capo_glue.types.union
 
         out["union"] = capo_glue.types.union.deserialize_aws_json_1_1(data["Union"])
-    if "PIIDetection" in data:
+    if data.get("PIIDetection") is not None:
         import capo_glue.types.pii_detection
 
         out["pii_detection"] = capo_glue.types.pii_detection.deserialize_aws_json_1_1(
             data["PIIDetection"]
         )
-    if "Aggregate" in data:
+    if data.get("Aggregate") is not None:
         import capo_glue.types.aggregate
 
         out["aggregate"] = capo_glue.types.aggregate.deserialize_aws_json_1_1(
             data["Aggregate"]
         )
-    if "DropDuplicates" in data:
+    if data.get("DropDuplicates") is not None:
         import capo_glue.types.drop_duplicates
 
         out["drop_duplicates"] = (
@@ -1186,7 +1186,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["DropDuplicates"]
             )
         )
-    if "GovernedCatalogTarget" in data:
+    if data.get("GovernedCatalogTarget") is not None:
         import capo_glue.types.governed_catalog_target
 
         out["governed_catalog_target"] = (
@@ -1194,7 +1194,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["GovernedCatalogTarget"]
             )
         )
-    if "GovernedCatalogSource" in data:
+    if data.get("GovernedCatalogSource") is not None:
         import capo_glue.types.governed_catalog_source
 
         out["governed_catalog_source"] = (
@@ -1202,7 +1202,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["GovernedCatalogSource"]
             )
         )
-    if "MicrosoftSQLServerCatalogSource" in data:
+    if data.get("MicrosoftSQLServerCatalogSource") is not None:
         import capo_glue.types.microsoft_sql_server_catalog_source
 
         out["microsoft_sql_server_catalog_source"] = (
@@ -1210,7 +1210,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["MicrosoftSQLServerCatalogSource"]
             )
         )
-    if "MySQLCatalogSource" in data:
+    if data.get("MySQLCatalogSource") is not None:
         import capo_glue.types.my_sql_catalog_source
 
         out["my_sql_catalog_source"] = (
@@ -1218,7 +1218,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["MySQLCatalogSource"]
             )
         )
-    if "OracleSQLCatalogSource" in data:
+    if data.get("OracleSQLCatalogSource") is not None:
         import capo_glue.types.oracle_sql_catalog_source
 
         out["oracle_sql_catalog_source"] = (
@@ -1226,7 +1226,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["OracleSQLCatalogSource"]
             )
         )
-    if "PostgreSQLCatalogSource" in data:
+    if data.get("PostgreSQLCatalogSource") is not None:
         import capo_glue.types.postgre_sql_catalog_source
 
         out["postgre_sql_catalog_source"] = (
@@ -1234,7 +1234,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["PostgreSQLCatalogSource"]
             )
         )
-    if "MicrosoftSQLServerCatalogTarget" in data:
+    if data.get("MicrosoftSQLServerCatalogTarget") is not None:
         import capo_glue.types.microsoft_sql_server_catalog_target
 
         out["microsoft_sql_server_catalog_target"] = (
@@ -1242,7 +1242,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["MicrosoftSQLServerCatalogTarget"]
             )
         )
-    if "MySQLCatalogTarget" in data:
+    if data.get("MySQLCatalogTarget") is not None:
         import capo_glue.types.my_sql_catalog_target
 
         out["my_sql_catalog_target"] = (
@@ -1250,7 +1250,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["MySQLCatalogTarget"]
             )
         )
-    if "OracleSQLCatalogTarget" in data:
+    if data.get("OracleSQLCatalogTarget") is not None:
         import capo_glue.types.oracle_sql_catalog_target
 
         out["oracle_sql_catalog_target"] = (
@@ -1258,7 +1258,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["OracleSQLCatalogTarget"]
             )
         )
-    if "PostgreSQLCatalogTarget" in data:
+    if data.get("PostgreSQLCatalogTarget") is not None:
         import capo_glue.types.postgre_sql_catalog_target
 
         out["postgre_sql_catalog_target"] = (
@@ -1266,11 +1266,11 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["PostgreSQLCatalogTarget"]
             )
         )
-    if "Route" in data:
+    if data.get("Route") is not None:
         import capo_glue.types.route
 
         out["route"] = capo_glue.types.route.deserialize_aws_json_1_1(data["Route"])
-    if "DynamicTransform" in data:
+    if data.get("DynamicTransform") is not None:
         import capo_glue.types.dynamic_transform
 
         out["dynamic_transform"] = (
@@ -1278,7 +1278,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["DynamicTransform"]
             )
         )
-    if "EvaluateDataQuality" in data:
+    if data.get("EvaluateDataQuality") is not None:
         import capo_glue.types.evaluate_data_quality
 
         out["evaluate_data_quality"] = (
@@ -1286,7 +1286,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["EvaluateDataQuality"]
             )
         )
-    if "S3CatalogHudiSource" in data:
+    if data.get("S3CatalogHudiSource") is not None:
         import capo_glue.types.s3_catalog_hudi_source
 
         out["s3_catalog_hudi_source"] = (
@@ -1294,7 +1294,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["S3CatalogHudiSource"]
             )
         )
-    if "CatalogHudiSource" in data:
+    if data.get("CatalogHudiSource") is not None:
         import capo_glue.types.catalog_hudi_source
 
         out["catalog_hudi_source"] = (
@@ -1302,13 +1302,13 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["CatalogHudiSource"]
             )
         )
-    if "S3HudiSource" in data:
+    if data.get("S3HudiSource") is not None:
         import capo_glue.types.s3_hudi_source
 
         out["s3_hudi_source"] = capo_glue.types.s3_hudi_source.deserialize_aws_json_1_1(
             data["S3HudiSource"]
         )
-    if "S3HudiCatalogTarget" in data:
+    if data.get("S3HudiCatalogTarget") is not None:
         import capo_glue.types.s3_hudi_catalog_target
 
         out["s3_hudi_catalog_target"] = (
@@ -1316,7 +1316,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["S3HudiCatalogTarget"]
             )
         )
-    if "S3HudiDirectTarget" in data:
+    if data.get("S3HudiDirectTarget") is not None:
         import capo_glue.types.s3_hudi_direct_target
 
         out["s3_hudi_direct_target"] = (
@@ -1324,7 +1324,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["S3HudiDirectTarget"]
             )
         )
-    if "DirectJDBCSource" in data:
+    if data.get("DirectJDBCSource") is not None:
         import capo_glue.types.direct_jdbc_source
 
         out["direct_jdbc_source"] = (
@@ -1332,7 +1332,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["DirectJDBCSource"]
             )
         )
-    if "S3CatalogDeltaSource" in data:
+    if data.get("S3CatalogDeltaSource") is not None:
         import capo_glue.types.s3_catalog_delta_source
 
         out["s3_catalog_delta_source"] = (
@@ -1340,7 +1340,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["S3CatalogDeltaSource"]
             )
         )
-    if "CatalogDeltaSource" in data:
+    if data.get("CatalogDeltaSource") is not None:
         import capo_glue.types.catalog_delta_source
 
         out["catalog_delta_source"] = (
@@ -1348,7 +1348,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["CatalogDeltaSource"]
             )
         )
-    if "S3DeltaSource" in data:
+    if data.get("S3DeltaSource") is not None:
         import capo_glue.types.s3_delta_source
 
         out["s3_delta_source"] = (
@@ -1356,7 +1356,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["S3DeltaSource"]
             )
         )
-    if "S3DeltaCatalogTarget" in data:
+    if data.get("S3DeltaCatalogTarget") is not None:
         import capo_glue.types.s3_delta_catalog_target
 
         out["s3_delta_catalog_target"] = (
@@ -1364,7 +1364,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["S3DeltaCatalogTarget"]
             )
         )
-    if "S3DeltaDirectTarget" in data:
+    if data.get("S3DeltaDirectTarget") is not None:
         import capo_glue.types.s3_delta_direct_target
 
         out["s3_delta_direct_target"] = (
@@ -1372,7 +1372,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["S3DeltaDirectTarget"]
             )
         )
-    if "AmazonRedshiftSource" in data:
+    if data.get("AmazonRedshiftSource") is not None:
         import capo_glue.types.amazon_redshift_source
 
         out["amazon_redshift_source"] = (
@@ -1380,7 +1380,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["AmazonRedshiftSource"]
             )
         )
-    if "AmazonRedshiftTarget" in data:
+    if data.get("AmazonRedshiftTarget") is not None:
         import capo_glue.types.amazon_redshift_target
 
         out["amazon_redshift_target"] = (
@@ -1388,7 +1388,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["AmazonRedshiftTarget"]
             )
         )
-    if "EvaluateDataQualityMultiFrame" in data:
+    if data.get("EvaluateDataQualityMultiFrame") is not None:
         import capo_glue.types.evaluate_data_quality_multi_frame
 
         out["evaluate_data_quality_multi_frame"] = (
@@ -1396,11 +1396,11 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["EvaluateDataQualityMultiFrame"]
             )
         )
-    if "Recipe" in data:
+    if data.get("Recipe") is not None:
         import capo_glue.types.recipe
 
         out["recipe"] = capo_glue.types.recipe.deserialize_aws_json_1_1(data["Recipe"])
-    if "SnowflakeSource" in data:
+    if data.get("SnowflakeSource") is not None:
         import capo_glue.types.snowflake_source
 
         out["snowflake_source"] = (
@@ -1408,7 +1408,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["SnowflakeSource"]
             )
         )
-    if "SnowflakeTarget" in data:
+    if data.get("SnowflakeTarget") is not None:
         import capo_glue.types.snowflake_target
 
         out["snowflake_target"] = (
@@ -1416,7 +1416,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["SnowflakeTarget"]
             )
         )
-    if "ConnectorDataSource" in data:
+    if data.get("ConnectorDataSource") is not None:
         import capo_glue.types.connector_data_source
 
         out["connector_data_source"] = (
@@ -1424,7 +1424,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["ConnectorDataSource"]
             )
         )
-    if "ConnectorDataTarget" in data:
+    if data.get("ConnectorDataTarget") is not None:
         import capo_glue.types.connector_data_target
 
         out["connector_data_target"] = (
@@ -1432,7 +1432,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["ConnectorDataTarget"]
             )
         )
-    if "S3CatalogIcebergSource" in data:
+    if data.get("S3CatalogIcebergSource") is not None:
         import capo_glue.types.s3_catalog_iceberg_source
 
         out["s3_catalog_iceberg_source"] = (
@@ -1440,7 +1440,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["S3CatalogIcebergSource"]
             )
         )
-    if "CatalogIcebergSource" in data:
+    if data.get("CatalogIcebergSource") is not None:
         import capo_glue.types.catalog_iceberg_source
 
         out["catalog_iceberg_source"] = (
@@ -1448,7 +1448,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["CatalogIcebergSource"]
             )
         )
-    if "S3IcebergCatalogTarget" in data:
+    if data.get("S3IcebergCatalogTarget") is not None:
         import capo_glue.types.s3_iceberg_catalog_target
 
         out["s3_iceberg_catalog_target"] = (
@@ -1456,7 +1456,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["S3IcebergCatalogTarget"]
             )
         )
-    if "S3IcebergDirectTarget" in data:
+    if data.get("S3IcebergDirectTarget") is not None:
         import capo_glue.types.s3_iceberg_direct_target
 
         out["s3_iceberg_direct_target"] = (
@@ -1464,7 +1464,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["S3IcebergDirectTarget"]
             )
         )
-    if "S3ExcelSource" in data:
+    if data.get("S3ExcelSource") is not None:
         import capo_glue.types.s3_excel_source
 
         out["s3_excel_source"] = (
@@ -1472,7 +1472,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["S3ExcelSource"]
             )
         )
-    if "S3HyperDirectTarget" in data:
+    if data.get("S3HyperDirectTarget") is not None:
         import capo_glue.types.s3_hyper_direct_target
 
         out["s3_hyper_direct_target"] = (
@@ -1480,7 +1480,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNode:
                 data["S3HyperDirectTarget"]
             )
         )
-    if "DynamoDBELTConnectorSource" in data:
+    if data.get("DynamoDBELTConnectorSource") is not None:
         import capo_glue.types.dynamo_dbelt_connector_source
 
         out["dynamo_dbelt_connector_source"] = (

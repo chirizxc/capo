@@ -45,22 +45,22 @@ def serialize_json(value: FieldValidationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> FieldValidationConfiguration:
     out: FieldValidationConfiguration = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("FieldValidationConfiguration.type required")
-    if "strValues" in data:
+    if data.get("strValues") is not None:
         import capo_amplifyuibuilder.types.str_values
 
         out["str_values"] = capo_amplifyuibuilder.types.str_values.deserialize_json(
             data["strValues"]
         )
-    if "numValues" in data:
+    if data.get("numValues") is not None:
         import capo_amplifyuibuilder.types.num_values
 
         out["num_values"] = capo_amplifyuibuilder.types.num_values.deserialize_json(
             data["numValues"]
         )
-    if "validationMessage" in data:
+    if data.get("validationMessage") is not None:
         out["validation_message"] = data["validationMessage"]
     return out

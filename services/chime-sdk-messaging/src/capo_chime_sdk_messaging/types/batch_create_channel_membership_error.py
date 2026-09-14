@@ -37,14 +37,14 @@ def serialize_json(value: BatchCreateChannelMembershipError) -> dict:
 
 def deserialize_json(data: dict) -> BatchCreateChannelMembershipError:
     out: BatchCreateChannelMembershipError = {}  # type: ignore[typeddict-item]
-    if "MemberArn" in data:
+    if data.get("MemberArn") is not None:
         out["member_arn"] = data["MemberArn"]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         import capo_chime_sdk_messaging.types.error_code
 
         out["error_code"] = capo_chime_sdk_messaging.types.error_code.deserialize_json(
             data["ErrorCode"]
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     return out

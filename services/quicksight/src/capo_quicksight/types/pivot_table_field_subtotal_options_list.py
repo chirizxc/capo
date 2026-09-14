@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> PivotTableFieldSubtotalOptionsList:
 
     out: PivotTableFieldSubtotalOptionsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.pivot_table_field_subtotal_options.deserialize_json(
                 item

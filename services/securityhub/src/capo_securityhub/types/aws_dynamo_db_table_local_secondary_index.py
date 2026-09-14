@@ -53,11 +53,11 @@ def serialize_json(value: AwsDynamoDbTableLocalSecondaryIndex) -> dict:
 
 def deserialize_json(data: dict) -> AwsDynamoDbTableLocalSecondaryIndex:
     out: AwsDynamoDbTableLocalSecondaryIndex = {}  # type: ignore[typeddict-item]
-    if "IndexArn" in data:
+    if data.get("IndexArn") is not None:
         out["index_arn"] = data["IndexArn"]
-    if "IndexName" in data:
+    if data.get("IndexName") is not None:
         out["index_name"] = data["IndexName"]
-    if "KeySchema" in data:
+    if data.get("KeySchema") is not None:
         import capo_securityhub.types.aws_dynamo_db_table_key_schema_list
 
         out["key_schema"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> AwsDynamoDbTableLocalSecondaryIndex:
                 data["KeySchema"]
             )
         )
-    if "Projection" in data:
+    if data.get("Projection") is not None:
         import capo_securityhub.types.aws_dynamo_db_table_projection
 
         out["projection"] = (

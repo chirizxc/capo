@@ -56,23 +56,23 @@ def serialize_json(value: Campaign) -> dict:
 
 def deserialize_json(data: dict) -> Campaign:
     out: Campaign = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("Campaign.id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("Campaign.arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("Campaign.name required")
-    if "connectInstanceId" in data:
+    if data.get("connectInstanceId") is not None:
         out["connect_instance_id"] = data["connectInstanceId"]
     else:
         raise DeserializationError("Campaign.connect_instance_id required")
-    if "dialerConfig" in data:
+    if data.get("dialerConfig") is not None:
         import capo_connectcampaigns.types.dialer_config
 
         out["dialer_config"] = (
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> Campaign:
         )
     else:
         raise DeserializationError("Campaign.dialer_config required")
-    if "outboundCallConfig" in data:
+    if data.get("outboundCallConfig") is not None:
         import capo_connectcampaigns.types.outbound_call_config
 
         out["outbound_call_config"] = (
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> Campaign:
         )
     else:
         raise DeserializationError("Campaign.outbound_call_config required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_connectcampaigns.types.tag_map
 
         out["tags"] = capo_connectcampaigns.types.tag_map.deserialize_json(data["tags"])

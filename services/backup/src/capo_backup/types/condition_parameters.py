@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ConditionParameters:
 
     out: ConditionParameters = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_backup.types.condition_parameter.deserialize_json(item))
     return out

@@ -55,15 +55,15 @@ def serialize_aws_json_1_1(value: ListDeploymentInstancesInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListDeploymentInstancesInput:
     out: ListDeploymentInstancesInput = {}  # type: ignore[typeddict-item]
-    if "deploymentId" in data:
+    if data.get("deploymentId") is not None:
         out["deployment_id"] = data["deploymentId"]
     else:
         raise DeserializationError(
             "ListDeploymentInstancesInput.deployment_id required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "instanceStatusFilter" in data:
+    if data.get("instanceStatusFilter") is not None:
         import capo_codedeploy.types.instance_status_list
 
         out["instance_status_filter"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListDeploymentInstancesInput:
                 data["instanceStatusFilter"]
             )
         )
-    if "instanceTypeFilter" in data:
+    if data.get("instanceTypeFilter") is not None:
         import capo_codedeploy.types.instance_type_list
 
         out["instance_type_filter"] = (

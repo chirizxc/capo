@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> TooltipSheetImageList:
 
     out: TooltipSheetImageList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.sheet_image.deserialize_json(item))
     return out

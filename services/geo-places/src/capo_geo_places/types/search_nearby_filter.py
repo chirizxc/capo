@@ -115,13 +115,13 @@ def serialize_json(value: SearchNearbyFilter) -> dict:
 
 def deserialize_json(data: dict) -> SearchNearbyFilter:
     out: SearchNearbyFilter = {}  # type: ignore[typeddict-item]
-    if "BoundingBox" in data:
+    if data.get("BoundingBox") is not None:
         import capo_geo_places.types.bounding_box
 
         out["bounding_box"] = capo_geo_places.types.bounding_box.deserialize_json(
             data["BoundingBox"]
         )
-    if "IncludeCountries" in data:
+    if data.get("IncludeCountries") is not None:
         import capo_geo_places.types.country_code_list
 
         out["include_countries"] = (
@@ -129,7 +129,7 @@ def deserialize_json(data: dict) -> SearchNearbyFilter:
                 data["IncludeCountries"]
             )
         )
-    if "IncludeCategories" in data:
+    if data.get("IncludeCategories") is not None:
         import capo_geo_places.types.filter_category_list
 
         out["include_categories"] = (
@@ -137,7 +137,7 @@ def deserialize_json(data: dict) -> SearchNearbyFilter:
                 data["IncludeCategories"]
             )
         )
-    if "ExcludeCategories" in data:
+    if data.get("ExcludeCategories") is not None:
         import capo_geo_places.types.filter_category_list
 
         out["exclude_categories"] = (
@@ -145,7 +145,7 @@ def deserialize_json(data: dict) -> SearchNearbyFilter:
                 data["ExcludeCategories"]
             )
         )
-    if "IncludeBusinessChains" in data:
+    if data.get("IncludeBusinessChains") is not None:
         import capo_geo_places.types.filter_business_chain_list
 
         out["include_business_chains"] = (
@@ -153,7 +153,7 @@ def deserialize_json(data: dict) -> SearchNearbyFilter:
                 data["IncludeBusinessChains"]
             )
         )
-    if "ExcludeBusinessChains" in data:
+    if data.get("ExcludeBusinessChains") is not None:
         import capo_geo_places.types.filter_business_chain_list
 
         out["exclude_business_chains"] = (
@@ -161,7 +161,7 @@ def deserialize_json(data: dict) -> SearchNearbyFilter:
                 data["ExcludeBusinessChains"]
             )
         )
-    if "IncludeFoodTypes" in data:
+    if data.get("IncludeFoodTypes") is not None:
         import capo_geo_places.types.filter_food_type_list
 
         out["include_food_types"] = (
@@ -169,7 +169,7 @@ def deserialize_json(data: dict) -> SearchNearbyFilter:
                 data["IncludeFoodTypes"]
             )
         )
-    if "ExcludeFoodTypes" in data:
+    if data.get("ExcludeFoodTypes") is not None:
         import capo_geo_places.types.filter_food_type_list
 
         out["exclude_food_types"] = (

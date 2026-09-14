@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AccountRecommendationLifecycleSummaryList:
 
     out: AccountRecommendationLifecycleSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_trustedadvisor.types.account_recommendation_lifecycle_summary.deserialize_json(
                 item

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: StopContinuousExportRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StopContinuousExportRequest:
     out: StopContinuousExportRequest = {}  # type: ignore[typeddict-item]
-    if "exportId" in data:
+    if data.get("exportId") is not None:
         out["export_id"] = data["exportId"]
     else:
         raise DeserializationError("StopContinuousExportRequest.export_id required")

@@ -41,14 +41,14 @@ def serialize_aws_json_1_1(value: LabelCounters) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LabelCounters:
     out: LabelCounters = {}  # type: ignore[typeddict-item]
-    if "TotalLabeled" in data:
+    if data.get("TotalLabeled") is not None:
         out["total_labeled"] = data["TotalLabeled"]
-    if "HumanLabeled" in data:
+    if data.get("HumanLabeled") is not None:
         out["human_labeled"] = data["HumanLabeled"]
-    if "MachineLabeled" in data:
+    if data.get("MachineLabeled") is not None:
         out["machine_labeled"] = data["MachineLabeled"]
-    if "FailedNonRetryableError" in data:
+    if data.get("FailedNonRetryableError") is not None:
         out["failed_non_retryable_error"] = data["FailedNonRetryableError"]
-    if "Unlabeled" in data:
+    if data.get("Unlabeled") is not None:
         out["unlabeled"] = data["Unlabeled"]
     return out

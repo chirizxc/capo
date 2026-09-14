@@ -39,14 +39,14 @@ def serialize_json(value: BlacklistEntry) -> dict:
 
 def deserialize_json(data: dict) -> BlacklistEntry:
     out: BlacklistEntry = {}  # type: ignore[typeddict-item]
-    if "RblName" in data:
+    if data.get("RblName") is not None:
         out["rbl_name"] = data["RblName"]
-    if "ListingTime" in data:
+    if data.get("ListingTime") is not None:
         import capo_sesv2.types.timestamp
 
         out["listing_time"] = capo_sesv2.types.timestamp.deserialize_json(
             data["ListingTime"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

@@ -28,7 +28,7 @@ def serialize_json(value: DescribeDataTableAttributeResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeDataTableAttributeResponse:
     out: DescribeDataTableAttributeResponse = {}  # type: ignore[typeddict-item]
-    if "Attribute" in data:
+    if data.get("Attribute") is not None:
         import capo_connect.types.data_table_attribute
 
         out["attribute"] = capo_connect.types.data_table_attribute.deserialize_json(

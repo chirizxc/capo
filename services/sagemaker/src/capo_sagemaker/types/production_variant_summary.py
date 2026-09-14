@@ -74,9 +74,25 @@ def serialize_aws_json_1_1(value: ProductionVariantSummary) -> dict:
             )
         )
     if "current_weight" in value:
-        out["CurrentWeight"] = value["current_weight"]
+        out["CurrentWeight"] = (
+            "NaN"
+            if value["current_weight"] != value["current_weight"]
+            else "Infinity"
+            if value["current_weight"] == float("inf")
+            else "-Infinity"
+            if value["current_weight"] == float("-inf")
+            else value["current_weight"]
+        )
     if "desired_weight" in value:
-        out["DesiredWeight"] = value["desired_weight"]
+        out["DesiredWeight"] = (
+            "NaN"
+            if value["desired_weight"] != value["desired_weight"]
+            else "Infinity"
+            if value["desired_weight"] == float("inf")
+            else "-Infinity"
+            if value["desired_weight"] == float("-inf")
+            else value["desired_weight"]
+        )
     if "current_instance_count" in value:
         out["CurrentInstanceCount"] = value["current_instance_count"]
     if "desired_instance_count" in value:
@@ -142,9 +158,9 @@ def serialize_aws_json_1_1(value: ProductionVariantSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProductionVariantSummary:
     out: ProductionVariantSummary = {}  # type: ignore[typeddict-item]
-    if "VariantName" in data:
+    if data.get("VariantName") is not None:
         out["variant_name"] = data["VariantName"]
-    if "DeployedImages" in data:
+    if data.get("DeployedImages") is not None:
         import capo_sagemaker.types.deployed_images
 
         out["deployed_images"] = (
@@ -152,15 +168,15 @@ def deserialize_aws_json_1_1(data: dict) -> ProductionVariantSummary:
                 data["DeployedImages"]
             )
         )
-    if "CurrentWeight" in data:
-        out["current_weight"] = data["CurrentWeight"]
-    if "DesiredWeight" in data:
-        out["desired_weight"] = data["DesiredWeight"]
-    if "CurrentInstanceCount" in data:
+    if data.get("CurrentWeight") is not None:
+        out["current_weight"] = float(data["CurrentWeight"])
+    if data.get("DesiredWeight") is not None:
+        out["desired_weight"] = float(data["DesiredWeight"])
+    if data.get("CurrentInstanceCount") is not None:
         out["current_instance_count"] = data["CurrentInstanceCount"]
-    if "DesiredInstanceCount" in data:
+    if data.get("DesiredInstanceCount") is not None:
         out["desired_instance_count"] = data["DesiredInstanceCount"]
-    if "InstancePools" in data:
+    if data.get("InstancePools") is not None:
         import capo_sagemaker.types.instance_pool_summary_list
 
         out["instance_pools"] = (
@@ -168,7 +184,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProductionVariantSummary:
                 data["InstancePools"]
             )
         )
-    if "VariantStatus" in data:
+    if data.get("VariantStatus") is not None:
         import capo_sagemaker.types.production_variant_status_list
 
         out["variant_status"] = (
@@ -176,7 +192,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProductionVariantSummary:
                 data["VariantStatus"]
             )
         )
-    if "CurrentServerlessConfig" in data:
+    if data.get("CurrentServerlessConfig") is not None:
         import capo_sagemaker.types.production_variant_serverless_config
 
         out["current_serverless_config"] = (
@@ -184,7 +200,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProductionVariantSummary:
                 data["CurrentServerlessConfig"]
             )
         )
-    if "DesiredServerlessConfig" in data:
+    if data.get("DesiredServerlessConfig") is not None:
         import capo_sagemaker.types.production_variant_serverless_config
 
         out["desired_serverless_config"] = (
@@ -192,7 +208,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProductionVariantSummary:
                 data["DesiredServerlessConfig"]
             )
         )
-    if "ManagedInstanceScaling" in data:
+    if data.get("ManagedInstanceScaling") is not None:
         import capo_sagemaker.types.production_variant_managed_instance_scaling
 
         out["managed_instance_scaling"] = (
@@ -200,7 +216,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProductionVariantSummary:
                 data["ManagedInstanceScaling"]
             )
         )
-    if "RoutingConfig" in data:
+    if data.get("RoutingConfig") is not None:
         import capo_sagemaker.types.production_variant_routing_config
 
         out["routing_config"] = (
@@ -208,7 +224,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProductionVariantSummary:
                 data["RoutingConfig"]
             )
         )
-    if "CapacityReservationConfig" in data:
+    if data.get("CapacityReservationConfig") is not None:
         import capo_sagemaker.types.production_variant_capacity_reservation_summary
 
         out["capacity_reservation_config"] = (

@@ -27,11 +27,11 @@ def serialize_aws_json_1_1(value: MedicalScribeOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MedicalScribeOutput:
     out: MedicalScribeOutput = {}  # type: ignore[typeddict-item]
-    if "TranscriptFileUri" in data:
+    if data.get("TranscriptFileUri") is not None:
         out["transcript_file_uri"] = data["TranscriptFileUri"]
     else:
         raise DeserializationError("MedicalScribeOutput.transcript_file_uri required")
-    if "ClinicalDocumentUri" in data:
+    if data.get("ClinicalDocumentUri") is not None:
         out["clinical_document_uri"] = data["ClinicalDocumentUri"]
     else:
         raise DeserializationError("MedicalScribeOutput.clinical_document_uri required")

@@ -71,7 +71,7 @@ def serialize_aws_json_1_1(value: RemediationExecutionStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RemediationExecutionStatus:
     out: RemediationExecutionStatus = {}  # type: ignore[typeddict-item]
-    if "ResourceKey" in data:
+    if data.get("ResourceKey") is not None:
         import capo_config_service.types.resource_key
 
         out["resource_key"] = (
@@ -79,7 +79,7 @@ def deserialize_aws_json_1_1(data: dict) -> RemediationExecutionStatus:
                 data["ResourceKey"]
             )
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_config_service.types.remediation_execution_state
 
         out["state"] = (
@@ -87,7 +87,7 @@ def deserialize_aws_json_1_1(data: dict) -> RemediationExecutionStatus:
                 data["State"]
             )
         )
-    if "StepDetails" in data:
+    if data.get("StepDetails") is not None:
         import capo_config_service.types.remediation_execution_steps
 
         out["step_details"] = (
@@ -95,7 +95,7 @@ def deserialize_aws_json_1_1(data: dict) -> RemediationExecutionStatus:
                 data["StepDetails"]
             )
         )
-    if "InvocationTime" in data:
+    if data.get("InvocationTime") is not None:
         import capo_config_service.types.date
 
         out["invocation_time"] = (
@@ -103,7 +103,7 @@ def deserialize_aws_json_1_1(data: dict) -> RemediationExecutionStatus:
                 data["InvocationTime"]
             )
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_config_service.types.date
 
         out["last_updated_time"] = (

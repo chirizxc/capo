@@ -31,10 +31,10 @@ def serialize_json(value: S3SourceProperties) -> dict:
 
 def deserialize_json(data: dict) -> S3SourceProperties:
     out: S3SourceProperties = {}  # type: ignore[typeddict-item]
-    if "BucketName" in data:
+    if data.get("BucketName") is not None:
         out["bucket_name"] = data["BucketName"]
     else:
         raise DeserializationError("S3SourceProperties.bucket_name required")
-    if "BucketPrefix" in data:
+    if data.get("BucketPrefix") is not None:
         out["bucket_prefix"] = data["BucketPrefix"]
     return out

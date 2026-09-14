@@ -42,15 +42,15 @@ def serialize_json(value: TitleAggregationResponse) -> dict:
 
 def deserialize_json(data: dict) -> TitleAggregationResponse:
     out: TitleAggregationResponse = {}  # type: ignore[typeddict-item]
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
     else:
         raise DeserializationError("TitleAggregationResponse.title required")
-    if "vulnerabilityId" in data:
+    if data.get("vulnerabilityId") is not None:
         out["vulnerability_id"] = data["vulnerabilityId"]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "severityCounts" in data:
+    if data.get("severityCounts") is not None:
         import capo_inspector2.types.severity_counts
 
         out["severity_counts"] = capo_inspector2.types.severity_counts.deserialize_json(

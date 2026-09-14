@@ -40,11 +40,11 @@ def serialize_json(value: GetInsightImpactGraphRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetInsightImpactGraphRequest:
     out: GetInsightImpactGraphRequest = {}  # type: ignore[typeddict-item]
-    if "InsightId" in data:
+    if data.get("InsightId") is not None:
         out["insight_id"] = data["InsightId"]
     else:
         raise DeserializationError("GetInsightImpactGraphRequest.insight_id required")
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_xray.types.timestamp
 
         out["start_time"] = capo_xray.types.timestamp.deserialize_json(
@@ -52,12 +52,12 @@ def deserialize_json(data: dict) -> GetInsightImpactGraphRequest:
         )
     else:
         raise DeserializationError("GetInsightImpactGraphRequest.start_time required")
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_xray.types.timestamp
 
         out["end_time"] = capo_xray.types.timestamp.deserialize_json(data["EndTime"])
     else:
         raise DeserializationError("GetInsightImpactGraphRequest.end_time required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -60,7 +60,7 @@ def serialize_aws_json_1_1(value: SearchUsersByImageResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SearchUsersByImageResponse:
     out: SearchUsersByImageResponse = {}  # type: ignore[typeddict-item]
-    if "UserMatches" in data:
+    if data.get("UserMatches") is not None:
         import capo_rekognition.types.user_match_list
 
         out["user_matches"] = (
@@ -68,9 +68,9 @@ def deserialize_aws_json_1_1(data: dict) -> SearchUsersByImageResponse:
                 data["UserMatches"]
             )
         )
-    if "FaceModelVersion" in data:
+    if data.get("FaceModelVersion") is not None:
         out["face_model_version"] = data["FaceModelVersion"]
-    if "SearchedFace" in data:
+    if data.get("SearchedFace") is not None:
         import capo_rekognition.types.searched_face_details
 
         out["searched_face"] = (
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_1(data: dict) -> SearchUsersByImageResponse:
                 data["SearchedFace"]
             )
         )
-    if "UnsearchedFaces" in data:
+    if data.get("UnsearchedFaces") is not None:
         import capo_rekognition.types.unsearched_faces_list
 
         out["unsearched_faces"] = (

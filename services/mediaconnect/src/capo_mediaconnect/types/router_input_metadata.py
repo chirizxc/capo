@@ -34,7 +34,7 @@ def serialize_json(value: RouterInputMetadata) -> dict:
 
 
 def deserialize_json(data: dict) -> RouterInputMetadata:
-    if "transportStreamMediaInfo" in data:
+    if data.get("transportStreamMediaInfo") is not None:
         import capo_mediaconnect.types.transport_media_info
 
         return {

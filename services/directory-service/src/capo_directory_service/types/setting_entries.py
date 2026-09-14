@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> SettingEntries:
 
     out: SettingEntries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_directory_service.types.setting_entry.deserialize_aws_json_1_1(item)
         )

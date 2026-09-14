@@ -54,27 +54,27 @@ def serialize_json(value: LexiconAttributes) -> dict:
 
 def deserialize_json(data: dict) -> LexiconAttributes:
     out: LexiconAttributes = {}  # type: ignore[typeddict-item]
-    if "Alphabet" in data:
+    if data.get("Alphabet") is not None:
         out["alphabet"] = data["Alphabet"]
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_polly.types.language_code
 
         out["language_code"] = capo_polly.types.language_code.deserialize_json(
             data["LanguageCode"]
         )
-    if "LastModified" in data:
+    if data.get("LastModified") is not None:
         import capo_polly.types.last_modified
 
         out["last_modified"] = capo_polly.types.last_modified.deserialize_json(
             data["LastModified"]
         )
-    if "LexiconArn" in data:
+    if data.get("LexiconArn") is not None:
         out["lexicon_arn"] = data["LexiconArn"]
-    if "LexemesCount" in data:
+    if data.get("LexemesCount") is not None:
         out["lexemes_count"] = data["LexemesCount"]
     else:
         out["lexemes_count"] = 0
-    if "Size" in data:
+    if data.get("Size") is not None:
         out["size"] = data["Size"]
     else:
         out["size"] = 0

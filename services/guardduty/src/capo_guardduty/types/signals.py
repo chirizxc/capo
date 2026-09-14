@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Signals:
 
     out: Signals = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_guardduty.types.signal.deserialize_json(item))
     return out

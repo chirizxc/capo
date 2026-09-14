@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: SpellCorrectionConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SpellCorrectionConfiguration:
     out: SpellCorrectionConfiguration = {}  # type: ignore[typeddict-item]
-    if "IncludeQuerySpellCheckSuggestions" in data:
+    if data.get("IncludeQuerySpellCheckSuggestions") is not None:
         out["include_query_spell_check_suggestions"] = data[
             "IncludeQuerySpellCheckSuggestions"
         ]

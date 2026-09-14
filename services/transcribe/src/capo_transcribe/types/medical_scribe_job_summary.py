@@ -81,21 +81,21 @@ def serialize_aws_json_1_1(value: MedicalScribeJobSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MedicalScribeJobSummary:
     out: MedicalScribeJobSummary = {}  # type: ignore[typeddict-item]
-    if "MedicalScribeJobName" in data:
+    if data.get("MedicalScribeJobName") is not None:
         out["medical_scribe_job_name"] = data["MedicalScribeJobName"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_transcribe.types.date_time
 
         out["creation_time"] = capo_transcribe.types.date_time.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_transcribe.types.date_time
 
         out["start_time"] = capo_transcribe.types.date_time.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "CompletionTime" in data:
+    if data.get("CompletionTime") is not None:
         import capo_transcribe.types.date_time
 
         out["completion_time"] = (
@@ -103,7 +103,7 @@ def deserialize_aws_json_1_1(data: dict) -> MedicalScribeJobSummary:
                 data["CompletionTime"]
             )
         )
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_transcribe.types.medical_scribe_language_code
 
         out["language_code"] = (
@@ -111,7 +111,7 @@ def deserialize_aws_json_1_1(data: dict) -> MedicalScribeJobSummary:
                 data["LanguageCode"]
             )
         )
-    if "MedicalScribeJobStatus" in data:
+    if data.get("MedicalScribeJobStatus") is not None:
         import capo_transcribe.types.medical_scribe_job_status
 
         out["medical_scribe_job_status"] = (
@@ -119,6 +119,6 @@ def deserialize_aws_json_1_1(data: dict) -> MedicalScribeJobSummary:
                 data["MedicalScribeJobStatus"]
             )
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
     return out

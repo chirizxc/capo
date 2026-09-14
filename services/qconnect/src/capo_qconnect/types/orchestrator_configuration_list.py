@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> OrchestratorConfigurationList:
 
     out: OrchestratorConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_qconnect.types.orchestrator_configuration_entry.deserialize_json(item)
         )

@@ -16,26 +16,50 @@ class AvailabilityMeasurement(TypedDict, closed=True):
 def serialize_json(value: AvailabilityMeasurement) -> dict:
     out: dict = {}
     if "experience_score" in value:
-        out["ExperienceScore"] = value["experience_score"]
+        out["ExperienceScore"] = (
+            "NaN"
+            if value["experience_score"] != value["experience_score"]
+            else "Infinity"
+            if value["experience_score"] == float("inf")
+            else "-Infinity"
+            if value["experience_score"] == float("-inf")
+            else value["experience_score"]
+        )
     if "percent_of_total_traffic_impacted" in value:
-        out["PercentOfTotalTrafficImpacted"] = value[
-            "percent_of_total_traffic_impacted"
-        ]
+        out["PercentOfTotalTrafficImpacted"] = (
+            "NaN"
+            if value["percent_of_total_traffic_impacted"]
+            != value["percent_of_total_traffic_impacted"]
+            else "Infinity"
+            if value["percent_of_total_traffic_impacted"] == float("inf")
+            else "-Infinity"
+            if value["percent_of_total_traffic_impacted"] == float("-inf")
+            else value["percent_of_total_traffic_impacted"]
+        )
     if "percent_of_client_location_impacted" in value:
-        out["PercentOfClientLocationImpacted"] = value[
-            "percent_of_client_location_impacted"
-        ]
+        out["PercentOfClientLocationImpacted"] = (
+            "NaN"
+            if value["percent_of_client_location_impacted"]
+            != value["percent_of_client_location_impacted"]
+            else "Infinity"
+            if value["percent_of_client_location_impacted"] == float("inf")
+            else "-Infinity"
+            if value["percent_of_client_location_impacted"] == float("-inf")
+            else value["percent_of_client_location_impacted"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> AvailabilityMeasurement:
     out: AvailabilityMeasurement = {}  # type: ignore[typeddict-item]
-    if "ExperienceScore" in data:
-        out["experience_score"] = data["ExperienceScore"]
-    if "PercentOfTotalTrafficImpacted" in data:
-        out["percent_of_total_traffic_impacted"] = data["PercentOfTotalTrafficImpacted"]
-    if "PercentOfClientLocationImpacted" in data:
-        out["percent_of_client_location_impacted"] = data[
-            "PercentOfClientLocationImpacted"
-        ]
+    if data.get("ExperienceScore") is not None:
+        out["experience_score"] = float(data["ExperienceScore"])
+    if data.get("PercentOfTotalTrafficImpacted") is not None:
+        out["percent_of_total_traffic_impacted"] = float(
+            data["PercentOfTotalTrafficImpacted"]
+        )
+    if data.get("PercentOfClientLocationImpacted") is not None:
+        out["percent_of_client_location_impacted"] = float(
+            data["PercentOfClientLocationImpacted"]
+        )
     return out

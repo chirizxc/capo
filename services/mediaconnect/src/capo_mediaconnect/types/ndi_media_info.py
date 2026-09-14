@@ -31,7 +31,7 @@ def serialize_json(value: NdiMediaInfo) -> dict:
 
 def deserialize_json(data: dict) -> NdiMediaInfo:
     out: NdiMediaInfo = {}  # type: ignore[typeddict-item]
-    if "streams" in data:
+    if data.get("streams") is not None:
         import capo_mediaconnect.types.__list_of_ndi_media_stream_info
 
         out["streams"] = (

@@ -55,7 +55,7 @@ def serialize_aws_json_1_1(value: CertificateAuthorityConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CertificateAuthorityConfiguration:
     out: CertificateAuthorityConfiguration = {}  # type: ignore[typeddict-item]
-    if "KeyAlgorithm" in data:
+    if data.get("KeyAlgorithm") is not None:
         import capo_acm_pca.types.key_algorithm
 
         out["key_algorithm"] = (
@@ -67,7 +67,7 @@ def deserialize_aws_json_1_1(data: dict) -> CertificateAuthorityConfiguration:
         raise DeserializationError(
             "CertificateAuthorityConfiguration.key_algorithm required"
         )
-    if "SigningAlgorithm" in data:
+    if data.get("SigningAlgorithm") is not None:
         import capo_acm_pca.types.signing_algorithm
 
         out["signing_algorithm"] = (
@@ -79,7 +79,7 @@ def deserialize_aws_json_1_1(data: dict) -> CertificateAuthorityConfiguration:
         raise DeserializationError(
             "CertificateAuthorityConfiguration.signing_algorithm required"
         )
-    if "Subject" in data:
+    if data.get("Subject") is not None:
         import capo_acm_pca.types.asn1_subject
 
         out["subject"] = capo_acm_pca.types.asn1_subject.deserialize_aws_json_1_1(
@@ -87,7 +87,7 @@ def deserialize_aws_json_1_1(data: dict) -> CertificateAuthorityConfiguration:
         )
     else:
         raise DeserializationError("CertificateAuthorityConfiguration.subject required")
-    if "CsrExtensions" in data:
+    if data.get("CsrExtensions") is not None:
         import capo_acm_pca.types.csr_extensions
 
         out["csr_extensions"] = (

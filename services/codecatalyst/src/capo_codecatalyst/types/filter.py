@@ -33,11 +33,11 @@ def serialize_json(value: Filter) -> dict:
 
 def deserialize_json(data: dict) -> Filter:
     out: Filter = {}  # type: ignore[typeddict-item]
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
     else:
         raise DeserializationError("Filter.key required")
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_codecatalyst.types.string_list
 
         out["values"] = capo_codecatalyst.types.string_list.deserialize_json(
@@ -45,6 +45,6 @@ def deserialize_json(data: dict) -> Filter:
         )
     else:
         raise DeserializationError("Filter.values required")
-    if "comparisonOperator" in data:
+    if data.get("comparisonOperator") is not None:
         out["comparison_operator"] = data["comparisonOperator"]
     return out

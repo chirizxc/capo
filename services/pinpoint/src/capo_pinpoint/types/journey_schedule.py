@@ -42,18 +42,18 @@ def serialize_json(value: JourneySchedule) -> dict:
 
 def deserialize_json(data: dict) -> JourneySchedule:
     out: JourneySchedule = {}  # type: ignore[typeddict-item]
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_pinpoint.types.__timestamp_iso8601
 
         out["end_time"] = capo_pinpoint.types.__timestamp_iso8601.deserialize_json(
             data["EndTime"]
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_pinpoint.types.__timestamp_iso8601
 
         out["start_time"] = capo_pinpoint.types.__timestamp_iso8601.deserialize_json(
             data["StartTime"]
         )
-    if "Timezone" in data:
+    if data.get("Timezone") is not None:
         out["timezone"] = data["Timezone"]
     return out

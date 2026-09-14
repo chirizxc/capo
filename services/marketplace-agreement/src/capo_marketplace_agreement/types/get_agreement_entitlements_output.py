@@ -36,7 +36,7 @@ def serialize_aws_json_1_0(value: GetAgreementEntitlementsOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetAgreementEntitlementsOutput:
     out: GetAgreementEntitlementsOutput = {}  # type: ignore[typeddict-item]
-    if "agreementEntitlements" in data:
+    if data.get("agreementEntitlements") is not None:
         import capo_marketplace_agreement.types.agreement_entitlement_list
 
         out["agreement_entitlements"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_0(data: dict) -> GetAgreementEntitlementsOutput:
                 data["agreementEntitlements"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

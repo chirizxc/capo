@@ -28,8 +28,8 @@ def serialize_json(value: InputSdpLocation) -> dict:
 
 def deserialize_json(data: dict) -> InputSdpLocation:
     out: InputSdpLocation = {}  # type: ignore[typeddict-item]
-    if "mediaIndex" in data:
+    if data.get("mediaIndex") is not None:
         out["media_index"] = data["mediaIndex"]
-    if "sdpUrl" in data:
+    if data.get("sdpUrl") is not None:
         out["sdp_url"] = data["sdpUrl"]
     return out

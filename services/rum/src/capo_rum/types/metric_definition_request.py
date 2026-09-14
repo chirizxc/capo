@@ -53,22 +53,22 @@ def serialize_json(value: MetricDefinitionRequest) -> dict:
 
 def deserialize_json(data: dict) -> MetricDefinitionRequest:
     out: MetricDefinitionRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("MetricDefinitionRequest.name required")
-    if "ValueKey" in data:
+    if data.get("ValueKey") is not None:
         out["value_key"] = data["ValueKey"]
-    if "UnitLabel" in data:
+    if data.get("UnitLabel") is not None:
         out["unit_label"] = data["UnitLabel"]
-    if "DimensionKeys" in data:
+    if data.get("DimensionKeys") is not None:
         import capo_rum.types.dimension_keys_map
 
         out["dimension_keys"] = capo_rum.types.dimension_keys_map.deserialize_json(
             data["DimensionKeys"]
         )
-    if "EventPattern" in data:
+    if data.get("EventPattern") is not None:
         out["event_pattern"] = data["EventPattern"]
-    if "Namespace" in data:
+    if data.get("Namespace") is not None:
         out["namespace"] = data["Namespace"]
     return out

@@ -58,19 +58,19 @@ def serialize_aws_json_1_0(value: GetRuleSetResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetRuleSetResponse:
     out: GetRuleSetResponse = {}  # type: ignore[typeddict-item]
-    if "RuleSetId" in data:
+    if data.get("RuleSetId") is not None:
         out["rule_set_id"] = data["RuleSetId"]
     else:
         raise DeserializationError("GetRuleSetResponse.rule_set_id required")
-    if "RuleSetArn" in data:
+    if data.get("RuleSetArn") is not None:
         out["rule_set_arn"] = data["RuleSetArn"]
     else:
         raise DeserializationError("GetRuleSetResponse.rule_set_arn required")
-    if "RuleSetName" in data:
+    if data.get("RuleSetName") is not None:
         out["rule_set_name"] = data["RuleSetName"]
     else:
         raise DeserializationError("GetRuleSetResponse.rule_set_name required")
-    if "CreatedDate" in data:
+    if data.get("CreatedDate") is not None:
         import capo_mailmanager.types._prelude.timestamp
 
         out["created_date"] = (
@@ -80,7 +80,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetRuleSetResponse:
         )
     else:
         raise DeserializationError("GetRuleSetResponse.created_date required")
-    if "LastModificationDate" in data:
+    if data.get("LastModificationDate") is not None:
         import capo_mailmanager.types._prelude.timestamp
 
         out["last_modification_date"] = (
@@ -90,7 +90,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetRuleSetResponse:
         )
     else:
         raise DeserializationError("GetRuleSetResponse.last_modification_date required")
-    if "Rules" in data:
+    if data.get("Rules") is not None:
         import capo_mailmanager.types.rules
 
         out["rules"] = capo_mailmanager.types.rules.deserialize_aws_json_1_0(

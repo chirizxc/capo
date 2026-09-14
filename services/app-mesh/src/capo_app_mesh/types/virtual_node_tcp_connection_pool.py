@@ -24,7 +24,7 @@ def serialize_json(value: VirtualNodeTcpConnectionPool) -> dict:
 
 def deserialize_json(data: dict) -> VirtualNodeTcpConnectionPool:
     out: VirtualNodeTcpConnectionPool = {}  # type: ignore[typeddict-item]
-    if "maxConnections" in data:
+    if data.get("maxConnections") is not None:
         out["max_connections"] = data["maxConnections"]
     else:
         raise DeserializationError(

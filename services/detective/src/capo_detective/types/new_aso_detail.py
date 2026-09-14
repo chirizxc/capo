@@ -29,9 +29,9 @@ def serialize_json(value: NewAsoDetail) -> dict:
 
 def deserialize_json(data: dict) -> NewAsoDetail:
     out: NewAsoDetail = {}  # type: ignore[typeddict-item]
-    if "Aso" in data:
+    if data.get("Aso") is not None:
         out["aso"] = data["Aso"]
-    if "IsNewForEntireAccount" in data:
+    if data.get("IsNewForEntireAccount") is not None:
         out["is_new_for_entire_account"] = data["IsNewForEntireAccount"]
     else:
         out["is_new_for_entire_account"] = False

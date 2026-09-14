@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ServiceNames:
 
     out: ServiceNames = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_devops_guru.types.service_name.deserialize_json(item))
     return out

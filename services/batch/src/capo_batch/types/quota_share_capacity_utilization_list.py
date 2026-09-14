@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> QuotaShareCapacityUtilizationList:
 
     out: QuotaShareCapacityUtilizationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_batch.types.quota_share_capacity_utilization.deserialize_json(item)
         )

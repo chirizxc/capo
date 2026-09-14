@@ -72,9 +72,9 @@ def serialize_json(value: DirectQueryDataSource) -> dict:
 
 def deserialize_json(data: dict) -> DirectQueryDataSource:
     out: DirectQueryDataSource = {}  # type: ignore[typeddict-item]
-    if "DataSourceName" in data:
+    if data.get("DataSourceName") is not None:
         out["data_source_name"] = data["DataSourceName"]
-    if "DataSourceType" in data:
+    if data.get("DataSourceType") is not None:
         import capo_opensearch.types.direct_query_data_source_type
 
         out["data_source_type"] = (
@@ -82,9 +82,9 @@ def deserialize_json(data: dict) -> DirectQueryDataSource:
                 data["DataSourceType"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "OpenSearchArns" in data:
+    if data.get("OpenSearchArns") is not None:
         import capo_opensearch.types.direct_query_open_search_arn_list
 
         out["open_search_arns"] = (
@@ -92,9 +92,9 @@ def deserialize_json(data: dict) -> DirectQueryDataSource:
                 data["OpenSearchArns"]
             )
         )
-    if "DataSourceArn" in data:
+    if data.get("DataSourceArn") is not None:
         out["data_source_arn"] = data["DataSourceArn"]
-    if "TagList" in data:
+    if data.get("TagList") is not None:
         import capo_opensearch.types.tag_list
 
         out["tag_list"] = capo_opensearch.types.tag_list.deserialize_json(

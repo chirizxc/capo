@@ -36,7 +36,7 @@ def serialize_json(value: KnowledgeBaseConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> KnowledgeBaseConfiguration:
     out: KnowledgeBaseConfiguration = {}  # type: ignore[typeddict-item]
-    if "templateConfiguration" in data:
+    if data.get("templateConfiguration") is not None:
         import capo_quicksight.types.kb_template_configuration
 
         out["template_configuration"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> KnowledgeBaseConfiguration:
                 data["templateConfiguration"]
             )
         )
-    if "eventEnabled" in data:
+    if data.get("eventEnabled") is not None:
         out["event_enabled"] = data["eventEnabled"]
     return out

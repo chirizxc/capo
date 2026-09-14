@@ -43,7 +43,7 @@ def serialize_aws_json_1_0(value: BatchIsAuthorizedWithTokenOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> BatchIsAuthorizedWithTokenOutput:
     out: BatchIsAuthorizedWithTokenOutput = {}  # type: ignore[typeddict-item]
-    if "principal" in data:
+    if data.get("principal") is not None:
         import capo_verifiedpermissions.types.entity_identifier
 
         out["principal"] = (
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_0(data: dict) -> BatchIsAuthorizedWithTokenOutput:
                 data["principal"]
             )
         )
-    if "results" in data:
+    if data.get("results") is not None:
         import capo_verifiedpermissions.types.batch_is_authorized_with_token_output_list
 
         out["results"] = (

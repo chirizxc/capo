@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: ApplicationMaintenanceConfigurationUpdate) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> ApplicationMaintenanceConfigurationUpdate:
     out: ApplicationMaintenanceConfigurationUpdate = {}  # type: ignore[typeddict-item]
-    if "ApplicationMaintenanceWindowStartTimeUpdate" in data:
+    if data.get("ApplicationMaintenanceWindowStartTimeUpdate") is not None:
         out["application_maintenance_window_start_time_update"] = data[
             "ApplicationMaintenanceWindowStartTimeUpdate"
         ]

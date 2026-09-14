@@ -71,15 +71,15 @@ def serialize_aws_json_1_0(value: EnvironmentTemplate) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EnvironmentTemplate:
     out: EnvironmentTemplate = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("EnvironmentTemplate.name required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("EnvironmentTemplate.arn required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_proton.types._prelude.timestamp
 
         out["created_at"] = (
@@ -89,7 +89,7 @@ def deserialize_aws_json_1_0(data: dict) -> EnvironmentTemplate:
         )
     else:
         raise DeserializationError("EnvironmentTemplate.created_at required")
-    if "lastModifiedAt" in data:
+    if data.get("lastModifiedAt") is not None:
         import capo_proton.types._prelude.timestamp
 
         out["last_modified_at"] = (
@@ -99,14 +99,14 @@ def deserialize_aws_json_1_0(data: dict) -> EnvironmentTemplate:
         )
     else:
         raise DeserializationError("EnvironmentTemplate.last_modified_at required")
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "recommendedVersion" in data:
+    if data.get("recommendedVersion") is not None:
         out["recommended_version"] = data["recommendedVersion"]
-    if "encryptionKey" in data:
+    if data.get("encryptionKey") is not None:
         out["encryption_key"] = data["encryptionKey"]
-    if "provisioning" in data:
+    if data.get("provisioning") is not None:
         out["provisioning"] = data["provisioning"]
     return out

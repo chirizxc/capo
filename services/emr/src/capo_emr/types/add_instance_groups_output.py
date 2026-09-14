@@ -41,9 +41,9 @@ def serialize_aws_json_1_1(value: AddInstanceGroupsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AddInstanceGroupsOutput:
     out: AddInstanceGroupsOutput = {}  # type: ignore[typeddict-item]
-    if "JobFlowId" in data:
+    if data.get("JobFlowId") is not None:
         out["job_flow_id"] = data["JobFlowId"]
-    if "InstanceGroupIds" in data:
+    if data.get("InstanceGroupIds") is not None:
         import capo_emr.types.instance_group_ids_list
 
         out["instance_group_ids"] = (
@@ -51,6 +51,6 @@ def deserialize_aws_json_1_1(data: dict) -> AddInstanceGroupsOutput:
                 data["InstanceGroupIds"]
             )
         )
-    if "ClusterArn" in data:
+    if data.get("ClusterArn") is not None:
         out["cluster_arn"] = data["ClusterArn"]
     return out

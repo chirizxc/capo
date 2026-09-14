@@ -31,13 +31,13 @@ def serialize_json(value: RestrictedPeriod) -> dict:
 
 def deserialize_json(data: dict) -> RestrictedPeriod:
     out: RestrictedPeriod = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "startDate" in data:
+    if data.get("startDate") is not None:
         out["start_date"] = data["startDate"]
     else:
         raise DeserializationError("RestrictedPeriod.start_date required")
-    if "endDate" in data:
+    if data.get("endDate") is not None:
         out["end_date"] = data["endDate"]
     else:
         raise DeserializationError("RestrictedPeriod.end_date required")

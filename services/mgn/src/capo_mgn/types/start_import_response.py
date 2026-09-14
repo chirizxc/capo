@@ -27,7 +27,7 @@ def serialize_json(value: StartImportResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartImportResponse:
     out: StartImportResponse = {}  # type: ignore[typeddict-item]
-    if "importTask" in data:
+    if data.get("importTask") is not None:
         import capo_mgn.types.import_task
 
         out["import_task"] = capo_mgn.types.import_task.deserialize_json(

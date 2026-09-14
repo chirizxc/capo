@@ -132,35 +132,35 @@ def serialize_json(value: DescribePortalResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribePortalResponse:
     out: DescribePortalResponse = {}  # type: ignore[typeddict-item]
-    if "portalId" in data:
+    if data.get("portalId") is not None:
         out["portal_id"] = data["portalId"]
     else:
         raise DeserializationError("DescribePortalResponse.portal_id required")
-    if "portalArn" in data:
+    if data.get("portalArn") is not None:
         out["portal_arn"] = data["portalArn"]
     else:
         raise DeserializationError("DescribePortalResponse.portal_arn required")
-    if "portalName" in data:
+    if data.get("portalName") is not None:
         out["portal_name"] = data["portalName"]
     else:
         raise DeserializationError("DescribePortalResponse.portal_name required")
-    if "portalDescription" in data:
+    if data.get("portalDescription") is not None:
         out["portal_description"] = data["portalDescription"]
-    if "portalClientId" in data:
+    if data.get("portalClientId") is not None:
         out["portal_client_id"] = data["portalClientId"]
     else:
         raise DeserializationError("DescribePortalResponse.portal_client_id required")
-    if "portalStartUrl" in data:
+    if data.get("portalStartUrl") is not None:
         out["portal_start_url"] = data["portalStartUrl"]
     else:
         raise DeserializationError("DescribePortalResponse.portal_start_url required")
-    if "portalContactEmail" in data:
+    if data.get("portalContactEmail") is not None:
         out["portal_contact_email"] = data["portalContactEmail"]
     else:
         raise DeserializationError(
             "DescribePortalResponse.portal_contact_email required"
         )
-    if "portalStatus" in data:
+    if data.get("portalStatus") is not None:
         import capo_iotsitewise.types.portal_status
 
         out["portal_status"] = capo_iotsitewise.types.portal_status.deserialize_json(
@@ -168,7 +168,7 @@ def deserialize_json(data: dict) -> DescribePortalResponse:
         )
     else:
         raise DeserializationError("DescribePortalResponse.portal_status required")
-    if "portalCreationDate" in data:
+    if data.get("portalCreationDate") is not None:
         import capo_iotsitewise.types.timestamp
 
         out["portal_creation_date"] = capo_iotsitewise.types.timestamp.deserialize_json(
@@ -178,7 +178,7 @@ def deserialize_json(data: dict) -> DescribePortalResponse:
         raise DeserializationError(
             "DescribePortalResponse.portal_creation_date required"
         )
-    if "portalLastUpdateDate" in data:
+    if data.get("portalLastUpdateDate") is not None:
         import capo_iotsitewise.types.timestamp
 
         out["portal_last_update_date"] = (
@@ -190,7 +190,7 @@ def deserialize_json(data: dict) -> DescribePortalResponse:
         raise DeserializationError(
             "DescribePortalResponse.portal_last_update_date required"
         )
-    if "portalLogoImageLocation" in data:
+    if data.get("portalLogoImageLocation") is not None:
         import capo_iotsitewise.types.image_location
 
         out["portal_logo_image_location"] = (
@@ -198,27 +198,27 @@ def deserialize_json(data: dict) -> DescribePortalResponse:
                 data["portalLogoImageLocation"]
             )
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "portalAuthMode" in data:
+    if data.get("portalAuthMode") is not None:
         import capo_iotsitewise.types.auth_mode
 
         out["portal_auth_mode"] = capo_iotsitewise.types.auth_mode.deserialize_json(
             data["portalAuthMode"]
         )
-    if "notificationSenderEmail" in data:
+    if data.get("notificationSenderEmail") is not None:
         out["notification_sender_email"] = data["notificationSenderEmail"]
-    if "alarms" in data:
+    if data.get("alarms") is not None:
         import capo_iotsitewise.types.alarms
 
         out["alarms"] = capo_iotsitewise.types.alarms.deserialize_json(data["alarms"])
-    if "portalType" in data:
+    if data.get("portalType") is not None:
         import capo_iotsitewise.types.portal_type
 
         out["portal_type"] = capo_iotsitewise.types.portal_type.deserialize_json(
             data["portalType"]
         )
-    if "portalTypeConfiguration" in data:
+    if data.get("portalTypeConfiguration") is not None:
         import capo_iotsitewise.types.portal_type_configuration
 
         out["portal_type_configuration"] = (

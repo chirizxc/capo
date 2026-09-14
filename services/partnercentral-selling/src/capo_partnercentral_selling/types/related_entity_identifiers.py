@@ -70,7 +70,7 @@ def serialize_aws_json_1_0(value: RelatedEntityIdentifiers) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RelatedEntityIdentifiers:
     out: RelatedEntityIdentifiers = {}  # type: ignore[typeddict-item]
-    if "AwsMarketplaceOffers" in data:
+    if data.get("AwsMarketplaceOffers") is not None:
         import capo_partnercentral_selling.types.aws_marketplace_offer_identifiers
 
         out["aws_marketplace_offers"] = (
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_0(data: dict) -> RelatedEntityIdentifiers:
                 data["AwsMarketplaceOffers"]
             )
         )
-    if "AwsMarketplaceOfferSets" in data:
+    if data.get("AwsMarketplaceOfferSets") is not None:
         import capo_partnercentral_selling.types.aws_marketplace_offer_set_identifiers
 
         out["aws_marketplace_offer_sets"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_0(data: dict) -> RelatedEntityIdentifiers:
                 data["AwsMarketplaceOfferSets"]
             )
         )
-    if "Solutions" in data:
+    if data.get("Solutions") is not None:
         import capo_partnercentral_selling.types.solution_identifiers
 
         out["solutions"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_0(data: dict) -> RelatedEntityIdentifiers:
                 data["Solutions"]
             )
         )
-    if "AwsProducts" in data:
+    if data.get("AwsProducts") is not None:
         import capo_partnercentral_selling.types.aws_product_identifiers
 
         out["aws_products"] = (

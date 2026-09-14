@@ -36,11 +36,11 @@ def serialize_aws_json_1_1(value: RegistryCredential) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RegistryCredential:
     out: RegistryCredential = {}  # type: ignore[typeddict-item]
-    if "credential" in data:
+    if data.get("credential") is not None:
         out["credential"] = data["credential"]
     else:
         raise DeserializationError("RegistryCredential.credential required")
-    if "credentialProvider" in data:
+    if data.get("credentialProvider") is not None:
         import capo_codebuild.types.credential_provider_type
 
         out["credential_provider"] = (

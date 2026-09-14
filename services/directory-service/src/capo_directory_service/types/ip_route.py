@@ -33,10 +33,10 @@ def serialize_aws_json_1_1(value: IpRoute) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IpRoute:
     out: IpRoute = {}  # type: ignore[typeddict-item]
-    if "CidrIp" in data:
+    if data.get("CidrIp") is not None:
         out["cidr_ip"] = data["CidrIp"]
-    if "CidrIpv6" in data:
+    if data.get("CidrIpv6") is not None:
         out["cidr_ipv6"] = data["CidrIpv6"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

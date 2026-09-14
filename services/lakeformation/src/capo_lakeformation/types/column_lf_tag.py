@@ -32,9 +32,9 @@ def serialize_json(value: ColumnLFTag) -> dict:
 
 def deserialize_json(data: dict) -> ColumnLFTag:
     out: ColumnLFTag = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "LFTags" in data:
+    if data.get("LFTags") is not None:
         import capo_lakeformation.types.lf_tags_list
 
         out["lf_tags"] = capo_lakeformation.types.lf_tags_list.deserialize_json(

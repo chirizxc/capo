@@ -39,10 +39,10 @@ def serialize_json(value: OpusSettings) -> dict:
 
 def deserialize_json(data: dict) -> OpusSettings:
     out: OpusSettings = {}  # type: ignore[typeddict-item]
-    if "bitrate" in data:
+    if data.get("bitrate") is not None:
         out["bitrate"] = data["bitrate"]
-    if "channels" in data:
+    if data.get("channels") is not None:
         out["channels"] = data["channels"]
-    if "sampleRate" in data:
+    if data.get("sampleRate") is not None:
         out["sample_rate"] = data["sampleRate"]
     return out

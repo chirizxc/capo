@@ -23,6 +23,6 @@ def serialize_json(value: GetResourceDashboardResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetResourceDashboardResponse:
     out: GetResourceDashboardResponse = {}  # type: ignore[typeddict-item]
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
     return out

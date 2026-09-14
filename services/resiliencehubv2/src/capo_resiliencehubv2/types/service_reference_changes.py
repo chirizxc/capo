@@ -41,7 +41,7 @@ def serialize_json(value: ServiceReferenceChanges) -> dict:
 
 def deserialize_json(data: dict) -> ServiceReferenceChanges:
     out: ServiceReferenceChanges = {}  # type: ignore[typeddict-item]
-    if "added" in data:
+    if data.get("added") is not None:
         import capo_resiliencehubv2.types.service_reference_list
 
         out["added"] = (
@@ -49,7 +49,7 @@ def deserialize_json(data: dict) -> ServiceReferenceChanges:
                 data["added"]
             )
         )
-    if "removed" in data:
+    if data.get("removed") is not None:
         import capo_resiliencehubv2.types.service_reference_list
 
         out["removed"] = (

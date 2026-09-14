@@ -37,10 +37,10 @@ def serialize_json(value: CustomLogSourceAttributes) -> dict:
 
 def deserialize_json(data: dict) -> CustomLogSourceAttributes:
     out: CustomLogSourceAttributes = {}  # type: ignore[typeddict-item]
-    if "crawlerArn" in data:
+    if data.get("crawlerArn") is not None:
         out["crawler_arn"] = data["crawlerArn"]
-    if "databaseArn" in data:
+    if data.get("databaseArn") is not None:
         out["database_arn"] = data["databaseArn"]
-    if "tableArn" in data:
+    if data.get("tableArn") is not None:
         out["table_arn"] = data["tableArn"]
     return out

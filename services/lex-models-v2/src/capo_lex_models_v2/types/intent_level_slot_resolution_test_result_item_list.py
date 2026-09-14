@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> IntentLevelSlotResolutionTestResultItemList:
 
     out: IntentLevelSlotResolutionTestResultItemList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lex_models_v2.types.intent_level_slot_resolution_test_result_item.deserialize_json(
                 item

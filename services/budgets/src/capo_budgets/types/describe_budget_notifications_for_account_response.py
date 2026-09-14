@@ -39,7 +39,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribeBudgetNotificationsForAccountResponse:
     out: DescribeBudgetNotificationsForAccountResponse = {}  # type: ignore[typeddict-item]
-    if "BudgetNotificationsForAccount" in data:
+    if data.get("BudgetNotificationsForAccount") is not None:
         import capo_budgets.types.budget_notifications_for_account_list
 
         out["budget_notifications_for_account"] = (
@@ -47,6 +47,6 @@ def deserialize_aws_json_1_1(
                 data["BudgetNotificationsForAccount"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

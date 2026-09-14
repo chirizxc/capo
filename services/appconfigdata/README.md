@@ -13,9 +13,9 @@ from capo_appconfigdata import AsyncAppConfigDataClient
 
 
 async def main():
-    async with AsyncAppConfigDataClient() as s3:
+    async with AsyncAppConfigDataClient() as app_config_data:
         # Example: call the get_latest_configuration operation
-        response = await s3.get_latest_configuration()
+        response = await app_config_data.get_latest_configuration()
         print(response["next_poll_configuration_token"])
 ```
 
@@ -29,9 +29,9 @@ from capo_appconfigdata.error import BadRequestException
 
 
 async def main():
-    async with AsyncAppConfigDataClient() as s3:
+    async with AsyncAppConfigDataClient() as app_config_data:
         try:
-            await s3.get_latest_configuration()
+            await app_config_data.get_latest_configuration()
         except BadRequestException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_appconfigdata import AsyncAppConfigDataClient
 
 
 async def main():
-    async with AsyncAppConfigDataClient() as s3:
+    async with AsyncAppConfigDataClient() as app_config_data:
         # Default: 3 attempts for every operation
-        response = await s3.get_latest_configuration()
+        response = await app_config_data.get_latest_configuration()
 
         # Override per operation
-        response = await s3.get_latest_configuration(config_overrides={"retry_max_attempts": 5})
+        response = await app_config_data.get_latest_configuration(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.get_latest_configuration(config_overrides={"retry_max_attempts": 1})
+        response = await app_config_data.get_latest_configuration(config_overrides={"retry_max_attempts": 1})
 ```

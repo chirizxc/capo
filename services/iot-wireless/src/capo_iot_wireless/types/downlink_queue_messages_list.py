@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> DownlinkQueueMessagesList:
 
     out: DownlinkQueueMessagesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot_wireless.types.downlink_queue_message.deserialize_json(item)
         )

@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: GetCapacityAssignmentConfigurationInput) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> GetCapacityAssignmentConfigurationInput:
     out: GetCapacityAssignmentConfigurationInput = {}  # type: ignore[typeddict-item]
-    if "CapacityReservationName" in data:
+    if data.get("CapacityReservationName") is not None:
         out["capacity_reservation_name"] = data["CapacityReservationName"]
     else:
         raise DeserializationError(

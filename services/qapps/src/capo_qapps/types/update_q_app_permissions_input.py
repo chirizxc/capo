@@ -52,11 +52,11 @@ def serialize_json(value: UpdateQAppPermissionsInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateQAppPermissionsInput:
     out: UpdateQAppPermissionsInput = {}  # type: ignore[typeddict-item]
-    if "appId" in data:
+    if data.get("appId") is not None:
         out["app_id"] = data["appId"]
     else:
         raise DeserializationError("UpdateQAppPermissionsInput.app_id required")
-    if "grantPermissions" in data:
+    if data.get("grantPermissions") is not None:
         import capo_qapps.types.permissions_input_list
 
         out["grant_permissions"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> UpdateQAppPermissionsInput:
                 data["grantPermissions"]
             )
         )
-    if "revokePermissions" in data:
+    if data.get("revokePermissions") is not None:
         import capo_qapps.types.permissions_input_list
 
         out["revoke_permissions"] = (

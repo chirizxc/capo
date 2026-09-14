@@ -31,6 +31,6 @@ def serialize_json(value: RejectSubscriptionRequestInput) -> dict:
 
 def deserialize_json(data: dict) -> RejectSubscriptionRequestInput:
     out: RejectSubscriptionRequestInput = {}  # type: ignore[typeddict-item]
-    if "decisionComment" in data:
+    if data.get("decisionComment") is not None:
         out["decision_comment"] = data["decisionComment"]
     return out

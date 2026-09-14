@@ -27,7 +27,7 @@ def serialize_json(value: DescribeStreamOutput) -> dict:
 
 def deserialize_json(data: dict) -> DescribeStreamOutput:
     out: DescribeStreamOutput = {}  # type: ignore[typeddict-item]
-    if "StreamInfo" in data:
+    if data.get("StreamInfo") is not None:
         import capo_kinesis_video.types.stream_info
 
         out["stream_info"] = capo_kinesis_video.types.stream_info.deserialize_json(

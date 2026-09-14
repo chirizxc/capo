@@ -43,7 +43,7 @@ def serialize_json(value: GetSamplingTargetsRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetSamplingTargetsRequest:
     out: GetSamplingTargetsRequest = {}  # type: ignore[typeddict-item]
-    if "SamplingStatisticsDocuments" in data:
+    if data.get("SamplingStatisticsDocuments") is not None:
         import capo_xray.types.sampling_statistics_document_list
 
         out["sampling_statistics_documents"] = (
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> GetSamplingTargetsRequest:
         raise DeserializationError(
             "GetSamplingTargetsRequest.sampling_statistics_documents required"
         )
-    if "SamplingBoostStatisticsDocuments" in data:
+    if data.get("SamplingBoostStatisticsDocuments") is not None:
         import capo_xray.types.sampling_boost_statistics_document_list
 
         out["sampling_boost_statistics_documents"] = (

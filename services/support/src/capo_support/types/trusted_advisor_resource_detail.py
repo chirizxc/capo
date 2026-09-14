@@ -43,21 +43,21 @@ def serialize_aws_json_1_1(value: TrustedAdvisorResourceDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TrustedAdvisorResourceDetail:
     out: TrustedAdvisorResourceDetail = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("TrustedAdvisorResourceDetail.status required")
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         out["resource_id"] = data["resourceId"]
     else:
         raise DeserializationError("TrustedAdvisorResourceDetail.resource_id required")
-    if "isSuppressed" in data:
+    if data.get("isSuppressed") is not None:
         out["is_suppressed"] = data["isSuppressed"]
     else:
         out["is_suppressed"] = False
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         import capo_support.types.string_list
 
         out["metadata"] = capo_support.types.string_list.deserialize_aws_json_1_1(

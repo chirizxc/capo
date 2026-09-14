@@ -25,7 +25,7 @@ def serialize_json(value: InvalidQueryException_) -> dict:
 
 def deserialize_json(data: dict) -> InvalidQueryException_:
     out: InvalidQueryException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,18 @@ class InvalidQueryException(ServiceError):
 
     code: str | None = "InvalidQueryException"
 
-    def __init__(self, data: InvalidQueryException_):
+    def __init__(self, data: InvalidQueryException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidQueryException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "InvalidQueryException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidQueryException":
+        return cls(deserialize_json(data), message)

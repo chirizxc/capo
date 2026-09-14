@@ -38,9 +38,9 @@ def serialize_aws_json_1_1(value: DescribeCreateCaseOptionsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeCreateCaseOptionsResponse:
     out: DescribeCreateCaseOptionsResponse = {}  # type: ignore[typeddict-item]
-    if "languageAvailability" in data:
+    if data.get("languageAvailability") is not None:
         out["language_availability"] = data["languageAvailability"]
-    if "communicationTypes" in data:
+    if data.get("communicationTypes") is not None:
         import capo_support.types.communication_type_options_list
 
         out["communication_types"] = (

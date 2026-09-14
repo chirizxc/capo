@@ -152,7 +152,7 @@ class CodeCatalystClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecatalyst.types.get_user_details_request.GetUserDetailsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_codecatalyst.types.get_user_details_request.GetUserDetailsRequest = {}
         if id is not None:
             input_["id"] = id
         if user_name is not None:
@@ -163,6 +163,7 @@ class CodeCatalystClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def verify_session(
@@ -201,6 +202,7 @@ class CodeCatalystClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

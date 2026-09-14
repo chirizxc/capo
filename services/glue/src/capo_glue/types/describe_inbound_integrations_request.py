@@ -37,12 +37,12 @@ def serialize_aws_json_1_1(value: DescribeInboundIntegrationsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeInboundIntegrationsRequest:
     out: DescribeInboundIntegrationsRequest = {}  # type: ignore[typeddict-item]
-    if "IntegrationArn" in data:
+    if data.get("IntegrationArn") is not None:
         out["integration_arn"] = data["IntegrationArn"]
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
-    if "MaxRecords" in data:
+    if data.get("MaxRecords") is not None:
         out["max_records"] = data["MaxRecords"]
-    if "TargetArn" in data:
+    if data.get("TargetArn") is not None:
         out["target_arn"] = data["TargetArn"]
     return out

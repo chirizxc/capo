@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ComputeEnvironmentsList:
 
     out: ComputeEnvironmentsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_datazone.types.compute_environments.deserialize_json(item))
     return out

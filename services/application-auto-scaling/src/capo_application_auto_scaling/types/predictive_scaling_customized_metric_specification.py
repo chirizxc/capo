@@ -34,7 +34,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> PredictiveScalingCustomizedMetricSpecification:
     out: PredictiveScalingCustomizedMetricSpecification = {}  # type: ignore[typeddict-item]
-    if "MetricDataQueries" in data:
+    if data.get("MetricDataQueries") is not None:
         import capo_application_auto_scaling.types.predictive_scaling_metric_data_queries
 
         out["metric_data_queries"] = (

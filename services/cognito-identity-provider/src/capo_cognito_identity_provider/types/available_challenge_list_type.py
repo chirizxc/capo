@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> AvailableChallengeListType:
 
     out: AvailableChallengeListType = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cognito_identity_provider.types.challenge_name_type.deserialize_aws_json_1_1(
                 item

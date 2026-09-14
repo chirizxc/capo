@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ListOfS3BucketInfo:
 
     out: ListOfS3BucketInfo = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_amplifybackend.types.s3_bucket_info.deserialize_json(item))
     return out

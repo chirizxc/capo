@@ -36,7 +36,7 @@ def serialize_json(value: ListVpcEndpointsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListVpcEndpointsResponse:
     out: ListVpcEndpointsResponse = {}  # type: ignore[typeddict-item]
-    if "VpcEndpointSummaryList" in data:
+    if data.get("VpcEndpointSummaryList") is not None:
         import capo_opensearch.types.vpc_endpoint_summary_list
 
         out["vpc_endpoint_summary_list"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> ListVpcEndpointsResponse:
         raise DeserializationError(
             "ListVpcEndpointsResponse.vpc_endpoint_summary_list required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     else:
         raise DeserializationError("ListVpcEndpointsResponse.next_token required")

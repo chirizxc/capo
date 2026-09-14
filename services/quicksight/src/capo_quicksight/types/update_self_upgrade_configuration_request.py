@@ -34,7 +34,7 @@ def serialize_json(value: UpdateSelfUpgradeConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSelfUpgradeConfigurationRequest:
     out: UpdateSelfUpgradeConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "SelfUpgradeStatus" in data:
+    if data.get("SelfUpgradeStatus") is not None:
         import capo_quicksight.types.self_upgrade_status
 
         out["self_upgrade_status"] = (

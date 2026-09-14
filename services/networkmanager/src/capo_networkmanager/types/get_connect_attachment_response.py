@@ -31,7 +31,7 @@ def serialize_json(value: GetConnectAttachmentResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetConnectAttachmentResponse:
     out: GetConnectAttachmentResponse = {}  # type: ignore[typeddict-item]
-    if "ConnectAttachment" in data:
+    if data.get("ConnectAttachment") is not None:
         import capo_networkmanager.types.connect_attachment
 
         out["connect_attachment"] = (

@@ -32,7 +32,7 @@ def serialize_json(value: BatchGetTargetDomainsInput) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetTargetDomainsInput:
     out: BatchGetTargetDomainsInput = {}  # type: ignore[typeddict-item]
-    if "targetDomainIds" in data:
+    if data.get("targetDomainIds") is not None:
         import capo_securityagent.types.target_domain_id_list
 
         out["target_domain_ids"] = (

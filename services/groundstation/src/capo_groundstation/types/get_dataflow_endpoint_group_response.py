@@ -67,11 +67,11 @@ def serialize_json(value: GetDataflowEndpointGroupResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetDataflowEndpointGroupResponse:
     out: GetDataflowEndpointGroupResponse = {}  # type: ignore[typeddict-item]
-    if "dataflowEndpointGroupId" in data:
+    if data.get("dataflowEndpointGroupId") is not None:
         out["dataflow_endpoint_group_id"] = data["dataflowEndpointGroupId"]
-    if "dataflowEndpointGroupArn" in data:
+    if data.get("dataflowEndpointGroupArn") is not None:
         out["dataflow_endpoint_group_arn"] = data["dataflowEndpointGroupArn"]
-    if "endpointsDetails" in data:
+    if data.get("endpointsDetails") is not None:
         import capo_groundstation.types.endpoint_details_list
 
         out["endpoints_details"] = (
@@ -79,13 +79,13 @@ def deserialize_json(data: dict) -> GetDataflowEndpointGroupResponse:
                 data["endpointsDetails"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_groundstation.types.tags_map
 
         out["tags"] = capo_groundstation.types.tags_map.deserialize_json(data["tags"])
-    if "contactPrePassDurationSeconds" in data:
+    if data.get("contactPrePassDurationSeconds") is not None:
         out["contact_pre_pass_duration_seconds"] = data["contactPrePassDurationSeconds"]
-    if "contactPostPassDurationSeconds" in data:
+    if data.get("contactPostPassDurationSeconds") is not None:
         out["contact_post_pass_duration_seconds"] = data[
             "contactPostPassDurationSeconds"
         ]

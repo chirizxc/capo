@@ -29,7 +29,7 @@ def serialize_json(value: RuleGroupVariablesIpSetsDetails) -> dict:
 
 def deserialize_json(data: dict) -> RuleGroupVariablesIpSetsDetails:
     out: RuleGroupVariablesIpSetsDetails = {}  # type: ignore[typeddict-item]
-    if "Definition" in data:
+    if data.get("Definition") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["definition"] = (

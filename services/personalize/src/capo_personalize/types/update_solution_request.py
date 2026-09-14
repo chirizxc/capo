@@ -51,15 +51,15 @@ def serialize_aws_json_1_1(value: UpdateSolutionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateSolutionRequest:
     out: UpdateSolutionRequest = {}  # type: ignore[typeddict-item]
-    if "solutionArn" in data:
+    if data.get("solutionArn") is not None:
         out["solution_arn"] = data["solutionArn"]
     else:
         raise DeserializationError("UpdateSolutionRequest.solution_arn required")
-    if "performAutoTraining" in data:
+    if data.get("performAutoTraining") is not None:
         out["perform_auto_training"] = data["performAutoTraining"]
-    if "performIncrementalUpdate" in data:
+    if data.get("performIncrementalUpdate") is not None:
         out["perform_incremental_update"] = data["performIncrementalUpdate"]
-    if "solutionUpdateConfig" in data:
+    if data.get("solutionUpdateConfig") is not None:
         import capo_personalize.types.solution_update_config
 
         out["solution_update_config"] = (

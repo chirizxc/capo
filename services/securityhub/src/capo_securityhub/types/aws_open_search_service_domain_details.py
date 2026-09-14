@@ -162,19 +162,19 @@ def serialize_json(value: AwsOpenSearchServiceDomainDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsOpenSearchServiceDomainDetails:
     out: AwsOpenSearchServiceDomainDetails = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "AccessPolicies" in data:
+    if data.get("AccessPolicies") is not None:
         out["access_policies"] = data["AccessPolicies"]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "DomainEndpoint" in data:
+    if data.get("DomainEndpoint") is not None:
         out["domain_endpoint"] = data["DomainEndpoint"]
-    if "EngineVersion" in data:
+    if data.get("EngineVersion") is not None:
         out["engine_version"] = data["EngineVersion"]
-    if "EncryptionAtRestOptions" in data:
+    if data.get("EncryptionAtRestOptions") is not None:
         import capo_securityhub.types.aws_open_search_service_domain_encryption_at_rest_options_details
 
         out["encryption_at_rest_options"] = (
@@ -182,7 +182,7 @@ def deserialize_json(data: dict) -> AwsOpenSearchServiceDomainDetails:
                 data["EncryptionAtRestOptions"]
             )
         )
-    if "NodeToNodeEncryptionOptions" in data:
+    if data.get("NodeToNodeEncryptionOptions") is not None:
         import capo_securityhub.types.aws_open_search_service_domain_node_to_node_encryption_options_details
 
         out["node_to_node_encryption_options"] = (
@@ -190,7 +190,7 @@ def deserialize_json(data: dict) -> AwsOpenSearchServiceDomainDetails:
                 data["NodeToNodeEncryptionOptions"]
             )
         )
-    if "ServiceSoftwareOptions" in data:
+    if data.get("ServiceSoftwareOptions") is not None:
         import capo_securityhub.types.aws_open_search_service_domain_service_software_options_details
 
         out["service_software_options"] = (
@@ -198,7 +198,7 @@ def deserialize_json(data: dict) -> AwsOpenSearchServiceDomainDetails:
                 data["ServiceSoftwareOptions"]
             )
         )
-    if "ClusterConfig" in data:
+    if data.get("ClusterConfig") is not None:
         import capo_securityhub.types.aws_open_search_service_domain_cluster_config_details
 
         out["cluster_config"] = (
@@ -206,7 +206,7 @@ def deserialize_json(data: dict) -> AwsOpenSearchServiceDomainDetails:
                 data["ClusterConfig"]
             )
         )
-    if "DomainEndpointOptions" in data:
+    if data.get("DomainEndpointOptions") is not None:
         import capo_securityhub.types.aws_open_search_service_domain_domain_endpoint_options_details
 
         out["domain_endpoint_options"] = (
@@ -214,7 +214,7 @@ def deserialize_json(data: dict) -> AwsOpenSearchServiceDomainDetails:
                 data["DomainEndpointOptions"]
             )
         )
-    if "VpcOptions" in data:
+    if data.get("VpcOptions") is not None:
         import capo_securityhub.types.aws_open_search_service_domain_vpc_options_details
 
         out["vpc_options"] = (
@@ -222,7 +222,7 @@ def deserialize_json(data: dict) -> AwsOpenSearchServiceDomainDetails:
                 data["VpcOptions"]
             )
         )
-    if "LogPublishingOptions" in data:
+    if data.get("LogPublishingOptions") is not None:
         import capo_securityhub.types.aws_open_search_service_domain_log_publishing_options_details
 
         out["log_publishing_options"] = (
@@ -230,13 +230,13 @@ def deserialize_json(data: dict) -> AwsOpenSearchServiceDomainDetails:
                 data["LogPublishingOptions"]
             )
         )
-    if "DomainEndpoints" in data:
+    if data.get("DomainEndpoints") is not None:
         import capo_securityhub.types.field_map
 
         out["domain_endpoints"] = capo_securityhub.types.field_map.deserialize_json(
             data["DomainEndpoints"]
         )
-    if "AdvancedSecurityOptions" in data:
+    if data.get("AdvancedSecurityOptions") is not None:
         import capo_securityhub.types.aws_open_search_service_domain_advanced_security_options_details
 
         out["advanced_security_options"] = (

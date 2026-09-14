@@ -22,7 +22,7 @@ def serialize_json(value: GranularityConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> GranularityConfiguration:
     out: GranularityConfiguration = {}  # type: ignore[typeddict-item]
-    if "FiscalYearStartMonth" in data:
+    if data.get("FiscalYearStartMonth") is not None:
         out["fiscal_year_start_month"] = data["FiscalYearStartMonth"]
     else:
         out["fiscal_year_start_month"] = 1

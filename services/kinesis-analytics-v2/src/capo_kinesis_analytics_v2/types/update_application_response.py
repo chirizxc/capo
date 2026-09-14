@@ -39,7 +39,7 @@ def serialize_aws_json_1_1(value: UpdateApplicationResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateApplicationResponse:
     out: UpdateApplicationResponse = {}  # type: ignore[typeddict-item]
-    if "ApplicationDetail" in data:
+    if data.get("ApplicationDetail") is not None:
         import capo_kinesis_analytics_v2.types.application_detail
 
         out["application_detail"] = (
@@ -51,6 +51,6 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateApplicationResponse:
         raise DeserializationError(
             "UpdateApplicationResponse.application_detail required"
         )
-    if "OperationId" in data:
+    if data.get("OperationId") is not None:
         out["operation_id"] = data["OperationId"]
     return out

@@ -25,7 +25,7 @@ def serialize_json(value: Logging) -> dict:
 
 def deserialize_json(data: dict) -> Logging:
     out: Logging = {}  # type: ignore[typeddict-item]
-    if "s3Logs" in data:
+    if data.get("s3Logs") is not None:
         import capo_imagebuilder.types.s3_logs
 
         out["s3_logs"] = capo_imagebuilder.types.s3_logs.deserialize_json(

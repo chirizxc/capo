@@ -39,11 +39,11 @@ def serialize_json(value: FieldOptionsCaseRule) -> dict:
 
 def deserialize_json(data: dict) -> FieldOptionsCaseRule:
     out: FieldOptionsCaseRule = {}  # type: ignore[typeddict-item]
-    if "parentFieldId" in data:
+    if data.get("parentFieldId") is not None:
         out["parent_field_id"] = data["parentFieldId"]
-    if "childFieldId" in data:
+    if data.get("childFieldId") is not None:
         out["child_field_id"] = data["childFieldId"]
-    if "parentChildFieldOptionsMappings" in data:
+    if data.get("parentChildFieldOptionsMappings") is not None:
         import capo_connectcases.types.parent_child_field_options_mapping_list
 
         out["parent_child_field_options_mappings"] = (

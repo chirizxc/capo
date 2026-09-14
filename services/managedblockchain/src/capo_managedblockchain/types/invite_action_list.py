@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> InviteActionList:
 
     out: InviteActionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_managedblockchain.types.invite_action.deserialize_json(item))
     return out

@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.deadline#Deadline``."""
 
+import uuid
 import warnings
 from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -267,14 +268,16 @@ class AsyncdeadlineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_deadline.types.batch_get_job_request.BatchGetJobRequest = {}  # type: ignore[typeddict-item]
-        input_["identifiers"] = identifiers
+        input_: capo_deadline.types.batch_get_job_request.BatchGetJobRequest = {
+            "identifiers": identifiers
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_session(
@@ -317,14 +320,16 @@ class AsyncdeadlineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_deadline.types.batch_get_session_request.BatchGetSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["identifiers"] = identifiers
+        input_: capo_deadline.types.batch_get_session_request.BatchGetSessionRequest = {
+            "identifiers": identifiers
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_session_action(
@@ -367,14 +372,16 @@ class AsyncdeadlineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_deadline.types.batch_get_session_action_request.BatchGetSessionActionRequest = {}  # type: ignore[typeddict-item]
-        input_["identifiers"] = identifiers
+        input_: capo_deadline.types.batch_get_session_action_request.BatchGetSessionActionRequest = {
+            "identifiers": identifiers
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_step(
@@ -417,14 +424,16 @@ class AsyncdeadlineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_deadline.types.batch_get_step_request.BatchGetStepRequest = {}  # type: ignore[typeddict-item]
-        input_["identifiers"] = identifiers
+        input_: capo_deadline.types.batch_get_step_request.BatchGetStepRequest = {
+            "identifiers": identifiers
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_task(
@@ -467,14 +476,16 @@ class AsyncdeadlineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_deadline.types.batch_get_task_request.BatchGetTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["identifiers"] = identifiers
+        input_: capo_deadline.types.batch_get_task_request.BatchGetTaskRequest = {
+            "identifiers": identifiers
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_worker(
@@ -517,14 +528,16 @@ class AsyncdeadlineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_deadline.types.batch_get_worker_request.BatchGetWorkerRequest = {}  # type: ignore[typeddict-item]
-        input_["identifiers"] = identifiers
+        input_: capo_deadline.types.batch_get_worker_request.BatchGetWorkerRequest = {
+            "identifiers": identifiers
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_update_job(
@@ -569,16 +582,19 @@ class AsyncdeadlineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_deadline.types.batch_update_job_request.BatchUpdateJobRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["jobs"] = jobs
+        input_: capo_deadline.types.batch_update_job_request.BatchUpdateJobRequest = {
+            "jobs": jobs
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_update_task(
@@ -623,16 +639,19 @@ class AsyncdeadlineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_deadline.types.batch_update_task_request.BatchUpdateTaskRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["tasks"] = tasks
+        input_: capo_deadline.types.batch_update_task_request.BatchUpdateTaskRequest = {
+            "tasks": tasks
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_queue_fleet_association(
@@ -675,16 +694,18 @@ class AsyncdeadlineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_deadline.types.create_queue_fleet_association_request.CreateQueueFleetAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
-        input_["queue_id"] = queue_id
-        input_["fleet_id"] = fleet_id
+        input_: capo_deadline.types.create_queue_fleet_association_request.CreateQueueFleetAssociationRequest = {
+            "farm_id": farm_id,
+            "queue_id": queue_id,
+            "fleet_id": fleet_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_queue_limit_association(
@@ -727,16 +748,18 @@ class AsyncdeadlineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_deadline.types.create_queue_limit_association_request.CreateQueueLimitAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
-        input_["queue_id"] = queue_id
-        input_["limit_id"] = limit_id
+        input_: capo_deadline.types.create_queue_limit_association_request.CreateQueueLimitAssociationRequest = {
+            "farm_id": farm_id,
+            "queue_id": queue_id,
+            "limit_id": limit_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_queue_fleet_association(
@@ -780,16 +803,18 @@ class AsyncdeadlineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_deadline.types.delete_queue_fleet_association_request.DeleteQueueFleetAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
-        input_["queue_id"] = queue_id
-        input_["fleet_id"] = fleet_id
+        input_: capo_deadline.types.delete_queue_fleet_association_request.DeleteQueueFleetAssociationRequest = {
+            "farm_id": farm_id,
+            "queue_id": queue_id,
+            "fleet_id": fleet_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_queue_limit_association(
@@ -833,16 +858,18 @@ class AsyncdeadlineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_deadline.types.delete_queue_limit_association_request.DeleteQueueLimitAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
-        input_["queue_id"] = queue_id
-        input_["limit_id"] = limit_id
+        input_: capo_deadline.types.delete_queue_limit_association_request.DeleteQueueLimitAssociationRequest = {
+            "farm_id": farm_id,
+            "queue_id": queue_id,
+            "limit_id": limit_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_queue_fleet_association(
@@ -885,16 +912,18 @@ class AsyncdeadlineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_deadline.types.get_queue_fleet_association_request.GetQueueFleetAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
-        input_["queue_id"] = queue_id
-        input_["fleet_id"] = fleet_id
+        input_: capo_deadline.types.get_queue_fleet_association_request.GetQueueFleetAssociationRequest = {
+            "farm_id": farm_id,
+            "queue_id": queue_id,
+            "fleet_id": fleet_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_queue_limit_association(
@@ -937,16 +966,18 @@ class AsyncdeadlineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_deadline.types.get_queue_limit_association_request.GetQueueLimitAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
-        input_["queue_id"] = queue_id
-        input_["limit_id"] = limit_id
+        input_: capo_deadline.types.get_queue_limit_association_request.GetQueueLimitAssociationRequest = {
+            "farm_id": farm_id,
+            "queue_id": queue_id,
+            "limit_id": limit_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_sessions_statistics_aggregation(
@@ -991,19 +1022,21 @@ class AsyncdeadlineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_deadline.types.get_sessions_statistics_aggregation_request.GetSessionsStatisticsAggregationRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
+        input_: capo_deadline.types.get_sessions_statistics_aggregation_request.GetSessionsStatisticsAggregationRequest = {
+            "farm_id": farm_id,
+            "aggregation_id": aggregation_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["aggregation_id"] = aggregation_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_sessions_statistics_aggregation(
@@ -1066,7 +1099,7 @@ class AsyncdeadlineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_deadline.types.list_available_metered_products_request.ListAvailableMeteredProductsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_deadline.types.list_available_metered_products_request.ListAvailableMeteredProductsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1077,6 +1110,7 @@ class AsyncdeadlineClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_available_metered_products(
@@ -1143,8 +1177,9 @@ class AsyncdeadlineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_deadline.types.list_queue_fleet_associations_request.ListQueueFleetAssociationsRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
+        input_: capo_deadline.types.list_queue_fleet_associations_request.ListQueueFleetAssociationsRequest = {
+            "farm_id": farm_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1159,6 +1194,7 @@ class AsyncdeadlineClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_queue_fleet_associations(
@@ -1231,8 +1267,9 @@ class AsyncdeadlineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_deadline.types.list_queue_limit_associations_request.ListQueueLimitAssociationsRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
+        input_: capo_deadline.types.list_queue_limit_associations_request.ListQueueLimitAssociationsRequest = {
+            "farm_id": farm_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1247,6 +1284,7 @@ class AsyncdeadlineClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_queue_limit_associations(
@@ -1312,14 +1350,16 @@ class AsyncdeadlineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_deadline.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_deadline.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def search_jobs(
@@ -1372,22 +1412,24 @@ class AsyncdeadlineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_deadline.types.search_jobs_request.SearchJobsRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
+        input_: capo_deadline.types.search_jobs_request.SearchJobsRequest = {
+            "farm_id": farm_id,
+            "item_offset": item_offset,
+            "queue_ids": queue_ids,
+        }
         if filter_expressions is not None:
             input_["filter_expressions"] = filter_expressions
         if sort_expressions is not None:
             input_["sort_expressions"] = sort_expressions
-        input_["item_offset"] = item_offset
         if page_size is not None:
             input_["page_size"] = page_size
-        input_["queue_ids"] = queue_ids
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def search_steps(
@@ -1442,16 +1484,17 @@ class AsyncdeadlineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_deadline.types.search_steps_request.SearchStepsRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
+        input_: capo_deadline.types.search_steps_request.SearchStepsRequest = {
+            "farm_id": farm_id,
+            "item_offset": item_offset,
+            "queue_ids": queue_ids,
+        }
         if filter_expressions is not None:
             input_["filter_expressions"] = filter_expressions
         if sort_expressions is not None:
             input_["sort_expressions"] = sort_expressions
-        input_["item_offset"] = item_offset
         if page_size is not None:
             input_["page_size"] = page_size
-        input_["queue_ids"] = queue_ids
         if job_id is not None:
             input_["job_id"] = job_id
 
@@ -1460,6 +1503,7 @@ class AsyncdeadlineClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def search_tasks(
@@ -1514,16 +1558,17 @@ class AsyncdeadlineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_deadline.types.search_tasks_request.SearchTasksRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
+        input_: capo_deadline.types.search_tasks_request.SearchTasksRequest = {
+            "farm_id": farm_id,
+            "item_offset": item_offset,
+            "queue_ids": queue_ids,
+        }
         if filter_expressions is not None:
             input_["filter_expressions"] = filter_expressions
         if sort_expressions is not None:
             input_["sort_expressions"] = sort_expressions
-        input_["item_offset"] = item_offset
         if page_size is not None:
             input_["page_size"] = page_size
-        input_["queue_ids"] = queue_ids
         if job_id is not None:
             input_["job_id"] = job_id
 
@@ -1532,6 +1577,7 @@ class AsyncdeadlineClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def search_workers(
@@ -1584,22 +1630,24 @@ class AsyncdeadlineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_deadline.types.search_workers_request.SearchWorkersRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
+        input_: capo_deadline.types.search_workers_request.SearchWorkersRequest = {
+            "farm_id": farm_id,
+            "item_offset": item_offset,
+            "fleet_ids": fleet_ids,
+        }
         if filter_expressions is not None:
             input_["filter_expressions"] = filter_expressions
         if sort_expressions is not None:
             input_["sort_expressions"] = sort_expressions
-        input_["item_offset"] = item_offset
         if page_size is not None:
             input_["page_size"] = page_size
-        input_["fleet_ids"] = fleet_ids
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_sessions_statistics_aggregation(
@@ -1652,23 +1700,25 @@ class AsyncdeadlineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_deadline.types.start_sessions_statistics_aggregation_request.StartSessionsStatisticsAggregationRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
-        input_["resource_ids"] = resource_ids
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
+        input_: capo_deadline.types.start_sessions_statistics_aggregation_request.StartSessionsStatisticsAggregationRequest = {
+            "farm_id": farm_id,
+            "resource_ids": resource_ids,
+            "start_time": start_time,
+            "end_time": end_time,
+            "group_by": group_by,
+            "statistics": statistics,
+        }
         if timezone is not None:
             input_["timezone"] = timezone
         if period is not None:
             input_["period"] = period
-        input_["group_by"] = group_by
-        input_["statistics"] = statistics
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -1710,8 +1760,9 @@ class AsyncdeadlineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_deadline.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_deadline.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -1720,6 +1771,7 @@ class AsyncdeadlineClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -1761,15 +1813,17 @@ class AsyncdeadlineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_deadline.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_deadline.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_queue_fleet_association(
@@ -1814,17 +1868,19 @@ class AsyncdeadlineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_deadline.types.update_queue_fleet_association_request.UpdateQueueFleetAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
-        input_["queue_id"] = queue_id
-        input_["fleet_id"] = fleet_id
-        input_["status"] = status
+        input_: capo_deadline.types.update_queue_fleet_association_request.UpdateQueueFleetAssociationRequest = {
+            "farm_id": farm_id,
+            "queue_id": queue_id,
+            "fleet_id": fleet_id,
+            "status": status,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_queue_limit_association(
@@ -1869,17 +1925,19 @@ class AsyncdeadlineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_deadline.types.update_queue_limit_association_request.UpdateQueueLimitAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
-        input_["queue_id"] = queue_id
-        input_["limit_id"] = limit_id
-        input_["status"] = status
+        input_: capo_deadline.types.update_queue_limit_association_request.UpdateQueueLimitAssociationRequest = {
+            "farm_id": farm_id,
+            "queue_id": queue_id,
+            "limit_id": limit_id,
+            "status": status,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

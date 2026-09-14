@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: ListVolumeInitiatorsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListVolumeInitiatorsInput:
     out: ListVolumeInitiatorsInput = {}  # type: ignore[typeddict-item]
-    if "VolumeARN" in data:
+    if data.get("VolumeARN") is not None:
         out["volume_arn"] = data["VolumeARN"]
     else:
         raise DeserializationError("ListVolumeInitiatorsInput.volume_arn required")

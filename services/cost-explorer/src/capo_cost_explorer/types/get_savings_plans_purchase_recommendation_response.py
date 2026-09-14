@@ -55,7 +55,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> GetSavingsPlansPurchaseRecommendationResponse:
     out: GetSavingsPlansPurchaseRecommendationResponse = {}  # type: ignore[typeddict-item]
-    if "Metadata" in data:
+    if data.get("Metadata") is not None:
         import capo_cost_explorer.types.savings_plans_purchase_recommendation_metadata
 
         out["metadata"] = (
@@ -63,7 +63,7 @@ def deserialize_aws_json_1_1(
                 data["Metadata"]
             )
         )
-    if "SavingsPlansPurchaseRecommendation" in data:
+    if data.get("SavingsPlansPurchaseRecommendation") is not None:
         import capo_cost_explorer.types.savings_plans_purchase_recommendation
 
         out["savings_plans_purchase_recommendation"] = (
@@ -71,6 +71,6 @@ def deserialize_aws_json_1_1(
                 data["SavingsPlansPurchaseRecommendation"]
             )
         )
-    if "NextPageToken" in data:
+    if data.get("NextPageToken") is not None:
         out["next_page_token"] = data["NextPageToken"]
     return out

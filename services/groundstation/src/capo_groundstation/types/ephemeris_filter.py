@@ -32,7 +32,7 @@ def serialize_json(value: EphemerisFilter) -> dict:
 
 
 def deserialize_json(data: dict) -> EphemerisFilter:
-    if "azEl" in data:
+    if data.get("azEl") is not None:
         import capo_groundstation.types.az_el_ephemeris_filter
 
         return {

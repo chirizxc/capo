@@ -70,9 +70,9 @@ def serialize_aws_json_1_1(value: OpenZFSCreateRootVolumeConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OpenZFSCreateRootVolumeConfiguration:
     out: OpenZFSCreateRootVolumeConfiguration = {}  # type: ignore[typeddict-item]
-    if "RecordSizeKiB" in data:
+    if data.get("RecordSizeKiB") is not None:
         out["record_size_ki_b"] = data["RecordSizeKiB"]
-    if "DataCompressionType" in data:
+    if data.get("DataCompressionType") is not None:
         import capo_fsx.types.open_zfs_data_compression_type
 
         out["data_compression_type"] = (
@@ -80,7 +80,7 @@ def deserialize_aws_json_1_1(data: dict) -> OpenZFSCreateRootVolumeConfiguration
                 data["DataCompressionType"]
             )
         )
-    if "NfsExports" in data:
+    if data.get("NfsExports") is not None:
         import capo_fsx.types.open_zfs_nfs_exports
 
         out["nfs_exports"] = (
@@ -88,7 +88,7 @@ def deserialize_aws_json_1_1(data: dict) -> OpenZFSCreateRootVolumeConfiguration
                 data["NfsExports"]
             )
         )
-    if "UserAndGroupQuotas" in data:
+    if data.get("UserAndGroupQuotas") is not None:
         import capo_fsx.types.open_zfs_user_and_group_quotas
 
         out["user_and_group_quotas"] = (
@@ -96,8 +96,8 @@ def deserialize_aws_json_1_1(data: dict) -> OpenZFSCreateRootVolumeConfiguration
                 data["UserAndGroupQuotas"]
             )
         )
-    if "CopyTagsToSnapshots" in data:
+    if data.get("CopyTagsToSnapshots") is not None:
         out["copy_tags_to_snapshots"] = data["CopyTagsToSnapshots"]
-    if "ReadOnly" in data:
+    if data.get("ReadOnly") is not None:
         out["read_only"] = data["ReadOnly"]
     return out

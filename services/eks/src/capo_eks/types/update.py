@@ -58,25 +58,25 @@ def serialize_json(value: Update) -> dict:
 
 def deserialize_json(data: dict) -> Update:
     out: Update = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_eks.types.update_status
 
         out["status"] = capo_eks.types.update_status.deserialize_json(data["status"])
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_eks.types.update_type
 
         out["type"] = capo_eks.types.update_type.deserialize_json(data["type"])
-    if "params" in data:
+    if data.get("params") is not None:
         import capo_eks.types.update_params
 
         out["params"] = capo_eks.types.update_params.deserialize_json(data["params"])
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_eks.types.timestamp
 
         out["created_at"] = capo_eks.types.timestamp.deserialize_json(data["createdAt"])
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_eks.types.error_details
 
         out["errors"] = capo_eks.types.error_details.deserialize_json(data["errors"])

@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: InstanceFleetResizingSpecifications) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InstanceFleetResizingSpecifications:
     out: InstanceFleetResizingSpecifications = {}  # type: ignore[typeddict-item]
-    if "SpotResizeSpecification" in data:
+    if data.get("SpotResizeSpecification") is not None:
         import capo_emr.types.spot_resizing_specification
 
         out["spot_resize_specification"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceFleetResizingSpecifications:
                 data["SpotResizeSpecification"]
             )
         )
-    if "OnDemandResizeSpecification" in data:
+    if data.get("OnDemandResizeSpecification") is not None:
         import capo_emr.types.on_demand_resizing_specification
 
         out["on_demand_resize_specification"] = (

@@ -28,7 +28,7 @@ def serialize_json(value: CompoundCondition) -> dict:
 
 def deserialize_json(data: dict) -> CompoundCondition:
     out: CompoundCondition = {}  # type: ignore[typeddict-item]
-    if "conditions" in data:
+    if data.get("conditions") is not None:
         import capo_connectcases.types.boolean_condition_list
 
         out["conditions"] = (

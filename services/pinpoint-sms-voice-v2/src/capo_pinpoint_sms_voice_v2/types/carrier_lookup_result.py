@@ -64,23 +64,23 @@ def serialize_aws_json_1_0(value: CarrierLookupResult) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CarrierLookupResult:
     out: CarrierLookupResult = {}  # type: ignore[typeddict-item]
-    if "E164PhoneNumber" in data:
+    if data.get("E164PhoneNumber") is not None:
         out["e164_phone_number"] = data["E164PhoneNumber"]
     else:
         raise DeserializationError("CarrierLookupResult.e164_phone_number required")
-    if "DialingCountryCode" in data:
+    if data.get("DialingCountryCode") is not None:
         out["dialing_country_code"] = data["DialingCountryCode"]
-    if "IsoCountryCode" in data:
+    if data.get("IsoCountryCode") is not None:
         out["iso_country_code"] = data["IsoCountryCode"]
-    if "Country" in data:
+    if data.get("Country") is not None:
         out["country"] = data["Country"]
-    if "MCC" in data:
+    if data.get("MCC") is not None:
         out["mcc"] = data["MCC"]
-    if "MNC" in data:
+    if data.get("MNC") is not None:
         out["mnc"] = data["MNC"]
-    if "Carrier" in data:
+    if data.get("Carrier") is not None:
         out["carrier"] = data["Carrier"]
-    if "PhoneNumberType" in data:
+    if data.get("PhoneNumberType") is not None:
         out["phone_number_type"] = data["PhoneNumberType"]
     else:
         raise DeserializationError("CarrierLookupResult.phone_number_type required")

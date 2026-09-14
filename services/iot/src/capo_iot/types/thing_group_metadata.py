@@ -45,9 +45,9 @@ def serialize_json(value: ThingGroupMetadata) -> dict:
 
 def deserialize_json(data: dict) -> ThingGroupMetadata:
     out: ThingGroupMetadata = {}  # type: ignore[typeddict-item]
-    if "parentGroupName" in data:
+    if data.get("parentGroupName") is not None:
         out["parent_group_name"] = data["parentGroupName"]
-    if "rootToParentThingGroups" in data:
+    if data.get("rootToParentThingGroups") is not None:
         import capo_iot.types.thing_group_name_and_arn_list
 
         out["root_to_parent_thing_groups"] = (
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> ThingGroupMetadata:
                 data["rootToParentThingGroups"]
             )
         )
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_iot.types.creation_date
 
         out["creation_date"] = capo_iot.types.creation_date.deserialize_json(

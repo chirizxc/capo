@@ -41,7 +41,7 @@ def serialize_json(value: ContactFlowSearchFilter) -> dict:
 
 def deserialize_json(data: dict) -> ContactFlowSearchFilter:
     out: ContactFlowSearchFilter = {}  # type: ignore[typeddict-item]
-    if "TagFilter" in data:
+    if data.get("TagFilter") is not None:
         import capo_connect.types.control_plane_tag_filter
 
         out["tag_filter"] = (
@@ -49,7 +49,7 @@ def deserialize_json(data: dict) -> ContactFlowSearchFilter:
                 data["TagFilter"]
             )
         )
-    if "FlowAttributeFilter" in data:
+    if data.get("FlowAttributeFilter") is not None:
         import capo_connect.types.contact_flow_attribute_filter
 
         out["flow_attribute_filter"] = (

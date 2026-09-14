@@ -53,9 +53,9 @@ def serialize_aws_json_1_1(value: ImportFailureListItem) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ImportFailureListItem:
     out: ImportFailureListItem = {}  # type: ignore[typeddict-item]
-    if "Location" in data:
+    if data.get("Location") is not None:
         out["location"] = data["Location"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_cloudtrail.types.import_failure_status
 
         out["status"] = (
@@ -63,11 +63,11 @@ def deserialize_aws_json_1_1(data: dict) -> ImportFailureListItem:
                 data["Status"]
             )
         )
-    if "ErrorType" in data:
+    if data.get("ErrorType") is not None:
         out["error_type"] = data["ErrorType"]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_cloudtrail.types.date
 
         out["last_updated_time"] = capo_cloudtrail.types.date.deserialize_aws_json_1_1(

@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> MatchClauses:
 
     out: MatchClauses = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_datazone.types.match_clause.deserialize_json(item))
     return out

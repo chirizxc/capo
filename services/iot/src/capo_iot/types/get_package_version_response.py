@@ -121,51 +121,51 @@ def serialize_json(value: GetPackageVersionResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetPackageVersionResponse:
     out: GetPackageVersionResponse = {}  # type: ignore[typeddict-item]
-    if "packageVersionArn" in data:
+    if data.get("packageVersionArn") is not None:
         out["package_version_arn"] = data["packageVersionArn"]
-    if "packageName" in data:
+    if data.get("packageName") is not None:
         out["package_name"] = data["packageName"]
-    if "versionName" in data:
+    if data.get("versionName") is not None:
         out["version_name"] = data["versionName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_iot.types.resource_attributes
 
         out["attributes"] = capo_iot.types.resource_attributes.deserialize_json(
             data["attributes"]
         )
-    if "artifact" in data:
+    if data.get("artifact") is not None:
         import capo_iot.types.package_version_artifact
 
         out["artifact"] = capo_iot.types.package_version_artifact.deserialize_json(
             data["artifact"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iot.types.package_version_status
 
         out["status"] = capo_iot.types.package_version_status.deserialize_json(
             data["status"]
         )
-    if "errorReason" in data:
+    if data.get("errorReason") is not None:
         out["error_reason"] = data["errorReason"]
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_iot.types.creation_date
 
         out["creation_date"] = capo_iot.types.creation_date.deserialize_json(
             data["creationDate"]
         )
-    if "lastModifiedDate" in data:
+    if data.get("lastModifiedDate") is not None:
         import capo_iot.types.last_modified_date
 
         out["last_modified_date"] = capo_iot.types.last_modified_date.deserialize_json(
             data["lastModifiedDate"]
         )
-    if "sbom" in data:
+    if data.get("sbom") is not None:
         import capo_iot.types.sbom
 
         out["sbom"] = capo_iot.types.sbom.deserialize_json(data["sbom"])
-    if "sbomValidationStatus" in data:
+    if data.get("sbomValidationStatus") is not None:
         import capo_iot.types.sbom_validation_status
 
         out["sbom_validation_status"] = (
@@ -173,6 +173,6 @@ def deserialize_json(data: dict) -> GetPackageVersionResponse:
                 data["sbomValidationStatus"]
             )
         )
-    if "recipe" in data:
+    if data.get("recipe") is not None:
         out["recipe"] = data["recipe"]
     return out

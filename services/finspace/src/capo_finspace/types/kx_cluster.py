@@ -112,47 +112,47 @@ def serialize_json(value: KxCluster) -> dict:
 
 def deserialize_json(data: dict) -> KxCluster:
     out: KxCluster = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_finspace.types.kx_cluster_status
 
         out["status"] = capo_finspace.types.kx_cluster_status.deserialize_json(
             data["status"]
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "clusterName" in data:
+    if data.get("clusterName") is not None:
         out["cluster_name"] = data["clusterName"]
-    if "clusterType" in data:
+    if data.get("clusterType") is not None:
         import capo_finspace.types.kx_cluster_type
 
         out["cluster_type"] = capo_finspace.types.kx_cluster_type.deserialize_json(
             data["clusterType"]
         )
-    if "clusterDescription" in data:
+    if data.get("clusterDescription") is not None:
         out["cluster_description"] = data["clusterDescription"]
-    if "releaseLabel" in data:
+    if data.get("releaseLabel") is not None:
         out["release_label"] = data["releaseLabel"]
-    if "volumes" in data:
+    if data.get("volumes") is not None:
         import capo_finspace.types.volumes
 
         out["volumes"] = capo_finspace.types.volumes.deserialize_json(data["volumes"])
-    if "initializationScript" in data:
+    if data.get("initializationScript") is not None:
         out["initialization_script"] = data["initializationScript"]
-    if "executionRole" in data:
+    if data.get("executionRole") is not None:
         out["execution_role"] = data["executionRole"]
-    if "azMode" in data:
+    if data.get("azMode") is not None:
         import capo_finspace.types.kx_az_mode
 
         out["az_mode"] = capo_finspace.types.kx_az_mode.deserialize_json(data["azMode"])
-    if "availabilityZoneId" in data:
+    if data.get("availabilityZoneId") is not None:
         out["availability_zone_id"] = data["availabilityZoneId"]
-    if "lastModifiedTimestamp" in data:
+    if data.get("lastModifiedTimestamp") is not None:
         import capo_finspace.types.timestamp
 
         out["last_modified_timestamp"] = capo_finspace.types.timestamp.deserialize_json(
             data["lastModifiedTimestamp"]
         )
-    if "createdTimestamp" in data:
+    if data.get("createdTimestamp") is not None:
         import capo_finspace.types.timestamp
 
         out["created_timestamp"] = capo_finspace.types.timestamp.deserialize_json(

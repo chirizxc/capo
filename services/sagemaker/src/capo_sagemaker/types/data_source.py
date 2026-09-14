@@ -53,7 +53,7 @@ def serialize_aws_json_1_1(value: DataSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataSource:
     out: DataSource = {}  # type: ignore[typeddict-item]
-    if "S3DataSource" in data:
+    if data.get("S3DataSource") is not None:
         import capo_sagemaker.types.s3_data_source
 
         out["s3_data_source"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataSource:
                 data["S3DataSource"]
             )
         )
-    if "FileSystemDataSource" in data:
+    if data.get("FileSystemDataSource") is not None:
         import capo_sagemaker.types.file_system_data_source
 
         out["file_system_data_source"] = (
@@ -69,7 +69,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataSource:
                 data["FileSystemDataSource"]
             )
         )
-    if "DatasetSource" in data:
+    if data.get("DatasetSource") is not None:
         import capo_sagemaker.types.dataset_source
 
         out["dataset_source"] = (

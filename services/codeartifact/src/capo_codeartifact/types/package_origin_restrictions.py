@@ -36,7 +36,7 @@ def serialize_json(value: PackageOriginRestrictions) -> dict:
 
 def deserialize_json(data: dict) -> PackageOriginRestrictions:
     out: PackageOriginRestrictions = {}  # type: ignore[typeddict-item]
-    if "publish" in data:
+    if data.get("publish") is not None:
         import capo_codeartifact.types.allow_publish
 
         out["publish"] = capo_codeartifact.types.allow_publish.deserialize_json(
@@ -44,7 +44,7 @@ def deserialize_json(data: dict) -> PackageOriginRestrictions:
         )
     else:
         raise DeserializationError("PackageOriginRestrictions.publish required")
-    if "upstream" in data:
+    if data.get("upstream") is not None:
         import capo_codeartifact.types.allow_upstream
 
         out["upstream"] = capo_codeartifact.types.allow_upstream.deserialize_json(

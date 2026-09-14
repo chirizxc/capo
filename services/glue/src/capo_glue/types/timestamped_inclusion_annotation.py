@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: TimestampedInclusionAnnotation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TimestampedInclusionAnnotation:
     out: TimestampedInclusionAnnotation = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
+    if data.get("Value") is not None:
         import capo_glue.types.inclusion_annotation_value
 
         out["value"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> TimestampedInclusionAnnotation:
                 data["Value"]
             )
         )
-    if "LastModifiedOn" in data:
+    if data.get("LastModifiedOn") is not None:
         import capo_glue.types.timestamp
 
         out["last_modified_on"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(

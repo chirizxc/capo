@@ -24,7 +24,7 @@ def serialize_json(value: DatadogSourceProperties) -> dict:
 
 def deserialize_json(data: dict) -> DatadogSourceProperties:
     out: DatadogSourceProperties = {}  # type: ignore[typeddict-item]
-    if "object" in data:
+    if data.get("object") is not None:
         out["object"] = data["object"]
     else:
         raise DeserializationError("DatadogSourceProperties.object required")

@@ -65,14 +65,14 @@ def serialize_json(value: MessageTemplateSummary) -> dict:
     if "channel" in value:
         out["channel"] = value["channel"]
     out["channelSubtype"] = value["channel_subtype"]
-    import capo_qconnect.types._prelude.timestamp
+    import capo_qconnect._protocol.serialize
 
-    out["createdTime"] = capo_qconnect.types._prelude.timestamp.serialize_json(
+    out["createdTime"] = capo_qconnect._protocol.serialize.fmt_date_time(
         value["created_time"]
     )
-    import capo_qconnect.types._prelude.timestamp
+    import capo_qconnect._protocol.serialize
 
-    out["lastModifiedTime"] = capo_qconnect.types._prelude.timestamp.serialize_json(
+    out["lastModifiedTime"] = capo_qconnect._protocol.serialize.fmt_date_time(
         value["last_modified_time"]
     )
     out["lastModifiedBy"] = value["last_modified_by"]
@@ -97,59 +97,57 @@ def serialize_json(value: MessageTemplateSummary) -> dict:
 
 def deserialize_json(data: dict) -> MessageTemplateSummary:
     out: MessageTemplateSummary = {}  # type: ignore[typeddict-item]
-    if "messageTemplateArn" in data:
+    if data.get("messageTemplateArn") is not None:
         out["message_template_arn"] = data["messageTemplateArn"]
     else:
         raise DeserializationError(
             "MessageTemplateSummary.message_template_arn required"
         )
-    if "messageTemplateId" in data:
+    if data.get("messageTemplateId") is not None:
         out["message_template_id"] = data["messageTemplateId"]
     else:
         raise DeserializationError(
             "MessageTemplateSummary.message_template_id required"
         )
-    if "knowledgeBaseArn" in data:
+    if data.get("knowledgeBaseArn") is not None:
         out["knowledge_base_arn"] = data["knowledgeBaseArn"]
     else:
         raise DeserializationError("MessageTemplateSummary.knowledge_base_arn required")
-    if "knowledgeBaseId" in data:
+    if data.get("knowledgeBaseId") is not None:
         out["knowledge_base_id"] = data["knowledgeBaseId"]
     else:
         raise DeserializationError("MessageTemplateSummary.knowledge_base_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("MessageTemplateSummary.name required")
-    if "channel" in data:
+    if data.get("channel") is not None:
         out["channel"] = data["channel"]
-    if "channelSubtype" in data:
+    if data.get("channelSubtype") is not None:
         out["channel_subtype"] = data["channelSubtype"]
     else:
         raise DeserializationError("MessageTemplateSummary.channel_subtype required")
-    if "createdTime" in data:
-        import capo_qconnect.types._prelude.timestamp
+    if data.get("createdTime") is not None:
+        import datetime
 
-        out["created_time"] = capo_qconnect.types._prelude.timestamp.deserialize_json(
-            data["createdTime"]
+        out["created_time"] = datetime.datetime.fromisoformat(
+            data["createdTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("MessageTemplateSummary.created_time required")
-    if "lastModifiedTime" in data:
-        import capo_qconnect.types._prelude.timestamp
+    if data.get("lastModifiedTime") is not None:
+        import datetime
 
-        out["last_modified_time"] = (
-            capo_qconnect.types._prelude.timestamp.deserialize_json(
-                data["lastModifiedTime"]
-            )
+        out["last_modified_time"] = datetime.datetime.fromisoformat(
+            data["lastModifiedTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("MessageTemplateSummary.last_modified_time required")
-    if "lastModifiedBy" in data:
+    if data.get("lastModifiedBy") is not None:
         out["last_modified_by"] = data["lastModifiedBy"]
     else:
         raise DeserializationError("MessageTemplateSummary.last_modified_by required")
-    if "sourceConfiguration" in data:
+    if data.get("sourceConfiguration") is not None:
         import capo_qconnect.types.message_template_source_configuration
 
         out["source_configuration"] = (
@@ -157,11 +155,11 @@ def deserialize_json(data: dict) -> MessageTemplateSummary:
                 data["sourceConfiguration"]
             )
         )
-    if "activeVersionNumber" in data:
+    if data.get("activeVersionNumber") is not None:
         out["active_version_number"] = data["activeVersionNumber"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_qconnect.types.tags
 
         out["tags"] = capo_qconnect.types.tags.deserialize_json(data["tags"])

@@ -28,10 +28,10 @@ def serialize_json(value: Ec2Configuration) -> dict:
 
 def deserialize_json(data: dict) -> Ec2Configuration:
     out: Ec2Configuration = {}  # type: ignore[typeddict-item]
-    if "scanMode" in data:
+    if data.get("scanMode") is not None:
         out["scan_mode"] = data["scanMode"]
     else:
         raise DeserializationError("Ec2Configuration.scan_mode required")
-    if "activateVMScanner" in data:
+    if data.get("activateVMScanner") is not None:
         out["activate_vm_scanner"] = data["activateVMScanner"]
     return out

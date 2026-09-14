@@ -28,11 +28,11 @@ def serialize_json(value: Tag) -> dict:
 
 def deserialize_json(data: dict) -> Tag:
     out: Tag = {}  # type: ignore[typeddict-item]
-    if "TagKey" in data:
+    if data.get("TagKey") is not None:
         out["tag_key"] = data["TagKey"]
     else:
         raise DeserializationError("Tag.tag_key required")
-    if "TagValue" in data:
+    if data.get("TagValue") is not None:
         out["tag_value"] = data["TagValue"]
     else:
         raise DeserializationError("Tag.tag_value required")

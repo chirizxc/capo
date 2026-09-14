@@ -52,7 +52,7 @@ def serialize_json(value: IotSiteWiseSourceConfigurationFilter) -> dict:
 
 
 def deserialize_json(data: dict) -> IotSiteWiseSourceConfigurationFilter:
-    if "filterByAssetModel" in data:
+    if data.get("filterByAssetModel") is not None:
         import capo_iottwinmaker.types.filter_by_asset_model
 
         return {
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> IotSiteWiseSourceConfigurationFilter:
                 data["filterByAssetModel"]
             )
         }
-    elif "filterByAsset" in data:
+    elif data.get("filterByAsset") is not None:
         import capo_iottwinmaker.types.filter_by_asset
 
         return {

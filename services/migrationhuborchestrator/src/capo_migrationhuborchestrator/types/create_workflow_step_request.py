@@ -104,27 +104,27 @@ def serialize_json(value: CreateWorkflowStepRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateWorkflowStepRequest:
     out: CreateWorkflowStepRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateWorkflowStepRequest.name required")
-    if "stepGroupId" in data:
+    if data.get("stepGroupId") is not None:
         out["step_group_id"] = data["stepGroupId"]
     else:
         raise DeserializationError("CreateWorkflowStepRequest.step_group_id required")
-    if "workflowId" in data:
+    if data.get("workflowId") is not None:
         out["workflow_id"] = data["workflowId"]
     else:
         raise DeserializationError("CreateWorkflowStepRequest.workflow_id required")
-    if "stepActionType" in data:
+    if data.get("stepActionType") is not None:
         out["step_action_type"] = data["stepActionType"]
     else:
         raise DeserializationError(
             "CreateWorkflowStepRequest.step_action_type required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "workflowStepAutomationConfiguration" in data:
+    if data.get("workflowStepAutomationConfiguration") is not None:
         import capo_migrationhuborchestrator.types.workflow_step_automation_configuration
 
         out["workflow_step_automation_configuration"] = (
@@ -132,7 +132,7 @@ def deserialize_json(data: dict) -> CreateWorkflowStepRequest:
                 data["workflowStepAutomationConfiguration"]
             )
         )
-    if "stepTarget" in data:
+    if data.get("stepTarget") is not None:
         import capo_migrationhuborchestrator.types.string_list
 
         out["step_target"] = (
@@ -140,7 +140,7 @@ def deserialize_json(data: dict) -> CreateWorkflowStepRequest:
                 data["stepTarget"]
             )
         )
-    if "outputs" in data:
+    if data.get("outputs") is not None:
         import capo_migrationhuborchestrator.types.workflow_step_output_list
 
         out["outputs"] = (
@@ -148,7 +148,7 @@ def deserialize_json(data: dict) -> CreateWorkflowStepRequest:
                 data["outputs"]
             )
         )
-    if "previous" in data:
+    if data.get("previous") is not None:
         import capo_migrationhuborchestrator.types.string_list
 
         out["previous"] = (
@@ -156,7 +156,7 @@ def deserialize_json(data: dict) -> CreateWorkflowStepRequest:
                 data["previous"]
             )
         )
-    if "next" in data:
+    if data.get("next") is not None:
         import capo_migrationhuborchestrator.types.string_list
 
         out["next"] = capo_migrationhuborchestrator.types.string_list.deserialize_json(

@@ -47,13 +47,13 @@ def serialize_json(value: StartSpeakerSearchTaskRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartSpeakerSearchTaskRequest:
     out: StartSpeakerSearchTaskRequest = {}  # type: ignore[typeddict-item]
-    if "VoiceProfileDomainArn" in data:
+    if data.get("VoiceProfileDomainArn") is not None:
         out["voice_profile_domain_arn"] = data["VoiceProfileDomainArn"]
     else:
         raise DeserializationError(
             "StartSpeakerSearchTaskRequest.voice_profile_domain_arn required"
         )
-    if "KinesisVideoStreamSourceTaskConfiguration" in data:
+    if data.get("KinesisVideoStreamSourceTaskConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.kinesis_video_stream_source_task_configuration
 
         out["kinesis_video_stream_source_task_configuration"] = (
@@ -61,6 +61,6 @@ def deserialize_json(data: dict) -> StartSpeakerSearchTaskRequest:
                 data["KinesisVideoStreamSourceTaskConfiguration"]
             )
         )
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
     return out

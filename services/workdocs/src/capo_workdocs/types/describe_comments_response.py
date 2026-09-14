@@ -32,12 +32,12 @@ def serialize_json(value: DescribeCommentsResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeCommentsResponse:
     out: DescribeCommentsResponse = {}  # type: ignore[typeddict-item]
-    if "Comments" in data:
+    if data.get("Comments") is not None:
         import capo_workdocs.types.comment_list
 
         out["comments"] = capo_workdocs.types.comment_list.deserialize_json(
             data["Comments"]
         )
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

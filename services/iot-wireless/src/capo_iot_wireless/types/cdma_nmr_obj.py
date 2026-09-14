@@ -40,16 +40,16 @@ def serialize_json(value: CdmaNmrObj) -> dict:
 
 def deserialize_json(data: dict) -> CdmaNmrObj:
     out: CdmaNmrObj = {}  # type: ignore[typeddict-item]
-    if "PnOffset" in data:
+    if data.get("PnOffset") is not None:
         out["pn_offset"] = data["PnOffset"]
     else:
         raise DeserializationError("CdmaNmrObj.pn_offset required")
-    if "CdmaChannel" in data:
+    if data.get("CdmaChannel") is not None:
         out["cdma_channel"] = data["CdmaChannel"]
     else:
         raise DeserializationError("CdmaNmrObj.cdma_channel required")
-    if "PilotPower" in data:
+    if data.get("PilotPower") is not None:
         out["pilot_power"] = data["PilotPower"]
-    if "BaseStationId" in data:
+    if data.get("BaseStationId") is not None:
         out["base_station_id"] = data["BaseStationId"]
     return out

@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: Destination) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Destination:
     out: Destination = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_cloudtrail.types.destination_type
 
         out["type"] = capo_cloudtrail.types.destination_type.deserialize_aws_json_1_1(
@@ -40,7 +40,7 @@ def deserialize_aws_json_1_1(data: dict) -> Destination:
         )
     else:
         raise DeserializationError("Destination.type required")
-    if "Location" in data:
+    if data.get("Location") is not None:
         out["location"] = data["Location"]
     else:
         raise DeserializationError("Destination.location required")

@@ -48,11 +48,11 @@ def serialize_json(value: ToolbarConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ToolbarConfiguration:
     out: ToolbarConfiguration = {}  # type: ignore[typeddict-item]
-    if "toolbarType" in data:
+    if data.get("toolbarType") is not None:
         out["toolbar_type"] = data["toolbarType"]
-    if "visualMode" in data:
+    if data.get("visualMode") is not None:
         out["visual_mode"] = data["visualMode"]
-    if "hiddenToolbarItems" in data:
+    if data.get("hiddenToolbarItems") is not None:
         import capo_workspaces_web.types.hidden_toolbar_item_list
 
         out["hidden_toolbar_items"] = (
@@ -60,6 +60,6 @@ def deserialize_json(data: dict) -> ToolbarConfiguration:
                 data["hiddenToolbarItems"]
             )
         )
-    if "maxDisplayResolution" in data:
+    if data.get("maxDisplayResolution") is not None:
         out["max_display_resolution"] = data["maxDisplayResolution"]
     return out

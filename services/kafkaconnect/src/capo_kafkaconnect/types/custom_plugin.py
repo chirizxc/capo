@@ -28,11 +28,11 @@ def serialize_json(value: CustomPlugin) -> dict:
 
 def deserialize_json(data: dict) -> CustomPlugin:
     out: CustomPlugin = {}  # type: ignore[typeddict-item]
-    if "customPluginArn" in data:
+    if data.get("customPluginArn") is not None:
         out["custom_plugin_arn"] = data["customPluginArn"]
     else:
         raise DeserializationError("CustomPlugin.custom_plugin_arn required")
-    if "revision" in data:
+    if data.get("revision") is not None:
         out["revision"] = data["revision"]
     else:
         out["revision"] = 0

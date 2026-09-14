@@ -54,7 +54,7 @@ def serialize_aws_json_1_1(value: Classifier) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Classifier:
     out: Classifier = {}  # type: ignore[typeddict-item]
-    if "GrokClassifier" in data:
+    if data.get("GrokClassifier") is not None:
         import capo_glue.types.grok_classifier
 
         out["grok_classifier"] = (
@@ -62,13 +62,13 @@ def deserialize_aws_json_1_1(data: dict) -> Classifier:
                 data["GrokClassifier"]
             )
         )
-    if "XMLClassifier" in data:
+    if data.get("XMLClassifier") is not None:
         import capo_glue.types.xml_classifier
 
         out["xml_classifier"] = capo_glue.types.xml_classifier.deserialize_aws_json_1_1(
             data["XMLClassifier"]
         )
-    if "JsonClassifier" in data:
+    if data.get("JsonClassifier") is not None:
         import capo_glue.types.json_classifier
 
         out["json_classifier"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_1(data: dict) -> Classifier:
                 data["JsonClassifier"]
             )
         )
-    if "CsvClassifier" in data:
+    if data.get("CsvClassifier") is not None:
         import capo_glue.types.csv_classifier
 
         out["csv_classifier"] = capo_glue.types.csv_classifier.deserialize_aws_json_1_1(

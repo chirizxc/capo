@@ -28,11 +28,11 @@ def serialize_json(value: DeleteRecipeVersionResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteRecipeVersionResponse:
     out: DeleteRecipeVersionResponse = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("DeleteRecipeVersionResponse.name required")
-    if "RecipeVersion" in data:
+    if data.get("RecipeVersion") is not None:
         out["recipe_version"] = data["RecipeVersion"]
     else:
         raise DeserializationError(

@@ -36,9 +36,9 @@ def serialize_json(value: DescribeChimeWebhookConfigurationsResult) -> dict:
 
 def deserialize_json(data: dict) -> DescribeChimeWebhookConfigurationsResult:
     out: DescribeChimeWebhookConfigurationsResult = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "WebhookConfigurations" in data:
+    if data.get("WebhookConfigurations") is not None:
         import capo_chatbot.types.chime_webhook_configuration_list
 
         out["webhook_configurations"] = (

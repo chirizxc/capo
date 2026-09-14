@@ -55,25 +55,25 @@ def serialize_json(value: DescribeProjectResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeProjectResponse:
     out: DescribeProjectResponse = {}  # type: ignore[typeddict-item]
-    if "projectId" in data:
+    if data.get("projectId") is not None:
         out["project_id"] = data["projectId"]
     else:
         raise DeserializationError("DescribeProjectResponse.project_id required")
-    if "projectArn" in data:
+    if data.get("projectArn") is not None:
         out["project_arn"] = data["projectArn"]
     else:
         raise DeserializationError("DescribeProjectResponse.project_arn required")
-    if "projectName" in data:
+    if data.get("projectName") is not None:
         out["project_name"] = data["projectName"]
     else:
         raise DeserializationError("DescribeProjectResponse.project_name required")
-    if "portalId" in data:
+    if data.get("portalId") is not None:
         out["portal_id"] = data["portalId"]
     else:
         raise DeserializationError("DescribeProjectResponse.portal_id required")
-    if "projectDescription" in data:
+    if data.get("projectDescription") is not None:
         out["project_description"] = data["projectDescription"]
-    if "projectCreationDate" in data:
+    if data.get("projectCreationDate") is not None:
         import capo_iotsitewise.types.timestamp
 
         out["project_creation_date"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> DescribeProjectResponse:
         raise DeserializationError(
             "DescribeProjectResponse.project_creation_date required"
         )
-    if "projectLastUpdateDate" in data:
+    if data.get("projectLastUpdateDate") is not None:
         import capo_iotsitewise.types.timestamp
 
         out["project_last_update_date"] = (

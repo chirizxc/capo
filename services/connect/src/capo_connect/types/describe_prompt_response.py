@@ -25,7 +25,7 @@ def serialize_json(value: DescribePromptResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribePromptResponse:
     out: DescribePromptResponse = {}  # type: ignore[typeddict-item]
-    if "Prompt" in data:
+    if data.get("Prompt") is not None:
         import capo_connect.types.prompt
 
         out["prompt"] = capo_connect.types.prompt.deserialize_json(data["Prompt"])

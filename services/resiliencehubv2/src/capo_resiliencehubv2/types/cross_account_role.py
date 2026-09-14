@@ -27,10 +27,10 @@ def serialize_json(value: CrossAccountRole) -> dict:
 
 def deserialize_json(data: dict) -> CrossAccountRole:
     out: CrossAccountRole = {}  # type: ignore[typeddict-item]
-    if "crossAccountRoleArn" in data:
+    if data.get("crossAccountRoleArn") is not None:
         out["cross_account_role_arn"] = data["crossAccountRoleArn"]
     else:
         raise DeserializationError("CrossAccountRole.cross_account_role_arn required")
-    if "externalId" in data:
+    if data.get("externalId") is not None:
         out["external_id"] = data["externalId"]
     return out

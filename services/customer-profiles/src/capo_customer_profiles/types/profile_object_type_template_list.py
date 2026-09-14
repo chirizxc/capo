@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ProfileObjectTypeTemplateList:
 
     out: ProfileObjectTypeTemplateList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_customer_profiles.types.list_profile_object_type_template_item.deserialize_json(
                 item

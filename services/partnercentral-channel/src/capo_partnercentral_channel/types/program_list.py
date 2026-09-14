@@ -25,6 +25,8 @@ def deserialize_aws_json_1_0(data: list) -> ProgramList:
 
     out: ProgramList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_partnercentral_channel.types.program.deserialize_aws_json_1_0(item)
         )

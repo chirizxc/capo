@@ -13,9 +13,9 @@ from capo_neptunedata import AsyncneptunedataClient
 
 
 async def main():
-    async with AsyncneptunedataClient() as s3:
+    async with AsyncneptunedataClient() as neptunedata:
         # Example: call the cancel_gremlin_query operation
-        response = await s3.cancel_gremlin_query()
+        response = await neptunedata.cancel_gremlin_query()
         print(response["status"])
 ```
 
@@ -29,9 +29,9 @@ from capo_neptunedata.error import BadRequestException
 
 
 async def main():
-    async with AsyncneptunedataClient() as s3:
+    async with AsyncneptunedataClient() as neptunedata:
         try:
-            await s3.cancel_gremlin_query()
+            await neptunedata.cancel_gremlin_query()
         except BadRequestException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_neptunedata import AsyncneptunedataClient
 
 
 async def main():
-    async with AsyncneptunedataClient() as s3:
+    async with AsyncneptunedataClient() as neptunedata:
         # Default: 3 attempts for every operation
-        response = await s3.cancel_gremlin_query()
+        response = await neptunedata.cancel_gremlin_query()
 
         # Override per operation
-        response = await s3.cancel_gremlin_query(config_overrides={"retry_max_attempts": 5})
+        response = await neptunedata.cancel_gremlin_query(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.cancel_gremlin_query(config_overrides={"retry_max_attempts": 1})
+        response = await neptunedata.cancel_gremlin_query(config_overrides={"retry_max_attempts": 1})
 ```

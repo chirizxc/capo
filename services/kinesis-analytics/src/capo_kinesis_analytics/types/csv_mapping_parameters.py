@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: CSVMappingParameters) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CSVMappingParameters:
     out: CSVMappingParameters = {}  # type: ignore[typeddict-item]
-    if "RecordRowDelimiter" in data:
+    if data.get("RecordRowDelimiter") is not None:
         out["record_row_delimiter"] = data["RecordRowDelimiter"]
     else:
         raise DeserializationError("CSVMappingParameters.record_row_delimiter required")
-    if "RecordColumnDelimiter" in data:
+    if data.get("RecordColumnDelimiter") is not None:
         out["record_column_delimiter"] = data["RecordColumnDelimiter"]
     else:
         raise DeserializationError(

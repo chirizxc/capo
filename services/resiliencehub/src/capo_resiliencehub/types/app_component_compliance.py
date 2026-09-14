@@ -70,13 +70,13 @@ def serialize_json(value: AppComponentCompliance) -> dict:
 
 def deserialize_json(data: dict) -> AppComponentCompliance:
     out: AppComponentCompliance = {}  # type: ignore[typeddict-item]
-    if "cost" in data:
+    if data.get("cost") is not None:
         import capo_resiliencehub.types.cost
 
         out["cost"] = capo_resiliencehub.types.cost.deserialize_json(data["cost"])
-    if "appComponentName" in data:
+    if data.get("appComponentName") is not None:
         out["app_component_name"] = data["appComponentName"]
-    if "compliance" in data:
+    if data.get("compliance") is not None:
         import capo_resiliencehub.types.assessment_compliance
 
         out["compliance"] = (
@@ -84,15 +84,15 @@ def deserialize_json(data: dict) -> AppComponentCompliance:
                 data["compliance"]
             )
         )
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_resiliencehub.types.compliance_status
 
         out["status"] = capo_resiliencehub.types.compliance_status.deserialize_json(
             data["status"]
         )
-    if "resiliencyScore" in data:
+    if data.get("resiliencyScore") is not None:
         import capo_resiliencehub.types.resiliency_score
 
         out["resiliency_score"] = (

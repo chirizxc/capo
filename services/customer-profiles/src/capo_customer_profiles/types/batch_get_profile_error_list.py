@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> BatchGetProfileErrorList:
 
     out: BatchGetProfileErrorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_customer_profiles.types.batch_get_profile_error.deserialize_json(item)
         )

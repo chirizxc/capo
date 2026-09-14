@@ -61,17 +61,17 @@ def serialize_aws_json_1_1(value: JoinDomainInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> JoinDomainInput:
     out: JoinDomainInput = {}  # type: ignore[typeddict-item]
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
     else:
         raise DeserializationError("JoinDomainInput.gateway_arn required")
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError("JoinDomainInput.domain_name required")
-    if "OrganizationalUnit" in data:
+    if data.get("OrganizationalUnit") is not None:
         out["organizational_unit"] = data["OrganizationalUnit"]
-    if "DomainControllers" in data:
+    if data.get("DomainControllers") is not None:
         import capo_storage_gateway.types.hosts
 
         out["domain_controllers"] = (
@@ -79,13 +79,13 @@ def deserialize_aws_json_1_1(data: dict) -> JoinDomainInput:
                 data["DomainControllers"]
             )
         )
-    if "TimeoutInSeconds" in data:
+    if data.get("TimeoutInSeconds") is not None:
         out["timeout_in_seconds"] = data["TimeoutInSeconds"]
-    if "UserName" in data:
+    if data.get("UserName") is not None:
         out["user_name"] = data["UserName"]
     else:
         raise DeserializationError("JoinDomainInput.user_name required")
-    if "Password" in data:
+    if data.get("Password") is not None:
         out["password"] = data["Password"]
     else:
         raise DeserializationError("JoinDomainInput.password required")

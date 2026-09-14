@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> __listOfApplicationPolicyStatement:
 
     out: __listOfApplicationPolicyStatement = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_serverlessapplicationrepository.types.application_policy_statement.deserialize_json(
                 item

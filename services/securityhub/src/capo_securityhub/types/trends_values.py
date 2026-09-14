@@ -31,7 +31,7 @@ def serialize_json(value: TrendsValues) -> dict:
 
 def deserialize_json(data: dict) -> TrendsValues:
     out: TrendsValues = {}  # type: ignore[typeddict-item]
-    if "SeverityTrends" in data:
+    if data.get("SeverityTrends") is not None:
         import capo_securityhub.types.severity_trends_count
 
         out["severity_trends"] = (

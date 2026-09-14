@@ -18,6 +18,6 @@ def serialize_json(value: RecommendationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> RecommendationConfiguration:
     out: RecommendationConfiguration = {}  # type: ignore[typeddict-item]
-    if "enableBusinessNameGeneration" in data:
+    if data.get("enableBusinessNameGeneration") is not None:
         out["enable_business_name_generation"] = data["enableBusinessNameGeneration"]
     return out

@@ -145,7 +145,7 @@ def serialize_aws_json_1_1(value: SharePointConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SharePointConfiguration:
     out: SharePointConfiguration = {}  # type: ignore[typeddict-item]
-    if "SharePointVersion" in data:
+    if data.get("SharePointVersion") is not None:
         import capo_kendra.types.share_point_version
 
         out["share_point_version"] = (
@@ -157,7 +157,7 @@ def deserialize_aws_json_1_1(data: dict) -> SharePointConfiguration:
         raise DeserializationError(
             "SharePointConfiguration.share_point_version required"
         )
-    if "Urls" in data:
+    if data.get("Urls") is not None:
         import capo_kendra.types.share_point_url_list
 
         out["urls"] = capo_kendra.types.share_point_url_list.deserialize_aws_json_1_1(
@@ -165,19 +165,19 @@ def deserialize_aws_json_1_1(data: dict) -> SharePointConfiguration:
         )
     else:
         raise DeserializationError("SharePointConfiguration.urls required")
-    if "SecretArn" in data:
+    if data.get("SecretArn") is not None:
         out["secret_arn"] = data["SecretArn"]
     else:
         raise DeserializationError("SharePointConfiguration.secret_arn required")
-    if "CrawlAttachments" in data:
+    if data.get("CrawlAttachments") is not None:
         out["crawl_attachments"] = data["CrawlAttachments"]
     else:
         out["crawl_attachments"] = False
-    if "UseChangeLog" in data:
+    if data.get("UseChangeLog") is not None:
         out["use_change_log"] = data["UseChangeLog"]
     else:
         out["use_change_log"] = False
-    if "InclusionPatterns" in data:
+    if data.get("InclusionPatterns") is not None:
         import capo_kendra.types.data_source_inclusions_exclusions_strings
 
         out["inclusion_patterns"] = (
@@ -185,7 +185,7 @@ def deserialize_aws_json_1_1(data: dict) -> SharePointConfiguration:
                 data["InclusionPatterns"]
             )
         )
-    if "ExclusionPatterns" in data:
+    if data.get("ExclusionPatterns") is not None:
         import capo_kendra.types.data_source_inclusions_exclusions_strings
 
         out["exclusion_patterns"] = (
@@ -193,7 +193,7 @@ def deserialize_aws_json_1_1(data: dict) -> SharePointConfiguration:
                 data["ExclusionPatterns"]
             )
         )
-    if "VpcConfiguration" in data:
+    if data.get("VpcConfiguration") is not None:
         import capo_kendra.types.data_source_vpc_configuration
 
         out["vpc_configuration"] = (
@@ -201,7 +201,7 @@ def deserialize_aws_json_1_1(data: dict) -> SharePointConfiguration:
                 data["VpcConfiguration"]
             )
         )
-    if "FieldMappings" in data:
+    if data.get("FieldMappings") is not None:
         import capo_kendra.types.data_source_to_index_field_mapping_list
 
         out["field_mappings"] = (
@@ -209,13 +209,13 @@ def deserialize_aws_json_1_1(data: dict) -> SharePointConfiguration:
                 data["FieldMappings"]
             )
         )
-    if "DocumentTitleFieldName" in data:
+    if data.get("DocumentTitleFieldName") is not None:
         out["document_title_field_name"] = data["DocumentTitleFieldName"]
-    if "DisableLocalGroups" in data:
+    if data.get("DisableLocalGroups") is not None:
         out["disable_local_groups"] = data["DisableLocalGroups"]
     else:
         out["disable_local_groups"] = False
-    if "SslCertificateS3Path" in data:
+    if data.get("SslCertificateS3Path") is not None:
         import capo_kendra.types.s3_path
 
         out["ssl_certificate_s3_path"] = (
@@ -223,7 +223,7 @@ def deserialize_aws_json_1_1(data: dict) -> SharePointConfiguration:
                 data["SslCertificateS3Path"]
             )
         )
-    if "AuthenticationType" in data:
+    if data.get("AuthenticationType") is not None:
         import capo_kendra.types.share_point_online_authentication_type
 
         out["authentication_type"] = (
@@ -231,7 +231,7 @@ def deserialize_aws_json_1_1(data: dict) -> SharePointConfiguration:
                 data["AuthenticationType"]
             )
         )
-    if "ProxyConfiguration" in data:
+    if data.get("ProxyConfiguration") is not None:
         import capo_kendra.types.proxy_configuration
 
         out["proxy_configuration"] = (

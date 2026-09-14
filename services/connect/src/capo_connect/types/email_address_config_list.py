@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> EmailAddressConfigList:
 
     out: EmailAddressConfigList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.email_address_config.deserialize_json(item))
     return out

@@ -51,7 +51,7 @@ def serialize_aws_json_1_1(value: ReactionForComment) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReactionForComment:
     out: ReactionForComment = {}  # type: ignore[typeddict-item]
-    if "reaction" in data:
+    if data.get("reaction") is not None:
         import capo_codecommit.types.reaction_value_formats
 
         out["reaction"] = (
@@ -59,7 +59,7 @@ def deserialize_aws_json_1_1(data: dict) -> ReactionForComment:
                 data["reaction"]
             )
         )
-    if "reactionUsers" in data:
+    if data.get("reactionUsers") is not None:
         import capo_codecommit.types.reaction_users_list
 
         out["reaction_users"] = (
@@ -67,7 +67,7 @@ def deserialize_aws_json_1_1(data: dict) -> ReactionForComment:
                 data["reactionUsers"]
             )
         )
-    if "reactionsFromDeletedUsersCount" in data:
+    if data.get("reactionsFromDeletedUsersCount") is not None:
         out["reactions_from_deleted_users_count"] = data[
             "reactionsFromDeletedUsersCount"
         ]

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> LexiconDescriptionList:
 
     out: LexiconDescriptionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_polly.types.lexicon_description.deserialize_json(item))
     return out

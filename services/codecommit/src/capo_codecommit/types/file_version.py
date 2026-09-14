@@ -49,17 +49,17 @@ def serialize_aws_json_1_1(value: FileVersion) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FileVersion:
     out: FileVersion = {}  # type: ignore[typeddict-item]
-    if "commit" in data:
+    if data.get("commit") is not None:
         import capo_codecommit.types.commit
 
         out["commit"] = capo_codecommit.types.commit.deserialize_aws_json_1_1(
             data["commit"]
         )
-    if "blobId" in data:
+    if data.get("blobId") is not None:
         out["blob_id"] = data["blobId"]
-    if "path" in data:
+    if data.get("path") is not None:
         out["path"] = data["path"]
-    if "revisionChildren" in data:
+    if data.get("revisionChildren") is not None:
         import capo_codecommit.types.revision_children
 
         out["revision_children"] = (

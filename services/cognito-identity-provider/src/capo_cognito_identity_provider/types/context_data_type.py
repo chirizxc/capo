@@ -46,19 +46,19 @@ def serialize_aws_json_1_1(value: ContextDataType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ContextDataType:
     out: ContextDataType = {}  # type: ignore[typeddict-item]
-    if "IpAddress" in data:
+    if data.get("IpAddress") is not None:
         out["ip_address"] = data["IpAddress"]
     else:
         raise DeserializationError("ContextDataType.ip_address required")
-    if "ServerName" in data:
+    if data.get("ServerName") is not None:
         out["server_name"] = data["ServerName"]
     else:
         raise DeserializationError("ContextDataType.server_name required")
-    if "ServerPath" in data:
+    if data.get("ServerPath") is not None:
         out["server_path"] = data["ServerPath"]
     else:
         raise DeserializationError("ContextDataType.server_path required")
-    if "HttpHeaders" in data:
+    if data.get("HttpHeaders") is not None:
         import capo_cognito_identity_provider.types.http_header_list
 
         out["http_headers"] = (
@@ -68,6 +68,6 @@ def deserialize_aws_json_1_1(data: dict) -> ContextDataType:
         )
     else:
         raise DeserializationError("ContextDataType.http_headers required")
-    if "EncodedData" in data:
+    if data.get("EncodedData") is not None:
         out["encoded_data"] = data["EncodedData"]
     return out

@@ -44,7 +44,7 @@ def serialize_json(value: RetentionSettings) -> dict:
 
 def deserialize_json(data: dict) -> RetentionSettings:
     out: RetentionSettings = {}  # type: ignore[typeddict-item]
-    if "RoomRetentionSettings" in data:
+    if data.get("RoomRetentionSettings") is not None:
         import capo_chime.types.room_retention_settings
 
         out["room_retention_settings"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> RetentionSettings:
                 data["RoomRetentionSettings"]
             )
         )
-    if "ConversationRetentionSettings" in data:
+    if data.get("ConversationRetentionSettings") is not None:
         import capo_chime.types.conversation_retention_settings
 
         out["conversation_retention_settings"] = (

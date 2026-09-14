@@ -28,7 +28,15 @@ class ResiliencyScore(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: ResiliencyScore) -> dict:
     out: dict = {}
-    out["score"] = value.get("score", 0)
+    out["score"] = (
+        "NaN"
+        if value.get("score", 0) != value.get("score", 0)
+        else "Infinity"
+        if value.get("score", 0) == float("inf")
+        else "-Infinity"
+        if value.get("score", 0) == float("-inf")
+        else value.get("score", 0)
+    )
     import capo_resiliencehub.types.disruption_resiliency_score
 
     out["disruptionScore"] = (
@@ -49,11 +57,11 @@ def serialize_json(value: ResiliencyScore) -> dict:
 
 def deserialize_json(data: dict) -> ResiliencyScore:
     out: ResiliencyScore = {}  # type: ignore[typeddict-item]
-    if "score" in data:
-        out["score"] = data["score"]
+    if data.get("score") is not None:
+        out["score"] = float(data["score"])
     else:
         out["score"] = 0
-    if "disruptionScore" in data:
+    if data.get("disruptionScore") is not None:
         import capo_resiliencehub.types.disruption_resiliency_score
 
         out["disruption_score"] = (
@@ -63,7 +71,7 @@ def deserialize_json(data: dict) -> ResiliencyScore:
         )
     else:
         raise DeserializationError("ResiliencyScore.disruption_score required")
-    if "componentScore" in data:
+    if data.get("componentScore") is not None:
         import capo_resiliencehub.types.scoring_component_resiliency_scores
 
         out["component_score"] = (

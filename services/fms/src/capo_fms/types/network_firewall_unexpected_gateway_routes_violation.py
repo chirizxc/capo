@@ -44,16 +44,16 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> NetworkFirewallUnexpectedGatewayRoutesViolation:
     out: NetworkFirewallUnexpectedGatewayRoutesViolation = {}  # type: ignore[typeddict-item]
-    if "GatewayId" in data:
+    if data.get("GatewayId") is not None:
         out["gateway_id"] = data["GatewayId"]
-    if "ViolatingRoutes" in data:
+    if data.get("ViolatingRoutes") is not None:
         import capo_fms.types.routes
 
         out["violating_routes"] = capo_fms.types.routes.deserialize_aws_json_1_1(
             data["ViolatingRoutes"]
         )
-    if "RouteTableId" in data:
+    if data.get("RouteTableId") is not None:
         out["route_table_id"] = data["RouteTableId"]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
     return out

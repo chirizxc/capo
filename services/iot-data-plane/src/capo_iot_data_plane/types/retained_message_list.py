@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> RetainedMessageList:
 
     out: RetainedMessageList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot_data_plane.types.retained_message_summary.deserialize_json(item)
         )

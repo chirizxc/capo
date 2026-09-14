@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DataProductRevisions:
 
     out: DataProductRevisions = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_datazone.types.data_product_revision.deserialize_json(item))
     return out

@@ -135,29 +135,29 @@ def serialize_aws_json_1_1(value: Solution) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Solution:
     out: Solution = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "solutionArn" in data:
+    if data.get("solutionArn") is not None:
         out["solution_arn"] = data["solutionArn"]
-    if "performHPO" in data:
+    if data.get("performHPO") is not None:
         out["perform_hpo"] = data["performHPO"]
     else:
         out["perform_hpo"] = False
-    if "performAutoML" in data:
+    if data.get("performAutoML") is not None:
         out["perform_auto_ml"] = data["performAutoML"]
     else:
         out["perform_auto_ml"] = False
-    if "performAutoTraining" in data:
+    if data.get("performAutoTraining") is not None:
         out["perform_auto_training"] = data["performAutoTraining"]
-    if "performIncrementalUpdate" in data:
+    if data.get("performIncrementalUpdate") is not None:
         out["perform_incremental_update"] = data["performIncrementalUpdate"]
-    if "recipeArn" in data:
+    if data.get("recipeArn") is not None:
         out["recipe_arn"] = data["recipeArn"]
-    if "datasetGroupArn" in data:
+    if data.get("datasetGroupArn") is not None:
         out["dataset_group_arn"] = data["datasetGroupArn"]
-    if "eventType" in data:
+    if data.get("eventType") is not None:
         out["event_type"] = data["eventType"]
-    if "solutionConfig" in data:
+    if data.get("solutionConfig") is not None:
         import capo_personalize.types.solution_config
 
         out["solution_config"] = (
@@ -165,7 +165,7 @@ def deserialize_aws_json_1_1(data: dict) -> Solution:
                 data["solutionConfig"]
             )
         )
-    if "autoMLResult" in data:
+    if data.get("autoMLResult") is not None:
         import capo_personalize.types.auto_ml_result
 
         out["auto_ml_result"] = (
@@ -173,9 +173,9 @@ def deserialize_aws_json_1_1(data: dict) -> Solution:
                 data["autoMLResult"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_personalize.types.date
 
         out["creation_date_time"] = (
@@ -183,7 +183,7 @@ def deserialize_aws_json_1_1(data: dict) -> Solution:
                 data["creationDateTime"]
             )
         )
-    if "lastUpdatedDateTime" in data:
+    if data.get("lastUpdatedDateTime") is not None:
         import capo_personalize.types.date
 
         out["last_updated_date_time"] = (
@@ -191,7 +191,7 @@ def deserialize_aws_json_1_1(data: dict) -> Solution:
                 data["lastUpdatedDateTime"]
             )
         )
-    if "latestSolutionVersion" in data:
+    if data.get("latestSolutionVersion") is not None:
         import capo_personalize.types.solution_version_summary
 
         out["latest_solution_version"] = (
@@ -199,7 +199,7 @@ def deserialize_aws_json_1_1(data: dict) -> Solution:
                 data["latestSolutionVersion"]
             )
         )
-    if "latestSolutionUpdate" in data:
+    if data.get("latestSolutionUpdate") is not None:
         import capo_personalize.types.solution_update_summary
 
         out["latest_solution_update"] = (

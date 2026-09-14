@@ -30,7 +30,7 @@ def serialize_json(value: JoinOperandProperties) -> dict:
 
 def deserialize_json(data: dict) -> JoinOperandProperties:
     out: JoinOperandProperties = {}  # type: ignore[typeddict-item]
-    if "OutputColumnNameOverrides" in data:
+    if data.get("OutputColumnNameOverrides") is not None:
         import capo_quicksight.types.output_column_name_override_list
 
         out["output_column_name_overrides"] = (

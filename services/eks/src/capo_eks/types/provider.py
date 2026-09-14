@@ -23,6 +23,6 @@ def serialize_json(value: Provider) -> dict:
 
 def deserialize_json(data: dict) -> Provider:
     out: Provider = {}  # type: ignore[typeddict-item]
-    if "keyArn" in data:
+    if data.get("keyArn") is not None:
         out["key_arn"] = data["keyArn"]
     return out

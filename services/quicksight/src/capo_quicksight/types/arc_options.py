@@ -27,7 +27,7 @@ def serialize_json(value: ArcOptions) -> dict:
 
 def deserialize_json(data: dict) -> ArcOptions:
     out: ArcOptions = {}  # type: ignore[typeddict-item]
-    if "ArcThickness" in data:
+    if data.get("ArcThickness") is not None:
         import capo_quicksight.types.arc_thickness
 
         out["arc_thickness"] = capo_quicksight.types.arc_thickness.deserialize_json(

@@ -23,6 +23,6 @@ def serialize_json(value: TrustStoreSummary) -> dict:
 
 def deserialize_json(data: dict) -> TrustStoreSummary:
     out: TrustStoreSummary = {}  # type: ignore[typeddict-item]
-    if "trustStoreArn" in data:
+    if data.get("trustStoreArn") is not None:
         out["trust_store_arn"] = data["trustStoreArn"]
     return out

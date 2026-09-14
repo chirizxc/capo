@@ -32,7 +32,7 @@ def serialize_json(value: AnalysisRulePolicy) -> dict:
 
 
 def deserialize_json(data: dict) -> AnalysisRulePolicy:
-    if "v1" in data:
+    if data.get("v1") is not None:
         import capo_cleanrooms.types.analysis_rule_policy_v1
 
         return {

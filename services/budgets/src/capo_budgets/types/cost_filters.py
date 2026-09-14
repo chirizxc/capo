@@ -25,6 +25,8 @@ def serialize_aws_json_1_1(input_to_serialize: CostFilters) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> CostFilters:
     out: CostFilters = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_budgets.types.dimension_values
 
         out[key] = capo_budgets.types.dimension_values.deserialize_aws_json_1_1(value)

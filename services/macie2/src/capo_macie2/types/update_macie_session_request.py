@@ -38,7 +38,7 @@ def serialize_json(value: UpdateMacieSessionRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateMacieSessionRequest:
     out: UpdateMacieSessionRequest = {}  # type: ignore[typeddict-item]
-    if "findingPublishingFrequency" in data:
+    if data.get("findingPublishingFrequency") is not None:
         import capo_macie2.types.finding_publishing_frequency
 
         out["finding_publishing_frequency"] = (
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> UpdateMacieSessionRequest:
                 data["findingPublishingFrequency"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_macie2.types.macie_status
 
         out["status"] = capo_macie2.types.macie_status.deserialize_json(data["status"])

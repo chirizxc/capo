@@ -13,9 +13,9 @@ from capo_bcm_data_exports import AsyncBCMDataExportsClient
 
 
 async def main():
-    async with AsyncBCMDataExportsClient() as s3:
+    async with AsyncBCMDataExportsClient() as bcm_data_exports:
         # Example: call the get_execution operation
-        response = await s3.get_execution()
+        response = await bcm_data_exports.get_execution()
         print(response["execution_id"])
 ```
 
@@ -28,9 +28,9 @@ from capo_bcm_data_exports import AsyncBCMDataExportsClient
 
 
 async def main():
-    async with AsyncBCMDataExportsClient() as s3:
+    async with AsyncBCMDataExportsClient() as bcm_data_exports:
         # Example: paginate over list_executions
-        async for item in s3.iter_list_executions():
+        async for item in bcm_data_exports.iter_list_executions():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_bcm_data_exports.error import InternalServerException
 
 
 async def main():
-    async with AsyncBCMDataExportsClient() as s3:
+    async with AsyncBCMDataExportsClient() as bcm_data_exports:
         try:
-            await s3.get_execution()
+            await bcm_data_exports.get_execution()
         except InternalServerException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_bcm_data_exports import AsyncBCMDataExportsClient
 
 
 async def main():
-    async with AsyncBCMDataExportsClient() as s3:
+    async with AsyncBCMDataExportsClient() as bcm_data_exports:
         # Default: 3 attempts for every operation
-        response = await s3.get_execution()
+        response = await bcm_data_exports.get_execution()
 
         # Override per operation
-        response = await s3.get_execution(config_overrides={"retry_max_attempts": 5})
+        response = await bcm_data_exports.get_execution(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.get_execution(config_overrides={"retry_max_attempts": 1})
+        response = await bcm_data_exports.get_execution(config_overrides={"retry_max_attempts": 1})
 ```

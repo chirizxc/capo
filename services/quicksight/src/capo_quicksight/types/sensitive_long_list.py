@@ -16,4 +16,4 @@ def serialize_json(value: SensitiveLongList) -> list:
 
 
 def deserialize_json(data: list) -> SensitiveLongList:
-    return list(data)
+    return [item for item in data if item is not None]

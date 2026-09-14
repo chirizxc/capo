@@ -44,19 +44,19 @@ def serialize_json(value: CreatePortalResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreatePortalResponse:
     out: CreatePortalResponse = {}  # type: ignore[typeddict-item]
-    if "portalId" in data:
+    if data.get("portalId") is not None:
         out["portal_id"] = data["portalId"]
     else:
         raise DeserializationError("CreatePortalResponse.portal_id required")
-    if "portalArn" in data:
+    if data.get("portalArn") is not None:
         out["portal_arn"] = data["portalArn"]
     else:
         raise DeserializationError("CreatePortalResponse.portal_arn required")
-    if "portalStartUrl" in data:
+    if data.get("portalStartUrl") is not None:
         out["portal_start_url"] = data["portalStartUrl"]
     else:
         raise DeserializationError("CreatePortalResponse.portal_start_url required")
-    if "portalStatus" in data:
+    if data.get("portalStatus") is not None:
         import capo_iotsitewise.types.portal_status
 
         out["portal_status"] = capo_iotsitewise.types.portal_status.deserialize_json(
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> CreatePortalResponse:
         )
     else:
         raise DeserializationError("CreatePortalResponse.portal_status required")
-    if "ssoApplicationId" in data:
+    if data.get("ssoApplicationId") is not None:
         out["sso_application_id"] = data["ssoApplicationId"]
     else:
         raise DeserializationError("CreatePortalResponse.sso_application_id required")

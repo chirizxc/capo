@@ -36,15 +36,15 @@ def serialize_json(value: SendMessageContentBlockStopEvent) -> dict:
 
 def deserialize_json(data: dict) -> SendMessageContentBlockStopEvent:
     out: SendMessageContentBlockStopEvent = {}  # type: ignore[typeddict-item]
-    if "index" in data:
+    if data.get("index") is not None:
         out["index"] = data["index"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "text" in data:
+    if data.get("text") is not None:
         out["text"] = data["text"]
-    if "last" in data:
+    if data.get("last") is not None:
         out["last"] = data["last"]
-    if "sequenceNumber" in data:
+    if data.get("sequenceNumber") is not None:
         out["sequence_number"] = data["sequenceNumber"]
     return out
 

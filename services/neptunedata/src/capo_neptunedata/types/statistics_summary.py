@@ -26,10 +26,10 @@ def serialize_json(value: StatisticsSummary) -> dict:
 
 def deserialize_json(data: dict) -> StatisticsSummary:
     out: StatisticsSummary = {}  # type: ignore[typeddict-item]
-    if "signatureCount" in data:
+    if data.get("signatureCount") is not None:
         out["signature_count"] = data["signatureCount"]
-    if "instanceCount" in data:
+    if data.get("instanceCount") is not None:
         out["instance_count"] = data["instanceCount"]
-    if "predicateCount" in data:
+    if data.get("predicateCount") is not None:
         out["predicate_count"] = data["predicateCount"]
     return out

@@ -38,15 +38,15 @@ def serialize_json(value: UpdateAccountSettingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAccountSettingsRequest:
     out: UpdateAccountSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "DefaultNamespace" in data:
+    if data.get("DefaultNamespace") is not None:
         out["default_namespace"] = data["DefaultNamespace"]
     else:
         raise DeserializationError(
             "UpdateAccountSettingsRequest.default_namespace required"
         )
-    if "NotificationEmail" in data:
+    if data.get("NotificationEmail") is not None:
         out["notification_email"] = data["NotificationEmail"]
-    if "TerminationProtectionEnabled" in data:
+    if data.get("TerminationProtectionEnabled") is not None:
         out["termination_protection_enabled"] = data["TerminationProtectionEnabled"]
     else:
         out["termination_protection_enabled"] = False

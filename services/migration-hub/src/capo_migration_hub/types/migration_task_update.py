@@ -50,7 +50,7 @@ def serialize_aws_json_1_1(value: MigrationTaskUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MigrationTaskUpdate:
     out: MigrationTaskUpdate = {}  # type: ignore[typeddict-item]
-    if "UpdateDateTime" in data:
+    if data.get("UpdateDateTime") is not None:
         import capo_migration_hub.types.update_date_time
 
         out["update_date_time"] = (
@@ -58,7 +58,7 @@ def deserialize_aws_json_1_1(data: dict) -> MigrationTaskUpdate:
                 data["UpdateDateTime"]
             )
         )
-    if "UpdateType" in data:
+    if data.get("UpdateType") is not None:
         import capo_migration_hub.types.update_type
 
         out["update_type"] = (
@@ -66,7 +66,7 @@ def deserialize_aws_json_1_1(data: dict) -> MigrationTaskUpdate:
                 data["UpdateType"]
             )
         )
-    if "MigrationTaskState" in data:
+    if data.get("MigrationTaskState") is not None:
         import capo_migration_hub.types.task
 
         out["migration_task_state"] = (

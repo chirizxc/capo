@@ -49,7 +49,7 @@ def serialize_aws_json_1_1(value: SnaplockRetentionPeriod) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SnaplockRetentionPeriod:
     out: SnaplockRetentionPeriod = {}  # type: ignore[typeddict-item]
-    if "DefaultRetention" in data:
+    if data.get("DefaultRetention") is not None:
         import capo_fsx.types.retention_period
 
         out["default_retention"] = (
@@ -57,7 +57,7 @@ def deserialize_aws_json_1_1(data: dict) -> SnaplockRetentionPeriod:
                 data["DefaultRetention"]
             )
         )
-    if "MinimumRetention" in data:
+    if data.get("MinimumRetention") is not None:
         import capo_fsx.types.retention_period
 
         out["minimum_retention"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> SnaplockRetentionPeriod:
                 data["MinimumRetention"]
             )
         )
-    if "MaximumRetention" in data:
+    if data.get("MaximumRetention") is not None:
         import capo_fsx.types.retention_period
 
         out["maximum_retention"] = (

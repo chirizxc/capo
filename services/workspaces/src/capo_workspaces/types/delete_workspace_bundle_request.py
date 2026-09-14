@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: DeleteWorkspaceBundleRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteWorkspaceBundleRequest:
     out: DeleteWorkspaceBundleRequest = {}  # type: ignore[typeddict-item]
-    if "BundleId" in data:
+    if data.get("BundleId") is not None:
         out["bundle_id"] = data["BundleId"]
     return out

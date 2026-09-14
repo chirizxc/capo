@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: CreateModelOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateModelOutput:
     out: CreateModelOutput = {}  # type: ignore[typeddict-item]
-    if "ModelArn" in data:
+    if data.get("ModelArn") is not None:
         out["model_arn"] = data["ModelArn"]
     return out

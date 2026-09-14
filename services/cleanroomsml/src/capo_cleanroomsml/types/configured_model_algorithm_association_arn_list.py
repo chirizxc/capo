@@ -16,4 +16,4 @@ def serialize_json(value: ConfiguredModelAlgorithmAssociationArnList) -> list:
 
 
 def deserialize_json(data: list) -> ConfiguredModelAlgorithmAssociationArnList:
-    return list(data)
+    return [item for item in data if item is not None]

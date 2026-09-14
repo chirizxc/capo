@@ -54,23 +54,23 @@ def serialize_json(value: CreateAccessPointRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateAccessPointRequest:
     out: CreateAccessPointRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_s3files.types.tag_list
 
         out["tags"] = capo_s3files.types.tag_list.deserialize_json(data["tags"])
-    if "fileSystemId" in data:
+    if data.get("fileSystemId") is not None:
         out["file_system_id"] = data["fileSystemId"]
     else:
         raise DeserializationError("CreateAccessPointRequest.file_system_id required")
-    if "posixUser" in data:
+    if data.get("posixUser") is not None:
         import capo_s3files.types.posix_user
 
         out["posix_user"] = capo_s3files.types.posix_user.deserialize_json(
             data["posixUser"]
         )
-    if "rootDirectory" in data:
+    if data.get("rootDirectory") is not None:
         import capo_s3files.types.root_directory
 
         out["root_directory"] = capo_s3files.types.root_directory.deserialize_json(

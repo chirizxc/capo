@@ -54,13 +54,13 @@ def serialize_json(value: CreateComponentVersionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateComponentVersionRequest:
     out: CreateComponentVersionRequest = {}  # type: ignore[typeddict-item]
-    if "inlineRecipe" in data:
+    if data.get("inlineRecipe") is not None:
         import capo_greengrassv2.types.recipe_blob
 
         out["inline_recipe"] = capo_greengrassv2.types.recipe_blob.deserialize_json(
             data["inlineRecipe"]
         )
-    if "lambdaFunction" in data:
+    if data.get("lambdaFunction") is not None:
         import capo_greengrassv2.types.lambda_function_recipe_source
 
         out["lambda_function"] = (
@@ -68,10 +68,10 @@ def deserialize_json(data: dict) -> CreateComponentVersionRequest:
                 data["lambdaFunction"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_greengrassv2.types.tag_map
 
         out["tags"] = capo_greengrassv2.types.tag_map.deserialize_json(data["tags"])
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

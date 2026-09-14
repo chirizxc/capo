@@ -35,10 +35,10 @@ def serialize_json(value: SigningProfileParameter) -> dict:
 
 def deserialize_json(data: dict) -> SigningProfileParameter:
     out: SigningProfileParameter = {}  # type: ignore[typeddict-item]
-    if "certificateArn" in data:
+    if data.get("certificateArn") is not None:
         out["certificate_arn"] = data["certificateArn"]
-    if "platform" in data:
+    if data.get("platform") is not None:
         out["platform"] = data["platform"]
-    if "certificatePathOnDevice" in data:
+    if data.get("certificatePathOnDevice") is not None:
         out["certificate_path_on_device"] = data["certificatePathOnDevice"]
     return out

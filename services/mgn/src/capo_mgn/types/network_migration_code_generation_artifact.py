@@ -72,15 +72,15 @@ def serialize_json(value: NetworkMigrationCodeGenerationArtifact) -> dict:
 
 def deserialize_json(data: dict) -> NetworkMigrationCodeGenerationArtifact:
     out: NetworkMigrationCodeGenerationArtifact = {}  # type: ignore[typeddict-item]
-    if "artifactID" in data:
+    if data.get("artifactID") is not None:
         out["artifact_id"] = data["artifactID"]
-    if "artifactType" in data:
+    if data.get("artifactType") is not None:
         out["artifact_type"] = data["artifactType"]
-    if "artifactSubType" in data:
+    if data.get("artifactSubType") is not None:
         out["artifact_sub_type"] = data["artifactSubType"]
-    if "logicalID" in data:
+    if data.get("logicalID") is not None:
         out["logical_id"] = data["logicalID"]
-    if "outputS3Configuration" in data:
+    if data.get("outputS3Configuration") is not None:
         import capo_mgn.types.s3_configuration
 
         out["output_s3_configuration"] = (
@@ -88,11 +88,11 @@ def deserialize_json(data: dict) -> NetworkMigrationCodeGenerationArtifact:
                 data["outputS3Configuration"]
             )
         )
-    if "checksum" in data:
+    if data.get("checksum") is not None:
         import capo_mgn.types.checksum
 
         out["checksum"] = capo_mgn.types.checksum.deserialize_json(data["checksum"])
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_mgn.types._prelude.timestamp
 
         out["created_at"] = capo_mgn.types._prelude.timestamp.deserialize_json(

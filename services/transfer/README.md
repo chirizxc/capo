@@ -13,9 +13,9 @@ from capo_transfer import AsyncTransferClient
 
 
 async def main():
-    async with AsyncTransferClient() as s3:
+    async with AsyncTransferClient() as transfer:
         # Example: call the create_access operation
-        response = await s3.create_access()
+        response = await transfer.create_access()
         print(response["server_id"])
 ```
 
@@ -28,9 +28,9 @@ from capo_transfer import AsyncTransferClient
 
 
 async def main():
-    async with AsyncTransferClient() as s3:
+    async with AsyncTransferClient() as transfer:
         # Example: paginate over list_accesses
-        async for item in s3.iter_list_accesses():
+        async for item in transfer.iter_list_accesses():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_transfer.error import InternalServiceError
 
 
 async def main():
-    async with AsyncTransferClient() as s3:
+    async with AsyncTransferClient() as transfer:
         try:
-            await s3.create_access()
+            await transfer.create_access()
         except InternalServiceError as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_transfer import AsyncTransferClient
 
 
 async def main():
-    async with AsyncTransferClient() as s3:
+    async with AsyncTransferClient() as transfer:
         # Default: 3 attempts for every operation
-        response = await s3.create_access()
+        response = await transfer.create_access()
 
         # Override per operation
-        response = await s3.create_access(config_overrides={"retry_max_attempts": 5})
+        response = await transfer.create_access(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_access(config_overrides={"retry_max_attempts": 1})
+        response = await transfer.create_access(config_overrides={"retry_max_attempts": 1})
 ```

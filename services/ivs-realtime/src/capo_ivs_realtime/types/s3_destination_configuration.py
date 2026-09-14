@@ -62,13 +62,13 @@ def serialize_json(value: S3DestinationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> S3DestinationConfiguration:
     out: S3DestinationConfiguration = {}  # type: ignore[typeddict-item]
-    if "storageConfigurationArn" in data:
+    if data.get("storageConfigurationArn") is not None:
         out["storage_configuration_arn"] = data["storageConfigurationArn"]
     else:
         raise DeserializationError(
             "S3DestinationConfiguration.storage_configuration_arn required"
         )
-    if "encoderConfigurationArns" in data:
+    if data.get("encoderConfigurationArns") is not None:
         import capo_ivs_realtime.types.encoder_configuration_arn_list
 
         out["encoder_configuration_arns"] = (
@@ -80,7 +80,7 @@ def deserialize_json(data: dict) -> S3DestinationConfiguration:
         raise DeserializationError(
             "S3DestinationConfiguration.encoder_configuration_arns required"
         )
-    if "recordingConfiguration" in data:
+    if data.get("recordingConfiguration") is not None:
         import capo_ivs_realtime.types.recording_configuration
 
         out["recording_configuration"] = (
@@ -88,7 +88,7 @@ def deserialize_json(data: dict) -> S3DestinationConfiguration:
                 data["recordingConfiguration"]
             )
         )
-    if "thumbnailConfigurations" in data:
+    if data.get("thumbnailConfigurations") is not None:
         import capo_ivs_realtime.types.composition_thumbnail_configuration_list
 
         out["thumbnail_configurations"] = (

@@ -43,11 +43,11 @@ def serialize_json(value: StorageType) -> dict:
 
 def deserialize_json(data: dict) -> StorageType:
     out: StorageType = {}  # type: ignore[typeddict-item]
-    if "StorageTypeName" in data:
+    if data.get("StorageTypeName") is not None:
         out["storage_type_name"] = data["StorageTypeName"]
-    if "StorageSubTypeName" in data:
+    if data.get("StorageSubTypeName") is not None:
         out["storage_sub_type_name"] = data["StorageSubTypeName"]
-    if "StorageTypeLimits" in data:
+    if data.get("StorageTypeLimits") is not None:
         import capo_elasticsearch_service.types.storage_type_limit_list
 
         out["storage_type_limits"] = (

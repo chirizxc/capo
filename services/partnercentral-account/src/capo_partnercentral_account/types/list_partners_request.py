@@ -29,10 +29,10 @@ def serialize_aws_json_1_0(value: ListPartnersRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListPartnersRequest:
     out: ListPartnersRequest = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("ListPartnersRequest.catalog required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

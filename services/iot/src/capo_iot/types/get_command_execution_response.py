@@ -121,31 +121,31 @@ def serialize_json(value: GetCommandExecutionResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetCommandExecutionResponse:
     out: GetCommandExecutionResponse = {}  # type: ignore[typeddict-item]
-    if "executionId" in data:
+    if data.get("executionId") is not None:
         out["execution_id"] = data["executionId"]
-    if "commandArn" in data:
+    if data.get("commandArn") is not None:
         out["command_arn"] = data["commandArn"]
-    if "targetArn" in data:
+    if data.get("targetArn") is not None:
         out["target_arn"] = data["targetArn"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iot.types.command_execution_status
 
         out["status"] = capo_iot.types.command_execution_status.deserialize_json(
             data["status"]
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         import capo_iot.types.status_reason
 
         out["status_reason"] = capo_iot.types.status_reason.deserialize_json(
             data["statusReason"]
         )
-    if "result" in data:
+    if data.get("result") is not None:
         import capo_iot.types.command_execution_result_map
 
         out["result"] = capo_iot.types.command_execution_result_map.deserialize_json(
             data["result"]
         )
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_iot.types.command_execution_parameter_map
 
         out["parameters"] = (
@@ -153,29 +153,29 @@ def deserialize_json(data: dict) -> GetCommandExecutionResponse:
                 data["parameters"]
             )
         )
-    if "executionTimeoutSeconds" in data:
+    if data.get("executionTimeoutSeconds") is not None:
         out["execution_timeout_seconds"] = data["executionTimeoutSeconds"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_iot.types.date_type
 
         out["created_at"] = capo_iot.types.date_type.deserialize_json(data["createdAt"])
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_iot.types.date_type
 
         out["last_updated_at"] = capo_iot.types.date_type.deserialize_json(
             data["lastUpdatedAt"]
         )
-    if "startedAt" in data:
+    if data.get("startedAt") is not None:
         import capo_iot.types.date_type
 
         out["started_at"] = capo_iot.types.date_type.deserialize_json(data["startedAt"])
-    if "completedAt" in data:
+    if data.get("completedAt") is not None:
         import capo_iot.types.date_type
 
         out["completed_at"] = capo_iot.types.date_type.deserialize_json(
             data["completedAt"]
         )
-    if "timeToLive" in data:
+    if data.get("timeToLive") is not None:
         import capo_iot.types.date_type
 
         out["time_to_live"] = capo_iot.types.date_type.deserialize_json(

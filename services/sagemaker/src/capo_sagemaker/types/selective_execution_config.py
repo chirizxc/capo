@@ -38,9 +38,9 @@ def serialize_aws_json_1_1(value: SelectiveExecutionConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SelectiveExecutionConfig:
     out: SelectiveExecutionConfig = {}  # type: ignore[typeddict-item]
-    if "SourcePipelineExecutionArn" in data:
+    if data.get("SourcePipelineExecutionArn") is not None:
         out["source_pipeline_execution_arn"] = data["SourcePipelineExecutionArn"]
-    if "SelectedSteps" in data:
+    if data.get("SelectedSteps") is not None:
         import capo_sagemaker.types.selected_step_list
 
         out["selected_steps"] = (

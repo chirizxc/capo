@@ -37,9 +37,9 @@ def serialize_json(value: InvalidRequestException_) -> dict:
 
 def deserialize_json(data: dict) -> InvalidRequestException_:
     out: InvalidRequestException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "Reason" in data:
+    if data.get("Reason") is not None:
         import capo_connect.types.invalid_request_exception_reason
 
         out["reason"] = (
@@ -55,15 +55,18 @@ class InvalidRequestException(ServiceError):
 
     code: str | None = "InvalidRequestException"
 
-    def __init__(self, data: InvalidRequestException_):
+    def __init__(self, data: InvalidRequestException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidRequestException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "InvalidRequestException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidRequestException":
+        return cls(deserialize_json(data), message)

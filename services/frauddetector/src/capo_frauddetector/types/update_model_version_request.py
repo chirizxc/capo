@@ -73,11 +73,11 @@ def serialize_aws_json_1_1(value: UpdateModelVersionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateModelVersionRequest:
     out: UpdateModelVersionRequest = {}  # type: ignore[typeddict-item]
-    if "modelId" in data:
+    if data.get("modelId") is not None:
         out["model_id"] = data["modelId"]
     else:
         raise DeserializationError("UpdateModelVersionRequest.model_id required")
-    if "modelType" in data:
+    if data.get("modelType") is not None:
         import capo_frauddetector.types.model_type_enum
 
         out["model_type"] = (
@@ -87,13 +87,13 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateModelVersionRequest:
         )
     else:
         raise DeserializationError("UpdateModelVersionRequest.model_type required")
-    if "majorVersionNumber" in data:
+    if data.get("majorVersionNumber") is not None:
         out["major_version_number"] = data["majorVersionNumber"]
     else:
         raise DeserializationError(
             "UpdateModelVersionRequest.major_version_number required"
         )
-    if "externalEventsDetail" in data:
+    if data.get("externalEventsDetail") is not None:
         import capo_frauddetector.types.external_events_detail
 
         out["external_events_detail"] = (
@@ -101,7 +101,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateModelVersionRequest:
                 data["externalEventsDetail"]
             )
         )
-    if "ingestedEventsDetail" in data:
+    if data.get("ingestedEventsDetail") is not None:
         import capo_frauddetector.types.ingested_events_detail
 
         out["ingested_events_detail"] = (
@@ -109,7 +109,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateModelVersionRequest:
                 data["ingestedEventsDetail"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_frauddetector.types.tag_list
 
         out["tags"] = capo_frauddetector.types.tag_list.deserialize_aws_json_1_1(

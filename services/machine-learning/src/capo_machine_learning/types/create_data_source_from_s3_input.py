@@ -43,15 +43,15 @@ def serialize_aws_json_1_1(value: CreateDataSourceFromS3Input) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDataSourceFromS3Input:
     out: CreateDataSourceFromS3Input = {}  # type: ignore[typeddict-item]
-    if "DataSourceId" in data:
+    if data.get("DataSourceId") is not None:
         out["data_source_id"] = data["DataSourceId"]
     else:
         raise DeserializationError(
             "CreateDataSourceFromS3Input.data_source_id required"
         )
-    if "DataSourceName" in data:
+    if data.get("DataSourceName") is not None:
         out["data_source_name"] = data["DataSourceName"]
-    if "DataSpec" in data:
+    if data.get("DataSpec") is not None:
         import capo_machine_learning.types.s3_data_spec
 
         out["data_spec"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDataSourceFromS3Input:
         )
     else:
         raise DeserializationError("CreateDataSourceFromS3Input.data_spec required")
-    if "ComputeStatistics" in data:
+    if data.get("ComputeStatistics") is not None:
         out["compute_statistics"] = data["ComputeStatistics"]
     else:
         out["compute_statistics"] = False

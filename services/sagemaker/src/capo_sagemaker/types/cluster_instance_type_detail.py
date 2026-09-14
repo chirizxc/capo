@@ -45,7 +45,7 @@ def serialize_aws_json_1_1(value: ClusterInstanceTypeDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClusterInstanceTypeDetail:
     out: ClusterInstanceTypeDetail = {}  # type: ignore[typeddict-item]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         import capo_sagemaker.types.cluster_instance_type
 
         out["instance_type"] = (
@@ -53,8 +53,8 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterInstanceTypeDetail:
                 data["InstanceType"]
             )
         )
-    if "CurrentCount" in data:
+    if data.get("CurrentCount") is not None:
         out["current_count"] = data["CurrentCount"]
-    if "ThreadsPerCore" in data:
+    if data.get("ThreadsPerCore") is not None:
         out["threads_per_core"] = data["ThreadsPerCore"]
     return out

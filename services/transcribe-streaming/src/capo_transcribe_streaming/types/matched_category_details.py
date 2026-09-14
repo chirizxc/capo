@@ -27,6 +27,8 @@ def serialize_json(input_to_serialize: MatchedCategoryDetails) -> dict:
 def deserialize_json(data: dict) -> MatchedCategoryDetails:
     out: MatchedCategoryDetails = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_transcribe_streaming.types.points_of_interest
 
         out[key] = capo_transcribe_streaming.types.points_of_interest.deserialize_json(

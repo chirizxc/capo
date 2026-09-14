@@ -35,13 +35,13 @@ def serialize_json(value: ScanResourceCriteria) -> dict:
 
 def deserialize_json(data: dict) -> ScanResourceCriteria:
     out: ScanResourceCriteria = {}  # type: ignore[typeddict-item]
-    if "include" in data:
+    if data.get("include") is not None:
         import capo_guardduty.types.scan_criterion
 
         out["include"] = capo_guardduty.types.scan_criterion.deserialize_json(
             data["include"]
         )
-    if "exclude" in data:
+    if data.get("exclude") is not None:
         import capo_guardduty.types.scan_criterion
 
         out["exclude"] = capo_guardduty.types.scan_criterion.deserialize_json(

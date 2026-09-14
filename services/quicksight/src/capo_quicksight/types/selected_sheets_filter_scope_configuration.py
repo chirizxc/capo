@@ -31,7 +31,7 @@ def serialize_json(value: SelectedSheetsFilterScopeConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SelectedSheetsFilterScopeConfiguration:
     out: SelectedSheetsFilterScopeConfiguration = {}  # type: ignore[typeddict-item]
-    if "SheetVisualScopingConfigurations" in data:
+    if data.get("SheetVisualScopingConfigurations") is not None:
         import capo_quicksight.types.sheet_visual_scoping_configurations
 
         out["sheet_visual_scoping_configurations"] = (

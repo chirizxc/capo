@@ -75,19 +75,19 @@ def serialize_json(value: CreateAgentSpaceInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateAgentSpaceInput:
     out: CreateAgentSpaceInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateAgentSpaceInput.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "awsResources" in data:
+    if data.get("awsResources") is not None:
         import capo_securityagent.types.aws_resources
 
         out["aws_resources"] = capo_securityagent.types.aws_resources.deserialize_json(
             data["awsResources"]
         )
-    if "targetDomainIds" in data:
+    if data.get("targetDomainIds") is not None:
         import capo_securityagent.types.target_domain_id_list
 
         out["target_domain_ids"] = (
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> CreateAgentSpaceInput:
                 data["targetDomainIds"]
             )
         )
-    if "codeReviewSettings" in data:
+    if data.get("codeReviewSettings") is not None:
         import capo_securityagent.types.code_review_settings
 
         out["code_review_settings"] = (
@@ -103,9 +103,9 @@ def deserialize_json(data: dict) -> CreateAgentSpaceInput:
                 data["codeReviewSettings"]
             )
         )
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_securityagent.types.tag_map
 
         out["tags"] = capo_securityagent.types.tag_map.deserialize_json(data["tags"])

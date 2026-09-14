@@ -27,8 +27,8 @@ def serialize_json(value: AudioHlsRenditionSelection) -> dict:
 
 def deserialize_json(data: dict) -> AudioHlsRenditionSelection:
     out: AudioHlsRenditionSelection = {}  # type: ignore[typeddict-item]
-    if "groupId" in data:
+    if data.get("groupId") is not None:
         out["group_id"] = data["groupId"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     return out

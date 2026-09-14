@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: InstanceNetworkPerformanceOptionsRequest) -> d
 
 def deserialize_aws_json_1_0(data: dict) -> InstanceNetworkPerformanceOptionsRequest:
     out: InstanceNetworkPerformanceOptionsRequest = {}  # type: ignore[typeddict-item]
-    if "BandwidthWeighting" in data:
+    if data.get("BandwidthWeighting") is not None:
         import capo_workspaces_instances.types.bandwidth_weighting_enum
 
         out["bandwidth_weighting"] = (

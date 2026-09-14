@@ -42,9 +42,9 @@ def serialize_aws_json_1_1(value: GetTagsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetTagsResponse:
     out: GetTagsResponse = {}  # type: ignore[typeddict-item]
-    if "NextPageToken" in data:
+    if data.get("NextPageToken") is not None:
         out["next_page_token"] = data["NextPageToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_cost_explorer.types.tag_list
 
         out["tags"] = capo_cost_explorer.types.tag_list.deserialize_aws_json_1_1(
@@ -52,11 +52,11 @@ def deserialize_aws_json_1_1(data: dict) -> GetTagsResponse:
         )
     else:
         raise DeserializationError("GetTagsResponse.tags required")
-    if "ReturnSize" in data:
+    if data.get("ReturnSize") is not None:
         out["return_size"] = data["ReturnSize"]
     else:
         raise DeserializationError("GetTagsResponse.return_size required")
-    if "TotalSize" in data:
+    if data.get("TotalSize") is not None:
         out["total_size"] = data["TotalSize"]
     else:
         raise DeserializationError("GetTagsResponse.total_size required")

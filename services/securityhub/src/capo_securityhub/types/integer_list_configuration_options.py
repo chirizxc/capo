@@ -40,16 +40,16 @@ def serialize_json(value: IntegerListConfigurationOptions) -> dict:
 
 def deserialize_json(data: dict) -> IntegerListConfigurationOptions:
     out: IntegerListConfigurationOptions = {}  # type: ignore[typeddict-item]
-    if "DefaultValue" in data:
+    if data.get("DefaultValue") is not None:
         import capo_securityhub.types.integer_list
 
         out["default_value"] = capo_securityhub.types.integer_list.deserialize_json(
             data["DefaultValue"]
         )
-    if "Min" in data:
+    if data.get("Min") is not None:
         out["min"] = data["Min"]
-    if "Max" in data:
+    if data.get("Max") is not None:
         out["max"] = data["Max"]
-    if "MaxItems" in data:
+    if data.get("MaxItems") is not None:
         out["max_items"] = data["MaxItems"]
     return out

@@ -22,11 +22,11 @@ def serialize_aws_json_1_0(value: SlurmCustomSetting) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SlurmCustomSetting:
     out: SlurmCustomSetting = {}  # type: ignore[typeddict-item]
-    if "parameterName" in data:
+    if data.get("parameterName") is not None:
         out["parameter_name"] = data["parameterName"]
     else:
         raise DeserializationError("SlurmCustomSetting.parameter_name required")
-    if "parameterValue" in data:
+    if data.get("parameterValue") is not None:
         out["parameter_value"] = data["parameterValue"]
     else:
         raise DeserializationError("SlurmCustomSetting.parameter_value required")

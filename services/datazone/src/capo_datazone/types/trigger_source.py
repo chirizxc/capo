@@ -31,12 +31,12 @@ def serialize_json(value: TriggerSource) -> dict:
 
 def deserialize_json(data: dict) -> TriggerSource:
     out: TriggerSource = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_datazone.types.trigger_source_type
 
         out["type"] = capo_datazone.types.trigger_source_type.deserialize_json(
             data["type"]
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     return out

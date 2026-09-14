@@ -59,17 +59,17 @@ def serialize_aws_json_1_1(value: EntityDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EntityDescription:
     out: EntityDescription = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_iotthingsgraph.types.entity_type
 
         out["type"] = capo_iotthingsgraph.types.entity_type.deserialize_aws_json_1_1(
             data["type"]
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_iotthingsgraph.types.timestamp
 
         out["created_at"] = (
@@ -77,7 +77,7 @@ def deserialize_aws_json_1_1(data: dict) -> EntityDescription:
                 data["createdAt"]
             )
         )
-    if "definition" in data:
+    if data.get("definition") is not None:
         import capo_iotthingsgraph.types.definition_document
 
         out["definition"] = (

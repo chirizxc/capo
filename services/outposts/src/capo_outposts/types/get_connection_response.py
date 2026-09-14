@@ -36,9 +36,9 @@ def serialize_json(value: GetConnectionResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetConnectionResponse:
     out: GetConnectionResponse = {}  # type: ignore[typeddict-item]
-    if "ConnectionId" in data:
+    if data.get("ConnectionId") is not None:
         out["connection_id"] = data["ConnectionId"]
-    if "ConnectionDetails" in data:
+    if data.get("ConnectionDetails") is not None:
         import capo_outposts.types.connection_details
 
         out["connection_details"] = (

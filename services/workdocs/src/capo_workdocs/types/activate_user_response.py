@@ -25,7 +25,7 @@ def serialize_json(value: ActivateUserResponse) -> dict:
 
 def deserialize_json(data: dict) -> ActivateUserResponse:
     out: ActivateUserResponse = {}  # type: ignore[typeddict-item]
-    if "User" in data:
+    if data.get("User") is not None:
         import capo_workdocs.types.user
 
         out["user"] = capo_workdocs.types.user.deserialize_json(data["User"])

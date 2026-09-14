@@ -42,23 +42,23 @@ def serialize_json(value: PersistentVolumeConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> PersistentVolumeConfiguration:
     out: PersistentVolumeConfiguration = {}  # type: ignore[typeddict-item]
-    if "sizeGiB" in data:
+    if data.get("sizeGiB") is not None:
         out["size_gi_b"] = data["sizeGiB"]
     else:
         out["size_gi_b"] = 250
-    if "iops" in data:
+    if data.get("iops") is not None:
         out["iops"] = data["iops"]
     else:
         out["iops"] = 3000
-    if "throughputMiB" in data:
+    if data.get("throughputMiB") is not None:
         out["throughput_mi_b"] = data["throughputMiB"]
     else:
         out["throughput_mi_b"] = 125
-    if "mountPath" in data:
+    if data.get("mountPath") is not None:
         out["mount_path"] = data["mountPath"]
     else:
         raise DeserializationError("PersistentVolumeConfiguration.mount_path required")
-    if "lastUsedTtlHours" in data:
+    if data.get("lastUsedTtlHours") is not None:
         out["last_used_ttl_hours"] = data["lastUsedTtlHours"]
     else:
         out["last_used_ttl_hours"] = 168

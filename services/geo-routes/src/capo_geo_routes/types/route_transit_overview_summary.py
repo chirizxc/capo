@@ -28,11 +28,11 @@ def serialize_json(value: RouteTransitOverviewSummary) -> dict:
 
 def deserialize_json(data: dict) -> RouteTransitOverviewSummary:
     out: RouteTransitOverviewSummary = {}  # type: ignore[typeddict-item]
-    if "Distance" in data:
+    if data.get("Distance") is not None:
         out["distance"] = data["Distance"]
     else:
         raise DeserializationError("RouteTransitOverviewSummary.distance required")
-    if "Duration" in data:
+    if data.get("Duration") is not None:
         out["duration"] = data["Duration"]
     else:
         raise DeserializationError("RouteTransitOverviewSummary.duration required")

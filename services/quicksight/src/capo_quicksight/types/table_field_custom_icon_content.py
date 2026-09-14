@@ -29,7 +29,7 @@ def serialize_json(value: TableFieldCustomIconContent) -> dict:
 
 def deserialize_json(data: dict) -> TableFieldCustomIconContent:
     out: TableFieldCustomIconContent = {}  # type: ignore[typeddict-item]
-    if "Icon" in data:
+    if data.get("Icon") is not None:
         import capo_quicksight.types.table_field_icon_set_type
 
         out["icon"] = capo_quicksight.types.table_field_icon_set_type.deserialize_json(

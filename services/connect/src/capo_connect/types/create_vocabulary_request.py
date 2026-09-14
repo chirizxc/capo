@@ -51,13 +51,13 @@ def serialize_json(value: CreateVocabularyRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateVocabularyRequest:
     out: CreateVocabularyRequest = {}  # type: ignore[typeddict-item]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "VocabularyName" in data:
+    if data.get("VocabularyName") is not None:
         out["vocabulary_name"] = data["VocabularyName"]
     else:
         raise DeserializationError("CreateVocabularyRequest.vocabulary_name required")
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_connect.types.vocabulary_language_code
 
         out["language_code"] = (
@@ -67,11 +67,11 @@ def deserialize_json(data: dict) -> CreateVocabularyRequest:
         )
     else:
         raise DeserializationError("CreateVocabularyRequest.language_code required")
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
     else:
         raise DeserializationError("CreateVocabularyRequest.content required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])

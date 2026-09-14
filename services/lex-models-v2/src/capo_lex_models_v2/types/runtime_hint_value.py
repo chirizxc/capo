@@ -24,7 +24,7 @@ def serialize_json(value: RuntimeHintValue) -> dict:
 
 def deserialize_json(data: dict) -> RuntimeHintValue:
     out: RuntimeHintValue = {}  # type: ignore[typeddict-item]
-    if "phrase" in data:
+    if data.get("phrase") is not None:
         out["phrase"] = data["phrase"]
     else:
         raise DeserializationError("RuntimeHintValue.phrase required")

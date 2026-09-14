@@ -209,14 +209,16 @@ class AsyncMWAAClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mwaa.types.create_cli_token_request.CreateCliTokenRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_mwaa.types.create_cli_token_request.CreateCliTokenRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_environment(
@@ -325,12 +327,13 @@ class AsyncMWAAClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mwaa.types.create_environment_input.CreateEnvironmentInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["execution_role_arn"] = execution_role_arn
-        input_["source_bucket_arn"] = source_bucket_arn
-        input_["dag_s3_path"] = dag_s3_path
-        input_["network_configuration"] = network_configuration
+        input_: capo_mwaa.types.create_environment_input.CreateEnvironmentInput = {
+            "name": name,
+            "execution_role_arn": execution_role_arn,
+            "source_bucket_arn": source_bucket_arn,
+            "dag_s3_path": dag_s3_path,
+            "network_configuration": network_configuration,
+        }
         if plugins_s3_path is not None:
             input_["plugins_s3_path"] = plugins_s3_path
         if plugins_s3_object_version is not None:
@@ -379,6 +382,7 @@ class AsyncMWAAClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_web_login_token(
@@ -416,14 +420,16 @@ class AsyncMWAAClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mwaa.types.create_web_login_token_request.CreateWebLoginTokenRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_mwaa.types.create_web_login_token_request.CreateWebLoginTokenRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_environment(
@@ -461,14 +467,16 @@ class AsyncMWAAClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mwaa.types.delete_environment_input.DeleteEnvironmentInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_mwaa.types.delete_environment_input.DeleteEnvironmentInput = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_environment(
@@ -505,14 +513,16 @@ class AsyncMWAAClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mwaa.types.get_environment_input.GetEnvironmentInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_mwaa.types.get_environment_input.GetEnvironmentInput = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def invoke_rest_api(
@@ -567,10 +577,11 @@ class AsyncMWAAClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mwaa.types.invoke_rest_api_request.InvokeRestApiRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["path"] = path
-        input_["method"] = method
+        input_: capo_mwaa.types.invoke_rest_api_request.InvokeRestApiRequest = {
+            "name": name,
+            "path": path,
+            "method": method,
+        }
         if query_parameters is not None:
             input_["query_parameters"] = query_parameters
         if body is not None:
@@ -581,6 +592,7 @@ class AsyncMWAAClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_environments(
@@ -618,7 +630,7 @@ class AsyncMWAAClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mwaa.types.list_environments_input.ListEnvironmentsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_mwaa.types.list_environments_input.ListEnvironmentsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -629,6 +641,7 @@ class AsyncMWAAClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_environments(
@@ -686,14 +699,16 @@ class AsyncMWAAClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mwaa.types.list_tags_for_resource_input.ListTagsForResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_mwaa.types.list_tags_for_resource_input.ListTagsForResourceInput = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def publish_metrics(
@@ -731,15 +746,17 @@ class AsyncMWAAClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mwaa.types.publish_metrics_input.PublishMetricsInput = {}  # type: ignore[typeddict-item]
-        input_["environment_name"] = environment_name
-        input_["metric_data"] = metric_data
+        input_: capo_mwaa.types.publish_metrics_input.PublishMetricsInput = {
+            "environment_name": environment_name,
+            "metric_data": metric_data,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -778,15 +795,17 @@ class AsyncMWAAClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mwaa.types.tag_resource_input.TagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_mwaa.types.tag_resource_input.TagResourceInput = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -825,15 +844,17 @@ class AsyncMWAAClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mwaa.types.untag_resource_input.UntagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_mwaa.types.untag_resource_input.UntagResourceInput = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_environment(
@@ -941,8 +962,9 @@ class AsyncMWAAClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mwaa.types.update_environment_input.UpdateEnvironmentInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_mwaa.types.update_environment_input.UpdateEnvironmentInput = {
+            "name": name
+        }
         if execution_role_arn is not None:
             input_["execution_role_arn"] = execution_role_arn
         if airflow_configuration_options is not None:
@@ -995,6 +1017,7 @@ class AsyncMWAAClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

@@ -28,11 +28,11 @@ def serialize_json(value: LogGroupSummary) -> dict:
 
 def deserialize_json(data: dict) -> LogGroupSummary:
     out: LogGroupSummary = {}  # type: ignore[typeddict-item]
-    if "logType" in data:
+    if data.get("logType") is not None:
         out["log_type"] = data["logType"]
     else:
         raise DeserializationError("LogGroupSummary.log_type required")
-    if "logGroupName" in data:
+    if data.get("logGroupName") is not None:
         out["log_group_name"] = data["logGroupName"]
     else:
         raise DeserializationError("LogGroupSummary.log_group_name required")

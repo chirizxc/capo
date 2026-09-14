@@ -50,11 +50,11 @@ def serialize_json(value: ControlInsightsMetadataItem) -> dict:
 
 def deserialize_json(data: dict) -> ControlInsightsMetadataItem:
     out: ControlInsightsMetadataItem = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "evidenceInsights" in data:
+    if data.get("evidenceInsights") is not None:
         import capo_auditmanager.types.evidence_insights
 
         out["evidence_insights"] = (
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> ControlInsightsMetadataItem:
                 data["evidenceInsights"]
             )
         )
-    if "lastUpdated" in data:
+    if data.get("lastUpdated") is not None:
         import capo_auditmanager.types.timestamp
 
         out["last_updated"] = capo_auditmanager.types.timestamp.deserialize_json(

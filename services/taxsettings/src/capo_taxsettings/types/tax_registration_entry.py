@@ -90,11 +90,11 @@ def serialize_json(value: TaxRegistrationEntry) -> dict:
 
 def deserialize_json(data: dict) -> TaxRegistrationEntry:
     out: TaxRegistrationEntry = {}  # type: ignore[typeddict-item]
-    if "registrationId" in data:
+    if data.get("registrationId") is not None:
         out["registration_id"] = data["registrationId"]
     else:
         raise DeserializationError("TaxRegistrationEntry.registration_id required")
-    if "registrationType" in data:
+    if data.get("registrationType") is not None:
         import capo_taxsettings.types.tax_registration_type
 
         out["registration_type"] = (
@@ -104,19 +104,19 @@ def deserialize_json(data: dict) -> TaxRegistrationEntry:
         )
     else:
         raise DeserializationError("TaxRegistrationEntry.registration_type required")
-    if "legalName" in data:
+    if data.get("legalName") is not None:
         out["legal_name"] = data["legalName"]
-    if "legalAddress" in data:
+    if data.get("legalAddress") is not None:
         import capo_taxsettings.types.address
 
         out["legal_address"] = capo_taxsettings.types.address.deserialize_json(
             data["legalAddress"]
         )
-    if "sector" in data:
+    if data.get("sector") is not None:
         import capo_taxsettings.types.sector
 
         out["sector"] = capo_taxsettings.types.sector.deserialize_json(data["sector"])
-    if "additionalTaxInformation" in data:
+    if data.get("additionalTaxInformation") is not None:
         import capo_taxsettings.types.additional_info_request
 
         out["additional_tax_information"] = (
@@ -124,7 +124,7 @@ def deserialize_json(data: dict) -> TaxRegistrationEntry:
                 data["additionalTaxInformation"]
             )
         )
-    if "verificationDetails" in data:
+    if data.get("verificationDetails") is not None:
         import capo_taxsettings.types.verification_details
 
         out["verification_details"] = (
@@ -132,6 +132,6 @@ def deserialize_json(data: dict) -> TaxRegistrationEntry:
                 data["verificationDetails"]
             )
         )
-    if "certifiedEmailId" in data:
+    if data.get("certifiedEmailId") is not None:
         out["certified_email_id"] = data["certifiedEmailId"]
     return out

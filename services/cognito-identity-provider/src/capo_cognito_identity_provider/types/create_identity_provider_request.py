@@ -80,19 +80,19 @@ def serialize_aws_json_1_1(value: CreateIdentityProviderRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateIdentityProviderRequest:
     out: CreateIdentityProviderRequest = {}  # type: ignore[typeddict-item]
-    if "UserPoolId" in data:
+    if data.get("UserPoolId") is not None:
         out["user_pool_id"] = data["UserPoolId"]
     else:
         raise DeserializationError(
             "CreateIdentityProviderRequest.user_pool_id required"
         )
-    if "ProviderName" in data:
+    if data.get("ProviderName") is not None:
         out["provider_name"] = data["ProviderName"]
     else:
         raise DeserializationError(
             "CreateIdentityProviderRequest.provider_name required"
         )
-    if "ProviderType" in data:
+    if data.get("ProviderType") is not None:
         import capo_cognito_identity_provider.types.identity_provider_type_type
 
         out["provider_type"] = (
@@ -104,7 +104,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateIdentityProviderRequest:
         raise DeserializationError(
             "CreateIdentityProviderRequest.provider_type required"
         )
-    if "ProviderDetails" in data:
+    if data.get("ProviderDetails") is not None:
         import capo_cognito_identity_provider.types.provider_details_type
 
         out["provider_details"] = (
@@ -116,7 +116,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateIdentityProviderRequest:
         raise DeserializationError(
             "CreateIdentityProviderRequest.provider_details required"
         )
-    if "AttributeMapping" in data:
+    if data.get("AttributeMapping") is not None:
         import capo_cognito_identity_provider.types.attribute_mapping_type
 
         out["attribute_mapping"] = (
@@ -124,7 +124,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateIdentityProviderRequest:
                 data["AttributeMapping"]
             )
         )
-    if "IdpIdentifiers" in data:
+    if data.get("IdpIdentifiers") is not None:
         import capo_cognito_identity_provider.types.idp_identifiers_list_type
 
         out["idp_identifiers"] = (

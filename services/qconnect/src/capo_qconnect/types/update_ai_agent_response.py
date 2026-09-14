@@ -27,7 +27,7 @@ def serialize_json(value: UpdateAIAgentResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAIAgentResponse:
     out: UpdateAIAgentResponse = {}  # type: ignore[typeddict-item]
-    if "aiAgent" in data:
+    if data.get("aiAgent") is not None:
         import capo_qconnect.types.ai_agent_data
 
         out["ai_agent"] = capo_qconnect.types.ai_agent_data.deserialize_json(

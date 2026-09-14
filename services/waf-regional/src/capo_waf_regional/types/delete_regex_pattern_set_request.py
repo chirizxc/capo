@@ -28,13 +28,13 @@ def serialize_aws_json_1_1(value: DeleteRegexPatternSetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteRegexPatternSetRequest:
     out: DeleteRegexPatternSetRequest = {}  # type: ignore[typeddict-item]
-    if "RegexPatternSetId" in data:
+    if data.get("RegexPatternSetId") is not None:
         out["regex_pattern_set_id"] = data["RegexPatternSetId"]
     else:
         raise DeserializationError(
             "DeleteRegexPatternSetRequest.regex_pattern_set_id required"
         )
-    if "ChangeToken" in data:
+    if data.get("ChangeToken") is not None:
         out["change_token"] = data["ChangeToken"]
     else:
         raise DeserializationError("DeleteRegexPatternSetRequest.change_token required")

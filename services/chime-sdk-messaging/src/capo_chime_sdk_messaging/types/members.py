@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Members:
 
     out: Members = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_chime_sdk_messaging.types.identity.deserialize_json(item))
     return out

@@ -32,7 +32,7 @@ def serialize_json(value: BasePathMappings) -> dict:
 
 def deserialize_json(data: dict) -> BasePathMappings:
     out: BasePathMappings = {}  # type: ignore[typeddict-item]
-    if "item" in data:
+    if data.get("item") is not None:
         import capo_api_gateway.types.list_of_base_path_mapping
 
         out["items"] = (

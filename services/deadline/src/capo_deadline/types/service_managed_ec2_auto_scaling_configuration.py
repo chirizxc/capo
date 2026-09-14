@@ -36,12 +36,12 @@ def serialize_json(value: ServiceManagedEc2AutoScalingConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ServiceManagedEc2AutoScalingConfiguration:
     out: ServiceManagedEc2AutoScalingConfiguration = {}  # type: ignore[typeddict-item]
-    if "standbyWorkerCount" in data:
+    if data.get("standbyWorkerCount") is not None:
         out["standby_worker_count"] = data["standbyWorkerCount"]
-    if "workerIdleDurationSeconds" in data:
+    if data.get("workerIdleDurationSeconds") is not None:
         out["worker_idle_duration_seconds"] = data["workerIdleDurationSeconds"]
     else:
         out["worker_idle_duration_seconds"] = 300
-    if "scaleOutWorkersPerMinute" in data:
+    if data.get("scaleOutWorkersPerMinute") is not None:
         out["scale_out_workers_per_minute"] = data["scaleOutWorkersPerMinute"]
     return out

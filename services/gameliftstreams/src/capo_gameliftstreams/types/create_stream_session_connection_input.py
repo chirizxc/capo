@@ -34,9 +34,9 @@ def serialize_json(value: CreateStreamSessionConnectionInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateStreamSessionConnectionInput:
     out: CreateStreamSessionConnectionInput = {}  # type: ignore[typeddict-item]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "SignalRequest" in data:
+    if data.get("SignalRequest") is not None:
         out["signal_request"] = data["SignalRequest"]
     else:
         raise DeserializationError(

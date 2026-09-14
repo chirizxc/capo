@@ -32,12 +32,12 @@ def serialize_json(value: ScheduleRefreshOnEntity) -> dict:
 
 def deserialize_json(data: dict) -> ScheduleRefreshOnEntity:
     out: ScheduleRefreshOnEntity = {}  # type: ignore[typeddict-item]
-    if "DayOfWeek" in data:
+    if data.get("DayOfWeek") is not None:
         import capo_quicksight.types.day_of_week
 
         out["day_of_week"] = capo_quicksight.types.day_of_week.deserialize_json(
             data["DayOfWeek"]
         )
-    if "DayOfMonth" in data:
+    if data.get("DayOfMonth") is not None:
         out["day_of_month"] = data["DayOfMonth"]
     return out

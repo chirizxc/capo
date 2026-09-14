@@ -37,7 +37,7 @@ def serialize_json(value: ListReferenceImportJobsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListReferenceImportJobsRequest:
     out: ListReferenceImportJobsRequest = {}  # type: ignore[typeddict-item]
-    if "filter" in data:
+    if data.get("filter") is not None:
         import capo_omics.types.import_reference_filter
 
         out["filter"] = capo_omics.types.import_reference_filter.deserialize_json(

@@ -51,15 +51,15 @@ def serialize_json(value: CreateEmailIdentityRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateEmailIdentityRequest:
     out: CreateEmailIdentityRequest = {}  # type: ignore[typeddict-item]
-    if "EmailIdentity" in data:
+    if data.get("EmailIdentity") is not None:
         out["email_identity"] = data["EmailIdentity"]
     else:
         raise DeserializationError("CreateEmailIdentityRequest.email_identity required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sesv2.types.tag_list
 
         out["tags"] = capo_sesv2.types.tag_list.deserialize_json(data["Tags"])
-    if "DkimSigningAttributes" in data:
+    if data.get("DkimSigningAttributes") is not None:
         import capo_sesv2.types.dkim_signing_attributes
 
         out["dkim_signing_attributes"] = (
@@ -67,6 +67,6 @@ def deserialize_json(data: dict) -> CreateEmailIdentityRequest:
                 data["DkimSigningAttributes"]
             )
         )
-    if "ConfigurationSetName" in data:
+    if data.get("ConfigurationSetName") is not None:
         out["configuration_set_name"] = data["ConfigurationSetName"]
     return out

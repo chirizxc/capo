@@ -59,7 +59,7 @@ def serialize_json(value: ListIndexRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListIndexRequest:
     out: ListIndexRequest = {}  # type: ignore[typeddict-item]
-    if "RangesOnIndexedValues" in data:
+    if data.get("RangesOnIndexedValues") is not None:
         import capo_clouddirectory.types.object_attribute_range_list
 
         out["ranges_on_indexed_values"] = (
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> ListIndexRequest:
                 data["RangesOnIndexedValues"]
             )
         )
-    if "IndexReference" in data:
+    if data.get("IndexReference") is not None:
         import capo_clouddirectory.types.object_reference
 
         out["index_reference"] = (
@@ -77,8 +77,8 @@ def deserialize_json(data: dict) -> ListIndexRequest:
         )
     else:
         raise DeserializationError("ListIndexRequest.index_reference required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -26,13 +26,21 @@ def serialize_aws_json_1_1(value: DataPoint) -> dict:
     out["Timestamp"] = capo_pi.types.iso_timestamp.serialize_aws_json_1_1(
         value["timestamp"]
     )
-    out["Value"] = value["value"]
+    out["Value"] = (
+        "NaN"
+        if value["value"] != value["value"]
+        else "Infinity"
+        if value["value"] == float("inf")
+        else "-Infinity"
+        if value["value"] == float("-inf")
+        else value["value"]
+    )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> DataPoint:
     out: DataPoint = {}  # type: ignore[typeddict-item]
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         import capo_pi.types.iso_timestamp
 
         out["timestamp"] = capo_pi.types.iso_timestamp.deserialize_aws_json_1_1(
@@ -40,8 +48,8 @@ def deserialize_aws_json_1_1(data: dict) -> DataPoint:
         )
     else:
         raise DeserializationError("DataPoint.timestamp required")
-    if "Value" in data:
-        out["value"] = data["Value"]
+    if data.get("Value") is not None:
+        out["value"] = float(data["Value"])
     else:
         raise DeserializationError("DataPoint.value required")
     return out

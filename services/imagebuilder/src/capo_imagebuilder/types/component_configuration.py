@@ -37,11 +37,11 @@ def serialize_json(value: ComponentConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ComponentConfiguration:
     out: ComponentConfiguration = {}  # type: ignore[typeddict-item]
-    if "componentArn" in data:
+    if data.get("componentArn") is not None:
         out["component_arn"] = data["componentArn"]
     else:
         raise DeserializationError("ComponentConfiguration.component_arn required")
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_imagebuilder.types.component_parameter_list
 
         out["parameters"] = (

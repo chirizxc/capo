@@ -48,15 +48,15 @@ def serialize_json(value: CreatePrivateGraphEndpointInput) -> dict:
 
 def deserialize_json(data: dict) -> CreatePrivateGraphEndpointInput:
     out: CreatePrivateGraphEndpointInput = {}  # type: ignore[typeddict-item]
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_neptune_graph.types.subnet_ids
 
         out["subnet_ids"] = capo_neptune_graph.types.subnet_ids.deserialize_json(
             data["subnetIds"]
         )
-    if "vpcSecurityGroupIds" in data:
+    if data.get("vpcSecurityGroupIds") is not None:
         import capo_neptune_graph.types.security_group_ids
 
         out["vpc_security_group_ids"] = (

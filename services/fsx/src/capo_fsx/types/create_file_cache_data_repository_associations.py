@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> CreateFileCacheDataRepositoryAssocia
 
     out: CreateFileCacheDataRepositoryAssociations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_fsx.types.file_cache_data_repository_association.deserialize_aws_json_1_1(
                 item

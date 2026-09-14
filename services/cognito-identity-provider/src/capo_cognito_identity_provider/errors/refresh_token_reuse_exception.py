@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: RefreshTokenReuseException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RefreshTokenReuseException_:
     out: RefreshTokenReuseException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -36,15 +36,18 @@ class RefreshTokenReuseException(ServiceError):
 
     code: str | None = "RefreshTokenReuseException"
 
-    def __init__(self, data: RefreshTokenReuseException_):
+    def __init__(self, data: RefreshTokenReuseException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="RefreshTokenReuseException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "RefreshTokenReuseException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "RefreshTokenReuseException":
+        return cls(deserialize_aws_json_1_1(data), message)

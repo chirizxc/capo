@@ -33,13 +33,13 @@ def serialize_json(value: VoiceSettings) -> dict:
 
 def deserialize_json(data: dict) -> VoiceSettings:
     out: VoiceSettings = {}  # type: ignore[typeddict-item]
-    if "engine" in data:
+    if data.get("engine") is not None:
         import capo_lex_models_v2.types.voice_engine
 
         out["engine"] = capo_lex_models_v2.types.voice_engine.deserialize_json(
             data["engine"]
         )
-    if "voiceId" in data:
+    if data.get("voiceId") is not None:
         out["voice_id"] = data["voiceId"]
     else:
         raise DeserializationError("VoiceSettings.voice_id required")

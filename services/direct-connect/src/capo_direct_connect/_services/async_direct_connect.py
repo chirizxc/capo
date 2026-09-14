@@ -323,10 +323,11 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.accept_direct_connect_gateway_association_proposal_request.AcceptDirectConnectGatewayAssociationProposalRequest = {}  # type: ignore[typeddict-item]
-        input_["direct_connect_gateway_id"] = direct_connect_gateway_id
-        input_["proposal_id"] = proposal_id
-        input_["associated_gateway_owner_account"] = associated_gateway_owner_account
+        input_: capo_direct_connect.types.accept_direct_connect_gateway_association_proposal_request.AcceptDirectConnectGatewayAssociationProposalRequest = {
+            "direct_connect_gateway_id": direct_connect_gateway_id,
+            "proposal_id": proposal_id,
+            "associated_gateway_owner_account": associated_gateway_owner_account,
+        }
         if override_allowed_prefixes_to_direct_connect_gateway is not None:
             input_["override_allowed_prefixes_to_direct_connect_gateway"] = (
                 override_allowed_prefixes_to_direct_connect_gateway
@@ -337,6 +338,7 @@ class AsyncDirectConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def allocate_connection_on_interconnect(
@@ -378,18 +380,20 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.allocate_connection_on_interconnect_request.AllocateConnectionOnInterconnectRequest = {}  # type: ignore[typeddict-item]
-        input_["bandwidth"] = bandwidth
-        input_["connection_name"] = connection_name
-        input_["owner_account"] = owner_account
-        input_["interconnect_id"] = interconnect_id
-        input_["vlan"] = vlan
+        input_: capo_direct_connect.types.allocate_connection_on_interconnect_request.AllocateConnectionOnInterconnectRequest = {
+            "bandwidth": bandwidth,
+            "connection_name": connection_name,
+            "owner_account": owner_account,
+            "interconnect_id": interconnect_id,
+            "vlan": vlan,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def allocate_hosted_connection(
@@ -435,12 +439,13 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.allocate_hosted_connection_request.AllocateHostedConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["connection_id"] = connection_id
-        input_["owner_account"] = owner_account
-        input_["bandwidth"] = bandwidth
-        input_["connection_name"] = connection_name
-        input_["vlan"] = vlan
+        input_: capo_direct_connect.types.allocate_hosted_connection_request.AllocateHostedConnectionRequest = {
+            "connection_id": connection_id,
+            "owner_account": owner_account,
+            "bandwidth": bandwidth,
+            "connection_name": connection_name,
+            "vlan": vlan,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -449,6 +454,7 @@ class AsyncDirectConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def allocate_private_virtual_interface(
@@ -490,18 +496,18 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.allocate_private_virtual_interface_request.AllocatePrivateVirtualInterfaceRequest = {}  # type: ignore[typeddict-item]
-        input_["connection_id"] = connection_id
-        input_["owner_account"] = owner_account
-        input_["new_private_virtual_interface_allocation"] = (
-            new_private_virtual_interface_allocation
-        )
+        input_: capo_direct_connect.types.allocate_private_virtual_interface_request.AllocatePrivateVirtualInterfaceRequest = {
+            "connection_id": connection_id,
+            "owner_account": owner_account,
+            "new_private_virtual_interface_allocation": new_private_virtual_interface_allocation,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def allocate_public_virtual_interface(
@@ -543,18 +549,18 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.allocate_public_virtual_interface_request.AllocatePublicVirtualInterfaceRequest = {}  # type: ignore[typeddict-item]
-        input_["connection_id"] = connection_id
-        input_["owner_account"] = owner_account
-        input_["new_public_virtual_interface_allocation"] = (
-            new_public_virtual_interface_allocation
-        )
+        input_: capo_direct_connect.types.allocate_public_virtual_interface_request.AllocatePublicVirtualInterfaceRequest = {
+            "connection_id": connection_id,
+            "owner_account": owner_account,
+            "new_public_virtual_interface_allocation": new_public_virtual_interface_allocation,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def allocate_transit_virtual_interface(
@@ -596,18 +602,18 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.allocate_transit_virtual_interface_request.AllocateTransitVirtualInterfaceRequest = {}  # type: ignore[typeddict-item]
-        input_["connection_id"] = connection_id
-        input_["owner_account"] = owner_account
-        input_["new_transit_virtual_interface_allocation"] = (
-            new_transit_virtual_interface_allocation
-        )
+        input_: capo_direct_connect.types.allocate_transit_virtual_interface_request.AllocateTransitVirtualInterfaceRequest = {
+            "connection_id": connection_id,
+            "owner_account": owner_account,
+            "new_transit_virtual_interface_allocation": new_transit_virtual_interface_allocation,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_connection_with_lag(
@@ -643,15 +649,17 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.associate_connection_with_lag_request.AssociateConnectionWithLagRequest = {}  # type: ignore[typeddict-item]
-        input_["connection_id"] = connection_id
-        input_["lag_id"] = lag_id
+        input_: capo_direct_connect.types.associate_connection_with_lag_request.AssociateConnectionWithLagRequest = {
+            "connection_id": connection_id,
+            "lag_id": lag_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_hosted_connection(
@@ -687,15 +695,17 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.associate_hosted_connection_request.AssociateHostedConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["connection_id"] = connection_id
-        input_["parent_connection_id"] = parent_connection_id
+        input_: capo_direct_connect.types.associate_hosted_connection_request.AssociateHostedConnectionRequest = {
+            "connection_id": connection_id,
+            "parent_connection_id": parent_connection_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_mac_sec_key(
@@ -737,8 +747,9 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.associate_mac_sec_key_request.AssociateMacSecKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["connection_id"] = connection_id
+        input_: capo_direct_connect.types.associate_mac_sec_key_request.AssociateMacSecKeyRequest = {
+            "connection_id": connection_id
+        }
         if secret_arn is not None:
             input_["secret_arn"] = secret_arn
         if ckn is not None:
@@ -751,6 +762,7 @@ class AsyncDirectConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_virtual_interface(
@@ -788,15 +800,17 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.associate_virtual_interface_request.AssociateVirtualInterfaceRequest = {}  # type: ignore[typeddict-item]
-        input_["virtual_interface_id"] = virtual_interface_id
-        input_["connection_id"] = connection_id
+        input_: capo_direct_connect.types.associate_virtual_interface_request.AssociateVirtualInterfaceRequest = {
+            "virtual_interface_id": virtual_interface_id,
+            "connection_id": connection_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def confirm_connection(
@@ -832,14 +846,16 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.confirm_connection_request.ConfirmConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["connection_id"] = connection_id
+        input_: capo_direct_connect.types.confirm_connection_request.ConfirmConnectionRequest = {
+            "connection_id": connection_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def confirm_customer_agreement(
@@ -877,7 +893,7 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.confirm_customer_agreement_request.ConfirmCustomerAgreementRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_direct_connect.types.confirm_customer_agreement_request.ConfirmCustomerAgreementRequest = {}
         if agreement_name is not None:
             input_["agreement_name"] = agreement_name
 
@@ -886,6 +902,7 @@ class AsyncDirectConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def confirm_private_virtual_interface(
@@ -929,8 +946,9 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.confirm_private_virtual_interface_request.ConfirmPrivateVirtualInterfaceRequest = {}  # type: ignore[typeddict-item]
-        input_["virtual_interface_id"] = virtual_interface_id
+        input_: capo_direct_connect.types.confirm_private_virtual_interface_request.ConfirmPrivateVirtualInterfaceRequest = {
+            "virtual_interface_id": virtual_interface_id
+        }
         if virtual_gateway_id is not None:
             input_["virtual_gateway_id"] = virtual_gateway_id
         if direct_connect_gateway_id is not None:
@@ -941,6 +959,7 @@ class AsyncDirectConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def confirm_public_virtual_interface(
@@ -976,14 +995,16 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.confirm_public_virtual_interface_request.ConfirmPublicVirtualInterfaceRequest = {}  # type: ignore[typeddict-item]
-        input_["virtual_interface_id"] = virtual_interface_id
+        input_: capo_direct_connect.types.confirm_public_virtual_interface_request.ConfirmPublicVirtualInterfaceRequest = {
+            "virtual_interface_id": virtual_interface_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def confirm_transit_virtual_interface(
@@ -1021,15 +1042,17 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.confirm_transit_virtual_interface_request.ConfirmTransitVirtualInterfaceRequest = {}  # type: ignore[typeddict-item]
-        input_["virtual_interface_id"] = virtual_interface_id
-        input_["direct_connect_gateway_id"] = direct_connect_gateway_id
+        input_: capo_direct_connect.types.confirm_transit_virtual_interface_request.ConfirmTransitVirtualInterfaceRequest = {
+            "virtual_interface_id": virtual_interface_id,
+            "direct_connect_gateway_id": direct_connect_gateway_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_bgp_peer(
@@ -1071,7 +1094,7 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.create_bgp_peer_request.CreateBGPPeerRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_direct_connect.types.create_bgp_peer_request.CreateBGPPeerRequest = {}
         if virtual_interface_id is not None:
             input_["virtual_interface_id"] = virtual_interface_id
         if new_bgp_peer is not None:
@@ -1082,6 +1105,7 @@ class AsyncDirectConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_connection(
@@ -1133,10 +1157,11 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.create_connection_request.CreateConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["location"] = location
-        input_["bandwidth"] = bandwidth
-        input_["connection_name"] = connection_name
+        input_: capo_direct_connect.types.create_connection_request.CreateConnectionRequest = {
+            "location": location,
+            "bandwidth": bandwidth,
+            "connection_name": connection_name,
+        }
         if lag_id is not None:
             input_["lag_id"] = lag_id
         if tags is not None:
@@ -1151,6 +1176,7 @@ class AsyncDirectConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_direct_connect_gateway(
@@ -1190,8 +1216,9 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.create_direct_connect_gateway_request.CreateDirectConnectGatewayRequest = {}  # type: ignore[typeddict-item]
-        input_["direct_connect_gateway_name"] = direct_connect_gateway_name
+        input_: capo_direct_connect.types.create_direct_connect_gateway_request.CreateDirectConnectGatewayRequest = {
+            "direct_connect_gateway_name": direct_connect_gateway_name
+        }
         if tags is not None:
             input_["tags"] = tags
         if amazon_side_asn is not None:
@@ -1202,6 +1229,7 @@ class AsyncDirectConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_direct_connect_gateway_association(
@@ -1249,8 +1277,9 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.create_direct_connect_gateway_association_request.CreateDirectConnectGatewayAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["direct_connect_gateway_id"] = direct_connect_gateway_id
+        input_: capo_direct_connect.types.create_direct_connect_gateway_association_request.CreateDirectConnectGatewayAssociationRequest = {
+            "direct_connect_gateway_id": direct_connect_gateway_id
+        }
         if gateway_id is not None:
             input_["gateway_id"] = gateway_id
         if add_allowed_prefixes_to_direct_connect_gateway is not None:
@@ -1265,6 +1294,7 @@ class AsyncDirectConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_direct_connect_gateway_association_proposal(
@@ -1312,12 +1342,11 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.create_direct_connect_gateway_association_proposal_request.CreateDirectConnectGatewayAssociationProposalRequest = {}  # type: ignore[typeddict-item]
-        input_["direct_connect_gateway_id"] = direct_connect_gateway_id
-        input_["direct_connect_gateway_owner_account"] = (
-            direct_connect_gateway_owner_account
-        )
-        input_["gateway_id"] = gateway_id
+        input_: capo_direct_connect.types.create_direct_connect_gateway_association_proposal_request.CreateDirectConnectGatewayAssociationProposalRequest = {
+            "direct_connect_gateway_id": direct_connect_gateway_id,
+            "direct_connect_gateway_owner_account": direct_connect_gateway_owner_account,
+            "gateway_id": gateway_id,
+        }
         if add_allowed_prefixes_to_direct_connect_gateway is not None:
             input_["add_allowed_prefixes_to_direct_connect_gateway"] = (
                 add_allowed_prefixes_to_direct_connect_gateway
@@ -1332,6 +1361,7 @@ class AsyncDirectConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_interconnect(
@@ -1385,10 +1415,11 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.create_interconnect_request.CreateInterconnectRequest = {}  # type: ignore[typeddict-item]
-        input_["interconnect_name"] = interconnect_name
-        input_["bandwidth"] = bandwidth
-        input_["location"] = location
+        input_: capo_direct_connect.types.create_interconnect_request.CreateInterconnectRequest = {
+            "interconnect_name": interconnect_name,
+            "bandwidth": bandwidth,
+            "location": location,
+        }
         if lag_id is not None:
             input_["lag_id"] = lag_id
         if tags is not None:
@@ -1403,6 +1434,7 @@ class AsyncDirectConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_lag(
@@ -1462,11 +1494,12 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.create_lag_request.CreateLagRequest = {}  # type: ignore[typeddict-item]
-        input_["number_of_connections"] = number_of_connections
-        input_["location"] = location
-        input_["connections_bandwidth"] = connections_bandwidth
-        input_["lag_name"] = lag_name
+        input_: capo_direct_connect.types.create_lag_request.CreateLagRequest = {
+            "number_of_connections": number_of_connections,
+            "location": location,
+            "connections_bandwidth": connections_bandwidth,
+            "lag_name": lag_name,
+        }
         if connection_id is not None:
             input_["connection_id"] = connection_id
         if tags is not None:
@@ -1483,6 +1516,7 @@ class AsyncDirectConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_private_virtual_interface(
@@ -1522,15 +1556,17 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.create_private_virtual_interface_request.CreatePrivateVirtualInterfaceRequest = {}  # type: ignore[typeddict-item]
-        input_["connection_id"] = connection_id
-        input_["new_private_virtual_interface"] = new_private_virtual_interface
+        input_: capo_direct_connect.types.create_private_virtual_interface_request.CreatePrivateVirtualInterfaceRequest = {
+            "connection_id": connection_id,
+            "new_private_virtual_interface": new_private_virtual_interface,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_public_virtual_interface(
@@ -1570,15 +1606,17 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.create_public_virtual_interface_request.CreatePublicVirtualInterfaceRequest = {}  # type: ignore[typeddict-item]
-        input_["connection_id"] = connection_id
-        input_["new_public_virtual_interface"] = new_public_virtual_interface
+        input_: capo_direct_connect.types.create_public_virtual_interface_request.CreatePublicVirtualInterfaceRequest = {
+            "connection_id": connection_id,
+            "new_public_virtual_interface": new_public_virtual_interface,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_transit_virtual_interface(
@@ -1618,15 +1656,17 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.create_transit_virtual_interface_request.CreateTransitVirtualInterfaceRequest = {}  # type: ignore[typeddict-item]
-        input_["connection_id"] = connection_id
-        input_["new_transit_virtual_interface"] = new_transit_virtual_interface
+        input_: capo_direct_connect.types.create_transit_virtual_interface_request.CreateTransitVirtualInterfaceRequest = {
+            "connection_id": connection_id,
+            "new_transit_virtual_interface": new_transit_virtual_interface,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_bgp_peer(
@@ -1674,7 +1714,7 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.delete_bgp_peer_request.DeleteBGPPeerRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_direct_connect.types.delete_bgp_peer_request.DeleteBGPPeerRequest = {}
         if virtual_interface_id is not None:
             input_["virtual_interface_id"] = virtual_interface_id
         if asn is not None:
@@ -1691,6 +1731,7 @@ class AsyncDirectConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_connection(
@@ -1724,14 +1765,16 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.delete_connection_request.DeleteConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["connection_id"] = connection_id
+        input_: capo_direct_connect.types.delete_connection_request.DeleteConnectionRequest = {
+            "connection_id": connection_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_direct_connect_gateway(
@@ -1767,14 +1810,16 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.delete_direct_connect_gateway_request.DeleteDirectConnectGatewayRequest = {}  # type: ignore[typeddict-item]
-        input_["direct_connect_gateway_id"] = direct_connect_gateway_id
+        input_: capo_direct_connect.types.delete_direct_connect_gateway_request.DeleteDirectConnectGatewayRequest = {
+            "direct_connect_gateway_id": direct_connect_gateway_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_direct_connect_gateway_association(
@@ -1820,7 +1865,7 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.delete_direct_connect_gateway_association_request.DeleteDirectConnectGatewayAssociationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_direct_connect.types.delete_direct_connect_gateway_association_request.DeleteDirectConnectGatewayAssociationRequest = {}
         if association_id is not None:
             input_["association_id"] = association_id
         if direct_connect_gateway_id is not None:
@@ -1833,6 +1878,7 @@ class AsyncDirectConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_direct_connect_gateway_association_proposal(
@@ -1868,14 +1914,16 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.delete_direct_connect_gateway_association_proposal_request.DeleteDirectConnectGatewayAssociationProposalRequest = {}  # type: ignore[typeddict-item]
-        input_["proposal_id"] = proposal_id
+        input_: capo_direct_connect.types.delete_direct_connect_gateway_association_proposal_request.DeleteDirectConnectGatewayAssociationProposalRequest = {
+            "proposal_id": proposal_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_interconnect(
@@ -1911,14 +1959,16 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.delete_interconnect_request.DeleteInterconnectRequest = {}  # type: ignore[typeddict-item]
-        input_["interconnect_id"] = interconnect_id
+        input_: capo_direct_connect.types.delete_interconnect_request.DeleteInterconnectRequest = {
+            "interconnect_id": interconnect_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_lag(
@@ -1952,14 +2002,16 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.delete_lag_request.DeleteLagRequest = {}  # type: ignore[typeddict-item]
-        input_["lag_id"] = lag_id
+        input_: capo_direct_connect.types.delete_lag_request.DeleteLagRequest = {
+            "lag_id": lag_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_virtual_interface(
@@ -1995,14 +2047,16 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.delete_virtual_interface_request.DeleteVirtualInterfaceRequest = {}  # type: ignore[typeddict-item]
-        input_["virtual_interface_id"] = virtual_interface_id
+        input_: capo_direct_connect.types.delete_virtual_interface_request.DeleteVirtualInterfaceRequest = {
+            "virtual_interface_id": virtual_interface_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_connection_loa(
@@ -2046,8 +2100,9 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.describe_connection_loa_request.DescribeConnectionLoaRequest = {}  # type: ignore[typeddict-item]
-        input_["connection_id"] = connection_id
+        input_: capo_direct_connect.types.describe_connection_loa_request.DescribeConnectionLoaRequest = {
+            "connection_id": connection_id
+        }
         if provider_name is not None:
             input_["provider_name"] = provider_name
         if loa_content_type is not None:
@@ -2058,6 +2113,7 @@ class AsyncDirectConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_connections(
@@ -2103,7 +2159,7 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.describe_connections_request.DescribeConnectionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_direct_connect.types.describe_connections_request.DescribeConnectionsRequest = {}
         if connection_id is not None:
             input_["connection_id"] = connection_id
         if max_results is not None:
@@ -2116,6 +2172,7 @@ class AsyncDirectConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_connections_on_interconnect(
@@ -2151,14 +2208,16 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.describe_connections_on_interconnect_request.DescribeConnectionsOnInterconnectRequest = {}  # type: ignore[typeddict-item]
-        input_["interconnect_id"] = interconnect_id
+        input_: capo_direct_connect.types.describe_connections_on_interconnect_request.DescribeConnectionsOnInterconnectRequest = {
+            "interconnect_id": interconnect_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_customer_metadata(
@@ -2194,6 +2253,7 @@ class AsyncDirectConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_direct_connect_gateway_association_proposals(
@@ -2247,7 +2307,7 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.describe_direct_connect_gateway_association_proposals_request.DescribeDirectConnectGatewayAssociationProposalsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_direct_connect.types.describe_direct_connect_gateway_association_proposals_request.DescribeDirectConnectGatewayAssociationProposalsRequest = {}
         if direct_connect_gateway_id is not None:
             input_["direct_connect_gateway_id"] = direct_connect_gateway_id
         if proposal_id is not None:
@@ -2264,6 +2324,7 @@ class AsyncDirectConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_direct_connect_gateway_associations(
@@ -2321,7 +2382,7 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.describe_direct_connect_gateway_associations_request.DescribeDirectConnectGatewayAssociationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_direct_connect.types.describe_direct_connect_gateway_associations_request.DescribeDirectConnectGatewayAssociationsRequest = {}
         if association_id is not None:
             input_["association_id"] = association_id
         if associated_gateway_id is not None:
@@ -2340,6 +2401,7 @@ class AsyncDirectConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_direct_connect_gateway_attachments(
@@ -2389,7 +2451,7 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.describe_direct_connect_gateway_attachments_request.DescribeDirectConnectGatewayAttachmentsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_direct_connect.types.describe_direct_connect_gateway_attachments_request.DescribeDirectConnectGatewayAttachmentsRequest = {}
         if direct_connect_gateway_id is not None:
             input_["direct_connect_gateway_id"] = direct_connect_gateway_id
         if virtual_interface_id is not None:
@@ -2404,6 +2466,7 @@ class AsyncDirectConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_direct_connect_gateways(
@@ -2449,7 +2512,7 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.describe_direct_connect_gateways_request.DescribeDirectConnectGatewaysRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_direct_connect.types.describe_direct_connect_gateways_request.DescribeDirectConnectGatewaysRequest = {}
         if direct_connect_gateway_id is not None:
             input_["direct_connect_gateway_id"] = direct_connect_gateway_id
         if max_results is not None:
@@ -2462,6 +2525,7 @@ class AsyncDirectConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_hosted_connections(
@@ -2505,8 +2569,9 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.describe_hosted_connections_request.DescribeHostedConnectionsRequest = {}  # type: ignore[typeddict-item]
-        input_["connection_id"] = connection_id
+        input_: capo_direct_connect.types.describe_hosted_connections_request.DescribeHostedConnectionsRequest = {
+            "connection_id": connection_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2517,6 +2582,7 @@ class AsyncDirectConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_interconnect_loa(
@@ -2560,8 +2626,9 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.describe_interconnect_loa_request.DescribeInterconnectLoaRequest = {}  # type: ignore[typeddict-item]
-        input_["interconnect_id"] = interconnect_id
+        input_: capo_direct_connect.types.describe_interconnect_loa_request.DescribeInterconnectLoaRequest = {
+            "interconnect_id": interconnect_id
+        }
         if provider_name is not None:
             input_["provider_name"] = provider_name
         if loa_content_type is not None:
@@ -2572,6 +2639,7 @@ class AsyncDirectConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_interconnects(
@@ -2617,7 +2685,7 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.describe_interconnects_request.DescribeInterconnectsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_direct_connect.types.describe_interconnects_request.DescribeInterconnectsRequest = {}
         if interconnect_id is not None:
             input_["interconnect_id"] = interconnect_id
         if max_results is not None:
@@ -2630,6 +2698,7 @@ class AsyncDirectConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_lags(
@@ -2671,7 +2740,7 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.describe_lags_request.DescribeLagsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_direct_connect.types.describe_lags_request.DescribeLagsRequest = {}
         if lag_id is not None:
             input_["lag_id"] = lag_id
         if max_results is not None:
@@ -2684,6 +2753,7 @@ class AsyncDirectConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_loa(
@@ -2725,8 +2795,9 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.describe_loa_request.DescribeLoaRequest = {}  # type: ignore[typeddict-item]
-        input_["connection_id"] = connection_id
+        input_: capo_direct_connect.types.describe_loa_request.DescribeLoaRequest = {
+            "connection_id": connection_id
+        }
         if provider_name is not None:
             input_["provider_name"] = provider_name
         if loa_content_type is not None:
@@ -2737,6 +2808,7 @@ class AsyncDirectConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_locations(
@@ -2770,6 +2842,7 @@ class AsyncDirectConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_router_configuration(
@@ -2809,8 +2882,9 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.describe_router_configuration_request.DescribeRouterConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["virtual_interface_id"] = virtual_interface_id
+        input_: capo_direct_connect.types.describe_router_configuration_request.DescribeRouterConfigurationRequest = {
+            "virtual_interface_id": virtual_interface_id
+        }
         if router_type_identifier is not None:
             input_["router_type_identifier"] = router_type_identifier
 
@@ -2819,6 +2893,7 @@ class AsyncDirectConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_tags(
@@ -2854,14 +2929,16 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.describe_tags_request.DescribeTagsRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arns"] = resource_arns
+        input_: capo_direct_connect.types.describe_tags_request.DescribeTagsRequest = {
+            "resource_arns": resource_arns
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_virtual_gateways(
@@ -2897,6 +2974,7 @@ class AsyncDirectConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_virtual_interfaces(
@@ -2946,7 +3024,7 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.describe_virtual_interfaces_request.DescribeVirtualInterfacesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_direct_connect.types.describe_virtual_interfaces_request.DescribeVirtualInterfacesRequest = {}
         if connection_id is not None:
             input_["connection_id"] = connection_id
         if virtual_interface_id is not None:
@@ -2961,6 +3039,7 @@ class AsyncDirectConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_connection_from_lag(
@@ -2996,15 +3075,17 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.disassociate_connection_from_lag_request.DisassociateConnectionFromLagRequest = {}  # type: ignore[typeddict-item]
-        input_["connection_id"] = connection_id
-        input_["lag_id"] = lag_id
+        input_: capo_direct_connect.types.disassociate_connection_from_lag_request.DisassociateConnectionFromLagRequest = {
+            "connection_id": connection_id,
+            "lag_id": lag_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_mac_sec_key(
@@ -3042,15 +3123,17 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.disassociate_mac_sec_key_request.DisassociateMacSecKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["connection_id"] = connection_id
-        input_["secret_arn"] = secret_arn
+        input_: capo_direct_connect.types.disassociate_mac_sec_key_request.DisassociateMacSecKeyRequest = {
+            "connection_id": connection_id,
+            "secret_arn": secret_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_virtual_interface_test_history(
@@ -3106,7 +3189,7 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.list_virtual_interface_test_history_request.ListVirtualInterfaceTestHistoryRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_direct_connect.types.list_virtual_interface_test_history_request.ListVirtualInterfaceTestHistoryRequest = {}
         if test_id is not None:
             input_["test_id"] = test_id
         if virtual_interface_id is not None:
@@ -3125,6 +3208,7 @@ class AsyncDirectConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_bgp_failover_test(
@@ -3168,8 +3252,9 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.start_bgp_failover_test_request.StartBgpFailoverTestRequest = {}  # type: ignore[typeddict-item]
-        input_["virtual_interface_id"] = virtual_interface_id
+        input_: capo_direct_connect.types.start_bgp_failover_test_request.StartBgpFailoverTestRequest = {
+            "virtual_interface_id": virtual_interface_id
+        }
         if bgp_peers is not None:
             input_["bgp_peers"] = bgp_peers
         if test_duration_in_minutes is not None:
@@ -3180,6 +3265,7 @@ class AsyncDirectConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_bgp_failover_test(
@@ -3215,14 +3301,16 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.stop_bgp_failover_test_request.StopBgpFailoverTestRequest = {}  # type: ignore[typeddict-item]
-        input_["virtual_interface_id"] = virtual_interface_id
+        input_: capo_direct_connect.types.stop_bgp_failover_test_request.StopBgpFailoverTestRequest = {
+            "virtual_interface_id": virtual_interface_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -3262,15 +3350,17 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_direct_connect.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -3308,15 +3398,17 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_direct_connect.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_connection(
@@ -3358,8 +3450,9 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.update_connection_request.UpdateConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["connection_id"] = connection_id
+        input_: capo_direct_connect.types.update_connection_request.UpdateConnectionRequest = {
+            "connection_id": connection_id
+        }
         if connection_name is not None:
             input_["connection_name"] = connection_name
         if encryption_mode is not None:
@@ -3370,6 +3463,7 @@ class AsyncDirectConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_direct_connect_gateway(
@@ -3407,15 +3501,17 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.update_direct_connect_gateway_request.UpdateDirectConnectGatewayRequest = {}  # type: ignore[typeddict-item]
-        input_["direct_connect_gateway_id"] = direct_connect_gateway_id
-        input_["new_direct_connect_gateway_name"] = new_direct_connect_gateway_name
+        input_: capo_direct_connect.types.update_direct_connect_gateway_request.UpdateDirectConnectGatewayRequest = {
+            "direct_connect_gateway_id": direct_connect_gateway_id,
+            "new_direct_connect_gateway_name": new_direct_connect_gateway_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_direct_connect_gateway_association(
@@ -3461,7 +3557,7 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.update_direct_connect_gateway_association_request.UpdateDirectConnectGatewayAssociationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_direct_connect.types.update_direct_connect_gateway_association_request.UpdateDirectConnectGatewayAssociationRequest = {}
         if association_id is not None:
             input_["association_id"] = association_id
         if add_allowed_prefixes_to_direct_connect_gateway is not None:
@@ -3478,6 +3574,7 @@ class AsyncDirectConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_lag(
@@ -3519,8 +3616,9 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.update_lag_request.UpdateLagRequest = {}  # type: ignore[typeddict-item]
-        input_["lag_id"] = lag_id
+        input_: capo_direct_connect.types.update_lag_request.UpdateLagRequest = {
+            "lag_id": lag_id
+        }
         if lag_name is not None:
             input_["lag_name"] = lag_name
         if minimum_links is not None:
@@ -3533,6 +3631,7 @@ class AsyncDirectConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_virtual_interface_attributes(
@@ -3578,8 +3677,9 @@ class AsyncDirectConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_direct_connect.types.update_virtual_interface_attributes_request.UpdateVirtualInterfaceAttributesRequest = {}  # type: ignore[typeddict-item]
-        input_["virtual_interface_id"] = virtual_interface_id
+        input_: capo_direct_connect.types.update_virtual_interface_attributes_request.UpdateVirtualInterfaceAttributesRequest = {
+            "virtual_interface_id": virtual_interface_id
+        }
         if mtu is not None:
             input_["mtu"] = mtu
         if enable_site_link is not None:
@@ -3592,6 +3692,7 @@ class AsyncDirectConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

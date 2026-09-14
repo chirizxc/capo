@@ -130,21 +130,21 @@ def serialize_aws_json_1_1(value: HyperParameterTrainingJobSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HyperParameterTrainingJobSummary:
     out: HyperParameterTrainingJobSummary = {}  # type: ignore[typeddict-item]
-    if "TrainingJobDefinitionName" in data:
+    if data.get("TrainingJobDefinitionName") is not None:
         out["training_job_definition_name"] = data["TrainingJobDefinitionName"]
-    if "TrainingJobName" in data:
+    if data.get("TrainingJobName") is not None:
         out["training_job_name"] = data["TrainingJobName"]
-    if "TrainingJobArn" in data:
+    if data.get("TrainingJobArn") is not None:
         out["training_job_arn"] = data["TrainingJobArn"]
-    if "TuningJobName" in data:
+    if data.get("TuningJobName") is not None:
         out["tuning_job_name"] = data["TuningJobName"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "TrainingStartTime" in data:
+    if data.get("TrainingStartTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["training_start_time"] = (
@@ -152,7 +152,7 @@ def deserialize_aws_json_1_1(data: dict) -> HyperParameterTrainingJobSummary:
                 data["TrainingStartTime"]
             )
         )
-    if "TrainingEndTime" in data:
+    if data.get("TrainingEndTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["training_end_time"] = (
@@ -160,7 +160,7 @@ def deserialize_aws_json_1_1(data: dict) -> HyperParameterTrainingJobSummary:
                 data["TrainingEndTime"]
             )
         )
-    if "TrainingJobStatus" in data:
+    if data.get("TrainingJobStatus") is not None:
         import capo_sagemaker.types.training_job_status
 
         out["training_job_status"] = (
@@ -168,7 +168,7 @@ def deserialize_aws_json_1_1(data: dict) -> HyperParameterTrainingJobSummary:
                 data["TrainingJobStatus"]
             )
         )
-    if "TunedHyperParameters" in data:
+    if data.get("TunedHyperParameters") is not None:
         import capo_sagemaker.types.hyper_parameters
 
         out["tuned_hyper_parameters"] = (
@@ -176,9 +176,9 @@ def deserialize_aws_json_1_1(data: dict) -> HyperParameterTrainingJobSummary:
                 data["TunedHyperParameters"]
             )
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "FinalHyperParameterTuningJobObjectiveMetric" in data:
+    if data.get("FinalHyperParameterTuningJobObjectiveMetric") is not None:
         import capo_sagemaker.types.final_hyper_parameter_tuning_job_objective_metric
 
         out["final_hyper_parameter_tuning_job_objective_metric"] = (
@@ -186,7 +186,7 @@ def deserialize_aws_json_1_1(data: dict) -> HyperParameterTrainingJobSummary:
                 data["FinalHyperParameterTuningJobObjectiveMetric"]
             )
         )
-    if "ObjectiveStatus" in data:
+    if data.get("ObjectiveStatus") is not None:
         import capo_sagemaker.types.objective_status
 
         out["objective_status"] = (

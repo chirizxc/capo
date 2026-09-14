@@ -31,7 +31,7 @@ def serialize_json(value: FreeFormLayoutCanvasSizeOptions) -> dict:
 
 def deserialize_json(data: dict) -> FreeFormLayoutCanvasSizeOptions:
     out: FreeFormLayoutCanvasSizeOptions = {}  # type: ignore[typeddict-item]
-    if "ScreenCanvasSizeOptions" in data:
+    if data.get("ScreenCanvasSizeOptions") is not None:
         import capo_quicksight.types.free_form_layout_screen_canvas_size_options
 
         out["screen_canvas_size_options"] = (

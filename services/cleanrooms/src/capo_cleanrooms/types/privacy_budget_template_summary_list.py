@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> PrivacyBudgetTemplateSummaryList:
 
     out: PrivacyBudgetTemplateSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanrooms.types.privacy_budget_template_summary.deserialize_json(item)
         )

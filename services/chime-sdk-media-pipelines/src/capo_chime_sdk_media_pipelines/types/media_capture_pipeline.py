@@ -135,11 +135,11 @@ def serialize_json(value: MediaCapturePipeline) -> dict:
 
 def deserialize_json(data: dict) -> MediaCapturePipeline:
     out: MediaCapturePipeline = {}  # type: ignore[typeddict-item]
-    if "MediaPipelineId" in data:
+    if data.get("MediaPipelineId") is not None:
         out["media_pipeline_id"] = data["MediaPipelineId"]
-    if "MediaPipelineArn" in data:
+    if data.get("MediaPipelineArn") is not None:
         out["media_pipeline_arn"] = data["MediaPipelineArn"]
-    if "SourceType" in data:
+    if data.get("SourceType") is not None:
         import capo_chime_sdk_media_pipelines.types.media_pipeline_source_type
 
         out["source_type"] = (
@@ -147,9 +147,9 @@ def deserialize_json(data: dict) -> MediaCapturePipeline:
                 data["SourceType"]
             )
         )
-    if "SourceArn" in data:
+    if data.get("SourceArn") is not None:
         out["source_arn"] = data["SourceArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_chime_sdk_media_pipelines.types.media_pipeline_status
 
         out["status"] = (
@@ -157,7 +157,7 @@ def deserialize_json(data: dict) -> MediaCapturePipeline:
                 data["Status"]
             )
         )
-    if "SinkType" in data:
+    if data.get("SinkType") is not None:
         import capo_chime_sdk_media_pipelines.types.media_pipeline_sink_type
 
         out["sink_type"] = (
@@ -165,9 +165,9 @@ def deserialize_json(data: dict) -> MediaCapturePipeline:
                 data["SinkType"]
             )
         )
-    if "SinkArn" in data:
+    if data.get("SinkArn") is not None:
         out["sink_arn"] = data["SinkArn"]
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_chime_sdk_media_pipelines.types.iso8601_timestamp
 
         out["created_timestamp"] = (
@@ -175,7 +175,7 @@ def deserialize_json(data: dict) -> MediaCapturePipeline:
                 data["CreatedTimestamp"]
             )
         )
-    if "UpdatedTimestamp" in data:
+    if data.get("UpdatedTimestamp") is not None:
         import capo_chime_sdk_media_pipelines.types.iso8601_timestamp
 
         out["updated_timestamp"] = (
@@ -183,7 +183,7 @@ def deserialize_json(data: dict) -> MediaCapturePipeline:
                 data["UpdatedTimestamp"]
             )
         )
-    if "ChimeSdkMeetingConfiguration" in data:
+    if data.get("ChimeSdkMeetingConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.chime_sdk_meeting_configuration
 
         out["chime_sdk_meeting_configuration"] = (
@@ -191,7 +191,7 @@ def deserialize_json(data: dict) -> MediaCapturePipeline:
                 data["ChimeSdkMeetingConfiguration"]
             )
         )
-    if "SseAwsKeyManagementParams" in data:
+    if data.get("SseAwsKeyManagementParams") is not None:
         import capo_chime_sdk_media_pipelines.types.sse_aws_key_management_params
 
         out["sse_aws_key_management_params"] = (
@@ -199,6 +199,6 @@ def deserialize_json(data: dict) -> MediaCapturePipeline:
                 data["SseAwsKeyManagementParams"]
             )
         )
-    if "SinkIamRoleArn" in data:
+    if data.get("SinkIamRoleArn") is not None:
         out["sink_iam_role_arn"] = data["SinkIamRoleArn"]
     return out

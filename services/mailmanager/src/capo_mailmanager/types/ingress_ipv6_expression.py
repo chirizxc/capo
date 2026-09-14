@@ -46,7 +46,7 @@ def serialize_aws_json_1_0(value: IngressIpv6Expression) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> IngressIpv6Expression:
     out: IngressIpv6Expression = {}  # type: ignore[typeddict-item]
-    if "Evaluate" in data:
+    if data.get("Evaluate") is not None:
         import capo_mailmanager.types.ingress_ipv6_to_evaluate
 
         out["evaluate"] = (
@@ -56,7 +56,7 @@ def deserialize_aws_json_1_0(data: dict) -> IngressIpv6Expression:
         )
     else:
         raise DeserializationError("IngressIpv6Expression.evaluate required")
-    if "Operator" in data:
+    if data.get("Operator") is not None:
         import capo_mailmanager.types.ingress_ip_operator
 
         out["operator"] = (
@@ -66,7 +66,7 @@ def deserialize_aws_json_1_0(data: dict) -> IngressIpv6Expression:
         )
     else:
         raise DeserializationError("IngressIpv6Expression.operator required")
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_mailmanager.types.ipv6_cidrs
 
         out["values"] = capo_mailmanager.types.ipv6_cidrs.deserialize_aws_json_1_0(

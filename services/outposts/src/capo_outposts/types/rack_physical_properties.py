@@ -109,43 +109,43 @@ def serialize_json(value: RackPhysicalProperties) -> dict:
 
 def deserialize_json(data: dict) -> RackPhysicalProperties:
     out: RackPhysicalProperties = {}  # type: ignore[typeddict-item]
-    if "PowerDrawKva" in data:
+    if data.get("PowerDrawKva") is not None:
         import capo_outposts.types.power_draw_kva
 
         out["power_draw_kva"] = capo_outposts.types.power_draw_kva.deserialize_json(
             data["PowerDrawKva"]
         )
-    if "PowerPhase" in data:
+    if data.get("PowerPhase") is not None:
         import capo_outposts.types.power_phase
 
         out["power_phase"] = capo_outposts.types.power_phase.deserialize_json(
             data["PowerPhase"]
         )
-    if "PowerConnector" in data:
+    if data.get("PowerConnector") is not None:
         import capo_outposts.types.power_connector
 
         out["power_connector"] = capo_outposts.types.power_connector.deserialize_json(
             data["PowerConnector"]
         )
-    if "PowerFeedDrop" in data:
+    if data.get("PowerFeedDrop") is not None:
         import capo_outposts.types.power_feed_drop
 
         out["power_feed_drop"] = capo_outposts.types.power_feed_drop.deserialize_json(
             data["PowerFeedDrop"]
         )
-    if "UplinkGbps" in data:
+    if data.get("UplinkGbps") is not None:
         import capo_outposts.types.uplink_gbps
 
         out["uplink_gbps"] = capo_outposts.types.uplink_gbps.deserialize_json(
             data["UplinkGbps"]
         )
-    if "UplinkCount" in data:
+    if data.get("UplinkCount") is not None:
         import capo_outposts.types.uplink_count
 
         out["uplink_count"] = capo_outposts.types.uplink_count.deserialize_json(
             data["UplinkCount"]
         )
-    if "FiberOpticCableType" in data:
+    if data.get("FiberOpticCableType") is not None:
         import capo_outposts.types.fiber_optic_cable_type
 
         out["fiber_optic_cable_type"] = (
@@ -153,13 +153,13 @@ def deserialize_json(data: dict) -> RackPhysicalProperties:
                 data["FiberOpticCableType"]
             )
         )
-    if "OpticalStandard" in data:
+    if data.get("OpticalStandard") is not None:
         import capo_outposts.types.optical_standard
 
         out["optical_standard"] = capo_outposts.types.optical_standard.deserialize_json(
             data["OpticalStandard"]
         )
-    if "MaximumSupportedWeightLbs" in data:
+    if data.get("MaximumSupportedWeightLbs") is not None:
         import capo_outposts.types.maximum_supported_weight_lbs
 
         out["maximum_supported_weight_lbs"] = (

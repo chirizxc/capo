@@ -36,12 +36,12 @@ def serialize_json(value: RollbackServiceSoftwareOptions) -> dict:
 
 def deserialize_json(data: dict) -> RollbackServiceSoftwareOptions:
     out: RollbackServiceSoftwareOptions = {}  # type: ignore[typeddict-item]
-    if "CurrentVersion" in data:
+    if data.get("CurrentVersion") is not None:
         out["current_version"] = data["CurrentVersion"]
-    if "NewVersion" in data:
+    if data.get("NewVersion") is not None:
         out["new_version"] = data["NewVersion"]
-    if "RollbackAvailable" in data:
+    if data.get("RollbackAvailable") is not None:
         out["rollback_available"] = data["RollbackAvailable"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

@@ -27,11 +27,11 @@ def serialize_json(value: GetDocumentContentResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetDocumentContentResponse:
     out: GetDocumentContentResponse = {}  # type: ignore[typeddict-item]
-    if "presignedUrl" in data:
+    if data.get("presignedUrl") is not None:
         out["presigned_url"] = data["presignedUrl"]
     else:
         raise DeserializationError("GetDocumentContentResponse.presigned_url required")
-    if "mimeType" in data:
+    if data.get("mimeType") is not None:
         out["mime_type"] = data["mimeType"]
     else:
         raise DeserializationError("GetDocumentContentResponse.mime_type required")

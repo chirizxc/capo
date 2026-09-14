@@ -34,12 +34,12 @@ def serialize_json(value: Scte27SourceSettings) -> dict:
 
 def deserialize_json(data: dict) -> Scte27SourceSettings:
     out: Scte27SourceSettings = {}  # type: ignore[typeddict-item]
-    if "ocrLanguage" in data:
+    if data.get("ocrLanguage") is not None:
         import capo_medialive.types.scte27_ocr_language
 
         out["ocr_language"] = capo_medialive.types.scte27_ocr_language.deserialize_json(
             data["ocrLanguage"]
         )
-    if "pid" in data:
+    if data.get("pid") is not None:
         out["pid"] = data["pid"]
     return out

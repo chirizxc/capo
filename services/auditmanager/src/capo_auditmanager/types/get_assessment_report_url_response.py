@@ -26,7 +26,7 @@ def serialize_json(value: GetAssessmentReportUrlResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetAssessmentReportUrlResponse:
     out: GetAssessmentReportUrlResponse = {}  # type: ignore[typeddict-item]
-    if "preSignedUrl" in data:
+    if data.get("preSignedUrl") is not None:
         import capo_auditmanager.types.url
 
         out["pre_signed_url"] = capo_auditmanager.types.url.deserialize_json(

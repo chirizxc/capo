@@ -80,21 +80,21 @@ def serialize_json(value: JobParameters) -> dict:
 
 def deserialize_json(data: dict) -> JobParameters:
     out: JobParameters = {}  # type: ignore[typeddict-item]
-    if "Format" in data:
+    if data.get("Format") is not None:
         out["format"] = data["Format"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "ArchiveId" in data:
+    if data.get("ArchiveId") is not None:
         out["archive_id"] = data["ArchiveId"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "SNSTopic" in data:
+    if data.get("SNSTopic") is not None:
         out["sns_topic"] = data["SNSTopic"]
-    if "RetrievalByteRange" in data:
+    if data.get("RetrievalByteRange") is not None:
         out["retrieval_byte_range"] = data["RetrievalByteRange"]
-    if "Tier" in data:
+    if data.get("Tier") is not None:
         out["tier"] = data["Tier"]
-    if "InventoryRetrievalParameters" in data:
+    if data.get("InventoryRetrievalParameters") is not None:
         import capo_glacier.types.inventory_retrieval_job_input
 
         out["inventory_retrieval_parameters"] = (
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> JobParameters:
                 data["InventoryRetrievalParameters"]
             )
         )
-    if "SelectParameters" in data:
+    if data.get("SelectParameters") is not None:
         import capo_glacier.types.select_parameters
 
         out["select_parameters"] = (
@@ -110,7 +110,7 @@ def deserialize_json(data: dict) -> JobParameters:
                 data["SelectParameters"]
             )
         )
-    if "OutputLocation" in data:
+    if data.get("OutputLocation") is not None:
         import capo_glacier.types.output_location
 
         out["output_location"] = capo_glacier.types.output_location.deserialize_json(

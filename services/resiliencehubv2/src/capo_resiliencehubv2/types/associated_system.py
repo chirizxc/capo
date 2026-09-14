@@ -40,13 +40,13 @@ def serialize_json(value: AssociatedSystem) -> dict:
 
 def deserialize_json(data: dict) -> AssociatedSystem:
     out: AssociatedSystem = {}  # type: ignore[typeddict-item]
-    if "systemArn" in data:
+    if data.get("systemArn") is not None:
         out["system_arn"] = data["systemArn"]
     else:
         raise DeserializationError("AssociatedSystem.system_arn required")
-    if "systemName" in data:
+    if data.get("systemName") is not None:
         out["system_name"] = data["systemName"]
-    if "userJourneyIds" in data:
+    if data.get("userJourneyIds") is not None:
         import capo_resiliencehubv2.types.user_journey_id_list
 
         out["user_journey_ids"] = (

@@ -60,15 +60,15 @@ def serialize_json(value: GetBulkPublishDetailsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetBulkPublishDetailsResponse:
     out: GetBulkPublishDetailsResponse = {}  # type: ignore[typeddict-item]
-    if "IdentityPoolId" in data:
+    if data.get("IdentityPoolId") is not None:
         out["identity_pool_id"] = data["IdentityPoolId"]
-    if "BulkPublishStartTime" in data:
+    if data.get("BulkPublishStartTime") is not None:
         import capo_cognito_sync.types.date
 
         out["bulk_publish_start_time"] = capo_cognito_sync.types.date.deserialize_json(
             data["BulkPublishStartTime"]
         )
-    if "BulkPublishCompleteTime" in data:
+    if data.get("BulkPublishCompleteTime") is not None:
         import capo_cognito_sync.types.date
 
         out["bulk_publish_complete_time"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> GetBulkPublishDetailsResponse:
                 data["BulkPublishCompleteTime"]
             )
         )
-    if "BulkPublishStatus" in data:
+    if data.get("BulkPublishStatus") is not None:
         import capo_cognito_sync.types.bulk_publish_status
 
         out["bulk_publish_status"] = (
@@ -84,6 +84,6 @@ def deserialize_json(data: dict) -> GetBulkPublishDetailsResponse:
                 data["BulkPublishStatus"]
             )
         )
-    if "FailureMessage" in data:
+    if data.get("FailureMessage") is not None:
         out["failure_message"] = data["FailureMessage"]
     return out

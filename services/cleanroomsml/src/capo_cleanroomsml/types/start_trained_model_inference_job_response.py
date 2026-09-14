@@ -24,7 +24,7 @@ def serialize_json(value: StartTrainedModelInferenceJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartTrainedModelInferenceJobResponse:
     out: StartTrainedModelInferenceJobResponse = {}  # type: ignore[typeddict-item]
-    if "trainedModelInferenceJobArn" in data:
+    if data.get("trainedModelInferenceJobArn") is not None:
         out["trained_model_inference_job_arn"] = data["trainedModelInferenceJobArn"]
     else:
         raise DeserializationError(

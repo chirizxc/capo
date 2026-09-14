@@ -83,17 +83,17 @@ def serialize_json(value: VoiceToneAnalysisTask) -> dict:
 
 def deserialize_json(data: dict) -> VoiceToneAnalysisTask:
     out: VoiceToneAnalysisTask = {}  # type: ignore[typeddict-item]
-    if "VoiceToneAnalysisTaskId" in data:
+    if data.get("VoiceToneAnalysisTaskId") is not None:
         out["voice_tone_analysis_task_id"] = data["VoiceToneAnalysisTaskId"]
-    if "VoiceToneAnalysisTaskStatus" in data:
+    if data.get("VoiceToneAnalysisTaskStatus") is not None:
         out["voice_tone_analysis_task_status"] = data["VoiceToneAnalysisTaskStatus"]
-    if "CallDetails" in data:
+    if data.get("CallDetails") is not None:
         import capo_chime_sdk_voice.types.call_details
 
         out["call_details"] = capo_chime_sdk_voice.types.call_details.deserialize_json(
             data["CallDetails"]
         )
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_chime_sdk_voice.types.iso8601_timestamp
 
         out["created_timestamp"] = (
@@ -101,7 +101,7 @@ def deserialize_json(data: dict) -> VoiceToneAnalysisTask:
                 data["CreatedTimestamp"]
             )
         )
-    if "UpdatedTimestamp" in data:
+    if data.get("UpdatedTimestamp") is not None:
         import capo_chime_sdk_voice.types.iso8601_timestamp
 
         out["updated_timestamp"] = (
@@ -109,7 +109,7 @@ def deserialize_json(data: dict) -> VoiceToneAnalysisTask:
                 data["UpdatedTimestamp"]
             )
         )
-    if "StartedTimestamp" in data:
+    if data.get("StartedTimestamp") is not None:
         import capo_chime_sdk_voice.types.iso8601_timestamp
 
         out["started_timestamp"] = (
@@ -117,6 +117,6 @@ def deserialize_json(data: dict) -> VoiceToneAnalysisTask:
                 data["StartedTimestamp"]
             )
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
     return out

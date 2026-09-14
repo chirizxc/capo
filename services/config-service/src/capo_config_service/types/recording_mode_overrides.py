@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> RecordingModeOverrides:
 
     out: RecordingModeOverrides = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_config_service.types.recording_mode_override.deserialize_aws_json_1_1(
                 item

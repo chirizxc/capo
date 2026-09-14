@@ -57,7 +57,7 @@ def serialize_json(value: GeospatialPointStyleOptions) -> dict:
 
 def deserialize_json(data: dict) -> GeospatialPointStyleOptions:
     out: GeospatialPointStyleOptions = {}  # type: ignore[typeddict-item]
-    if "SelectedPointStyle" in data:
+    if data.get("SelectedPointStyle") is not None:
         import capo_quicksight.types.geospatial_selected_point_style
 
         out["selected_point_style"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> GeospatialPointStyleOptions:
                 data["SelectedPointStyle"]
             )
         )
-    if "ClusterMarkerConfiguration" in data:
+    if data.get("ClusterMarkerConfiguration") is not None:
         import capo_quicksight.types.cluster_marker_configuration
 
         out["cluster_marker_configuration"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> GeospatialPointStyleOptions:
                 data["ClusterMarkerConfiguration"]
             )
         )
-    if "HeatmapConfiguration" in data:
+    if data.get("HeatmapConfiguration") is not None:
         import capo_quicksight.types.geospatial_heatmap_configuration
 
         out["heatmap_configuration"] = (

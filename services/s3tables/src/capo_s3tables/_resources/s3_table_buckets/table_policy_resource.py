@@ -71,16 +71,18 @@ class TablePolicyResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.delete_table_policy_request.DeleteTablePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["table_bucket_arn"] = table_bucket_arn
-        input_["namespace"] = namespace
-        input_["name"] = name
+        input_: capo_s3tables.types.delete_table_policy_request.DeleteTablePolicyRequest = {
+            "table_bucket_arn": table_bucket_arn,
+            "namespace": namespace,
+            "name": name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_table_policy(
@@ -123,16 +125,18 @@ class TablePolicyResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.get_table_policy_request.GetTablePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["table_bucket_arn"] = table_bucket_arn
-        input_["namespace"] = namespace
-        input_["name"] = name
+        input_: capo_s3tables.types.get_table_policy_request.GetTablePolicyRequest = {
+            "table_bucket_arn": table_bucket_arn,
+            "namespace": namespace,
+            "name": name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_table_policy(
@@ -175,17 +179,19 @@ class TablePolicyResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.put_table_policy_request.PutTablePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["table_bucket_arn"] = table_bucket_arn
-        input_["namespace"] = namespace
-        input_["name"] = name
-        input_["resource_policy"] = resource_policy
+        input_: capo_s3tables.types.put_table_policy_request.PutTablePolicyRequest = {
+            "table_bucket_arn": table_bucket_arn,
+            "namespace": namespace,
+            "name": name,
+            "resource_policy": resource_policy,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -232,16 +238,18 @@ class AsyncTablePolicyResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.delete_table_policy_request.DeleteTablePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["table_bucket_arn"] = table_bucket_arn
-        input_["namespace"] = namespace
-        input_["name"] = name
+        input_: capo_s3tables.types.delete_table_policy_request.DeleteTablePolicyRequest = {
+            "table_bucket_arn": table_bucket_arn,
+            "namespace": namespace,
+            "name": name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_table_policy(
@@ -285,16 +293,18 @@ class AsyncTablePolicyResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.get_table_policy_request.GetTablePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["table_bucket_arn"] = table_bucket_arn
-        input_["namespace"] = namespace
-        input_["name"] = name
+        input_: capo_s3tables.types.get_table_policy_request.GetTablePolicyRequest = {
+            "table_bucket_arn": table_bucket_arn,
+            "namespace": namespace,
+            "name": name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_table_policy(
@@ -338,15 +348,17 @@ class AsyncTablePolicyResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.put_table_policy_request.PutTablePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["table_bucket_arn"] = table_bucket_arn
-        input_["namespace"] = namespace
-        input_["name"] = name
-        input_["resource_policy"] = resource_policy
+        input_: capo_s3tables.types.put_table_policy_request.PutTablePolicyRequest = {
+            "table_bucket_arn": table_bucket_arn,
+            "namespace": namespace,
+            "name": name,
+            "resource_policy": resource_policy,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

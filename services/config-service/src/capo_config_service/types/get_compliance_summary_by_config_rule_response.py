@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetComplianceSummaryByConfigRuleResponse) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> GetComplianceSummaryByConfigRuleResponse:
     out: GetComplianceSummaryByConfigRuleResponse = {}  # type: ignore[typeddict-item]
-    if "ComplianceSummary" in data:
+    if data.get("ComplianceSummary") is not None:
         import capo_config_service.types.compliance_summary
 
         out["compliance_summary"] = (

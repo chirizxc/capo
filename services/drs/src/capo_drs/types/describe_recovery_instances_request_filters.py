@@ -40,7 +40,7 @@ def serialize_json(value: DescribeRecoveryInstancesRequestFilters) -> dict:
 
 def deserialize_json(data: dict) -> DescribeRecoveryInstancesRequestFilters:
     out: DescribeRecoveryInstancesRequestFilters = {}  # type: ignore[typeddict-item]
-    if "recoveryInstanceIDs" in data:
+    if data.get("recoveryInstanceIDs") is not None:
         import capo_drs.types.recovery_instance_i_ds
 
         out["recovery_instance_i_ds"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> DescribeRecoveryInstancesRequestFilters:
                 data["recoveryInstanceIDs"]
             )
         )
-    if "sourceServerIDs" in data:
+    if data.get("sourceServerIDs") is not None:
         import capo_drs.types.source_server_i_ds
 
         out["source_server_i_ds"] = capo_drs.types.source_server_i_ds.deserialize_json(

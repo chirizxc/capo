@@ -48,16 +48,16 @@ def serialize_json(value: CreateActRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateActRequest:
     out: CreateActRequest = {}  # type: ignore[typeddict-item]
-    if "task" in data:
+    if data.get("task") is not None:
         out["task"] = data["task"]
     else:
         raise DeserializationError("CreateActRequest.task required")
-    if "toolSpecs" in data:
+    if data.get("toolSpecs") is not None:
         import capo_nova_act.types.tool_specs
 
         out["tool_specs"] = capo_nova_act.types.tool_specs.deserialize_json(
             data["toolSpecs"]
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.mediastore#MediaStore_20170901``."""
 
 import warnings
+from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +17,7 @@ from capo_mediastore._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_mediastore._auth._zapros_handler import AuthMiddleware
+from capo_mediastore._pagination import resolve_path as _resolve_path
 from capo_mediastore._services._aws_config import aws_config
 from capo_mediastore._services._pipeline import (
     Interceptor,
@@ -209,8 +211,9 @@ class MediaStoreClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.create_container_input.CreateContainerInput = {}  # type: ignore[typeddict-item]
-        input_["container_name"] = container_name
+        input_: capo_mediastore.types.create_container_input.CreateContainerInput = {
+            "container_name": container_name
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -219,6 +222,7 @@ class MediaStoreClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_container(
@@ -254,14 +258,16 @@ class MediaStoreClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.delete_container_input.DeleteContainerInput = {}  # type: ignore[typeddict-item]
-        input_["container_name"] = container_name
+        input_: capo_mediastore.types.delete_container_input.DeleteContainerInput = {
+            "container_name": container_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_container_policy(
@@ -298,14 +304,16 @@ class MediaStoreClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.delete_container_policy_input.DeleteContainerPolicyInput = {}  # type: ignore[typeddict-item]
-        input_["container_name"] = container_name
+        input_: capo_mediastore.types.delete_container_policy_input.DeleteContainerPolicyInput = {
+            "container_name": container_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_cors_policy(
@@ -342,14 +350,16 @@ class MediaStoreClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.delete_cors_policy_input.DeleteCorsPolicyInput = {}  # type: ignore[typeddict-item]
-        input_["container_name"] = container_name
+        input_: capo_mediastore.types.delete_cors_policy_input.DeleteCorsPolicyInput = {
+            "container_name": container_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_lifecycle_policy(
@@ -386,14 +396,16 @@ class MediaStoreClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.delete_lifecycle_policy_input.DeleteLifecyclePolicyInput = {}  # type: ignore[typeddict-item]
-        input_["container_name"] = container_name
+        input_: capo_mediastore.types.delete_lifecycle_policy_input.DeleteLifecyclePolicyInput = {
+            "container_name": container_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_metric_policy(
@@ -430,14 +442,16 @@ class MediaStoreClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.delete_metric_policy_input.DeleteMetricPolicyInput = {}  # type: ignore[typeddict-item]
-        input_["container_name"] = container_name
+        input_: capo_mediastore.types.delete_metric_policy_input.DeleteMetricPolicyInput = {
+            "container_name": container_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_container(
@@ -474,7 +488,7 @@ class MediaStoreClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.describe_container_input.DescribeContainerInput = {}  # type: ignore[typeddict-item]
+        input_: capo_mediastore.types.describe_container_input.DescribeContainerInput = {}
         if container_name is not None:
             input_["container_name"] = container_name
 
@@ -483,6 +497,7 @@ class MediaStoreClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_container_policy(
@@ -519,14 +534,16 @@ class MediaStoreClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.get_container_policy_input.GetContainerPolicyInput = {}  # type: ignore[typeddict-item]
-        input_["container_name"] = container_name
+        input_: capo_mediastore.types.get_container_policy_input.GetContainerPolicyInput = {
+            "container_name": container_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_cors_policy(
@@ -563,14 +580,16 @@ class MediaStoreClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.get_cors_policy_input.GetCorsPolicyInput = {}  # type: ignore[typeddict-item]
-        input_["container_name"] = container_name
+        input_: capo_mediastore.types.get_cors_policy_input.GetCorsPolicyInput = {
+            "container_name": container_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_lifecycle_policy(
@@ -607,14 +626,16 @@ class MediaStoreClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.get_lifecycle_policy_input.GetLifecyclePolicyInput = {}  # type: ignore[typeddict-item]
-        input_["container_name"] = container_name
+        input_: capo_mediastore.types.get_lifecycle_policy_input.GetLifecyclePolicyInput = {
+            "container_name": container_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_metric_policy(
@@ -651,14 +672,16 @@ class MediaStoreClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.get_metric_policy_input.GetMetricPolicyInput = {}  # type: ignore[typeddict-item]
-        input_["container_name"] = container_name
+        input_: capo_mediastore.types.get_metric_policy_input.GetMetricPolicyInput = {
+            "container_name": container_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_containers(
@@ -698,7 +721,7 @@ class MediaStoreClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.list_containers_input.ListContainersInput = {}  # type: ignore[typeddict-item]
+        input_: capo_mediastore.types.list_containers_input.ListContainersInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -709,7 +732,31 @@ class MediaStoreClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_containers(
+        self,
+        *,
+        config_overrides: Optional[MediaStoreClientConfig] = None,
+        next_token: Optional[
+            "capo_mediastore.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional[
+            "capo_mediastore.types.container_list_limit.ContainerListLimit"
+        ] = None,
+    ) -> "Iterator[capo_mediastore.types.list_containers_output.ListContainersOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_containers(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_tags_for_resource(
         self,
@@ -746,14 +793,16 @@ class MediaStoreClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.list_tags_for_resource_input.ListTagsForResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource"] = resource
+        input_: capo_mediastore.types.list_tags_for_resource_input.ListTagsForResourceInput = {
+            "resource": resource
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_container_policy(
@@ -791,15 +840,17 @@ class MediaStoreClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.put_container_policy_input.PutContainerPolicyInput = {}  # type: ignore[typeddict-item]
-        input_["container_name"] = container_name
-        input_["policy"] = policy
+        input_: capo_mediastore.types.put_container_policy_input.PutContainerPolicyInput = {
+            "container_name": container_name,
+            "policy": policy,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_cors_policy(
@@ -837,15 +888,17 @@ class MediaStoreClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.put_cors_policy_input.PutCorsPolicyInput = {}  # type: ignore[typeddict-item]
-        input_["container_name"] = container_name
-        input_["cors_policy"] = cors_policy
+        input_: capo_mediastore.types.put_cors_policy_input.PutCorsPolicyInput = {
+            "container_name": container_name,
+            "cors_policy": cors_policy,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_lifecycle_policy(
@@ -883,15 +936,17 @@ class MediaStoreClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.put_lifecycle_policy_input.PutLifecyclePolicyInput = {}  # type: ignore[typeddict-item]
-        input_["container_name"] = container_name
-        input_["lifecycle_policy"] = lifecycle_policy
+        input_: capo_mediastore.types.put_lifecycle_policy_input.PutLifecyclePolicyInput = {
+            "container_name": container_name,
+            "lifecycle_policy": lifecycle_policy,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_metric_policy(
@@ -929,15 +984,17 @@ class MediaStoreClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.put_metric_policy_input.PutMetricPolicyInput = {}  # type: ignore[typeddict-item]
-        input_["container_name"] = container_name
-        input_["metric_policy"] = metric_policy
+        input_: capo_mediastore.types.put_metric_policy_input.PutMetricPolicyInput = {
+            "container_name": container_name,
+            "metric_policy": metric_policy,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_access_logging(
@@ -973,14 +1030,16 @@ class MediaStoreClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.start_access_logging_input.StartAccessLoggingInput = {}  # type: ignore[typeddict-item]
-        input_["container_name"] = container_name
+        input_: capo_mediastore.types.start_access_logging_input.StartAccessLoggingInput = {
+            "container_name": container_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_access_logging(
@@ -1016,14 +1075,16 @@ class MediaStoreClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.stop_access_logging_input.StopAccessLoggingInput = {}  # type: ignore[typeddict-item]
-        input_["container_name"] = container_name
+        input_: capo_mediastore.types.stop_access_logging_input.StopAccessLoggingInput = {
+            "container_name": container_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -1061,15 +1122,17 @@ class MediaStoreClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.tag_resource_input.TagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource"] = resource
-        input_["tags"] = tags
+        input_: capo_mediastore.types.tag_resource_input.TagResourceInput = {
+            "resource": resource,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -1107,15 +1170,17 @@ class MediaStoreClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.untag_resource_input.UntagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource"] = resource
-        input_["tag_keys"] = tag_keys
+        input_: capo_mediastore.types.untag_resource_input.UntagResourceInput = {
+            "resource": resource,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

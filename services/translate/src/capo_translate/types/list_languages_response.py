@@ -45,13 +45,13 @@ def serialize_aws_json_1_1(value: ListLanguagesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListLanguagesResponse:
     out: ListLanguagesResponse = {}  # type: ignore[typeddict-item]
-    if "Languages" in data:
+    if data.get("Languages") is not None:
         import capo_translate.types.languages_list
 
         out["languages"] = capo_translate.types.languages_list.deserialize_aws_json_1_1(
             data["Languages"]
         )
-    if "DisplayLanguageCode" in data:
+    if data.get("DisplayLanguageCode") is not None:
         import capo_translate.types.display_language_code
 
         out["display_language_code"] = (
@@ -59,6 +59,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListLanguagesResponse:
                 data["DisplayLanguageCode"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

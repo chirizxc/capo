@@ -113,11 +113,11 @@ def serialize_aws_json_1_0(value: ManagedServices) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ManagedServices:
     out: ManagedServices = {}  # type: ignore[typeddict-item]
-    if "serviceNetworkArn" in data:
+    if data.get("serviceNetworkArn") is not None:
         out["service_network_arn"] = data["serviceNetworkArn"]
-    if "resourceGatewayArn" in data:
+    if data.get("resourceGatewayArn") is not None:
         out["resource_gateway_arn"] = data["resourceGatewayArn"]
-    if "managedServicesIpv4Cidrs" in data:
+    if data.get("managedServicesIpv4Cidrs") is not None:
         import capo_odb.types.string_list
 
         out["managed_services_ipv4_cidrs"] = (
@@ -125,7 +125,7 @@ def deserialize_aws_json_1_0(data: dict) -> ManagedServices:
                 data["managedServicesIpv4Cidrs"]
             )
         )
-    if "serviceNetworkEndpoint" in data:
+    if data.get("serviceNetworkEndpoint") is not None:
         import capo_odb.types.service_network_endpoint
 
         out["service_network_endpoint"] = (
@@ -133,7 +133,7 @@ def deserialize_aws_json_1_0(data: dict) -> ManagedServices:
                 data["serviceNetworkEndpoint"]
             )
         )
-    if "managedS3BackupAccess" in data:
+    if data.get("managedS3BackupAccess") is not None:
         import capo_odb.types.managed_s3_backup_access
 
         out["managed_s3_backup_access"] = (
@@ -141,7 +141,7 @@ def deserialize_aws_json_1_0(data: dict) -> ManagedServices:
                 data["managedS3BackupAccess"]
             )
         )
-    if "zeroEtlAccess" in data:
+    if data.get("zeroEtlAccess") is not None:
         import capo_odb.types.zero_etl_access
 
         out["zero_etl_access"] = (
@@ -149,25 +149,25 @@ def deserialize_aws_json_1_0(data: dict) -> ManagedServices:
                 data["zeroEtlAccess"]
             )
         )
-    if "s3Access" in data:
+    if data.get("s3Access") is not None:
         import capo_odb.types.s3_access
 
         out["s3_access"] = capo_odb.types.s3_access.deserialize_aws_json_1_0(
             data["s3Access"]
         )
-    if "stsAccess" in data:
+    if data.get("stsAccess") is not None:
         import capo_odb.types.sts_access
 
         out["sts_access"] = capo_odb.types.sts_access.deserialize_aws_json_1_0(
             data["stsAccess"]
         )
-    if "kmsAccess" in data:
+    if data.get("kmsAccess") is not None:
         import capo_odb.types.kms_access
 
         out["kms_access"] = capo_odb.types.kms_access.deserialize_aws_json_1_0(
             data["kmsAccess"]
         )
-    if "crossRegionS3RestoreSourcesAccess" in data:
+    if data.get("crossRegionS3RestoreSourcesAccess") is not None:
         import capo_odb.types.cross_region_s3_restore_sources_access_list
 
         out["cross_region_s3_restore_sources_access"] = (

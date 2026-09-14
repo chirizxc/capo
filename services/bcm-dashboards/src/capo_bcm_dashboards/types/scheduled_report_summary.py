@@ -71,25 +71,25 @@ def serialize_aws_json_1_0(value: ScheduledReportSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ScheduledReportSummary:
     out: ScheduledReportSummary = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("ScheduledReportSummary.arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ScheduledReportSummary.name required")
-    if "dashboardArn" in data:
+    if data.get("dashboardArn") is not None:
         out["dashboard_arn"] = data["dashboardArn"]
     else:
         raise DeserializationError("ScheduledReportSummary.dashboard_arn required")
-    if "scheduleExpression" in data:
+    if data.get("scheduleExpression") is not None:
         out["schedule_expression"] = data["scheduleExpression"]
     else:
         raise DeserializationError(
             "ScheduledReportSummary.schedule_expression required"
         )
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_bcm_dashboards.types.schedule_state
 
         out["state"] = (
@@ -99,7 +99,7 @@ def deserialize_aws_json_1_0(data: dict) -> ScheduledReportSummary:
         )
     else:
         raise DeserializationError("ScheduledReportSummary.state required")
-    if "healthStatus" in data:
+    if data.get("healthStatus") is not None:
         import capo_bcm_dashboards.types.health_status
 
         out["health_status"] = (
@@ -109,9 +109,9 @@ def deserialize_aws_json_1_0(data: dict) -> ScheduledReportSummary:
         )
     else:
         raise DeserializationError("ScheduledReportSummary.health_status required")
-    if "scheduleExpressionTimeZone" in data:
+    if data.get("scheduleExpressionTimeZone") is not None:
         out["schedule_expression_time_zone"] = data["scheduleExpressionTimeZone"]
-    if "widgetIds" in data:
+    if data.get("widgetIds") is not None:
         import capo_bcm_dashboards.types.widget_id_list
 
         out["widget_ids"] = (

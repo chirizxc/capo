@@ -14,4 +14,4 @@ def serialize_json(value: ReplicationTypes) -> list:
 
 
 def deserialize_json(data: list) -> ReplicationTypes:
-    return list(data)
+    return [item for item in data if item is not None]

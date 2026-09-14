@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> __listOfRoutingRuleMatchHeaderValue:
 
     out: __listOfRoutingRuleMatchHeaderValue = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_apigatewayv2.types.routing_rule_match_header_value.deserialize_json(
                 item

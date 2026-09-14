@@ -24,7 +24,7 @@ def serialize_json(value: WaypointOptimizationRestProfile) -> dict:
 
 def deserialize_json(data: dict) -> WaypointOptimizationRestProfile:
     out: WaypointOptimizationRestProfile = {}  # type: ignore[typeddict-item]
-    if "Profile" in data:
+    if data.get("Profile") is not None:
         out["profile"] = data["Profile"]
     else:
         raise DeserializationError("WaypointOptimizationRestProfile.profile required")

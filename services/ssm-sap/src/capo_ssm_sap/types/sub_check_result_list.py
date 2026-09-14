@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SubCheckResultList:
 
     out: SubCheckResultList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_ssm_sap.types.sub_check_result.deserialize_json(item))
     return out

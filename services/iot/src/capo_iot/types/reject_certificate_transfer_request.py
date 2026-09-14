@@ -26,6 +26,6 @@ def serialize_json(value: RejectCertificateTransferRequest) -> dict:
 
 def deserialize_json(data: dict) -> RejectCertificateTransferRequest:
     out: RejectCertificateTransferRequest = {}  # type: ignore[typeddict-item]
-    if "rejectReason" in data:
+    if data.get("rejectReason") is not None:
         out["reject_reason"] = data["rejectReason"]
     return out

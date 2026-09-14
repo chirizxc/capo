@@ -105,7 +105,7 @@ def serialize_json(value: OutputGroupSettings) -> dict:
 
 def deserialize_json(data: dict) -> OutputGroupSettings:
     out: OutputGroupSettings = {}  # type: ignore[typeddict-item]
-    if "cmafGroupSettings" in data:
+    if data.get("cmafGroupSettings") is not None:
         import capo_mediaconvert.types.cmaf_group_settings
 
         out["cmaf_group_settings"] = (
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> OutputGroupSettings:
                 data["cmafGroupSettings"]
             )
         )
-    if "dashIsoGroupSettings" in data:
+    if data.get("dashIsoGroupSettings") is not None:
         import capo_mediaconvert.types.dash_iso_group_settings
 
         out["dash_iso_group_settings"] = (
@@ -121,7 +121,7 @@ def deserialize_json(data: dict) -> OutputGroupSettings:
                 data["dashIsoGroupSettings"]
             )
         )
-    if "fileGroupSettings" in data:
+    if data.get("fileGroupSettings") is not None:
         import capo_mediaconvert.types.file_group_settings
 
         out["file_group_settings"] = (
@@ -129,7 +129,7 @@ def deserialize_json(data: dict) -> OutputGroupSettings:
                 data["fileGroupSettings"]
             )
         )
-    if "hlsGroupSettings" in data:
+    if data.get("hlsGroupSettings") is not None:
         import capo_mediaconvert.types.hls_group_settings
 
         out["hls_group_settings"] = (
@@ -137,7 +137,7 @@ def deserialize_json(data: dict) -> OutputGroupSettings:
                 data["hlsGroupSettings"]
             )
         )
-    if "msSmoothGroupSettings" in data:
+    if data.get("msSmoothGroupSettings") is not None:
         import capo_mediaconvert.types.ms_smooth_group_settings
 
         out["ms_smooth_group_settings"] = (
@@ -145,7 +145,7 @@ def deserialize_json(data: dict) -> OutputGroupSettings:
                 data["msSmoothGroupSettings"]
             )
         )
-    if "perFrameMetrics" in data:
+    if data.get("perFrameMetrics") is not None:
         import capo_mediaconvert.types.__list_of_frame_metric_type
 
         out["per_frame_metrics"] = (
@@ -153,7 +153,7 @@ def deserialize_json(data: dict) -> OutputGroupSettings:
                 data["perFrameMetrics"]
             )
         )
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_mediaconvert.types.output_group_type
 
         out["type"] = capo_mediaconvert.types.output_group_type.deserialize_json(

@@ -31,7 +31,7 @@ def serialize_json(value: BackintConfig) -> dict:
 
 def deserialize_json(data: dict) -> BackintConfig:
     out: BackintConfig = {}  # type: ignore[typeddict-item]
-    if "BackintMode" in data:
+    if data.get("BackintMode") is not None:
         import capo_ssm_sap.types.backint_mode
 
         out["backint_mode"] = capo_ssm_sap.types.backint_mode.deserialize_json(
@@ -39,7 +39,7 @@ def deserialize_json(data: dict) -> BackintConfig:
         )
     else:
         raise DeserializationError("BackintConfig.backint_mode required")
-    if "EnsureNoBackupInProcess" in data:
+    if data.get("EnsureNoBackupInProcess") is not None:
         out["ensure_no_backup_in_process"] = data["EnsureNoBackupInProcess"]
     else:
         raise DeserializationError("BackintConfig.ensure_no_backup_in_process required")

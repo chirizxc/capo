@@ -58,28 +58,28 @@ def serialize_aws_json_1_1(value: StartEngagementRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartEngagementRequest:
     out: StartEngagementRequest = {}  # type: ignore[typeddict-item]
-    if "ContactId" in data:
+    if data.get("ContactId") is not None:
         out["contact_id"] = data["ContactId"]
     else:
         raise DeserializationError("StartEngagementRequest.contact_id required")
-    if "Sender" in data:
+    if data.get("Sender") is not None:
         out["sender"] = data["Sender"]
     else:
         raise DeserializationError("StartEngagementRequest.sender required")
-    if "Subject" in data:
+    if data.get("Subject") is not None:
         out["subject"] = data["Subject"]
     else:
         raise DeserializationError("StartEngagementRequest.subject required")
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
     else:
         raise DeserializationError("StartEngagementRequest.content required")
-    if "PublicSubject" in data:
+    if data.get("PublicSubject") is not None:
         out["public_subject"] = data["PublicSubject"]
-    if "PublicContent" in data:
+    if data.get("PublicContent") is not None:
         out["public_content"] = data["PublicContent"]
-    if "IncidentId" in data:
+    if data.get("IncidentId") is not None:
         out["incident_id"] = data["IncidentId"]
-    if "IdempotencyToken" in data:
+    if data.get("IdempotencyToken") is not None:
         out["idempotency_token"] = data["IdempotencyToken"]
     return out

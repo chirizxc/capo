@@ -43,9 +43,9 @@ def serialize_json(value: VpcEndpointError) -> dict:
 
 def deserialize_json(data: dict) -> VpcEndpointError:
     out: VpcEndpointError = {}  # type: ignore[typeddict-item]
-    if "VpcEndpointId" in data:
+    if data.get("VpcEndpointId") is not None:
         out["vpc_endpoint_id"] = data["VpcEndpointId"]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         import capo_elasticsearch_service.types.vpc_endpoint_error_code
 
         out["error_code"] = (
@@ -53,6 +53,6 @@ def deserialize_json(data: dict) -> VpcEndpointError:
                 data["ErrorCode"]
             )
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     return out

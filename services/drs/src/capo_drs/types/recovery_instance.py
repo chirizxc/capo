@@ -131,29 +131,29 @@ def serialize_json(value: RecoveryInstance) -> dict:
 
 def deserialize_json(data: dict) -> RecoveryInstance:
     out: RecoveryInstance = {}  # type: ignore[typeddict-item]
-    if "ec2InstanceID" in data:
+    if data.get("ec2InstanceID") is not None:
         out["ec2_instance_id"] = data["ec2InstanceID"]
-    if "ec2InstanceState" in data:
+    if data.get("ec2InstanceState") is not None:
         out["ec2_instance_state"] = data["ec2InstanceState"]
-    if "jobID" in data:
+    if data.get("jobID") is not None:
         out["job_id"] = data["jobID"]
-    if "recoveryInstanceID" in data:
+    if data.get("recoveryInstanceID") is not None:
         out["recovery_instance_id"] = data["recoveryInstanceID"]
-    if "sourceServerID" in data:
+    if data.get("sourceServerID") is not None:
         out["source_server_id"] = data["sourceServerID"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_drs.types.tags_map
 
         out["tags"] = capo_drs.types.tags_map.deserialize_json(data["tags"])
-    if "failback" in data:
+    if data.get("failback") is not None:
         import capo_drs.types.recovery_instance_failback
 
         out["failback"] = capo_drs.types.recovery_instance_failback.deserialize_json(
             data["failback"]
         )
-    if "dataReplicationInfo" in data:
+    if data.get("dataReplicationInfo") is not None:
         import capo_drs.types.recovery_instance_data_replication_info
 
         out["data_replication_info"] = (
@@ -161,7 +161,7 @@ def deserialize_json(data: dict) -> RecoveryInstance:
                 data["dataReplicationInfo"]
             )
         )
-    if "recoveryInstanceProperties" in data:
+    if data.get("recoveryInstanceProperties") is not None:
         import capo_drs.types.recovery_instance_properties
 
         out["recovery_instance_properties"] = (
@@ -169,16 +169,16 @@ def deserialize_json(data: dict) -> RecoveryInstance:
                 data["recoveryInstanceProperties"]
             )
         )
-    if "pointInTimeSnapshotDateTime" in data:
+    if data.get("pointInTimeSnapshotDateTime") is not None:
         out["point_in_time_snapshot_date_time"] = data["pointInTimeSnapshotDateTime"]
-    if "isDrill" in data:
+    if data.get("isDrill") is not None:
         out["is_drill"] = data["isDrill"]
-    if "originEnvironment" in data:
+    if data.get("originEnvironment") is not None:
         out["origin_environment"] = data["originEnvironment"]
-    if "originAvailabilityZone" in data:
+    if data.get("originAvailabilityZone") is not None:
         out["origin_availability_zone"] = data["originAvailabilityZone"]
-    if "agentVersion" in data:
+    if data.get("agentVersion") is not None:
         out["agent_version"] = data["agentVersion"]
-    if "sourceOutpostArn" in data:
+    if data.get("sourceOutpostArn") is not None:
         out["source_outpost_arn"] = data["sourceOutpostArn"]
     return out

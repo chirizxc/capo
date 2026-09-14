@@ -41,14 +41,14 @@ def serialize_json(value: UpdateSecurityControlRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSecurityControlRequest:
     out: UpdateSecurityControlRequest = {}  # type: ignore[typeddict-item]
-    if "SecurityControlId" in data:
+    if data.get("SecurityControlId") is not None:
         out["security_control_id"] = data["SecurityControlId"]
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_securityhub.types.parameters
 
         out["parameters"] = capo_securityhub.types.parameters.deserialize_json(
             data["Parameters"]
         )
-    if "LastUpdateReason" in data:
+    if data.get("LastUpdateReason") is not None:
         out["last_update_reason"] = data["LastUpdateReason"]
     return out

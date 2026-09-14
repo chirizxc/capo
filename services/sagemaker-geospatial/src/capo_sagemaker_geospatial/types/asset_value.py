@@ -18,6 +18,6 @@ def serialize_json(value: AssetValue) -> dict:
 
 def deserialize_json(data: dict) -> AssetValue:
     out: AssetValue = {}  # type: ignore[typeddict-item]
-    if "Href" in data:
+    if data.get("Href") is not None:
         out["href"] = data["Href"]
     return out

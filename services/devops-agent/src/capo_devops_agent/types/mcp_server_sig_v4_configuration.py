@@ -26,7 +26,7 @@ def serialize_json(value: MCPServerSigV4Configuration) -> dict:
 
 def deserialize_json(data: dict) -> MCPServerSigV4Configuration:
     out: MCPServerSigV4Configuration = {}  # type: ignore[typeddict-item]
-    if "tools" in data:
+    if data.get("tools") is not None:
         import capo_devops_agent.types.mcp_tools_list
 
         out["tools"] = capo_devops_agent.types.mcp_tools_list.deserialize_json(

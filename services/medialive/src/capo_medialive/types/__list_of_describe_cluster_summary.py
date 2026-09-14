@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfDescribeClusterSummary:
 
     out: __listOfDescribeClusterSummary = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_medialive.types.describe_cluster_summary.deserialize_json(item))
     return out

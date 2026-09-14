@@ -36,7 +36,7 @@ def serialize_json(value: ResponseTimeRootCause) -> dict:
 
 def deserialize_json(data: dict) -> ResponseTimeRootCause:
     out: ResponseTimeRootCause = {}  # type: ignore[typeddict-item]
-    if "Services" in data:
+    if data.get("Services") is not None:
         import capo_xray.types.response_time_root_cause_services
 
         out["services"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ResponseTimeRootCause:
                 data["Services"]
             )
         )
-    if "ClientImpacting" in data:
+    if data.get("ClientImpacting") is not None:
         out["client_impacting"] = data["ClientImpacting"]
     return out

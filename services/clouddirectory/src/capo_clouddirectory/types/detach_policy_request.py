@@ -38,7 +38,7 @@ def serialize_json(value: DetachPolicyRequest) -> dict:
 
 def deserialize_json(data: dict) -> DetachPolicyRequest:
     out: DetachPolicyRequest = {}  # type: ignore[typeddict-item]
-    if "PolicyReference" in data:
+    if data.get("PolicyReference") is not None:
         import capo_clouddirectory.types.object_reference
 
         out["policy_reference"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> DetachPolicyRequest:
         )
     else:
         raise DeserializationError("DetachPolicyRequest.policy_reference required")
-    if "ObjectReference" in data:
+    if data.get("ObjectReference") is not None:
         import capo_clouddirectory.types.object_reference
 
         out["object_reference"] = (

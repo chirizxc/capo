@@ -67,23 +67,23 @@ def serialize_json(value: MetaLibraryTemplate) -> dict:
 
 def deserialize_json(data: dict) -> MetaLibraryTemplate:
     out: MetaLibraryTemplate = {}  # type: ignore[typeddict-item]
-    if "templateName" in data:
+    if data.get("templateName") is not None:
         out["template_name"] = data["templateName"]
     else:
         raise DeserializationError("MetaLibraryTemplate.template_name required")
-    if "libraryTemplateName" in data:
+    if data.get("libraryTemplateName") is not None:
         out["library_template_name"] = data["libraryTemplateName"]
     else:
         raise DeserializationError("MetaLibraryTemplate.library_template_name required")
-    if "templateCategory" in data:
+    if data.get("templateCategory") is not None:
         out["template_category"] = data["templateCategory"]
     else:
         raise DeserializationError("MetaLibraryTemplate.template_category required")
-    if "templateLanguage" in data:
+    if data.get("templateLanguage") is not None:
         out["template_language"] = data["templateLanguage"]
     else:
         raise DeserializationError("MetaLibraryTemplate.template_language required")
-    if "libraryTemplateButtonInputs" in data:
+    if data.get("libraryTemplateButtonInputs") is not None:
         import capo_socialmessaging.types.meta_library_template_button_inputs
 
         out["library_template_button_inputs"] = (
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> MetaLibraryTemplate:
                 data["libraryTemplateButtonInputs"]
             )
         )
-    if "libraryTemplateBodyInputs" in data:
+    if data.get("libraryTemplateBodyInputs") is not None:
         import capo_socialmessaging.types.library_template_body_inputs
 
         out["library_template_body_inputs"] = (

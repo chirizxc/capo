@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DescribeIdentityInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeIdentityInput:
     out: DescribeIdentityInput = {}  # type: ignore[typeddict-item]
-    if "IdentityId" in data:
+    if data.get("IdentityId") is not None:
         out["identity_id"] = data["IdentityId"]
     else:
         raise DeserializationError("DescribeIdentityInput.identity_id required")

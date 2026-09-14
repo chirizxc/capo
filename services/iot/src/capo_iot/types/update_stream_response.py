@@ -38,12 +38,12 @@ def serialize_json(value: UpdateStreamResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateStreamResponse:
     out: UpdateStreamResponse = {}  # type: ignore[typeddict-item]
-    if "streamId" in data:
+    if data.get("streamId") is not None:
         out["stream_id"] = data["streamId"]
-    if "streamArn" in data:
+    if data.get("streamArn") is not None:
         out["stream_arn"] = data["streamArn"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "streamVersion" in data:
+    if data.get("streamVersion") is not None:
         out["stream_version"] = data["streamVersion"]
     return out

@@ -39,14 +39,14 @@ def serialize_json(value: ListNamespacesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListNamespacesResponse:
     out: ListNamespacesResponse = {}  # type: ignore[typeddict-item]
-    if "Namespaces" in data:
+    if data.get("Namespaces") is not None:
         import capo_quicksight.types.namespaces
 
         out["namespaces"] = capo_quicksight.types.namespaces.deserialize_json(
             data["Namespaces"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

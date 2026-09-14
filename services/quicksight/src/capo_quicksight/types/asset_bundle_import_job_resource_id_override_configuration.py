@@ -23,6 +23,6 @@ def serialize_json(value: AssetBundleImportJobResourceIdOverrideConfiguration) -
 
 def deserialize_json(data: dict) -> AssetBundleImportJobResourceIdOverrideConfiguration:
     out: AssetBundleImportJobResourceIdOverrideConfiguration = {}  # type: ignore[typeddict-item]
-    if "PrefixForAllResources" in data:
+    if data.get("PrefixForAllResources") is not None:
         out["prefix_for_all_resources"] = data["PrefixForAllResources"]
     return out

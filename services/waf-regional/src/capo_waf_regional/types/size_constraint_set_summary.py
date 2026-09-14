@@ -28,13 +28,13 @@ def serialize_aws_json_1_1(value: SizeConstraintSetSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SizeConstraintSetSummary:
     out: SizeConstraintSetSummary = {}  # type: ignore[typeddict-item]
-    if "SizeConstraintSetId" in data:
+    if data.get("SizeConstraintSetId") is not None:
         out["size_constraint_set_id"] = data["SizeConstraintSetId"]
     else:
         raise DeserializationError(
             "SizeConstraintSetSummary.size_constraint_set_id required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("SizeConstraintSetSummary.name required")

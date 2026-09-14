@@ -41,11 +41,11 @@ def serialize_json(value: SendMessageResponse) -> dict:
 
 def deserialize_json(data: dict) -> SendMessageResponse:
     out: SendMessageResponse = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "AbsoluteTime" in data:
+    if data.get("AbsoluteTime") is not None:
         out["absolute_time"] = data["AbsoluteTime"]
-    if "MessageMetadata" in data:
+    if data.get("MessageMetadata") is not None:
         import capo_connectparticipant.types.message_processing_metadata
 
         out["message_metadata"] = (

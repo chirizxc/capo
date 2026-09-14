@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: Schedule) -> dict:
 
 
 def deserialize_aws_json_1_1(data: dict) -> Schedule:
-    if "at" in data:
+    if data.get("at") is not None:
         import capo_redshift_serverless.types._prelude.timestamp
 
         return {
@@ -46,7 +46,7 @@ def deserialize_aws_json_1_1(data: dict) -> Schedule:
                 data["at"]
             )
         }
-    elif "cron" in data:
+    elif data.get("cron") is not None:
         return {"cron": data["cron"]}
     else:
         raise DeserializationError("Schedule: no recognized variant key")

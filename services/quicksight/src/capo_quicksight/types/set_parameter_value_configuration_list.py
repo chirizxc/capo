@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> SetParameterValueConfigurationList:
 
     out: SetParameterValueConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.set_parameter_value_configuration.deserialize_json(
                 item

@@ -31,7 +31,7 @@ def serialize_json(value: IncrementalRunConfig) -> dict:
 
 def deserialize_json(data: dict) -> IncrementalRunConfig:
     out: IncrementalRunConfig = {}  # type: ignore[typeddict-item]
-    if "incrementalRunType" in data:
+    if data.get("incrementalRunType") is not None:
         import capo_entityresolution.types.incremental_run_type
 
         out["incremental_run_type"] = (

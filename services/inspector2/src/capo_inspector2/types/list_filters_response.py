@@ -31,7 +31,7 @@ def serialize_json(value: ListFiltersResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListFiltersResponse:
     out: ListFiltersResponse = {}  # type: ignore[typeddict-item]
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_inspector2.types.filter_list
 
         out["filters"] = capo_inspector2.types.filter_list.deserialize_json(
@@ -39,6 +39,6 @@ def deserialize_json(data: dict) -> ListFiltersResponse:
         )
     else:
         raise DeserializationError("ListFiltersResponse.filters required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

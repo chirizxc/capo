@@ -56,13 +56,13 @@ def serialize_json(value: Volume) -> dict:
 
 def deserialize_json(data: dict) -> Volume:
     out: Volume = {}  # type: ignore[typeddict-item]
-    if "host" in data:
+    if data.get("host") is not None:
         import capo_batch.types.host
 
         out["host"] = capo_batch.types.host.deserialize_json(data["host"])
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "efsVolumeConfiguration" in data:
+    if data.get("efsVolumeConfiguration") is not None:
         import capo_batch.types.efs_volume_configuration
 
         out["efs_volume_configuration"] = (
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> Volume:
                 data["efsVolumeConfiguration"]
             )
         )
-    if "s3filesVolumeConfiguration" in data:
+    if data.get("s3filesVolumeConfiguration") is not None:
         import capo_batch.types.s3_files_volume_configuration
 
         out["s3files_volume_configuration"] = (

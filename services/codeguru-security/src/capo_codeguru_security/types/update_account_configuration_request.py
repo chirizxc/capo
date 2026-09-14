@@ -30,7 +30,7 @@ def serialize_json(value: UpdateAccountConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAccountConfigurationRequest:
     out: UpdateAccountConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "encryptionConfig" in data:
+    if data.get("encryptionConfig") is not None:
         import capo_codeguru_security.types.encryption_config
 
         out["encryption_config"] = (

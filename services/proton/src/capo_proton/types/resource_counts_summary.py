@@ -35,16 +35,16 @@ def serialize_aws_json_1_0(value: ResourceCountsSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ResourceCountsSummary:
     out: ResourceCountsSummary = {}  # type: ignore[typeddict-item]
-    if "total" in data:
+    if data.get("total") is not None:
         out["total"] = data["total"]
     else:
         raise DeserializationError("ResourceCountsSummary.total required")
-    if "failed" in data:
+    if data.get("failed") is not None:
         out["failed"] = data["failed"]
-    if "upToDate" in data:
+    if data.get("upToDate") is not None:
         out["up_to_date"] = data["upToDate"]
-    if "behindMajor" in data:
+    if data.get("behindMajor") is not None:
         out["behind_major"] = data["behindMajor"]
-    if "behindMinor" in data:
+    if data.get("behindMinor") is not None:
         out["behind_minor"] = data["behindMinor"]
     return out

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetDiskRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDiskRequest:
     out: GetDiskRequest = {}  # type: ignore[typeddict-item]
-    if "diskName" in data:
+    if data.get("diskName") is not None:
         out["disk_name"] = data["diskName"]
     else:
         raise DeserializationError("GetDiskRequest.disk_name required")

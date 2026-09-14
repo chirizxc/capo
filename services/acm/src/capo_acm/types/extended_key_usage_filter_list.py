@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> ExtendedKeyUsageFilterList:
 
     out: ExtendedKeyUsageFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_acm.types.extended_key_usage_name.deserialize_aws_json_1_1(item)
         )

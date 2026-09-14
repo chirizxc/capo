@@ -29,7 +29,7 @@ def serialize_json(value: GetSubscriberResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetSubscriberResponse:
     out: GetSubscriberResponse = {}  # type: ignore[typeddict-item]
-    if "subscriber" in data:
+    if data.get("subscriber") is not None:
         import capo_securitylake.types.subscriber_resource
 
         out["subscriber"] = (

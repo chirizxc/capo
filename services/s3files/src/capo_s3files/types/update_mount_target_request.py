@@ -31,7 +31,7 @@ def serialize_json(value: UpdateMountTargetRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateMountTargetRequest:
     out: UpdateMountTargetRequest = {}  # type: ignore[typeddict-item]
-    if "securityGroups" in data:
+    if data.get("securityGroups") is not None:
         import capo_s3files.types.security_groups
 
         out["security_groups"] = capo_s3files.types.security_groups.deserialize_json(

@@ -31,10 +31,10 @@ def serialize_aws_json_1_1(value: TemplateSSMDocumentDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TemplateSSMDocumentDetails:
     out: TemplateSSMDocumentDetails = {}  # type: ignore[typeddict-item]
-    if "DocumentName" in data:
+    if data.get("DocumentName") is not None:
         out["document_name"] = data["DocumentName"]
     else:
         raise DeserializationError("TemplateSSMDocumentDetails.document_name required")
-    if "DocumentVersion" in data:
+    if data.get("DocumentVersion") is not None:
         out["document_version"] = data["DocumentVersion"]
     return out

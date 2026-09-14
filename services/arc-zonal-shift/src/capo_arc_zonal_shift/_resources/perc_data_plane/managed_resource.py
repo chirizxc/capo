@@ -73,14 +73,16 @@ class ManagedResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_arc_zonal_shift.types.get_managed_resource_request.GetManagedResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_identifier"] = resource_identifier
+        input_: capo_arc_zonal_shift.types.get_managed_resource_request.GetManagedResourceRequest = {
+            "resource_identifier": resource_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -121,7 +123,7 @@ class ManagedResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_arc_zonal_shift.types.list_managed_resources_request.ListManagedResourcesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_arc_zonal_shift.types.list_managed_resources_request.ListManagedResourcesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -132,6 +134,7 @@ class ManagedResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_zonal_autoshift_configuration(
@@ -172,15 +175,17 @@ class ManagedResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_arc_zonal_shift.types.update_zonal_autoshift_configuration_request.UpdateZonalAutoshiftConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_identifier"] = resource_identifier
-        input_["zonal_autoshift_status"] = zonal_autoshift_status
+        input_: capo_arc_zonal_shift.types.update_zonal_autoshift_configuration_request.UpdateZonalAutoshiftConfigurationRequest = {
+            "resource_identifier": resource_identifier,
+            "zonal_autoshift_status": zonal_autoshift_status,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -224,14 +229,16 @@ class AsyncManagedResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_arc_zonal_shift.types.get_managed_resource_request.GetManagedResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_identifier"] = resource_identifier
+        input_: capo_arc_zonal_shift.types.get_managed_resource_request.GetManagedResourceRequest = {
+            "resource_identifier": resource_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -273,7 +280,7 @@ class AsyncManagedResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_arc_zonal_shift.types.list_managed_resources_request.ListManagedResourcesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_arc_zonal_shift.types.list_managed_resources_request.ListManagedResourcesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -284,6 +291,7 @@ class AsyncManagedResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_zonal_autoshift_configuration(
@@ -325,13 +333,15 @@ class AsyncManagedResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_arc_zonal_shift.types.update_zonal_autoshift_configuration_request.UpdateZonalAutoshiftConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_identifier"] = resource_identifier
-        input_["zonal_autoshift_status"] = zonal_autoshift_status
+        input_: capo_arc_zonal_shift.types.update_zonal_autoshift_configuration_request.UpdateZonalAutoshiftConfigurationRequest = {
+            "resource_identifier": resource_identifier,
+            "zonal_autoshift_status": zonal_autoshift_status,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

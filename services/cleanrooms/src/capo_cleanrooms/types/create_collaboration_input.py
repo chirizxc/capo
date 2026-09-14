@@ -160,7 +160,7 @@ def serialize_json(value: CreateCollaborationInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateCollaborationInput:
     out: CreateCollaborationInput = {}  # type: ignore[typeddict-item]
-    if "members" in data:
+    if data.get("members") is not None:
         import capo_cleanrooms.types.member_list
 
         out["members"] = capo_cleanrooms.types.member_list.deserialize_json(
@@ -168,15 +168,15 @@ def deserialize_json(data: dict) -> CreateCollaborationInput:
         )
     else:
         raise DeserializationError("CreateCollaborationInput.members required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateCollaborationInput.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     else:
         raise DeserializationError("CreateCollaborationInput.description required")
-    if "creatorMemberAbilities" in data:
+    if data.get("creatorMemberAbilities") is not None:
         import capo_cleanrooms.types.member_abilities
 
         out["creator_member_abilities"] = (
@@ -188,7 +188,7 @@ def deserialize_json(data: dict) -> CreateCollaborationInput:
         raise DeserializationError(
             "CreateCollaborationInput.creator_member_abilities required"
         )
-    if "creatorMLMemberAbilities" in data:
+    if data.get("creatorMLMemberAbilities") is not None:
         import capo_cleanrooms.types.ml_member_abilities
 
         out["creator_ml_member_abilities"] = (
@@ -196,13 +196,13 @@ def deserialize_json(data: dict) -> CreateCollaborationInput:
                 data["creatorMLMemberAbilities"]
             )
         )
-    if "creatorDisplayName" in data:
+    if data.get("creatorDisplayName") is not None:
         out["creator_display_name"] = data["creatorDisplayName"]
     else:
         raise DeserializationError(
             "CreateCollaborationInput.creator_display_name required"
         )
-    if "dataEncryptionMetadata" in data:
+    if data.get("dataEncryptionMetadata") is not None:
         import capo_cleanrooms.types.data_encryption_metadata
 
         out["data_encryption_metadata"] = (
@@ -210,7 +210,7 @@ def deserialize_json(data: dict) -> CreateCollaborationInput:
                 data["dataEncryptionMetadata"]
             )
         )
-    if "queryLogStatus" in data:
+    if data.get("queryLogStatus") is not None:
         import capo_cleanrooms.types.collaboration_query_log_status
 
         out["query_log_status"] = (
@@ -220,7 +220,7 @@ def deserialize_json(data: dict) -> CreateCollaborationInput:
         )
     else:
         raise DeserializationError("CreateCollaborationInput.query_log_status required")
-    if "jobLogStatus" in data:
+    if data.get("jobLogStatus") is not None:
         import capo_cleanrooms.types.collaboration_job_log_status
 
         out["job_log_status"] = (
@@ -228,11 +228,11 @@ def deserialize_json(data: dict) -> CreateCollaborationInput:
                 data["jobLogStatus"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_cleanrooms.types.tag_map
 
         out["tags"] = capo_cleanrooms.types.tag_map.deserialize_json(data["tags"])
-    if "creatorPaymentConfiguration" in data:
+    if data.get("creatorPaymentConfiguration") is not None:
         import capo_cleanrooms.types.payment_configuration
 
         out["creator_payment_configuration"] = (
@@ -240,7 +240,7 @@ def deserialize_json(data: dict) -> CreateCollaborationInput:
                 data["creatorPaymentConfiguration"]
             )
         )
-    if "analyticsEngine" in data:
+    if data.get("analyticsEngine") is not None:
         import capo_cleanrooms.types.analytics_engine
 
         out["analytics_engine"] = (
@@ -248,7 +248,7 @@ def deserialize_json(data: dict) -> CreateCollaborationInput:
                 data["analyticsEngine"]
             )
         )
-    if "autoApprovedChangeRequestTypes" in data:
+    if data.get("autoApprovedChangeRequestTypes") is not None:
         import capo_cleanrooms.types.auto_approved_change_type_list
 
         out["auto_approved_change_request_types"] = (
@@ -256,7 +256,7 @@ def deserialize_json(data: dict) -> CreateCollaborationInput:
                 data["autoApprovedChangeRequestTypes"]
             )
         )
-    if "allowedResultRegions" in data:
+    if data.get("allowedResultRegions") is not None:
         import capo_cleanrooms.types.allowed_result_regions
 
         out["allowed_result_regions"] = (
@@ -264,6 +264,6 @@ def deserialize_json(data: dict) -> CreateCollaborationInput:
                 data["allowedResultRegions"]
             )
         )
-    if "isMetricsEnabled" in data:
+    if data.get("isMetricsEnabled") is not None:
         out["is_metrics_enabled"] = data["isMetricsEnabled"]
     return out

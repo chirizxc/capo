@@ -37,15 +37,20 @@ class IntegrationSourceNotFoundFault(ServiceError):
 
     code: str | None = "IntegrationSourceNotFoundFault"
 
-    def __init__(self, data: IntegrationSourceNotFoundFault_):
+    def __init__(
+        self, data: IntegrationSourceNotFoundFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="IntegrationSourceNotFoundFault",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "IntegrationSourceNotFoundFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "IntegrationSourceNotFoundFault":
+        return cls(deserialize_query(el), message)

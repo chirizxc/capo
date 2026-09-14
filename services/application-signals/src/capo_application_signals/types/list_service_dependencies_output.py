@@ -53,7 +53,7 @@ def serialize_json(value: ListServiceDependenciesOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListServiceDependenciesOutput:
     out: ListServiceDependenciesOutput = {}  # type: ignore[typeddict-item]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_application_signals.types._prelude.timestamp
 
         out["start_time"] = (
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> ListServiceDependenciesOutput:
         )
     else:
         raise DeserializationError("ListServiceDependenciesOutput.start_time required")
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_application_signals.types._prelude.timestamp
 
         out["end_time"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> ListServiceDependenciesOutput:
         )
     else:
         raise DeserializationError("ListServiceDependenciesOutput.end_time required")
-    if "ServiceDependencies" in data:
+    if data.get("ServiceDependencies") is not None:
         import capo_application_signals.types.service_dependencies
 
         out["service_dependencies"] = (
@@ -85,6 +85,6 @@ def deserialize_json(data: dict) -> ListServiceDependenciesOutput:
         raise DeserializationError(
             "ListServiceDependenciesOutput.service_dependencies required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

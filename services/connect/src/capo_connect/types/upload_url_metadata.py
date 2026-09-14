@@ -41,11 +41,11 @@ def serialize_json(value: UploadUrlMetadata) -> dict:
 
 def deserialize_json(data: dict) -> UploadUrlMetadata:
     out: UploadUrlMetadata = {}  # type: ignore[typeddict-item]
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
-    if "UrlExpiry" in data:
+    if data.get("UrlExpiry") is not None:
         out["url_expiry"] = data["UrlExpiry"]
-    if "HeadersToInclude" in data:
+    if data.get("HeadersToInclude") is not None:
         import capo_connect.types.url_metadata_signed_headers
 
         out["headers_to_include"] = (

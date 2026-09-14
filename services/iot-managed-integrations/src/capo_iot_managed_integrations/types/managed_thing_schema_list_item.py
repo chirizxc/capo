@@ -39,10 +39,10 @@ def serialize_json(value: ManagedThingSchemaListItem) -> dict:
 
 def deserialize_json(data: dict) -> ManagedThingSchemaListItem:
     out: ManagedThingSchemaListItem = {}  # type: ignore[typeddict-item]
-    if "EndpointId" in data:
+    if data.get("EndpointId") is not None:
         out["endpoint_id"] = data["EndpointId"]
-    if "CapabilityId" in data:
+    if data.get("CapabilityId") is not None:
         out["capability_id"] = data["CapabilityId"]
-    if "Schema" in data:
+    if data.get("Schema") is not None:
         out["schema"] = data["Schema"]
     return out

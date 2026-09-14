@@ -44,7 +44,7 @@ def serialize_json(value: LambdaLinuxProcessParams) -> dict:
 
 def deserialize_json(data: dict) -> LambdaLinuxProcessParams:
     out: LambdaLinuxProcessParams = {}  # type: ignore[typeddict-item]
-    if "isolationMode" in data:
+    if data.get("isolationMode") is not None:
         import capo_greengrassv2.types.lambda_isolation_mode
 
         out["isolation_mode"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> LambdaLinuxProcessParams:
                 data["isolationMode"]
             )
         )
-    if "containerParams" in data:
+    if data.get("containerParams") is not None:
         import capo_greengrassv2.types.lambda_container_params
 
         out["container_params"] = (

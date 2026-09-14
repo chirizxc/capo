@@ -36,11 +36,11 @@ def serialize_json(value: CreateAccessPreviewRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateAccessPreviewRequest:
     out: CreateAccessPreviewRequest = {}  # type: ignore[typeddict-item]
-    if "analyzerArn" in data:
+    if data.get("analyzerArn") is not None:
         out["analyzer_arn"] = data["analyzerArn"]
     else:
         raise DeserializationError("CreateAccessPreviewRequest.analyzer_arn required")
-    if "configurations" in data:
+    if data.get("configurations") is not None:
         import capo_accessanalyzer.types.configurations_map
 
         out["configurations"] = (
@@ -50,6 +50,6 @@ def deserialize_json(data: dict) -> CreateAccessPreviewRequest:
         )
     else:
         raise DeserializationError("CreateAccessPreviewRequest.configurations required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

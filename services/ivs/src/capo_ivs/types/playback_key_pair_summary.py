@@ -35,11 +35,11 @@ def serialize_json(value: PlaybackKeyPairSummary) -> dict:
 
 def deserialize_json(data: dict) -> PlaybackKeyPairSummary:
     out: PlaybackKeyPairSummary = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_ivs.types.tags
 
         out["tags"] = capo_ivs.types.tags.deserialize_json(data["tags"])

@@ -36,9 +36,9 @@ def serialize_json(value: VerificationDetails) -> dict:
 
 def deserialize_json(data: dict) -> VerificationDetails:
     out: VerificationDetails = {}  # type: ignore[typeddict-item]
-    if "dateOfBirth" in data:
+    if data.get("dateOfBirth") is not None:
         out["date_of_birth"] = data["dateOfBirth"]
-    if "taxRegistrationDocuments" in data:
+    if data.get("taxRegistrationDocuments") is not None:
         import capo_taxsettings.types.tax_registration_documents
 
         out["tax_registration_documents"] = (

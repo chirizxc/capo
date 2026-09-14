@@ -36,7 +36,7 @@ def serialize_json(value: ListDeviceDiscoveriesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListDeviceDiscoveriesResponse:
     out: ListDeviceDiscoveriesResponse = {}  # type: ignore[typeddict-item]
-    if "Items" in data:
+    if data.get("Items") is not None:
         import capo_iot_managed_integrations.types.device_discovery_list_definition
 
         out["items"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListDeviceDiscoveriesResponse:
                 data["Items"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

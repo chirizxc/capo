@@ -566,14 +566,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.allocate_static_ip_request.AllocateStaticIpRequest = {}  # type: ignore[typeddict-item]
-        input_["static_ip_name"] = static_ip_name
+        input_: capo_lightsail.types.allocate_static_ip_request.AllocateStaticIpRequest = {
+            "static_ip_name": static_ip_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def attach_certificate_to_distribution(
@@ -614,15 +616,17 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.attach_certificate_to_distribution_request.AttachCertificateToDistributionRequest = {}  # type: ignore[typeddict-item]
-        input_["distribution_name"] = distribution_name
-        input_["certificate_name"] = certificate_name
+        input_: capo_lightsail.types.attach_certificate_to_distribution_request.AttachCertificateToDistributionRequest = {
+            "distribution_name": distribution_name,
+            "certificate_name": certificate_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def attach_disk(
@@ -669,10 +673,11 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.attach_disk_request.AttachDiskRequest = {}  # type: ignore[typeddict-item]
-        input_["disk_name"] = disk_name
-        input_["instance_name"] = instance_name
-        input_["disk_path"] = disk_path
+        input_: capo_lightsail.types.attach_disk_request.AttachDiskRequest = {
+            "disk_name": disk_name,
+            "instance_name": instance_name,
+            "disk_path": disk_path,
+        }
         if auto_mounting is not None:
             input_["auto_mounting"] = auto_mounting
 
@@ -681,6 +686,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def attach_instances_to_load_balancer(
@@ -723,15 +729,17 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.attach_instances_to_load_balancer_request.AttachInstancesToLoadBalancerRequest = {}  # type: ignore[typeddict-item]
-        input_["load_balancer_name"] = load_balancer_name
-        input_["instance_names"] = instance_names
+        input_: capo_lightsail.types.attach_instances_to_load_balancer_request.AttachInstancesToLoadBalancerRequest = {
+            "load_balancer_name": load_balancer_name,
+            "instance_names": instance_names,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def attach_load_balancer_tls_certificate(
@@ -774,15 +782,17 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.attach_load_balancer_tls_certificate_request.AttachLoadBalancerTlsCertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["load_balancer_name"] = load_balancer_name
-        input_["certificate_name"] = certificate_name
+        input_: capo_lightsail.types.attach_load_balancer_tls_certificate_request.AttachLoadBalancerTlsCertificateRequest = {
+            "load_balancer_name": load_balancer_name,
+            "certificate_name": certificate_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def attach_static_ip(
@@ -825,15 +835,17 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.attach_static_ip_request.AttachStaticIpRequest = {}  # type: ignore[typeddict-item]
-        input_["static_ip_name"] = static_ip_name
-        input_["instance_name"] = instance_name
+        input_: capo_lightsail.types.attach_static_ip_request.AttachStaticIpRequest = {
+            "static_ip_name": static_ip_name,
+            "instance_name": instance_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def close_instance_public_ports(
@@ -876,15 +888,17 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.close_instance_public_ports_request.CloseInstancePublicPortsRequest = {}  # type: ignore[typeddict-item]
-        input_["port_info"] = port_info
-        input_["instance_name"] = instance_name
+        input_: capo_lightsail.types.close_instance_public_ports_request.CloseInstancePublicPortsRequest = {
+            "port_info": port_info,
+            "instance_name": instance_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def copy_snapshot(
@@ -939,7 +953,10 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.copy_snapshot_request.CopySnapshotRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lightsail.types.copy_snapshot_request.CopySnapshotRequest = {
+            "target_snapshot_name": target_snapshot_name,
+            "source_region": source_region,
+        }
         if source_snapshot_name is not None:
             input_["source_snapshot_name"] = source_snapshot_name
         if source_resource_name is not None:
@@ -950,14 +967,13 @@ class LightsailClient:
             input_["use_latest_restorable_auto_snapshot"] = (
                 use_latest_restorable_auto_snapshot
             )
-        input_["target_snapshot_name"] = target_snapshot_name
-        input_["source_region"] = source_region
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_bucket(
@@ -1003,9 +1019,10 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.create_bucket_request.CreateBucketRequest = {}  # type: ignore[typeddict-item]
-        input_["bucket_name"] = bucket_name
-        input_["bundle_id"] = bundle_id
+        input_: capo_lightsail.types.create_bucket_request.CreateBucketRequest = {
+            "bucket_name": bucket_name,
+            "bundle_id": bundle_id,
+        }
         if tags is not None:
             input_["tags"] = tags
         if enable_object_versioning is not None:
@@ -1016,6 +1033,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_bucket_access_key(
@@ -1054,14 +1072,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.create_bucket_access_key_request.CreateBucketAccessKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["bucket_name"] = bucket_name
+        input_: capo_lightsail.types.create_bucket_access_key_request.CreateBucketAccessKeyRequest = {
+            "bucket_name": bucket_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_certificate(
@@ -1108,9 +1128,10 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.create_certificate_request.CreateCertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_name"] = certificate_name
-        input_["domain_name"] = domain_name
+        input_: capo_lightsail.types.create_certificate_request.CreateCertificateRequest = {
+            "certificate_name": certificate_name,
+            "domain_name": domain_name,
+        }
         if subject_alternative_names is not None:
             input_["subject_alternative_names"] = subject_alternative_names
         if tags is not None:
@@ -1121,6 +1142,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_cloud_formation_stack(
@@ -1161,14 +1183,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.create_cloud_formation_stack_request.CreateCloudFormationStackRequest = {}  # type: ignore[typeddict-item]
-        input_["instances"] = instances
+        input_: capo_lightsail.types.create_cloud_formation_stack_request.CreateCloudFormationStackRequest = {
+            "instances": instances
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_contact_method(
@@ -1212,9 +1236,10 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.create_contact_method_request.CreateContactMethodRequest = {}  # type: ignore[typeddict-item]
-        input_["protocol"] = protocol
-        input_["contact_endpoint"] = contact_endpoint
+        input_: capo_lightsail.types.create_contact_method_request.CreateContactMethodRequest = {
+            "protocol": protocol,
+            "contact_endpoint": contact_endpoint,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -1223,6 +1248,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_container_service(
@@ -1279,10 +1305,11 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.create_container_service_request.CreateContainerServiceRequest = {}  # type: ignore[typeddict-item]
-        input_["service_name"] = service_name
-        input_["power"] = power
-        input_["scale"] = scale
+        input_: capo_lightsail.types.create_container_service_request.CreateContainerServiceRequest = {
+            "service_name": service_name,
+            "power": power,
+            "scale": scale,
+        }
         if tags is not None:
             input_["tags"] = tags
         if public_domain_names is not None:
@@ -1297,6 +1324,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_container_service_deployment(
@@ -1341,8 +1369,9 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.create_container_service_deployment_request.CreateContainerServiceDeploymentRequest = {}  # type: ignore[typeddict-item]
-        input_["service_name"] = service_name
+        input_: capo_lightsail.types.create_container_service_deployment_request.CreateContainerServiceDeploymentRequest = {
+            "service_name": service_name
+        }
         if containers is not None:
             input_["containers"] = containers
         if public_endpoint is not None:
@@ -1353,6 +1382,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_container_service_registry_login(
@@ -1385,13 +1415,14 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.create_container_service_registry_login_request.CreateContainerServiceRegistryLoginRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lightsail.types.create_container_service_registry_login_request.CreateContainerServiceRegistryLoginRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_disk(
@@ -1442,10 +1473,11 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.create_disk_request.CreateDiskRequest = {}  # type: ignore[typeddict-item]
-        input_["disk_name"] = disk_name
-        input_["availability_zone"] = availability_zone
-        input_["size_in_gb"] = size_in_gb
+        input_: capo_lightsail.types.create_disk_request.CreateDiskRequest = {
+            "disk_name": disk_name,
+            "availability_zone": availability_zone,
+            "size_in_gb": size_in_gb,
+        }
         if tags is not None:
             input_["tags"] = tags
         if add_ons is not None:
@@ -1456,6 +1488,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_disk_from_snapshot(
@@ -1518,12 +1551,13 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.create_disk_from_snapshot_request.CreateDiskFromSnapshotRequest = {}  # type: ignore[typeddict-item]
-        input_["disk_name"] = disk_name
+        input_: capo_lightsail.types.create_disk_from_snapshot_request.CreateDiskFromSnapshotRequest = {
+            "disk_name": disk_name,
+            "availability_zone": availability_zone,
+            "size_in_gb": size_in_gb,
+        }
         if disk_snapshot_name is not None:
             input_["disk_snapshot_name"] = disk_snapshot_name
-        input_["availability_zone"] = availability_zone
-        input_["size_in_gb"] = size_in_gb
         if tags is not None:
             input_["tags"] = tags
         if add_ons is not None:
@@ -1542,6 +1576,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_disk_snapshot(
@@ -1590,10 +1625,11 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.create_disk_snapshot_request.CreateDiskSnapshotRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lightsail.types.create_disk_snapshot_request.CreateDiskSnapshotRequest = {
+            "disk_snapshot_name": disk_snapshot_name
+        }
         if disk_name is not None:
             input_["disk_name"] = disk_name
-        input_["disk_snapshot_name"] = disk_snapshot_name
         if instance_name is not None:
             input_["instance_name"] = instance_name
         if tags is not None:
@@ -1604,6 +1640,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_distribution(
@@ -1670,15 +1707,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.create_distribution_request.CreateDistributionRequest = {}  # type: ignore[typeddict-item]
-        input_["distribution_name"] = distribution_name
-        input_["origin"] = origin
-        input_["default_cache_behavior"] = default_cache_behavior
+        input_: capo_lightsail.types.create_distribution_request.CreateDistributionRequest = {
+            "distribution_name": distribution_name,
+            "origin": origin,
+            "default_cache_behavior": default_cache_behavior,
+            "bundle_id": bundle_id,
+        }
         if cache_behavior_settings is not None:
             input_["cache_behavior_settings"] = cache_behavior_settings
         if cache_behaviors is not None:
             input_["cache_behaviors"] = cache_behaviors
-        input_["bundle_id"] = bundle_id
         if ip_address_type is not None:
             input_["ip_address_type"] = ip_address_type
         if tags is not None:
@@ -1695,6 +1733,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_domain(
@@ -1737,8 +1776,9 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.create_domain_request.CreateDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_lightsail.types.create_domain_request.CreateDomainRequest = {
+            "domain_name": domain_name
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -1747,6 +1787,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_domain_entry(
@@ -1789,15 +1830,17 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.create_domain_entry_request.CreateDomainEntryRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["domain_entry"] = domain_entry
+        input_: capo_lightsail.types.create_domain_entry_request.CreateDomainEntryRequest = {
+            "domain_name": domain_name,
+            "domain_entry": domain_entry,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_gui_session_access_details(
@@ -1836,14 +1879,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.create_gui_session_access_details_request.CreateGUISessionAccessDetailsRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_name"] = resource_name
+        input_: capo_lightsail.types.create_gui_session_access_details_request.CreateGUISessionAccessDetailsRequest = {
+            "resource_name": resource_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_instances(
@@ -1910,13 +1955,14 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.create_instances_request.CreateInstancesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_names"] = instance_names
-        input_["availability_zone"] = availability_zone
+        input_: capo_lightsail.types.create_instances_request.CreateInstancesRequest = {
+            "instance_names": instance_names,
+            "availability_zone": availability_zone,
+            "blueprint_id": blueprint_id,
+            "bundle_id": bundle_id,
+        }
         if custom_image_name is not None:
             input_["custom_image_name"] = custom_image_name
-        input_["blueprint_id"] = blueprint_id
-        input_["bundle_id"] = bundle_id
         if user_data is not None:
             input_["user_data"] = user_data
         if key_pair_name is not None:
@@ -1933,6 +1979,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_instances_from_snapshot(
@@ -2009,14 +2056,15 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.create_instances_from_snapshot_request.CreateInstancesFromSnapshotRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_names"] = instance_names
+        input_: capo_lightsail.types.create_instances_from_snapshot_request.CreateInstancesFromSnapshotRequest = {
+            "instance_names": instance_names,
+            "availability_zone": availability_zone,
+            "bundle_id": bundle_id,
+        }
         if attached_disk_mapping is not None:
             input_["attached_disk_mapping"] = attached_disk_mapping
-        input_["availability_zone"] = availability_zone
         if instance_snapshot_name is not None:
             input_["instance_snapshot_name"] = instance_snapshot_name
-        input_["bundle_id"] = bundle_id
         if user_data is not None:
             input_["user_data"] = user_data
         if key_pair_name is not None:
@@ -2041,6 +2089,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_instance_snapshot(
@@ -2085,9 +2134,10 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.create_instance_snapshot_request.CreateInstanceSnapshotRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_snapshot_name"] = instance_snapshot_name
-        input_["instance_name"] = instance_name
+        input_: capo_lightsail.types.create_instance_snapshot_request.CreateInstanceSnapshotRequest = {
+            "instance_snapshot_name": instance_snapshot_name,
+            "instance_name": instance_name,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -2096,6 +2146,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_key_pair(
@@ -2138,8 +2189,9 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.create_key_pair_request.CreateKeyPairRequest = {}  # type: ignore[typeddict-item]
-        input_["key_pair_name"] = key_pair_name
+        input_: capo_lightsail.types.create_key_pair_request.CreateKeyPairRequest = {
+            "key_pair_name": key_pair_name
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -2148,6 +2200,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_load_balancer(
@@ -2212,9 +2265,10 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.create_load_balancer_request.CreateLoadBalancerRequest = {}  # type: ignore[typeddict-item]
-        input_["load_balancer_name"] = load_balancer_name
-        input_["instance_port"] = instance_port
+        input_: capo_lightsail.types.create_load_balancer_request.CreateLoadBalancerRequest = {
+            "load_balancer_name": load_balancer_name,
+            "instance_port": instance_port,
+        }
         if health_check_path is not None:
             input_["health_check_path"] = health_check_path
         if certificate_name is not None:
@@ -2235,6 +2289,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_load_balancer_tls_certificate(
@@ -2285,10 +2340,11 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.create_load_balancer_tls_certificate_request.CreateLoadBalancerTlsCertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["load_balancer_name"] = load_balancer_name
-        input_["certificate_name"] = certificate_name
-        input_["certificate_domain_name"] = certificate_domain_name
+        input_: capo_lightsail.types.create_load_balancer_tls_certificate_request.CreateLoadBalancerTlsCertificateRequest = {
+            "load_balancer_name": load_balancer_name,
+            "certificate_name": certificate_name,
+            "certificate_domain_name": certificate_domain_name,
+        }
         if certificate_alternative_names is not None:
             input_["certificate_alternative_names"] = certificate_alternative_names
         if tags is not None:
@@ -2299,6 +2355,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_relational_database(
@@ -2363,14 +2420,15 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.create_relational_database_request.CreateRelationalDatabaseRequest = {}  # type: ignore[typeddict-item]
-        input_["relational_database_name"] = relational_database_name
+        input_: capo_lightsail.types.create_relational_database_request.CreateRelationalDatabaseRequest = {
+            "relational_database_name": relational_database_name,
+            "relational_database_blueprint_id": relational_database_blueprint_id,
+            "relational_database_bundle_id": relational_database_bundle_id,
+            "master_database_name": master_database_name,
+            "master_username": master_username,
+        }
         if availability_zone is not None:
             input_["availability_zone"] = availability_zone
-        input_["relational_database_blueprint_id"] = relational_database_blueprint_id
-        input_["relational_database_bundle_id"] = relational_database_bundle_id
-        input_["master_database_name"] = master_database_name
-        input_["master_username"] = master_username
         if master_user_password is not None:
             input_["master_user_password"] = master_user_password
         if preferred_backup_window is not None:
@@ -2387,6 +2445,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_relational_database_from_snapshot(
@@ -2451,8 +2510,9 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.create_relational_database_from_snapshot_request.CreateRelationalDatabaseFromSnapshotRequest = {}  # type: ignore[typeddict-item]
-        input_["relational_database_name"] = relational_database_name
+        input_: capo_lightsail.types.create_relational_database_from_snapshot_request.CreateRelationalDatabaseFromSnapshotRequest = {
+            "relational_database_name": relational_database_name
+        }
         if availability_zone is not None:
             input_["availability_zone"] = availability_zone
         if publicly_accessible is not None:
@@ -2477,6 +2537,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_relational_database_snapshot(
@@ -2521,9 +2582,10 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.create_relational_database_snapshot_request.CreateRelationalDatabaseSnapshotRequest = {}  # type: ignore[typeddict-item]
-        input_["relational_database_name"] = relational_database_name
-        input_["relational_database_snapshot_name"] = relational_database_snapshot_name
+        input_: capo_lightsail.types.create_relational_database_snapshot_request.CreateRelationalDatabaseSnapshotRequest = {
+            "relational_database_name": relational_database_name,
+            "relational_database_snapshot_name": relational_database_snapshot_name,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -2532,6 +2594,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_alarm(
@@ -2571,14 +2634,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.delete_alarm_request.DeleteAlarmRequest = {}  # type: ignore[typeddict-item]
-        input_["alarm_name"] = alarm_name
+        input_: capo_lightsail.types.delete_alarm_request.DeleteAlarmRequest = {
+            "alarm_name": alarm_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_auto_snapshot(
@@ -2620,15 +2685,17 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.delete_auto_snapshot_request.DeleteAutoSnapshotRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_name"] = resource_name
-        input_["date"] = date
+        input_: capo_lightsail.types.delete_auto_snapshot_request.DeleteAutoSnapshotRequest = {
+            "resource_name": resource_name,
+            "date": date,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_bucket(
@@ -2669,8 +2736,9 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.delete_bucket_request.DeleteBucketRequest = {}  # type: ignore[typeddict-item]
-        input_["bucket_name"] = bucket_name
+        input_: capo_lightsail.types.delete_bucket_request.DeleteBucketRequest = {
+            "bucket_name": bucket_name
+        }
         if force_delete is not None:
             input_["force_delete"] = force_delete
 
@@ -2679,6 +2747,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_bucket_access_key(
@@ -2719,15 +2788,17 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.delete_bucket_access_key_request.DeleteBucketAccessKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["bucket_name"] = bucket_name
-        input_["access_key_id"] = access_key_id
+        input_: capo_lightsail.types.delete_bucket_access_key_request.DeleteBucketAccessKeyRequest = {
+            "bucket_name": bucket_name,
+            "access_key_id": access_key_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_certificate(
@@ -2766,14 +2837,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.delete_certificate_request.DeleteCertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_name"] = certificate_name
+        input_: capo_lightsail.types.delete_certificate_request.DeleteCertificateRequest = {
+            "certificate_name": certificate_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_contact_method(
@@ -2813,14 +2886,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.delete_contact_method_request.DeleteContactMethodRequest = {}  # type: ignore[typeddict-item]
-        input_["protocol"] = protocol
+        input_: capo_lightsail.types.delete_contact_method_request.DeleteContactMethodRequest = {
+            "protocol": protocol
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_container_image(
@@ -2863,15 +2938,17 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.delete_container_image_request.DeleteContainerImageRequest = {}  # type: ignore[typeddict-item]
-        input_["service_name"] = service_name
-        input_["image"] = image
+        input_: capo_lightsail.types.delete_container_image_request.DeleteContainerImageRequest = {
+            "service_name": service_name,
+            "image": image,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_container_service(
@@ -2910,14 +2987,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.delete_container_service_request.DeleteContainerServiceRequest = {}  # type: ignore[typeddict-item]
-        input_["service_name"] = service_name
+        input_: capo_lightsail.types.delete_container_service_request.DeleteContainerServiceRequest = {
+            "service_name": service_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_disk(
@@ -2960,8 +3039,9 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.delete_disk_request.DeleteDiskRequest = {}  # type: ignore[typeddict-item]
-        input_["disk_name"] = disk_name
+        input_: capo_lightsail.types.delete_disk_request.DeleteDiskRequest = {
+            "disk_name": disk_name
+        }
         if force_delete_add_ons is not None:
             input_["force_delete_add_ons"] = force_delete_add_ons
 
@@ -2970,6 +3050,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_disk_snapshot(
@@ -3010,14 +3091,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.delete_disk_snapshot_request.DeleteDiskSnapshotRequest = {}  # type: ignore[typeddict-item]
-        input_["disk_snapshot_name"] = disk_snapshot_name
+        input_: capo_lightsail.types.delete_disk_snapshot_request.DeleteDiskSnapshotRequest = {
+            "disk_snapshot_name": disk_snapshot_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_distribution(
@@ -3058,7 +3141,7 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.delete_distribution_request.DeleteDistributionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lightsail.types.delete_distribution_request.DeleteDistributionRequest = {}
         if distribution_name is not None:
             input_["distribution_name"] = distribution_name
 
@@ -3067,6 +3150,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_domain(
@@ -3107,14 +3191,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.delete_domain_request.DeleteDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_lightsail.types.delete_domain_request.DeleteDomainRequest = {
+            "domain_name": domain_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_domain_entry(
@@ -3157,15 +3243,17 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.delete_domain_entry_request.DeleteDomainEntryRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["domain_entry"] = domain_entry
+        input_: capo_lightsail.types.delete_domain_entry_request.DeleteDomainEntryRequest = {
+            "domain_name": domain_name,
+            "domain_entry": domain_entry,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_instance(
@@ -3208,8 +3296,9 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.delete_instance_request.DeleteInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_name"] = instance_name
+        input_: capo_lightsail.types.delete_instance_request.DeleteInstanceRequest = {
+            "instance_name": instance_name
+        }
         if force_delete_add_ons is not None:
             input_["force_delete_add_ons"] = force_delete_add_ons
 
@@ -3218,6 +3307,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_instance_snapshot(
@@ -3258,14 +3348,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.delete_instance_snapshot_request.DeleteInstanceSnapshotRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_snapshot_name"] = instance_snapshot_name
+        input_: capo_lightsail.types.delete_instance_snapshot_request.DeleteInstanceSnapshotRequest = {
+            "instance_snapshot_name": instance_snapshot_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_key_pair(
@@ -3308,8 +3400,9 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.delete_key_pair_request.DeleteKeyPairRequest = {}  # type: ignore[typeddict-item]
-        input_["key_pair_name"] = key_pair_name
+        input_: capo_lightsail.types.delete_key_pair_request.DeleteKeyPairRequest = {
+            "key_pair_name": key_pair_name
+        }
         if expected_fingerprint is not None:
             input_["expected_fingerprint"] = expected_fingerprint
 
@@ -3318,6 +3411,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_known_host_keys(
@@ -3358,14 +3452,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.delete_known_host_keys_request.DeleteKnownHostKeysRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_name"] = instance_name
+        input_: capo_lightsail.types.delete_known_host_keys_request.DeleteKnownHostKeysRequest = {
+            "instance_name": instance_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_load_balancer(
@@ -3406,14 +3502,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.delete_load_balancer_request.DeleteLoadBalancerRequest = {}  # type: ignore[typeddict-item]
-        input_["load_balancer_name"] = load_balancer_name
+        input_: capo_lightsail.types.delete_load_balancer_request.DeleteLoadBalancerRequest = {
+            "load_balancer_name": load_balancer_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_load_balancer_tls_certificate(
@@ -3458,9 +3556,10 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.delete_load_balancer_tls_certificate_request.DeleteLoadBalancerTlsCertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["load_balancer_name"] = load_balancer_name
-        input_["certificate_name"] = certificate_name
+        input_: capo_lightsail.types.delete_load_balancer_tls_certificate_request.DeleteLoadBalancerTlsCertificateRequest = {
+            "load_balancer_name": load_balancer_name,
+            "certificate_name": certificate_name,
+        }
         if force is not None:
             input_["force"] = force
 
@@ -3469,6 +3568,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_relational_database(
@@ -3515,8 +3615,9 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.delete_relational_database_request.DeleteRelationalDatabaseRequest = {}  # type: ignore[typeddict-item]
-        input_["relational_database_name"] = relational_database_name
+        input_: capo_lightsail.types.delete_relational_database_request.DeleteRelationalDatabaseRequest = {
+            "relational_database_name": relational_database_name
+        }
         if skip_final_snapshot is not None:
             input_["skip_final_snapshot"] = skip_final_snapshot
         if final_relational_database_snapshot_name is not None:
@@ -3529,6 +3630,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_relational_database_snapshot(
@@ -3569,14 +3671,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.delete_relational_database_snapshot_request.DeleteRelationalDatabaseSnapshotRequest = {}  # type: ignore[typeddict-item]
-        input_["relational_database_snapshot_name"] = relational_database_snapshot_name
+        input_: capo_lightsail.types.delete_relational_database_snapshot_request.DeleteRelationalDatabaseSnapshotRequest = {
+            "relational_database_snapshot_name": relational_database_snapshot_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def detach_certificate_from_distribution(
@@ -3615,14 +3719,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.detach_certificate_from_distribution_request.DetachCertificateFromDistributionRequest = {}  # type: ignore[typeddict-item]
-        input_["distribution_name"] = distribution_name
+        input_: capo_lightsail.types.detach_certificate_from_distribution_request.DetachCertificateFromDistributionRequest = {
+            "distribution_name": distribution_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def detach_disk(
@@ -3663,14 +3769,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.detach_disk_request.DetachDiskRequest = {}  # type: ignore[typeddict-item]
-        input_["disk_name"] = disk_name
+        input_: capo_lightsail.types.detach_disk_request.DetachDiskRequest = {
+            "disk_name": disk_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def detach_instances_from_load_balancer(
@@ -3713,15 +3821,17 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.detach_instances_from_load_balancer_request.DetachInstancesFromLoadBalancerRequest = {}  # type: ignore[typeddict-item]
-        input_["load_balancer_name"] = load_balancer_name
-        input_["instance_names"] = instance_names
+        input_: capo_lightsail.types.detach_instances_from_load_balancer_request.DetachInstancesFromLoadBalancerRequest = {
+            "load_balancer_name": load_balancer_name,
+            "instance_names": instance_names,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def detach_static_ip(
@@ -3762,14 +3872,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.detach_static_ip_request.DetachStaticIpRequest = {}  # type: ignore[typeddict-item]
-        input_["static_ip_name"] = static_ip_name
+        input_: capo_lightsail.types.detach_static_ip_request.DetachStaticIpRequest = {
+            "static_ip_name": static_ip_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disable_add_on(
@@ -3811,15 +3923,17 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.disable_add_on_request.DisableAddOnRequest = {}  # type: ignore[typeddict-item]
-        input_["add_on_type"] = add_on_type
-        input_["resource_name"] = resource_name
+        input_: capo_lightsail.types.disable_add_on_request.DisableAddOnRequest = {
+            "add_on_type": add_on_type,
+            "resource_name": resource_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def download_default_key_pair(
@@ -3854,13 +3968,14 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.download_default_key_pair_request.DownloadDefaultKeyPairRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lightsail.types.download_default_key_pair_request.DownloadDefaultKeyPairRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def enable_add_on(
@@ -3902,15 +4017,17 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.enable_add_on_request.EnableAddOnRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_name"] = resource_name
-        input_["add_on_request"] = add_on_request
+        input_: capo_lightsail.types.enable_add_on_request.EnableAddOnRequest = {
+            "resource_name": resource_name,
+            "add_on_request": add_on_request,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def export_snapshot(
@@ -3951,14 +4068,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.export_snapshot_request.ExportSnapshotRequest = {}  # type: ignore[typeddict-item]
-        input_["source_snapshot_name"] = source_snapshot_name
+        input_: capo_lightsail.types.export_snapshot_request.ExportSnapshotRequest = {
+            "source_snapshot_name": source_snapshot_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_active_names(
@@ -3999,7 +4118,7 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_active_names_request.GetActiveNamesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lightsail.types.get_active_names_request.GetActiveNamesRequest = {}
         if page_token is not None:
             input_["page_token"] = page_token
 
@@ -4008,6 +4127,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_alarms(
@@ -4053,7 +4173,7 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_alarms_request.GetAlarmsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lightsail.types.get_alarms_request.GetAlarmsRequest = {}
         if alarm_name is not None:
             input_["alarm_name"] = alarm_name
         if page_token is not None:
@@ -4066,6 +4186,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_auto_snapshots(
@@ -4105,14 +4226,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_auto_snapshots_request.GetAutoSnapshotsRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_name"] = resource_name
+        input_: capo_lightsail.types.get_auto_snapshots_request.GetAutoSnapshotsRequest = {
+            "resource_name": resource_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_blueprints(
@@ -4157,7 +4280,7 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_blueprints_request.GetBlueprintsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lightsail.types.get_blueprints_request.GetBlueprintsRequest = {}
         if include_inactive is not None:
             input_["include_inactive"] = include_inactive
         if page_token is not None:
@@ -4170,6 +4293,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_bucket_access_keys(
@@ -4208,14 +4332,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_bucket_access_keys_request.GetBucketAccessKeysRequest = {}  # type: ignore[typeddict-item]
-        input_["bucket_name"] = bucket_name
+        input_: capo_lightsail.types.get_bucket_access_keys_request.GetBucketAccessKeysRequest = {
+            "bucket_name": bucket_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_bucket_bundles(
@@ -4253,7 +4379,7 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_bucket_bundles_request.GetBucketBundlesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lightsail.types.get_bucket_bundles_request.GetBucketBundlesRequest = {}
         if include_inactive is not None:
             input_["include_inactive"] = include_inactive
 
@@ -4262,6 +4388,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_bucket_metric_data(
@@ -4312,20 +4439,22 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_bucket_metric_data_request.GetBucketMetricDataRequest = {}  # type: ignore[typeddict-item]
-        input_["bucket_name"] = bucket_name
-        input_["metric_name"] = metric_name
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
-        input_["period"] = period
-        input_["statistics"] = statistics
-        input_["unit"] = unit
+        input_: capo_lightsail.types.get_bucket_metric_data_request.GetBucketMetricDataRequest = {
+            "bucket_name": bucket_name,
+            "metric_name": metric_name,
+            "start_time": start_time,
+            "end_time": end_time,
+            "period": period,
+            "statistics": statistics,
+            "unit": unit,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_buckets(
@@ -4372,7 +4501,7 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_buckets_request.GetBucketsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lightsail.types.get_buckets_request.GetBucketsRequest = {}
         if bucket_name is not None:
             input_["bucket_name"] = bucket_name
         if page_token is not None:
@@ -4387,6 +4516,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_bundles(
@@ -4431,7 +4561,7 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_bundles_request.GetBundlesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lightsail.types.get_bundles_request.GetBundlesRequest = {}
         if include_inactive is not None:
             input_["include_inactive"] = include_inactive
         if page_token is not None:
@@ -4444,6 +4574,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_certificates(
@@ -4494,7 +4625,7 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_certificates_request.GetCertificatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lightsail.types.get_certificates_request.GetCertificatesRequest = {}
         if certificate_statuses is not None:
             input_["certificate_statuses"] = certificate_statuses
         if include_certificate_details is not None:
@@ -4509,6 +4640,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_cloud_formation_stack_records(
@@ -4549,7 +4681,7 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_cloud_formation_stack_records_request.GetCloudFormationStackRecordsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lightsail.types.get_cloud_formation_stack_records_request.GetCloudFormationStackRecordsRequest = {}
         if page_token is not None:
             input_["page_token"] = page_token
 
@@ -4558,6 +4690,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_contact_methods(
@@ -4599,7 +4732,7 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_contact_methods_request.GetContactMethodsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lightsail.types.get_contact_methods_request.GetContactMethodsRequest = {}
         if protocols is not None:
             input_["protocols"] = protocols
 
@@ -4608,6 +4741,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_container_api_metadata(
@@ -4638,13 +4772,14 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_container_api_metadata_request.GetContainerAPIMetadataRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lightsail.types.get_container_api_metadata_request.GetContainerAPIMetadataRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_container_images(
@@ -4683,14 +4818,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_container_images_request.GetContainerImagesRequest = {}  # type: ignore[typeddict-item]
-        input_["service_name"] = service_name
+        input_: capo_lightsail.types.get_container_images_request.GetContainerImagesRequest = {
+            "service_name": service_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_container_log(
@@ -4739,9 +4876,10 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_container_log_request.GetContainerLogRequest = {}  # type: ignore[typeddict-item]
-        input_["service_name"] = service_name
-        input_["container_name"] = container_name
+        input_: capo_lightsail.types.get_container_log_request.GetContainerLogRequest = {
+            "service_name": service_name,
+            "container_name": container_name,
+        }
         if start_time is not None:
             input_["start_time"] = start_time
         if end_time is not None:
@@ -4756,6 +4894,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_container_service_deployments(
@@ -4794,14 +4933,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_container_service_deployments_request.GetContainerServiceDeploymentsRequest = {}  # type: ignore[typeddict-item]
-        input_["service_name"] = service_name
+        input_: capo_lightsail.types.get_container_service_deployments_request.GetContainerServiceDeploymentsRequest = {
+            "service_name": service_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_container_service_metric_data(
@@ -4850,19 +4991,21 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_container_service_metric_data_request.GetContainerServiceMetricDataRequest = {}  # type: ignore[typeddict-item]
-        input_["service_name"] = service_name
-        input_["metric_name"] = metric_name
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
-        input_["period"] = period
-        input_["statistics"] = statistics
+        input_: capo_lightsail.types.get_container_service_metric_data_request.GetContainerServiceMetricDataRequest = {
+            "service_name": service_name,
+            "metric_name": metric_name,
+            "start_time": start_time,
+            "end_time": end_time,
+            "period": period,
+            "statistics": statistics,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_container_service_powers(
@@ -4895,13 +5038,14 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_container_service_powers_request.GetContainerServicePowersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lightsail.types.get_container_service_powers_request.GetContainerServicePowersRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_container_services(
@@ -4942,7 +5086,7 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_container_services_request.GetContainerServicesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lightsail.types.get_container_services_request.GetContainerServicesRequest = {}
         if service_name is not None:
             input_["service_name"] = service_name
 
@@ -4951,6 +5095,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_cost_estimate(
@@ -4993,16 +5138,18 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_cost_estimate_request.GetCostEstimateRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_name"] = resource_name
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
+        input_: capo_lightsail.types.get_cost_estimate_request.GetCostEstimateRequest = {
+            "resource_name": resource_name,
+            "start_time": start_time,
+            "end_time": end_time,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_disk(
@@ -5041,14 +5188,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_disk_request.GetDiskRequest = {}  # type: ignore[typeddict-item]
-        input_["disk_name"] = disk_name
+        input_: capo_lightsail.types.get_disk_request.GetDiskRequest = {
+            "disk_name": disk_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_disks(
@@ -5087,7 +5236,7 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_disks_request.GetDisksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lightsail.types.get_disks_request.GetDisksRequest = {}
         if page_token is not None:
             input_["page_token"] = page_token
 
@@ -5096,6 +5245,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_disk_snapshot(
@@ -5136,14 +5286,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_disk_snapshot_request.GetDiskSnapshotRequest = {}  # type: ignore[typeddict-item]
-        input_["disk_snapshot_name"] = disk_snapshot_name
+        input_: capo_lightsail.types.get_disk_snapshot_request.GetDiskSnapshotRequest = {
+            "disk_snapshot_name": disk_snapshot_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_disk_snapshots(
@@ -5184,7 +5336,7 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_disk_snapshots_request.GetDiskSnapshotsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lightsail.types.get_disk_snapshots_request.GetDiskSnapshotsRequest = {}
         if page_token is not None:
             input_["page_token"] = page_token
 
@@ -5193,6 +5345,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_distribution_bundles(
@@ -5225,13 +5378,14 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_distribution_bundles_request.GetDistributionBundlesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lightsail.types.get_distribution_bundles_request.GetDistributionBundlesRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_distribution_latest_cache_reset(
@@ -5272,7 +5426,7 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_distribution_latest_cache_reset_request.GetDistributionLatestCacheResetRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lightsail.types.get_distribution_latest_cache_reset_request.GetDistributionLatestCacheResetRequest = {}
         if distribution_name is not None:
             input_["distribution_name"] = distribution_name
 
@@ -5281,6 +5435,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_distribution_metric_data(
@@ -5331,20 +5486,22 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_distribution_metric_data_request.GetDistributionMetricDataRequest = {}  # type: ignore[typeddict-item]
-        input_["distribution_name"] = distribution_name
-        input_["metric_name"] = metric_name
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
-        input_["period"] = period
-        input_["unit"] = unit
-        input_["statistics"] = statistics
+        input_: capo_lightsail.types.get_distribution_metric_data_request.GetDistributionMetricDataRequest = {
+            "distribution_name": distribution_name,
+            "metric_name": metric_name,
+            "start_time": start_time,
+            "end_time": end_time,
+            "period": period,
+            "unit": unit,
+            "statistics": statistics,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_distributions(
@@ -5387,7 +5544,7 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_distributions_request.GetDistributionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lightsail.types.get_distributions_request.GetDistributionsRequest = {}
         if distribution_name is not None:
             input_["distribution_name"] = distribution_name
         if page_token is not None:
@@ -5398,6 +5555,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_domain(
@@ -5438,14 +5596,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_domain_request.GetDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_lightsail.types.get_domain_request.GetDomainRequest = {
+            "domain_name": domain_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_domains(
@@ -5486,7 +5646,7 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_domains_request.GetDomainsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lightsail.types.get_domains_request.GetDomainsRequest = {}
         if page_token is not None:
             input_["page_token"] = page_token
 
@@ -5495,6 +5655,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_export_snapshot_records(
@@ -5535,7 +5696,7 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_export_snapshot_records_request.GetExportSnapshotRecordsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lightsail.types.get_export_snapshot_records_request.GetExportSnapshotRecordsRequest = {}
         if page_token is not None:
             input_["page_token"] = page_token
 
@@ -5544,6 +5705,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_instance(
@@ -5584,14 +5746,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_instance_request.GetInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_name"] = instance_name
+        input_: capo_lightsail.types.get_instance_request.GetInstanceRequest = {
+            "instance_name": instance_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_instance_access_details(
@@ -5636,8 +5800,9 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_instance_access_details_request.GetInstanceAccessDetailsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_name"] = instance_name
+        input_: capo_lightsail.types.get_instance_access_details_request.GetInstanceAccessDetailsRequest = {
+            "instance_name": instance_name
+        }
         if protocol is not None:
             input_["protocol"] = protocol
 
@@ -5646,6 +5811,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_instance_metric_data(
@@ -5698,20 +5864,22 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_instance_metric_data_request.GetInstanceMetricDataRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_name"] = instance_name
-        input_["metric_name"] = metric_name
-        input_["period"] = period
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
-        input_["unit"] = unit
-        input_["statistics"] = statistics
+        input_: capo_lightsail.types.get_instance_metric_data_request.GetInstanceMetricDataRequest = {
+            "instance_name": instance_name,
+            "metric_name": metric_name,
+            "period": period,
+            "start_time": start_time,
+            "end_time": end_time,
+            "unit": unit,
+            "statistics": statistics,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_instance_port_states(
@@ -5752,14 +5920,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_instance_port_states_request.GetInstancePortStatesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_name"] = instance_name
+        input_: capo_lightsail.types.get_instance_port_states_request.GetInstancePortStatesRequest = {
+            "instance_name": instance_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_instances(
@@ -5800,7 +5970,7 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_instances_request.GetInstancesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lightsail.types.get_instances_request.GetInstancesRequest = {}
         if page_token is not None:
             input_["page_token"] = page_token
 
@@ -5809,6 +5979,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_instance_snapshot(
@@ -5849,14 +6020,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_instance_snapshot_request.GetInstanceSnapshotRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_snapshot_name"] = instance_snapshot_name
+        input_: capo_lightsail.types.get_instance_snapshot_request.GetInstanceSnapshotRequest = {
+            "instance_snapshot_name": instance_snapshot_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_instance_snapshots(
@@ -5899,7 +6072,7 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_instance_snapshots_request.GetInstanceSnapshotsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lightsail.types.get_instance_snapshots_request.GetInstanceSnapshotsRequest = {}
         if page_token is not None:
             input_["page_token"] = page_token
 
@@ -5908,6 +6081,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_instance_state(
@@ -5948,14 +6122,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_instance_state_request.GetInstanceStateRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_name"] = instance_name
+        input_: capo_lightsail.types.get_instance_state_request.GetInstanceStateRequest = {
+            "instance_name": instance_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_key_pair(
@@ -5996,14 +6172,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_key_pair_request.GetKeyPairRequest = {}  # type: ignore[typeddict-item]
-        input_["key_pair_name"] = key_pair_name
+        input_: capo_lightsail.types.get_key_pair_request.GetKeyPairRequest = {
+            "key_pair_name": key_pair_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_key_pairs(
@@ -6048,7 +6226,7 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_key_pairs_request.GetKeyPairsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lightsail.types.get_key_pairs_request.GetKeyPairsRequest = {}
         if page_token is not None:
             input_["page_token"] = page_token
         if include_default_key_pair is not None:
@@ -6059,6 +6237,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_load_balancer(
@@ -6099,14 +6278,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_load_balancer_request.GetLoadBalancerRequest = {}  # type: ignore[typeddict-item]
-        input_["load_balancer_name"] = load_balancer_name
+        input_: capo_lightsail.types.get_load_balancer_request.GetLoadBalancerRequest = {
+            "load_balancer_name": load_balancer_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_load_balancer_metric_data(
@@ -6159,20 +6340,22 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_load_balancer_metric_data_request.GetLoadBalancerMetricDataRequest = {}  # type: ignore[typeddict-item]
-        input_["load_balancer_name"] = load_balancer_name
-        input_["metric_name"] = metric_name
-        input_["period"] = period
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
-        input_["unit"] = unit
-        input_["statistics"] = statistics
+        input_: capo_lightsail.types.get_load_balancer_metric_data_request.GetLoadBalancerMetricDataRequest = {
+            "load_balancer_name": load_balancer_name,
+            "metric_name": metric_name,
+            "period": period,
+            "start_time": start_time,
+            "end_time": end_time,
+            "unit": unit,
+            "statistics": statistics,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_load_balancers(
@@ -6213,7 +6396,7 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_load_balancers_request.GetLoadBalancersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lightsail.types.get_load_balancers_request.GetLoadBalancersRequest = {}
         if page_token is not None:
             input_["page_token"] = page_token
 
@@ -6222,6 +6405,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_load_balancer_tls_certificates(
@@ -6262,14 +6446,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_load_balancer_tls_certificates_request.GetLoadBalancerTlsCertificatesRequest = {}  # type: ignore[typeddict-item]
-        input_["load_balancer_name"] = load_balancer_name
+        input_: capo_lightsail.types.get_load_balancer_tls_certificates_request.GetLoadBalancerTlsCertificatesRequest = {
+            "load_balancer_name": load_balancer_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_load_balancer_tls_policies(
@@ -6308,7 +6494,7 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_load_balancer_tls_policies_request.GetLoadBalancerTlsPoliciesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lightsail.types.get_load_balancer_tls_policies_request.GetLoadBalancerTlsPoliciesRequest = {}
         if page_token is not None:
             input_["page_token"] = page_token
 
@@ -6317,6 +6503,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_operation(
@@ -6357,14 +6544,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_operation_request.GetOperationRequest = {}  # type: ignore[typeddict-item]
-        input_["operation_id"] = operation_id
+        input_: capo_lightsail.types.get_operation_request.GetOperationRequest = {
+            "operation_id": operation_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_operations(
@@ -6405,7 +6594,7 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_operations_request.GetOperationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lightsail.types.get_operations_request.GetOperationsRequest = {}
         if page_token is not None:
             input_["page_token"] = page_token
 
@@ -6414,6 +6603,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_operations_for_resource(
@@ -6456,8 +6646,9 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_operations_for_resource_request.GetOperationsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_name"] = resource_name
+        input_: capo_lightsail.types.get_operations_for_resource_request.GetOperationsForResourceRequest = {
+            "resource_name": resource_name
+        }
         if page_token is not None:
             input_["page_token"] = page_token
 
@@ -6466,6 +6657,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_regions(
@@ -6512,7 +6704,7 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_regions_request.GetRegionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lightsail.types.get_regions_request.GetRegionsRequest = {}
         if include_availability_zones is not None:
             input_["include_availability_zones"] = include_availability_zones
         if include_relational_database_availability_zones is not None:
@@ -6525,6 +6717,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_relational_database(
@@ -6565,14 +6758,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_relational_database_request.GetRelationalDatabaseRequest = {}  # type: ignore[typeddict-item]
-        input_["relational_database_name"] = relational_database_name
+        input_: capo_lightsail.types.get_relational_database_request.GetRelationalDatabaseRequest = {
+            "relational_database_name": relational_database_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_relational_database_blueprints(
@@ -6613,7 +6808,7 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_relational_database_blueprints_request.GetRelationalDatabaseBlueprintsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lightsail.types.get_relational_database_blueprints_request.GetRelationalDatabaseBlueprintsRequest = {}
         if page_token is not None:
             input_["page_token"] = page_token
 
@@ -6622,6 +6817,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_relational_database_bundles(
@@ -6664,7 +6860,7 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_relational_database_bundles_request.GetRelationalDatabaseBundlesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lightsail.types.get_relational_database_bundles_request.GetRelationalDatabaseBundlesRequest = {}
         if page_token is not None:
             input_["page_token"] = page_token
         if include_inactive is not None:
@@ -6675,6 +6871,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_relational_database_events(
@@ -6719,8 +6916,9 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_relational_database_events_request.GetRelationalDatabaseEventsRequest = {}  # type: ignore[typeddict-item]
-        input_["relational_database_name"] = relational_database_name
+        input_: capo_lightsail.types.get_relational_database_events_request.GetRelationalDatabaseEventsRequest = {
+            "relational_database_name": relational_database_name
+        }
         if duration_in_minutes is not None:
             input_["duration_in_minutes"] = duration_in_minutes
         if page_token is not None:
@@ -6731,6 +6929,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_relational_database_log_events(
@@ -6781,9 +6980,10 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_relational_database_log_events_request.GetRelationalDatabaseLogEventsRequest = {}  # type: ignore[typeddict-item]
-        input_["relational_database_name"] = relational_database_name
-        input_["log_stream_name"] = log_stream_name
+        input_: capo_lightsail.types.get_relational_database_log_events_request.GetRelationalDatabaseLogEventsRequest = {
+            "relational_database_name": relational_database_name,
+            "log_stream_name": log_stream_name,
+        }
         if start_time is not None:
             input_["start_time"] = start_time
         if end_time is not None:
@@ -6798,6 +6998,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_relational_database_log_streams(
@@ -6838,14 +7039,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_relational_database_log_streams_request.GetRelationalDatabaseLogStreamsRequest = {}  # type: ignore[typeddict-item]
-        input_["relational_database_name"] = relational_database_name
+        input_: capo_lightsail.types.get_relational_database_log_streams_request.GetRelationalDatabaseLogStreamsRequest = {
+            "relational_database_name": relational_database_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_relational_database_master_user_password(
@@ -6890,8 +7093,9 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_relational_database_master_user_password_request.GetRelationalDatabaseMasterUserPasswordRequest = {}  # type: ignore[typeddict-item]
-        input_["relational_database_name"] = relational_database_name
+        input_: capo_lightsail.types.get_relational_database_master_user_password_request.GetRelationalDatabaseMasterUserPasswordRequest = {
+            "relational_database_name": relational_database_name
+        }
         if password_version is not None:
             input_["password_version"] = password_version
 
@@ -6900,6 +7104,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_relational_database_metric_data(
@@ -6952,20 +7157,22 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_relational_database_metric_data_request.GetRelationalDatabaseMetricDataRequest = {}  # type: ignore[typeddict-item]
-        input_["relational_database_name"] = relational_database_name
-        input_["metric_name"] = metric_name
-        input_["period"] = period
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
-        input_["unit"] = unit
-        input_["statistics"] = statistics
+        input_: capo_lightsail.types.get_relational_database_metric_data_request.GetRelationalDatabaseMetricDataRequest = {
+            "relational_database_name": relational_database_name,
+            "metric_name": metric_name,
+            "period": period,
+            "start_time": start_time,
+            "end_time": end_time,
+            "unit": unit,
+            "statistics": statistics,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_relational_database_parameters(
@@ -7008,8 +7215,9 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_relational_database_parameters_request.GetRelationalDatabaseParametersRequest = {}  # type: ignore[typeddict-item]
-        input_["relational_database_name"] = relational_database_name
+        input_: capo_lightsail.types.get_relational_database_parameters_request.GetRelationalDatabaseParametersRequest = {
+            "relational_database_name": relational_database_name
+        }
         if page_token is not None:
             input_["page_token"] = page_token
 
@@ -7018,6 +7226,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_relational_databases(
@@ -7058,7 +7267,7 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_relational_databases_request.GetRelationalDatabasesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lightsail.types.get_relational_databases_request.GetRelationalDatabasesRequest = {}
         if page_token is not None:
             input_["page_token"] = page_token
 
@@ -7067,6 +7276,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_relational_database_snapshot(
@@ -7107,14 +7317,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_relational_database_snapshot_request.GetRelationalDatabaseSnapshotRequest = {}  # type: ignore[typeddict-item]
-        input_["relational_database_snapshot_name"] = relational_database_snapshot_name
+        input_: capo_lightsail.types.get_relational_database_snapshot_request.GetRelationalDatabaseSnapshotRequest = {
+            "relational_database_snapshot_name": relational_database_snapshot_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_relational_database_snapshots(
@@ -7155,7 +7367,7 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_relational_database_snapshots_request.GetRelationalDatabaseSnapshotsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lightsail.types.get_relational_database_snapshots_request.GetRelationalDatabaseSnapshotsRequest = {}
         if page_token is not None:
             input_["page_token"] = page_token
 
@@ -7164,6 +7376,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_setup_history(
@@ -7206,8 +7419,9 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_setup_history_request.GetSetupHistoryRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_name"] = resource_name
+        input_: capo_lightsail.types.get_setup_history_request.GetSetupHistoryRequest = {
+            "resource_name": resource_name
+        }
         if page_token is not None:
             input_["page_token"] = page_token
 
@@ -7216,6 +7430,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_static_ip(
@@ -7256,14 +7471,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_static_ip_request.GetStaticIpRequest = {}  # type: ignore[typeddict-item]
-        input_["static_ip_name"] = static_ip_name
+        input_: capo_lightsail.types.get_static_ip_request.GetStaticIpRequest = {
+            "static_ip_name": static_ip_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_static_ips(
@@ -7304,7 +7521,7 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.get_static_ips_request.GetStaticIpsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lightsail.types.get_static_ips_request.GetStaticIpsRequest = {}
         if page_token is not None:
             input_["page_token"] = page_token
 
@@ -7313,6 +7530,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def import_key_pair(
@@ -7355,15 +7573,17 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.import_key_pair_request.ImportKeyPairRequest = {}  # type: ignore[typeddict-item]
-        input_["key_pair_name"] = key_pair_name
-        input_["public_key_base64"] = public_key_base64
+        input_: capo_lightsail.types.import_key_pair_request.ImportKeyPairRequest = {
+            "key_pair_name": key_pair_name,
+            "public_key_base64": public_key_base64,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def is_vpc_peered(
@@ -7398,13 +7618,14 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.is_vpc_peered_request.IsVpcPeeredRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lightsail.types.is_vpc_peered_request.IsVpcPeeredRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def open_instance_public_ports(
@@ -7447,15 +7668,17 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.open_instance_public_ports_request.OpenInstancePublicPortsRequest = {}  # type: ignore[typeddict-item]
-        input_["port_info"] = port_info
-        input_["instance_name"] = instance_name
+        input_: capo_lightsail.types.open_instance_public_ports_request.OpenInstancePublicPortsRequest = {
+            "port_info": port_info,
+            "instance_name": instance_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def peer_vpc(
@@ -7488,13 +7711,14 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.peer_vpc_request.PeerVpcRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lightsail.types.peer_vpc_request.PeerVpcRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_alarm(
@@ -7560,13 +7784,14 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.put_alarm_request.PutAlarmRequest = {}  # type: ignore[typeddict-item]
-        input_["alarm_name"] = alarm_name
-        input_["metric_name"] = metric_name
-        input_["monitored_resource_name"] = monitored_resource_name
-        input_["comparison_operator"] = comparison_operator
-        input_["threshold"] = threshold
-        input_["evaluation_periods"] = evaluation_periods
+        input_: capo_lightsail.types.put_alarm_request.PutAlarmRequest = {
+            "alarm_name": alarm_name,
+            "metric_name": metric_name,
+            "monitored_resource_name": monitored_resource_name,
+            "comparison_operator": comparison_operator,
+            "threshold": threshold,
+            "evaluation_periods": evaluation_periods,
+        }
         if datapoints_to_alarm is not None:
             input_["datapoints_to_alarm"] = datapoints_to_alarm
         if treat_missing_data is not None:
@@ -7585,6 +7810,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_instance_public_ports(
@@ -7627,15 +7853,17 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.put_instance_public_ports_request.PutInstancePublicPortsRequest = {}  # type: ignore[typeddict-item]
-        input_["port_infos"] = port_infos
-        input_["instance_name"] = instance_name
+        input_: capo_lightsail.types.put_instance_public_ports_request.PutInstancePublicPortsRequest = {
+            "port_infos": port_infos,
+            "instance_name": instance_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def reboot_instance(
@@ -7676,14 +7904,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.reboot_instance_request.RebootInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_name"] = instance_name
+        input_: capo_lightsail.types.reboot_instance_request.RebootInstanceRequest = {
+            "instance_name": instance_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def reboot_relational_database(
@@ -7724,14 +7954,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.reboot_relational_database_request.RebootRelationalDatabaseRequest = {}  # type: ignore[typeddict-item]
-        input_["relational_database_name"] = relational_database_name
+        input_: capo_lightsail.types.reboot_relational_database_request.RebootRelationalDatabaseRequest = {
+            "relational_database_name": relational_database_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def register_container_image(
@@ -7774,16 +8006,18 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.register_container_image_request.RegisterContainerImageRequest = {}  # type: ignore[typeddict-item]
-        input_["service_name"] = service_name
-        input_["label"] = label
-        input_["digest"] = digest
+        input_: capo_lightsail.types.register_container_image_request.RegisterContainerImageRequest = {
+            "service_name": service_name,
+            "label": label,
+            "digest": digest,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def release_static_ip(
@@ -7824,14 +8058,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.release_static_ip_request.ReleaseStaticIpRequest = {}  # type: ignore[typeddict-item]
-        input_["static_ip_name"] = static_ip_name
+        input_: capo_lightsail.types.release_static_ip_request.ReleaseStaticIpRequest = {
+            "static_ip_name": static_ip_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def reset_distribution_cache(
@@ -7872,7 +8108,7 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.reset_distribution_cache_request.ResetDistributionCacheRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lightsail.types.reset_distribution_cache_request.ResetDistributionCacheRequest = {}
         if distribution_name is not None:
             input_["distribution_name"] = distribution_name
 
@@ -7881,6 +8117,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def send_contact_method_verification(
@@ -7920,14 +8157,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.send_contact_method_verification_request.SendContactMethodVerificationRequest = {}  # type: ignore[typeddict-item]
-        input_["protocol"] = protocol
+        input_: capo_lightsail.types.send_contact_method_verification_request.SendContactMethodVerificationRequest = {
+            "protocol": protocol
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def set_ip_address_type(
@@ -7974,10 +8213,11 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.set_ip_address_type_request.SetIpAddressTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_type"] = resource_type
-        input_["resource_name"] = resource_name
-        input_["ip_address_type"] = ip_address_type
+        input_: capo_lightsail.types.set_ip_address_type_request.SetIpAddressTypeRequest = {
+            "resource_type": resource_type,
+            "resource_name": resource_name,
+            "ip_address_type": ip_address_type,
+        }
         if accept_bundle_update is not None:
             input_["accept_bundle_update"] = accept_bundle_update
 
@@ -7986,6 +8226,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def set_resource_access_for_bucket(
@@ -8028,16 +8269,18 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.set_resource_access_for_bucket_request.SetResourceAccessForBucketRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_name"] = resource_name
-        input_["bucket_name"] = bucket_name
-        input_["access"] = access
+        input_: capo_lightsail.types.set_resource_access_for_bucket_request.SetResourceAccessForBucketRequest = {
+            "resource_name": resource_name,
+            "bucket_name": bucket_name,
+            "access": access,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def setup_instance_https(
@@ -8082,17 +8325,19 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.setup_instance_https_request.SetupInstanceHttpsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_name"] = instance_name
-        input_["email_address"] = email_address
-        input_["domain_names"] = domain_names
-        input_["certificate_provider"] = certificate_provider
+        input_: capo_lightsail.types.setup_instance_https_request.SetupInstanceHttpsRequest = {
+            "instance_name": instance_name,
+            "email_address": email_address,
+            "domain_names": domain_names,
+            "certificate_provider": certificate_provider,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_gui_session(
@@ -8131,14 +8376,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.start_gui_session_request.StartGUISessionRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_name"] = resource_name
+        input_: capo_lightsail.types.start_gui_session_request.StartGUISessionRequest = {
+            "resource_name": resource_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_instance(
@@ -8179,14 +8426,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.start_instance_request.StartInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_name"] = instance_name
+        input_: capo_lightsail.types.start_instance_request.StartInstanceRequest = {
+            "instance_name": instance_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_relational_database(
@@ -8227,14 +8476,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.start_relational_database_request.StartRelationalDatabaseRequest = {}  # type: ignore[typeddict-item]
-        input_["relational_database_name"] = relational_database_name
+        input_: capo_lightsail.types.start_relational_database_request.StartRelationalDatabaseRequest = {
+            "relational_database_name": relational_database_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_gui_session(
@@ -8273,14 +8524,16 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.stop_gui_session_request.StopGUISessionRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_name"] = resource_name
+        input_: capo_lightsail.types.stop_gui_session_request.StopGUISessionRequest = {
+            "resource_name": resource_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_instance(
@@ -8323,8 +8576,9 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.stop_instance_request.StopInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_name"] = instance_name
+        input_: capo_lightsail.types.stop_instance_request.StopInstanceRequest = {
+            "instance_name": instance_name
+        }
         if force is not None:
             input_["force"] = force
 
@@ -8333,6 +8587,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_relational_database(
@@ -8377,8 +8632,9 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.stop_relational_database_request.StopRelationalDatabaseRequest = {}  # type: ignore[typeddict-item]
-        input_["relational_database_name"] = relational_database_name
+        input_: capo_lightsail.types.stop_relational_database_request.StopRelationalDatabaseRequest = {
+            "relational_database_name": relational_database_name
+        }
         if relational_database_snapshot_name is not None:
             input_["relational_database_snapshot_name"] = (
                 relational_database_snapshot_name
@@ -8389,6 +8645,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -8433,17 +8690,19 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_name"] = resource_name
+        input_: capo_lightsail.types.tag_resource_request.TagResourceRequest = {
+            "resource_name": resource_name,
+            "tags": tags,
+        }
         if resource_arn is not None:
             input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def test_alarm(
@@ -8485,15 +8744,17 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.test_alarm_request.TestAlarmRequest = {}  # type: ignore[typeddict-item]
-        input_["alarm_name"] = alarm_name
-        input_["state"] = state
+        input_: capo_lightsail.types.test_alarm_request.TestAlarmRequest = {
+            "alarm_name": alarm_name,
+            "state": state,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def unpeer_vpc(
@@ -8528,13 +8789,14 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.unpeer_vpc_request.UnpeerVpcRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lightsail.types.unpeer_vpc_request.UnpeerVpcRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -8579,17 +8841,19 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_name"] = resource_name
+        input_: capo_lightsail.types.untag_resource_request.UntagResourceRequest = {
+            "resource_name": resource_name,
+            "tag_keys": tag_keys,
+        }
         if resource_arn is not None:
             input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_bucket(
@@ -8646,8 +8910,9 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.update_bucket_request.UpdateBucketRequest = {}  # type: ignore[typeddict-item]
-        input_["bucket_name"] = bucket_name
+        input_: capo_lightsail.types.update_bucket_request.UpdateBucketRequest = {
+            "bucket_name": bucket_name
+        }
         if access_rules is not None:
             input_["access_rules"] = access_rules
         if versioning is not None:
@@ -8664,6 +8929,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_bucket_bundle(
@@ -8704,15 +8970,17 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.update_bucket_bundle_request.UpdateBucketBundleRequest = {}  # type: ignore[typeddict-item]
-        input_["bucket_name"] = bucket_name
-        input_["bundle_id"] = bundle_id
+        input_: capo_lightsail.types.update_bucket_bundle_request.UpdateBucketBundleRequest = {
+            "bucket_name": bucket_name,
+            "bundle_id": bundle_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_container_service(
@@ -8769,8 +9037,9 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.update_container_service_request.UpdateContainerServiceRequest = {}  # type: ignore[typeddict-item]
-        input_["service_name"] = service_name
+        input_: capo_lightsail.types.update_container_service_request.UpdateContainerServiceRequest = {
+            "service_name": service_name
+        }
         if power is not None:
             input_["power"] = power
         if scale is not None:
@@ -8787,6 +9056,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_distribution(
@@ -8853,8 +9123,9 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.update_distribution_request.UpdateDistributionRequest = {}  # type: ignore[typeddict-item]
-        input_["distribution_name"] = distribution_name
+        input_: capo_lightsail.types.update_distribution_request.UpdateDistributionRequest = {
+            "distribution_name": distribution_name
+        }
         if origin is not None:
             input_["origin"] = origin
         if default_cache_behavior is not None:
@@ -8879,6 +9150,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_distribution_bundle(
@@ -8921,7 +9193,7 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.update_distribution_bundle_request.UpdateDistributionBundleRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lightsail.types.update_distribution_bundle_request.UpdateDistributionBundleRequest = {}
         if distribution_name is not None:
             input_["distribution_name"] = distribution_name
         if bundle_id is not None:
@@ -8932,6 +9204,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_domain_entry(
@@ -8974,15 +9247,17 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.update_domain_entry_request.UpdateDomainEntryRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["domain_entry"] = domain_entry
+        input_: capo_lightsail.types.update_domain_entry_request.UpdateDomainEntryRequest = {
+            "domain_name": domain_name,
+            "domain_entry": domain_entry,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_instance_metadata_options(
@@ -9037,8 +9312,9 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.update_instance_metadata_options_request.UpdateInstanceMetadataOptionsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_name"] = instance_name
+        input_: capo_lightsail.types.update_instance_metadata_options_request.UpdateInstanceMetadataOptionsRequest = {
+            "instance_name": instance_name
+        }
         if http_tokens is not None:
             input_["http_tokens"] = http_tokens
         if http_endpoint is not None:
@@ -9053,6 +9329,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_load_balancer_attribute(
@@ -9097,16 +9374,18 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.update_load_balancer_attribute_request.UpdateLoadBalancerAttributeRequest = {}  # type: ignore[typeddict-item]
-        input_["load_balancer_name"] = load_balancer_name
-        input_["attribute_name"] = attribute_name
-        input_["attribute_value"] = attribute_value
+        input_: capo_lightsail.types.update_load_balancer_attribute_request.UpdateLoadBalancerAttributeRequest = {
+            "load_balancer_name": load_balancer_name,
+            "attribute_name": attribute_name,
+            "attribute_value": attribute_value,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_relational_database(
@@ -9181,8 +9460,9 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.update_relational_database_request.UpdateRelationalDatabaseRequest = {}  # type: ignore[typeddict-item]
-        input_["relational_database_name"] = relational_database_name
+        input_: capo_lightsail.types.update_relational_database_request.UpdateRelationalDatabaseRequest = {
+            "relational_database_name": relational_database_name
+        }
         if master_user_password is not None:
             input_["master_user_password"] = master_user_password
         if rotate_master_user_password is not None:
@@ -9211,6 +9491,7 @@ class LightsailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_relational_database_parameters(
@@ -9253,15 +9534,17 @@ class LightsailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lightsail.types.update_relational_database_parameters_request.UpdateRelationalDatabaseParametersRequest = {}  # type: ignore[typeddict-item]
-        input_["relational_database_name"] = relational_database_name
-        input_["parameters"] = parameters
+        input_: capo_lightsail.types.update_relational_database_parameters_request.UpdateRelationalDatabaseParametersRequest = {
+            "relational_database_name": relational_database_name,
+            "parameters": parameters,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

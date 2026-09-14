@@ -30,13 +30,21 @@ def serialize_aws_json_1_1(value: ToxicLabels) -> dict:
             )
         )
     if "toxicity" in value:
-        out["Toxicity"] = value["toxicity"]
+        out["Toxicity"] = (
+            "NaN"
+            if value["toxicity"] != value["toxicity"]
+            else "Infinity"
+            if value["toxicity"] == float("inf")
+            else "-Infinity"
+            if value["toxicity"] == float("-inf")
+            else value["toxicity"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> ToxicLabels:
     out: ToxicLabels = {}  # type: ignore[typeddict-item]
-    if "Labels" in data:
+    if data.get("Labels") is not None:
         import capo_comprehend.types.list_of_toxic_content
 
         out["labels"] = (
@@ -44,6 +52,6 @@ def deserialize_aws_json_1_1(data: dict) -> ToxicLabels:
                 data["Labels"]
             )
         )
-    if "Toxicity" in data:
-        out["toxicity"] = data["Toxicity"]
+    if data.get("Toxicity") is not None:
+        out["toxicity"] = float(data["Toxicity"])
     return out

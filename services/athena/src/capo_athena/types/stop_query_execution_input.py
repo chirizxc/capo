@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: StopQueryExecutionInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StopQueryExecutionInput:
     out: StopQueryExecutionInput = {}  # type: ignore[typeddict-item]
-    if "QueryExecutionId" in data:
+    if data.get("QueryExecutionId") is not None:
         out["query_execution_id"] = data["QueryExecutionId"]
     else:
         raise DeserializationError(

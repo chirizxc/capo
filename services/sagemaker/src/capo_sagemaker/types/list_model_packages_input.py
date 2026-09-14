@@ -107,7 +107,7 @@ def serialize_aws_json_1_1(value: ListModelPackagesInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListModelPackagesInput:
     out: ListModelPackagesInput = {}  # type: ignore[typeddict-item]
-    if "CreationTimeAfter" in data:
+    if data.get("CreationTimeAfter") is not None:
         import capo_sagemaker.types.creation_time
 
         out["creation_time_after"] = (
@@ -115,7 +115,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListModelPackagesInput:
                 data["CreationTimeAfter"]
             )
         )
-    if "CreationTimeBefore" in data:
+    if data.get("CreationTimeBefore") is not None:
         import capo_sagemaker.types.creation_time
 
         out["creation_time_before"] = (
@@ -123,11 +123,11 @@ def deserialize_aws_json_1_1(data: dict) -> ListModelPackagesInput:
                 data["CreationTimeBefore"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NameContains" in data:
+    if data.get("NameContains") is not None:
         out["name_contains"] = data["NameContains"]
-    if "ModelApprovalStatus" in data:
+    if data.get("ModelApprovalStatus") is not None:
         import capo_sagemaker.types.model_approval_status
 
         out["model_approval_status"] = (
@@ -135,9 +135,9 @@ def deserialize_aws_json_1_1(data: dict) -> ListModelPackagesInput:
                 data["ModelApprovalStatus"]
             )
         )
-    if "ModelPackageGroupName" in data:
+    if data.get("ModelPackageGroupName") is not None:
         out["model_package_group_name"] = data["ModelPackageGroupName"]
-    if "ModelPackageType" in data:
+    if data.get("ModelPackageType") is not None:
         import capo_sagemaker.types.model_package_type
 
         out["model_package_type"] = (
@@ -145,9 +145,9 @@ def deserialize_aws_json_1_1(data: dict) -> ListModelPackagesInput:
                 data["ModelPackageType"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "SortBy" in data:
+    if data.get("SortBy") is not None:
         import capo_sagemaker.types.model_package_sort_by
 
         out["sort_by"] = (
@@ -155,7 +155,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListModelPackagesInput:
                 data["SortBy"]
             )
         )
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         import capo_sagemaker.types.sort_order
 
         out["sort_order"] = capo_sagemaker.types.sort_order.deserialize_aws_json_1_1(

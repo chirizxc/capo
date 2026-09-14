@@ -19,16 +19,32 @@ class GPSCoordinates(TypedDict, closed=True):
 def serialize_json(value: GPSCoordinates) -> dict:
     out: dict = {}
     if "latitude" in value:
-        out["Latitude"] = value["latitude"]
+        out["Latitude"] = (
+            "NaN"
+            if value["latitude"] != value["latitude"]
+            else "Infinity"
+            if value["latitude"] == float("inf")
+            else "-Infinity"
+            if value["latitude"] == float("-inf")
+            else value["latitude"]
+        )
     if "longitude" in value:
-        out["Longitude"] = value["longitude"]
+        out["Longitude"] = (
+            "NaN"
+            if value["longitude"] != value["longitude"]
+            else "Infinity"
+            if value["longitude"] == float("inf")
+            else "-Infinity"
+            if value["longitude"] == float("-inf")
+            else value["longitude"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> GPSCoordinates:
     out: GPSCoordinates = {}  # type: ignore[typeddict-item]
-    if "Latitude" in data:
-        out["latitude"] = data["Latitude"]
-    if "Longitude" in data:
-        out["longitude"] = data["Longitude"]
+    if data.get("Latitude") is not None:
+        out["latitude"] = float(data["Latitude"])
+    if data.get("Longitude") is not None:
+        out["longitude"] = float(data["Longitude"])
     return out

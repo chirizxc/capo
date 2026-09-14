@@ -57,11 +57,11 @@ def serialize_json(value: ListUserAssociationsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListUserAssociationsRequest:
     out: ListUserAssociationsRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     else:
         raise DeserializationError("ListUserAssociationsRequest.instance_id required")
-    if "IdentityProvider" in data:
+    if data.get("IdentityProvider") is not None:
         import capo_license_manager_user_subscriptions.types.identity_provider
 
         out["identity_provider"] = (
@@ -73,9 +73,9 @@ def deserialize_json(data: dict) -> ListUserAssociationsRequest:
         raise DeserializationError(
             "ListUserAssociationsRequest.identity_provider required"
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_license_manager_user_subscriptions.types.filter_list
 
         out["filters"] = (
@@ -83,6 +83,6 @@ def deserialize_json(data: dict) -> ListUserAssociationsRequest:
                 data["Filters"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -27,5 +27,7 @@ def deserialize_json(data: dict) -> DocumentSourceUrlMap:
     for key, value in data.items():
         import capo_workdocs.types.document_source_type
 
+        if value is None:
+            continue
         out[capo_workdocs.types.document_source_type.deserialize_json(key)] = value
     return out

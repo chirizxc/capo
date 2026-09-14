@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AnalysisErrorList:
 
     out: AnalysisErrorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.analysis_error.deserialize_json(item))
     return out

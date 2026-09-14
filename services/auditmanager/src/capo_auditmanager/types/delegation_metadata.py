@@ -64,26 +64,26 @@ def serialize_json(value: DelegationMetadata) -> dict:
 
 def deserialize_json(data: dict) -> DelegationMetadata:
     out: DelegationMetadata = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "assessmentName" in data:
+    if data.get("assessmentName") is not None:
         out["assessment_name"] = data["assessmentName"]
-    if "assessmentId" in data:
+    if data.get("assessmentId") is not None:
         out["assessment_id"] = data["assessmentId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_auditmanager.types.delegation_status
 
         out["status"] = capo_auditmanager.types.delegation_status.deserialize_json(
             data["status"]
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_auditmanager.types.timestamp
 
         out["creation_time"] = capo_auditmanager.types.timestamp.deserialize_json(
             data["creationTime"]
         )
-    if "controlSetName" in data:
+    if data.get("controlSetName") is not None:
         out["control_set_name"] = data["controlSetName"]
     return out

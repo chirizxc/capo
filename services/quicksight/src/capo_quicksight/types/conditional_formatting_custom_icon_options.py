@@ -30,10 +30,10 @@ def serialize_json(value: ConditionalFormattingCustomIconOptions) -> dict:
 
 def deserialize_json(data: dict) -> ConditionalFormattingCustomIconOptions:
     out: ConditionalFormattingCustomIconOptions = {}  # type: ignore[typeddict-item]
-    if "Icon" in data:
+    if data.get("Icon") is not None:
         import capo_quicksight.types.icon
 
         out["icon"] = capo_quicksight.types.icon.deserialize_json(data["Icon"])
-    if "UnicodeIcon" in data:
+    if data.get("UnicodeIcon") is not None:
         out["unicode_icon"] = data["UnicodeIcon"]
     return out

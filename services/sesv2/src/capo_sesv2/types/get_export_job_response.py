@@ -100,9 +100,9 @@ def serialize_json(value: GetExportJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetExportJobResponse:
     out: GetExportJobResponse = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
-    if "ExportSourceType" in data:
+    if data.get("ExportSourceType") is not None:
         import capo_sesv2.types.export_source_type
 
         out["export_source_type"] = (
@@ -110,13 +110,13 @@ def deserialize_json(data: dict) -> GetExportJobResponse:
                 data["ExportSourceType"]
             )
         )
-    if "JobStatus" in data:
+    if data.get("JobStatus") is not None:
         import capo_sesv2.types.job_status
 
         out["job_status"] = capo_sesv2.types.job_status.deserialize_json(
             data["JobStatus"]
         )
-    if "ExportDestination" in data:
+    if data.get("ExportDestination") is not None:
         import capo_sesv2.types.export_destination
 
         out["export_destination"] = (
@@ -124,7 +124,7 @@ def deserialize_json(data: dict) -> GetExportJobResponse:
                 data["ExportDestination"]
             )
         )
-    if "ExportDataSource" in data:
+    if data.get("ExportDataSource") is not None:
         import capo_sesv2.types.export_data_source
 
         out["export_data_source"] = (
@@ -132,25 +132,25 @@ def deserialize_json(data: dict) -> GetExportJobResponse:
                 data["ExportDataSource"]
             )
         )
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_sesv2.types.timestamp
 
         out["created_timestamp"] = capo_sesv2.types.timestamp.deserialize_json(
             data["CreatedTimestamp"]
         )
-    if "CompletedTimestamp" in data:
+    if data.get("CompletedTimestamp") is not None:
         import capo_sesv2.types.timestamp
 
         out["completed_timestamp"] = capo_sesv2.types.timestamp.deserialize_json(
             data["CompletedTimestamp"]
         )
-    if "FailureInfo" in data:
+    if data.get("FailureInfo") is not None:
         import capo_sesv2.types.failure_info
 
         out["failure_info"] = capo_sesv2.types.failure_info.deserialize_json(
             data["FailureInfo"]
         )
-    if "Statistics" in data:
+    if data.get("Statistics") is not None:
         import capo_sesv2.types.export_statistics
 
         out["statistics"] = capo_sesv2.types.export_statistics.deserialize_json(

@@ -27,11 +27,11 @@ def serialize_json(value: PropertyMapping) -> dict:
 
 def deserialize_json(data: dict) -> PropertyMapping:
     out: PropertyMapping = {}  # type: ignore[typeddict-item]
-    if "assetModelPropertyId" in data:
+    if data.get("assetModelPropertyId") is not None:
         out["asset_model_property_id"] = data["assetModelPropertyId"]
     else:
         raise DeserializationError("PropertyMapping.asset_model_property_id required")
-    if "interfaceAssetModelPropertyId" in data:
+    if data.get("interfaceAssetModelPropertyId") is not None:
         out["interface_asset_model_property_id"] = data["interfaceAssetModelPropertyId"]
     else:
         raise DeserializationError(

@@ -47,7 +47,7 @@ def serialize_json(value: CreateWorkerRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateWorkerRequest:
     out: CreateWorkerRequest = {}  # type: ignore[typeddict-item]
-    if "hostProperties" in data:
+    if data.get("hostProperties") is not None:
         import capo_deadline.types.host_properties_request
 
         out["host_properties"] = (
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> CreateWorkerRequest:
                 data["hostProperties"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_deadline.types.tags
 
         out["tags"] = capo_deadline.types.tags.deserialize_json(data["tags"])

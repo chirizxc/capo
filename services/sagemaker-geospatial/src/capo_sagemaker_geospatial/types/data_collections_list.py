@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> DataCollectionsList:
 
     out: DataCollectionsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker_geospatial.types.raster_data_collection_metadata.deserialize_json(
                 item

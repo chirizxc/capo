@@ -41,16 +41,16 @@ def serialize_aws_json_1_1(value: AddTagsToStreamInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AddTagsToStreamInput:
     out: AddTagsToStreamInput = {}  # type: ignore[typeddict-item]
-    if "StreamName" in data:
+    if data.get("StreamName") is not None:
         out["stream_name"] = data["StreamName"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_kinesis.types.tag_map
 
         out["tags"] = capo_kinesis.types.tag_map.deserialize_aws_json_1_1(data["Tags"])
     else:
         raise DeserializationError("AddTagsToStreamInput.tags required")
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
-    if "StreamId" in data:
+    if data.get("StreamId") is not None:
         out["stream_id"] = data["StreamId"]
     return out

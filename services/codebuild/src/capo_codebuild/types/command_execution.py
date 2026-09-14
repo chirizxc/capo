@@ -100,50 +100,50 @@ def serialize_aws_json_1_1(value: CommandExecution) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CommandExecution:
     out: CommandExecution = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "sandboxId" in data:
+    if data.get("sandboxId") is not None:
         out["sandbox_id"] = data["sandboxId"]
-    if "submitTime" in data:
+    if data.get("submitTime") is not None:
         import capo_codebuild.types.timestamp
 
         out["submit_time"] = capo_codebuild.types.timestamp.deserialize_aws_json_1_1(
             data["submitTime"]
         )
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_codebuild.types.timestamp
 
         out["start_time"] = capo_codebuild.types.timestamp.deserialize_aws_json_1_1(
             data["startTime"]
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_codebuild.types.timestamp
 
         out["end_time"] = capo_codebuild.types.timestamp.deserialize_aws_json_1_1(
             data["endTime"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "command" in data:
+    if data.get("command") is not None:
         out["command"] = data["command"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_codebuild.types.command_type
 
         out["type"] = capo_codebuild.types.command_type.deserialize_aws_json_1_1(
             data["type"]
         )
-    if "exitCode" in data:
+    if data.get("exitCode") is not None:
         out["exit_code"] = data["exitCode"]
-    if "standardOutputContent" in data:
+    if data.get("standardOutputContent") is not None:
         out["standard_output_content"] = data["standardOutputContent"]
-    if "standardErrContent" in data:
+    if data.get("standardErrContent") is not None:
         out["standard_err_content"] = data["standardErrContent"]
-    if "logs" in data:
+    if data.get("logs") is not None:
         import capo_codebuild.types.logs_location
 
         out["logs"] = capo_codebuild.types.logs_location.deserialize_aws_json_1_1(
             data["logs"]
         )
-    if "sandboxArn" in data:
+    if data.get("sandboxArn") is not None:
         out["sandbox_arn"] = data["sandboxArn"]
     return out

@@ -27,7 +27,7 @@ def serialize_json(value: UpdateProxySessionResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateProxySessionResponse:
     out: UpdateProxySessionResponse = {}  # type: ignore[typeddict-item]
-    if "ProxySession" in data:
+    if data.get("ProxySession") is not None:
         import capo_chime_sdk_voice.types.proxy_session
 
         out["proxy_session"] = (

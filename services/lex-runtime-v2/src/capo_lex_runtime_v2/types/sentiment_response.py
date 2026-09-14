@@ -39,13 +39,13 @@ def serialize_json(value: SentimentResponse) -> dict:
 
 def deserialize_json(data: dict) -> SentimentResponse:
     out: SentimentResponse = {}  # type: ignore[typeddict-item]
-    if "sentiment" in data:
+    if data.get("sentiment") is not None:
         import capo_lex_runtime_v2.types.sentiment_type
 
         out["sentiment"] = capo_lex_runtime_v2.types.sentiment_type.deserialize_json(
             data["sentiment"]
         )
-    if "sentimentScore" in data:
+    if data.get("sentimentScore") is not None:
         import capo_lex_runtime_v2.types.sentiment_score
 
         out["sentiment_score"] = (

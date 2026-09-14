@@ -31,13 +31,13 @@ def serialize_json(value: CreateQueueFleetAssociationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateQueueFleetAssociationRequest:
     out: CreateQueueFleetAssociationRequest = {}  # type: ignore[typeddict-item]
-    if "queueId" in data:
+    if data.get("queueId") is not None:
         out["queue_id"] = data["queueId"]
     else:
         raise DeserializationError(
             "CreateQueueFleetAssociationRequest.queue_id required"
         )
-    if "fleetId" in data:
+    if data.get("fleetId") is not None:
         out["fleet_id"] = data["fleetId"]
     else:
         raise DeserializationError(

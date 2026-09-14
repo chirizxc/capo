@@ -52,7 +52,7 @@ def serialize_json(value: BoxPlotOptions) -> dict:
 
 def deserialize_json(data: dict) -> BoxPlotOptions:
     out: BoxPlotOptions = {}  # type: ignore[typeddict-item]
-    if "StyleOptions" in data:
+    if data.get("StyleOptions") is not None:
         import capo_quicksight.types.box_plot_style_options
 
         out["style_options"] = (
@@ -60,13 +60,13 @@ def deserialize_json(data: dict) -> BoxPlotOptions:
                 data["StyleOptions"]
             )
         )
-    if "OutlierVisibility" in data:
+    if data.get("OutlierVisibility") is not None:
         import capo_quicksight.types.visibility
 
         out["outlier_visibility"] = capo_quicksight.types.visibility.deserialize_json(
             data["OutlierVisibility"]
         )
-    if "AllDataPointsVisibility" in data:
+    if data.get("AllDataPointsVisibility") is not None:
         import capo_quicksight.types.visibility
 
         out["all_data_points_visibility"] = (

@@ -27,7 +27,7 @@ def serialize_json(value: GetWorkingLocationRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetWorkingLocationRequest:
     out: GetWorkingLocationRequest = {}  # type: ignore[typeddict-item]
-    if "locationType" in data:
+    if data.get("locationType") is not None:
         import capo_finspace_data.types.location_type
 
         out["location_type"] = capo_finspace_data.types.location_type.deserialize_json(

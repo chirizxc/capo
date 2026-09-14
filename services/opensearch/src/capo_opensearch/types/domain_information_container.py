@@ -31,7 +31,7 @@ def serialize_json(value: DomainInformationContainer) -> dict:
 
 def deserialize_json(data: dict) -> DomainInformationContainer:
     out: DomainInformationContainer = {}  # type: ignore[typeddict-item]
-    if "AWSDomainInformation" in data:
+    if data.get("AWSDomainInformation") is not None:
         import capo_opensearch.types.aws_domain_information
 
         out["aws_domain_information"] = (

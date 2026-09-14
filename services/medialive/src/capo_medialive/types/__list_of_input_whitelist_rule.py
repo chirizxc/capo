@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfInputWhitelistRule:
 
     out: __listOfInputWhitelistRule = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_medialive.types.input_whitelist_rule.deserialize_json(item))
     return out

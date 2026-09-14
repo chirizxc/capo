@@ -38,12 +38,12 @@ def deserialize_json(
     data: dict,
 ) -> AwsEcsTaskDefinitionContainerDefinitionsFirelensConfigurationDetails:
     out: AwsEcsTaskDefinitionContainerDefinitionsFirelensConfigurationDetails = {}  # type: ignore[typeddict-item]
-    if "Options" in data:
+    if data.get("Options") is not None:
         import capo_securityhub.types.field_map
 
         out["options"] = capo_securityhub.types.field_map.deserialize_json(
             data["Options"]
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     return out

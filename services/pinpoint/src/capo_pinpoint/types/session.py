@@ -36,12 +36,12 @@ def serialize_json(value: Session) -> dict:
 
 def deserialize_json(data: dict) -> Session:
     out: Session = {}  # type: ignore[typeddict-item]
-    if "Duration" in data:
+    if data.get("Duration") is not None:
         out["duration"] = data["Duration"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "StartTimestamp" in data:
+    if data.get("StartTimestamp") is not None:
         out["start_timestamp"] = data["StartTimestamp"]
-    if "StopTimestamp" in data:
+    if data.get("StopTimestamp") is not None:
         out["stop_timestamp"] = data["StopTimestamp"]
     return out

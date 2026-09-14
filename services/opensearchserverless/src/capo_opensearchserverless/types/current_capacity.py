@@ -43,7 +43,7 @@ def serialize_aws_json_1_0(value: CurrentCapacity) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CurrentCapacity:
     out: CurrentCapacity = {}  # type: ignore[typeddict-item]
-    if "search" in data:
+    if data.get("search") is not None:
         import capo_opensearchserverless.types.capacity_details
 
         out["search"] = (
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_0(data: dict) -> CurrentCapacity:
                 data["search"]
             )
         )
-    if "indexing" in data:
+    if data.get("indexing") is not None:
         import capo_opensearchserverless.types.capacity_details
 
         out["indexing"] = (

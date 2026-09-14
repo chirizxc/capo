@@ -49,9 +49,9 @@ def serialize_json(value: AccountFreeTrialInfo) -> dict:
 
 def deserialize_json(data: dict) -> AccountFreeTrialInfo:
     out: AccountFreeTrialInfo = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "dataSources" in data:
+    if data.get("dataSources") is not None:
         import capo_guardduty.types.data_sources_free_trial
 
         out["data_sources"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> AccountFreeTrialInfo:
                 data["dataSources"]
             )
         )
-    if "features" in data:
+    if data.get("features") is not None:
         import capo_guardduty.types.free_trial_feature_configurations_results
 
         out["features"] = (

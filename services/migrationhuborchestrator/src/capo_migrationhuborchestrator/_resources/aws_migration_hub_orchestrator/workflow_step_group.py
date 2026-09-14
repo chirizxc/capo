@@ -94,9 +94,10 @@ class WorkflowStepGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_migrationhuborchestrator.types.create_workflow_step_group_request.CreateWorkflowStepGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_id"] = workflow_id
-        input_["name"] = name
+        input_: capo_migrationhuborchestrator.types.create_workflow_step_group_request.CreateWorkflowStepGroupRequest = {
+            "workflow_id": workflow_id,
+            "name": name,
+        }
         if description is not None:
             input_["description"] = description
         if next is not None:
@@ -109,6 +110,7 @@ class WorkflowStepGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -148,15 +150,17 @@ class WorkflowStepGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_migrationhuborchestrator.types.get_workflow_step_group_request.GetWorkflowStepGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["workflow_id"] = workflow_id
+        input_: capo_migrationhuborchestrator.types.get_workflow_step_group_request.GetWorkflowStepGroupRequest = {
+            "id": id,
+            "workflow_id": workflow_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -212,9 +216,10 @@ class WorkflowStepGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_migrationhuborchestrator.types.update_workflow_step_group_request.UpdateWorkflowStepGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_id"] = workflow_id
-        input_["id"] = id
+        input_: capo_migrationhuborchestrator.types.update_workflow_step_group_request.UpdateWorkflowStepGroupRequest = {
+            "workflow_id": workflow_id,
+            "id": id,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -229,6 +234,7 @@ class WorkflowStepGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -268,15 +274,17 @@ class WorkflowStepGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_migrationhuborchestrator.types.delete_workflow_step_group_request.DeleteWorkflowStepGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_id"] = workflow_id
-        input_["id"] = id
+        input_: capo_migrationhuborchestrator.types.delete_workflow_step_group_request.DeleteWorkflowStepGroupRequest = {
+            "workflow_id": workflow_id,
+            "id": id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -322,18 +330,20 @@ class WorkflowStepGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_migrationhuborchestrator.types.list_workflow_step_groups_request.ListWorkflowStepGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_migrationhuborchestrator.types.list_workflow_step_groups_request.ListWorkflowStepGroupsRequest = {
+            "workflow_id": workflow_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["workflow_id"] = workflow_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -390,9 +400,10 @@ class AsyncWorkflowStepGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_migrationhuborchestrator.types.create_workflow_step_group_request.CreateWorkflowStepGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_id"] = workflow_id
-        input_["name"] = name
+        input_: capo_migrationhuborchestrator.types.create_workflow_step_group_request.CreateWorkflowStepGroupRequest = {
+            "workflow_id": workflow_id,
+            "name": name,
+        }
         if description is not None:
             input_["description"] = description
         if next is not None:
@@ -405,6 +416,7 @@ class AsyncWorkflowStepGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -445,15 +457,17 @@ class AsyncWorkflowStepGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_migrationhuborchestrator.types.get_workflow_step_group_request.GetWorkflowStepGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["workflow_id"] = workflow_id
+        input_: capo_migrationhuborchestrator.types.get_workflow_step_group_request.GetWorkflowStepGroupRequest = {
+            "id": id,
+            "workflow_id": workflow_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -510,9 +524,10 @@ class AsyncWorkflowStepGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_migrationhuborchestrator.types.update_workflow_step_group_request.UpdateWorkflowStepGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_id"] = workflow_id
-        input_["id"] = id
+        input_: capo_migrationhuborchestrator.types.update_workflow_step_group_request.UpdateWorkflowStepGroupRequest = {
+            "workflow_id": workflow_id,
+            "id": id,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -527,6 +542,7 @@ class AsyncWorkflowStepGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -567,15 +583,17 @@ class AsyncWorkflowStepGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_migrationhuborchestrator.types.delete_workflow_step_group_request.DeleteWorkflowStepGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_id"] = workflow_id
-        input_["id"] = id
+        input_: capo_migrationhuborchestrator.types.delete_workflow_step_group_request.DeleteWorkflowStepGroupRequest = {
+            "workflow_id": workflow_id,
+            "id": id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -622,16 +640,18 @@ class AsyncWorkflowStepGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_migrationhuborchestrator.types.list_workflow_step_groups_request.ListWorkflowStepGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_migrationhuborchestrator.types.list_workflow_step_groups_request.ListWorkflowStepGroupsRequest = {
+            "workflow_id": workflow_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["workflow_id"] = workflow_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

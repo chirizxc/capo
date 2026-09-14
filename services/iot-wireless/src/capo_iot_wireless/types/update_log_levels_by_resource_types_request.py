@@ -62,13 +62,13 @@ def serialize_json(value: UpdateLogLevelsByResourceTypesRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateLogLevelsByResourceTypesRequest:
     out: UpdateLogLevelsByResourceTypesRequest = {}  # type: ignore[typeddict-item]
-    if "DefaultLogLevel" in data:
+    if data.get("DefaultLogLevel") is not None:
         import capo_iot_wireless.types.log_level
 
         out["default_log_level"] = capo_iot_wireless.types.log_level.deserialize_json(
             data["DefaultLogLevel"]
         )
-    if "FuotaTaskLogOptions" in data:
+    if data.get("FuotaTaskLogOptions") is not None:
         import capo_iot_wireless.types.fuota_task_log_option_list
 
         out["fuota_task_log_options"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> UpdateLogLevelsByResourceTypesRequest:
                 data["FuotaTaskLogOptions"]
             )
         )
-    if "WirelessDeviceLogOptions" in data:
+    if data.get("WirelessDeviceLogOptions") is not None:
         import capo_iot_wireless.types.wireless_device_log_option_list
 
         out["wireless_device_log_options"] = (
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> UpdateLogLevelsByResourceTypesRequest:
                 data["WirelessDeviceLogOptions"]
             )
         )
-    if "WirelessGatewayLogOptions" in data:
+    if data.get("WirelessGatewayLogOptions") is not None:
         import capo_iot_wireless.types.wireless_gateway_log_option_list
 
         out["wireless_gateway_log_options"] = (

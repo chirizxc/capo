@@ -50,21 +50,21 @@ def serialize_aws_json_1_1(value: PipelineMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PipelineMetadata:
     out: PipelineMetadata = {}  # type: ignore[typeddict-item]
-    if "pipelineArn" in data:
+    if data.get("pipelineArn") is not None:
         out["pipeline_arn"] = data["pipelineArn"]
-    if "created" in data:
+    if data.get("created") is not None:
         import capo_codepipeline.types.timestamp
 
         out["created"] = capo_codepipeline.types.timestamp.deserialize_aws_json_1_1(
             data["created"]
         )
-    if "updated" in data:
+    if data.get("updated") is not None:
         import capo_codepipeline.types.timestamp
 
         out["updated"] = capo_codepipeline.types.timestamp.deserialize_aws_json_1_1(
             data["updated"]
         )
-    if "pollingDisabledAt" in data:
+    if data.get("pollingDisabledAt") is not None:
         import capo_codepipeline.types.timestamp
 
         out["polling_disabled_at"] = (

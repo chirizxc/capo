@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> CrossAccountRoleList:
 
     out: CrossAccountRoleList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_resiliencehubv2.types.cross_account_role.deserialize_json(item))
     return out

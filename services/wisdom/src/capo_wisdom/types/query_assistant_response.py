@@ -33,7 +33,7 @@ def serialize_json(value: QueryAssistantResponse) -> dict:
 
 def deserialize_json(data: dict) -> QueryAssistantResponse:
     out: QueryAssistantResponse = {}  # type: ignore[typeddict-item]
-    if "results" in data:
+    if data.get("results") is not None:
         import capo_wisdom.types.query_results_list
 
         out["results"] = capo_wisdom.types.query_results_list.deserialize_json(
@@ -41,6 +41,6 @@ def deserialize_json(data: dict) -> QueryAssistantResponse:
         )
     else:
         raise DeserializationError("QueryAssistantResponse.results required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

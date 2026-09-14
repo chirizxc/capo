@@ -92,25 +92,25 @@ def serialize_json(value: Analysis) -> dict:
 
 def deserialize_json(data: dict) -> Analysis:
     out: Analysis = {}  # type: ignore[typeddict-item]
-    if "AnalysisId" in data:
+    if data.get("AnalysisId") is not None:
         out["analysis_id"] = data["AnalysisId"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_quicksight.types.resource_status
 
         out["status"] = capo_quicksight.types.resource_status.deserialize_json(
             data["Status"]
         )
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_quicksight.types.analysis_error_list
 
         out["errors"] = capo_quicksight.types.analysis_error_list.deserialize_json(
             data["Errors"]
         )
-    if "DataSetArns" in data:
+    if data.get("DataSetArns") is not None:
         import capo_quicksight.types.data_set_arns_list
 
         out["data_set_arns"] = (
@@ -118,21 +118,21 @@ def deserialize_json(data: dict) -> Analysis:
                 data["DataSetArns"]
             )
         )
-    if "ThemeArn" in data:
+    if data.get("ThemeArn") is not None:
         out["theme_arn"] = data["ThemeArn"]
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_quicksight.types.timestamp
 
         out["created_time"] = capo_quicksight.types.timestamp.deserialize_json(
             data["CreatedTime"]
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_quicksight.types.timestamp
 
         out["last_updated_time"] = capo_quicksight.types.timestamp.deserialize_json(
             data["LastUpdatedTime"]
         )
-    if "Sheets" in data:
+    if data.get("Sheets") is not None:
         import capo_quicksight.types.sheet_list
 
         out["sheets"] = capo_quicksight.types.sheet_list.deserialize_json(

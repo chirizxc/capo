@@ -121,15 +121,15 @@ def serialize_aws_json_1_1(value: CreateGameServerGroupInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateGameServerGroupInput:
     out: CreateGameServerGroupInput = {}  # type: ignore[typeddict-item]
-    if "GameServerGroupName" in data:
+    if data.get("GameServerGroupName") is not None:
         out["game_server_group_name"] = data["GameServerGroupName"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "MinSize" in data:
+    if data.get("MinSize") is not None:
         out["min_size"] = data["MinSize"]
-    if "MaxSize" in data:
+    if data.get("MaxSize") is not None:
         out["max_size"] = data["MaxSize"]
-    if "LaunchTemplate" in data:
+    if data.get("LaunchTemplate") is not None:
         import capo_gamelift.types.launch_template_specification
 
         out["launch_template"] = (
@@ -137,7 +137,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateGameServerGroupInput:
                 data["LaunchTemplate"]
             )
         )
-    if "InstanceDefinitions" in data:
+    if data.get("InstanceDefinitions") is not None:
         import capo_gamelift.types.instance_definitions
 
         out["instance_definitions"] = (
@@ -145,7 +145,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateGameServerGroupInput:
                 data["InstanceDefinitions"]
             )
         )
-    if "AutoScalingPolicy" in data:
+    if data.get("AutoScalingPolicy") is not None:
         import capo_gamelift.types.game_server_group_auto_scaling_policy
 
         out["auto_scaling_policy"] = (
@@ -153,7 +153,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateGameServerGroupInput:
                 data["AutoScalingPolicy"]
             )
         )
-    if "BalancingStrategy" in data:
+    if data.get("BalancingStrategy") is not None:
         import capo_gamelift.types.balancing_strategy
 
         out["balancing_strategy"] = (
@@ -161,7 +161,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateGameServerGroupInput:
                 data["BalancingStrategy"]
             )
         )
-    if "GameServerProtectionPolicy" in data:
+    if data.get("GameServerProtectionPolicy") is not None:
         import capo_gamelift.types.game_server_protection_policy
 
         out["game_server_protection_policy"] = (
@@ -169,13 +169,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateGameServerGroupInput:
                 data["GameServerProtectionPolicy"]
             )
         )
-    if "VpcSubnets" in data:
+    if data.get("VpcSubnets") is not None:
         import capo_gamelift.types.vpc_subnets
 
         out["vpc_subnets"] = capo_gamelift.types.vpc_subnets.deserialize_aws_json_1_1(
             data["VpcSubnets"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_gamelift.types.tag_list
 
         out["tags"] = capo_gamelift.types.tag_list.deserialize_aws_json_1_1(

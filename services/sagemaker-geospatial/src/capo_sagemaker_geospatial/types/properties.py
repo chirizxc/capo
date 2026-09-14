@@ -22,32 +22,72 @@ class Properties(TypedDict, closed=True):
 def serialize_json(value: Properties) -> dict:
     out: dict = {}
     if "eo_cloud_cover" in value:
-        out["EoCloudCover"] = value["eo_cloud_cover"]
+        out["EoCloudCover"] = (
+            "NaN"
+            if value["eo_cloud_cover"] != value["eo_cloud_cover"]
+            else "Infinity"
+            if value["eo_cloud_cover"] == float("inf")
+            else "-Infinity"
+            if value["eo_cloud_cover"] == float("-inf")
+            else value["eo_cloud_cover"]
+        )
     if "view_off_nadir" in value:
-        out["ViewOffNadir"] = value["view_off_nadir"]
+        out["ViewOffNadir"] = (
+            "NaN"
+            if value["view_off_nadir"] != value["view_off_nadir"]
+            else "Infinity"
+            if value["view_off_nadir"] == float("inf")
+            else "-Infinity"
+            if value["view_off_nadir"] == float("-inf")
+            else value["view_off_nadir"]
+        )
     if "view_sun_azimuth" in value:
-        out["ViewSunAzimuth"] = value["view_sun_azimuth"]
+        out["ViewSunAzimuth"] = (
+            "NaN"
+            if value["view_sun_azimuth"] != value["view_sun_azimuth"]
+            else "Infinity"
+            if value["view_sun_azimuth"] == float("inf")
+            else "-Infinity"
+            if value["view_sun_azimuth"] == float("-inf")
+            else value["view_sun_azimuth"]
+        )
     if "view_sun_elevation" in value:
-        out["ViewSunElevation"] = value["view_sun_elevation"]
+        out["ViewSunElevation"] = (
+            "NaN"
+            if value["view_sun_elevation"] != value["view_sun_elevation"]
+            else "Infinity"
+            if value["view_sun_elevation"] == float("inf")
+            else "-Infinity"
+            if value["view_sun_elevation"] == float("-inf")
+            else value["view_sun_elevation"]
+        )
     if "platform" in value:
         out["Platform"] = value["platform"]
     if "landsat_cloud_cover_land" in value:
-        out["LandsatCloudCoverLand"] = value["landsat_cloud_cover_land"]
+        out["LandsatCloudCoverLand"] = (
+            "NaN"
+            if value["landsat_cloud_cover_land"] != value["landsat_cloud_cover_land"]
+            else "Infinity"
+            if value["landsat_cloud_cover_land"] == float("inf")
+            else "-Infinity"
+            if value["landsat_cloud_cover_land"] == float("-inf")
+            else value["landsat_cloud_cover_land"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> Properties:
     out: Properties = {}  # type: ignore[typeddict-item]
-    if "EoCloudCover" in data:
-        out["eo_cloud_cover"] = data["EoCloudCover"]
-    if "ViewOffNadir" in data:
-        out["view_off_nadir"] = data["ViewOffNadir"]
-    if "ViewSunAzimuth" in data:
-        out["view_sun_azimuth"] = data["ViewSunAzimuth"]
-    if "ViewSunElevation" in data:
-        out["view_sun_elevation"] = data["ViewSunElevation"]
-    if "Platform" in data:
+    if data.get("EoCloudCover") is not None:
+        out["eo_cloud_cover"] = float(data["EoCloudCover"])
+    if data.get("ViewOffNadir") is not None:
+        out["view_off_nadir"] = float(data["ViewOffNadir"])
+    if data.get("ViewSunAzimuth") is not None:
+        out["view_sun_azimuth"] = float(data["ViewSunAzimuth"])
+    if data.get("ViewSunElevation") is not None:
+        out["view_sun_elevation"] = float(data["ViewSunElevation"])
+    if data.get("Platform") is not None:
         out["platform"] = data["Platform"]
-    if "LandsatCloudCoverLand" in data:
-        out["landsat_cloud_cover_land"] = data["LandsatCloudCoverLand"]
+    if data.get("LandsatCloudCoverLand") is not None:
+        out["landsat_cloud_cover_land"] = float(data["LandsatCloudCoverLand"])
     return out

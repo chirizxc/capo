@@ -86,7 +86,7 @@ def serialize_json(value: RegisterUserRequest) -> dict:
 
 def deserialize_json(data: dict) -> RegisterUserRequest:
     out: RegisterUserRequest = {}  # type: ignore[typeddict-item]
-    if "IdentityType" in data:
+    if data.get("IdentityType") is not None:
         import capo_quicksight.types.identity_type
 
         out["identity_type"] = capo_quicksight.types.identity_type.deserialize_json(
@@ -94,11 +94,11 @@ def deserialize_json(data: dict) -> RegisterUserRequest:
         )
     else:
         raise DeserializationError("RegisterUserRequest.identity_type required")
-    if "Email" in data:
+    if data.get("Email") is not None:
         out["email"] = data["Email"]
     else:
         raise DeserializationError("RegisterUserRequest.email required")
-    if "UserRole" in data:
+    if data.get("UserRole") is not None:
         import capo_quicksight.types.user_role
 
         out["user_role"] = capo_quicksight.types.user_role.deserialize_json(
@@ -106,23 +106,23 @@ def deserialize_json(data: dict) -> RegisterUserRequest:
         )
     else:
         raise DeserializationError("RegisterUserRequest.user_role required")
-    if "IamArn" in data:
+    if data.get("IamArn") is not None:
         out["iam_arn"] = data["IamArn"]
-    if "SessionName" in data:
+    if data.get("SessionName") is not None:
         out["session_name"] = data["SessionName"]
-    if "UserName" in data:
+    if data.get("UserName") is not None:
         out["user_name"] = data["UserName"]
-    if "CustomPermissionsName" in data:
+    if data.get("CustomPermissionsName") is not None:
         out["custom_permissions_name"] = data["CustomPermissionsName"]
-    if "ExternalLoginFederationProviderType" in data:
+    if data.get("ExternalLoginFederationProviderType") is not None:
         out["external_login_federation_provider_type"] = data[
             "ExternalLoginFederationProviderType"
         ]
-    if "CustomFederationProviderUrl" in data:
+    if data.get("CustomFederationProviderUrl") is not None:
         out["custom_federation_provider_url"] = data["CustomFederationProviderUrl"]
-    if "ExternalLoginId" in data:
+    if data.get("ExternalLoginId") is not None:
         out["external_login_id"] = data["ExternalLoginId"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_quicksight.types.tag_list
 
         out["tags"] = capo_quicksight.types.tag_list.deserialize_json(data["Tags"])

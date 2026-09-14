@@ -51,25 +51,25 @@ def serialize_json(value: CreateAccessPointRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateAccessPointRequest:
     out: CreateAccessPointRequest = {}  # type: ignore[typeddict-item]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     else:
         raise DeserializationError("CreateAccessPointRequest.client_token required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_efs.types.tags
 
         out["tags"] = capo_efs.types.tags.deserialize_json(data["Tags"])
-    if "FileSystemId" in data:
+    if data.get("FileSystemId") is not None:
         out["file_system_id"] = data["FileSystemId"]
     else:
         raise DeserializationError("CreateAccessPointRequest.file_system_id required")
-    if "PosixUser" in data:
+    if data.get("PosixUser") is not None:
         import capo_efs.types.posix_user
 
         out["posix_user"] = capo_efs.types.posix_user.deserialize_json(
             data["PosixUser"]
         )
-    if "RootDirectory" in data:
+    if data.get("RootDirectory") is not None:
         import capo_efs.types.root_directory
 
         out["root_directory"] = capo_efs.types.root_directory.deserialize_json(

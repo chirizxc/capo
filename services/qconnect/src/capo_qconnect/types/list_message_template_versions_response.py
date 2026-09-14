@@ -35,7 +35,7 @@ def serialize_json(value: ListMessageTemplateVersionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListMessageTemplateVersionsResponse:
     out: ListMessageTemplateVersionsResponse = {}  # type: ignore[typeddict-item]
-    if "messageTemplateVersionSummaries" in data:
+    if data.get("messageTemplateVersionSummaries") is not None:
         import capo_qconnect.types.message_template_version_summary_list
 
         out["message_template_version_summaries"] = (
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> ListMessageTemplateVersionsResponse:
         raise DeserializationError(
             "ListMessageTemplateVersionsResponse.message_template_version_summaries required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -27,13 +27,13 @@ def serialize_json(value: GetFileSystemPolicyResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetFileSystemPolicyResponse:
     out: GetFileSystemPolicyResponse = {}  # type: ignore[typeddict-item]
-    if "fileSystemId" in data:
+    if data.get("fileSystemId") is not None:
         out["file_system_id"] = data["fileSystemId"]
     else:
         raise DeserializationError(
             "GetFileSystemPolicyResponse.file_system_id required"
         )
-    if "policy" in data:
+    if data.get("policy") is not None:
         out["policy"] = data["policy"]
     else:
         raise DeserializationError("GetFileSystemPolicyResponse.policy required")

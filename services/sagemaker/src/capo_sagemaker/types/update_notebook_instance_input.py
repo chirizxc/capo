@@ -158,9 +158,9 @@ def serialize_aws_json_1_1(value: UpdateNotebookInstanceInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateNotebookInstanceInput:
     out: UpdateNotebookInstanceInput = {}  # type: ignore[typeddict-item]
-    if "NotebookInstanceName" in data:
+    if data.get("NotebookInstanceName") is not None:
         out["notebook_instance_name"] = data["NotebookInstanceName"]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         import capo_sagemaker.types.instance_type
 
         out["instance_type"] = (
@@ -168,7 +168,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateNotebookInstanceInput:
                 data["InstanceType"]
             )
         )
-    if "IpAddressType" in data:
+    if data.get("IpAddressType") is not None:
         import capo_sagemaker.types.ip_address_type
 
         out["ip_address_type"] = (
@@ -176,19 +176,19 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateNotebookInstanceInput:
                 data["IpAddressType"]
             )
         )
-    if "PlatformIdentifier" in data:
+    if data.get("PlatformIdentifier") is not None:
         out["platform_identifier"] = data["PlatformIdentifier"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "LifecycleConfigName" in data:
+    if data.get("LifecycleConfigName") is not None:
         out["lifecycle_config_name"] = data["LifecycleConfigName"]
-    if "DisassociateLifecycleConfig" in data:
+    if data.get("DisassociateLifecycleConfig") is not None:
         out["disassociate_lifecycle_config"] = data["DisassociateLifecycleConfig"]
-    if "VolumeSizeInGB" in data:
+    if data.get("VolumeSizeInGB") is not None:
         out["volume_size_in_gb"] = data["VolumeSizeInGB"]
-    if "DefaultCodeRepository" in data:
+    if data.get("DefaultCodeRepository") is not None:
         out["default_code_repository"] = data["DefaultCodeRepository"]
-    if "AdditionalCodeRepositories" in data:
+    if data.get("AdditionalCodeRepositories") is not None:
         import capo_sagemaker.types.additional_code_repository_names_or_urls
 
         out["additional_code_repositories"] = (
@@ -196,7 +196,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateNotebookInstanceInput:
                 data["AdditionalCodeRepositories"]
             )
         )
-    if "AcceleratorTypes" in data:
+    if data.get("AcceleratorTypes") is not None:
         import capo_sagemaker.types.notebook_instance_accelerator_types
 
         out["accelerator_types"] = (
@@ -204,23 +204,23 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateNotebookInstanceInput:
                 data["AcceleratorTypes"]
             )
         )
-    if "DisassociateAcceleratorTypes" in data:
+    if data.get("DisassociateAcceleratorTypes") is not None:
         out["disassociate_accelerator_types"] = data["DisassociateAcceleratorTypes"]
-    if "DisassociateDefaultCodeRepository" in data:
+    if data.get("DisassociateDefaultCodeRepository") is not None:
         out["disassociate_default_code_repository"] = data[
             "DisassociateDefaultCodeRepository"
         ]
-    if "DisassociateAdditionalCodeRepositories" in data:
+    if data.get("DisassociateAdditionalCodeRepositories") is not None:
         out["disassociate_additional_code_repositories"] = data[
             "DisassociateAdditionalCodeRepositories"
         ]
-    if "RootAccess" in data:
+    if data.get("RootAccess") is not None:
         import capo_sagemaker.types.root_access
 
         out["root_access"] = capo_sagemaker.types.root_access.deserialize_aws_json_1_1(
             data["RootAccess"]
         )
-    if "InstanceMetadataServiceConfiguration" in data:
+    if data.get("InstanceMetadataServiceConfiguration") is not None:
         import capo_sagemaker.types.instance_metadata_service_configuration
 
         out["instance_metadata_service_configuration"] = (

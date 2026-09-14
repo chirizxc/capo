@@ -33,17 +33,17 @@ def serialize_aws_json_1_1(value: ResourceRecord) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourceRecord:
     out: ResourceRecord = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("ResourceRecord.name required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_acm.types.record_type
 
         out["type"] = capo_acm.types.record_type.deserialize_aws_json_1_1(data["Type"])
     else:
         raise DeserializationError("ResourceRecord.type required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("ResourceRecord.value required")

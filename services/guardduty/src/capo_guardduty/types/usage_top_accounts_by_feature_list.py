@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> UsageTopAccountsByFeatureList:
 
     out: UsageTopAccountsByFeatureList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_guardduty.types.usage_top_account_result.deserialize_json(item))
     return out

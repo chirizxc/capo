@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: DescribeAssessmentTargetsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeAssessmentTargetsRequest:
     out: DescribeAssessmentTargetsRequest = {}  # type: ignore[typeddict-item]
-    if "assessmentTargetArns" in data:
+    if data.get("assessmentTargetArns") is not None:
         import capo_inspector.types.batch_describe_arn_list
 
         out["assessment_target_arns"] = (

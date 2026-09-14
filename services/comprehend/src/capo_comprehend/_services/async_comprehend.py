@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.comprehend#Comprehend_20171127``."""
 
+import uuid
 import warnings
 from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -397,14 +398,16 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.batch_detect_dominant_language_request.BatchDetectDominantLanguageRequest = {}  # type: ignore[typeddict-item]
-        input_["text_list"] = text_list
+        input_: capo_comprehend.types.batch_detect_dominant_language_request.BatchDetectDominantLanguageRequest = {
+            "text_list": text_list
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_detect_entities(
@@ -445,15 +448,17 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.batch_detect_entities_request.BatchDetectEntitiesRequest = {}  # type: ignore[typeddict-item]
-        input_["text_list"] = text_list
-        input_["language_code"] = language_code
+        input_: capo_comprehend.types.batch_detect_entities_request.BatchDetectEntitiesRequest = {
+            "text_list": text_list,
+            "language_code": language_code,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_detect_key_phrases(
@@ -494,15 +499,17 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.batch_detect_key_phrases_request.BatchDetectKeyPhrasesRequest = {}  # type: ignore[typeddict-item]
-        input_["text_list"] = text_list
-        input_["language_code"] = language_code
+        input_: capo_comprehend.types.batch_detect_key_phrases_request.BatchDetectKeyPhrasesRequest = {
+            "text_list": text_list,
+            "language_code": language_code,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_detect_sentiment(
@@ -543,15 +550,17 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.batch_detect_sentiment_request.BatchDetectSentimentRequest = {}  # type: ignore[typeddict-item]
-        input_["text_list"] = text_list
-        input_["language_code"] = language_code
+        input_: capo_comprehend.types.batch_detect_sentiment_request.BatchDetectSentimentRequest = {
+            "text_list": text_list,
+            "language_code": language_code,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_detect_syntax(
@@ -592,15 +601,17 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.batch_detect_syntax_request.BatchDetectSyntaxRequest = {}  # type: ignore[typeddict-item]
-        input_["text_list"] = text_list
-        input_["language_code"] = language_code
+        input_: capo_comprehend.types.batch_detect_syntax_request.BatchDetectSyntaxRequest = {
+            "text_list": text_list,
+            "language_code": language_code,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_detect_targeted_sentiment(
@@ -641,15 +652,17 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.batch_detect_targeted_sentiment_request.BatchDetectTargetedSentimentRequest = {}  # type: ignore[typeddict-item]
-        input_["text_list"] = text_list
-        input_["language_code"] = language_code
+        input_: capo_comprehend.types.batch_detect_targeted_sentiment_request.BatchDetectTargetedSentimentRequest = {
+            "text_list": text_list,
+            "language_code": language_code,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def classify_document(
@@ -699,10 +712,11 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.classify_document_request.ClassifyDocumentRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_comprehend.types.classify_document_request.ClassifyDocumentRequest = {
+            "endpoint_arn": endpoint_arn
+        }
         if text is not None:
             input_["text"] = text
-        input_["endpoint_arn"] = endpoint_arn
         if bytes is not None:
             input_["bytes"] = bytes
         if document_reader_config is not None:
@@ -713,6 +727,7 @@ class AsyncComprehendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def contains_pii_entities(
@@ -752,15 +767,17 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.contains_pii_entities_request.ContainsPiiEntitiesRequest = {}  # type: ignore[typeddict-item]
-        input_["text"] = text
-        input_["language_code"] = language_code
+        input_: capo_comprehend.types.contains_pii_entities_request.ContainsPiiEntitiesRequest = {
+            "text": text,
+            "language_code": language_code,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_dataset(
@@ -815,16 +832,18 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.create_dataset_request.CreateDatasetRequest = {}  # type: ignore[typeddict-item]
-        input_["flywheel_arn"] = flywheel_arn
-        input_["dataset_name"] = dataset_name
+        input_: capo_comprehend.types.create_dataset_request.CreateDatasetRequest = {
+            "flywheel_arn": flywheel_arn,
+            "dataset_name": dataset_name,
+            "input_data_config": input_data_config,
+        }
         if dataset_type is not None:
             input_["dataset_type"] = dataset_type
         if description is not None:
             input_["description"] = description
-        input_["input_data_config"] = input_data_config
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -833,6 +852,7 @@ class AsyncComprehendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_document_classifier(
@@ -904,19 +924,21 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.create_document_classifier_request.CreateDocumentClassifierRequest = {}  # type: ignore[typeddict-item]
-        input_["document_classifier_name"] = document_classifier_name
+        input_: capo_comprehend.types.create_document_classifier_request.CreateDocumentClassifierRequest = {
+            "document_classifier_name": document_classifier_name,
+            "data_access_role_arn": data_access_role_arn,
+            "input_data_config": input_data_config,
+            "language_code": language_code,
+        }
         if version_name is not None:
             input_["version_name"] = version_name
-        input_["data_access_role_arn"] = data_access_role_arn
         if tags is not None:
             input_["tags"] = tags
-        input_["input_data_config"] = input_data_config
         if output_data_config is not None:
             input_["output_data_config"] = output_data_config
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
-        input_["language_code"] = language_code
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if volume_kms_key_id is not None:
             input_["volume_kms_key_id"] = volume_kms_key_id
         if vpc_config is not None:
@@ -933,6 +955,7 @@ class AsyncComprehendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_endpoint(
@@ -994,13 +1017,15 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.create_endpoint_request.CreateEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["endpoint_name"] = endpoint_name
+        input_: capo_comprehend.types.create_endpoint_request.CreateEndpointRequest = {
+            "endpoint_name": endpoint_name,
+            "desired_inference_units": desired_inference_units,
+        }
         if model_arn is not None:
             input_["model_arn"] = model_arn
-        input_["desired_inference_units"] = desired_inference_units
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if tags is not None:
             input_["tags"] = tags
         if data_access_role_arn is not None:
@@ -1013,6 +1038,7 @@ class AsyncComprehendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_entity_recognizer(
@@ -1076,17 +1102,19 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.create_entity_recognizer_request.CreateEntityRecognizerRequest = {}  # type: ignore[typeddict-item]
-        input_["recognizer_name"] = recognizer_name
+        input_: capo_comprehend.types.create_entity_recognizer_request.CreateEntityRecognizerRequest = {
+            "recognizer_name": recognizer_name,
+            "data_access_role_arn": data_access_role_arn,
+            "input_data_config": input_data_config,
+            "language_code": language_code,
+        }
         if version_name is not None:
             input_["version_name"] = version_name
-        input_["data_access_role_arn"] = data_access_role_arn
         if tags is not None:
             input_["tags"] = tags
-        input_["input_data_config"] = input_data_config
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
-        input_["language_code"] = language_code
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if volume_kms_key_id is not None:
             input_["volume_kms_key_id"] = volume_kms_key_id
         if vpc_config is not None:
@@ -1101,6 +1129,7 @@ class AsyncComprehendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_flywheel(
@@ -1166,20 +1195,22 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.create_flywheel_request.CreateFlywheelRequest = {}  # type: ignore[typeddict-item]
-        input_["flywheel_name"] = flywheel_name
+        input_: capo_comprehend.types.create_flywheel_request.CreateFlywheelRequest = {
+            "flywheel_name": flywheel_name,
+            "data_access_role_arn": data_access_role_arn,
+            "data_lake_s3_uri": data_lake_s3_uri,
+        }
         if active_model_arn is not None:
             input_["active_model_arn"] = active_model_arn
-        input_["data_access_role_arn"] = data_access_role_arn
         if task_config is not None:
             input_["task_config"] = task_config
         if model_type is not None:
             input_["model_type"] = model_type
-        input_["data_lake_s3_uri"] = data_lake_s3_uri
         if data_security_config is not None:
             input_["data_security_config"] = data_security_config
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -1188,6 +1219,7 @@ class AsyncComprehendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_document_classifier(
@@ -1227,14 +1259,16 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.delete_document_classifier_request.DeleteDocumentClassifierRequest = {}  # type: ignore[typeddict-item]
-        input_["document_classifier_arn"] = document_classifier_arn
+        input_: capo_comprehend.types.delete_document_classifier_request.DeleteDocumentClassifierRequest = {
+            "document_classifier_arn": document_classifier_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_endpoint(
@@ -1273,14 +1307,16 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.delete_endpoint_request.DeleteEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["endpoint_arn"] = endpoint_arn
+        input_: capo_comprehend.types.delete_endpoint_request.DeleteEndpointRequest = {
+            "endpoint_arn": endpoint_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_entity_recognizer(
@@ -1320,14 +1356,16 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.delete_entity_recognizer_request.DeleteEntityRecognizerRequest = {}  # type: ignore[typeddict-item]
-        input_["entity_recognizer_arn"] = entity_recognizer_arn
+        input_: capo_comprehend.types.delete_entity_recognizer_request.DeleteEntityRecognizerRequest = {
+            "entity_recognizer_arn": entity_recognizer_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_flywheel(
@@ -1367,14 +1405,16 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.delete_flywheel_request.DeleteFlywheelRequest = {}  # type: ignore[typeddict-item]
-        input_["flywheel_arn"] = flywheel_arn
+        input_: capo_comprehend.types.delete_flywheel_request.DeleteFlywheelRequest = {
+            "flywheel_arn": flywheel_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_resource_policy(
@@ -1415,8 +1455,9 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.delete_resource_policy_request.DeleteResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_comprehend.types.delete_resource_policy_request.DeleteResourcePolicyRequest = {
+            "resource_arn": resource_arn
+        }
         if policy_revision_id is not None:
             input_["policy_revision_id"] = policy_revision_id
 
@@ -1425,6 +1466,7 @@ class AsyncComprehendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_dataset(
@@ -1462,14 +1504,16 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.describe_dataset_request.DescribeDatasetRequest = {}  # type: ignore[typeddict-item]
-        input_["dataset_arn"] = dataset_arn
+        input_: capo_comprehend.types.describe_dataset_request.DescribeDatasetRequest = {
+            "dataset_arn": dataset_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_document_classification_job(
@@ -1507,14 +1551,16 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.describe_document_classification_job_request.DescribeDocumentClassificationJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_comprehend.types.describe_document_classification_job_request.DescribeDocumentClassificationJobRequest = {
+            "job_id": job_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_document_classifier(
@@ -1552,14 +1598,16 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.describe_document_classifier_request.DescribeDocumentClassifierRequest = {}  # type: ignore[typeddict-item]
-        input_["document_classifier_arn"] = document_classifier_arn
+        input_: capo_comprehend.types.describe_document_classifier_request.DescribeDocumentClassifierRequest = {
+            "document_classifier_arn": document_classifier_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_dominant_language_detection_job(
@@ -1597,14 +1645,16 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.describe_dominant_language_detection_job_request.DescribeDominantLanguageDetectionJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_comprehend.types.describe_dominant_language_detection_job_request.DescribeDominantLanguageDetectionJobRequest = {
+            "job_id": job_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_endpoint(
@@ -1642,14 +1692,16 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.describe_endpoint_request.DescribeEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["endpoint_arn"] = endpoint_arn
+        input_: capo_comprehend.types.describe_endpoint_request.DescribeEndpointRequest = {
+            "endpoint_arn": endpoint_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_entities_detection_job(
@@ -1687,14 +1739,16 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.describe_entities_detection_job_request.DescribeEntitiesDetectionJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_comprehend.types.describe_entities_detection_job_request.DescribeEntitiesDetectionJobRequest = {
+            "job_id": job_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_entity_recognizer(
@@ -1732,14 +1786,16 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.describe_entity_recognizer_request.DescribeEntityRecognizerRequest = {}  # type: ignore[typeddict-item]
-        input_["entity_recognizer_arn"] = entity_recognizer_arn
+        input_: capo_comprehend.types.describe_entity_recognizer_request.DescribeEntityRecognizerRequest = {
+            "entity_recognizer_arn": entity_recognizer_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_events_detection_job(
@@ -1777,14 +1833,16 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.describe_events_detection_job_request.DescribeEventsDetectionJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_comprehend.types.describe_events_detection_job_request.DescribeEventsDetectionJobRequest = {
+            "job_id": job_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_flywheel(
@@ -1822,14 +1880,16 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.describe_flywheel_request.DescribeFlywheelRequest = {}  # type: ignore[typeddict-item]
-        input_["flywheel_arn"] = flywheel_arn
+        input_: capo_comprehend.types.describe_flywheel_request.DescribeFlywheelRequest = {
+            "flywheel_arn": flywheel_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_flywheel_iteration(
@@ -1869,15 +1929,17 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.describe_flywheel_iteration_request.DescribeFlywheelIterationRequest = {}  # type: ignore[typeddict-item]
-        input_["flywheel_arn"] = flywheel_arn
-        input_["flywheel_iteration_id"] = flywheel_iteration_id
+        input_: capo_comprehend.types.describe_flywheel_iteration_request.DescribeFlywheelIterationRequest = {
+            "flywheel_arn": flywheel_arn,
+            "flywheel_iteration_id": flywheel_iteration_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_key_phrases_detection_job(
@@ -1915,14 +1977,16 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.describe_key_phrases_detection_job_request.DescribeKeyPhrasesDetectionJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_comprehend.types.describe_key_phrases_detection_job_request.DescribeKeyPhrasesDetectionJobRequest = {
+            "job_id": job_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_pii_entities_detection_job(
@@ -1960,14 +2024,16 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.describe_pii_entities_detection_job_request.DescribePiiEntitiesDetectionJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_comprehend.types.describe_pii_entities_detection_job_request.DescribePiiEntitiesDetectionJobRequest = {
+            "job_id": job_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_resource_policy(
@@ -2004,14 +2070,16 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.describe_resource_policy_request.DescribeResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_comprehend.types.describe_resource_policy_request.DescribeResourcePolicyRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_sentiment_detection_job(
@@ -2049,14 +2117,16 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.describe_sentiment_detection_job_request.DescribeSentimentDetectionJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_comprehend.types.describe_sentiment_detection_job_request.DescribeSentimentDetectionJobRequest = {
+            "job_id": job_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_targeted_sentiment_detection_job(
@@ -2094,14 +2164,16 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.describe_targeted_sentiment_detection_job_request.DescribeTargetedSentimentDetectionJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_comprehend.types.describe_targeted_sentiment_detection_job_request.DescribeTargetedSentimentDetectionJobRequest = {
+            "job_id": job_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_topics_detection_job(
@@ -2139,14 +2211,16 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.describe_topics_detection_job_request.DescribeTopicsDetectionJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_comprehend.types.describe_topics_detection_job_request.DescribeTopicsDetectionJobRequest = {
+            "job_id": job_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def detect_dominant_language(
@@ -2183,14 +2257,16 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.detect_dominant_language_request.DetectDominantLanguageRequest = {}  # type: ignore[typeddict-item]
-        input_["text"] = text
+        input_: capo_comprehend.types.detect_dominant_language_request.DetectDominantLanguageRequest = {
+            "text": text
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def detect_entities(
@@ -2247,7 +2323,7 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.detect_entities_request.DetectEntitiesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_comprehend.types.detect_entities_request.DetectEntitiesRequest = {}
         if text is not None:
             input_["text"] = text
         if language_code is not None:
@@ -2264,6 +2340,7 @@ class AsyncComprehendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def detect_key_phrases(
@@ -2303,15 +2380,17 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.detect_key_phrases_request.DetectKeyPhrasesRequest = {}  # type: ignore[typeddict-item]
-        input_["text"] = text
-        input_["language_code"] = language_code
+        input_: capo_comprehend.types.detect_key_phrases_request.DetectKeyPhrasesRequest = {
+            "text": text,
+            "language_code": language_code,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def detect_pii_entities(
@@ -2351,15 +2430,17 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.detect_pii_entities_request.DetectPiiEntitiesRequest = {}  # type: ignore[typeddict-item]
-        input_["text"] = text
-        input_["language_code"] = language_code
+        input_: capo_comprehend.types.detect_pii_entities_request.DetectPiiEntitiesRequest = {
+            "text": text,
+            "language_code": language_code,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def detect_sentiment(
@@ -2399,15 +2480,17 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.detect_sentiment_request.DetectSentimentRequest = {}  # type: ignore[typeddict-item]
-        input_["text"] = text
-        input_["language_code"] = language_code
+        input_: capo_comprehend.types.detect_sentiment_request.DetectSentimentRequest = {
+            "text": text,
+            "language_code": language_code,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def detect_syntax(
@@ -2447,15 +2530,17 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.detect_syntax_request.DetectSyntaxRequest = {}  # type: ignore[typeddict-item]
-        input_["text"] = text
-        input_["language_code"] = language_code
+        input_: capo_comprehend.types.detect_syntax_request.DetectSyntaxRequest = {
+            "text": text,
+            "language_code": language_code,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def detect_targeted_sentiment(
@@ -2495,15 +2580,17 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.detect_targeted_sentiment_request.DetectTargetedSentimentRequest = {}  # type: ignore[typeddict-item]
-        input_["text"] = text
-        input_["language_code"] = language_code
+        input_: capo_comprehend.types.detect_targeted_sentiment_request.DetectTargetedSentimentRequest = {
+            "text": text,
+            "language_code": language_code,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def detect_toxic_content(
@@ -2545,15 +2632,17 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.detect_toxic_content_request.DetectToxicContentRequest = {}  # type: ignore[typeddict-item]
-        input_["text_segments"] = text_segments
-        input_["language_code"] = language_code
+        input_: capo_comprehend.types.detect_toxic_content_request.DetectToxicContentRequest = {
+            "text_segments": text_segments,
+            "language_code": language_code,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def import_model(
@@ -2610,8 +2699,9 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.import_model_request.ImportModelRequest = {}  # type: ignore[typeddict-item]
-        input_["source_model_arn"] = source_model_arn
+        input_: capo_comprehend.types.import_model_request.ImportModelRequest = {
+            "source_model_arn": source_model_arn
+        }
         if model_name is not None:
             input_["model_name"] = model_name
         if version_name is not None:
@@ -2628,6 +2718,7 @@ class AsyncComprehendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_datasets(
@@ -2676,7 +2767,7 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.list_datasets_request.ListDatasetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_comprehend.types.list_datasets_request.ListDatasetsRequest = {}
         if flywheel_arn is not None:
             input_["flywheel_arn"] = flywheel_arn
         if filter is not None:
@@ -2691,7 +2782,35 @@ class AsyncComprehendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_datasets(
+        self,
+        *,
+        config_overrides: Optional[AsyncComprehendClientConfig] = None,
+        flywheel_arn: Optional[
+            "capo_comprehend.types.comprehend_flywheel_arn.ComprehendFlywheelArn"
+        ] = None,
+        filter: Optional["capo_comprehend.types.dataset_filter.DatasetFilter"] = None,
+        next_token: Optional["capo_comprehend.types.string.String"] = None,
+        max_results: Optional[
+            "capo_comprehend.types.max_results_integer.MaxResultsInteger"
+        ] = None,
+    ) -> "AsyncIterator[capo_comprehend.types.list_datasets_response.ListDatasetsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_datasets(
+                config_overrides=config_overrides,
+                flywheel_arn=flywheel_arn,
+                filter=filter,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_document_classification_jobs(
         self,
@@ -2736,7 +2855,7 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.list_document_classification_jobs_request.ListDocumentClassificationJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_comprehend.types.list_document_classification_jobs_request.ListDocumentClassificationJobsRequest = {}
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -2749,7 +2868,33 @@ class AsyncComprehendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_document_classification_jobs(
+        self,
+        *,
+        config_overrides: Optional[AsyncComprehendClientConfig] = None,
+        filter: Optional[
+            "capo_comprehend.types.document_classification_job_filter.DocumentClassificationJobFilter"
+        ] = None,
+        next_token: Optional["capo_comprehend.types.string.String"] = None,
+        max_results: Optional[
+            "capo_comprehend.types.max_results_integer.MaxResultsInteger"
+        ] = None,
+    ) -> "AsyncIterator[capo_comprehend.types.list_document_classification_jobs_response.ListDocumentClassificationJobsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_document_classification_jobs(
+                config_overrides=config_overrides,
+                filter=filter,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_document_classifiers(
         self,
@@ -2794,7 +2939,7 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.list_document_classifiers_request.ListDocumentClassifiersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_comprehend.types.list_document_classifiers_request.ListDocumentClassifiersRequest = {}
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -2807,7 +2952,33 @@ class AsyncComprehendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_document_classifiers(
+        self,
+        *,
+        config_overrides: Optional[AsyncComprehendClientConfig] = None,
+        filter: Optional[
+            "capo_comprehend.types.document_classifier_filter.DocumentClassifierFilter"
+        ] = None,
+        next_token: Optional["capo_comprehend.types.string.String"] = None,
+        max_results: Optional[
+            "capo_comprehend.types.max_results_integer.MaxResultsInteger"
+        ] = None,
+    ) -> "AsyncIterator[capo_comprehend.types.list_document_classifiers_response.ListDocumentClassifiersResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_document_classifiers(
+                config_overrides=config_overrides,
+                filter=filter,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_document_classifier_summaries(
         self,
@@ -2847,7 +3018,7 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.list_document_classifier_summaries_request.ListDocumentClassifierSummariesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_comprehend.types.list_document_classifier_summaries_request.ListDocumentClassifierSummariesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2858,7 +3029,29 @@ class AsyncComprehendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_document_classifier_summaries(
+        self,
+        *,
+        config_overrides: Optional[AsyncComprehendClientConfig] = None,
+        next_token: Optional["capo_comprehend.types.string.String"] = None,
+        max_results: Optional[
+            "capo_comprehend.types.max_results_integer.MaxResultsInteger"
+        ] = None,
+    ) -> "AsyncIterator[capo_comprehend.types.list_document_classifier_summaries_response.ListDocumentClassifierSummariesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_document_classifier_summaries(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_dominant_language_detection_jobs(
         self,
@@ -2903,7 +3096,7 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.list_dominant_language_detection_jobs_request.ListDominantLanguageDetectionJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_comprehend.types.list_dominant_language_detection_jobs_request.ListDominantLanguageDetectionJobsRequest = {}
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -2916,7 +3109,33 @@ class AsyncComprehendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_dominant_language_detection_jobs(
+        self,
+        *,
+        config_overrides: Optional[AsyncComprehendClientConfig] = None,
+        filter: Optional[
+            "capo_comprehend.types.dominant_language_detection_job_filter.DominantLanguageDetectionJobFilter"
+        ] = None,
+        next_token: Optional["capo_comprehend.types.string.String"] = None,
+        max_results: Optional[
+            "capo_comprehend.types.max_results_integer.MaxResultsInteger"
+        ] = None,
+    ) -> "AsyncIterator[capo_comprehend.types.list_dominant_language_detection_jobs_response.ListDominantLanguageDetectionJobsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_dominant_language_detection_jobs(
+                config_overrides=config_overrides,
+                filter=filter,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_endpoints(
         self,
@@ -2958,7 +3177,7 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.list_endpoints_request.ListEndpointsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_comprehend.types.list_endpoints_request.ListEndpointsRequest = {}
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -2971,6 +3190,7 @@ class AsyncComprehendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_endpoints(
@@ -3041,7 +3261,7 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.list_entities_detection_jobs_request.ListEntitiesDetectionJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_comprehend.types.list_entities_detection_jobs_request.ListEntitiesDetectionJobsRequest = {}
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -3054,7 +3274,33 @@ class AsyncComprehendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_entities_detection_jobs(
+        self,
+        *,
+        config_overrides: Optional[AsyncComprehendClientConfig] = None,
+        filter: Optional[
+            "capo_comprehend.types.entities_detection_job_filter.EntitiesDetectionJobFilter"
+        ] = None,
+        next_token: Optional["capo_comprehend.types.string.String"] = None,
+        max_results: Optional[
+            "capo_comprehend.types.max_results_integer.MaxResultsInteger"
+        ] = None,
+    ) -> "AsyncIterator[capo_comprehend.types.list_entities_detection_jobs_response.ListEntitiesDetectionJobsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_entities_detection_jobs(
+                config_overrides=config_overrides,
+                filter=filter,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_entity_recognizers(
         self,
@@ -3099,7 +3345,7 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.list_entity_recognizers_request.ListEntityRecognizersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_comprehend.types.list_entity_recognizers_request.ListEntityRecognizersRequest = {}
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -3112,7 +3358,33 @@ class AsyncComprehendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_entity_recognizers(
+        self,
+        *,
+        config_overrides: Optional[AsyncComprehendClientConfig] = None,
+        filter: Optional[
+            "capo_comprehend.types.entity_recognizer_filter.EntityRecognizerFilter"
+        ] = None,
+        next_token: Optional["capo_comprehend.types.string.String"] = None,
+        max_results: Optional[
+            "capo_comprehend.types.max_results_integer.MaxResultsInteger"
+        ] = None,
+    ) -> "AsyncIterator[capo_comprehend.types.list_entity_recognizers_response.ListEntityRecognizersResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_entity_recognizers(
+                config_overrides=config_overrides,
+                filter=filter,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_entity_recognizer_summaries(
         self,
@@ -3152,7 +3424,7 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.list_entity_recognizer_summaries_request.ListEntityRecognizerSummariesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_comprehend.types.list_entity_recognizer_summaries_request.ListEntityRecognizerSummariesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3163,7 +3435,29 @@ class AsyncComprehendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_entity_recognizer_summaries(
+        self,
+        *,
+        config_overrides: Optional[AsyncComprehendClientConfig] = None,
+        next_token: Optional["capo_comprehend.types.string.String"] = None,
+        max_results: Optional[
+            "capo_comprehend.types.max_results_integer.MaxResultsInteger"
+        ] = None,
+    ) -> "AsyncIterator[capo_comprehend.types.list_entity_recognizer_summaries_response.ListEntityRecognizerSummariesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_entity_recognizer_summaries(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_events_detection_jobs(
         self,
@@ -3208,7 +3502,7 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.list_events_detection_jobs_request.ListEventsDetectionJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_comprehend.types.list_events_detection_jobs_request.ListEventsDetectionJobsRequest = {}
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -3221,7 +3515,33 @@ class AsyncComprehendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_events_detection_jobs(
+        self,
+        *,
+        config_overrides: Optional[AsyncComprehendClientConfig] = None,
+        filter: Optional[
+            "capo_comprehend.types.events_detection_job_filter.EventsDetectionJobFilter"
+        ] = None,
+        next_token: Optional["capo_comprehend.types.string.String"] = None,
+        max_results: Optional[
+            "capo_comprehend.types.max_results_integer.MaxResultsInteger"
+        ] = None,
+    ) -> "AsyncIterator[capo_comprehend.types.list_events_detection_jobs_response.ListEventsDetectionJobsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_events_detection_jobs(
+                config_overrides=config_overrides,
+                filter=filter,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_flywheel_iteration_history(
         self,
@@ -3269,8 +3589,9 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.list_flywheel_iteration_history_request.ListFlywheelIterationHistoryRequest = {}  # type: ignore[typeddict-item]
-        input_["flywheel_arn"] = flywheel_arn
+        input_: capo_comprehend.types.list_flywheel_iteration_history_request.ListFlywheelIterationHistoryRequest = {
+            "flywheel_arn": flywheel_arn
+        }
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -3283,7 +3604,35 @@ class AsyncComprehendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_flywheel_iteration_history(
+        self,
+        flywheel_arn: "capo_comprehend.types.comprehend_flywheel_arn.ComprehendFlywheelArn",
+        *,
+        config_overrides: Optional[AsyncComprehendClientConfig] = None,
+        filter: Optional[
+            "capo_comprehend.types.flywheel_iteration_filter.FlywheelIterationFilter"
+        ] = None,
+        next_token: Optional["capo_comprehend.types.string.String"] = None,
+        max_results: Optional[
+            "capo_comprehend.types.max_results_integer.MaxResultsInteger"
+        ] = None,
+    ) -> "AsyncIterator[capo_comprehend.types.list_flywheel_iteration_history_response.ListFlywheelIterationHistoryResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_flywheel_iteration_history(
+                flywheel_arn,
+                config_overrides=config_overrides,
+                filter=filter,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_flywheels(
         self,
@@ -3326,7 +3675,7 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.list_flywheels_request.ListFlywheelsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_comprehend.types.list_flywheels_request.ListFlywheelsRequest = {}
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -3339,7 +3688,31 @@ class AsyncComprehendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_flywheels(
+        self,
+        *,
+        config_overrides: Optional[AsyncComprehendClientConfig] = None,
+        filter: Optional["capo_comprehend.types.flywheel_filter.FlywheelFilter"] = None,
+        next_token: Optional["capo_comprehend.types.string.String"] = None,
+        max_results: Optional[
+            "capo_comprehend.types.max_results_integer.MaxResultsInteger"
+        ] = None,
+    ) -> "AsyncIterator[capo_comprehend.types.list_flywheels_response.ListFlywheelsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_flywheels(
+                config_overrides=config_overrides,
+                filter=filter,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_key_phrases_detection_jobs(
         self,
@@ -3384,7 +3757,7 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.list_key_phrases_detection_jobs_request.ListKeyPhrasesDetectionJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_comprehend.types.list_key_phrases_detection_jobs_request.ListKeyPhrasesDetectionJobsRequest = {}
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -3397,7 +3770,33 @@ class AsyncComprehendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_key_phrases_detection_jobs(
+        self,
+        *,
+        config_overrides: Optional[AsyncComprehendClientConfig] = None,
+        filter: Optional[
+            "capo_comprehend.types.key_phrases_detection_job_filter.KeyPhrasesDetectionJobFilter"
+        ] = None,
+        next_token: Optional["capo_comprehend.types.string.String"] = None,
+        max_results: Optional[
+            "capo_comprehend.types.max_results_integer.MaxResultsInteger"
+        ] = None,
+    ) -> "AsyncIterator[capo_comprehend.types.list_key_phrases_detection_jobs_response.ListKeyPhrasesDetectionJobsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_key_phrases_detection_jobs(
+                config_overrides=config_overrides,
+                filter=filter,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_pii_entities_detection_jobs(
         self,
@@ -3442,7 +3841,7 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.list_pii_entities_detection_jobs_request.ListPiiEntitiesDetectionJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_comprehend.types.list_pii_entities_detection_jobs_request.ListPiiEntitiesDetectionJobsRequest = {}
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -3455,6 +3854,7 @@ class AsyncComprehendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_pii_entities_detection_jobs(
@@ -3529,7 +3929,7 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.list_sentiment_detection_jobs_request.ListSentimentDetectionJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_comprehend.types.list_sentiment_detection_jobs_request.ListSentimentDetectionJobsRequest = {}
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -3542,7 +3942,33 @@ class AsyncComprehendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_sentiment_detection_jobs(
+        self,
+        *,
+        config_overrides: Optional[AsyncComprehendClientConfig] = None,
+        filter: Optional[
+            "capo_comprehend.types.sentiment_detection_job_filter.SentimentDetectionJobFilter"
+        ] = None,
+        next_token: Optional["capo_comprehend.types.string.String"] = None,
+        max_results: Optional[
+            "capo_comprehend.types.max_results_integer.MaxResultsInteger"
+        ] = None,
+    ) -> "AsyncIterator[capo_comprehend.types.list_sentiment_detection_jobs_response.ListSentimentDetectionJobsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_sentiment_detection_jobs(
+                config_overrides=config_overrides,
+                filter=filter,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_tags_for_resource(
         self,
@@ -3578,14 +4004,16 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_comprehend.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_targeted_sentiment_detection_jobs(
@@ -3631,7 +4059,7 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.list_targeted_sentiment_detection_jobs_request.ListTargetedSentimentDetectionJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_comprehend.types.list_targeted_sentiment_detection_jobs_request.ListTargetedSentimentDetectionJobsRequest = {}
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -3644,7 +4072,33 @@ class AsyncComprehendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_targeted_sentiment_detection_jobs(
+        self,
+        *,
+        config_overrides: Optional[AsyncComprehendClientConfig] = None,
+        filter: Optional[
+            "capo_comprehend.types.targeted_sentiment_detection_job_filter.TargetedSentimentDetectionJobFilter"
+        ] = None,
+        next_token: Optional["capo_comprehend.types.string.String"] = None,
+        max_results: Optional[
+            "capo_comprehend.types.max_results_integer.MaxResultsInteger"
+        ] = None,
+    ) -> "AsyncIterator[capo_comprehend.types.list_targeted_sentiment_detection_jobs_response.ListTargetedSentimentDetectionJobsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_targeted_sentiment_detection_jobs(
+                config_overrides=config_overrides,
+                filter=filter,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_topics_detection_jobs(
         self,
@@ -3689,7 +4143,7 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.list_topics_detection_jobs_request.ListTopicsDetectionJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_comprehend.types.list_topics_detection_jobs_request.ListTopicsDetectionJobsRequest = {}
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -3702,7 +4156,33 @@ class AsyncComprehendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_topics_detection_jobs(
+        self,
+        *,
+        config_overrides: Optional[AsyncComprehendClientConfig] = None,
+        filter: Optional[
+            "capo_comprehend.types.topics_detection_job_filter.TopicsDetectionJobFilter"
+        ] = None,
+        next_token: Optional["capo_comprehend.types.string.String"] = None,
+        max_results: Optional[
+            "capo_comprehend.types.max_results_integer.MaxResultsInteger"
+        ] = None,
+    ) -> "AsyncIterator[capo_comprehend.types.list_topics_detection_jobs_response.ListTopicsDetectionJobsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_topics_detection_jobs(
+                config_overrides=config_overrides,
+                filter=filter,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def put_resource_policy(
         self,
@@ -3744,9 +4224,10 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.put_resource_policy_request.PutResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["resource_policy"] = resource_policy
+        input_: capo_comprehend.types.put_resource_policy_request.PutResourcePolicyRequest = {
+            "resource_arn": resource_arn,
+            "resource_policy": resource_policy,
+        }
         if policy_revision_id is not None:
             input_["policy_revision_id"] = policy_revision_id
 
@@ -3755,6 +4236,7 @@ class AsyncComprehendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_document_classification_job(
@@ -3820,16 +4302,18 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.start_document_classification_job_request.StartDocumentClassificationJobRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_comprehend.types.start_document_classification_job_request.StartDocumentClassificationJobRequest = {
+            "input_data_config": input_data_config,
+            "output_data_config": output_data_config,
+            "data_access_role_arn": data_access_role_arn,
+        }
         if job_name is not None:
             input_["job_name"] = job_name
         if document_classifier_arn is not None:
             input_["document_classifier_arn"] = document_classifier_arn
-        input_["input_data_config"] = input_data_config
-        input_["output_data_config"] = output_data_config
-        input_["data_access_role_arn"] = data_access_role_arn
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if volume_kms_key_id is not None:
             input_["volume_kms_key_id"] = volume_kms_key_id
         if vpc_config is not None:
@@ -3844,6 +4328,7 @@ class AsyncComprehendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_dominant_language_detection_job(
@@ -3899,14 +4384,16 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.start_dominant_language_detection_job_request.StartDominantLanguageDetectionJobRequest = {}  # type: ignore[typeddict-item]
-        input_["input_data_config"] = input_data_config
-        input_["output_data_config"] = output_data_config
-        input_["data_access_role_arn"] = data_access_role_arn
+        input_: capo_comprehend.types.start_dominant_language_detection_job_request.StartDominantLanguageDetectionJobRequest = {
+            "input_data_config": input_data_config,
+            "output_data_config": output_data_config,
+            "data_access_role_arn": data_access_role_arn,
+        }
         if job_name is not None:
             input_["job_name"] = job_name
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if volume_kms_key_id is not None:
             input_["volume_kms_key_id"] = volume_kms_key_id
         if vpc_config is not None:
@@ -3919,6 +4406,7 @@ class AsyncComprehendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_entities_detection_job(
@@ -3986,17 +4474,19 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.start_entities_detection_job_request.StartEntitiesDetectionJobRequest = {}  # type: ignore[typeddict-item]
-        input_["input_data_config"] = input_data_config
-        input_["output_data_config"] = output_data_config
-        input_["data_access_role_arn"] = data_access_role_arn
+        input_: capo_comprehend.types.start_entities_detection_job_request.StartEntitiesDetectionJobRequest = {
+            "input_data_config": input_data_config,
+            "output_data_config": output_data_config,
+            "data_access_role_arn": data_access_role_arn,
+            "language_code": language_code,
+        }
         if job_name is not None:
             input_["job_name"] = job_name
         if entity_recognizer_arn is not None:
             input_["entity_recognizer_arn"] = entity_recognizer_arn
-        input_["language_code"] = language_code
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if volume_kms_key_id is not None:
             input_["volume_kms_key_id"] = volume_kms_key_id
         if vpc_config is not None:
@@ -4011,6 +4501,7 @@ class AsyncComprehendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_events_detection_job(
@@ -4066,16 +4557,18 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.start_events_detection_job_request.StartEventsDetectionJobRequest = {}  # type: ignore[typeddict-item]
-        input_["input_data_config"] = input_data_config
-        input_["output_data_config"] = output_data_config
-        input_["data_access_role_arn"] = data_access_role_arn
+        input_: capo_comprehend.types.start_events_detection_job_request.StartEventsDetectionJobRequest = {
+            "input_data_config": input_data_config,
+            "output_data_config": output_data_config,
+            "data_access_role_arn": data_access_role_arn,
+            "language_code": language_code,
+            "target_event_types": target_event_types,
+        }
         if job_name is not None:
             input_["job_name"] = job_name
-        input_["language_code"] = language_code
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
-        input_["target_event_types"] = target_event_types
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -4084,6 +4577,7 @@ class AsyncComprehendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_flywheel_iteration(
@@ -4126,8 +4620,9 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.start_flywheel_iteration_request.StartFlywheelIterationRequest = {}  # type: ignore[typeddict-item]
-        input_["flywheel_arn"] = flywheel_arn
+        input_: capo_comprehend.types.start_flywheel_iteration_request.StartFlywheelIterationRequest = {
+            "flywheel_arn": flywheel_arn
+        }
         if client_request_token is not None:
             input_["client_request_token"] = client_request_token
 
@@ -4136,6 +4631,7 @@ class AsyncComprehendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_key_phrases_detection_job(
@@ -4193,15 +4689,17 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.start_key_phrases_detection_job_request.StartKeyPhrasesDetectionJobRequest = {}  # type: ignore[typeddict-item]
-        input_["input_data_config"] = input_data_config
-        input_["output_data_config"] = output_data_config
-        input_["data_access_role_arn"] = data_access_role_arn
+        input_: capo_comprehend.types.start_key_phrases_detection_job_request.StartKeyPhrasesDetectionJobRequest = {
+            "input_data_config": input_data_config,
+            "output_data_config": output_data_config,
+            "data_access_role_arn": data_access_role_arn,
+            "language_code": language_code,
+        }
         if job_name is not None:
             input_["job_name"] = job_name
-        input_["language_code"] = language_code
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if volume_kms_key_id is not None:
             input_["volume_kms_key_id"] = volume_kms_key_id
         if vpc_config is not None:
@@ -4214,6 +4712,7 @@ class AsyncComprehendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_pii_entities_detection_job(
@@ -4273,18 +4772,20 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.start_pii_entities_detection_job_request.StartPiiEntitiesDetectionJobRequest = {}  # type: ignore[typeddict-item]
-        input_["input_data_config"] = input_data_config
-        input_["output_data_config"] = output_data_config
-        input_["mode"] = mode
+        input_: capo_comprehend.types.start_pii_entities_detection_job_request.StartPiiEntitiesDetectionJobRequest = {
+            "input_data_config": input_data_config,
+            "output_data_config": output_data_config,
+            "mode": mode,
+            "data_access_role_arn": data_access_role_arn,
+            "language_code": language_code,
+        }
         if redaction_config is not None:
             input_["redaction_config"] = redaction_config
-        input_["data_access_role_arn"] = data_access_role_arn
         if job_name is not None:
             input_["job_name"] = job_name
-        input_["language_code"] = language_code
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -4293,6 +4794,7 @@ class AsyncComprehendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_sentiment_detection_job(
@@ -4350,15 +4852,17 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.start_sentiment_detection_job_request.StartSentimentDetectionJobRequest = {}  # type: ignore[typeddict-item]
-        input_["input_data_config"] = input_data_config
-        input_["output_data_config"] = output_data_config
-        input_["data_access_role_arn"] = data_access_role_arn
+        input_: capo_comprehend.types.start_sentiment_detection_job_request.StartSentimentDetectionJobRequest = {
+            "input_data_config": input_data_config,
+            "output_data_config": output_data_config,
+            "data_access_role_arn": data_access_role_arn,
+            "language_code": language_code,
+        }
         if job_name is not None:
             input_["job_name"] = job_name
-        input_["language_code"] = language_code
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if volume_kms_key_id is not None:
             input_["volume_kms_key_id"] = volume_kms_key_id
         if vpc_config is not None:
@@ -4371,6 +4875,7 @@ class AsyncComprehendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_targeted_sentiment_detection_job(
@@ -4426,15 +4931,17 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.start_targeted_sentiment_detection_job_request.StartTargetedSentimentDetectionJobRequest = {}  # type: ignore[typeddict-item]
-        input_["input_data_config"] = input_data_config
-        input_["output_data_config"] = output_data_config
-        input_["data_access_role_arn"] = data_access_role_arn
+        input_: capo_comprehend.types.start_targeted_sentiment_detection_job_request.StartTargetedSentimentDetectionJobRequest = {
+            "input_data_config": input_data_config,
+            "output_data_config": output_data_config,
+            "data_access_role_arn": data_access_role_arn,
+            "language_code": language_code,
+        }
         if job_name is not None:
             input_["job_name"] = job_name
-        input_["language_code"] = language_code
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if volume_kms_key_id is not None:
             input_["volume_kms_key_id"] = volume_kms_key_id
         if vpc_config is not None:
@@ -4447,6 +4954,7 @@ class AsyncComprehendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_topics_detection_job(
@@ -4506,16 +5014,18 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.start_topics_detection_job_request.StartTopicsDetectionJobRequest = {}  # type: ignore[typeddict-item]
-        input_["input_data_config"] = input_data_config
-        input_["output_data_config"] = output_data_config
-        input_["data_access_role_arn"] = data_access_role_arn
+        input_: capo_comprehend.types.start_topics_detection_job_request.StartTopicsDetectionJobRequest = {
+            "input_data_config": input_data_config,
+            "output_data_config": output_data_config,
+            "data_access_role_arn": data_access_role_arn,
+        }
         if job_name is not None:
             input_["job_name"] = job_name
         if number_of_topics is not None:
             input_["number_of_topics"] = number_of_topics
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if volume_kms_key_id is not None:
             input_["volume_kms_key_id"] = volume_kms_key_id
         if vpc_config is not None:
@@ -4528,6 +5038,7 @@ class AsyncComprehendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_dominant_language_detection_job(
@@ -4564,14 +5075,16 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.stop_dominant_language_detection_job_request.StopDominantLanguageDetectionJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_comprehend.types.stop_dominant_language_detection_job_request.StopDominantLanguageDetectionJobRequest = {
+            "job_id": job_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_entities_detection_job(
@@ -4608,14 +5121,16 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.stop_entities_detection_job_request.StopEntitiesDetectionJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_comprehend.types.stop_entities_detection_job_request.StopEntitiesDetectionJobRequest = {
+            "job_id": job_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_events_detection_job(
@@ -4652,14 +5167,16 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.stop_events_detection_job_request.StopEventsDetectionJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_comprehend.types.stop_events_detection_job_request.StopEventsDetectionJobRequest = {
+            "job_id": job_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_key_phrases_detection_job(
@@ -4696,14 +5213,16 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.stop_key_phrases_detection_job_request.StopKeyPhrasesDetectionJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_comprehend.types.stop_key_phrases_detection_job_request.StopKeyPhrasesDetectionJobRequest = {
+            "job_id": job_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_pii_entities_detection_job(
@@ -4740,14 +5259,16 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.stop_pii_entities_detection_job_request.StopPiiEntitiesDetectionJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_comprehend.types.stop_pii_entities_detection_job_request.StopPiiEntitiesDetectionJobRequest = {
+            "job_id": job_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_sentiment_detection_job(
@@ -4784,14 +5305,16 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.stop_sentiment_detection_job_request.StopSentimentDetectionJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_comprehend.types.stop_sentiment_detection_job_request.StopSentimentDetectionJobRequest = {
+            "job_id": job_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_targeted_sentiment_detection_job(
@@ -4828,14 +5351,16 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.stop_targeted_sentiment_detection_job_request.StopTargetedSentimentDetectionJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_comprehend.types.stop_targeted_sentiment_detection_job_request.StopTargetedSentimentDetectionJobRequest = {
+            "job_id": job_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_training_document_classifier(
@@ -4873,14 +5398,16 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.stop_training_document_classifier_request.StopTrainingDocumentClassifierRequest = {}  # type: ignore[typeddict-item]
-        input_["document_classifier_arn"] = document_classifier_arn
+        input_: capo_comprehend.types.stop_training_document_classifier_request.StopTrainingDocumentClassifierRequest = {
+            "document_classifier_arn": document_classifier_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_training_entity_recognizer(
@@ -4918,14 +5445,16 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.stop_training_entity_recognizer_request.StopTrainingEntityRecognizerRequest = {}  # type: ignore[typeddict-item]
-        input_["entity_recognizer_arn"] = entity_recognizer_arn
+        input_: capo_comprehend.types.stop_training_entity_recognizer_request.StopTrainingEntityRecognizerRequest = {
+            "entity_recognizer_arn": entity_recognizer_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -4966,15 +5495,17 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_comprehend.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -5015,15 +5546,17 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_comprehend.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_endpoint(
@@ -5080,8 +5613,9 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.update_endpoint_request.UpdateEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["endpoint_arn"] = endpoint_arn
+        input_: capo_comprehend.types.update_endpoint_request.UpdateEndpointRequest = {
+            "endpoint_arn": endpoint_arn
+        }
         if desired_model_arn is not None:
             input_["desired_model_arn"] = desired_model_arn
         if desired_inference_units is not None:
@@ -5096,6 +5630,7 @@ class AsyncComprehendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_flywheel(
@@ -5146,8 +5681,9 @@ class AsyncComprehendClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehend.types.update_flywheel_request.UpdateFlywheelRequest = {}  # type: ignore[typeddict-item]
-        input_["flywheel_arn"] = flywheel_arn
+        input_: capo_comprehend.types.update_flywheel_request.UpdateFlywheelRequest = {
+            "flywheel_arn": flywheel_arn
+        }
         if active_model_arn is not None:
             input_["active_model_arn"] = active_model_arn
         if data_access_role_arn is not None:
@@ -5160,6 +5696,7 @@ class AsyncComprehendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

@@ -36,7 +36,7 @@ def serialize_json(value: NotificationConfigurationSummary) -> dict:
 
 def deserialize_json(data: dict) -> NotificationConfigurationSummary:
     out: NotificationConfigurationSummary = {}  # type: ignore[typeddict-item]
-    if "EventType" in data:
+    if data.get("EventType") is not None:
         import capo_iot_managed_integrations.types.event_type
 
         out["event_type"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> NotificationConfigurationSummary:
                 data["EventType"]
             )
         )
-    if "DestinationName" in data:
+    if data.get("DestinationName") is not None:
         out["destination_name"] = data["DestinationName"]
     return out

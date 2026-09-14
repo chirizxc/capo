@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: ExecutionControls) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExecutionControls:
     out: ExecutionControls = {}  # type: ignore[typeddict-item]
-    if "SsmControls" in data:
+    if data.get("SsmControls") is not None:
         import capo_config_service.types.ssm_controls
 
         out["ssm_controls"] = (

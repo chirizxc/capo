@@ -48,11 +48,11 @@ def serialize_json(value: NluImprovementSpecification) -> dict:
 
 def deserialize_json(data: dict) -> NluImprovementSpecification:
     out: NluImprovementSpecification = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
     else:
         out["enabled"] = False
-    if "assistedNluMode" in data:
+    if data.get("assistedNluMode") is not None:
         import capo_lex_models_v2.types.assisted_nlu_mode
 
         out["assisted_nlu_mode"] = (
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> NluImprovementSpecification:
                 data["assistedNluMode"]
             )
         )
-    if "intentDisambiguationSettings" in data:
+    if data.get("intentDisambiguationSettings") is not None:
         import capo_lex_models_v2.types.intent_disambiguation_settings
 
         out["intent_disambiguation_settings"] = (

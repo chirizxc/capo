@@ -28,13 +28,13 @@ def serialize_json(value: StartUserAccessTasksRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartUserAccessTasksRequest:
     out: StartUserAccessTasksRequest = {}  # type: ignore[typeddict-item]
-    if "appBundleIdentifier" in data:
+    if data.get("appBundleIdentifier") is not None:
         out["app_bundle_identifier"] = data["appBundleIdentifier"]
     else:
         raise DeserializationError(
             "StartUserAccessTasksRequest.app_bundle_identifier required"
         )
-    if "email" in data:
+    if data.get("email") is not None:
         out["email"] = data["email"]
     else:
         raise DeserializationError("StartUserAccessTasksRequest.email required")

@@ -54,9 +54,9 @@ def serialize_json(value: StartImportFileEnrichmentRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartImportFileEnrichmentRequest:
     out: StartImportFileEnrichmentRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "s3BucketSource" in data:
+    if data.get("s3BucketSource") is not None:
         import capo_mgn.types.enrichment_source_s3_configuration
 
         out["s3_bucket_source"] = (
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> StartImportFileEnrichmentRequest:
         raise DeserializationError(
             "StartImportFileEnrichmentRequest.s3_bucket_source required"
         )
-    if "s3BucketTarget" in data:
+    if data.get("s3BucketTarget") is not None:
         import capo_mgn.types.enrichment_target_s3_configuration
 
         out["s3_bucket_target"] = (
@@ -80,6 +80,6 @@ def deserialize_json(data: dict) -> StartImportFileEnrichmentRequest:
         raise DeserializationError(
             "StartImportFileEnrichmentRequest.s3_bucket_target required"
         )
-    if "ipAssignmentStrategy" in data:
+    if data.get("ipAssignmentStrategy") is not None:
         out["ip_assignment_strategy"] = data["ipAssignmentStrategy"]
     return out

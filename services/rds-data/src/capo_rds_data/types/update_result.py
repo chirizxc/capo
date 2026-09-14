@@ -27,7 +27,7 @@ def serialize_json(value: UpdateResult) -> dict:
 
 def deserialize_json(data: dict) -> UpdateResult:
     out: UpdateResult = {}  # type: ignore[typeddict-item]
-    if "generatedFields" in data:
+    if data.get("generatedFields") is not None:
         import capo_rds_data.types.field_list
 
         out["generated_fields"] = capo_rds_data.types.field_list.deserialize_json(

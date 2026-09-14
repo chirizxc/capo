@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: DescribeEndpointConfigInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeEndpointConfigInput:
     out: DescribeEndpointConfigInput = {}  # type: ignore[typeddict-item]
-    if "EndpointConfigName" in data:
+    if data.get("EndpointConfigName") is not None:
         out["endpoint_config_name"] = data["EndpointConfigName"]
     return out

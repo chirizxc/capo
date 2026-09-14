@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ServiceOperations:
 
     out: ServiceOperations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_application_signals.types.service_operation.deserialize_json(item)
         )

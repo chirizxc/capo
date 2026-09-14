@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: LifecyclePolicyResourceIdentifier) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> LifecyclePolicyResourceIdentifier:
     out: LifecyclePolicyResourceIdentifier = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("LifecyclePolicyResourceIdentifier.type required")
-    if "resource" in data:
+    if data.get("resource") is not None:
         out["resource"] = data["resource"]
     else:
         raise DeserializationError(

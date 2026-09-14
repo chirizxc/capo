@@ -27,11 +27,11 @@ def serialize_aws_json_1_1(value: DeleteConnectionMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteConnectionMessage:
     out: DeleteConnectionMessage = {}  # type: ignore[typeddict-item]
-    if "EndpointArn" in data:
+    if data.get("EndpointArn") is not None:
         out["endpoint_arn"] = data["EndpointArn"]
     else:
         raise DeserializationError("DeleteConnectionMessage.endpoint_arn required")
-    if "ReplicationInstanceArn" in data:
+    if data.get("ReplicationInstanceArn") is not None:
         out["replication_instance_arn"] = data["ReplicationInstanceArn"]
     else:
         raise DeserializationError(

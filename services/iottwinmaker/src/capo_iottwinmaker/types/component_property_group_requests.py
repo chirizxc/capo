@@ -29,6 +29,8 @@ def serialize_json(input_to_serialize: ComponentPropertyGroupRequests) -> dict:
 def deserialize_json(data: dict) -> ComponentPropertyGroupRequests:
     out: ComponentPropertyGroupRequests = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_iottwinmaker.types.component_property_group_request
 
         out[key] = (

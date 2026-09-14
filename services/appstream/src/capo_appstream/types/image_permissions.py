@@ -29,8 +29,8 @@ def serialize_aws_json_1_1(value: ImagePermissions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ImagePermissions:
     out: ImagePermissions = {}  # type: ignore[typeddict-item]
-    if "allowFleet" in data:
+    if data.get("allowFleet") is not None:
         out["allow_fleet"] = data["allowFleet"]
-    if "allowImageBuilder" in data:
+    if data.get("allowImageBuilder") is not None:
         out["allow_image_builder"] = data["allowImageBuilder"]
     return out

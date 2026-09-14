@@ -28,7 +28,7 @@ def serialize_json(value: GetAppBundleResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetAppBundleResponse:
     out: GetAppBundleResponse = {}  # type: ignore[typeddict-item]
-    if "appBundle" in data:
+    if data.get("appBundle") is not None:
         import capo_appfabric.types.app_bundle
 
         out["app_bundle"] = capo_appfabric.types.app_bundle.deserialize_json(

@@ -29,8 +29,8 @@ def serialize_json(value: AcceptAdministratorInvitationRequest) -> dict:
 
 def deserialize_json(data: dict) -> AcceptAdministratorInvitationRequest:
     out: AcceptAdministratorInvitationRequest = {}  # type: ignore[typeddict-item]
-    if "AdministratorId" in data:
+    if data.get("AdministratorId") is not None:
         out["administrator_id"] = data["AdministratorId"]
-    if "InvitationId" in data:
+    if data.get("InvitationId") is not None:
         out["invitation_id"] = data["InvitationId"]
     return out

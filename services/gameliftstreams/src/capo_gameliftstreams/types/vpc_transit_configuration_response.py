@@ -46,9 +46,9 @@ def serialize_json(value: VpcTransitConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> VpcTransitConfigurationResponse:
     out: VpcTransitConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
-    if "Ipv4CidrBlocks" in data:
+    if data.get("Ipv4CidrBlocks") is not None:
         import capo_gameliftstreams.types.ipv4_cidr_block_list
 
         out["ipv4_cidr_blocks"] = (
@@ -56,9 +56,9 @@ def deserialize_json(data: dict) -> VpcTransitConfigurationResponse:
                 data["Ipv4CidrBlocks"]
             )
         )
-    if "TransitGatewayId" in data:
+    if data.get("TransitGatewayId") is not None:
         out["transit_gateway_id"] = data["TransitGatewayId"]
-    if "TransitGatewayResourceShareArn" in data:
+    if data.get("TransitGatewayResourceShareArn") is not None:
         out["transit_gateway_resource_share_arn"] = data[
             "TransitGatewayResourceShareArn"
         ]

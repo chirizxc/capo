@@ -27,9 +27,9 @@ def serialize_json(value: ResourceConflictException_) -> dict:
 
 def deserialize_json(data: dict) -> ResourceConflictException_:
     out: ResourceConflictException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "Code" in data:
+    if data.get("Code") is not None:
         out["code"] = data["Code"]
     return out
 
@@ -39,15 +39,18 @@ class ResourceConflictException(ServiceError):
 
     code: str | None = "ResourceConflictException"
 
-    def __init__(self, data: ResourceConflictException_):
+    def __init__(self, data: ResourceConflictException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ResourceConflictException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ResourceConflictException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "ResourceConflictException":
+        return cls(deserialize_json(data), message)

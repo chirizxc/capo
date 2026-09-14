@@ -61,23 +61,23 @@ def serialize_aws_json_1_1(value: AccessKey) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AccessKey:
     out: AccessKey = {}  # type: ignore[typeddict-item]
-    if "accessKeyId" in data:
+    if data.get("accessKeyId") is not None:
         out["access_key_id"] = data["accessKeyId"]
-    if "secretAccessKey" in data:
+    if data.get("secretAccessKey") is not None:
         out["secret_access_key"] = data["secretAccessKey"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_lightsail.types.status_type
 
         out["status"] = capo_lightsail.types.status_type.deserialize_aws_json_1_1(
             data["status"]
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_lightsail.types.iso_date
 
         out["created_at"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
             data["createdAt"]
         )
-    if "lastUsed" in data:
+    if data.get("lastUsed") is not None:
         import capo_lightsail.types.access_key_last_used
 
         out["last_used"] = (

@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: BatchGetBuildBatchesOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetBuildBatchesOutput:
     out: BatchGetBuildBatchesOutput = {}  # type: ignore[typeddict-item]
-    if "buildBatches" in data:
+    if data.get("buildBatches") is not None:
         import capo_codebuild.types.build_batches
 
         out["build_batches"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchGetBuildBatchesOutput:
                 data["buildBatches"]
             )
         )
-    if "buildBatchesNotFound" in data:
+    if data.get("buildBatchesNotFound") is not None:
         import capo_codebuild.types.build_batch_ids
 
         out["build_batches_not_found"] = (

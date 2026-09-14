@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: UpdateIpAddress) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateIpAddress:
     out: UpdateIpAddress = {}  # type: ignore[typeddict-item]
-    if "IpId" in data:
+    if data.get("IpId") is not None:
         out["ip_id"] = data["IpId"]
     else:
         raise DeserializationError("UpdateIpAddress.ip_id required")
-    if "Ipv6" in data:
+    if data.get("Ipv6") is not None:
         out["ipv6"] = data["Ipv6"]
     else:
         raise DeserializationError("UpdateIpAddress.ipv6 required")

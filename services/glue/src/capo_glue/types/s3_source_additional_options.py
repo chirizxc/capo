@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: S3SourceAdditionalOptions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3SourceAdditionalOptions:
     out: S3SourceAdditionalOptions = {}  # type: ignore[typeddict-item]
-    if "BoundedSize" in data:
+    if data.get("BoundedSize") is not None:
         out["bounded_size"] = data["BoundedSize"]
-    if "BoundedFiles" in data:
+    if data.get("BoundedFiles") is not None:
         out["bounded_files"] = data["BoundedFiles"]
     return out

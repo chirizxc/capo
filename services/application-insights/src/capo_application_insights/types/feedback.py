@@ -29,6 +29,9 @@ def deserialize_aws_json_1_1(data: dict) -> Feedback:
     out: Feedback = {}
     for key, value in data.items():
         import capo_application_insights.types.feedback_key
+
+        if value is None:
+            continue
         import capo_application_insights.types.feedback_value
 
         out[

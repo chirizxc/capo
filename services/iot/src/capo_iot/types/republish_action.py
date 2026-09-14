@@ -40,17 +40,17 @@ def serialize_json(value: RepublishAction) -> dict:
 
 def deserialize_json(data: dict) -> RepublishAction:
     out: RepublishAction = {}  # type: ignore[typeddict-item]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("RepublishAction.role_arn required")
-    if "topic" in data:
+    if data.get("topic") is not None:
         out["topic"] = data["topic"]
     else:
         raise DeserializationError("RepublishAction.topic required")
-    if "qos" in data:
+    if data.get("qos") is not None:
         out["qos"] = data["qos"]
-    if "headers" in data:
+    if data.get("headers") is not None:
         import capo_iot.types.mqtt_headers
 
         out["headers"] = capo_iot.types.mqtt_headers.deserialize_json(data["headers"])

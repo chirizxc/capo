@@ -36,19 +36,19 @@ def serialize_json(value: ServiceGroup) -> dict:
 
 def deserialize_json(data: dict) -> ServiceGroup:
     out: ServiceGroup = {}  # type: ignore[typeddict-item]
-    if "GroupName" in data:
+    if data.get("GroupName") is not None:
         out["group_name"] = data["GroupName"]
     else:
         raise DeserializationError("ServiceGroup.group_name required")
-    if "GroupValue" in data:
+    if data.get("GroupValue") is not None:
         out["group_value"] = data["GroupValue"]
     else:
         raise DeserializationError("ServiceGroup.group_value required")
-    if "GroupSource" in data:
+    if data.get("GroupSource") is not None:
         out["group_source"] = data["GroupSource"]
     else:
         raise DeserializationError("ServiceGroup.group_source required")
-    if "GroupIdentifier" in data:
+    if data.get("GroupIdentifier") is not None:
         out["group_identifier"] = data["GroupIdentifier"]
     else:
         raise DeserializationError("ServiceGroup.group_identifier required")

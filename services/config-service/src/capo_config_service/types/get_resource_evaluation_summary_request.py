@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: GetResourceEvaluationSummaryRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetResourceEvaluationSummaryRequest:
     out: GetResourceEvaluationSummaryRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceEvaluationId" in data:
+    if data.get("ResourceEvaluationId") is not None:
         out["resource_evaluation_id"] = data["ResourceEvaluationId"]
     else:
         raise DeserializationError(

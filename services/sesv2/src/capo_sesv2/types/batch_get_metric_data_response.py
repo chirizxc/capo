@@ -38,13 +38,13 @@ def serialize_json(value: BatchGetMetricDataResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetMetricDataResponse:
     out: BatchGetMetricDataResponse = {}  # type: ignore[typeddict-item]
-    if "Results" in data:
+    if data.get("Results") is not None:
         import capo_sesv2.types.metric_data_result_list
 
         out["results"] = capo_sesv2.types.metric_data_result_list.deserialize_json(
             data["Results"]
         )
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_sesv2.types.metric_data_error_list
 
         out["errors"] = capo_sesv2.types.metric_data_error_list.deserialize_json(

@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: SourceFileSpecifier) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SourceFileSpecifier:
     out: SourceFileSpecifier = {}  # type: ignore[typeddict-item]
-    if "filePath" in data:
+    if data.get("filePath") is not None:
         out["file_path"] = data["filePath"]
     else:
         raise DeserializationError("SourceFileSpecifier.file_path required")
-    if "isMove" in data:
+    if data.get("isMove") is not None:
         out["is_move"] = data["isMove"]
     else:
         out["is_move"] = False

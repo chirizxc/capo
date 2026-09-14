@@ -32,8 +32,8 @@ def serialize_json(value: RecommendationRelatedEventResource) -> dict:
 
 def deserialize_json(data: dict) -> RecommendationRelatedEventResource:
     out: RecommendationRelatedEventResource = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     return out

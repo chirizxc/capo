@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ContactCenterSystemTypeList:
 
     out: ContactCenterSystemTypeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_chime_sdk_voice.types.contact_center_system_type.deserialize_json(item)
         )

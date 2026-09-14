@@ -44,13 +44,13 @@ def serialize_aws_json_1_1(value: AcceptPortfolioShareInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AcceptPortfolioShareInput:
     out: AcceptPortfolioShareInput = {}  # type: ignore[typeddict-item]
-    if "AcceptLanguage" in data:
+    if data.get("AcceptLanguage") is not None:
         out["accept_language"] = data["AcceptLanguage"]
-    if "PortfolioId" in data:
+    if data.get("PortfolioId") is not None:
         out["portfolio_id"] = data["PortfolioId"]
     else:
         raise DeserializationError("AcceptPortfolioShareInput.portfolio_id required")
-    if "PortfolioShareType" in data:
+    if data.get("PortfolioShareType") is not None:
         import capo_service_catalog.types.portfolio_share_type
 
         out["portfolio_share_type"] = (

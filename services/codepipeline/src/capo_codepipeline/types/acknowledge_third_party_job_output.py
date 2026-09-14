@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: AcknowledgeThirdPartyJobOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AcknowledgeThirdPartyJobOutput:
     out: AcknowledgeThirdPartyJobOutput = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_codepipeline.types.job_status
 
         out["status"] = capo_codepipeline.types.job_status.deserialize_aws_json_1_1(

@@ -103,17 +103,17 @@ def serialize_aws_json_1_1(value: TrainingJobSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TrainingJobSummary:
     out: TrainingJobSummary = {}  # type: ignore[typeddict-item]
-    if "TrainingJobName" in data:
+    if data.get("TrainingJobName") is not None:
         out["training_job_name"] = data["TrainingJobName"]
-    if "TrainingJobArn" in data:
+    if data.get("TrainingJobArn") is not None:
         out["training_job_arn"] = data["TrainingJobArn"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "TrainingEndTime" in data:
+    if data.get("TrainingEndTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["training_end_time"] = (
@@ -121,7 +121,7 @@ def deserialize_aws_json_1_1(data: dict) -> TrainingJobSummary:
                 data["TrainingEndTime"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (
@@ -129,7 +129,7 @@ def deserialize_aws_json_1_1(data: dict) -> TrainingJobSummary:
                 data["LastModifiedTime"]
             )
         )
-    if "TrainingJobStatus" in data:
+    if data.get("TrainingJobStatus") is not None:
         import capo_sagemaker.types.training_job_status
 
         out["training_job_status"] = (
@@ -137,7 +137,7 @@ def deserialize_aws_json_1_1(data: dict) -> TrainingJobSummary:
                 data["TrainingJobStatus"]
             )
         )
-    if "SecondaryStatus" in data:
+    if data.get("SecondaryStatus") is not None:
         import capo_sagemaker.types.secondary_status
 
         out["secondary_status"] = (
@@ -145,7 +145,7 @@ def deserialize_aws_json_1_1(data: dict) -> TrainingJobSummary:
                 data["SecondaryStatus"]
             )
         )
-    if "WarmPoolStatus" in data:
+    if data.get("WarmPoolStatus") is not None:
         import capo_sagemaker.types.warm_pool_status
 
         out["warm_pool_status"] = (
@@ -153,6 +153,6 @@ def deserialize_aws_json_1_1(data: dict) -> TrainingJobSummary:
                 data["WarmPoolStatus"]
             )
         )
-    if "TrainingPlanArn" in data:
+    if data.get("TrainingPlanArn") is not None:
         out["training_plan_arn"] = data["TrainingPlanArn"]
     return out

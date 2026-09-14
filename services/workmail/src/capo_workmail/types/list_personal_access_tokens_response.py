@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: ListPersonalAccessTokensResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListPersonalAccessTokensResponse:
     out: ListPersonalAccessTokensResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "PersonalAccessTokenSummaries" in data:
+    if data.get("PersonalAccessTokenSummaries") is not None:
         import capo_workmail.types.personal_access_token_summary_list
 
         out["personal_access_token_summaries"] = (

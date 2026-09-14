@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListApplicationAssignmentsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListApplicationAssignmentsResponse:
     out: ListApplicationAssignmentsResponse = {}  # type: ignore[typeddict-item]
-    if "ApplicationAssignments" in data:
+    if data.get("ApplicationAssignments") is not None:
         import capo_sso_admin.types.application_assignments_list
 
         out["application_assignments"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListApplicationAssignmentsResponse:
                 data["ApplicationAssignments"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

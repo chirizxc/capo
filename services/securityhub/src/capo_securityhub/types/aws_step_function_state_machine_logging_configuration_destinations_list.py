@@ -33,6 +33,8 @@ def deserialize_json(
 
     out: AwsStepFunctionStateMachineLoggingConfigurationDestinationsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_step_function_state_machine_logging_configuration_destinations_details.deserialize_json(
                 item

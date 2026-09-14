@@ -47,15 +47,15 @@ def serialize_json(value: CreateTopicRefreshScheduleRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateTopicRefreshScheduleRequest:
     out: CreateTopicRefreshScheduleRequest = {}  # type: ignore[typeddict-item]
-    if "DatasetArn" in data:
+    if data.get("DatasetArn") is not None:
         out["dataset_arn"] = data["DatasetArn"]
     else:
         raise DeserializationError(
             "CreateTopicRefreshScheduleRequest.dataset_arn required"
         )
-    if "DatasetName" in data:
+    if data.get("DatasetName") is not None:
         out["dataset_name"] = data["DatasetName"]
-    if "RefreshSchedule" in data:
+    if data.get("RefreshSchedule") is not None:
         import capo_quicksight.types.topic_refresh_schedule
 
         out["refresh_schedule"] = (

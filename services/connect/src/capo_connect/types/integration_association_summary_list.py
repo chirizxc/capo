@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> IntegrationAssociationSummaryList:
 
     out: IntegrationAssociationSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.integration_association_summary.deserialize_json(item)
         )

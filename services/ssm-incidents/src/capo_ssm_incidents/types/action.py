@@ -32,7 +32,7 @@ def serialize_json(value: Action) -> dict:
 
 
 def deserialize_json(data: dict) -> Action:
-    if "ssmAutomation" in data:
+    if data.get("ssmAutomation") is not None:
         import capo_ssm_incidents.types.ssm_automation
 
         return {

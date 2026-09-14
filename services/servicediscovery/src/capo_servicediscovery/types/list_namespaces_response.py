@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListNamespacesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListNamespacesResponse:
     out: ListNamespacesResponse = {}  # type: ignore[typeddict-item]
-    if "Namespaces" in data:
+    if data.get("Namespaces") is not None:
         import capo_servicediscovery.types.namespace_summaries_list
 
         out["namespaces"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListNamespacesResponse:
                 data["Namespaces"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

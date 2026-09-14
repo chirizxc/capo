@@ -27,7 +27,7 @@ def serialize_json(value: Observations) -> dict:
 
 def deserialize_json(data: dict) -> Observations:
     out: Observations = {}  # type: ignore[typeddict-item]
-    if "text" in data:
+    if data.get("text") is not None:
         import capo_guardduty.types.observation_texts
 
         out["text"] = capo_guardduty.types.observation_texts.deserialize_json(

@@ -50,13 +50,13 @@ def serialize_json(value: FailoverRouterInputConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> FailoverRouterInputConfiguration:
     out: FailoverRouterInputConfiguration = {}  # type: ignore[typeddict-item]
-    if "networkInterfaceArn" in data:
+    if data.get("networkInterfaceArn") is not None:
         out["network_interface_arn"] = data["networkInterfaceArn"]
     else:
         raise DeserializationError(
             "FailoverRouterInputConfiguration.network_interface_arn required"
         )
-    if "protocolConfigurations" in data:
+    if data.get("protocolConfigurations") is not None:
         import capo_mediaconnect.types.failover_router_input_protocol_configuration_list
 
         out["protocol_configurations"] = (
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> FailoverRouterInputConfiguration:
         raise DeserializationError(
             "FailoverRouterInputConfiguration.protocol_configurations required"
         )
-    if "sourcePriorityMode" in data:
+    if data.get("sourcePriorityMode") is not None:
         import capo_mediaconnect.types.failover_input_source_priority_mode
 
         out["source_priority_mode"] = (
@@ -80,6 +80,6 @@ def deserialize_json(data: dict) -> FailoverRouterInputConfiguration:
         raise DeserializationError(
             "FailoverRouterInputConfiguration.source_priority_mode required"
         )
-    if "primarySourceIndex" in data:
+    if data.get("primarySourceIndex") is not None:
         out["primary_source_index"] = data["primarySourceIndex"]
     return out

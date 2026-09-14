@@ -39,20 +39,20 @@ def serialize_aws_json_1_0(value: BusinessVerificationDetails) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> BusinessVerificationDetails:
     out: BusinessVerificationDetails = {}  # type: ignore[typeddict-item]
-    if "LegalName" in data:
+    if data.get("LegalName") is not None:
         out["legal_name"] = data["LegalName"]
     else:
         raise DeserializationError("BusinessVerificationDetails.legal_name required")
-    if "RegistrationId" in data:
+    if data.get("RegistrationId") is not None:
         out["registration_id"] = data["RegistrationId"]
     else:
         raise DeserializationError(
             "BusinessVerificationDetails.registration_id required"
         )
-    if "CountryCode" in data:
+    if data.get("CountryCode") is not None:
         out["country_code"] = data["CountryCode"]
     else:
         raise DeserializationError("BusinessVerificationDetails.country_code required")
-    if "JurisdictionOfIncorporation" in data:
+    if data.get("JurisdictionOfIncorporation") is not None:
         out["jurisdiction_of_incorporation"] = data["JurisdictionOfIncorporation"]
     return out

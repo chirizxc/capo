@@ -51,13 +51,13 @@ def serialize_json(value: ColumnSemanticProperty) -> dict:
 
 def deserialize_json(data: dict) -> ColumnSemanticProperty:
     out: ColumnSemanticProperty = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         import capo_quicksight.types.column_description
 
         out["description"] = capo_quicksight.types.column_description.deserialize_json(
             data["Description"]
         )
-    if "AdditionalNotes" in data:
+    if data.get("AdditionalNotes") is not None:
         import capo_quicksight.types.additional_notes
 
         out["additional_notes"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> ColumnSemanticProperty:
                 data["AdditionalNotes"]
             )
         )
-    if "SemanticType" in data:
+    if data.get("SemanticType") is not None:
         import capo_quicksight.types.column_semantic_type
 
         out["semantic_type"] = (

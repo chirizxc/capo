@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> LandingZoneOperationTypes:
 
     out: LandingZoneOperationTypes = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_controltower.types.landing_zone_operation_type.deserialize_json(item)
         )

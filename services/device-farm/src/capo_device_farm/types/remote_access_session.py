@@ -176,17 +176,17 @@ def serialize_aws_json_1_1(value: RemoteAccessSession) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RemoteAccessSession:
     out: RemoteAccessSession = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "created" in data:
+    if data.get("created") is not None:
         import capo_device_farm.types.date_time
 
         out["created"] = capo_device_farm.types.date_time.deserialize_aws_json_1_1(
             data["created"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_device_farm.types.execution_status
 
         out["status"] = (
@@ -194,7 +194,7 @@ def deserialize_aws_json_1_1(data: dict) -> RemoteAccessSession:
                 data["status"]
             )
         )
-    if "result" in data:
+    if data.get("result") is not None:
         import capo_device_farm.types.execution_result
 
         out["result"] = (
@@ -202,29 +202,29 @@ def deserialize_aws_json_1_1(data: dict) -> RemoteAccessSession:
                 data["result"]
             )
         )
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "started" in data:
+    if data.get("started") is not None:
         import capo_device_farm.types.date_time
 
         out["started"] = capo_device_farm.types.date_time.deserialize_aws_json_1_1(
             data["started"]
         )
-    if "stopped" in data:
+    if data.get("stopped") is not None:
         import capo_device_farm.types.date_time
 
         out["stopped"] = capo_device_farm.types.date_time.deserialize_aws_json_1_1(
             data["stopped"]
         )
-    if "device" in data:
+    if data.get("device") is not None:
         import capo_device_farm.types.device
 
         out["device"] = capo_device_farm.types.device.deserialize_aws_json_1_1(
             data["device"]
         )
-    if "instanceArn" in data:
+    if data.get("instanceArn") is not None:
         out["instance_arn"] = data["instanceArn"]
-    if "billingMethod" in data:
+    if data.get("billingMethod") is not None:
         import capo_device_farm.types.billing_method
 
         out["billing_method"] = (
@@ -232,7 +232,7 @@ def deserialize_aws_json_1_1(data: dict) -> RemoteAccessSession:
                 data["billingMethod"]
             )
         )
-    if "deviceMinutes" in data:
+    if data.get("deviceMinutes") is not None:
         import capo_device_farm.types.device_minutes
 
         out["device_minutes"] = (
@@ -240,11 +240,11 @@ def deserialize_aws_json_1_1(data: dict) -> RemoteAccessSession:
                 data["deviceMinutes"]
             )
         )
-    if "endpoint" in data:
+    if data.get("endpoint") is not None:
         out["endpoint"] = data["endpoint"]
-    if "deviceUdid" in data:
+    if data.get("deviceUdid") is not None:
         out["device_udid"] = data["deviceUdid"]
-    if "interactionMode" in data:
+    if data.get("interactionMode") is not None:
         import capo_device_farm.types.interaction_mode
 
         out["interaction_mode"] = (
@@ -252,15 +252,15 @@ def deserialize_aws_json_1_1(data: dict) -> RemoteAccessSession:
                 data["interactionMode"]
             )
         )
-    if "skipAppResign" in data:
+    if data.get("skipAppResign") is not None:
         out["skip_app_resign"] = data["skipAppResign"]
-    if "vpcConfig" in data:
+    if data.get("vpcConfig") is not None:
         import capo_device_farm.types.vpc_config
 
         out["vpc_config"] = capo_device_farm.types.vpc_config.deserialize_aws_json_1_1(
             data["vpcConfig"]
         )
-    if "deviceProxy" in data:
+    if data.get("deviceProxy") is not None:
         import capo_device_farm.types.device_proxy
 
         out["device_proxy"] = (
@@ -268,9 +268,9 @@ def deserialize_aws_json_1_1(data: dict) -> RemoteAccessSession:
                 data["deviceProxy"]
             )
         )
-    if "appUpload" in data:
+    if data.get("appUpload") is not None:
         out["app_upload"] = data["appUpload"]
-    if "endpoints" in data:
+    if data.get("endpoints") is not None:
         import capo_device_farm.types.remote_access_endpoints
 
         out["endpoints"] = (

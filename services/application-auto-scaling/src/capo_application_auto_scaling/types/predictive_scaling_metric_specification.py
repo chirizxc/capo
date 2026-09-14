@@ -46,7 +46,15 @@ class PredictiveScalingMetricSpecification(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: PredictiveScalingMetricSpecification) -> dict:
     out: dict = {}
-    out["TargetValue"] = value["target_value"]
+    out["TargetValue"] = (
+        "NaN"
+        if value["target_value"] != value["target_value"]
+        else "Infinity"
+        if value["target_value"] == float("inf")
+        else "-Infinity"
+        if value["target_value"] == float("-inf")
+        else value["target_value"]
+    )
     if "predefined_metric_pair_specification" in value:
         import capo_application_auto_scaling.types.predictive_scaling_predefined_metric_pair_specification
 
@@ -100,13 +108,13 @@ def serialize_aws_json_1_1(value: PredictiveScalingMetricSpecification) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PredictiveScalingMetricSpecification:
     out: PredictiveScalingMetricSpecification = {}  # type: ignore[typeddict-item]
-    if "TargetValue" in data:
-        out["target_value"] = data["TargetValue"]
+    if data.get("TargetValue") is not None:
+        out["target_value"] = float(data["TargetValue"])
     else:
         raise DeserializationError(
             "PredictiveScalingMetricSpecification.target_value required"
         )
-    if "PredefinedMetricPairSpecification" in data:
+    if data.get("PredefinedMetricPairSpecification") is not None:
         import capo_application_auto_scaling.types.predictive_scaling_predefined_metric_pair_specification
 
         out["predefined_metric_pair_specification"] = (
@@ -114,7 +122,7 @@ def deserialize_aws_json_1_1(data: dict) -> PredictiveScalingMetricSpecification
                 data["PredefinedMetricPairSpecification"]
             )
         )
-    if "PredefinedScalingMetricSpecification" in data:
+    if data.get("PredefinedScalingMetricSpecification") is not None:
         import capo_application_auto_scaling.types.predictive_scaling_predefined_scaling_metric_specification
 
         out["predefined_scaling_metric_specification"] = (
@@ -122,7 +130,7 @@ def deserialize_aws_json_1_1(data: dict) -> PredictiveScalingMetricSpecification
                 data["PredefinedScalingMetricSpecification"]
             )
         )
-    if "PredefinedLoadMetricSpecification" in data:
+    if data.get("PredefinedLoadMetricSpecification") is not None:
         import capo_application_auto_scaling.types.predictive_scaling_predefined_load_metric_specification
 
         out["predefined_load_metric_specification"] = (
@@ -130,7 +138,7 @@ def deserialize_aws_json_1_1(data: dict) -> PredictiveScalingMetricSpecification
                 data["PredefinedLoadMetricSpecification"]
             )
         )
-    if "CustomizedScalingMetricSpecification" in data:
+    if data.get("CustomizedScalingMetricSpecification") is not None:
         import capo_application_auto_scaling.types.predictive_scaling_customized_metric_specification
 
         out["customized_scaling_metric_specification"] = (
@@ -138,7 +146,7 @@ def deserialize_aws_json_1_1(data: dict) -> PredictiveScalingMetricSpecification
                 data["CustomizedScalingMetricSpecification"]
             )
         )
-    if "CustomizedLoadMetricSpecification" in data:
+    if data.get("CustomizedLoadMetricSpecification") is not None:
         import capo_application_auto_scaling.types.predictive_scaling_customized_metric_specification
 
         out["customized_load_metric_specification"] = (
@@ -146,7 +154,7 @@ def deserialize_aws_json_1_1(data: dict) -> PredictiveScalingMetricSpecification
                 data["CustomizedLoadMetricSpecification"]
             )
         )
-    if "CustomizedCapacityMetricSpecification" in data:
+    if data.get("CustomizedCapacityMetricSpecification") is not None:
         import capo_application_auto_scaling.types.predictive_scaling_customized_metric_specification
 
         out["customized_capacity_metric_specification"] = (

@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ExecutionReferenceList:
 
     out: ExecutionReferenceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_bcm_data_exports.types.execution_reference.deserialize_aws_json_1_1(
                 item

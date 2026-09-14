@@ -13,9 +13,9 @@ from capo_athena import AsyncAthenaClient
 
 
 async def main():
-    async with AsyncAthenaClient() as s3:
+    async with AsyncAthenaClient() as athena:
         # Example: call the batch_get_named_query operation
-        response = await s3.batch_get_named_query()
+        response = await athena.batch_get_named_query()
         print(response["named_queries"])
 ```
 
@@ -28,9 +28,9 @@ from capo_athena import AsyncAthenaClient
 
 
 async def main():
-    async with AsyncAthenaClient() as s3:
-        # Example: paginate over list_databases
-        async for item in s3.iter_list_databases():
+    async with AsyncAthenaClient() as athena:
+        # Example: paginate over get_query_results
+        async for item in athena.iter_get_query_results():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_athena.error import InternalServerException
 
 
 async def main():
-    async with AsyncAthenaClient() as s3:
+    async with AsyncAthenaClient() as athena:
         try:
-            await s3.batch_get_named_query()
+            await athena.batch_get_named_query()
         except InternalServerException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_athena import AsyncAthenaClient
 
 
 async def main():
-    async with AsyncAthenaClient() as s3:
+    async with AsyncAthenaClient() as athena:
         # Default: 3 attempts for every operation
-        response = await s3.batch_get_named_query()
+        response = await athena.batch_get_named_query()
 
         # Override per operation
-        response = await s3.batch_get_named_query(config_overrides={"retry_max_attempts": 5})
+        response = await athena.batch_get_named_query(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.batch_get_named_query(config_overrides={"retry_max_attempts": 1})
+        response = await athena.batch_get_named_query(config_overrides={"retry_max_attempts": 1})
 ```

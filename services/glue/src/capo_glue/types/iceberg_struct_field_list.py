@@ -25,5 +25,7 @@ def deserialize_aws_json_1_1(data: list) -> IcebergStructFieldList:
 
     out: IcebergStructFieldList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_glue.types.iceberg_struct_field.deserialize_aws_json_1_1(item))
     return out

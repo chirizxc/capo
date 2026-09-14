@@ -34,7 +34,7 @@ def serialize_json(value: MaintenanceSchedule) -> dict:
 
 
 def deserialize_json(data: dict) -> MaintenanceSchedule:
-    if "window" in data:
+    if data.get("window") is not None:
         import capo_mediaconnect.types.window_maintenance_schedule
 
         return {

@@ -33,13 +33,13 @@ def serialize_json(value: RegisterCertificateWithoutCARequest) -> dict:
 
 def deserialize_json(data: dict) -> RegisterCertificateWithoutCARequest:
     out: RegisterCertificateWithoutCARequest = {}  # type: ignore[typeddict-item]
-    if "certificatePem" in data:
+    if data.get("certificatePem") is not None:
         out["certificate_pem"] = data["certificatePem"]
     else:
         raise DeserializationError(
             "RegisterCertificateWithoutCARequest.certificate_pem required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iot.types.certificate_status
 
         out["status"] = capo_iot.types.certificate_status.deserialize_json(

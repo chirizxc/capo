@@ -29,7 +29,7 @@ def serialize_json(value: UpdateProtectedResource) -> dict:
 
 def deserialize_json(data: dict) -> UpdateProtectedResource:
     out: UpdateProtectedResource = {}  # type: ignore[typeddict-item]
-    if "s3Bucket" in data:
+    if data.get("s3Bucket") is not None:
         import capo_guardduty.types.update_s3_bucket_resource
 
         out["s3_bucket"] = (

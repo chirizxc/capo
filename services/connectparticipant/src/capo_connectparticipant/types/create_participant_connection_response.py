@@ -53,13 +53,13 @@ def serialize_json(value: CreateParticipantConnectionResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateParticipantConnectionResponse:
     out: CreateParticipantConnectionResponse = {}  # type: ignore[typeddict-item]
-    if "Websocket" in data:
+    if data.get("Websocket") is not None:
         import capo_connectparticipant.types.websocket
 
         out["websocket"] = capo_connectparticipant.types.websocket.deserialize_json(
             data["Websocket"]
         )
-    if "ConnectionCredentials" in data:
+    if data.get("ConnectionCredentials") is not None:
         import capo_connectparticipant.types.connection_credentials
 
         out["connection_credentials"] = (
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> CreateParticipantConnectionResponse:
                 data["ConnectionCredentials"]
             )
         )
-    if "WebRTCConnection" in data:
+    if data.get("WebRTCConnection") is not None:
         import capo_connectparticipant.types.web_rtc_connection
 
         out["web_rtc_connection"] = (

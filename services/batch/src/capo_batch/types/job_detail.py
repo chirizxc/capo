@@ -232,75 +232,75 @@ def serialize_json(value: JobDetail) -> dict:
 
 def deserialize_json(data: dict) -> JobDetail:
     out: JobDetail = {}  # type: ignore[typeddict-item]
-    if "jobArn" in data:
+    if data.get("jobArn") is not None:
         out["job_arn"] = data["jobArn"]
-    if "jobName" in data:
+    if data.get("jobName") is not None:
         out["job_name"] = data["jobName"]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
-    if "jobQueue" in data:
+    if data.get("jobQueue") is not None:
         out["job_queue"] = data["jobQueue"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_batch.types.job_status
 
         out["status"] = capo_batch.types.job_status.deserialize_json(data["status"])
-    if "shareIdentifier" in data:
+    if data.get("shareIdentifier") is not None:
         out["share_identifier"] = data["shareIdentifier"]
-    if "schedulingPriority" in data:
+    if data.get("schedulingPriority") is not None:
         out["scheduling_priority"] = data["schedulingPriority"]
-    if "attempts" in data:
+    if data.get("attempts") is not None:
         import capo_batch.types.attempt_details
 
         out["attempts"] = capo_batch.types.attempt_details.deserialize_json(
             data["attempts"]
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         out["created_at"] = data["createdAt"]
-    if "retryStrategy" in data:
+    if data.get("retryStrategy") is not None:
         import capo_batch.types.retry_strategy
 
         out["retry_strategy"] = capo_batch.types.retry_strategy.deserialize_json(
             data["retryStrategy"]
         )
-    if "startedAt" in data:
+    if data.get("startedAt") is not None:
         out["started_at"] = data["startedAt"]
-    if "stoppedAt" in data:
+    if data.get("stoppedAt") is not None:
         out["stopped_at"] = data["stoppedAt"]
-    if "dependsOn" in data:
+    if data.get("dependsOn") is not None:
         import capo_batch.types.job_dependency_list
 
         out["depends_on"] = capo_batch.types.job_dependency_list.deserialize_json(
             data["dependsOn"]
         )
-    if "jobDefinition" in data:
+    if data.get("jobDefinition") is not None:
         out["job_definition"] = data["jobDefinition"]
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_batch.types.parameters_map
 
         out["parameters"] = capo_batch.types.parameters_map.deserialize_json(
             data["parameters"]
         )
-    if "container" in data:
+    if data.get("container") is not None:
         import capo_batch.types.container_detail
 
         out["container"] = capo_batch.types.container_detail.deserialize_json(
             data["container"]
         )
-    if "nodeDetails" in data:
+    if data.get("nodeDetails") is not None:
         import capo_batch.types.node_details
 
         out["node_details"] = capo_batch.types.node_details.deserialize_json(
             data["nodeDetails"]
         )
-    if "nodeProperties" in data:
+    if data.get("nodeProperties") is not None:
         import capo_batch.types.node_properties
 
         out["node_properties"] = capo_batch.types.node_properties.deserialize_json(
             data["nodeProperties"]
         )
-    if "arrayProperties" in data:
+    if data.get("arrayProperties") is not None:
         import capo_batch.types.array_properties_detail
 
         out["array_properties"] = (
@@ -308,17 +308,17 @@ def deserialize_json(data: dict) -> JobDetail:
                 data["arrayProperties"]
             )
         )
-    if "timeout" in data:
+    if data.get("timeout") is not None:
         import capo_batch.types.job_timeout
 
         out["timeout"] = capo_batch.types.job_timeout.deserialize_json(data["timeout"])
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_batch.types.tagris_tags_map
 
         out["tags"] = capo_batch.types.tagris_tags_map.deserialize_json(data["tags"])
-    if "propagateTags" in data:
+    if data.get("propagateTags") is not None:
         out["propagate_tags"] = data["propagateTags"]
-    if "platformCapabilities" in data:
+    if data.get("platformCapabilities") is not None:
         import capo_batch.types.platform_capability_list
 
         out["platform_capabilities"] = (
@@ -326,29 +326,29 @@ def deserialize_json(data: dict) -> JobDetail:
                 data["platformCapabilities"]
             )
         )
-    if "eksProperties" in data:
+    if data.get("eksProperties") is not None:
         import capo_batch.types.eks_properties_detail
 
         out["eks_properties"] = capo_batch.types.eks_properties_detail.deserialize_json(
             data["eksProperties"]
         )
-    if "eksAttempts" in data:
+    if data.get("eksAttempts") is not None:
         import capo_batch.types.eks_attempt_details
 
         out["eks_attempts"] = capo_batch.types.eks_attempt_details.deserialize_json(
             data["eksAttempts"]
         )
-    if "ecsProperties" in data:
+    if data.get("ecsProperties") is not None:
         import capo_batch.types.ecs_properties_detail
 
         out["ecs_properties"] = capo_batch.types.ecs_properties_detail.deserialize_json(
             data["ecsProperties"]
         )
-    if "isCancelled" in data:
+    if data.get("isCancelled") is not None:
         out["is_cancelled"] = data["isCancelled"]
-    if "isTerminated" in data:
+    if data.get("isTerminated") is not None:
         out["is_terminated"] = data["isTerminated"]
-    if "consumableResourceProperties" in data:
+    if data.get("consumableResourceProperties") is not None:
         import capo_batch.types.consumable_resource_properties
 
         out["consumable_resource_properties"] = (

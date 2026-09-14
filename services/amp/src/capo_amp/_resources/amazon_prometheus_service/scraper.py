@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_amp._auth._signers
@@ -104,16 +105,18 @@ class Scraper:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amp.types.create_scraper_request.CreateScraperRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_amp.types.create_scraper_request.CreateScraperRequest = {
+            "scrape_configuration": scrape_configuration,
+            "source": source,
+            "destination": destination,
+        }
         if alias is not None:
             input_["alias"] = alias
-        input_["scrape_configuration"] = scrape_configuration
-        input_["source"] = source
-        input_["destination"] = destination
         if role_configuration is not None:
             input_["role_configuration"] = role_configuration
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -122,6 +125,7 @@ class Scraper:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -164,14 +168,16 @@ class Scraper:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amp.types.describe_scraper_request.DescribeScraperRequest = {}  # type: ignore[typeddict-item]
-        input_["scraper_id"] = scraper_id
+        input_: capo_amp.types.describe_scraper_request.DescribeScraperRequest = {
+            "scraper_id": scraper_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -232,8 +238,9 @@ class Scraper:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amp.types.update_scraper_request.UpdateScraperRequest = {}  # type: ignore[typeddict-item]
-        input_["scraper_id"] = scraper_id
+        input_: capo_amp.types.update_scraper_request.UpdateScraperRequest = {
+            "scraper_id": scraper_id
+        }
         if alias is not None:
             input_["alias"] = alias
         if scrape_configuration is not None:
@@ -242,14 +249,16 @@ class Scraper:
             input_["destination"] = destination
         if role_configuration is not None:
             input_["role_configuration"] = role_configuration
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -297,16 +306,19 @@ class Scraper:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amp.types.delete_scraper_request.DeleteScraperRequest = {}  # type: ignore[typeddict-item]
-        input_["scraper_id"] = scraper_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_amp.types.delete_scraper_request.DeleteScraperRequest = {
+            "scraper_id": scraper_id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -355,7 +367,7 @@ class Scraper:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amp.types.list_scrapers_request.ListScrapersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_amp.types.list_scrapers_request.ListScrapersRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if next_token is not None:
@@ -368,6 +380,7 @@ class Scraper:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -437,16 +450,18 @@ class AsyncScraper:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amp.types.create_scraper_request.CreateScraperRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_amp.types.create_scraper_request.CreateScraperRequest = {
+            "scrape_configuration": scrape_configuration,
+            "source": source,
+            "destination": destination,
+        }
         if alias is not None:
             input_["alias"] = alias
-        input_["scrape_configuration"] = scrape_configuration
-        input_["source"] = source
-        input_["destination"] = destination
         if role_configuration is not None:
             input_["role_configuration"] = role_configuration
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -455,6 +470,7 @@ class AsyncScraper:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -498,14 +514,16 @@ class AsyncScraper:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amp.types.describe_scraper_request.DescribeScraperRequest = {}  # type: ignore[typeddict-item]
-        input_["scraper_id"] = scraper_id
+        input_: capo_amp.types.describe_scraper_request.DescribeScraperRequest = {
+            "scraper_id": scraper_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -567,8 +585,9 @@ class AsyncScraper:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amp.types.update_scraper_request.UpdateScraperRequest = {}  # type: ignore[typeddict-item]
-        input_["scraper_id"] = scraper_id
+        input_: capo_amp.types.update_scraper_request.UpdateScraperRequest = {
+            "scraper_id": scraper_id
+        }
         if alias is not None:
             input_["alias"] = alias
         if scrape_configuration is not None:
@@ -577,14 +596,16 @@ class AsyncScraper:
             input_["destination"] = destination
         if role_configuration is not None:
             input_["role_configuration"] = role_configuration
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -633,16 +654,19 @@ class AsyncScraper:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amp.types.delete_scraper_request.DeleteScraperRequest = {}  # type: ignore[typeddict-item]
-        input_["scraper_id"] = scraper_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_amp.types.delete_scraper_request.DeleteScraperRequest = {
+            "scraper_id": scraper_id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -692,7 +716,7 @@ class AsyncScraper:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amp.types.list_scrapers_request.ListScrapersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_amp.types.list_scrapers_request.ListScrapersRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if next_token is not None:
@@ -705,4 +729,5 @@ class AsyncScraper:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

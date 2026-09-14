@@ -178,13 +178,13 @@ def serialize_json(value: CmafIngestGroupSettings) -> dict:
 
 def deserialize_json(data: dict) -> CmafIngestGroupSettings:
     out: CmafIngestGroupSettings = {}  # type: ignore[typeddict-item]
-    if "destination" in data:
+    if data.get("destination") is not None:
         import capo_medialive.types.output_location_ref
 
         out["destination"] = capo_medialive.types.output_location_ref.deserialize_json(
             data["destination"]
         )
-    if "nielsenId3Behavior" in data:
+    if data.get("nielsenId3Behavior") is not None:
         import capo_medialive.types.cmaf_nielsen_id3_behavior
 
         out["nielsen_id3_behavior"] = (
@@ -192,15 +192,15 @@ def deserialize_json(data: dict) -> CmafIngestGroupSettings:
                 data["nielsenId3Behavior"]
             )
         )
-    if "scte35Type" in data:
+    if data.get("scte35Type") is not None:
         import capo_medialive.types.scte35_type
 
         out["scte35_type"] = capo_medialive.types.scte35_type.deserialize_json(
             data["scte35Type"]
         )
-    if "segmentLength" in data:
+    if data.get("segmentLength") is not None:
         out["segment_length"] = data["segmentLength"]
-    if "segmentLengthUnits" in data:
+    if data.get("segmentLengthUnits") is not None:
         import capo_medialive.types.cmaf_ingest_segment_length_units
 
         out["segment_length_units"] = (
@@ -208,29 +208,29 @@ def deserialize_json(data: dict) -> CmafIngestGroupSettings:
                 data["segmentLengthUnits"]
             )
         )
-    if "sendDelayMs" in data:
+    if data.get("sendDelayMs") is not None:
         out["send_delay_ms"] = data["sendDelayMs"]
-    if "klvBehavior" in data:
+    if data.get("klvBehavior") is not None:
         import capo_medialive.types.cmaf_klv_behavior
 
         out["klv_behavior"] = capo_medialive.types.cmaf_klv_behavior.deserialize_json(
             data["klvBehavior"]
         )
-    if "klvNameModifier" in data:
+    if data.get("klvNameModifier") is not None:
         out["klv_name_modifier"] = data["klvNameModifier"]
-    if "nielsenId3NameModifier" in data:
+    if data.get("nielsenId3NameModifier") is not None:
         out["nielsen_id3_name_modifier"] = data["nielsenId3NameModifier"]
-    if "scte35NameModifier" in data:
+    if data.get("scte35NameModifier") is not None:
         out["scte35_name_modifier"] = data["scte35NameModifier"]
-    if "id3Behavior" in data:
+    if data.get("id3Behavior") is not None:
         import capo_medialive.types.cmaf_id3_behavior
 
         out["id3_behavior"] = capo_medialive.types.cmaf_id3_behavior.deserialize_json(
             data["id3Behavior"]
         )
-    if "id3NameModifier" in data:
+    if data.get("id3NameModifier") is not None:
         out["id3_name_modifier"] = data["id3NameModifier"]
-    if "captionLanguageMappings" in data:
+    if data.get("captionLanguageMappings") is not None:
         import capo_medialive.types.__list_of_cmaf_ingest_caption_language_mapping
 
         out["caption_language_mappings"] = (
@@ -238,7 +238,7 @@ def deserialize_json(data: dict) -> CmafIngestGroupSettings:
                 data["captionLanguageMappings"]
             )
         )
-    if "timedMetadataId3Frame" in data:
+    if data.get("timedMetadataId3Frame") is not None:
         import capo_medialive.types.cmaf_timed_metadata_id3_frame
 
         out["timed_metadata_id3_frame"] = (
@@ -246,9 +246,9 @@ def deserialize_json(data: dict) -> CmafIngestGroupSettings:
                 data["timedMetadataId3Frame"]
             )
         )
-    if "timedMetadataId3Period" in data:
+    if data.get("timedMetadataId3Period") is not None:
         out["timed_metadata_id3_period"] = data["timedMetadataId3Period"]
-    if "timedMetadataPassthrough" in data:
+    if data.get("timedMetadataPassthrough") is not None:
         import capo_medialive.types.cmaf_timed_metadata_passthrough
 
         out["timed_metadata_passthrough"] = (
@@ -256,7 +256,7 @@ def deserialize_json(data: dict) -> CmafIngestGroupSettings:
                 data["timedMetadataPassthrough"]
             )
         )
-    if "additionalDestinations" in data:
+    if data.get("additionalDestinations") is not None:
         import capo_medialive.types.__list_of_additional_destinations
 
         out["additional_destinations"] = (

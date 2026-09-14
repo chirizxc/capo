@@ -37,12 +37,12 @@ def serialize_json(value: QueryAssistantRequest) -> dict:
 
 def deserialize_json(data: dict) -> QueryAssistantRequest:
     out: QueryAssistantRequest = {}  # type: ignore[typeddict-item]
-    if "queryText" in data:
+    if data.get("queryText") is not None:
         out["query_text"] = data["queryText"]
     else:
         raise DeserializationError("QueryAssistantRequest.query_text required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

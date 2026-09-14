@@ -46,7 +46,7 @@ def serialize_json(value: CategoryEvent) -> dict:
 
 def deserialize_json(data: dict) -> CategoryEvent:
     out: CategoryEvent = {}  # type: ignore[typeddict-item]
-    if "MatchedCategories" in data:
+    if data.get("MatchedCategories") is not None:
         import capo_transcribe_streaming.types.string_list
 
         out["matched_categories"] = (
@@ -54,7 +54,7 @@ def deserialize_json(data: dict) -> CategoryEvent:
                 data["MatchedCategories"]
             )
         )
-    if "MatchedDetails" in data:
+    if data.get("MatchedDetails") is not None:
         import capo_transcribe_streaming.types.matched_category_details
 
         out["matched_details"] = (

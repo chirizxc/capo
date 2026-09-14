@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: SSEDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SSEDescription:
     out: SSEDescription = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_dax.types.sse_status
 
         out["status"] = capo_dax.types.sse_status.deserialize_aws_json_1_1(

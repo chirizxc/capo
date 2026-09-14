@@ -36,9 +36,9 @@ def serialize_json(value: StartAttachmentUploadResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartAttachmentUploadResponse:
     out: StartAttachmentUploadResponse = {}  # type: ignore[typeddict-item]
-    if "AttachmentId" in data:
+    if data.get("AttachmentId") is not None:
         out["attachment_id"] = data["AttachmentId"]
-    if "UploadMetadata" in data:
+    if data.get("UploadMetadata") is not None:
         import capo_connectparticipant.types.upload_metadata
 
         out["upload_metadata"] = (

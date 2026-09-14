@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> RateCardList:
 
     out: RateCardList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_marketplace_discovery.types.rate_card_item.deserialize_json(item)
         )

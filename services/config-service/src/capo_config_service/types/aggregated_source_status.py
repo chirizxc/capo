@@ -71,9 +71,9 @@ def serialize_aws_json_1_1(value: AggregatedSourceStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AggregatedSourceStatus:
     out: AggregatedSourceStatus = {}  # type: ignore[typeddict-item]
-    if "SourceId" in data:
+    if data.get("SourceId") is not None:
         out["source_id"] = data["SourceId"]
-    if "SourceType" in data:
+    if data.get("SourceType") is not None:
         import capo_config_service.types.aggregated_source_type
 
         out["source_type"] = (
@@ -81,9 +81,9 @@ def deserialize_aws_json_1_1(data: dict) -> AggregatedSourceStatus:
                 data["SourceType"]
             )
         )
-    if "AwsRegion" in data:
+    if data.get("AwsRegion") is not None:
         out["aws_region"] = data["AwsRegion"]
-    if "LastUpdateStatus" in data:
+    if data.get("LastUpdateStatus") is not None:
         import capo_config_service.types.aggregated_source_status_type
 
         out["last_update_status"] = (
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_1(data: dict) -> AggregatedSourceStatus:
                 data["LastUpdateStatus"]
             )
         )
-    if "LastUpdateTime" in data:
+    if data.get("LastUpdateTime") is not None:
         import capo_config_service.types.date
 
         out["last_update_time"] = (
@@ -99,8 +99,8 @@ def deserialize_aws_json_1_1(data: dict) -> AggregatedSourceStatus:
                 data["LastUpdateTime"]
             )
         )
-    if "LastErrorCode" in data:
+    if data.get("LastErrorCode") is not None:
         out["last_error_code"] = data["LastErrorCode"]
-    if "LastErrorMessage" in data:
+    if data.get("LastErrorMessage") is not None:
         out["last_error_message"] = data["LastErrorMessage"]
     return out

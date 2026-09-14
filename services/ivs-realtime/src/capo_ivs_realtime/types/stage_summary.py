@@ -43,15 +43,15 @@ def serialize_json(value: StageSummary) -> dict:
 
 def deserialize_json(data: dict) -> StageSummary:
     out: StageSummary = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("StageSummary.arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "activeSessionId" in data:
+    if data.get("activeSessionId") is not None:
         out["active_session_id"] = data["activeSessionId"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_ivs_realtime.types.tags
 
         out["tags"] = capo_ivs_realtime.types.tags.deserialize_json(data["tags"])

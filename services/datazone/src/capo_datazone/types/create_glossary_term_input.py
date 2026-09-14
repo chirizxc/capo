@@ -68,32 +68,32 @@ def serialize_json(value: CreateGlossaryTermInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateGlossaryTermInput:
     out: CreateGlossaryTermInput = {}  # type: ignore[typeddict-item]
-    if "glossaryIdentifier" in data:
+    if data.get("glossaryIdentifier") is not None:
         out["glossary_identifier"] = data["glossaryIdentifier"]
     else:
         raise DeserializationError(
             "CreateGlossaryTermInput.glossary_identifier required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateGlossaryTermInput.name required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.glossary_term_status
 
         out["status"] = capo_datazone.types.glossary_term_status.deserialize_json(
             data["status"]
         )
-    if "shortDescription" in data:
+    if data.get("shortDescription") is not None:
         out["short_description"] = data["shortDescription"]
-    if "longDescription" in data:
+    if data.get("longDescription") is not None:
         out["long_description"] = data["longDescription"]
-    if "termRelations" in data:
+    if data.get("termRelations") is not None:
         import capo_datazone.types.term_relations
 
         out["term_relations"] = capo_datazone.types.term_relations.deserialize_json(
             data["termRelations"]
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

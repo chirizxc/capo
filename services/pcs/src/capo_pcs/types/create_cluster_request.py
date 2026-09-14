@@ -73,11 +73,11 @@ def serialize_aws_json_1_0(value: CreateClusterRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateClusterRequest:
     out: CreateClusterRequest = {}  # type: ignore[typeddict-item]
-    if "clusterName" in data:
+    if data.get("clusterName") is not None:
         out["cluster_name"] = data["clusterName"]
     else:
         raise DeserializationError("CreateClusterRequest.cluster_name required")
-    if "scheduler" in data:
+    if data.get("scheduler") is not None:
         import capo_pcs.types.scheduler_request
 
         out["scheduler"] = capo_pcs.types.scheduler_request.deserialize_aws_json_1_0(
@@ -85,13 +85,13 @@ def deserialize_aws_json_1_0(data: dict) -> CreateClusterRequest:
         )
     else:
         raise DeserializationError("CreateClusterRequest.scheduler required")
-    if "size" in data:
+    if data.get("size") is not None:
         import capo_pcs.types.size
 
         out["size"] = capo_pcs.types.size.deserialize_aws_json_1_0(data["size"])
     else:
         raise DeserializationError("CreateClusterRequest.size required")
-    if "networking" in data:
+    if data.get("networking") is not None:
         import capo_pcs.types.networking_request
 
         out["networking"] = capo_pcs.types.networking_request.deserialize_aws_json_1_0(
@@ -99,7 +99,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateClusterRequest:
         )
     else:
         raise DeserializationError("CreateClusterRequest.networking required")
-    if "slurmConfiguration" in data:
+    if data.get("slurmConfiguration") is not None:
         import capo_pcs.types.cluster_slurm_configuration_request
 
         out["slurm_configuration"] = (
@@ -107,9 +107,9 @@ def deserialize_aws_json_1_0(data: dict) -> CreateClusterRequest:
                 data["slurmConfiguration"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_pcs.types.request_tag_map
 
         out["tags"] = capo_pcs.types.request_tag_map.deserialize_aws_json_1_0(

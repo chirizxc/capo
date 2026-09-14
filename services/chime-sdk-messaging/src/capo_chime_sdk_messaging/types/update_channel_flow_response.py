@@ -23,6 +23,6 @@ def serialize_json(value: UpdateChannelFlowResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateChannelFlowResponse:
     out: UpdateChannelFlowResponse = {}  # type: ignore[typeddict-item]
-    if "ChannelFlowArn" in data:
+    if data.get("ChannelFlowArn") is not None:
         out["channel_flow_arn"] = data["ChannelFlowArn"]
     return out

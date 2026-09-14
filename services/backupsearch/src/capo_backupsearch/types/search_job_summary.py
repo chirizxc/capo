@@ -78,19 +78,19 @@ def serialize_json(value: SearchJobSummary) -> dict:
 
 def deserialize_json(data: dict) -> SearchJobSummary:
     out: SearchJobSummary = {}  # type: ignore[typeddict-item]
-    if "SearchJobIdentifier" in data:
+    if data.get("SearchJobIdentifier") is not None:
         out["search_job_identifier"] = data["SearchJobIdentifier"]
-    if "SearchJobArn" in data:
+    if data.get("SearchJobArn") is not None:
         out["search_job_arn"] = data["SearchJobArn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_backupsearch.types.search_job_state
 
         out["status"] = capo_backupsearch.types.search_job_state.deserialize_json(
             data["Status"]
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_backupsearch.types._prelude.timestamp
 
         out["creation_time"] = (
@@ -98,7 +98,7 @@ def deserialize_json(data: dict) -> SearchJobSummary:
                 data["CreationTime"]
             )
         )
-    if "CompletionTime" in data:
+    if data.get("CompletionTime") is not None:
         import capo_backupsearch.types._prelude.timestamp
 
         out["completion_time"] = (
@@ -106,7 +106,7 @@ def deserialize_json(data: dict) -> SearchJobSummary:
                 data["CompletionTime"]
             )
         )
-    if "SearchScopeSummary" in data:
+    if data.get("SearchScopeSummary") is not None:
         import capo_backupsearch.types.search_scope_summary
 
         out["search_scope_summary"] = (
@@ -114,6 +114,6 @@ def deserialize_json(data: dict) -> SearchJobSummary:
                 data["SearchScopeSummary"]
             )
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
     return out

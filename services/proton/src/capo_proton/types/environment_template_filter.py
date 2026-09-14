@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: EnvironmentTemplateFilter) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EnvironmentTemplateFilter:
     out: EnvironmentTemplateFilter = {}  # type: ignore[typeddict-item]
-    if "templateName" in data:
+    if data.get("templateName") is not None:
         out["template_name"] = data["templateName"]
     else:
         raise DeserializationError("EnvironmentTemplateFilter.template_name required")
-    if "majorVersion" in data:
+    if data.get("majorVersion") is not None:
         out["major_version"] = data["majorVersion"]
     else:
         raise DeserializationError("EnvironmentTemplateFilter.major_version required")

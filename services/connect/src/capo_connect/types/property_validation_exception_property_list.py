@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> PropertyValidationExceptionPropertyList:
 
     out: PropertyValidationExceptionPropertyList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.property_validation_exception_property.deserialize_json(
                 item

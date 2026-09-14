@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> MalaysiaServiceTaxCodesList:
 
     out: MalaysiaServiceTaxCodesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_taxsettings.types.malaysia_service_tax_code.deserialize_json(item)
         )

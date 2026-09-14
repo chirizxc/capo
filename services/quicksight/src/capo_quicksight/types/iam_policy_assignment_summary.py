@@ -38,9 +38,9 @@ def serialize_json(value: IAMPolicyAssignmentSummary) -> dict:
 
 def deserialize_json(data: dict) -> IAMPolicyAssignmentSummary:
     out: IAMPolicyAssignmentSummary = {}  # type: ignore[typeddict-item]
-    if "AssignmentName" in data:
+    if data.get("AssignmentName") is not None:
         out["assignment_name"] = data["AssignmentName"]
-    if "AssignmentStatus" in data:
+    if data.get("AssignmentStatus") is not None:
         import capo_quicksight.types.assignment_status
 
         out["assignment_status"] = (

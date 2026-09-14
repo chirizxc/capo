@@ -43,11 +43,11 @@ def serialize_aws_json_1_1(value: DescribePortfolioSharesInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribePortfolioSharesInput:
     out: DescribePortfolioSharesInput = {}  # type: ignore[typeddict-item]
-    if "PortfolioId" in data:
+    if data.get("PortfolioId") is not None:
         out["portfolio_id"] = data["PortfolioId"]
     else:
         raise DeserializationError("DescribePortfolioSharesInput.portfolio_id required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_service_catalog.types.describe_portfolio_share_type
 
         out["type"] = (
@@ -57,9 +57,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribePortfolioSharesInput:
         )
     else:
         raise DeserializationError("DescribePortfolioSharesInput.type required")
-    if "PageToken" in data:
+    if data.get("PageToken") is not None:
         out["page_token"] = data["PageToken"]
-    if "PageSize" in data:
+    if data.get("PageSize") is not None:
         out["page_size"] = data["PageSize"]
     else:
         out["page_size"] = 0

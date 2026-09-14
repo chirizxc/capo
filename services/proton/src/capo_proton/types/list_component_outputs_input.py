@@ -34,12 +34,12 @@ def serialize_aws_json_1_0(value: ListComponentOutputsInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListComponentOutputsInput:
     out: ListComponentOutputsInput = {}  # type: ignore[typeddict-item]
-    if "componentName" in data:
+    if data.get("componentName") is not None:
         out["component_name"] = data["componentName"]
     else:
         raise DeserializationError("ListComponentOutputsInput.component_name required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "deploymentId" in data:
+    if data.get("deploymentId") is not None:
         out["deployment_id"] = data["deploymentId"]
     return out

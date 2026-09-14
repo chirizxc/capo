@@ -40,13 +40,13 @@ def serialize_json(value: LoggingFilter) -> dict:
 
 def deserialize_json(data: dict) -> LoggingFilter:
     out: LoggingFilter = {}  # type: ignore[typeddict-item]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_observabilityadmin.types.filters
 
         out["filters"] = capo_observabilityadmin.types.filters.deserialize_json(
             data["Filters"]
         )
-    if "DefaultBehavior" in data:
+    if data.get("DefaultBehavior") is not None:
         import capo_observabilityadmin.types.filter_behavior
 
         out["default_behavior"] = (

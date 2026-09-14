@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> UserAppsList:
 
     out: UserAppsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_qapps.types.user_app_item.deserialize_json(item))
     return out

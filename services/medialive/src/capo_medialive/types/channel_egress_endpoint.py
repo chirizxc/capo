@@ -23,6 +23,6 @@ def serialize_json(value: ChannelEgressEndpoint) -> dict:
 
 def deserialize_json(data: dict) -> ChannelEgressEndpoint:
     out: ChannelEgressEndpoint = {}  # type: ignore[typeddict-item]
-    if "sourceIp" in data:
+    if data.get("sourceIp") is not None:
         out["source_ip"] = data["sourceIp"]
     return out

@@ -65,11 +65,11 @@ def serialize_json(value: CreateEksAnywhereSubscriptionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateEksAnywhereSubscriptionRequest:
     out: CreateEksAnywhereSubscriptionRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateEksAnywhereSubscriptionRequest.name required")
-    if "term" in data:
+    if data.get("term") is not None:
         import capo_eks.types.eks_anywhere_subscription_term
 
         out["term"] = capo_eks.types.eks_anywhere_subscription_term.deserialize_json(
@@ -77,11 +77,11 @@ def deserialize_json(data: dict) -> CreateEksAnywhereSubscriptionRequest:
         )
     else:
         raise DeserializationError("CreateEksAnywhereSubscriptionRequest.term required")
-    if "licenseQuantity" in data:
+    if data.get("licenseQuantity") is not None:
         out["license_quantity"] = data["licenseQuantity"]
     else:
         out["license_quantity"] = 0
-    if "licenseType" in data:
+    if data.get("licenseType") is not None:
         import capo_eks.types.eks_anywhere_subscription_license_type
 
         out["license_type"] = (
@@ -89,13 +89,13 @@ def deserialize_json(data: dict) -> CreateEksAnywhereSubscriptionRequest:
                 data["licenseType"]
             )
         )
-    if "autoRenew" in data:
+    if data.get("autoRenew") is not None:
         out["auto_renew"] = data["autoRenew"]
     else:
         out["auto_renew"] = False
-    if "clientRequestToken" in data:
+    if data.get("clientRequestToken") is not None:
         out["client_request_token"] = data["clientRequestToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_eks.types.tag_map
 
         out["tags"] = capo_eks.types.tag_map.deserialize_json(data["tags"])

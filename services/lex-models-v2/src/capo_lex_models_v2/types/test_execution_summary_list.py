@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> TestExecutionSummaryList:
 
     out: TestExecutionSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lex_models_v2.types.test_execution_summary.deserialize_json(item)
         )

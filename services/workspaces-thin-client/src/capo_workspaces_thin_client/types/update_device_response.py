@@ -29,7 +29,7 @@ def serialize_json(value: UpdateDeviceResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDeviceResponse:
     out: UpdateDeviceResponse = {}  # type: ignore[typeddict-item]
-    if "device" in data:
+    if data.get("device") is not None:
         import capo_workspaces_thin_client.types.device_summary
 
         out["device"] = (

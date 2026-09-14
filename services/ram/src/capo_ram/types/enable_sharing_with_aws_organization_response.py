@@ -23,6 +23,6 @@ def serialize_json(value: EnableSharingWithAwsOrganizationResponse) -> dict:
 
 def deserialize_json(data: dict) -> EnableSharingWithAwsOrganizationResponse:
     out: EnableSharingWithAwsOrganizationResponse = {}  # type: ignore[typeddict-item]
-    if "returnValue" in data:
+    if data.get("returnValue") is not None:
         out["return_value"] = data["returnValue"]
     return out

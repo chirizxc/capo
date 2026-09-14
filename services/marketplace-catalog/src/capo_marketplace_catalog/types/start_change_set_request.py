@@ -68,11 +68,11 @@ def serialize_json(value: StartChangeSetRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartChangeSetRequest:
     out: StartChangeSetRequest = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("StartChangeSetRequest.catalog required")
-    if "ChangeSet" in data:
+    if data.get("ChangeSet") is not None:
         import capo_marketplace_catalog.types.requested_change_list
 
         out["change_set"] = (
@@ -82,11 +82,11 @@ def deserialize_json(data: dict) -> StartChangeSetRequest:
         )
     else:
         raise DeserializationError("StartChangeSetRequest.change_set required")
-    if "ChangeSetName" in data:
+    if data.get("ChangeSetName") is not None:
         out["change_set_name"] = data["ChangeSetName"]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "ChangeSetTags" in data:
+    if data.get("ChangeSetTags") is not None:
         import capo_marketplace_catalog.types.tag_list
 
         out["change_set_tags"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> StartChangeSetRequest:
                 data["ChangeSetTags"]
             )
         )
-    if "Intent" in data:
+    if data.get("Intent") is not None:
         import capo_marketplace_catalog.types.intent
 
         out["intent"] = capo_marketplace_catalog.types.intent.deserialize_json(

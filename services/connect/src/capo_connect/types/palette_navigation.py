@@ -47,19 +47,19 @@ def serialize_json(value: PaletteNavigation) -> dict:
 
 def deserialize_json(data: dict) -> PaletteNavigation:
     out: PaletteNavigation = {}  # type: ignore[typeddict-item]
-    if "Background" in data:
+    if data.get("Background") is not None:
         out["background"] = data["Background"]
-    if "TextBackgroundHover" in data:
+    if data.get("TextBackgroundHover") is not None:
         out["text_background_hover"] = data["TextBackgroundHover"]
-    if "TextBackgroundActive" in data:
+    if data.get("TextBackgroundActive") is not None:
         out["text_background_active"] = data["TextBackgroundActive"]
-    if "Text" in data:
+    if data.get("Text") is not None:
         out["text"] = data["Text"]
-    if "TextHover" in data:
+    if data.get("TextHover") is not None:
         out["text_hover"] = data["TextHover"]
-    if "TextActive" in data:
+    if data.get("TextActive") is not None:
         out["text_active"] = data["TextActive"]
-    if "InvertActionsColors" in data:
+    if data.get("InvertActionsColors") is not None:
         out["invert_actions_colors"] = data["InvertActionsColors"]
     else:
         out["invert_actions_colors"] = False

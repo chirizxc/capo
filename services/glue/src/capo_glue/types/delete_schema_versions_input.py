@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: DeleteSchemaVersionsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteSchemaVersionsInput:
     out: DeleteSchemaVersionsInput = {}  # type: ignore[typeddict-item]
-    if "SchemaId" in data:
+    if data.get("SchemaId") is not None:
         import capo_glue.types.schema_id
 
         out["schema_id"] = capo_glue.types.schema_id.deserialize_aws_json_1_1(
@@ -40,7 +40,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeleteSchemaVersionsInput:
         )
     else:
         raise DeserializationError("DeleteSchemaVersionsInput.schema_id required")
-    if "Versions" in data:
+    if data.get("Versions") is not None:
         out["versions"] = data["Versions"]
     else:
         raise DeserializationError("DeleteSchemaVersionsInput.versions required")

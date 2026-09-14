@@ -36,7 +36,7 @@ def serialize_json(value: ManagedSourceConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> ManagedSourceConfiguration:
-    if "webCrawlerConfiguration" in data:
+    if data.get("webCrawlerConfiguration") is not None:
         import capo_qconnect.types.web_crawler_configuration
 
         return {

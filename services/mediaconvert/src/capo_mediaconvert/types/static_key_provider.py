@@ -44,12 +44,12 @@ def serialize_json(value: StaticKeyProvider) -> dict:
 
 def deserialize_json(data: dict) -> StaticKeyProvider:
     out: StaticKeyProvider = {}  # type: ignore[typeddict-item]
-    if "keyFormat" in data:
+    if data.get("keyFormat") is not None:
         out["key_format"] = data["keyFormat"]
-    if "keyFormatVersions" in data:
+    if data.get("keyFormatVersions") is not None:
         out["key_format_versions"] = data["keyFormatVersions"]
-    if "staticKeyValue" in data:
+    if data.get("staticKeyValue") is not None:
         out["static_key_value"] = data["staticKeyValue"]
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
     return out

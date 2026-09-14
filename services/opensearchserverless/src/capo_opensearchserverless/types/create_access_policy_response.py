@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: CreateAccessPolicyResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateAccessPolicyResponse:
     out: CreateAccessPolicyResponse = {}  # type: ignore[typeddict-item]
-    if "accessPolicyDetail" in data:
+    if data.get("accessPolicyDetail") is not None:
         import capo_opensearchserverless.types.access_policy_detail
 
         out["access_policy_detail"] = (

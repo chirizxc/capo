@@ -79,13 +79,13 @@ def serialize_json(value: UpdateClusterInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateClusterInput:
     out: UpdateClusterInput = {}  # type: ignore[typeddict-item]
-    if "authType" in data:
+    if data.get("authType") is not None:
         out["auth_type"] = data["authType"]
-    if "shardCapacity" in data:
+    if data.get("shardCapacity") is not None:
         out["shard_capacity"] = data["shardCapacity"]
-    if "shardCount" in data:
+    if data.get("shardCount") is not None:
         out["shard_count"] = data["shardCount"]
-    if "vpcSecurityGroupIds" in data:
+    if data.get("vpcSecurityGroupIds") is not None:
         import capo_docdb_elastic.types.string_list
 
         out["vpc_security_group_ids"] = (
@@ -93,22 +93,22 @@ def deserialize_json(data: dict) -> UpdateClusterInput:
                 data["vpcSecurityGroupIds"]
             )
         )
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_docdb_elastic.types.string_list
 
         out["subnet_ids"] = capo_docdb_elastic.types.string_list.deserialize_json(
             data["subnetIds"]
         )
-    if "adminUserPassword" in data:
+    if data.get("adminUserPassword") is not None:
         out["admin_user_password"] = data["adminUserPassword"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "preferredMaintenanceWindow" in data:
+    if data.get("preferredMaintenanceWindow") is not None:
         out["preferred_maintenance_window"] = data["preferredMaintenanceWindow"]
-    if "backupRetentionPeriod" in data:
+    if data.get("backupRetentionPeriod") is not None:
         out["backup_retention_period"] = data["backupRetentionPeriod"]
-    if "preferredBackupWindow" in data:
+    if data.get("preferredBackupWindow") is not None:
         out["preferred_backup_window"] = data["preferredBackupWindow"]
-    if "shardInstanceCount" in data:
+    if data.get("shardInstanceCount") is not None:
         out["shard_instance_count"] = data["shardInstanceCount"]
     return out

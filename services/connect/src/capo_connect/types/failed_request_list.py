@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> FailedRequestList:
 
     out: FailedRequestList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.failed_request.deserialize_json(item))
     return out

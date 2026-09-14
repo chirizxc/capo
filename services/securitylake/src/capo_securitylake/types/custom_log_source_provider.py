@@ -28,8 +28,8 @@ def serialize_json(value: CustomLogSourceProvider) -> dict:
 
 def deserialize_json(data: dict) -> CustomLogSourceProvider:
     out: CustomLogSourceProvider = {}  # type: ignore[typeddict-item]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "location" in data:
+    if data.get("location") is not None:
         out["location"] = data["location"]
     return out

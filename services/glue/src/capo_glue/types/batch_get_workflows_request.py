@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: BatchGetWorkflowsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetWorkflowsRequest:
     out: BatchGetWorkflowsRequest = {}  # type: ignore[typeddict-item]
-    if "Names" in data:
+    if data.get("Names") is not None:
         import capo_glue.types.workflow_names
 
         out["names"] = capo_glue.types.workflow_names.deserialize_aws_json_1_1(
@@ -39,6 +39,6 @@ def deserialize_aws_json_1_1(data: dict) -> BatchGetWorkflowsRequest:
         )
     else:
         raise DeserializationError("BatchGetWorkflowsRequest.names required")
-    if "IncludeGraph" in data:
+    if data.get("IncludeGraph") is not None:
         out["include_graph"] = data["IncludeGraph"]
     return out

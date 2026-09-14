@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ChannelSpecifications:
 
     out: ChannelSpecifications = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.channel_specification.deserialize_aws_json_1_1(item)
         )

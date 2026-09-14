@@ -11,6 +11,7 @@ from typing_extensions import Never
 
 import capo_elastic_transcoder._auth._signers
 import capo_elastic_transcoder._auth._sigv4
+import capo_elastic_transcoder._protocol.eventstream
 import capo_elastic_transcoder.errors.access_denied_exception
 import capo_elastic_transcoder.errors.incompatible_version_exception
 import capo_elastic_transcoder.errors.internal_service_exception
@@ -37,27 +38,27 @@ def handle_error(response: zapros.Response) -> Never:
     match code:
         case "AccessDeniedException":
             raise capo_elastic_transcoder.errors.access_denied_exception.AccessDeniedException.from_json(
-                data
+                data, message
             )
         case "IncompatibleVersionException":
             raise capo_elastic_transcoder.errors.incompatible_version_exception.IncompatibleVersionException.from_json(
-                data
+                data, message
             )
         case "InternalServiceException":
             raise capo_elastic_transcoder.errors.internal_service_exception.InternalServiceException.from_json(
-                data
+                data, message
             )
         case "ResourceInUseException":
             raise capo_elastic_transcoder.errors.resource_in_use_exception.ResourceInUseException.from_json(
-                data
+                data, message
             )
         case "ResourceNotFoundException":
             raise capo_elastic_transcoder.errors.resource_not_found_exception.ResourceNotFoundException.from_json(
-                data
+                data, message
             )
         case "ValidationException":
             raise capo_elastic_transcoder.errors.validation_exception.ValidationException.from_json(
-                data
+                data, message
             )
         case _:
             raise UnknownServiceError(code=code, message=message, response=response)
@@ -82,19 +83,26 @@ def get_signer(
     auth_schemes: list[dict[str, Any]] | None = None,
 ) -> capo_elastic_transcoder._auth._signers.Signer | None:
     name_to_schema = {s["name"]: s for s in (auth_schemes or [])}  # noqa: F841
-    if options.credentials_provider is not None:
-        sigv4_config = (
-            name_to_schema.get("sigv4")
-            or name_to_schema.get("sigv4a")
-            or name_to_schema.get("sigv4-s3express")
-            or capo_elastic_transcoder._auth._sigv4.build_sigv4_auth_scheme(
-                "elastictranscoder", options.region
-            )
+    if (
+        options.credentials_provider is not None
+        and name_to_schema
+        and not name_to_schema.keys() & {"sigv4", "sigv4-s3express"}
+    ):
+        raise RuntimeError(
+            "Endpoint requires an unsupported auth scheme: " + ", ".join(name_to_schema)
         )
-        if sigv4_config is not None:
-            return capo_elastic_transcoder._auth._signers.SigV4Signer(
-                options.credentials_provider, auth_scheme=sigv4_config
+    if options.credentials_provider is not None:
+        endpoint_scheme = name_to_schema.get("sigv4") or name_to_schema.get(
+            "sigv4-s3express"
+        )
+        if endpoint_scheme is not None or not name_to_schema:
+            sigv4_config = capo_elastic_transcoder._auth._sigv4.build_sigv4_auth_scheme(
+                "elastictranscoder", options.region, endpoint_scheme
             )
+            if sigv4_config is not None:
+                return capo_elastic_transcoder._auth._signers.SigV4Signer(
+                    options.credentials_provider, auth_scheme=sigv4_config
+                )
     raise RuntimeError("Auth was not resolved")
 
 
@@ -111,13 +119,14 @@ def build_request(
         )
     )  # noqa: F841
     url = endpoint.url.rstrip("/") + "/2012-09-25/jobs/{Id}"
-    url = url.replace("{Id}", quote(str(input_["id"]), safe=""))
-    params: dict[str, str] = {}
+    url = url.replace("{Id}", quote(input_["id"], safe=""))
+    params: list[tuple[str, str]] = []
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     body: bytes | None = b""
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))
     normalized_url = zapros.URL(url)
-    normalized_url.search_params.update(params)
+    for k, v in params:
+        normalized_url.search_params.append(k, v)
     return zapros.Request(
         normalized_url, "DELETE", headers=headers, body=body, context={"signer": signer}
     )
@@ -131,7 +140,7 @@ def cancel_job(
 ]:
     response = options.client.handler.handle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             response.read()
             handle_error(response)
         return handle_response(response), response
@@ -148,7 +157,7 @@ async def async_cancel_job(
 ]:
     response = await options.client.handler.ahandle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             await response.aread()
             handle_error(response)
         return await async_handle_response(response), response

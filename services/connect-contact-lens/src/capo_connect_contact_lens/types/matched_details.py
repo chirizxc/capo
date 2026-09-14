@@ -27,6 +27,8 @@ def serialize_json(input_to_serialize: MatchedDetails) -> dict:
 def deserialize_json(data: dict) -> MatchedDetails:
     out: MatchedDetails = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_connect_contact_lens.types.category_details
 
         out[key] = capo_connect_contact_lens.types.category_details.deserialize_json(

@@ -84,7 +84,7 @@ def serialize_json(value: MessageRequest) -> dict:
 
 def deserialize_json(data: dict) -> MessageRequest:
     out: MessageRequest = {}  # type: ignore[typeddict-item]
-    if "Addresses" in data:
+    if data.get("Addresses") is not None:
         import capo_pinpoint.types.map_of_address_configuration
 
         out["addresses"] = (
@@ -92,13 +92,13 @@ def deserialize_json(data: dict) -> MessageRequest:
                 data["Addresses"]
             )
         )
-    if "Context" in data:
+    if data.get("Context") is not None:
         import capo_pinpoint.types.map_of__string
 
         out["context"] = capo_pinpoint.types.map_of__string.deserialize_json(
             data["Context"]
         )
-    if "Endpoints" in data:
+    if data.get("Endpoints") is not None:
         import capo_pinpoint.types.map_of_endpoint_send_configuration
 
         out["endpoints"] = (
@@ -106,7 +106,7 @@ def deserialize_json(data: dict) -> MessageRequest:
                 data["Endpoints"]
             )
         )
-    if "MessageConfiguration" in data:
+    if data.get("MessageConfiguration") is not None:
         import capo_pinpoint.types.direct_message_configuration
 
         out["message_configuration"] = (
@@ -114,7 +114,7 @@ def deserialize_json(data: dict) -> MessageRequest:
                 data["MessageConfiguration"]
             )
         )
-    if "TemplateConfiguration" in data:
+    if data.get("TemplateConfiguration") is not None:
         import capo_pinpoint.types.template_configuration
 
         out["template_configuration"] = (
@@ -122,6 +122,6 @@ def deserialize_json(data: dict) -> MessageRequest:
                 data["TemplateConfiguration"]
             )
         )
-    if "TraceId" in data:
+    if data.get("TraceId") is not None:
         out["trace_id"] = data["TraceId"]
     return out

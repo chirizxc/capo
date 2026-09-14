@@ -41,21 +41,21 @@ def serialize_json(value: JobSummary) -> dict:
     out["jobArn"] = value["job_arn"]
     out["jobName"] = value["job_name"]
     out["device"] = value["device"]
-    import capo_braket.types._prelude.timestamp
+    import capo_braket._protocol.serialize
 
-    out["createdAt"] = capo_braket.types._prelude.timestamp.serialize_json(
+    out["createdAt"] = capo_braket._protocol.serialize.fmt_date_time(
         value["created_at"]
     )
     if "started_at" in value:
-        import capo_braket.types._prelude.timestamp
+        import capo_braket._protocol.serialize
 
-        out["startedAt"] = capo_braket.types._prelude.timestamp.serialize_json(
+        out["startedAt"] = capo_braket._protocol.serialize.fmt_date_time(
             value["started_at"]
         )
     if "ended_at" in value:
-        import capo_braket.types._prelude.timestamp
+        import capo_braket._protocol.serialize
 
-        out["endedAt"] = capo_braket.types._prelude.timestamp.serialize_json(
+        out["endedAt"] = capo_braket._protocol.serialize.fmt_date_time(
             value["ended_at"]
         )
     if "tags" in value:
@@ -67,43 +67,43 @@ def serialize_json(value: JobSummary) -> dict:
 
 def deserialize_json(data: dict) -> JobSummary:
     out: JobSummary = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("JobSummary.status required")
-    if "jobArn" in data:
+    if data.get("jobArn") is not None:
         out["job_arn"] = data["jobArn"]
     else:
         raise DeserializationError("JobSummary.job_arn required")
-    if "jobName" in data:
+    if data.get("jobName") is not None:
         out["job_name"] = data["jobName"]
     else:
         raise DeserializationError("JobSummary.job_name required")
-    if "device" in data:
+    if data.get("device") is not None:
         out["device"] = data["device"]
     else:
         raise DeserializationError("JobSummary.device required")
-    if "createdAt" in data:
-        import capo_braket.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = capo_braket.types._prelude.timestamp.deserialize_json(
-            data["createdAt"]
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("JobSummary.created_at required")
-    if "startedAt" in data:
-        import capo_braket.types._prelude.timestamp
+    if data.get("startedAt") is not None:
+        import datetime
 
-        out["started_at"] = capo_braket.types._prelude.timestamp.deserialize_json(
-            data["startedAt"]
+        out["started_at"] = datetime.datetime.fromisoformat(
+            data["startedAt"].replace("Z", "+00:00")
         )
-    if "endedAt" in data:
-        import capo_braket.types._prelude.timestamp
+    if data.get("endedAt") is not None:
+        import datetime
 
-        out["ended_at"] = capo_braket.types._prelude.timestamp.deserialize_json(
-            data["endedAt"]
+        out["ended_at"] = datetime.datetime.fromisoformat(
+            data["endedAt"].replace("Z", "+00:00")
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_braket.types.tags_map
 
         out["tags"] = capo_braket.types.tags_map.deserialize_json(data["tags"])

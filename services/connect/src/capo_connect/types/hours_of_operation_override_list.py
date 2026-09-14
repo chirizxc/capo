@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> HoursOfOperationOverrideList:
 
     out: HoursOfOperationOverrideList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.hours_of_operation_override.deserialize_json(item)
         )

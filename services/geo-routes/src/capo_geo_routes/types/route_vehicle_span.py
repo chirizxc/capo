@@ -216,11 +216,11 @@ def serialize_json(value: RouteVehicleSpan) -> dict:
 
 def deserialize_json(data: dict) -> RouteVehicleSpan:
     out: RouteVehicleSpan = {}  # type: ignore[typeddict-item]
-    if "BestCaseDuration" in data:
+    if data.get("BestCaseDuration") is not None:
         out["best_case_duration"] = data["BestCaseDuration"]
     else:
         out["best_case_duration"] = 0
-    if "CarAccess" in data:
+    if data.get("CarAccess") is not None:
         import capo_geo_routes.types.route_span_car_access_attribute_list
 
         out["car_access"] = (
@@ -228,17 +228,17 @@ def deserialize_json(data: dict) -> RouteVehicleSpan:
                 data["CarAccess"]
             )
         )
-    if "Country" in data:
+    if data.get("Country") is not None:
         out["country"] = data["Country"]
-    if "Distance" in data:
+    if data.get("Distance") is not None:
         out["distance"] = data["Distance"]
     else:
         out["distance"] = 0
-    if "Duration" in data:
+    if data.get("Duration") is not None:
         out["duration"] = data["Duration"]
     else:
         out["duration"] = 0
-    if "DynamicSpeed" in data:
+    if data.get("DynamicSpeed") is not None:
         import capo_geo_routes.types.route_span_dynamic_speed_details
 
         out["dynamic_speed"] = (
@@ -246,35 +246,35 @@ def deserialize_json(data: dict) -> RouteVehicleSpan:
                 data["DynamicSpeed"]
             )
         )
-    if "FunctionalClassification" in data:
+    if data.get("FunctionalClassification") is not None:
         out["functional_classification"] = data["FunctionalClassification"]
-    if "Gate" in data:
+    if data.get("Gate") is not None:
         import capo_geo_routes.types.route_span_gate_attribute
 
         out["gate"] = capo_geo_routes.types.route_span_gate_attribute.deserialize_json(
             data["Gate"]
         )
-    if "GeometryOffset" in data:
+    if data.get("GeometryOffset") is not None:
         out["geometry_offset"] = data["GeometryOffset"]
-    if "Incidents" in data:
+    if data.get("Incidents") is not None:
         import capo_geo_routes.types.index_list
 
         out["incidents"] = capo_geo_routes.types.index_list.deserialize_json(
             data["Incidents"]
         )
-    if "Names" in data:
+    if data.get("Names") is not None:
         import capo_geo_routes.types.localized_string_list
 
         out["names"] = capo_geo_routes.types.localized_string_list.deserialize_json(
             data["Names"]
         )
-    if "Notices" in data:
+    if data.get("Notices") is not None:
         import capo_geo_routes.types.index_list
 
         out["notices"] = capo_geo_routes.types.index_list.deserialize_json(
             data["Notices"]
         )
-    if "RailwayCrossing" in data:
+    if data.get("RailwayCrossing") is not None:
         import capo_geo_routes.types.route_span_railway_crossing_attribute
 
         out["railway_crossing"] = (
@@ -282,9 +282,9 @@ def deserialize_json(data: dict) -> RouteVehicleSpan:
                 data["RailwayCrossing"]
             )
         )
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
-    if "RoadAttributes" in data:
+    if data.get("RoadAttributes") is not None:
         import capo_geo_routes.types.route_span_road_attribute_list
 
         out["road_attributes"] = (
@@ -292,13 +292,13 @@ def deserialize_json(data: dict) -> RouteVehicleSpan:
                 data["RoadAttributes"]
             )
         )
-    if "RouteNumbers" in data:
+    if data.get("RouteNumbers") is not None:
         import capo_geo_routes.types.route_number_list
 
         out["route_numbers"] = capo_geo_routes.types.route_number_list.deserialize_json(
             data["RouteNumbers"]
         )
-    if "ScooterAccess" in data:
+    if data.get("ScooterAccess") is not None:
         import capo_geo_routes.types.route_span_scooter_access_attribute_list
 
         out["scooter_access"] = (
@@ -306,7 +306,7 @@ def deserialize_json(data: dict) -> RouteVehicleSpan:
                 data["ScooterAccess"]
             )
         )
-    if "SpeedLimit" in data:
+    if data.get("SpeedLimit") is not None:
         import capo_geo_routes.types.route_span_speed_limit_details
 
         out["speed_limit"] = (
@@ -314,13 +314,13 @@ def deserialize_json(data: dict) -> RouteVehicleSpan:
                 data["SpeedLimit"]
             )
         )
-    if "TollSystems" in data:
+    if data.get("TollSystems") is not None:
         import capo_geo_routes.types.index_list
 
         out["toll_systems"] = capo_geo_routes.types.index_list.deserialize_json(
             data["TollSystems"]
         )
-    if "TruckAccess" in data:
+    if data.get("TruckAccess") is not None:
         import capo_geo_routes.types.route_span_truck_access_attribute_list
 
         out["truck_access"] = (
@@ -328,17 +328,17 @@ def deserialize_json(data: dict) -> RouteVehicleSpan:
                 data["TruckAccess"]
             )
         )
-    if "TruckRoadTypes" in data:
+    if data.get("TruckRoadTypes") is not None:
         import capo_geo_routes.types.index_list
 
         out["truck_road_types"] = capo_geo_routes.types.index_list.deserialize_json(
             data["TruckRoadTypes"]
         )
-    if "TypicalDuration" in data:
+    if data.get("TypicalDuration") is not None:
         out["typical_duration"] = data["TypicalDuration"]
     else:
         out["typical_duration"] = 0
-    if "Zones" in data:
+    if data.get("Zones") is not None:
         import capo_geo_routes.types.index_list
 
         out["zones"] = capo_geo_routes.types.index_list.deserialize_json(data["Zones"])

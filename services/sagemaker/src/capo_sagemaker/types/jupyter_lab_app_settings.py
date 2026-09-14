@@ -94,7 +94,7 @@ def serialize_aws_json_1_1(value: JupyterLabAppSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> JupyterLabAppSettings:
     out: JupyterLabAppSettings = {}  # type: ignore[typeddict-item]
-    if "DefaultResourceSpec" in data:
+    if data.get("DefaultResourceSpec") is not None:
         import capo_sagemaker.types.resource_spec
 
         out["default_resource_spec"] = (
@@ -102,7 +102,7 @@ def deserialize_aws_json_1_1(data: dict) -> JupyterLabAppSettings:
                 data["DefaultResourceSpec"]
             )
         )
-    if "CustomImages" in data:
+    if data.get("CustomImages") is not None:
         import capo_sagemaker.types.custom_images
 
         out["custom_images"] = (
@@ -110,7 +110,7 @@ def deserialize_aws_json_1_1(data: dict) -> JupyterLabAppSettings:
                 data["CustomImages"]
             )
         )
-    if "LifecycleConfigArns" in data:
+    if data.get("LifecycleConfigArns") is not None:
         import capo_sagemaker.types.lifecycle_config_arns
 
         out["lifecycle_config_arns"] = (
@@ -118,7 +118,7 @@ def deserialize_aws_json_1_1(data: dict) -> JupyterLabAppSettings:
                 data["LifecycleConfigArns"]
             )
         )
-    if "CodeRepositories" in data:
+    if data.get("CodeRepositories") is not None:
         import capo_sagemaker.types.code_repositories
 
         out["code_repositories"] = (
@@ -126,7 +126,7 @@ def deserialize_aws_json_1_1(data: dict) -> JupyterLabAppSettings:
                 data["CodeRepositories"]
             )
         )
-    if "AppLifecycleManagement" in data:
+    if data.get("AppLifecycleManagement") is not None:
         import capo_sagemaker.types.app_lifecycle_management
 
         out["app_lifecycle_management"] = (
@@ -134,7 +134,7 @@ def deserialize_aws_json_1_1(data: dict) -> JupyterLabAppSettings:
                 data["AppLifecycleManagement"]
             )
         )
-    if "EmrSettings" in data:
+    if data.get("EmrSettings") is not None:
         import capo_sagemaker.types.emr_settings
 
         out["emr_settings"] = (
@@ -142,6 +142,6 @@ def deserialize_aws_json_1_1(data: dict) -> JupyterLabAppSettings:
                 data["EmrSettings"]
             )
         )
-    if "BuiltInLifecycleConfigArn" in data:
+    if data.get("BuiltInLifecycleConfigArn") is not None:
         out["built_in_lifecycle_config_arn"] = data["BuiltInLifecycleConfigArn"]
     return out

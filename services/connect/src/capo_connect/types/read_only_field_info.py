@@ -29,7 +29,7 @@ def serialize_json(value: ReadOnlyFieldInfo) -> dict:
 
 def deserialize_json(data: dict) -> ReadOnlyFieldInfo:
     out: ReadOnlyFieldInfo = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         import capo_connect.types.task_template_field_identifier
 
         out["id"] = capo_connect.types.task_template_field_identifier.deserialize_json(

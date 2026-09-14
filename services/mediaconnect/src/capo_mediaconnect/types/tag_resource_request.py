@@ -29,7 +29,7 @@ def serialize_json(value: TagResourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> TagResourceRequest:
     out: TagResourceRequest = {}  # type: ignore[typeddict-item]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mediaconnect.types.__map_of_string
 
         out["tags"] = capo_mediaconnect.types.__map_of_string.deserialize_json(

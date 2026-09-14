@@ -102,9 +102,9 @@ def serialize_aws_json_1_1(value: Certificate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Certificate:
     out: Certificate = {}  # type: ignore[typeddict-item]
-    if "CertificateIdentifier" in data:
+    if data.get("CertificateIdentifier") is not None:
         out["certificate_identifier"] = data["CertificateIdentifier"]
-    if "CertificateCreationDate" in data:
+    if data.get("CertificateCreationDate") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["certificate_creation_date"] = (
@@ -112,9 +112,9 @@ def deserialize_aws_json_1_1(data: dict) -> Certificate:
                 data["CertificateCreationDate"]
             )
         )
-    if "CertificatePem" in data:
+    if data.get("CertificatePem") is not None:
         out["certificate_pem"] = data["CertificatePem"]
-    if "CertificateWallet" in data:
+    if data.get("CertificateWallet") is not None:
         import capo_database_migration_service.types.certificate_wallet
 
         out["certificate_wallet"] = (
@@ -122,11 +122,11 @@ def deserialize_aws_json_1_1(data: dict) -> Certificate:
                 data["CertificateWallet"]
             )
         )
-    if "CertificateArn" in data:
+    if data.get("CertificateArn") is not None:
         out["certificate_arn"] = data["CertificateArn"]
-    if "CertificateOwner" in data:
+    if data.get("CertificateOwner") is not None:
         out["certificate_owner"] = data["CertificateOwner"]
-    if "ValidFromDate" in data:
+    if data.get("ValidFromDate") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["valid_from_date"] = (
@@ -134,7 +134,7 @@ def deserialize_aws_json_1_1(data: dict) -> Certificate:
                 data["ValidFromDate"]
             )
         )
-    if "ValidToDate" in data:
+    if data.get("ValidToDate") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["valid_to_date"] = (
@@ -142,10 +142,10 @@ def deserialize_aws_json_1_1(data: dict) -> Certificate:
                 data["ValidToDate"]
             )
         )
-    if "SigningAlgorithm" in data:
+    if data.get("SigningAlgorithm") is not None:
         out["signing_algorithm"] = data["SigningAlgorithm"]
-    if "KeyLength" in data:
+    if data.get("KeyLength") is not None:
         out["key_length"] = data["KeyLength"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
     return out

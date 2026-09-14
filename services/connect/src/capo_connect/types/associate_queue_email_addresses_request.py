@@ -43,7 +43,7 @@ def serialize_json(value: AssociateQueueEmailAddressesRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociateQueueEmailAddressesRequest:
     out: AssociateQueueEmailAddressesRequest = {}  # type: ignore[typeddict-item]
-    if "EmailAddressesConfig" in data:
+    if data.get("EmailAddressesConfig") is not None:
         import capo_connect.types.email_address_config_list
 
         out["email_addresses_config"] = (
@@ -55,6 +55,6 @@ def deserialize_json(data: dict) -> AssociateQueueEmailAddressesRequest:
         raise DeserializationError(
             "AssociateQueueEmailAddressesRequest.email_addresses_config required"
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

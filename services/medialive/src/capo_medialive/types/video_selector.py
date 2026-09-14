@@ -70,7 +70,7 @@ def serialize_json(value: VideoSelector) -> dict:
 
 def deserialize_json(data: dict) -> VideoSelector:
     out: VideoSelector = {}  # type: ignore[typeddict-item]
-    if "colorSpace" in data:
+    if data.get("colorSpace") is not None:
         import capo_medialive.types.video_selector_color_space
 
         out["color_space"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> VideoSelector:
                 data["colorSpace"]
             )
         )
-    if "colorSpaceSettings" in data:
+    if data.get("colorSpaceSettings") is not None:
         import capo_medialive.types.video_selector_color_space_settings
 
         out["color_space_settings"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> VideoSelector:
                 data["colorSpaceSettings"]
             )
         )
-    if "colorSpaceUsage" in data:
+    if data.get("colorSpaceUsage") is not None:
         import capo_medialive.types.video_selector_color_space_usage
 
         out["color_space_usage"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> VideoSelector:
                 data["colorSpaceUsage"]
             )
         )
-    if "selectorSettings" in data:
+    if data.get("selectorSettings") is not None:
         import capo_medialive.types.video_selector_settings
 
         out["selector_settings"] = (

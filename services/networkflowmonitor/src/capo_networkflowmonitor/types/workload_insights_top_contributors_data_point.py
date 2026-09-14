@@ -43,7 +43,7 @@ def serialize_json(value: WorkloadInsightsTopContributorsDataPoint) -> dict:
 
 def deserialize_json(data: dict) -> WorkloadInsightsTopContributorsDataPoint:
     out: WorkloadInsightsTopContributorsDataPoint = {}  # type: ignore[typeddict-item]
-    if "timestamps" in data:
+    if data.get("timestamps") is not None:
         import capo_networkflowmonitor.types.workload_insights_top_contributors_timestamps_list
 
         out["timestamps"] = (
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> WorkloadInsightsTopContributorsDataPoint:
         raise DeserializationError(
             "WorkloadInsightsTopContributorsDataPoint.timestamps required"
         )
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_networkflowmonitor.types.workload_insights_top_contributors_values_list
 
         out["values"] = (
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> WorkloadInsightsTopContributorsDataPoint:
         raise DeserializationError(
             "WorkloadInsightsTopContributorsDataPoint.values required"
         )
-    if "label" in data:
+    if data.get("label") is not None:
         out["label"] = data["label"]
     else:
         raise DeserializationError(

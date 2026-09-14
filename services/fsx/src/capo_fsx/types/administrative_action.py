@@ -108,7 +108,7 @@ def serialize_aws_json_1_1(value: AdministrativeAction) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AdministrativeAction:
     out: AdministrativeAction = {}  # type: ignore[typeddict-item]
-    if "AdministrativeActionType" in data:
+    if data.get("AdministrativeActionType") is not None:
         import capo_fsx.types.administrative_action_type
 
         out["administrative_action_type"] = (
@@ -116,19 +116,19 @@ def deserialize_aws_json_1_1(data: dict) -> AdministrativeAction:
                 data["AdministrativeActionType"]
             )
         )
-    if "ProgressPercent" in data:
+    if data.get("ProgressPercent") is not None:
         out["progress_percent"] = data["ProgressPercent"]
-    if "RequestTime" in data:
+    if data.get("RequestTime") is not None:
         import capo_fsx.types.request_time
 
         out["request_time"] = capo_fsx.types.request_time.deserialize_aws_json_1_1(
             data["RequestTime"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_fsx.types.status
 
         out["status"] = capo_fsx.types.status.deserialize_aws_json_1_1(data["Status"])
-    if "TargetFileSystemValues" in data:
+    if data.get("TargetFileSystemValues") is not None:
         import capo_fsx.types.file_system
 
         out["target_file_system_values"] = (
@@ -136,7 +136,7 @@ def deserialize_aws_json_1_1(data: dict) -> AdministrativeAction:
                 data["TargetFileSystemValues"]
             )
         )
-    if "FailureDetails" in data:
+    if data.get("FailureDetails") is not None:
         import capo_fsx.types.administrative_action_failure_details
 
         out["failure_details"] = (
@@ -144,13 +144,13 @@ def deserialize_aws_json_1_1(data: dict) -> AdministrativeAction:
                 data["FailureDetails"]
             )
         )
-    if "TargetVolumeValues" in data:
+    if data.get("TargetVolumeValues") is not None:
         import capo_fsx.types.volume
 
         out["target_volume_values"] = capo_fsx.types.volume.deserialize_aws_json_1_1(
             data["TargetVolumeValues"]
         )
-    if "TargetSnapshotValues" in data:
+    if data.get("TargetSnapshotValues") is not None:
         import capo_fsx.types.snapshot
 
         out["target_snapshot_values"] = (
@@ -158,10 +158,10 @@ def deserialize_aws_json_1_1(data: dict) -> AdministrativeAction:
                 data["TargetSnapshotValues"]
             )
         )
-    if "TotalTransferBytes" in data:
+    if data.get("TotalTransferBytes") is not None:
         out["total_transfer_bytes"] = data["TotalTransferBytes"]
-    if "RemainingTransferBytes" in data:
+    if data.get("RemainingTransferBytes") is not None:
         out["remaining_transfer_bytes"] = data["RemainingTransferBytes"]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

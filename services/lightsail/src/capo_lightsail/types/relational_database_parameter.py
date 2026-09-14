@@ -52,20 +52,20 @@ def serialize_aws_json_1_1(value: RelationalDatabaseParameter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RelationalDatabaseParameter:
     out: RelationalDatabaseParameter = {}  # type: ignore[typeddict-item]
-    if "allowedValues" in data:
+    if data.get("allowedValues") is not None:
         out["allowed_values"] = data["allowedValues"]
-    if "applyMethod" in data:
+    if data.get("applyMethod") is not None:
         out["apply_method"] = data["applyMethod"]
-    if "applyType" in data:
+    if data.get("applyType") is not None:
         out["apply_type"] = data["applyType"]
-    if "dataType" in data:
+    if data.get("dataType") is not None:
         out["data_type"] = data["dataType"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "isModifiable" in data:
+    if data.get("isModifiable") is not None:
         out["is_modifiable"] = data["isModifiable"]
-    if "parameterName" in data:
+    if data.get("parameterName") is not None:
         out["parameter_name"] = data["parameterName"]
-    if "parameterValue" in data:
+    if data.get("parameterValue") is not None:
         out["parameter_value"] = data["parameterValue"]
     return out

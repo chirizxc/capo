@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteCertificateRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteCertificateRequest:
     out: DeleteCertificateRequest = {}  # type: ignore[typeddict-item]
-    if "certificateName" in data:
+    if data.get("certificateName") is not None:
         out["certificate_name"] = data["certificateName"]
     else:
         raise DeserializationError("DeleteCertificateRequest.certificate_name required")

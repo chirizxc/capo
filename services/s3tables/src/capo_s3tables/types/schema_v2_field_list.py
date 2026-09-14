@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> SchemaV2FieldList:
 
     out: SchemaV2FieldList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_s3tables.types.schema_v2_field.deserialize_json(item))
     return out

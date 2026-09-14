@@ -30,8 +30,8 @@ def serialize_json(value: TaxInheritanceDetails) -> dict:
 
 def deserialize_json(data: dict) -> TaxInheritanceDetails:
     out: TaxInheritanceDetails = {}  # type: ignore[typeddict-item]
-    if "parentEntityId" in data:
+    if data.get("parentEntityId") is not None:
         out["parent_entity_id"] = data["parentEntityId"]
-    if "inheritanceObtainedReason" in data:
+    if data.get("inheritanceObtainedReason") is not None:
         out["inheritance_obtained_reason"] = data["inheritanceObtainedReason"]
     return out

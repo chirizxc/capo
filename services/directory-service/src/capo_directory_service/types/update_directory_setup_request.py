@@ -78,11 +78,11 @@ def serialize_aws_json_1_1(value: UpdateDirectorySetupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateDirectorySetupRequest:
     out: UpdateDirectorySetupRequest = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
     else:
         raise DeserializationError("UpdateDirectorySetupRequest.directory_id required")
-    if "UpdateType" in data:
+    if data.get("UpdateType") is not None:
         import capo_directory_service.types.update_type
 
         out["update_type"] = (
@@ -92,7 +92,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateDirectorySetupRequest:
         )
     else:
         raise DeserializationError("UpdateDirectorySetupRequest.update_type required")
-    if "OSUpdateSettings" in data:
+    if data.get("OSUpdateSettings") is not None:
         import capo_directory_service.types.os_update_settings
 
         out["os_update_settings"] = (
@@ -100,7 +100,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateDirectorySetupRequest:
                 data["OSUpdateSettings"]
             )
         )
-    if "DirectorySizeUpdateSettings" in data:
+    if data.get("DirectorySizeUpdateSettings") is not None:
         import capo_directory_service.types.directory_size_update_settings
 
         out["directory_size_update_settings"] = (
@@ -108,7 +108,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateDirectorySetupRequest:
                 data["DirectorySizeUpdateSettings"]
             )
         )
-    if "NetworkUpdateSettings" in data:
+    if data.get("NetworkUpdateSettings") is not None:
         import capo_directory_service.types.network_update_settings
 
         out["network_update_settings"] = (
@@ -116,6 +116,6 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateDirectorySetupRequest:
                 data["NetworkUpdateSettings"]
             )
         )
-    if "CreateSnapshotBeforeUpdate" in data:
+    if data.get("CreateSnapshotBeforeUpdate") is not None:
         out["create_snapshot_before_update"] = data["CreateSnapshotBeforeUpdate"]
     return out

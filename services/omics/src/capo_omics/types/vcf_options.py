@@ -22,8 +22,8 @@ def serialize_json(value: VcfOptions) -> dict:
 
 def deserialize_json(data: dict) -> VcfOptions:
     out: VcfOptions = {}  # type: ignore[typeddict-item]
-    if "ignoreQualField" in data:
+    if data.get("ignoreQualField") is not None:
         out["ignore_qual_field"] = data["ignoreQualField"]
-    if "ignoreFilterField" in data:
+    if data.get("ignoreFilterField") is not None:
         out["ignore_filter_field"] = data["ignoreFilterField"]
     return out

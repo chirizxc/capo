@@ -41,15 +41,15 @@ def serialize_json(value: AggregatedScanResult) -> dict:
 
 def deserialize_json(data: dict) -> AggregatedScanResult:
     out: AggregatedScanResult = {}  # type: ignore[typeddict-item]
-    if "FailedScan" in data:
+    if data.get("FailedScan") is not None:
         out["failed_scan"] = data["FailedScan"]
-    if "Findings" in data:
+    if data.get("Findings") is not None:
         import capo_backup.types.scan_findings
 
         out["findings"] = capo_backup.types.scan_findings.deserialize_json(
             data["Findings"]
         )
-    if "LastComputed" in data:
+    if data.get("LastComputed") is not None:
         import capo_backup.types.timestamp
 
         out["last_computed"] = capo_backup.types.timestamp.deserialize_json(

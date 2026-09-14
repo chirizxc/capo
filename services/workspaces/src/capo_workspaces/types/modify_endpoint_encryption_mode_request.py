@@ -36,13 +36,13 @@ def serialize_aws_json_1_1(value: ModifyEndpointEncryptionModeRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModifyEndpointEncryptionModeRequest:
     out: ModifyEndpointEncryptionModeRequest = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
     else:
         raise DeserializationError(
             "ModifyEndpointEncryptionModeRequest.directory_id required"
         )
-    if "EndpointEncryptionMode" in data:
+    if data.get("EndpointEncryptionMode") is not None:
         import capo_workspaces.types.endpoint_encryption_mode
 
         out["endpoint_encryption_mode"] = (

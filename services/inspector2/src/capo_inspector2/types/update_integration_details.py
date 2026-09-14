@@ -47,7 +47,7 @@ def serialize_json(value: UpdateIntegrationDetails) -> dict:
 
 
 def deserialize_json(data: dict) -> UpdateIntegrationDetails:
-    if "gitlabSelfManaged" in data:
+    if data.get("gitlabSelfManaged") is not None:
         import capo_inspector2.types.update_git_lab_self_managed_integration_detail
 
         return {
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> UpdateIntegrationDetails:
                 data["gitlabSelfManaged"]
             )
         }
-    elif "github" in data:
+    elif data.get("github") is not None:
         import capo_inspector2.types.update_git_hub_integration_detail
 
         return {

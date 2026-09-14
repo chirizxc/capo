@@ -28,8 +28,8 @@ def serialize_json(value: SchemaFacet) -> dict:
 
 def deserialize_json(data: dict) -> SchemaFacet:
     out: SchemaFacet = {}  # type: ignore[typeddict-item]
-    if "SchemaArn" in data:
+    if data.get("SchemaArn") is not None:
         out["schema_arn"] = data["SchemaArn"]
-    if "FacetName" in data:
+    if data.get("FacetName") is not None:
         out["facet_name"] = data["FacetName"]
     return out

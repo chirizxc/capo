@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: CreateDatasetGroupResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDatasetGroupResponse:
     out: CreateDatasetGroupResponse = {}  # type: ignore[typeddict-item]
-    if "datasetGroupArn" in data:
+    if data.get("datasetGroupArn") is not None:
         out["dataset_group_arn"] = data["datasetGroupArn"]
-    if "domain" in data:
+    if data.get("domain") is not None:
         import capo_personalize.types.domain
 
         out["domain"] = capo_personalize.types.domain.deserialize_aws_json_1_1(

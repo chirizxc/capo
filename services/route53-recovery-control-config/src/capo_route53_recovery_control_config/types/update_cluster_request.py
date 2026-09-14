@@ -38,9 +38,9 @@ def serialize_json(value: UpdateClusterRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateClusterRequest:
     out: UpdateClusterRequest = {}  # type: ignore[typeddict-item]
-    if "ClusterArn" in data:
+    if data.get("ClusterArn") is not None:
         out["cluster_arn"] = data["ClusterArn"]
-    if "NetworkType" in data:
+    if data.get("NetworkType") is not None:
         import capo_route53_recovery_control_config.types.network_type
 
         out["network_type"] = (

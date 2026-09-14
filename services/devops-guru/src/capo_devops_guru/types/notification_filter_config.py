@@ -42,13 +42,13 @@ def serialize_json(value: NotificationFilterConfig) -> dict:
 
 def deserialize_json(data: dict) -> NotificationFilterConfig:
     out: NotificationFilterConfig = {}  # type: ignore[typeddict-item]
-    if "Severities" in data:
+    if data.get("Severities") is not None:
         import capo_devops_guru.types.insight_severities
 
         out["severities"] = capo_devops_guru.types.insight_severities.deserialize_json(
             data["Severities"]
         )
-    if "MessageTypes" in data:
+    if data.get("MessageTypes") is not None:
         import capo_devops_guru.types.notification_message_types
 
         out["message_types"] = (

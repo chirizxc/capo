@@ -121,21 +121,21 @@ def serialize_aws_json_1_1(value: MedicalTranscriptionJobSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MedicalTranscriptionJobSummary:
     out: MedicalTranscriptionJobSummary = {}  # type: ignore[typeddict-item]
-    if "MedicalTranscriptionJobName" in data:
+    if data.get("MedicalTranscriptionJobName") is not None:
         out["medical_transcription_job_name"] = data["MedicalTranscriptionJobName"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_transcribe.types.date_time
 
         out["creation_time"] = capo_transcribe.types.date_time.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_transcribe.types.date_time
 
         out["start_time"] = capo_transcribe.types.date_time.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "CompletionTime" in data:
+    if data.get("CompletionTime") is not None:
         import capo_transcribe.types.date_time
 
         out["completion_time"] = (
@@ -143,7 +143,7 @@ def deserialize_aws_json_1_1(data: dict) -> MedicalTranscriptionJobSummary:
                 data["CompletionTime"]
             )
         )
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_transcribe.types.language_code
 
         out["language_code"] = (
@@ -151,7 +151,7 @@ def deserialize_aws_json_1_1(data: dict) -> MedicalTranscriptionJobSummary:
                 data["LanguageCode"]
             )
         )
-    if "TranscriptionJobStatus" in data:
+    if data.get("TranscriptionJobStatus") is not None:
         import capo_transcribe.types.transcription_job_status
 
         out["transcription_job_status"] = (
@@ -159,9 +159,9 @@ def deserialize_aws_json_1_1(data: dict) -> MedicalTranscriptionJobSummary:
                 data["TranscriptionJobStatus"]
             )
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "OutputLocationType" in data:
+    if data.get("OutputLocationType") is not None:
         import capo_transcribe.types.output_location_type
 
         out["output_location_type"] = (
@@ -169,13 +169,13 @@ def deserialize_aws_json_1_1(data: dict) -> MedicalTranscriptionJobSummary:
                 data["OutputLocationType"]
             )
         )
-    if "Specialty" in data:
+    if data.get("Specialty") is not None:
         import capo_transcribe.types.specialty
 
         out["specialty"] = capo_transcribe.types.specialty.deserialize_aws_json_1_1(
             data["Specialty"]
         )
-    if "ContentIdentificationType" in data:
+    if data.get("ContentIdentificationType") is not None:
         import capo_transcribe.types.medical_content_identification_type
 
         out["content_identification_type"] = (
@@ -183,7 +183,7 @@ def deserialize_aws_json_1_1(data: dict) -> MedicalTranscriptionJobSummary:
                 data["ContentIdentificationType"]
             )
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_transcribe.types.type
 
         out["type"] = capo_transcribe.types.type.deserialize_aws_json_1_1(data["Type"])

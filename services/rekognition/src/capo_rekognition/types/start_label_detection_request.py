@@ -50,7 +50,15 @@ def serialize_aws_json_1_1(value: StartLabelDetectionRequest) -> dict:
     if "client_request_token" in value:
         out["ClientRequestToken"] = value["client_request_token"]
     if "min_confidence" in value:
-        out["MinConfidence"] = value["min_confidence"]
+        out["MinConfidence"] = (
+            "NaN"
+            if value["min_confidence"] != value["min_confidence"]
+            else "Infinity"
+            if value["min_confidence"] == float("inf")
+            else "-Infinity"
+            if value["min_confidence"] == float("-inf")
+            else value["min_confidence"]
+        )
     if "notification_channel" in value:
         import capo_rekognition.types.notification_channel
 
@@ -82,7 +90,7 @@ def serialize_aws_json_1_1(value: StartLabelDetectionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartLabelDetectionRequest:
     out: StartLabelDetectionRequest = {}  # type: ignore[typeddict-item]
-    if "Video" in data:
+    if data.get("Video") is not None:
         import capo_rekognition.types.video
 
         out["video"] = capo_rekognition.types.video.deserialize_aws_json_1_1(
@@ -90,11 +98,11 @@ def deserialize_aws_json_1_1(data: dict) -> StartLabelDetectionRequest:
         )
     else:
         raise DeserializationError("StartLabelDetectionRequest.video required")
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "MinConfidence" in data:
-        out["min_confidence"] = data["MinConfidence"]
-    if "NotificationChannel" in data:
+    if data.get("MinConfidence") is not None:
+        out["min_confidence"] = float(data["MinConfidence"])
+    if data.get("NotificationChannel") is not None:
         import capo_rekognition.types.notification_channel
 
         out["notification_channel"] = (
@@ -102,9 +110,9 @@ def deserialize_aws_json_1_1(data: dict) -> StartLabelDetectionRequest:
                 data["NotificationChannel"]
             )
         )
-    if "JobTag" in data:
+    if data.get("JobTag") is not None:
         out["job_tag"] = data["JobTag"]
-    if "Features" in data:
+    if data.get("Features") is not None:
         import capo_rekognition.types.label_detection_feature_list
 
         out["features"] = (
@@ -112,7 +120,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartLabelDetectionRequest:
                 data["Features"]
             )
         )
-    if "Settings" in data:
+    if data.get("Settings") is not None:
         import capo_rekognition.types.label_detection_settings
 
         out["settings"] = (

@@ -57,11 +57,11 @@ def serialize_json(value: GetS3TableIntegrationOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetS3TableIntegrationOutput:
     out: GetS3TableIntegrationOutput = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_observabilityadmin.types.integration_status
 
         out["status"] = (
@@ -69,14 +69,14 @@ def deserialize_json(data: dict) -> GetS3TableIntegrationOutput:
                 data["Status"]
             )
         )
-    if "Encryption" in data:
+    if data.get("Encryption") is not None:
         import capo_observabilityadmin.types.encryption
 
         out["encryption"] = capo_observabilityadmin.types.encryption.deserialize_json(
             data["Encryption"]
         )
-    if "DestinationTableBucketArn" in data:
+    if data.get("DestinationTableBucketArn") is not None:
         out["destination_table_bucket_arn"] = data["DestinationTableBucketArn"]
-    if "CreatedTimeStamp" in data:
+    if data.get("CreatedTimeStamp") is not None:
         out["created_time_stamp"] = data["CreatedTimeStamp"]
     return out

@@ -30,10 +30,10 @@ def serialize_json(value: ListStagingAccountsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListStagingAccountsResponse:
     out: ListStagingAccountsResponse = {}  # type: ignore[typeddict-item]
-    if "accounts" in data:
+    if data.get("accounts") is not None:
         import capo_drs.types.accounts
 
         out["accounts"] = capo_drs.types.accounts.deserialize_json(data["accounts"])
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

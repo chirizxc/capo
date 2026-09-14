@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: StartTransformerJobResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StartTransformerJobResponse:
     out: StartTransformerJobResponse = {}  # type: ignore[typeddict-item]
-    if "transformerJobId" in data:
+    if data.get("transformerJobId") is not None:
         out["transformer_job_id"] = data["transformerJobId"]
     else:
         raise DeserializationError(

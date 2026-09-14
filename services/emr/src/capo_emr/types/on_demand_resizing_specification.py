@@ -48,9 +48,9 @@ def serialize_aws_json_1_1(value: OnDemandResizingSpecification) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OnDemandResizingSpecification:
     out: OnDemandResizingSpecification = {}  # type: ignore[typeddict-item]
-    if "TimeoutDurationMinutes" in data:
+    if data.get("TimeoutDurationMinutes") is not None:
         out["timeout_duration_minutes"] = data["TimeoutDurationMinutes"]
-    if "AllocationStrategy" in data:
+    if data.get("AllocationStrategy") is not None:
         import capo_emr.types.on_demand_provisioning_allocation_strategy
 
         out["allocation_strategy"] = (
@@ -58,7 +58,7 @@ def deserialize_aws_json_1_1(data: dict) -> OnDemandResizingSpecification:
                 data["AllocationStrategy"]
             )
         )
-    if "CapacityReservationOptions" in data:
+    if data.get("CapacityReservationOptions") is not None:
         import capo_emr.types.on_demand_capacity_reservation_options
 
         out["capacity_reservation_options"] = (

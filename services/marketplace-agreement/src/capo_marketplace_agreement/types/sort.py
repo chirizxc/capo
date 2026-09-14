@@ -34,9 +34,9 @@ def serialize_aws_json_1_0(value: Sort) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Sort:
     out: Sort = {}  # type: ignore[typeddict-item]
-    if "sortBy" in data:
+    if data.get("sortBy") is not None:
         out["sort_by"] = data["sortBy"]
-    if "sortOrder" in data:
+    if data.get("sortOrder") is not None:
         import capo_marketplace_agreement.types.sort_order
 
         out["sort_order"] = (

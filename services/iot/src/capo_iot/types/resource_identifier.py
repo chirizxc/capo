@@ -85,15 +85,15 @@ def serialize_json(value: ResourceIdentifier) -> dict:
 
 def deserialize_json(data: dict) -> ResourceIdentifier:
     out: ResourceIdentifier = {}  # type: ignore[typeddict-item]
-    if "deviceCertificateId" in data:
+    if data.get("deviceCertificateId") is not None:
         out["device_certificate_id"] = data["deviceCertificateId"]
-    if "caCertificateId" in data:
+    if data.get("caCertificateId") is not None:
         out["ca_certificate_id"] = data["caCertificateId"]
-    if "cognitoIdentityPoolId" in data:
+    if data.get("cognitoIdentityPoolId") is not None:
         out["cognito_identity_pool_id"] = data["cognitoIdentityPoolId"]
-    if "clientId" in data:
+    if data.get("clientId") is not None:
         out["client_id"] = data["clientId"]
-    if "policyVersionIdentifier" in data:
+    if data.get("policyVersionIdentifier") is not None:
         import capo_iot.types.policy_version_identifier
 
         out["policy_version_identifier"] = (
@@ -101,13 +101,13 @@ def deserialize_json(data: dict) -> ResourceIdentifier:
                 data["policyVersionIdentifier"]
             )
         )
-    if "account" in data:
+    if data.get("account") is not None:
         out["account"] = data["account"]
-    if "iamRoleArn" in data:
+    if data.get("iamRoleArn") is not None:
         out["iam_role_arn"] = data["iamRoleArn"]
-    if "roleAliasArn" in data:
+    if data.get("roleAliasArn") is not None:
         out["role_alias_arn"] = data["roleAliasArn"]
-    if "issuerCertificateIdentifier" in data:
+    if data.get("issuerCertificateIdentifier") is not None:
         import capo_iot.types.issuer_certificate_identifier
 
         out["issuer_certificate_identifier"] = (
@@ -115,6 +115,6 @@ def deserialize_json(data: dict) -> ResourceIdentifier:
                 data["issuerCertificateIdentifier"]
             )
         )
-    if "deviceCertificateArn" in data:
+    if data.get("deviceCertificateArn") is not None:
         out["device_certificate_arn"] = data["deviceCertificateArn"]
     return out

@@ -27,7 +27,7 @@ def serialize_json(value: ServerlessConnectivityInfo) -> dict:
 
 def deserialize_json(data: dict) -> ServerlessConnectivityInfo:
     out: ServerlessConnectivityInfo = {}  # type: ignore[typeddict-item]
-    if "networkType" in data:
+    if data.get("networkType") is not None:
         import capo_kafka.types.network_type
 
         out["network_type"] = capo_kafka.types.network_type.deserialize_json(

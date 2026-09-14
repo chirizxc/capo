@@ -92,13 +92,13 @@ def serialize_json(value: SipRule) -> dict:
 
 def deserialize_json(data: dict) -> SipRule:
     out: SipRule = {}  # type: ignore[typeddict-item]
-    if "SipRuleId" in data:
+    if data.get("SipRuleId") is not None:
         out["sip_rule_id"] = data["SipRuleId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Disabled" in data:
+    if data.get("Disabled") is not None:
         out["disabled"] = data["Disabled"]
-    if "TriggerType" in data:
+    if data.get("TriggerType") is not None:
         import capo_chime_sdk_voice.types.sip_rule_trigger_type
 
         out["trigger_type"] = (
@@ -106,9 +106,9 @@ def deserialize_json(data: dict) -> SipRule:
                 data["TriggerType"]
             )
         )
-    if "TriggerValue" in data:
+    if data.get("TriggerValue") is not None:
         out["trigger_value"] = data["TriggerValue"]
-    if "TargetApplications" in data:
+    if data.get("TargetApplications") is not None:
         import capo_chime_sdk_voice.types.sip_rule_target_application_list
 
         out["target_applications"] = (
@@ -116,7 +116,7 @@ def deserialize_json(data: dict) -> SipRule:
                 data["TargetApplications"]
             )
         )
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_chime_sdk_voice.types.iso8601_timestamp
 
         out["created_timestamp"] = (
@@ -124,7 +124,7 @@ def deserialize_json(data: dict) -> SipRule:
                 data["CreatedTimestamp"]
             )
         )
-    if "UpdatedTimestamp" in data:
+    if data.get("UpdatedTimestamp") is not None:
         import capo_chime_sdk_voice.types.iso8601_timestamp
 
         out["updated_timestamp"] = (

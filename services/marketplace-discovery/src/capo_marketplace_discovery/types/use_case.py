@@ -30,15 +30,15 @@ def serialize_json(value: UseCase) -> dict:
 
 def deserialize_json(data: dict) -> UseCase:
     out: UseCase = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     else:
         raise DeserializationError("UseCase.description required")
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError("UseCase.display_name required")
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("UseCase.value required")

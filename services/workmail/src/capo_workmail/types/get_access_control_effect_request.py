@@ -44,22 +44,22 @@ def serialize_aws_json_1_1(value: GetAccessControlEffectRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetAccessControlEffectRequest:
     out: GetAccessControlEffectRequest = {}  # type: ignore[typeddict-item]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
     else:
         raise DeserializationError(
             "GetAccessControlEffectRequest.organization_id required"
         )
-    if "IpAddress" in data:
+    if data.get("IpAddress") is not None:
         out["ip_address"] = data["IpAddress"]
     else:
         raise DeserializationError("GetAccessControlEffectRequest.ip_address required")
-    if "Action" in data:
+    if data.get("Action") is not None:
         out["action"] = data["Action"]
     else:
         raise DeserializationError("GetAccessControlEffectRequest.action required")
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
-    if "ImpersonationRoleId" in data:
+    if data.get("ImpersonationRoleId") is not None:
         out["impersonation_role_id"] = data["ImpersonationRoleId"]
     return out

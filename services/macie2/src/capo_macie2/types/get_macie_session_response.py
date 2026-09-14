@@ -60,13 +60,13 @@ def serialize_json(value: GetMacieSessionResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetMacieSessionResponse:
     out: GetMacieSessionResponse = {}  # type: ignore[typeddict-item]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_macie2.types.__timestamp_iso8601
 
         out["created_at"] = capo_macie2.types.__timestamp_iso8601.deserialize_json(
             data["createdAt"]
         )
-    if "findingPublishingFrequency" in data:
+    if data.get("findingPublishingFrequency") is not None:
         import capo_macie2.types.finding_publishing_frequency
 
         out["finding_publishing_frequency"] = (
@@ -74,13 +74,13 @@ def deserialize_json(data: dict) -> GetMacieSessionResponse:
                 data["findingPublishingFrequency"]
             )
         )
-    if "serviceRole" in data:
+    if data.get("serviceRole") is not None:
         out["service_role"] = data["serviceRole"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_macie2.types.macie_status
 
         out["status"] = capo_macie2.types.macie_status.deserialize_json(data["status"])
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_macie2.types.__timestamp_iso8601
 
         out["updated_at"] = capo_macie2.types.__timestamp_iso8601.deserialize_json(

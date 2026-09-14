@@ -31,7 +31,7 @@ def serialize_json(value: DataSetStringListFilterValue) -> dict:
 
 def deserialize_json(data: dict) -> DataSetStringListFilterValue:
     out: DataSetStringListFilterValue = {}  # type: ignore[typeddict-item]
-    if "StaticValues" in data:
+    if data.get("StaticValues") is not None:
         import capo_quicksight.types.data_set_string_filter_static_value_list
 
         out["static_values"] = (

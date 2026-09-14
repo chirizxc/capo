@@ -98,11 +98,11 @@ def serialize_json(value: ExperimentAction) -> dict:
 
 def deserialize_json(data: dict) -> ExperimentAction:
     out: ExperimentAction = {}  # type: ignore[typeddict-item]
-    if "actionId" in data:
+    if data.get("actionId") is not None:
         out["action_id"] = data["actionId"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_fis.types.experiment_action_parameter_map
 
         out["parameters"] = (
@@ -110,13 +110,13 @@ def deserialize_json(data: dict) -> ExperimentAction:
                 data["parameters"]
             )
         )
-    if "targets" in data:
+    if data.get("targets") is not None:
         import capo_fis.types.experiment_action_target_map
 
         out["targets"] = capo_fis.types.experiment_action_target_map.deserialize_json(
             data["targets"]
         )
-    if "startAfter" in data:
+    if data.get("startAfter") is not None:
         import capo_fis.types.experiment_action_start_after_list
 
         out["start_after"] = (
@@ -124,13 +124,13 @@ def deserialize_json(data: dict) -> ExperimentAction:
                 data["startAfter"]
             )
         )
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_fis.types.experiment_action_state
 
         out["state"] = capo_fis.types.experiment_action_state.deserialize_json(
             data["state"]
         )
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_fis.types.experiment_action_start_time
 
         out["start_time"] = (
@@ -138,7 +138,7 @@ def deserialize_json(data: dict) -> ExperimentAction:
                 data["startTime"]
             )
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_fis.types.experiment_action_end_time
 
         out["end_time"] = capo_fis.types.experiment_action_end_time.deserialize_json(

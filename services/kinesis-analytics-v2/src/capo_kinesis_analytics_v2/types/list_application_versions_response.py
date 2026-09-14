@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListApplicationVersionsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListApplicationVersionsResponse:
     out: ListApplicationVersionsResponse = {}  # type: ignore[typeddict-item]
-    if "ApplicationVersionSummaries" in data:
+    if data.get("ApplicationVersionSummaries") is not None:
         import capo_kinesis_analytics_v2.types.application_version_summaries
 
         out["application_version_summaries"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListApplicationVersionsResponse:
                 data["ApplicationVersionSummaries"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

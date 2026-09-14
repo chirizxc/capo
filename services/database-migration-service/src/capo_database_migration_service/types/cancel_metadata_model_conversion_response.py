@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: CancelMetadataModelConversionResponse) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> CancelMetadataModelConversionResponse:
     out: CancelMetadataModelConversionResponse = {}  # type: ignore[typeddict-item]
-    if "Request" in data:
+    if data.get("Request") is not None:
         import capo_database_migration_service.types.schema_conversion_request
 
         out["request"] = (

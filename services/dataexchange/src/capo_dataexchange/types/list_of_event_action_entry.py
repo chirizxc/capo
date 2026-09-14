@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ListOfEventActionEntry:
 
     out: ListOfEventActionEntry = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_dataexchange.types.event_action_entry.deserialize_json(item))
     return out

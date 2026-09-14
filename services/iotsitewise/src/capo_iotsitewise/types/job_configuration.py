@@ -28,7 +28,7 @@ def serialize_json(value: JobConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> JobConfiguration:
     out: JobConfiguration = {}  # type: ignore[typeddict-item]
-    if "fileFormat" in data:
+    if data.get("fileFormat") is not None:
         import capo_iotsitewise.types.file_format
 
         out["file_format"] = capo_iotsitewise.types.file_format.deserialize_json(

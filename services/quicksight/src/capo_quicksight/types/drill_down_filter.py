@@ -57,7 +57,7 @@ def serialize_json(value: DrillDownFilter) -> dict:
 
 def deserialize_json(data: dict) -> DrillDownFilter:
     out: DrillDownFilter = {}  # type: ignore[typeddict-item]
-    if "NumericEqualityFilter" in data:
+    if data.get("NumericEqualityFilter") is not None:
         import capo_quicksight.types.numeric_equality_drill_down_filter
 
         out["numeric_equality_filter"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> DrillDownFilter:
                 data["NumericEqualityFilter"]
             )
         )
-    if "CategoryFilter" in data:
+    if data.get("CategoryFilter") is not None:
         import capo_quicksight.types.category_drill_down_filter
 
         out["category_filter"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> DrillDownFilter:
                 data["CategoryFilter"]
             )
         )
-    if "TimeRangeFilter" in data:
+    if data.get("TimeRangeFilter") is not None:
         import capo_quicksight.types.time_range_drill_down_filter
 
         out["time_range_filter"] = (

@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> NotificationSummaries:
 
     out: NotificationSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_wellarchitected.types.notification_summary.deserialize_json(item)
         )

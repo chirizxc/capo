@@ -52,11 +52,11 @@ def serialize_aws_json_1_1(value: FileCacheDataRepositoryAssociation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FileCacheDataRepositoryAssociation:
     out: FileCacheDataRepositoryAssociation = {}  # type: ignore[typeddict-item]
-    if "FileCachePath" in data:
+    if data.get("FileCachePath") is not None:
         out["file_cache_path"] = data["FileCachePath"]
-    if "DataRepositoryPath" in data:
+    if data.get("DataRepositoryPath") is not None:
         out["data_repository_path"] = data["DataRepositoryPath"]
-    if "DataRepositorySubdirectories" in data:
+    if data.get("DataRepositorySubdirectories") is not None:
         import capo_fsx.types.sub_directories_paths
 
         out["data_repository_subdirectories"] = (
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_1(data: dict) -> FileCacheDataRepositoryAssociation:
                 data["DataRepositorySubdirectories"]
             )
         )
-    if "NFS" in data:
+    if data.get("NFS") is not None:
         import capo_fsx.types.file_cache_nfs_configuration
 
         out["nfs"] = (

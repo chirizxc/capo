@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ListOfMfaTypesElement:
 
     out: ListOfMfaTypesElement = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_amplifybackend.types.mfa_types_element.deserialize_json(item))
     return out

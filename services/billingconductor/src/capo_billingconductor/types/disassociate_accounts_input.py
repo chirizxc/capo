@@ -32,11 +32,11 @@ def serialize_json(value: DisassociateAccountsInput) -> dict:
 
 def deserialize_json(data: dict) -> DisassociateAccountsInput:
     out: DisassociateAccountsInput = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("DisassociateAccountsInput.arn required")
-    if "AccountIds" in data:
+    if data.get("AccountIds") is not None:
         import capo_billingconductor.types.account_id_list
 
         out["account_ids"] = (

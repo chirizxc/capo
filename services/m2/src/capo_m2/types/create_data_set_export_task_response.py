@@ -24,7 +24,7 @@ def serialize_json(value: CreateDataSetExportTaskResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateDataSetExportTaskResponse:
     out: CreateDataSetExportTaskResponse = {}  # type: ignore[typeddict-item]
-    if "taskId" in data:
+    if data.get("taskId") is not None:
         out["task_id"] = data["taskId"]
     else:
         raise DeserializationError("CreateDataSetExportTaskResponse.task_id required")

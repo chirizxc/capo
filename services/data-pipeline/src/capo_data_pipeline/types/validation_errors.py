@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ValidationErrors:
 
     out: ValidationErrors = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_data_pipeline.types.validation_error.deserialize_aws_json_1_1(item)
         )

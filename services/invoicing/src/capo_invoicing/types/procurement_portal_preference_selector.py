@@ -44,7 +44,7 @@ def serialize_aws_json_1_0(value: ProcurementPortalPreferenceSelector) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ProcurementPortalPreferenceSelector:
     out: ProcurementPortalPreferenceSelector = {}  # type: ignore[typeddict-item]
-    if "InvoiceUnitArns" in data:
+    if data.get("InvoiceUnitArns") is not None:
         import capo_invoicing.types.invoice_unit_arns
 
         out["invoice_unit_arns"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_0(data: dict) -> ProcurementPortalPreferenceSelector:
                 data["InvoiceUnitArns"]
             )
         )
-    if "SellerOfRecords" in data:
+    if data.get("SellerOfRecords") is not None:
         import capo_invoicing.types.seller_of_records
 
         out["seller_of_records"] = (

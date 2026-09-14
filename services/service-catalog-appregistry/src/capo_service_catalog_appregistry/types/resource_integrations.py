@@ -31,7 +31,7 @@ def serialize_json(value: ResourceIntegrations) -> dict:
 
 def deserialize_json(data: dict) -> ResourceIntegrations:
     out: ResourceIntegrations = {}  # type: ignore[typeddict-item]
-    if "resourceGroup" in data:
+    if data.get("resourceGroup") is not None:
         import capo_service_catalog_appregistry.types.resource_group
 
         out["resource_group"] = (

@@ -27,6 +27,6 @@ def serialize_json(value: GetBackendAPIModelsRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetBackendAPIModelsRequest:
     out: GetBackendAPIModelsRequest = {}  # type: ignore[typeddict-item]
-    if "resourceName" in data:
+    if data.get("resourceName") is not None:
         out["resource_name"] = data["resourceName"]
     return out

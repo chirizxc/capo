@@ -55,13 +55,13 @@ def serialize_json(value: NodeConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> NodeConfiguration:
     out: NodeConfiguration = {}  # type: ignore[typeddict-item]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         out["instance_type"] = data["InstanceType"]
     else:
         raise DeserializationError("NodeConfiguration.instance_type required")
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
-    if "LogPublishingConfiguration" in data:
+    if data.get("LogPublishingConfiguration") is not None:
         import capo_managedblockchain.types.node_log_publishing_configuration
 
         out["log_publishing_configuration"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> NodeConfiguration:
                 data["LogPublishingConfiguration"]
             )
         )
-    if "StateDB" in data:
+    if data.get("StateDB") is not None:
         import capo_managedblockchain.types.state_db_type
 
         out["state_db"] = capo_managedblockchain.types.state_db_type.deserialize_json(

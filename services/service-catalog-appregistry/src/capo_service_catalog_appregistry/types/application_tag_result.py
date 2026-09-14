@@ -56,7 +56,7 @@ def serialize_json(value: ApplicationTagResult) -> dict:
 
 def deserialize_json(data: dict) -> ApplicationTagResult:
     out: ApplicationTagResult = {}  # type: ignore[typeddict-item]
-    if "applicationTagStatus" in data:
+    if data.get("applicationTagStatus") is not None:
         import capo_service_catalog_appregistry.types.application_tag_status
 
         out["application_tag_status"] = (
@@ -64,9 +64,9 @@ def deserialize_json(data: dict) -> ApplicationTagResult:
                 data["applicationTagStatus"]
             )
         )
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
-    if "resources" in data:
+    if data.get("resources") is not None:
         import capo_service_catalog_appregistry.types.resources_list
 
         out["resources"] = (
@@ -74,6 +74,6 @@ def deserialize_json(data: dict) -> ApplicationTagResult:
                 data["resources"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

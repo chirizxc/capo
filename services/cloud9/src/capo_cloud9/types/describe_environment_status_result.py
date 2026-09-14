@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: DescribeEnvironmentStatusResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeEnvironmentStatusResult:
     out: DescribeEnvironmentStatusResult = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_cloud9.types.environment_status
 
         out["status"] = capo_cloud9.types.environment_status.deserialize_aws_json_1_1(
@@ -40,7 +40,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeEnvironmentStatusResult:
         )
     else:
         raise DeserializationError("DescribeEnvironmentStatusResult.status required")
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("DescribeEnvironmentStatusResult.message required")

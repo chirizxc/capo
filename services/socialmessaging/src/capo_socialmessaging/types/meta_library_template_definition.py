@@ -113,17 +113,17 @@ def serialize_json(value: MetaLibraryTemplateDefinition) -> dict:
 
 def deserialize_json(data: dict) -> MetaLibraryTemplateDefinition:
     out: MetaLibraryTemplateDefinition = {}  # type: ignore[typeddict-item]
-    if "templateName" in data:
+    if data.get("templateName") is not None:
         out["template_name"] = data["templateName"]
-    if "templateLanguage" in data:
+    if data.get("templateLanguage") is not None:
         out["template_language"] = data["templateLanguage"]
-    if "templateCategory" in data:
+    if data.get("templateCategory") is not None:
         out["template_category"] = data["templateCategory"]
-    if "templateTopic" in data:
+    if data.get("templateTopic") is not None:
         out["template_topic"] = data["templateTopic"]
-    if "templateUseCase" in data:
+    if data.get("templateUseCase") is not None:
         out["template_use_case"] = data["templateUseCase"]
-    if "templateIndustry" in data:
+    if data.get("templateIndustry") is not None:
         import capo_socialmessaging.types.meta_industries
 
         out["template_industry"] = (
@@ -131,11 +131,11 @@ def deserialize_json(data: dict) -> MetaLibraryTemplateDefinition:
                 data["templateIndustry"]
             )
         )
-    if "templateHeader" in data:
+    if data.get("templateHeader") is not None:
         out["template_header"] = data["templateHeader"]
-    if "templateBody" in data:
+    if data.get("templateBody") is not None:
         out["template_body"] = data["templateBody"]
-    if "templateButtons" in data:
+    if data.get("templateButtons") is not None:
         import capo_socialmessaging.types.meta_library_template_button_list
 
         out["template_buttons"] = (
@@ -143,9 +143,9 @@ def deserialize_json(data: dict) -> MetaLibraryTemplateDefinition:
                 data["templateButtons"]
             )
         )
-    if "templateId" in data:
+    if data.get("templateId") is not None:
         out["template_id"] = data["templateId"]
-    if "templateBodyExampleParams" in data:
+    if data.get("templateBodyExampleParams") is not None:
         import capo_socialmessaging.types.meta_template_body_example_params
 
         out["template_body_example_params"] = (

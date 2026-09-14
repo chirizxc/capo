@@ -26,7 +26,7 @@ def serialize_json(value: GeospatialStaticFileSource) -> dict:
 
 def deserialize_json(data: dict) -> GeospatialStaticFileSource:
     out: GeospatialStaticFileSource = {}  # type: ignore[typeddict-item]
-    if "StaticFileId" in data:
+    if data.get("StaticFileId") is not None:
         out["static_file_id"] = data["StaticFileId"]
     else:
         raise DeserializationError("GeospatialStaticFileSource.static_file_id required")

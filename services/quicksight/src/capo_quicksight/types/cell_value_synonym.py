@@ -32,9 +32,9 @@ def serialize_json(value: CellValueSynonym) -> dict:
 
 def deserialize_json(data: dict) -> CellValueSynonym:
     out: CellValueSynonym = {}  # type: ignore[typeddict-item]
-    if "CellValue" in data:
+    if data.get("CellValue") is not None:
         out["cell_value"] = data["CellValue"]
-    if "Synonyms" in data:
+    if data.get("Synonyms") is not None:
         import capo_quicksight.types.string_list
 
         out["synonyms"] = capo_quicksight.types.string_list.deserialize_json(

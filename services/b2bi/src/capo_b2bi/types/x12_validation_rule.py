@@ -64,7 +64,7 @@ def serialize_aws_json_1_0(value: X12ValidationRule) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> X12ValidationRule:
-    if "codeListValidationRule" in data:
+    if data.get("codeListValidationRule") is not None:
         import capo_b2bi.types.x12_code_list_validation_rule
 
         return {
@@ -72,7 +72,7 @@ def deserialize_aws_json_1_0(data: dict) -> X12ValidationRule:
                 data["codeListValidationRule"]
             )
         }
-    elif "elementLengthValidationRule" in data:
+    elif data.get("elementLengthValidationRule") is not None:
         import capo_b2bi.types.x12_element_length_validation_rule
 
         return {
@@ -80,7 +80,7 @@ def deserialize_aws_json_1_0(data: dict) -> X12ValidationRule:
                 data["elementLengthValidationRule"]
             )
         }
-    elif "elementRequirementValidationRule" in data:
+    elif data.get("elementRequirementValidationRule") is not None:
         import capo_b2bi.types.x12_element_requirement_validation_rule
 
         return {

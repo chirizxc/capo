@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: RestoreTableFromRecoveryPointResponse) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> RestoreTableFromRecoveryPointResponse:
     out: RestoreTableFromRecoveryPointResponse = {}  # type: ignore[typeddict-item]
-    if "tableRestoreStatus" in data:
+    if data.get("tableRestoreStatus") is not None:
         import capo_redshift_serverless.types.table_restore_status
 
         out["table_restore_status"] = (

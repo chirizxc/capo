@@ -68,9 +68,9 @@ def serialize_json(value: AppInputSource) -> dict:
 
 def deserialize_json(data: dict) -> AppInputSource:
     out: AppInputSource = {}  # type: ignore[typeddict-item]
-    if "sourceName" in data:
+    if data.get("sourceName") is not None:
         out["source_name"] = data["sourceName"]
-    if "importType" in data:
+    if data.get("importType") is not None:
         import capo_resiliencehub.types.resource_mapping_type
 
         out["import_type"] = (
@@ -80,9 +80,9 @@ def deserialize_json(data: dict) -> AppInputSource:
         )
     else:
         raise DeserializationError("AppInputSource.import_type required")
-    if "sourceArn" in data:
+    if data.get("sourceArn") is not None:
         out["source_arn"] = data["sourceArn"]
-    if "terraformSource" in data:
+    if data.get("terraformSource") is not None:
         import capo_resiliencehub.types.terraform_source
 
         out["terraform_source"] = (
@@ -90,11 +90,11 @@ def deserialize_json(data: dict) -> AppInputSource:
                 data["terraformSource"]
             )
         )
-    if "resourceCount" in data:
+    if data.get("resourceCount") is not None:
         out["resource_count"] = data["resourceCount"]
     else:
         out["resource_count"] = 0
-    if "eksSourceClusterNamespace" in data:
+    if data.get("eksSourceClusterNamespace") is not None:
         import capo_resiliencehub.types.eks_source_cluster_namespace
 
         out["eks_source_cluster_namespace"] = (

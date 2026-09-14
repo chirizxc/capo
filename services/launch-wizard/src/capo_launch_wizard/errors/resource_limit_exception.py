@@ -19,7 +19,7 @@ def serialize_json(value: ResourceLimitException_) -> dict:
 
 def deserialize_json(data: dict) -> ResourceLimitException_:
     out: ResourceLimitException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -29,15 +29,18 @@ class ResourceLimitException(ServiceError):
 
     code: str | None = "ResourceLimitException"
 
-    def __init__(self, data: ResourceLimitException_):
+    def __init__(self, data: ResourceLimitException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ResourceLimitException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ResourceLimitException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "ResourceLimitException":
+        return cls(deserialize_json(data), message)

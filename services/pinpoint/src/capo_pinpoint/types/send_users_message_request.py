@@ -71,13 +71,13 @@ def serialize_json(value: SendUsersMessageRequest) -> dict:
 
 def deserialize_json(data: dict) -> SendUsersMessageRequest:
     out: SendUsersMessageRequest = {}  # type: ignore[typeddict-item]
-    if "Context" in data:
+    if data.get("Context") is not None:
         import capo_pinpoint.types.map_of__string
 
         out["context"] = capo_pinpoint.types.map_of__string.deserialize_json(
             data["Context"]
         )
-    if "MessageConfiguration" in data:
+    if data.get("MessageConfiguration") is not None:
         import capo_pinpoint.types.direct_message_configuration
 
         out["message_configuration"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> SendUsersMessageRequest:
                 data["MessageConfiguration"]
             )
         )
-    if "TemplateConfiguration" in data:
+    if data.get("TemplateConfiguration") is not None:
         import capo_pinpoint.types.template_configuration
 
         out["template_configuration"] = (
@@ -93,9 +93,9 @@ def deserialize_json(data: dict) -> SendUsersMessageRequest:
                 data["TemplateConfiguration"]
             )
         )
-    if "TraceId" in data:
+    if data.get("TraceId") is not None:
         out["trace_id"] = data["TraceId"]
-    if "Users" in data:
+    if data.get("Users") is not None:
         import capo_pinpoint.types.map_of_endpoint_send_configuration
 
         out["users"] = (

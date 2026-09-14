@@ -37,7 +37,7 @@ def serialize_aws_json_1_0(value: UpdateEnrollmentConfigurationRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateEnrollmentConfigurationRequest:
     out: UpdateEnrollmentConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_compute_optimizer_automation.types.enrollment_status
 
         out["status"] = (
@@ -49,6 +49,6 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateEnrollmentConfigurationRequest
         raise DeserializationError(
             "UpdateEnrollmentConfigurationRequest.status required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

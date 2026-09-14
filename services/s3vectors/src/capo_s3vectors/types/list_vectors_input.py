@@ -64,31 +64,31 @@ def serialize_json(value: ListVectorsInput) -> dict:
 
 def deserialize_json(data: dict) -> ListVectorsInput:
     out: ListVectorsInput = {}  # type: ignore[typeddict-item]
-    if "vectorBucketName" in data:
+    if data.get("vectorBucketName") is not None:
         out["vector_bucket_name"] = data["vectorBucketName"]
-    if "indexName" in data:
+    if data.get("indexName") is not None:
         out["index_name"] = data["indexName"]
-    if "indexArn" in data:
+    if data.get("indexArn") is not None:
         out["index_arn"] = data["indexArn"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     else:
         out["max_results"] = 500
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "segmentCount" in data:
+    if data.get("segmentCount") is not None:
         out["segment_count"] = data["segmentCount"]
     else:
         out["segment_count"] = 1
-    if "segmentIndex" in data:
+    if data.get("segmentIndex") is not None:
         out["segment_index"] = data["segmentIndex"]
     else:
         out["segment_index"] = 0
-    if "returnData" in data:
+    if data.get("returnData") is not None:
         out["return_data"] = data["returnData"]
     else:
         out["return_data"] = False
-    if "returnMetadata" in data:
+    if data.get("returnMetadata") is not None:
         out["return_metadata"] = data["returnMetadata"]
     else:
         out["return_metadata"] = False

@@ -106,13 +106,13 @@ def serialize_json(value: AlarmAction) -> dict:
 
 def deserialize_json(data: dict) -> AlarmAction:
     out: AlarmAction = {}  # type: ignore[typeddict-item]
-    if "sns" in data:
+    if data.get("sns") is not None:
         import capo_iot_events.types.sns_topic_publish_action
 
         out["sns"] = capo_iot_events.types.sns_topic_publish_action.deserialize_json(
             data["sns"]
         )
-    if "iotTopicPublish" in data:
+    if data.get("iotTopicPublish") is not None:
         import capo_iot_events.types.iot_topic_publish_action
 
         out["iot_topic_publish"] = (
@@ -120,35 +120,35 @@ def deserialize_json(data: dict) -> AlarmAction:
                 data["iotTopicPublish"]
             )
         )
-    if "lambda" in data:
+    if data.get("lambda") is not None:
         import capo_iot_events.types.lambda_action
 
         out["lambda"] = capo_iot_events.types.lambda_action.deserialize_json(
             data["lambda"]
         )
-    if "iotEvents" in data:
+    if data.get("iotEvents") is not None:
         import capo_iot_events.types.iot_events_action
 
         out["iot_events"] = capo_iot_events.types.iot_events_action.deserialize_json(
             data["iotEvents"]
         )
-    if "sqs" in data:
+    if data.get("sqs") is not None:
         import capo_iot_events.types.sqs_action
 
         out["sqs"] = capo_iot_events.types.sqs_action.deserialize_json(data["sqs"])
-    if "firehose" in data:
+    if data.get("firehose") is not None:
         import capo_iot_events.types.firehose_action
 
         out["firehose"] = capo_iot_events.types.firehose_action.deserialize_json(
             data["firehose"]
         )
-    if "dynamoDB" in data:
+    if data.get("dynamoDB") is not None:
         import capo_iot_events.types.dynamo_db_action
 
         out["dynamo_db"] = capo_iot_events.types.dynamo_db_action.deserialize_json(
             data["dynamoDB"]
         )
-    if "dynamoDBv2" in data:
+    if data.get("dynamoDBv2") is not None:
         import capo_iot_events.types.dynamo_d_bv2_action
 
         out["dynamo_d_bv2"] = (
@@ -156,7 +156,7 @@ def deserialize_json(data: dict) -> AlarmAction:
                 data["dynamoDBv2"]
             )
         )
-    if "iotSiteWise" in data:
+    if data.get("iotSiteWise") is not None:
         import capo_iot_events.types.iot_site_wise_action
 
         out["iot_site_wise"] = (

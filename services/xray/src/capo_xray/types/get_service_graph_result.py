@@ -47,26 +47,26 @@ def serialize_json(value: GetServiceGraphResult) -> dict:
 
 def deserialize_json(data: dict) -> GetServiceGraphResult:
     out: GetServiceGraphResult = {}  # type: ignore[typeddict-item]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_xray.types.timestamp
 
         out["start_time"] = capo_xray.types.timestamp.deserialize_json(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_xray.types.timestamp
 
         out["end_time"] = capo_xray.types.timestamp.deserialize_json(data["EndTime"])
-    if "Services" in data:
+    if data.get("Services") is not None:
         import capo_xray.types.service_list
 
         out["services"] = capo_xray.types.service_list.deserialize_json(
             data["Services"]
         )
-    if "ContainsOldGroupVersions" in data:
+    if data.get("ContainsOldGroupVersions") is not None:
         out["contains_old_group_versions"] = data["ContainsOldGroupVersions"]
     else:
         out["contains_old_group_versions"] = False
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

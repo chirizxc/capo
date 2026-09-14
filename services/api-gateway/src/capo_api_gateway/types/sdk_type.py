@@ -44,13 +44,13 @@ def serialize_json(value: SdkType) -> dict:
 
 def deserialize_json(data: dict) -> SdkType:
     out: SdkType = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "friendlyName" in data:
+    if data.get("friendlyName") is not None:
         out["friendly_name"] = data["friendlyName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "configurationProperties" in data:
+    if data.get("configurationProperties") is not None:
         import capo_api_gateway.types.list_of_sdk_configuration_property
 
         out["configuration_properties"] = (

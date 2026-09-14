@@ -29,6 +29,8 @@ def serialize_json(input_to_serialize: AttributeMap) -> dict:
 def deserialize_json(data: dict) -> AttributeMap:
     out: AttributeMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_customer_profiles.types.filter_attribute_dimension
 
         out[key] = (

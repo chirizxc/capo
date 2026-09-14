@@ -82,7 +82,9 @@ class Permission:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_grafana.types.list_permissions_request.ListPermissionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_grafana.types.list_permissions_request.ListPermissionsRequest = {
+            "workspace_id": workspace_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -93,13 +95,13 @@ class Permission:
             input_["user_id"] = user_id
         if group_id is not None:
             input_["group_id"] = group_id
-        input_["workspace_id"] = workspace_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -139,15 +141,17 @@ class Permission:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_grafana.types.update_permissions_request.UpdatePermissionsRequest = {}  # type: ignore[typeddict-item]
-        input_["update_instruction_batch"] = update_instruction_batch
-        input_["workspace_id"] = workspace_id
+        input_: capo_grafana.types.update_permissions_request.UpdatePermissionsRequest = {
+            "update_instruction_batch": update_instruction_batch,
+            "workspace_id": workspace_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -203,7 +207,9 @@ class AsyncPermission:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_grafana.types.list_permissions_request.ListPermissionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_grafana.types.list_permissions_request.ListPermissionsRequest = {
+            "workspace_id": workspace_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -214,13 +220,13 @@ class AsyncPermission:
             input_["user_id"] = user_id
         if group_id is not None:
             input_["group_id"] = group_id
-        input_["workspace_id"] = workspace_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -261,13 +267,15 @@ class AsyncPermission:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_grafana.types.update_permissions_request.UpdatePermissionsRequest = {}  # type: ignore[typeddict-item]
-        input_["update_instruction_batch"] = update_instruction_batch
-        input_["workspace_id"] = workspace_id
+        input_: capo_grafana.types.update_permissions_request.UpdatePermissionsRequest = {
+            "update_instruction_batch": update_instruction_batch,
+            "workspace_id": workspace_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

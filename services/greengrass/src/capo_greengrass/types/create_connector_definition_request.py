@@ -45,7 +45,7 @@ def serialize_json(value: CreateConnectorDefinitionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateConnectorDefinitionRequest:
     out: CreateConnectorDefinitionRequest = {}  # type: ignore[typeddict-item]
-    if "InitialVersion" in data:
+    if data.get("InitialVersion") is not None:
         import capo_greengrass.types.connector_definition_version
 
         out["initial_version"] = (
@@ -53,9 +53,9 @@ def deserialize_json(data: dict) -> CreateConnectorDefinitionRequest:
                 data["InitialVersion"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_greengrass.types.tags
 
         out["tags"] = capo_greengrass.types.tags.deserialize_json(data["tags"])

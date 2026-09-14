@@ -81,41 +81,41 @@ def serialize_json(value: GetMonitorResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetMonitorResponse:
     out: GetMonitorResponse = {}  # type: ignore[typeddict-item]
-    if "monitorId" in data:
+    if data.get("monitorId") is not None:
         out["monitor_id"] = data["monitorId"]
     else:
         raise DeserializationError("GetMonitorResponse.monitor_id required")
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError("GetMonitorResponse.display_name required")
-    if "subdomain" in data:
+    if data.get("subdomain") is not None:
         out["subdomain"] = data["subdomain"]
     else:
         raise DeserializationError("GetMonitorResponse.subdomain required")
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
     else:
         raise DeserializationError("GetMonitorResponse.url required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("GetMonitorResponse.role_arn required")
-    if "identityCenterInstanceArn" in data:
+    if data.get("identityCenterInstanceArn") is not None:
         out["identity_center_instance_arn"] = data["identityCenterInstanceArn"]
     else:
         raise DeserializationError(
             "GetMonitorResponse.identity_center_instance_arn required"
         )
-    if "identityCenterRegion" in data:
+    if data.get("identityCenterRegion") is not None:
         out["identity_center_region"] = data["identityCenterRegion"]
-    if "identityCenterApplicationArn" in data:
+    if data.get("identityCenterApplicationArn") is not None:
         out["identity_center_application_arn"] = data["identityCenterApplicationArn"]
     else:
         raise DeserializationError(
             "GetMonitorResponse.identity_center_application_arn required"
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_deadline.types.created_at
 
         out["created_at"] = capo_deadline.types.created_at.deserialize_json(
@@ -123,16 +123,16 @@ def deserialize_json(data: dict) -> GetMonitorResponse:
         )
     else:
         raise DeserializationError("GetMonitorResponse.created_at required")
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
     else:
         raise DeserializationError("GetMonitorResponse.created_by required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_deadline.types.updated_at
 
         out["updated_at"] = capo_deadline.types.updated_at.deserialize_json(
             data["updatedAt"]
         )
-    if "updatedBy" in data:
+    if data.get("updatedBy") is not None:
         out["updated_by"] = data["updatedBy"]
     return out

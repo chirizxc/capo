@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: SemanticTableMap) -> dict:
 def deserialize_json(data: dict) -> SemanticTableMap:
     out: SemanticTableMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_quicksight.types.semantic_table
 
         out[key] = capo_quicksight.types.semantic_table.deserialize_json(value)

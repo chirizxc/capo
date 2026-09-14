@@ -89,9 +89,9 @@ def serialize_json(value: StartImportResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartImportResponse:
     out: StartImportResponse = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_lex_model_building_service.types.resource_type
 
         out["resource_type"] = (
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> StartImportResponse:
                 data["resourceType"]
             )
         )
-    if "mergeStrategy" in data:
+    if data.get("mergeStrategy") is not None:
         import capo_lex_model_building_service.types.merge_strategy
 
         out["merge_strategy"] = (
@@ -107,9 +107,9 @@ def deserialize_json(data: dict) -> StartImportResponse:
                 data["mergeStrategy"]
             )
         )
-    if "importId" in data:
+    if data.get("importId") is not None:
         out["import_id"] = data["importId"]
-    if "importStatus" in data:
+    if data.get("importStatus") is not None:
         import capo_lex_model_building_service.types.import_status
 
         out["import_status"] = (
@@ -117,13 +117,13 @@ def deserialize_json(data: dict) -> StartImportResponse:
                 data["importStatus"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_lex_model_building_service.types.tag_list
 
         out["tags"] = capo_lex_model_building_service.types.tag_list.deserialize_json(
             data["tags"]
         )
-    if "createdDate" in data:
+    if data.get("createdDate") is not None:
         import capo_lex_model_building_service.types.timestamp
 
         out["created_date"] = (

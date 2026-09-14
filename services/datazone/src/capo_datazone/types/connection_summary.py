@@ -89,31 +89,31 @@ def serialize_json(value: ConnectionSummary) -> dict:
 
 def deserialize_json(data: dict) -> ConnectionSummary:
     out: ConnectionSummary = {}  # type: ignore[typeddict-item]
-    if "configurations" in data:
+    if data.get("configurations") is not None:
         import capo_datazone.types.configurations
 
         out["configurations"] = capo_datazone.types.configurations.deserialize_json(
             data["configurations"]
         )
-    if "connectionId" in data:
+    if data.get("connectionId") is not None:
         out["connection_id"] = data["connectionId"]
     else:
         raise DeserializationError("ConnectionSummary.connection_id required")
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
     else:
         raise DeserializationError("ConnectionSummary.domain_id required")
-    if "domainUnitId" in data:
+    if data.get("domainUnitId") is not None:
         out["domain_unit_id"] = data["domainUnitId"]
     else:
         raise DeserializationError("ConnectionSummary.domain_unit_id required")
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ConnectionSummary.name required")
-    if "physicalEndpoints" in data:
+    if data.get("physicalEndpoints") is not None:
         import capo_datazone.types.physical_endpoints
 
         out["physical_endpoints"] = (
@@ -123,9 +123,9 @@ def deserialize_json(data: dict) -> ConnectionSummary:
         )
     else:
         raise DeserializationError("ConnectionSummary.physical_endpoints required")
-    if "projectId" in data:
+    if data.get("projectId") is not None:
         out["project_id"] = data["projectId"]
-    if "props" in data:
+    if data.get("props") is not None:
         import capo_datazone.types.connection_properties_output
 
         out["props"] = (
@@ -133,13 +133,13 @@ def deserialize_json(data: dict) -> ConnectionSummary:
                 data["props"]
             )
         )
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_datazone.types.connection_type
 
         out["type"] = capo_datazone.types.connection_type.deserialize_json(data["type"])
     else:
         raise DeserializationError("ConnectionSummary.type required")
-    if "scope" in data:
+    if data.get("scope") is not None:
         import capo_datazone.types.connection_scope
 
         out["scope"] = capo_datazone.types.connection_scope.deserialize_json(

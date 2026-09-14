@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: CreateHomeRegionControlResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateHomeRegionControlResult:
     out: CreateHomeRegionControlResult = {}  # type: ignore[typeddict-item]
-    if "HomeRegionControl" in data:
+    if data.get("HomeRegionControl") is not None:
         import capo_migrationhub_config.types.home_region_control
 
         out["home_region_control"] = (

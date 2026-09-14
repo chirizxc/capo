@@ -29,9 +29,9 @@ def serialize_aws_json_1_1(value: ContactTargetInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ContactTargetInfo:
     out: ContactTargetInfo = {}  # type: ignore[typeddict-item]
-    if "ContactId" in data:
+    if data.get("ContactId") is not None:
         out["contact_id"] = data["ContactId"]
-    if "IsEssential" in data:
+    if data.get("IsEssential") is not None:
         out["is_essential"] = data["IsEssential"]
     else:
         raise DeserializationError("ContactTargetInfo.is_essential required")

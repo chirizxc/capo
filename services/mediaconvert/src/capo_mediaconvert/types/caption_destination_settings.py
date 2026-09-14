@@ -148,7 +148,7 @@ def serialize_json(value: CaptionDestinationSettings) -> dict:
 
 def deserialize_json(data: dict) -> CaptionDestinationSettings:
     out: CaptionDestinationSettings = {}  # type: ignore[typeddict-item]
-    if "burninDestinationSettings" in data:
+    if data.get("burninDestinationSettings") is not None:
         import capo_mediaconvert.types.burnin_destination_settings
 
         out["burnin_destination_settings"] = (
@@ -156,7 +156,7 @@ def deserialize_json(data: dict) -> CaptionDestinationSettings:
                 data["burninDestinationSettings"]
             )
         )
-    if "destinationType" in data:
+    if data.get("destinationType") is not None:
         import capo_mediaconvert.types.caption_destination_type
 
         out["destination_type"] = (
@@ -164,7 +164,7 @@ def deserialize_json(data: dict) -> CaptionDestinationSettings:
                 data["destinationType"]
             )
         )
-    if "dvbSubDestinationSettings" in data:
+    if data.get("dvbSubDestinationSettings") is not None:
         import capo_mediaconvert.types.dvb_sub_destination_settings
 
         out["dvb_sub_destination_settings"] = (
@@ -172,7 +172,7 @@ def deserialize_json(data: dict) -> CaptionDestinationSettings:
                 data["dvbSubDestinationSettings"]
             )
         )
-    if "embeddedDestinationSettings" in data:
+    if data.get("embeddedDestinationSettings") is not None:
         import capo_mediaconvert.types.embedded_destination_settings
 
         out["embedded_destination_settings"] = (
@@ -180,7 +180,7 @@ def deserialize_json(data: dict) -> CaptionDestinationSettings:
                 data["embeddedDestinationSettings"]
             )
         )
-    if "imscDestinationSettings" in data:
+    if data.get("imscDestinationSettings") is not None:
         import capo_mediaconvert.types.imsc_destination_settings
 
         out["imsc_destination_settings"] = (
@@ -188,7 +188,7 @@ def deserialize_json(data: dict) -> CaptionDestinationSettings:
                 data["imscDestinationSettings"]
             )
         )
-    if "sccDestinationSettings" in data:
+    if data.get("sccDestinationSettings") is not None:
         import capo_mediaconvert.types.scc_destination_settings
 
         out["scc_destination_settings"] = (
@@ -196,7 +196,7 @@ def deserialize_json(data: dict) -> CaptionDestinationSettings:
                 data["sccDestinationSettings"]
             )
         )
-    if "srtDestinationSettings" in data:
+    if data.get("srtDestinationSettings") is not None:
         import capo_mediaconvert.types.srt_destination_settings
 
         out["srt_destination_settings"] = (
@@ -204,7 +204,7 @@ def deserialize_json(data: dict) -> CaptionDestinationSettings:
                 data["srtDestinationSettings"]
             )
         )
-    if "teletextDestinationSettings" in data:
+    if data.get("teletextDestinationSettings") is not None:
         import capo_mediaconvert.types.teletext_destination_settings
 
         out["teletext_destination_settings"] = (
@@ -212,7 +212,7 @@ def deserialize_json(data: dict) -> CaptionDestinationSettings:
                 data["teletextDestinationSettings"]
             )
         )
-    if "ttmlDestinationSettings" in data:
+    if data.get("ttmlDestinationSettings") is not None:
         import capo_mediaconvert.types.ttml_destination_settings
 
         out["ttml_destination_settings"] = (
@@ -220,7 +220,7 @@ def deserialize_json(data: dict) -> CaptionDestinationSettings:
                 data["ttmlDestinationSettings"]
             )
         )
-    if "webvttDestinationSettings" in data:
+    if data.get("webvttDestinationSettings") is not None:
         import capo_mediaconvert.types.webvtt_destination_settings
 
         out["webvtt_destination_settings"] = (

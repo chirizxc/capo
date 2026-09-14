@@ -73,15 +73,15 @@ def serialize_aws_json_1_1(value: PolicySummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PolicySummary:
     out: PolicySummary = {}  # type: ignore[typeddict-item]
-    if "PolicyArn" in data:
+    if data.get("PolicyArn") is not None:
         out["policy_arn"] = data["PolicyArn"]
-    if "PolicyId" in data:
+    if data.get("PolicyId") is not None:
         out["policy_id"] = data["PolicyId"]
-    if "PolicyName" in data:
+    if data.get("PolicyName") is not None:
         out["policy_name"] = data["PolicyName"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
-    if "SecurityServiceType" in data:
+    if data.get("SecurityServiceType") is not None:
         import capo_fms.types.security_service_type
 
         out["security_service_type"] = (
@@ -89,17 +89,17 @@ def deserialize_aws_json_1_1(data: dict) -> PolicySummary:
                 data["SecurityServiceType"]
             )
         )
-    if "RemediationEnabled" in data:
+    if data.get("RemediationEnabled") is not None:
         out["remediation_enabled"] = data["RemediationEnabled"]
     else:
         out["remediation_enabled"] = False
-    if "DeleteUnusedFMManagedResources" in data:
+    if data.get("DeleteUnusedFMManagedResources") is not None:
         out["delete_unused_fm_managed_resources"] = data[
             "DeleteUnusedFMManagedResources"
         ]
     else:
         out["delete_unused_fm_managed_resources"] = False
-    if "PolicyStatus" in data:
+    if data.get("PolicyStatus") is not None:
         import capo_fms.types.customer_policy_status
 
         out["policy_status"] = (

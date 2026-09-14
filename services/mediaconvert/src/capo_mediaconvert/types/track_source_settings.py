@@ -31,8 +31,8 @@ def serialize_json(value: TrackSourceSettings) -> dict:
 
 def deserialize_json(data: dict) -> TrackSourceSettings:
     out: TrackSourceSettings = {}  # type: ignore[typeddict-item]
-    if "streamNumber" in data:
+    if data.get("streamNumber") is not None:
         out["stream_number"] = data["streamNumber"]
-    if "trackNumber" in data:
+    if data.get("trackNumber") is not None:
         out["track_number"] = data["trackNumber"]
     return out

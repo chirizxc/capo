@@ -43,7 +43,7 @@ def serialize_json(value: ListCustomPermissionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListCustomPermissionsResponse:
     out: ListCustomPermissionsResponse = {}  # type: ignore[typeddict-item]
-    if "CustomPermissionsList" in data:
+    if data.get("CustomPermissionsList") is not None:
         import capo_quicksight.types.custom_permissions_list
 
         out["custom_permissions_list"] = (
@@ -51,8 +51,8 @@ def deserialize_json(data: dict) -> ListCustomPermissionsResponse:
                 data["CustomPermissionsList"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

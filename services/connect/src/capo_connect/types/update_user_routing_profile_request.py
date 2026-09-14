@@ -30,7 +30,7 @@ def serialize_json(value: UpdateUserRoutingProfileRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateUserRoutingProfileRequest:
     out: UpdateUserRoutingProfileRequest = {}  # type: ignore[typeddict-item]
-    if "RoutingProfileId" in data:
+    if data.get("RoutingProfileId") is not None:
         out["routing_profile_id"] = data["RoutingProfileId"]
     else:
         raise DeserializationError(

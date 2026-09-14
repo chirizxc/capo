@@ -44,9 +44,9 @@ def serialize_json(value: OutputGroup) -> dict:
 
 def deserialize_json(data: dict) -> OutputGroup:
     out: OutputGroup = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "outputGroupSettings" in data:
+    if data.get("outputGroupSettings") is not None:
         import capo_medialive.types.output_group_settings
 
         out["output_group_settings"] = (
@@ -54,7 +54,7 @@ def deserialize_json(data: dict) -> OutputGroup:
                 data["outputGroupSettings"]
             )
         )
-    if "outputs" in data:
+    if data.get("outputs") is not None:
         import capo_medialive.types.__list_of_output
 
         out["outputs"] = capo_medialive.types.__list_of_output.deserialize_json(

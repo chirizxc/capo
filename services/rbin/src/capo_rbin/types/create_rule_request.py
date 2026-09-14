@@ -81,7 +81,7 @@ def serialize_json(value: CreateRuleRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateRuleRequest:
     out: CreateRuleRequest = {}  # type: ignore[typeddict-item]
-    if "RetentionPeriod" in data:
+    if data.get("RetentionPeriod") is not None:
         import capo_rbin.types.retention_period
 
         out["retention_period"] = capo_rbin.types.retention_period.deserialize_json(
@@ -89,13 +89,13 @@ def deserialize_json(data: dict) -> CreateRuleRequest:
         )
     else:
         raise DeserializationError("CreateRuleRequest.retention_period required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_rbin.types.tag_list
 
         out["tags"] = capo_rbin.types.tag_list.deserialize_json(data["Tags"])
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_rbin.types.resource_type
 
         out["resource_type"] = capo_rbin.types.resource_type.deserialize_json(
@@ -103,19 +103,19 @@ def deserialize_json(data: dict) -> CreateRuleRequest:
         )
     else:
         raise DeserializationError("CreateRuleRequest.resource_type required")
-    if "ResourceTags" in data:
+    if data.get("ResourceTags") is not None:
         import capo_rbin.types.resource_tags
 
         out["resource_tags"] = capo_rbin.types.resource_tags.deserialize_json(
             data["ResourceTags"]
         )
-    if "LockConfiguration" in data:
+    if data.get("LockConfiguration") is not None:
         import capo_rbin.types.lock_configuration
 
         out["lock_configuration"] = capo_rbin.types.lock_configuration.deserialize_json(
             data["LockConfiguration"]
         )
-    if "ExcludeResourceTags" in data:
+    if data.get("ExcludeResourceTags") is not None:
         import capo_rbin.types.exclude_resource_tags
 
         out["exclude_resource_tags"] = (

@@ -45,7 +45,7 @@ def serialize_aws_json_1_0(value: LargeTimestampGaps) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> LargeTimestampGaps:
     out: LargeTimestampGaps = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_lookoutequipment.types.statistical_issue_status
 
         out["status"] = (
@@ -55,8 +55,8 @@ def deserialize_aws_json_1_0(data: dict) -> LargeTimestampGaps:
         )
     else:
         raise DeserializationError("LargeTimestampGaps.status required")
-    if "NumberOfLargeTimestampGaps" in data:
+    if data.get("NumberOfLargeTimestampGaps") is not None:
         out["number_of_large_timestamp_gaps"] = data["NumberOfLargeTimestampGaps"]
-    if "MaxTimestampGapInDays" in data:
+    if data.get("MaxTimestampGapInDays") is not None:
         out["max_timestamp_gap_in_days"] = data["MaxTimestampGapInDays"]
     return out

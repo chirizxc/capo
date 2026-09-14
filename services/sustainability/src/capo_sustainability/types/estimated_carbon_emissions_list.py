@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> EstimatedCarbonEmissionsList:
 
     out: EstimatedCarbonEmissionsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sustainability.types.estimated_carbon_emissions.deserialize_json(item)
         )

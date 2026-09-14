@@ -58,7 +58,7 @@ def serialize_aws_json_1_1(value: GetResourceMetricsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetResourceMetricsResponse:
     out: GetResourceMetricsResponse = {}  # type: ignore[typeddict-item]
-    if "AlignedStartTime" in data:
+    if data.get("AlignedStartTime") is not None:
         import capo_pi.types.iso_timestamp
 
         out["aligned_start_time"] = (
@@ -66,15 +66,15 @@ def deserialize_aws_json_1_1(data: dict) -> GetResourceMetricsResponse:
                 data["AlignedStartTime"]
             )
         )
-    if "AlignedEndTime" in data:
+    if data.get("AlignedEndTime") is not None:
         import capo_pi.types.iso_timestamp
 
         out["aligned_end_time"] = capo_pi.types.iso_timestamp.deserialize_aws_json_1_1(
             data["AlignedEndTime"]
         )
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
-    if "MetricList" in data:
+    if data.get("MetricList") is not None:
         import capo_pi.types.metric_key_data_points_list
 
         out["metric_list"] = (
@@ -82,6 +82,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetResourceMetricsResponse:
                 data["MetricList"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

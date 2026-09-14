@@ -43,7 +43,7 @@ def serialize_json(value: PivotTableFieldCollapseStateOption) -> dict:
 
 def deserialize_json(data: dict) -> PivotTableFieldCollapseStateOption:
     out: PivotTableFieldCollapseStateOption = {}  # type: ignore[typeddict-item]
-    if "Target" in data:
+    if data.get("Target") is not None:
         import capo_quicksight.types.pivot_table_field_collapse_state_target
 
         out["target"] = (
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> PivotTableFieldCollapseStateOption:
         )
     else:
         raise DeserializationError("PivotTableFieldCollapseStateOption.target required")
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_quicksight.types.pivot_table_field_collapse_state
 
         out["state"] = (

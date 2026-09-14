@@ -33,7 +33,7 @@ def serialize_json(value: ListListenersResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListListenersResponse:
     out: ListListenersResponse = {}  # type: ignore[typeddict-item]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_vpc_lattice.types.listener_summary_list
 
         out["items"] = capo_vpc_lattice.types.listener_summary_list.deserialize_json(
@@ -41,6 +41,6 @@ def deserialize_json(data: dict) -> ListListenersResponse:
         )
     else:
         raise DeserializationError("ListListenersResponse.items required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

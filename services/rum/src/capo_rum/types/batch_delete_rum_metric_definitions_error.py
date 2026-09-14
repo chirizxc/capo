@@ -30,19 +30,19 @@ def serialize_json(value: BatchDeleteRumMetricDefinitionsError) -> dict:
 
 def deserialize_json(data: dict) -> BatchDeleteRumMetricDefinitionsError:
     out: BatchDeleteRumMetricDefinitionsError = {}  # type: ignore[typeddict-item]
-    if "MetricDefinitionId" in data:
+    if data.get("MetricDefinitionId") is not None:
         out["metric_definition_id"] = data["MetricDefinitionId"]
     else:
         raise DeserializationError(
             "BatchDeleteRumMetricDefinitionsError.metric_definition_id required"
         )
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
     else:
         raise DeserializationError(
             "BatchDeleteRumMetricDefinitionsError.error_code required"
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     else:
         raise DeserializationError(

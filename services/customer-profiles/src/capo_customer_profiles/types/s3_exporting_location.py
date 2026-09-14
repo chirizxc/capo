@@ -30,8 +30,8 @@ def serialize_json(value: S3ExportingLocation) -> dict:
 
 def deserialize_json(data: dict) -> S3ExportingLocation:
     out: S3ExportingLocation = {}  # type: ignore[typeddict-item]
-    if "S3BucketName" in data:
+    if data.get("S3BucketName") is not None:
         out["s3_bucket_name"] = data["S3BucketName"]
-    if "S3KeyName" in data:
+    if data.get("S3KeyName") is not None:
         out["s3_key_name"] = data["S3KeyName"]
     return out

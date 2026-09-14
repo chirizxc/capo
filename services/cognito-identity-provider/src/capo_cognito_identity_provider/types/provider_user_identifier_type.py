@@ -38,10 +38,10 @@ def serialize_aws_json_1_1(value: ProviderUserIdentifierType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProviderUserIdentifierType:
     out: ProviderUserIdentifierType = {}  # type: ignore[typeddict-item]
-    if "ProviderName" in data:
+    if data.get("ProviderName") is not None:
         out["provider_name"] = data["ProviderName"]
-    if "ProviderAttributeName" in data:
+    if data.get("ProviderAttributeName") is not None:
         out["provider_attribute_name"] = data["ProviderAttributeName"]
-    if "ProviderAttributeValue" in data:
+    if data.get("ProviderAttributeValue") is not None:
         out["provider_attribute_value"] = data["ProviderAttributeValue"]
     return out

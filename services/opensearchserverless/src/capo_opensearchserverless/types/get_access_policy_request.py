@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: GetAccessPolicyRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetAccessPolicyRequest:
     out: GetAccessPolicyRequest = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("GetAccessPolicyRequest.type required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GetAccessPolicyRequest.name required")

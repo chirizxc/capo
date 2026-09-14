@@ -47,21 +47,21 @@ def serialize_aws_json_1_1(value: IamActionDefinition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IamActionDefinition:
     out: IamActionDefinition = {}  # type: ignore[typeddict-item]
-    if "PolicyArn" in data:
+    if data.get("PolicyArn") is not None:
         out["policy_arn"] = data["PolicyArn"]
     else:
         raise DeserializationError("IamActionDefinition.policy_arn required")
-    if "Roles" in data:
+    if data.get("Roles") is not None:
         import capo_budgets.types.roles
 
         out["roles"] = capo_budgets.types.roles.deserialize_aws_json_1_1(data["Roles"])
-    if "Groups" in data:
+    if data.get("Groups") is not None:
         import capo_budgets.types.groups
 
         out["groups"] = capo_budgets.types.groups.deserialize_aws_json_1_1(
             data["Groups"]
         )
-    if "Users" in data:
+    if data.get("Users") is not None:
         import capo_budgets.types.users
 
         out["users"] = capo_budgets.types.users.deserialize_aws_json_1_1(data["Users"])

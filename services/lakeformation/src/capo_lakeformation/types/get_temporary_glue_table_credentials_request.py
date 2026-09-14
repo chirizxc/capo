@@ -80,27 +80,27 @@ def serialize_json(value: GetTemporaryGlueTableCredentialsRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetTemporaryGlueTableCredentialsRequest:
     out: GetTemporaryGlueTableCredentialsRequest = {}  # type: ignore[typeddict-item]
-    if "TableArn" in data:
+    if data.get("TableArn") is not None:
         out["table_arn"] = data["TableArn"]
     else:
         raise DeserializationError(
             "GetTemporaryGlueTableCredentialsRequest.table_arn required"
         )
-    if "Permissions" in data:
+    if data.get("Permissions") is not None:
         import capo_lakeformation.types.permission_list
 
         out["permissions"] = capo_lakeformation.types.permission_list.deserialize_json(
             data["Permissions"]
         )
-    if "DurationSeconds" in data:
+    if data.get("DurationSeconds") is not None:
         out["duration_seconds"] = data["DurationSeconds"]
-    if "AuditContext" in data:
+    if data.get("AuditContext") is not None:
         import capo_lakeformation.types.audit_context
 
         out["audit_context"] = capo_lakeformation.types.audit_context.deserialize_json(
             data["AuditContext"]
         )
-    if "SupportedPermissionTypes" in data:
+    if data.get("SupportedPermissionTypes") is not None:
         import capo_lakeformation.types.permission_type_list
 
         out["supported_permission_types"] = (
@@ -108,9 +108,9 @@ def deserialize_json(data: dict) -> GetTemporaryGlueTableCredentialsRequest:
                 data["SupportedPermissionTypes"]
             )
         )
-    if "S3Path" in data:
+    if data.get("S3Path") is not None:
         out["s3_path"] = data["S3Path"]
-    if "QuerySessionContext" in data:
+    if data.get("QuerySessionContext") is not None:
         import capo_lakeformation.types.query_session_context
 
         out["query_session_context"] = (

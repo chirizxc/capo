@@ -49,13 +49,13 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> ImportCertificateAuthorityCertificateRequest:
     out: ImportCertificateAuthorityCertificateRequest = {}  # type: ignore[typeddict-item]
-    if "CertificateAuthorityArn" in data:
+    if data.get("CertificateAuthorityArn") is not None:
         out["certificate_authority_arn"] = data["CertificateAuthorityArn"]
     else:
         raise DeserializationError(
             "ImportCertificateAuthorityCertificateRequest.certificate_authority_arn required"
         )
-    if "Certificate" in data:
+    if data.get("Certificate") is not None:
         import capo_acm_pca.types.certificate_body_blob
 
         out["certificate"] = (
@@ -67,7 +67,7 @@ def deserialize_aws_json_1_1(
         raise DeserializationError(
             "ImportCertificateAuthorityCertificateRequest.certificate required"
         )
-    if "CertificateChain" in data:
+    if data.get("CertificateChain") is not None:
         import capo_acm_pca.types.certificate_chain_blob
 
         out["certificate_chain"] = (

@@ -31,11 +31,11 @@ def serialize_json(value: IcebergSortOrder) -> dict:
 
 def deserialize_json(data: dict) -> IcebergSortOrder:
     out: IcebergSortOrder = {}  # type: ignore[typeddict-item]
-    if "order-id" in data:
+    if data.get("order-id") is not None:
         out["order_id"] = data["order-id"]
     else:
         raise DeserializationError("IcebergSortOrder.order_id required")
-    if "fields" in data:
+    if data.get("fields") is not None:
         import capo_s3tables.types.iceberg_sort_field_list
 
         out["fields"] = capo_s3tables.types.iceberg_sort_field_list.deserialize_json(

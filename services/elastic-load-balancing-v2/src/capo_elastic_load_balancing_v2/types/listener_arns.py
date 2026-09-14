@@ -16,6 +16,9 @@ ListenerArns: TypeAlias = list[
 def serialize_query(
     value: ListenerArns, pairs: list[tuple[str, str]], prefix: str
 ) -> None:
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         pairs.append((f"{prefix}.member.{n}", str(item)))
 
@@ -30,6 +33,9 @@ def deserialize_query(el: Element) -> ListenerArns:
 def serialize_query_flat(
     value: ListenerArns, pairs: list[tuple[str, str]], prefix: str
 ) -> None:
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         pairs.append((f"{prefix}.{n}", str(item)))
 

@@ -59,9 +59,9 @@ def serialize_json(value: Contact) -> dict:
 
 def deserialize_json(data: dict) -> Contact:
     out: Contact = {}  # type: ignore[typeddict-item]
-    if "EmailAddress" in data:
+    if data.get("EmailAddress") is not None:
         out["email_address"] = data["EmailAddress"]
-    if "TopicPreferences" in data:
+    if data.get("TopicPreferences") is not None:
         import capo_sesv2.types.topic_preference_list
 
         out["topic_preferences"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> Contact:
                 data["TopicPreferences"]
             )
         )
-    if "TopicDefaultPreferences" in data:
+    if data.get("TopicDefaultPreferences") is not None:
         import capo_sesv2.types.topic_preference_list
 
         out["topic_default_preferences"] = (
@@ -77,11 +77,11 @@ def deserialize_json(data: dict) -> Contact:
                 data["TopicDefaultPreferences"]
             )
         )
-    if "UnsubscribeAll" in data:
+    if data.get("UnsubscribeAll") is not None:
         out["unsubscribe_all"] = data["UnsubscribeAll"]
     else:
         out["unsubscribe_all"] = False
-    if "LastUpdatedTimestamp" in data:
+    if data.get("LastUpdatedTimestamp") is not None:
         import capo_sesv2.types.timestamp
 
         out["last_updated_timestamp"] = capo_sesv2.types.timestamp.deserialize_json(

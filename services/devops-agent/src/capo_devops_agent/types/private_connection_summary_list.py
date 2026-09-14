@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> PrivateConnectionSummaryList:
 
     out: PrivateConnectionSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_devops_agent.types.private_connection_summary.deserialize_json(item)
         )

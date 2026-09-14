@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: DeleteModelCardRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteModelCardRequest:
     out: DeleteModelCardRequest = {}  # type: ignore[typeddict-item]
-    if "ModelCardName" in data:
+    if data.get("ModelCardName") is not None:
         out["model_card_name"] = data["ModelCardName"]
     return out

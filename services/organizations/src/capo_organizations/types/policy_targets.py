@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> PolicyTargets:
 
     out: PolicyTargets = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_organizations.types.policy_target_summary.deserialize_aws_json_1_1(
                 item

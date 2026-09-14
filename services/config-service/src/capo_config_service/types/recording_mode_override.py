@@ -47,9 +47,9 @@ def serialize_aws_json_1_1(value: RecordingModeOverride) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RecordingModeOverride:
     out: RecordingModeOverride = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "resourceTypes" in data:
+    if data.get("resourceTypes") is not None:
         import capo_config_service.types.recording_mode_resource_types_list
 
         out["resource_types"] = (
@@ -59,7 +59,7 @@ def deserialize_aws_json_1_1(data: dict) -> RecordingModeOverride:
         )
     else:
         raise DeserializationError("RecordingModeOverride.resource_types required")
-    if "recordingFrequency" in data:
+    if data.get("recordingFrequency") is not None:
         import capo_config_service.types.recording_frequency
 
         out["recording_frequency"] = (

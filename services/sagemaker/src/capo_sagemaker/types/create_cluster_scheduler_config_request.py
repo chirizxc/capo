@@ -57,11 +57,11 @@ def serialize_aws_json_1_1(value: CreateClusterSchedulerConfigRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateClusterSchedulerConfigRequest:
     out: CreateClusterSchedulerConfigRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ClusterArn" in data:
+    if data.get("ClusterArn") is not None:
         out["cluster_arn"] = data["ClusterArn"]
-    if "SchedulerConfig" in data:
+    if data.get("SchedulerConfig") is not None:
         import capo_sagemaker.types.scheduler_config
 
         out["scheduler_config"] = (
@@ -69,9 +69,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateClusterSchedulerConfigRequest:
                 data["SchedulerConfig"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(

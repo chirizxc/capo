@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> IncidentResponseTeam:
 
     out: IncidentResponseTeam = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_security_ir.types.incident_responder.deserialize_json(item))
     return out

@@ -30,13 +30,13 @@ def serialize_aws_json_1_1(value: BatchAssociateResourceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchAssociateResourceRequest:
     out: BatchAssociateResourceRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceSetIdentifier" in data:
+    if data.get("ResourceSetIdentifier") is not None:
         out["resource_set_identifier"] = data["ResourceSetIdentifier"]
     else:
         raise DeserializationError(
             "BatchAssociateResourceRequest.resource_set_identifier required"
         )
-    if "Items" in data:
+    if data.get("Items") is not None:
         import capo_fms.types.identifier_list
 
         out["items"] = capo_fms.types.identifier_list.deserialize_aws_json_1_1(

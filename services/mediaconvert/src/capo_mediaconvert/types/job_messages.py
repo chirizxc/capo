@@ -35,13 +35,13 @@ def serialize_json(value: JobMessages) -> dict:
 
 def deserialize_json(data: dict) -> JobMessages:
     out: JobMessages = {}  # type: ignore[typeddict-item]
-    if "info" in data:
+    if data.get("info") is not None:
         import capo_mediaconvert.types.__list_of__string
 
         out["info"] = capo_mediaconvert.types.__list_of__string.deserialize_json(
             data["info"]
         )
-    if "warning" in data:
+    if data.get("warning") is not None:
         import capo_mediaconvert.types.__list_of__string
 
         out["warning"] = capo_mediaconvert.types.__list_of__string.deserialize_json(

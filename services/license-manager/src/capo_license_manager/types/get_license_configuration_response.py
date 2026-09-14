@@ -154,15 +154,15 @@ def serialize_aws_json_1_1(value: GetLicenseConfigurationResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetLicenseConfigurationResponse:
     out: GetLicenseConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "LicenseConfigurationId" in data:
+    if data.get("LicenseConfigurationId") is not None:
         out["license_configuration_id"] = data["LicenseConfigurationId"]
-    if "LicenseConfigurationArn" in data:
+    if data.get("LicenseConfigurationArn") is not None:
         out["license_configuration_arn"] = data["LicenseConfigurationArn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "LicenseCountingType" in data:
+    if data.get("LicenseCountingType") is not None:
         import capo_license_manager.types.license_counting_type
 
         out["license_counting_type"] = (
@@ -170,7 +170,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetLicenseConfigurationResponse:
                 data["LicenseCountingType"]
             )
         )
-    if "LicenseRules" in data:
+    if data.get("LicenseRules") is not None:
         import capo_license_manager.types.string_list
 
         out["license_rules"] = (
@@ -178,17 +178,17 @@ def deserialize_aws_json_1_1(data: dict) -> GetLicenseConfigurationResponse:
                 data["LicenseRules"]
             )
         )
-    if "LicenseCount" in data:
+    if data.get("LicenseCount") is not None:
         out["license_count"] = data["LicenseCount"]
-    if "LicenseCountHardLimit" in data:
+    if data.get("LicenseCountHardLimit") is not None:
         out["license_count_hard_limit"] = data["LicenseCountHardLimit"]
-    if "ConsumedLicenses" in data:
+    if data.get("ConsumedLicenses") is not None:
         out["consumed_licenses"] = data["ConsumedLicenses"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "OwnerAccountId" in data:
+    if data.get("OwnerAccountId") is not None:
         out["owner_account_id"] = data["OwnerAccountId"]
-    if "ConsumedLicenseSummaryList" in data:
+    if data.get("ConsumedLicenseSummaryList") is not None:
         import capo_license_manager.types.consumed_license_summary_list
 
         out["consumed_license_summary_list"] = (
@@ -196,7 +196,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetLicenseConfigurationResponse:
                 data["ConsumedLicenseSummaryList"]
             )
         )
-    if "ManagedResourceSummaryList" in data:
+    if data.get("ManagedResourceSummaryList") is not None:
         import capo_license_manager.types.managed_resource_summary_list
 
         out["managed_resource_summary_list"] = (
@@ -204,13 +204,13 @@ def deserialize_aws_json_1_1(data: dict) -> GetLicenseConfigurationResponse:
                 data["ManagedResourceSummaryList"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_license_manager.types.tag_list
 
         out["tags"] = capo_license_manager.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "ProductInformationList" in data:
+    if data.get("ProductInformationList") is not None:
         import capo_license_manager.types.product_information_list
 
         out["product_information_list"] = (
@@ -218,7 +218,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetLicenseConfigurationResponse:
                 data["ProductInformationList"]
             )
         )
-    if "AutomatedDiscoveryInformation" in data:
+    if data.get("AutomatedDiscoveryInformation") is not None:
         import capo_license_manager.types.automated_discovery_information
 
         out["automated_discovery_information"] = (
@@ -226,8 +226,8 @@ def deserialize_aws_json_1_1(data: dict) -> GetLicenseConfigurationResponse:
                 data["AutomatedDiscoveryInformation"]
             )
         )
-    if "DisassociateWhenNotFound" in data:
+    if data.get("DisassociateWhenNotFound") is not None:
         out["disassociate_when_not_found"] = data["DisassociateWhenNotFound"]
-    if "LicenseExpiry" in data:
+    if data.get("LicenseExpiry") is not None:
         out["license_expiry"] = data["LicenseExpiry"]
     return out

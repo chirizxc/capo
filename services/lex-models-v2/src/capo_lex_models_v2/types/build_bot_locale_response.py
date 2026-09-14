@@ -61,13 +61,13 @@ def serialize_json(value: BuildBotLocaleResponse) -> dict:
 
 def deserialize_json(data: dict) -> BuildBotLocaleResponse:
     out: BuildBotLocaleResponse = {}  # type: ignore[typeddict-item]
-    if "botId" in data:
+    if data.get("botId") is not None:
         out["bot_id"] = data["botId"]
-    if "botVersion" in data:
+    if data.get("botVersion") is not None:
         out["bot_version"] = data["botVersion"]
-    if "localeId" in data:
+    if data.get("localeId") is not None:
         out["locale_id"] = data["localeId"]
-    if "botLocaleStatus" in data:
+    if data.get("botLocaleStatus") is not None:
         import capo_lex_models_v2.types.bot_locale_status
 
         out["bot_locale_status"] = (
@@ -75,7 +75,7 @@ def deserialize_json(data: dict) -> BuildBotLocaleResponse:
                 data["botLocaleStatus"]
             )
         )
-    if "lastBuildSubmittedDateTime" in data:
+    if data.get("lastBuildSubmittedDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["last_build_submitted_date_time"] = (

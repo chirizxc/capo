@@ -32,12 +32,12 @@ def serialize_json(value: AggregationConfig) -> dict:
 
 def deserialize_json(data: dict) -> AggregationConfig:
     out: AggregationConfig = {}  # type: ignore[typeddict-item]
-    if "aggregationType" in data:
+    if data.get("aggregationType") is not None:
         import capo_appflow.types.aggregation_type
 
         out["aggregation_type"] = capo_appflow.types.aggregation_type.deserialize_json(
             data["aggregationType"]
         )
-    if "targetFileSize" in data:
+    if data.get("targetFileSize") is not None:
         out["target_file_size"] = data["targetFileSize"]
     return out

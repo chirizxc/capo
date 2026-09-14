@@ -27,7 +27,7 @@ def serialize_json(value: UpdateKnowledgeBaseTemplateUriRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateKnowledgeBaseTemplateUriRequest:
     out: UpdateKnowledgeBaseTemplateUriRequest = {}  # type: ignore[typeddict-item]
-    if "templateUri" in data:
+    if data.get("templateUri") is not None:
         out["template_uri"] = data["templateUri"]
     else:
         raise DeserializationError(

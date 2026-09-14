@@ -67,11 +67,11 @@ def serialize_json(value: SearchAvailablePhoneNumbersRequest) -> dict:
 
 def deserialize_json(data: dict) -> SearchAvailablePhoneNumbersRequest:
     out: SearchAvailablePhoneNumbersRequest = {}  # type: ignore[typeddict-item]
-    if "TargetArn" in data:
+    if data.get("TargetArn") is not None:
         out["target_arn"] = data["TargetArn"]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
-    if "PhoneNumberCountryCode" in data:
+    if data.get("PhoneNumberCountryCode") is not None:
         import capo_connect.types.phone_number_country_code
 
         out["phone_number_country_code"] = (
@@ -83,7 +83,7 @@ def deserialize_json(data: dict) -> SearchAvailablePhoneNumbersRequest:
         raise DeserializationError(
             "SearchAvailablePhoneNumbersRequest.phone_number_country_code required"
         )
-    if "PhoneNumberType" in data:
+    if data.get("PhoneNumberType") is not None:
         import capo_connect.types.phone_number_type
 
         out["phone_number_type"] = (
@@ -95,10 +95,10 @@ def deserialize_json(data: dict) -> SearchAvailablePhoneNumbersRequest:
         raise DeserializationError(
             "SearchAvailablePhoneNumbersRequest.phone_number_type required"
         )
-    if "PhoneNumberPrefix" in data:
+    if data.get("PhoneNumberPrefix") is not None:
         out["phone_number_prefix"] = data["PhoneNumberPrefix"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

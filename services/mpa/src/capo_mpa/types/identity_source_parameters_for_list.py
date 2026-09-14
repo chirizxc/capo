@@ -36,7 +36,7 @@ def serialize_json(value: IdentitySourceParametersForList) -> dict:
 
 
 def deserialize_json(data: dict) -> IdentitySourceParametersForList:
-    if "IamIdentityCenter" in data:
+    if data.get("IamIdentityCenter") is not None:
         import capo_mpa.types.iam_identity_center_for_list
 
         return {

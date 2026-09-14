@@ -33,18 +33,18 @@ def serialize_aws_json_1_0(value: RequestCancelWorkflowExecutionInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RequestCancelWorkflowExecutionInput:
     out: RequestCancelWorkflowExecutionInput = {}  # type: ignore[typeddict-item]
-    if "domain" in data:
+    if data.get("domain") is not None:
         out["domain"] = data["domain"]
     else:
         raise DeserializationError(
             "RequestCancelWorkflowExecutionInput.domain required"
         )
-    if "workflowId" in data:
+    if data.get("workflowId") is not None:
         out["workflow_id"] = data["workflowId"]
     else:
         raise DeserializationError(
             "RequestCancelWorkflowExecutionInput.workflow_id required"
         )
-    if "runId" in data:
+    if data.get("runId") is not None:
         out["run_id"] = data["runId"]
     return out

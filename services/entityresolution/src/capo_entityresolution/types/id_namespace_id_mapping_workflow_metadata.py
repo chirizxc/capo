@@ -28,7 +28,7 @@ def serialize_json(value: IdNamespaceIdMappingWorkflowMetadata) -> dict:
 
 def deserialize_json(data: dict) -> IdNamespaceIdMappingWorkflowMetadata:
     out: IdNamespaceIdMappingWorkflowMetadata = {}  # type: ignore[typeddict-item]
-    if "idMappingType" in data:
+    if data.get("idMappingType") is not None:
         import capo_entityresolution.types.id_mapping_type
 
         out["id_mapping_type"] = (

@@ -97,11 +97,11 @@ def serialize_json(value: InstalledComponent) -> dict:
 
 def deserialize_json(data: dict) -> InstalledComponent:
     out: InstalledComponent = {}  # type: ignore[typeddict-item]
-    if "componentName" in data:
+    if data.get("componentName") is not None:
         out["component_name"] = data["componentName"]
-    if "componentVersion" in data:
+    if data.get("componentVersion") is not None:
         out["component_version"] = data["componentVersion"]
-    if "lifecycleState" in data:
+    if data.get("lifecycleState") is not None:
         import capo_greengrassv2.types.installed_component_lifecycle_state
 
         out["lifecycle_state"] = (
@@ -109,13 +109,13 @@ def deserialize_json(data: dict) -> InstalledComponent:
                 data["lifecycleState"]
             )
         )
-    if "lifecycleStateDetails" in data:
+    if data.get("lifecycleStateDetails") is not None:
         out["lifecycle_state_details"] = data["lifecycleStateDetails"]
-    if "isRoot" in data:
+    if data.get("isRoot") is not None:
         out["is_root"] = data["isRoot"]
     else:
         out["is_root"] = False
-    if "lastStatusChangeTimestamp" in data:
+    if data.get("lastStatusChangeTimestamp") is not None:
         import capo_greengrassv2.types.timestamp
 
         out["last_status_change_timestamp"] = (
@@ -123,7 +123,7 @@ def deserialize_json(data: dict) -> InstalledComponent:
                 data["lastStatusChangeTimestamp"]
             )
         )
-    if "lastReportedTimestamp" in data:
+    if data.get("lastReportedTimestamp") is not None:
         import capo_greengrassv2.types.timestamp
 
         out["last_reported_timestamp"] = (
@@ -131,9 +131,9 @@ def deserialize_json(data: dict) -> InstalledComponent:
                 data["lastReportedTimestamp"]
             )
         )
-    if "lastInstallationSource" in data:
+    if data.get("lastInstallationSource") is not None:
         out["last_installation_source"] = data["lastInstallationSource"]
-    if "lifecycleStatusCodes" in data:
+    if data.get("lifecycleStatusCodes") is not None:
         import capo_greengrassv2.types.installed_component_lifecycle_status_code_list
 
         out["lifecycle_status_codes"] = (

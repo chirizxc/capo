@@ -23,6 +23,6 @@ def serialize_json(value: AssistantIntegrationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AssistantIntegrationConfiguration:
     out: AssistantIntegrationConfiguration = {}  # type: ignore[typeddict-item]
-    if "topicIntegrationArn" in data:
+    if data.get("topicIntegrationArn") is not None:
         out["topic_integration_arn"] = data["topicIntegrationArn"]
     return out

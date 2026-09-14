@@ -118,7 +118,7 @@ def serialize_aws_json_1_0(value: Criteria) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Criteria:
     out: Criteria = {}  # type: ignore[typeddict-item]
-    if "region" in data:
+    if data.get("region") is not None:
         import capo_compute_optimizer_automation.types.string_criteria_condition_list
 
         out["region"] = (
@@ -126,7 +126,7 @@ def deserialize_aws_json_1_0(data: dict) -> Criteria:
                 data["region"]
             )
         )
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         import capo_compute_optimizer_automation.types.string_criteria_condition_list
 
         out["resource_arn"] = (
@@ -134,7 +134,7 @@ def deserialize_aws_json_1_0(data: dict) -> Criteria:
                 data["resourceArn"]
             )
         )
-    if "ebsVolumeType" in data:
+    if data.get("ebsVolumeType") is not None:
         import capo_compute_optimizer_automation.types.string_criteria_condition_list
 
         out["ebs_volume_type"] = (
@@ -142,7 +142,7 @@ def deserialize_aws_json_1_0(data: dict) -> Criteria:
                 data["ebsVolumeType"]
             )
         )
-    if "ebsVolumeSizeInGib" in data:
+    if data.get("ebsVolumeSizeInGib") is not None:
         import capo_compute_optimizer_automation.types.integer_criteria_condition_list
 
         out["ebs_volume_size_in_gib"] = (
@@ -150,7 +150,7 @@ def deserialize_aws_json_1_0(data: dict) -> Criteria:
                 data["ebsVolumeSizeInGib"]
             )
         )
-    if "estimatedMonthlySavings" in data:
+    if data.get("estimatedMonthlySavings") is not None:
         import capo_compute_optimizer_automation.types.double_criteria_condition_list
 
         out["estimated_monthly_savings"] = (
@@ -158,7 +158,7 @@ def deserialize_aws_json_1_0(data: dict) -> Criteria:
                 data["estimatedMonthlySavings"]
             )
         )
-    if "resourceTag" in data:
+    if data.get("resourceTag") is not None:
         import capo_compute_optimizer_automation.types.resource_tags_criteria_condition_list
 
         out["resource_tag"] = (
@@ -166,7 +166,7 @@ def deserialize_aws_json_1_0(data: dict) -> Criteria:
                 data["resourceTag"]
             )
         )
-    if "lookBackPeriodInDays" in data:
+    if data.get("lookBackPeriodInDays") is not None:
         import capo_compute_optimizer_automation.types.integer_criteria_condition_list
 
         out["look_back_period_in_days"] = (
@@ -174,7 +174,7 @@ def deserialize_aws_json_1_0(data: dict) -> Criteria:
                 data["lookBackPeriodInDays"]
             )
         )
-    if "restartNeeded" in data:
+    if data.get("restartNeeded") is not None:
         import capo_compute_optimizer_automation.types.string_criteria_condition_list
 
         out["restart_needed"] = (

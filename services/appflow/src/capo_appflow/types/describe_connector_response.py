@@ -31,7 +31,7 @@ def serialize_json(value: DescribeConnectorResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeConnectorResponse:
     out: DescribeConnectorResponse = {}  # type: ignore[typeddict-item]
-    if "connectorConfiguration" in data:
+    if data.get("connectorConfiguration") is not None:
         import capo_appflow.types.connector_configuration
 
         out["connector_configuration"] = (

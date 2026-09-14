@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> MessageVariationsList:
 
     out: MessageVariationsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_lex_models_v2.types.message.deserialize_json(item))
     return out

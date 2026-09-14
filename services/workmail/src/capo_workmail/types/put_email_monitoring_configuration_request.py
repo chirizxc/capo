@@ -33,15 +33,15 @@ def serialize_aws_json_1_1(value: PutEmailMonitoringConfigurationRequest) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> PutEmailMonitoringConfigurationRequest:
     out: PutEmailMonitoringConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
     else:
         raise DeserializationError(
             "PutEmailMonitoringConfigurationRequest.organization_id required"
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "LogGroupArn" in data:
+    if data.get("LogGroupArn") is not None:
         out["log_group_arn"] = data["LogGroupArn"]
     else:
         raise DeserializationError(

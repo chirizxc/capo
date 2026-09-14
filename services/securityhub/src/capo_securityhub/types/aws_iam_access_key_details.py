@@ -75,9 +75,9 @@ def serialize_json(value: AwsIamAccessKeyDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsIamAccessKeyDetails:
     out: AwsIamAccessKeyDetails = {}  # type: ignore[typeddict-item]
-    if "UserName" in data:
+    if data.get("UserName") is not None:
         out["user_name"] = data["UserName"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_securityhub.types.aws_iam_access_key_status
 
         out["status"] = (
@@ -85,19 +85,19 @@ def deserialize_json(data: dict) -> AwsIamAccessKeyDetails:
                 data["Status"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         out["created_at"] = data["CreatedAt"]
-    if "PrincipalId" in data:
+    if data.get("PrincipalId") is not None:
         out["principal_id"] = data["PrincipalId"]
-    if "PrincipalType" in data:
+    if data.get("PrincipalType") is not None:
         out["principal_type"] = data["PrincipalType"]
-    if "PrincipalName" in data:
+    if data.get("PrincipalName") is not None:
         out["principal_name"] = data["PrincipalName"]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "AccessKeyId" in data:
+    if data.get("AccessKeyId") is not None:
         out["access_key_id"] = data["AccessKeyId"]
-    if "SessionContext" in data:
+    if data.get("SessionContext") is not None:
         import capo_securityhub.types.aws_iam_access_key_session_context
 
         out["session_context"] = (

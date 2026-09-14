@@ -59,11 +59,11 @@ def serialize_json(value: PutDomainObjectTypeRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutDomainObjectTypeRequest:
     out: PutDomainObjectTypeRequest = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "EncryptionKey" in data:
+    if data.get("EncryptionKey") is not None:
         out["encryption_key"] = data["EncryptionKey"]
-    if "Fields" in data:
+    if data.get("Fields") is not None:
         import capo_customer_profiles.types.domain_object_type_fields
 
         out["fields"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> PutDomainObjectTypeRequest:
         )
     else:
         raise DeserializationError("PutDomainObjectTypeRequest.fields required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_customer_profiles.types.tag_map
 
         out["tags"] = capo_customer_profiles.types.tag_map.deserialize_json(

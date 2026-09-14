@@ -42,7 +42,7 @@ def serialize_json(value: KinesisVideoStreamSourceRuntimeConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> KinesisVideoStreamSourceRuntimeConfiguration:
     out: KinesisVideoStreamSourceRuntimeConfiguration = {}  # type: ignore[typeddict-item]
-    if "Streams" in data:
+    if data.get("Streams") is not None:
         import capo_chime_sdk_media_pipelines.types.streams
 
         out["streams"] = capo_chime_sdk_media_pipelines.types.streams.deserialize_json(
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> KinesisVideoStreamSourceRuntimeConfiguration
         raise DeserializationError(
             "KinesisVideoStreamSourceRuntimeConfiguration.streams required"
         )
-    if "MediaEncoding" in data:
+    if data.get("MediaEncoding") is not None:
         import capo_chime_sdk_media_pipelines.types.media_encoding
 
         out["media_encoding"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> KinesisVideoStreamSourceRuntimeConfiguration
         raise DeserializationError(
             "KinesisVideoStreamSourceRuntimeConfiguration.media_encoding required"
         )
-    if "MediaSampleRate" in data:
+    if data.get("MediaSampleRate") is not None:
         out["media_sample_rate"] = data["MediaSampleRate"]
     else:
         raise DeserializationError(

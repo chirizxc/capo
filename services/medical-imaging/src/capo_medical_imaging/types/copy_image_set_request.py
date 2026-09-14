@@ -42,7 +42,7 @@ def serialize_json(value: CopyImageSetRequest) -> dict:
 
 def deserialize_json(data: dict) -> CopyImageSetRequest:
     out: CopyImageSetRequest = {}  # type: ignore[typeddict-item]
-    if "copyImageSetInformation" in data:
+    if data.get("copyImageSetInformation") is not None:
         import capo_medical_imaging.types.copy_image_set_information
 
         out["copy_image_set_information"] = (

@@ -57,23 +57,23 @@ def serialize_json(value: Group) -> dict:
 
 def deserialize_json(data: dict) -> Group:
     out: Group = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_synthetics.types.tag_map
 
         out["tags"] = capo_synthetics.types.tag_map.deserialize_json(data["Tags"])
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_synthetics.types.timestamp
 
         out["created_time"] = capo_synthetics.types.timestamp.deserialize_json(
             data["CreatedTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_synthetics.types.timestamp
 
         out["last_modified_time"] = capo_synthetics.types.timestamp.deserialize_json(

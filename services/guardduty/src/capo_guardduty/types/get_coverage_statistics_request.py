@@ -47,7 +47,7 @@ def serialize_json(value: GetCoverageStatisticsRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetCoverageStatisticsRequest:
     out: GetCoverageStatisticsRequest = {}  # type: ignore[typeddict-item]
-    if "filterCriteria" in data:
+    if data.get("filterCriteria") is not None:
         import capo_guardduty.types.coverage_filter_criteria
 
         out["filter_criteria"] = (
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> GetCoverageStatisticsRequest:
                 data["filterCriteria"]
             )
         )
-    if "statisticsType" in data:
+    if data.get("statisticsType") is not None:
         import capo_guardduty.types.coverage_statistics_type_list
 
         out["statistics_type"] = (

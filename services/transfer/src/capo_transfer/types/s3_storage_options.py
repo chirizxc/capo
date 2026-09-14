@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: S3StorageOptions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3StorageOptions:
     out: S3StorageOptions = {}  # type: ignore[typeddict-item]
-    if "DirectoryListingOptimization" in data:
+    if data.get("DirectoryListingOptimization") is not None:
         import capo_transfer.types.directory_listing_optimization
 
         out["directory_listing_optimization"] = (

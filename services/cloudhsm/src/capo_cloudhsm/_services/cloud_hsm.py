@@ -219,15 +219,17 @@ class CloudHSMClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudhsm.types.add_tags_to_resource_request.AddTagsToResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_list"] = tag_list
+        input_: capo_cloudhsm.types.add_tags_to_resource_request.AddTagsToResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_list": tag_list,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_hapg(
@@ -263,14 +265,16 @@ class CloudHSMClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudhsm.types.create_hapg_request.CreateHapgRequest = {}  # type: ignore[typeddict-item]
-        input_["label"] = label
+        input_: capo_cloudhsm.types.create_hapg_request.CreateHapgRequest = {
+            "label": label
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_hsm(
@@ -319,15 +323,16 @@ class CloudHSMClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudhsm.types.create_hsm_request.CreateHsmRequest = {}  # type: ignore[typeddict-item]
-        input_["subnet_id"] = subnet_id
-        input_["ssh_key"] = ssh_key
+        input_: capo_cloudhsm.types.create_hsm_request.CreateHsmRequest = {
+            "subnet_id": subnet_id,
+            "ssh_key": ssh_key,
+            "iam_role_arn": iam_role_arn,
+            "subscription_type": subscription_type,
+        }
         if eni_ip is not None:
             input_["eni_ip"] = eni_ip
-        input_["iam_role_arn"] = iam_role_arn
         if external_id is not None:
             input_["external_id"] = external_id
-        input_["subscription_type"] = subscription_type
         if client_token is not None:
             input_["client_token"] = client_token
         if syslog_ip is not None:
@@ -338,6 +343,7 @@ class CloudHSMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_luna_client(
@@ -375,16 +381,18 @@ class CloudHSMClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudhsm.types.create_luna_client_request.CreateLunaClientRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudhsm.types.create_luna_client_request.CreateLunaClientRequest = {
+            "certificate": certificate
+        }
         if label is not None:
             input_["label"] = label
-        input_["certificate"] = certificate
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_hapg(
@@ -420,14 +428,16 @@ class CloudHSMClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudhsm.types.delete_hapg_request.DeleteHapgRequest = {}  # type: ignore[typeddict-item]
-        input_["hapg_arn"] = hapg_arn
+        input_: capo_cloudhsm.types.delete_hapg_request.DeleteHapgRequest = {
+            "hapg_arn": hapg_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_hsm(
@@ -463,14 +473,16 @@ class CloudHSMClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudhsm.types.delete_hsm_request.DeleteHsmRequest = {}  # type: ignore[typeddict-item]
-        input_["hsm_arn"] = hsm_arn
+        input_: capo_cloudhsm.types.delete_hsm_request.DeleteHsmRequest = {
+            "hsm_arn": hsm_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_luna_client(
@@ -506,14 +518,16 @@ class CloudHSMClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudhsm.types.delete_luna_client_request.DeleteLunaClientRequest = {}  # type: ignore[typeddict-item]
-        input_["client_arn"] = client_arn
+        input_: capo_cloudhsm.types.delete_luna_client_request.DeleteLunaClientRequest = {
+            "client_arn": client_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_hapg(
@@ -549,14 +563,16 @@ class CloudHSMClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudhsm.types.describe_hapg_request.DescribeHapgRequest = {}  # type: ignore[typeddict-item]
-        input_["hapg_arn"] = hapg_arn
+        input_: capo_cloudhsm.types.describe_hapg_request.DescribeHapgRequest = {
+            "hapg_arn": hapg_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_hsm(
@@ -596,7 +612,7 @@ class CloudHSMClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudhsm.types.describe_hsm_request.DescribeHsmRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudhsm.types.describe_hsm_request.DescribeHsmRequest = {}
         if hsm_arn is not None:
             input_["hsm_arn"] = hsm_arn
         if hsm_serial_number is not None:
@@ -607,6 +623,7 @@ class CloudHSMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_luna_client(
@@ -646,7 +663,7 @@ class CloudHSMClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudhsm.types.describe_luna_client_request.DescribeLunaClientRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudhsm.types.describe_luna_client_request.DescribeLunaClientRequest = {}
         if client_arn is not None:
             input_["client_arn"] = client_arn
         if certificate_fingerprint is not None:
@@ -657,6 +674,7 @@ class CloudHSMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_config(
@@ -696,16 +714,18 @@ class CloudHSMClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudhsm.types.get_config_request.GetConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["client_arn"] = client_arn
-        input_["client_version"] = client_version
-        input_["hapg_list"] = hapg_list
+        input_: capo_cloudhsm.types.get_config_request.GetConfigRequest = {
+            "client_arn": client_arn,
+            "client_version": client_version,
+            "hapg_list": hapg_list,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_available_zones(
@@ -735,13 +755,14 @@ class CloudHSMClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudhsm.types.list_available_zones_request.ListAvailableZonesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudhsm.types.list_available_zones_request.ListAvailableZonesRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_hapgs(
@@ -779,7 +800,7 @@ class CloudHSMClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudhsm.types.list_hapgs_request.ListHapgsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudhsm.types.list_hapgs_request.ListHapgsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -788,6 +809,7 @@ class CloudHSMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_hsms(
@@ -825,7 +847,7 @@ class CloudHSMClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudhsm.types.list_hsms_request.ListHsmsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudhsm.types.list_hsms_request.ListHsmsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -834,6 +856,7 @@ class CloudHSMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_luna_clients(
@@ -871,7 +894,7 @@ class CloudHSMClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudhsm.types.list_luna_clients_request.ListLunaClientsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudhsm.types.list_luna_clients_request.ListLunaClientsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -880,6 +903,7 @@ class CloudHSMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_tags_for_resource(
@@ -915,14 +939,16 @@ class CloudHSMClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudhsm.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_cloudhsm.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def modify_hapg(
@@ -964,8 +990,9 @@ class CloudHSMClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudhsm.types.modify_hapg_request.ModifyHapgRequest = {}  # type: ignore[typeddict-item]
-        input_["hapg_arn"] = hapg_arn
+        input_: capo_cloudhsm.types.modify_hapg_request.ModifyHapgRequest = {
+            "hapg_arn": hapg_arn
+        }
         if label is not None:
             input_["label"] = label
         if partition_serial_list is not None:
@@ -976,6 +1003,7 @@ class CloudHSMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def modify_hsm(
@@ -1021,8 +1049,9 @@ class CloudHSMClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudhsm.types.modify_hsm_request.ModifyHsmRequest = {}  # type: ignore[typeddict-item]
-        input_["hsm_arn"] = hsm_arn
+        input_: capo_cloudhsm.types.modify_hsm_request.ModifyHsmRequest = {
+            "hsm_arn": hsm_arn
+        }
         if subnet_id is not None:
             input_["subnet_id"] = subnet_id
         if eni_ip is not None:
@@ -1039,6 +1068,7 @@ class CloudHSMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def modify_luna_client(
@@ -1074,15 +1104,17 @@ class CloudHSMClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudhsm.types.modify_luna_client_request.ModifyLunaClientRequest = {}  # type: ignore[typeddict-item]
-        input_["client_arn"] = client_arn
-        input_["certificate"] = certificate
+        input_: capo_cloudhsm.types.modify_luna_client_request.ModifyLunaClientRequest = {
+            "client_arn": client_arn,
+            "certificate": certificate,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def remove_tags_from_resource(
@@ -1120,15 +1152,17 @@ class CloudHSMClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudhsm.types.remove_tags_from_resource_request.RemoveTagsFromResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_key_list"] = tag_key_list
+        input_: capo_cloudhsm.types.remove_tags_from_resource_request.RemoveTagsFromResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_key_list": tag_key_list,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

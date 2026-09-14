@@ -53,11 +53,11 @@ def serialize_aws_json_1_0(value: ReplicaSpecificationSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ReplicaSpecificationSummary:
     out: ReplicaSpecificationSummary = {}  # type: ignore[typeddict-item]
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "capacitySpecification" in data:
+    if data.get("capacitySpecification") is not None:
         import capo_keyspaces.types.capacity_specification_summary
 
         out["capacity_specification"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_0(data: dict) -> ReplicaSpecificationSummary:
                 data["capacitySpecification"]
             )
         )
-    if "warmThroughputSpecification" in data:
+    if data.get("warmThroughputSpecification") is not None:
         import capo_keyspaces.types.warm_throughput_specification_summary
 
         out["warm_throughput_specification"] = (

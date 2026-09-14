@@ -392,7 +392,7 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.create_api_key_request.CreateApiKeyRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_api_gateway.types.create_api_key_request.CreateApiKeyRequest = {}
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -415,6 +415,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_authorizer(
@@ -475,10 +476,11 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.create_authorizer_request.CreateAuthorizerRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["name"] = name
-        input_["type"] = type
+        input_: capo_api_gateway.types.create_authorizer_request.CreateAuthorizerRequest = {
+            "rest_api_id": rest_api_id,
+            "name": name,
+            "type": type,
+        }
         if provider_ar_ns is not None:
             input_["provider_ar_ns"] = provider_ar_ns
         if auth_type is not None:
@@ -501,6 +503,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_base_path_mapping(
@@ -547,13 +550,14 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.create_base_path_mapping_request.CreateBasePathMappingRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_api_gateway.types.create_base_path_mapping_request.CreateBasePathMappingRequest = {
+            "domain_name": domain_name,
+            "rest_api_id": rest_api_id,
+        }
         if domain_name_id is not None:
             input_["domain_name_id"] = domain_name_id
         if base_path is not None:
             input_["base_path"] = base_path
-        input_["rest_api_id"] = rest_api_id
         if stage is not None:
             input_["stage"] = stage
 
@@ -562,6 +566,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_deployment(
@@ -625,8 +630,9 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.create_deployment_request.CreateDeploymentRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
+        input_: capo_api_gateway.types.create_deployment_request.CreateDeploymentRequest = {
+            "rest_api_id": rest_api_id
+        }
         if stage_name is not None:
             input_["stage_name"] = stage_name
         if stage_description is not None:
@@ -649,6 +655,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_documentation_part(
@@ -691,16 +698,18 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.create_documentation_part_request.CreateDocumentationPartRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["location"] = location
-        input_["properties"] = properties
+        input_: capo_api_gateway.types.create_documentation_part_request.CreateDocumentationPartRequest = {
+            "rest_api_id": rest_api_id,
+            "location": location,
+            "properties": properties,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_documentation_version(
@@ -745,9 +754,10 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.create_documentation_version_request.CreateDocumentationVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["documentation_version"] = documentation_version
+        input_: capo_api_gateway.types.create_documentation_version_request.CreateDocumentationVersionRequest = {
+            "rest_api_id": rest_api_id,
+            "documentation_version": documentation_version,
+        }
         if stage_name is not None:
             input_["stage_name"] = stage_name
         if description is not None:
@@ -758,6 +768,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_domain_name(
@@ -842,8 +853,9 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.create_domain_name_request.CreateDomainNameRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_api_gateway.types.create_domain_name_request.CreateDomainNameRequest = {
+            "domain_name": domain_name
+        }
         if certificate_name is not None:
             input_["certificate_name"] = certificate_name
         if certificate_body is not None:
@@ -882,6 +894,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_domain_name_access_association(
@@ -927,10 +940,11 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.create_domain_name_access_association_request.CreateDomainNameAccessAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name_arn"] = domain_name_arn
-        input_["access_association_source_type"] = access_association_source_type
-        input_["access_association_source"] = access_association_source
+        input_: capo_api_gateway.types.create_domain_name_access_association_request.CreateDomainNameAccessAssociationRequest = {
+            "domain_name_arn": domain_name_arn,
+            "access_association_source_type": access_association_source_type,
+            "access_association_source": access_association_source,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -939,6 +953,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_model(
@@ -983,20 +998,22 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.create_model_request.CreateModelRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["name"] = name
+        input_: capo_api_gateway.types.create_model_request.CreateModelRequest = {
+            "rest_api_id": rest_api_id,
+            "name": name,
+            "content_type": content_type,
+        }
         if description is not None:
             input_["description"] = description
         if schema is not None:
             input_["schema"] = schema
-        input_["content_type"] = content_type
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_request_validator(
@@ -1045,8 +1062,9 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.create_request_validator_request.CreateRequestValidatorRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
+        input_: capo_api_gateway.types.create_request_validator_request.CreateRequestValidatorRequest = {
+            "rest_api_id": rest_api_id
+        }
         if name is not None:
             input_["name"] = name
         if validate_request_body is not None:
@@ -1059,6 +1077,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_resource(
@@ -1099,16 +1118,18 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.create_resource_request.CreateResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["parent_id"] = parent_id
-        input_["path_part"] = path_part
+        input_: capo_api_gateway.types.create_resource_request.CreateResourceRequest = {
+            "rest_api_id": rest_api_id,
+            "parent_id": parent_id,
+            "path_part": path_part,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_rest_api(
@@ -1184,8 +1205,9 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.create_rest_api_request.CreateRestApiRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_api_gateway.types.create_rest_api_request.CreateRestApiRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if version is not None:
@@ -1216,6 +1238,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_stage(
@@ -1282,10 +1305,11 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.create_stage_request.CreateStageRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["stage_name"] = stage_name
-        input_["deployment_id"] = deployment_id
+        input_: capo_api_gateway.types.create_stage_request.CreateStageRequest = {
+            "rest_api_id": rest_api_id,
+            "stage_name": stage_name,
+            "deployment_id": deployment_id,
+        }
         if description is not None:
             input_["description"] = description
         if cache_cluster_enabled is not None:
@@ -1308,6 +1332,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_usage_plan(
@@ -1360,8 +1385,9 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.create_usage_plan_request.CreateUsagePlanRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_api_gateway.types.create_usage_plan_request.CreateUsagePlanRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if api_stages is not None:
@@ -1378,6 +1404,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_usage_plan_key(
@@ -1418,16 +1445,18 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.create_usage_plan_key_request.CreateUsagePlanKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["usage_plan_id"] = usage_plan_id
-        input_["key_id"] = key_id
-        input_["key_type"] = key_type
+        input_: capo_api_gateway.types.create_usage_plan_key_request.CreateUsagePlanKeyRequest = {
+            "usage_plan_id": usage_plan_id,
+            "key_id": key_id,
+            "key_type": key_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_vpc_link(
@@ -1471,11 +1500,12 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.create_vpc_link_request.CreateVpcLinkRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_api_gateway.types.create_vpc_link_request.CreateVpcLinkRequest = {
+            "name": name,
+            "target_arns": target_arns,
+        }
         if description is not None:
             input_["description"] = description
-        input_["target_arns"] = target_arns
         if tags is not None:
             input_["tags"] = tags
 
@@ -1484,6 +1514,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_api_key(
@@ -1519,14 +1550,16 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.delete_api_key_request.DeleteApiKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["api_key"] = api_key
+        input_: capo_api_gateway.types.delete_api_key_request.DeleteApiKeyRequest = {
+            "api_key": api_key
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_authorizer(
@@ -1564,15 +1597,17 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.delete_authorizer_request.DeleteAuthorizerRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["authorizer_id"] = authorizer_id
+        input_: capo_api_gateway.types.delete_authorizer_request.DeleteAuthorizerRequest = {
+            "rest_api_id": rest_api_id,
+            "authorizer_id": authorizer_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_base_path_mapping(
@@ -1612,17 +1647,19 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.delete_base_path_mapping_request.DeleteBasePathMappingRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_api_gateway.types.delete_base_path_mapping_request.DeleteBasePathMappingRequest = {
+            "domain_name": domain_name,
+            "base_path": base_path,
+        }
         if domain_name_id is not None:
             input_["domain_name_id"] = domain_name_id
-        input_["base_path"] = base_path
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_client_certificate(
@@ -1658,14 +1695,16 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.delete_client_certificate_request.DeleteClientCertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["client_certificate_id"] = client_certificate_id
+        input_: capo_api_gateway.types.delete_client_certificate_request.DeleteClientCertificateRequest = {
+            "client_certificate_id": client_certificate_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_deployment(
@@ -1704,15 +1743,17 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.delete_deployment_request.DeleteDeploymentRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["deployment_id"] = deployment_id
+        input_: capo_api_gateway.types.delete_deployment_request.DeleteDeploymentRequest = {
+            "rest_api_id": rest_api_id,
+            "deployment_id": deployment_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_documentation_part(
@@ -1750,15 +1791,17 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.delete_documentation_part_request.DeleteDocumentationPartRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["documentation_part_id"] = documentation_part_id
+        input_: capo_api_gateway.types.delete_documentation_part_request.DeleteDocumentationPartRequest = {
+            "rest_api_id": rest_api_id,
+            "documentation_part_id": documentation_part_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_documentation_version(
@@ -1796,15 +1839,17 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.delete_documentation_version_request.DeleteDocumentationVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["documentation_version"] = documentation_version
+        input_: capo_api_gateway.types.delete_documentation_version_request.DeleteDocumentationVersionRequest = {
+            "rest_api_id": rest_api_id,
+            "documentation_version": documentation_version,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_domain_name(
@@ -1842,8 +1887,9 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.delete_domain_name_request.DeleteDomainNameRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_api_gateway.types.delete_domain_name_request.DeleteDomainNameRequest = {
+            "domain_name": domain_name
+        }
         if domain_name_id is not None:
             input_["domain_name_id"] = domain_name_id
 
@@ -1852,6 +1898,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_domain_name_access_association(
@@ -1887,16 +1934,16 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.delete_domain_name_access_association_request.DeleteDomainNameAccessAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name_access_association_arn"] = (
-            domain_name_access_association_arn
-        )
+        input_: capo_api_gateway.types.delete_domain_name_access_association_request.DeleteDomainNameAccessAssociationRequest = {
+            "domain_name_access_association_arn": domain_name_access_association_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_gateway_response(
@@ -1934,15 +1981,17 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.delete_gateway_response_request.DeleteGatewayResponseRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["response_type"] = response_type
+        input_: capo_api_gateway.types.delete_gateway_response_request.DeleteGatewayResponseRequest = {
+            "rest_api_id": rest_api_id,
+            "response_type": response_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_integration(
@@ -1982,16 +2031,18 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.delete_integration_request.DeleteIntegrationRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["resource_id"] = resource_id
-        input_["http_method"] = http_method
+        input_: capo_api_gateway.types.delete_integration_request.DeleteIntegrationRequest = {
+            "rest_api_id": rest_api_id,
+            "resource_id": resource_id,
+            "http_method": http_method,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_integration_response(
@@ -2033,17 +2084,19 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.delete_integration_response_request.DeleteIntegrationResponseRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["resource_id"] = resource_id
-        input_["http_method"] = http_method
-        input_["status_code"] = status_code
+        input_: capo_api_gateway.types.delete_integration_response_request.DeleteIntegrationResponseRequest = {
+            "rest_api_id": rest_api_id,
+            "resource_id": resource_id,
+            "http_method": http_method,
+            "status_code": status_code,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_method(
@@ -2082,16 +2135,18 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.delete_method_request.DeleteMethodRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["resource_id"] = resource_id
-        input_["http_method"] = http_method
+        input_: capo_api_gateway.types.delete_method_request.DeleteMethodRequest = {
+            "rest_api_id": rest_api_id,
+            "resource_id": resource_id,
+            "http_method": http_method,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_method_response(
@@ -2133,17 +2188,19 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.delete_method_response_request.DeleteMethodResponseRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["resource_id"] = resource_id
-        input_["http_method"] = http_method
-        input_["status_code"] = status_code
+        input_: capo_api_gateway.types.delete_method_response_request.DeleteMethodResponseRequest = {
+            "rest_api_id": rest_api_id,
+            "resource_id": resource_id,
+            "http_method": http_method,
+            "status_code": status_code,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_model(
@@ -2181,15 +2238,17 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.delete_model_request.DeleteModelRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["model_name"] = model_name
+        input_: capo_api_gateway.types.delete_model_request.DeleteModelRequest = {
+            "rest_api_id": rest_api_id,
+            "model_name": model_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_request_validator(
@@ -2227,15 +2286,17 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.delete_request_validator_request.DeleteRequestValidatorRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["request_validator_id"] = request_validator_id
+        input_: capo_api_gateway.types.delete_request_validator_request.DeleteRequestValidatorRequest = {
+            "rest_api_id": rest_api_id,
+            "request_validator_id": request_validator_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_resource(
@@ -2273,15 +2334,17 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.delete_resource_request.DeleteResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["resource_id"] = resource_id
+        input_: capo_api_gateway.types.delete_resource_request.DeleteResourceRequest = {
+            "rest_api_id": rest_api_id,
+            "resource_id": resource_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_rest_api(
@@ -2317,14 +2380,16 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.delete_rest_api_request.DeleteRestApiRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
+        input_: capo_api_gateway.types.delete_rest_api_request.DeleteRestApiRequest = {
+            "rest_api_id": rest_api_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_stage(
@@ -2363,15 +2428,17 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.delete_stage_request.DeleteStageRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["stage_name"] = stage_name
+        input_: capo_api_gateway.types.delete_stage_request.DeleteStageRequest = {
+            "rest_api_id": rest_api_id,
+            "stage_name": stage_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_usage_plan(
@@ -2407,14 +2474,16 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.delete_usage_plan_request.DeleteUsagePlanRequest = {}  # type: ignore[typeddict-item]
-        input_["usage_plan_id"] = usage_plan_id
+        input_: capo_api_gateway.types.delete_usage_plan_request.DeleteUsagePlanRequest = {
+            "usage_plan_id": usage_plan_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_usage_plan_key(
@@ -2452,15 +2521,17 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.delete_usage_plan_key_request.DeleteUsagePlanKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["usage_plan_id"] = usage_plan_id
-        input_["key_id"] = key_id
+        input_: capo_api_gateway.types.delete_usage_plan_key_request.DeleteUsagePlanKeyRequest = {
+            "usage_plan_id": usage_plan_id,
+            "key_id": key_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_vpc_link(
@@ -2496,14 +2567,16 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.delete_vpc_link_request.DeleteVpcLinkRequest = {}  # type: ignore[typeddict-item]
-        input_["vpc_link_id"] = vpc_link_id
+        input_: capo_api_gateway.types.delete_vpc_link_request.DeleteVpcLinkRequest = {
+            "vpc_link_id": vpc_link_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def flush_stage_authorizers_cache(
@@ -2542,15 +2615,17 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.flush_stage_authorizers_cache_request.FlushStageAuthorizersCacheRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["stage_name"] = stage_name
+        input_: capo_api_gateway.types.flush_stage_authorizers_cache_request.FlushStageAuthorizersCacheRequest = {
+            "rest_api_id": rest_api_id,
+            "stage_name": stage_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def flush_stage_cache(
@@ -2589,15 +2664,17 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.flush_stage_cache_request.FlushStageCacheRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["stage_name"] = stage_name
+        input_: capo_api_gateway.types.flush_stage_cache_request.FlushStageCacheRequest = {
+            "rest_api_id": rest_api_id,
+            "stage_name": stage_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def generate_client_certificate(
@@ -2639,7 +2716,7 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.generate_client_certificate_request.GenerateClientCertificateRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_api_gateway.types.generate_client_certificate_request.GenerateClientCertificateRequest = {}
         if description is not None:
             input_["description"] = description
         if tags is not None:
@@ -2650,6 +2727,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_account(
@@ -2678,13 +2756,14 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_account_request.GetAccountRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_api_gateway.types.get_account_request.GetAccountRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_api_key(
@@ -2723,8 +2802,9 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_api_key_request.GetApiKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["api_key"] = api_key
+        input_: capo_api_gateway.types.get_api_key_request.GetApiKeyRequest = {
+            "api_key": api_key
+        }
         if include_value is not None:
             input_["include_value"] = include_value
 
@@ -2733,6 +2813,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_api_keys(
@@ -2779,7 +2860,7 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_api_keys_request.GetApiKeysRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_api_gateway.types.get_api_keys_request.GetApiKeysRequest = {}
         if position is not None:
             input_["position"] = position
         if limit is not None:
@@ -2796,6 +2877,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_api_keys(
@@ -2863,15 +2945,17 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_authorizer_request.GetAuthorizerRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["authorizer_id"] = authorizer_id
+        input_: capo_api_gateway.types.get_authorizer_request.GetAuthorizerRequest = {
+            "rest_api_id": rest_api_id,
+            "authorizer_id": authorizer_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_authorizers(
@@ -2912,8 +2996,9 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_authorizers_request.GetAuthorizersRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
+        input_: capo_api_gateway.types.get_authorizers_request.GetAuthorizersRequest = {
+            "rest_api_id": rest_api_id
+        }
         if position is not None:
             input_["position"] = position
         if limit is not None:
@@ -2924,6 +3009,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_base_path_mapping(
@@ -2964,17 +3050,19 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_base_path_mapping_request.GetBasePathMappingRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_api_gateway.types.get_base_path_mapping_request.GetBasePathMappingRequest = {
+            "domain_name": domain_name,
+            "base_path": base_path,
+        }
         if domain_name_id is not None:
             input_["domain_name_id"] = domain_name_id
-        input_["base_path"] = base_path
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_base_path_mappings(
@@ -3019,8 +3107,9 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_base_path_mappings_request.GetBasePathMappingsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_api_gateway.types.get_base_path_mappings_request.GetBasePathMappingsRequest = {
+            "domain_name": domain_name
+        }
         if domain_name_id is not None:
             input_["domain_name_id"] = domain_name_id
         if position is not None:
@@ -3033,6 +3122,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_base_path_mappings(
@@ -3096,14 +3186,16 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_client_certificate_request.GetClientCertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["client_certificate_id"] = client_certificate_id
+        input_: capo_api_gateway.types.get_client_certificate_request.GetClientCertificateRequest = {
+            "client_certificate_id": client_certificate_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_client_certificates(
@@ -3144,7 +3236,7 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_client_certificates_request.GetClientCertificatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_api_gateway.types.get_client_certificates_request.GetClientCertificatesRequest = {}
         if position is not None:
             input_["position"] = position
         if limit is not None:
@@ -3155,6 +3247,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_client_certificates(
@@ -3217,9 +3310,10 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_deployment_request.GetDeploymentRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["deployment_id"] = deployment_id
+        input_: capo_api_gateway.types.get_deployment_request.GetDeploymentRequest = {
+            "rest_api_id": rest_api_id,
+            "deployment_id": deployment_id,
+        }
         if embed is not None:
             input_["embed"] = embed
 
@@ -3228,6 +3322,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_deployments(
@@ -3269,8 +3364,9 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_deployments_request.GetDeploymentsRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
+        input_: capo_api_gateway.types.get_deployments_request.GetDeploymentsRequest = {
+            "rest_api_id": rest_api_id
+        }
         if position is not None:
             input_["position"] = position
         if limit is not None:
@@ -3281,6 +3377,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_deployments(
@@ -3344,15 +3441,17 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_documentation_part_request.GetDocumentationPartRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["documentation_part_id"] = documentation_part_id
+        input_: capo_api_gateway.types.get_documentation_part_request.GetDocumentationPartRequest = {
+            "rest_api_id": rest_api_id,
+            "documentation_part_id": documentation_part_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_documentation_parts(
@@ -3407,8 +3506,9 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_documentation_parts_request.GetDocumentationPartsRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
+        input_: capo_api_gateway.types.get_documentation_parts_request.GetDocumentationPartsRequest = {
+            "rest_api_id": rest_api_id
+        }
         if type is not None:
             input_["type"] = type
         if name_query is not None:
@@ -3427,6 +3527,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_documentation_version(
@@ -3464,15 +3565,17 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_documentation_version_request.GetDocumentationVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["documentation_version"] = documentation_version
+        input_: capo_api_gateway.types.get_documentation_version_request.GetDocumentationVersionRequest = {
+            "rest_api_id": rest_api_id,
+            "documentation_version": documentation_version,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_documentation_versions(
@@ -3515,8 +3618,9 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_documentation_versions_request.GetDocumentationVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
+        input_: capo_api_gateway.types.get_documentation_versions_request.GetDocumentationVersionsRequest = {
+            "rest_api_id": rest_api_id
+        }
         if position is not None:
             input_["position"] = position
         if limit is not None:
@@ -3527,6 +3631,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_domain_name(
@@ -3563,8 +3668,9 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_domain_name_request.GetDomainNameRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_api_gateway.types.get_domain_name_request.GetDomainNameRequest = {
+            "domain_name": domain_name
+        }
         if domain_name_id is not None:
             input_["domain_name_id"] = domain_name_id
 
@@ -3573,6 +3679,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_domain_name_access_associations(
@@ -3617,7 +3724,7 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_domain_name_access_associations_request.GetDomainNameAccessAssociationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_api_gateway.types.get_domain_name_access_associations_request.GetDomainNameAccessAssociationsRequest = {}
         if position is not None:
             input_["position"] = position
         if limit is not None:
@@ -3630,6 +3737,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_domain_names(
@@ -3672,7 +3780,7 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_domain_names_request.GetDomainNamesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_api_gateway.types.get_domain_names_request.GetDomainNamesRequest = {}
         if position is not None:
             input_["position"] = position
         if limit is not None:
@@ -3685,6 +3793,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_domain_names(
@@ -3758,10 +3867,11 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_export_request.GetExportRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["stage_name"] = stage_name
-        input_["export_type"] = export_type
+        input_: capo_api_gateway.types.get_export_request.GetExportRequest = {
+            "rest_api_id": rest_api_id,
+            "stage_name": stage_name,
+            "export_type": export_type,
+        }
         if parameters is not None:
             input_["parameters"] = parameters
         if accepts is not None:
@@ -3772,6 +3882,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_gateway_response(
@@ -3810,15 +3921,17 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_gateway_response_request.GetGatewayResponseRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["response_type"] = response_type
+        input_: capo_api_gateway.types.get_gateway_response_request.GetGatewayResponseRequest = {
+            "rest_api_id": rest_api_id,
+            "response_type": response_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_gateway_responses(
@@ -3861,8 +3974,9 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_gateway_responses_request.GetGatewayResponsesRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
+        input_: capo_api_gateway.types.get_gateway_responses_request.GetGatewayResponsesRequest = {
+            "rest_api_id": rest_api_id
+        }
         if position is not None:
             input_["position"] = position
         if limit is not None:
@@ -3873,6 +3987,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_integration(
@@ -3911,16 +4026,18 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_integration_request.GetIntegrationRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["resource_id"] = resource_id
-        input_["http_method"] = http_method
+        input_: capo_api_gateway.types.get_integration_request.GetIntegrationRequest = {
+            "rest_api_id": rest_api_id,
+            "resource_id": resource_id,
+            "http_method": http_method,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_integration_response(
@@ -3963,17 +4080,19 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_integration_response_request.GetIntegrationResponseRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["resource_id"] = resource_id
-        input_["http_method"] = http_method
-        input_["status_code"] = status_code
+        input_: capo_api_gateway.types.get_integration_response_request.GetIntegrationResponseRequest = {
+            "rest_api_id": rest_api_id,
+            "resource_id": resource_id,
+            "http_method": http_method,
+            "status_code": status_code,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_method(
@@ -4011,16 +4130,18 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_method_request.GetMethodRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["resource_id"] = resource_id
-        input_["http_method"] = http_method
+        input_: capo_api_gateway.types.get_method_request.GetMethodRequest = {
+            "rest_api_id": rest_api_id,
+            "resource_id": resource_id,
+            "http_method": http_method,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_method_response(
@@ -4060,17 +4181,19 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_method_response_request.GetMethodResponseRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["resource_id"] = resource_id
-        input_["http_method"] = http_method
-        input_["status_code"] = status_code
+        input_: capo_api_gateway.types.get_method_response_request.GetMethodResponseRequest = {
+            "rest_api_id": rest_api_id,
+            "resource_id": resource_id,
+            "http_method": http_method,
+            "status_code": status_code,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_model(
@@ -4109,9 +4232,10 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_model_request.GetModelRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["model_name"] = model_name
+        input_: capo_api_gateway.types.get_model_request.GetModelRequest = {
+            "rest_api_id": rest_api_id,
+            "model_name": model_name,
+        }
         if flatten is not None:
             input_["flatten"] = flatten
 
@@ -4120,6 +4244,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_models(
@@ -4160,8 +4285,9 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_models_request.GetModelsRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
+        input_: capo_api_gateway.types.get_models_request.GetModelsRequest = {
+            "rest_api_id": rest_api_id
+        }
         if position is not None:
             input_["position"] = position
         if limit is not None:
@@ -4172,6 +4298,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_models(
@@ -4233,15 +4360,17 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_model_template_request.GetModelTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["model_name"] = model_name
+        input_: capo_api_gateway.types.get_model_template_request.GetModelTemplateRequest = {
+            "rest_api_id": rest_api_id,
+            "model_name": model_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_request_validator(
@@ -4280,15 +4409,17 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_request_validator_request.GetRequestValidatorRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["request_validator_id"] = request_validator_id
+        input_: capo_api_gateway.types.get_request_validator_request.GetRequestValidatorRequest = {
+            "rest_api_id": rest_api_id,
+            "request_validator_id": request_validator_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_request_validators(
@@ -4331,8 +4462,9 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_request_validators_request.GetRequestValidatorsRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
+        input_: capo_api_gateway.types.get_request_validators_request.GetRequestValidatorsRequest = {
+            "rest_api_id": rest_api_id
+        }
         if position is not None:
             input_["position"] = position
         if limit is not None:
@@ -4343,6 +4475,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_resource(
@@ -4380,9 +4513,10 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_resource_request.GetResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["resource_id"] = resource_id
+        input_: capo_api_gateway.types.get_resource_request.GetResourceRequest = {
+            "rest_api_id": rest_api_id,
+            "resource_id": resource_id,
+        }
         if embed is not None:
             input_["embed"] = embed
 
@@ -4391,6 +4525,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_resources(
@@ -4433,8 +4568,9 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_resources_request.GetResourcesRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
+        input_: capo_api_gateway.types.get_resources_request.GetResourcesRequest = {
+            "rest_api_id": rest_api_id
+        }
         if position is not None:
             input_["position"] = position
         if limit is not None:
@@ -4447,6 +4583,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_resources(
@@ -4508,14 +4645,16 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_rest_api_request.GetRestApiRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
+        input_: capo_api_gateway.types.get_rest_api_request.GetRestApiRequest = {
+            "rest_api_id": rest_api_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_rest_apis(
@@ -4554,7 +4693,7 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_rest_apis_request.GetRestApisRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_api_gateway.types.get_rest_apis_request.GetRestApisRequest = {}
         if position is not None:
             input_["position"] = position
         if limit is not None:
@@ -4565,6 +4704,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_rest_apis(
@@ -4632,10 +4772,11 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_sdk_request.GetSdkRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["stage_name"] = stage_name
-        input_["sdk_type"] = sdk_type
+        input_: capo_api_gateway.types.get_sdk_request.GetSdkRequest = {
+            "rest_api_id": rest_api_id,
+            "stage_name": stage_name,
+            "sdk_type": sdk_type,
+        }
         if parameters is not None:
             input_["parameters"] = parameters
 
@@ -4644,6 +4785,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_sdk_type(
@@ -4678,14 +4820,16 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_sdk_type_request.GetSdkTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_api_gateway.types.get_sdk_type_request.GetSdkTypeRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_sdk_types(
@@ -4724,7 +4868,7 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_sdk_types_request.GetSdkTypesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_api_gateway.types.get_sdk_types_request.GetSdkTypesRequest = {}
         if position is not None:
             input_["position"] = position
         if limit is not None:
@@ -4735,6 +4879,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_stage(
@@ -4773,15 +4918,17 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_stage_request.GetStageRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["stage_name"] = stage_name
+        input_: capo_api_gateway.types.get_stage_request.GetStageRequest = {
+            "rest_api_id": rest_api_id,
+            "stage_name": stage_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_stages(
@@ -4820,8 +4967,9 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_stages_request.GetStagesRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
+        input_: capo_api_gateway.types.get_stages_request.GetStagesRequest = {
+            "rest_api_id": rest_api_id
+        }
         if deployment_id is not None:
             input_["deployment_id"] = deployment_id
 
@@ -4830,6 +4978,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_tags(
@@ -4870,8 +5019,9 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_tags_request.GetTagsRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_api_gateway.types.get_tags_request.GetTagsRequest = {
+            "resource_arn": resource_arn
+        }
         if position is not None:
             input_["position"] = position
         if limit is not None:
@@ -4882,6 +5032,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_usage(
@@ -4928,12 +5079,13 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_usage_request.GetUsageRequest = {}  # type: ignore[typeddict-item]
-        input_["usage_plan_id"] = usage_plan_id
+        input_: capo_api_gateway.types.get_usage_request.GetUsageRequest = {
+            "usage_plan_id": usage_plan_id,
+            "start_date": start_date,
+            "end_date": end_date,
+        }
         if key_id is not None:
             input_["key_id"] = key_id
-        input_["start_date"] = start_date
-        input_["end_date"] = end_date
         if position is not None:
             input_["position"] = position
         if limit is not None:
@@ -4944,6 +5096,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_usage(
@@ -5009,14 +5162,16 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_usage_plan_request.GetUsagePlanRequest = {}  # type: ignore[typeddict-item]
-        input_["usage_plan_id"] = usage_plan_id
+        input_: capo_api_gateway.types.get_usage_plan_request.GetUsagePlanRequest = {
+            "usage_plan_id": usage_plan_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_usage_plan_key(
@@ -5053,15 +5208,17 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_usage_plan_key_request.GetUsagePlanKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["usage_plan_id"] = usage_plan_id
-        input_["key_id"] = key_id
+        input_: capo_api_gateway.types.get_usage_plan_key_request.GetUsagePlanKeyRequest = {
+            "usage_plan_id": usage_plan_id,
+            "key_id": key_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_usage_plan_keys(
@@ -5104,8 +5261,9 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_usage_plan_keys_request.GetUsagePlanKeysRequest = {}  # type: ignore[typeddict-item]
-        input_["usage_plan_id"] = usage_plan_id
+        input_: capo_api_gateway.types.get_usage_plan_keys_request.GetUsagePlanKeysRequest = {
+            "usage_plan_id": usage_plan_id
+        }
         if position is not None:
             input_["position"] = position
         if limit is not None:
@@ -5118,6 +5276,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_usage_plan_keys(
@@ -5185,7 +5344,7 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_usage_plans_request.GetUsagePlansRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_api_gateway.types.get_usage_plans_request.GetUsagePlansRequest = {}
         if position is not None:
             input_["position"] = position
         if key_id is not None:
@@ -5198,6 +5357,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_usage_plans(
@@ -5257,14 +5417,16 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_vpc_link_request.GetVpcLinkRequest = {}  # type: ignore[typeddict-item]
-        input_["vpc_link_id"] = vpc_link_id
+        input_: capo_api_gateway.types.get_vpc_link_request.GetVpcLinkRequest = {
+            "vpc_link_id": vpc_link_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_vpc_links(
@@ -5303,7 +5465,7 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.get_vpc_links_request.GetVpcLinksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_api_gateway.types.get_vpc_links_request.GetVpcLinksRequest = {}
         if position is not None:
             input_["position"] = position
         if limit is not None:
@@ -5314,6 +5476,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_vpc_links(
@@ -5377,9 +5540,10 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.import_api_keys_request.ImportApiKeysRequest = {}  # type: ignore[typeddict-item]
-        input_["body"] = body
-        input_["format"] = format
+        input_: capo_api_gateway.types.import_api_keys_request.ImportApiKeysRequest = {
+            "body": body,
+            "format": format,
+        }
         if fail_on_warnings is not None:
             input_["fail_on_warnings"] = fail_on_warnings
 
@@ -5388,6 +5552,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def import_documentation_parts(
@@ -5432,19 +5597,21 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.import_documentation_parts_request.ImportDocumentationPartsRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
+        input_: capo_api_gateway.types.import_documentation_parts_request.ImportDocumentationPartsRequest = {
+            "rest_api_id": rest_api_id,
+            "body": body,
+        }
         if mode is not None:
             input_["mode"] = mode
         if fail_on_warnings is not None:
             input_["fail_on_warnings"] = fail_on_warnings
-        input_["body"] = body
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def import_rest_api(
@@ -5487,18 +5654,20 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.import_rest_api_request.ImportRestApiRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_api_gateway.types.import_rest_api_request.ImportRestApiRequest = {
+            "body": body
+        }
         if fail_on_warnings is not None:
             input_["fail_on_warnings"] = fail_on_warnings
         if parameters is not None:
             input_["parameters"] = parameters
-        input_["body"] = body
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_gateway_response(
@@ -5549,9 +5718,10 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.put_gateway_response_request.PutGatewayResponseRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["response_type"] = response_type
+        input_: capo_api_gateway.types.put_gateway_response_request.PutGatewayResponseRequest = {
+            "rest_api_id": rest_api_id,
+            "response_type": response_type,
+        }
         if status_code is not None:
             input_["status_code"] = status_code
         if response_parameters is not None:
@@ -5564,6 +5734,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_integration(
@@ -5651,11 +5822,12 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.put_integration_request.PutIntegrationRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["resource_id"] = resource_id
-        input_["http_method"] = http_method
-        input_["type"] = type
+        input_: capo_api_gateway.types.put_integration_request.PutIntegrationRequest = {
+            "rest_api_id": rest_api_id,
+            "resource_id": resource_id,
+            "http_method": http_method,
+            "type": type,
+        }
         if integration_http_method is not None:
             input_["integration_http_method"] = integration_http_method
         if uri is not None:
@@ -5692,6 +5864,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_integration_response(
@@ -5750,11 +5923,12 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.put_integration_response_request.PutIntegrationResponseRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["resource_id"] = resource_id
-        input_["http_method"] = http_method
-        input_["status_code"] = status_code
+        input_: capo_api_gateway.types.put_integration_response_request.PutIntegrationResponseRequest = {
+            "rest_api_id": rest_api_id,
+            "resource_id": resource_id,
+            "http_method": http_method,
+            "status_code": status_code,
+        }
         if selection_pattern is not None:
             input_["selection_pattern"] = selection_pattern
         if response_parameters is not None:
@@ -5769,6 +5943,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_method(
@@ -5831,11 +6006,12 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.put_method_request.PutMethodRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["resource_id"] = resource_id
-        input_["http_method"] = http_method
-        input_["authorization_type"] = authorization_type
+        input_: capo_api_gateway.types.put_method_request.PutMethodRequest = {
+            "rest_api_id": rest_api_id,
+            "resource_id": resource_id,
+            "http_method": http_method,
+            "authorization_type": authorization_type,
+        }
         if authorizer_id is not None:
             input_["authorizer_id"] = authorizer_id
         if api_key_required is not None:
@@ -5856,6 +6032,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_method_response(
@@ -5906,11 +6083,12 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.put_method_response_request.PutMethodResponseRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["resource_id"] = resource_id
-        input_["http_method"] = http_method
-        input_["status_code"] = status_code
+        input_: capo_api_gateway.types.put_method_response_request.PutMethodResponseRequest = {
+            "rest_api_id": rest_api_id,
+            "resource_id": resource_id,
+            "http_method": http_method,
+            "status_code": status_code,
+        }
         if response_parameters is not None:
             input_["response_parameters"] = response_parameters
         if response_models is not None:
@@ -5921,6 +6099,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_rest_api(
@@ -5967,21 +6146,23 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.put_rest_api_request.PutRestApiRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
+        input_: capo_api_gateway.types.put_rest_api_request.PutRestApiRequest = {
+            "rest_api_id": rest_api_id,
+            "body": body,
+        }
         if mode is not None:
             input_["mode"] = mode
         if fail_on_warnings is not None:
             input_["fail_on_warnings"] = fail_on_warnings
         if parameters is not None:
             input_["parameters"] = parameters
-        input_["body"] = body
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def reject_domain_name_access_association(
@@ -6019,17 +6200,17 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.reject_domain_name_access_association_request.RejectDomainNameAccessAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name_access_association_arn"] = (
-            domain_name_access_association_arn
-        )
-        input_["domain_name_arn"] = domain_name_arn
+        input_: capo_api_gateway.types.reject_domain_name_access_association_request.RejectDomainNameAccessAssociationRequest = {
+            "domain_name_access_association_arn": domain_name_access_association_arn,
+            "domain_name_arn": domain_name_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -6068,15 +6249,17 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_api_gateway.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def test_invoke_authorizer(
@@ -6135,9 +6318,10 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.test_invoke_authorizer_request.TestInvokeAuthorizerRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["authorizer_id"] = authorizer_id
+        input_: capo_api_gateway.types.test_invoke_authorizer_request.TestInvokeAuthorizerRequest = {
+            "rest_api_id": rest_api_id,
+            "authorizer_id": authorizer_id,
+        }
         if headers is not None:
             input_["headers"] = headers
         if multi_value_headers is not None:
@@ -6156,6 +6340,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def test_invoke_method(
@@ -6214,10 +6399,11 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.test_invoke_method_request.TestInvokeMethodRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["resource_id"] = resource_id
-        input_["http_method"] = http_method
+        input_: capo_api_gateway.types.test_invoke_method_request.TestInvokeMethodRequest = {
+            "rest_api_id": rest_api_id,
+            "resource_id": resource_id,
+            "http_method": http_method,
+        }
         if path_with_query_string is not None:
             input_["path_with_query_string"] = path_with_query_string
         if body is not None:
@@ -6236,6 +6422,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -6274,15 +6461,17 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_api_gateway.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_account(
@@ -6321,7 +6510,7 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.update_account_request.UpdateAccountRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_api_gateway.types.update_account_request.UpdateAccountRequest = {}
         if patch_operations is not None:
             input_["patch_operations"] = patch_operations
 
@@ -6330,6 +6519,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_api_key(
@@ -6370,8 +6560,9 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.update_api_key_request.UpdateApiKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["api_key"] = api_key
+        input_: capo_api_gateway.types.update_api_key_request.UpdateApiKeyRequest = {
+            "api_key": api_key
+        }
         if patch_operations is not None:
             input_["patch_operations"] = patch_operations
 
@@ -6380,6 +6571,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_authorizer(
@@ -6422,9 +6614,10 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.update_authorizer_request.UpdateAuthorizerRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["authorizer_id"] = authorizer_id
+        input_: capo_api_gateway.types.update_authorizer_request.UpdateAuthorizerRequest = {
+            "rest_api_id": rest_api_id,
+            "authorizer_id": authorizer_id,
+        }
         if patch_operations is not None:
             input_["patch_operations"] = patch_operations
 
@@ -6433,6 +6626,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_base_path_mapping(
@@ -6479,11 +6673,12 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.update_base_path_mapping_request.UpdateBasePathMappingRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_api_gateway.types.update_base_path_mapping_request.UpdateBasePathMappingRequest = {
+            "domain_name": domain_name,
+            "base_path": base_path,
+        }
         if domain_name_id is not None:
             input_["domain_name_id"] = domain_name_id
-        input_["base_path"] = base_path
         if patch_operations is not None:
             input_["patch_operations"] = patch_operations
 
@@ -6492,6 +6687,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_client_certificate(
@@ -6534,8 +6730,9 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.update_client_certificate_request.UpdateClientCertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["client_certificate_id"] = client_certificate_id
+        input_: capo_api_gateway.types.update_client_certificate_request.UpdateClientCertificateRequest = {
+            "client_certificate_id": client_certificate_id
+        }
         if patch_operations is not None:
             input_["patch_operations"] = patch_operations
 
@@ -6544,6 +6741,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_deployment(
@@ -6587,9 +6785,10 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.update_deployment_request.UpdateDeploymentRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["deployment_id"] = deployment_id
+        input_: capo_api_gateway.types.update_deployment_request.UpdateDeploymentRequest = {
+            "rest_api_id": rest_api_id,
+            "deployment_id": deployment_id,
+        }
         if patch_operations is not None:
             input_["patch_operations"] = patch_operations
 
@@ -6598,6 +6797,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_documentation_part(
@@ -6642,9 +6842,10 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.update_documentation_part_request.UpdateDocumentationPartRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["documentation_part_id"] = documentation_part_id
+        input_: capo_api_gateway.types.update_documentation_part_request.UpdateDocumentationPartRequest = {
+            "rest_api_id": rest_api_id,
+            "documentation_part_id": documentation_part_id,
+        }
         if patch_operations is not None:
             input_["patch_operations"] = patch_operations
 
@@ -6653,6 +6854,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_documentation_version(
@@ -6697,9 +6899,10 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.update_documentation_version_request.UpdateDocumentationVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["documentation_version"] = documentation_version
+        input_: capo_api_gateway.types.update_documentation_version_request.UpdateDocumentationVersionRequest = {
+            "rest_api_id": rest_api_id,
+            "documentation_version": documentation_version,
+        }
         if patch_operations is not None:
             input_["patch_operations"] = patch_operations
 
@@ -6708,6 +6911,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_domain_name(
@@ -6750,8 +6954,9 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.update_domain_name_request.UpdateDomainNameRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_api_gateway.types.update_domain_name_request.UpdateDomainNameRequest = {
+            "domain_name": domain_name
+        }
         if domain_name_id is not None:
             input_["domain_name_id"] = domain_name_id
         if patch_operations is not None:
@@ -6762,6 +6967,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_gateway_response(
@@ -6806,9 +7012,10 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.update_gateway_response_request.UpdateGatewayResponseRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["response_type"] = response_type
+        input_: capo_api_gateway.types.update_gateway_response_request.UpdateGatewayResponseRequest = {
+            "rest_api_id": rest_api_id,
+            "response_type": response_type,
+        }
         if patch_operations is not None:
             input_["patch_operations"] = patch_operations
 
@@ -6817,6 +7024,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_integration(
@@ -6861,10 +7069,11 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.update_integration_request.UpdateIntegrationRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["resource_id"] = resource_id
-        input_["http_method"] = http_method
+        input_: capo_api_gateway.types.update_integration_request.UpdateIntegrationRequest = {
+            "rest_api_id": rest_api_id,
+            "resource_id": resource_id,
+            "http_method": http_method,
+        }
         if patch_operations is not None:
             input_["patch_operations"] = patch_operations
 
@@ -6873,6 +7082,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_integration_response(
@@ -6921,11 +7131,12 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.update_integration_response_request.UpdateIntegrationResponseRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["resource_id"] = resource_id
-        input_["http_method"] = http_method
-        input_["status_code"] = status_code
+        input_: capo_api_gateway.types.update_integration_response_request.UpdateIntegrationResponseRequest = {
+            "rest_api_id": rest_api_id,
+            "resource_id": resource_id,
+            "http_method": http_method,
+            "status_code": status_code,
+        }
         if patch_operations is not None:
             input_["patch_operations"] = patch_operations
 
@@ -6934,6 +7145,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_method(
@@ -6977,10 +7189,11 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.update_method_request.UpdateMethodRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["resource_id"] = resource_id
-        input_["http_method"] = http_method
+        input_: capo_api_gateway.types.update_method_request.UpdateMethodRequest = {
+            "rest_api_id": rest_api_id,
+            "resource_id": resource_id,
+            "http_method": http_method,
+        }
         if patch_operations is not None:
             input_["patch_operations"] = patch_operations
 
@@ -6989,6 +7202,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_method_response(
@@ -7035,11 +7249,12 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.update_method_response_request.UpdateMethodResponseRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["resource_id"] = resource_id
-        input_["http_method"] = http_method
-        input_["status_code"] = status_code
+        input_: capo_api_gateway.types.update_method_response_request.UpdateMethodResponseRequest = {
+            "rest_api_id": rest_api_id,
+            "resource_id": resource_id,
+            "http_method": http_method,
+            "status_code": status_code,
+        }
         if patch_operations is not None:
             input_["patch_operations"] = patch_operations
 
@@ -7048,6 +7263,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_model(
@@ -7090,9 +7306,10 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.update_model_request.UpdateModelRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["model_name"] = model_name
+        input_: capo_api_gateway.types.update_model_request.UpdateModelRequest = {
+            "rest_api_id": rest_api_id,
+            "model_name": model_name,
+        }
         if patch_operations is not None:
             input_["patch_operations"] = patch_operations
 
@@ -7101,6 +7318,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_request_validator(
@@ -7145,9 +7363,10 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.update_request_validator_request.UpdateRequestValidatorRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["request_validator_id"] = request_validator_id
+        input_: capo_api_gateway.types.update_request_validator_request.UpdateRequestValidatorRequest = {
+            "rest_api_id": rest_api_id,
+            "request_validator_id": request_validator_id,
+        }
         if patch_operations is not None:
             input_["patch_operations"] = patch_operations
 
@@ -7156,6 +7375,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_resource(
@@ -7197,9 +7417,10 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.update_resource_request.UpdateResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["resource_id"] = resource_id
+        input_: capo_api_gateway.types.update_resource_request.UpdateResourceRequest = {
+            "rest_api_id": rest_api_id,
+            "resource_id": resource_id,
+        }
         if patch_operations is not None:
             input_["patch_operations"] = patch_operations
 
@@ -7208,6 +7429,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_rest_api(
@@ -7248,8 +7470,9 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.update_rest_api_request.UpdateRestApiRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
+        input_: capo_api_gateway.types.update_rest_api_request.UpdateRestApiRequest = {
+            "rest_api_id": rest_api_id
+        }
         if patch_operations is not None:
             input_["patch_operations"] = patch_operations
 
@@ -7258,6 +7481,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_stage(
@@ -7300,9 +7524,10 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.update_stage_request.UpdateStageRequest = {}  # type: ignore[typeddict-item]
-        input_["rest_api_id"] = rest_api_id
-        input_["stage_name"] = stage_name
+        input_: capo_api_gateway.types.update_stage_request.UpdateStageRequest = {
+            "rest_api_id": rest_api_id,
+            "stage_name": stage_name,
+        }
         if patch_operations is not None:
             input_["patch_operations"] = patch_operations
 
@@ -7311,6 +7536,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_usage(
@@ -7353,9 +7579,10 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.update_usage_request.UpdateUsageRequest = {}  # type: ignore[typeddict-item]
-        input_["usage_plan_id"] = usage_plan_id
-        input_["key_id"] = key_id
+        input_: capo_api_gateway.types.update_usage_request.UpdateUsageRequest = {
+            "usage_plan_id": usage_plan_id,
+            "key_id": key_id,
+        }
         if patch_operations is not None:
             input_["patch_operations"] = patch_operations
 
@@ -7364,6 +7591,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_usage_plan(
@@ -7404,8 +7632,9 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.update_usage_plan_request.UpdateUsagePlanRequest = {}  # type: ignore[typeddict-item]
-        input_["usage_plan_id"] = usage_plan_id
+        input_: capo_api_gateway.types.update_usage_plan_request.UpdateUsagePlanRequest = {
+            "usage_plan_id": usage_plan_id
+        }
         if patch_operations is not None:
             input_["patch_operations"] = patch_operations
 
@@ -7414,6 +7643,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_vpc_link(
@@ -7454,8 +7684,9 @@ class APIGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_api_gateway.types.update_vpc_link_request.UpdateVpcLinkRequest = {}  # type: ignore[typeddict-item]
-        input_["vpc_link_id"] = vpc_link_id
+        input_: capo_api_gateway.types.update_vpc_link_request.UpdateVpcLinkRequest = {
+            "vpc_link_id": vpc_link_id
+        }
         if patch_operations is not None:
             input_["patch_operations"] = patch_operations
 
@@ -7464,6 +7695,7 @@ class APIGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

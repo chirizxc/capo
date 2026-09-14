@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: GetResourceConfigHistoryResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetResourceConfigHistoryResponse:
     out: GetResourceConfigHistoryResponse = {}  # type: ignore[typeddict-item]
-    if "configurationItems" in data:
+    if data.get("configurationItems") is not None:
         import capo_config_service.types.configuration_item_list
 
         out["configuration_items"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetResourceConfigHistoryResponse:
                 data["configurationItems"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

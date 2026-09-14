@@ -126,7 +126,7 @@ def serialize_json(value: CreateConnectorRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateConnectorRequest:
     out: CreateConnectorRequest = {}  # type: ignore[typeddict-item]
-    if "capacity" in data:
+    if data.get("capacity") is not None:
         import capo_kafkaconnect.types.capacity
 
         out["capacity"] = capo_kafkaconnect.types.capacity.deserialize_json(
@@ -134,7 +134,7 @@ def deserialize_json(data: dict) -> CreateConnectorRequest:
         )
     else:
         raise DeserializationError("CreateConnectorRequest.capacity required")
-    if "connectorConfiguration" in data:
+    if data.get("connectorConfiguration") is not None:
         import capo_kafkaconnect.types.connector_configuration
 
         out["connector_configuration"] = (
@@ -146,13 +146,13 @@ def deserialize_json(data: dict) -> CreateConnectorRequest:
         raise DeserializationError(
             "CreateConnectorRequest.connector_configuration required"
         )
-    if "connectorDescription" in data:
+    if data.get("connectorDescription") is not None:
         out["connector_description"] = data["connectorDescription"]
-    if "connectorName" in data:
+    if data.get("connectorName") is not None:
         out["connector_name"] = data["connectorName"]
     else:
         raise DeserializationError("CreateConnectorRequest.connector_name required")
-    if "kafkaCluster" in data:
+    if data.get("kafkaCluster") is not None:
         import capo_kafkaconnect.types.kafka_cluster
 
         out["kafka_cluster"] = capo_kafkaconnect.types.kafka_cluster.deserialize_json(
@@ -160,7 +160,7 @@ def deserialize_json(data: dict) -> CreateConnectorRequest:
         )
     else:
         raise DeserializationError("CreateConnectorRequest.kafka_cluster required")
-    if "kafkaClusterClientAuthentication" in data:
+    if data.get("kafkaClusterClientAuthentication") is not None:
         import capo_kafkaconnect.types.kafka_cluster_client_authentication
 
         out["kafka_cluster_client_authentication"] = (
@@ -172,7 +172,7 @@ def deserialize_json(data: dict) -> CreateConnectorRequest:
         raise DeserializationError(
             "CreateConnectorRequest.kafka_cluster_client_authentication required"
         )
-    if "kafkaClusterEncryptionInTransit" in data:
+    if data.get("kafkaClusterEncryptionInTransit") is not None:
         import capo_kafkaconnect.types.kafka_cluster_encryption_in_transit
 
         out["kafka_cluster_encryption_in_transit"] = (
@@ -184,21 +184,21 @@ def deserialize_json(data: dict) -> CreateConnectorRequest:
         raise DeserializationError(
             "CreateConnectorRequest.kafka_cluster_encryption_in_transit required"
         )
-    if "kafkaConnectVersion" in data:
+    if data.get("kafkaConnectVersion") is not None:
         out["kafka_connect_version"] = data["kafkaConnectVersion"]
     else:
         raise DeserializationError(
             "CreateConnectorRequest.kafka_connect_version required"
         )
-    if "logDelivery" in data:
+    if data.get("logDelivery") is not None:
         import capo_kafkaconnect.types.log_delivery
 
         out["log_delivery"] = capo_kafkaconnect.types.log_delivery.deserialize_json(
             data["logDelivery"]
         )
-    if "networkType" in data:
+    if data.get("networkType") is not None:
         out["network_type"] = data["networkType"]
-    if "plugins" in data:
+    if data.get("plugins") is not None:
         import capo_kafkaconnect.types.__list_of_plugin
 
         out["plugins"] = capo_kafkaconnect.types.__list_of_plugin.deserialize_json(
@@ -206,13 +206,13 @@ def deserialize_json(data: dict) -> CreateConnectorRequest:
         )
     else:
         raise DeserializationError("CreateConnectorRequest.plugins required")
-    if "serviceExecutionRoleArn" in data:
+    if data.get("serviceExecutionRoleArn") is not None:
         out["service_execution_role_arn"] = data["serviceExecutionRoleArn"]
     else:
         raise DeserializationError(
             "CreateConnectorRequest.service_execution_role_arn required"
         )
-    if "workerConfiguration" in data:
+    if data.get("workerConfiguration") is not None:
         import capo_kafkaconnect.types.worker_configuration
 
         out["worker_configuration"] = (
@@ -220,7 +220,7 @@ def deserialize_json(data: dict) -> CreateConnectorRequest:
                 data["workerConfiguration"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_kafkaconnect.types.tags
 
         out["tags"] = capo_kafkaconnect.types.tags.deserialize_json(data["tags"])

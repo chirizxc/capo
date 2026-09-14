@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> __listOfVideoOverlayInputClipping:
 
     out: __listOfVideoOverlayInputClipping = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediaconvert.types.video_overlay_input_clipping.deserialize_json(item)
         )

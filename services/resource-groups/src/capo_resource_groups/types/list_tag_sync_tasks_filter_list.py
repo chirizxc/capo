@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ListTagSyncTasksFilterList:
 
     out: ListTagSyncTasksFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_resource_groups.types.list_tag_sync_tasks_filter.deserialize_json(item)
         )

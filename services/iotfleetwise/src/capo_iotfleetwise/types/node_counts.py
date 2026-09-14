@@ -40,31 +40,31 @@ def serialize_aws_json_1_0(value: NodeCounts) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> NodeCounts:
     out: NodeCounts = {}  # type: ignore[typeddict-item]
-    if "totalNodes" in data:
+    if data.get("totalNodes") is not None:
         out["total_nodes"] = data["totalNodes"]
     else:
         out["total_nodes"] = 0
-    if "totalBranches" in data:
+    if data.get("totalBranches") is not None:
         out["total_branches"] = data["totalBranches"]
     else:
         out["total_branches"] = 0
-    if "totalSensors" in data:
+    if data.get("totalSensors") is not None:
         out["total_sensors"] = data["totalSensors"]
     else:
         out["total_sensors"] = 0
-    if "totalAttributes" in data:
+    if data.get("totalAttributes") is not None:
         out["total_attributes"] = data["totalAttributes"]
     else:
         out["total_attributes"] = 0
-    if "totalActuators" in data:
+    if data.get("totalActuators") is not None:
         out["total_actuators"] = data["totalActuators"]
     else:
         out["total_actuators"] = 0
-    if "totalStructs" in data:
+    if data.get("totalStructs") is not None:
         out["total_structs"] = data["totalStructs"]
     else:
         out["total_structs"] = 0
-    if "totalProperties" in data:
+    if data.get("totalProperties") is not None:
         out["total_properties"] = data["totalProperties"]
     else:
         out["total_properties"] = 0

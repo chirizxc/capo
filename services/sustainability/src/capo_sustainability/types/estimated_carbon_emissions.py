@@ -48,7 +48,7 @@ def serialize_json(value: EstimatedCarbonEmissions) -> dict:
 
 def deserialize_json(data: dict) -> EstimatedCarbonEmissions:
     out: EstimatedCarbonEmissions = {}  # type: ignore[typeddict-item]
-    if "TimePeriod" in data:
+    if data.get("TimePeriod") is not None:
         import capo_sustainability.types.time_period
 
         out["time_period"] = capo_sustainability.types.time_period.deserialize_json(
@@ -56,7 +56,7 @@ def deserialize_json(data: dict) -> EstimatedCarbonEmissions:
         )
     else:
         raise DeserializationError("EstimatedCarbonEmissions.time_period required")
-    if "DimensionsValues" in data:
+    if data.get("DimensionsValues") is not None:
         import capo_sustainability.types.dimensions_map
 
         out["dimensions_values"] = (
@@ -68,11 +68,11 @@ def deserialize_json(data: dict) -> EstimatedCarbonEmissions:
         raise DeserializationError(
             "EstimatedCarbonEmissions.dimensions_values required"
         )
-    if "ModelVersion" in data:
+    if data.get("ModelVersion") is not None:
         out["model_version"] = data["ModelVersion"]
     else:
         raise DeserializationError("EstimatedCarbonEmissions.model_version required")
-    if "EmissionsValues" in data:
+    if data.get("EmissionsValues") is not None:
         import capo_sustainability.types.emissions_map
 
         out["emissions_values"] = (

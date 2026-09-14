@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: UpdateSharedVpcConfigurationResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateSharedVpcConfigurationResponse:
     out: UpdateSharedVpcConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "EnableFsxRouteTableUpdatesFromParticipantAccounts" in data:
+    if data.get("EnableFsxRouteTableUpdatesFromParticipantAccounts") is not None:
         out["enable_fsx_route_table_updates_from_participant_accounts"] = data[
             "EnableFsxRouteTableUpdatesFromParticipantAccounts"
         ]

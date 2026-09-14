@@ -4,6 +4,8 @@ from typing import TYPE_CHECKING
 
 from typing_extensions import TypedDict
 
+from capo_lightsail.errors import DeserializationError
+
 if TYPE_CHECKING:
     import capo_lightsail.types.container_service_metric_name
     import capo_lightsail.types.container_service_name
@@ -32,9 +34,91 @@ class GetContainerServiceMetricDataRequest(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: GetContainerServiceMetricDataRequest) -> dict:
     out: dict = {}
+    out["serviceName"] = value["service_name"]
+    import capo_lightsail.types.container_service_metric_name
+
+    out["metricName"] = (
+        capo_lightsail.types.container_service_metric_name.serialize_aws_json_1_1(
+            value["metric_name"]
+        )
+    )
+    import capo_lightsail.types.iso_date
+
+    out["startTime"] = capo_lightsail.types.iso_date.serialize_aws_json_1_1(
+        value["start_time"]
+    )
+    import capo_lightsail.types.iso_date
+
+    out["endTime"] = capo_lightsail.types.iso_date.serialize_aws_json_1_1(
+        value["end_time"]
+    )
+    out["period"] = value["period"]
+    import capo_lightsail.types.metric_statistic_list
+
+    out["statistics"] = (
+        capo_lightsail.types.metric_statistic_list.serialize_aws_json_1_1(
+            value["statistics"]
+        )
+    )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> GetContainerServiceMetricDataRequest:
     out: GetContainerServiceMetricDataRequest = {}  # type: ignore[typeddict-item]
+    if data.get("serviceName") is not None:
+        out["service_name"] = data["serviceName"]
+    else:
+        raise DeserializationError(
+            "GetContainerServiceMetricDataRequest.service_name required"
+        )
+    if data.get("metricName") is not None:
+        import capo_lightsail.types.container_service_metric_name
+
+        out["metric_name"] = (
+            capo_lightsail.types.container_service_metric_name.deserialize_aws_json_1_1(
+                data["metricName"]
+            )
+        )
+    else:
+        raise DeserializationError(
+            "GetContainerServiceMetricDataRequest.metric_name required"
+        )
+    if data.get("startTime") is not None:
+        import capo_lightsail.types.iso_date
+
+        out["start_time"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
+            data["startTime"]
+        )
+    else:
+        raise DeserializationError(
+            "GetContainerServiceMetricDataRequest.start_time required"
+        )
+    if data.get("endTime") is not None:
+        import capo_lightsail.types.iso_date
+
+        out["end_time"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
+            data["endTime"]
+        )
+    else:
+        raise DeserializationError(
+            "GetContainerServiceMetricDataRequest.end_time required"
+        )
+    if data.get("period") is not None:
+        out["period"] = data["period"]
+    else:
+        raise DeserializationError(
+            "GetContainerServiceMetricDataRequest.period required"
+        )
+    if data.get("statistics") is not None:
+        import capo_lightsail.types.metric_statistic_list
+
+        out["statistics"] = (
+            capo_lightsail.types.metric_statistic_list.deserialize_aws_json_1_1(
+                data["statistics"]
+            )
+        )
+    else:
+        raise DeserializationError(
+            "GetContainerServiceMetricDataRequest.statistics required"
+        )
     return out

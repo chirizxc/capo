@@ -31,14 +31,14 @@ def serialize_json(value: CreateAssertionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateAssertionRequest:
     out: CreateAssertionRequest = {}  # type: ignore[typeddict-item]
-    if "serviceArn" in data:
+    if data.get("serviceArn") is not None:
         out["service_arn"] = data["serviceArn"]
     else:
         raise DeserializationError("CreateAssertionRequest.service_arn required")
-    if "text" in data:
+    if data.get("text") is not None:
         out["text"] = data["text"]
     else:
         raise DeserializationError("CreateAssertionRequest.text required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

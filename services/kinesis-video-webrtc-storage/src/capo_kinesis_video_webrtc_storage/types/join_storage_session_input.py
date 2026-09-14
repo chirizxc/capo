@@ -24,7 +24,7 @@ def serialize_json(value: JoinStorageSessionInput) -> dict:
 
 def deserialize_json(data: dict) -> JoinStorageSessionInput:
     out: JoinStorageSessionInput = {}  # type: ignore[typeddict-item]
-    if "channelArn" in data:
+    if data.get("channelArn") is not None:
         out["channel_arn"] = data["channelArn"]
     else:
         raise DeserializationError("JoinStorageSessionInput.channel_arn required")

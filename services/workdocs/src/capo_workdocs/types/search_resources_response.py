@@ -32,12 +32,12 @@ def serialize_json(value: SearchResourcesResponse) -> dict:
 
 def deserialize_json(data: dict) -> SearchResourcesResponse:
     out: SearchResourcesResponse = {}  # type: ignore[typeddict-item]
-    if "Items" in data:
+    if data.get("Items") is not None:
         import capo_workdocs.types.response_items_list
 
         out["items"] = capo_workdocs.types.response_items_list.deserialize_json(
             data["Items"]
         )
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

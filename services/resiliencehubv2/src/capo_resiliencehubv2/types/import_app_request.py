@@ -57,17 +57,17 @@ def serialize_json(value: ImportAppRequest) -> dict:
 
 def deserialize_json(data: dict) -> ImportAppRequest:
     out: ImportAppRequest = {}  # type: ignore[typeddict-item]
-    if "v1AppArn" in data:
+    if data.get("v1AppArn") is not None:
         out["v1_app_arn"] = data["v1AppArn"]
     else:
         raise DeserializationError("ImportAppRequest.v1_app_arn required")
-    if "policyArn" in data:
+    if data.get("policyArn") is not None:
         out["policy_arn"] = data["policyArn"]
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
-    if "skipManuallyAddedResources" in data:
+    if data.get("skipManuallyAddedResources") is not None:
         out["skip_manually_added_resources"] = data["skipManuallyAddedResources"]
-    if "associatedSystems" in data:
+    if data.get("associatedSystems") is not None:
         import capo_resiliencehubv2.types.associated_system_list
 
         out["associated_systems"] = (
@@ -75,10 +75,10 @@ def deserialize_json(data: dict) -> ImportAppRequest:
                 data["associatedSystems"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_resiliencehubv2.types.tag_map
 
         out["tags"] = capo_resiliencehubv2.types.tag_map.deserialize_json(data["tags"])
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

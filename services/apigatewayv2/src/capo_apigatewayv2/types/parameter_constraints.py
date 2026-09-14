@@ -23,6 +23,6 @@ def serialize_json(value: ParameterConstraints) -> dict:
 
 def deserialize_json(data: dict) -> ParameterConstraints:
     out: ParameterConstraints = {}  # type: ignore[typeddict-item]
-    if "required" in data:
+    if data.get("required") is not None:
         out["required"] = data["required"]
     return out

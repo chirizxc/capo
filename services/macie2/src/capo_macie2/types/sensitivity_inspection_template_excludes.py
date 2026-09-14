@@ -31,7 +31,7 @@ def serialize_json(value: SensitivityInspectionTemplateExcludes) -> dict:
 
 def deserialize_json(data: dict) -> SensitivityInspectionTemplateExcludes:
     out: SensitivityInspectionTemplateExcludes = {}  # type: ignore[typeddict-item]
-    if "managedDataIdentifierIds" in data:
+    if data.get("managedDataIdentifierIds") is not None:
         import capo_macie2.types.__list_of__string
 
         out["managed_data_identifier_ids"] = (

@@ -50,7 +50,7 @@ def serialize_json(value: EvaluationFormItemEnablementExpression) -> dict:
 
 def deserialize_json(data: dict) -> EvaluationFormItemEnablementExpression:
     out: EvaluationFormItemEnablementExpression = {}  # type: ignore[typeddict-item]
-    if "Source" in data:
+    if data.get("Source") is not None:
         import capo_connect.types.evaluation_form_item_enablement_source
 
         out["source"] = (
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> EvaluationFormItemEnablementExpression:
         raise DeserializationError(
             "EvaluationFormItemEnablementExpression.source required"
         )
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_connect.types.evaluation_form_item_enablement_source_value_list
 
         out["values"] = (
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> EvaluationFormItemEnablementExpression:
         raise DeserializationError(
             "EvaluationFormItemEnablementExpression.values required"
         )
-    if "Comparator" in data:
+    if data.get("Comparator") is not None:
         import capo_connect.types.evaluation_form_item_source_values_comparator
 
         out["comparator"] = (

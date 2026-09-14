@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListQuerySuggestionsBlockListsResponse) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> ListQuerySuggestionsBlockListsResponse:
     out: ListQuerySuggestionsBlockListsResponse = {}  # type: ignore[typeddict-item]
-    if "BlockListSummaryItems" in data:
+    if data.get("BlockListSummaryItems") is not None:
         import capo_kendra.types.query_suggestions_block_list_summary_items
 
         out["block_list_summary_items"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListQuerySuggestionsBlockListsRespon
                 data["BlockListSummaryItems"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

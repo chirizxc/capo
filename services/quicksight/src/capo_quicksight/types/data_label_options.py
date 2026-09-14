@@ -113,13 +113,13 @@ def serialize_json(value: DataLabelOptions) -> dict:
 
 def deserialize_json(data: dict) -> DataLabelOptions:
     out: DataLabelOptions = {}  # type: ignore[typeddict-item]
-    if "Visibility" in data:
+    if data.get("Visibility") is not None:
         import capo_quicksight.types.visibility
 
         out["visibility"] = capo_quicksight.types.visibility.deserialize_json(
             data["Visibility"]
         )
-    if "CategoryLabelVisibility" in data:
+    if data.get("CategoryLabelVisibility") is not None:
         import capo_quicksight.types.visibility
 
         out["category_label_visibility"] = (
@@ -127,7 +127,7 @@ def deserialize_json(data: dict) -> DataLabelOptions:
                 data["CategoryLabelVisibility"]
             )
         )
-    if "MeasureLabelVisibility" in data:
+    if data.get("MeasureLabelVisibility") is not None:
         import capo_quicksight.types.visibility
 
         out["measure_label_visibility"] = (
@@ -135,7 +135,7 @@ def deserialize_json(data: dict) -> DataLabelOptions:
                 data["MeasureLabelVisibility"]
             )
         )
-    if "DataLabelTypes" in data:
+    if data.get("DataLabelTypes") is not None:
         import capo_quicksight.types.data_label_types
 
         out["data_label_types"] = (
@@ -143,13 +143,13 @@ def deserialize_json(data: dict) -> DataLabelOptions:
                 data["DataLabelTypes"]
             )
         )
-    if "Position" in data:
+    if data.get("Position") is not None:
         import capo_quicksight.types.data_label_position
 
         out["position"] = capo_quicksight.types.data_label_position.deserialize_json(
             data["Position"]
         )
-    if "LabelContent" in data:
+    if data.get("LabelContent") is not None:
         import capo_quicksight.types.data_label_content
 
         out["label_content"] = (
@@ -157,7 +157,7 @@ def deserialize_json(data: dict) -> DataLabelOptions:
                 data["LabelContent"]
             )
         )
-    if "LabelFontConfiguration" in data:
+    if data.get("LabelFontConfiguration") is not None:
         import capo_quicksight.types.font_configuration
 
         out["label_font_configuration"] = (
@@ -165,15 +165,15 @@ def deserialize_json(data: dict) -> DataLabelOptions:
                 data["LabelFontConfiguration"]
             )
         )
-    if "LabelColor" in data:
+    if data.get("LabelColor") is not None:
         out["label_color"] = data["LabelColor"]
-    if "Overlap" in data:
+    if data.get("Overlap") is not None:
         import capo_quicksight.types.data_label_overlap
 
         out["overlap"] = capo_quicksight.types.data_label_overlap.deserialize_json(
             data["Overlap"]
         )
-    if "TotalsVisibility" in data:
+    if data.get("TotalsVisibility") is not None:
         import capo_quicksight.types.visibility
 
         out["totals_visibility"] = capo_quicksight.types.visibility.deserialize_json(

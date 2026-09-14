@@ -324,9 +324,9 @@ def serialize_aws_json_1_1(value: CreateTrainingJobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateTrainingJobRequest:
     out: CreateTrainingJobRequest = {}  # type: ignore[typeddict-item]
-    if "TrainingJobName" in data:
+    if data.get("TrainingJobName") is not None:
         out["training_job_name"] = data["TrainingJobName"]
-    if "HyperParameters" in data:
+    if data.get("HyperParameters") is not None:
         import capo_sagemaker.types.hyper_parameters
 
         out["hyper_parameters"] = (
@@ -334,7 +334,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTrainingJobRequest:
                 data["HyperParameters"]
             )
         )
-    if "AlgorithmSpecification" in data:
+    if data.get("AlgorithmSpecification") is not None:
         import capo_sagemaker.types.algorithm_specification
 
         out["algorithm_specification"] = (
@@ -342,9 +342,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTrainingJobRequest:
                 data["AlgorithmSpecification"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "InputDataConfig" in data:
+    if data.get("InputDataConfig") is not None:
         import capo_sagemaker.types.input_data_config
 
         out["input_data_config"] = (
@@ -352,7 +352,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTrainingJobRequest:
                 data["InputDataConfig"]
             )
         )
-    if "OutputDataConfig" in data:
+    if data.get("OutputDataConfig") is not None:
         import capo_sagemaker.types.output_data_config
 
         out["output_data_config"] = (
@@ -360,7 +360,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTrainingJobRequest:
                 data["OutputDataConfig"]
             )
         )
-    if "ResourceConfig" in data:
+    if data.get("ResourceConfig") is not None:
         import capo_sagemaker.types.resource_config
 
         out["resource_config"] = (
@@ -368,13 +368,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTrainingJobRequest:
                 data["ResourceConfig"]
             )
         )
-    if "VpcConfig" in data:
+    if data.get("VpcConfig") is not None:
         import capo_sagemaker.types.vpc_config
 
         out["vpc_config"] = capo_sagemaker.types.vpc_config.deserialize_aws_json_1_1(
             data["VpcConfig"]
         )
-    if "StoppingCondition" in data:
+    if data.get("StoppingCondition") is not None:
         import capo_sagemaker.types.stopping_condition
 
         out["stopping_condition"] = (
@@ -382,21 +382,21 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTrainingJobRequest:
                 data["StoppingCondition"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "EnableNetworkIsolation" in data:
+    if data.get("EnableNetworkIsolation") is not None:
         out["enable_network_isolation"] = data["EnableNetworkIsolation"]
-    if "EnableInterContainerTrafficEncryption" in data:
+    if data.get("EnableInterContainerTrafficEncryption") is not None:
         out["enable_inter_container_traffic_encryption"] = data[
             "EnableInterContainerTrafficEncryption"
         ]
-    if "EnableManagedSpotTraining" in data:
+    if data.get("EnableManagedSpotTraining") is not None:
         out["enable_managed_spot_training"] = data["EnableManagedSpotTraining"]
-    if "CheckpointConfig" in data:
+    if data.get("CheckpointConfig") is not None:
         import capo_sagemaker.types.checkpoint_config
 
         out["checkpoint_config"] = (
@@ -404,7 +404,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTrainingJobRequest:
                 data["CheckpointConfig"]
             )
         )
-    if "DebugHookConfig" in data:
+    if data.get("DebugHookConfig") is not None:
         import capo_sagemaker.types.debug_hook_config
 
         out["debug_hook_config"] = (
@@ -412,7 +412,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTrainingJobRequest:
                 data["DebugHookConfig"]
             )
         )
-    if "DebugRuleConfigurations" in data:
+    if data.get("DebugRuleConfigurations") is not None:
         import capo_sagemaker.types.debug_rule_configurations
 
         out["debug_rule_configurations"] = (
@@ -420,7 +420,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTrainingJobRequest:
                 data["DebugRuleConfigurations"]
             )
         )
-    if "TensorBoardOutputConfig" in data:
+    if data.get("TensorBoardOutputConfig") is not None:
         import capo_sagemaker.types.tensor_board_output_config
 
         out["tensor_board_output_config"] = (
@@ -428,7 +428,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTrainingJobRequest:
                 data["TensorBoardOutputConfig"]
             )
         )
-    if "ExperimentConfig" in data:
+    if data.get("ExperimentConfig") is not None:
         import capo_sagemaker.types.experiment_config
 
         out["experiment_config"] = (
@@ -436,7 +436,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTrainingJobRequest:
                 data["ExperimentConfig"]
             )
         )
-    if "ProfilerConfig" in data:
+    if data.get("ProfilerConfig") is not None:
         import capo_sagemaker.types.profiler_config
 
         out["profiler_config"] = (
@@ -444,7 +444,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTrainingJobRequest:
                 data["ProfilerConfig"]
             )
         )
-    if "ProfilerRuleConfigurations" in data:
+    if data.get("ProfilerRuleConfigurations") is not None:
         import capo_sagemaker.types.profiler_rule_configurations
 
         out["profiler_rule_configurations"] = (
@@ -452,7 +452,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTrainingJobRequest:
                 data["ProfilerRuleConfigurations"]
             )
         )
-    if "Environment" in data:
+    if data.get("Environment") is not None:
         import capo_sagemaker.types.training_environment_map
 
         out["environment"] = (
@@ -460,7 +460,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTrainingJobRequest:
                 data["Environment"]
             )
         )
-    if "RetryStrategy" in data:
+    if data.get("RetryStrategy") is not None:
         import capo_sagemaker.types.retry_strategy
 
         out["retry_strategy"] = (
@@ -468,7 +468,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTrainingJobRequest:
                 data["RetryStrategy"]
             )
         )
-    if "RemoteDebugConfig" in data:
+    if data.get("RemoteDebugConfig") is not None:
         import capo_sagemaker.types.remote_debug_config
 
         out["remote_debug_config"] = (
@@ -476,7 +476,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTrainingJobRequest:
                 data["RemoteDebugConfig"]
             )
         )
-    if "InfraCheckConfig" in data:
+    if data.get("InfraCheckConfig") is not None:
         import capo_sagemaker.types.infra_check_config
 
         out["infra_check_config"] = (
@@ -484,7 +484,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTrainingJobRequest:
                 data["InfraCheckConfig"]
             )
         )
-    if "SessionChainingConfig" in data:
+    if data.get("SessionChainingConfig") is not None:
         import capo_sagemaker.types.session_chaining_config
 
         out["session_chaining_config"] = (
@@ -492,7 +492,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTrainingJobRequest:
                 data["SessionChainingConfig"]
             )
         )
-    if "ServerlessJobConfig" in data:
+    if data.get("ServerlessJobConfig") is not None:
         import capo_sagemaker.types.serverless_job_config
 
         out["serverless_job_config"] = (
@@ -500,7 +500,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTrainingJobRequest:
                 data["ServerlessJobConfig"]
             )
         )
-    if "MlflowConfig" in data:
+    if data.get("MlflowConfig") is not None:
         import capo_sagemaker.types.mlflow_config
 
         out["mlflow_config"] = (
@@ -508,7 +508,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTrainingJobRequest:
                 data["MlflowConfig"]
             )
         )
-    if "ModelPackageConfig" in data:
+    if data.get("ModelPackageConfig") is not None:
         import capo_sagemaker.types.model_package_config
 
         out["model_package_config"] = (

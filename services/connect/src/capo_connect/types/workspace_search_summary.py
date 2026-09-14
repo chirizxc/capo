@@ -70,29 +70,29 @@ def serialize_json(value: WorkspaceSearchSummary) -> dict:
 
 def deserialize_json(data: dict) -> WorkspaceSearchSummary:
     out: WorkspaceSearchSummary = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Visibility" in data:
+    if data.get("Visibility") is not None:
         import capo_connect.types.visibility
 
         out["visibility"] = capo_connect.types.visibility.deserialize_json(
             data["Visibility"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_connect.types.timestamp
 
         out["created_at"] = capo_connect.types.timestamp.deserialize_json(
             data["CreatedAt"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])

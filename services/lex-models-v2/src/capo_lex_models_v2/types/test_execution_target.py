@@ -31,7 +31,7 @@ def serialize_json(value: TestExecutionTarget) -> dict:
 
 def deserialize_json(data: dict) -> TestExecutionTarget:
     out: TestExecutionTarget = {}  # type: ignore[typeddict-item]
-    if "botAliasTarget" in data:
+    if data.get("botAliasTarget") is not None:
         import capo_lex_models_v2.types.bot_alias_test_execution_target
 
         out["bot_alias_target"] = (

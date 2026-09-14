@@ -37,7 +37,7 @@ def serialize_json(value: UpdateVodSourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateVodSourceRequest:
     out: UpdateVodSourceRequest = {}  # type: ignore[typeddict-item]
-    if "HttpPackageConfigurations" in data:
+    if data.get("HttpPackageConfigurations") is not None:
         import capo_mediatailor.types.http_package_configurations
 
         out["http_package_configurations"] = (

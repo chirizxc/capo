@@ -22,8 +22,8 @@ def serialize_aws_json_1_0(value: OciDnsForwardingConfig) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> OciDnsForwardingConfig:
     out: OciDnsForwardingConfig = {}  # type: ignore[typeddict-item]
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
-    if "ociDnsListenerIp" in data:
+    if data.get("ociDnsListenerIp") is not None:
         out["oci_dns_listener_ip"] = data["ociDnsListenerIp"]
     return out

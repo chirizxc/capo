@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> FreeFromLayoutElementList:
 
     out: FreeFromLayoutElementList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.free_form_layout_element.deserialize_json(item)
         )

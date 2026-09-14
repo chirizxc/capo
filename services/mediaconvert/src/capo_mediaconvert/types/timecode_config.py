@@ -47,16 +47,16 @@ def serialize_json(value: TimecodeConfig) -> dict:
 
 def deserialize_json(data: dict) -> TimecodeConfig:
     out: TimecodeConfig = {}  # type: ignore[typeddict-item]
-    if "anchor" in data:
+    if data.get("anchor") is not None:
         out["anchor"] = data["anchor"]
-    if "source" in data:
+    if data.get("source") is not None:
         import capo_mediaconvert.types.timecode_source
 
         out["source"] = capo_mediaconvert.types.timecode_source.deserialize_json(
             data["source"]
         )
-    if "start" in data:
+    if data.get("start") is not None:
         out["start"] = data["start"]
-    if "timestampOffset" in data:
+    if data.get("timestampOffset") is not None:
         out["timestamp_offset"] = data["timestampOffset"]
     return out

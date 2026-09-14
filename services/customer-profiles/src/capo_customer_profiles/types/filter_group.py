@@ -36,13 +36,13 @@ def serialize_json(value: FilterGroup) -> dict:
 
 def deserialize_json(data: dict) -> FilterGroup:
     out: FilterGroup = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_customer_profiles.types.type
 
         out["type"] = capo_customer_profiles.types.type.deserialize_json(data["Type"])
     else:
         raise DeserializationError("FilterGroup.type required")
-    if "Dimensions" in data:
+    if data.get("Dimensions") is not None:
         import capo_customer_profiles.types.filter_dimension_list
 
         out["dimensions"] = (

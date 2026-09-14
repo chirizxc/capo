@@ -111,7 +111,7 @@ def serialize_json(value: Vc3Settings) -> dict:
 
 def deserialize_json(data: dict) -> Vc3Settings:
     out: Vc3Settings = {}  # type: ignore[typeddict-item]
-    if "framerateControl" in data:
+    if data.get("framerateControl") is not None:
         import capo_mediaconvert.types.vc3_framerate_control
 
         out["framerate_control"] = (
@@ -119,7 +119,7 @@ def deserialize_json(data: dict) -> Vc3Settings:
                 data["framerateControl"]
             )
         )
-    if "framerateConversionAlgorithm" in data:
+    if data.get("framerateConversionAlgorithm") is not None:
         import capo_mediaconvert.types.vc3_framerate_conversion_algorithm
 
         out["framerate_conversion_algorithm"] = (
@@ -127,11 +127,11 @@ def deserialize_json(data: dict) -> Vc3Settings:
                 data["framerateConversionAlgorithm"]
             )
         )
-    if "framerateDenominator" in data:
+    if data.get("framerateDenominator") is not None:
         out["framerate_denominator"] = data["framerateDenominator"]
-    if "framerateNumerator" in data:
+    if data.get("framerateNumerator") is not None:
         out["framerate_numerator"] = data["framerateNumerator"]
-    if "interlaceMode" in data:
+    if data.get("interlaceMode") is not None:
         import capo_mediaconvert.types.vc3_interlace_mode
 
         out["interlace_mode"] = (
@@ -139,7 +139,7 @@ def deserialize_json(data: dict) -> Vc3Settings:
                 data["interlaceMode"]
             )
         )
-    if "scanTypeConversionMode" in data:
+    if data.get("scanTypeConversionMode") is not None:
         import capo_mediaconvert.types.vc3_scan_type_conversion_mode
 
         out["scan_type_conversion_mode"] = (
@@ -147,19 +147,19 @@ def deserialize_json(data: dict) -> Vc3Settings:
                 data["scanTypeConversionMode"]
             )
         )
-    if "slowPal" in data:
+    if data.get("slowPal") is not None:
         import capo_mediaconvert.types.vc3_slow_pal
 
         out["slow_pal"] = capo_mediaconvert.types.vc3_slow_pal.deserialize_json(
             data["slowPal"]
         )
-    if "telecine" in data:
+    if data.get("telecine") is not None:
         import capo_mediaconvert.types.vc3_telecine
 
         out["telecine"] = capo_mediaconvert.types.vc3_telecine.deserialize_json(
             data["telecine"]
         )
-    if "vc3Class" in data:
+    if data.get("vc3Class") is not None:
         import capo_mediaconvert.types.vc3_class
 
         out["vc3_class"] = capo_mediaconvert.types.vc3_class.deserialize_json(

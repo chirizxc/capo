@@ -40,11 +40,11 @@ def serialize_aws_json_1_0(value: RuleSet) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RuleSet:
     out: RuleSet = {}  # type: ignore[typeddict-item]
-    if "RuleSetId" in data:
+    if data.get("RuleSetId") is not None:
         out["rule_set_id"] = data["RuleSetId"]
-    if "RuleSetName" in data:
+    if data.get("RuleSetName") is not None:
         out["rule_set_name"] = data["RuleSetName"]
-    if "LastModificationDate" in data:
+    if data.get("LastModificationDate") is not None:
         import capo_mailmanager.types._prelude.timestamp
 
         out["last_modification_date"] = (

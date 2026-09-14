@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: GetDevEndpointsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDevEndpointsResponse:
     out: GetDevEndpointsResponse = {}  # type: ignore[typeddict-item]
-    if "DevEndpoints" in data:
+    if data.get("DevEndpoints") is not None:
         import capo_glue.types.dev_endpoint_list
 
         out["dev_endpoints"] = (
@@ -40,6 +40,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetDevEndpointsResponse:
                 data["DevEndpoints"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

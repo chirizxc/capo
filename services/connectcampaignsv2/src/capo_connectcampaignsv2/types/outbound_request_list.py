@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> OutboundRequestList:
 
     out: OutboundRequestList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connectcampaignsv2.types.outbound_request.deserialize_json(item)
         )

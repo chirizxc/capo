@@ -18,14 +18,22 @@ class UpdateCustomLineItemFlatChargeDetails(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: UpdateCustomLineItemFlatChargeDetails) -> dict:
     out: dict = {}
-    out["ChargeValue"] = value["charge_value"]
+    out["ChargeValue"] = (
+        "NaN"
+        if value["charge_value"] != value["charge_value"]
+        else "Infinity"
+        if value["charge_value"] == float("inf")
+        else "-Infinity"
+        if value["charge_value"] == float("-inf")
+        else value["charge_value"]
+    )
     return out
 
 
 def deserialize_json(data: dict) -> UpdateCustomLineItemFlatChargeDetails:
     out: UpdateCustomLineItemFlatChargeDetails = {}  # type: ignore[typeddict-item]
-    if "ChargeValue" in data:
-        out["charge_value"] = data["ChargeValue"]
+    if data.get("ChargeValue") is not None:
+        out["charge_value"] = float(data["ChargeValue"])
     else:
         raise DeserializationError(
             "UpdateCustomLineItemFlatChargeDetails.charge_value required"

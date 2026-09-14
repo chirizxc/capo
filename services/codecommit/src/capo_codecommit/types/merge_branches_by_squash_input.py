@@ -94,27 +94,27 @@ def serialize_aws_json_1_1(value: MergeBranchesBySquashInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MergeBranchesBySquashInput:
     out: MergeBranchesBySquashInput = {}  # type: ignore[typeddict-item]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
     else:
         raise DeserializationError(
             "MergeBranchesBySquashInput.repository_name required"
         )
-    if "sourceCommitSpecifier" in data:
+    if data.get("sourceCommitSpecifier") is not None:
         out["source_commit_specifier"] = data["sourceCommitSpecifier"]
     else:
         raise DeserializationError(
             "MergeBranchesBySquashInput.source_commit_specifier required"
         )
-    if "destinationCommitSpecifier" in data:
+    if data.get("destinationCommitSpecifier") is not None:
         out["destination_commit_specifier"] = data["destinationCommitSpecifier"]
     else:
         raise DeserializationError(
             "MergeBranchesBySquashInput.destination_commit_specifier required"
         )
-    if "targetBranch" in data:
+    if data.get("targetBranch") is not None:
         out["target_branch"] = data["targetBranch"]
-    if "conflictDetailLevel" in data:
+    if data.get("conflictDetailLevel") is not None:
         import capo_codecommit.types.conflict_detail_level_type_enum
 
         out["conflict_detail_level"] = (
@@ -122,7 +122,7 @@ def deserialize_aws_json_1_1(data: dict) -> MergeBranchesBySquashInput:
                 data["conflictDetailLevel"]
             )
         )
-    if "conflictResolutionStrategy" in data:
+    if data.get("conflictResolutionStrategy") is not None:
         import capo_codecommit.types.conflict_resolution_strategy_type_enum
 
         out["conflict_resolution_strategy"] = (
@@ -130,17 +130,17 @@ def deserialize_aws_json_1_1(data: dict) -> MergeBranchesBySquashInput:
                 data["conflictResolutionStrategy"]
             )
         )
-    if "authorName" in data:
+    if data.get("authorName") is not None:
         out["author_name"] = data["authorName"]
-    if "email" in data:
+    if data.get("email") is not None:
         out["email"] = data["email"]
-    if "commitMessage" in data:
+    if data.get("commitMessage") is not None:
         out["commit_message"] = data["commitMessage"]
-    if "keepEmptyFolders" in data:
+    if data.get("keepEmptyFolders") is not None:
         out["keep_empty_folders"] = data["keepEmptyFolders"]
     else:
         out["keep_empty_folders"] = False
-    if "conflictResolution" in data:
+    if data.get("conflictResolution") is not None:
         import capo_codecommit.types.conflict_resolution
 
         out["conflict_resolution"] = (

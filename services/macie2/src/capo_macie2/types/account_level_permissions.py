@@ -29,7 +29,7 @@ def serialize_json(value: AccountLevelPermissions) -> dict:
 
 def deserialize_json(data: dict) -> AccountLevelPermissions:
     out: AccountLevelPermissions = {}  # type: ignore[typeddict-item]
-    if "blockPublicAccess" in data:
+    if data.get("blockPublicAccess") is not None:
         import capo_macie2.types.block_public_access
 
         out["block_public_access"] = (

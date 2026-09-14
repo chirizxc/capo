@@ -49,7 +49,7 @@ def serialize_aws_json_1_1(value: ListTranscriptionJobsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListTranscriptionJobsResponse:
     out: ListTranscriptionJobsResponse = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_transcribe.types.transcription_job_status
 
         out["status"] = (
@@ -57,9 +57,9 @@ def deserialize_aws_json_1_1(data: dict) -> ListTranscriptionJobsResponse:
                 data["Status"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "TranscriptionJobSummaries" in data:
+    if data.get("TranscriptionJobSummaries") is not None:
         import capo_transcribe.types.transcription_job_summaries
 
         out["transcription_job_summaries"] = (

@@ -44,15 +44,15 @@ def serialize_json(value: Invite) -> dict:
 
 def deserialize_json(data: dict) -> Invite:
     out: Invite = {}  # type: ignore[typeddict-item]
-    if "InviteId" in data:
+    if data.get("InviteId") is not None:
         out["invite_id"] = data["InviteId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_chime.types.invite_status
 
         out["status"] = capo_chime.types.invite_status.deserialize_json(data["Status"])
-    if "EmailAddress" in data:
+    if data.get("EmailAddress") is not None:
         out["email_address"] = data["EmailAddress"]
-    if "EmailStatus" in data:
+    if data.get("EmailStatus") is not None:
         import capo_chime.types.email_status
 
         out["email_status"] = capo_chime.types.email_status.deserialize_json(

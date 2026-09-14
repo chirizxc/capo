@@ -39,21 +39,21 @@ def serialize_json(value: RegisterOpentdfConfigRequest) -> dict:
 
 def deserialize_json(data: dict) -> RegisterOpentdfConfigRequest:
     out: RegisterOpentdfConfigRequest = {}  # type: ignore[typeddict-item]
-    if "clientId" in data:
+    if data.get("clientId") is not None:
         out["client_id"] = data["clientId"]
     else:
         raise DeserializationError("RegisterOpentdfConfigRequest.client_id required")
-    if "clientSecret" in data:
+    if data.get("clientSecret") is not None:
         out["client_secret"] = data["clientSecret"]
     else:
         raise DeserializationError(
             "RegisterOpentdfConfigRequest.client_secret required"
         )
-    if "domain" in data:
+    if data.get("domain") is not None:
         out["domain"] = data["domain"]
     else:
         raise DeserializationError("RegisterOpentdfConfigRequest.domain required")
-    if "provider" in data:
+    if data.get("provider") is not None:
         out["provider"] = data["provider"]
     else:
         raise DeserializationError("RegisterOpentdfConfigRequest.provider required")

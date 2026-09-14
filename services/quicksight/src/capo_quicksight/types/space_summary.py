@@ -79,36 +79,36 @@ def serialize_json(value: SpaceSummary) -> dict:
 
 def deserialize_json(data: dict) -> SpaceSummary:
     out: SpaceSummary = {}  # type: ignore[typeddict-item]
-    if "spaceId" in data:
+    if data.get("spaceId") is not None:
         out["space_id"] = data["spaceId"]
     else:
         raise DeserializationError("SpaceSummary.space_id required")
-    if "spaceArn" in data:
+    if data.get("spaceArn") is not None:
         out["space_arn"] = data["spaceArn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_quicksight.types._prelude.timestamp
 
         out["updated_at"] = capo_quicksight.types._prelude.timestamp.deserialize_json(
             data["updatedAt"]
         )
-    if "consumedSourceSize" in data:
+    if data.get("consumedSourceSize") is not None:
         out["consumed_source_size"] = data["consumedSourceSize"]
-    if "consumedSourceDocCount" in data:
+    if data.get("consumedSourceDocCount") is not None:
         out["consumed_source_doc_count"] = data["consumedSourceDocCount"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_quicksight.types._prelude.timestamp
 
         out["created_at"] = capo_quicksight.types._prelude.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
-    if "createdByArn" in data:
+    if data.get("createdByArn") is not None:
         out["created_by_arn"] = data["createdByArn"]
-    if "resourcesCount" in data:
+    if data.get("resourcesCount") is not None:
         out["resources_count"] = data["resourcesCount"]
     return out

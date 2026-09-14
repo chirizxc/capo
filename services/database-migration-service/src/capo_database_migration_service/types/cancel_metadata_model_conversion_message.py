@@ -28,13 +28,13 @@ def serialize_aws_json_1_1(value: CancelMetadataModelConversionMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CancelMetadataModelConversionMessage:
     out: CancelMetadataModelConversionMessage = {}  # type: ignore[typeddict-item]
-    if "MigrationProjectIdentifier" in data:
+    if data.get("MigrationProjectIdentifier") is not None:
         out["migration_project_identifier"] = data["MigrationProjectIdentifier"]
     else:
         raise DeserializationError(
             "CancelMetadataModelConversionMessage.migration_project_identifier required"
         )
-    if "RequestIdentifier" in data:
+    if data.get("RequestIdentifier") is not None:
         out["request_identifier"] = data["RequestIdentifier"]
     else:
         raise DeserializationError(

@@ -24,7 +24,7 @@ def serialize_json(value: EnvironmentExitSessionActionDefinition) -> dict:
 
 def deserialize_json(data: dict) -> EnvironmentExitSessionActionDefinition:
     out: EnvironmentExitSessionActionDefinition = {}  # type: ignore[typeddict-item]
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
     else:
         raise DeserializationError(

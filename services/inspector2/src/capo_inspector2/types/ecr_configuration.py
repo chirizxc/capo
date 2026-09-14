@@ -38,12 +38,12 @@ def serialize_json(value: EcrConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> EcrConfiguration:
     out: EcrConfiguration = {}  # type: ignore[typeddict-item]
-    if "rescanDuration" in data:
+    if data.get("rescanDuration") is not None:
         out["rescan_duration"] = data["rescanDuration"]
     else:
         raise DeserializationError("EcrConfiguration.rescan_duration required")
-    if "pullDateRescanDuration" in data:
+    if data.get("pullDateRescanDuration") is not None:
         out["pull_date_rescan_duration"] = data["pullDateRescanDuration"]
-    if "pullDateRescanMode" in data:
+    if data.get("pullDateRescanMode") is not None:
         out["pull_date_rescan_mode"] = data["pullDateRescanMode"]
     return out

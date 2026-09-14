@@ -32,9 +32,9 @@ def serialize_json(value: QueueInfo) -> dict:
 
 def deserialize_json(data: dict) -> QueueInfo:
     out: QueueInfo = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "EnqueueTimestamp" in data:
+    if data.get("EnqueueTimestamp") is not None:
         import capo_connect.types.timestamp
 
         out["enqueue_timestamp"] = capo_connect.types.timestamp.deserialize_json(

@@ -58,7 +58,7 @@ def serialize_aws_json_1_1(value: GetSnapshotsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetSnapshotsResponse:
     out: GetSnapshotsResponse = {}  # type: ignore[typeddict-item]
-    if "SnapShotTimeFilter" in data:
+    if data.get("SnapShotTimeFilter") is not None:
         import capo_kendra.types.time_range
 
         out["snap_shot_time_filter"] = (
@@ -66,7 +66,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetSnapshotsResponse:
                 data["SnapShotTimeFilter"]
             )
         )
-    if "SnapshotsDataHeader" in data:
+    if data.get("SnapshotsDataHeader") is not None:
         import capo_kendra.types.snapshots_data_header_fields
 
         out["snapshots_data_header"] = (
@@ -74,7 +74,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetSnapshotsResponse:
                 data["SnapshotsDataHeader"]
             )
         )
-    if "SnapshotsData" in data:
+    if data.get("SnapshotsData") is not None:
         import capo_kendra.types.snapshots_data_records
 
         out["snapshots_data"] = (
@@ -82,6 +82,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetSnapshotsResponse:
                 data["SnapshotsData"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

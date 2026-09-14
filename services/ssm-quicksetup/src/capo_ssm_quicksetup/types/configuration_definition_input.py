@@ -52,11 +52,11 @@ def serialize_json(value: ConfigurationDefinitionInput) -> dict:
 
 def deserialize_json(data: dict) -> ConfigurationDefinitionInput:
     out: ConfigurationDefinitionInput = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     else:
         raise DeserializationError("ConfigurationDefinitionInput.type required")
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_ssm_quicksetup.types.configuration_parameters_map
 
         out["parameters"] = (
@@ -66,13 +66,13 @@ def deserialize_json(data: dict) -> ConfigurationDefinitionInput:
         )
     else:
         raise DeserializationError("ConfigurationDefinitionInput.parameters required")
-    if "TypeVersion" in data:
+    if data.get("TypeVersion") is not None:
         out["type_version"] = data["TypeVersion"]
-    if "LocalDeploymentExecutionRoleName" in data:
+    if data.get("LocalDeploymentExecutionRoleName") is not None:
         out["local_deployment_execution_role_name"] = data[
             "LocalDeploymentExecutionRoleName"
         ]
-    if "LocalDeploymentAdministrationRoleArn" in data:
+    if data.get("LocalDeploymentAdministrationRoleArn") is not None:
         out["local_deployment_administration_role_arn"] = data[
             "LocalDeploymentAdministrationRoleArn"
         ]

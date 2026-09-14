@@ -31,7 +31,7 @@ def serialize_json(value: GetNetworkMigrationMapperSegmentConstructResponse) -> 
 
 def deserialize_json(data: dict) -> GetNetworkMigrationMapperSegmentConstructResponse:
     out: GetNetworkMigrationMapperSegmentConstructResponse = {}  # type: ignore[typeddict-item]
-    if "construct" in data:
+    if data.get("construct") is not None:
         import capo_mgn.types.network_migration_mapper_segment_construct
 
         out["construct"] = (

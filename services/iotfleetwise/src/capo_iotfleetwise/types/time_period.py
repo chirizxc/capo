@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: TimePeriod) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TimePeriod:
     out: TimePeriod = {}  # type: ignore[typeddict-item]
-    if "unit" in data:
+    if data.get("unit") is not None:
         import capo_iotfleetwise.types.time_unit
 
         out["unit"] = capo_iotfleetwise.types.time_unit.deserialize_aws_json_1_0(
@@ -40,7 +40,7 @@ def deserialize_aws_json_1_0(data: dict) -> TimePeriod:
         )
     else:
         raise DeserializationError("TimePeriod.unit required")
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("TimePeriod.value required")

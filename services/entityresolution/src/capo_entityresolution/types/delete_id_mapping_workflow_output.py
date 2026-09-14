@@ -19,7 +19,7 @@ def serialize_json(value: DeleteIdMappingWorkflowOutput) -> dict:
 
 def deserialize_json(data: dict) -> DeleteIdMappingWorkflowOutput:
     out: DeleteIdMappingWorkflowOutput = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("DeleteIdMappingWorkflowOutput.message required")

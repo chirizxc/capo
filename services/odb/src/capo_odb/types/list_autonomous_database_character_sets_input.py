@@ -22,6 +22,10 @@ class ListAutonomousDatabaseCharacterSetsInput(TypedDict, closed=True):
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: ListAutonomousDatabaseCharacterSetsInput) -> dict:
     out: dict = {}
+    if "max_results" in value:
+        out["maxResults"] = value["max_results"]
+    if "next_token" in value:
+        out["nextToken"] = value["next_token"]
     if "character_set_type" in value:
         import capo_odb.types.character_set_type
 
@@ -35,7 +39,11 @@ def serialize_aws_json_1_0(value: ListAutonomousDatabaseCharacterSetsInput) -> d
 
 def deserialize_aws_json_1_0(data: dict) -> ListAutonomousDatabaseCharacterSetsInput:
     out: ListAutonomousDatabaseCharacterSetsInput = {}  # type: ignore[typeddict-item]
-    if "characterSetType" in data:
+    if data.get("maxResults") is not None:
+        out["max_results"] = data["maxResults"]
+    if data.get("nextToken") is not None:
+        out["next_token"] = data["nextToken"]
+    if data.get("characterSetType") is not None:
         import capo_odb.types.character_set_type
 
         out["character_set_type"] = (

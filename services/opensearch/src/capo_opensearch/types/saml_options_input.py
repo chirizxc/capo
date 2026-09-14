@@ -56,20 +56,20 @@ def serialize_json(value: SAMLOptionsInput) -> dict:
 
 def deserialize_json(data: dict) -> SAMLOptionsInput:
     out: SAMLOptionsInput = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "Idp" in data:
+    if data.get("Idp") is not None:
         import capo_opensearch.types.saml_idp
 
         out["idp"] = capo_opensearch.types.saml_idp.deserialize_json(data["Idp"])
-    if "MasterUserName" in data:
+    if data.get("MasterUserName") is not None:
         out["master_user_name"] = data["MasterUserName"]
-    if "MasterBackendRole" in data:
+    if data.get("MasterBackendRole") is not None:
         out["master_backend_role"] = data["MasterBackendRole"]
-    if "SubjectKey" in data:
+    if data.get("SubjectKey") is not None:
         out["subject_key"] = data["SubjectKey"]
-    if "RolesKey" in data:
+    if data.get("RolesKey") is not None:
         out["roles_key"] = data["RolesKey"]
-    if "SessionTimeoutMinutes" in data:
+    if data.get("SessionTimeoutMinutes") is not None:
         out["session_timeout_minutes"] = data["SessionTimeoutMinutes"]
     return out

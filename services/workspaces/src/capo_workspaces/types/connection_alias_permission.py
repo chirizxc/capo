@@ -28,13 +28,13 @@ def serialize_aws_json_1_1(value: ConnectionAliasPermission) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConnectionAliasPermission:
     out: ConnectionAliasPermission = {}  # type: ignore[typeddict-item]
-    if "SharedAccountId" in data:
+    if data.get("SharedAccountId") is not None:
         out["shared_account_id"] = data["SharedAccountId"]
     else:
         raise DeserializationError(
             "ConnectionAliasPermission.shared_account_id required"
         )
-    if "AllowAssociation" in data:
+    if data.get("AllowAssociation") is not None:
         out["allow_association"] = data["AllowAssociation"]
     else:
         raise DeserializationError(

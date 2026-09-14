@@ -30,9 +30,9 @@ def serialize_aws_json_1_1(value: DisableAlreadyInProgressException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DisableAlreadyInProgressException_:
     out: DisableAlreadyInProgressException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out
 
@@ -42,15 +42,20 @@ class DisableAlreadyInProgressException(ServiceError):
 
     code: str | None = "DisableAlreadyInProgressException"
 
-    def __init__(self, data: DisableAlreadyInProgressException_):
+    def __init__(
+        self, data: DisableAlreadyInProgressException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="DisableAlreadyInProgressException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "DisableAlreadyInProgressException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "DisableAlreadyInProgressException":
+        return cls(deserialize_aws_json_1_1(data), message)

@@ -44,7 +44,7 @@ def serialize_json(value: ListBuiltInIntentsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListBuiltInIntentsRequest:
     out: ListBuiltInIntentsRequest = {}  # type: ignore[typeddict-item]
-    if "sortBy" in data:
+    if data.get("sortBy") is not None:
         import capo_lex_models_v2.types.built_in_intent_sort_by
 
         out["sort_by"] = (
@@ -52,8 +52,8 @@ def deserialize_json(data: dict) -> ListBuiltInIntentsRequest:
                 data["sortBy"]
             )
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

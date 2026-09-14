@@ -47,20 +47,20 @@ def serialize_aws_json_1_1(value: ElasticsearchSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ElasticsearchSettings:
     out: ElasticsearchSettings = {}  # type: ignore[typeddict-item]
-    if "ServiceAccessRoleArn" in data:
+    if data.get("ServiceAccessRoleArn") is not None:
         out["service_access_role_arn"] = data["ServiceAccessRoleArn"]
     else:
         raise DeserializationError(
             "ElasticsearchSettings.service_access_role_arn required"
         )
-    if "EndpointUri" in data:
+    if data.get("EndpointUri") is not None:
         out["endpoint_uri"] = data["EndpointUri"]
     else:
         raise DeserializationError("ElasticsearchSettings.endpoint_uri required")
-    if "FullLoadErrorPercentage" in data:
+    if data.get("FullLoadErrorPercentage") is not None:
         out["full_load_error_percentage"] = data["FullLoadErrorPercentage"]
-    if "ErrorRetryDuration" in data:
+    if data.get("ErrorRetryDuration") is not None:
         out["error_retry_duration"] = data["ErrorRetryDuration"]
-    if "UseNewMappingType" in data:
+    if data.get("UseNewMappingType") is not None:
         out["use_new_mapping_type"] = data["UseNewMappingType"]
     return out

@@ -43,12 +43,14 @@ def serialize_aws_json_1_0(value: CreateScheduledReportRequest) -> dict:
                 value["resource_tags"]
             )
         )
+    if "client_token" in value:
+        out["clientToken"] = value["client_token"]
     return out
 
 
 def deserialize_aws_json_1_0(data: dict) -> CreateScheduledReportRequest:
     out: CreateScheduledReportRequest = {}  # type: ignore[typeddict-item]
-    if "scheduledReport" in data:
+    if data.get("scheduledReport") is not None:
         import capo_bcm_dashboards.types.scheduled_report_input
 
         out["scheduled_report"] = (
@@ -60,7 +62,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateScheduledReportRequest:
         raise DeserializationError(
             "CreateScheduledReportRequest.scheduled_report required"
         )
-    if "resourceTags" in data:
+    if data.get("resourceTags") is not None:
         import capo_bcm_dashboards.types.resource_tag_list
 
         out["resource_tags"] = (
@@ -68,4 +70,6 @@ def deserialize_aws_json_1_0(data: dict) -> CreateScheduledReportRequest:
                 data["resourceTags"]
             )
         )
+    if data.get("clientToken") is not None:
+        out["client_token"] = data["clientToken"]
     return out

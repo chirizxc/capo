@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: DescribeFHIRImportJobResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeFHIRImportJobResponse:
     out: DescribeFHIRImportJobResponse = {}  # type: ignore[typeddict-item]
-    if "ImportJobProperties" in data:
+    if data.get("ImportJobProperties") is not None:
         import capo_healthlake.types.import_job_properties
 
         out["import_job_properties"] = (

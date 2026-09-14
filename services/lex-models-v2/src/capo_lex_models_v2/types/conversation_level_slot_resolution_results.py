@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ConversationLevelSlotResolutionResults:
 
     out: ConversationLevelSlotResolutionResults = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lex_models_v2.types.conversation_level_slot_resolution_result_item.deserialize_json(
                 item

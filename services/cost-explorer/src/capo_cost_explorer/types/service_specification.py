@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: ServiceSpecification) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ServiceSpecification:
     out: ServiceSpecification = {}  # type: ignore[typeddict-item]
-    if "EC2Specification" in data:
+    if data.get("EC2Specification") is not None:
         import capo_cost_explorer.types.ec2_specification
 
         out["ec2_specification"] = (

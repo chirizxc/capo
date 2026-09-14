@@ -23,7 +23,7 @@ def serialize_json(value: InvalidClientTokenException_) -> dict:
 
 def deserialize_json(data: dict) -> InvalidClientTokenException_:
     out: InvalidClientTokenException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("InvalidClientTokenException_.message required")
@@ -35,15 +35,18 @@ class InvalidClientTokenException(ServiceError):
 
     code: str | None = "InvalidClientTokenException"
 
-    def __init__(self, data: InvalidClientTokenException_):
+    def __init__(self, data: InvalidClientTokenException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidClientTokenException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "InvalidClientTokenException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidClientTokenException":
+        return cls(deserialize_json(data), message)

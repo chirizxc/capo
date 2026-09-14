@@ -27,10 +27,10 @@ def serialize_json(value: CPU) -> dict:
 
 def deserialize_json(data: dict) -> CPU:
     out: CPU = {}  # type: ignore[typeddict-item]
-    if "cores" in data:
+    if data.get("cores") is not None:
         out["cores"] = data["cores"]
     else:
         out["cores"] = 0
-    if "modelName" in data:
+    if data.get("modelName") is not None:
         out["model_name"] = data["modelName"]
     return out

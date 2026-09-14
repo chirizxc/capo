@@ -79,13 +79,13 @@ def serialize_aws_json_1_1(value: TaskRunProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TaskRunProperties:
     out: TaskRunProperties = {}  # type: ignore[typeddict-item]
-    if "TaskType" in data:
+    if data.get("TaskType") is not None:
         import capo_glue.types.task_type
 
         out["task_type"] = capo_glue.types.task_type.deserialize_aws_json_1_1(
             data["TaskType"]
         )
-    if "ImportLabelsTaskRunProperties" in data:
+    if data.get("ImportLabelsTaskRunProperties") is not None:
         import capo_glue.types.import_labels_task_run_properties
 
         out["import_labels_task_run_properties"] = (
@@ -93,7 +93,7 @@ def deserialize_aws_json_1_1(data: dict) -> TaskRunProperties:
                 data["ImportLabelsTaskRunProperties"]
             )
         )
-    if "ExportLabelsTaskRunProperties" in data:
+    if data.get("ExportLabelsTaskRunProperties") is not None:
         import capo_glue.types.export_labels_task_run_properties
 
         out["export_labels_task_run_properties"] = (
@@ -101,7 +101,7 @@ def deserialize_aws_json_1_1(data: dict) -> TaskRunProperties:
                 data["ExportLabelsTaskRunProperties"]
             )
         )
-    if "LabelingSetGenerationTaskRunProperties" in data:
+    if data.get("LabelingSetGenerationTaskRunProperties") is not None:
         import capo_glue.types.labeling_set_generation_task_run_properties
 
         out["labeling_set_generation_task_run_properties"] = (
@@ -109,7 +109,7 @@ def deserialize_aws_json_1_1(data: dict) -> TaskRunProperties:
                 data["LabelingSetGenerationTaskRunProperties"]
             )
         )
-    if "FindMatchesTaskRunProperties" in data:
+    if data.get("FindMatchesTaskRunProperties") is not None:
         import capo_glue.types.find_matches_task_run_properties
 
         out["find_matches_task_run_properties"] = (

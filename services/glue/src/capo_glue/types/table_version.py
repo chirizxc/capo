@@ -30,10 +30,10 @@ def serialize_aws_json_1_1(value: TableVersion) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TableVersion:
     out: TableVersion = {}  # type: ignore[typeddict-item]
-    if "Table" in data:
+    if data.get("Table") is not None:
         import capo_glue.types.table
 
         out["table"] = capo_glue.types.table.deserialize_aws_json_1_1(data["Table"])
-    if "VersionId" in data:
+    if data.get("VersionId") is not None:
         out["version_id"] = data["VersionId"]
     return out

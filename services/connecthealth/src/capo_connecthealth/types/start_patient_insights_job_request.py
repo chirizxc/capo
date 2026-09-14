@@ -84,7 +84,7 @@ def serialize_json(value: StartPatientInsightsJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartPatientInsightsJobRequest:
     out: StartPatientInsightsJobRequest = {}  # type: ignore[typeddict-item]
-    if "patientContext" in data:
+    if data.get("patientContext") is not None:
         import capo_connecthealth.types.patient_insights_patient_context
 
         out["patient_context"] = (
@@ -96,7 +96,7 @@ def deserialize_json(data: dict) -> StartPatientInsightsJobRequest:
         raise DeserializationError(
             "StartPatientInsightsJobRequest.patient_context required"
         )
-    if "insightsContext" in data:
+    if data.get("insightsContext") is not None:
         import capo_connecthealth.types.insights_context
 
         out["insights_context"] = (
@@ -108,7 +108,7 @@ def deserialize_json(data: dict) -> StartPatientInsightsJobRequest:
         raise DeserializationError(
             "StartPatientInsightsJobRequest.insights_context required"
         )
-    if "encounterContext" in data:
+    if data.get("encounterContext") is not None:
         import capo_connecthealth.types.patient_insights_encounter_context
 
         out["encounter_context"] = (
@@ -120,7 +120,7 @@ def deserialize_json(data: dict) -> StartPatientInsightsJobRequest:
         raise DeserializationError(
             "StartPatientInsightsJobRequest.encounter_context required"
         )
-    if "userContext" in data:
+    if data.get("userContext") is not None:
         import capo_connecthealth.types.user_context
 
         out["user_context"] = capo_connecthealth.types.user_context.deserialize_json(
@@ -130,7 +130,7 @@ def deserialize_json(data: dict) -> StartPatientInsightsJobRequest:
         raise DeserializationError(
             "StartPatientInsightsJobRequest.user_context required"
         )
-    if "inputDataConfig" in data:
+    if data.get("inputDataConfig") is not None:
         import capo_connecthealth.types.input_data_config
 
         out["input_data_config"] = (
@@ -142,7 +142,7 @@ def deserialize_json(data: dict) -> StartPatientInsightsJobRequest:
         raise DeserializationError(
             "StartPatientInsightsJobRequest.input_data_config required"
         )
-    if "outputDataConfig" in data:
+    if data.get("outputDataConfig") is not None:
         import capo_connecthealth.types.output_data_config
 
         out["output_data_config"] = (
@@ -154,6 +154,6 @@ def deserialize_json(data: dict) -> StartPatientInsightsJobRequest:
         raise DeserializationError(
             "StartPatientInsightsJobRequest.output_data_config required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

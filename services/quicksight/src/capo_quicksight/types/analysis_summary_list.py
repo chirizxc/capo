@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AnalysisSummaryList:
 
     out: AnalysisSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.analysis_summary.deserialize_json(item))
     return out

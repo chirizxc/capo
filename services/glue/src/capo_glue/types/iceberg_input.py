@@ -48,7 +48,7 @@ def serialize_aws_json_1_1(value: IcebergInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IcebergInput:
     out: IcebergInput = {}  # type: ignore[typeddict-item]
-    if "MetadataOperation" in data:
+    if data.get("MetadataOperation") is not None:
         import capo_glue.types.metadata_operation
 
         out["metadata_operation"] = (
@@ -58,9 +58,9 @@ def deserialize_aws_json_1_1(data: dict) -> IcebergInput:
         )
     else:
         raise DeserializationError("IcebergInput.metadata_operation required")
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
-    if "CreateIcebergTableInput" in data:
+    if data.get("CreateIcebergTableInput") is not None:
         import capo_glue.types.create_iceberg_table_input
 
         out["create_iceberg_table_input"] = (

@@ -34,21 +34,21 @@ def serialize_json(value: GetDataCellsFilterRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetDataCellsFilterRequest:
     out: GetDataCellsFilterRequest = {}  # type: ignore[typeddict-item]
-    if "TableCatalogId" in data:
+    if data.get("TableCatalogId") is not None:
         out["table_catalog_id"] = data["TableCatalogId"]
     else:
         raise DeserializationError(
             "GetDataCellsFilterRequest.table_catalog_id required"
         )
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError("GetDataCellsFilterRequest.database_name required")
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
     else:
         raise DeserializationError("GetDataCellsFilterRequest.table_name required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("GetDataCellsFilterRequest.name required")

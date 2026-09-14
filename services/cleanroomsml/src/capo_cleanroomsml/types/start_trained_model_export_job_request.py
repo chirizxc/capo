@@ -51,13 +51,13 @@ def serialize_json(value: StartTrainedModelExportJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartTrainedModelExportJobRequest:
     out: StartTrainedModelExportJobRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("StartTrainedModelExportJobRequest.name required")
-    if "trainedModelVersionIdentifier" in data:
+    if data.get("trainedModelVersionIdentifier") is not None:
         out["trained_model_version_identifier"] = data["trainedModelVersionIdentifier"]
-    if "outputConfiguration" in data:
+    if data.get("outputConfiguration") is not None:
         import capo_cleanroomsml.types.trained_model_export_output_configuration
 
         out["output_configuration"] = (
@@ -69,6 +69,6 @@ def deserialize_json(data: dict) -> StartTrainedModelExportJobRequest:
         raise DeserializationError(
             "StartTrainedModelExportJobRequest.output_configuration required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

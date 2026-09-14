@@ -42,31 +42,31 @@ def serialize_aws_json_1_1(value: CustomerMeCollectorInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CustomerMeCollectorInfo:
     out: CustomerMeCollectorInfo = {}  # type: ignore[typeddict-item]
-    if "activeMeCollectors" in data:
+    if data.get("activeMeCollectors") is not None:
         out["active_me_collectors"] = data["activeMeCollectors"]
     else:
         out["active_me_collectors"] = 0
-    if "healthyMeCollectors" in data:
+    if data.get("healthyMeCollectors") is not None:
         out["healthy_me_collectors"] = data["healthyMeCollectors"]
     else:
         out["healthy_me_collectors"] = 0
-    if "denyListedMeCollectors" in data:
+    if data.get("denyListedMeCollectors") is not None:
         out["deny_listed_me_collectors"] = data["denyListedMeCollectors"]
     else:
         out["deny_listed_me_collectors"] = 0
-    if "shutdownMeCollectors" in data:
+    if data.get("shutdownMeCollectors") is not None:
         out["shutdown_me_collectors"] = data["shutdownMeCollectors"]
     else:
         out["shutdown_me_collectors"] = 0
-    if "unhealthyMeCollectors" in data:
+    if data.get("unhealthyMeCollectors") is not None:
         out["unhealthy_me_collectors"] = data["unhealthyMeCollectors"]
     else:
         out["unhealthy_me_collectors"] = 0
-    if "totalMeCollectors" in data:
+    if data.get("totalMeCollectors") is not None:
         out["total_me_collectors"] = data["totalMeCollectors"]
     else:
         out["total_me_collectors"] = 0
-    if "unknownMeCollectors" in data:
+    if data.get("unknownMeCollectors") is not None:
         out["unknown_me_collectors"] = data["unknownMeCollectors"]
     else:
         out["unknown_me_collectors"] = 0

@@ -78,15 +78,17 @@ class Dashboard:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_marketplace_reporting.types.get_buyer_dashboard_input.GetBuyerDashboardInput = {}  # type: ignore[typeddict-item]
-        input_["dashboard_identifier"] = dashboard_identifier
-        input_["embedding_domains"] = embedding_domains
+        input_: capo_marketplace_reporting.types.get_buyer_dashboard_input.GetBuyerDashboardInput = {
+            "dashboard_identifier": dashboard_identifier,
+            "embedding_domains": embedding_domains,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -141,13 +143,15 @@ class AsyncDashboard:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_marketplace_reporting.types.get_buyer_dashboard_input.GetBuyerDashboardInput = {}  # type: ignore[typeddict-item]
-        input_["dashboard_identifier"] = dashboard_identifier
-        input_["embedding_domains"] = embedding_domains
+        input_: capo_marketplace_reporting.types.get_buyer_dashboard_input.GetBuyerDashboardInput = {
+            "dashboard_identifier": dashboard_identifier,
+            "embedding_domains": embedding_domains,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

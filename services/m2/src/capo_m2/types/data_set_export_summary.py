@@ -34,23 +34,23 @@ def serialize_json(value: DataSetExportSummary) -> dict:
 
 def deserialize_json(data: dict) -> DataSetExportSummary:
     out: DataSetExportSummary = {}  # type: ignore[typeddict-item]
-    if "total" in data:
+    if data.get("total") is not None:
         out["total"] = data["total"]
     else:
         out["total"] = 0
-    if "succeeded" in data:
+    if data.get("succeeded") is not None:
         out["succeeded"] = data["succeeded"]
     else:
         out["succeeded"] = 0
-    if "failed" in data:
+    if data.get("failed") is not None:
         out["failed"] = data["failed"]
     else:
         out["failed"] = 0
-    if "pending" in data:
+    if data.get("pending") is not None:
         out["pending"] = data["pending"]
     else:
         out["pending"] = 0
-    if "inProgress" in data:
+    if data.get("inProgress") is not None:
         out["in_progress"] = data["inProgress"]
     else:
         out["in_progress"] = 0

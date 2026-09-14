@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ItemPaths:
 
     out: ItemPaths = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_guardduty.types.item_path.deserialize_json(item))
     return out

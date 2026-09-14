@@ -27,7 +27,7 @@ def serialize_json(value: GetUserResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetUserResponse:
     out: GetUserResponse = {}  # type: ignore[typeddict-item]
-    if "userAliases" in data:
+    if data.get("userAliases") is not None:
         import capo_qbusiness.types.user_aliases
 
         out["user_aliases"] = capo_qbusiness.types.user_aliases.deserialize_json(

@@ -63,21 +63,21 @@ def serialize_json(value: UpdateAddonRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAddonRequest:
     out: UpdateAddonRequest = {}  # type: ignore[typeddict-item]
-    if "addonVersion" in data:
+    if data.get("addonVersion") is not None:
         out["addon_version"] = data["addonVersion"]
-    if "serviceAccountRoleArn" in data:
+    if data.get("serviceAccountRoleArn") is not None:
         out["service_account_role_arn"] = data["serviceAccountRoleArn"]
-    if "resolveConflicts" in data:
+    if data.get("resolveConflicts") is not None:
         import capo_eks.types.resolve_conflicts
 
         out["resolve_conflicts"] = capo_eks.types.resolve_conflicts.deserialize_json(
             data["resolveConflicts"]
         )
-    if "clientRequestToken" in data:
+    if data.get("clientRequestToken") is not None:
         out["client_request_token"] = data["clientRequestToken"]
-    if "configurationValues" in data:
+    if data.get("configurationValues") is not None:
         out["configuration_values"] = data["configurationValues"]
-    if "podIdentityAssociations" in data:
+    if data.get("podIdentityAssociations") is not None:
         import capo_eks.types.addon_pod_identity_associations_list
 
         out["pod_identity_associations"] = (

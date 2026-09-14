@@ -36,11 +36,11 @@ def serialize_aws_json_1_1(value: Predicate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Predicate:
     out: Predicate = {}  # type: ignore[typeddict-item]
-    if "Negated" in data:
+    if data.get("Negated") is not None:
         out["negated"] = data["Negated"]
     else:
         raise DeserializationError("Predicate.negated required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_waf_regional.types.predicate_type
 
         out["type"] = capo_waf_regional.types.predicate_type.deserialize_aws_json_1_1(
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> Predicate:
         )
     else:
         raise DeserializationError("Predicate.type required")
-    if "DataId" in data:
+    if data.get("DataId") is not None:
         out["data_id"] = data["DataId"]
     else:
         raise DeserializationError("Predicate.data_id required")

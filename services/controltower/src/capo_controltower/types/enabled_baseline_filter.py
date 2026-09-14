@@ -83,7 +83,7 @@ def serialize_json(value: EnabledBaselineFilter) -> dict:
 
 def deserialize_json(data: dict) -> EnabledBaselineFilter:
     out: EnabledBaselineFilter = {}  # type: ignore[typeddict-item]
-    if "targetIdentifiers" in data:
+    if data.get("targetIdentifiers") is not None:
         import capo_controltower.types.enabled_baseline_target_identifiers
 
         out["target_identifiers"] = (
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> EnabledBaselineFilter:
                 data["targetIdentifiers"]
             )
         )
-    if "baselineIdentifiers" in data:
+    if data.get("baselineIdentifiers") is not None:
         import capo_controltower.types.enabled_baseline_baseline_identifiers
 
         out["baseline_identifiers"] = (
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> EnabledBaselineFilter:
                 data["baselineIdentifiers"]
             )
         )
-    if "parentIdentifiers" in data:
+    if data.get("parentIdentifiers") is not None:
         import capo_controltower.types.enabled_baseline_parent_identifiers
 
         out["parent_identifiers"] = (
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> EnabledBaselineFilter:
                 data["parentIdentifiers"]
             )
         )
-    if "statuses" in data:
+    if data.get("statuses") is not None:
         import capo_controltower.types.enabled_baseline_enablement_statuses
 
         out["statuses"] = (
@@ -115,7 +115,7 @@ def deserialize_json(data: dict) -> EnabledBaselineFilter:
                 data["statuses"]
             )
         )
-    if "inheritanceDriftStatuses" in data:
+    if data.get("inheritanceDriftStatuses") is not None:
         import capo_controltower.types.enabled_baseline_drift_statuses
 
         out["inheritance_drift_statuses"] = (

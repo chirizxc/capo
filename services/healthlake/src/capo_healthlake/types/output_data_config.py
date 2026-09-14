@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: OutputDataConfig) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> OutputDataConfig:
-    if "S3Configuration" in data:
+    if data.get("S3Configuration") is not None:
         import capo_healthlake.types.s3_configuration
 
         return {

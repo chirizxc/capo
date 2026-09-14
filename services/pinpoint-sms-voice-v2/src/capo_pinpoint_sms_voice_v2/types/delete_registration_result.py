@@ -78,37 +78,37 @@ def serialize_aws_json_1_0(value: DeleteRegistrationResult) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteRegistrationResult:
     out: DeleteRegistrationResult = {}  # type: ignore[typeddict-item]
-    if "RegistrationArn" in data:
+    if data.get("RegistrationArn") is not None:
         out["registration_arn"] = data["RegistrationArn"]
     else:
         raise DeserializationError("DeleteRegistrationResult.registration_arn required")
-    if "RegistrationId" in data:
+    if data.get("RegistrationId") is not None:
         out["registration_id"] = data["RegistrationId"]
     else:
         raise DeserializationError("DeleteRegistrationResult.registration_id required")
-    if "RegistrationType" in data:
+    if data.get("RegistrationType") is not None:
         out["registration_type"] = data["RegistrationType"]
     else:
         raise DeserializationError(
             "DeleteRegistrationResult.registration_type required"
         )
-    if "RegistrationStatus" in data:
+    if data.get("RegistrationStatus") is not None:
         out["registration_status"] = data["RegistrationStatus"]
     else:
         raise DeserializationError(
             "DeleteRegistrationResult.registration_status required"
         )
-    if "CurrentVersionNumber" in data:
+    if data.get("CurrentVersionNumber") is not None:
         out["current_version_number"] = data["CurrentVersionNumber"]
     else:
         raise DeserializationError(
             "DeleteRegistrationResult.current_version_number required"
         )
-    if "ApprovedVersionNumber" in data:
+    if data.get("ApprovedVersionNumber") is not None:
         out["approved_version_number"] = data["ApprovedVersionNumber"]
-    if "LatestDeniedVersionNumber" in data:
+    if data.get("LatestDeniedVersionNumber") is not None:
         out["latest_denied_version_number"] = data["LatestDeniedVersionNumber"]
-    if "AdditionalAttributes" in data:
+    if data.get("AdditionalAttributes") is not None:
         import capo_pinpoint_sms_voice_v2.types.string_map
 
         out["additional_attributes"] = (
@@ -116,7 +116,7 @@ def deserialize_aws_json_1_0(data: dict) -> DeleteRegistrationResult:
                 data["AdditionalAttributes"]
             )
         )
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_pinpoint_sms_voice_v2.types._prelude.timestamp
 
         out["created_timestamp"] = (

@@ -34,10 +34,10 @@ def serialize_json(value: ListTelemetryRulesInput) -> dict:
 
 def deserialize_json(data: dict) -> ListTelemetryRulesInput:
     out: ListTelemetryRulesInput = {}  # type: ignore[typeddict-item]
-    if "RuleNamePrefix" in data:
+    if data.get("RuleNamePrefix") is not None:
         out["rule_name_prefix"] = data["RuleNamePrefix"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

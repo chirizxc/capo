@@ -28,7 +28,7 @@ def serialize_json(value: BatchGetJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetJobRequest:
     out: BatchGetJobRequest = {}  # type: ignore[typeddict-item]
-    if "identifiers" in data:
+    if data.get("identifiers") is not None:
         import capo_deadline.types.batch_get_job_identifiers
 
         out["identifiers"] = (

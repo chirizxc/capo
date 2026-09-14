@@ -13,9 +13,9 @@ from capo_vpc_lattice import AsyncVPCLatticeClient
 
 
 async def main():
-    async with AsyncVPCLatticeClient() as s3:
+    async with AsyncVPCLatticeClient() as vpc_lattice:
         # Example: call the batch_update_rule operation
-        response = await s3.batch_update_rule()
+        response = await vpc_lattice.batch_update_rule()
         print(response["successful"])
 ```
 
@@ -28,9 +28,9 @@ from capo_vpc_lattice import AsyncVPCLatticeClient
 
 
 async def main():
-    async with AsyncVPCLatticeClient() as s3:
+    async with AsyncVPCLatticeClient() as vpc_lattice:
         # Example: paginate over list_service_network_vpc_endpoint_associations
-        async for item in s3.iter_list_service_network_vpc_endpoint_associations():
+        async for item in vpc_lattice.iter_list_service_network_vpc_endpoint_associations():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_vpc_lattice.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncVPCLatticeClient() as s3:
+    async with AsyncVPCLatticeClient() as vpc_lattice:
         try:
-            await s3.batch_update_rule()
+            await vpc_lattice.batch_update_rule()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_vpc_lattice import AsyncVPCLatticeClient
 
 
 async def main():
-    async with AsyncVPCLatticeClient() as s3:
+    async with AsyncVPCLatticeClient() as vpc_lattice:
         # Default: 3 attempts for every operation
-        response = await s3.batch_update_rule()
+        response = await vpc_lattice.batch_update_rule()
 
         # Override per operation
-        response = await s3.batch_update_rule(config_overrides={"retry_max_attempts": 5})
+        response = await vpc_lattice.batch_update_rule(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.batch_update_rule(config_overrides={"retry_max_attempts": 1})
+        response = await vpc_lattice.batch_update_rule(config_overrides={"retry_max_attempts": 1})
 ```

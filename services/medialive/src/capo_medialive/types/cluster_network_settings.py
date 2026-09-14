@@ -36,9 +36,9 @@ def serialize_json(value: ClusterNetworkSettings) -> dict:
 
 def deserialize_json(data: dict) -> ClusterNetworkSettings:
     out: ClusterNetworkSettings = {}  # type: ignore[typeddict-item]
-    if "defaultRoute" in data:
+    if data.get("defaultRoute") is not None:
         out["default_route"] = data["defaultRoute"]
-    if "interfaceMappings" in data:
+    if data.get("interfaceMappings") is not None:
         import capo_medialive.types.__list_of_interface_mapping
 
         out["interface_mappings"] = (

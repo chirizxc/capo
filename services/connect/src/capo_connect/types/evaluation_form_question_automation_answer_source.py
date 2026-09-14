@@ -30,7 +30,7 @@ def serialize_json(value: EvaluationFormQuestionAutomationAnswerSource) -> dict:
 
 def deserialize_json(data: dict) -> EvaluationFormQuestionAutomationAnswerSource:
     out: EvaluationFormQuestionAutomationAnswerSource = {}  # type: ignore[typeddict-item]
-    if "SourceType" in data:
+    if data.get("SourceType") is not None:
         import capo_connect.types.evaluation_form_question_automation_answer_source_type
 
         out["source_type"] = (

@@ -43,7 +43,7 @@ def serialize_json(value: AutoSubscriptionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AutoSubscriptionConfiguration:
     out: AutoSubscriptionConfiguration = {}  # type: ignore[typeddict-item]
-    if "autoSubscribe" in data:
+    if data.get("autoSubscribe") is not None:
         import capo_qbusiness.types.auto_subscription_status
 
         out["auto_subscribe"] = (
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> AutoSubscriptionConfiguration:
         raise DeserializationError(
             "AutoSubscriptionConfiguration.auto_subscribe required"
         )
-    if "defaultSubscriptionType" in data:
+    if data.get("defaultSubscriptionType") is not None:
         import capo_qbusiness.types.subscription_type
 
         out["default_subscription_type"] = (

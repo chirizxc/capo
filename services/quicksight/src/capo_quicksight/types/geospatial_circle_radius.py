@@ -17,12 +17,20 @@ class GeospatialCircleRadius(TypedDict, closed=True):
 def serialize_json(value: GeospatialCircleRadius) -> dict:
     out: dict = {}
     if "radius" in value:
-        out["Radius"] = value["radius"]
+        out["Radius"] = (
+            "NaN"
+            if value["radius"] != value["radius"]
+            else "Infinity"
+            if value["radius"] == float("inf")
+            else "-Infinity"
+            if value["radius"] == float("-inf")
+            else value["radius"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> GeospatialCircleRadius:
     out: GeospatialCircleRadius = {}  # type: ignore[typeddict-item]
-    if "Radius" in data:
-        out["radius"] = data["Radius"]
+    if data.get("Radius") is not None:
+        out["radius"] = float(data["Radius"])
     return out

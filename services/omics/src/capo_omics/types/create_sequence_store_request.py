@@ -88,29 +88,29 @@ def serialize_json(value: CreateSequenceStoreRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateSequenceStoreRequest:
     out: CreateSequenceStoreRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateSequenceStoreRequest.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "sseConfig" in data:
+    if data.get("sseConfig") is not None:
         import capo_omics.types.sse_config
 
         out["sse_config"] = capo_omics.types.sse_config.deserialize_json(
             data["sseConfig"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_omics.types.tag_map
 
         out["tags"] = capo_omics.types.tag_map.deserialize_json(data["tags"])
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "fallbackLocation" in data:
+    if data.get("fallbackLocation") is not None:
         out["fallback_location"] = data["fallbackLocation"]
-    if "eTagAlgorithmFamily" in data:
+    if data.get("eTagAlgorithmFamily") is not None:
         out["e_tag_algorithm_family"] = data["eTagAlgorithmFamily"]
-    if "propagatedSetLevelTags" in data:
+    if data.get("propagatedSetLevelTags") is not None:
         import capo_omics.types.propagated_set_level_tags
 
         out["propagated_set_level_tags"] = (
@@ -118,7 +118,7 @@ def deserialize_json(data: dict) -> CreateSequenceStoreRequest:
                 data["propagatedSetLevelTags"]
             )
         )
-    if "s3AccessConfig" in data:
+    if data.get("s3AccessConfig") is not None:
         import capo_omics.types.s3_access_config
 
         out["s3_access_config"] = capo_omics.types.s3_access_config.deserialize_json(

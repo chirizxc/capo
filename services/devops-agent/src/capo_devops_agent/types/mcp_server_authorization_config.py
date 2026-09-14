@@ -92,7 +92,7 @@ def serialize_json(value: MCPServerAuthorizationConfig) -> dict:
 
 
 def deserialize_json(data: dict) -> MCPServerAuthorizationConfig:
-    if "oAuthClientCredentials" in data:
+    if data.get("oAuthClientCredentials") is not None:
         import capo_devops_agent.types.mcp_server_o_auth_client_credentials_config
 
         return {
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> MCPServerAuthorizationConfig:
                 data["oAuthClientCredentials"]
             )
         }
-    elif "oAuth3LO" in data:
+    elif data.get("oAuth3LO") is not None:
         import capo_devops_agent.types.mcp_server_o_auth3_lo_config
 
         return {
@@ -108,7 +108,7 @@ def deserialize_json(data: dict) -> MCPServerAuthorizationConfig:
                 data["oAuth3LO"]
             )
         }
-    elif "apiKey" in data:
+    elif data.get("apiKey") is not None:
         import capo_devops_agent.types.mcp_server_api_key_config
 
         return {
@@ -116,7 +116,7 @@ def deserialize_json(data: dict) -> MCPServerAuthorizationConfig:
                 data["apiKey"]
             )
         }
-    elif "bearerToken" in data:
+    elif data.get("bearerToken") is not None:
         import capo_devops_agent.types.mcp_server_bearer_token_config
 
         return {
@@ -124,7 +124,7 @@ def deserialize_json(data: dict) -> MCPServerAuthorizationConfig:
                 data["bearerToken"]
             )
         }
-    elif "authorizationDiscovery" in data:
+    elif data.get("authorizationDiscovery") is not None:
         import capo_devops_agent.types.mcp_server_authorization_discovery_config
 
         return {

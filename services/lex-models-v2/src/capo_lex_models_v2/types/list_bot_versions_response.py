@@ -41,9 +41,9 @@ def serialize_json(value: ListBotVersionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListBotVersionsResponse:
     out: ListBotVersionsResponse = {}  # type: ignore[typeddict-item]
-    if "botId" in data:
+    if data.get("botId") is not None:
         out["bot_id"] = data["botId"]
-    if "botVersionSummaries" in data:
+    if data.get("botVersionSummaries") is not None:
         import capo_lex_models_v2.types.bot_version_summary_list
 
         out["bot_version_summaries"] = (
@@ -51,6 +51,6 @@ def deserialize_json(data: dict) -> ListBotVersionsResponse:
                 data["botVersionSummaries"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

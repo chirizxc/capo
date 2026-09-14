@@ -32,7 +32,7 @@ def serialize_json(value: StreamingConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> StreamingConfiguration:
     out: StreamingConfiguration = {}  # type: ignore[typeddict-item]
-    if "DataType" in data:
+    if data.get("DataType") is not None:
         import capo_chime_sdk_messaging.types.messaging_data_type
 
         out["data_type"] = (
@@ -42,7 +42,7 @@ def deserialize_json(data: dict) -> StreamingConfiguration:
         )
     else:
         raise DeserializationError("StreamingConfiguration.data_type required")
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     else:
         raise DeserializationError("StreamingConfiguration.resource_arn required")

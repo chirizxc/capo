@@ -20,19 +20,35 @@ class UncertaintyRange(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: UncertaintyRange) -> dict:
     out: dict = {}
-    out["lowerBoundValue"] = value["lower_bound_value"]
-    out["upperBoundValue"] = value["upper_bound_value"]
+    out["lowerBoundValue"] = (
+        "NaN"
+        if value["lower_bound_value"] != value["lower_bound_value"]
+        else "Infinity"
+        if value["lower_bound_value"] == float("inf")
+        else "-Infinity"
+        if value["lower_bound_value"] == float("-inf")
+        else value["lower_bound_value"]
+    )
+    out["upperBoundValue"] = (
+        "NaN"
+        if value["upper_bound_value"] != value["upper_bound_value"]
+        else "Infinity"
+        if value["upper_bound_value"] == float("inf")
+        else "-Infinity"
+        if value["upper_bound_value"] == float("-inf")
+        else value["upper_bound_value"]
+    )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> UncertaintyRange:
     out: UncertaintyRange = {}  # type: ignore[typeddict-item]
-    if "lowerBoundValue" in data:
-        out["lower_bound_value"] = data["lowerBoundValue"]
+    if data.get("lowerBoundValue") is not None:
+        out["lower_bound_value"] = float(data["lowerBoundValue"])
     else:
         raise DeserializationError("UncertaintyRange.lower_bound_value required")
-    if "upperBoundValue" in data:
-        out["upper_bound_value"] = data["upperBoundValue"]
+    if data.get("upperBoundValue") is not None:
+        out["upper_bound_value"] = float(data["upperBoundValue"])
     else:
         raise DeserializationError("UncertaintyRange.upper_bound_value required")
     return out

@@ -25,6 +25,6 @@ def serialize_json(value: GreeceAdditionalInfo) -> dict:
 
 def deserialize_json(data: dict) -> GreeceAdditionalInfo:
     out: GreeceAdditionalInfo = {}  # type: ignore[typeddict-item]
-    if "contractingAuthorityCode" in data:
+    if data.get("contractingAuthorityCode") is not None:
         out["contracting_authority_code"] = data["contractingAuthorityCode"]
     return out

@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> SiteList:
 
     out: SiteList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_networkmanager.types.site.deserialize_json(item))
     return out

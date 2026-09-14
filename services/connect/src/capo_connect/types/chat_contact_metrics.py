@@ -70,19 +70,19 @@ def serialize_json(value: ChatContactMetrics) -> dict:
 
 def deserialize_json(data: dict) -> ChatContactMetrics:
     out: ChatContactMetrics = {}  # type: ignore[typeddict-item]
-    if "MultiParty" in data:
+    if data.get("MultiParty") is not None:
         out["multi_party"] = data["MultiParty"]
-    if "TotalMessages" in data:
+    if data.get("TotalMessages") is not None:
         out["total_messages"] = data["TotalMessages"]
-    if "TotalBotMessages" in data:
+    if data.get("TotalBotMessages") is not None:
         out["total_bot_messages"] = data["TotalBotMessages"]
-    if "TotalBotMessageLengthInChars" in data:
+    if data.get("TotalBotMessageLengthInChars") is not None:
         out["total_bot_message_length_in_chars"] = data["TotalBotMessageLengthInChars"]
-    if "ConversationCloseTimeInMillis" in data:
+    if data.get("ConversationCloseTimeInMillis") is not None:
         out["conversation_close_time_in_millis"] = data["ConversationCloseTimeInMillis"]
-    if "ConversationTurnCount" in data:
+    if data.get("ConversationTurnCount") is not None:
         out["conversation_turn_count"] = data["ConversationTurnCount"]
-    if "AgentFirstResponseTimestamp" in data:
+    if data.get("AgentFirstResponseTimestamp") is not None:
         import capo_connect.types.timestamp
 
         out["agent_first_response_timestamp"] = (
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> ChatContactMetrics:
                 data["AgentFirstResponseTimestamp"]
             )
         )
-    if "AgentFirstResponseTimeInMillis" in data:
+    if data.get("AgentFirstResponseTimeInMillis") is not None:
         out["agent_first_response_time_in_millis"] = data[
             "AgentFirstResponseTimeInMillis"
         ]

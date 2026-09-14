@@ -112,9 +112,9 @@ def serialize_aws_json_1_1(value: Workteam) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Workteam:
     out: Workteam = {}  # type: ignore[typeddict-item]
-    if "WorkteamName" in data:
+    if data.get("WorkteamName") is not None:
         out["workteam_name"] = data["WorkteamName"]
-    if "MemberDefinitions" in data:
+    if data.get("MemberDefinitions") is not None:
         import capo_sagemaker.types.member_definitions
 
         out["member_definitions"] = (
@@ -122,11 +122,11 @@ def deserialize_aws_json_1_1(data: dict) -> Workteam:
                 data["MemberDefinitions"]
             )
         )
-    if "WorkteamArn" in data:
+    if data.get("WorkteamArn") is not None:
         out["workteam_arn"] = data["WorkteamArn"]
-    if "WorkforceArn" in data:
+    if data.get("WorkforceArn") is not None:
         out["workforce_arn"] = data["WorkforceArn"]
-    if "ProductListingIds" in data:
+    if data.get("ProductListingIds") is not None:
         import capo_sagemaker.types.product_listings
 
         out["product_listing_ids"] = (
@@ -134,17 +134,17 @@ def deserialize_aws_json_1_1(data: dict) -> Workteam:
                 data["ProductListingIds"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "SubDomain" in data:
+    if data.get("SubDomain") is not None:
         out["sub_domain"] = data["SubDomain"]
-    if "CreateDate" in data:
+    if data.get("CreateDate") is not None:
         import capo_sagemaker.types.timestamp
 
         out["create_date"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreateDate"]
         )
-    if "LastUpdatedDate" in data:
+    if data.get("LastUpdatedDate") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_updated_date"] = (
@@ -152,7 +152,7 @@ def deserialize_aws_json_1_1(data: dict) -> Workteam:
                 data["LastUpdatedDate"]
             )
         )
-    if "NotificationConfiguration" in data:
+    if data.get("NotificationConfiguration") is not None:
         import capo_sagemaker.types.notification_configuration
 
         out["notification_configuration"] = (
@@ -160,7 +160,7 @@ def deserialize_aws_json_1_1(data: dict) -> Workteam:
                 data["NotificationConfiguration"]
             )
         )
-    if "WorkerAccessConfiguration" in data:
+    if data.get("WorkerAccessConfiguration") is not None:
         import capo_sagemaker.types.worker_access_configuration
 
         out["worker_access_configuration"] = (

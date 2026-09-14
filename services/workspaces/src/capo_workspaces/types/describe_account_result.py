@@ -58,7 +58,7 @@ def serialize_aws_json_1_1(value: DescribeAccountResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeAccountResult:
     out: DescribeAccountResult = {}  # type: ignore[typeddict-item]
-    if "DedicatedTenancySupport" in data:
+    if data.get("DedicatedTenancySupport") is not None:
         import capo_workspaces.types.dedicated_tenancy_support_result_enum
 
         out["dedicated_tenancy_support"] = (
@@ -66,11 +66,11 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAccountResult:
                 data["DedicatedTenancySupport"]
             )
         )
-    if "DedicatedTenancyManagementCidrRange" in data:
+    if data.get("DedicatedTenancyManagementCidrRange") is not None:
         out["dedicated_tenancy_management_cidr_range"] = data[
             "DedicatedTenancyManagementCidrRange"
         ]
-    if "DedicatedTenancyAccountType" in data:
+    if data.get("DedicatedTenancyAccountType") is not None:
         import capo_workspaces.types.dedicated_tenancy_account_type
 
         out["dedicated_tenancy_account_type"] = (
@@ -78,6 +78,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAccountResult:
                 data["DedicatedTenancyAccountType"]
             )
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

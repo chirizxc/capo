@@ -53,7 +53,7 @@ def serialize_json(value: InlineDocumentEnrichmentConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> InlineDocumentEnrichmentConfiguration:
     out: InlineDocumentEnrichmentConfiguration = {}  # type: ignore[typeddict-item]
-    if "condition" in data:
+    if data.get("condition") is not None:
         import capo_qbusiness.types.document_attribute_condition
 
         out["condition"] = (
@@ -61,13 +61,13 @@ def deserialize_json(data: dict) -> InlineDocumentEnrichmentConfiguration:
                 data["condition"]
             )
         )
-    if "target" in data:
+    if data.get("target") is not None:
         import capo_qbusiness.types.document_attribute_target
 
         out["target"] = capo_qbusiness.types.document_attribute_target.deserialize_json(
             data["target"]
         )
-    if "documentContentOperator" in data:
+    if data.get("documentContentOperator") is not None:
         import capo_qbusiness.types.document_content_operator
 
         out["document_content_operator"] = (

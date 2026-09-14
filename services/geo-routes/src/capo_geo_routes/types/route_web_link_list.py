@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> RouteWebLinkList:
 
     out: RouteWebLinkList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_geo_routes.types.route_web_link.deserialize_json(item))
     return out

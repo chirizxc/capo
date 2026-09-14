@@ -68,7 +68,7 @@ def serialize_json(value: DialerConfig) -> dict:
 
 
 def deserialize_json(data: dict) -> DialerConfig:
-    if "progressiveDialerConfig" in data:
+    if data.get("progressiveDialerConfig") is not None:
         import capo_connectcampaigns.types.progressive_dialer_config
 
         return {
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> DialerConfig:
                 data["progressiveDialerConfig"]
             )
         }
-    elif "predictiveDialerConfig" in data:
+    elif data.get("predictiveDialerConfig") is not None:
         import capo_connectcampaigns.types.predictive_dialer_config
 
         return {
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> DialerConfig:
                 data["predictiveDialerConfig"]
             )
         }
-    elif "agentlessDialerConfig" in data:
+    elif data.get("agentlessDialerConfig") is not None:
         import capo_connectcampaigns.types.agentless_dialer_config
 
         return {

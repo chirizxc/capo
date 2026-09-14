@@ -32,9 +32,9 @@ def serialize_json(value: ListPipelinesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListPipelinesResponse:
     out: ListPipelinesResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Pipelines" in data:
+    if data.get("Pipelines") is not None:
         import capo_osis.types.pipeline_summary_list
 
         out["pipelines"] = capo_osis.types.pipeline_summary_list.deserialize_json(

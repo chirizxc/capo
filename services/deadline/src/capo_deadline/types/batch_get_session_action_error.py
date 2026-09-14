@@ -50,25 +50,25 @@ def serialize_json(value: BatchGetSessionActionError) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetSessionActionError:
     out: BatchGetSessionActionError = {}  # type: ignore[typeddict-item]
-    if "farmId" in data:
+    if data.get("farmId") is not None:
         out["farm_id"] = data["farmId"]
     else:
         raise DeserializationError("BatchGetSessionActionError.farm_id required")
-    if "queueId" in data:
+    if data.get("queueId") is not None:
         out["queue_id"] = data["queueId"]
     else:
         raise DeserializationError("BatchGetSessionActionError.queue_id required")
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
     else:
         raise DeserializationError("BatchGetSessionActionError.job_id required")
-    if "sessionActionId" in data:
+    if data.get("sessionActionId") is not None:
         out["session_action_id"] = data["sessionActionId"]
     else:
         raise DeserializationError(
             "BatchGetSessionActionError.session_action_id required"
         )
-    if "code" in data:
+    if data.get("code") is not None:
         import capo_deadline.types.batch_get_session_action_error_code
 
         out["code"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> BatchGetSessionActionError:
         )
     else:
         raise DeserializationError("BatchGetSessionActionError.code required")
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("BatchGetSessionActionError.message required")

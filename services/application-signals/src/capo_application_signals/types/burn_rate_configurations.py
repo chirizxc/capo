@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> BurnRateConfigurations:
 
     out: BurnRateConfigurations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_application_signals.types.burn_rate_configuration.deserialize_json(
                 item

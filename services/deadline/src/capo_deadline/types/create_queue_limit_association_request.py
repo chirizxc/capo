@@ -31,13 +31,13 @@ def serialize_json(value: CreateQueueLimitAssociationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateQueueLimitAssociationRequest:
     out: CreateQueueLimitAssociationRequest = {}  # type: ignore[typeddict-item]
-    if "queueId" in data:
+    if data.get("queueId") is not None:
         out["queue_id"] = data["queueId"]
     else:
         raise DeserializationError(
             "CreateQueueLimitAssociationRequest.queue_id required"
         )
-    if "limitId" in data:
+    if data.get("limitId") is not None:
         out["limit_id"] = data["limitId"]
     else:
         raise DeserializationError(

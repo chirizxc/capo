@@ -30,7 +30,7 @@ def serialize_json(value: BatchAssociateCodeSecurityScanConfigurationRequest) ->
 
 def deserialize_json(data: dict) -> BatchAssociateCodeSecurityScanConfigurationRequest:
     out: BatchAssociateCodeSecurityScanConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "associateConfigurationRequests" in data:
+    if data.get("associateConfigurationRequests") is not None:
         import capo_inspector2.types.associate_configuration_request_list
 
         out["associate_configuration_requests"] = (

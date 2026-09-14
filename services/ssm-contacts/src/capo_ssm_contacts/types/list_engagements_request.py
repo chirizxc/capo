@@ -44,13 +44,13 @@ def serialize_aws_json_1_1(value: ListEngagementsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListEngagementsRequest:
     out: ListEngagementsRequest = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "IncidentId" in data:
+    if data.get("IncidentId") is not None:
         out["incident_id"] = data["IncidentId"]
-    if "TimeRangeValue" in data:
+    if data.get("TimeRangeValue") is not None:
         import capo_ssm_contacts.types.time_range
 
         out["time_range_value"] = (

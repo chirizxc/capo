@@ -26,7 +26,7 @@ def serialize_json(value: ValidatePipelineRequest) -> dict:
 
 def deserialize_json(data: dict) -> ValidatePipelineRequest:
     out: ValidatePipelineRequest = {}  # type: ignore[typeddict-item]
-    if "PipelineConfigurationBody" in data:
+    if data.get("PipelineConfigurationBody") is not None:
         out["pipeline_configuration_body"] = data["PipelineConfigurationBody"]
     else:
         raise DeserializationError(

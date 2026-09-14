@@ -94,11 +94,11 @@ def serialize_json(value: PivotTableVisual) -> dict:
 
 def deserialize_json(data: dict) -> PivotTableVisual:
     out: PivotTableVisual = {}  # type: ignore[typeddict-item]
-    if "VisualId" in data:
+    if data.get("VisualId") is not None:
         out["visual_id"] = data["VisualId"]
     else:
         raise DeserializationError("PivotTableVisual.visual_id required")
-    if "Title" in data:
+    if data.get("Title") is not None:
         import capo_quicksight.types.visual_title_label_options
 
         out["title"] = (
@@ -106,7 +106,7 @@ def deserialize_json(data: dict) -> PivotTableVisual:
                 data["Title"]
             )
         )
-    if "Subtitle" in data:
+    if data.get("Subtitle") is not None:
         import capo_quicksight.types.visual_subtitle_label_options
 
         out["subtitle"] = (
@@ -114,7 +114,7 @@ def deserialize_json(data: dict) -> PivotTableVisual:
                 data["Subtitle"]
             )
         )
-    if "ChartConfiguration" in data:
+    if data.get("ChartConfiguration") is not None:
         import capo_quicksight.types.pivot_table_configuration
 
         out["chart_configuration"] = (
@@ -122,7 +122,7 @@ def deserialize_json(data: dict) -> PivotTableVisual:
                 data["ChartConfiguration"]
             )
         )
-    if "ConditionalFormatting" in data:
+    if data.get("ConditionalFormatting") is not None:
         import capo_quicksight.types.pivot_table_conditional_formatting
 
         out["conditional_formatting"] = (
@@ -130,7 +130,7 @@ def deserialize_json(data: dict) -> PivotTableVisual:
                 data["ConditionalFormatting"]
             )
         )
-    if "Actions" in data:
+    if data.get("Actions") is not None:
         import capo_quicksight.types.visual_custom_action_list
 
         out["actions"] = (
@@ -138,6 +138,6 @@ def deserialize_json(data: dict) -> PivotTableVisual:
                 data["Actions"]
             )
         )
-    if "VisualContentAltText" in data:
+    if data.get("VisualContentAltText") is not None:
         out["visual_content_alt_text"] = data["VisualContentAltText"]
     return out

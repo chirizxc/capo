@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> SelectedAnalysisMethods:
 
     out: SelectedAnalysisMethods = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanrooms.types.selected_analysis_method.deserialize_json(item)
         )

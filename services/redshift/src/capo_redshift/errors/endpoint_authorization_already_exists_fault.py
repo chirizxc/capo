@@ -39,15 +39,20 @@ class EndpointAuthorizationAlreadyExistsFault(ServiceError):
 
     code: str | None = "EndpointAuthorizationAlreadyExistsFault"
 
-    def __init__(self, data: EndpointAuthorizationAlreadyExistsFault_):
+    def __init__(
+        self, data: EndpointAuthorizationAlreadyExistsFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="EndpointAuthorizationAlreadyExistsFault",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "EndpointAuthorizationAlreadyExistsFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "EndpointAuthorizationAlreadyExistsFault":
+        return cls(deserialize_query(el), message)

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 from capo_proton._services._pipeline import (
@@ -96,13 +97,15 @@ class EnvironmentAccountConnectionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.create_environment_account_connection_input.CreateEnvironmentAccountConnectionInput = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["management_account_id"] = management_account_id
+        input_: capo_proton.types.create_environment_account_connection_input.CreateEnvironmentAccountConnectionInput = {
+            "management_account_id": management_account_id,
+            "environment_name": environment_name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if role_arn is not None:
             input_["role_arn"] = role_arn
-        input_["environment_name"] = environment_name
         if tags is not None:
             input_["tags"] = tags
         if component_role_arn is not None:
@@ -115,6 +118,7 @@ class EnvironmentAccountConnectionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -152,14 +156,16 @@ class EnvironmentAccountConnectionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.get_environment_account_connection_input.GetEnvironmentAccountConnectionInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_proton.types.get_environment_account_connection_input.GetEnvironmentAccountConnectionInput = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -204,8 +210,9 @@ class EnvironmentAccountConnectionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.update_environment_account_connection_input.UpdateEnvironmentAccountConnectionInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_proton.types.update_environment_account_connection_input.UpdateEnvironmentAccountConnectionInput = {
+            "id": id
+        }
         if role_arn is not None:
             input_["role_arn"] = role_arn
         if component_role_arn is not None:
@@ -218,6 +225,7 @@ class EnvironmentAccountConnectionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -256,14 +264,16 @@ class EnvironmentAccountConnectionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.delete_environment_account_connection_input.DeleteEnvironmentAccountConnectionInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_proton.types.delete_environment_account_connection_input.DeleteEnvironmentAccountConnectionInput = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -314,8 +324,9 @@ class EnvironmentAccountConnectionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.list_environment_account_connections_input.ListEnvironmentAccountConnectionsInput = {}  # type: ignore[typeddict-item]
-        input_["requested_by"] = requested_by
+        input_: capo_proton.types.list_environment_account_connections_input.ListEnvironmentAccountConnectionsInput = {
+            "requested_by": requested_by
+        }
         if environment_name is not None:
             input_["environment_name"] = environment_name
         if statuses is not None:
@@ -330,6 +341,7 @@ class EnvironmentAccountConnectionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def accept_environment_account_connection(
@@ -368,14 +380,16 @@ class EnvironmentAccountConnectionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.accept_environment_account_connection_input.AcceptEnvironmentAccountConnectionInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_proton.types.accept_environment_account_connection_input.AcceptEnvironmentAccountConnectionInput = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def reject_environment_account_connection(
@@ -414,14 +428,16 @@ class EnvironmentAccountConnectionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.reject_environment_account_connection_input.RejectEnvironmentAccountConnectionInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_proton.types.reject_environment_account_connection_input.RejectEnvironmentAccountConnectionInput = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -478,13 +494,15 @@ class AsyncEnvironmentAccountConnectionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.create_environment_account_connection_input.CreateEnvironmentAccountConnectionInput = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["management_account_id"] = management_account_id
+        input_: capo_proton.types.create_environment_account_connection_input.CreateEnvironmentAccountConnectionInput = {
+            "management_account_id": management_account_id,
+            "environment_name": environment_name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if role_arn is not None:
             input_["role_arn"] = role_arn
-        input_["environment_name"] = environment_name
         if tags is not None:
             input_["tags"] = tags
         if component_role_arn is not None:
@@ -497,6 +515,7 @@ class AsyncEnvironmentAccountConnectionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -535,14 +554,16 @@ class AsyncEnvironmentAccountConnectionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.get_environment_account_connection_input.GetEnvironmentAccountConnectionInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_proton.types.get_environment_account_connection_input.GetEnvironmentAccountConnectionInput = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -588,8 +609,9 @@ class AsyncEnvironmentAccountConnectionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.update_environment_account_connection_input.UpdateEnvironmentAccountConnectionInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_proton.types.update_environment_account_connection_input.UpdateEnvironmentAccountConnectionInput = {
+            "id": id
+        }
         if role_arn is not None:
             input_["role_arn"] = role_arn
         if component_role_arn is not None:
@@ -602,6 +624,7 @@ class AsyncEnvironmentAccountConnectionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -641,14 +664,16 @@ class AsyncEnvironmentAccountConnectionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.delete_environment_account_connection_input.DeleteEnvironmentAccountConnectionInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_proton.types.delete_environment_account_connection_input.DeleteEnvironmentAccountConnectionInput = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -700,8 +725,9 @@ class AsyncEnvironmentAccountConnectionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.list_environment_account_connections_input.ListEnvironmentAccountConnectionsInput = {}  # type: ignore[typeddict-item]
-        input_["requested_by"] = requested_by
+        input_: capo_proton.types.list_environment_account_connections_input.ListEnvironmentAccountConnectionsInput = {
+            "requested_by": requested_by
+        }
         if environment_name is not None:
             input_["environment_name"] = environment_name
         if statuses is not None:
@@ -716,6 +742,7 @@ class AsyncEnvironmentAccountConnectionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def accept_environment_account_connection(
@@ -755,14 +782,16 @@ class AsyncEnvironmentAccountConnectionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.accept_environment_account_connection_input.AcceptEnvironmentAccountConnectionInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_proton.types.accept_environment_account_connection_input.AcceptEnvironmentAccountConnectionInput = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reject_environment_account_connection(
@@ -802,12 +831,14 @@ class AsyncEnvironmentAccountConnectionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.reject_environment_account_connection_input.RejectEnvironmentAccountConnectionInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_proton.types.reject_environment_account_connection_input.RejectEnvironmentAccountConnectionInput = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

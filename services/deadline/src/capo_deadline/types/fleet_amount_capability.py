@@ -23,22 +23,38 @@ class FleetAmountCapability(TypedDict, closed=True):
 def serialize_json(value: FleetAmountCapability) -> dict:
     out: dict = {}
     out["name"] = value["name"]
-    out["min"] = value["min"]
+    out["min"] = (
+        "NaN"
+        if value["min"] != value["min"]
+        else "Infinity"
+        if value["min"] == float("inf")
+        else "-Infinity"
+        if value["min"] == float("-inf")
+        else value["min"]
+    )
     if "max" in value:
-        out["max"] = value["max"]
+        out["max"] = (
+            "NaN"
+            if value["max"] != value["max"]
+            else "Infinity"
+            if value["max"] == float("inf")
+            else "-Infinity"
+            if value["max"] == float("-inf")
+            else value["max"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> FleetAmountCapability:
     out: FleetAmountCapability = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("FleetAmountCapability.name required")
-    if "min" in data:
-        out["min"] = data["min"]
+    if data.get("min") is not None:
+        out["min"] = float(data["min"])
     else:
         raise DeserializationError("FleetAmountCapability.min required")
-    if "max" in data:
-        out["max"] = data["max"]
+    if data.get("max") is not None:
+        out["max"] = float(data["max"])
     return out

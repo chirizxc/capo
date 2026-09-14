@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: CertificateOptions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CertificateOptions:
     out: CertificateOptions = {}  # type: ignore[typeddict-item]
-    if "CertificateTransparencyLoggingPreference" in data:
+    if data.get("CertificateTransparencyLoggingPreference") is not None:
         import capo_acm.types.certificate_transparency_logging_preference
 
         out["certificate_transparency_logging_preference"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> CertificateOptions:
                 data["CertificateTransparencyLoggingPreference"]
             )
         )
-    if "Export" in data:
+    if data.get("Export") is not None:
         import capo_acm.types.certificate_export
 
         out["export"] = capo_acm.types.certificate_export.deserialize_aws_json_1_1(

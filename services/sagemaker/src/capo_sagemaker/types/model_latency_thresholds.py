@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ModelLatencyThresholds:
 
     out: ModelLatencyThresholds = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.model_latency_threshold.deserialize_aws_json_1_1(item)
         )

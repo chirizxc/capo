@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AutomationExecutionSet:
 
     out: AutomationExecutionSet = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_ssm_incidents.types.automation_execution.deserialize_json(item))
     return out

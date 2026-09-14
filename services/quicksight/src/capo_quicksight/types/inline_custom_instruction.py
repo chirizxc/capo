@@ -37,11 +37,11 @@ def serialize_json(value: InlineCustomInstruction) -> dict:
 
 def deserialize_json(data: dict) -> InlineCustomInstruction:
     out: InlineCustomInstruction = {}  # type: ignore[typeddict-item]
-    if "InstructionText" in data:
+    if data.get("InstructionText") is not None:
         out["instruction_text"] = data["InstructionText"]
     else:
         raise DeserializationError("InlineCustomInstruction.instruction_text required")
-    if "UploadedDocumentMetadata" in data:
+    if data.get("UploadedDocumentMetadata") is not None:
         import capo_quicksight.types.uploaded_document_metadata
 
         out["uploaded_document_metadata"] = (

@@ -298,14 +298,16 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.activate_event_source_request.ActivateEventSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_cloudwatch_events.types.activate_event_source_request.ActivateEventSourceRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_replay(
@@ -342,14 +344,16 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.cancel_replay_request.CancelReplayRequest = {}  # type: ignore[typeddict-item]
-        input_["replay_name"] = replay_name
+        input_: capo_cloudwatch_events.types.cancel_replay_request.CancelReplayRequest = {
+            "replay_name": replay_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_api_destination(
@@ -400,13 +404,14 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.create_api_destination_request.CreateApiDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_cloudwatch_events.types.create_api_destination_request.CreateApiDestinationRequest = {
+            "name": name,
+            "connection_arn": connection_arn,
+            "invocation_endpoint": invocation_endpoint,
+            "http_method": http_method,
+        }
         if description is not None:
             input_["description"] = description
-        input_["connection_arn"] = connection_arn
-        input_["invocation_endpoint"] = invocation_endpoint
-        input_["http_method"] = http_method
         if invocation_rate_limit_per_second is not None:
             input_["invocation_rate_limit_per_second"] = (
                 invocation_rate_limit_per_second
@@ -417,6 +422,7 @@ class CloudWatchEventsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_archive(
@@ -469,9 +475,10 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.create_archive_request.CreateArchiveRequest = {}  # type: ignore[typeddict-item]
-        input_["archive_name"] = archive_name
-        input_["event_source_arn"] = event_source_arn
+        input_: capo_cloudwatch_events.types.create_archive_request.CreateArchiveRequest = {
+            "archive_name": archive_name,
+            "event_source_arn": event_source_arn,
+        }
         if description is not None:
             input_["description"] = description
         if event_pattern is not None:
@@ -484,6 +491,7 @@ class CloudWatchEventsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_connection(
@@ -527,18 +535,20 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.create_connection_request.CreateConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_cloudwatch_events.types.create_connection_request.CreateConnectionRequest = {
+            "name": name,
+            "authorization_type": authorization_type,
+            "auth_parameters": auth_parameters,
+        }
         if description is not None:
             input_["description"] = description
-        input_["authorization_type"] = authorization_type
-        input_["auth_parameters"] = auth_parameters
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_event_bus(
@@ -586,8 +596,9 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.create_event_bus_request.CreateEventBusRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_cloudwatch_events.types.create_event_bus_request.CreateEventBusRequest = {
+            "name": name
+        }
         if event_source_name is not None:
             input_["event_source_name"] = event_source_name
         if tags is not None:
@@ -598,6 +609,7 @@ class CloudWatchEventsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_partner_event_source(
@@ -637,15 +649,17 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.create_partner_event_source_request.CreatePartnerEventSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["account"] = account
+        input_: capo_cloudwatch_events.types.create_partner_event_source_request.CreatePartnerEventSourceRequest = {
+            "name": name,
+            "account": account,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def deactivate_event_source(
@@ -681,14 +695,16 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.deactivate_event_source_request.DeactivateEventSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_cloudwatch_events.types.deactivate_event_source_request.DeactivateEventSourceRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def deauthorize_connection(
@@ -724,14 +740,16 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.deauthorize_connection_request.DeauthorizeConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_cloudwatch_events.types.deauthorize_connection_request.DeauthorizeConnectionRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_api_destination(
@@ -767,14 +785,16 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.delete_api_destination_request.DeleteApiDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_cloudwatch_events.types.delete_api_destination_request.DeleteApiDestinationRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_archive(
@@ -810,14 +830,16 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.delete_archive_request.DeleteArchiveRequest = {}  # type: ignore[typeddict-item]
-        input_["archive_name"] = archive_name
+        input_: capo_cloudwatch_events.types.delete_archive_request.DeleteArchiveRequest = {
+            "archive_name": archive_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_connection(
@@ -853,14 +875,16 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.delete_connection_request.DeleteConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_cloudwatch_events.types.delete_connection_request.DeleteConnectionRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_event_bus(
@@ -893,14 +917,16 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.delete_event_bus_request.DeleteEventBusRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_cloudwatch_events.types.delete_event_bus_request.DeleteEventBusRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_partner_event_source(
@@ -936,15 +962,17 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.delete_partner_event_source_request.DeletePartnerEventSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["account"] = account
+        input_: capo_cloudwatch_events.types.delete_partner_event_source_request.DeletePartnerEventSourceRequest = {
+            "name": name,
+            "account": account,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_rule(
@@ -985,8 +1013,9 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.delete_rule_request.DeleteRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_cloudwatch_events.types.delete_rule_request.DeleteRuleRequest = {
+            "name": name
+        }
         if event_bus_name is not None:
             input_["event_bus_name"] = event_bus_name
         if force is not None:
@@ -997,6 +1026,7 @@ class CloudWatchEventsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_api_destination(
@@ -1031,14 +1061,16 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.describe_api_destination_request.DescribeApiDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_cloudwatch_events.types.describe_api_destination_request.DescribeApiDestinationRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_archive(
@@ -1076,14 +1108,16 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.describe_archive_request.DescribeArchiveRequest = {}  # type: ignore[typeddict-item]
-        input_["archive_name"] = archive_name
+        input_: capo_cloudwatch_events.types.describe_archive_request.DescribeArchiveRequest = {
+            "archive_name": archive_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_connection(
@@ -1118,14 +1152,16 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.describe_connection_request.DescribeConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_cloudwatch_events.types.describe_connection_request.DescribeConnectionRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_event_bus(
@@ -1162,7 +1198,7 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.describe_event_bus_request.DescribeEventBusRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudwatch_events.types.describe_event_bus_request.DescribeEventBusRequest = {}
         if name is not None:
             input_["name"] = name
 
@@ -1171,6 +1207,7 @@ class CloudWatchEventsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_event_source(
@@ -1206,14 +1243,16 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.describe_event_source_request.DescribeEventSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_cloudwatch_events.types.describe_event_source_request.DescribeEventSourceRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_partner_event_source(
@@ -1249,14 +1288,16 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.describe_partner_event_source_request.DescribePartnerEventSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_cloudwatch_events.types.describe_partner_event_source_request.DescribePartnerEventSourceRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_replay(
@@ -1291,14 +1332,16 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.describe_replay_request.DescribeReplayRequest = {}  # type: ignore[typeddict-item]
-        input_["replay_name"] = replay_name
+        input_: capo_cloudwatch_events.types.describe_replay_request.DescribeReplayRequest = {
+            "replay_name": replay_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_rule(
@@ -1337,8 +1380,9 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.describe_rule_request.DescribeRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_cloudwatch_events.types.describe_rule_request.DescribeRuleRequest = {
+            "name": name
+        }
         if event_bus_name is not None:
             input_["event_bus_name"] = event_bus_name
 
@@ -1347,6 +1391,7 @@ class CloudWatchEventsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disable_rule(
@@ -1385,8 +1430,9 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.disable_rule_request.DisableRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_cloudwatch_events.types.disable_rule_request.DisableRuleRequest = {
+            "name": name
+        }
         if event_bus_name is not None:
             input_["event_bus_name"] = event_bus_name
 
@@ -1395,6 +1441,7 @@ class CloudWatchEventsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def enable_rule(
@@ -1433,8 +1480,9 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.enable_rule_request.EnableRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_cloudwatch_events.types.enable_rule_request.EnableRuleRequest = {
+            "name": name
+        }
         if event_bus_name is not None:
             input_["event_bus_name"] = event_bus_name
 
@@ -1443,6 +1491,7 @@ class CloudWatchEventsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_api_destinations(
@@ -1488,7 +1537,7 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.list_api_destinations_request.ListApiDestinationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudwatch_events.types.list_api_destinations_request.ListApiDestinationsRequest = {}
         if name_prefix is not None:
             input_["name_prefix"] = name_prefix
         if connection_arn is not None:
@@ -1503,6 +1552,7 @@ class CloudWatchEventsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_archives(
@@ -1551,7 +1601,7 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.list_archives_request.ListArchivesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudwatch_events.types.list_archives_request.ListArchivesRequest = {}
         if name_prefix is not None:
             input_["name_prefix"] = name_prefix
         if event_source_arn is not None:
@@ -1568,6 +1618,7 @@ class CloudWatchEventsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_connections(
@@ -1615,7 +1666,7 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.list_connections_request.ListConnectionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudwatch_events.types.list_connections_request.ListConnectionsRequest = {}
         if name_prefix is not None:
             input_["name_prefix"] = name_prefix
         if connection_state is not None:
@@ -1630,6 +1681,7 @@ class CloudWatchEventsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_event_buses(
@@ -1673,7 +1725,7 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.list_event_buses_request.ListEventBusesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudwatch_events.types.list_event_buses_request.ListEventBusesRequest = {}
         if name_prefix is not None:
             input_["name_prefix"] = name_prefix
         if next_token is not None:
@@ -1686,6 +1738,7 @@ class CloudWatchEventsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_event_sources(
@@ -1728,7 +1781,7 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.list_event_sources_request.ListEventSourcesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudwatch_events.types.list_event_sources_request.ListEventSourcesRequest = {}
         if name_prefix is not None:
             input_["name_prefix"] = name_prefix
         if next_token is not None:
@@ -1741,6 +1794,7 @@ class CloudWatchEventsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_partner_event_source_accounts(
@@ -1782,8 +1836,9 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.list_partner_event_source_accounts_request.ListPartnerEventSourceAccountsRequest = {}  # type: ignore[typeddict-item]
-        input_["event_source_name"] = event_source_name
+        input_: capo_cloudwatch_events.types.list_partner_event_source_accounts_request.ListPartnerEventSourceAccountsRequest = {
+            "event_source_name": event_source_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if limit is not None:
@@ -1794,6 +1849,7 @@ class CloudWatchEventsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_partner_event_sources(
@@ -1834,8 +1890,9 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.list_partner_event_sources_request.ListPartnerEventSourcesRequest = {}  # type: ignore[typeddict-item]
-        input_["name_prefix"] = name_prefix
+        input_: capo_cloudwatch_events.types.list_partner_event_sources_request.ListPartnerEventSourcesRequest = {
+            "name_prefix": name_prefix
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if limit is not None:
@@ -1846,6 +1903,7 @@ class CloudWatchEventsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_replays(
@@ -1891,7 +1949,7 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.list_replays_request.ListReplaysRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudwatch_events.types.list_replays_request.ListReplaysRequest = {}
         if name_prefix is not None:
             input_["name_prefix"] = name_prefix
         if state is not None:
@@ -1908,6 +1966,7 @@ class CloudWatchEventsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_rule_names_by_target(
@@ -1952,8 +2011,9 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.list_rule_names_by_target_request.ListRuleNamesByTargetRequest = {}  # type: ignore[typeddict-item]
-        input_["target_arn"] = target_arn
+        input_: capo_cloudwatch_events.types.list_rule_names_by_target_request.ListRuleNamesByTargetRequest = {
+            "target_arn": target_arn
+        }
         if event_bus_name is not None:
             input_["event_bus_name"] = event_bus_name
         if next_token is not None:
@@ -1966,6 +2026,7 @@ class CloudWatchEventsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_rules(
@@ -2010,7 +2071,7 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.list_rules_request.ListRulesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudwatch_events.types.list_rules_request.ListRulesRequest = {}
         if name_prefix is not None:
             input_["name_prefix"] = name_prefix
         if event_bus_name is not None:
@@ -2025,6 +2086,7 @@ class CloudWatchEventsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_tags_for_resource(
@@ -2059,14 +2121,16 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_cloudwatch_events.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_targets_by_rule(
@@ -2111,8 +2175,9 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.list_targets_by_rule_request.ListTargetsByRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["rule"] = rule
+        input_: capo_cloudwatch_events.types.list_targets_by_rule_request.ListTargetsByRuleRequest = {
+            "rule": rule
+        }
         if event_bus_name is not None:
             input_["event_bus_name"] = event_bus_name
         if next_token is not None:
@@ -2125,6 +2190,7 @@ class CloudWatchEventsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_events(
@@ -2158,14 +2224,16 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.put_events_request.PutEventsRequest = {}  # type: ignore[typeddict-item]
-        input_["entries"] = entries
+        input_: capo_cloudwatch_events.types.put_events_request.PutEventsRequest = {
+            "entries": entries
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_partner_events(
@@ -2200,14 +2268,16 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.put_partner_events_request.PutPartnerEventsRequest = {}  # type: ignore[typeddict-item]
-        input_["entries"] = entries
+        input_: capo_cloudwatch_events.types.put_partner_events_request.PutPartnerEventsRequest = {
+            "entries": entries
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_permission(
@@ -2257,7 +2327,7 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.put_permission_request.PutPermissionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudwatch_events.types.put_permission_request.PutPermissionRequest = {}
         if event_bus_name is not None:
             input_["event_bus_name"] = event_bus_name
         if action is not None:
@@ -2276,6 +2346,7 @@ class CloudWatchEventsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_rule(
@@ -2336,8 +2407,9 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.put_rule_request.PutRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_cloudwatch_events.types.put_rule_request.PutRuleRequest = {
+            "name": name
+        }
         if schedule_expression is not None:
             input_["schedule_expression"] = schedule_expression
         if event_pattern is not None:
@@ -2358,6 +2430,7 @@ class CloudWatchEventsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_targets(
@@ -2401,17 +2474,19 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.put_targets_request.PutTargetsRequest = {}  # type: ignore[typeddict-item]
-        input_["rule"] = rule
+        input_: capo_cloudwatch_events.types.put_targets_request.PutTargetsRequest = {
+            "rule": rule,
+            "targets": targets,
+        }
         if event_bus_name is not None:
             input_["event_bus_name"] = event_bus_name
-        input_["targets"] = targets
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def remove_permission(
@@ -2456,7 +2531,7 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.remove_permission_request.RemovePermissionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudwatch_events.types.remove_permission_request.RemovePermissionRequest = {}
         if statement_id is not None:
             input_["statement_id"] = statement_id
         if remove_all_permissions is not None:
@@ -2469,6 +2544,7 @@ class CloudWatchEventsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def remove_targets(
@@ -2513,11 +2589,12 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.remove_targets_request.RemoveTargetsRequest = {}  # type: ignore[typeddict-item]
-        input_["rule"] = rule
+        input_: capo_cloudwatch_events.types.remove_targets_request.RemoveTargetsRequest = {
+            "rule": rule,
+            "ids": ids,
+        }
         if event_bus_name is not None:
             input_["event_bus_name"] = event_bus_name
-        input_["ids"] = ids
         if force is not None:
             input_["force"] = force
 
@@ -2526,6 +2603,7 @@ class CloudWatchEventsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_replay(
@@ -2575,20 +2653,22 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.start_replay_request.StartReplayRequest = {}  # type: ignore[typeddict-item]
-        input_["replay_name"] = replay_name
+        input_: capo_cloudwatch_events.types.start_replay_request.StartReplayRequest = {
+            "replay_name": replay_name,
+            "event_source_arn": event_source_arn,
+            "event_start_time": event_start_time,
+            "event_end_time": event_end_time,
+            "destination": destination,
+        }
         if description is not None:
             input_["description"] = description
-        input_["event_source_arn"] = event_source_arn
-        input_["event_start_time"] = event_start_time
-        input_["event_end_time"] = event_end_time
-        input_["destination"] = destination
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -2627,15 +2707,17 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_cloudwatch_events.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def test_event_pattern(
@@ -2672,15 +2754,17 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.test_event_pattern_request.TestEventPatternRequest = {}  # type: ignore[typeddict-item]
-        input_["event_pattern"] = event_pattern
-        input_["event"] = event
+        input_: capo_cloudwatch_events.types.test_event_pattern_request.TestEventPatternRequest = {
+            "event_pattern": event_pattern,
+            "event": event,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -2719,15 +2803,17 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_cloudwatch_events.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_api_destination(
@@ -2784,8 +2870,9 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.update_api_destination_request.UpdateApiDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_cloudwatch_events.types.update_api_destination_request.UpdateApiDestinationRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if connection_arn is not None:
@@ -2804,6 +2891,7 @@ class CloudWatchEventsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_archive(
@@ -2853,8 +2941,9 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.update_archive_request.UpdateArchiveRequest = {}  # type: ignore[typeddict-item]
-        input_["archive_name"] = archive_name
+        input_: capo_cloudwatch_events.types.update_archive_request.UpdateArchiveRequest = {
+            "archive_name": archive_name
+        }
         if description is not None:
             input_["description"] = description
         if event_pattern is not None:
@@ -2867,6 +2956,7 @@ class CloudWatchEventsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_connection(
@@ -2915,8 +3005,9 @@ class CloudWatchEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudwatch_events.types.update_connection_request.UpdateConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_cloudwatch_events.types.update_connection_request.UpdateConnectionRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if authorization_type is not None:
@@ -2929,6 +3020,7 @@ class CloudWatchEventsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

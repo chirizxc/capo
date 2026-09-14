@@ -40,19 +40,19 @@ def serialize_json(value: DescribeOrganizationHealthResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeOrganizationHealthResponse:
     out: DescribeOrganizationHealthResponse = {}  # type: ignore[typeddict-item]
-    if "OpenReactiveInsights" in data:
+    if data.get("OpenReactiveInsights") is not None:
         out["open_reactive_insights"] = data["OpenReactiveInsights"]
     else:
         out["open_reactive_insights"] = 0
-    if "OpenProactiveInsights" in data:
+    if data.get("OpenProactiveInsights") is not None:
         out["open_proactive_insights"] = data["OpenProactiveInsights"]
     else:
         out["open_proactive_insights"] = 0
-    if "MetricsAnalyzed" in data:
+    if data.get("MetricsAnalyzed") is not None:
         out["metrics_analyzed"] = data["MetricsAnalyzed"]
     else:
         out["metrics_analyzed"] = 0
-    if "ResourceHours" in data:
+    if data.get("ResourceHours") is not None:
         out["resource_hours"] = data["ResourceHours"]
     else:
         raise DeserializationError(

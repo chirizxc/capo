@@ -32,19 +32,19 @@ def serialize_aws_json_1_1(value: UpdateWorkspaceImagePermissionRequest) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateWorkspaceImagePermissionRequest:
     out: UpdateWorkspaceImagePermissionRequest = {}  # type: ignore[typeddict-item]
-    if "ImageId" in data:
+    if data.get("ImageId") is not None:
         out["image_id"] = data["ImageId"]
     else:
         raise DeserializationError(
             "UpdateWorkspaceImagePermissionRequest.image_id required"
         )
-    if "AllowCopyImage" in data:
+    if data.get("AllowCopyImage") is not None:
         out["allow_copy_image"] = data["AllowCopyImage"]
     else:
         raise DeserializationError(
             "UpdateWorkspaceImagePermissionRequest.allow_copy_image required"
         )
-    if "SharedAccountId" in data:
+    if data.get("SharedAccountId") is not None:
         out["shared_account_id"] = data["SharedAccountId"]
     else:
         raise DeserializationError(

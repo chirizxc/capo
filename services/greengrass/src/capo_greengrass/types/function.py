@@ -40,9 +40,9 @@ def serialize_json(value: Function) -> dict:
 
 def deserialize_json(data: dict) -> Function:
     out: Function = {}  # type: ignore[typeddict-item]
-    if "FunctionArn" in data:
+    if data.get("FunctionArn") is not None:
         out["function_arn"] = data["FunctionArn"]
-    if "FunctionConfiguration" in data:
+    if data.get("FunctionConfiguration") is not None:
         import capo_greengrass.types.function_configuration
 
         out["function_configuration"] = (
@@ -50,6 +50,6 @@ def deserialize_json(data: dict) -> Function:
                 data["FunctionConfiguration"]
             )
         )
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     return out

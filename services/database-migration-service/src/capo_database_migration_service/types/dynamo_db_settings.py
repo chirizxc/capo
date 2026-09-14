@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DynamoDbSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DynamoDbSettings:
     out: DynamoDbSettings = {}  # type: ignore[typeddict-item]
-    if "ServiceAccessRoleArn" in data:
+    if data.get("ServiceAccessRoleArn") is not None:
         out["service_access_role_arn"] = data["ServiceAccessRoleArn"]
     else:
         raise DeserializationError("DynamoDbSettings.service_access_role_arn required")

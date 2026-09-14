@@ -70,36 +70,36 @@ def serialize_json(value: CreateDataProductInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateDataProductInput:
     out: CreateDataProductInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateDataProductInput.name required")
-    if "owningProjectIdentifier" in data:
+    if data.get("owningProjectIdentifier") is not None:
         out["owning_project_identifier"] = data["owningProjectIdentifier"]
     else:
         raise DeserializationError(
             "CreateDataProductInput.owning_project_identifier required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "glossaryTerms" in data:
+    if data.get("glossaryTerms") is not None:
         import capo_datazone.types.glossary_terms
 
         out["glossary_terms"] = capo_datazone.types.glossary_terms.deserialize_json(
             data["glossaryTerms"]
         )
-    if "formsInput" in data:
+    if data.get("formsInput") is not None:
         import capo_datazone.types.form_input_list
 
         out["forms_input"] = capo_datazone.types.form_input_list.deserialize_json(
             data["formsInput"]
         )
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_datazone.types.data_product_items
 
         out["items"] = capo_datazone.types.data_product_items.deserialize_json(
             data["items"]
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

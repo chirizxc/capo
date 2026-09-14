@@ -105,15 +105,15 @@ def serialize_json(value: PurchaseOptionSummary) -> dict:
 
 def deserialize_json(data: dict) -> PurchaseOptionSummary:
     out: PurchaseOptionSummary = {}  # type: ignore[typeddict-item]
-    if "purchaseOptionId" in data:
+    if data.get("purchaseOptionId") is not None:
         out["purchase_option_id"] = data["purchaseOptionId"]
     else:
         raise DeserializationError("PurchaseOptionSummary.purchase_option_id required")
-    if "catalog" in data:
+    if data.get("catalog") is not None:
         out["catalog"] = data["catalog"]
     else:
         raise DeserializationError("PurchaseOptionSummary.catalog required")
-    if "purchaseOptionType" in data:
+    if data.get("purchaseOptionType") is not None:
         import capo_marketplace_discovery.types.purchase_option_type
 
         out["purchase_option_type"] = (
@@ -125,9 +125,9 @@ def deserialize_json(data: dict) -> PurchaseOptionSummary:
         raise DeserializationError(
             "PurchaseOptionSummary.purchase_option_type required"
         )
-    if "purchaseOptionName" in data:
+    if data.get("purchaseOptionName") is not None:
         out["purchase_option_name"] = data["purchaseOptionName"]
-    if "availableFromTime" in data:
+    if data.get("availableFromTime") is not None:
         import capo_marketplace_discovery.types._prelude.timestamp
 
         out["available_from_time"] = (
@@ -135,7 +135,7 @@ def deserialize_json(data: dict) -> PurchaseOptionSummary:
                 data["availableFromTime"]
             )
         )
-    if "expirationTime" in data:
+    if data.get("expirationTime") is not None:
         import capo_marketplace_discovery.types._prelude.timestamp
 
         out["expiration_time"] = (
@@ -143,7 +143,7 @@ def deserialize_json(data: dict) -> PurchaseOptionSummary:
                 data["expirationTime"]
             )
         )
-    if "sellerOfRecord" in data:
+    if data.get("sellerOfRecord") is not None:
         import capo_marketplace_discovery.types.seller_information
 
         out["seller_of_record"] = (
@@ -153,7 +153,7 @@ def deserialize_json(data: dict) -> PurchaseOptionSummary:
         )
     else:
         raise DeserializationError("PurchaseOptionSummary.seller_of_record required")
-    if "badges" in data:
+    if data.get("badges") is not None:
         import capo_marketplace_discovery.types.purchase_option_badge_list
 
         out["badges"] = (
@@ -161,7 +161,7 @@ def deserialize_json(data: dict) -> PurchaseOptionSummary:
                 data["badges"]
             )
         )
-    if "associatedEntities" in data:
+    if data.get("associatedEntities") is not None:
         import capo_marketplace_discovery.types.purchase_option_associated_entity_list
 
         out["associated_entities"] = (

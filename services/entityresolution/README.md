@@ -13,9 +13,9 @@ from capo_entityresolution import AsyncEntityResolutionClient
 
 
 async def main():
-    async with AsyncEntityResolutionClient() as s3:
+    async with AsyncEntityResolutionClient() as entity_resolution:
         # Example: call the add_policy_statement operation
-        response = await s3.add_policy_statement()
+        response = await entity_resolution.add_policy_statement()
         print(response["arn"])
 ```
 
@@ -28,9 +28,9 @@ from capo_entityresolution import AsyncEntityResolutionClient
 
 
 async def main():
-    async with AsyncEntityResolutionClient() as s3:
+    async with AsyncEntityResolutionClient() as entity_resolution:
         # Example: paginate over list_id_mapping_jobs
-        async for item in s3.iter_list_id_mapping_jobs():
+        async for item in entity_resolution.iter_list_id_mapping_jobs():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_entityresolution.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncEntityResolutionClient() as s3:
+    async with AsyncEntityResolutionClient() as entity_resolution:
         try:
-            await s3.add_policy_statement()
+            await entity_resolution.add_policy_statement()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_entityresolution import AsyncEntityResolutionClient
 
 
 async def main():
-    async with AsyncEntityResolutionClient() as s3:
+    async with AsyncEntityResolutionClient() as entity_resolution:
         # Default: 3 attempts for every operation
-        response = await s3.add_policy_statement()
+        response = await entity_resolution.add_policy_statement()
 
         # Override per operation
-        response = await s3.add_policy_statement(config_overrides={"retry_max_attempts": 5})
+        response = await entity_resolution.add_policy_statement(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.add_policy_statement(config_overrides={"retry_max_attempts": 1})
+        response = await entity_resolution.add_policy_statement(config_overrides={"retry_max_attempts": 1})
 ```

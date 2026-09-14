@@ -30,7 +30,7 @@ def serialize_aws_json_1_0(value: ImportDataFormat) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ImportDataFormat:
     out: ImportDataFormat = {}  # type: ignore[typeddict-item]
-    if "ImportDataType" in data:
+    if data.get("ImportDataType") is not None:
         import capo_mailmanager.types.import_data_type
 
         out["import_data_type"] = (

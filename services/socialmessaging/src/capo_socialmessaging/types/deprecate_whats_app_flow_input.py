@@ -28,11 +28,11 @@ def serialize_json(value: DeprecateWhatsAppFlowInput) -> dict:
 
 def deserialize_json(data: dict) -> DeprecateWhatsAppFlowInput:
     out: DeprecateWhatsAppFlowInput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("DeprecateWhatsAppFlowInput.id required")
-    if "flowId" in data:
+    if data.get("flowId") is not None:
         out["flow_id"] = data["flowId"]
     else:
         raise DeserializationError("DeprecateWhatsAppFlowInput.flow_id required")

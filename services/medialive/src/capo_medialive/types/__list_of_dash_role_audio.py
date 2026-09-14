@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfDashRoleAudio:
 
     out: __listOfDashRoleAudio = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_medialive.types.dash_role_audio.deserialize_json(item))
     return out

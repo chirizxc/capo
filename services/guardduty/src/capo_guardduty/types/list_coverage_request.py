@@ -57,11 +57,11 @@ def serialize_json(value: ListCoverageRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListCoverageRequest:
     out: ListCoverageRequest = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "filterCriteria" in data:
+    if data.get("filterCriteria") is not None:
         import capo_guardduty.types.coverage_filter_criteria
 
         out["filter_criteria"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> ListCoverageRequest:
                 data["filterCriteria"]
             )
         )
-    if "sortCriteria" in data:
+    if data.get("sortCriteria") is not None:
         import capo_guardduty.types.coverage_sort_criteria
 
         out["sort_criteria"] = (

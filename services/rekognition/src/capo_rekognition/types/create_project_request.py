@@ -59,11 +59,11 @@ def serialize_aws_json_1_1(value: CreateProjectRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateProjectRequest:
     out: CreateProjectRequest = {}  # type: ignore[typeddict-item]
-    if "ProjectName" in data:
+    if data.get("ProjectName") is not None:
         out["project_name"] = data["ProjectName"]
     else:
         raise DeserializationError("CreateProjectRequest.project_name required")
-    if "Feature" in data:
+    if data.get("Feature") is not None:
         import capo_rekognition.types.customization_feature
 
         out["feature"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateProjectRequest:
                 data["Feature"]
             )
         )
-    if "AutoUpdate" in data:
+    if data.get("AutoUpdate") is not None:
         import capo_rekognition.types.project_auto_update
 
         out["auto_update"] = (
@@ -79,7 +79,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateProjectRequest:
                 data["AutoUpdate"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_rekognition.types.tag_map
 
         out["tags"] = capo_rekognition.types.tag_map.deserialize_aws_json_1_1(

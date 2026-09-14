@@ -47,12 +47,12 @@ def serialize_json(value: CreateApplicationVersionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateApplicationVersionRequest:
     out: CreateApplicationVersionRequest = {}  # type: ignore[typeddict-item]
-    if "sourceCodeArchiveUrl" in data:
+    if data.get("sourceCodeArchiveUrl") is not None:
         out["source_code_archive_url"] = data["sourceCodeArchiveUrl"]
-    if "sourceCodeUrl" in data:
+    if data.get("sourceCodeUrl") is not None:
         out["source_code_url"] = data["sourceCodeUrl"]
-    if "templateBody" in data:
+    if data.get("templateBody") is not None:
         out["template_body"] = data["templateBody"]
-    if "templateUrl" in data:
+    if data.get("templateUrl") is not None:
         out["template_url"] = data["templateUrl"]
     return out

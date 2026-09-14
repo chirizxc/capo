@@ -63,11 +63,11 @@ def serialize_json(value: ChunkingConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ChunkingConfiguration:
     out: ChunkingConfiguration = {}  # type: ignore[typeddict-item]
-    if "chunkingStrategy" in data:
+    if data.get("chunkingStrategy") is not None:
         out["chunking_strategy"] = data["chunkingStrategy"]
     else:
         raise DeserializationError("ChunkingConfiguration.chunking_strategy required")
-    if "fixedSizeChunkingConfiguration" in data:
+    if data.get("fixedSizeChunkingConfiguration") is not None:
         import capo_qconnect.types.fixed_size_chunking_configuration
 
         out["fixed_size_chunking_configuration"] = (
@@ -75,7 +75,7 @@ def deserialize_json(data: dict) -> ChunkingConfiguration:
                 data["fixedSizeChunkingConfiguration"]
             )
         )
-    if "hierarchicalChunkingConfiguration" in data:
+    if data.get("hierarchicalChunkingConfiguration") is not None:
         import capo_qconnect.types.hierarchical_chunking_configuration
 
         out["hierarchical_chunking_configuration"] = (
@@ -83,7 +83,7 @@ def deserialize_json(data: dict) -> ChunkingConfiguration:
                 data["hierarchicalChunkingConfiguration"]
             )
         )
-    if "semanticChunkingConfiguration" in data:
+    if data.get("semanticChunkingConfiguration") is not None:
         import capo_qconnect.types.semantic_chunking_configuration
 
         out["semantic_chunking_configuration"] = (

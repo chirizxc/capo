@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: BatchDetectEntitiesItemResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchDetectEntitiesItemResult:
     out: BatchDetectEntitiesItemResult = {}  # type: ignore[typeddict-item]
-    if "Index" in data:
+    if data.get("Index") is not None:
         out["index"] = data["Index"]
-    if "Entities" in data:
+    if data.get("Entities") is not None:
         import capo_comprehend.types.list_of_entities
 
         out["entities"] = (

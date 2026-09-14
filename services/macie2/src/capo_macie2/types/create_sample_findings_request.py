@@ -29,7 +29,7 @@ def serialize_json(value: CreateSampleFindingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateSampleFindingsRequest:
     out: CreateSampleFindingsRequest = {}  # type: ignore[typeddict-item]
-    if "findingTypes" in data:
+    if data.get("findingTypes") is not None:
         import capo_macie2.types.__list_of_finding_type
 
         out["finding_types"] = (

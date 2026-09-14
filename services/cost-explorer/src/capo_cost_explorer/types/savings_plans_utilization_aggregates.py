@@ -58,7 +58,7 @@ def serialize_aws_json_1_1(value: SavingsPlansUtilizationAggregates) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SavingsPlansUtilizationAggregates:
     out: SavingsPlansUtilizationAggregates = {}  # type: ignore[typeddict-item]
-    if "Utilization" in data:
+    if data.get("Utilization") is not None:
         import capo_cost_explorer.types.savings_plans_utilization
 
         out["utilization"] = (
@@ -70,7 +70,7 @@ def deserialize_aws_json_1_1(data: dict) -> SavingsPlansUtilizationAggregates:
         raise DeserializationError(
             "SavingsPlansUtilizationAggregates.utilization required"
         )
-    if "Savings" in data:
+    if data.get("Savings") is not None:
         import capo_cost_explorer.types.savings_plans_savings
 
         out["savings"] = (
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_1(data: dict) -> SavingsPlansUtilizationAggregates:
                 data["Savings"]
             )
         )
-    if "AmortizedCommitment" in data:
+    if data.get("AmortizedCommitment") is not None:
         import capo_cost_explorer.types.savings_plans_amortized_commitment
 
         out["amortized_commitment"] = (

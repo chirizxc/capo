@@ -34,7 +34,7 @@ def serialize_json(value: DescribeAccessPointsResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeAccessPointsResponse:
     out: DescribeAccessPointsResponse = {}  # type: ignore[typeddict-item]
-    if "AccessPoints" in data:
+    if data.get("AccessPoints") is not None:
         import capo_efs.types.access_point_descriptions
 
         out["access_points"] = (
@@ -42,6 +42,6 @@ def deserialize_json(data: dict) -> DescribeAccessPointsResponse:
                 data["AccessPoints"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

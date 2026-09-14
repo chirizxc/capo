@@ -42,7 +42,7 @@ def serialize_json(value: UpdateProtectedJobInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateProtectedJobInput:
     out: UpdateProtectedJobInput = {}  # type: ignore[typeddict-item]
-    if "targetStatus" in data:
+    if data.get("targetStatus") is not None:
         import capo_cleanrooms.types.target_protected_job_status
 
         out["target_status"] = (

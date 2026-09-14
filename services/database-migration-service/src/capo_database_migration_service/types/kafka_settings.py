@@ -170,11 +170,11 @@ def serialize_aws_json_1_1(value: KafkaSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> KafkaSettings:
     out: KafkaSettings = {}  # type: ignore[typeddict-item]
-    if "Broker" in data:
+    if data.get("Broker") is not None:
         out["broker"] = data["Broker"]
-    if "Topic" in data:
+    if data.get("Topic") is not None:
         out["topic"] = data["Topic"]
-    if "MessageFormat" in data:
+    if data.get("MessageFormat") is not None:
         import capo_database_migration_service.types.message_format_value
 
         out["message_format"] = (
@@ -182,21 +182,21 @@ def deserialize_aws_json_1_1(data: dict) -> KafkaSettings:
                 data["MessageFormat"]
             )
         )
-    if "IncludeTransactionDetails" in data:
+    if data.get("IncludeTransactionDetails") is not None:
         out["include_transaction_details"] = data["IncludeTransactionDetails"]
-    if "IncludePartitionValue" in data:
+    if data.get("IncludePartitionValue") is not None:
         out["include_partition_value"] = data["IncludePartitionValue"]
-    if "PartitionIncludeSchemaTable" in data:
+    if data.get("PartitionIncludeSchemaTable") is not None:
         out["partition_include_schema_table"] = data["PartitionIncludeSchemaTable"]
-    if "IncludeTableAlterOperations" in data:
+    if data.get("IncludeTableAlterOperations") is not None:
         out["include_table_alter_operations"] = data["IncludeTableAlterOperations"]
-    if "IncludeControlDetails" in data:
+    if data.get("IncludeControlDetails") is not None:
         out["include_control_details"] = data["IncludeControlDetails"]
-    if "MessageMaxBytes" in data:
+    if data.get("MessageMaxBytes") is not None:
         out["message_max_bytes"] = data["MessageMaxBytes"]
-    if "IncludeNullAndEmpty" in data:
+    if data.get("IncludeNullAndEmpty") is not None:
         out["include_null_and_empty"] = data["IncludeNullAndEmpty"]
-    if "SecurityProtocol" in data:
+    if data.get("SecurityProtocol") is not None:
         import capo_database_migration_service.types.kafka_security_protocol
 
         out["security_protocol"] = (
@@ -204,21 +204,21 @@ def deserialize_aws_json_1_1(data: dict) -> KafkaSettings:
                 data["SecurityProtocol"]
             )
         )
-    if "SslClientCertificateArn" in data:
+    if data.get("SslClientCertificateArn") is not None:
         out["ssl_client_certificate_arn"] = data["SslClientCertificateArn"]
-    if "SslClientKeyArn" in data:
+    if data.get("SslClientKeyArn") is not None:
         out["ssl_client_key_arn"] = data["SslClientKeyArn"]
-    if "SslClientKeyPassword" in data:
+    if data.get("SslClientKeyPassword") is not None:
         out["ssl_client_key_password"] = data["SslClientKeyPassword"]
-    if "SslCaCertificateArn" in data:
+    if data.get("SslCaCertificateArn") is not None:
         out["ssl_ca_certificate_arn"] = data["SslCaCertificateArn"]
-    if "SaslUsername" in data:
+    if data.get("SaslUsername") is not None:
         out["sasl_username"] = data["SaslUsername"]
-    if "SaslPassword" in data:
+    if data.get("SaslPassword") is not None:
         out["sasl_password"] = data["SaslPassword"]
-    if "NoHexPrefix" in data:
+    if data.get("NoHexPrefix") is not None:
         out["no_hex_prefix"] = data["NoHexPrefix"]
-    if "SaslMechanism" in data:
+    if data.get("SaslMechanism") is not None:
         import capo_database_migration_service.types.kafka_sasl_mechanism
 
         out["sasl_mechanism"] = (
@@ -226,7 +226,7 @@ def deserialize_aws_json_1_1(data: dict) -> KafkaSettings:
                 data["SaslMechanism"]
             )
         )
-    if "SslEndpointIdentificationAlgorithm" in data:
+    if data.get("SslEndpointIdentificationAlgorithm") is not None:
         import capo_database_migration_service.types.kafka_ssl_endpoint_identification_algorithm
 
         out["ssl_endpoint_identification_algorithm"] = (
@@ -234,6 +234,6 @@ def deserialize_aws_json_1_1(data: dict) -> KafkaSettings:
                 data["SslEndpointIdentificationAlgorithm"]
             )
         )
-    if "UseLargeIntegerValue" in data:
+    if data.get("UseLargeIntegerValue") is not None:
         out["use_large_integer_value"] = data["UseLargeIntegerValue"]
     return out

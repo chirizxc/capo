@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> CreateHlsManifests:
 
     out: CreateHlsManifests = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediapackagev2.types.create_hls_manifest_configuration.deserialize_json(
                 item

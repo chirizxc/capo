@@ -38,7 +38,7 @@ def serialize_json(value: SessionContext) -> dict:
 
 def deserialize_json(data: dict) -> SessionContext:
     out: SessionContext = {}  # type: ignore[typeddict-item]
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_macie2.types.session_context_attributes
 
         out["attributes"] = (
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> SessionContext:
                 data["attributes"]
             )
         )
-    if "sessionIssuer" in data:
+    if data.get("sessionIssuer") is not None:
         import capo_macie2.types.session_issuer
 
         out["session_issuer"] = capo_macie2.types.session_issuer.deserialize_json(

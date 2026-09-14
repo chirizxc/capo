@@ -79,28 +79,28 @@ def serialize_json(value: AwsRedshiftClusterPendingModifiedValues) -> dict:
 
 def deserialize_json(data: dict) -> AwsRedshiftClusterPendingModifiedValues:
     out: AwsRedshiftClusterPendingModifiedValues = {}  # type: ignore[typeddict-item]
-    if "AutomatedSnapshotRetentionPeriod" in data:
+    if data.get("AutomatedSnapshotRetentionPeriod") is not None:
         out["automated_snapshot_retention_period"] = data[
             "AutomatedSnapshotRetentionPeriod"
         ]
-    if "ClusterIdentifier" in data:
+    if data.get("ClusterIdentifier") is not None:
         out["cluster_identifier"] = data["ClusterIdentifier"]
-    if "ClusterType" in data:
+    if data.get("ClusterType") is not None:
         out["cluster_type"] = data["ClusterType"]
-    if "ClusterVersion" in data:
+    if data.get("ClusterVersion") is not None:
         out["cluster_version"] = data["ClusterVersion"]
-    if "EncryptionType" in data:
+    if data.get("EncryptionType") is not None:
         out["encryption_type"] = data["EncryptionType"]
-    if "EnhancedVpcRouting" in data:
+    if data.get("EnhancedVpcRouting") is not None:
         out["enhanced_vpc_routing"] = data["EnhancedVpcRouting"]
-    if "MaintenanceTrackName" in data:
+    if data.get("MaintenanceTrackName") is not None:
         out["maintenance_track_name"] = data["MaintenanceTrackName"]
-    if "MasterUserPassword" in data:
+    if data.get("MasterUserPassword") is not None:
         out["master_user_password"] = data["MasterUserPassword"]
-    if "NodeType" in data:
+    if data.get("NodeType") is not None:
         out["node_type"] = data["NodeType"]
-    if "NumberOfNodes" in data:
+    if data.get("NumberOfNodes") is not None:
         out["number_of_nodes"] = data["NumberOfNodes"]
-    if "PubliclyAccessible" in data:
+    if data.get("PubliclyAccessible") is not None:
         out["publicly_accessible"] = data["PubliclyAccessible"]
     return out

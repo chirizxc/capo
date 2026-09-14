@@ -117,23 +117,23 @@ def serialize_aws_json_1_0(value: RestoreTableRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RestoreTableRequest:
     out: RestoreTableRequest = {}  # type: ignore[typeddict-item]
-    if "sourceKeyspaceName" in data:
+    if data.get("sourceKeyspaceName") is not None:
         out["source_keyspace_name"] = data["sourceKeyspaceName"]
     else:
         raise DeserializationError("RestoreTableRequest.source_keyspace_name required")
-    if "sourceTableName" in data:
+    if data.get("sourceTableName") is not None:
         out["source_table_name"] = data["sourceTableName"]
     else:
         raise DeserializationError("RestoreTableRequest.source_table_name required")
-    if "targetKeyspaceName" in data:
+    if data.get("targetKeyspaceName") is not None:
         out["target_keyspace_name"] = data["targetKeyspaceName"]
     else:
         raise DeserializationError("RestoreTableRequest.target_keyspace_name required")
-    if "targetTableName" in data:
+    if data.get("targetTableName") is not None:
         out["target_table_name"] = data["targetTableName"]
     else:
         raise DeserializationError("RestoreTableRequest.target_table_name required")
-    if "restoreTimestamp" in data:
+    if data.get("restoreTimestamp") is not None:
         import capo_keyspaces.types.timestamp
 
         out["restore_timestamp"] = (
@@ -141,7 +141,7 @@ def deserialize_aws_json_1_0(data: dict) -> RestoreTableRequest:
                 data["restoreTimestamp"]
             )
         )
-    if "capacitySpecificationOverride" in data:
+    if data.get("capacitySpecificationOverride") is not None:
         import capo_keyspaces.types.capacity_specification
 
         out["capacity_specification_override"] = (
@@ -149,7 +149,7 @@ def deserialize_aws_json_1_0(data: dict) -> RestoreTableRequest:
                 data["capacitySpecificationOverride"]
             )
         )
-    if "encryptionSpecificationOverride" in data:
+    if data.get("encryptionSpecificationOverride") is not None:
         import capo_keyspaces.types.encryption_specification
 
         out["encryption_specification_override"] = (
@@ -157,7 +157,7 @@ def deserialize_aws_json_1_0(data: dict) -> RestoreTableRequest:
                 data["encryptionSpecificationOverride"]
             )
         )
-    if "pointInTimeRecoveryOverride" in data:
+    if data.get("pointInTimeRecoveryOverride") is not None:
         import capo_keyspaces.types.point_in_time_recovery
 
         out["point_in_time_recovery_override"] = (
@@ -165,13 +165,13 @@ def deserialize_aws_json_1_0(data: dict) -> RestoreTableRequest:
                 data["pointInTimeRecoveryOverride"]
             )
         )
-    if "tagsOverride" in data:
+    if data.get("tagsOverride") is not None:
         import capo_keyspaces.types.tag_list
 
         out["tags_override"] = capo_keyspaces.types.tag_list.deserialize_aws_json_1_0(
             data["tagsOverride"]
         )
-    if "autoScalingSpecification" in data:
+    if data.get("autoScalingSpecification") is not None:
         import capo_keyspaces.types.auto_scaling_specification
 
         out["auto_scaling_specification"] = (
@@ -179,7 +179,7 @@ def deserialize_aws_json_1_0(data: dict) -> RestoreTableRequest:
                 data["autoScalingSpecification"]
             )
         )
-    if "replicaSpecifications" in data:
+    if data.get("replicaSpecifications") is not None:
         import capo_keyspaces.types.replica_specification_list
 
         out["replica_specifications"] = (

@@ -37,13 +37,13 @@ def serialize_aws_json_1_1(value: IPSet) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IPSet:
     out: IPSet = {}  # type: ignore[typeddict-item]
-    if "IPSetId" in data:
+    if data.get("IPSetId") is not None:
         out["ip_set_id"] = data["IPSetId"]
     else:
         raise DeserializationError("IPSet.ip_set_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "IPSetDescriptors" in data:
+    if data.get("IPSetDescriptors") is not None:
         import capo_waf.types.ip_set_descriptors
 
         out["ip_set_descriptors"] = (

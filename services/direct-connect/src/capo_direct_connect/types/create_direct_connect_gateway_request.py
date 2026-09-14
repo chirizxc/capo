@@ -40,18 +40,18 @@ def serialize_aws_json_1_1(value: CreateDirectConnectGatewayRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDirectConnectGatewayRequest:
     out: CreateDirectConnectGatewayRequest = {}  # type: ignore[typeddict-item]
-    if "directConnectGatewayName" in data:
+    if data.get("directConnectGatewayName") is not None:
         out["direct_connect_gateway_name"] = data["directConnectGatewayName"]
     else:
         raise DeserializationError(
             "CreateDirectConnectGatewayRequest.direct_connect_gateway_name required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_direct_connect.types.tag_list
 
         out["tags"] = capo_direct_connect.types.tag_list.deserialize_aws_json_1_1(
             data["tags"]
         )
-    if "amazonSideAsn" in data:
+    if data.get("amazonSideAsn") is not None:
         out["amazon_side_asn"] = data["amazonSideAsn"]
     return out

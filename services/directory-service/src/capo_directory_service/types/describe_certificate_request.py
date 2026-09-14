@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: DescribeCertificateRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeCertificateRequest:
     out: DescribeCertificateRequest = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
     else:
         raise DeserializationError("DescribeCertificateRequest.directory_id required")
-    if "CertificateId" in data:
+    if data.get("CertificateId") is not None:
         out["certificate_id"] = data["CertificateId"]
     else:
         raise DeserializationError("DescribeCertificateRequest.certificate_id required")

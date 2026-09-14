@@ -55,19 +55,19 @@ def serialize_json(value: OutputColumn) -> dict:
 
 def deserialize_json(data: dict) -> OutputColumn:
     out: OutputColumn = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_quicksight.types.column_data_type
 
         out["type"] = capo_quicksight.types.column_data_type.deserialize_json(
             data["Type"]
         )
-    if "SubType" in data:
+    if data.get("SubType") is not None:
         import capo_quicksight.types.column_data_sub_type
 
         out["sub_type"] = capo_quicksight.types.column_data_sub_type.deserialize_json(

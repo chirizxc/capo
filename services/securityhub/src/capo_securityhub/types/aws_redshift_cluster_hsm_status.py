@@ -37,12 +37,12 @@ def serialize_json(value: AwsRedshiftClusterHsmStatus) -> dict:
 
 def deserialize_json(data: dict) -> AwsRedshiftClusterHsmStatus:
     out: AwsRedshiftClusterHsmStatus = {}  # type: ignore[typeddict-item]
-    if "HsmClientCertificateIdentifier" in data:
+    if data.get("HsmClientCertificateIdentifier") is not None:
         out["hsm_client_certificate_identifier"] = data[
             "HsmClientCertificateIdentifier"
         ]
-    if "HsmConfigurationIdentifier" in data:
+    if data.get("HsmConfigurationIdentifier") is not None:
         out["hsm_configuration_identifier"] = data["HsmConfigurationIdentifier"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     return out

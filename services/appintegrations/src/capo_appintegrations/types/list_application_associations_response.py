@@ -36,7 +36,7 @@ def serialize_json(value: ListApplicationAssociationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListApplicationAssociationsResponse:
     out: ListApplicationAssociationsResponse = {}  # type: ignore[typeddict-item]
-    if "ApplicationAssociations" in data:
+    if data.get("ApplicationAssociations") is not None:
         import capo_appintegrations.types.application_associations_list
 
         out["application_associations"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListApplicationAssociationsResponse:
                 data["ApplicationAssociations"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

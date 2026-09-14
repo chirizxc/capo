@@ -52,17 +52,17 @@ def serialize_aws_json_1_1(value: DnsRuleGroupPriorityConflictViolation) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> DnsRuleGroupPriorityConflictViolation:
     out: DnsRuleGroupPriorityConflictViolation = {}  # type: ignore[typeddict-item]
-    if "ViolationTarget" in data:
+    if data.get("ViolationTarget") is not None:
         out["violation_target"] = data["ViolationTarget"]
-    if "ViolationTargetDescription" in data:
+    if data.get("ViolationTargetDescription") is not None:
         out["violation_target_description"] = data["ViolationTargetDescription"]
-    if "ConflictingPriority" in data:
+    if data.get("ConflictingPriority") is not None:
         out["conflicting_priority"] = data["ConflictingPriority"]
     else:
         out["conflicting_priority"] = 0
-    if "ConflictingPolicyId" in data:
+    if data.get("ConflictingPolicyId") is not None:
         out["conflicting_policy_id"] = data["ConflictingPolicyId"]
-    if "UnavailablePriorities" in data:
+    if data.get("UnavailablePriorities") is not None:
         import capo_fms.types.dns_rule_group_priorities
 
         out["unavailable_priorities"] = (

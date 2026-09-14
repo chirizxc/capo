@@ -26,16 +26,24 @@ def serialize_aws_json_1_1(value: CPU) -> dict:
     if "architecture" in value:
         out["architecture"] = value["architecture"]
     if "clock" in value:
-        out["clock"] = value["clock"]
+        out["clock"] = (
+            "NaN"
+            if value["clock"] != value["clock"]
+            else "Infinity"
+            if value["clock"] == float("inf")
+            else "-Infinity"
+            if value["clock"] == float("-inf")
+            else value["clock"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> CPU:
     out: CPU = {}  # type: ignore[typeddict-item]
-    if "frequency" in data:
+    if data.get("frequency") is not None:
         out["frequency"] = data["frequency"]
-    if "architecture" in data:
+    if data.get("architecture") is not None:
         out["architecture"] = data["architecture"]
-    if "clock" in data:
-        out["clock"] = data["clock"]
+    if data.get("clock") is not None:
+        out["clock"] = float(data["clock"])
     return out

@@ -108,9 +108,9 @@ def serialize_json(value: AwsEc2VpcEndpointServiceDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEc2VpcEndpointServiceDetails:
     out: AwsEc2VpcEndpointServiceDetails = {}  # type: ignore[typeddict-item]
-    if "AcceptanceRequired" in data:
+    if data.get("AcceptanceRequired") is not None:
         out["acceptance_required"] = data["AcceptanceRequired"]
-    if "AvailabilityZones" in data:
+    if data.get("AvailabilityZones") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["availability_zones"] = (
@@ -118,7 +118,7 @@ def deserialize_json(data: dict) -> AwsEc2VpcEndpointServiceDetails:
                 data["AvailabilityZones"]
             )
         )
-    if "BaseEndpointDnsNames" in data:
+    if data.get("BaseEndpointDnsNames") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["base_endpoint_dns_names"] = (
@@ -126,9 +126,9 @@ def deserialize_json(data: dict) -> AwsEc2VpcEndpointServiceDetails:
                 data["BaseEndpointDnsNames"]
             )
         )
-    if "ManagesVpcEndpoints" in data:
+    if data.get("ManagesVpcEndpoints") is not None:
         out["manages_vpc_endpoints"] = data["ManagesVpcEndpoints"]
-    if "GatewayLoadBalancerArns" in data:
+    if data.get("GatewayLoadBalancerArns") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["gateway_load_balancer_arns"] = (
@@ -136,7 +136,7 @@ def deserialize_json(data: dict) -> AwsEc2VpcEndpointServiceDetails:
                 data["GatewayLoadBalancerArns"]
             )
         )
-    if "NetworkLoadBalancerArns" in data:
+    if data.get("NetworkLoadBalancerArns") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["network_load_balancer_arns"] = (
@@ -144,15 +144,15 @@ def deserialize_json(data: dict) -> AwsEc2VpcEndpointServiceDetails:
                 data["NetworkLoadBalancerArns"]
             )
         )
-    if "PrivateDnsName" in data:
+    if data.get("PrivateDnsName") is not None:
         out["private_dns_name"] = data["PrivateDnsName"]
-    if "ServiceId" in data:
+    if data.get("ServiceId") is not None:
         out["service_id"] = data["ServiceId"]
-    if "ServiceName" in data:
+    if data.get("ServiceName") is not None:
         out["service_name"] = data["ServiceName"]
-    if "ServiceState" in data:
+    if data.get("ServiceState") is not None:
         out["service_state"] = data["ServiceState"]
-    if "ServiceType" in data:
+    if data.get("ServiceType") is not None:
         import capo_securityhub.types.aws_ec2_vpc_endpoint_service_service_type_list
 
         out["service_type"] = (

@@ -34,12 +34,12 @@ def serialize_json(value: ServiceJobEvaluateOnExit) -> dict:
 
 def deserialize_json(data: dict) -> ServiceJobEvaluateOnExit:
     out: ServiceJobEvaluateOnExit = {}  # type: ignore[typeddict-item]
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_batch.types.service_job_retry_action
 
         out["action"] = capo_batch.types.service_job_retry_action.deserialize_json(
             data["action"]
         )
-    if "onStatusReason" in data:
+    if data.get("onStatusReason") is not None:
         out["on_status_reason"] = data["onStatusReason"]
     return out

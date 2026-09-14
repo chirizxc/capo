@@ -58,13 +58,13 @@ def serialize_aws_json_1_0(value: Filters) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Filters:
     out: Filters = {}  # type: ignore[typeddict-item]
-    if "Names" in data:
+    if data.get("Names") is not None:
         import capo_invoicing.types.invoice_unit_names
 
         out["names"] = capo_invoicing.types.invoice_unit_names.deserialize_aws_json_1_0(
             data["Names"]
         )
-    if "InvoiceReceivers" in data:
+    if data.get("InvoiceReceivers") is not None:
         import capo_invoicing.types.account_id_list
 
         out["invoice_receivers"] = (
@@ -72,13 +72,13 @@ def deserialize_aws_json_1_0(data: dict) -> Filters:
                 data["InvoiceReceivers"]
             )
         )
-    if "Accounts" in data:
+    if data.get("Accounts") is not None:
         import capo_invoicing.types.account_id_list
 
         out["accounts"] = capo_invoicing.types.account_id_list.deserialize_aws_json_1_0(
             data["Accounts"]
         )
-    if "BillSourceAccounts" in data:
+    if data.get("BillSourceAccounts") is not None:
         import capo_invoicing.types.account_id_list
 
         out["bill_source_accounts"] = (

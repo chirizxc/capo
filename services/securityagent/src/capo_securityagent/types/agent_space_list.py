@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> AgentSpaceList:
 
     out: AgentSpaceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityagent.types.agent_space.deserialize_json(item))
     return out

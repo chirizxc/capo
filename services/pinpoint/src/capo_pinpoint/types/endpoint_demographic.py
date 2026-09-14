@@ -51,20 +51,20 @@ def serialize_json(value: EndpointDemographic) -> dict:
 
 def deserialize_json(data: dict) -> EndpointDemographic:
     out: EndpointDemographic = {}  # type: ignore[typeddict-item]
-    if "AppVersion" in data:
+    if data.get("AppVersion") is not None:
         out["app_version"] = data["AppVersion"]
-    if "Locale" in data:
+    if data.get("Locale") is not None:
         out["locale"] = data["Locale"]
-    if "Make" in data:
+    if data.get("Make") is not None:
         out["make"] = data["Make"]
-    if "Model" in data:
+    if data.get("Model") is not None:
         out["model"] = data["Model"]
-    if "ModelVersion" in data:
+    if data.get("ModelVersion") is not None:
         out["model_version"] = data["ModelVersion"]
-    if "Platform" in data:
+    if data.get("Platform") is not None:
         out["platform"] = data["Platform"]
-    if "PlatformVersion" in data:
+    if data.get("PlatformVersion") is not None:
         out["platform_version"] = data["PlatformVersion"]
-    if "Timezone" in data:
+    if data.get("Timezone") is not None:
         out["timezone"] = data["Timezone"]
     return out

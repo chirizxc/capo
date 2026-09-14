@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DescribeClusterResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeClusterResult:
     out: DescribeClusterResult = {}  # type: ignore[typeddict-item]
-    if "ClusterMetadata" in data:
+    if data.get("ClusterMetadata") is not None:
         import capo_snowball.types.cluster_metadata
 
         out["cluster_metadata"] = (

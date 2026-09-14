@@ -45,18 +45,18 @@ def serialize_json(value: GenericWebhook) -> dict:
 
 def deserialize_json(data: dict) -> GenericWebhook:
     out: GenericWebhook = {}  # type: ignore[typeddict-item]
-    if "webhookUrl" in data:
+    if data.get("webhookUrl") is not None:
         out["webhook_url"] = data["webhookUrl"]
-    if "webhookId" in data:
+    if data.get("webhookId") is not None:
         out["webhook_id"] = data["webhookId"]
-    if "webhookType" in data:
+    if data.get("webhookType") is not None:
         import capo_devops_agent.types.webhook_type
 
         out["webhook_type"] = capo_devops_agent.types.webhook_type.deserialize_json(
             data["webhookType"]
         )
-    if "webhookSecret" in data:
+    if data.get("webhookSecret") is not None:
         out["webhook_secret"] = data["webhookSecret"]
-    if "apiKey" in data:
+    if data.get("apiKey") is not None:
         out["api_key"] = data["apiKey"]
     return out

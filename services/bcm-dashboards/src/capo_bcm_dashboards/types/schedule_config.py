@@ -53,11 +53,11 @@ def serialize_aws_json_1_0(value: ScheduleConfig) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ScheduleConfig:
     out: ScheduleConfig = {}  # type: ignore[typeddict-item]
-    if "scheduleExpression" in data:
+    if data.get("scheduleExpression") is not None:
         out["schedule_expression"] = data["scheduleExpression"]
-    if "scheduleExpressionTimeZone" in data:
+    if data.get("scheduleExpressionTimeZone") is not None:
         out["schedule_expression_time_zone"] = data["scheduleExpressionTimeZone"]
-    if "schedulePeriod" in data:
+    if data.get("schedulePeriod") is not None:
         import capo_bcm_dashboards.types.schedule_period
 
         out["schedule_period"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_0(data: dict) -> ScheduleConfig:
                 data["schedulePeriod"]
             )
         )
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_bcm_dashboards.types.schedule_state
 
         out["state"] = (

@@ -39,13 +39,13 @@ def serialize_json(value: UpdateApiRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateApiRequest:
     out: UpdateApiRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("UpdateApiRequest.name required")
-    if "ownerContact" in data:
+    if data.get("ownerContact") is not None:
         out["owner_contact"] = data["ownerContact"]
-    if "eventConfig" in data:
+    if data.get("eventConfig") is not None:
         import capo_appsync.types.event_config
 
         out["event_config"] = capo_appsync.types.event_config.deserialize_json(

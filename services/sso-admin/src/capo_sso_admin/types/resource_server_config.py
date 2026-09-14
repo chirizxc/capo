@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: ResourceServerConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourceServerConfig:
     out: ResourceServerConfig = {}  # type: ignore[typeddict-item]
-    if "Scopes" in data:
+    if data.get("Scopes") is not None:
         import capo_sso_admin.types.resource_server_scopes
 
         out["scopes"] = (

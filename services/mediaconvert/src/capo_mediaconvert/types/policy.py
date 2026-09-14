@@ -43,19 +43,19 @@ def serialize_json(value: Policy) -> dict:
 
 def deserialize_json(data: dict) -> Policy:
     out: Policy = {}  # type: ignore[typeddict-item]
-    if "httpInputs" in data:
+    if data.get("httpInputs") is not None:
         import capo_mediaconvert.types.input_policy
 
         out["http_inputs"] = capo_mediaconvert.types.input_policy.deserialize_json(
             data["httpInputs"]
         )
-    if "httpsInputs" in data:
+    if data.get("httpsInputs") is not None:
         import capo_mediaconvert.types.input_policy
 
         out["https_inputs"] = capo_mediaconvert.types.input_policy.deserialize_json(
             data["httpsInputs"]
         )
-    if "s3Inputs" in data:
+    if data.get("s3Inputs") is not None:
         import capo_mediaconvert.types.input_policy
 
         out["s3_inputs"] = capo_mediaconvert.types.input_policy.deserialize_json(

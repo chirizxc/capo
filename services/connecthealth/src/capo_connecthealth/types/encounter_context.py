@@ -25,6 +25,6 @@ def serialize_json(value: EncounterContext) -> dict:
 
 def deserialize_json(data: dict) -> EncounterContext:
     out: EncounterContext = {}  # type: ignore[typeddict-item]
-    if "unstructuredContext" in data:
+    if data.get("unstructuredContext") is not None:
         out["unstructured_context"] = data["unstructuredContext"]
     return out

@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: RevisionInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RevisionInfo:
     out: RevisionInfo = {}  # type: ignore[typeddict-item]
-    if "revisionLocation" in data:
+    if data.get("revisionLocation") is not None:
         import capo_codedeploy.types.revision_location
 
         out["revision_location"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> RevisionInfo:
                 data["revisionLocation"]
             )
         )
-    if "genericRevisionInfo" in data:
+    if data.get("genericRevisionInfo") is not None:
         import capo_codedeploy.types.generic_revision_info
 
         out["generic_revision_info"] = (

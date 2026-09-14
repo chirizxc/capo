@@ -64,7 +64,7 @@ def serialize_json(value: ConfigurationEvent) -> dict:
 
 def deserialize_json(data: dict) -> ConfigurationEvent:
     out: ConfigurationEvent = {}  # type: ignore[typeddict-item]
-    if "requestAttributes" in data:
+    if data.get("requestAttributes") is not None:
         import capo_lex_runtime_v2.types.string_map
 
         out["request_attributes"] = (
@@ -72,29 +72,29 @@ def deserialize_json(data: dict) -> ConfigurationEvent:
                 data["requestAttributes"]
             )
         )
-    if "responseContentType" in data:
+    if data.get("responseContentType") is not None:
         out["response_content_type"] = data["responseContentType"]
     else:
         raise DeserializationError("ConfigurationEvent.response_content_type required")
-    if "sessionState" in data:
+    if data.get("sessionState") is not None:
         import capo_lex_runtime_v2.types.session_state
 
         out["session_state"] = capo_lex_runtime_v2.types.session_state.deserialize_json(
             data["sessionState"]
         )
-    if "welcomeMessages" in data:
+    if data.get("welcomeMessages") is not None:
         import capo_lex_runtime_v2.types.messages
 
         out["welcome_messages"] = capo_lex_runtime_v2.types.messages.deserialize_json(
             data["welcomeMessages"]
         )
-    if "disablePlayback" in data:
+    if data.get("disablePlayback") is not None:
         out["disable_playback"] = data["disablePlayback"]
     else:
         out["disable_playback"] = False
-    if "eventId" in data:
+    if data.get("eventId") is not None:
         out["event_id"] = data["eventId"]
-    if "clientTimestampMillis" in data:
+    if data.get("clientTimestampMillis") is not None:
         out["client_timestamp_millis"] = data["clientTimestampMillis"]
     else:
         out["client_timestamp_millis"] = 0

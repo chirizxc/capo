@@ -35,11 +35,11 @@ def serialize_json(value: Taint) -> dict:
 
 def deserialize_json(data: dict) -> Taint:
     out: Taint = {}  # type: ignore[typeddict-item]
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
-    if "effect" in data:
+    if data.get("effect") is not None:
         import capo_eks.types.taint_effect
 
         out["effect"] = capo_eks.types.taint_effect.deserialize_json(data["effect"])

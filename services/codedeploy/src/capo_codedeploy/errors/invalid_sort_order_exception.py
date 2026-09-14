@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: InvalidSortOrderException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidSortOrderException_:
     out: InvalidSortOrderException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,18 @@ class InvalidSortOrderException(ServiceError):
 
     code: str | None = "InvalidSortOrderException"
 
-    def __init__(self, data: InvalidSortOrderException_):
+    def __init__(self, data: InvalidSortOrderException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidSortOrderException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidSortOrderException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidSortOrderException":
+        return cls(deserialize_aws_json_1_1(data), message)

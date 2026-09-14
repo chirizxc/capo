@@ -124,11 +124,11 @@ def serialize_json(value: SubscriptionTargetSummary) -> dict:
 
 def deserialize_json(data: dict) -> SubscriptionTargetSummary:
     out: SubscriptionTargetSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("SubscriptionTargetSummary.id required")
-    if "authorizedPrincipals" in data:
+    if data.get("authorizedPrincipals") is not None:
         import capo_datazone.types.authorized_principal_identifiers
 
         out["authorized_principals"] = (
@@ -140,33 +140,33 @@ def deserialize_json(data: dict) -> SubscriptionTargetSummary:
         raise DeserializationError(
             "SubscriptionTargetSummary.authorized_principals required"
         )
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
     else:
         raise DeserializationError("SubscriptionTargetSummary.domain_id required")
-    if "projectId" in data:
+    if data.get("projectId") is not None:
         out["project_id"] = data["projectId"]
     else:
         raise DeserializationError("SubscriptionTargetSummary.project_id required")
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
     else:
         raise DeserializationError("SubscriptionTargetSummary.environment_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("SubscriptionTargetSummary.name required")
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("SubscriptionTargetSummary.type required")
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
     else:
         raise DeserializationError("SubscriptionTargetSummary.created_by required")
-    if "updatedBy" in data:
+    if data.get("updatedBy") is not None:
         out["updated_by"] = data["updatedBy"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_datazone.types.created_at
 
         out["created_at"] = capo_datazone.types.created_at.deserialize_json(
@@ -174,15 +174,15 @@ def deserialize_json(data: dict) -> SubscriptionTargetSummary:
         )
     else:
         raise DeserializationError("SubscriptionTargetSummary.created_at required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_datazone.types.updated_at
 
         out["updated_at"] = capo_datazone.types.updated_at.deserialize_json(
             data["updatedAt"]
         )
-    if "manageAccessRole" in data:
+    if data.get("manageAccessRole") is not None:
         out["manage_access_role"] = data["manageAccessRole"]
-    if "applicableAssetTypes" in data:
+    if data.get("applicableAssetTypes") is not None:
         import capo_datazone.types.applicable_asset_types
 
         out["applicable_asset_types"] = (
@@ -194,7 +194,7 @@ def deserialize_json(data: dict) -> SubscriptionTargetSummary:
         raise DeserializationError(
             "SubscriptionTargetSummary.applicable_asset_types required"
         )
-    if "subscriptionTargetConfig" in data:
+    if data.get("subscriptionTargetConfig") is not None:
         import capo_datazone.types.subscription_target_forms
 
         out["subscription_target_config"] = (
@@ -206,11 +206,11 @@ def deserialize_json(data: dict) -> SubscriptionTargetSummary:
         raise DeserializationError(
             "SubscriptionTargetSummary.subscription_target_config required"
         )
-    if "provider" in data:
+    if data.get("provider") is not None:
         out["provider"] = data["provider"]
     else:
         raise DeserializationError("SubscriptionTargetSummary.provider required")
-    if "subscriptionGrantCreationMode" in data:
+    if data.get("subscriptionGrantCreationMode") is not None:
         import capo_datazone.types.subscription_grant_creation_mode
 
         out["subscription_grant_creation_mode"] = (

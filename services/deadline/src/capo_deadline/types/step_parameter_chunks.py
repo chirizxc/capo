@@ -39,13 +39,13 @@ def serialize_json(value: StepParameterChunks) -> dict:
 
 def deserialize_json(data: dict) -> StepParameterChunks:
     out: StepParameterChunks = {}  # type: ignore[typeddict-item]
-    if "defaultTaskCount" in data:
+    if data.get("defaultTaskCount") is not None:
         out["default_task_count"] = data["defaultTaskCount"]
     else:
         raise DeserializationError("StepParameterChunks.default_task_count required")
-    if "targetRuntimeSeconds" in data:
+    if data.get("targetRuntimeSeconds") is not None:
         out["target_runtime_seconds"] = data["targetRuntimeSeconds"]
-    if "rangeConstraint" in data:
+    if data.get("rangeConstraint") is not None:
         import capo_deadline.types.range_constraint
 
         out["range_constraint"] = capo_deadline.types.range_constraint.deserialize_json(

@@ -24,7 +24,7 @@ def serialize_json(value: GetProductInput) -> dict:
 
 def deserialize_json(data: dict) -> GetProductInput:
     out: GetProductInput = {}  # type: ignore[typeddict-item]
-    if "productId" in data:
+    if data.get("productId") is not None:
         out["product_id"] = data["productId"]
     else:
         raise DeserializationError("GetProductInput.product_id required")

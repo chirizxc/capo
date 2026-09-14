@@ -77,21 +77,21 @@ def serialize_json(value: LinkedWhatsAppBusinessAccountSummary) -> dict:
 
 def deserialize_json(data: dict) -> LinkedWhatsAppBusinessAccountSummary:
     out: LinkedWhatsAppBusinessAccountSummary = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("LinkedWhatsAppBusinessAccountSummary.arn required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("LinkedWhatsAppBusinessAccountSummary.id required")
-    if "wabaId" in data:
+    if data.get("wabaId") is not None:
         out["waba_id"] = data["wabaId"]
     else:
         raise DeserializationError(
             "LinkedWhatsAppBusinessAccountSummary.waba_id required"
         )
-    if "registrationStatus" in data:
+    if data.get("registrationStatus") is not None:
         import capo_socialmessaging.types.registration_status
 
         out["registration_status"] = (
@@ -103,7 +103,7 @@ def deserialize_json(data: dict) -> LinkedWhatsAppBusinessAccountSummary:
         raise DeserializationError(
             "LinkedWhatsAppBusinessAccountSummary.registration_status required"
         )
-    if "linkDate" in data:
+    if data.get("linkDate") is not None:
         import capo_socialmessaging.types.whats_app_business_account_link_date
 
         out["link_date"] = (
@@ -115,13 +115,13 @@ def deserialize_json(data: dict) -> LinkedWhatsAppBusinessAccountSummary:
         raise DeserializationError(
             "LinkedWhatsAppBusinessAccountSummary.link_date required"
         )
-    if "wabaName" in data:
+    if data.get("wabaName") is not None:
         out["waba_name"] = data["wabaName"]
     else:
         raise DeserializationError(
             "LinkedWhatsAppBusinessAccountSummary.waba_name required"
         )
-    if "eventDestinations" in data:
+    if data.get("eventDestinations") is not None:
         import capo_socialmessaging.types.whats_app_business_account_event_destinations
 
         out["event_destinations"] = (
@@ -133,7 +133,7 @@ def deserialize_json(data: dict) -> LinkedWhatsAppBusinessAccountSummary:
         raise DeserializationError(
             "LinkedWhatsAppBusinessAccountSummary.event_destinations required"
         )
-    if "marketingMessagesOnboardingStatus" in data:
+    if data.get("marketingMessagesOnboardingStatus") is not None:
         out["marketing_messages_onboarding_status"] = data[
             "marketingMessagesOnboardingStatus"
         ]

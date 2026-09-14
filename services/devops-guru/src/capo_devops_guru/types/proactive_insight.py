@@ -94,23 +94,23 @@ def serialize_json(value: ProactiveInsight) -> dict:
 
 def deserialize_json(data: dict) -> ProactiveInsight:
     out: ProactiveInsight = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Severity" in data:
+    if data.get("Severity") is not None:
         import capo_devops_guru.types.insight_severity
 
         out["severity"] = capo_devops_guru.types.insight_severity.deserialize_json(
             data["Severity"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_devops_guru.types.insight_status
 
         out["status"] = capo_devops_guru.types.insight_status.deserialize_json(
             data["Status"]
         )
-    if "InsightTimeRange" in data:
+    if data.get("InsightTimeRange") is not None:
         import capo_devops_guru.types.insight_time_range
 
         out["insight_time_range"] = (
@@ -118,7 +118,7 @@ def deserialize_json(data: dict) -> ProactiveInsight:
                 data["InsightTimeRange"]
             )
         )
-    if "PredictionTimeRange" in data:
+    if data.get("PredictionTimeRange") is not None:
         import capo_devops_guru.types.prediction_time_range
 
         out["prediction_time_range"] = (
@@ -126,7 +126,7 @@ def deserialize_json(data: dict) -> ProactiveInsight:
                 data["PredictionTimeRange"]
             )
         )
-    if "ResourceCollection" in data:
+    if data.get("ResourceCollection") is not None:
         import capo_devops_guru.types.resource_collection
 
         out["resource_collection"] = (
@@ -134,8 +134,8 @@ def deserialize_json(data: dict) -> ProactiveInsight:
                 data["ResourceCollection"]
             )
         )
-    if "SsmOpsItemId" in data:
+    if data.get("SsmOpsItemId") is not None:
         out["ssm_ops_item_id"] = data["SsmOpsItemId"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

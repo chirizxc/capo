@@ -102,17 +102,17 @@ def serialize_aws_json_1_1(value: CreateServiceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateServiceRequest:
     out: CreateServiceRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateServiceRequest.name required")
-    if "NamespaceId" in data:
+    if data.get("NamespaceId") is not None:
         out["namespace_id"] = data["NamespaceId"]
-    if "CreatorRequestId" in data:
+    if data.get("CreatorRequestId") is not None:
         out["creator_request_id"] = data["CreatorRequestId"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DnsConfig" in data:
+    if data.get("DnsConfig") is not None:
         import capo_servicediscovery.types.dns_config
 
         out["dns_config"] = (
@@ -120,7 +120,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateServiceRequest:
                 data["DnsConfig"]
             )
         )
-    if "HealthCheckConfig" in data:
+    if data.get("HealthCheckConfig") is not None:
         import capo_servicediscovery.types.health_check_config
 
         out["health_check_config"] = (
@@ -128,7 +128,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateServiceRequest:
                 data["HealthCheckConfig"]
             )
         )
-    if "HealthCheckCustomConfig" in data:
+    if data.get("HealthCheckCustomConfig") is not None:
         import capo_servicediscovery.types.health_check_custom_config
 
         out["health_check_custom_config"] = (
@@ -136,13 +136,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateServiceRequest:
                 data["HealthCheckCustomConfig"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_servicediscovery.types.tag_list
 
         out["tags"] = capo_servicediscovery.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_servicediscovery.types.service_type_option
 
         out["type"] = (

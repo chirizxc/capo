@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: TargetRequiredException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TargetRequiredException_:
     out: TargetRequiredException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,18 @@ class TargetRequiredException(ServiceError):
 
     code: str | None = "TargetRequiredException"
 
-    def __init__(self, data: TargetRequiredException_):
+    def __init__(self, data: TargetRequiredException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="TargetRequiredException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "TargetRequiredException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "TargetRequiredException":
+        return cls(deserialize_aws_json_1_1(data), message)

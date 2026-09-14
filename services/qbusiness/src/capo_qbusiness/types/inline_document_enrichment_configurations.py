@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> InlineDocumentEnrichmentConfigurations:
 
     out: InlineDocumentEnrichmentConfigurations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_qbusiness.types.inline_document_enrichment_configuration.deserialize_json(
                 item

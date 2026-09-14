@@ -42,7 +42,7 @@ def serialize_aws_json_1_1(value: InviteAccountToOrganizationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InviteAccountToOrganizationRequest:
     out: InviteAccountToOrganizationRequest = {}  # type: ignore[typeddict-item]
-    if "Target" in data:
+    if data.get("Target") is not None:
         import capo_organizations.types.handshake_party
 
         out["target"] = (
@@ -52,9 +52,9 @@ def deserialize_aws_json_1_1(data: dict) -> InviteAccountToOrganizationRequest:
         )
     else:
         raise DeserializationError("InviteAccountToOrganizationRequest.target required")
-    if "Notes" in data:
+    if data.get("Notes") is not None:
         out["notes"] = data["Notes"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_organizations.types.tags
 
         out["tags"] = capo_organizations.types.tags.deserialize_aws_json_1_1(

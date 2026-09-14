@@ -40,10 +40,10 @@ def serialize_json(value: UpdateConnectionRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateConnectionRequest:
     out: UpdateConnectionRequest = {}  # type: ignore[typeddict-item]
-    if "LinkId" in data:
+    if data.get("LinkId") is not None:
         out["link_id"] = data["LinkId"]
-    if "ConnectedLinkId" in data:
+    if data.get("ConnectedLinkId") is not None:
         out["connected_link_id"] = data["ConnectedLinkId"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

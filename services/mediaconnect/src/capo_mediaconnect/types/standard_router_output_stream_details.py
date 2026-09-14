@@ -18,6 +18,6 @@ def serialize_json(value: StandardRouterOutputStreamDetails) -> dict:
 
 def deserialize_json(data: dict) -> StandardRouterOutputStreamDetails:
     out: StandardRouterOutputStreamDetails = {}  # type: ignore[typeddict-item]
-    if "destinationIpAddress" in data:
+    if data.get("destinationIpAddress") is not None:
         out["destination_ip_address"] = data["destinationIpAddress"]
     return out

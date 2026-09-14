@@ -49,20 +49,20 @@ def serialize_json(value: ConfigurationPolicySummary) -> dict:
 
 def deserialize_json(data: dict) -> ConfigurationPolicySummary:
     out: ConfigurationPolicySummary = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_securityhub.types.timestamp
 
         out["updated_at"] = capo_securityhub.types.timestamp.deserialize_json(
             data["UpdatedAt"]
         )
-    if "ServiceEnabled" in data:
+    if data.get("ServiceEnabled") is not None:
         out["service_enabled"] = data["ServiceEnabled"]
     return out

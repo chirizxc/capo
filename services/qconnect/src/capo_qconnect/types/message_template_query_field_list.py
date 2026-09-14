@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> MessageTemplateQueryFieldList:
 
     out: MessageTemplateQueryFieldList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_qconnect.types.message_template_query_field.deserialize_json(item)
         )

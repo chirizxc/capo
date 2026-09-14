@@ -35,15 +35,15 @@ def serialize_json(value: CreateGraphSnapshotInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateGraphSnapshotInput:
     out: CreateGraphSnapshotInput = {}  # type: ignore[typeddict-item]
-    if "graphIdentifier" in data:
+    if data.get("graphIdentifier") is not None:
         out["graph_identifier"] = data["graphIdentifier"]
     else:
         raise DeserializationError("CreateGraphSnapshotInput.graph_identifier required")
-    if "snapshotName" in data:
+    if data.get("snapshotName") is not None:
         out["snapshot_name"] = data["snapshotName"]
     else:
         raise DeserializationError("CreateGraphSnapshotInput.snapshot_name required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_neptune_graph.types.tag_map
 
         out["tags"] = capo_neptune_graph.types.tag_map.deserialize_json(data["tags"])

@@ -80,7 +80,7 @@ def serialize_json(value: AnalysisRuleCustom) -> dict:
 
 def deserialize_json(data: dict) -> AnalysisRuleCustom:
     out: AnalysisRuleCustom = {}  # type: ignore[typeddict-item]
-    if "allowedAnalyses" in data:
+    if data.get("allowedAnalyses") is not None:
         import capo_cleanrooms.types.allowed_analyses_list
 
         out["allowed_analyses"] = (
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> AnalysisRuleCustom:
         )
     else:
         raise DeserializationError("AnalysisRuleCustom.allowed_analyses required")
-    if "allowedAnalysisProviders" in data:
+    if data.get("allowedAnalysisProviders") is not None:
         import capo_cleanrooms.types.allowed_analysis_provider_list
 
         out["allowed_analysis_providers"] = (
@@ -98,7 +98,7 @@ def deserialize_json(data: dict) -> AnalysisRuleCustom:
                 data["allowedAnalysisProviders"]
             )
         )
-    if "additionalAnalyses" in data:
+    if data.get("additionalAnalyses") is not None:
         import capo_cleanrooms.types.additional_analyses
 
         out["additional_analyses"] = (
@@ -106,7 +106,7 @@ def deserialize_json(data: dict) -> AnalysisRuleCustom:
                 data["additionalAnalyses"]
             )
         )
-    if "disallowedOutputColumns" in data:
+    if data.get("disallowedOutputColumns") is not None:
         import capo_cleanrooms.types.analysis_rule_column_list
 
         out["disallowed_output_columns"] = (
@@ -114,7 +114,7 @@ def deserialize_json(data: dict) -> AnalysisRuleCustom:
                 data["disallowedOutputColumns"]
             )
         )
-    if "differentialPrivacy" in data:
+    if data.get("differentialPrivacy") is not None:
         import capo_cleanrooms.types.differential_privacy_configuration
 
         out["differential_privacy"] = (

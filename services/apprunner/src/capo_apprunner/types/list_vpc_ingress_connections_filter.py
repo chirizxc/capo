@@ -30,8 +30,8 @@ def serialize_aws_json_1_0(value: ListVpcIngressConnectionsFilter) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListVpcIngressConnectionsFilter:
     out: ListVpcIngressConnectionsFilter = {}  # type: ignore[typeddict-item]
-    if "ServiceArn" in data:
+    if data.get("ServiceArn") is not None:
         out["service_arn"] = data["ServiceArn"]
-    if "VpcEndpointId" in data:
+    if data.get("VpcEndpointId") is not None:
         out["vpc_endpoint_id"] = data["VpcEndpointId"]
     return out

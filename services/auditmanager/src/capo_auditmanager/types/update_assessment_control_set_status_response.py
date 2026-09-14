@@ -31,7 +31,7 @@ def serialize_json(value: UpdateAssessmentControlSetStatusResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAssessmentControlSetStatusResponse:
     out: UpdateAssessmentControlSetStatusResponse = {}  # type: ignore[typeddict-item]
-    if "controlSet" in data:
+    if data.get("controlSet") is not None:
         import capo_auditmanager.types.assessment_control_set
 
         out["control_set"] = (

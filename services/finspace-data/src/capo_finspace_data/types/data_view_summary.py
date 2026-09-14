@@ -107,15 +107,15 @@ def serialize_json(value: DataViewSummary) -> dict:
 
 def deserialize_json(data: dict) -> DataViewSummary:
     out: DataViewSummary = {}  # type: ignore[typeddict-item]
-    if "dataViewId" in data:
+    if data.get("dataViewId") is not None:
         out["data_view_id"] = data["dataViewId"]
-    if "dataViewArn" in data:
+    if data.get("dataViewArn") is not None:
         out["data_view_arn"] = data["dataViewArn"]
-    if "datasetId" in data:
+    if data.get("datasetId") is not None:
         out["dataset_id"] = data["datasetId"]
-    if "asOfTimestamp" in data:
+    if data.get("asOfTimestamp") is not None:
         out["as_of_timestamp"] = data["asOfTimestamp"]
-    if "partitionColumns" in data:
+    if data.get("partitionColumns") is not None:
         import capo_finspace_data.types.partition_column_list
 
         out["partition_columns"] = (
@@ -123,7 +123,7 @@ def deserialize_json(data: dict) -> DataViewSummary:
                 data["partitionColumns"]
             )
         )
-    if "sortColumns" in data:
+    if data.get("sortColumns") is not None:
         import capo_finspace_data.types.sort_column_list
 
         out["sort_columns"] = (
@@ -131,13 +131,13 @@ def deserialize_json(data: dict) -> DataViewSummary:
                 data["sortColumns"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_finspace_data.types.data_view_status
 
         out["status"] = capo_finspace_data.types.data_view_status.deserialize_json(
             data["status"]
         )
-    if "errorInfo" in data:
+    if data.get("errorInfo") is not None:
         import capo_finspace_data.types.data_view_error_info
 
         out["error_info"] = (
@@ -145,7 +145,7 @@ def deserialize_json(data: dict) -> DataViewSummary:
                 data["errorInfo"]
             )
         )
-    if "destinationTypeProperties" in data:
+    if data.get("destinationTypeProperties") is not None:
         import capo_finspace_data.types.data_view_destination_type_params
 
         out["destination_type_properties"] = (
@@ -153,15 +153,15 @@ def deserialize_json(data: dict) -> DataViewSummary:
                 data["destinationTypeProperties"]
             )
         )
-    if "autoUpdate" in data:
+    if data.get("autoUpdate") is not None:
         out["auto_update"] = data["autoUpdate"]
     else:
         out["auto_update"] = False
-    if "createTime" in data:
+    if data.get("createTime") is not None:
         out["create_time"] = data["createTime"]
     else:
         out["create_time"] = 0
-    if "lastModifiedTime" in data:
+    if data.get("lastModifiedTime") is not None:
         out["last_modified_time"] = data["lastModifiedTime"]
     else:
         out["last_modified_time"] = 0

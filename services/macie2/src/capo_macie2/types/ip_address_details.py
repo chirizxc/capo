@@ -55,25 +55,25 @@ def serialize_json(value: IpAddressDetails) -> dict:
 
 def deserialize_json(data: dict) -> IpAddressDetails:
     out: IpAddressDetails = {}  # type: ignore[typeddict-item]
-    if "ipAddressV4" in data:
+    if data.get("ipAddressV4") is not None:
         out["ip_address_v4"] = data["ipAddressV4"]
-    if "ipCity" in data:
+    if data.get("ipCity") is not None:
         import capo_macie2.types.ip_city
 
         out["ip_city"] = capo_macie2.types.ip_city.deserialize_json(data["ipCity"])
-    if "ipCountry" in data:
+    if data.get("ipCountry") is not None:
         import capo_macie2.types.ip_country
 
         out["ip_country"] = capo_macie2.types.ip_country.deserialize_json(
             data["ipCountry"]
         )
-    if "ipGeoLocation" in data:
+    if data.get("ipGeoLocation") is not None:
         import capo_macie2.types.ip_geo_location
 
         out["ip_geo_location"] = capo_macie2.types.ip_geo_location.deserialize_json(
             data["ipGeoLocation"]
         )
-    if "ipOwner" in data:
+    if data.get("ipOwner") is not None:
         import capo_macie2.types.ip_owner
 
         out["ip_owner"] = capo_macie2.types.ip_owner.deserialize_json(data["ipOwner"])

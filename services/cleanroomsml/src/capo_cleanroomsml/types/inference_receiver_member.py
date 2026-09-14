@@ -24,7 +24,7 @@ def serialize_json(value: InferenceReceiverMember) -> dict:
 
 def deserialize_json(data: dict) -> InferenceReceiverMember:
     out: InferenceReceiverMember = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
     else:
         raise DeserializationError("InferenceReceiverMember.account_id required")

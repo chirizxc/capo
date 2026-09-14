@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.backup#CryoControllerUserManager``."""
 
 import datetime
+import uuid
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -444,9 +445,10 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.associate_backup_vault_mpa_approval_team_input.AssociateBackupVaultMpaApprovalTeamInput = {}  # type: ignore[typeddict-item]
-        input_["backup_vault_name"] = backup_vault_name
-        input_["mpa_approval_team_arn"] = mpa_approval_team_arn
+        input_: capo_backup.types.associate_backup_vault_mpa_approval_team_input.AssociateBackupVaultMpaApprovalTeamInput = {
+            "backup_vault_name": backup_vault_name,
+            "mpa_approval_team_arn": mpa_approval_team_arn,
+        }
         if requester_comment is not None:
             input_["requester_comment"] = requester_comment
 
@@ -455,6 +457,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_legal_hold(
@@ -496,9 +499,10 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.cancel_legal_hold_input.CancelLegalHoldInput = {}  # type: ignore[typeddict-item]
-        input_["legal_hold_id"] = legal_hold_id
-        input_["cancel_description"] = cancel_description
+        input_: capo_backup.types.cancel_legal_hold_input.CancelLegalHoldInput = {
+            "legal_hold_id": legal_hold_id,
+            "cancel_description": cancel_description,
+        }
         if retain_record_in_days is not None:
             input_["retain_record_in_days"] = retain_record_in_days
 
@@ -507,6 +511,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_backup_plan(
@@ -548,18 +553,21 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.create_backup_plan_input.CreateBackupPlanInput = {}  # type: ignore[typeddict-item]
-        input_["backup_plan"] = backup_plan
+        input_: capo_backup.types.create_backup_plan_input.CreateBackupPlanInput = {
+            "backup_plan": backup_plan
+        }
         if backup_plan_tags is not None:
             input_["backup_plan_tags"] = backup_plan_tags
-        if creator_request_id is not None:
-            input_["creator_request_id"] = creator_request_id
+        if creator_request_id is None:
+            creator_request_id = str(uuid.uuid4())
+        input_["creator_request_id"] = creator_request_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_backup_selection(
@@ -601,17 +609,20 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.create_backup_selection_input.CreateBackupSelectionInput = {}  # type: ignore[typeddict-item]
-        input_["backup_plan_id"] = backup_plan_id
-        input_["backup_selection"] = backup_selection
-        if creator_request_id is not None:
-            input_["creator_request_id"] = creator_request_id
+        input_: capo_backup.types.create_backup_selection_input.CreateBackupSelectionInput = {
+            "backup_plan_id": backup_plan_id,
+            "backup_selection": backup_selection,
+        }
+        if creator_request_id is None:
+            creator_request_id = str(uuid.uuid4())
+        input_["creator_request_id"] = creator_request_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_backup_vault(
@@ -655,20 +666,23 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.create_backup_vault_input.CreateBackupVaultInput = {}  # type: ignore[typeddict-item]
-        input_["backup_vault_name"] = backup_vault_name
+        input_: capo_backup.types.create_backup_vault_input.CreateBackupVaultInput = {
+            "backup_vault_name": backup_vault_name
+        }
         if backup_vault_tags is not None:
             input_["backup_vault_tags"] = backup_vault_tags
         if encryption_key_arn is not None:
             input_["encryption_key_arn"] = encryption_key_arn
-        if creator_request_id is not None:
-            input_["creator_request_id"] = creator_request_id
+        if creator_request_id is None:
+            creator_request_id = str(uuid.uuid4())
+        input_["creator_request_id"] = creator_request_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_framework(
@@ -716,13 +730,15 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.create_framework_input.CreateFrameworkInput = {}  # type: ignore[typeddict-item]
-        input_["framework_name"] = framework_name
+        input_: capo_backup.types.create_framework_input.CreateFrameworkInput = {
+            "framework_name": framework_name,
+            "framework_controls": framework_controls,
+        }
         if framework_description is not None:
             input_["framework_description"] = framework_description
-        input_["framework_controls"] = framework_controls
-        if idempotency_token is not None:
-            input_["idempotency_token"] = idempotency_token
+        if idempotency_token is None:
+            idempotency_token = str(uuid.uuid4())
+        input_["idempotency_token"] = idempotency_token
         if framework_tags is not None:
             input_["framework_tags"] = framework_tags
 
@@ -731,6 +747,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_legal_hold(
@@ -777,11 +794,13 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.create_legal_hold_input.CreateLegalHoldInput = {}  # type: ignore[typeddict-item]
-        input_["title"] = title
-        input_["description"] = description
-        if idempotency_token is not None:
-            input_["idempotency_token"] = idempotency_token
+        input_: capo_backup.types.create_legal_hold_input.CreateLegalHoldInput = {
+            "title": title,
+            "description": description,
+        }
+        if idempotency_token is None:
+            idempotency_token = str(uuid.uuid4())
+        input_["idempotency_token"] = idempotency_token
         if recovery_point_selection is not None:
             input_["recovery_point_selection"] = recovery_point_selection
         if tags is not None:
@@ -792,6 +811,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_logically_air_gapped_backup_vault(
@@ -840,14 +860,16 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.create_logically_air_gapped_backup_vault_input.CreateLogicallyAirGappedBackupVaultInput = {}  # type: ignore[typeddict-item]
-        input_["backup_vault_name"] = backup_vault_name
+        input_: capo_backup.types.create_logically_air_gapped_backup_vault_input.CreateLogicallyAirGappedBackupVaultInput = {
+            "backup_vault_name": backup_vault_name,
+            "min_retention_days": min_retention_days,
+            "max_retention_days": max_retention_days,
+        }
         if backup_vault_tags is not None:
             input_["backup_vault_tags"] = backup_vault_tags
-        if creator_request_id is not None:
-            input_["creator_request_id"] = creator_request_id
-        input_["min_retention_days"] = min_retention_days
-        input_["max_retention_days"] = max_retention_days
+        if creator_request_id is None:
+            creator_request_id = str(uuid.uuid4())
+        input_["creator_request_id"] = creator_request_id
         if encryption_key_arn is not None:
             input_["encryption_key_arn"] = encryption_key_arn
 
@@ -856,6 +878,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_report_plan(
@@ -905,22 +928,25 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.create_report_plan_input.CreateReportPlanInput = {}  # type: ignore[typeddict-item]
-        input_["report_plan_name"] = report_plan_name
+        input_: capo_backup.types.create_report_plan_input.CreateReportPlanInput = {
+            "report_plan_name": report_plan_name,
+            "report_delivery_channel": report_delivery_channel,
+            "report_setting": report_setting,
+        }
         if report_plan_description is not None:
             input_["report_plan_description"] = report_plan_description
-        input_["report_delivery_channel"] = report_delivery_channel
-        input_["report_setting"] = report_setting
         if report_plan_tags is not None:
             input_["report_plan_tags"] = report_plan_tags
-        if idempotency_token is not None:
-            input_["idempotency_token"] = idempotency_token
+        if idempotency_token is None:
+            idempotency_token = str(uuid.uuid4())
+        input_["idempotency_token"] = idempotency_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_restore_access_backup_vault(
@@ -972,14 +998,16 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.create_restore_access_backup_vault_input.CreateRestoreAccessBackupVaultInput = {}  # type: ignore[typeddict-item]
-        input_["source_backup_vault_arn"] = source_backup_vault_arn
+        input_: capo_backup.types.create_restore_access_backup_vault_input.CreateRestoreAccessBackupVaultInput = {
+            "source_backup_vault_arn": source_backup_vault_arn
+        }
         if backup_vault_name is not None:
             input_["backup_vault_name"] = backup_vault_name
         if backup_vault_tags is not None:
             input_["backup_vault_tags"] = backup_vault_tags
-        if creator_request_id is not None:
-            input_["creator_request_id"] = creator_request_id
+        if creator_request_id is None:
+            creator_request_id = str(uuid.uuid4())
+        input_["creator_request_id"] = creator_request_id
         if requester_comment is not None:
             input_["requester_comment"] = requester_comment
 
@@ -988,6 +1016,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_restore_testing_plan(
@@ -1032,10 +1061,11 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.create_restore_testing_plan_input.CreateRestoreTestingPlanInput = {}  # type: ignore[typeddict-item]
+        input_: capo_backup.types.create_restore_testing_plan_input.CreateRestoreTestingPlanInput = {
+            "restore_testing_plan": restore_testing_plan
+        }
         if creator_request_id is not None:
             input_["creator_request_id"] = creator_request_id
-        input_["restore_testing_plan"] = restore_testing_plan
         if tags is not None:
             input_["tags"] = tags
 
@@ -1044,6 +1074,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_restore_testing_selection(
@@ -1086,17 +1117,19 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.create_restore_testing_selection_input.CreateRestoreTestingSelectionInput = {}  # type: ignore[typeddict-item]
+        input_: capo_backup.types.create_restore_testing_selection_input.CreateRestoreTestingSelectionInput = {
+            "restore_testing_plan_name": restore_testing_plan_name,
+            "restore_testing_selection": restore_testing_selection,
+        }
         if creator_request_id is not None:
             input_["creator_request_id"] = creator_request_id
-        input_["restore_testing_plan_name"] = restore_testing_plan_name
-        input_["restore_testing_selection"] = restore_testing_selection
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_tiering_configuration(
@@ -1141,18 +1174,21 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.create_tiering_configuration_input.CreateTieringConfigurationInput = {}  # type: ignore[typeddict-item]
-        input_["tiering_configuration"] = tiering_configuration
+        input_: capo_backup.types.create_tiering_configuration_input.CreateTieringConfigurationInput = {
+            "tiering_configuration": tiering_configuration
+        }
         if tiering_configuration_tags is not None:
             input_["tiering_configuration_tags"] = tiering_configuration_tags
-        if creator_request_id is not None:
-            input_["creator_request_id"] = creator_request_id
+        if creator_request_id is None:
+            creator_request_id = str(uuid.uuid4())
+        input_["creator_request_id"] = creator_request_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_backup_plan(
@@ -1190,14 +1226,16 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.delete_backup_plan_input.DeleteBackupPlanInput = {}  # type: ignore[typeddict-item]
-        input_["backup_plan_id"] = backup_plan_id
+        input_: capo_backup.types.delete_backup_plan_input.DeleteBackupPlanInput = {
+            "backup_plan_id": backup_plan_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_backup_selection(
@@ -1234,15 +1272,17 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.delete_backup_selection_input.DeleteBackupSelectionInput = {}  # type: ignore[typeddict-item]
-        input_["backup_plan_id"] = backup_plan_id
-        input_["selection_id"] = selection_id
+        input_: capo_backup.types.delete_backup_selection_input.DeleteBackupSelectionInput = {
+            "backup_plan_id": backup_plan_id,
+            "selection_id": selection_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_backup_vault(
@@ -1278,14 +1318,16 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.delete_backup_vault_input.DeleteBackupVaultInput = {}  # type: ignore[typeddict-item]
-        input_["backup_vault_name"] = backup_vault_name
+        input_: capo_backup.types.delete_backup_vault_input.DeleteBackupVaultInput = {
+            "backup_vault_name": backup_vault_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_backup_vault_access_policy(
@@ -1320,14 +1362,16 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.delete_backup_vault_access_policy_input.DeleteBackupVaultAccessPolicyInput = {}  # type: ignore[typeddict-item]
-        input_["backup_vault_name"] = backup_vault_name
+        input_: capo_backup.types.delete_backup_vault_access_policy_input.DeleteBackupVaultAccessPolicyInput = {
+            "backup_vault_name": backup_vault_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_backup_vault_lock_configuration(
@@ -1363,14 +1407,16 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.delete_backup_vault_lock_configuration_input.DeleteBackupVaultLockConfigurationInput = {}  # type: ignore[typeddict-item]
-        input_["backup_vault_name"] = backup_vault_name
+        input_: capo_backup.types.delete_backup_vault_lock_configuration_input.DeleteBackupVaultLockConfigurationInput = {
+            "backup_vault_name": backup_vault_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_backup_vault_notifications(
@@ -1405,14 +1451,16 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.delete_backup_vault_notifications_input.DeleteBackupVaultNotificationsInput = {}  # type: ignore[typeddict-item]
-        input_["backup_vault_name"] = backup_vault_name
+        input_: capo_backup.types.delete_backup_vault_notifications_input.DeleteBackupVaultNotificationsInput = {
+            "backup_vault_name": backup_vault_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_framework(
@@ -1448,14 +1496,16 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.delete_framework_input.DeleteFrameworkInput = {}  # type: ignore[typeddict-item]
-        input_["framework_name"] = framework_name
+        input_: capo_backup.types.delete_framework_input.DeleteFrameworkInput = {
+            "framework_name": framework_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_recovery_point(
@@ -1494,15 +1544,17 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.delete_recovery_point_input.DeleteRecoveryPointInput = {}  # type: ignore[typeddict-item]
-        input_["backup_vault_name"] = backup_vault_name
-        input_["recovery_point_arn"] = recovery_point_arn
+        input_: capo_backup.types.delete_recovery_point_input.DeleteRecoveryPointInput = {
+            "backup_vault_name": backup_vault_name,
+            "recovery_point_arn": recovery_point_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_report_plan(
@@ -1538,14 +1590,16 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.delete_report_plan_input.DeleteReportPlanInput = {}  # type: ignore[typeddict-item]
-        input_["report_plan_name"] = report_plan_name
+        input_: capo_backup.types.delete_report_plan_input.DeleteReportPlanInput = {
+            "report_plan_name": report_plan_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_restore_testing_plan(
@@ -1578,14 +1632,16 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.delete_restore_testing_plan_input.DeleteRestoreTestingPlanInput = {}  # type: ignore[typeddict-item]
-        input_["restore_testing_plan_name"] = restore_testing_plan_name
+        input_: capo_backup.types.delete_restore_testing_plan_input.DeleteRestoreTestingPlanInput = {
+            "restore_testing_plan_name": restore_testing_plan_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_restore_testing_selection(
@@ -1620,15 +1676,17 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.delete_restore_testing_selection_input.DeleteRestoreTestingSelectionInput = {}  # type: ignore[typeddict-item]
-        input_["restore_testing_plan_name"] = restore_testing_plan_name
-        input_["restore_testing_selection_name"] = restore_testing_selection_name
+        input_: capo_backup.types.delete_restore_testing_selection_input.DeleteRestoreTestingSelectionInput = {
+            "restore_testing_plan_name": restore_testing_plan_name,
+            "restore_testing_selection_name": restore_testing_selection_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_tiering_configuration(
@@ -1665,14 +1723,16 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.delete_tiering_configuration_input.DeleteTieringConfigurationInput = {}  # type: ignore[typeddict-item]
-        input_["tiering_configuration_name"] = tiering_configuration_name
+        input_: capo_backup.types.delete_tiering_configuration_input.DeleteTieringConfigurationInput = {
+            "tiering_configuration_name": tiering_configuration_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_backup_job(
@@ -1710,14 +1770,16 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.describe_backup_job_input.DescribeBackupJobInput = {}  # type: ignore[typeddict-item]
-        input_["backup_job_id"] = backup_job_id
+        input_: capo_backup.types.describe_backup_job_input.DescribeBackupJobInput = {
+            "backup_job_id": backup_job_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_backup_vault(
@@ -1756,8 +1818,9 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.describe_backup_vault_input.DescribeBackupVaultInput = {}  # type: ignore[typeddict-item]
-        input_["backup_vault_name"] = backup_vault_name
+        input_: capo_backup.types.describe_backup_vault_input.DescribeBackupVaultInput = {
+            "backup_vault_name": backup_vault_name
+        }
         if backup_vault_account_id is not None:
             input_["backup_vault_account_id"] = backup_vault_account_id
 
@@ -1766,6 +1829,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_copy_job(
@@ -1802,14 +1866,16 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.describe_copy_job_input.DescribeCopyJobInput = {}  # type: ignore[typeddict-item]
-        input_["copy_job_id"] = copy_job_id
+        input_: capo_backup.types.describe_copy_job_input.DescribeCopyJobInput = {
+            "copy_job_id": copy_job_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_framework(
@@ -1846,14 +1912,16 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.describe_framework_input.DescribeFrameworkInput = {}  # type: ignore[typeddict-item]
-        input_["framework_name"] = framework_name
+        input_: capo_backup.types.describe_framework_input.DescribeFrameworkInput = {
+            "framework_name": framework_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_global_settings(
@@ -1884,13 +1952,14 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.describe_global_settings_input.DescribeGlobalSettingsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_backup.types.describe_global_settings_input.DescribeGlobalSettingsInput = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_protected_resource(
@@ -1927,14 +1996,16 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.describe_protected_resource_input.DescribeProtectedResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_backup.types.describe_protected_resource_input.DescribeProtectedResourceInput = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_recovery_point(
@@ -1977,9 +2048,10 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.describe_recovery_point_input.DescribeRecoveryPointInput = {}  # type: ignore[typeddict-item]
-        input_["backup_vault_name"] = backup_vault_name
-        input_["recovery_point_arn"] = recovery_point_arn
+        input_: capo_backup.types.describe_recovery_point_input.DescribeRecoveryPointInput = {
+            "backup_vault_name": backup_vault_name,
+            "recovery_point_arn": recovery_point_arn,
+        }
         if backup_vault_account_id is not None:
             input_["backup_vault_account_id"] = backup_vault_account_id
 
@@ -1988,6 +2060,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_region_settings(
@@ -2017,13 +2090,14 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.describe_region_settings_input.DescribeRegionSettingsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_backup.types.describe_region_settings_input.DescribeRegionSettingsInput = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_report_job(
@@ -2059,14 +2133,16 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.describe_report_job_input.DescribeReportJobInput = {}  # type: ignore[typeddict-item]
-        input_["report_job_id"] = report_job_id
+        input_: capo_backup.types.describe_report_job_input.DescribeReportJobInput = {
+            "report_job_id": report_job_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_report_plan(
@@ -2103,14 +2179,16 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.describe_report_plan_input.DescribeReportPlanInput = {}  # type: ignore[typeddict-item]
-        input_["report_plan_name"] = report_plan_name
+        input_: capo_backup.types.describe_report_plan_input.DescribeReportPlanInput = {
+            "report_plan_name": report_plan_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_restore_job(
@@ -2148,14 +2226,16 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.describe_restore_job_input.DescribeRestoreJobInput = {}  # type: ignore[typeddict-item]
-        input_["restore_job_id"] = restore_job_id
+        input_: capo_backup.types.describe_restore_job_input.DescribeRestoreJobInput = {
+            "restore_job_id": restore_job_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_scan_job(
@@ -2189,14 +2269,16 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.describe_scan_job_input.DescribeScanJobInput = {}  # type: ignore[typeddict-item]
-        input_["scan_job_id"] = scan_job_id
+        input_: capo_backup.types.describe_scan_job_input.DescribeScanJobInput = {
+            "scan_job_id": scan_job_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_backup_vault_mpa_approval_team(
@@ -2236,8 +2318,9 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.disassociate_backup_vault_mpa_approval_team_input.DisassociateBackupVaultMpaApprovalTeamInput = {}  # type: ignore[typeddict-item]
-        input_["backup_vault_name"] = backup_vault_name
+        input_: capo_backup.types.disassociate_backup_vault_mpa_approval_team_input.DisassociateBackupVaultMpaApprovalTeamInput = {
+            "backup_vault_name": backup_vault_name
+        }
         if requester_comment is not None:
             input_["requester_comment"] = requester_comment
 
@@ -2246,6 +2329,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_recovery_point(
@@ -2284,15 +2368,17 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.disassociate_recovery_point_input.DisassociateRecoveryPointInput = {}  # type: ignore[typeddict-item]
-        input_["backup_vault_name"] = backup_vault_name
-        input_["recovery_point_arn"] = recovery_point_arn
+        input_: capo_backup.types.disassociate_recovery_point_input.DisassociateRecoveryPointInput = {
+            "backup_vault_name": backup_vault_name,
+            "recovery_point_arn": recovery_point_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_recovery_point_from_parent(
@@ -2330,15 +2416,17 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.disassociate_recovery_point_from_parent_input.DisassociateRecoveryPointFromParentInput = {}  # type: ignore[typeddict-item]
-        input_["backup_vault_name"] = backup_vault_name
-        input_["recovery_point_arn"] = recovery_point_arn
+        input_: capo_backup.types.disassociate_recovery_point_from_parent_input.DisassociateRecoveryPointFromParentInput = {
+            "backup_vault_name": backup_vault_name,
+            "recovery_point_arn": recovery_point_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def export_backup_plan_template(
@@ -2375,14 +2463,16 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.export_backup_plan_template_input.ExportBackupPlanTemplateInput = {}  # type: ignore[typeddict-item]
-        input_["backup_plan_id"] = backup_plan_id
+        input_: capo_backup.types.export_backup_plan_template_input.ExportBackupPlanTemplateInput = {
+            "backup_plan_id": backup_plan_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_backup_plan(
@@ -2425,8 +2515,9 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.get_backup_plan_input.GetBackupPlanInput = {}  # type: ignore[typeddict-item]
-        input_["backup_plan_id"] = backup_plan_id
+        input_: capo_backup.types.get_backup_plan_input.GetBackupPlanInput = {
+            "backup_plan_id": backup_plan_id
+        }
         if version_id is not None:
             input_["version_id"] = version_id
         if max_scheduled_runs_preview is not None:
@@ -2437,6 +2528,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_backup_plan_from_json(
@@ -2476,14 +2568,16 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.get_backup_plan_from_json_input.GetBackupPlanFromJSONInput = {}  # type: ignore[typeddict-item]
-        input_["backup_plan_template_json"] = backup_plan_template_json
+        input_: capo_backup.types.get_backup_plan_from_json_input.GetBackupPlanFromJSONInput = {
+            "backup_plan_template_json": backup_plan_template_json
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_backup_plan_from_template(
@@ -2520,14 +2614,16 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.get_backup_plan_from_template_input.GetBackupPlanFromTemplateInput = {}  # type: ignore[typeddict-item]
-        input_["backup_plan_template_id"] = backup_plan_template_id
+        input_: capo_backup.types.get_backup_plan_from_template_input.GetBackupPlanFromTemplateInput = {
+            "backup_plan_template_id": backup_plan_template_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_backup_selection(
@@ -2566,15 +2662,17 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.get_backup_selection_input.GetBackupSelectionInput = {}  # type: ignore[typeddict-item]
-        input_["backup_plan_id"] = backup_plan_id
-        input_["selection_id"] = selection_id
+        input_: capo_backup.types.get_backup_selection_input.GetBackupSelectionInput = {
+            "backup_plan_id": backup_plan_id,
+            "selection_id": selection_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_backup_vault_access_policy(
@@ -2611,14 +2709,16 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.get_backup_vault_access_policy_input.GetBackupVaultAccessPolicyInput = {}  # type: ignore[typeddict-item]
-        input_["backup_vault_name"] = backup_vault_name
+        input_: capo_backup.types.get_backup_vault_access_policy_input.GetBackupVaultAccessPolicyInput = {
+            "backup_vault_name": backup_vault_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_backup_vault_notifications(
@@ -2655,14 +2755,16 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.get_backup_vault_notifications_input.GetBackupVaultNotificationsInput = {}  # type: ignore[typeddict-item]
-        input_["backup_vault_name"] = backup_vault_name
+        input_: capo_backup.types.get_backup_vault_notifications_input.GetBackupVaultNotificationsInput = {
+            "backup_vault_name": backup_vault_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_legal_hold(
@@ -2699,14 +2801,16 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.get_legal_hold_input.GetLegalHoldInput = {}  # type: ignore[typeddict-item]
-        input_["legal_hold_id"] = legal_hold_id
+        input_: capo_backup.types.get_legal_hold_input.GetLegalHoldInput = {
+            "legal_hold_id": legal_hold_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_pitr_malware_scan_results(
@@ -2749,17 +2853,19 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.get_pitr_malware_scan_results_input.GetPITRMalwareScanResultsInput = {}  # type: ignore[typeddict-item]
-        input_["recovery_point_arn"] = recovery_point_arn
-        input_["backup_vault_name"] = backup_vault_name
-        input_["scan_end_time"] = scan_end_time
-        input_["malware_scanner"] = malware_scanner
+        input_: capo_backup.types.get_pitr_malware_scan_results_input.GetPITRMalwareScanResultsInput = {
+            "recovery_point_arn": recovery_point_arn,
+            "backup_vault_name": backup_vault_name,
+            "scan_end_time": scan_end_time,
+            "malware_scanner": malware_scanner,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_recovery_point_index_details(
@@ -2798,15 +2904,17 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.get_recovery_point_index_details_input.GetRecoveryPointIndexDetailsInput = {}  # type: ignore[typeddict-item]
-        input_["backup_vault_name"] = backup_vault_name
-        input_["recovery_point_arn"] = recovery_point_arn
+        input_: capo_backup.types.get_recovery_point_index_details_input.GetRecoveryPointIndexDetailsInput = {
+            "backup_vault_name": backup_vault_name,
+            "recovery_point_arn": recovery_point_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_recovery_point_restore_metadata(
@@ -2849,9 +2957,10 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.get_recovery_point_restore_metadata_input.GetRecoveryPointRestoreMetadataInput = {}  # type: ignore[typeddict-item]
-        input_["backup_vault_name"] = backup_vault_name
-        input_["recovery_point_arn"] = recovery_point_arn
+        input_: capo_backup.types.get_recovery_point_restore_metadata_input.GetRecoveryPointRestoreMetadataInput = {
+            "backup_vault_name": backup_vault_name,
+            "recovery_point_arn": recovery_point_arn,
+        }
         if backup_vault_account_id is not None:
             input_["backup_vault_account_id"] = backup_vault_account_id
 
@@ -2860,6 +2969,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_restore_job_metadata(
@@ -2898,14 +3008,16 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.get_restore_job_metadata_input.GetRestoreJobMetadataInput = {}  # type: ignore[typeddict-item]
-        input_["restore_job_id"] = restore_job_id
+        input_: capo_backup.types.get_restore_job_metadata_input.GetRestoreJobMetadataInput = {
+            "restore_job_id": restore_job_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_restore_testing_inferred_metadata(
@@ -2946,17 +3058,19 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.get_restore_testing_inferred_metadata_input.GetRestoreTestingInferredMetadataInput = {}  # type: ignore[typeddict-item]
+        input_: capo_backup.types.get_restore_testing_inferred_metadata_input.GetRestoreTestingInferredMetadataInput = {
+            "backup_vault_name": backup_vault_name,
+            "recovery_point_arn": recovery_point_arn,
+        }
         if backup_vault_account_id is not None:
             input_["backup_vault_account_id"] = backup_vault_account_id
-        input_["backup_vault_name"] = backup_vault_name
-        input_["recovery_point_arn"] = recovery_point_arn
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_restore_testing_plan(
@@ -2993,14 +3107,16 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.get_restore_testing_plan_input.GetRestoreTestingPlanInput = {}  # type: ignore[typeddict-item]
-        input_["restore_testing_plan_name"] = restore_testing_plan_name
+        input_: capo_backup.types.get_restore_testing_plan_input.GetRestoreTestingPlanInput = {
+            "restore_testing_plan_name": restore_testing_plan_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_restore_testing_selection(
@@ -3037,15 +3153,17 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.get_restore_testing_selection_input.GetRestoreTestingSelectionInput = {}  # type: ignore[typeddict-item]
-        input_["restore_testing_plan_name"] = restore_testing_plan_name
-        input_["restore_testing_selection_name"] = restore_testing_selection_name
+        input_: capo_backup.types.get_restore_testing_selection_input.GetRestoreTestingSelectionInput = {
+            "restore_testing_plan_name": restore_testing_plan_name,
+            "restore_testing_selection_name": restore_testing_selection_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_supported_resource_types(
@@ -3079,6 +3197,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_tiering_configuration(
@@ -3115,14 +3234,16 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.get_tiering_configuration_input.GetTieringConfigurationInput = {}  # type: ignore[typeddict-item]
-        input_["tiering_configuration_name"] = tiering_configuration_name
+        input_: capo_backup.types.get_tiering_configuration_input.GetTieringConfigurationInput = {
+            "tiering_configuration_name": tiering_configuration_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_backup_jobs(
@@ -3185,7 +3306,7 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.list_backup_jobs_input.ListBackupJobsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_backup.types.list_backup_jobs_input.ListBackupJobsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3218,6 +3339,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_backup_jobs(
@@ -3315,7 +3437,7 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.list_backup_job_summaries_input.ListBackupJobSummariesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_backup.types.list_backup_job_summaries_input.ListBackupJobSummariesInput = {}
         if account_id is not None:
             input_["account_id"] = account_id
         if state is not None:
@@ -3336,7 +3458,41 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_backup_job_summaries(
+        self,
+        *,
+        config_overrides: Optional[BackupClientConfig] = None,
+        account_id: Optional["capo_backup.types.account_id.AccountId"] = None,
+        state: Optional["capo_backup.types.backup_job_status.BackupJobStatus"] = None,
+        resource_type: Optional["capo_backup.types.resource_type.ResourceType"] = None,
+        message_category: Optional[
+            "capo_backup.types.message_category.MessageCategory"
+        ] = None,
+        aggregation_period: Optional[
+            "capo_backup.types.aggregation_period.AggregationPeriod"
+        ] = None,
+        max_results: Optional["capo_backup.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_backup.types.string.string"] = None,
+    ) -> "Iterator[capo_backup.types.list_backup_job_summaries_output.ListBackupJobSummariesOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_backup_job_summaries(
+                config_overrides=config_overrides,
+                account_id=account_id,
+                state=state,
+                resource_type=resource_type,
+                message_category=message_category,
+                aggregation_period=aggregation_period,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_backup_plans(
         self,
@@ -3376,7 +3532,7 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.list_backup_plans_input.ListBackupPlansInput = {}  # type: ignore[typeddict-item]
+        input_: capo_backup.types.list_backup_plans_input.ListBackupPlansInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3389,6 +3545,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_backup_plans(
@@ -3450,7 +3607,7 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.list_backup_plan_templates_input.ListBackupPlanTemplatesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_backup.types.list_backup_plan_templates_input.ListBackupPlanTemplatesInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3461,6 +3618,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_backup_plan_templates(
@@ -3522,8 +3680,9 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.list_backup_plan_versions_input.ListBackupPlanVersionsInput = {}  # type: ignore[typeddict-item]
-        input_["backup_plan_id"] = backup_plan_id
+        input_: capo_backup.types.list_backup_plan_versions_input.ListBackupPlanVersionsInput = {
+            "backup_plan_id": backup_plan_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3534,6 +3693,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_backup_plan_versions(
@@ -3597,8 +3757,9 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.list_backup_selections_input.ListBackupSelectionsInput = {}  # type: ignore[typeddict-item]
-        input_["backup_plan_id"] = backup_plan_id
+        input_: capo_backup.types.list_backup_selections_input.ListBackupSelectionsInput = {
+            "backup_plan_id": backup_plan_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3609,6 +3770,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_backup_selections(
@@ -3674,7 +3836,7 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.list_backup_vaults_input.ListBackupVaultsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_backup.types.list_backup_vaults_input.ListBackupVaultsInput = {}
         if by_vault_type is not None:
             input_["by_vault_type"] = by_vault_type
         if by_shared is not None:
@@ -3689,6 +3851,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_backup_vaults(
@@ -3778,7 +3941,7 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.list_copy_jobs_input.ListCopyJobsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_backup.types.list_copy_jobs_input.ListCopyJobsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3813,6 +3976,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_copy_jobs(
@@ -3912,7 +4076,7 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.list_copy_job_summaries_input.ListCopyJobSummariesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_backup.types.list_copy_job_summaries_input.ListCopyJobSummariesInput = {}
         if account_id is not None:
             input_["account_id"] = account_id
         if state is not None:
@@ -3933,7 +4097,41 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_copy_job_summaries(
+        self,
+        *,
+        config_overrides: Optional[BackupClientConfig] = None,
+        account_id: Optional["capo_backup.types.account_id.AccountId"] = None,
+        state: Optional["capo_backup.types.copy_job_status.CopyJobStatus"] = None,
+        resource_type: Optional["capo_backup.types.resource_type.ResourceType"] = None,
+        message_category: Optional[
+            "capo_backup.types.message_category.MessageCategory"
+        ] = None,
+        aggregation_period: Optional[
+            "capo_backup.types.aggregation_period.AggregationPeriod"
+        ] = None,
+        max_results: Optional["capo_backup.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_backup.types.string.string"] = None,
+    ) -> "Iterator[capo_backup.types.list_copy_job_summaries_output.ListCopyJobSummariesOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_copy_job_summaries(
+                config_overrides=config_overrides,
+                account_id=account_id,
+                state=state,
+                resource_type=resource_type,
+                message_category=message_category,
+                aggregation_period=aggregation_period,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_frameworks(
         self,
@@ -3971,7 +4169,7 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.list_frameworks_input.ListFrameworksInput = {}  # type: ignore[typeddict-item]
+        input_: capo_backup.types.list_frameworks_input.ListFrameworksInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3982,7 +4180,29 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_frameworks(
+        self,
+        *,
+        config_overrides: Optional[BackupClientConfig] = None,
+        max_results: Optional[
+            "capo_backup.types.max_framework_inputs.MaxFrameworkInputs"
+        ] = None,
+        next_token: Optional["capo_backup.types.string.string"] = None,
+    ) -> "Iterator[capo_backup.types.list_frameworks_output.ListFrameworksOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_frameworks(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_indexed_recovery_points(
         self,
@@ -4029,7 +4249,7 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.list_indexed_recovery_points_input.ListIndexedRecoveryPointsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_backup.types.list_indexed_recovery_points_input.ListIndexedRecoveryPointsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -4050,6 +4270,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_indexed_recovery_points(
@@ -4117,7 +4338,7 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.list_legal_holds_input.ListLegalHoldsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_backup.types.list_legal_holds_input.ListLegalHoldsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -4128,6 +4349,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_legal_holds(
@@ -4187,7 +4409,7 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.list_protected_resources_input.ListProtectedResourcesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_backup.types.list_protected_resources_input.ListProtectedResourcesInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -4198,6 +4420,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_protected_resources(
@@ -4262,8 +4485,9 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.list_protected_resources_by_backup_vault_input.ListProtectedResourcesByBackupVaultInput = {}  # type: ignore[typeddict-item]
-        input_["backup_vault_name"] = backup_vault_name
+        input_: capo_backup.types.list_protected_resources_by_backup_vault_input.ListProtectedResourcesByBackupVaultInput = {
+            "backup_vault_name": backup_vault_name
+        }
         if backup_vault_account_id is not None:
             input_["backup_vault_account_id"] = backup_vault_account_id
         if next_token is not None:
@@ -4276,6 +4500,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_protected_resources_by_backup_vault(
@@ -4361,8 +4586,9 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.list_recovery_points_by_backup_vault_input.ListRecoveryPointsByBackupVaultInput = {}  # type: ignore[typeddict-item]
-        input_["backup_vault_name"] = backup_vault_name
+        input_: capo_backup.types.list_recovery_points_by_backup_vault_input.ListRecoveryPointsByBackupVaultInput = {
+            "backup_vault_name": backup_vault_name
+        }
         if backup_vault_account_id is not None:
             input_["backup_vault_account_id"] = backup_vault_account_id
         if next_token is not None:
@@ -4387,6 +4613,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_recovery_points_by_backup_vault(
@@ -4467,8 +4694,9 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.list_recovery_points_by_legal_hold_input.ListRecoveryPointsByLegalHoldInput = {}  # type: ignore[typeddict-item]
-        input_["legal_hold_id"] = legal_hold_id
+        input_: capo_backup.types.list_recovery_points_by_legal_hold_input.ListRecoveryPointsByLegalHoldInput = {
+            "legal_hold_id": legal_hold_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -4479,6 +4707,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_recovery_points_by_legal_hold(
@@ -4546,8 +4775,9 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.list_recovery_points_by_resource_input.ListRecoveryPointsByResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_backup.types.list_recovery_points_by_resource_input.ListRecoveryPointsByResourceInput = {
+            "resource_arn": resource_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -4560,6 +4790,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_recovery_points_by_resource(
@@ -4636,7 +4867,7 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.list_report_jobs_input.ListReportJobsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_backup.types.list_report_jobs_input.ListReportJobsInput = {}
         if by_report_plan_name is not None:
             input_["by_report_plan_name"] = by_report_plan_name
         if by_creation_before is not None:
@@ -4655,7 +4886,37 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_report_jobs(
+        self,
+        *,
+        config_overrides: Optional[BackupClientConfig] = None,
+        by_report_plan_name: Optional[
+            "capo_backup.types.report_plan_name.ReportPlanName"
+        ] = None,
+        by_creation_before: Optional["capo_backup.types.timestamp.timestamp"] = None,
+        by_creation_after: Optional["capo_backup.types.timestamp.timestamp"] = None,
+        by_status: Optional["capo_backup.types.string.string"] = None,
+        max_results: Optional["capo_backup.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_backup.types.string.string"] = None,
+    ) -> "Iterator[capo_backup.types.list_report_jobs_output.ListReportJobsOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_report_jobs(
+                config_overrides=config_overrides,
+                by_report_plan_name=by_report_plan_name,
+                by_creation_before=by_creation_before,
+                by_creation_after=by_creation_after,
+                by_status=by_status,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_report_plans(
         self,
@@ -4691,7 +4952,7 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.list_report_plans_input.ListReportPlansInput = {}  # type: ignore[typeddict-item]
+        input_: capo_backup.types.list_report_plans_input.ListReportPlansInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -4702,7 +4963,27 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_report_plans(
+        self,
+        *,
+        config_overrides: Optional[BackupClientConfig] = None,
+        max_results: Optional["capo_backup.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_backup.types.string.string"] = None,
+    ) -> "Iterator[capo_backup.types.list_report_plans_output.ListReportPlansOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_report_plans(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_restore_access_backup_vaults(
         self,
@@ -4742,8 +5023,9 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.list_restore_access_backup_vaults_input.ListRestoreAccessBackupVaultsInput = {}  # type: ignore[typeddict-item]
-        input_["backup_vault_name"] = backup_vault_name
+        input_: capo_backup.types.list_restore_access_backup_vaults_input.ListRestoreAccessBackupVaultsInput = {
+            "backup_vault_name": backup_vault_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -4754,6 +5036,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_restore_access_backup_vaults(
@@ -4837,7 +5120,7 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.list_restore_jobs_input.ListRestoreJobsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_backup.types.list_restore_jobs_input.ListRestoreJobsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -4866,6 +5149,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_restore_jobs(
@@ -4961,8 +5245,9 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.list_restore_jobs_by_protected_resource_input.ListRestoreJobsByProtectedResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_backup.types.list_restore_jobs_by_protected_resource_input.ListRestoreJobsByProtectedResourceInput = {
+            "resource_arn": resource_arn
+        }
         if by_status is not None:
             input_["by_status"] = by_status
         if by_recovery_point_creation_date_after is not None:
@@ -4983,6 +5268,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_restore_jobs_by_protected_resource(
@@ -5064,7 +5350,7 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.list_restore_job_summaries_input.ListRestoreJobSummariesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_backup.types.list_restore_job_summaries_input.ListRestoreJobSummariesInput = {}
         if account_id is not None:
             input_["account_id"] = account_id
         if state is not None:
@@ -5083,7 +5369,37 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_restore_job_summaries(
+        self,
+        *,
+        config_overrides: Optional[BackupClientConfig] = None,
+        account_id: Optional["capo_backup.types.account_id.AccountId"] = None,
+        state: Optional["capo_backup.types.restore_job_state.RestoreJobState"] = None,
+        resource_type: Optional["capo_backup.types.resource_type.ResourceType"] = None,
+        aggregation_period: Optional[
+            "capo_backup.types.aggregation_period.AggregationPeriod"
+        ] = None,
+        max_results: Optional["capo_backup.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_backup.types.string.string"] = None,
+    ) -> "Iterator[capo_backup.types.list_restore_job_summaries_output.ListRestoreJobSummariesOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_restore_job_summaries(
+                config_overrides=config_overrides,
+                account_id=account_id,
+                state=state,
+                resource_type=resource_type,
+                aggregation_period=aggregation_period,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_restore_testing_plans(
         self,
@@ -5121,7 +5437,7 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.list_restore_testing_plans_input.ListRestoreTestingPlansInput = {}  # type: ignore[typeddict-item]
+        input_: capo_backup.types.list_restore_testing_plans_input.ListRestoreTestingPlansInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -5132,6 +5448,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_restore_testing_plans(
@@ -5196,18 +5513,20 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.list_restore_testing_selections_input.ListRestoreTestingSelectionsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_backup.types.list_restore_testing_selections_input.ListRestoreTestingSelectionsInput = {
+            "restore_testing_plan_name": restore_testing_plan_name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["restore_testing_plan_name"] = restore_testing_plan_name
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_restore_testing_selections(
@@ -5297,7 +5616,7 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.list_scan_jobs_input.ListScanJobsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_backup.types.list_scan_jobs_input.ListScanJobsInput = {}
         if by_account_id is not None:
             input_["by_account_id"] = by_account_id
         if by_backup_vault_name is not None:
@@ -5328,6 +5647,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_scan_jobs(
@@ -5431,7 +5751,7 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.list_scan_job_summaries_input.ListScanJobSummariesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_backup.types.list_scan_job_summaries_input.ListScanJobSummariesInput = {}
         if account_id is not None:
             input_["account_id"] = account_id
         if resource_type is not None:
@@ -5454,6 +5774,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_scan_job_summaries(
@@ -5531,8 +5852,9 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.list_tags_input.ListTagsInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_backup.types.list_tags_input.ListTagsInput = {
+            "resource_arn": resource_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -5543,7 +5865,29 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_tags(
+        self,
+        resource_arn: "capo_backup.types.arn.ARN",
+        *,
+        config_overrides: Optional[BackupClientConfig] = None,
+        next_token: Optional["capo_backup.types.string.string"] = None,
+        max_results: Optional["capo_backup.types.max_results.MaxResults"] = None,
+    ) -> "Iterator[capo_backup.types.list_tags_output.ListTagsOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_tags(
+                resource_arn,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_tiering_configurations(
         self,
@@ -5579,7 +5923,7 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.list_tiering_configurations_input.ListTieringConfigurationsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_backup.types.list_tiering_configurations_input.ListTieringConfigurationsInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -5590,6 +5934,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_tiering_configurations(
@@ -5647,8 +5992,9 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.put_backup_vault_access_policy_input.PutBackupVaultAccessPolicyInput = {}  # type: ignore[typeddict-item]
-        input_["backup_vault_name"] = backup_vault_name
+        input_: capo_backup.types.put_backup_vault_access_policy_input.PutBackupVaultAccessPolicyInput = {
+            "backup_vault_name": backup_vault_name
+        }
         if policy is not None:
             input_["policy"] = policy
 
@@ -5657,6 +6003,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_backup_vault_lock_configuration(
@@ -5698,8 +6045,9 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.put_backup_vault_lock_configuration_input.PutBackupVaultLockConfigurationInput = {}  # type: ignore[typeddict-item]
-        input_["backup_vault_name"] = backup_vault_name
+        input_: capo_backup.types.put_backup_vault_lock_configuration_input.PutBackupVaultLockConfigurationInput = {
+            "backup_vault_name": backup_vault_name
+        }
         if min_retention_days is not None:
             input_["min_retention_days"] = min_retention_days
         if max_retention_days is not None:
@@ -5712,6 +6060,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_backup_vault_notifications(
@@ -5750,16 +6099,18 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.put_backup_vault_notifications_input.PutBackupVaultNotificationsInput = {}  # type: ignore[typeddict-item]
-        input_["backup_vault_name"] = backup_vault_name
-        input_["sns_topic_arn"] = sns_topic_arn
-        input_["backup_vault_events"] = backup_vault_events
+        input_: capo_backup.types.put_backup_vault_notifications_input.PutBackupVaultNotificationsInput = {
+            "backup_vault_name": backup_vault_name,
+            "sns_topic_arn": sns_topic_arn,
+            "backup_vault_events": backup_vault_events,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_restore_validation_result(
@@ -5799,9 +6150,10 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.put_restore_validation_result_input.PutRestoreValidationResultInput = {}  # type: ignore[typeddict-item]
-        input_["restore_job_id"] = restore_job_id
-        input_["validation_status"] = validation_status
+        input_: capo_backup.types.put_restore_validation_result_input.PutRestoreValidationResultInput = {
+            "restore_job_id": restore_job_id,
+            "validation_status": validation_status,
+        }
         if validation_status_message is not None:
             input_["validation_status_message"] = validation_status_message
 
@@ -5810,6 +6162,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def revoke_restore_access_backup_vault(
@@ -5851,9 +6204,10 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.revoke_restore_access_backup_vault_input.RevokeRestoreAccessBackupVaultInput = {}  # type: ignore[typeddict-item]
-        input_["backup_vault_name"] = backup_vault_name
-        input_["restore_access_backup_vault_arn"] = restore_access_backup_vault_arn
+        input_: capo_backup.types.revoke_restore_access_backup_vault_input.RevokeRestoreAccessBackupVaultInput = {
+            "backup_vault_name": backup_vault_name,
+            "restore_access_backup_vault_arn": restore_access_backup_vault_arn,
+        }
         if requester_comment is not None:
             input_["requester_comment"] = requester_comment
 
@@ -5862,6 +6216,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_backup_job(
@@ -5928,16 +6283,18 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.start_backup_job_input.StartBackupJobInput = {}  # type: ignore[typeddict-item]
-        input_["backup_vault_name"] = backup_vault_name
+        input_: capo_backup.types.start_backup_job_input.StartBackupJobInput = {
+            "backup_vault_name": backup_vault_name,
+            "resource_arn": resource_arn,
+            "iam_role_arn": iam_role_arn,
+        }
         if logically_air_gapped_backup_vault_arn is not None:
             input_["logically_air_gapped_backup_vault_arn"] = (
                 logically_air_gapped_backup_vault_arn
             )
-        input_["resource_arn"] = resource_arn
-        input_["iam_role_arn"] = iam_role_arn
-        if idempotency_token is not None:
-            input_["idempotency_token"] = idempotency_token
+        if idempotency_token is None:
+            idempotency_token = str(uuid.uuid4())
+        input_["idempotency_token"] = idempotency_token
         if start_window_minutes is not None:
             input_["start_window_minutes"] = start_window_minutes
         if complete_window_minutes is not None:
@@ -5956,6 +6313,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_copy_job(
@@ -6003,13 +6361,15 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.start_copy_job_input.StartCopyJobInput = {}  # type: ignore[typeddict-item]
-        input_["recovery_point_arn"] = recovery_point_arn
-        input_["source_backup_vault_name"] = source_backup_vault_name
-        input_["destination_backup_vault_arn"] = destination_backup_vault_arn
-        input_["iam_role_arn"] = iam_role_arn
-        if idempotency_token is not None:
-            input_["idempotency_token"] = idempotency_token
+        input_: capo_backup.types.start_copy_job_input.StartCopyJobInput = {
+            "recovery_point_arn": recovery_point_arn,
+            "source_backup_vault_name": source_backup_vault_name,
+            "destination_backup_vault_arn": destination_backup_vault_arn,
+            "iam_role_arn": iam_role_arn,
+        }
+        if idempotency_token is None:
+            idempotency_token = str(uuid.uuid4())
+        input_["idempotency_token"] = idempotency_token
         if lifecycle is not None:
             input_["lifecycle"] = lifecycle
 
@@ -6018,6 +6378,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_report_job(
@@ -6056,16 +6417,19 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.start_report_job_input.StartReportJobInput = {}  # type: ignore[typeddict-item]
-        input_["report_plan_name"] = report_plan_name
-        if idempotency_token is not None:
-            input_["idempotency_token"] = idempotency_token
+        input_: capo_backup.types.start_report_job_input.StartReportJobInput = {
+            "report_plan_name": report_plan_name
+        }
+        if idempotency_token is None:
+            idempotency_token = str(uuid.uuid4())
+        input_["idempotency_token"] = idempotency_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_restore_job(
@@ -6115,13 +6479,15 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.start_restore_job_input.StartRestoreJobInput = {}  # type: ignore[typeddict-item]
-        input_["recovery_point_arn"] = recovery_point_arn
-        input_["metadata"] = metadata
+        input_: capo_backup.types.start_restore_job_input.StartRestoreJobInput = {
+            "recovery_point_arn": recovery_point_arn,
+            "metadata": metadata,
+        }
         if iam_role_arn is not None:
             input_["iam_role_arn"] = iam_role_arn
-        if idempotency_token is not None:
-            input_["idempotency_token"] = idempotency_token
+        if idempotency_token is None:
+            idempotency_token = str(uuid.uuid4())
+        input_["idempotency_token"] = idempotency_token
         if resource_type is not None:
             input_["resource_type"] = resource_type
         if copy_source_tags_to_restored_resource is not None:
@@ -6134,6 +6500,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_scan_job(
@@ -6188,25 +6555,27 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.start_scan_job_input.StartScanJobInput = {}  # type: ignore[typeddict-item]
-        input_["backup_vault_name"] = backup_vault_name
+        input_: capo_backup.types.start_scan_job_input.StartScanJobInput = {
+            "backup_vault_name": backup_vault_name,
+            "iam_role_arn": iam_role_arn,
+            "malware_scanner": malware_scanner,
+            "recovery_point_arn": recovery_point_arn,
+            "scan_mode": scan_mode,
+            "scanner_role_arn": scanner_role_arn,
+        }
         if continuous_scan_end_time is not None:
             input_["continuous_scan_end_time"] = continuous_scan_end_time
-        input_["iam_role_arn"] = iam_role_arn
         if idempotency_token is not None:
             input_["idempotency_token"] = idempotency_token
-        input_["malware_scanner"] = malware_scanner
-        input_["recovery_point_arn"] = recovery_point_arn
         if scan_base_recovery_point_arn is not None:
             input_["scan_base_recovery_point_arn"] = scan_base_recovery_point_arn
-        input_["scan_mode"] = scan_mode
-        input_["scanner_role_arn"] = scanner_role_arn
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_backup_job(
@@ -6242,14 +6611,16 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.stop_backup_job_input.StopBackupJobInput = {}  # type: ignore[typeddict-item]
-        input_["backup_job_id"] = backup_job_id
+        input_: capo_backup.types.stop_backup_job_input.StopBackupJobInput = {
+            "backup_job_id": backup_job_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -6287,15 +6658,17 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.tag_resource_input.TagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_backup.types.tag_resource_input.TagResourceInput = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -6332,15 +6705,17 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.untag_resource_input.UntagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_key_list"] = tag_key_list
+        input_: capo_backup.types.untag_resource_input.UntagResourceInput = {
+            "resource_arn": resource_arn,
+            "tag_key_list": tag_key_list,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_backup_plan(
@@ -6379,15 +6754,17 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.update_backup_plan_input.UpdateBackupPlanInput = {}  # type: ignore[typeddict-item]
-        input_["backup_plan_id"] = backup_plan_id
-        input_["backup_plan"] = backup_plan
+        input_: capo_backup.types.update_backup_plan_input.UpdateBackupPlanInput = {
+            "backup_plan_id": backup_plan_id,
+            "backup_plan": backup_plan,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_framework(
@@ -6437,20 +6814,23 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.update_framework_input.UpdateFrameworkInput = {}  # type: ignore[typeddict-item]
-        input_["framework_name"] = framework_name
+        input_: capo_backup.types.update_framework_input.UpdateFrameworkInput = {
+            "framework_name": framework_name
+        }
         if framework_description is not None:
             input_["framework_description"] = framework_description
         if framework_controls is not None:
             input_["framework_controls"] = framework_controls
-        if idempotency_token is not None:
-            input_["idempotency_token"] = idempotency_token
+        if idempotency_token is None:
+            idempotency_token = str(uuid.uuid4())
+        input_["idempotency_token"] = idempotency_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_global_settings(
@@ -6487,7 +6867,7 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.update_global_settings_input.UpdateGlobalSettingsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_backup.types.update_global_settings_input.UpdateGlobalSettingsInput = {}
         if global_settings is not None:
             input_["global_settings"] = global_settings
 
@@ -6496,6 +6876,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_recovery_point_index_settings(
@@ -6539,18 +6920,20 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.update_recovery_point_index_settings_input.UpdateRecoveryPointIndexSettingsInput = {}  # type: ignore[typeddict-item]
-        input_["backup_vault_name"] = backup_vault_name
-        input_["recovery_point_arn"] = recovery_point_arn
+        input_: capo_backup.types.update_recovery_point_index_settings_input.UpdateRecoveryPointIndexSettingsInput = {
+            "backup_vault_name": backup_vault_name,
+            "recovery_point_arn": recovery_point_arn,
+            "index": index,
+        }
         if iam_role_arn is not None:
             input_["iam_role_arn"] = iam_role_arn
-        input_["index"] = index
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_recovery_point_lifecycle(
@@ -6592,9 +6975,10 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.update_recovery_point_lifecycle_input.UpdateRecoveryPointLifecycleInput = {}  # type: ignore[typeddict-item]
-        input_["backup_vault_name"] = backup_vault_name
-        input_["recovery_point_arn"] = recovery_point_arn
+        input_: capo_backup.types.update_recovery_point_lifecycle_input.UpdateRecoveryPointLifecycleInput = {
+            "backup_vault_name": backup_vault_name,
+            "recovery_point_arn": recovery_point_arn,
+        }
         if lifecycle is not None:
             input_["lifecycle"] = lifecycle
 
@@ -6603,6 +6987,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_region_settings(
@@ -6642,7 +7027,7 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.update_region_settings_input.UpdateRegionSettingsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_backup.types.update_region_settings_input.UpdateRegionSettingsInput = {}
         if resource_type_opt_in_preference is not None:
             input_["resource_type_opt_in_preference"] = resource_type_opt_in_preference
         if resource_type_management_preference is not None:
@@ -6655,6 +7040,7 @@ class BackupClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_report_plan(
@@ -6706,22 +7092,25 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.update_report_plan_input.UpdateReportPlanInput = {}  # type: ignore[typeddict-item]
-        input_["report_plan_name"] = report_plan_name
+        input_: capo_backup.types.update_report_plan_input.UpdateReportPlanInput = {
+            "report_plan_name": report_plan_name
+        }
         if report_plan_description is not None:
             input_["report_plan_description"] = report_plan_description
         if report_delivery_channel is not None:
             input_["report_delivery_channel"] = report_delivery_channel
         if report_setting is not None:
             input_["report_setting"] = report_setting
-        if idempotency_token is not None:
-            input_["idempotency_token"] = idempotency_token
+        if idempotency_token is None:
+            idempotency_token = str(uuid.uuid4())
+        input_["idempotency_token"] = idempotency_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_restore_testing_plan(
@@ -6761,15 +7150,17 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.update_restore_testing_plan_input.UpdateRestoreTestingPlanInput = {}  # type: ignore[typeddict-item]
-        input_["restore_testing_plan"] = restore_testing_plan
-        input_["restore_testing_plan_name"] = restore_testing_plan_name
+        input_: capo_backup.types.update_restore_testing_plan_input.UpdateRestoreTestingPlanInput = {
+            "restore_testing_plan": restore_testing_plan,
+            "restore_testing_plan_name": restore_testing_plan_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_restore_testing_selection(
@@ -6811,16 +7202,18 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.update_restore_testing_selection_input.UpdateRestoreTestingSelectionInput = {}  # type: ignore[typeddict-item]
-        input_["restore_testing_plan_name"] = restore_testing_plan_name
-        input_["restore_testing_selection"] = restore_testing_selection
-        input_["restore_testing_selection_name"] = restore_testing_selection_name
+        input_: capo_backup.types.update_restore_testing_selection_input.UpdateRestoreTestingSelectionInput = {
+            "restore_testing_plan_name": restore_testing_plan_name,
+            "restore_testing_selection": restore_testing_selection,
+            "restore_testing_selection_name": restore_testing_selection_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_tiering_configuration(
@@ -6862,15 +7255,17 @@ class BackupClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_backup.types.update_tiering_configuration_input.UpdateTieringConfigurationInput = {}  # type: ignore[typeddict-item]
-        input_["tiering_configuration_name"] = tiering_configuration_name
-        input_["tiering_configuration"] = tiering_configuration
+        input_: capo_backup.types.update_tiering_configuration_input.UpdateTieringConfigurationInput = {
+            "tiering_configuration_name": tiering_configuration_name,
+            "tiering_configuration": tiering_configuration,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

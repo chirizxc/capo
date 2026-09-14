@@ -31,7 +31,7 @@ def serialize_json(value: CustomIndicesInput) -> dict:
 
 def deserialize_json(data: dict) -> CustomIndicesInput:
     out: CustomIndicesInput = {}  # type: ignore[typeddict-item]
-    if "Operations" in data:
+    if data.get("Operations") is not None:
         import capo_sagemaker_geospatial.types.operations_list_input
 
         out["operations"] = (

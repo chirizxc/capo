@@ -45,16 +45,16 @@ def serialize_json(value: UpdateIpAccessSettingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateIpAccessSettingsRequest:
     out: UpdateIpAccessSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "ipRules" in data:
+    if data.get("ipRules") is not None:
         import capo_workspaces_web.types.ip_rule_list
 
         out["ip_rules"] = capo_workspaces_web.types.ip_rule_list.deserialize_json(
             data["ipRules"]
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

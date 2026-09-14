@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> ContainerFleetLocationAttributesList
 
     out: ContainerFleetLocationAttributesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_gamelift.types.container_fleet_location_attributes.deserialize_aws_json_1_1(
                 item

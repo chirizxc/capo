@@ -34,9 +34,9 @@ def serialize_json(value: DescribeRecoveryInstancesResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeRecoveryInstancesResponse:
     out: DescribeRecoveryInstancesResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_drs.types.describe_recovery_instances_items
 
         out["items"] = (

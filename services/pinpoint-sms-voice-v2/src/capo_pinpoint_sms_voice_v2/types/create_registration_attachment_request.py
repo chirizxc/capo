@@ -54,7 +54,7 @@ def serialize_aws_json_1_0(value: CreateRegistrationAttachmentRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateRegistrationAttachmentRequest:
     out: CreateRegistrationAttachmentRequest = {}  # type: ignore[typeddict-item]
-    if "AttachmentBody" in data:
+    if data.get("AttachmentBody") is not None:
         import capo_pinpoint_sms_voice_v2.types.attachment_body
 
         out["attachment_body"] = (
@@ -62,9 +62,9 @@ def deserialize_aws_json_1_0(data: dict) -> CreateRegistrationAttachmentRequest:
                 data["AttachmentBody"]
             )
         )
-    if "AttachmentUrl" in data:
+    if data.get("AttachmentUrl") is not None:
         out["attachment_url"] = data["AttachmentUrl"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_pinpoint_sms_voice_v2.types.tag_list
 
         out["tags"] = (
@@ -72,6 +72,6 @@ def deserialize_aws_json_1_0(data: dict) -> CreateRegistrationAttachmentRequest:
                 data["Tags"]
             )
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

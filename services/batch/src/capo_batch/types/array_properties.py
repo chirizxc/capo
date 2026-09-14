@@ -23,6 +23,6 @@ def serialize_json(value: ArrayProperties) -> dict:
 
 def deserialize_json(data: dict) -> ArrayProperties:
     out: ArrayProperties = {}  # type: ignore[typeddict-item]
-    if "size" in data:
+    if data.get("size") is not None:
         out["size"] = data["size"]
     return out

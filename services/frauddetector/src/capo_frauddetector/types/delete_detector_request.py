@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteDetectorRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteDetectorRequest:
     out: DeleteDetectorRequest = {}  # type: ignore[typeddict-item]
-    if "detectorId" in data:
+    if data.get("detectorId") is not None:
         out["detector_id"] = data["detectorId"]
     else:
         raise DeserializationError("DeleteDetectorRequest.detector_id required")

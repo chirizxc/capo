@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: TargetRedshiftCatalog) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TargetRedshiftCatalog:
     out: TargetRedshiftCatalog = {}  # type: ignore[typeddict-item]
-    if "CatalogArn" in data:
+    if data.get("CatalogArn") is not None:
         out["catalog_arn"] = data["CatalogArn"]
     else:
         raise DeserializationError("TargetRedshiftCatalog.catalog_arn required")

@@ -59,9 +59,9 @@ def serialize_aws_json_1_1(value: UltraServerSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UltraServerSummary:
     out: UltraServerSummary = {}  # type: ignore[typeddict-item]
-    if "UltraServerType" in data:
+    if data.get("UltraServerType") is not None:
         out["ultra_server_type"] = data["UltraServerType"]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         import capo_sagemaker.types.reserved_capacity_instance_type
 
         out["instance_type"] = (
@@ -69,10 +69,10 @@ def deserialize_aws_json_1_1(data: dict) -> UltraServerSummary:
                 data["InstanceType"]
             )
         )
-    if "UltraServerCount" in data:
+    if data.get("UltraServerCount") is not None:
         out["ultra_server_count"] = data["UltraServerCount"]
-    if "AvailableSpareInstanceCount" in data:
+    if data.get("AvailableSpareInstanceCount") is not None:
         out["available_spare_instance_count"] = data["AvailableSpareInstanceCount"]
-    if "UnhealthyInstanceCount" in data:
+    if data.get("UnhealthyInstanceCount") is not None:
         out["unhealthy_instance_count"] = data["UnhealthyInstanceCount"]
     return out

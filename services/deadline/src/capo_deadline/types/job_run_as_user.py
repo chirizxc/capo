@@ -42,17 +42,17 @@ def serialize_json(value: JobRunAsUser) -> dict:
 
 def deserialize_json(data: dict) -> JobRunAsUser:
     out: JobRunAsUser = {}  # type: ignore[typeddict-item]
-    if "posix" in data:
+    if data.get("posix") is not None:
         import capo_deadline.types.posix_user
 
         out["posix"] = capo_deadline.types.posix_user.deserialize_json(data["posix"])
-    if "windows" in data:
+    if data.get("windows") is not None:
         import capo_deadline.types.windows_user
 
         out["windows"] = capo_deadline.types.windows_user.deserialize_json(
             data["windows"]
         )
-    if "runAs" in data:
+    if data.get("runAs") is not None:
         import capo_deadline.types.run_as
 
         out["run_as"] = capo_deadline.types.run_as.deserialize_json(data["runAs"])

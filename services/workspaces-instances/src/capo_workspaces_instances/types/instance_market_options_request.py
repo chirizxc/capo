@@ -44,7 +44,7 @@ def serialize_aws_json_1_0(value: InstanceMarketOptionsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InstanceMarketOptionsRequest:
     out: InstanceMarketOptionsRequest = {}  # type: ignore[typeddict-item]
-    if "MarketType" in data:
+    if data.get("MarketType") is not None:
         import capo_workspaces_instances.types.market_type_enum
 
         out["market_type"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_0(data: dict) -> InstanceMarketOptionsRequest:
                 data["MarketType"]
             )
         )
-    if "SpotOptions" in data:
+    if data.get("SpotOptions") is not None:
         import capo_workspaces_instances.types.spot_market_options
 
         out["spot_options"] = (

@@ -18,6 +18,6 @@ def serialize_json(value: NoBidAction) -> dict:
 
 def deserialize_json(data: dict) -> NoBidAction:
     out: NoBidAction = {}  # type: ignore[typeddict-item]
-    if "noBidReasonCode" in data:
+    if data.get("noBidReasonCode") is not None:
         out["no_bid_reason_code"] = data["noBidReasonCode"]
     return out

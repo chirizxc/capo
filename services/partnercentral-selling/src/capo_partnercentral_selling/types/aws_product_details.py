@@ -66,13 +66,13 @@ def serialize_aws_json_1_0(value: AwsProductDetails) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AwsProductDetails:
     out: AwsProductDetails = {}  # type: ignore[typeddict-item]
-    if "ProductCode" in data:
+    if data.get("ProductCode") is not None:
         out["product_code"] = data["ProductCode"]
     else:
         raise DeserializationError("AwsProductDetails.product_code required")
-    if "ServiceCode" in data:
+    if data.get("ServiceCode") is not None:
         out["service_code"] = data["ServiceCode"]
-    if "Categories" in data:
+    if data.get("Categories") is not None:
         import capo_partnercentral_selling.types.string_list
 
         out["categories"] = (
@@ -82,13 +82,13 @@ def deserialize_aws_json_1_0(data: dict) -> AwsProductDetails:
         )
     else:
         raise DeserializationError("AwsProductDetails.categories required")
-    if "Amount" in data:
+    if data.get("Amount") is not None:
         out["amount"] = data["Amount"]
-    if "OptimizedAmount" in data:
+    if data.get("OptimizedAmount") is not None:
         out["optimized_amount"] = data["OptimizedAmount"]
-    if "PotentialSavingsAmount" in data:
+    if data.get("PotentialSavingsAmount") is not None:
         out["potential_savings_amount"] = data["PotentialSavingsAmount"]
-    if "Optimizations" in data:
+    if data.get("Optimizations") is not None:
         import capo_partnercentral_selling.types.aws_product_optimizations_list
 
         out["optimizations"] = (

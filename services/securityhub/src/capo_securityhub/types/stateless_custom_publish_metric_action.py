@@ -31,7 +31,7 @@ def serialize_json(value: StatelessCustomPublishMetricAction) -> dict:
 
 def deserialize_json(data: dict) -> StatelessCustomPublishMetricAction:
     out: StatelessCustomPublishMetricAction = {}  # type: ignore[typeddict-item]
-    if "Dimensions" in data:
+    if data.get("Dimensions") is not None:
         import capo_securityhub.types.stateless_custom_publish_metric_action_dimensions_list
 
         out["dimensions"] = (

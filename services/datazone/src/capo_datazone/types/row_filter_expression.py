@@ -187,7 +187,7 @@ def serialize_json(value: RowFilterExpression) -> dict:
 
 
 def deserialize_json(data: dict) -> RowFilterExpression:
-    if "equalTo" in data:
+    if data.get("equalTo") is not None:
         import capo_datazone.types.equal_to_expression
 
         return {
@@ -195,7 +195,7 @@ def deserialize_json(data: dict) -> RowFilterExpression:
                 data["equalTo"]
             )
         }
-    elif "notEqualTo" in data:
+    elif data.get("notEqualTo") is not None:
         import capo_datazone.types.not_equal_to_expression
 
         return {
@@ -203,7 +203,7 @@ def deserialize_json(data: dict) -> RowFilterExpression:
                 data["notEqualTo"]
             )
         }
-    elif "greaterThan" in data:
+    elif data.get("greaterThan") is not None:
         import capo_datazone.types.greater_than_expression
 
         return {
@@ -211,7 +211,7 @@ def deserialize_json(data: dict) -> RowFilterExpression:
                 data["greaterThan"]
             )
         }
-    elif "lessThan" in data:
+    elif data.get("lessThan") is not None:
         import capo_datazone.types.less_than_expression
 
         return {
@@ -219,7 +219,7 @@ def deserialize_json(data: dict) -> RowFilterExpression:
                 data["lessThan"]
             )
         }
-    elif "greaterThanOrEqualTo" in data:
+    elif data.get("greaterThanOrEqualTo") is not None:
         import capo_datazone.types.greater_than_or_equal_to_expression
 
         return {
@@ -227,7 +227,7 @@ def deserialize_json(data: dict) -> RowFilterExpression:
                 data["greaterThanOrEqualTo"]
             )
         }
-    elif "lessThanOrEqualTo" in data:
+    elif data.get("lessThanOrEqualTo") is not None:
         import capo_datazone.types.less_than_or_equal_to_expression
 
         return {
@@ -235,7 +235,7 @@ def deserialize_json(data: dict) -> RowFilterExpression:
                 data["lessThanOrEqualTo"]
             )
         }
-    elif "isNull" in data:
+    elif data.get("isNull") is not None:
         import capo_datazone.types.is_null_expression
 
         return {
@@ -243,7 +243,7 @@ def deserialize_json(data: dict) -> RowFilterExpression:
                 data["isNull"]
             )
         }
-    elif "isNotNull" in data:
+    elif data.get("isNotNull") is not None:
         import capo_datazone.types.is_not_null_expression
 
         return {
@@ -251,11 +251,11 @@ def deserialize_json(data: dict) -> RowFilterExpression:
                 data["isNotNull"]
             )
         }
-    elif "in" in data:
+    elif data.get("in") is not None:
         import capo_datazone.types.in_expression
 
         return {"in": capo_datazone.types.in_expression.deserialize_json(data["in"])}
-    elif "notIn" in data:
+    elif data.get("notIn") is not None:
         import capo_datazone.types.not_in_expression
 
         return {
@@ -263,13 +263,13 @@ def deserialize_json(data: dict) -> RowFilterExpression:
                 data["notIn"]
             )
         }
-    elif "like" in data:
+    elif data.get("like") is not None:
         import capo_datazone.types.like_expression
 
         return {
             "like": capo_datazone.types.like_expression.deserialize_json(data["like"])
         }
-    elif "notLike" in data:
+    elif data.get("notLike") is not None:
         import capo_datazone.types.not_like_expression
 
         return {

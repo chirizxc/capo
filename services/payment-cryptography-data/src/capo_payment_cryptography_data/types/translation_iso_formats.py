@@ -91,7 +91,7 @@ def serialize_json(value: TranslationIsoFormats) -> dict:
 
 
 def deserialize_json(data: dict) -> TranslationIsoFormats:
-    if "IsoFormat0" in data:
+    if data.get("IsoFormat0") is not None:
         import capo_payment_cryptography_data.types.translation_pin_data_iso_format034
 
         return {
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> TranslationIsoFormats:
                 data["IsoFormat0"]
             )
         }
-    elif "IsoFormat1" in data:
+    elif data.get("IsoFormat1") is not None:
         import capo_payment_cryptography_data.types.translation_pin_data_iso_format1
 
         return {
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> TranslationIsoFormats:
                 data["IsoFormat1"]
             )
         }
-    elif "IsoFormat3" in data:
+    elif data.get("IsoFormat3") is not None:
         import capo_payment_cryptography_data.types.translation_pin_data_iso_format034
 
         return {
@@ -115,7 +115,7 @@ def deserialize_json(data: dict) -> TranslationIsoFormats:
                 data["IsoFormat3"]
             )
         }
-    elif "IsoFormat4" in data:
+    elif data.get("IsoFormat4") is not None:
         import capo_payment_cryptography_data.types.translation_pin_data_iso_format034
 
         return {
@@ -123,7 +123,7 @@ def deserialize_json(data: dict) -> TranslationIsoFormats:
                 data["IsoFormat4"]
             )
         }
-    elif "As2805Format0" in data:
+    elif data.get("As2805Format0") is not None:
         import capo_payment_cryptography_data.types.translation_pin_data_as2805_format0
 
         return {

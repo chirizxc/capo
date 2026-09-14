@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: DocumentIdOptions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DocumentIdOptions:
     out: DocumentIdOptions = {}  # type: ignore[typeddict-item]
-    if "DefaultDocumentIdFormat" in data:
+    if data.get("DefaultDocumentIdFormat") is not None:
         import capo_firehose.types.default_document_id_format
 
         out["default_document_id_format"] = (

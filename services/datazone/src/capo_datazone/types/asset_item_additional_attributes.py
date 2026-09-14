@@ -61,13 +61,13 @@ def serialize_json(value: AssetItemAdditionalAttributes) -> dict:
 
 def deserialize_json(data: dict) -> AssetItemAdditionalAttributes:
     out: AssetItemAdditionalAttributes = {}  # type: ignore[typeddict-item]
-    if "formsOutput" in data:
+    if data.get("formsOutput") is not None:
         import capo_datazone.types.form_output_list
 
         out["forms_output"] = capo_datazone.types.form_output_list.deserialize_json(
             data["formsOutput"]
         )
-    if "readOnlyFormsOutput" in data:
+    if data.get("readOnlyFormsOutput") is not None:
         import capo_datazone.types.form_output_list
 
         out["read_only_forms_output"] = (
@@ -75,7 +75,7 @@ def deserialize_json(data: dict) -> AssetItemAdditionalAttributes:
                 data["readOnlyFormsOutput"]
             )
         )
-    if "latestTimeSeriesDataPointFormsOutput" in data:
+    if data.get("latestTimeSeriesDataPointFormsOutput") is not None:
         import capo_datazone.types.time_series_data_point_summary_form_output_list
 
         out["latest_time_series_data_point_forms_output"] = (
@@ -83,7 +83,7 @@ def deserialize_json(data: dict) -> AssetItemAdditionalAttributes:
                 data["latestTimeSeriesDataPointFormsOutput"]
             )
         )
-    if "matchRationale" in data:
+    if data.get("matchRationale") is not None:
         import capo_datazone.types.match_rationale
 
         out["match_rationale"] = capo_datazone.types.match_rationale.deserialize_json(

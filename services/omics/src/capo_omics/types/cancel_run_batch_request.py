@@ -24,7 +24,7 @@ def serialize_json(value: CancelRunBatchRequest) -> dict:
 
 def deserialize_json(data: dict) -> CancelRunBatchRequest:
     out: CancelRunBatchRequest = {}  # type: ignore[typeddict-item]
-    if "batchId" in data:
+    if data.get("batchId") is not None:
         out["batch_id"] = data["batchId"]
     else:
         raise DeserializationError("CancelRunBatchRequest.batch_id required")

@@ -24,7 +24,7 @@ def serialize_json(value: LambdaAction) -> dict:
 
 def deserialize_json(data: dict) -> LambdaAction:
     out: LambdaAction = {}  # type: ignore[typeddict-item]
-    if "functionArn" in data:
+    if data.get("functionArn") is not None:
         out["function_arn"] = data["functionArn"]
     else:
         raise DeserializationError("LambdaAction.function_arn required")

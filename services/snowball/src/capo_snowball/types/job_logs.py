@@ -31,10 +31,10 @@ def serialize_aws_json_1_1(value: JobLogs) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> JobLogs:
     out: JobLogs = {}  # type: ignore[typeddict-item]
-    if "JobCompletionReportURI" in data:
+    if data.get("JobCompletionReportURI") is not None:
         out["job_completion_report_uri"] = data["JobCompletionReportURI"]
-    if "JobSuccessLogURI" in data:
+    if data.get("JobSuccessLogURI") is not None:
         out["job_success_log_uri"] = data["JobSuccessLogURI"]
-    if "JobFailureLogURI" in data:
+    if data.get("JobFailureLogURI") is not None:
         out["job_failure_log_uri"] = data["JobFailureLogURI"]
     return out

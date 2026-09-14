@@ -85,21 +85,21 @@ def serialize_json(value: ChatSyncOutput) -> dict:
 
 def deserialize_json(data: dict) -> ChatSyncOutput:
     out: ChatSyncOutput = {}  # type: ignore[typeddict-item]
-    if "conversationId" in data:
+    if data.get("conversationId") is not None:
         out["conversation_id"] = data["conversationId"]
-    if "systemMessage" in data:
+    if data.get("systemMessage") is not None:
         out["system_message"] = data["systemMessage"]
-    if "systemMessageId" in data:
+    if data.get("systemMessageId") is not None:
         out["system_message_id"] = data["systemMessageId"]
-    if "userMessageId" in data:
+    if data.get("userMessageId") is not None:
         out["user_message_id"] = data["userMessageId"]
-    if "actionReview" in data:
+    if data.get("actionReview") is not None:
         import capo_qbusiness.types.action_review
 
         out["action_review"] = capo_qbusiness.types.action_review.deserialize_json(
             data["actionReview"]
         )
-    if "authChallengeRequest" in data:
+    if data.get("authChallengeRequest") is not None:
         import capo_qbusiness.types.auth_challenge_request
 
         out["auth_challenge_request"] = (
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> ChatSyncOutput:
                 data["authChallengeRequest"]
             )
         )
-    if "sourceAttributions" in data:
+    if data.get("sourceAttributions") is not None:
         import capo_qbusiness.types.source_attributions
 
         out["source_attributions"] = (
@@ -115,7 +115,7 @@ def deserialize_json(data: dict) -> ChatSyncOutput:
                 data["sourceAttributions"]
             )
         )
-    if "failedAttachments" in data:
+    if data.get("failedAttachments") is not None:
         import capo_qbusiness.types.attachments_output
 
         out["failed_attachments"] = (

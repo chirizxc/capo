@@ -161,17 +161,17 @@ def serialize_json(value: GetResourceConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetResourceConfigurationResponse:
     out: GetResourceConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "resourceGatewayId" in data:
+    if data.get("resourceGatewayId") is not None:
         out["resource_gateway_id"] = data["resourceGatewayId"]
-    if "resourceConfigurationGroupId" in data:
+    if data.get("resourceConfigurationGroupId") is not None:
         out["resource_configuration_group_id"] = data["resourceConfigurationGroupId"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_vpc_lattice.types.resource_configuration_type
 
         out["type"] = (
@@ -179,23 +179,23 @@ def deserialize_json(data: dict) -> GetResourceConfigurationResponse:
                 data["type"]
             )
         )
-    if "allowAssociationToShareableServiceNetwork" in data:
+    if data.get("allowAssociationToShareableServiceNetwork") is not None:
         out["allow_association_to_shareable_service_network"] = data[
             "allowAssociationToShareableServiceNetwork"
         ]
-    if "portRanges" in data:
+    if data.get("portRanges") is not None:
         import capo_vpc_lattice.types.port_range_list
 
         out["port_ranges"] = capo_vpc_lattice.types.port_range_list.deserialize_json(
             data["portRanges"]
         )
-    if "protocol" in data:
+    if data.get("protocol") is not None:
         out["protocol"] = data["protocol"]
-    if "customDomainName" in data:
+    if data.get("customDomainName") is not None:
         out["custom_domain_name"] = data["customDomainName"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "resourceConfigurationDefinition" in data:
+    if data.get("resourceConfigurationDefinition") is not None:
         import capo_vpc_lattice.types.resource_configuration_definition
 
         out["resource_configuration_definition"] = (
@@ -203,28 +203,28 @@ def deserialize_json(data: dict) -> GetResourceConfigurationResponse:
                 data["resourceConfigurationDefinition"]
             )
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_vpc_lattice.types.timestamp
 
         out["created_at"] = capo_vpc_lattice.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "amazonManaged" in data:
+    if data.get("amazonManaged") is not None:
         out["amazon_managed"] = data["amazonManaged"]
-    if "failureReason" in data:
+    if data.get("failureReason") is not None:
         out["failure_reason"] = data["failureReason"]
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_vpc_lattice.types.timestamp
 
         out["last_updated_at"] = capo_vpc_lattice.types.timestamp.deserialize_json(
             data["lastUpdatedAt"]
         )
-    if "domainVerificationId" in data:
+    if data.get("domainVerificationId") is not None:
         out["domain_verification_id"] = data["domainVerificationId"]
-    if "domainVerificationArn" in data:
+    if data.get("domainVerificationArn") is not None:
         out["domain_verification_arn"] = data["domainVerificationArn"]
-    if "domainVerificationStatus" in data:
+    if data.get("domainVerificationStatus") is not None:
         out["domain_verification_status"] = data["domainVerificationStatus"]
-    if "groupDomain" in data:
+    if data.get("groupDomain") is not None:
         out["group_domain"] = data["groupDomain"]
     return out

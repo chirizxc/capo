@@ -66,13 +66,13 @@ def serialize_aws_json_1_1(value: ProvisionData) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProvisionData:
     out: ProvisionData = {}  # type: ignore[typeddict-item]
-    if "ProvisionState" in data:
+    if data.get("ProvisionState") is not None:
         out["provision_state"] = data["ProvisionState"]
-    if "ProvisionedCapacityUnits" in data:
+    if data.get("ProvisionedCapacityUnits") is not None:
         out["provisioned_capacity_units"] = data["ProvisionedCapacityUnits"]
     else:
         out["provisioned_capacity_units"] = 0
-    if "DateProvisioned" in data:
+    if data.get("DateProvisioned") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["date_provisioned"] = (
@@ -80,11 +80,11 @@ def deserialize_aws_json_1_1(data: dict) -> ProvisionData:
                 data["DateProvisioned"]
             )
         )
-    if "IsNewProvisioningAvailable" in data:
+    if data.get("IsNewProvisioningAvailable") is not None:
         out["is_new_provisioning_available"] = data["IsNewProvisioningAvailable"]
     else:
         out["is_new_provisioning_available"] = False
-    if "DateNewProvisioningDataAvailable" in data:
+    if data.get("DateNewProvisioningDataAvailable") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["date_new_provisioning_data_available"] = (
@@ -92,6 +92,6 @@ def deserialize_aws_json_1_1(data: dict) -> ProvisionData:
                 data["DateNewProvisioningDataAvailable"]
             )
         )
-    if "ReasonForNewProvisioningData" in data:
+    if data.get("ReasonForNewProvisioningData") is not None:
         out["reason_for_new_provisioning_data"] = data["ReasonForNewProvisioningData"]
     return out

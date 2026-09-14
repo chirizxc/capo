@@ -48,9 +48,9 @@ def serialize_aws_json_1_1(value: InvalidRequestException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidRequestException_:
     out: InvalidRequestException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "Reason" in data:
+    if data.get("Reason") is not None:
         import capo_comprehend.types.invalid_request_reason
 
         out["reason"] = (
@@ -58,7 +58,7 @@ def deserialize_aws_json_1_1(data: dict) -> InvalidRequestException_:
                 data["Reason"]
             )
         )
-    if "Detail" in data:
+    if data.get("Detail") is not None:
         import capo_comprehend.types.invalid_request_detail
 
         out["detail"] = (
@@ -74,15 +74,18 @@ class InvalidRequestException(ServiceError):
 
     code: str | None = "InvalidRequestException"
 
-    def __init__(self, data: InvalidRequestException_):
+    def __init__(self, data: InvalidRequestException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidRequestException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidRequestException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidRequestException":
+        return cls(deserialize_aws_json_1_1(data), message)

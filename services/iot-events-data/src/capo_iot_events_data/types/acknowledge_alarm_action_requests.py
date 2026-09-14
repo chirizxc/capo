@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AcknowledgeAlarmActionRequests:
 
     out: AcknowledgeAlarmActionRequests = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot_events_data.types.acknowledge_alarm_action_request.deserialize_json(
                 item

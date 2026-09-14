@@ -37,12 +37,12 @@ def serialize_aws_json_1_0(value: DescribeProxyRuleRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeProxyRuleRequest:
     out: DescribeProxyRuleRequest = {}  # type: ignore[typeddict-item]
-    if "ProxyRuleName" in data:
+    if data.get("ProxyRuleName") is not None:
         out["proxy_rule_name"] = data["ProxyRuleName"]
     else:
         raise DeserializationError("DescribeProxyRuleRequest.proxy_rule_name required")
-    if "ProxyRuleGroupName" in data:
+    if data.get("ProxyRuleGroupName") is not None:
         out["proxy_rule_group_name"] = data["ProxyRuleGroupName"]
-    if "ProxyRuleGroupArn" in data:
+    if data.get("ProxyRuleGroupArn") is not None:
         out["proxy_rule_group_arn"] = data["ProxyRuleGroupArn"]
     return out

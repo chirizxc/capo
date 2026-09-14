@@ -22,7 +22,7 @@ def serialize_json(value: PutAccountDedicatedIpWarmupAttributesRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutAccountDedicatedIpWarmupAttributesRequest:
     out: PutAccountDedicatedIpWarmupAttributesRequest = {}  # type: ignore[typeddict-item]
-    if "AutoWarmupEnabled" in data:
+    if data.get("AutoWarmupEnabled") is not None:
         out["auto_warmup_enabled"] = data["AutoWarmupEnabled"]
     else:
         out["auto_warmup_enabled"] = False

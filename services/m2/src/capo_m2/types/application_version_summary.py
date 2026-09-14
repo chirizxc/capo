@@ -38,19 +38,19 @@ def serialize_json(value: ApplicationVersionSummary) -> dict:
 
 def deserialize_json(data: dict) -> ApplicationVersionSummary:
     out: ApplicationVersionSummary = {}  # type: ignore[typeddict-item]
-    if "applicationVersion" in data:
+    if data.get("applicationVersion") is not None:
         out["application_version"] = data["applicationVersion"]
     else:
         raise DeserializationError(
             "ApplicationVersionSummary.application_version required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("ApplicationVersionSummary.status required")
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_m2.types.timestamp
 
         out["creation_time"] = capo_m2.types.timestamp.deserialize_json(

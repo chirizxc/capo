@@ -50,7 +50,7 @@ def serialize_aws_json_1_1(value: DeviceSelectionConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeviceSelectionConfig:
     out: DeviceSelectionConfig = {}  # type: ignore[typeddict-item]
-    if "DeviceSubsetType" in data:
+    if data.get("DeviceSubsetType") is not None:
         import capo_sagemaker.types.device_subset_type
 
         out["device_subset_type"] = (
@@ -58,9 +58,9 @@ def deserialize_aws_json_1_1(data: dict) -> DeviceSelectionConfig:
                 data["DeviceSubsetType"]
             )
         )
-    if "Percentage" in data:
+    if data.get("Percentage") is not None:
         out["percentage"] = data["Percentage"]
-    if "DeviceNames" in data:
+    if data.get("DeviceNames") is not None:
         import capo_sagemaker.types.device_names
 
         out["device_names"] = (
@@ -68,6 +68,6 @@ def deserialize_aws_json_1_1(data: dict) -> DeviceSelectionConfig:
                 data["DeviceNames"]
             )
         )
-    if "DeviceNameContains" in data:
+    if data.get("DeviceNameContains") is not None:
         out["device_name_contains"] = data["DeviceNameContains"]
     return out

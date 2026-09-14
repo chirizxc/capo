@@ -55,19 +55,19 @@ def serialize_aws_json_1_1(value: UpdateFileSystemAssociationInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateFileSystemAssociationInput:
     out: UpdateFileSystemAssociationInput = {}  # type: ignore[typeddict-item]
-    if "FileSystemAssociationARN" in data:
+    if data.get("FileSystemAssociationARN") is not None:
         out["file_system_association_arn"] = data["FileSystemAssociationARN"]
     else:
         raise DeserializationError(
             "UpdateFileSystemAssociationInput.file_system_association_arn required"
         )
-    if "UserName" in data:
+    if data.get("UserName") is not None:
         out["user_name"] = data["UserName"]
-    if "Password" in data:
+    if data.get("Password") is not None:
         out["password"] = data["Password"]
-    if "AuditDestinationARN" in data:
+    if data.get("AuditDestinationARN") is not None:
         out["audit_destination_arn"] = data["AuditDestinationARN"]
-    if "CacheAttributes" in data:
+    if data.get("CacheAttributes") is not None:
         import capo_storage_gateway.types.cache_attributes
 
         out["cache_attributes"] = (

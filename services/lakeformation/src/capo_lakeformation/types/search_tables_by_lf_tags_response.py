@@ -34,9 +34,9 @@ def serialize_json(value: SearchTablesByLFTagsResponse) -> dict:
 
 def deserialize_json(data: dict) -> SearchTablesByLFTagsResponse:
     out: SearchTablesByLFTagsResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "TableList" in data:
+    if data.get("TableList") is not None:
         import capo_lakeformation.types.table_lf_tags_list
 
         out["table_list"] = (

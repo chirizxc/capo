@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> DataSourceIntrospectionModelIndexes:
 
     out: DataSourceIntrospectionModelIndexes = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_appsync.types.data_source_introspection_model_index.deserialize_json(
                 item

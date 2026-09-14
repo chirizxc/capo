@@ -23,6 +23,6 @@ def serialize_json(value: LexV2Bot) -> dict:
 
 def deserialize_json(data: dict) -> LexV2Bot:
     out: LexV2Bot = {}  # type: ignore[typeddict-item]
-    if "AliasArn" in data:
+    if data.get("AliasArn") is not None:
         out["alias_arn"] = data["AliasArn"]
     return out

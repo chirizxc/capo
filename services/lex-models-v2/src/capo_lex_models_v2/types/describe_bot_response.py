@@ -122,35 +122,35 @@ def serialize_json(value: DescribeBotResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeBotResponse:
     out: DescribeBotResponse = {}  # type: ignore[typeddict-item]
-    if "botId" in data:
+    if data.get("botId") is not None:
         out["bot_id"] = data["botId"]
-    if "botName" in data:
+    if data.get("botName") is not None:
         out["bot_name"] = data["botName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "dataPrivacy" in data:
+    if data.get("dataPrivacy") is not None:
         import capo_lex_models_v2.types.data_privacy
 
         out["data_privacy"] = capo_lex_models_v2.types.data_privacy.deserialize_json(
             data["dataPrivacy"]
         )
-    if "idleSessionTTLInSeconds" in data:
+    if data.get("idleSessionTTLInSeconds") is not None:
         out["idle_session_ttl_in_seconds"] = data["idleSessionTTLInSeconds"]
-    if "botStatus" in data:
+    if data.get("botStatus") is not None:
         import capo_lex_models_v2.types.bot_status
 
         out["bot_status"] = capo_lex_models_v2.types.bot_status.deserialize_json(
             data["botStatus"]
         )
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["creation_date_time"] = capo_lex_models_v2.types.timestamp.deserialize_json(
             data["creationDateTime"]
         )
-    if "lastUpdatedDateTime" in data:
+    if data.get("lastUpdatedDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["last_updated_date_time"] = (
@@ -158,19 +158,19 @@ def deserialize_json(data: dict) -> DescribeBotResponse:
                 data["lastUpdatedDateTime"]
             )
         )
-    if "botType" in data:
+    if data.get("botType") is not None:
         import capo_lex_models_v2.types.bot_type
 
         out["bot_type"] = capo_lex_models_v2.types.bot_type.deserialize_json(
             data["botType"]
         )
-    if "botMembers" in data:
+    if data.get("botMembers") is not None:
         import capo_lex_models_v2.types.bot_members
 
         out["bot_members"] = capo_lex_models_v2.types.bot_members.deserialize_json(
             data["botMembers"]
         )
-    if "failureReasons" in data:
+    if data.get("failureReasons") is not None:
         import capo_lex_models_v2.types.failure_reasons
 
         out["failure_reasons"] = (
@@ -178,7 +178,7 @@ def deserialize_json(data: dict) -> DescribeBotResponse:
                 data["failureReasons"]
             )
         )
-    if "errorLogSettings" in data:
+    if data.get("errorLogSettings") is not None:
         import capo_lex_models_v2.types.error_log_settings
 
         out["error_log_settings"] = (

@@ -44,18 +44,18 @@ def serialize_json(value: PredictQAResultsResponse) -> dict:
 
 def deserialize_json(data: dict) -> PredictQAResultsResponse:
     out: PredictQAResultsResponse = {}  # type: ignore[typeddict-item]
-    if "PrimaryResult" in data:
+    if data.get("PrimaryResult") is not None:
         import capo_quicksight.types.qa_result
 
         out["primary_result"] = capo_quicksight.types.qa_result.deserialize_json(
             data["PrimaryResult"]
         )
-    if "AdditionalResults" in data:
+    if data.get("AdditionalResults") is not None:
         import capo_quicksight.types.qa_results
 
         out["additional_results"] = capo_quicksight.types.qa_results.deserialize_json(
             data["AdditionalResults"]
         )
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

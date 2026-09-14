@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: PlacementType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PlacementType:
     out: PlacementType = {}  # type: ignore[typeddict-item]
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
-    if "AvailabilityZones" in data:
+    if data.get("AvailabilityZones") is not None:
         import capo_emr.types.xml_string_max_len256_list
 
         out["availability_zones"] = (

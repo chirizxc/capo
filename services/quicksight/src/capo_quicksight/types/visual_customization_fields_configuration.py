@@ -44,7 +44,7 @@ def serialize_json(value: VisualCustomizationFieldsConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> VisualCustomizationFieldsConfiguration:
     out: VisualCustomizationFieldsConfiguration = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_quicksight.types.dashboard_customization_status
 
         out["status"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> VisualCustomizationFieldsConfiguration:
                 data["Status"]
             )
         )
-    if "AdditionalFields" in data:
+    if data.get("AdditionalFields") is not None:
         import capo_quicksight.types.visual_customization_additional_fields_list
 
         out["additional_fields"] = (

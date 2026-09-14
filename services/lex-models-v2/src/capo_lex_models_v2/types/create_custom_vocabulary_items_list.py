@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> CreateCustomVocabularyItemsList:
 
     out: CreateCustomVocabularyItemsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lex_models_v2.types.new_custom_vocabulary_item.deserialize_json(item)
         )

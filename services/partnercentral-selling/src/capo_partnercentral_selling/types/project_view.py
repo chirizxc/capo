@@ -81,7 +81,7 @@ def serialize_aws_json_1_0(value: ProjectView) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ProjectView:
     out: ProjectView = {}  # type: ignore[typeddict-item]
-    if "DeliveryModels" in data:
+    if data.get("DeliveryModels") is not None:
         import capo_partnercentral_selling.types.delivery_models
 
         out["delivery_models"] = (
@@ -89,7 +89,7 @@ def deserialize_aws_json_1_0(data: dict) -> ProjectView:
                 data["DeliveryModels"]
             )
         )
-    if "ExpectedCustomerSpend" in data:
+    if data.get("ExpectedCustomerSpend") is not None:
         import capo_partnercentral_selling.types.expected_customer_spend_list
 
         out["expected_customer_spend"] = (
@@ -97,7 +97,7 @@ def deserialize_aws_json_1_0(data: dict) -> ProjectView:
                 data["ExpectedCustomerSpend"]
             )
         )
-    if "ExpectedContractDuration" in data:
+    if data.get("ExpectedContractDuration") is not None:
         import capo_partnercentral_selling.types.expected_contract_duration
 
         out["expected_contract_duration"] = (
@@ -105,9 +105,9 @@ def deserialize_aws_json_1_0(data: dict) -> ProjectView:
                 data["ExpectedContractDuration"]
             )
         )
-    if "CustomerUseCase" in data:
+    if data.get("CustomerUseCase") is not None:
         out["customer_use_case"] = data["CustomerUseCase"]
-    if "SalesActivities" in data:
+    if data.get("SalesActivities") is not None:
         import capo_partnercentral_selling.types.sales_activities
 
         out["sales_activities"] = (
@@ -115,6 +115,6 @@ def deserialize_aws_json_1_0(data: dict) -> ProjectView:
                 data["SalesActivities"]
             )
         )
-    if "OtherSolutionDescription" in data:
+    if data.get("OtherSolutionDescription") is not None:
         out["other_solution_description"] = data["OtherSolutionDescription"]
     return out

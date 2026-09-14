@@ -31,15 +31,15 @@ def serialize_json(value: ResourcePolicy) -> dict:
 
 def deserialize_json(data: dict) -> ResourcePolicy:
     out: ResourcePolicy = {}  # type: ignore[typeddict-item]
-    if "policyDocument" in data:
+    if data.get("policyDocument") is not None:
         out["policy_document"] = data["policyDocument"]
     else:
         raise DeserializationError("ResourcePolicy.policy_document required")
-    if "policyId" in data:
+    if data.get("policyId") is not None:
         out["policy_id"] = data["policyId"]
     else:
         raise DeserializationError("ResourcePolicy.policy_id required")
-    if "ramResourceShareRegion" in data:
+    if data.get("ramResourceShareRegion") is not None:
         out["ram_resource_share_region"] = data["ramResourceShareRegion"]
     else:
         raise DeserializationError("ResourcePolicy.ram_resource_share_region required")

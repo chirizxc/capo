@@ -44,14 +44,14 @@ def serialize_json(value: AwsDynamoDbTableProvisionedThroughput) -> dict:
 
 def deserialize_json(data: dict) -> AwsDynamoDbTableProvisionedThroughput:
     out: AwsDynamoDbTableProvisionedThroughput = {}  # type: ignore[typeddict-item]
-    if "LastDecreaseDateTime" in data:
+    if data.get("LastDecreaseDateTime") is not None:
         out["last_decrease_date_time"] = data["LastDecreaseDateTime"]
-    if "LastIncreaseDateTime" in data:
+    if data.get("LastIncreaseDateTime") is not None:
         out["last_increase_date_time"] = data["LastIncreaseDateTime"]
-    if "NumberOfDecreasesToday" in data:
+    if data.get("NumberOfDecreasesToday") is not None:
         out["number_of_decreases_today"] = data["NumberOfDecreasesToday"]
-    if "ReadCapacityUnits" in data:
+    if data.get("ReadCapacityUnits") is not None:
         out["read_capacity_units"] = data["ReadCapacityUnits"]
-    if "WriteCapacityUnits" in data:
+    if data.get("WriteCapacityUnits") is not None:
         out["write_capacity_units"] = data["WriteCapacityUnits"]
     return out

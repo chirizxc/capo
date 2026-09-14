@@ -37,14 +37,14 @@ def serialize_json(value: DescribeServiceEnvironmentsRequest) -> dict:
 
 def deserialize_json(data: dict) -> DescribeServiceEnvironmentsRequest:
     out: DescribeServiceEnvironmentsRequest = {}  # type: ignore[typeddict-item]
-    if "serviceEnvironments" in data:
+    if data.get("serviceEnvironments") is not None:
         import capo_batch.types.string_list
 
         out["service_environments"] = capo_batch.types.string_list.deserialize_json(
             data["serviceEnvironments"]
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

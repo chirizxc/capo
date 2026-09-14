@@ -25,6 +25,6 @@ def serialize_json(value: TimestampValue) -> dict:
 
 def deserialize_json(data: dict) -> TimestampValue:
     out: TimestampValue = {}  # type: ignore[typeddict-item]
-    if "timeInMillis" in data:
+    if data.get("timeInMillis") is not None:
         out["time_in_millis"] = data["timeInMillis"]
     return out

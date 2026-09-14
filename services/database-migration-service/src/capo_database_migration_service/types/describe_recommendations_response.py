@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: DescribeRecommendationsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeRecommendationsResponse:
     out: DescribeRecommendationsResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Recommendations" in data:
+    if data.get("Recommendations") is not None:
         import capo_database_migration_service.types.recommendation_list
 
         out["recommendations"] = (

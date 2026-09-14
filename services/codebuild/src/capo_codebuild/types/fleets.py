@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> Fleets:
 
     out: Fleets = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_codebuild.types.fleet.deserialize_aws_json_1_1(item))
     return out

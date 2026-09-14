@@ -52,20 +52,20 @@ def serialize_json(value: APNSVoipSandboxChannelRequest) -> dict:
 
 def deserialize_json(data: dict) -> APNSVoipSandboxChannelRequest:
     out: APNSVoipSandboxChannelRequest = {}  # type: ignore[typeddict-item]
-    if "BundleId" in data:
+    if data.get("BundleId") is not None:
         out["bundle_id"] = data["BundleId"]
-    if "Certificate" in data:
+    if data.get("Certificate") is not None:
         out["certificate"] = data["Certificate"]
-    if "DefaultAuthenticationMethod" in data:
+    if data.get("DefaultAuthenticationMethod") is not None:
         out["default_authentication_method"] = data["DefaultAuthenticationMethod"]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "PrivateKey" in data:
+    if data.get("PrivateKey") is not None:
         out["private_key"] = data["PrivateKey"]
-    if "TeamId" in data:
+    if data.get("TeamId") is not None:
         out["team_id"] = data["TeamId"]
-    if "TokenKey" in data:
+    if data.get("TokenKey") is not None:
         out["token_key"] = data["TokenKey"]
-    if "TokenKeyId" in data:
+    if data.get("TokenKeyId") is not None:
         out["token_key_id"] = data["TokenKeyId"]
     return out

@@ -70,17 +70,17 @@ def serialize_aws_json_1_1(value: CreateVolumeRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateVolumeRequest:
     out: CreateVolumeRequest = {}  # type: ignore[typeddict-item]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "VolumeType" in data:
+    if data.get("VolumeType") is not None:
         import capo_fsx.types.volume_type
 
         out["volume_type"] = capo_fsx.types.volume_type.deserialize_aws_json_1_1(
             data["VolumeType"]
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "OntapConfiguration" in data:
+    if data.get("OntapConfiguration") is not None:
         import capo_fsx.types.create_ontap_volume_configuration
 
         out["ontap_configuration"] = (
@@ -88,11 +88,11 @@ def deserialize_aws_json_1_1(data: dict) -> CreateVolumeRequest:
                 data["OntapConfiguration"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_fsx.types.tags
 
         out["tags"] = capo_fsx.types.tags.deserialize_aws_json_1_1(data["Tags"])
-    if "OpenZFSConfiguration" in data:
+    if data.get("OpenZFSConfiguration") is not None:
         import capo_fsx.types.create_open_zfs_volume_configuration
 
         out["open_zfs_configuration"] = (

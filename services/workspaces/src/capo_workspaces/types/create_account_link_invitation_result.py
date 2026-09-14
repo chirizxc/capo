@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: CreateAccountLinkInvitationResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateAccountLinkInvitationResult:
     out: CreateAccountLinkInvitationResult = {}  # type: ignore[typeddict-item]
-    if "AccountLink" in data:
+    if data.get("AccountLink") is not None:
         import capo_workspaces.types.account_link
 
         out["account_link"] = (

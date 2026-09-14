@@ -137,21 +137,21 @@ def serialize_json(value: StartChatContactRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartChatContactRequest:
     out: StartChatContactRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     else:
         raise DeserializationError("StartChatContactRequest.instance_id required")
-    if "ContactFlowId" in data:
+    if data.get("ContactFlowId") is not None:
         out["contact_flow_id"] = data["ContactFlowId"]
     else:
         raise DeserializationError("StartChatContactRequest.contact_flow_id required")
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_connect.types.attributes
 
         out["attributes"] = capo_connect.types.attributes.deserialize_json(
             data["Attributes"]
         )
-    if "ParticipantDetails" in data:
+    if data.get("ParticipantDetails") is not None:
         import capo_connect.types.participant_details
 
         out["participant_details"] = (
@@ -163,7 +163,7 @@ def deserialize_json(data: dict) -> StartChatContactRequest:
         raise DeserializationError(
             "StartChatContactRequest.participant_details required"
         )
-    if "ParticipantConfiguration" in data:
+    if data.get("ParticipantConfiguration") is not None:
         import capo_connect.types.participant_configuration
 
         out["participant_configuration"] = (
@@ -171,17 +171,17 @@ def deserialize_json(data: dict) -> StartChatContactRequest:
                 data["ParticipantConfiguration"]
             )
         )
-    if "InitialMessage" in data:
+    if data.get("InitialMessage") is not None:
         import capo_connect.types.chat_message
 
         out["initial_message"] = capo_connect.types.chat_message.deserialize_json(
             data["InitialMessage"]
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "ChatDurationInMinutes" in data:
+    if data.get("ChatDurationInMinutes") is not None:
         out["chat_duration_in_minutes"] = data["ChatDurationInMinutes"]
-    if "SupportedMessagingContentTypes" in data:
+    if data.get("SupportedMessagingContentTypes") is not None:
         import capo_connect.types.supported_messaging_content_types
 
         out["supported_messaging_content_types"] = (
@@ -189,15 +189,15 @@ def deserialize_json(data: dict) -> StartChatContactRequest:
                 data["SupportedMessagingContentTypes"]
             )
         )
-    if "PersistentChat" in data:
+    if data.get("PersistentChat") is not None:
         import capo_connect.types.persistent_chat
 
         out["persistent_chat"] = capo_connect.types.persistent_chat.deserialize_json(
             data["PersistentChat"]
         )
-    if "RelatedContactId" in data:
+    if data.get("RelatedContactId") is not None:
         out["related_contact_id"] = data["RelatedContactId"]
-    if "SegmentAttributes" in data:
+    if data.get("SegmentAttributes") is not None:
         import capo_connect.types.segment_attributes
 
         out["segment_attributes"] = (
@@ -205,9 +205,9 @@ def deserialize_json(data: dict) -> StartChatContactRequest:
                 data["SegmentAttributes"]
             )
         )
-    if "CustomerId" in data:
+    if data.get("CustomerId") is not None:
         out["customer_id"] = data["CustomerId"]
-    if "DisconnectOnCustomerExit" in data:
+    if data.get("DisconnectOnCustomerExit") is not None:
         import capo_connect.types.disconnect_on_customer_exit
 
         out["disconnect_on_customer_exit"] = (

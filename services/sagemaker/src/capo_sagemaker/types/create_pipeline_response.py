@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: CreatePipelineResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreatePipelineResponse:
     out: CreatePipelineResponse = {}  # type: ignore[typeddict-item]
-    if "PipelineArn" in data:
+    if data.get("PipelineArn") is not None:
         out["pipeline_arn"] = data["PipelineArn"]
     return out

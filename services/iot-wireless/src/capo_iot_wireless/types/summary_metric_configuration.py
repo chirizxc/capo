@@ -31,7 +31,7 @@ def serialize_json(value: SummaryMetricConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SummaryMetricConfiguration:
     out: SummaryMetricConfiguration = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_iot_wireless.types.summary_metric_configuration_status
 
         out["status"] = (

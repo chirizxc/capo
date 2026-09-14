@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: UiTemplateInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UiTemplateInfo:
     out: UiTemplateInfo = {}  # type: ignore[typeddict-item]
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
-    if "ContentSha256" in data:
+    if data.get("ContentSha256") is not None:
         out["content_sha256"] = data["ContentSha256"]
     return out

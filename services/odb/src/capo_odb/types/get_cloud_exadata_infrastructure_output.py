@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: GetCloudExadataInfrastructureOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetCloudExadataInfrastructureOutput:
     out: GetCloudExadataInfrastructureOutput = {}  # type: ignore[typeddict-item]
-    if "cloudExadataInfrastructure" in data:
+    if data.get("cloudExadataInfrastructure") is not None:
         import capo_odb.types.cloud_exadata_infrastructure
 
         out["cloud_exadata_infrastructure"] = (

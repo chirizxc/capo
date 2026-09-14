@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> SpaceResourceOperations:
 
     out: SpaceResourceOperations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.space_resource_operation.deserialize_json(item)
         )

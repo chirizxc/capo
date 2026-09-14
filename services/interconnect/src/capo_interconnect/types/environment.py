@@ -73,7 +73,7 @@ def serialize_aws_json_1_0(value: Environment) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Environment:
     out: Environment = {}  # type: ignore[typeddict-item]
-    if "provider" in data:
+    if data.get("provider") is not None:
         import capo_interconnect.types.provider
 
         out["provider"] = capo_interconnect.types.provider.deserialize_aws_json_1_0(
@@ -81,15 +81,15 @@ def deserialize_aws_json_1_0(data: dict) -> Environment:
         )
     else:
         raise DeserializationError("Environment.provider required")
-    if "location" in data:
+    if data.get("location") is not None:
         out["location"] = data["location"]
     else:
         raise DeserializationError("Environment.location required")
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
     else:
         raise DeserializationError("Environment.environment_id required")
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_interconnect.types.environment_state
 
         out["state"] = (
@@ -99,7 +99,7 @@ def deserialize_aws_json_1_0(data: dict) -> Environment:
         )
     else:
         raise DeserializationError("Environment.state required")
-    if "bandwidths" in data:
+    if data.get("bandwidths") is not None:
         import capo_interconnect.types.bandwidths
 
         out["bandwidths"] = capo_interconnect.types.bandwidths.deserialize_aws_json_1_0(
@@ -107,13 +107,13 @@ def deserialize_aws_json_1_0(data: dict) -> Environment:
         )
     else:
         raise DeserializationError("Environment.bandwidths required")
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("Environment.type required")
-    if "activationPageUrl" in data:
+    if data.get("activationPageUrl") is not None:
         out["activation_page_url"] = data["activationPageUrl"]
-    if "remoteIdentifierType" in data:
+    if data.get("remoteIdentifierType") is not None:
         import capo_interconnect.types.remote_account_identifier_type
 
         out["remote_identifier_type"] = (

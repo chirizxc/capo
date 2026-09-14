@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SnapshotFileGroupList:
 
     out: SnapshotFileGroupList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.snapshot_file_group.deserialize_json(item))
     return out

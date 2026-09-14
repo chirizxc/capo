@@ -54,7 +54,7 @@ def serialize_json(value: ReplicationDestinationStatusModel) -> dict:
 
 def deserialize_json(data: dict) -> ReplicationDestinationStatusModel:
     out: ReplicationDestinationStatusModel = {}  # type: ignore[typeddict-item]
-    if "replicationStatus" in data:
+    if data.get("replicationStatus") is not None:
         import capo_s3tables.types.replication_status
 
         out["replication_status"] = (
@@ -66,15 +66,15 @@ def deserialize_json(data: dict) -> ReplicationDestinationStatusModel:
         raise DeserializationError(
             "ReplicationDestinationStatusModel.replication_status required"
         )
-    if "destinationTableBucketArn" in data:
+    if data.get("destinationTableBucketArn") is not None:
         out["destination_table_bucket_arn"] = data["destinationTableBucketArn"]
     else:
         raise DeserializationError(
             "ReplicationDestinationStatusModel.destination_table_bucket_arn required"
         )
-    if "destinationTableArn" in data:
+    if data.get("destinationTableArn") is not None:
         out["destination_table_arn"] = data["destinationTableArn"]
-    if "lastSuccessfulReplicatedUpdate" in data:
+    if data.get("lastSuccessfulReplicatedUpdate") is not None:
         import capo_s3tables.types.last_successful_replicated_update
 
         out["last_successful_replicated_update"] = (
@@ -82,6 +82,6 @@ def deserialize_json(data: dict) -> ReplicationDestinationStatusModel:
                 data["lastSuccessfulReplicatedUpdate"]
             )
         )
-    if "failureMessage" in data:
+    if data.get("failureMessage") is not None:
         out["failure_message"] = data["failureMessage"]
     return out

@@ -27,11 +27,11 @@ def serialize_aws_json_1_1(value: CatalogEntry) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CatalogEntry:
     out: CatalogEntry = {}  # type: ignore[typeddict-item]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError("CatalogEntry.database_name required")
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
     else:
         raise DeserializationError("CatalogEntry.table_name required")

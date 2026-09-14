@@ -114,15 +114,15 @@ def serialize_aws_json_1_0(value: UpdateRuleGroupRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateRuleGroupRequest:
     out: UpdateRuleGroupRequest = {}  # type: ignore[typeddict-item]
-    if "UpdateToken" in data:
+    if data.get("UpdateToken") is not None:
         out["update_token"] = data["UpdateToken"]
     else:
         raise DeserializationError("UpdateRuleGroupRequest.update_token required")
-    if "RuleGroupArn" in data:
+    if data.get("RuleGroupArn") is not None:
         out["rule_group_arn"] = data["RuleGroupArn"]
-    if "RuleGroupName" in data:
+    if data.get("RuleGroupName") is not None:
         out["rule_group_name"] = data["RuleGroupName"]
-    if "RuleGroup" in data:
+    if data.get("RuleGroup") is not None:
         import capo_network_firewall.types.rule_group
 
         out["rule_group"] = (
@@ -130,9 +130,9 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateRuleGroupRequest:
                 data["RuleGroup"]
             )
         )
-    if "Rules" in data:
+    if data.get("Rules") is not None:
         out["rules"] = data["Rules"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_network_firewall.types.rule_group_type
 
         out["type"] = (
@@ -140,13 +140,13 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateRuleGroupRequest:
                 data["Type"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DryRun" in data:
+    if data.get("DryRun") is not None:
         out["dry_run"] = data["DryRun"]
     else:
         out["dry_run"] = False
-    if "EncryptionConfiguration" in data:
+    if data.get("EncryptionConfiguration") is not None:
         import capo_network_firewall.types.encryption_configuration
 
         out["encryption_configuration"] = (
@@ -154,7 +154,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateRuleGroupRequest:
                 data["EncryptionConfiguration"]
             )
         )
-    if "SourceMetadata" in data:
+    if data.get("SourceMetadata") is not None:
         import capo_network_firewall.types.source_metadata
 
         out["source_metadata"] = (
@@ -162,11 +162,11 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateRuleGroupRequest:
                 data["SourceMetadata"]
             )
         )
-    if "AnalyzeRuleGroup" in data:
+    if data.get("AnalyzeRuleGroup") is not None:
         out["analyze_rule_group"] = data["AnalyzeRuleGroup"]
     else:
         out["analyze_rule_group"] = False
-    if "SummaryConfiguration" in data:
+    if data.get("SummaryConfiguration") is not None:
         import capo_network_firewall.types.summary_configuration
 
         out["summary_configuration"] = (

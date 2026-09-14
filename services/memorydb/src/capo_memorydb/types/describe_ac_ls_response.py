@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: DescribeACLsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeACLsResponse:
     out: DescribeACLsResponse = {}  # type: ignore[typeddict-item]
-    if "ACLs" in data:
+    if data.get("ACLs") is not None:
         import capo_memorydb.types.acl_list
 
         out["ac_ls"] = capo_memorydb.types.acl_list.deserialize_aws_json_1_1(
             data["ACLs"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -45,7 +45,7 @@ def serialize_json(value: AssetRelationshipSummary) -> dict:
 
 def deserialize_json(data: dict) -> AssetRelationshipSummary:
     out: AssetRelationshipSummary = {}  # type: ignore[typeddict-item]
-    if "hierarchyInfo" in data:
+    if data.get("hierarchyInfo") is not None:
         import capo_iotsitewise.types.asset_hierarchy_info
 
         out["hierarchy_info"] = (
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> AssetRelationshipSummary:
                 data["hierarchyInfo"]
             )
         )
-    if "relationshipType" in data:
+    if data.get("relationshipType") is not None:
         import capo_iotsitewise.types.asset_relationship_type
 
         out["relationship_type"] = (

@@ -33,9 +33,9 @@ def serialize_json(value: EntityNotExistsException_) -> dict:
 
 def deserialize_json(data: dict) -> EntityNotExistsException_:
     out: EntityNotExistsException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "EntityIds" in data:
+    if data.get("EntityIds") is not None:
         import capo_workdocs.types.entity_id_list
 
         out["entity_ids"] = capo_workdocs.types.entity_id_list.deserialize_json(
@@ -49,15 +49,18 @@ class EntityNotExistsException(ServiceError):
 
     code: str | None = "EntityNotExistsException"
 
-    def __init__(self, data: EntityNotExistsException_):
+    def __init__(self, data: EntityNotExistsException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="EntityNotExistsException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "EntityNotExistsException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "EntityNotExistsException":
+        return cls(deserialize_json(data), message)

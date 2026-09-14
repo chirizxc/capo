@@ -31,7 +31,7 @@ def serialize_json(value: DescribePredefinedAttributeResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribePredefinedAttributeResponse:
     out: DescribePredefinedAttributeResponse = {}  # type: ignore[typeddict-item]
-    if "PredefinedAttribute" in data:
+    if data.get("PredefinedAttribute") is not None:
         import capo_connect.types.predefined_attribute
 
         out["predefined_attribute"] = (

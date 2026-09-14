@@ -35,7 +35,7 @@ def serialize_json(value: EvaluationFormItemEnablementSource) -> dict:
 
 def deserialize_json(data: dict) -> EvaluationFormItemEnablementSource:
     out: EvaluationFormItemEnablementSource = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_connect.types.evaluation_form_item_enablement_source_type
 
         out["type"] = (
@@ -45,6 +45,6 @@ def deserialize_json(data: dict) -> EvaluationFormItemEnablementSource:
         )
     else:
         raise DeserializationError("EvaluationFormItemEnablementSource.type required")
-    if "RefId" in data:
+    if data.get("RefId") is not None:
         out["ref_id"] = data["RefId"]
     return out

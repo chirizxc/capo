@@ -22,8 +22,8 @@ def serialize_aws_json_1_0(value: WorkspaceInstanceError) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> WorkspaceInstanceError:
     out: WorkspaceInstanceError = {}  # type: ignore[typeddict-item]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     return out

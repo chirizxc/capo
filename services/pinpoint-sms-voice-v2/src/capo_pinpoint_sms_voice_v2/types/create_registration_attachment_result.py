@@ -52,25 +52,25 @@ def serialize_aws_json_1_0(value: CreateRegistrationAttachmentResult) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateRegistrationAttachmentResult:
     out: CreateRegistrationAttachmentResult = {}  # type: ignore[typeddict-item]
-    if "RegistrationAttachmentArn" in data:
+    if data.get("RegistrationAttachmentArn") is not None:
         out["registration_attachment_arn"] = data["RegistrationAttachmentArn"]
     else:
         raise DeserializationError(
             "CreateRegistrationAttachmentResult.registration_attachment_arn required"
         )
-    if "RegistrationAttachmentId" in data:
+    if data.get("RegistrationAttachmentId") is not None:
         out["registration_attachment_id"] = data["RegistrationAttachmentId"]
     else:
         raise DeserializationError(
             "CreateRegistrationAttachmentResult.registration_attachment_id required"
         )
-    if "AttachmentStatus" in data:
+    if data.get("AttachmentStatus") is not None:
         out["attachment_status"] = data["AttachmentStatus"]
     else:
         raise DeserializationError(
             "CreateRegistrationAttachmentResult.attachment_status required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_pinpoint_sms_voice_v2.types.tag_list
 
         out["tags"] = (
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateRegistrationAttachmentResult:
                 data["Tags"]
             )
         )
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_pinpoint_sms_voice_v2.types._prelude.timestamp
 
         out["created_timestamp"] = (

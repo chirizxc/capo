@@ -13,9 +13,9 @@ from capo_waf import AsyncWAFClient
 
 
 async def main():
-    async with AsyncWAFClient() as s3:
+    async with AsyncWAFClient() as waf:
         # Example: call the create_byte_match_set operation
-        response = await s3.create_byte_match_set()
+        response = await waf.create_byte_match_set()
         print(response["byte_match_set"])
 ```
 
@@ -29,9 +29,9 @@ from capo_waf.error import WAFDisallowedNameException
 
 
 async def main():
-    async with AsyncWAFClient() as s3:
+    async with AsyncWAFClient() as waf:
         try:
-            await s3.create_byte_match_set()
+            await waf.create_byte_match_set()
         except WAFDisallowedNameException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_waf import AsyncWAFClient
 
 
 async def main():
-    async with AsyncWAFClient() as s3:
+    async with AsyncWAFClient() as waf:
         # Default: 3 attempts for every operation
-        response = await s3.create_byte_match_set()
+        response = await waf.create_byte_match_set()
 
         # Override per operation
-        response = await s3.create_byte_match_set(config_overrides={"retry_max_attempts": 5})
+        response = await waf.create_byte_match_set(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_byte_match_set(config_overrides={"retry_max_attempts": 1})
+        response = await waf.create_byte_match_set(config_overrides={"retry_max_attempts": 1})
 ```

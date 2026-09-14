@@ -37,7 +37,7 @@ def serialize_json(value: ListReadSetActivationJobsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListReadSetActivationJobsRequest:
     out: ListReadSetActivationJobsRequest = {}  # type: ignore[typeddict-item]
-    if "filter" in data:
+    if data.get("filter") is not None:
         import capo_omics.types.activate_read_set_filter
 
         out["filter"] = capo_omics.types.activate_read_set_filter.deserialize_json(

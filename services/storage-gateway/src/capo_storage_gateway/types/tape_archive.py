@@ -98,11 +98,11 @@ def serialize_aws_json_1_1(value: TapeArchive) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TapeArchive:
     out: TapeArchive = {}  # type: ignore[typeddict-item]
-    if "TapeARN" in data:
+    if data.get("TapeARN") is not None:
         out["tape_arn"] = data["TapeARN"]
-    if "TapeBarcode" in data:
+    if data.get("TapeBarcode") is not None:
         out["tape_barcode"] = data["TapeBarcode"]
-    if "TapeCreatedDate" in data:
+    if data.get("TapeCreatedDate") is not None:
         import capo_storage_gateway.types.time
 
         out["tape_created_date"] = (
@@ -110,9 +110,9 @@ def deserialize_aws_json_1_1(data: dict) -> TapeArchive:
                 data["TapeCreatedDate"]
             )
         )
-    if "TapeSizeInBytes" in data:
+    if data.get("TapeSizeInBytes") is not None:
         out["tape_size_in_bytes"] = data["TapeSizeInBytes"]
-    if "CompletionTime" in data:
+    if data.get("CompletionTime") is not None:
         import capo_storage_gateway.types.time
 
         out["completion_time"] = (
@@ -120,21 +120,21 @@ def deserialize_aws_json_1_1(data: dict) -> TapeArchive:
                 data["CompletionTime"]
             )
         )
-    if "RetrievedTo" in data:
+    if data.get("RetrievedTo") is not None:
         out["retrieved_to"] = data["RetrievedTo"]
-    if "TapeStatus" in data:
+    if data.get("TapeStatus") is not None:
         out["tape_status"] = data["TapeStatus"]
-    if "TapeUsedInBytes" in data:
+    if data.get("TapeUsedInBytes") is not None:
         out["tape_used_in_bytes"] = data["TapeUsedInBytes"]
-    if "KMSKey" in data:
+    if data.get("KMSKey") is not None:
         out["kms_key"] = data["KMSKey"]
-    if "PoolId" in data:
+    if data.get("PoolId") is not None:
         out["pool_id"] = data["PoolId"]
-    if "Worm" in data:
+    if data.get("Worm") is not None:
         out["worm"] = data["Worm"]
     else:
         out["worm"] = False
-    if "RetentionStartDate" in data:
+    if data.get("RetentionStartDate") is not None:
         import capo_storage_gateway.types.time
 
         out["retention_start_date"] = (
@@ -142,7 +142,7 @@ def deserialize_aws_json_1_1(data: dict) -> TapeArchive:
                 data["RetentionStartDate"]
             )
         )
-    if "PoolEntryDate" in data:
+    if data.get("PoolEntryDate") is not None:
         import capo_storage_gateway.types.time
 
         out["pool_entry_date"] = (

@@ -89,41 +89,41 @@ def serialize_aws_json_1_1(value: User) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> User:
     out: User = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Email" in data:
+    if data.get("Email") is not None:
         out["email"] = data["Email"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_workmail.types.entity_state
 
         out["state"] = capo_workmail.types.entity_state.deserialize_aws_json_1_1(
             data["State"]
         )
-    if "UserRole" in data:
+    if data.get("UserRole") is not None:
         import capo_workmail.types.user_role
 
         out["user_role"] = capo_workmail.types.user_role.deserialize_aws_json_1_1(
             data["UserRole"]
         )
-    if "EnabledDate" in data:
+    if data.get("EnabledDate") is not None:
         import capo_workmail.types.timestamp
 
         out["enabled_date"] = capo_workmail.types.timestamp.deserialize_aws_json_1_1(
             data["EnabledDate"]
         )
-    if "DisabledDate" in data:
+    if data.get("DisabledDate") is not None:
         import capo_workmail.types.timestamp
 
         out["disabled_date"] = capo_workmail.types.timestamp.deserialize_aws_json_1_1(
             data["DisabledDate"]
         )
-    if "IdentityProviderUserId" in data:
+    if data.get("IdentityProviderUserId") is not None:
         out["identity_provider_user_id"] = data["IdentityProviderUserId"]
-    if "IdentityProviderIdentityStoreId" in data:
+    if data.get("IdentityProviderIdentityStoreId") is not None:
         out["identity_provider_identity_store_id"] = data[
             "IdentityProviderIdentityStoreId"
         ]

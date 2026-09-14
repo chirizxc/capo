@@ -79,7 +79,7 @@ def serialize_json(value: LoggingConfigurationInput) -> dict:
 
 def deserialize_json(data: dict) -> LoggingConfigurationInput:
     out: LoggingConfigurationInput = {}  # type: ignore[typeddict-item]
-    if "DagProcessingLogs" in data:
+    if data.get("DagProcessingLogs") is not None:
         import capo_mwaa.types.module_logging_configuration_input
 
         out["dag_processing_logs"] = (
@@ -87,7 +87,7 @@ def deserialize_json(data: dict) -> LoggingConfigurationInput:
                 data["DagProcessingLogs"]
             )
         )
-    if "SchedulerLogs" in data:
+    if data.get("SchedulerLogs") is not None:
         import capo_mwaa.types.module_logging_configuration_input
 
         out["scheduler_logs"] = (
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> LoggingConfigurationInput:
                 data["SchedulerLogs"]
             )
         )
-    if "WebserverLogs" in data:
+    if data.get("WebserverLogs") is not None:
         import capo_mwaa.types.module_logging_configuration_input
 
         out["webserver_logs"] = (
@@ -103,7 +103,7 @@ def deserialize_json(data: dict) -> LoggingConfigurationInput:
                 data["WebserverLogs"]
             )
         )
-    if "WorkerLogs" in data:
+    if data.get("WorkerLogs") is not None:
         import capo_mwaa.types.module_logging_configuration_input
 
         out["worker_logs"] = (
@@ -111,7 +111,7 @@ def deserialize_json(data: dict) -> LoggingConfigurationInput:
                 data["WorkerLogs"]
             )
         )
-    if "TaskLogs" in data:
+    if data.get("TaskLogs") is not None:
         import capo_mwaa.types.module_logging_configuration_input
 
         out["task_logs"] = (

@@ -27,7 +27,7 @@ def serialize_json(value: DescribeAgentStatusResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeAgentStatusResponse:
     out: DescribeAgentStatusResponse = {}  # type: ignore[typeddict-item]
-    if "AgentStatus" in data:
+    if data.get("AgentStatus") is not None:
         import capo_connect.types.agent_status
 
         out["agent_status"] = capo_connect.types.agent_status.deserialize_json(

@@ -57,23 +57,23 @@ def serialize_aws_json_1_1(value: GetTokensFromRefreshTokenRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetTokensFromRefreshTokenRequest:
     out: GetTokensFromRefreshTokenRequest = {}  # type: ignore[typeddict-item]
-    if "RefreshToken" in data:
+    if data.get("RefreshToken") is not None:
         out["refresh_token"] = data["RefreshToken"]
     else:
         raise DeserializationError(
             "GetTokensFromRefreshTokenRequest.refresh_token required"
         )
-    if "ClientId" in data:
+    if data.get("ClientId") is not None:
         out["client_id"] = data["ClientId"]
     else:
         raise DeserializationError(
             "GetTokensFromRefreshTokenRequest.client_id required"
         )
-    if "ClientSecret" in data:
+    if data.get("ClientSecret") is not None:
         out["client_secret"] = data["ClientSecret"]
-    if "DeviceKey" in data:
+    if data.get("DeviceKey") is not None:
         out["device_key"] = data["DeviceKey"]
-    if "ClientMetadata" in data:
+    if data.get("ClientMetadata") is not None:
         import capo_cognito_identity_provider.types.client_metadata_type
 
         out["client_metadata"] = (

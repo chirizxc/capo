@@ -47,9 +47,9 @@ def serialize_json(value: OrderingRequirement) -> dict:
 
 def deserialize_json(data: dict) -> OrderingRequirement:
     out: OrderingRequirement = {}  # type: ignore[typeddict-item]
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "OrderingRequirementType" in data:
+    if data.get("OrderingRequirementType") is not None:
         import capo_outposts.types.ordering_requirement_type
 
         out["ordering_requirement_type"] = (
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> OrderingRequirement:
                 data["OrderingRequirementType"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_outposts.types.ordering_requirement_status
 
         out["status"] = (

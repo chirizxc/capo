@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: PipelineExecutionFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PipelineExecutionFilter:
     out: PipelineExecutionFilter = {}  # type: ignore[typeddict-item]
-    if "succeededInStage" in data:
+    if data.get("succeededInStage") is not None:
         import capo_codepipeline.types.succeeded_in_stage_filter
 
         out["succeeded_in_stage"] = (

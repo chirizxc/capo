@@ -59,23 +59,23 @@ def serialize_json(value: SendDataSetNotificationRequest) -> dict:
 
 def deserialize_json(data: dict) -> SendDataSetNotificationRequest:
     out: SendDataSetNotificationRequest = {}  # type: ignore[typeddict-item]
-    if "Scope" in data:
+    if data.get("Scope") is not None:
         import capo_dataexchange.types.scope_details
 
         out["scope"] = capo_dataexchange.types.scope_details.deserialize_json(
             data["Scope"]
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Comment" in data:
+    if data.get("Comment") is not None:
         out["comment"] = data["Comment"]
-    if "Details" in data:
+    if data.get("Details") is not None:
         import capo_dataexchange.types.notification_details
 
         out["details"] = capo_dataexchange.types.notification_details.deserialize_json(
             data["Details"]
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     else:
         raise DeserializationError("SendDataSetNotificationRequest.type required")

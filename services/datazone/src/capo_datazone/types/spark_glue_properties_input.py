@@ -68,15 +68,15 @@ def serialize_json(value: SparkGluePropertiesInput) -> dict:
 
 def deserialize_json(data: dict) -> SparkGluePropertiesInput:
     out: SparkGluePropertiesInput = {}  # type: ignore[typeddict-item]
-    if "additionalArgs" in data:
+    if data.get("additionalArgs") is not None:
         import capo_datazone.types.spark_glue_args
 
         out["additional_args"] = capo_datazone.types.spark_glue_args.deserialize_json(
             data["additionalArgs"]
         )
-    if "glueConnectionName" in data:
+    if data.get("glueConnectionName") is not None:
         out["glue_connection_name"] = data["glueConnectionName"]
-    if "glueConnectionNames" in data:
+    if data.get("glueConnectionNames") is not None:
         import capo_datazone.types.glue_connection_names
 
         out["glue_connection_names"] = (
@@ -84,16 +84,16 @@ def deserialize_json(data: dict) -> SparkGluePropertiesInput:
                 data["glueConnectionNames"]
             )
         )
-    if "glueVersion" in data:
+    if data.get("glueVersion") is not None:
         out["glue_version"] = data["glueVersion"]
-    if "idleTimeout" in data:
+    if data.get("idleTimeout") is not None:
         out["idle_timeout"] = data["idleTimeout"]
-    if "javaVirtualEnv" in data:
+    if data.get("javaVirtualEnv") is not None:
         out["java_virtual_env"] = data["javaVirtualEnv"]
-    if "numberOfWorkers" in data:
+    if data.get("numberOfWorkers") is not None:
         out["number_of_workers"] = data["numberOfWorkers"]
-    if "pythonVirtualEnv" in data:
+    if data.get("pythonVirtualEnv") is not None:
         out["python_virtual_env"] = data["pythonVirtualEnv"]
-    if "workerType" in data:
+    if data.get("workerType") is not None:
         out["worker_type"] = data["workerType"]
     return out

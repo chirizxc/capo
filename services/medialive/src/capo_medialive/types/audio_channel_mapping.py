@@ -38,7 +38,7 @@ def serialize_json(value: AudioChannelMapping) -> dict:
 
 def deserialize_json(data: dict) -> AudioChannelMapping:
     out: AudioChannelMapping = {}  # type: ignore[typeddict-item]
-    if "inputChannelLevels" in data:
+    if data.get("inputChannelLevels") is not None:
         import capo_medialive.types.__list_of_input_channel_level
 
         out["input_channel_levels"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> AudioChannelMapping:
                 data["inputChannelLevels"]
             )
         )
-    if "outputChannel" in data:
+    if data.get("outputChannel") is not None:
         out["output_channel"] = data["outputChannel"]
     return out

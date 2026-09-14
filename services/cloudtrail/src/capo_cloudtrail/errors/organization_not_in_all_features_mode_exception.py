@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: OrganizationNotInAllFeaturesModeException_) ->
 
 def deserialize_aws_json_1_1(data: dict) -> OrganizationNotInAllFeaturesModeException_:
     out: OrganizationNotInAllFeaturesModeException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -35,17 +35,22 @@ class OrganizationNotInAllFeaturesModeException(ServiceError):
 
     code: str | None = "OrganizationNotInAllFeaturesModeException"
 
-    def __init__(self, data: OrganizationNotInAllFeaturesModeException_):
+    def __init__(
+        self,
+        data: OrganizationNotInAllFeaturesModeException_,
+        message: str | None = None,
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="OrganizationNotInAllFeaturesModeException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
     def from_aws_json_1_1(
-        cls, data: dict
+        cls, data: dict, message: str | None = None
     ) -> "OrganizationNotInAllFeaturesModeException":
-        return cls(deserialize_aws_json_1_1(data))
+        return cls(deserialize_aws_json_1_1(data), message)

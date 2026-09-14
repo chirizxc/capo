@@ -64,28 +64,28 @@ def serialize_json(value: CustomPromptInterface) -> dict:
 
 def deserialize_json(data: dict) -> CustomPromptInterface:
     out: CustomPromptInterface = {}  # type: ignore[typeddict-item]
-    if "ModelProfileId" in data:
+    if data.get("ModelProfileId") is not None:
         out["model_profile_id"] = data["ModelProfileId"]
     else:
         raise DeserializationError("CustomPromptInterface.model_profile_id required")
-    if "SubscriptionId" in data:
+    if data.get("SubscriptionId") is not None:
         out["subscription_id"] = data["SubscriptionId"]
     else:
         raise DeserializationError("CustomPromptInterface.subscription_id required")
-    if "QbsAwsAccountId" in data:
+    if data.get("QbsAwsAccountId") is not None:
         out["qbs_aws_account_id"] = data["QbsAwsAccountId"]
     else:
         raise DeserializationError("CustomPromptInterface.qbs_aws_account_id required")
-    if "ResponseLength" in data:
+    if data.get("ResponseLength") is not None:
         out["response_length"] = data["ResponseLength"]
-    if "OutputStyle" in data:
+    if data.get("OutputStyle") is not None:
         out["output_style"] = data["OutputStyle"]
-    if "Identity" in data:
+    if data.get("Identity") is not None:
         out["identity"] = data["Identity"]
-    if "Tone" in data:
+    if data.get("Tone") is not None:
         out["tone"] = data["Tone"]
-    if "CustomInstructions" in data:
+    if data.get("CustomInstructions") is not None:
         out["custom_instructions"] = data["CustomInstructions"]
-    if "promptSummary" in data:
+    if data.get("promptSummary") is not None:
         out["prompt_summary"] = data["promptSummary"]
     return out

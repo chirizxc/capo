@@ -280,7 +280,7 @@ def serialize_aws_json_1_1(value: PipelineExecutionStepMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PipelineExecutionStepMetadata:
     out: PipelineExecutionStepMetadata = {}  # type: ignore[typeddict-item]
-    if "TrainingJob" in data:
+    if data.get("TrainingJob") is not None:
         import capo_sagemaker.types.training_job_step_metadata
 
         out["training_job"] = (
@@ -288,7 +288,7 @@ def deserialize_aws_json_1_1(data: dict) -> PipelineExecutionStepMetadata:
                 data["TrainingJob"]
             )
         )
-    if "ProcessingJob" in data:
+    if data.get("ProcessingJob") is not None:
         import capo_sagemaker.types.processing_job_step_metadata
 
         out["processing_job"] = (
@@ -296,7 +296,7 @@ def deserialize_aws_json_1_1(data: dict) -> PipelineExecutionStepMetadata:
                 data["ProcessingJob"]
             )
         )
-    if "TransformJob" in data:
+    if data.get("TransformJob") is not None:
         import capo_sagemaker.types.transform_job_step_metadata
 
         out["transform_job"] = (
@@ -304,7 +304,7 @@ def deserialize_aws_json_1_1(data: dict) -> PipelineExecutionStepMetadata:
                 data["TransformJob"]
             )
         )
-    if "TuningJob" in data:
+    if data.get("TuningJob") is not None:
         import capo_sagemaker.types.tuning_job_step_meta_data
 
         out["tuning_job"] = (
@@ -312,7 +312,7 @@ def deserialize_aws_json_1_1(data: dict) -> PipelineExecutionStepMetadata:
                 data["TuningJob"]
             )
         )
-    if "Model" in data:
+    if data.get("Model") is not None:
         import capo_sagemaker.types.model_step_metadata
 
         out["model"] = (
@@ -320,7 +320,7 @@ def deserialize_aws_json_1_1(data: dict) -> PipelineExecutionStepMetadata:
                 data["Model"]
             )
         )
-    if "RegisterModel" in data:
+    if data.get("RegisterModel") is not None:
         import capo_sagemaker.types.register_model_step_metadata
 
         out["register_model"] = (
@@ -328,7 +328,7 @@ def deserialize_aws_json_1_1(data: dict) -> PipelineExecutionStepMetadata:
                 data["RegisterModel"]
             )
         )
-    if "Condition" in data:
+    if data.get("Condition") is not None:
         import capo_sagemaker.types.condition_step_metadata
 
         out["condition"] = (
@@ -336,7 +336,7 @@ def deserialize_aws_json_1_1(data: dict) -> PipelineExecutionStepMetadata:
                 data["Condition"]
             )
         )
-    if "Callback" in data:
+    if data.get("Callback") is not None:
         import capo_sagemaker.types.callback_step_metadata
 
         out["callback"] = (
@@ -344,7 +344,7 @@ def deserialize_aws_json_1_1(data: dict) -> PipelineExecutionStepMetadata:
                 data["Callback"]
             )
         )
-    if "Lambda" in data:
+    if data.get("Lambda") is not None:
         import capo_sagemaker.types.lambda_step_metadata
 
         out["lambda"] = (
@@ -352,13 +352,13 @@ def deserialize_aws_json_1_1(data: dict) -> PipelineExecutionStepMetadata:
                 data["Lambda"]
             )
         )
-    if "EMR" in data:
+    if data.get("EMR") is not None:
         import capo_sagemaker.types.emr_step_metadata
 
         out["emr"] = capo_sagemaker.types.emr_step_metadata.deserialize_aws_json_1_1(
             data["EMR"]
         )
-    if "QualityCheck" in data:
+    if data.get("QualityCheck") is not None:
         import capo_sagemaker.types.quality_check_step_metadata
 
         out["quality_check"] = (
@@ -366,7 +366,7 @@ def deserialize_aws_json_1_1(data: dict) -> PipelineExecutionStepMetadata:
                 data["QualityCheck"]
             )
         )
-    if "ClarifyCheck" in data:
+    if data.get("ClarifyCheck") is not None:
         import capo_sagemaker.types.clarify_check_step_metadata
 
         out["clarify_check"] = (
@@ -374,13 +374,13 @@ def deserialize_aws_json_1_1(data: dict) -> PipelineExecutionStepMetadata:
                 data["ClarifyCheck"]
             )
         )
-    if "Fail" in data:
+    if data.get("Fail") is not None:
         import capo_sagemaker.types.fail_step_metadata
 
         out["fail"] = capo_sagemaker.types.fail_step_metadata.deserialize_aws_json_1_1(
             data["Fail"]
         )
-    if "AutoMLJob" in data:
+    if data.get("AutoMLJob") is not None:
         import capo_sagemaker.types.auto_ml_job_step_metadata
 
         out["auto_ml_job"] = (
@@ -388,7 +388,7 @@ def deserialize_aws_json_1_1(data: dict) -> PipelineExecutionStepMetadata:
                 data["AutoMLJob"]
             )
         )
-    if "Endpoint" in data:
+    if data.get("Endpoint") is not None:
         import capo_sagemaker.types.endpoint_step_metadata
 
         out["endpoint"] = (
@@ -396,7 +396,7 @@ def deserialize_aws_json_1_1(data: dict) -> PipelineExecutionStepMetadata:
                 data["Endpoint"]
             )
         )
-    if "EndpointConfig" in data:
+    if data.get("EndpointConfig") is not None:
         import capo_sagemaker.types.endpoint_config_step_metadata
 
         out["endpoint_config"] = (
@@ -404,7 +404,7 @@ def deserialize_aws_json_1_1(data: dict) -> PipelineExecutionStepMetadata:
                 data["EndpointConfig"]
             )
         )
-    if "BedrockCustomModel" in data:
+    if data.get("BedrockCustomModel") is not None:
         import capo_sagemaker.types.bedrock_custom_model_metadata
 
         out["bedrock_custom_model"] = (
@@ -412,7 +412,7 @@ def deserialize_aws_json_1_1(data: dict) -> PipelineExecutionStepMetadata:
                 data["BedrockCustomModel"]
             )
         )
-    if "BedrockCustomModelDeployment" in data:
+    if data.get("BedrockCustomModelDeployment") is not None:
         import capo_sagemaker.types.bedrock_custom_model_deployment_metadata
 
         out["bedrock_custom_model_deployment"] = (
@@ -420,7 +420,7 @@ def deserialize_aws_json_1_1(data: dict) -> PipelineExecutionStepMetadata:
                 data["BedrockCustomModelDeployment"]
             )
         )
-    if "BedrockProvisionedModelThroughput" in data:
+    if data.get("BedrockProvisionedModelThroughput") is not None:
         import capo_sagemaker.types.bedrock_provisioned_model_throughput_metadata
 
         out["bedrock_provisioned_model_throughput"] = (
@@ -428,7 +428,7 @@ def deserialize_aws_json_1_1(data: dict) -> PipelineExecutionStepMetadata:
                 data["BedrockProvisionedModelThroughput"]
             )
         )
-    if "BedrockModelImport" in data:
+    if data.get("BedrockModelImport") is not None:
         import capo_sagemaker.types.bedrock_model_import_metadata
 
         out["bedrock_model_import"] = (
@@ -436,7 +436,7 @@ def deserialize_aws_json_1_1(data: dict) -> PipelineExecutionStepMetadata:
                 data["BedrockModelImport"]
             )
         )
-    if "InferenceComponent" in data:
+    if data.get("InferenceComponent") is not None:
         import capo_sagemaker.types.inference_component_metadata
 
         out["inference_component"] = (
@@ -444,13 +444,13 @@ def deserialize_aws_json_1_1(data: dict) -> PipelineExecutionStepMetadata:
                 data["InferenceComponent"]
             )
         )
-    if "Lineage" in data:
+    if data.get("Lineage") is not None:
         import capo_sagemaker.types.lineage_metadata
 
         out["lineage"] = capo_sagemaker.types.lineage_metadata.deserialize_aws_json_1_1(
             data["Lineage"]
         )
-    if "Job" in data:
+    if data.get("Job") is not None:
         import capo_sagemaker.types.job_step_metadata
 
         out["job"] = capo_sagemaker.types.job_step_metadata.deserialize_aws_json_1_1(

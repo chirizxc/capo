@@ -81,17 +81,17 @@ def serialize_aws_json_1_0(value: GetOciOnboardingStatusOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetOciOnboardingStatusOutput:
     out: GetOciOnboardingStatusOutput = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_odb.types.oci_onboarding_status
 
         out["status"] = capo_odb.types.oci_onboarding_status.deserialize_aws_json_1_0(
             data["status"]
         )
-    if "existingTenancyActivationLink" in data:
+    if data.get("existingTenancyActivationLink") is not None:
         out["existing_tenancy_activation_link"] = data["existingTenancyActivationLink"]
-    if "newTenancyActivationLink" in data:
+    if data.get("newTenancyActivationLink") is not None:
         out["new_tenancy_activation_link"] = data["newTenancyActivationLink"]
-    if "ociIdentityDomain" in data:
+    if data.get("ociIdentityDomain") is not None:
         import capo_odb.types.oci_identity_domain
 
         out["oci_identity_domain"] = (
@@ -99,7 +99,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetOciOnboardingStatusOutput:
                 data["ociIdentityDomain"]
             )
         )
-    if "autonomousDatabaseOciIntegrationIamRoles" in data:
+    if data.get("autonomousDatabaseOciIntegrationIamRoles") is not None:
         import capo_odb.types.oci_iam_role_list
 
         out["autonomous_database_oci_integration_iam_roles"] = (
@@ -107,11 +107,11 @@ def deserialize_aws_json_1_0(data: dict) -> GetOciOnboardingStatusOutput:
                 data["autonomousDatabaseOciIntegrationIamRoles"]
             )
         )
-    if "linkedOciTenancyId" in data:
+    if data.get("linkedOciTenancyId") is not None:
         out["linked_oci_tenancy_id"] = data["linkedOciTenancyId"]
-    if "linkedOciCompartmentId" in data:
+    if data.get("linkedOciCompartmentId") is not None:
         out["linked_oci_compartment_id"] = data["linkedOciCompartmentId"]
-    if "subscriptionErrors" in data:
+    if data.get("subscriptionErrors") is not None:
         import capo_odb.types.subscription_errors
 
         out["subscription_errors"] = (

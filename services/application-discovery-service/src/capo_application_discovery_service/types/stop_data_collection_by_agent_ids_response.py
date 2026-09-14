@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: StopDataCollectionByAgentIdsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StopDataCollectionByAgentIdsResponse:
     out: StopDataCollectionByAgentIdsResponse = {}  # type: ignore[typeddict-item]
-    if "agentsConfigurationStatus" in data:
+    if data.get("agentsConfigurationStatus") is not None:
         import capo_application_discovery_service.types.agent_configuration_status_list
 
         out["agents_configuration_status"] = (

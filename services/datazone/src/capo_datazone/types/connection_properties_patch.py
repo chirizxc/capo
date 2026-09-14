@@ -172,7 +172,7 @@ def serialize_json(value: ConnectionPropertiesPatch) -> dict:
 
 
 def deserialize_json(data: dict) -> ConnectionPropertiesPatch:
-    if "athenaProperties" in data:
+    if data.get("athenaProperties") is not None:
         import capo_datazone.types.athena_properties_patch
 
         return {
@@ -180,7 +180,7 @@ def deserialize_json(data: dict) -> ConnectionPropertiesPatch:
                 data["athenaProperties"]
             )
         }
-    elif "glueProperties" in data:
+    elif data.get("glueProperties") is not None:
         import capo_datazone.types.glue_properties_patch
 
         return {
@@ -188,7 +188,7 @@ def deserialize_json(data: dict) -> ConnectionPropertiesPatch:
                 data["glueProperties"]
             )
         }
-    elif "iamProperties" in data:
+    elif data.get("iamProperties") is not None:
         import capo_datazone.types.iam_properties_patch
 
         return {
@@ -196,7 +196,7 @@ def deserialize_json(data: dict) -> ConnectionPropertiesPatch:
                 data["iamProperties"]
             )
         }
-    elif "redshiftProperties" in data:
+    elif data.get("redshiftProperties") is not None:
         import capo_datazone.types.redshift_properties_patch
 
         return {
@@ -204,7 +204,7 @@ def deserialize_json(data: dict) -> ConnectionPropertiesPatch:
                 data["redshiftProperties"]
             )
         }
-    elif "sparkEmrProperties" in data:
+    elif data.get("sparkEmrProperties") is not None:
         import capo_datazone.types.spark_emr_properties_patch
 
         return {
@@ -212,7 +212,7 @@ def deserialize_json(data: dict) -> ConnectionPropertiesPatch:
                 data["sparkEmrProperties"]
             )
         }
-    elif "s3Properties" in data:
+    elif data.get("s3Properties") is not None:
         import capo_datazone.types.s3_properties_patch
 
         return {
@@ -220,7 +220,7 @@ def deserialize_json(data: dict) -> ConnectionPropertiesPatch:
                 data["s3Properties"]
             )
         }
-    elif "amazonQProperties" in data:
+    elif data.get("amazonQProperties") is not None:
         import capo_datazone.types.amazon_q_properties_patch
 
         return {
@@ -228,7 +228,7 @@ def deserialize_json(data: dict) -> ConnectionPropertiesPatch:
                 data["amazonQProperties"]
             )
         }
-    elif "mlflowProperties" in data:
+    elif data.get("mlflowProperties") is not None:
         import capo_datazone.types.mlflow_properties_patch
 
         return {
@@ -236,7 +236,7 @@ def deserialize_json(data: dict) -> ConnectionPropertiesPatch:
                 data["mlflowProperties"]
             )
         }
-    elif "lakehouseProperties" in data:
+    elif data.get("lakehouseProperties") is not None:
         import capo_datazone.types.lakehouse_properties_patch
 
         return {
@@ -244,7 +244,7 @@ def deserialize_json(data: dict) -> ConnectionPropertiesPatch:
                 data["lakehouseProperties"]
             )
         }
-    elif "vpcProperties" in data:
+    elif data.get("vpcProperties") is not None:
         import capo_datazone.types.vpc_properties_patch
 
         return {

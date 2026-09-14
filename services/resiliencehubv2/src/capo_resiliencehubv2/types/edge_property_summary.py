@@ -31,7 +31,7 @@ def serialize_json(value: EdgePropertySummary) -> dict:
 
 def deserialize_json(data: dict) -> EdgePropertySummary:
     out: EdgePropertySummary = {}  # type: ignore[typeddict-item]
-    if "topologyType" in data:
+    if data.get("topologyType") is not None:
         import capo_resiliencehubv2.types.topology_type
 
         out["topology_type"] = (
@@ -39,6 +39,6 @@ def deserialize_json(data: dict) -> EdgePropertySummary:
                 data["topologyType"]
             )
         )
-    if "label" in data:
+    if data.get("label") is not None:
         out["label"] = data["label"]
     return out

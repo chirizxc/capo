@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ProtectedQueryMemberOutputList:
 
     out: ProtectedQueryMemberOutputList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanrooms.types.protected_query_single_member_output.deserialize_json(
                 item

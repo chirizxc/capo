@@ -33,12 +33,12 @@ def serialize_json(value: ListFlowsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListFlowsResponse:
     out: ListFlowsResponse = {}  # type: ignore[typeddict-item]
-    if "flows" in data:
+    if data.get("flows") is not None:
         import capo_mediaconnect.types.__list_of_listed_flow
 
         out["flows"] = capo_mediaconnect.types.__list_of_listed_flow.deserialize_json(
             data["flows"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

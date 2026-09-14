@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: StartRxNormInferenceJobResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartRxNormInferenceJobResponse:
     out: StartRxNormInferenceJobResponse = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
     return out

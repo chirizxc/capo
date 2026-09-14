@@ -367,15 +367,17 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.add_tags_request.AddTagsRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
-        input_["tags_list"] = tags_list
+        input_: capo_cloudtrail.types.add_tags_request.AddTagsRequest = {
+            "resource_id": resource_id,
+            "tags_list": tags_list,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_query(
@@ -426,10 +428,11 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.cancel_query_request.CancelQueryRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudtrail.types.cancel_query_request.CancelQueryRequest = {
+            "query_id": query_id
+        }
         if event_data_store is not None:
             input_["event_data_store"] = event_data_store
-        input_["query_id"] = query_id
         if event_data_store_owner_account_id is not None:
             input_["event_data_store_owner_account_id"] = (
                 event_data_store_owner_account_id
@@ -440,6 +443,7 @@ class CloudTrailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_channel(
@@ -489,10 +493,11 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.create_channel_request.CreateChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["source"] = source
-        input_["destinations"] = destinations
+        input_: capo_cloudtrail.types.create_channel_request.CreateChannelRequest = {
+            "name": name,
+            "source": source,
+            "destinations": destinations,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -501,6 +506,7 @@ class CloudTrailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_dashboard(
@@ -554,8 +560,9 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.create_dashboard_request.CreateDashboardRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_cloudtrail.types.create_dashboard_request.CreateDashboardRequest = {
+            "name": name
+        }
         if refresh_schedule is not None:
             input_["refresh_schedule"] = refresh_schedule
         if tags_list is not None:
@@ -570,6 +577,7 @@ class CloudTrailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_event_data_store(
@@ -646,8 +654,9 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.create_event_data_store_request.CreateEventDataStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_cloudtrail.types.create_event_data_store_request.CreateEventDataStoreRequest = {
+            "name": name
+        }
         if advanced_event_selectors is not None:
             input_["advanced_event_selectors"] = advanced_event_selectors
         if multi_region_enabled is not None:
@@ -672,6 +681,7 @@ class CloudTrailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_trail(
@@ -766,9 +776,10 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.create_trail_request.CreateTrailRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["s3_bucket_name"] = s3_bucket_name
+        input_: capo_cloudtrail.types.create_trail_request.CreateTrailRequest = {
+            "name": name,
+            "s3_bucket_name": s3_bucket_name,
+        }
         if s3_key_prefix is not None:
             input_["s3_key_prefix"] = s3_key_prefix
         if sns_topic_name is not None:
@@ -795,6 +806,7 @@ class CloudTrailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_channel(
@@ -831,14 +843,16 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.delete_channel_request.DeleteChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["channel"] = channel
+        input_: capo_cloudtrail.types.delete_channel_request.DeleteChannelRequest = {
+            "channel": channel
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_dashboard(
@@ -874,14 +888,16 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.delete_dashboard_request.DeleteDashboardRequest = {}  # type: ignore[typeddict-item]
-        input_["dashboard_id"] = dashboard_id
+        input_: capo_cloudtrail.types.delete_dashboard_request.DeleteDashboardRequest = {
+            "dashboard_id": dashboard_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_event_data_store(
@@ -928,14 +944,16 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.delete_event_data_store_request.DeleteEventDataStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["event_data_store"] = event_data_store
+        input_: capo_cloudtrail.types.delete_event_data_store_request.DeleteEventDataStoreRequest = {
+            "event_data_store": event_data_store
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_resource_policy(
@@ -975,14 +993,16 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.delete_resource_policy_request.DeleteResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_cloudtrail.types.delete_resource_policy_request.DeleteResourcePolicyRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_trail(
@@ -1026,14 +1046,16 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.delete_trail_request.DeleteTrailRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_cloudtrail.types.delete_trail_request.DeleteTrailRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def deregister_organization_delegated_admin(
@@ -1077,14 +1099,16 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.deregister_organization_delegated_admin_request.DeregisterOrganizationDelegatedAdminRequest = {}  # type: ignore[typeddict-item]
-        input_["delegated_admin_account_id"] = delegated_admin_account_id
+        input_: capo_cloudtrail.types.deregister_organization_delegated_admin_request.DeregisterOrganizationDelegatedAdminRequest = {
+            "delegated_admin_account_id": delegated_admin_account_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_query(
@@ -1137,7 +1161,7 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.describe_query_request.DescribeQueryRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudtrail.types.describe_query_request.DescribeQueryRequest = {}
         if event_data_store is not None:
             input_["event_data_store"] = event_data_store
         if query_id is not None:
@@ -1156,6 +1180,7 @@ class CloudTrailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_trails(
@@ -1197,7 +1222,7 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.describe_trails_request.DescribeTrailsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudtrail.types.describe_trails_request.DescribeTrailsRequest = {}
         if trail_name_list is not None:
             input_["trail_name_list"] = trail_name_list
         if include_shadow_trails is not None:
@@ -1208,6 +1233,7 @@ class CloudTrailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disable_federation(
@@ -1254,14 +1280,16 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.disable_federation_request.DisableFederationRequest = {}  # type: ignore[typeddict-item]
-        input_["event_data_store"] = event_data_store
+        input_: capo_cloudtrail.types.disable_federation_request.DisableFederationRequest = {
+            "event_data_store": event_data_store
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def enable_federation(
@@ -1311,15 +1339,17 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.enable_federation_request.EnableFederationRequest = {}  # type: ignore[typeddict-item]
-        input_["event_data_store"] = event_data_store
-        input_["federation_role_arn"] = federation_role_arn
+        input_: capo_cloudtrail.types.enable_federation_request.EnableFederationRequest = {
+            "event_data_store": event_data_store,
+            "federation_role_arn": federation_role_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def generate_query(
@@ -1362,15 +1392,17 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.generate_query_request.GenerateQueryRequest = {}  # type: ignore[typeddict-item]
-        input_["event_data_stores"] = event_data_stores
-        input_["prompt"] = prompt
+        input_: capo_cloudtrail.types.generate_query_request.GenerateQueryRequest = {
+            "event_data_stores": event_data_stores,
+            "prompt": prompt,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_channel(
@@ -1407,14 +1439,16 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.get_channel_request.GetChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["channel"] = channel
+        input_: capo_cloudtrail.types.get_channel_request.GetChannelRequest = {
+            "channel": channel
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_dashboard(
@@ -1449,14 +1483,16 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.get_dashboard_request.GetDashboardRequest = {}  # type: ignore[typeddict-item]
-        input_["dashboard_id"] = dashboard_id
+        input_: capo_cloudtrail.types.get_dashboard_request.GetDashboardRequest = {
+            "dashboard_id": dashboard_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_event_configuration(
@@ -1503,7 +1539,7 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.get_event_configuration_request.GetEventConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudtrail.types.get_event_configuration_request.GetEventConfigurationRequest = {}
         if trail_name is not None:
             input_["trail_name"] = trail_name
         if event_data_store is not None:
@@ -1514,6 +1550,7 @@ class CloudTrailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_event_data_store(
@@ -1554,14 +1591,16 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.get_event_data_store_request.GetEventDataStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["event_data_store"] = event_data_store
+        input_: capo_cloudtrail.types.get_event_data_store_request.GetEventDataStoreRequest = {
+            "event_data_store": event_data_store
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_event_selectors(
@@ -1600,14 +1639,16 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.get_event_selectors_request.GetEventSelectorsRequest = {}  # type: ignore[typeddict-item]
-        input_["trail_name"] = trail_name
+        input_: capo_cloudtrail.types.get_event_selectors_request.GetEventSelectorsRequest = {
+            "trail_name": trail_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_import(
@@ -1644,14 +1685,16 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.get_import_request.GetImportRequest = {}  # type: ignore[typeddict-item]
-        input_["import_id"] = import_id
+        input_: capo_cloudtrail.types.get_import_request.GetImportRequest = {
+            "import_id": import_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_insight_selectors(
@@ -1698,7 +1741,7 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.get_insight_selectors_request.GetInsightSelectorsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudtrail.types.get_insight_selectors_request.GetInsightSelectorsRequest = {}
         if trail_name is not None:
             input_["trail_name"] = trail_name
         if event_data_store is not None:
@@ -1709,6 +1752,7 @@ class CloudTrailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_query_results(
@@ -1768,10 +1812,11 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.get_query_results_request.GetQueryResultsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudtrail.types.get_query_results_request.GetQueryResultsRequest = {
+            "query_id": query_id
+        }
         if event_data_store is not None:
             input_["event_data_store"] = event_data_store
-        input_["query_id"] = query_id
         if next_token is not None:
             input_["next_token"] = next_token
         if max_query_results is not None:
@@ -1786,7 +1831,41 @@ class CloudTrailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_query_results(
+        self,
+        query_id: "capo_cloudtrail.types.uuid.UUID",
+        *,
+        config_overrides: Optional[CloudTrailClientConfig] = None,
+        event_data_store: Optional[
+            "capo_cloudtrail.types.event_data_store_arn.EventDataStoreArn"
+        ] = None,
+        next_token: Optional[
+            "capo_cloudtrail.types.pagination_token.PaginationToken"
+        ] = None,
+        max_query_results: Optional[
+            "capo_cloudtrail.types.max_query_results.MaxQueryResults"
+        ] = None,
+        event_data_store_owner_account_id: Optional[
+            "capo_cloudtrail.types.account_id.AccountId"
+        ] = None,
+    ) -> "Iterator[capo_cloudtrail.types.get_query_results_response.GetQueryResultsResponse]":
+        _token = next_token
+        while True:
+            _response = self.get_query_results(
+                query_id,
+                config_overrides=config_overrides,
+                event_data_store=event_data_store,
+                next_token=_token,
+                max_query_results=max_query_results,
+                event_data_store_owner_account_id=event_data_store_owner_account_id,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_resource_policy(
         self,
@@ -1824,14 +1903,16 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.get_resource_policy_request.GetResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_cloudtrail.types.get_resource_policy_request.GetResourcePolicyRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_trail(
@@ -1869,14 +1950,14 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.get_trail_request.GetTrailRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_cloudtrail.types.get_trail_request.GetTrailRequest = {"name": name}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_trail_status(
@@ -1914,14 +1995,16 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.get_trail_status_request.GetTrailStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_cloudtrail.types.get_trail_status_request.GetTrailStatusRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_channels(
@@ -1963,7 +2046,7 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.list_channels_request.ListChannelsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudtrail.types.list_channels_request.ListChannelsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1974,7 +2057,31 @@ class CloudTrailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_channels(
+        self,
+        *,
+        config_overrides: Optional[CloudTrailClientConfig] = None,
+        max_results: Optional[
+            "capo_cloudtrail.types.list_channels_max_results_count.ListChannelsMaxResultsCount"
+        ] = None,
+        next_token: Optional[
+            "capo_cloudtrail.types.pagination_token.PaginationToken"
+        ] = None,
+    ) -> "Iterator[capo_cloudtrail.types.list_channels_response.ListChannelsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_channels(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_dashboards(
         self,
@@ -2019,7 +2126,7 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.list_dashboards_request.ListDashboardsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudtrail.types.list_dashboards_request.ListDashboardsRequest = {}
         if name_prefix is not None:
             input_["name_prefix"] = name_prefix
         if type is not None:
@@ -2034,6 +2141,7 @@ class CloudTrailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_event_data_stores(
@@ -2077,7 +2185,7 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.list_event_data_stores_request.ListEventDataStoresRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudtrail.types.list_event_data_stores_request.ListEventDataStoresRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2088,7 +2196,31 @@ class CloudTrailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_event_data_stores(
+        self,
+        *,
+        config_overrides: Optional[CloudTrailClientConfig] = None,
+        next_token: Optional[
+            "capo_cloudtrail.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional[
+            "capo_cloudtrail.types.list_event_data_stores_max_results_count.ListEventDataStoresMaxResultsCount"
+        ] = None,
+    ) -> "Iterator[capo_cloudtrail.types.list_event_data_stores_response.ListEventDataStoresResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_event_data_stores(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_import_failures(
         self,
@@ -2134,8 +2266,9 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.list_import_failures_request.ListImportFailuresRequest = {}  # type: ignore[typeddict-item]
-        input_["import_id"] = import_id
+        input_: capo_cloudtrail.types.list_import_failures_request.ListImportFailuresRequest = {
+            "import_id": import_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2146,6 +2279,7 @@ class CloudTrailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_import_failures(
@@ -2226,7 +2360,7 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.list_imports_request.ListImportsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudtrail.types.list_imports_request.ListImportsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if destination is not None:
@@ -2241,6 +2375,7 @@ class CloudTrailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_imports(
@@ -2327,9 +2462,10 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.list_insights_data_request.ListInsightsDataRequest = {}  # type: ignore[typeddict-item]
-        input_["insight_source"] = insight_source
-        input_["data_type"] = data_type
+        input_: capo_cloudtrail.types.list_insights_data_request.ListInsightsDataRequest = {
+            "insight_source": insight_source,
+            "data_type": data_type,
+        }
         if dimensions is not None:
             input_["dimensions"] = dimensions
         if start_time is not None:
@@ -2346,6 +2482,7 @@ class CloudTrailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_insights_data(
@@ -2447,12 +2584,13 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.list_insights_metric_data_request.ListInsightsMetricDataRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudtrail.types.list_insights_metric_data_request.ListInsightsMetricDataRequest = {
+            "event_source": event_source,
+            "event_name": event_name,
+            "insight_type": insight_type,
+        }
         if trail_name is not None:
             input_["trail_name"] = trail_name
-        input_["event_source"] = event_source
-        input_["event_name"] = event_name
-        input_["insight_type"] = insight_type
         if error_code is not None:
             input_["error_code"] = error_code
         if start_time is not None:
@@ -2473,7 +2611,53 @@ class CloudTrailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_insights_metric_data(
+        self,
+        event_source: "capo_cloudtrail.types.event_source.EventSource",
+        event_name: "capo_cloudtrail.types.event_name.EventName",
+        insight_type: "capo_cloudtrail.types.insight_type.InsightType",
+        *,
+        config_overrides: Optional[CloudTrailClientConfig] = None,
+        trail_name: Optional["capo_cloudtrail.types.string.String"] = None,
+        error_code: Optional["capo_cloudtrail.types.error_code.ErrorCode"] = None,
+        start_time: Optional["capo_cloudtrail.types.date.Date"] = None,
+        end_time: Optional["capo_cloudtrail.types.date.Date"] = None,
+        period: Optional[
+            "capo_cloudtrail.types.insights_metric_period.InsightsMetricPeriod"
+        ] = None,
+        data_type: Optional[
+            "capo_cloudtrail.types.insights_metric_data_type.InsightsMetricDataType"
+        ] = None,
+        max_results: Optional[
+            "capo_cloudtrail.types.insights_metric_max_results.InsightsMetricMaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_cloudtrail.types.insights_metric_next_token.InsightsMetricNextToken"
+        ] = None,
+    ) -> "Iterator[capo_cloudtrail.types.list_insights_metric_data_response.ListInsightsMetricDataResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_insights_metric_data(
+                event_source,
+                event_name,
+                insight_type,
+                config_overrides=config_overrides,
+                trail_name=trail_name,
+                error_code=error_code,
+                start_time=start_time,
+                end_time=end_time,
+                period=period,
+                data_type=data_type,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_public_keys(
         self,
@@ -2513,7 +2697,7 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.list_public_keys_request.ListPublicKeysRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudtrail.types.list_public_keys_request.ListPublicKeysRequest = {}
         if start_time is not None:
             input_["start_time"] = start_time
         if end_time is not None:
@@ -2526,6 +2710,7 @@ class CloudTrailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_public_keys(
@@ -2606,8 +2791,9 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.list_queries_request.ListQueriesRequest = {}  # type: ignore[typeddict-item]
-        input_["event_data_store"] = event_data_store
+        input_: capo_cloudtrail.types.list_queries_request.ListQueriesRequest = {
+            "event_data_store": event_data_store
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2624,7 +2810,39 @@ class CloudTrailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_queries(
+        self,
+        event_data_store: "capo_cloudtrail.types.event_data_store_arn.EventDataStoreArn",
+        *,
+        config_overrides: Optional[CloudTrailClientConfig] = None,
+        next_token: Optional[
+            "capo_cloudtrail.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional[
+            "capo_cloudtrail.types.list_queries_max_results_count.ListQueriesMaxResultsCount"
+        ] = None,
+        start_time: Optional["capo_cloudtrail.types.date.Date"] = None,
+        end_time: Optional["capo_cloudtrail.types.date.Date"] = None,
+        query_status: Optional["capo_cloudtrail.types.query_status.QueryStatus"] = None,
+    ) -> "Iterator[capo_cloudtrail.types.list_queries_response.ListQueriesResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_queries(
+                event_data_store,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                start_time=start_time,
+                end_time=end_time,
+                query_status=query_status,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_tags(
         self,
@@ -2670,8 +2888,9 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.list_tags_request.ListTagsRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id_list"] = resource_id_list
+        input_: capo_cloudtrail.types.list_tags_request.ListTagsRequest = {
+            "resource_id_list": resource_id_list
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -2680,6 +2899,7 @@ class CloudTrailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_tags(
@@ -2735,7 +2955,7 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.list_trails_request.ListTrailsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudtrail.types.list_trails_request.ListTrailsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -2744,6 +2964,7 @@ class CloudTrailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_trails(
@@ -2816,7 +3037,7 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.lookup_events_request.LookupEventsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudtrail.types.lookup_events_request.LookupEventsRequest = {}
         if lookup_attributes is not None:
             input_["lookup_attributes"] = lookup_attributes
         if start_time is not None:
@@ -2835,6 +3056,7 @@ class CloudTrailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_lookup_events(
@@ -2933,7 +3155,7 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.put_event_configuration_request.PutEventConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudtrail.types.put_event_configuration_request.PutEventConfigurationRequest = {}
         if trail_name is not None:
             input_["trail_name"] = trail_name
         if event_data_store is not None:
@@ -2950,6 +3172,7 @@ class CloudTrailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_event_selectors(
@@ -3002,8 +3225,9 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.put_event_selectors_request.PutEventSelectorsRequest = {}  # type: ignore[typeddict-item]
-        input_["trail_name"] = trail_name
+        input_: capo_cloudtrail.types.put_event_selectors_request.PutEventSelectorsRequest = {
+            "trail_name": trail_name
+        }
         if event_selectors is not None:
             input_["event_selectors"] = event_selectors
         if advanced_event_selectors is not None:
@@ -3014,6 +3238,7 @@ class CloudTrailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_insight_selectors(
@@ -3072,10 +3297,11 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.put_insight_selectors_request.PutInsightSelectorsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudtrail.types.put_insight_selectors_request.PutInsightSelectorsRequest = {
+            "insight_selectors": insight_selectors
+        }
         if trail_name is not None:
             input_["trail_name"] = trail_name
-        input_["insight_selectors"] = insight_selectors
         if event_data_store is not None:
             input_["event_data_store"] = event_data_store
         if insights_destination is not None:
@@ -3086,6 +3312,7 @@ class CloudTrailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_resource_policy(
@@ -3127,15 +3354,17 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.put_resource_policy_request.PutResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["resource_policy"] = resource_policy
+        input_: capo_cloudtrail.types.put_resource_policy_request.PutResourcePolicyRequest = {
+            "resource_arn": resource_arn,
+            "resource_policy": resource_policy,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def register_organization_delegated_admin(
@@ -3182,14 +3411,16 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.register_organization_delegated_admin_request.RegisterOrganizationDelegatedAdminRequest = {}  # type: ignore[typeddict-item]
-        input_["member_account_id"] = member_account_id
+        input_: capo_cloudtrail.types.register_organization_delegated_admin_request.RegisterOrganizationDelegatedAdminRequest = {
+            "member_account_id": member_account_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def remove_tags(
@@ -3239,15 +3470,17 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.remove_tags_request.RemoveTagsRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
-        input_["tags_list"] = tags_list
+        input_: capo_cloudtrail.types.remove_tags_request.RemoveTagsRequest = {
+            "resource_id": resource_id,
+            "tags_list": tags_list,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def restore_event_data_store(
@@ -3293,14 +3526,16 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.restore_event_data_store_request.RestoreEventDataStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["event_data_store"] = event_data_store
+        input_: capo_cloudtrail.types.restore_event_data_store_request.RestoreEventDataStoreRequest = {
+            "event_data_store": event_data_store
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def search_sample_queries(
@@ -3344,8 +3579,9 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.search_sample_queries_request.SearchSampleQueriesRequest = {}  # type: ignore[typeddict-item]
-        input_["search_phrase"] = search_phrase
+        input_: capo_cloudtrail.types.search_sample_queries_request.SearchSampleQueriesRequest = {
+            "search_phrase": search_phrase
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3356,6 +3592,7 @@ class CloudTrailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_dashboard_refresh(
@@ -3397,8 +3634,9 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.start_dashboard_refresh_request.StartDashboardRefreshRequest = {}  # type: ignore[typeddict-item]
-        input_["dashboard_id"] = dashboard_id
+        input_: capo_cloudtrail.types.start_dashboard_refresh_request.StartDashboardRefreshRequest = {
+            "dashboard_id": dashboard_id
+        }
         if query_parameter_values is not None:
             input_["query_parameter_values"] = query_parameter_values
 
@@ -3407,6 +3645,7 @@ class CloudTrailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_event_data_store_ingestion(
@@ -3450,14 +3689,16 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.start_event_data_store_ingestion_request.StartEventDataStoreIngestionRequest = {}  # type: ignore[typeddict-item]
-        input_["event_data_store"] = event_data_store
+        input_: capo_cloudtrail.types.start_event_data_store_ingestion_request.StartEventDataStoreIngestionRequest = {
+            "event_data_store": event_data_store
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_import(
@@ -3514,7 +3755,7 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.start_import_request.StartImportRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudtrail.types.start_import_request.StartImportRequest = {}
         if destinations is not None:
             input_["destinations"] = destinations
         if import_source is not None:
@@ -3531,6 +3772,7 @@ class CloudTrailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_logging(
@@ -3574,14 +3816,16 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.start_logging_request.StartLoggingRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_cloudtrail.types.start_logging_request.StartLoggingRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_query(
@@ -3644,7 +3888,7 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.start_query_request.StartQueryRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudtrail.types.start_query_request.StartQueryRequest = {}
         if query_statement is not None:
             input_["query_statement"] = query_statement
         if delivery_s3_uri is not None:
@@ -3663,6 +3907,7 @@ class CloudTrailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_event_data_store_ingestion(
@@ -3706,14 +3951,16 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.stop_event_data_store_ingestion_request.StopEventDataStoreIngestionRequest = {}  # type: ignore[typeddict-item]
-        input_["event_data_store"] = event_data_store
+        input_: capo_cloudtrail.types.stop_event_data_store_ingestion_request.StopEventDataStoreIngestionRequest = {
+            "event_data_store": event_data_store
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_import(
@@ -3750,14 +3997,16 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.stop_import_request.StopImportRequest = {}  # type: ignore[typeddict-item]
-        input_["import_id"] = import_id
+        input_: capo_cloudtrail.types.stop_import_request.StopImportRequest = {
+            "import_id": import_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_logging(
@@ -3801,14 +4050,16 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.stop_logging_request.StopLoggingRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_cloudtrail.types.stop_logging_request.StopLoggingRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_channel(
@@ -3857,8 +4108,9 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.update_channel_request.UpdateChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["channel"] = channel
+        input_: capo_cloudtrail.types.update_channel_request.UpdateChannelRequest = {
+            "channel": channel
+        }
         if destinations is not None:
             input_["destinations"] = destinations
         if name is not None:
@@ -3869,6 +4121,7 @@ class CloudTrailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_dashboard(
@@ -3921,8 +4174,9 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.update_dashboard_request.UpdateDashboardRequest = {}  # type: ignore[typeddict-item]
-        input_["dashboard_id"] = dashboard_id
+        input_: capo_cloudtrail.types.update_dashboard_request.UpdateDashboardRequest = {
+            "dashboard_id": dashboard_id
+        }
         if widgets is not None:
             input_["widgets"] = widgets
         if refresh_schedule is not None:
@@ -3935,6 +4189,7 @@ class CloudTrailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_event_data_store(
@@ -4015,8 +4270,9 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.update_event_data_store_request.UpdateEventDataStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["event_data_store"] = event_data_store
+        input_: capo_cloudtrail.types.update_event_data_store_request.UpdateEventDataStoreRequest = {
+            "event_data_store": event_data_store
+        }
         if name is not None:
             input_["name"] = name
         if advanced_event_selectors is not None:
@@ -4039,6 +4295,7 @@ class CloudTrailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_trail(
@@ -4132,8 +4389,9 @@ class CloudTrailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail.types.update_trail_request.UpdateTrailRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_cloudtrail.types.update_trail_request.UpdateTrailRequest = {
+            "name": name
+        }
         if s3_bucket_name is not None:
             input_["s3_bucket_name"] = s3_bucket_name
         if s3_key_prefix is not None:
@@ -4160,6 +4418,7 @@ class CloudTrailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

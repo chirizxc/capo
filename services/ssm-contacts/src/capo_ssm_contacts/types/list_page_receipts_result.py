@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: ListPageReceiptsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListPageReceiptsResult:
     out: ListPageReceiptsResult = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Receipts" in data:
+    if data.get("Receipts") is not None:
         import capo_ssm_contacts.types.receipts_list
 
         out["receipts"] = (

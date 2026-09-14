@@ -29,7 +29,7 @@ def serialize_json(value: CreateWirelessGatewayTaskRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateWirelessGatewayTaskRequest:
     out: CreateWirelessGatewayTaskRequest = {}  # type: ignore[typeddict-item]
-    if "WirelessGatewayTaskDefinitionId" in data:
+    if data.get("WirelessGatewayTaskDefinitionId") is not None:
         out["wireless_gateway_task_definition_id"] = data[
             "WirelessGatewayTaskDefinitionId"
         ]

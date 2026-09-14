@@ -32,9 +32,9 @@ def serialize_json(value: ListMountTargetsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListMountTargetsResponse:
     out: ListMountTargetsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "mountTargets" in data:
+    if data.get("mountTargets") is not None:
         import capo_s3files.types.mount_targets
 
         out["mount_targets"] = capo_s3files.types.mount_targets.deserialize_json(

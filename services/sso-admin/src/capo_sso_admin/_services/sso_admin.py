@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.ssoadmin#SWBExternalService``."""
 
+import uuid
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -371,15 +372,17 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.add_region_request.AddRegionRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
-        input_["region_name"] = region_name
+        input_: capo_sso_admin.types.add_region_request.AddRegionRequest = {
+            "instance_arn": instance_arn,
+            "region_name": region_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def attach_customer_managed_policy_reference_to_permission_set(
@@ -423,16 +426,18 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.attach_customer_managed_policy_reference_to_permission_set_request.AttachCustomerManagedPolicyReferenceToPermissionSetRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
-        input_["permission_set_arn"] = permission_set_arn
-        input_["customer_managed_policy_reference"] = customer_managed_policy_reference
+        input_: capo_sso_admin.types.attach_customer_managed_policy_reference_to_permission_set_request.AttachCustomerManagedPolicyReferenceToPermissionSetRequest = {
+            "instance_arn": instance_arn,
+            "permission_set_arn": permission_set_arn,
+            "customer_managed_policy_reference": customer_managed_policy_reference,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def attach_managed_policy_to_permission_set(
@@ -476,16 +481,18 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.attach_managed_policy_to_permission_set_request.AttachManagedPolicyToPermissionSetRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
-        input_["permission_set_arn"] = permission_set_arn
-        input_["managed_policy_arn"] = managed_policy_arn
+        input_: capo_sso_admin.types.attach_managed_policy_to_permission_set_request.AttachManagedPolicyToPermissionSetRequest = {
+            "instance_arn": instance_arn,
+            "permission_set_arn": permission_set_arn,
+            "managed_policy_arn": managed_policy_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_account_assignment(
@@ -535,19 +542,21 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.create_account_assignment_request.CreateAccountAssignmentRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
-        input_["target_id"] = target_id
-        input_["target_type"] = target_type
-        input_["permission_set_arn"] = permission_set_arn
-        input_["principal_type"] = principal_type
-        input_["principal_id"] = principal_id
+        input_: capo_sso_admin.types.create_account_assignment_request.CreateAccountAssignmentRequest = {
+            "instance_arn": instance_arn,
+            "target_id": target_id,
+            "target_type": target_type,
+            "permission_set_arn": permission_set_arn,
+            "principal_type": principal_type,
+            "principal_id": principal_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_application(
@@ -605,10 +614,11 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.create_application_request.CreateApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
-        input_["application_provider_arn"] = application_provider_arn
-        input_["name"] = name
+        input_: capo_sso_admin.types.create_application_request.CreateApplicationRequest = {
+            "instance_arn": instance_arn,
+            "application_provider_arn": application_provider_arn,
+            "name": name,
+        }
         if description is not None:
             input_["description"] = description
         if portal_options is not None:
@@ -617,14 +627,16 @@ class SSOAdminClient:
             input_["tags"] = tags
         if status is not None:
             input_["status"] = status
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_application_assignment(
@@ -668,16 +680,18 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.create_application_assignment_request.CreateApplicationAssignmentRequest = {}  # type: ignore[typeddict-item]
-        input_["application_arn"] = application_arn
-        input_["principal_id"] = principal_id
-        input_["principal_type"] = principal_type
+        input_: capo_sso_admin.types.create_application_assignment_request.CreateApplicationAssignmentRequest = {
+            "application_arn": application_arn,
+            "principal_id": principal_id,
+            "principal_type": principal_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_instance(
@@ -720,11 +734,12 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.create_instance_request.CreateInstanceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_sso_admin.types.create_instance_request.CreateInstanceRequest = {}
         if name is not None:
             input_["name"] = name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -733,6 +748,7 @@ class SSOAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_instance_access_control_attribute_configuration(
@@ -773,17 +789,17 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.create_instance_access_control_attribute_configuration_request.CreateInstanceAccessControlAttributeConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
-        input_["instance_access_control_attribute_configuration"] = (
-            instance_access_control_attribute_configuration
-        )
+        input_: capo_sso_admin.types.create_instance_access_control_attribute_configuration_request.CreateInstanceAccessControlAttributeConfigurationRequest = {
+            "instance_arn": instance_arn,
+            "instance_access_control_attribute_configuration": instance_access_control_attribute_configuration,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_permission_set(
@@ -835,11 +851,12 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.create_permission_set_request.CreatePermissionSetRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_sso_admin.types.create_permission_set_request.CreatePermissionSetRequest = {
+            "name": name,
+            "instance_arn": instance_arn,
+        }
         if description is not None:
             input_["description"] = description
-        input_["instance_arn"] = instance_arn
         if session_duration is not None:
             input_["session_duration"] = session_duration
         if relay_state is not None:
@@ -852,6 +869,7 @@ class SSOAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_trusted_token_issuer(
@@ -900,15 +918,15 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.create_trusted_token_issuer_request.CreateTrustedTokenIssuerRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
-        input_["name"] = name
-        input_["trusted_token_issuer_type"] = trusted_token_issuer_type
-        input_["trusted_token_issuer_configuration"] = (
-            trusted_token_issuer_configuration
-        )
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_sso_admin.types.create_trusted_token_issuer_request.CreateTrustedTokenIssuerRequest = {
+            "instance_arn": instance_arn,
+            "name": name,
+            "trusted_token_issuer_type": trusted_token_issuer_type,
+            "trusted_token_issuer_configuration": trusted_token_issuer_configuration,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -917,6 +935,7 @@ class SSOAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_account_assignment(
@@ -965,19 +984,21 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.delete_account_assignment_request.DeleteAccountAssignmentRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
-        input_["target_id"] = target_id
-        input_["target_type"] = target_type
-        input_["permission_set_arn"] = permission_set_arn
-        input_["principal_type"] = principal_type
-        input_["principal_id"] = principal_id
+        input_: capo_sso_admin.types.delete_account_assignment_request.DeleteAccountAssignmentRequest = {
+            "instance_arn": instance_arn,
+            "target_id": target_id,
+            "target_type": target_type,
+            "permission_set_arn": permission_set_arn,
+            "principal_type": principal_type,
+            "principal_id": principal_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_application(
@@ -1016,14 +1037,16 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.delete_application_request.DeleteApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_arn"] = application_arn
+        input_: capo_sso_admin.types.delete_application_request.DeleteApplicationRequest = {
+            "application_arn": application_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_application_assignment(
@@ -1066,16 +1089,18 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.delete_application_assignment_request.DeleteApplicationAssignmentRequest = {}  # type: ignore[typeddict-item]
-        input_["application_arn"] = application_arn
-        input_["principal_id"] = principal_id
-        input_["principal_type"] = principal_type
+        input_: capo_sso_admin.types.delete_application_assignment_request.DeleteApplicationAssignmentRequest = {
+            "application_arn": application_arn,
+            "principal_id": principal_id,
+            "principal_type": principal_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_inline_policy_from_permission_set(
@@ -1116,15 +1141,17 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.delete_inline_policy_from_permission_set_request.DeleteInlinePolicyFromPermissionSetRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
-        input_["permission_set_arn"] = permission_set_arn
+        input_: capo_sso_admin.types.delete_inline_policy_from_permission_set_request.DeleteInlinePolicyFromPermissionSetRequest = {
+            "instance_arn": instance_arn,
+            "permission_set_arn": permission_set_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_instance(
@@ -1162,14 +1189,16 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.delete_instance_request.DeleteInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
+        input_: capo_sso_admin.types.delete_instance_request.DeleteInstanceRequest = {
+            "instance_arn": instance_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_instance_access_control_attribute_configuration(
@@ -1208,14 +1237,16 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.delete_instance_access_control_attribute_configuration_request.DeleteInstanceAccessControlAttributeConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
+        input_: capo_sso_admin.types.delete_instance_access_control_attribute_configuration_request.DeleteInstanceAccessControlAttributeConfigurationRequest = {
+            "instance_arn": instance_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_permissions_boundary_from_permission_set(
@@ -1256,15 +1287,17 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.delete_permissions_boundary_from_permission_set_request.DeletePermissionsBoundaryFromPermissionSetRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
-        input_["permission_set_arn"] = permission_set_arn
+        input_: capo_sso_admin.types.delete_permissions_boundary_from_permission_set_request.DeletePermissionsBoundaryFromPermissionSetRequest = {
+            "instance_arn": instance_arn,
+            "permission_set_arn": permission_set_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_permission_set(
@@ -1305,15 +1338,17 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.delete_permission_set_request.DeletePermissionSetRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
-        input_["permission_set_arn"] = permission_set_arn
+        input_: capo_sso_admin.types.delete_permission_set_request.DeletePermissionSetRequest = {
+            "instance_arn": instance_arn,
+            "permission_set_arn": permission_set_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_trusted_token_issuer(
@@ -1352,14 +1387,16 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.delete_trusted_token_issuer_request.DeleteTrustedTokenIssuerRequest = {}  # type: ignore[typeddict-item]
-        input_["trusted_token_issuer_arn"] = trusted_token_issuer_arn
+        input_: capo_sso_admin.types.delete_trusted_token_issuer_request.DeleteTrustedTokenIssuerRequest = {
+            "trusted_token_issuer_arn": trusted_token_issuer_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_account_assignment_creation_status(
@@ -1399,17 +1436,17 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.describe_account_assignment_creation_status_request.DescribeAccountAssignmentCreationStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
-        input_["account_assignment_creation_request_id"] = (
-            account_assignment_creation_request_id
-        )
+        input_: capo_sso_admin.types.describe_account_assignment_creation_status_request.DescribeAccountAssignmentCreationStatusRequest = {
+            "instance_arn": instance_arn,
+            "account_assignment_creation_request_id": account_assignment_creation_request_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_account_assignment_deletion_status(
@@ -1449,17 +1486,17 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.describe_account_assignment_deletion_status_request.DescribeAccountAssignmentDeletionStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
-        input_["account_assignment_deletion_request_id"] = (
-            account_assignment_deletion_request_id
-        )
+        input_: capo_sso_admin.types.describe_account_assignment_deletion_status_request.DescribeAccountAssignmentDeletionStatusRequest = {
+            "instance_arn": instance_arn,
+            "account_assignment_deletion_request_id": account_assignment_deletion_request_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_application(
@@ -1499,14 +1536,16 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.describe_application_request.DescribeApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_arn"] = application_arn
+        input_: capo_sso_admin.types.describe_application_request.DescribeApplicationRequest = {
+            "application_arn": application_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_application_assignment(
@@ -1548,16 +1587,18 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.describe_application_assignment_request.DescribeApplicationAssignmentRequest = {}  # type: ignore[typeddict-item]
-        input_["application_arn"] = application_arn
-        input_["principal_id"] = principal_id
-        input_["principal_type"] = principal_type
+        input_: capo_sso_admin.types.describe_application_assignment_request.DescribeApplicationAssignmentRequest = {
+            "application_arn": application_arn,
+            "principal_id": principal_id,
+            "principal_type": principal_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_application_provider(
@@ -1595,14 +1636,16 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.describe_application_provider_request.DescribeApplicationProviderRequest = {}  # type: ignore[typeddict-item]
-        input_["application_provider_arn"] = application_provider_arn
+        input_: capo_sso_admin.types.describe_application_provider_request.DescribeApplicationProviderRequest = {
+            "application_provider_arn": application_provider_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_instance(
@@ -1639,14 +1682,16 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.describe_instance_request.DescribeInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
+        input_: capo_sso_admin.types.describe_instance_request.DescribeInstanceRequest = {
+            "instance_arn": instance_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_instance_access_control_attribute_configuration(
@@ -1684,14 +1729,16 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.describe_instance_access_control_attribute_configuration_request.DescribeInstanceAccessControlAttributeConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
+        input_: capo_sso_admin.types.describe_instance_access_control_attribute_configuration_request.DescribeInstanceAccessControlAttributeConfigurationRequest = {
+            "instance_arn": instance_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_permission_set(
@@ -1731,15 +1778,17 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.describe_permission_set_request.DescribePermissionSetRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
-        input_["permission_set_arn"] = permission_set_arn
+        input_: capo_sso_admin.types.describe_permission_set_request.DescribePermissionSetRequest = {
+            "instance_arn": instance_arn,
+            "permission_set_arn": permission_set_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_permission_set_provisioning_status(
@@ -1779,17 +1828,17 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.describe_permission_set_provisioning_status_request.DescribePermissionSetProvisioningStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
-        input_["provision_permission_set_request_id"] = (
-            provision_permission_set_request_id
-        )
+        input_: capo_sso_admin.types.describe_permission_set_provisioning_status_request.DescribePermissionSetProvisioningStatusRequest = {
+            "instance_arn": instance_arn,
+            "provision_permission_set_request_id": provision_permission_set_request_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_region(
@@ -1829,15 +1878,17 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.describe_region_request.DescribeRegionRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
-        input_["region_name"] = region_name
+        input_: capo_sso_admin.types.describe_region_request.DescribeRegionRequest = {
+            "instance_arn": instance_arn,
+            "region_name": region_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_trusted_token_issuer(
@@ -1875,14 +1926,16 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.describe_trusted_token_issuer_request.DescribeTrustedTokenIssuerRequest = {}  # type: ignore[typeddict-item]
-        input_["trusted_token_issuer_arn"] = trusted_token_issuer_arn
+        input_: capo_sso_admin.types.describe_trusted_token_issuer_request.DescribeTrustedTokenIssuerRequest = {
+            "trusted_token_issuer_arn": trusted_token_issuer_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def detach_customer_managed_policy_reference_from_permission_set(
@@ -1925,16 +1978,18 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.detach_customer_managed_policy_reference_from_permission_set_request.DetachCustomerManagedPolicyReferenceFromPermissionSetRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
-        input_["permission_set_arn"] = permission_set_arn
-        input_["customer_managed_policy_reference"] = customer_managed_policy_reference
+        input_: capo_sso_admin.types.detach_customer_managed_policy_reference_from_permission_set_request.DetachCustomerManagedPolicyReferenceFromPermissionSetRequest = {
+            "instance_arn": instance_arn,
+            "permission_set_arn": permission_set_arn,
+            "customer_managed_policy_reference": customer_managed_policy_reference,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def detach_managed_policy_from_permission_set(
@@ -1977,16 +2032,18 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.detach_managed_policy_from_permission_set_request.DetachManagedPolicyFromPermissionSetRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
-        input_["permission_set_arn"] = permission_set_arn
-        input_["managed_policy_arn"] = managed_policy_arn
+        input_: capo_sso_admin.types.detach_managed_policy_from_permission_set_request.DetachManagedPolicyFromPermissionSetRequest = {
+            "instance_arn": instance_arn,
+            "permission_set_arn": permission_set_arn,
+            "managed_policy_arn": managed_policy_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_application_assignment_configuration(
@@ -2024,14 +2081,16 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.get_application_assignment_configuration_request.GetApplicationAssignmentConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_arn"] = application_arn
+        input_: capo_sso_admin.types.get_application_assignment_configuration_request.GetApplicationAssignmentConfigurationRequest = {
+            "application_arn": application_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_application_session_configuration(
@@ -2069,14 +2128,16 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.get_application_session_configuration_request.GetApplicationSessionConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_arn"] = application_arn
+        input_: capo_sso_admin.types.get_application_session_configuration_request.GetApplicationSessionConfigurationRequest = {
+            "application_arn": application_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_inline_policy_for_permission_set(
@@ -2116,15 +2177,17 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.get_inline_policy_for_permission_set_request.GetInlinePolicyForPermissionSetRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
-        input_["permission_set_arn"] = permission_set_arn
+        input_: capo_sso_admin.types.get_inline_policy_for_permission_set_request.GetInlinePolicyForPermissionSetRequest = {
+            "instance_arn": instance_arn,
+            "permission_set_arn": permission_set_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_permissions_boundary_for_permission_set(
@@ -2164,15 +2227,17 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.get_permissions_boundary_for_permission_set_request.GetPermissionsBoundaryForPermissionSetRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
-        input_["permission_set_arn"] = permission_set_arn
+        input_: capo_sso_admin.types.get_permissions_boundary_for_permission_set_request.GetPermissionsBoundaryForPermissionSetRequest = {
+            "instance_arn": instance_arn,
+            "permission_set_arn": permission_set_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_account_assignment_creation_status(
@@ -2218,8 +2283,9 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.list_account_assignment_creation_status_request.ListAccountAssignmentCreationStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
+        input_: capo_sso_admin.types.list_account_assignment_creation_status_request.ListAccountAssignmentCreationStatusRequest = {
+            "instance_arn": instance_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2232,6 +2298,7 @@ class SSOAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_account_assignment_creation_status(
@@ -2304,8 +2371,9 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.list_account_assignment_deletion_status_request.ListAccountAssignmentDeletionStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
+        input_: capo_sso_admin.types.list_account_assignment_deletion_status_request.ListAccountAssignmentDeletionStatusRequest = {
+            "instance_arn": instance_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2318,6 +2386,7 @@ class SSOAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_account_assignment_deletion_status(
@@ -2390,10 +2459,11 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.list_account_assignments_request.ListAccountAssignmentsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
-        input_["account_id"] = account_id
-        input_["permission_set_arn"] = permission_set_arn
+        input_: capo_sso_admin.types.list_account_assignments_request.ListAccountAssignmentsRequest = {
+            "instance_arn": instance_arn,
+            "account_id": account_id,
+            "permission_set_arn": permission_set_arn,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2404,6 +2474,7 @@ class SSOAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_account_assignments(
@@ -2480,10 +2551,11 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.list_account_assignments_for_principal_request.ListAccountAssignmentsForPrincipalRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
-        input_["principal_id"] = principal_id
-        input_["principal_type"] = principal_type
+        input_: capo_sso_admin.types.list_account_assignments_for_principal_request.ListAccountAssignmentsForPrincipalRequest = {
+            "instance_arn": instance_arn,
+            "principal_id": principal_id,
+            "principal_type": principal_type,
+        }
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -2496,6 +2568,7 @@ class SSOAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_account_assignments_for_principal(
@@ -2574,9 +2647,10 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.list_accounts_for_provisioned_permission_set_request.ListAccountsForProvisionedPermissionSetRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
-        input_["permission_set_arn"] = permission_set_arn
+        input_: capo_sso_admin.types.list_accounts_for_provisioned_permission_set_request.ListAccountsForProvisionedPermissionSetRequest = {
+            "instance_arn": instance_arn,
+            "permission_set_arn": permission_set_arn,
+        }
         if provisioning_status is not None:
             input_["provisioning_status"] = provisioning_status
         if max_results is not None:
@@ -2589,6 +2663,7 @@ class SSOAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_accounts_for_provisioned_permission_set(
@@ -2659,8 +2734,9 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.list_application_assignments_request.ListApplicationAssignmentsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_arn"] = application_arn
+        input_: capo_sso_admin.types.list_application_assignments_request.ListApplicationAssignmentsRequest = {
+            "application_arn": application_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2671,6 +2747,7 @@ class SSOAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_application_assignments(
@@ -2743,10 +2820,11 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.list_application_assignments_for_principal_request.ListApplicationAssignmentsForPrincipalRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
-        input_["principal_id"] = principal_id
-        input_["principal_type"] = principal_type
+        input_: capo_sso_admin.types.list_application_assignments_for_principal_request.ListApplicationAssignmentsForPrincipalRequest = {
+            "instance_arn": instance_arn,
+            "principal_id": principal_id,
+            "principal_type": principal_type,
+        }
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -2759,6 +2837,7 @@ class SSOAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_application_assignments_for_principal(
@@ -2828,7 +2907,7 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.list_application_providers_request.ListApplicationProvidersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_sso_admin.types.list_application_providers_request.ListApplicationProvidersRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2839,6 +2918,7 @@ class SSOAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_application_providers(
@@ -2904,8 +2984,9 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.list_applications_request.ListApplicationsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
+        input_: capo_sso_admin.types.list_applications_request.ListApplicationsRequest = {
+            "instance_arn": instance_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2918,6 +2999,7 @@ class SSOAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_applications(
@@ -2988,9 +3070,10 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.list_customer_managed_policy_references_in_permission_set_request.ListCustomerManagedPolicyReferencesInPermissionSetRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
-        input_["permission_set_arn"] = permission_set_arn
+        input_: capo_sso_admin.types.list_customer_managed_policy_references_in_permission_set_request.ListCustomerManagedPolicyReferencesInPermissionSetRequest = {
+            "instance_arn": instance_arn,
+            "permission_set_arn": permission_set_arn,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3001,6 +3084,7 @@ class SSOAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_customer_managed_policy_references_in_permission_set(
@@ -3064,7 +3148,7 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.list_instances_request.ListInstancesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_sso_admin.types.list_instances_request.ListInstancesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3075,6 +3159,7 @@ class SSOAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_instances(
@@ -3139,9 +3224,10 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.list_managed_policies_in_permission_set_request.ListManagedPoliciesInPermissionSetRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
-        input_["permission_set_arn"] = permission_set_arn
+        input_: capo_sso_admin.types.list_managed_policies_in_permission_set_request.ListManagedPoliciesInPermissionSetRequest = {
+            "instance_arn": instance_arn,
+            "permission_set_arn": permission_set_arn,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3152,6 +3238,7 @@ class SSOAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_managed_policies_in_permission_set(
@@ -3222,8 +3309,9 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.list_permission_set_provisioning_status_request.ListPermissionSetProvisioningStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
+        input_: capo_sso_admin.types.list_permission_set_provisioning_status_request.ListPermissionSetProvisioningStatusRequest = {
+            "instance_arn": instance_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3236,6 +3324,7 @@ class SSOAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_permission_set_provisioning_status(
@@ -3306,8 +3395,9 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.list_permission_sets_request.ListPermissionSetsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
+        input_: capo_sso_admin.types.list_permission_sets_request.ListPermissionSetsRequest = {
+            "instance_arn": instance_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3318,6 +3408,7 @@ class SSOAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_permission_sets(
@@ -3388,9 +3479,10 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.list_permission_sets_provisioned_to_account_request.ListPermissionSetsProvisionedToAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
-        input_["account_id"] = account_id
+        input_: capo_sso_admin.types.list_permission_sets_provisioned_to_account_request.ListPermissionSetsProvisionedToAccountRequest = {
+            "instance_arn": instance_arn,
+            "account_id": account_id,
+        }
         if provisioning_status is not None:
             input_["provisioning_status"] = provisioning_status
         if max_results is not None:
@@ -3403,6 +3495,7 @@ class SSOAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_permission_sets_provisioned_to_account(
@@ -3472,8 +3565,9 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.list_regions_request.ListRegionsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
+        input_: capo_sso_admin.types.list_regions_request.ListRegionsRequest = {
+            "instance_arn": instance_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3484,6 +3578,7 @@ class SSOAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_regions(
@@ -3548,10 +3643,11 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_sso_admin.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if instance_arn is not None:
             input_["instance_arn"] = instance_arn
-        input_["resource_arn"] = resource_arn
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -3560,6 +3656,7 @@ class SSOAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_tags_for_resource(
@@ -3623,8 +3720,9 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.list_trusted_token_issuers_request.ListTrustedTokenIssuersRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
+        input_: capo_sso_admin.types.list_trusted_token_issuers_request.ListTrustedTokenIssuersRequest = {
+            "instance_arn": instance_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3635,6 +3733,7 @@ class SSOAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_trusted_token_issuers(
@@ -3702,18 +3801,20 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.provision_permission_set_request.ProvisionPermissionSetRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
-        input_["permission_set_arn"] = permission_set_arn
+        input_: capo_sso_admin.types.provision_permission_set_request.ProvisionPermissionSetRequest = {
+            "instance_arn": instance_arn,
+            "permission_set_arn": permission_set_arn,
+            "target_type": target_type,
+        }
         if target_id is not None:
             input_["target_id"] = target_id
-        input_["target_type"] = target_type
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_application_assignment_configuration(
@@ -3754,15 +3855,17 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.put_application_assignment_configuration_request.PutApplicationAssignmentConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_arn"] = application_arn
-        input_["assignment_required"] = assignment_required
+        input_: capo_sso_admin.types.put_application_assignment_configuration_request.PutApplicationAssignmentConfigurationRequest = {
+            "application_arn": application_arn,
+            "assignment_required": assignment_required,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_application_session_configuration(
@@ -3805,8 +3908,9 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.put_application_session_configuration_request.PutApplicationSessionConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_arn"] = application_arn
+        input_: capo_sso_admin.types.put_application_session_configuration_request.PutApplicationSessionConfigurationRequest = {
+            "application_arn": application_arn
+        }
         if user_background_session_application_status is not None:
             input_["user_background_session_application_status"] = (
                 user_background_session_application_status
@@ -3817,6 +3921,7 @@ class SSOAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_inline_policy_to_permission_set(
@@ -3860,16 +3965,18 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.put_inline_policy_to_permission_set_request.PutInlinePolicyToPermissionSetRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
-        input_["permission_set_arn"] = permission_set_arn
-        input_["inline_policy"] = inline_policy
+        input_: capo_sso_admin.types.put_inline_policy_to_permission_set_request.PutInlinePolicyToPermissionSetRequest = {
+            "instance_arn": instance_arn,
+            "permission_set_arn": permission_set_arn,
+            "inline_policy": inline_policy,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_permissions_boundary_to_permission_set(
@@ -3912,16 +4019,18 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.put_permissions_boundary_to_permission_set_request.PutPermissionsBoundaryToPermissionSetRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
-        input_["permission_set_arn"] = permission_set_arn
-        input_["permissions_boundary"] = permissions_boundary
+        input_: capo_sso_admin.types.put_permissions_boundary_to_permission_set_request.PutPermissionsBoundaryToPermissionSetRequest = {
+            "instance_arn": instance_arn,
+            "permission_set_arn": permission_set_arn,
+            "permissions_boundary": permissions_boundary,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def remove_region(
@@ -3962,15 +4071,17 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.remove_region_request.RemoveRegionRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
-        input_["region_name"] = region_name
+        input_: capo_sso_admin.types.remove_region_request.RemoveRegionRequest = {
+            "instance_arn": instance_arn,
+            "region_name": region_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -4014,17 +4125,19 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_sso_admin.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
         if instance_arn is not None:
             input_["instance_arn"] = instance_arn
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -4067,17 +4180,19 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_sso_admin.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
         if instance_arn is not None:
             input_["instance_arn"] = instance_arn
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_application(
@@ -4130,8 +4245,9 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.update_application_request.UpdateApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_arn"] = application_arn
+        input_: capo_sso_admin.types.update_application_request.UpdateApplicationRequest = {
+            "application_arn": application_arn
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -4146,6 +4262,7 @@ class SSOAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_instance(
@@ -4190,10 +4307,11 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.update_instance_request.UpdateInstanceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_sso_admin.types.update_instance_request.UpdateInstanceRequest = {
+            "instance_arn": instance_arn
+        }
         if name is not None:
             input_["name"] = name
-        input_["instance_arn"] = instance_arn
         if encryption_configuration is not None:
             input_["encryption_configuration"] = encryption_configuration
 
@@ -4202,6 +4320,7 @@ class SSOAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_instance_access_control_attribute_configuration(
@@ -4242,17 +4361,17 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.update_instance_access_control_attribute_configuration_request.UpdateInstanceAccessControlAttributeConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
-        input_["instance_access_control_attribute_configuration"] = (
-            instance_access_control_attribute_configuration
-        )
+        input_: capo_sso_admin.types.update_instance_access_control_attribute_configuration_request.UpdateInstanceAccessControlAttributeConfigurationRequest = {
+            "instance_arn": instance_arn,
+            "instance_access_control_attribute_configuration": instance_access_control_attribute_configuration,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_permission_set(
@@ -4301,9 +4420,10 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.update_permission_set_request.UpdatePermissionSetRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
-        input_["permission_set_arn"] = permission_set_arn
+        input_: capo_sso_admin.types.update_permission_set_request.UpdatePermissionSetRequest = {
+            "instance_arn": instance_arn,
+            "permission_set_arn": permission_set_arn,
+        }
         if description is not None:
             input_["description"] = description
         if session_duration is not None:
@@ -4316,6 +4436,7 @@ class SSOAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_trusted_token_issuer(
@@ -4362,8 +4483,9 @@ class SSOAdminClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sso_admin.types.update_trusted_token_issuer_request.UpdateTrustedTokenIssuerRequest = {}  # type: ignore[typeddict-item]
-        input_["trusted_token_issuer_arn"] = trusted_token_issuer_arn
+        input_: capo_sso_admin.types.update_trusted_token_issuer_request.UpdateTrustedTokenIssuerRequest = {
+            "trusted_token_issuer_arn": trusted_token_issuer_arn
+        }
         if name is not None:
             input_["name"] = name
         if trusted_token_issuer_configuration is not None:
@@ -4376,6 +4498,7 @@ class SSOAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

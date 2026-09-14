@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DescribeSentimentDetectionJobResponse) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeSentimentDetectionJobResponse:
     out: DescribeSentimentDetectionJobResponse = {}  # type: ignore[typeddict-item]
-    if "SentimentDetectionJobProperties" in data:
+    if data.get("SentimentDetectionJobProperties") is not None:
         import capo_comprehend.types.sentiment_detection_job_properties
 
         out["sentiment_detection_job_properties"] = (

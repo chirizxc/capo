@@ -42,7 +42,7 @@ def serialize_json(value: DimensionLabel) -> dict:
 
 def deserialize_json(data: dict) -> DimensionLabel:
     out: DimensionLabel = {}  # type: ignore[typeddict-item]
-    if "labelType" in data:
+    if data.get("labelType") is not None:
         import capo_marketplace_discovery.types.dimension_label_type
 
         out["label_type"] = (
@@ -52,10 +52,10 @@ def deserialize_json(data: dict) -> DimensionLabel:
         )
     else:
         raise DeserializationError("DimensionLabel.label_type required")
-    if "labelValue" in data:
+    if data.get("labelValue") is not None:
         out["label_value"] = data["labelValue"]
     else:
         raise DeserializationError("DimensionLabel.label_value required")
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     return out

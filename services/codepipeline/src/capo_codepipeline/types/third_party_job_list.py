@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> ThirdPartyJobList:
 
     out: ThirdPartyJobList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codepipeline.types.third_party_job.deserialize_aws_json_1_1(item)
         )

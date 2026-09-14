@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: EvaluationParameters) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EvaluationParameters:
     out: EvaluationParameters = {}  # type: ignore[typeddict-item]
-    if "NumberOfBacktestWindows" in data:
+    if data.get("NumberOfBacktestWindows") is not None:
         out["number_of_backtest_windows"] = data["NumberOfBacktestWindows"]
-    if "BackTestWindowOffset" in data:
+    if data.get("BackTestWindowOffset") is not None:
         out["back_test_window_offset"] = data["BackTestWindowOffset"]
     return out

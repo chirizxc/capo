@@ -32,9 +32,9 @@ def serialize_json(value: Container) -> dict:
 
 def deserialize_json(data: dict) -> Container:
     out: Container = {}  # type: ignore[typeddict-item]
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
-    if "imageUris" in data:
+    if data.get("imageUris") is not None:
         import capo_imagebuilder.types.string_list
 
         out["image_uris"] = capo_imagebuilder.types.string_list.deserialize_json(

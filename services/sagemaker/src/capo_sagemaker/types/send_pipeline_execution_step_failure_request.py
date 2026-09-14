@@ -35,10 +35,10 @@ def serialize_aws_json_1_1(value: SendPipelineExecutionStepFailureRequest) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> SendPipelineExecutionStepFailureRequest:
     out: SendPipelineExecutionStepFailureRequest = {}  # type: ignore[typeddict-item]
-    if "CallbackToken" in data:
+    if data.get("CallbackToken") is not None:
         out["callback_token"] = data["CallbackToken"]
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
     return out

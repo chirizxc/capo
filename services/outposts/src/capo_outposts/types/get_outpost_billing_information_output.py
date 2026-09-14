@@ -54,23 +54,23 @@ def serialize_json(value: GetOutpostBillingInformationOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetOutpostBillingInformationOutput:
     out: GetOutpostBillingInformationOutput = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Subscriptions" in data:
+    if data.get("Subscriptions") is not None:
         import capo_outposts.types.subscription_list
 
         out["subscriptions"] = capo_outposts.types.subscription_list.deserialize_json(
             data["Subscriptions"]
         )
-    if "ContractEndDate" in data:
+    if data.get("ContractEndDate") is not None:
         out["contract_end_date"] = data["ContractEndDate"]
-    if "PaymentTerm" in data:
+    if data.get("PaymentTerm") is not None:
         import capo_outposts.types.payment_term
 
         out["payment_term"] = capo_outposts.types.payment_term.deserialize_json(
             data["PaymentTerm"]
         )
-    if "PaymentOption" in data:
+    if data.get("PaymentOption") is not None:
         import capo_outposts.types.payment_option
 
         out["payment_option"] = capo_outposts.types.payment_option.deserialize_json(

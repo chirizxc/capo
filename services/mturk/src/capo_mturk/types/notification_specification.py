@@ -43,11 +43,11 @@ def serialize_aws_json_1_1(value: NotificationSpecification) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NotificationSpecification:
     out: NotificationSpecification = {}  # type: ignore[typeddict-item]
-    if "Destination" in data:
+    if data.get("Destination") is not None:
         out["destination"] = data["Destination"]
     else:
         raise DeserializationError("NotificationSpecification.destination required")
-    if "Transport" in data:
+    if data.get("Transport") is not None:
         import capo_mturk.types.notification_transport
 
         out["transport"] = (
@@ -57,11 +57,11 @@ def deserialize_aws_json_1_1(data: dict) -> NotificationSpecification:
         )
     else:
         raise DeserializationError("NotificationSpecification.transport required")
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
     else:
         raise DeserializationError("NotificationSpecification.version required")
-    if "EventTypes" in data:
+    if data.get("EventTypes") is not None:
         import capo_mturk.types.event_type_list
 
         out["event_types"] = capo_mturk.types.event_type_list.deserialize_aws_json_1_1(

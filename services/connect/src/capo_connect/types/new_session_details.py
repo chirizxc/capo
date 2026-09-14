@@ -64,7 +64,7 @@ def serialize_json(value: NewSessionDetails) -> dict:
 
 def deserialize_json(data: dict) -> NewSessionDetails:
     out: NewSessionDetails = {}  # type: ignore[typeddict-item]
-    if "SupportedMessagingContentTypes" in data:
+    if data.get("SupportedMessagingContentTypes") is not None:
         import capo_connect.types.supported_messaging_content_types
 
         out["supported_messaging_content_types"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> NewSessionDetails:
                 data["SupportedMessagingContentTypes"]
             )
         )
-    if "ParticipantDetails" in data:
+    if data.get("ParticipantDetails") is not None:
         import capo_connect.types.participant_details
 
         out["participant_details"] = (
@@ -80,13 +80,13 @@ def deserialize_json(data: dict) -> NewSessionDetails:
                 data["ParticipantDetails"]
             )
         )
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_connect.types.attributes
 
         out["attributes"] = capo_connect.types.attributes.deserialize_json(
             data["Attributes"]
         )
-    if "StreamingConfiguration" in data:
+    if data.get("StreamingConfiguration") is not None:
         import capo_connect.types.chat_streaming_configuration
 
         out["streaming_configuration"] = (

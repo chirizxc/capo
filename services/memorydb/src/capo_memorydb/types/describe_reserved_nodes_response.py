@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: DescribeReservedNodesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeReservedNodesResponse:
     out: DescribeReservedNodesResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "ReservedNodes" in data:
+    if data.get("ReservedNodes") is not None:
         import capo_memorydb.types.reserved_node_list
 
         out["reserved_nodes"] = (

@@ -84,11 +84,11 @@ def serialize_aws_json_1_0(value: ListBenefitAllocationsInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListBenefitAllocationsInput:
     out: ListBenefitAllocationsInput = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("ListBenefitAllocationsInput.catalog required")
-    if "FulfillmentTypes" in data:
+    if data.get("FulfillmentTypes") is not None:
         import capo_partnercentral_benefits.types.fulfillment_types
 
         out["fulfillment_types"] = (
@@ -96,7 +96,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListBenefitAllocationsInput:
                 data["FulfillmentTypes"]
             )
         )
-    if "BenefitIdentifiers" in data:
+    if data.get("BenefitIdentifiers") is not None:
         import capo_partnercentral_benefits.types.benefit_identifiers
 
         out["benefit_identifiers"] = (
@@ -104,7 +104,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListBenefitAllocationsInput:
                 data["BenefitIdentifiers"]
             )
         )
-    if "BenefitApplicationIdentifiers" in data:
+    if data.get("BenefitApplicationIdentifiers") is not None:
         import capo_partnercentral_benefits.types.benefit_application_identifier_list
 
         out["benefit_application_identifiers"] = (
@@ -112,7 +112,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListBenefitAllocationsInput:
                 data["BenefitApplicationIdentifiers"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_partnercentral_benefits.types.benefit_allocation_status_list
 
         out["status"] = (
@@ -120,8 +120,8 @@ def deserialize_aws_json_1_0(data: dict) -> ListBenefitAllocationsInput:
                 data["Status"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

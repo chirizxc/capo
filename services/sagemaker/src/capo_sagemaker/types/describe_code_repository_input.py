@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: DescribeCodeRepositoryInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeCodeRepositoryInput:
     out: DescribeCodeRepositoryInput = {}  # type: ignore[typeddict-item]
-    if "CodeRepositoryName" in data:
+    if data.get("CodeRepositoryName") is not None:
         out["code_repository_name"] = data["CodeRepositoryName"]
     return out

@@ -80,13 +80,13 @@ def serialize_json(value: UpdateFlowRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateFlowRequest:
     out: UpdateFlowRequest = {}  # type: ignore[typeddict-item]
-    if "flowName" in data:
+    if data.get("flowName") is not None:
         out["flow_name"] = data["flowName"]
     else:
         raise DeserializationError("UpdateFlowRequest.flow_name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "triggerConfig" in data:
+    if data.get("triggerConfig") is not None:
         import capo_appflow.types.trigger_config
 
         out["trigger_config"] = capo_appflow.types.trigger_config.deserialize_json(
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> UpdateFlowRequest:
         )
     else:
         raise DeserializationError("UpdateFlowRequest.trigger_config required")
-    if "sourceFlowConfig" in data:
+    if data.get("sourceFlowConfig") is not None:
         import capo_appflow.types.source_flow_config
 
         out["source_flow_config"] = (
@@ -104,7 +104,7 @@ def deserialize_json(data: dict) -> UpdateFlowRequest:
         )
     else:
         raise DeserializationError("UpdateFlowRequest.source_flow_config required")
-    if "destinationFlowConfigList" in data:
+    if data.get("destinationFlowConfigList") is not None:
         import capo_appflow.types.destination_flow_config_list
 
         out["destination_flow_config_list"] = (
@@ -116,13 +116,13 @@ def deserialize_json(data: dict) -> UpdateFlowRequest:
         raise DeserializationError(
             "UpdateFlowRequest.destination_flow_config_list required"
         )
-    if "tasks" in data:
+    if data.get("tasks") is not None:
         import capo_appflow.types.tasks
 
         out["tasks"] = capo_appflow.types.tasks.deserialize_json(data["tasks"])
     else:
         raise DeserializationError("UpdateFlowRequest.tasks required")
-    if "metadataCatalogConfig" in data:
+    if data.get("metadataCatalogConfig") is not None:
         import capo_appflow.types.metadata_catalog_config
 
         out["metadata_catalog_config"] = (
@@ -130,6 +130,6 @@ def deserialize_json(data: dict) -> UpdateFlowRequest:
                 data["metadataCatalogConfig"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

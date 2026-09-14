@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: ExpiryEventsConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExpiryEventsConfiguration:
     out: ExpiryEventsConfiguration = {}  # type: ignore[typeddict-item]
-    if "DaysBeforeExpiry" in data:
+    if data.get("DaysBeforeExpiry") is not None:
         out["days_before_expiry"] = data["DaysBeforeExpiry"]
     return out

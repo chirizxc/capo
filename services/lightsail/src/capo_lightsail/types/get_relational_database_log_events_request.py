@@ -54,32 +54,32 @@ def serialize_aws_json_1_1(value: GetRelationalDatabaseLogEventsRequest) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> GetRelationalDatabaseLogEventsRequest:
     out: GetRelationalDatabaseLogEventsRequest = {}  # type: ignore[typeddict-item]
-    if "relationalDatabaseName" in data:
+    if data.get("relationalDatabaseName") is not None:
         out["relational_database_name"] = data["relationalDatabaseName"]
     else:
         raise DeserializationError(
             "GetRelationalDatabaseLogEventsRequest.relational_database_name required"
         )
-    if "logStreamName" in data:
+    if data.get("logStreamName") is not None:
         out["log_stream_name"] = data["logStreamName"]
     else:
         raise DeserializationError(
             "GetRelationalDatabaseLogEventsRequest.log_stream_name required"
         )
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_lightsail.types.iso_date
 
         out["start_time"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
             data["startTime"]
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_lightsail.types.iso_date
 
         out["end_time"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
             data["endTime"]
         )
-    if "startFromHead" in data:
+    if data.get("startFromHead") is not None:
         out["start_from_head"] = data["startFromHead"]
-    if "pageToken" in data:
+    if data.get("pageToken") is not None:
         out["page_token"] = data["pageToken"]
     return out

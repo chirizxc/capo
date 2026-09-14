@@ -54,19 +54,19 @@ def serialize_json(value: PrivateKeyFlagsV4) -> dict:
 
 def deserialize_json(data: dict) -> PrivateKeyFlagsV4:
     out: PrivateKeyFlagsV4 = {}  # type: ignore[typeddict-item]
-    if "ExportableKey" in data:
+    if data.get("ExportableKey") is not None:
         out["exportable_key"] = data["ExportableKey"]
-    if "StrongKeyProtectionRequired" in data:
+    if data.get("StrongKeyProtectionRequired") is not None:
         out["strong_key_protection_required"] = data["StrongKeyProtectionRequired"]
-    if "RequireAlternateSignatureAlgorithm" in data:
+    if data.get("RequireAlternateSignatureAlgorithm") is not None:
         out["require_alternate_signature_algorithm"] = data[
             "RequireAlternateSignatureAlgorithm"
         ]
-    if "RequireSameKeyRenewal" in data:
+    if data.get("RequireSameKeyRenewal") is not None:
         out["require_same_key_renewal"] = data["RequireSameKeyRenewal"]
-    if "UseLegacyProvider" in data:
+    if data.get("UseLegacyProvider") is not None:
         out["use_legacy_provider"] = data["UseLegacyProvider"]
-    if "ClientVersion" in data:
+    if data.get("ClientVersion") is not None:
         import capo_pca_connector_ad.types.client_compatibility_v4
 
         out["client_version"] = (

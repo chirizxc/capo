@@ -28,8 +28,8 @@ def serialize_json(value: DownloadUrlMetadata) -> dict:
 
 def deserialize_json(data: dict) -> DownloadUrlMetadata:
     out: DownloadUrlMetadata = {}  # type: ignore[typeddict-item]
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
-    if "UrlExpiry" in data:
+    if data.get("UrlExpiry") is not None:
         out["url_expiry"] = data["UrlExpiry"]
     return out

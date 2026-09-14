@@ -34,15 +34,15 @@ def serialize_json(value: ContractFilter) -> dict:
 
 def deserialize_json(data: dict) -> ContractFilter:
     out: ContractFilter = {}  # type: ignore[typeddict-item]
-    if "network" in data:
+    if data.get("network") is not None:
         out["network"] = data["network"]
     else:
         raise DeserializationError("ContractFilter.network required")
-    if "tokenStandard" in data:
+    if data.get("tokenStandard") is not None:
         out["token_standard"] = data["tokenStandard"]
     else:
         raise DeserializationError("ContractFilter.token_standard required")
-    if "deployerAddress" in data:
+    if data.get("deployerAddress") is not None:
         out["deployer_address"] = data["deployerAddress"]
     else:
         raise DeserializationError("ContractFilter.deployer_address required")

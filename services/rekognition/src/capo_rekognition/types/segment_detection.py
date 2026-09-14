@@ -86,29 +86,29 @@ def serialize_aws_json_1_1(value: SegmentDetection) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SegmentDetection:
     out: SegmentDetection = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_rekognition.types.segment_type
 
         out["type"] = capo_rekognition.types.segment_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "StartTimestampMillis" in data:
+    if data.get("StartTimestampMillis") is not None:
         out["start_timestamp_millis"] = data["StartTimestampMillis"]
     else:
         out["start_timestamp_millis"] = 0
-    if "EndTimestampMillis" in data:
+    if data.get("EndTimestampMillis") is not None:
         out["end_timestamp_millis"] = data["EndTimestampMillis"]
     else:
         out["end_timestamp_millis"] = 0
-    if "DurationMillis" in data:
+    if data.get("DurationMillis") is not None:
         out["duration_millis"] = data["DurationMillis"]
-    if "StartTimecodeSMPTE" in data:
+    if data.get("StartTimecodeSMPTE") is not None:
         out["start_timecode_smpte"] = data["StartTimecodeSMPTE"]
-    if "EndTimecodeSMPTE" in data:
+    if data.get("EndTimecodeSMPTE") is not None:
         out["end_timecode_smpte"] = data["EndTimecodeSMPTE"]
-    if "DurationSMPTE" in data:
+    if data.get("DurationSMPTE") is not None:
         out["duration_smpte"] = data["DurationSMPTE"]
-    if "TechnicalCueSegment" in data:
+    if data.get("TechnicalCueSegment") is not None:
         import capo_rekognition.types.technical_cue_segment
 
         out["technical_cue_segment"] = (
@@ -116,7 +116,7 @@ def deserialize_aws_json_1_1(data: dict) -> SegmentDetection:
                 data["TechnicalCueSegment"]
             )
         )
-    if "ShotSegment" in data:
+    if data.get("ShotSegment") is not None:
         import capo_rekognition.types.shot_segment
 
         out["shot_segment"] = (
@@ -124,10 +124,10 @@ def deserialize_aws_json_1_1(data: dict) -> SegmentDetection:
                 data["ShotSegment"]
             )
         )
-    if "StartFrameNumber" in data:
+    if data.get("StartFrameNumber") is not None:
         out["start_frame_number"] = data["StartFrameNumber"]
-    if "EndFrameNumber" in data:
+    if data.get("EndFrameNumber") is not None:
         out["end_frame_number"] = data["EndFrameNumber"]
-    if "DurationFrames" in data:
+    if data.get("DurationFrames") is not None:
         out["duration_frames"] = data["DurationFrames"]
     return out

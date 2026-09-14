@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: ListMobileSdkReleasesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListMobileSdkReleasesRequest:
     out: ListMobileSdkReleasesRequest = {}  # type: ignore[typeddict-item]
-    if "Platform" in data:
+    if data.get("Platform") is not None:
         import capo_wafv2.types.platform
 
         out["platform"] = capo_wafv2.types.platform.deserialize_aws_json_1_1(
@@ -46,8 +46,8 @@ def deserialize_aws_json_1_1(data: dict) -> ListMobileSdkReleasesRequest:
         )
     else:
         raise DeserializationError("ListMobileSdkReleasesRequest.platform required")
-    if "NextMarker" in data:
+    if data.get("NextMarker") is not None:
         out["next_marker"] = data["NextMarker"]
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
     return out

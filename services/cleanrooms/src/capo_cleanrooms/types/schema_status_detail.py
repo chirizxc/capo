@@ -71,7 +71,7 @@ def serialize_json(value: SchemaStatusDetail) -> dict:
 
 def deserialize_json(data: dict) -> SchemaStatusDetail:
     out: SchemaStatusDetail = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_cleanrooms.types.schema_status
 
         out["status"] = capo_cleanrooms.types.schema_status.deserialize_json(
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> SchemaStatusDetail:
         )
     else:
         raise DeserializationError("SchemaStatusDetail.status required")
-    if "reasons" in data:
+    if data.get("reasons") is not None:
         import capo_cleanrooms.types.schema_status_reason_list
 
         out["reasons"] = (
@@ -87,7 +87,7 @@ def deserialize_json(data: dict) -> SchemaStatusDetail:
                 data["reasons"]
             )
         )
-    if "analysisRuleType" in data:
+    if data.get("analysisRuleType") is not None:
         import capo_cleanrooms.types.analysis_rule_type
 
         out["analysis_rule_type"] = (
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> SchemaStatusDetail:
                 data["analysisRuleType"]
             )
         )
-    if "configurations" in data:
+    if data.get("configurations") is not None:
         import capo_cleanrooms.types.schema_configuration_list
 
         out["configurations"] = (
@@ -103,7 +103,7 @@ def deserialize_json(data: dict) -> SchemaStatusDetail:
                 data["configurations"]
             )
         )
-    if "analysisType" in data:
+    if data.get("analysisType") is not None:
         import capo_cleanrooms.types.analysis_type
 
         out["analysis_type"] = capo_cleanrooms.types.analysis_type.deserialize_json(

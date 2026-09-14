@@ -32,12 +32,12 @@ def serialize_json(value: ListKeywordsForDataSourceResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListKeywordsForDataSourceResponse:
     out: ListKeywordsForDataSourceResponse = {}  # type: ignore[typeddict-item]
-    if "keywords" in data:
+    if data.get("keywords") is not None:
         import capo_auditmanager.types.keywords
 
         out["keywords"] = capo_auditmanager.types.keywords.deserialize_json(
             data["keywords"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

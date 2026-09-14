@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> CommonControlSummaryList:
 
     out: CommonControlSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_controlcatalog.types.common_control_summary.deserialize_json(item)
         )

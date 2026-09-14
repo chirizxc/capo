@@ -68,17 +68,17 @@ def serialize_aws_json_1_1(value: CreateEdgePackagingJobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateEdgePackagingJobRequest:
     out: CreateEdgePackagingJobRequest = {}  # type: ignore[typeddict-item]
-    if "EdgePackagingJobName" in data:
+    if data.get("EdgePackagingJobName") is not None:
         out["edge_packaging_job_name"] = data["EdgePackagingJobName"]
-    if "CompilationJobName" in data:
+    if data.get("CompilationJobName") is not None:
         out["compilation_job_name"] = data["CompilationJobName"]
-    if "ModelName" in data:
+    if data.get("ModelName") is not None:
         out["model_name"] = data["ModelName"]
-    if "ModelVersion" in data:
+    if data.get("ModelVersion") is not None:
         out["model_version"] = data["ModelVersion"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "OutputConfig" in data:
+    if data.get("OutputConfig") is not None:
         import capo_sagemaker.types.edge_output_config
 
         out["output_config"] = (
@@ -86,9 +86,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateEdgePackagingJobRequest:
                 data["OutputConfig"]
             )
         )
-    if "ResourceKey" in data:
+    if data.get("ResourceKey") is not None:
         out["resource_key"] = data["ResourceKey"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(

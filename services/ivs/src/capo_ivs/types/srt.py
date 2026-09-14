@@ -28,8 +28,8 @@ def serialize_json(value: Srt) -> dict:
 
 def deserialize_json(data: dict) -> Srt:
     out: Srt = {}  # type: ignore[typeddict-item]
-    if "endpoint" in data:
+    if data.get("endpoint") is not None:
         out["endpoint"] = data["endpoint"]
-    if "passphrase" in data:
+    if data.get("passphrase") is not None:
         out["passphrase"] = data["passphrase"]
     return out

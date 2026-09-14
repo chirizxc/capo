@@ -49,18 +49,18 @@ def serialize_json(value: ResetConnectorMetadataCacheRequest) -> dict:
 
 def deserialize_json(data: dict) -> ResetConnectorMetadataCacheRequest:
     out: ResetConnectorMetadataCacheRequest = {}  # type: ignore[typeddict-item]
-    if "connectorProfileName" in data:
+    if data.get("connectorProfileName") is not None:
         out["connector_profile_name"] = data["connectorProfileName"]
-    if "connectorType" in data:
+    if data.get("connectorType") is not None:
         import capo_appflow.types.connector_type
 
         out["connector_type"] = capo_appflow.types.connector_type.deserialize_json(
             data["connectorType"]
         )
-    if "connectorEntityName" in data:
+    if data.get("connectorEntityName") is not None:
         out["connector_entity_name"] = data["connectorEntityName"]
-    if "entitiesPath" in data:
+    if data.get("entitiesPath") is not None:
         out["entities_path"] = data["entitiesPath"]
-    if "apiVersion" in data:
+    if data.get("apiVersion") is not None:
         out["api_version"] = data["apiVersion"]
     return out

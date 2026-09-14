@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: ListUploadsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListUploadsResult:
     out: ListUploadsResult = {}  # type: ignore[typeddict-item]
-    if "uploads" in data:
+    if data.get("uploads") is not None:
         import capo_device_farm.types.uploads
 
         out["uploads"] = capo_device_farm.types.uploads.deserialize_aws_json_1_1(
             data["uploads"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

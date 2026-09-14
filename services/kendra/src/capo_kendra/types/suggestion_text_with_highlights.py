@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: SuggestionTextWithHighlights) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SuggestionTextWithHighlights:
     out: SuggestionTextWithHighlights = {}  # type: ignore[typeddict-item]
-    if "Text" in data:
+    if data.get("Text") is not None:
         out["text"] = data["Text"]
-    if "Highlights" in data:
+    if data.get("Highlights") is not None:
         import capo_kendra.types.suggestion_highlight_list
 
         out["highlights"] = (

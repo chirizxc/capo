@@ -34,19 +34,19 @@ def serialize_json(value: GetKeyResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetKeyResponse:
     out: GetKeyResponse = {}  # type: ignore[typeddict-item]
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
     else:
         raise DeserializationError("GetKeyResponse.key required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("GetKeyResponse.value required")
-    if "ItemCount" in data:
+    if data.get("ItemCount") is not None:
         out["item_count"] = data["ItemCount"]
     else:
         raise DeserializationError("GetKeyResponse.item_count required")
-    if "TotalSizeInBytes" in data:
+    if data.get("TotalSizeInBytes") is not None:
         out["total_size_in_bytes"] = data["TotalSizeInBytes"]
     else:
         raise DeserializationError("GetKeyResponse.total_size_in_bytes required")

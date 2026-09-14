@@ -42,16 +42,16 @@ def serialize_aws_json_1_1(value: BatchGetDocumentStatusResponseError) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetDocumentStatusResponseError:
     out: BatchGetDocumentStatusResponseError = {}  # type: ignore[typeddict-item]
-    if "DocumentId" in data:
+    if data.get("DocumentId") is not None:
         out["document_id"] = data["DocumentId"]
-    if "DataSourceId" in data:
+    if data.get("DataSourceId") is not None:
         out["data_source_id"] = data["DataSourceId"]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         import capo_kendra.types.error_code
 
         out["error_code"] = capo_kendra.types.error_code.deserialize_aws_json_1_1(
             data["ErrorCode"]
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     return out

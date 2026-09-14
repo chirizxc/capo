@@ -20,13 +20,18 @@ class DeleteOdbNetworkInput(TypedDict, closed=True):
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: DeleteOdbNetworkInput) -> dict:
     out: dict = {}
+    out["odbNetworkId"] = value["odb_network_id"]
     out["deleteAssociatedResources"] = value["delete_associated_resources"]
     return out
 
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteOdbNetworkInput:
     out: DeleteOdbNetworkInput = {}  # type: ignore[typeddict-item]
-    if "deleteAssociatedResources" in data:
+    if data.get("odbNetworkId") is not None:
+        out["odb_network_id"] = data["odbNetworkId"]
+    else:
+        raise DeserializationError("DeleteOdbNetworkInput.odb_network_id required")
+    if data.get("deleteAssociatedResources") is not None:
         out["delete_associated_resources"] = data["deleteAssociatedResources"]
     else:
         raise DeserializationError(

@@ -55,29 +55,29 @@ def serialize_aws_json_1_1(value: RuleConfigurationProperty) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RuleConfigurationProperty:
     out: RuleConfigurationProperty = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("RuleConfigurationProperty.name required")
-    if "required" in data:
+    if data.get("required") is not None:
         out["required"] = data["required"]
     else:
         out["required"] = False
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
     else:
         out["key"] = False
-    if "secret" in data:
+    if data.get("secret") is not None:
         out["secret"] = data["secret"]
     else:
         out["secret"] = False
-    if "queryable" in data:
+    if data.get("queryable") is not None:
         out["queryable"] = data["queryable"]
     else:
         out["queryable"] = False
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_codepipeline.types.rule_configuration_property_type
 
         out["type"] = (

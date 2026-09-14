@@ -19,7 +19,7 @@ def serialize_aws_json_1_1(value: DeleteUsageLimitRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteUsageLimitRequest:
     out: DeleteUsageLimitRequest = {}  # type: ignore[typeddict-item]
-    if "usageLimitId" in data:
+    if data.get("usageLimitId") is not None:
         out["usage_limit_id"] = data["usageLimitId"]
     else:
         raise DeserializationError("DeleteUsageLimitRequest.usage_limit_id required")

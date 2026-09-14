@@ -31,12 +31,12 @@ def serialize_aws_json_1_1(value: DescribeSnapshotsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeSnapshotsResponse:
     out: DescribeSnapshotsResponse = {}  # type: ignore[typeddict-item]
-    if "Snapshots" in data:
+    if data.get("Snapshots") is not None:
         import capo_fsx.types.snapshots
 
         out["snapshots"] = capo_fsx.types.snapshots.deserialize_aws_json_1_1(
             data["Snapshots"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

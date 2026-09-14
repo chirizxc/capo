@@ -50,15 +50,15 @@ def serialize_json(value: VideoSourceDetails) -> dict:
 
 def deserialize_json(data: dict) -> VideoSourceDetails:
     out: VideoSourceDetails = {}  # type: ignore[typeddict-item]
-    if "mediaId" in data:
+    if data.get("mediaId") is not None:
         out["media_id"] = data["mediaId"]
-    if "mediaMimeType" in data:
+    if data.get("mediaMimeType") is not None:
         out["media_mime_type"] = data["mediaMimeType"]
-    if "startTimeMilliseconds" in data:
+    if data.get("startTimeMilliseconds") is not None:
         out["start_time_milliseconds"] = data["startTimeMilliseconds"]
-    if "endTimeMilliseconds" in data:
+    if data.get("endTimeMilliseconds") is not None:
         out["end_time_milliseconds"] = data["endTimeMilliseconds"]
-    if "videoExtractionType" in data:
+    if data.get("videoExtractionType") is not None:
         import capo_qbusiness.types.video_extraction_type
 
         out["video_extraction_type"] = (

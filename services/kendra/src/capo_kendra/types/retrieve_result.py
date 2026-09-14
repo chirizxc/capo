@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: RetrieveResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RetrieveResult:
     out: RetrieveResult = {}  # type: ignore[typeddict-item]
-    if "QueryId" in data:
+    if data.get("QueryId") is not None:
         out["query_id"] = data["QueryId"]
-    if "ResultItems" in data:
+    if data.get("ResultItems") is not None:
         import capo_kendra.types.retrieve_result_item_list
 
         out["result_items"] = (

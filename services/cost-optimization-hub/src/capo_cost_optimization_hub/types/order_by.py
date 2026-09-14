@@ -31,9 +31,9 @@ def serialize_aws_json_1_0(value: OrderBy) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> OrderBy:
     out: OrderBy = {}  # type: ignore[typeddict-item]
-    if "dimension" in data:
+    if data.get("dimension") is not None:
         out["dimension"] = data["dimension"]
-    if "order" in data:
+    if data.get("order") is not None:
         import capo_cost_optimization_hub.types.order
 
         out["order"] = capo_cost_optimization_hub.types.order.deserialize_aws_json_1_0(

@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: WindowsFsrmConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WindowsFsrmConfiguration:
     out: WindowsFsrmConfiguration = {}  # type: ignore[typeddict-item]
-    if "FsrmServiceEnabled" in data:
+    if data.get("FsrmServiceEnabled") is not None:
         out["fsrm_service_enabled"] = data["FsrmServiceEnabled"]
-    if "EventLogDestination" in data:
+    if data.get("EventLogDestination") is not None:
         out["event_log_destination"] = data["EventLogDestination"]
     return out

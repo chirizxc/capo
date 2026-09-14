@@ -51,29 +51,29 @@ def serialize_aws_json_1_0(value: ObdInterface) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ObdInterface:
     out: ObdInterface = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ObdInterface.name required")
-    if "requestMessageId" in data:
+    if data.get("requestMessageId") is not None:
         out["request_message_id"] = data["requestMessageId"]
     else:
         out["request_message_id"] = 0
-    if "obdStandard" in data:
+    if data.get("obdStandard") is not None:
         out["obd_standard"] = data["obdStandard"]
-    if "pidRequestIntervalSeconds" in data:
+    if data.get("pidRequestIntervalSeconds") is not None:
         out["pid_request_interval_seconds"] = data["pidRequestIntervalSeconds"]
     else:
         out["pid_request_interval_seconds"] = 0
-    if "dtcRequestIntervalSeconds" in data:
+    if data.get("dtcRequestIntervalSeconds") is not None:
         out["dtc_request_interval_seconds"] = data["dtcRequestIntervalSeconds"]
     else:
         out["dtc_request_interval_seconds"] = 0
-    if "useExtendedIds" in data:
+    if data.get("useExtendedIds") is not None:
         out["use_extended_ids"] = data["useExtendedIds"]
     else:
         out["use_extended_ids"] = False
-    if "hasTransmissionEcu" in data:
+    if data.get("hasTransmissionEcu") is not None:
         out["has_transmission_ecu"] = data["hasTransmissionEcu"]
     else:
         out["has_transmission_ecu"] = False

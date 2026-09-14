@@ -27,7 +27,7 @@ def serialize_json(value: ScanCondition) -> dict:
 
 def deserialize_json(data: dict) -> ScanCondition:
     out: ScanCondition = {}  # type: ignore[typeddict-item]
-    if "mapEquals" in data:
+    if data.get("mapEquals") is not None:
         import capo_guardduty.types.map_equals
 
         out["map_equals"] = capo_guardduty.types.map_equals.deserialize_json(

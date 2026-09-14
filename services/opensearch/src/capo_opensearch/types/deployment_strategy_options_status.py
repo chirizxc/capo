@@ -36,7 +36,7 @@ def serialize_json(value: DeploymentStrategyOptionsStatus) -> dict:
 
 def deserialize_json(data: dict) -> DeploymentStrategyOptionsStatus:
     out: DeploymentStrategyOptionsStatus = {}  # type: ignore[typeddict-item]
-    if "Options" in data:
+    if data.get("Options") is not None:
         import capo_opensearch.types.deployment_strategy_options
 
         out["options"] = (
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> DeploymentStrategyOptionsStatus:
         )
     else:
         raise DeserializationError("DeploymentStrategyOptionsStatus.options required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_opensearch.types.option_status
 
         out["status"] = capo_opensearch.types.option_status.deserialize_json(

@@ -29,7 +29,7 @@ def serialize_json(value: RouteTollSummary) -> dict:
 
 def deserialize_json(data: dict) -> RouteTollSummary:
     out: RouteTollSummary = {}  # type: ignore[typeddict-item]
-    if "Total" in data:
+    if data.get("Total") is not None:
         import capo_geo_routes.types.route_toll_price_summary
 
         out["total"] = capo_geo_routes.types.route_toll_price_summary.deserialize_json(

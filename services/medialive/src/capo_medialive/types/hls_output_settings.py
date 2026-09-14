@@ -50,7 +50,7 @@ def serialize_json(value: HlsOutputSettings) -> dict:
 
 def deserialize_json(data: dict) -> HlsOutputSettings:
     out: HlsOutputSettings = {}  # type: ignore[typeddict-item]
-    if "h265PackagingType" in data:
+    if data.get("h265PackagingType") is not None:
         import capo_medialive.types.hls_h265_packaging_type
 
         out["h265_packaging_type"] = (
@@ -58,14 +58,14 @@ def deserialize_json(data: dict) -> HlsOutputSettings:
                 data["h265PackagingType"]
             )
         )
-    if "hlsSettings" in data:
+    if data.get("hlsSettings") is not None:
         import capo_medialive.types.hls_settings
 
         out["hls_settings"] = capo_medialive.types.hls_settings.deserialize_json(
             data["hlsSettings"]
         )
-    if "nameModifier" in data:
+    if data.get("nameModifier") is not None:
         out["name_modifier"] = data["nameModifier"]
-    if "segmentModifier" in data:
+    if data.get("segmentModifier") is not None:
         out["segment_modifier"] = data["segmentModifier"]
     return out
