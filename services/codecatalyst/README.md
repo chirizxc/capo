@@ -19,6 +19,21 @@ async def main():
         print(response["user_id"])
 ```
 
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_codecatalyst import AsyncCodeCatalystClient
+
+
+async def main():
+    async with AsyncCodeCatalystClient() as code_catalyst:
+        # Example: paginate over list_access_tokens
+        async for item in code_catalyst.iter_list_access_tokens():
+            print(item)
+```
+
 ## Error Handling
 
 The SDK raises exceptions for errors returned by the API. Catch them to handle failures gracefully.

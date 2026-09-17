@@ -19,6 +19,21 @@ async def main():
         print(response["tags"])
 ```
 
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_aiops import AsyncAIOpsClient
+
+
+async def main():
+    async with AsyncAIOpsClient() as ai_ops:
+        # Example: paginate over list_investigation_groups
+        async for item in ai_ops.iter_list_investigation_groups():
+            print(item)
+```
+
 ## Error Handling
 
 The SDK raises exceptions for errors returned by the API. Catch them to handle failures gracefully.

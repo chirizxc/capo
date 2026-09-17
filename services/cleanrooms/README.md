@@ -19,6 +19,21 @@ async def main():
         print(response["tags"])
 ```
 
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_cleanrooms import AsyncCleanRoomsClient
+
+
+async def main():
+    async with AsyncCleanRoomsClient() as clean_rooms:
+        # Example: paginate over list_collaboration_change_requests
+        async for item in clean_rooms.iter_list_collaboration_change_requests():
+            print(item)
+```
+
 ## Error Handling
 
 The SDK raises exceptions for errors returned by the API. Catch them to handle failures gracefully.

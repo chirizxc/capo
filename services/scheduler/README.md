@@ -19,6 +19,21 @@ async def main():
         print(response["tags"])
 ```
 
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_scheduler import AsyncSchedulerClient
+
+
+async def main():
+    async with AsyncSchedulerClient() as scheduler:
+        # Example: paginate over list_schedules
+        async for item in scheduler.iter_list_schedules():
+            print(item)
+```
+
 ## Error Handling
 
 The SDK raises exceptions for errors returned by the API. Catch them to handle failures gracefully.

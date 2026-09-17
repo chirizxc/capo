@@ -1,6 +1,8 @@
 """Generated from Smithy shape ``com.amazonaws.amplifyuibuilder#AmplifyUIBuilder``."""
 
+import uuid
 import warnings
+from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +18,7 @@ from capo_amplifyuibuilder._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_amplifyuibuilder._auth._zapros_handler import AuthMiddleware
+from capo_amplifyuibuilder._pagination import resolve_path as _resolve_path
 from capo_amplifyuibuilder._resources.amplify_ui_builder.codegen_job_resource import (
     CodegenJobResource,
 )
@@ -39,25 +42,82 @@ from capo_amplifyuibuilder._services._pipeline import (
 )
 
 if TYPE_CHECKING:
+    import capo_amplifyuibuilder.types.app_id
+    import capo_amplifyuibuilder.types.codegen_job_summary
+    import capo_amplifyuibuilder.types.component
+    import capo_amplifyuibuilder.types.component_summary
+    import capo_amplifyuibuilder.types.create_component_data
+    import capo_amplifyuibuilder.types.create_component_request
+    import capo_amplifyuibuilder.types.create_component_response
+    import capo_amplifyuibuilder.types.create_form_data
+    import capo_amplifyuibuilder.types.create_form_request
+    import capo_amplifyuibuilder.types.create_form_response
+    import capo_amplifyuibuilder.types.create_theme_data
+    import capo_amplifyuibuilder.types.create_theme_request
+    import capo_amplifyuibuilder.types.create_theme_response
+    import capo_amplifyuibuilder.types.delete_component_request
+    import capo_amplifyuibuilder.types.delete_form_request
+    import capo_amplifyuibuilder.types.delete_theme_request
     import capo_amplifyuibuilder.types.exchange_code_for_token_request
     import capo_amplifyuibuilder.types.exchange_code_for_token_request_body
     import capo_amplifyuibuilder.types.exchange_code_for_token_response
+    import capo_amplifyuibuilder.types.export_components_request
+    import capo_amplifyuibuilder.types.export_components_response
+    import capo_amplifyuibuilder.types.export_forms_request
+    import capo_amplifyuibuilder.types.export_forms_response
+    import capo_amplifyuibuilder.types.export_themes_request
+    import capo_amplifyuibuilder.types.export_themes_response
+    import capo_amplifyuibuilder.types.form
+    import capo_amplifyuibuilder.types.form_summary
+    import capo_amplifyuibuilder.types.get_codegen_job_request
+    import capo_amplifyuibuilder.types.get_codegen_job_response
+    import capo_amplifyuibuilder.types.get_component_request
+    import capo_amplifyuibuilder.types.get_component_response
+    import capo_amplifyuibuilder.types.get_form_request
+    import capo_amplifyuibuilder.types.get_form_response
     import capo_amplifyuibuilder.types.get_metadata_request
     import capo_amplifyuibuilder.types.get_metadata_response
+    import capo_amplifyuibuilder.types.get_theme_request
+    import capo_amplifyuibuilder.types.get_theme_response
+    import capo_amplifyuibuilder.types.list_codegen_jobs_limit
+    import capo_amplifyuibuilder.types.list_codegen_jobs_request
+    import capo_amplifyuibuilder.types.list_codegen_jobs_response
+    import capo_amplifyuibuilder.types.list_components_request
+    import capo_amplifyuibuilder.types.list_components_response
+    import capo_amplifyuibuilder.types.list_entity_limit
+    import capo_amplifyuibuilder.types.list_forms_request
+    import capo_amplifyuibuilder.types.list_forms_response
     import capo_amplifyuibuilder.types.list_tags_for_resource_request
     import capo_amplifyuibuilder.types.list_tags_for_resource_response
+    import capo_amplifyuibuilder.types.list_themes_request
+    import capo_amplifyuibuilder.types.list_themes_response
     import capo_amplifyuibuilder.types.put_metadata_flag_body
     import capo_amplifyuibuilder.types.put_metadata_flag_request
     import capo_amplifyuibuilder.types.refresh_token_request
     import capo_amplifyuibuilder.types.refresh_token_request_body
     import capo_amplifyuibuilder.types.refresh_token_response
+    import capo_amplifyuibuilder.types.start_codegen_job_data
+    import capo_amplifyuibuilder.types.start_codegen_job_request
+    import capo_amplifyuibuilder.types.start_codegen_job_response
     import capo_amplifyuibuilder.types.tag_key_list
     import capo_amplifyuibuilder.types.tag_resource_request
     import capo_amplifyuibuilder.types.tag_resource_response
     import capo_amplifyuibuilder.types.tags
+    import capo_amplifyuibuilder.types.theme
+    import capo_amplifyuibuilder.types.theme_summary
     import capo_amplifyuibuilder.types.token_providers
     import capo_amplifyuibuilder.types.untag_resource_request
     import capo_amplifyuibuilder.types.untag_resource_response
+    import capo_amplifyuibuilder.types.update_component_data
+    import capo_amplifyuibuilder.types.update_component_request
+    import capo_amplifyuibuilder.types.update_component_response
+    import capo_amplifyuibuilder.types.update_form_data
+    import capo_amplifyuibuilder.types.update_form_request
+    import capo_amplifyuibuilder.types.update_form_response
+    import capo_amplifyuibuilder.types.update_theme_data
+    import capo_amplifyuibuilder.types.update_theme_request
+    import capo_amplifyuibuilder.types.update_theme_response
+    import capo_amplifyuibuilder.types.uuid
 
 
 class AmplifyUIBuilderClientConfig(TypedDict, total=False, closed=True):
@@ -495,6 +555,1329 @@ class AmplifyUIBuilderClient:
         )
         response.response.close()
         return response.output
+
+    def start_codegen_job(
+        self,
+        app_id: "capo_amplifyuibuilder.types.app_id.AppId",
+        environment_name: str,
+        codegen_job_to_create: "capo_amplifyuibuilder.types.start_codegen_job_data.StartCodegenJobData",
+        *,
+        config_overrides: Optional[AmplifyUIBuilderClientConfig] = None,
+        client_token: Optional[str] = None,
+    ) -> (
+        "capo_amplifyuibuilder.types.start_codegen_job_response.StartCodegenJobResponse"
+    ):
+        """<p>Starts a code generation job for a specified Amplify app and backend environment.</p>
+
+        Args:
+            app_id: <p>The unique ID for the Amplify app.</p>
+            environment_name: <p>The name of the backend environment that is a part of the Amplify app.</p>
+            client_token: <p>The idempotency token used to ensure that the code generation job request completes only once.</p>
+            codegen_job_to_create: <p>The code generation job resource configuration.</p>
+
+        Raises:
+            capo_amplifyuibuilder.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred. Please retry your request.</p>
+            capo_amplifyuibuilder.errors.invalid_parameter_exception.InvalidParameterException: <p>An invalid or out-of-range value was supplied for the input parameter.</p>
+            capo_amplifyuibuilder.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_amplifyuibuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_amplifyuibuilder.types.start_codegen_job_request.StartCodegenJobRequest]",
+        ) -> OperationResponse[
+            "capo_amplifyuibuilder.types.start_codegen_job_response.StartCodegenJobResponse"
+        ]:
+            import capo_amplifyuibuilder._operations.amplify_ui_builder.start_codegen_job
+
+            output, http_response = (
+                capo_amplifyuibuilder._operations.amplify_ui_builder.start_codegen_job.start_codegen_job(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_amplifyuibuilder.types.start_codegen_job_request.StartCodegenJobRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+            "codegen_job_to_create": codegen_job_to_create,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_codegen_job(
+        self,
+        app_id: "capo_amplifyuibuilder.types.app_id.AppId",
+        environment_name: str,
+        id: "capo_amplifyuibuilder.types.uuid.Uuid",
+        *,
+        config_overrides: Optional[AmplifyUIBuilderClientConfig] = None,
+    ) -> "capo_amplifyuibuilder.types.get_codegen_job_response.GetCodegenJobResponse":
+        """<p>Returns an existing code generation job.</p>
+
+        Args:
+            app_id: <p>The unique ID of the Amplify app associated with the code generation job.</p>
+            environment_name: <p>The name of the backend environment that is a part of the Amplify app associated with the code generation job.</p>
+            id: <p>The unique ID of the code generation job.</p>
+
+        Raises:
+            capo_amplifyuibuilder.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred. Please retry your request.</p>
+            capo_amplifyuibuilder.errors.invalid_parameter_exception.InvalidParameterException: <p>An invalid or out-of-range value was supplied for the input parameter.</p>
+            capo_amplifyuibuilder.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource does not exist, or access was denied.</p>
+            capo_amplifyuibuilder.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_amplifyuibuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_amplifyuibuilder.types.get_codegen_job_request.GetCodegenJobRequest]",
+        ) -> OperationResponse[
+            "capo_amplifyuibuilder.types.get_codegen_job_response.GetCodegenJobResponse"
+        ]:
+            import capo_amplifyuibuilder._operations.amplify_ui_builder.get_codegen_job
+
+            output, http_response = (
+                capo_amplifyuibuilder._operations.amplify_ui_builder.get_codegen_job.get_codegen_job(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_amplifyuibuilder.types.get_codegen_job_request.GetCodegenJobRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+            "id": id,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_codegen_jobs(
+        self,
+        app_id: "capo_amplifyuibuilder.types.app_id.AppId",
+        environment_name: str,
+        *,
+        config_overrides: Optional[AmplifyUIBuilderClientConfig] = None,
+        next_token: Optional[str] = None,
+        max_results: Optional[
+            "capo_amplifyuibuilder.types.list_codegen_jobs_limit.ListCodegenJobsLimit"
+        ] = None,
+    ) -> (
+        "capo_amplifyuibuilder.types.list_codegen_jobs_response.ListCodegenJobsResponse"
+    ):
+        """<p>Retrieves a list of code generation jobs for a specified Amplify app and backend environment.</p>
+
+        Args:
+            app_id: <p>The unique ID for the Amplify app.</p>
+            environment_name: <p>The name of the backend environment that is a part of the Amplify app.</p>
+            next_token: <p>The token to request the next page of results.</p>
+            max_results: <p>The maximum number of jobs to retrieve.</p>
+
+        Raises:
+            capo_amplifyuibuilder.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred. Please retry your request.</p>
+            capo_amplifyuibuilder.errors.invalid_parameter_exception.InvalidParameterException: <p>An invalid or out-of-range value was supplied for the input parameter.</p>
+            capo_amplifyuibuilder.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_amplifyuibuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_amplifyuibuilder.types.list_codegen_jobs_request.ListCodegenJobsRequest]",
+        ) -> OperationResponse[
+            "capo_amplifyuibuilder.types.list_codegen_jobs_response.ListCodegenJobsResponse"
+        ]:
+            import capo_amplifyuibuilder._operations.amplify_ui_builder.list_codegen_jobs
+
+            output, http_response = (
+                capo_amplifyuibuilder._operations.amplify_ui_builder.list_codegen_jobs.list_codegen_jobs(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_amplifyuibuilder.types.list_codegen_jobs_request.ListCodegenJobsRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_codegen_jobs(
+        self,
+        app_id: "capo_amplifyuibuilder.types.app_id.AppId",
+        environment_name: str,
+        *,
+        config_overrides: Optional[AmplifyUIBuilderClientConfig] = None,
+        next_token: Optional[str] = None,
+        max_results: Optional[
+            "capo_amplifyuibuilder.types.list_codegen_jobs_limit.ListCodegenJobsLimit"
+        ] = None,
+    ) -> "Iterator[capo_amplifyuibuilder.types.codegen_job_summary.CodegenJobSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_codegen_jobs(
+                app_id,
+                environment_name,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("entities",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def create_component(
+        self,
+        app_id: str,
+        environment_name: str,
+        component_to_create: "capo_amplifyuibuilder.types.create_component_data.CreateComponentData",
+        *,
+        config_overrides: Optional[AmplifyUIBuilderClientConfig] = None,
+        client_token: Optional[str] = None,
+    ) -> (
+        "capo_amplifyuibuilder.types.create_component_response.CreateComponentResponse"
+    ):
+        """<p>Creates a new component for an Amplify app.</p>
+
+        Args:
+            app_id: <p>The unique ID of the Amplify app to associate with the component.</p>
+            environment_name: <p>The name of the backend environment that is a part of the Amplify app.</p>
+            client_token: <p>The unique client token.</p>
+            component_to_create: <p>Represents the configuration of the component to create.</p>
+
+        Raises:
+            capo_amplifyuibuilder.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred. Please retry your request.</p>
+            capo_amplifyuibuilder.errors.invalid_parameter_exception.InvalidParameterException: <p>An invalid or out-of-range value was supplied for the input parameter.</p>
+            capo_amplifyuibuilder.errors.resource_conflict_exception.ResourceConflictException: <p>The resource specified in the request conflicts with an existing resource.</p>
+            capo_amplifyuibuilder.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>You exceeded your service quota. Service quotas, also referred to as limits, are the maximum number of service resources or operations for your Amazon Web Services account. </p>
+            capo_amplifyuibuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_amplifyuibuilder.types.create_component_request.CreateComponentRequest]",
+        ) -> OperationResponse[
+            "capo_amplifyuibuilder.types.create_component_response.CreateComponentResponse"
+        ]:
+            import capo_amplifyuibuilder._operations.amplify_ui_builder.create_component
+
+            output, http_response = (
+                capo_amplifyuibuilder._operations.amplify_ui_builder.create_component.create_component(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_amplifyuibuilder.types.create_component_request.CreateComponentRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+            "component_to_create": component_to_create,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_component(
+        self,
+        app_id: str,
+        environment_name: str,
+        id: "capo_amplifyuibuilder.types.uuid.Uuid",
+        *,
+        config_overrides: Optional[AmplifyUIBuilderClientConfig] = None,
+    ) -> "capo_amplifyuibuilder.types.get_component_response.GetComponentResponse":
+        """<p>Returns an existing component for an Amplify app.</p>
+
+        Args:
+            app_id: <p>The unique ID of the Amplify app.</p>
+            environment_name: <p>The name of the backend environment that is part of the Amplify app.</p>
+            id: <p>The unique ID of the component.</p>
+
+        Raises:
+            capo_amplifyuibuilder.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred. Please retry your request.</p>
+            capo_amplifyuibuilder.errors.invalid_parameter_exception.InvalidParameterException: <p>An invalid or out-of-range value was supplied for the input parameter.</p>
+            capo_amplifyuibuilder.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource does not exist, or access was denied.</p>
+            capo_amplifyuibuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_amplifyuibuilder.types.get_component_request.GetComponentRequest]",
+        ) -> OperationResponse[
+            "capo_amplifyuibuilder.types.get_component_response.GetComponentResponse"
+        ]:
+            import capo_amplifyuibuilder._operations.amplify_ui_builder.get_component
+
+            output, http_response = (
+                capo_amplifyuibuilder._operations.amplify_ui_builder.get_component.get_component(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_amplifyuibuilder.types.get_component_request.GetComponentRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+            "id": id,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_component(
+        self,
+        app_id: str,
+        environment_name: str,
+        id: "capo_amplifyuibuilder.types.uuid.Uuid",
+        updated_component: "capo_amplifyuibuilder.types.update_component_data.UpdateComponentData",
+        *,
+        config_overrides: Optional[AmplifyUIBuilderClientConfig] = None,
+        client_token: Optional[str] = None,
+    ) -> (
+        "capo_amplifyuibuilder.types.update_component_response.UpdateComponentResponse"
+    ):
+        """<p>Updates an existing component.</p>
+
+        Args:
+            app_id: <p>The unique ID for the Amplify app.</p>
+            environment_name: <p>The name of the backend environment that is part of the Amplify app.</p>
+            id: <p>The unique ID for the component.</p>
+            client_token: <p>The unique client token.</p>
+            updated_component: <p>The configuration of the updated component.</p>
+
+        Raises:
+            capo_amplifyuibuilder.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred. Please retry your request.</p>
+            capo_amplifyuibuilder.errors.invalid_parameter_exception.InvalidParameterException: <p>An invalid or out-of-range value was supplied for the input parameter.</p>
+            capo_amplifyuibuilder.errors.resource_conflict_exception.ResourceConflictException: <p>The resource specified in the request conflicts with an existing resource.</p>
+            capo_amplifyuibuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_amplifyuibuilder.types.update_component_request.UpdateComponentRequest]",
+        ) -> OperationResponse[
+            "capo_amplifyuibuilder.types.update_component_response.UpdateComponentResponse"
+        ]:
+            import capo_amplifyuibuilder._operations.amplify_ui_builder.update_component
+
+            output, http_response = (
+                capo_amplifyuibuilder._operations.amplify_ui_builder.update_component.update_component(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_amplifyuibuilder.types.update_component_request.UpdateComponentRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+            "id": id,
+            "updated_component": updated_component,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_component(
+        self,
+        app_id: str,
+        environment_name: str,
+        id: "capo_amplifyuibuilder.types.uuid.Uuid",
+        *,
+        config_overrides: Optional[AmplifyUIBuilderClientConfig] = None,
+    ) -> None:
+        """<p>Deletes a component from an Amplify app.</p>
+
+        Args:
+            app_id: <p>The unique ID of the Amplify app associated with the component to delete.</p>
+            environment_name: <p>The name of the backend environment that is a part of the Amplify app.</p>
+            id: <p>The unique ID of the component to delete.</p>
+
+        Raises:
+            capo_amplifyuibuilder.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred. Please retry your request.</p>
+            capo_amplifyuibuilder.errors.invalid_parameter_exception.InvalidParameterException: <p>An invalid or out-of-range value was supplied for the input parameter.</p>
+            capo_amplifyuibuilder.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource does not exist, or access was denied.</p>
+            capo_amplifyuibuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_amplifyuibuilder.types.delete_component_request.DeleteComponentRequest]",
+        ) -> OperationResponse[None]:
+            import capo_amplifyuibuilder._operations.amplify_ui_builder.delete_component
+
+            output, http_response = (
+                capo_amplifyuibuilder._operations.amplify_ui_builder.delete_component.delete_component(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_amplifyuibuilder.types.delete_component_request.DeleteComponentRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+            "id": id,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_components(
+        self,
+        app_id: str,
+        environment_name: str,
+        *,
+        config_overrides: Optional[AmplifyUIBuilderClientConfig] = None,
+        next_token: Optional[str] = None,
+        max_results: Optional[
+            "capo_amplifyuibuilder.types.list_entity_limit.ListEntityLimit"
+        ] = None,
+    ) -> "capo_amplifyuibuilder.types.list_components_response.ListComponentsResponse":
+        """<p>Retrieves a list of components for a specified Amplify app and backend environment.</p>
+
+        Args:
+            app_id: <p>The unique ID for the Amplify app.</p>
+            environment_name: <p>The name of the backend environment that is a part of the Amplify app.</p>
+            next_token: <p>The token to request the next page of results.</p>
+            max_results: <p>The maximum number of components to retrieve.</p>
+
+        Raises:
+            capo_amplifyuibuilder.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred. Please retry your request.</p>
+            capo_amplifyuibuilder.errors.invalid_parameter_exception.InvalidParameterException: <p>An invalid or out-of-range value was supplied for the input parameter.</p>
+            capo_amplifyuibuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_amplifyuibuilder.types.list_components_request.ListComponentsRequest]",
+        ) -> OperationResponse[
+            "capo_amplifyuibuilder.types.list_components_response.ListComponentsResponse"
+        ]:
+            import capo_amplifyuibuilder._operations.amplify_ui_builder.list_components
+
+            output, http_response = (
+                capo_amplifyuibuilder._operations.amplify_ui_builder.list_components.list_components(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_amplifyuibuilder.types.list_components_request.ListComponentsRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_components(
+        self,
+        app_id: str,
+        environment_name: str,
+        *,
+        config_overrides: Optional[AmplifyUIBuilderClientConfig] = None,
+        next_token: Optional[str] = None,
+        max_results: Optional[
+            "capo_amplifyuibuilder.types.list_entity_limit.ListEntityLimit"
+        ] = None,
+    ) -> "Iterator[capo_amplifyuibuilder.types.component_summary.ComponentSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_components(
+                app_id,
+                environment_name,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("entities",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def export_components(
+        self,
+        app_id: str,
+        environment_name: str,
+        *,
+        config_overrides: Optional[AmplifyUIBuilderClientConfig] = None,
+        next_token: Optional[str] = None,
+    ) -> "capo_amplifyuibuilder.types.export_components_response.ExportComponentsResponse":
+        """<p>Exports component configurations to code that is ready to integrate into an Amplify app.</p>
+
+        Args:
+            app_id: <p>The unique ID of the Amplify app to export components to.</p>
+            environment_name: <p>The name of the backend environment that is a part of the Amplify app.</p>
+            next_token: <p>The token to request the next page of results.</p>
+
+        Raises:
+            capo_amplifyuibuilder.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred. Please retry your request.</p>
+            capo_amplifyuibuilder.errors.invalid_parameter_exception.InvalidParameterException: <p>An invalid or out-of-range value was supplied for the input parameter.</p>
+            capo_amplifyuibuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_amplifyuibuilder.types.export_components_request.ExportComponentsRequest]",
+        ) -> OperationResponse[
+            "capo_amplifyuibuilder.types.export_components_response.ExportComponentsResponse"
+        ]:
+            import capo_amplifyuibuilder._operations.amplify_ui_builder.export_components
+
+            output, http_response = (
+                capo_amplifyuibuilder._operations.amplify_ui_builder.export_components.export_components(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_amplifyuibuilder.types.export_components_request.ExportComponentsRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_export_components(
+        self,
+        app_id: str,
+        environment_name: str,
+        *,
+        config_overrides: Optional[AmplifyUIBuilderClientConfig] = None,
+        next_token: Optional[str] = None,
+    ) -> "Iterator[capo_amplifyuibuilder.types.component.Component]":
+        _token = next_token
+        while True:
+            _response = self.export_components(
+                app_id,
+                environment_name,
+                config_overrides=config_overrides,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("entities",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def create_form(
+        self,
+        app_id: str,
+        environment_name: str,
+        form_to_create: "capo_amplifyuibuilder.types.create_form_data.CreateFormData",
+        *,
+        config_overrides: Optional[AmplifyUIBuilderClientConfig] = None,
+        client_token: Optional[str] = None,
+    ) -> "capo_amplifyuibuilder.types.create_form_response.CreateFormResponse":
+        """<p>Creates a new form for an Amplify app.</p>
+
+        Args:
+            app_id: <p>The unique ID of the Amplify app to associate with the form.</p>
+            environment_name: <p>The name of the backend environment that is a part of the Amplify app.</p>
+            client_token: <p>The unique client token.</p>
+            form_to_create: <p>Represents the configuration of the form to create.</p>
+
+        Raises:
+            capo_amplifyuibuilder.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred. Please retry your request.</p>
+            capo_amplifyuibuilder.errors.invalid_parameter_exception.InvalidParameterException: <p>An invalid or out-of-range value was supplied for the input parameter.</p>
+            capo_amplifyuibuilder.errors.resource_conflict_exception.ResourceConflictException: <p>The resource specified in the request conflicts with an existing resource.</p>
+            capo_amplifyuibuilder.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>You exceeded your service quota. Service quotas, also referred to as limits, are the maximum number of service resources or operations for your Amazon Web Services account. </p>
+            capo_amplifyuibuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_amplifyuibuilder.types.create_form_request.CreateFormRequest]",
+        ) -> OperationResponse[
+            "capo_amplifyuibuilder.types.create_form_response.CreateFormResponse"
+        ]:
+            import capo_amplifyuibuilder._operations.amplify_ui_builder.create_form
+
+            output, http_response = (
+                capo_amplifyuibuilder._operations.amplify_ui_builder.create_form.create_form(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_amplifyuibuilder.types.create_form_request.CreateFormRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+            "form_to_create": form_to_create,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_form(
+        self,
+        app_id: str,
+        environment_name: str,
+        id: "capo_amplifyuibuilder.types.uuid.Uuid",
+        *,
+        config_overrides: Optional[AmplifyUIBuilderClientConfig] = None,
+    ) -> "capo_amplifyuibuilder.types.get_form_response.GetFormResponse":
+        """<p>Returns an existing form for an Amplify app.</p>
+
+        Args:
+            app_id: <p>The unique ID of the Amplify app.</p>
+            environment_name: <p>The name of the backend environment that is part of the Amplify app.</p>
+            id: <p>The unique ID of the form.</p>
+
+        Raises:
+            capo_amplifyuibuilder.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred. Please retry your request.</p>
+            capo_amplifyuibuilder.errors.invalid_parameter_exception.InvalidParameterException: <p>An invalid or out-of-range value was supplied for the input parameter.</p>
+            capo_amplifyuibuilder.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource does not exist, or access was denied.</p>
+            capo_amplifyuibuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_amplifyuibuilder.types.get_form_request.GetFormRequest]",
+        ) -> OperationResponse[
+            "capo_amplifyuibuilder.types.get_form_response.GetFormResponse"
+        ]:
+            import capo_amplifyuibuilder._operations.amplify_ui_builder.get_form
+
+            output, http_response = (
+                capo_amplifyuibuilder._operations.amplify_ui_builder.get_form.get_form(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_amplifyuibuilder.types.get_form_request.GetFormRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+            "id": id,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_form(
+        self,
+        app_id: str,
+        environment_name: str,
+        id: "capo_amplifyuibuilder.types.uuid.Uuid",
+        updated_form: "capo_amplifyuibuilder.types.update_form_data.UpdateFormData",
+        *,
+        config_overrides: Optional[AmplifyUIBuilderClientConfig] = None,
+        client_token: Optional[str] = None,
+    ) -> "capo_amplifyuibuilder.types.update_form_response.UpdateFormResponse":
+        """<p>Updates an existing form.</p>
+
+        Args:
+            app_id: <p>The unique ID for the Amplify app.</p>
+            environment_name: <p>The name of the backend environment that is part of the Amplify app.</p>
+            id: <p>The unique ID for the form.</p>
+            client_token: <p>The unique client token.</p>
+            updated_form: <p>The request accepts the following data in JSON format.</p>
+
+        Raises:
+            capo_amplifyuibuilder.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred. Please retry your request.</p>
+            capo_amplifyuibuilder.errors.invalid_parameter_exception.InvalidParameterException: <p>An invalid or out-of-range value was supplied for the input parameter.</p>
+            capo_amplifyuibuilder.errors.resource_conflict_exception.ResourceConflictException: <p>The resource specified in the request conflicts with an existing resource.</p>
+            capo_amplifyuibuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_amplifyuibuilder.types.update_form_request.UpdateFormRequest]",
+        ) -> OperationResponse[
+            "capo_amplifyuibuilder.types.update_form_response.UpdateFormResponse"
+        ]:
+            import capo_amplifyuibuilder._operations.amplify_ui_builder.update_form
+
+            output, http_response = (
+                capo_amplifyuibuilder._operations.amplify_ui_builder.update_form.update_form(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_amplifyuibuilder.types.update_form_request.UpdateFormRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+            "id": id,
+            "updated_form": updated_form,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_form(
+        self,
+        app_id: str,
+        environment_name: str,
+        id: "capo_amplifyuibuilder.types.uuid.Uuid",
+        *,
+        config_overrides: Optional[AmplifyUIBuilderClientConfig] = None,
+    ) -> None:
+        """<p>Deletes a form from an Amplify app.</p>
+
+        Args:
+            app_id: <p>The unique ID of the Amplify app associated with the form to delete.</p>
+            environment_name: <p>The name of the backend environment that is a part of the Amplify app.</p>
+            id: <p>The unique ID of the form to delete.</p>
+
+        Raises:
+            capo_amplifyuibuilder.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred. Please retry your request.</p>
+            capo_amplifyuibuilder.errors.invalid_parameter_exception.InvalidParameterException: <p>An invalid or out-of-range value was supplied for the input parameter.</p>
+            capo_amplifyuibuilder.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource does not exist, or access was denied.</p>
+            capo_amplifyuibuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_amplifyuibuilder.types.delete_form_request.DeleteFormRequest]",
+        ) -> OperationResponse[None]:
+            import capo_amplifyuibuilder._operations.amplify_ui_builder.delete_form
+
+            output, http_response = (
+                capo_amplifyuibuilder._operations.amplify_ui_builder.delete_form.delete_form(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_amplifyuibuilder.types.delete_form_request.DeleteFormRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+            "id": id,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_forms(
+        self,
+        app_id: str,
+        environment_name: str,
+        *,
+        config_overrides: Optional[AmplifyUIBuilderClientConfig] = None,
+        next_token: Optional[str] = None,
+        max_results: Optional[
+            "capo_amplifyuibuilder.types.list_entity_limit.ListEntityLimit"
+        ] = None,
+    ) -> "capo_amplifyuibuilder.types.list_forms_response.ListFormsResponse":
+        """<p>Retrieves a list of forms for a specified Amplify app and backend environment.</p>
+
+        Args:
+            app_id: <p>The unique ID for the Amplify app.</p>
+            environment_name: <p>The name of the backend environment that is a part of the Amplify app.</p>
+            next_token: <p>The token to request the next page of results.</p>
+            max_results: <p>The maximum number of forms to retrieve.</p>
+
+        Raises:
+            capo_amplifyuibuilder.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred. Please retry your request.</p>
+            capo_amplifyuibuilder.errors.invalid_parameter_exception.InvalidParameterException: <p>An invalid or out-of-range value was supplied for the input parameter.</p>
+            capo_amplifyuibuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_amplifyuibuilder.types.list_forms_request.ListFormsRequest]",
+        ) -> OperationResponse[
+            "capo_amplifyuibuilder.types.list_forms_response.ListFormsResponse"
+        ]:
+            import capo_amplifyuibuilder._operations.amplify_ui_builder.list_forms
+
+            output, http_response = (
+                capo_amplifyuibuilder._operations.amplify_ui_builder.list_forms.list_forms(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_amplifyuibuilder.types.list_forms_request.ListFormsRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_forms(
+        self,
+        app_id: str,
+        environment_name: str,
+        *,
+        config_overrides: Optional[AmplifyUIBuilderClientConfig] = None,
+        next_token: Optional[str] = None,
+        max_results: Optional[
+            "capo_amplifyuibuilder.types.list_entity_limit.ListEntityLimit"
+        ] = None,
+    ) -> "Iterator[capo_amplifyuibuilder.types.form_summary.FormSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_forms(
+                app_id,
+                environment_name,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("entities",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def export_forms(
+        self,
+        app_id: str,
+        environment_name: str,
+        *,
+        config_overrides: Optional[AmplifyUIBuilderClientConfig] = None,
+        next_token: Optional[str] = None,
+    ) -> "capo_amplifyuibuilder.types.export_forms_response.ExportFormsResponse":
+        """<p>Exports form configurations to code that is ready to integrate into an Amplify app.</p>
+
+        Args:
+            app_id: <p>The unique ID of the Amplify app to export forms to.</p>
+            environment_name: <p>The name of the backend environment that is a part of the Amplify app.</p>
+            next_token: <p>The token to request the next page of results.</p>
+
+        Raises:
+            capo_amplifyuibuilder.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred. Please retry your request.</p>
+            capo_amplifyuibuilder.errors.invalid_parameter_exception.InvalidParameterException: <p>An invalid or out-of-range value was supplied for the input parameter.</p>
+            capo_amplifyuibuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_amplifyuibuilder.types.export_forms_request.ExportFormsRequest]",
+        ) -> OperationResponse[
+            "capo_amplifyuibuilder.types.export_forms_response.ExportFormsResponse"
+        ]:
+            import capo_amplifyuibuilder._operations.amplify_ui_builder.export_forms
+
+            output, http_response = (
+                capo_amplifyuibuilder._operations.amplify_ui_builder.export_forms.export_forms(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_amplifyuibuilder.types.export_forms_request.ExportFormsRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_export_forms(
+        self,
+        app_id: str,
+        environment_name: str,
+        *,
+        config_overrides: Optional[AmplifyUIBuilderClientConfig] = None,
+        next_token: Optional[str] = None,
+    ) -> "Iterator[capo_amplifyuibuilder.types.form.Form]":
+        _token = next_token
+        while True:
+            _response = self.export_forms(
+                app_id,
+                environment_name,
+                config_overrides=config_overrides,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("entities",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def create_theme(
+        self,
+        app_id: str,
+        environment_name: str,
+        theme_to_create: "capo_amplifyuibuilder.types.create_theme_data.CreateThemeData",
+        *,
+        config_overrides: Optional[AmplifyUIBuilderClientConfig] = None,
+        client_token: Optional[str] = None,
+    ) -> "capo_amplifyuibuilder.types.create_theme_response.CreateThemeResponse":
+        """<p>Creates a theme to apply to the components in an Amplify app.</p>
+
+        Args:
+            app_id: <p>The unique ID of the Amplify app associated with the theme.</p>
+            environment_name: <p>The name of the backend environment that is a part of the Amplify app.</p>
+            client_token: <p>The unique client token.</p>
+            theme_to_create: <p>Represents the configuration of the theme to create.</p>
+
+        Raises:
+            capo_amplifyuibuilder.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred. Please retry your request.</p>
+            capo_amplifyuibuilder.errors.invalid_parameter_exception.InvalidParameterException: <p>An invalid or out-of-range value was supplied for the input parameter.</p>
+            capo_amplifyuibuilder.errors.resource_conflict_exception.ResourceConflictException: <p>The resource specified in the request conflicts with an existing resource.</p>
+            capo_amplifyuibuilder.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>You exceeded your service quota. Service quotas, also referred to as limits, are the maximum number of service resources or operations for your Amazon Web Services account. </p>
+            capo_amplifyuibuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_amplifyuibuilder.types.create_theme_request.CreateThemeRequest]",
+        ) -> OperationResponse[
+            "capo_amplifyuibuilder.types.create_theme_response.CreateThemeResponse"
+        ]:
+            import capo_amplifyuibuilder._operations.amplify_ui_builder.create_theme
+
+            output, http_response = (
+                capo_amplifyuibuilder._operations.amplify_ui_builder.create_theme.create_theme(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_amplifyuibuilder.types.create_theme_request.CreateThemeRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+            "theme_to_create": theme_to_create,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_theme(
+        self,
+        app_id: str,
+        environment_name: str,
+        id: "capo_amplifyuibuilder.types.uuid.Uuid",
+        *,
+        config_overrides: Optional[AmplifyUIBuilderClientConfig] = None,
+    ) -> "capo_amplifyuibuilder.types.get_theme_response.GetThemeResponse":
+        """<p>Returns an existing theme for an Amplify app.</p>
+
+        Args:
+            app_id: <p>The unique ID of the Amplify app.</p>
+            environment_name: <p>The name of the backend environment that is part of the Amplify app.</p>
+            id: <p>The unique ID for the theme.</p>
+
+        Raises:
+            capo_amplifyuibuilder.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred. Please retry your request.</p>
+            capo_amplifyuibuilder.errors.invalid_parameter_exception.InvalidParameterException: <p>An invalid or out-of-range value was supplied for the input parameter.</p>
+            capo_amplifyuibuilder.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource does not exist, or access was denied.</p>
+            capo_amplifyuibuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_amplifyuibuilder.types.get_theme_request.GetThemeRequest]",
+        ) -> OperationResponse[
+            "capo_amplifyuibuilder.types.get_theme_response.GetThemeResponse"
+        ]:
+            import capo_amplifyuibuilder._operations.amplify_ui_builder.get_theme
+
+            output, http_response = (
+                capo_amplifyuibuilder._operations.amplify_ui_builder.get_theme.get_theme(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_amplifyuibuilder.types.get_theme_request.GetThemeRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+            "id": id,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_theme(
+        self,
+        app_id: str,
+        environment_name: str,
+        id: "capo_amplifyuibuilder.types.uuid.Uuid",
+        updated_theme: "capo_amplifyuibuilder.types.update_theme_data.UpdateThemeData",
+        *,
+        config_overrides: Optional[AmplifyUIBuilderClientConfig] = None,
+        client_token: Optional[str] = None,
+    ) -> "capo_amplifyuibuilder.types.update_theme_response.UpdateThemeResponse":
+        """<p>Updates an existing theme.</p>
+
+        Args:
+            app_id: <p>The unique ID for the Amplify app.</p>
+            environment_name: <p>The name of the backend environment that is part of the Amplify app.</p>
+            id: <p>The unique ID for the theme.</p>
+            client_token: <p>The unique client token.</p>
+            updated_theme: <p>The configuration of the updated theme.</p>
+
+        Raises:
+            capo_amplifyuibuilder.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred. Please retry your request.</p>
+            capo_amplifyuibuilder.errors.invalid_parameter_exception.InvalidParameterException: <p>An invalid or out-of-range value was supplied for the input parameter.</p>
+            capo_amplifyuibuilder.errors.resource_conflict_exception.ResourceConflictException: <p>The resource specified in the request conflicts with an existing resource.</p>
+            capo_amplifyuibuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_amplifyuibuilder.types.update_theme_request.UpdateThemeRequest]",
+        ) -> OperationResponse[
+            "capo_amplifyuibuilder.types.update_theme_response.UpdateThemeResponse"
+        ]:
+            import capo_amplifyuibuilder._operations.amplify_ui_builder.update_theme
+
+            output, http_response = (
+                capo_amplifyuibuilder._operations.amplify_ui_builder.update_theme.update_theme(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_amplifyuibuilder.types.update_theme_request.UpdateThemeRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+            "id": id,
+            "updated_theme": updated_theme,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_theme(
+        self,
+        app_id: str,
+        environment_name: str,
+        id: "capo_amplifyuibuilder.types.uuid.Uuid",
+        *,
+        config_overrides: Optional[AmplifyUIBuilderClientConfig] = None,
+    ) -> None:
+        """<p>Deletes a theme from an Amplify app.</p>
+
+        Args:
+            app_id: <p>The unique ID of the Amplify app associated with the theme to delete.</p>
+            environment_name: <p>The name of the backend environment that is a part of the Amplify app.</p>
+            id: <p>The unique ID of the theme to delete.</p>
+
+        Raises:
+            capo_amplifyuibuilder.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred. Please retry your request.</p>
+            capo_amplifyuibuilder.errors.invalid_parameter_exception.InvalidParameterException: <p>An invalid or out-of-range value was supplied for the input parameter.</p>
+            capo_amplifyuibuilder.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource does not exist, or access was denied.</p>
+            capo_amplifyuibuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_amplifyuibuilder.types.delete_theme_request.DeleteThemeRequest]",
+        ) -> OperationResponse[None]:
+            import capo_amplifyuibuilder._operations.amplify_ui_builder.delete_theme
+
+            output, http_response = (
+                capo_amplifyuibuilder._operations.amplify_ui_builder.delete_theme.delete_theme(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_amplifyuibuilder.types.delete_theme_request.DeleteThemeRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+            "id": id,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_themes(
+        self,
+        app_id: str,
+        environment_name: str,
+        *,
+        config_overrides: Optional[AmplifyUIBuilderClientConfig] = None,
+        next_token: Optional[str] = None,
+        max_results: Optional[
+            "capo_amplifyuibuilder.types.list_entity_limit.ListEntityLimit"
+        ] = None,
+    ) -> "capo_amplifyuibuilder.types.list_themes_response.ListThemesResponse":
+        """<p>Retrieves a list of themes for a specified Amplify app and backend environment.</p>
+
+        Args:
+            app_id: <p>The unique ID for the Amplify app.</p>
+            environment_name: <p>The name of the backend environment that is a part of the Amplify app.</p>
+            next_token: <p>The token to request the next page of results.</p>
+            max_results: <p>The maximum number of theme results to return in the response.</p>
+
+        Raises:
+            capo_amplifyuibuilder.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred. Please retry your request.</p>
+            capo_amplifyuibuilder.errors.invalid_parameter_exception.InvalidParameterException: <p>An invalid or out-of-range value was supplied for the input parameter.</p>
+            capo_amplifyuibuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_amplifyuibuilder.types.list_themes_request.ListThemesRequest]",
+        ) -> OperationResponse[
+            "capo_amplifyuibuilder.types.list_themes_response.ListThemesResponse"
+        ]:
+            import capo_amplifyuibuilder._operations.amplify_ui_builder.list_themes
+
+            output, http_response = (
+                capo_amplifyuibuilder._operations.amplify_ui_builder.list_themes.list_themes(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_amplifyuibuilder.types.list_themes_request.ListThemesRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_themes(
+        self,
+        app_id: str,
+        environment_name: str,
+        *,
+        config_overrides: Optional[AmplifyUIBuilderClientConfig] = None,
+        next_token: Optional[str] = None,
+        max_results: Optional[
+            "capo_amplifyuibuilder.types.list_entity_limit.ListEntityLimit"
+        ] = None,
+    ) -> "Iterator[capo_amplifyuibuilder.types.theme_summary.ThemeSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_themes(
+                app_id,
+                environment_name,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("entities",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def export_themes(
+        self,
+        app_id: str,
+        environment_name: str,
+        *,
+        config_overrides: Optional[AmplifyUIBuilderClientConfig] = None,
+        next_token: Optional[str] = None,
+    ) -> "capo_amplifyuibuilder.types.export_themes_response.ExportThemesResponse":
+        """<p>Exports theme configurations to code that is ready to integrate into an Amplify app.</p>
+
+        Args:
+            app_id: <p>The unique ID of the Amplify app to export the themes to.</p>
+            environment_name: <p>The name of the backend environment that is part of the Amplify app.</p>
+            next_token: <p>The token to request the next page of results.</p>
+
+        Raises:
+            capo_amplifyuibuilder.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred. Please retry your request.</p>
+            capo_amplifyuibuilder.errors.invalid_parameter_exception.InvalidParameterException: <p>An invalid or out-of-range value was supplied for the input parameter.</p>
+            capo_amplifyuibuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_amplifyuibuilder.types.export_themes_request.ExportThemesRequest]",
+        ) -> OperationResponse[
+            "capo_amplifyuibuilder.types.export_themes_response.ExportThemesResponse"
+        ]:
+            import capo_amplifyuibuilder._operations.amplify_ui_builder.export_themes
+
+            output, http_response = (
+                capo_amplifyuibuilder._operations.amplify_ui_builder.export_themes.export_themes(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_amplifyuibuilder.types.export_themes_request.ExportThemesRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_export_themes(
+        self,
+        app_id: str,
+        environment_name: str,
+        *,
+        config_overrides: Optional[AmplifyUIBuilderClientConfig] = None,
+        next_token: Optional[str] = None,
+    ) -> "Iterator[capo_amplifyuibuilder.types.theme.Theme]":
+        _token = next_token
+        while True:
+            _response = self.export_themes(
+                app_id,
+                environment_name,
+                config_overrides=config_overrides,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("entities",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def __enter__(self) -> Self:
         return self

@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.chatbot#WheatleyOrchestration_20171011``."""
 
+import uuid
 import warnings
 from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -42,17 +43,27 @@ if TYPE_CHECKING:
     import capo_chatbot.types.chime_webhook_configuration
     import capo_chatbot.types.chime_webhook_description
     import capo_chatbot.types.chime_webhook_url
+    import capo_chatbot.types.client_token
     import capo_chatbot.types.configuration_name
     import capo_chatbot.types.configured_team
     import capo_chatbot.types.create_chime_webhook_configuration_request
     import capo_chatbot.types.create_chime_webhook_configuration_result
+    import capo_chatbot.types.create_custom_action_request
+    import capo_chatbot.types.create_custom_action_result
     import capo_chatbot.types.create_slack_channel_configuration_request
     import capo_chatbot.types.create_slack_channel_configuration_result
     import capo_chatbot.types.create_teams_channel_configuration_request
     import capo_chatbot.types.create_teams_channel_configuration_result
+    import capo_chatbot.types.custom_action_alias_name
+    import capo_chatbot.types.custom_action_arn
+    import capo_chatbot.types.custom_action_attachment_list
+    import capo_chatbot.types.custom_action_definition
+    import capo_chatbot.types.custom_action_name
     import capo_chatbot.types.customer_cw_log_level
     import capo_chatbot.types.delete_chime_webhook_configuration_request
     import capo_chatbot.types.delete_chime_webhook_configuration_result
+    import capo_chatbot.types.delete_custom_action_request
+    import capo_chatbot.types.delete_custom_action_result
     import capo_chatbot.types.delete_microsoft_teams_user_identity_request
     import capo_chatbot.types.delete_microsoft_teams_user_identity_result
     import capo_chatbot.types.delete_slack_channel_configuration_request
@@ -77,11 +88,15 @@ if TYPE_CHECKING:
     import capo_chatbot.types.disassociate_from_configuration_result
     import capo_chatbot.types.get_account_preferences_request
     import capo_chatbot.types.get_account_preferences_result
+    import capo_chatbot.types.get_custom_action_request
+    import capo_chatbot.types.get_custom_action_result
     import capo_chatbot.types.get_teams_channel_configuration_request
     import capo_chatbot.types.get_teams_channel_configuration_result
     import capo_chatbot.types.guardrail_policy_arn_list
     import capo_chatbot.types.list_associations_request
     import capo_chatbot.types.list_associations_result
+    import capo_chatbot.types.list_custom_actions_request
+    import capo_chatbot.types.list_custom_actions_result
     import capo_chatbot.types.list_microsoft_teams_configured_teams_request
     import capo_chatbot.types.list_microsoft_teams_configured_teams_result
     import capo_chatbot.types.list_microsoft_teams_user_identities_request
@@ -118,6 +133,8 @@ if TYPE_CHECKING:
     import capo_chatbot.types.update_account_preferences_result
     import capo_chatbot.types.update_chime_webhook_configuration_request
     import capo_chatbot.types.update_chime_webhook_configuration_result
+    import capo_chatbot.types.update_custom_action_request
+    import capo_chatbot.types.update_custom_action_result
     import capo_chatbot.types.update_slack_channel_configuration_request
     import capo_chatbot.types.update_slack_channel_configuration_result
     import capo_chatbot.types.update_teams_channel_configuration_request
@@ -2101,6 +2118,336 @@ class AsyncchatbotClient:
         )
         await response.response.aclose()
         return response.output
+
+    async def create_custom_action(
+        self,
+        definition: "capo_chatbot.types.custom_action_definition.CustomActionDefinition",
+        action_name: "capo_chatbot.types.custom_action_name.CustomActionName",
+        *,
+        config_overrides: Optional[AsyncchatbotClientConfig] = None,
+        alias_name: Optional[
+            "capo_chatbot.types.custom_action_alias_name.CustomActionAliasName"
+        ] = None,
+        attachments: Optional[
+            "capo_chatbot.types.custom_action_attachment_list.CustomActionAttachmentList"
+        ] = None,
+        tags: Optional["capo_chatbot.types.tag_list.TagList"] = None,
+        client_token: Optional["capo_chatbot.types.client_token.ClientToken"] = None,
+    ) -> "capo_chatbot.types.create_custom_action_result.CreateCustomActionResult":
+        """<p>Creates a custom action that can be invoked as an alias or as a button on a notification.</p>
+
+        Args:
+            definition: <p>The definition of the command to run when invoked as an alias or as an action button.</p>
+            alias_name: <p>The name used to invoke this action in a chat channel. For example, <code>@aws run my-alias</code>.</p>
+            attachments: <p>Defines when this custom action button should be attached to a notification.</p>
+            tags: <p>A map of tags assigned to a resource. A tag is a string-to-string map of key-value pairs.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, subsequent retries with the same client token returns the result from the original successful request.</p> <p>If you do not specify a client token, one is automatically generated by the SDK.</p>
+            action_name: <p>The name of the custom action. This name is included in the Amazon Resource Name (ARN).</p>
+
+        Raises:
+            capo_chatbot.errors.conflict_exception.ConflictException: <p>There was an issue processing your request.</p>
+            capo_chatbot.errors.internal_service_error.InternalServiceError: <p>Unexpected error during processing of request.</p>
+            capo_chatbot.errors.invalid_request_exception.InvalidRequestException: <p>Your request input doesn't meet the constraints required by AWS Chatbot.</p>
+            capo_chatbot.errors.limit_exceeded_exception.LimitExceededException: <p>You have exceeded a service limit for AWS Chatbot.</p>
+            capo_chatbot.errors.unauthorized_exception.UnauthorizedException: <p>The request was rejected because it doesn't have valid credentials for the target resource.</p>
+            capo_chatbot.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Create an alias that invokes a Lambda function
+            Creates an alias that invokes a Lambda function from chat channels. You can use this alias by entering 'run invoke', after which you're prompted for the function name.
+
+            >>> await client.create_custom_action(action_name='my-custom-action', definition={'CommandText': 'lambda invoke $functionName'}, alias_name='invoke')
+            Create a custom action to list alarms
+            Creates a button on all Cloudwatch notifications that lists alarms in the ‘ALARM’ state.
+
+            >>> await client.create_custom_action(action_name='describe-alarms', definition={'CommandText': 'cloudwatch describe-alarms --state-value ALARM'}, attachments=[{'NotificationType': 'CloudWatch', 'ButtonText': 'List alarms'}])
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_chatbot.types.create_custom_action_request.CreateCustomActionRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_chatbot.types.create_custom_action_result.CreateCustomActionResult"
+        ]:
+            import capo_chatbot._operations.wheatley_orchestration_20171011.create_custom_action
+
+            (
+                output,
+                http_response,
+            ) = await capo_chatbot._operations.wheatley_orchestration_20171011.create_custom_action.async_create_custom_action(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_chatbot.types.create_custom_action_request.CreateCustomActionRequest = {
+            "definition": definition,
+            "action_name": action_name,
+        }
+        if alias_name is not None:
+            input_["alias_name"] = alias_name
+        if attachments is not None:
+            input_["attachments"] = attachments
+        if tags is not None:
+            input_["tags"] = tags
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_custom_action(
+        self,
+        custom_action_arn: "capo_chatbot.types.custom_action_arn.CustomActionArn",
+        *,
+        config_overrides: Optional[AsyncchatbotClientConfig] = None,
+    ) -> "capo_chatbot.types.get_custom_action_result.GetCustomActionResult":
+        """<p>Returns a custom action.</p>
+
+        Args:
+            custom_action_arn: <p>Returns the fully defined Amazon Resource Name (ARN) of the custom action.</p>
+
+        Raises:
+            capo_chatbot.errors.internal_service_error.InternalServiceError: <p>Unexpected error during processing of request.</p>
+            capo_chatbot.errors.invalid_request_exception.InvalidRequestException: <p>Your request input doesn't meet the constraints required by AWS Chatbot.</p>
+            capo_chatbot.errors.resource_not_found_exception.ResourceNotFoundException: <p>We were unable to find the resource for your request</p>
+            capo_chatbot.errors.unauthorized_exception.UnauthorizedException: <p>The request was rejected because it doesn't have valid credentials for the target resource.</p>
+            capo_chatbot.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Get a custom action
+
+            >>> await client.get_custom_action(custom_action_arn='arn:aws:chatbot::1234567890:custom-action/my-custom-action')
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_chatbot.types.get_custom_action_request.GetCustomActionRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_chatbot.types.get_custom_action_result.GetCustomActionResult"
+        ]:
+            import capo_chatbot._operations.wheatley_orchestration_20171011.get_custom_action
+
+            (
+                output,
+                http_response,
+            ) = await capo_chatbot._operations.wheatley_orchestration_20171011.get_custom_action.async_get_custom_action(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_chatbot.types.get_custom_action_request.GetCustomActionRequest = {
+            "custom_action_arn": custom_action_arn
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_custom_action(
+        self,
+        custom_action_arn: "capo_chatbot.types.custom_action_arn.CustomActionArn",
+        definition: "capo_chatbot.types.custom_action_definition.CustomActionDefinition",
+        *,
+        config_overrides: Optional[AsyncchatbotClientConfig] = None,
+        alias_name: Optional[
+            "capo_chatbot.types.custom_action_alias_name.CustomActionAliasName"
+        ] = None,
+        attachments: Optional[
+            "capo_chatbot.types.custom_action_attachment_list.CustomActionAttachmentList"
+        ] = None,
+    ) -> "capo_chatbot.types.update_custom_action_result.UpdateCustomActionResult":
+        """<p>Updates a custom action.</p>
+
+        Args:
+            custom_action_arn: <p>The fully defined Amazon Resource Name (ARN) of the custom action.</p>
+            definition: <p>The definition of the command to run when invoked as an alias or as an action button.</p>
+            alias_name: <p>The name used to invoke this action in the chat channel. For example, <code>@aws run my-alias</code>.</p>
+            attachments: <p>Defines when this custom action button should be attached to a notification.</p>
+
+        Raises:
+            capo_chatbot.errors.internal_service_error.InternalServiceError: <p>Unexpected error during processing of request.</p>
+            capo_chatbot.errors.invalid_request_exception.InvalidRequestException: <p>Your request input doesn't meet the constraints required by AWS Chatbot.</p>
+            capo_chatbot.errors.resource_not_found_exception.ResourceNotFoundException: <p>We were unable to find the resource for your request</p>
+            capo_chatbot.errors.unauthorized_exception.UnauthorizedException: <p>The request was rejected because it doesn't have valid credentials for the target resource.</p>
+            capo_chatbot.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Update the command definition of an existing action
+            Updates the command text of a custom action without altering the existing alias name or attachment criteria
+
+            >>> await client.update_custom_action(custom_action_arn='arn:aws:chatbot::1234567890:custom-action/my-custom-action', definition={'CommandText': 'lambda invoke MyNewFunction'})
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_chatbot.types.update_custom_action_request.UpdateCustomActionRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_chatbot.types.update_custom_action_result.UpdateCustomActionResult"
+        ]:
+            import capo_chatbot._operations.wheatley_orchestration_20171011.update_custom_action
+
+            (
+                output,
+                http_response,
+            ) = await capo_chatbot._operations.wheatley_orchestration_20171011.update_custom_action.async_update_custom_action(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_chatbot.types.update_custom_action_request.UpdateCustomActionRequest = {
+            "custom_action_arn": custom_action_arn,
+            "definition": definition,
+        }
+        if alias_name is not None:
+            input_["alias_name"] = alias_name
+        if attachments is not None:
+            input_["attachments"] = attachments
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_custom_action(
+        self,
+        custom_action_arn: "capo_chatbot.types.custom_action_arn.CustomActionArn",
+        *,
+        config_overrides: Optional[AsyncchatbotClientConfig] = None,
+    ) -> "capo_chatbot.types.delete_custom_action_result.DeleteCustomActionResult":
+        """<p>Deletes a custom action.</p>
+
+        Args:
+            custom_action_arn: <p>The fully defined ARN of the custom action.</p>
+
+        Raises:
+            capo_chatbot.errors.internal_service_error.InternalServiceError: <p>Unexpected error during processing of request.</p>
+            capo_chatbot.errors.invalid_request_exception.InvalidRequestException: <p>Your request input doesn't meet the constraints required by AWS Chatbot.</p>
+            capo_chatbot.errors.resource_not_found_exception.ResourceNotFoundException: <p>We were unable to find the resource for your request</p>
+            capo_chatbot.errors.unauthorized_exception.UnauthorizedException: <p>The request was rejected because it doesn't have valid credentials for the target resource.</p>
+            capo_chatbot.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Delete a custom action
+
+            >>> await client.delete_custom_action(custom_action_arn='arn:aws:chatbot::1234567890:custom-action/my-custom-action')
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_chatbot.types.delete_custom_action_request.DeleteCustomActionRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_chatbot.types.delete_custom_action_result.DeleteCustomActionResult"
+        ]:
+            import capo_chatbot._operations.wheatley_orchestration_20171011.delete_custom_action
+
+            (
+                output,
+                http_response,
+            ) = await capo_chatbot._operations.wheatley_orchestration_20171011.delete_custom_action.async_delete_custom_action(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_chatbot.types.delete_custom_action_request.DeleteCustomActionRequest = {
+            "custom_action_arn": custom_action_arn
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_custom_actions(
+        self,
+        *,
+        config_overrides: Optional[AsyncchatbotClientConfig] = None,
+        max_results: Optional[int] = None,
+        next_token: Optional[str] = None,
+    ) -> "capo_chatbot.types.list_custom_actions_result.ListCustomActionsResult":
+        """<p>Lists custom actions defined in this account.</p>
+
+        Args:
+            max_results: <p>The maximum number of results to include in the response. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.</p>
+            next_token: <p>An optional token returned from a prior request. Use this token for pagination of results from this action. If this parameter is specified, the response includes only results beyond the token, up to the value specified by MaxResults.</p>
+
+        Raises:
+            capo_chatbot.errors.internal_service_error.InternalServiceError: <p>Unexpected error during processing of request.</p>
+            capo_chatbot.errors.invalid_request_exception.InvalidRequestException: <p>Your request input doesn't meet the constraints required by AWS Chatbot.</p>
+            capo_chatbot.errors.unauthorized_exception.UnauthorizedException: <p>The request was rejected because it doesn't have valid credentials for the target resource.</p>
+            capo_chatbot.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            List custom actions
+
+            >>> await client.list_custom_actions()
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_chatbot.types.list_custom_actions_request.ListCustomActionsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_chatbot.types.list_custom_actions_result.ListCustomActionsResult"
+        ]:
+            import capo_chatbot._operations.wheatley_orchestration_20171011.list_custom_actions
+
+            (
+                output,
+                http_response,
+            ) = await capo_chatbot._operations.wheatley_orchestration_20171011.list_custom_actions.async_list_custom_actions(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_chatbot.types.list_custom_actions_request.ListCustomActionsRequest = {}
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_custom_actions(
+        self,
+        *,
+        config_overrides: Optional[AsyncchatbotClientConfig] = None,
+        max_results: Optional[int] = None,
+        next_token: Optional[str] = None,
+    ) -> "AsyncIterator[capo_chatbot.types.custom_action_arn.CustomActionArn]":
+        _token = next_token
+        while True:
+            _response = await self.list_custom_actions(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("custom_actions",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def __aenter__(self) -> Self:
         return self

@@ -19,6 +19,21 @@ async def main():
         print(response["access_token"])
 ```
 
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_amplifyuibuilder import AsyncAmplifyUIBuilderClient
+
+
+async def main():
+    async with AsyncAmplifyUIBuilderClient() as amplify_ui_builder:
+        # Example: paginate over list_codegen_jobs
+        async for item in amplify_ui_builder.iter_list_codegen_jobs():
+            print(item)
+```
+
 ## Error Handling
 
 The SDK raises exceptions for errors returned by the API. Catch them to handle failures gracefully.

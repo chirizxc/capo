@@ -19,6 +19,21 @@ async def main():
         print(response["validations"])
 ```
 
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_bedrock_agent import AsyncBedrockAgentClient
+
+
+async def main():
+    async with AsyncBedrockAgentClient() as bedrock_agent:
+        # Example: paginate over list_agent_action_groups
+        async for item in bedrock_agent.iter_list_agent_action_groups():
+            print(item)
+```
+
 ## Error Handling
 
 The SDK raises exceptions for errors returned by the API. Catch them to handle failures gracefully.

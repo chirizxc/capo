@@ -19,6 +19,37 @@ async def main():
         print(response)
 ```
 
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_bedrock_agentcore import AsyncBedrockAgentCoreClient
+
+
+async def main():
+    async with AsyncBedrockAgentCoreClient() as bedrock_agent_core:
+        # Example: paginate over list_ab_tests
+        async for item in bedrock_agent_core.iter_list_ab_tests():
+            print(item)
+```
+
+## Streaming Response
+
+Some operations return a streaming response body. Use the operation as an async context manager and iterate over the response field to read chunks.
+
+```python
+from capo_bedrock_agentcore import AsyncBedrockAgentCoreClient
+
+
+async def main():
+    async with AsyncBedrockAgentCoreClient() as bedrock_agent_core:
+        # Example: call invoke_agent_runtime and read the streaming response
+        async with bedrock_agent_core.invoke_agent_runtime() as response:
+            async for chunk in response["response"]:
+                print(chunk)
+```
+
 ## Error Handling
 
 The SDK raises exceptions for errors returned by the API. Catch them to handle failures gracefully.
